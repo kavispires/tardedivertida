@@ -11,6 +11,7 @@ import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
+import * as labirintoSecretoEngine from './engine/labirinto-secreto';
 import * as linhasCruzadasEngine from './engine/linhas-cruzadas';
 import * as megamixEngine from './engine/megamix';
 import * as menteColetivaEngine from './engine/mente-coletiva';
@@ -84,9 +85,7 @@ exports.rateGame = functions.https.onCall(commonEngine.rateGame);
  */
 exports.getUser = functions.https.onCall(commonEngine.getUser);
 
-/**
- * Submit Actions
- */
+// SUBMIT ACTIONS
 
 exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitAction);
 
@@ -103,6 +102,8 @@ exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImag
 exports.espiaoEntreNosSubmitAction = functions.https.onCall(espiaoEntreNosEngine.submitAction);
 
 exports.galeriaDeSonhosSubmitAction = functions.https.onCall(galeriaDeSonhosEngine.submitAction);
+
+exports.labirintoSecretoSubmitAction = functions.https.onCall(labirintoSecretoEngine.submitAction);
 
 exports.linhasCruzadasSubmitAction = functions.https.onCall(linhasCruzadasEngine.submitAction);
 

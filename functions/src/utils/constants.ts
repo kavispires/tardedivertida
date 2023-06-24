@@ -16,11 +16,6 @@ const GAMES = [
     key: 'BOMBA_RELOGIO',
   },
   {
-    name: 'caminhos-magicos',
-    code: 'C',
-    key: 'CAMINHOS_MAGICOS',
-  },
-  {
     name: 'comunicacao-alienigena',
     code: 'C',
     key: 'COMUNICACAO_ALIENIGENA',
@@ -64,6 +59,11 @@ const GAMES = [
     name: 'galeria-de-sonhos',
     code: 'G',
     key: 'GALERIA_DE_SONHOS',
+  },
+  {
+    name: 'labirinto-secreto',
+    code: 'Z',
+    key: 'LABIRINTO_SECRETO',
   },
   {
     name: 'linhas-cruzadas',
@@ -247,7 +247,7 @@ export const TDR_RESOURCES = {
   TOPICS: 'topics',
   WORDS_1: 'galeria-de-sonhos',
   WORDS_2: 'linhas-cruzadas',
-  WORDS_3: 'caminhos-magicos',
+  WORDS_3: 'labirinto-secreto',
 };
 
 export const SEPARATOR = ';;';
