@@ -50,7 +50,7 @@ type VIPNextPhaseButtonProps = {
  * It will be auto-triggered after 60 seconds unless value is overridden with a 0
  * It may be paused
  */
-export function VIPNextPhaseButton({ round, autoTriggerTime = 45, children }: VIPNextPhaseButtonProps) {
+export function VIPNextPhaseButton({ round, autoTriggerTime = 30, children }: VIPNextPhaseButtonProps) {
   const isVIP = useVIP();
   const { translate } = useLanguage();
   const { loaders } = useLoading();
