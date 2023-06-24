@@ -13,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { DreamSelectionRules } from './components/RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
 import { Translate } from 'components/language';
+import { SelectedDreams } from './components/SelectedDreams';
 
 function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
   const user = useUser(players, state);
@@ -34,7 +35,12 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher
+        step={step}
+        conditions={[!user.isReady, !user.isReady, !user.isReady]}
+        players={players}
+        waitingRoomContent={<SelectedDreams user={user} />}
+      >
         {/* Step 0 */}
         <StepDreamsSelection
           table={state.table}
