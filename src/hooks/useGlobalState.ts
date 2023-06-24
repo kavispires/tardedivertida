@@ -46,7 +46,7 @@ const initialState: InitialState = {
   // Sound
   volume: 0.5,
   // Drawing games
-  canvasSize: 0,
+  canvasSize: 50,
   // Espiao-entre-nos
   cache: {},
   // Retrato-Falado
