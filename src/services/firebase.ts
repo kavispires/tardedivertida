@@ -9,6 +9,7 @@ import {
   signInAnonymously,
   signInWithEmailAndPassword,
   UserCredential,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/functions';
 // Ant Design Resources
@@ -58,9 +59,9 @@ export default firebaseApp;
 
 /**
  * Sign up user via email through firebase auth
- * @param email
- * @param password
- * @returns
+ * @param email - the email of the user to sign up
+ * @param password - the password of the user to sign up
+ * @returns - the user credential
  */
 export function signUp(email: string, password: string): Promise<UserCredential> {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -68,9 +69,9 @@ export function signUp(email: string, password: string): Promise<UserCredential>
 
 /**
  * Sign in user via email through firebase auth
- * @param email
- * @param password
- * @returns
+ * @param email - the email of the user to sign in
+ * @param password - the password of the user to sign in
+ * @returns - the user credential
  */
 export function signIn(email: string, password: string): Promise<UserCredential> {
   return signInWithEmailAndPassword(auth, email, password);
@@ -78,7 +79,7 @@ export function signIn(email: string, password: string): Promise<UserCredential>
 
 /**
  * Signs in user anonymously as a guest
- * @returns
+ * @returns - the user credential
  */
 export function signInAsGuest(): Promise<UserCredential> {
   return signInAnonymously(auth);
@@ -86,7 +87,7 @@ export function signInAsGuest(): Promise<UserCredential> {
 
 /**
  * Sign out current user
- * @returns
+ * @returns - a promise that resolves when the user is signed out
  */
 export async function signOut(): Promise<void> {
   return auth.signOut().then(() => {
@@ -95,15 +96,31 @@ export async function signOut(): Promise<void> {
 }
 
 /**
+ * Sends a password reset email to the user
+ * @param email - the email of the user to reset
+ * @returns - a promise that resolves when the email is sent
+ */
+export function resetPassword(email: string): Promise<void> {
+  return sendPasswordResetEmail(auth, email);
+}
+
+/**
  * Sign in user via email through firebase auth
- * @param email
- * @param password
- * @returns
+ * @param email - the email of the user to convert
+ * @param password - the password of the user to convert
+ * @returns - the user credential
  */
 export function convertGuestoToUser(email: string, password: string): Promise<UserCredential> {
   return linkWithCredential(auth.currentUser!, EmailAuthProvider.credential(email, password));
 }
 
+/**
+ * Get the firebase url for a game
+ * @param usingEmulators - whether or not to use emulators
+ * @param gameCollection - the game collection
+ * @param gameId - the game id
+ * @returns - the firebase url
+ */
 export const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
   return usingEmulators
     ? `http://localhost:4000/firestore/data/games/${gameCollection}/${gameId}/state`

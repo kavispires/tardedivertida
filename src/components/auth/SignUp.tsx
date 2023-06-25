@@ -62,7 +62,7 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
       autoComplete="off"
     >
       <Form.Item
-        label={<Translate pt="Email" en="Email" />}
+        label={<Translate pt="E-mail" en="E-mail" />}
         name="username"
         rules={[
           { required: true, message: translate('e-mail é um campo obrigatório', 'e-mail is required') },
