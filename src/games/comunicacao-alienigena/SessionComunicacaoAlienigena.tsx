@@ -9,6 +9,7 @@ import localStorage from 'services/localStorage';
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
+import { LoadingPage } from 'components/loaders';
 import { PhaseAlienSelection } from './PhaseAlienSelection';
 import { PhaseHumanAsk } from './PhaseHumanAsk';
 import { PhaseAlienAnswer } from './PhaseAlienAnswer';
@@ -20,6 +21,9 @@ import { PhaseGameOver } from './PhaseGameOver';
 import './comunicacao-alienigena.scss';
 
 function getActiveComponent(phase: string) {
+  // If phase is not defined, it is likely that the game is still loading
+  if (!phase) return LoadingPage;
+
   switch (phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;
