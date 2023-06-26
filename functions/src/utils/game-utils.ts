@@ -325,7 +325,7 @@ export function getUniqueItems(array1: any[], array2: any[]): any[] {
 }
 
 export function calculateAverage(values: number[], round = false): number {
-  if (values.length === 0) {
+  if (!values || values.length === 0) {
     return 0;
   }
 
