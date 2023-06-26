@@ -263,10 +263,10 @@ export function countAchievements(store: FirebaseStoreData) {
   // Get mean values
   Object.keys(store.achievements).forEach((playerId) => {
     store.achievements[playerId].correctGuesses = utils.game.calculateAverage(
-      store.achievements[playerId].correctGuesses
+      store.achievements[playerId].correctGuesses ?? []
     );
     store.achievements[playerId].wrongGuesses = utils.game.calculateAverage(
-      store.achievements[playerId].correctGuesses
+      store.achievements[playerId].wrongGuesses ?? []
     );
   });
 }
