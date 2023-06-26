@@ -29,7 +29,7 @@ export function HumanInquiry({ signs, items, submitInquiry, user }: HumanInquiry
       >
         <Translate pt="Enviar Objetos" en="Submit Objects" /> ({objectsIds.length})
       </Button>
-      <Space className="space-container" wrap>
+      <Space className="boards-container" wrap>
         <SelectableObjectsGrid
           items={items}
           selectedObjects={selected}

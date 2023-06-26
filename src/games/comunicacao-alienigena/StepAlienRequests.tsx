@@ -51,12 +51,12 @@ export function StepAlienRequests({
         <Translate
           pt={
             <>
-              Alienígena <AvatarName player={alien} /> pede um objeto
+              Alienígena <AvatarName player={alien} /> pede um item
             </>
           }
           en={
             <>
-              Alien <AvatarName player={alien} /> requests an object
+              Alien <AvatarName player={alien} /> requests an item
             </>
           }
         />
@@ -86,14 +86,20 @@ export function StepAlienRequests({
           <Translate
             pt={
               <>
-                Descreva um dos objetos desejados (verde) usando quantos símbolos você quiser. <br />
+                Descreva um dos objetos desejados (verde) usando quantos símbolos você quiser.
+                <br />
                 Se você precisar inferir negação, coloque um traço horizontal em cima do símbolo.
+                <br />
+                Se você precisa inferir ênfase, coloque um traço horizontal embaixo do símbolo.
               </>
             }
             en={
               <>
-                Describe one of your desired objects (green) using as many symbols you wish. <br />
+                Describe one of your desired objects (green) using as many symbols you wish.
+                <br />
                 If you need to infer negation or the contrary, draw an horizontal line on top of the symbol.
+                <br />
+                If you need to infer emphasis, draw an horizontal line below the symbol.
               </>
             }
           />
@@ -105,14 +111,14 @@ export function StepAlienRequests({
       </AlienContent>
 
       <AlienContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} />
           <SignsKeyCard signs={signs} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} />
           <HumanSignBoard signs={signs} />
         </Space>

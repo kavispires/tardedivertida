@@ -5,6 +5,7 @@ import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
+import { Title } from 'components/text';
 
 type ObjectsGridProps = {
   items: Item[];
@@ -16,6 +17,9 @@ type ObjectsGridProps = {
 export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }: ObjectsGridProps) {
   return (
     <Space direction="vertical">
+      <Title level={3} size="xx-small">
+        <Translate pt="Itens" en="Items" />
+      </Title>
       <div className="objects-grid">
         {items.map((item) => (
           <div
@@ -45,7 +49,6 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
           </div>
         ))}
       </div>
-
       <div className="objects-key">
         <div className="objects-key__entry">
           <span className="objects-key__example objects-key__example--UNKNOWN"></span>
