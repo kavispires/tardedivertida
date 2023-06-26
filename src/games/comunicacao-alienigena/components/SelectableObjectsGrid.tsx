@@ -7,6 +7,7 @@ import { useLoading } from 'hooks/useLoading';
 import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
+import { Title } from 'components/text';
 
 type SelectableObjectsGridProps = {
   user: GamePlayer;
@@ -27,6 +28,9 @@ export function SelectableObjectsGrid({
 
   return (
     <Space direction="vertical">
+      <Title level={3} size="xx-small">
+        <Translate pt="Itens" en="Items" />
+      </Title>
       <div className="objects-grid">
         {items.map((item) =>
           Boolean(item.offered) ? (

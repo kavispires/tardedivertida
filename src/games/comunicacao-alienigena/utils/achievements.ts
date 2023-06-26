@@ -11,7 +11,7 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.MOST_QUESTIONED_OBJECTS]: {
     icon: 'double-arrow-up',
     title: {
-      pt: 'Melhor Curioso',
+      pt: 'Mais Curioso',
       en: 'Most Curious',
     },
     description: {

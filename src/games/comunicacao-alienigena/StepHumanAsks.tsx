@@ -105,7 +105,7 @@ export function StepHumanAsks({
       </Instruction>
 
       <AlienContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} />
           <SignsKeyCard signs={signs} />
         </Space>
@@ -117,7 +117,7 @@ export function StepHumanAsks({
         </ViewIf>
 
         <ViewIf condition={!isUserTheCurrentHuman}>
-          <Space className="space-container" wrap>
+          <Space className="boards-container" wrap>
             <ObjectsGrid items={items} showTypes={false} />
             <HumanSignBoard signs={signs} />
           </Space>
