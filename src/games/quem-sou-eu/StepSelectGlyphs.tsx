@@ -45,10 +45,17 @@ export function StepSelectGlyphs({
   const glyphWidth = useCardWidth(20, 16, 50, 75);
   const selectedWidth = glyphWidth + 15;
 
-  const [positiveSelection, updatePositive] = useBooleanDictionary({});
-  const positiveSelections = Object.keys(positiveSelection);
-  const [negativeSelection, updateNegative] = useBooleanDictionary({});
-  const negativeSelections = Object.keys(negativeSelection);
+  const {
+    dict: positiveSelection,
+    updateDict: updatePositive,
+    keys: positiveSelections,
+  } = useBooleanDictionary({});
+
+  const {
+    dict: negativeSelection,
+    updateDict: updateNegative,
+    keys: negativeSelections,
+  } = useBooleanDictionary({});
 
   const glyphs = user.glyphs ?? [];
 

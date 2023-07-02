@@ -35,9 +35,11 @@ export function StepDreamsSelection({
   announcement,
   hardModeEnabled,
 }: StepDreamsSelectionProps) {
-  const [selectedCards, onSelectCard] = useBooleanDictionary({}, validateSelectedCards);
-
-  const selectedCount = Object.keys(selectedCards).length;
+  const {
+    dict: selectedCards,
+    updateDict: onSelectCard,
+    length: selectedCount,
+  } = useBooleanDictionary({}, validateSelectedCards);
 
   useMock(() => {
     onSubmitCards({ cardsIds: mockDreamSelection(table, hardModeEnabled) });
