@@ -1,14 +1,18 @@
-import { Button, Space, Steps } from 'antd';
-import { DualTranslate, Translate } from 'components/language';
+import clsx from 'clsx';
 import { useState } from 'react';
-import { SelectableObjectsGrid } from './SelectableObjectsGrid';
-import { Instruction, Title } from 'components/text';
+// Ant Design Resources
+import { Button, Space, Steps } from 'antd';
+// Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { Card } from 'components/cards';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import clsx from 'clsx';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
+// Components
+import { DualTranslate, Translate } from 'components/language';
+import { Instruction, Title } from 'components/text';
+import { Card } from 'components/cards';
+import { SelectableObjectsGrid } from './SelectableObjectsGrid';
 
 type HumanSeedingStepsProps = {
   user: GamePlayer;
