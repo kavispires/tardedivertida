@@ -25,6 +25,29 @@ export function useOnSubmitAlienAPIRequest(setStep: GenericFunction) {
   };
 }
 
+export function useOnSubmitSeedingAPIRequest(setStep: GenericFunction) {
+  const { translate } = useLanguage();
+
+  const request = useAPICall({
+    apiFunction: COMUNICACAO_ALIENIGENA_API.submitAction,
+    actionName: 'submit-seeds',
+    onSuccess: () => setStep(2),
+    onError: () => setStep(0),
+    successMessage: translate('Análise submetida com sucesso', 'Analyses submitted successfully'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua análise',
+      'Oops, the application found an error while trying to submit your analyses'
+    ),
+  });
+
+  return (payload: SubmitSeedingPayload) => {
+    request({
+      action: 'SUBMIT_SEEDS',
+      ...payload,
+    });
+  };
+}
+
 export function useOnSubmitHumanInquiryAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 

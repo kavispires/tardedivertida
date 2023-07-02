@@ -5,7 +5,6 @@ import { getNextPhase } from '.';
 
 /**
  * Submits the selected alien player ID for a given game.
- *
  * @function
  * @async
  * @param gameName - The name of the game.
@@ -33,6 +32,41 @@ export const handleSubmitAlien = async (
   });
 };
 
+/**
+ * Submits the seeding performed by a player.
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param seeds
+ * @returns
+ */
+export const handleSubmitSeeds = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  seeds: Record<CardId, CardId[]>
+) => {
+  return await utils.firebase.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'submit seeds',
+    shouldReady: true,
+    change: {
+      alienSeeds: seeds,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
+};
+
+/**
+ * Submits the selected objects by a given player.
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param objectsIds
+ * @returns
+ */
 export const handleSubmitHumanInquiry = async (
   gameName: GameName,
   gameId: GameId,

@@ -19,6 +19,7 @@ import { PhaseReveal } from './PhaseReveal';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './comunicacao-alienigena.scss';
+import { PhaseAlienSeeding } from './PhaseAlienSeeding';
 
 function getActiveComponent(phase: string) {
   // If phase is not defined, it is likely that the game is still loading
@@ -35,6 +36,8 @@ function getActiveComponent(phase: string) {
       return PhaseSetup;
     case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION:
       return PhaseAlienSelection;
+    case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SEEDING:
+      return PhaseAlienSeeding;
     case PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK:
       return PhaseHumanAsk;
     case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_ANSWER:
