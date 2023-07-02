@@ -34,7 +34,7 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
 
   return (
     <div>
-      <IconAvatar icon={<BoxOneIcon />} size="small" /> <Translate pt="Indiferente" en="Indifferent" />
+      <IconAvatar icon={<BoxOneIcon />} size="small" /> <Translate pt="Irrelevante" en="Irrelevant" />
     </div>
   );
 }

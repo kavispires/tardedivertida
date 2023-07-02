@@ -170,6 +170,7 @@ export function StepAlienAnswers({
         players={players}
         items={items}
         isAlienBot={isAlienBot}
+        signs={signs}
       />
     </Step>
   );

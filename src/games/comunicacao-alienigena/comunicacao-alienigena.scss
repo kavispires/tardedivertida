@@ -28,7 +28,7 @@
       border-color: get-color('green', 4);
       border-style: dashed;
 
-      .glyph-card {
+      .item-card {
         background: get-color('green', 3);
       }
     }
@@ -37,7 +37,7 @@
       border-color: get-color('purple', 7);
       border-style: dotted;
 
-      .glyph-card {
+      .item-card {
         background: get-color('purple', 4);
       }
     }
@@ -45,14 +45,15 @@
     &--BLANK {
       border-color: get-color('brown', 2);
 
-      .glyph-card {
+      .item-card {
         background: get-color('yellow', 1);
       }
     }
 
     &--ask {
-      transform: scale(0.8);
-      border-color: get-color('pink');
+      .item-card {
+        background-color: get-color('pink');
+      }
     }
   }
 
@@ -62,10 +63,39 @@
   }
 
   &__button {
+    &--ITEM {
+      .item-card {
+        background: get-color('green', 3);
+      }
+    }
+
+    &--CURSE {
+      .item-card {
+        background: get-color('purple', 4);
+      }
+    }
+
+    &--BLANK {
+      .item-card {
+        background: get-color('yellow', 1);
+      }
+    }
+
+    &--ask {
+      border-radius: $border-radius;
+      .item-card {
+        background-color: get-color('pink');
+      }
+    }
+
     &--active {
       transform: rotate(30deg) scale(0.8);
       background: get-color('pink');
     }
+  }
+
+  .objects-grid__item--border {
+    border-width: get-unit(2);
   }
 
   &__item-back {
@@ -199,7 +229,7 @@
   border-radius: $border-radius;
 
   &--negative {
-    border-top: get-unit(2) solid black;
+    border-top: get-unit(2) solid get-color('black');
   }
 }
 
@@ -226,4 +256,8 @@
 
 .seeding-attribute-container {
   flex: 1;
+}
+
+.intention-select {
+  min-width: 15ch;
 }

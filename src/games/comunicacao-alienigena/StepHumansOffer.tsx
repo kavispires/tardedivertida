@@ -106,6 +106,7 @@ export function StepHumansOffer({
         players={players}
         items={items}
         isAlienBot={isAlienBot}
+        signs={signs}
       />
     </Step>
   );

@@ -37,6 +37,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
         items={state.items}
         isAlienBot={state.isAlienBot}
         showIntention
+        signs={state.signs}
       />
     </GameOverWrapper>
   );

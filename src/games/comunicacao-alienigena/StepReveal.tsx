@@ -126,6 +126,7 @@ export function StepReveal({
         players={players}
         items={items}
         isAlienBot={isAlienBot}
+        signs={signs}
       />
 
       <VIPNextPhaseButton round={round} />

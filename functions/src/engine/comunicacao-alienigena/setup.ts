@@ -172,6 +172,7 @@ export const prepareHumanAskPhase = async (
       answer: state.alienResponse,
       objectIds: state.currentInquiry,
       playerId: state.humanId,
+      intention: state.currentIntention ?? '',
     });
   }
 
@@ -196,7 +197,7 @@ export const prepareHumanAskPhase = async (
         players,
       },
       ...storeUpdate,
-      stateCleanup: ['alienResponse', 'alienRequest', 'currentInquiry'],
+      stateCleanup: ['alienResponse', 'alienRequest', 'currentInquiry', 'currentIntention'],
       storeCleanup: ['alienSeeds'],
     },
   };
@@ -210,10 +211,11 @@ export const prepareAlienAnswerPhase = async (
   const hasBot = checkIsBot(store);
 
   // Unready alien player
-  utils.players.unReadyPlayers(players, hasBot ? undefined : state.alienId);
+  utils.players.unReadyPlayers(players, state.alienId);
 
   // Add player question to the state
   const currentInquiry = players[state.humanId].objectsIds ?? [];
+  const currentIntention = players[state.humanId].intention ?? '';
 
   // Achievement: Single Inquiry
   if (currentInquiry.length === 1) {
@@ -243,6 +245,7 @@ export const prepareAlienAnswerPhase = async (
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER,
         currentInquiry,
+        currentIntention,
         alienResponse,
         players,
       },
@@ -265,6 +268,7 @@ export const prepareAlienRequestPhase = async (
       answer: state.alienResponse,
       objectIds: state.currentInquiry,
       playerId: state.humanId,
+      intention: state.currentIntention ?? '',
     });
   }
 
@@ -276,7 +280,7 @@ export const prepareAlienRequestPhase = async (
         inquiryHistory,
         players,
       },
-      stateCleanup: ['alienResponse', 'currentInquiry', 'humanId'],
+      stateCleanup: ['alienResponse', 'currentInquiry', 'currentIntention', 'humanId'],
     },
   };
 };
@@ -289,7 +293,7 @@ export const prepareOfferingsPhase = async (
   // Unready alien player
   utils.players.unReadyPlayers(players, state.alienId);
 
-  // Since in a Bot Alien game the Alien Request phase is skit, the inquiry must be saved here
+  // Since in a Bot Alien game the Alien Request phase is skipped, the inquiry must be saved here
   const inquiryHistory = state.inquiryHistory as InquiryHistoryEntry[];
   if (state.alienBot) {
     // Save any inquiry to history
@@ -298,6 +302,7 @@ export const prepareOfferingsPhase = async (
         answer: state.alienResponse,
         objectIds: state.currentInquiry,
         playerId: state.humanId,
+        intention: state.currentIntention ?? '',
       });
     }
   }
@@ -327,6 +332,7 @@ export const prepareOfferingsPhase = async (
         inquiryHistory,
         players,
       },
+      stateCleanup: ['alienResponse', 'currentInquiry', 'currentIntention', 'humanId'],
     },
   };
 };
