@@ -3,6 +3,10 @@ type SubmitAlienPayload = {
   alienId: PlayerId;
 };
 
+type SubmitSeedingPayload = {
+  seeds: Record<CardId, CardId[]>;
+};
+
 type SubmitHumanInquiryPayload = {
   objectsIds: CardId[];
 };
@@ -27,7 +31,8 @@ interface Item {
 }
 
 interface Sign {
-  signId: number;
+  key: string;
+  signId: string;
   attribute: DualLanguageValue;
 }
 

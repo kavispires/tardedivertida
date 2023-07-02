@@ -53,7 +53,7 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
         <div className="objects-key__entry">
           <span className="objects-key__example objects-key__example--UNKNOWN"></span>
           <span className="objects-key__text">
-            <Translate pt="Desconhecido" en="Unknown" />
+            <Translate pt="Irrelevante" en="Irrelevant" />
           </span>
         </div>
         <div className="objects-key__entry">
