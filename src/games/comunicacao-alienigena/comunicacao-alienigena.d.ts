@@ -9,6 +9,7 @@ type SubmitSeedingPayload = {
 
 type SubmitHumanInquiryPayload = {
   objectsIds: CardId[];
+  intention: string;
 };
 
 type SubmitAlienResponsePayload = {
@@ -17,6 +18,7 @@ type SubmitAlienResponsePayload = {
 
 type SubmitAlienRequestPayload = {
   alienRequest: string;
+  intention: string;
 };
 
 type SubmitOfferingPayload = {
@@ -40,6 +42,7 @@ interface InquiryHistoryEntry {
   objectIds: CardId[];
   answer: string;
   playerId: PlayerId;
+  intention?: string;
 }
 
 interface Offer {

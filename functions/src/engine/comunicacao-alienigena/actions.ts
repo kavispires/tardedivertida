@@ -71,7 +71,8 @@ export const handleSubmitHumanInquiry = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  objectsIds: CardId[]
+  objectsIds: CardId[],
+  intention: CardId
 ) => {
   return await utils.firebase.updatePlayer({
     gameName,
@@ -79,7 +80,7 @@ export const handleSubmitHumanInquiry = async (
     playerId,
     actionText: `submit ${playerId} objects`,
     shouldReady: true,
-    change: { objectsIds },
+    change: { objectsIds, intention },
     nextPhaseFunction: getNextPhase,
   });
 };
@@ -105,7 +106,8 @@ export const handleSubmitAlienRequest = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  alienRequest: string
+  alienRequest: string,
+  intention: CardId
 ) => {
   return await utils.firebase.updateStore({
     gameName,
@@ -114,6 +116,7 @@ export const handleSubmitAlienRequest = async (
     actionText: 'submit alien request',
     change: {
       alienRequest,
+      intention,
     },
     nextPhaseFunction: getNextPhase,
   });
