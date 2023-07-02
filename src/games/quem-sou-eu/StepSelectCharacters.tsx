@@ -23,8 +23,12 @@ type StepSelectCharactersProps = {
 export function StepSelectCharacters({ user, announcement, onSelectCharacters }: StepSelectCharactersProps) {
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(12, 16, 100, 200);
-  const [selection, update] = useBooleanDictionary({});
-  const selectedCharacters = Object.keys(selection);
+  const {
+    dict: selection,
+    updateDict: update,
+    length: count,
+    keys: selectedCharacters,
+  } = useBooleanDictionary({});
 
   const availableCharacters = user.availableCharacters ?? [];
 
@@ -84,12 +88,9 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
           size="large"
           type="primary"
           onClick={() => onSelectCharacters({ characters: selectedCharacters })}
-          disabled={isLoading || user.ready || selectedCharacters.length !== 6}
+          disabled={isLoading || user.ready || count !== 6}
         >
-          <Translate
-            pt={<>Enviar {selectedCharacters.length} cartas</>}
-            en={<>Submit {selectedCharacters.length} cards</>}
-          />
+          <Translate pt={<>Enviar {count} cartas</>} en={<>Submit {count} cards</>} />
         </Button>
         <Button
           size="large"

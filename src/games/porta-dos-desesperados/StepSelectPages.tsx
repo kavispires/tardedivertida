@@ -41,9 +41,8 @@ export function StepSelectPages({
   onSubmitPages,
 }: StepSelectPagesProps) {
   const { isLoading } = useLoading();
-  const [selections, select] = useBooleanDictionary({});
+  const { dict: selections, updateDict: select, length: totalSelections } = useBooleanDictionary({});
 
-  const totalSelections = Object.keys(selections).length;
   const isSelectionComplete =
     trap === TRAPS.MORE_CLUES ? totalSelections === 3 : totalSelections > 0 && totalSelections < 3;
 

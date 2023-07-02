@@ -25,7 +25,11 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
   const { isLoading } = useLoading();
   const alphabeticalHand = useMemo(() => orderBy(hand, 'text'), [hand]);
 
-  const [selectedCards, updateSelectedCard] = useBooleanDictionary({});
+  const {
+    dict: selectedCards,
+    updateDict: updateSelectedCard,
+    length: selectedCount,
+  } = useBooleanDictionary({});
 
   const onSubmit = () => {
     onSubmitBadWords({ cardsIds: Object.keys(selectedCards) });
@@ -38,7 +42,6 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
     onSubmitBadWords({ cardsIds: mockSelectCards(hand) });
   });
 
-  const selectedCount = Object.keys(selectedCards).length;
   const isComplete = selectedCount === WORST_TO_REMOVE;
 
   return (

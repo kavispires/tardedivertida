@@ -17,8 +17,12 @@ type HumanInquiryProps = {
 
 export function HumanInquiry({ signs, items, submitInquiry, user }: HumanInquiryProps) {
   const { isLoading } = useLoading();
-  const [selected, updateSelected] = useBooleanDictionary({}, (d) => Object.keys(d).length < 5);
-  const objectsIds = Object.keys(selected);
+  const {
+    dict: selected,
+    updateDict: updateSelected,
+    keys: objectsIds,
+  } = useBooleanDictionary({}, (d) => Object.keys(d).length < 5);
+
   return (
     <Space className="space-container" direction="vertical">
       <Button
