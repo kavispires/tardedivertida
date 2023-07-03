@@ -7,12 +7,14 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+// Sass
+import './labirinto-secreto.scss';
 
-function getActiveComponent(phase: string) {
+function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
-  if (!phase) return LoadingPage;
+  if (state && !state.phase) return LoadingPage;
 
-  switch (phase) {
+  switch (state.phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;
     case PHASES.DEFAULT.RULES:

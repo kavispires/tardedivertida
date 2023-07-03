@@ -60,7 +60,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
     );
   }
 
-  const ActiveComponent: any = getActiveComponent(state.phase);
+  const ActiveComponent: any = getActiveComponent(state);
 
   return (
     <>
