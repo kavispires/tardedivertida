@@ -6,6 +6,7 @@ import { PHASES } from 'utils/phases';
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
+import { LoadingPage } from 'components/loaders';
 import PhaseWordSelection from './PhaseWordSelection';
 import PhaseDreamsSelection from './PhaseDreamsSelections';
 import PhaseCardPlay from './PhaseCardPlay';
@@ -15,6 +16,9 @@ import PhaseGameOver from './PhaseGameOver';
 import './galeria-de-sonhos.scss';
 
 function getActiveComponent(phase: string) {
+  // If phase is not defined, it is likely that the game is still loading
+  if (!phase) return LoadingPage;
+
   switch (phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;

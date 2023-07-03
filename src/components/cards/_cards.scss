@@ -242,8 +242,14 @@
 
     transform: none;
 
-    &__label {
-      font-size: 0rem;
+    &__label-text-hint {
+      display: none;
+    }
+
+    &__children {
+      max-height: 960vh;
+      overflow-y: auto;
+      transform: scale(100%);
     }
   }
 

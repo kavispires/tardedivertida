@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
@@ -15,6 +16,7 @@ import { AlienContent, HumanContent } from './components/Content';
 import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
+import { SelectableObjectsGrid } from './components/SelectableObjectsGrid';
 
 type StepAlienRequestsProps = {
   players: GamePlayers;
@@ -34,7 +36,6 @@ export function StepAlienRequests({
   announcement,
   user,
   onSubmitAlienRequest,
-
   items,
   signs,
   alien,
@@ -44,6 +45,7 @@ export function StepAlienRequests({
   status,
 }: StepAlienRequestsProps) {
   const { isLoading } = useLoading();
+  const [intention, setIntention] = useState<string>('');
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -51,12 +53,12 @@ export function StepAlienRequests({
         <Translate
           pt={
             <>
-              Alienígena <AvatarName player={alien} /> pede um objeto
+              Alienígena <AvatarName player={alien} /> pede um item
             </>
           }
           en={
             <>
-              Alien <AvatarName player={alien} /> requests an object
+              Alien <AvatarName player={alien} /> requests an item
             </>
           }
         />
@@ -86,33 +88,50 @@ export function StepAlienRequests({
           <Translate
             pt={
               <>
-                Descreva um dos objetos desejados (verde) usando quantos símbolos você quiser. <br />
+                <strong>Selecione</strong> um dos objetos desejados (verde).
+                <br />
+                Então, descreva o objeto usando quantos símbolos você quiser.
+                <br />
                 Se você precisar inferir negação, coloque um traço horizontal em cima do símbolo.
+                <br />
+                Se você precisa inferir ênfase, coloque um traço horizontal embaixo do símbolo.
               </>
             }
             en={
               <>
-                Describe one of your desired objects (green) using as many symbols you wish. <br />
+                <strong>Select</strong> one of the desired objects (green).
+                <br />
+                Then, describe the object using as many symbols you wish.
+                <br />
                 If you need to infer negation or the contrary, draw an horizontal line on top of the symbol.
+                <br />
+                If you need to infer emphasis, draw an horizontal line below the symbol.
               </>
             }
           />
         </Instruction>
+
         <AlienWritingBoard
-          onSubmit={(alienRequest) => onSubmitAlienRequest({ alienRequest })}
-          disabled={user.ready || isLoading}
+          onSubmit={(alienRequest) => onSubmitAlienRequest({ alienRequest, intention })}
+          disabled={user.ready || isLoading || !intention}
         />
       </AlienContent>
 
       <AlienContent user={user}>
-        <Space className="space-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} />
+        <Space className="boards-container" wrap>
+          <SelectableObjectsGrid
+            items={items}
+            showTypes={isUserAlien}
+            user={user}
+            selectedObjects={{ [intention]: true }}
+            selectObject={(itemId) => setIntention(itemId)}
+          />
           <SignsKeyCard signs={signs} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} />
           <HumanSignBoard signs={signs} />
         </Space>
@@ -124,6 +143,7 @@ export function StepAlienRequests({
         players={players}
         items={items}
         isAlienBot={false}
+        signs={signs}
       />
     </Step>
   );

@@ -151,14 +151,14 @@ export function StepAlienAnswers({
       </ViewIf>
 
       <AlienContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} />
           <SignsKeyCard signs={signs} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} />
           <HumanSignBoard signs={signs} />
         </Space>
@@ -170,6 +170,7 @@ export function StepAlienAnswers({
         players={players}
         items={items}
         isAlienBot={isAlienBot}
+        signs={signs}
       />
     </Step>
   );

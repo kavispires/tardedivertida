@@ -3,7 +3,7 @@ import { Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 // Components
 import { AvatarName } from 'components/avatars';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { ItemCard } from 'components/cards/ItemCard';
 import { AlienViewBoard } from './AlienViewBoard';
 
@@ -11,9 +11,17 @@ type InquiryHistoryProps = {
   inquiryHistory: InquiryHistoryEntry[];
   players: GamePlayers;
   isAlienBot?: boolean;
+  signs: Sign[];
+  showIntention?: boolean;
 };
 
-export function InquiryHistory({ inquiryHistory, players, isAlienBot }: InquiryHistoryProps) {
+export function InquiryHistory({
+  inquiryHistory,
+  players,
+  isAlienBot,
+  signs,
+  showIntention,
+}: InquiryHistoryProps) {
   if (inquiryHistory.length < 1) return <></>;
 
   const columns: ColumnsType<InquiryHistoryEntry> = [
@@ -37,6 +45,15 @@ export function InquiryHistory({ inquiryHistory, players, isAlienBot }: InquiryH
     },
   ];
 
+  if (showIntention) {
+    columns.push({
+      key: 'intention',
+      title: <Translate pt="Intenção" en="Intention" />,
+      dataIndex: 'intention',
+      render: (intention) => <Intention signs={signs} intention={intention} />,
+    });
+  }
+
   return (
     <Space direction="vertical">
       <Table columns={columns} bordered dataSource={inquiryHistory} />
@@ -55,6 +72,24 @@ function Objects({ objectIds }: Pick<InquiryHistoryEntry, 'objectIds'>) {
           width={50}
         />
       ))}
+    </Space>
+  );
+}
+
+type IntentionProps = {
+  signs: Sign[];
+  intention: Pick<InquiryHistoryEntry, 'intention'>;
+};
+function Intention({ signs, intention }: IntentionProps) {
+  const attribute = signs.find((sign) => sign.key === intention);
+
+  return (
+    <Space>
+      {Boolean(attribute) ? (
+        <DualTranslate>{attribute!.attribute}</DualTranslate>
+      ) : (
+        <Translate pt="Desconhecido" en="Unknown" />
+      )}
     </Space>
   );
 }

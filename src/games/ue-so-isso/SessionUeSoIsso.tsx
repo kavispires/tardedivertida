@@ -6,6 +6,7 @@ import { PHASES } from 'utils/phases';
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
+import { LoadingPage } from 'components/loaders';
 import { PhaseWordSelection } from './PhaseWordSelection';
 import { PhaseSuggest } from './PhaseSuggest';
 import { PhaseCompare } from './PhaseCompare';
@@ -19,6 +20,9 @@ import 'assets/fonts/architects-daughter.scss';
 import './ue-so-isso.scss';
 
 function getActiveComponent(phase: string) {
+  // If phase is not defined, it is likely that the game is still loading
+  if (!phase) return LoadingPage;
+
   switch (phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;

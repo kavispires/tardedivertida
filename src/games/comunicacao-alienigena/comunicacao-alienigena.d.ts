@@ -3,8 +3,13 @@ type SubmitAlienPayload = {
   alienId: PlayerId;
 };
 
+type SubmitSeedingPayload = {
+  seeds: Record<CardId, CardId[]>;
+};
+
 type SubmitHumanInquiryPayload = {
   objectsIds: CardId[];
+  intention: string;
 };
 
 type SubmitAlienResponsePayload = {
@@ -13,6 +18,7 @@ type SubmitAlienResponsePayload = {
 
 type SubmitAlienRequestPayload = {
   alienRequest: string;
+  intention: string;
 };
 
 type SubmitOfferingPayload = {
@@ -27,7 +33,8 @@ interface Item {
 }
 
 interface Sign {
-  signId: number;
+  key: string;
+  signId: string;
   attribute: DualLanguageValue;
 }
 
@@ -35,6 +42,7 @@ interface InquiryHistoryEntry {
   objectIds: CardId[];
   answer: string;
   playerId: PlayerId;
+  intention?: string;
 }
 
 interface Offer {

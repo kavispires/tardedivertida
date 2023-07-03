@@ -27,7 +27,7 @@ export function PhaseResult({ state, players, info }: PhaseProps) {
           <Translate
             pt={
               <>
-                "E <AvatarName player={guesser} addressUser size="large" /> passou..."
+                E <AvatarName player={guesser} addressUser size="large" /> passou...
               </>
             }
             en={
@@ -40,7 +40,7 @@ export function PhaseResult({ state, players, info }: PhaseProps) {
           <Translate
             pt={
               <>
-                "E <AvatarName player={guesser} addressUser size="large" /> disse..."
+                E <AvatarName player={guesser} addressUser size="large" /> disse...
               </>
             }
             en={

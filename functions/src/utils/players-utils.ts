@@ -257,7 +257,7 @@ export const dealItemsToPlayers = (
   quantityPerPlayer = 1,
   propertyName: string
 ) => {
-  const playersList = Object.values(players);
+  const playersList = getListOfPlayers(players);
   if (list.length < playersList.length * quantityPerPlayer) {
     throwException('List has less items the needed', 'deal items to players');
   }

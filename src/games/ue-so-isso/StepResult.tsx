@@ -32,11 +32,39 @@ export function StepResult({
   group,
   announcement,
 }: StepResultProps) {
+  const isPass = group.attempts.at(-1) === 'PASS';
   return (
     <Step fullWidth announcement={announcement}>
       <Title className={getAnimationClass('heartBeat')}>
-        <AvatarName player={guesser} addressUser size="large" /> <Translate pt="disse" en="said" />{' '}
-        <TextHighlight>{guess}</TextHighlight>
+        {isPass ? (
+          <Translate
+            pt={
+              <>
+                <AvatarName player={guesser} addressUser size="large" /> passou...
+              </>
+            }
+            en={
+              <>
+                <AvatarName player={guesser} addressUser size="large" /> passed...
+              </>
+            }
+          />
+        ) : (
+          <Translate
+            pt={
+              <>
+                <AvatarName player={guesser} addressUser size="large" /> disse{' '}
+                <TextHighlight>{guess}</TextHighlight>
+              </>
+            }
+            en={
+              <>
+                <AvatarName player={guesser} addressUser size="large" /> said{' '}
+                <TextHighlight>{guess}</TextHighlight>
+              </>
+            }
+          />
+        )}
       </Title>
 
       <Card word={secretWord.text} />

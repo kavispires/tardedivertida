@@ -33,6 +33,7 @@ export const determineNextPhase = (
     RULES,
     SETUP,
     ALIEN_SELECTION,
+    ALIEN_SEEDING,
     HUMAN_ASK,
     ALIEN_ANSWER,
     ALIEN_REQUEST,
@@ -59,7 +60,11 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === SETUP) {
-    return hasBot ? HUMAN_ASK : ALIEN_SELECTION;
+    return hasBot ? ALIEN_SEEDING : ALIEN_SELECTION;
+  }
+
+  if (currentPhase === ALIEN_SEEDING) {
+    return HUMAN_ASK;
   }
 
   // If the last player answer, go to alien request otherwise the next human
@@ -91,7 +96,6 @@ export const getItems = (playerCount: number) => {
   const answers = new Array(counts.answers).fill(ITEM_TYPES.ITEM);
   const cursers = new Array(counts.curses).fill(ITEM_TYPES.CURSE);
   const rest = new Array(TOTAL_ITEMS - counts.answers - counts.curses).fill(ITEM_TYPES.BLANK);
-
   return utils.game.shuffle([...answers, ...cursers, ...rest]);
 };
 
@@ -275,6 +279,52 @@ export const calculateAttributeUsage = (items: AlienItem[]) => {
       .slice(0, TOTAL_ITEMS)
   );
 };
+
+/**
+ * Integrate players seeds into the bot knowledge
+ */
+export function applySeedsToAlienItemKnowledge(store: FirebaseStoreData, players: Players, items: Item[]) {
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.alienSeeds) {
+      Object.entries(player.alienSeeds).forEach(([attributeKey, itemsSeeds]) => {
+        const selectedItems = itemsSeeds as string[];
+        const notSelectedItems = items
+          .filter((item) => !selectedItems.includes(item.id))
+          .map((item) => item.id);
+
+        // For selected items, make any selected attribute a 3 (or keep it as 5 if already 5)
+        selectedItems.forEach((itemId) => {
+          if (store.botAlienItemKnowledge[itemId]) {
+            const value = store.botAlienItemKnowledge[itemId].attributes[attributeKey] ?? 0;
+            if (store.botAlienItemKnowledge[itemId].attributes[attributeKey] !== undefined) {
+              if (value < 5) {
+                store.botAlienItemKnowledge[itemId].attributes[attributeKey] = 3;
+              }
+            }
+          }
+        });
+
+        // For not selected items, make any selected attribute a -3 (or keep it as -5 if already -5)
+        notSelectedItems.forEach((itemId) => {
+          if (store.botAlienItemKnowledge[itemId]) {
+            const value = store.botAlienItemKnowledge[itemId].attributes[attributeKey] ?? 0;
+            if (store.botAlienItemKnowledge[itemId].attributes[attributeKey] !== undefined) {
+              if (value === 5) {
+                store.botAlienItemKnowledge[itemId].attributes[attributeKey] = 3;
+              }
+              if (value === 3) {
+                store.botAlienItemKnowledge[itemId].attributes[attributeKey] = 1;
+              }
+              if (value < 3 && value !== -5) {
+                store.botAlienItemKnowledge[itemId].attributes[attributeKey] = -3;
+              }
+            }
+          }
+        });
+      });
+    }
+  });
+}
 
 /**
  * Determines the alien's request based on the current state of the game.

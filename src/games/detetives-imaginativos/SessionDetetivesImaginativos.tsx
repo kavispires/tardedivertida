@@ -6,6 +6,7 @@ import { PHASES } from 'utils/phases';
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
+import { LoadingPage } from 'components/loaders';
 import PhaseSecretClue from './PhaseSecretClue';
 import PhaseCardPlay from './PhaseCardPlay';
 import PhaseDefense from './PhaseDefense';
@@ -16,6 +17,9 @@ import PhaseGameOver from './PhaseGameOver';
 import './detetives-imaginativos.scss';
 
 function getActiveComponent(phase: string) {
+  // If phase is not defined, it is likely that the game is still loading
+  if (!phase) return LoadingPage;
+
   switch (phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;
