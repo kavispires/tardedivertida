@@ -1,1 +1,1 @@
-export { default } from './SessionLabirintoSecreto';
+export { default } from './SessionVingativos';
