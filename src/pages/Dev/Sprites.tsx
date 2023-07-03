@@ -113,7 +113,6 @@ function SpritesPage() {
     medals: <MedalsContent />,
     trees: <TreeContent />,
   }?.[active.key] ?? <Content type={active.key} />;
-  console.log(active.key);
 
   return (
     <Layout className="dev-layout">

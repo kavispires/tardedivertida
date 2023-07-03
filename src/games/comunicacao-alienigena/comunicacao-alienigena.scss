@@ -5,10 +5,19 @@
   background-size: 1000% 1000%;
 }
 
+.boards-container {
+  margin: get-unit(2 0);
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .objects-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: get-unit(2);
+  @include contained;
+  background: get-color('white', 5, 0.85);
 
   &__item {
     border-radius: get-unit(3);
@@ -19,7 +28,7 @@
       border-color: get-color('green', 4);
       border-style: dashed;
 
-      .glyph-card {
+      .item-card {
         background: get-color('green', 3);
       }
     }
@@ -28,22 +37,23 @@
       border-color: get-color('purple', 7);
       border-style: dotted;
 
-      .glyph-card {
+      .item-card {
         background: get-color('purple', 4);
       }
     }
 
     &--BLANK {
-      border-color: get-color('yellow', 3);
+      border-color: get-color('brown', 2);
 
-      .glyph-card {
+      .item-card {
         background: get-color('yellow', 1);
       }
     }
 
     &--ask {
-      transform: scale(0.8);
-      border-color: get-color('pink');
+      .item-card {
+        background-color: get-color('pink');
+      }
     }
   }
 
@@ -53,10 +63,39 @@
   }
 
   &__button {
+    &--ITEM {
+      .item-card {
+        background: get-color('green', 3);
+      }
+    }
+
+    &--CURSE {
+      .item-card {
+        background: get-color('purple', 4);
+      }
+    }
+
+    &--BLANK {
+      .item-card {
+        background: get-color('yellow', 1);
+      }
+    }
+
+    &--ask {
+      border-radius: $border-radius;
+      .item-card {
+        background-color: get-color('pink');
+      }
+    }
+
     &--active {
       transform: rotate(30deg) scale(0.8);
       background: get-color('pink');
     }
+  }
+
+  .objects-grid__item--border {
+    border-width: get-unit(2);
   }
 
   &__item-back {
@@ -78,8 +117,8 @@
     }
 
     &--BLANK {
-      border-color: get-color('yellow', 3);
-      background: get-color('yellow', 4);
+      border-color: get-color('brown', 3);
+      background: get-color('brown', 4);
     }
 
     &--ask {
@@ -133,8 +172,8 @@
     }
 
     &--BLANK {
-      border-color: get-color('yellow', 3);
-      background: get-color('yellow', 1);
+      border-color: get-color('brown', 3);
+      background: get-color('brown', 1);
     }
   }
 
@@ -147,8 +186,9 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: get-unit(2);
-  margin: get-unit(2);
+  margin-left: get-unit(2);
   background: get-color('teal', 3);
+  border-radius: $border-radius;
   padding: get-unit(2);
 
   &__item {
@@ -189,6 +229,35 @@
   border-radius: $border-radius;
 
   &--negative {
-    border-top: get-unit(2) solid black;
+    border-top: get-unit(2) solid get-color('black');
   }
+}
+
+.attribute-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: get-color('teal', 4);
+  border-radius: $border-radius;
+  padding: get-unit(2);
+  flex: 1;
+}
+
+.seeds-button-container {
+  margin: get-unit(6 0);
+}
+
+.seeding-container {
+  display: flex;
+  padding: get-unit(10 2);
+}
+
+.seeding-attribute-container {
+  flex: 1;
+}
+
+.intention-select {
+  min-width: 15ch;
 }

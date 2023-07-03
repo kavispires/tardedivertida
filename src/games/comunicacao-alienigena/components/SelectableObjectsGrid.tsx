@@ -7,6 +7,8 @@ import { useLoading } from 'hooks/useLoading';
 import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
+import { Title } from 'components/text';
+import { ObjectsKey } from './ObjectsKey';
 
 type SelectableObjectsGridProps = {
   user: GamePlayer;
@@ -14,6 +16,8 @@ type SelectableObjectsGridProps = {
   selectedObjects: BooleanDictionary;
   selectObject: GenericFunction;
   maxObjects?: number;
+  hideKey?: boolean;
+  showTypes?: boolean;
 };
 
 export function SelectableObjectsGrid({
@@ -22,16 +26,21 @@ export function SelectableObjectsGrid({
   selectObject,
   user,
   maxObjects = 5,
+  hideKey = false,
+  showTypes = false,
 }: SelectableObjectsGridProps) {
   const { isLoading } = useLoading();
 
   return (
     <Space direction="vertical">
+      <Title level={3} size="xx-small">
+        <Translate pt="Itens" en="Items" />
+      </Title>
       <div className="objects-grid">
         {items.map((item) =>
           Boolean(item.offered) ? (
             <div
-              className={clsx('objects-grid__button', item.offered && `objects-grid__item--${item.type}`)}
+              className={clsx('objects-grid__button', `objects-grid__item--${item.type}`)}
               key={`selectable-${item.id}`}
             >
               <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
@@ -39,7 +48,7 @@ export function SelectableObjectsGrid({
           ) : (
             <TransparentButton
               key={`selectable-${item.id}`}
-              className={clsx('objects-grid__button', item.offered && `objects-grid__item--${item.type}`)}
+              className={clsx('objects-grid__button', showTypes && `objects-grid__button--${item.type}`)}
               disabled={
                 item.offered ||
                 (!selectedObjects[item.id] && Object.keys(selectedObjects).length === maxObjects) ||
@@ -56,32 +65,7 @@ export function SelectableObjectsGrid({
         )}
       </div>
 
-      <div className="objects-key">
-        <div className="objects-key__entry">
-          <span className="objects-key__example objects-key__example--UNKNOWN"></span>
-          <span className="objects-key__text">
-            <Translate pt="Desconhecido" en="Unknown" />
-          </span>
-        </div>
-        <div className="objects-key__entry">
-          <span className="objects-key__example objects-key__example--ITEM"></span>
-          <span className="objects-key__text">
-            <Translate pt="Quer" en="Want" />
-          </span>
-        </div>
-        <div className="objects-key__entry">
-          <span className="objects-key__example objects-key__example--CURSE"></span>
-          <span className="objects-key__text">
-            <Translate pt="Amaldiçoado" en="Cursed" />
-          </span>
-        </div>
-        <div className="objects-key__entry">
-          <span className="objects-key__example objects-key__example--BLANK"></span>
-          <span className="objects-key__text">
-            <Translate pt="Alienígena não quis" en="Alien did not want it" />
-          </span>
-        </div>
-      </div>
+      {!hideKey && <ObjectsKey />}
     </Space>
   );
 }

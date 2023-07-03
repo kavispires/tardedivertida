@@ -165,7 +165,7 @@ function Hub() {
             <Typography.Title level={2}>
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
-            <RowOfGames games={comingSoonGames} />
+            <RowOfGames games={devGames} />
 
             <Divider />
           </>

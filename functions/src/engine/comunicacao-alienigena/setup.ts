@@ -14,7 +14,13 @@ import type {
 } from './types';
 // Utils
 import utils from '../../utils';
-import { checkIsBot, determineAlienRequest, determineAlienResponse, getAchievements } from './helpers';
+import {
+  applySeedsToAlienItemKnowledge,
+  checkIsBot,
+  determineAlienRequest,
+  determineAlienResponse,
+  getAchievements,
+} from './helpers';
 import { saveUsedItems } from './data';
 
 /**
@@ -36,6 +42,11 @@ export const prepareSetupPhase = async (
   const playerCount = utils.players.getPlayerCount(players);
 
   const itemsInfo = ITEMS_COUNT[playerCount];
+
+  const extraInfo: PlainObject = {};
+  if (hasBot) {
+    extraInfo.shouldPerformSeeding = true;
+  }
 
   // Save
   return {
@@ -65,6 +76,7 @@ export const prepareSetupPhase = async (
           curses: {},
           totalCurses: itemsInfo.curses,
         },
+        ...extraInfo,
       },
     },
   };
@@ -98,11 +110,57 @@ export const prepareAlienSelectionPhase = async (
   };
 };
 
+export const prepareAlienSeedingPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  const achievements = utils.achievements.setup(players, store, {
+    objectInquiries: 0,
+    singleInquiry: 0,
+    correct: 0,
+    cursed: 0,
+    blank: 0,
+    alien: 0,
+  });
+
+  // Distribute attributes to players to seed the alien information. Players will select objects they think match each attribute
+  const signs = state.signs as string[];
+  const playersCount = utils.players.getPlayerCount(players);
+  const quantityPerPlayer = Math.floor(signs.length / playersCount);
+  utils.players.dealItemsToPlayers(players, utils.game.shuffle(signs), quantityPerPlayer, 'seeds');
+
+  utils.players.unReadyPlayers(players, state.alienId);
+
+  // Save
+  return {
+    update: {
+      store: {
+        achievements,
+        alienSeeds: {},
+      },
+      state: {
+        phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING,
+        players,
+      },
+    },
+  };
+};
+
 export const prepareHumanAskPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const storeUpdate: PlainObject = {};
+  if (state.shouldPerformSeeding) {
+    applySeedsToAlienItemKnowledge(store, players, state.items as Item[]);
+    storeUpdate.store = {
+      botAlienItemKnowledge: store.botAlienItemKnowledge,
+    };
+    utils.players.removePropertiesFromPlayers(players, ['seeds']);
+  }
+
   // Save any inquiry to history
   const inquiryHistory = state.inquiryHistory as InquiryHistoryEntry[];
   if (
@@ -114,6 +172,7 @@ export const prepareHumanAskPhase = async (
       answer: state.alienResponse,
       objectIds: state.currentInquiry,
       playerId: state.humanId,
+      intention: state.currentIntention ?? '',
     });
   }
 
@@ -137,7 +196,9 @@ export const prepareHumanAskPhase = async (
         inquiryHistory,
         players,
       },
-      stateCleanup: ['alienResponse', 'alienRequest', 'currentInquiry'],
+      ...storeUpdate,
+      stateCleanup: ['alienResponse', 'alienRequest', 'currentInquiry', 'currentIntention'],
+      storeCleanup: ['alienSeeds'],
     },
   };
 };
@@ -150,10 +211,11 @@ export const prepareAlienAnswerPhase = async (
   const hasBot = checkIsBot(store);
 
   // Unready alien player
-  utils.players.unReadyPlayers(players, hasBot ? undefined : state.alienId);
+  utils.players.unReadyPlayers(players, state.alienId);
 
   // Add player question to the state
   const currentInquiry = players[state.humanId].objectsIds ?? [];
+  const currentIntention = players[state.humanId].intention ?? '';
 
   // Achievement: Single Inquiry
   if (currentInquiry.length === 1) {
@@ -183,6 +245,7 @@ export const prepareAlienAnswerPhase = async (
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER,
         currentInquiry,
+        currentIntention,
         alienResponse,
         players,
       },
@@ -205,6 +268,7 @@ export const prepareAlienRequestPhase = async (
       answer: state.alienResponse,
       objectIds: state.currentInquiry,
       playerId: state.humanId,
+      intention: state.currentIntention ?? '',
     });
   }
 
@@ -216,7 +280,7 @@ export const prepareAlienRequestPhase = async (
         inquiryHistory,
         players,
       },
-      stateCleanup: ['alienResponse', 'currentInquiry', 'humanId'],
+      stateCleanup: ['alienResponse', 'currentInquiry', 'currentIntention', 'humanId'],
     },
   };
 };
@@ -229,7 +293,7 @@ export const prepareOfferingsPhase = async (
   // Unready alien player
   utils.players.unReadyPlayers(players, state.alienId);
 
-  // Since in a Bot Alien game the Alien Request phase is skit, the inquiry must be saved here
+  // Since in a Bot Alien game the Alien Request phase is skipped, the inquiry must be saved here
   const inquiryHistory = state.inquiryHistory as InquiryHistoryEntry[];
   if (state.alienBot) {
     // Save any inquiry to history
@@ -238,6 +302,7 @@ export const prepareOfferingsPhase = async (
         answer: state.alienResponse,
         objectIds: state.currentInquiry,
         playerId: state.humanId,
+        intention: state.currentIntention ?? '',
       });
     }
   }
@@ -267,6 +332,7 @@ export const prepareOfferingsPhase = async (
         inquiryHistory,
         players,
       },
+      stateCleanup: ['alienResponse', 'currentInquiry', 'currentIntention', 'humanId'],
     },
   };
 };

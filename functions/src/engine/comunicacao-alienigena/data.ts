@@ -48,7 +48,7 @@ export const getResourceData = async (
     TOTAL_ITEMS
   );
 
-  const items: Item[] = getItems(playerCount + (botAlien ? 1 : 0)).map((itemType, index) => ({
+  const items: Item[] = getItems(playerCount).map((itemType, index) => ({
     id: selectedAlienItems[index].id,
     type: itemType,
     offerings: [],

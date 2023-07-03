@@ -45,6 +45,7 @@ export interface InquiryHistoryEntry {
   objectIds: CardId[];
   answer: string;
   playerId: PlayerId;
+  intention?: SignKey;
 }
 export interface RequestHistoryEntry {
   request: string;

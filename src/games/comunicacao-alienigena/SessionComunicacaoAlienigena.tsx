@@ -9,6 +9,7 @@ import localStorage from 'services/localStorage';
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
+import { LoadingPage } from 'components/loaders';
 import { PhaseAlienSelection } from './PhaseAlienSelection';
 import { PhaseHumanAsk } from './PhaseHumanAsk';
 import { PhaseAlienAnswer } from './PhaseAlienAnswer';
@@ -18,8 +19,12 @@ import { PhaseReveal } from './PhaseReveal';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './comunicacao-alienigena.scss';
+import { PhaseAlienSeeding } from './PhaseAlienSeeding';
 
 function getActiveComponent(phase: string) {
+  // If phase is not defined, it is likely that the game is still loading
+  if (!phase) return LoadingPage;
+
   switch (phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;
@@ -31,6 +36,8 @@ function getActiveComponent(phase: string) {
       return PhaseSetup;
     case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION:
       return PhaseAlienSelection;
+    case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SEEDING:
+      return PhaseAlienSeeding;
     case PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK:
       return PhaseHumanAsk;
     case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_ANSWER:

@@ -28,7 +28,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<PaintingIcon />}
       title={<Translate pt="Desenhe!" en="Draw!" />}
-      buttonText={<Translate pt="Um dó, lá, si... vamos ir... já!" en="Ready! Set! Go!" />}
+      buttonText={<Translate pt="Um dó, lá, si... vamos e... já!" en="Ready! Set! Go!" />}
       onClose={() => setStartDrawingTimer(true)}
       currentRound={state?.round?.current}
       withoutTimer

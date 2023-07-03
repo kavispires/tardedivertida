@@ -5,7 +5,6 @@ import { getNextPhase } from '.';
 
 /**
  * Submits the selected alien player ID for a given game.
- *
  * @function
  * @async
  * @param gameName - The name of the game.
@@ -33,11 +32,47 @@ export const handleSubmitAlien = async (
   });
 };
 
+/**
+ * Submits the seeding performed by a player.
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param seeds
+ * @returns
+ */
+export const handleSubmitSeeds = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  seeds: Record<CardId, CardId[]>
+) => {
+  return await utils.firebase.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'submit seeds',
+    shouldReady: true,
+    change: {
+      alienSeeds: seeds,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
+};
+
+/**
+ * Submits the selected objects by a given player.
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param objectsIds
+ * @returns
+ */
 export const handleSubmitHumanInquiry = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  objectsIds: CardId[]
+  objectsIds: CardId[],
+  intention: CardId
 ) => {
   return await utils.firebase.updatePlayer({
     gameName,
@@ -45,7 +80,7 @@ export const handleSubmitHumanInquiry = async (
     playerId,
     actionText: `submit ${playerId} objects`,
     shouldReady: true,
-    change: { objectsIds },
+    change: { objectsIds, intention },
     nextPhaseFunction: getNextPhase,
   });
 };
@@ -71,7 +106,8 @@ export const handleSubmitAlienRequest = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  alienRequest: string
+  alienRequest: string,
+  intention: CardId
 ) => {
   return await utils.firebase.updateStore({
     gameName,
@@ -80,6 +116,7 @@ export const handleSubmitAlienRequest = async (
     actionText: 'submit alien request',
     change: {
       alienRequest,
+      intention,
     },
     nextPhaseFunction: getNextPhase,
   });

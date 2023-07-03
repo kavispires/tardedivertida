@@ -12,6 +12,7 @@ type HistoryProps = {
   items: Item[];
   isAlienBot: boolean;
   showIntention?: boolean;
+  signs: Sign[];
 };
 
 export function History({
@@ -20,7 +21,8 @@ export function History({
   players,
   items,
   isAlienBot,
-  showIntention,
+  showIntention = false,
+  signs,
 }: HistoryProps) {
   return (
     <Collapse>
@@ -28,7 +30,13 @@ export function History({
         header={<Translate pt="Histórico de Perguntas dos Humanos" en="Human Inquiry History" />}
         key="1"
       >
-        <InquiryHistory inquiryHistory={inquiryHistory} players={players} isAlienBot={isAlienBot} />
+        <InquiryHistory
+          inquiryHistory={inquiryHistory}
+          players={players}
+          isAlienBot={isAlienBot}
+          signs={signs}
+          showIntention={showIntention}
+        />
       </Collapse.Panel>
 
       <Collapse.Panel

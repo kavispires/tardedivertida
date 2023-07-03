@@ -263,10 +263,10 @@ export function countAchievements(store: FirebaseStoreData) {
   // Get mean values
   Object.keys(store.achievements).forEach((playerId) => {
     store.achievements[playerId].correctGuesses = utils.game.calculateAverage(
-      store.achievements[playerId].correctGuesses
+      store.achievements[playerId].correctGuesses ?? []
     );
     store.achievements[playerId].wrongGuesses = utils.game.calculateAverage(
-      store.achievements[playerId].correctGuesses
+      store.achievements[playerId].wrongGuesses ?? []
     );
   });
 }
@@ -330,7 +330,12 @@ export const getAchievements = (store: FirebaseStoreData) => {
   }
 
   // Correct guesses with fewest clues
-  const { least: correctGuesses } = utils.achievements.getMostAndLeastOf(store, 'correctGuesses');
+  const { least: correctGuesses } = utils.achievements.getMostAndLeastOf(
+    store,
+    'correctGuesses',
+    [],
+    (v) => v > 0
+  );
   if (correctGuesses) {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.BEST_GUESSER,
@@ -340,7 +345,12 @@ export const getAchievements = (store: FirebaseStoreData) => {
   }
 
   // Most passes
-  const { most: wrongGuesses } = utils.achievements.getMostAndLeastOf(store, 'wrongGuesses');
+  const { most: wrongGuesses } = utils.achievements.getMostAndLeastOf(
+    store,
+    'wrongGuesses',
+    [],
+    (v) => v > 0
+  );
   if (wrongGuesses) {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.WORST_GUESSER,
