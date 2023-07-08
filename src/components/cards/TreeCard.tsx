@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import trees from 'assets/images/trees.svg';
 // Sass
 import './TreeCard.scss';
+import Tooltip from 'antd/lib/tooltip';
 
 type TreeCardProps = {
   /**
@@ -17,14 +18,21 @@ type TreeCardProps = {
    * Optional class name
    */
   className?: string;
+  /**
+   * The text to be displayed on the card
+   */
+  text?: string;
 };
 
-export function TreeCard({ id, width = 75, className = '' }: TreeCardProps) {
+export function TreeCard({ id, width = 100, className = '', text = '' }: TreeCardProps) {
   return (
-    <div className={clsx('tree-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
+    <div className={clsx('tree-card', className)} style={{ width: `${width}px` }}>
       <svg viewBox="0 0 512 512" style={{ width: `${width - 12}px`, height: `${width - 12}px` }}>
         <use href={trees + `#tree-${id}`}></use>
       </svg>
+      <Tooltip title={text}>
+        <div className="tree-card__text">{text}</div>
+      </Tooltip>
     </div>
   );
 }

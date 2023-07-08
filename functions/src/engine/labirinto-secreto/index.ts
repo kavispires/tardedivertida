@@ -21,7 +21,7 @@ import {
   prepareResultsPhase,
 } from './setup';
 import { getData } from './data';
-import { handleSubmitMap, handleSubmitGuess } from './actions';
+import { handleSubmitMap, handleSubmitPath } from './actions';
 
 /**
  * Get Initial Game State
@@ -72,13 +72,13 @@ export const getNextPhase = async (
   >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine if it's game over
-  const isGameOver = determineGameOver(players, state?.round);
+  const isGameOver = determineGameOver(players);
   // Determine next phase
   const nextPhase = determineNextPhase(
     state?.phase,
     state?.round,
     isGameOver,
-    state?.turnOrder,
+    state?.turnOrder ?? [],
     state?.activePlayerId
   );
 
@@ -102,6 +102,7 @@ export const getNextPhase = async (
 
   // DRAW -> EVALUATION
   if (nextPhase === LABIRINTO_SECRETO_PHASES.PATH_FOLLOWING) {
+    await utils.firebase.triggerWaitPhase(sessionRef);
     const newPhase = await preparePathFollowingPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
@@ -141,7 +142,7 @@ export const submitAction = async (data: LabirintoSecretoSubmitAction) => {
         ['pathId', 'guess', 'choseRandomly'],
         'submit guess'
       );
-      return handleSubmitGuess(gameName, gameId, playerId, data.pathId, data.guess, data.choseRandomly);
+      return handleSubmitPath(gameName, gameId, playerId, data.pathId, data.guess, data.choseRandomly);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

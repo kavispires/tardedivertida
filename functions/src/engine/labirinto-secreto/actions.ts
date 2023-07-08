@@ -1,3 +1,5 @@
+// Types
+import { ExtendedTextCard } from './types';
 // Helpers
 import utils from '../../utils';
 // Internal functions
@@ -7,7 +9,7 @@ export const handleSubmitMap = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  newMap: CardId[]
+  newMap: (ExtendedTextCard | null)[]
 ) => {
   return await utils.firebase.updatePlayer({
     gameName,
@@ -20,7 +22,7 @@ export const handleSubmitMap = async (
   });
 };
 
-export const handleSubmitGuess = async (
+export const handleSubmitPath = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,

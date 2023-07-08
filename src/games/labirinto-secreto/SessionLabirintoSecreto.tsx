@@ -4,11 +4,16 @@ import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { PhaseMapBuilding } from './PhaseMapBuilding';
 // Sass
 import './labirinto-secreto.scss';
+import { PhasePathFollowing } from './PhasePathFollowing';
+import { PhaseWait } from 'components/phases/PhaseWait';
+import { PhaseResults } from './PhaseResults';
+import { PhaseGameOver } from './PhaseGameOver';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -21,14 +26,16 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
+    case PHASES.DEFAULT.WAIT:
+      return PhaseWait;
     case PHASES.LABIRINTO_SECRETO.MAP_BUILDING:
-      return PhasePlaceholder;
+      return PhaseMapBuilding;
     case PHASES.LABIRINTO_SECRETO.PATH_FOLLOWING:
-      return PhasePlaceholder;
+      return PhasePathFollowing;
     case PHASES.LABIRINTO_SECRETO.RESULTS:
-      return PhasePlaceholder;
+      return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PageError;
   }

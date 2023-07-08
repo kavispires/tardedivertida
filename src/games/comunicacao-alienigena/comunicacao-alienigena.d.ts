@@ -1,4 +1,5 @@
 type SubmitActionPayload2 = {};
+
 type SubmitAlienPayload = {
   alienId: PlayerId;
 };
