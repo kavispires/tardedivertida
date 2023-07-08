@@ -50,6 +50,9 @@ const SessionPortaDosDesesperados = lazy(
       'games/porta-dos-desesperados/SessionPortaDosDesesperados' /* webpackChunkName: "porta-dos-desesperados" */
     )
 );
+const SessionLabirintoSecreto = lazy(
+  () => import('games/labirinto-secreto/SessionLabirintoSecreto' /* webpackChunkName: "labirinto-secreto" */)
+);
 const SessionLinhasCruzadas = lazy(
   () => import('games/linhas-cruzadas/SessionLinhasCruzadas' /* webpackChunkName: "linhas-cruzadas" */)
 );
@@ -182,6 +185,12 @@ function Game() {
             <SessionPortaDosDesesperados />
           </Suspense>
         );
+      case GAME_COLLECTION.LABIRINTO_SECRETO:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionLabirintoSecreto />
+          </Suspense>
+        );
       case GAME_COLLECTION.LINHAS_CRUZADAS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
@@ -289,6 +298,8 @@ function Game() {
         console.warn('Wrong game library provided');
     }
   }
+
+  console.log('pageError', gameName, gameId);
 
   // If switch fails, it's an error
   return <PageError />;

@@ -343,6 +343,14 @@ export const triggerSetupPhase = async (
   return true;
 };
 
+export const triggerWaitPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>
+) => {
+  await sessionRef.doc('state').update({ phase: 'WAIT', updatedAt: Date.now() });
+  await utils.helpers.wait(2000);
+  return true;
+};
+
 /**
  * Aides updating player properties on submit actions
  * @param args.gameName

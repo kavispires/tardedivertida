@@ -1,6 +1,6 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { FOREST_SIZE } from './constants';
+import { FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 // Types
 import type { ResourceData } from './types';
 // Utils
@@ -25,8 +25,8 @@ export const getData = async (language: Language): Promise<ResourceData> => {
   const allAdjectives = await resourceUtils.fetchResource(resourceName2);
 
   return {
-    forestCards: utils.game.getRandomItems(Object.values(allWords), FOREST_SIZE),
-    allCards: Object.values(allAdjectives),
+    forestCards: utils.game.getRandomItems(Object.values(allWords), FOREST_HEIGHT * FOREST_WIDTH),
+    allCards: utils.game.shuffle(Object.values(allAdjectives)),
   };
 };
 

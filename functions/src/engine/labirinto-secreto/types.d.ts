@@ -13,6 +13,11 @@ export type ResourceData = {
 };
 
 type TreeId = number;
+export type Point = [number, number];
+
+export type ExtendedTextCard = {
+  negate?: boolean;
+} & TextCard;
 
 export interface Tree {
   /**
@@ -47,7 +52,11 @@ export interface MapSegment {
   /**
    * Was segment discovered by a player
    */
-  past: boolean;
+  passed: boolean;
+  /**
+   * Is the segment active in the current round
+   */
+  active: boolean;
   /**
    * Points granted by the segment
    */
@@ -64,6 +73,14 @@ export interface MapSegment {
    * Direction of the next segment
    */
   direction: Direction | null;
+  /**
+   * Card ids attached to it by the user as clues
+   */
+  clues: ExtendedTextCard[];
+  /**
+   * List of players that are currently on this segment
+   */
+  playersIds: PlayerId[];
 }
 
 export interface LabirintoSecretoStore extends DefaultStore {

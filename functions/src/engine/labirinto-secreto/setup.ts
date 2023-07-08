@@ -2,11 +2,26 @@
 import { CARDS_PER_ROUND, LABIRINTO_SECRETO_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type {
+  ExtendedTextCard,
+  FirebaseStateData,
+  FirebaseStoreData,
+  MapSegment,
+  ResourceData,
+} from './types';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildForest, buildPaths, distributeCards } from './helpers';
+import {
+  buildForest,
+  buildPaths,
+  distributeCards,
+  getAllCompletePlayerIds,
+  getIsPlayerMapComplete,
+  getPlayersWhoHaveNotCompletedTheirMaps,
+  getRankingAndProcessScoring,
+  updateMaps,
+} from './helpers';
 
 /**
  * Setup
@@ -54,13 +69,18 @@ export const prepareMapBuildingPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Determine player order
-
   // Unready players
   utils.players.unReadyPlayers(players);
 
   // Deal cards
   utils.deck.deal(store, players, CARDS_PER_ROUND);
+
+  updateMaps(players);
+
+  // Unready players who have completed their maps
+  getAllCompletePlayerIds(players).forEach((playerId) => {
+    players[playerId].ready = true;
+  });
 
   // Save
   return {
@@ -69,8 +89,9 @@ export const prepareMapBuildingPhase = async (
       state: {
         phase: LABIRINTO_SECRETO_PHASES.MAP_BUILDING,
         players,
+        round: utils.helpers.increaseRound(state?.round),
       },
-      stateCleanup: [],
+      stateCleanup: ['turnOrder', 'activePlayerId', 'ranking'],
     },
   };
 };
@@ -80,15 +101,64 @@ export const preparePathFollowingPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const listOfPlayers = utils.players.getListOfPlayers(players);
+  // Build game order based oh the players updated time
+  let turnOrder = state.turnOrder;
+  if (!turnOrder) {
+    const notCompletePlayers = getPlayersWhoHaveNotCompletedTheirMaps(players);
+    turnOrder = utils.helpers.orderBy(notCompletePlayers, 'updatedAt', 'asc').map((p) => p.id);
+  }
+
+  // Get active player
+  const activePlayerId = utils.players.getNextPlayer(turnOrder, state.activePlayerId);
+
   // Unready players
-  utils.players.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players, activePlayerId);
+
+  if (!state.activePlayerId) {
+    // Update players maps and hands
+
+    listOfPlayers.forEach((player) => {
+      if (getIsPlayerMapComplete(player)) {
+        player.map.forEach((segment: MapSegment) => {
+          segment.active = false;
+        });
+        return;
+      }
+      const mapIndex = player.map.findIndex((segment: MapSegment) => !segment.passed);
+      player.newMap.forEach((entry: ExtendedTextCard | null, index: number) => {
+        // Add new clue to the map segment
+        if (entry) {
+          utils.deck.discard(store, players, player.id, entry.id);
+          player.map[mapIndex + index].clues.push({ ...entry });
+        }
+        // Make that segment active if it has any clues at all
+        if (player.map[mapIndex + index].clues.length > 0) {
+          player.map[mapIndex + index].active = true;
+        }
+      });
+
+      // Update full map so players are only placed in the latest active segment
+      player.map.forEach((segment: MapSegment, index: number) => {
+        if (index < mapIndex) {
+          segment.active = false;
+        } else if (index === mapIndex) {
+          segment.active = true;
+        }
+      });
+    });
+    utils.players.removePropertiesFromPlayers(players, ['newMap']);
+  }
 
   // Save
   return {
     update: {
+      store,
       state: {
         phase: LABIRINTO_SECRETO_PHASES.PATH_FOLLOWING,
         players,
+        activePlayerId,
+        turnOrder,
       },
     },
   };
@@ -99,13 +169,15 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const ranking = getRankingAndProcessScoring(players);
+
   // Save
   return {
     update: {
-      store: {},
       state: {
         phase: LABIRINTO_SECRETO_PHASES.RESULTS,
         players,
+        ranking,
       },
     },
   };
