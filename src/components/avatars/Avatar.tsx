@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Avatar as AntAvatar, AvatarProps } from 'antd';
+import { Avatar as AntAvatar, AvatarProps as AntAvatarProps } from 'antd';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 
-interface TDAvatarProps extends AvatarProps {
+export interface AvatarProps extends AntAvatarProps {
   /**
    * The id of the player avatar
    */
@@ -18,7 +18,7 @@ interface TDAvatarProps extends AvatarProps {
  * @param props
  * @returns
  */
-export const Avatar = ({ id, size, shape, alt, className, ...props }: TDAvatarProps) => {
+export const Avatar = ({ id, size, shape, alt, className, ...rest }: AvatarProps) => {
   const { translate } = useLanguage();
 
   return (
@@ -32,7 +32,7 @@ export const Avatar = ({ id, size, shape, alt, className, ...props }: TDAvatarPr
           <use href={avatars + `#avatar-${id}`}></use>
         </svg>
       }
-      {...props}
+      {...rest}
     />
   );
 };
