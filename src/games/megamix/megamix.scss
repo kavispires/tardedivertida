@@ -59,7 +59,7 @@
 
 .minigame-title {
   &__number {
-    font-family: 'Zilla Slab', serif;
+    font-family: 'Ubuntu Mono', monospace;
     border: get-unit(3) dotted get-color('yellow', 4);
     border-radius: get-unit(3);
     font-size: 0.85em;
