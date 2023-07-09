@@ -119,7 +119,14 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
               )}
 
               {(previousSelections?.[index] ?? []).map((card) => {
-                return <div className="map-builder__card">{card.text}</div>;
+                return (
+                  <div className="map-builder__card">
+                    {card?.negate && (
+                      <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
+                    )}
+                    {card.text}
+                  </div>
+                );
               })}
 
               <TransparentButton onClick={() => onUnsetCard(index)} disabled={!selections?.[index]}>

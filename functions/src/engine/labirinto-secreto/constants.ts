@@ -23,7 +23,7 @@ export const LABIRINTO_SECRETO_ACHIEVEMENTS = {
 };
 
 export const PLAYER_COUNTS = {
-  MIN: 3,
+  MIN: 2,
   MAX: 10,
 };
 
