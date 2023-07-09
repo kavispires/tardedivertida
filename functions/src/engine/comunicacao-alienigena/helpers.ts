@@ -500,7 +500,9 @@ export const getAchievements = (
 ) => {
   const achievements: Achievement<ComunicacaoAlienigenaAchievement>[] = [];
 
-  utils.achievements.increase(store, alienId, 'alien', 1);
+  if (!hasBot) {
+    utils.achievements.increase(store, alienId, 'alien', 1);
+  }
 
   const validAchievement = hasBot ? playerCount > 1 : playerCount > 2;
 
@@ -559,14 +561,16 @@ export const getAchievements = (
     });
   }
 
-  // Players as alien
-  const { most: alien } = utils.achievements.getMostAndLeastOf(store, 'alien');
-  if (alien) {
-    achievements.push({
-      type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.PLAYED_AS_ALIEN,
-      playerId: alien.playerId,
-      value: alien.alien,
-    });
+  if (!hasBot) {
+    // Players as alien
+    const { most: alien } = utils.achievements.getMostAndLeastOf(store, 'alien');
+    if (alien) {
+      achievements.push({
+        type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.PLAYED_AS_ALIEN,
+        playerId: alien.playerId,
+        value: alien.alien,
+      });
+    }
   }
 
   return achievements;
