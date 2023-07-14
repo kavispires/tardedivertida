@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "1.3.19",
+  "version": "1.3.20",
   "title": {
     "pt": "Crimes Hediondos",
     "en": "Horrific Crimes"
@@ -26,13 +26,14 @@
     "en": ["TBD"]
   },
   "playerCount": {
+    "best": 4,
     "recommended": [4, 5, 6],
     "min": 2,
     "max": 10
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 15,
+    "perPlayer": 6
   },
   "tags": ["competitive", "same-time", "pairing", "bots"],
   "available": {
