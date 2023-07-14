@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash';
 import { ReactNode, useMemo } from 'react';
 // Ant Design Resources
-import { Layout, Row, Divider, Collapse } from 'antd';
+import { Layout, Row, Divider, Collapse, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -27,6 +27,7 @@ import { StatisticCard } from './components/StatisticCard';
 import { GameStatistics } from './components/GameStatistics';
 import { InfoCard } from './components/InfoCard';
 import { GameCheckCard } from './components/GameCheckCard';
+import { LogoutButton } from 'components/auth/LogoutButton';
 // Sass
 import './Me.scss';
 
@@ -68,7 +69,10 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
             <IconAvatar icon={<UserStatsIcon />} size="large" />
             <Translate pt="Página do Usuário" en="User Page" /> <UserName names={user.names} />
           </Title>
-          <LanguageSwitch />
+          <Space>
+            <LanguageSwitch />
+            <LogoutButton key="logout-button" danger ghost size="small" />
+          </Space>
         </header>
 
         <Row gutter={8}>
