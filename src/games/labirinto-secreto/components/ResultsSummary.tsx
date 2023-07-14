@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Space, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
 import { Avatar, IconAvatar } from 'components/avatars';
 import { TreeCard } from 'components/cards/TreeCard';
 // Components
@@ -25,8 +25,7 @@ export function PlayerMapResultsSummary({
   const currentMap: MapSegment[] = currentPlayer.map.filter((segment: MapSegment) => segment.active);
 
   return (
-    <Space
-      wrap
+    <div
       className="space-container player-map"
       style={{ gridTemplateColumns: `repeat(${currentMap.length}, 100px)` }}
     >
@@ -35,52 +34,61 @@ export function PlayerMapResultsSummary({
 
         return (
           <div className="player-map__segment" key={`map-${segment.index}`}>
-            {tree && (
-              <TreeCard
-                id={String(tree.treeType)}
-                className="player-map__tree"
-                text={tree.card.text}
-                width={75}
-              />
-            )}
+            <div className="player-map__top">
+              {tree ? (
+                <TreeCard
+                  id={String(tree.treeType)}
+                  className="player-map__tree"
+                  text={tree.card.text}
+                  width={75}
+                />
+              ) : (
+                <TreeCard id="1" className="player-map__tree-invisible" text="" width={75} />
+              )}
 
-            <IconAvatar icon={<MapIcon />} size="large" className="player-map__icon" />
-            {segment.clues.map((clue) => {
-              return (
-                <div className="player-map__clue" key={`clue-${segment.index}-${clue.id}`}>
-                  {clue.text}
-                  {clue?.negate && (
-                    <IconAvatar icon={<NoIcon />} size="small" className="player-map__clue-no" />
-                  )}
-                </div>
-              );
-            })}
+              <IconAvatar icon={<MapIcon />} size="large" className="player-map__icon" />
 
-            {arr.length - 1 !== index && (
-              <IconAvatar icon={<ArrowIcon />} size="small" className="player-map__arrow" />
-            )}
-
-            {segment.playersIds.length > 0 ? (
-              <div className="player-map__players">
-                {segment.playersIds.map((playerId) => {
-                  const player = players[playerId];
+              <div>
+                {segment.clues.map((clue) => {
                   return (
-                    <Tooltip title={player.name} key={`player-${playerId}`}>
-                      <Avatar size="small" id={player.avatarId} />
-                    </Tooltip>
+                    <div className="player-map__clue" key={`clue-${segment.index}-${clue.id}`}>
+                      {clue.text}
+                      {clue?.negate && (
+                        <IconAvatar icon={<NoIcon />} size="small" className="player-map__clue-no" />
+                      )}
+                    </div>
                   );
                 })}
               </div>
-            ) : (
-              <div className="player-map__no-players">
-                <Translate pt="Nenhum jogador" en="No players" />
-              </div>
-            )}
 
-            {segment.score > 0 && <PointsHighlight>{segment.score}</PointsHighlight>}
+              {arr.length - 1 !== index && (
+                <IconAvatar icon={<ArrowIcon />} size="small" className="player-map__arrow" />
+              )}
+            </div>
+
+            <div className="player-map__scoring">
+              {segment.playersIds.length > 0 ? (
+                <div className="player-map__players">
+                  {segment.playersIds.map((playerId) => {
+                    const player = players[playerId];
+                    return (
+                      <Tooltip title={player.name} key={`player-${playerId}`}>
+                        <Avatar size="small" id={player.avatarId} />
+                      </Tooltip>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="player-map__no-players">
+                  <Translate pt="Nenhum jogador" en="No players" />
+                </div>
+              )}
+
+              <div>{segment.score > 0 && <PointsHighlight>{segment.score}</PointsHighlight>}</div>
+            </div>
           </div>
         );
       })}
-    </Space>
+    </div>
   );
 }

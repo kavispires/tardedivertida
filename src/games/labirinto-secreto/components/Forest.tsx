@@ -10,6 +10,7 @@ import { ForestTree } from './ForestTree';
 import { Space } from 'antd';
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { AvatarGroup } from 'components/avatars/AvatarGroup';
+import { ViewIf } from 'components/views';
 
 type ForestProps = {
   forest: Tree[];
@@ -27,6 +28,7 @@ type ForestProps = {
   size?: 'small' | 'large';
   hidePassedTreeNames?: boolean;
   user?: GamePlayer;
+  activePlayerId?: PlayerId;
 };
 
 export function Forest({
@@ -38,7 +40,8 @@ export function Forest({
   players,
   size = 'large',
   hidePassedTreeNames = false,
-  user,
+  user = {},
+  activePlayerId = '',
 }: ForestProps) {
   if (!forest || !map || map.length === 0) {
     return (
@@ -128,6 +131,8 @@ export function Forest({
               );
             }
           }
+          const startingSegment = map.findIndex((segment) => segment.playersIds.length > 0);
+          const latestSegmentId = map.findIndex((segment) => !segment.passed) - 1;
 
           return (
             <div key={`tree-${tree.id}`} className="forest__tree-container">
@@ -140,11 +145,28 @@ export function Forest({
                 showPath={showPath}
                 hidePassedTreeNames={hidePassedTreeNames}
               />
-              {showPlayerPositions && players && segment?.playersIds?.length > 0 && (
-                <div className="forest__players">
-                  <PlayerPositions players={players} playerIds={segment?.playersIds ?? []} user={user} />
-                </div>
-              )}
+              {tree.id}
+              <ViewIf condition={showPlayerPositions && !!players}>
+                {segment?.playersIds?.length > 0 ? (
+                  <div className="forest__players">
+                    <PlayerPositions players={players!} playerIds={segment?.playersIds ?? []} user={user} />
+                  </div>
+                ) : (
+                  <div className="forest__players">
+                    <PlayerPositions
+                      players={players!}
+                      playerIds={getPlayersHere(
+                        players ?? {},
+                        activePlayerId,
+                        tree.id,
+                        startingSegment,
+                        latestSegmentId
+                      )}
+                      user={user}
+                    />
+                  </div>
+                )}
+              </ViewIf>
             </div>
           );
         })}
@@ -163,3 +185,31 @@ function PlayerPositions({ players, playerIds, user }: PlayerPositionsProps) {
   const list = playerIds.map((playerId) => players[playerId]);
   return <AvatarGroup list={list} user={user} />;
 }
+
+const getPlayersHere = (
+  players: GamePlayers,
+  activePlayerId: PlayerId,
+  treeId: number,
+  startingTreeId: number,
+  latestSegmentId: number
+) => {
+  if (latestSegmentId < 1) return [];
+
+  const playersHere: PlayerId[] = [];
+  Object.values(players).forEach((player) => {
+    const history: Record<string, TreeId[]> = player.history?.[activePlayerId] ?? {};
+
+    // If its a segment before the latest one, display
+    const segments = Object.keys(history).filter(
+      (segmentId) => Number(segmentId) > startingTreeId && Number(segmentId) < latestSegmentId
+    );
+
+    segments.forEach((segmentId) => {
+      if (history[segmentId].includes(treeId)) {
+        playersHere.push(player.id);
+      }
+    });
+  });
+
+  return playersHere;
+};

@@ -1,5 +1,5 @@
 // Types
-import { MapSegment, Point, Tree } from './types';
+import { Direction, MapSegment, Point, Tree } from './types';
 // Constants
 import {
   CARDS_PER_PLAYER,
@@ -218,29 +218,30 @@ export const buildPaths = (players: Players) => {
       const point = path[index];
       const nextTree = getIndex(path[index + 1]);
       const treeId = getIndex(point);
-      return {
+      const segment: MapSegment = {
         index,
         playerId: player.id,
         treeId,
         passed: index === 0,
         score: 0,
-        previousTree: index > 0 ? path[index - 1] : null,
+        previousTree: index > 0 ? getIndex(path[index - 1]) : null,
         nextTree,
         direction: determineDirection(treeId, nextTree),
         clues: [],
         playersIds: [],
         active: false,
       };
+      return segment;
     });
   });
 };
 
-const determineDirection = (currentTree: number, nextTree?: number | null) => {
+const determineDirection = (currentTree: number, nextTree?: number | null): Direction | null => {
   if (nextTree === null || nextTree === undefined) return null;
-  if (nextTree - currentTree === 1) return DIRECTIONS.RIGHT;
-  if (nextTree - currentTree > 1) return DIRECTIONS.DOWN;
-  if (nextTree - currentTree === -1) return DIRECTIONS.LEFT;
-  if (nextTree - currentTree < -1) return DIRECTIONS.UP;
+  if (nextTree - currentTree === 1) return DIRECTIONS.RIGHT as Direction;
+  if (nextTree - currentTree > 1) return DIRECTIONS.DOWN as Direction;
+  if (nextTree - currentTree === -1) return DIRECTIONS.LEFT as Direction;
+  if (nextTree - currentTree < -1) return DIRECTIONS.UP as Direction;
   return null;
 };
 
@@ -273,12 +274,23 @@ export const getRankingAndProcessScoring = (players: Players) => {
 
           for (let i = 0; i < guesses.length; i++) {
             const guess = guesses[i];
+            // Add to history
+            if (player.history[activePlayer.id] === undefined) {
+              player.history[activePlayer.id] = {};
+            }
+            const segment = currentMap[i];
             // Is the guess correct?
             if (guess === currentMap[i].treeId) {
               currentMap[i].passed = true;
               correct[i].push(player.id);
               currentMap[i].playersIds.push(player.id);
+
+              player.history[activePlayer.id][segment.index] = [guess];
             } else {
+              player.history[activePlayer.id][segment.index] = [
+                ...(player.history[activePlayer.id][segment.index] ?? []),
+                guess,
+              ];
               break;
             }
           }

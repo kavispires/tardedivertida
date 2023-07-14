@@ -9,6 +9,8 @@ import { MapBuilder } from './components/MapBuilder';
 import { IconAvatar } from 'components/avatars';
 import { NoIcon } from 'icons/NoIcon';
 import { TreeIcon } from 'icons/TreeIcon';
+import { useDelayedMock } from 'hooks/useMock';
+import { mockNewMap } from './utils/mocks';
 
 type StepBuildMapProps = {
   players: GamePlayers;
@@ -26,6 +28,11 @@ export function StepBuildMap({
   currentRound,
   onSubmitMap,
 }: StepBuildMapProps) {
+  // Dev Only
+  useDelayedMock(() => {
+    onSubmitMap({ newMap: mockNewMap(user.hand) });
+  });
+
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
