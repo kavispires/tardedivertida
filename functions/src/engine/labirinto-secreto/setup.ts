@@ -50,6 +50,8 @@ export const prepareSetupPhase = async (
   //   // matches: 0,
   // });
 
+  utils.players.addPropertiesToPlayers(players, { history: {} });
+
   // Save
   return {
     update: {

@@ -79,9 +79,9 @@ export const DIRECTIONS = {
   LEFT: 'LEFT',
 };
 
-export const CARDS_PER_PLAYER = 20;
+export const CARDS_PER_PLAYER = 25;
 export const STARTING_CARDS = 5;
-export const CARDS_PER_ROUND = 3;
+export const CARDS_PER_ROUND = 4;
 
 export const DEFAULT_PATHS = {
   '1': [

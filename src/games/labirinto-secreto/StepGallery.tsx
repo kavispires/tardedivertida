@@ -80,24 +80,27 @@ export function StepGallery({
 
       <PlayerMapResultsSummary players={players} forest={forest} currentPlayer={currentPlayer} user={user} />
 
-      <Forest
-        forest={forest}
-        map={currentPlayer.map}
-        size="small"
-        players={players}
-        showPlayerPositions
-        user={user}
-      />
+      <div>
+        <Forest
+          forest={forest}
+          map={currentPlayer.map}
+          size="small"
+          players={players}
+          showPlayerPositions
+          user={user}
+          activePlayerId={currentPlayer.id}
+        />
 
-      <SlideShowControls
-        length={gallery.length}
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-        setStep={setStep}
-        disableControls={isFirstGalleryRunThrough}
-        barColor={currentColor}
-        windowDuration={PAGE_DURATION}
-      />
+        <SlideShowControls
+          length={gallery.length}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          setStep={setStep}
+          disableControls={isFirstGalleryRunThrough}
+          barColor={currentColor}
+          windowDuration={PAGE_DURATION}
+        />
+      </div>
     </Step>
   );
 }

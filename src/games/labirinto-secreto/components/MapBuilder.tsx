@@ -85,7 +85,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
           }
 
           return (
-            <div className="map-builder__segment">
+            <div className="map-builder__segment" key={`map-segment-${segment.index}`}>
               {currentIndex === index && (
                 <div className="map-builder__caret">
                   <IconAvatar
@@ -120,7 +120,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
               {(previousSelections?.[index] ?? []).map((card) => {
                 return (
-                  <div className="map-builder__card">
+                  <div className="map-builder__card" key={card.id}>
                     {card?.negate && (
                       <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
                     )}

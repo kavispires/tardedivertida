@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { findLast } from 'lodash';
+// Ant Design Resources
+import { Button, Space } from 'antd';
 // Utils
 import { getAvailableSegments } from '../utils/helpers';
 // Hooks
@@ -7,8 +9,9 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { Forest } from './Forest';
 import { Translate } from 'components/language';
-import { Button, Space } from 'antd';
 import { PlayerMap } from './PlayerMap';
+import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
+import { MapEntry } from './MapEntry';
 
 type ClickableForestProps = {
   forest: Tree[];
@@ -42,10 +45,15 @@ export function ClickableForest({ forest, map = [], onSubmitPath, pathId }: Clic
   };
 
   const selectedTrees = selection.map((treeId) => forest[treeId]);
+  const currentSegment = currentMap?.[selection.length - 1];
 
   return (
     <Space direction="vertical" className="space-container">
       <PlayerMap map={map} selectedTrees={selectedTrees} />
+
+      <MouseFollowingContent active={Boolean(currentSegment)}>
+        <MapEntry segment={currentSegment} />
+      </MouseFollowingContent>
 
       <Button
         type="primary"

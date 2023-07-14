@@ -25,6 +25,7 @@ export function StepFollowPath({
   onSubmitPath,
 }: StepFollowPathProps) {
   const playerCount = Object.keys(players).length;
+
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
@@ -84,21 +85,6 @@ export function StepFollowPath({
           pathId={activePlayer.id}
         />
       )}
-
-      {/* <Instruction contained>
-        <Translate pt={<>Guessing: passed trees, current position, clickable buttons</>} en={<>?</>} />
-      </Instruction>
-
-      <Instruction contained>
-        <Translate pt={<>Result: passed trees, current position, playerPositions</>} en={<>?</>} />
-      </Instruction>
-      <Forest
-        forest={forest}
-        map={user.map}
-        playerPositions={{
-          4: <AvatarGroup list={[...Object.values(players), ...Object.values(players)]} user={user} />,
-        }}
-      /> */}
     </Step>
   );
 }
