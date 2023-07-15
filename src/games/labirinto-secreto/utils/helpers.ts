@@ -55,6 +55,12 @@ export const getDirection = (from: TreeId, to: TreeId): Direction => {
   return DIRECTIONS.LEFT;
 };
 
+/**
+ * Get the available segments from a tree
+ * @param origin - the origin tree Id
+ * @param usedIndexes any other tree Ids that are already used
+ * @returns - the available tree Ids
+ */
 export const getAvailableSegments = (origin: TreeId, usedIndexes: TreeId[]): TreeId[] => {
   const [x, y] = getPoint(origin);
   const available: Point[] = [];
@@ -84,4 +90,21 @@ export const getAvailableSegments = (origin: TreeId, usedIndexes: TreeId[]): Tre
   }
 
   return available.map((point) => getIndex(point));
+};
+
+/**
+ * Get the possible tree Ids for the next segment
+ * @param fullMap - the full map of segments
+ * @param currentSegment - the current segment
+ */
+export const getPossibleTreeIds = (fullMap: MapSegment[], currentSegment?: MapSegment): TreeId[] => {
+  if (!currentSegment) return [];
+
+  const usedTrees = fullMap
+    .filter((segment: MapSegment) => segment.passed)
+    .map((segment: MapSegment) => segment.treeId);
+
+  return getAvailableSegments(currentSegment.previousTree ?? currentSegment.treeId, usedTrees).filter(
+    (treeId) => treeId !== currentSegment.treeId
+  );
 };
