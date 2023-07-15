@@ -40,7 +40,7 @@ export function StepWaitPageSelection({ possessed, players, trap }: StepSelectPa
         icon={
           <PanicIcon
             style={{ width: '6rem' }}
-            className={getAnimationClass('shakeX', undefined, 'fast', true)}
+            className={getAnimationClass('shakeX', { speed: 'fast', infinite: true })}
           />
         }
         instruction={

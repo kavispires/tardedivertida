@@ -61,7 +61,7 @@ export function ForestTree({
           <IconAvatar
             icon={<CompassIcon />}
             size="large"
-            className={clsx('forest__compass-icon', getAnimationClass('pulse', undefined, undefined, true))}
+            className={clsx('forest__compass-icon', getAnimationClass('pulse', { infinite: true }))}
           />
         </div>
       )}

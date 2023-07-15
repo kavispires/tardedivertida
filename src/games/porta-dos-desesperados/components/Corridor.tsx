@@ -65,7 +65,7 @@ export function Corridor({
               className={clsx(
                 'i-door',
                 answerDoorId === doorId && 'i-door--answer',
-                getAnimationClass('zoomIn', animationDelayIndex)
+                getAnimationClass('zoomIn', { delay: animationDelayIndex })
               )}
             >
               <DoorFrame width={doorWidth} index={index}>

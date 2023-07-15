@@ -33,10 +33,9 @@ export function Achievements({ players, achievements, reference }: AchievementsP
               key={`achievement-${achievement.type}`}
               className={clsx(
                 'achievements-entry',
-                getAnimationClass(
-                  'flipInY',
-                  index < achievements.length / 2 ? index : achievements.length - 1 - index
-                )
+                getAnimationClass('flipInY', {
+                  delay: index < achievements.length / 2 ? index : achievements.length - 1 - index,
+                })
               )}
             >
               <div className="achievement__medal">
