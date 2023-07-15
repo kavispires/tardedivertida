@@ -5,7 +5,7 @@ import { Typography } from 'antd';
 // Sass
 import './Title.scss';
 
-type TitleProps = {
+export type TitleProps = {
   /**
    * The content of the component
    */
