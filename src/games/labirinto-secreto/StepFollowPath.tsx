@@ -12,7 +12,7 @@ type StepFollowPathProps = {
   players: GamePlayers;
   user: GamePlayer;
   forest: Tree[];
-  onSubmitPath: GenericFunction;
+  onSubmitPath: OnSubmitPathGuessFunction;
   activePlayer: GamePlayer;
   isTheActivePlayer: boolean;
 } & AnnouncementProps;

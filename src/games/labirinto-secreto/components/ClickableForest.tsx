@@ -12,11 +12,14 @@ import { Translate } from 'components/language';
 import { PlayerMap } from './PlayerMap';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { MapEntry } from './MapEntry';
+import { useDelayedMock } from 'hooks/useMock';
+import { mockFollowedPath } from '../utils/mocks';
+import { DevButton } from 'components/debug';
 
 type ClickableForestProps = {
   forest: Tree[];
   map?: MapSegment[];
-  onSubmitPath: GenericFunction;
+  onSubmitPath: OnSubmitPathGuessFunction;
   pathId: PlayerId;
 };
 
@@ -47,6 +50,11 @@ export function ClickableForest({ forest, map = [], onSubmitPath, pathId }: Clic
   const selectedTrees = selection.map((treeId) => forest[treeId]);
   const currentSegment = currentMap?.[selection.length - 1];
 
+  // DEV Only
+  useDelayedMock(() => {
+    onSubmitPath({ guess: mockFollowedPath(map, currentMap, true), pathId, choseRandomly: true });
+  });
+
   return (
     <Space direction="vertical" className="space-container">
       <PlayerMap map={map} selectedTrees={selectedTrees} />
@@ -63,6 +71,12 @@ export function ClickableForest({ forest, map = [], onSubmitPath, pathId }: Clic
       >
         <Translate pt="Enviar" en="Submit" />
       </Button>
+      <DevButton
+        onClick={() => onSubmitPath({ guess: selection.slice(1), pathId, choseRandomly: true })}
+        ghost
+      >
+        Random Dev
+      </DevButton>
       <Forest
         forest={forest}
         map={map}

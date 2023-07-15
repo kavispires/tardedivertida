@@ -22,7 +22,7 @@ import { TextHighlight } from 'components/text';
 type MapBuilderProps = {
   forest: Tree[];
   user: GamePlayer;
-  onSubmitMap: GenericFunction;
+  onSubmitMap: OnSubmitMapFunction;
 };
 
 export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
