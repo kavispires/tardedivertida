@@ -17,7 +17,7 @@ type StepBuildMapProps = {
   user: GamePlayer;
   forest: Tree[];
   currentRound: number;
-  onSubmitMap: GenericFunction;
+  onSubmitMap: OnSubmitMapFunction;
 } & AnnouncementProps;
 
 export function StepBuildMap({

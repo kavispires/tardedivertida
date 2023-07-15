@@ -2,10 +2,15 @@ type SubmitMapPayload = {
   newMap: (CardText | null)[];
 };
 
+type OnSubmitMapFunction = (payload: SubmitMapPayload) => void;
+
 type SubmitPathGuessPayload = {
   pathId: PlayerId;
-  guess: CardId[];
+  guess: TreeId[];
+  choseRandomly: boolean;
 };
+
+type OnSubmitPathGuessFunction = (payload: SubmitPathGuessPayload) => void;
 
 type TreeId = number;
 
