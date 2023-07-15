@@ -97,7 +97,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 <div className="map-builder__caret">
                   <IconAvatar
                     icon={<LocationIcon />}
-                    className={getAnimationClass('bounce', undefined, 'slow', true)}
+                    className={getAnimationClass('bounce', { speed: 'slow', infinite: true })}
                     size="small"
                   />
                 </div>

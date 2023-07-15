@@ -35,20 +35,17 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                 'g-players-dreams-count__player',
                 isPlayerInNightmare &&
                   !player.fallen &&
-                  `g-players-dreams-count__player--nightmare ${getAnimationClass(
-                    'pulse',
-                    undefined,
-                    'faster',
-                    false,
-                    3
-                  )}`
+                  `g-players-dreams-count__player--nightmare ${getAnimationClass('pulse', {
+                    speed: 'faster',
+                    repeat: 3,
+                  })}`
               )}
               style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
             >
               <Tooltip
                 title={
                   showTooltip ? (
-                    <div className={getAnimationClass('tada', undefined, 'fast', true)}>
+                    <div className={getAnimationClass('tada', { speed: 'fast', infinite: true })}>
                       {player.name} <Translate pt="tá em apuros!" en="is in danger" />
                     </div>
                   ) : undefined

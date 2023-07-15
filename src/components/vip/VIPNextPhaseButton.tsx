@@ -104,7 +104,11 @@ export function VIPNextPhaseButton({ round, autoTriggerTime = 30, children }: VI
             <span
               className={clsx(
                 'vip-button-timer',
-                !isRunning && getAnimationClass('flash', undefined, 'slow', true)
+                !isRunning &&
+                  getAnimationClass('flash', {
+                    speed: 'slow',
+                    infinite: true,
+                  })
               )}
             >
               {timeLeft}

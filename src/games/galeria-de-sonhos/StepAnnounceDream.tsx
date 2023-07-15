@@ -70,7 +70,7 @@ export function StepAnnounceDream({
 
   return (
     <Step fullWidth>
-      <div className={clsx('g-dream-result', getAnimationClass('fadeIn', 0, 'slow'))}>
+      <div className={clsx('g-dream-result', getAnimationClass('fadeIn', { speed: 'slow' }))}>
         <header
           className="g-dream-result__header"
           style={{ backgroundColor: getAvatarColorById(lastActivePlayer.avatarId) }}
