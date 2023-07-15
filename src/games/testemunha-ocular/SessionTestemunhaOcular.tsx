@@ -17,11 +17,11 @@ import 'assets/fonts/architects-daughter.scss';
 // Sass
 import './testemunha-ocular.scss';
 
-function getActiveComponent(phase: string) {
+function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
-  if (!phase) return LoadingPage;
+  if (state && !state.phase) return LoadingPage;
 
-  switch (phase) {
+  switch (state.phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;
     case PHASES.DEFAULT.RULES:

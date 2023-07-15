@@ -7,6 +7,7 @@ export const PHASES = {
     RULES: 'RULES',
     SETUP: 'SETUP',
     GAME_OVER: 'GAME_OVER',
+    WAIT: 'WAIT',
   },
   ARTE_RUIM: {
     DRAW: 'DRAW',

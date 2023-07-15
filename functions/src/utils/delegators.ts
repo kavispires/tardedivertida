@@ -8,6 +8,7 @@ import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from '../engine/espiao-entre-nos';
 import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
 import * as portadosDesesperadosEngine from '../engine/porta-dos-desesperados';
+import * as labirintoSecretoEngine from '../engine/labirinto-secreto';
 import * as linhasCruzadasEngine from '../engine/linhas-cruzadas';
 import * as megamixEngine from '../engine/megamix';
 import * as menteColetivaEngine from '../engine/mente-coletiva';
@@ -51,6 +52,8 @@ export const getEngine = (gameName: string): Engine => {
       return galeriaDeSonhosEngine;
     case GAME_NAMES.PORTA_DOS_DESESPERADOS:
       return portadosDesesperadosEngine;
+    case GAME_NAMES.LABIRINTO_SECRETO:
+      return labirintoSecretoEngine;
     case GAME_NAMES.LINHAS_CRUZADAS:
       return linhasCruzadasEngine;
     case GAME_NAMES.MEGAMIX:
