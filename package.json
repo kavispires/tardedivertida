@@ -1,13 +1,13 @@
 {
   "name": "tardedivertida",
   "homepage": "http://www.kavispires.com/tardedivertida/",
-  "version": "39.4.5",
+  "version": "40.0.0",
   "private": true,
   "dependencies": {
     "@ant-design/compatible": "^5.1.1",
     "@ant-design/icons": "^5.0.1",
     "@types/jest": "^27.5.2",
-    "@types/lodash": "^4.14.182",
+    "@types/lodash": "^4.14.195",
     "@types/node": "^17.0.41",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",

@@ -9,6 +9,7 @@
   color: get-color('black');
   display: block;
   max-width: 960px;
+  text-wrap: wrap;
 
   &--white {
     color: get-color('white');

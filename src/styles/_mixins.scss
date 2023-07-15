@@ -29,6 +29,21 @@
   border-radius: c.$border-radius;
 }
 
+@mixin text-stroke {
+  // text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+  // -webkit-text-fill-color: get-color('white');
+  // -webkit-text-stroke-width: 3px;
+  // -webkit-text-stroke-color: get-color('black');
+  // -webkit-text-stroke: 2px black;
+  color: white;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+@mixin text-stroke-white {
+  text-shadow: -2px -2px 0 #fff, /* Top-left shadow */ 2px -2px 0 #fff, /* Top-right shadow */ -2px 2px 0 #fff,
+    /* Bottom-left shadow */ 2px 2px 0 #fff; /* Bottom-right shadow */
+}
+
 @mixin reset-list {
   margin: 0;
   padding: 0;

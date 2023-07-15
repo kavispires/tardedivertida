@@ -47,6 +47,10 @@ export const GALERIA_DE_SONHOS_API = {
   submitAction: httpsCallable(functions, 'galeriaDeSonhosSubmitAction'),
 };
 
+export const LABIRINTO_SECRETO_API = {
+  submitAction: httpsCallable(functions, 'labirintoSecretoSubmitAction'),
+};
+
 export const LINHAS_CRUZADAS_API = {
   submitAction: httpsCallable(functions, 'linhasCruzadasSubmitAction'),
 };
