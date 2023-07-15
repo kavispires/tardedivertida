@@ -1,0 +1,18 @@
+@use 'styles/sass' as *;
+
+.container-wrapper {
+  margin: get-unit(2 0);
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  &__children {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    &--contained {
+      @include contained;
+    }
+  }
+}
