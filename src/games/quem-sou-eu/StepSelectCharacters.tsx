@@ -22,7 +22,11 @@ type StepSelectCharactersProps = {
 
 export function StepSelectCharacters({ user, announcement, onSelectCharacters }: StepSelectCharactersProps) {
   const { isLoading } = useLoading();
-  const cardWidth = useCardWidth(12, 16, 100, 200);
+  const cardWidth = useCardWidth(12, {
+    gap: 16,
+    minWidth: 100,
+    maxWidth: 200,
+  });
   const {
     dict: selection,
     updateDict: update,

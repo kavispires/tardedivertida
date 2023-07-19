@@ -36,7 +36,12 @@ export function Corridor({
   hideVotes = false,
   disabled = false,
 }: CorridorProps) {
-  const doorWidth = useCardWidth(8, 8, 150, 350, 8);
+  const doorWidth = useCardWidth(8, {
+    gap: 8,
+    minWidth: 150,
+    maxWidth: 350,
+    margin: 8,
+  });
   const { isLoading } = useLoading();
 
   const voteMap = useMemo(

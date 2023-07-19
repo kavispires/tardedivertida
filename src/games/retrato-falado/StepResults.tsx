@@ -42,7 +42,11 @@ export function StepResults({
 }: StepResultsProps) {
   useTemporarilyHidePlayersBar();
 
-  const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 300);
+  const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), {
+    gap: 16,
+    minWidth: 150,
+    maxWidth: 300,
+  });
   const [canvasSize] = useGlobalState('canvasSize');
 
   const { mostVotedSketches, otherSketches } = sketches.reduce(

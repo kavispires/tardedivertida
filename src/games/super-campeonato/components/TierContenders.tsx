@@ -9,7 +9,7 @@ type TierContendersProps = {
 
 export function TierContenders({ contenders }: TierContendersProps) {
   const flatContenders = contenders.flat();
-  const cardWidth = useCardWidth(flatContenders.length + 2, 16, 30, 100);
+  const cardWidth = useCardWidth(flatContenders.length + 2, { gap: 16, minWidth: 30, maxWidth: 100 });
 
   return (
     <ul className="w-tier-contenders">

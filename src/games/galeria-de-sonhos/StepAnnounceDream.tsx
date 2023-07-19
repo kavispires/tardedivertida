@@ -45,7 +45,7 @@ export function StepAnnounceDream({
   gameOrder,
 }: StepAnnounceDreamProps) {
   useTemporarilyHidePlayersBar();
-  const cardWidth = useCardWidth(5, 8, 140, 150);
+  const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
 
   const { matchingPlayers, fallenMatchingPlayers } = useMemo(
     () =>

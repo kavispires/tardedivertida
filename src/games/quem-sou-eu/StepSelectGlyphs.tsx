@@ -42,7 +42,11 @@ export function StepSelectGlyphs({
 }: StepSelectGlyphsProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
-  const glyphWidth = useCardWidth(20, 16, 50, 75);
+  const glyphWidth = useCardWidth(20, {
+    gap: 16,
+    minWidth: 50,
+    maxWidth: 75,
+  });
   const selectedWidth = glyphWidth + 15;
 
   const {

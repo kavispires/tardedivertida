@@ -19,7 +19,7 @@ type PlayersBoardsProps = {
 
 export function PlayersBoards({ players, user, questionsDict }: PlayersBoardsProps) {
   const playersList = sortPlayers(players, 'name');
-  const cardWidth = useCardWidth(10, 16, 80, 150, 16);
+  const cardWidth = useCardWidth(10, { gap: 16, minWidth: 80, maxWidth: 100, margin: 16 });
 
   return (
     <Space wrap className="players-boards space-container">

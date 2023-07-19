@@ -9,7 +9,7 @@ import { GameOverWrapper } from 'components/game-over';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const slideCount = Math.min(state.album[0]?.slides.length ?? 5, 8);
-  const cardWidth = useCardWidth(slideCount, 32, 100);
+  const cardWidth = useCardWidth(slideCount, { minWidth: 100 });
 
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TheEndIcon />}>
