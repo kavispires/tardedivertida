@@ -207,7 +207,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  utils.players.cleanup(players, ['map']);
 
   return {
     update: {
@@ -220,6 +220,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        forest: state.forest,
         // achievements,
       },
     },

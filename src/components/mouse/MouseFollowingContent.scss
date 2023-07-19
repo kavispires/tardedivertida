@@ -4,7 +4,7 @@
   position: fixed;
   padding: get-unit(3);
   border-radius: get-unit(2);
-  z-index: 175;
+  z-index: 300;
 
   &--contained {
     @include contained;

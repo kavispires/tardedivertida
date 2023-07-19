@@ -1,3 +1,4 @@
+import { print } from 'utils/helpers';
 import { useGlobalState } from './useGlobalState';
 
 /**
@@ -15,7 +16,8 @@ export function useDimensions(elementId?: string): [number, number] {
   const element = document.getElementById(elementId);
 
   if (!element) {
-    // console.warn(`Element of id #${elementId} is not present in the dom`);
+    print(`Element of id #${elementId} is not present in the dom`, 'warn');
+    return [sWidth, sHeight];
   }
 
   return [element?.offsetWidth ?? 32, element?.offsetHeight ?? 32];

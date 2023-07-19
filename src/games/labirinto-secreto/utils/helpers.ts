@@ -108,3 +108,135 @@ export const getPossibleTreeIds = (fullMap: MapSegment[], currentSegment?: MapSe
     (treeId) => treeId !== currentSegment.treeId
   );
 };
+
+/**
+ * Build dictionary of treeIds to playerIds showing players that have passed through a tree
+ * @param players
+ * @param activePlayer
+ * @returns
+ */
+export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlayer): PlayerMapping => {
+  // Segments that are active for the current player's map
+  const currentMap = activePlayer.map as MapSegment[];
+  const activeSegments = currentMap.filter((segment) => segment.active);
+
+  const playerMapping: PlayerMapping = {};
+
+  if (activeSegments[0].index > 0) {
+    const startingSegment = currentMap[activeSegments[0].index - 1];
+    playerMapping[startingSegment.treeId] = Object.keys(players).filter(
+      (playerId) => playerId !== activePlayer.id
+    );
+  }
+
+  Object.values(players).forEach((player) => {
+    const historyEntry = player.history[activePlayer.id];
+    if (historyEntry) {
+      activeSegments.forEach((segment, index, arr) => {
+        const treeIds: TreeId[] = historyEntry[segment.index];
+
+        if (treeIds) {
+          // The last segment should display every player that has passed through it
+          if (index === arr.length - 1) {
+            treeIds.forEach((treeId) => {
+              if (playerMapping[treeId] === undefined) {
+                playerMapping[treeId] = [];
+              }
+              playerMapping[treeId].push(player.id);
+            });
+          } else {
+            // Any other segment, only show the latest try
+            const lastTreeId = treeIds?.[treeIds.length - 1];
+            if (playerMapping[lastTreeId] === undefined) {
+              playerMapping[lastTreeId] = [];
+            }
+            playerMapping[lastTreeId].push(player.id);
+          }
+        }
+      });
+    }
+  });
+
+  return playerMapping;
+};
+
+/**
+ * Build dictionary of treeIds to playerIds showing what trees the user has tried in the latest segment
+ * @param players
+ * @param activePlayer
+ * @returns
+ */
+export const buildUserMappingForLatestTree = (
+  user: GamePlayer,
+  currentMap: MapSegment[],
+  activePlayerId: PlayerId
+): PlayerMapping => {
+  // Segments that are active for the current player's map
+
+  const activeSegment = currentMap[0];
+
+  const playerMapping: PlayerMapping = {};
+
+  const historyEntry = user.history[activePlayerId];
+  if (historyEntry) {
+    const treeIds: TreeId[] = historyEntry[activeSegment.index];
+
+    if (treeIds) {
+      treeIds.forEach((treeId) => {
+        if (playerMapping[treeId] === undefined) {
+          playerMapping[treeId] = [];
+        }
+        playerMapping[treeId].push(user.id);
+      });
+    }
+  }
+
+  return playerMapping;
+};
+
+/**
+ * Build dictionary of treeIds to playerIds showing where players made a mistake
+ * @param players
+ * @param activePlayer
+ * @returns
+ */
+export const buildPlayerMappingForLatestTree = (
+  players: GamePlayers,
+  activePlayer: GamePlayer
+): PlayerMapping => {
+  // Segments that are active for the current player's map
+  const currentMap = (activePlayer.map ?? []) as MapSegment[];
+  const activeSegments = currentMap.filter((segment) => !segment.passed);
+
+  const playerMapping: PlayerMapping = {};
+
+  Object.values(players).forEach((player) => {
+    const historyEntry = player.history[activePlayer.id];
+    if (historyEntry) {
+      activeSegments.forEach((segment, index, arr) => {
+        const treeIds: TreeId[] = historyEntry[segment.index];
+
+        if (treeIds) {
+          // The last segment should display every player that has passed through it
+          if (index === arr.length - 1) {
+            treeIds.forEach((treeId) => {
+              if (playerMapping[treeId] === undefined) {
+                playerMapping[treeId] = [];
+              }
+              playerMapping[treeId].push(player.id);
+            });
+          } else {
+            // Any other segment, only show the latest try
+            const lastTreeId = treeIds?.[treeIds.length - 1];
+            if (playerMapping[lastTreeId] === undefined) {
+              playerMapping[lastTreeId] = [];
+            }
+            playerMapping[lastTreeId].push(player.id);
+          }
+        }
+      });
+    }
+  });
+
+  return playerMapping;
+};

@@ -83,3 +83,5 @@ interface MapSegment {
    */
   playersIds: PlayerId[];
 }
+
+type PlayerMapping = Record<TreeId, PlayerId[]>;

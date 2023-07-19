@@ -1,4 +1,3 @@
-// Hooks
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
