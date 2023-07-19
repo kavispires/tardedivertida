@@ -21,7 +21,12 @@ import { CaretRightOutlined } from '@ant-design/icons';
 
 function PhaseGameOver({ players, state, info }: PhaseProps) {
   const isVictory = state.winCondition === 'WIN';
-  const doorWidth = useCardWidth(10, 8, 120, 350, 8);
+  const doorWidth = useCardWidth(10, {
+    gap: 8,
+    minWidth: 120,
+    maxWidth: 350,
+    margin: 8,
+  });
 
   const doors = useMemo(() => {
     return Array(7)

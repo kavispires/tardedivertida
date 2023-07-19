@@ -8,7 +8,7 @@ type GalleryDreamDisplayProps = {
 };
 
 export function GalleryDreamDisplay({ entry, activePlayer }: GalleryDreamDisplayProps) {
-  const cardWidth = useCardWidth(5, 40);
+  const cardWidth = useCardWidth(5, { gap: 40 });
   return (
     <div className="s-gallery-dream-display">
       <div className="s-gallery-dream-display__player">

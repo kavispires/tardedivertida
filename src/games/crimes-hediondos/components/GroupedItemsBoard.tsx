@@ -11,7 +11,7 @@ type GroupedItemsBoardProps = {
 };
 
 export function GroupedItemsBoard({ items, weaponId, evidenceId, groupedItems }: GroupedItemsBoardProps) {
-  const cardWidth = useCardWidth(12, 8, 30, 200);
+  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 30, maxWidth: 200 });
   return (
     <ul className="h-grouped-items-board">
       {Object.values(groupedItems).map((group, index) => (

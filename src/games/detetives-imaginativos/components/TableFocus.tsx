@@ -16,7 +16,7 @@ type TableFocusProps = {
 };
 
 export function TableFocus({ table, currentPlayer }: TableFocusProps) {
-  const cardWidth = useCardWidth(6, 32, 250);
+  const cardWidth = useCardWidth(6, { minWidth: 250 });
 
   const tableEntry = table.find((entry) => entry.playerId === currentPlayer.id);
   const baseClass = 'd-table';

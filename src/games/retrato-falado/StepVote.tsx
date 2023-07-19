@@ -32,7 +32,11 @@ export function StepVote({
   players,
   announcement,
 }: StepVoteProps) {
-  const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
+  const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), {
+    gap: 16,
+    minWidth: 150,
+    maxWidth: 500,
+  });
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
 
   useEffect(() => {

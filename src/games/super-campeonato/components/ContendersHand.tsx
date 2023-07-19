@@ -12,7 +12,7 @@ type ContendersHandProps = {
 };
 
 export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
-  const cardWidth = useCardWidth(5, 32, 100);
+  const cardWidth = useCardWidth(5, { minWidth: 100 });
 
   return (
     <FloatingHand title={<Translate pt="Seus Competidores" en="Your Contenders" />}>

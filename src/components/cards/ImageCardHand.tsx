@@ -81,7 +81,7 @@ export function ImageCardHand({
   preview = true,
 }: ImageCardHandProps) {
   // Prefers cardSize otherwise calculates width based on screen and ratio
-  const cardWidth = useCardWidth(sizeRatio, 32, minCardSize);
+  const cardWidth = useCardWidth(sizeRatio, { minWidth: minCardSize });
 
   return (
     <Image.PreviewGroup>

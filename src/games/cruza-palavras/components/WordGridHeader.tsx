@@ -21,7 +21,7 @@ export function WordGridHeader({ cell }: WordGridHeaderProps) {
 
 function WordGridHeaderImage({ cell }: WordGridHeaderProps) {
   const { shouldBeBlurred } = useBlurCards();
-  const cardWidth = useCardWidth(8, 16, 30, 100);
+  const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
 
   const imageURL = cell.id!.replace(/-/g, '/');
 

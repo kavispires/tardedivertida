@@ -14,7 +14,7 @@ type BestMatchesProps = {
 };
 
 export function BestMatches({ bestMatches }: BestMatchesProps) {
-  const cardWidth = useCardWidth(8, 8, 100, 150);
+  const cardWidth = useCardWidth(8, { gap: 8, minWidth: 100, maxWidth: 150 });
 
   return (
     <Step>

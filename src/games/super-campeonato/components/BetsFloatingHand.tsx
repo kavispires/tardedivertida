@@ -17,7 +17,7 @@ type BetsFloatingHandProps = {
 };
 
 export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: BetsFloatingHandProps) {
-  const cardWidth = useCardWidth(5, 32, 100);
+  const cardWidth = useCardWidth(5, { minWidth: 100 });
 
   const { quarterCard, semiCard, finalCard, selectedCard } = useMemo(
     () => findBetContenders(brackets, bets, selectedContenderId),

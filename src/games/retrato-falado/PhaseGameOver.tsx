@@ -9,7 +9,11 @@ import { Translate } from 'components/language';
 import { MonsterSketches } from './components/MonsterSketches';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
-  const canvasWidth = useCardWidth(6, 16, 150, 500);
+  const canvasWidth = useCardWidth(6, {
+    gap: 16,
+    minWidth: 150,
+    maxWidth: 500,
+  });
 
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>

@@ -15,7 +15,7 @@ type DreamBoardProps = {
 };
 
 export function DreamBoard({ table, user, className = '' }: DreamBoardProps) {
-  const cardWidth = useCardWidth(table.length + 1, 20);
+  const cardWidth = useCardWidth(table.length + 1, { gap: 20 });
 
   return (
     <ul className={clsx('s-dream-board', className)}>

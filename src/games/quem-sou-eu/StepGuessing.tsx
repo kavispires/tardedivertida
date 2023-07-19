@@ -41,8 +41,16 @@ export function StepGuessing({
   round,
 }: StepGuessingProps) {
   const { isLoading } = useLoading();
-  const glyphWidth = useCardWidth(20, 16, 45, 60);
-  const characterWidth = useCardWidth(8, 16, 120, 200);
+  const glyphWidth = useCardWidth(20, {
+    gap: 16,
+    minWidth: 45,
+    maxWidth: 60,
+  });
+  const characterWidth = useCardWidth(8, {
+    gap: 16,
+    minWidth: 120,
+    maxWidth: 200,
+  });
   const { votes, setVotes, activateItem, isVotingComplete, isItemActive } = useVotingMatch(
     'player',
     true,

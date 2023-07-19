@@ -64,7 +64,7 @@ export function StepReveal({
   onSubmitPoster,
   posters,
 }: StepRevealProps) {
-  const posterWidth = useCardWidth(8, 16, 80, 150, 32);
+  const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
   const { isLoading } = useLoading();
 
   const isFinalMovie = Boolean(outcome === 'DONE' && mistakes.length < 2 && finalMovieId);

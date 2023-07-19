@@ -27,7 +27,7 @@ export function CharactersBoard({
 }: CharactersBoardProps) {
   const { language, translate } = useLanguage();
   const { isLoading } = useLoading();
-  const cardWidth = useCardWidth(10, 16, 80, 150, 16);
+  const cardWidth = useCardWidth(10, { gap: 16, minWidth: 80, maxWidth: 100, margin: 16 });
 
   if (onCardClick) {
     return (
