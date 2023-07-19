@@ -76,7 +76,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
   const usedCards = selections.map((card) => card?.id).filter(Boolean);
 
   const possibleTreeIds = getPossibleTreeIds(userMap, map?.[currentIndex]);
-  console.log({ possibleTreeIds });
+
   return (
     <>
       <Space className="space-container map-builder" wrap>
@@ -153,8 +153,11 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
             />
             :
           </strong>
-          {possibleTreeIds.map((treeId) => (
-            <TextHighlight key={`highlighted-possibility-${treeId}`}>
+          {possibleTreeIds.map((treeId, index) => (
+            <TextHighlight
+              key={`highlighted-possibility-${treeId}`}
+              className={getAnimationClass('tada', { delay: index })}
+            >
               {forest?.[treeId]?.card?.text}
             </TextHighlight>
           ))}
@@ -166,7 +169,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
           <TransparentButton
             onClick={() => onSetCard(card)}
             key={card.id}
-            disabled={usedCards.includes(card.id)}
+            disabled={usedCards.includes(card.id) || currentIndex >= map.length}
             className="map-builder__card-button"
           >
             <Card header={LETTERS[index]} color={getColorFromLetter(LETTERS[index])}>

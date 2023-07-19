@@ -1,6 +1,7 @@
 // Utils
 import { PAGE_DURATION } from './utils/constants';
 import { getAvatarColorById } from 'utils/helpers';
+import { buildPlayerMapping } from './utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -36,6 +37,7 @@ export function StepGallery({
 
   const currentPlayer = gallery[activeIndex];
   const currentColor = getAvatarColorById(currentPlayer.avatarId);
+  const playerMapping = buildPlayerMapping(players, currentPlayer);
 
   return (
     <Step fullWidth>
@@ -86,9 +88,9 @@ export function StepGallery({
           map={currentPlayer.map}
           size="small"
           players={players}
-          showPlayerPositions
           user={user}
-          activePlayerId={currentPlayer.id}
+          forestBorderColor={getAvatarColorById(currentPlayer.avatarId)}
+          playerMapping={playerMapping}
         />
 
         <SlideShowControls

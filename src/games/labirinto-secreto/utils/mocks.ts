@@ -1,4 +1,4 @@
-import { sampleSize } from 'lodash';
+import { sampleSize, union } from 'lodash';
 import { getAvailableSegments } from './helpers';
 import { getRandomItem } from 'utils/helpers';
 
@@ -12,11 +12,13 @@ export const mockNewMap = (hand: ExtendedTextCard): ExtendedTextCard[] => {
 export const mockFollowedPath = (
   fullMap: MapSegment[],
   currentMap: MapSegment[],
-  increaseChances: boolean = false
+  increaseChances: boolean = false,
+  previousMistakes: TreeId[] = []
 ) => {
-  const usedTrees = fullMap
-    .filter((segment: MapSegment) => segment.passed)
-    .map((segment: MapSegment) => segment.treeId);
+  const usedTrees = union(
+    fullMap.filter((segment: MapSegment) => segment.passed).map((segment: MapSegment) => segment.treeId),
+    previousMistakes
+  );
 
   return currentMap.map((segment) => {
     const possibilities = getAvailableSegments(usedTrees[usedTrees.length - 1], usedTrees);

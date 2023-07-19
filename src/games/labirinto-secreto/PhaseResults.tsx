@@ -36,6 +36,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
           currentRound={state?.round?.current}
           type="block"
           onClose={goToNextStep}
+          unskippable
         >
           <Instruction>
             <Translate
