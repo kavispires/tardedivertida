@@ -21,7 +21,7 @@ export function SelectedItems({
   fadeWeapon = false,
   fadeEvidence = false,
 }: SelectedItemsProps) {
-  const cardWidth = useCardWidth(12, 8, 50, 200);
+  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 200 });
 
   return (
     <ul className="h-items-crime-selection">

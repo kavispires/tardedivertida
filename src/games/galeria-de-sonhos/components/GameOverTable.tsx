@@ -13,7 +13,7 @@ type TableProps = {
 };
 
 export function GameOverTable({ table }: TableProps) {
-  const cardWidth = useCardWidth(12, 8, 60, 100);
+  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 60, maxWidth: 100 });
   return (
     <Image.PreviewGroup>
       <ul className="g-table g-table--game-over">

@@ -9,7 +9,12 @@ import { Instruction } from 'components/text';
 import { WinningCount } from './WinningCount';
 
 export function ResultRetratoFalado({ task, winningValues, winningTeam }: ResultComponentProps) {
-  const width = useCardWidth(winningValues.length + 1, 9, 80, 200, 0, 'results-values');
+  const width = useCardWidth(winningValues.length + 1, {
+    gap: 9,
+    minWidth: 80,
+    maxWidth: 200,
+    containerId: 'results-values',
+  });
 
   const winningArtworks: PlainObject[] = task.data.options.filter((option: PlainObject) => {
     return winningValues.includes(option.playerId);

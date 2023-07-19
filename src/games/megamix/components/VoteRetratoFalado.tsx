@@ -6,7 +6,12 @@ import { CanvasSVG } from 'components/canvas';
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 
 export function VoteRetratoFalado({ task, players, playersList }: VoteComponentProps) {
-  const width = useCardWidth(playersList.length + 1, 9, 80, 200, 0, 'results-values');
+  const width = useCardWidth(playersList.length + 1, {
+    gap: 9,
+    minWidth: 80,
+    maxWidth: 200,
+    containerId: 'results-values',
+  });
 
   return (
     <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>

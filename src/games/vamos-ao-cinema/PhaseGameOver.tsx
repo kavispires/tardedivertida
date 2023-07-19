@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
-  const posterWidth = useCardWidth(8, 16, 80, 150, 32);
+  const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
       <Space className="space-container" direction="vertical">

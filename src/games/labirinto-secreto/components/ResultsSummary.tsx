@@ -2,10 +2,12 @@
 import { Tooltip } from 'antd';
 import { Avatar, IconAvatar } from 'components/avatars';
 import { TreeCard } from 'components/cards/TreeCard';
-// Components
+// Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
+import { FlagIcon } from 'icons/FlagIcon';
+// Components
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
@@ -27,7 +29,7 @@ export function PlayerMapResultsSummary({
   return (
     <div
       className="space-container player-map"
-      style={{ gridTemplateColumns: `repeat(${currentMap.length}, 100px)` }}
+      style={{ gridTemplateColumns: `repeat(${currentMap.length}, 120px)` }}
     >
       {currentMap.map((segment, index, arr) => {
         const tree = segment.passed ? forest[segment.treeId] : null;
@@ -60,6 +62,10 @@ export function PlayerMapResultsSummary({
                   );
                 })}
               </div>
+
+              {segment.index === 0 && (
+                <IconAvatar icon={<FlagIcon />} size="small" className="player-map__starting-flag" />
+              )}
 
               {arr.length - 1 !== index && (
                 <IconAvatar icon={<ArrowIcon />} size="small" className="player-map__arrow" />

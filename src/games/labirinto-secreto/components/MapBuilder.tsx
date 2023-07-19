@@ -6,24 +6,29 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass, getColorFromLetter } from 'utils/helpers';
 import { LETTERS } from 'utils/constants';
+import { getPossibleTreeIds } from '../utils/helpers';
+// Icons
+import { NoIcon } from 'icons/NoIcon';
+import { LocationIcon } from 'icons/LocationIcon';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Translate } from 'components/language';
-import { NoIcon } from 'icons/NoIcon';
 import { IconAvatar } from 'components/avatars';
-import { LocationIcon } from 'icons/LocationIcon';
+import { Container } from 'components/general/Container';
+import { TextHighlight } from 'components/text';
 
 type MapBuilderProps = {
   forest: Tree[];
   user: GamePlayer;
-  onSubmitMap: GenericFunction;
+  onSubmitMap: OnSubmitMapFunction;
 };
 
 export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
   const { isLoading } = useLoading();
-  const map: MapSegment[] = (user?.map ?? []).filter((segment: MapSegment) => !segment.passed);
+  const userMap = user?.map ?? [];
+  const map: MapSegment[] = userMap.filter((segment: MapSegment) => !segment.passed);
   const previousSelections = map.map((segment) => segment.clues);
   const [selections, setSelections] = useState<(ExtendedTextCard | null)[]>(map.map((_) => null));
   const [currentIndex, setIndex] = useState(0);
@@ -70,6 +75,8 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
   const usedCards = selections.map((card) => card?.id).filter(Boolean);
 
+  const possibleTreeIds = getPossibleTreeIds(userMap, map?.[currentIndex]);
+
   return (
     <>
       <Space className="space-container map-builder" wrap>
@@ -90,7 +97,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 <div className="map-builder__caret">
                   <IconAvatar
                     icon={<LocationIcon />}
-                    className={getAnimationClass('bounce', undefined, 'slow', true)}
+                    className={getAnimationClass('bounce', { speed: 'slow', infinite: true })}
                     size="small"
                   />
                 </div>
@@ -137,12 +144,32 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         })}
       </Space>
 
-      <Space className="space-container" wrap>
+      {possibleTreeIds.length > 0 && (
+        <Space className="contained">
+          <strong>
+            <Translate
+              pt="Outros possíveis caminhos para a árvore atual"
+              en="Other possible paths for the current tree"
+            />
+            :
+          </strong>
+          {possibleTreeIds.map((treeId, index) => (
+            <TextHighlight
+              key={`highlighted-possibility-${treeId}`}
+              className={getAnimationClass('tada', { delay: index })}
+            >
+              {forest?.[treeId]?.card?.text}
+            </TextHighlight>
+          ))}
+        </Space>
+      )}
+
+      <Container title={<Translate pt="Cartas" en="Hand" />} contained>
         {(user.hand ?? []).map((card: ExtendedTextCard, index: number) => (
           <TransparentButton
             onClick={() => onSetCard(card)}
             key={card.id}
-            disabled={usedCards.includes(card.id)}
+            disabled={usedCards.includes(card.id) || currentIndex >= map.length}
             className="map-builder__card-button"
           >
             <Card header={LETTERS[index]} color={getColorFromLetter(LETTERS[index])}>
@@ -158,7 +185,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         >
           <Translate pt="Pular árvore" en="Skip tree" />
         </Button>
-      </Space>
+      </Container>
 
       <Space className="space-container">
         <Button

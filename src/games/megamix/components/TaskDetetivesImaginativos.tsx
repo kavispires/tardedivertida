@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { MinigameTitle } from './MinigameTitle';
 
 export const TaskDetetivesImaginativos = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
-  const cardWidth = useCardWidth(7, 32, 200, 270);
+  const cardWidth = useCardWidth(7, { minWidth: 200, maxWidth: 270 });
   const { language } = useLanguage();
   const { isLoading } = useLoading();
 

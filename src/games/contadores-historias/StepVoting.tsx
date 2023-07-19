@@ -37,7 +37,7 @@ export function StepVoting({
   announcement,
 }: StepVotingProps) {
   const { isLoading } = useLoading();
-  const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 8), 32, 150);
+  const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 8), { minWidth: 150 });
 
   const hasPlayedCardAlready = Boolean(user.vote);
 

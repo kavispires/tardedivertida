@@ -17,7 +17,7 @@ import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 
 export const TaskTestemunhaOcular = ({ task, round, onSubmitTask, user }: TaskProps) => {
-  const cardWidth = useCardWidth(8, 8, 150, 350, 8);
+  const cardWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
 

@@ -5,17 +5,25 @@ import { message } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 
 type TransLateProps = {
-  pt: ReactNode;
+  /**
+   * The content of the component in english
+   */
   en: ReactNode;
+  /**
+   * The content of the component in portuguese
+   */
+  pt: ReactNode;
+  /**
+   * Optional custom content that overrides the `pt` and `en` props
+   */
   custom?: ReactNode;
 };
 
 /**
  * Delegate between two strings depending on the active language
- * @param props
  * @returns the text/element according to the current language
  */
-export function Translate({ pt, en, custom }: TransLateProps) {
+export function Translate({ en, pt, custom }: TransLateProps) {
   const { language } = useLanguage();
 
   if (!language) {

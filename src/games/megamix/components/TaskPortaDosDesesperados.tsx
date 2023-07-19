@@ -15,7 +15,7 @@ import { DoorFrame } from 'games/porta-dos-desesperados/components/DoorFrame';
 import { MinigameTitle } from './MinigameTitle';
 
 export const TaskPortaDosDesesperados = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
-  const doorWidth = useCardWidth(8, 8, 150, 350, 8);
+  const doorWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });
   const { isLoading } = useLoading();
 
   const onSelect = (value: string) => {

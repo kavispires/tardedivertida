@@ -1,4 +1,4 @@
-import { camelCase, orderBy, startCase } from 'lodash';
+import { camelCase, memoize, orderBy, startCase } from 'lodash';
 import { AVATARS } from 'utils/avatars';
 import { SEPARATOR } from './constants';
 
@@ -82,7 +82,7 @@ const methods = {
 };
 
 /**
- * Prints a message to the console using a specified console method, if in development environment.
+ * Prints a message to the console using a specified console method if in development environment.
  * @param message - The message to be printed to the console.
  * @param [method='log'] - The console method to use for printing (one of: 'count', 'log', 'table', 'warn').
  */
@@ -242,34 +242,43 @@ export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.col
 
 /**
  * Return the correct animation class from animate.css
- * @param type
+ * @param type - animation type
+ * @param options - animation options
+ * @param options.delay - delay in seconds
+ * @param options.speed - animation speed
+ * @param options.infinite - infinite animation
+ * @param options.repeat - animation repeat
  * @returns
  */
-export const getAnimationClass = (
-  type: AnimationType,
-  delayInSeconds?: number,
-  speed?: 'slow' | 'slower' | 'fast' | 'faster',
-  infinite?: boolean,
-  repeat?: 1 | 2 | 3
-) => {
-  const result = ['animate__animated', `animate__${type}`];
+export const getAnimationClass = memoize(
+  (
+    type: AnimationType,
+    options?: {
+      delay?: number;
+      speed?: 'slow' | 'slower' | 'fast' | 'faster';
+      infinite?: boolean;
+      repeat?: 1 | 2 | 3;
+    }
+  ) => {
+    const result = ['animate__animated', `animate__${type}`];
 
-  if (delayInSeconds) {
-    result.push(`animate__delay-${delayInSeconds}s`);
+    if (options?.delay) {
+      result.push(`animate__delay-${options?.delay}s`);
+    }
+
+    if (options?.speed) {
+      result.push(`animate__${options?.speed}`);
+    }
+
+    if (options?.infinite) {
+      result.push(`animate__infinite`);
+    } else if (options?.repeat) {
+      result.push(`animate__repeat-${options?.repeat}`);
+    }
+
+    return result.join(' ');
   }
-
-  if (speed) {
-    result.push(`animate__${speed}`);
-  }
-
-  if (infinite) {
-    result.push(`animate__infinite`);
-  } else if (repeat) {
-    result.push(`animate__repeat-${repeat}`);
-  }
-
-  return result.join(' ');
-};
+);
 
 /**
  * Convert a yyyy/mm/dd date to milliseconds
@@ -331,8 +340,9 @@ export const truncateRecommended = (recommended: number[]): string => {
  * @param players
  * @returns
  */
-export const sortPlayers = (players: GamePlayers, by = 'name') =>
-  orderBy(Object.values(players), [by], ['asc']);
+export const sortPlayers = memoize((players: GamePlayers, by = 'name') =>
+  orderBy(Object.values(players), [by], ['asc'])
+);
 
 /**
  * Calculate a game average duration

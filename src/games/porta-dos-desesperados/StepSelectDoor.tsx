@@ -148,7 +148,7 @@ export function StepSelectDoor({
       </Instruction>
 
       {trap === TRAPS.NO_COMMUNICATION && (
-        <Instruction contained className={getAnimationClass('pulse', undefined, 'slower', true)}>
+        <Instruction contained className={getAnimationClass('pulse', { speed: 'slower', infinite: true })}>
           <strong>
             <RadarChartOutlined /> <Translate pt="Silêncio Absoluto!" en="Absolute Silence!" />
           </strong>

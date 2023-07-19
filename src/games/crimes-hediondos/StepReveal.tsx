@@ -147,7 +147,7 @@ export function StepReveal({
 
       {activeCrime && (
         <div
-          className={getAnimationClass('slideInUp', undefined, 'fast')}
+          className={getAnimationClass('slideInUp', { speed: 'fast' })}
           key={`crime-by-${activeCrime.playerId}`}
         >
           <Crime

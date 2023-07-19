@@ -11,7 +11,7 @@ type GalleryGuessesProps = {
 };
 
 export function GalleryGuesses({ entry, players, correctGuessPoints }: GalleryGuessesProps) {
-  const cardWidth = useCardWidth(8, 20);
+  const cardWidth = useCardWidth(8, { gap: 20 });
   return (
     <ul className="s-gallery-guesses">
       {entry.cards.map((cardEntry) => {

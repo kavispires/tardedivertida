@@ -19,7 +19,12 @@ import { ContenderCard } from './TaskSuperCampeonato';
 import { WinningCount } from './WinningCount';
 
 export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersList'>) => {
-  const width = useCardWidth(props.winningValues.length + 1, 9, 80, 200, 0, 'results-values');
+  const width = useCardWidth(props.winningValues.length + 1, {
+    gap: 9,
+    minWidth: 80,
+    maxWidth: 200,
+    containerId: 'results-values',
+  });
 
   switch (props.task.game) {
     case 'arte-ruim':

@@ -1,4 +1,3 @@
-// Hooks
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -12,7 +11,7 @@ type StepFollowPathProps = {
   players: GamePlayers;
   user: GamePlayer;
   forest: Tree[];
-  onSubmitPath: GenericFunction;
+  onSubmitPath: OnSubmitPathGuessFunction;
   activePlayer: GamePlayer;
   isTheActivePlayer: boolean;
 } & AnnouncementProps;
@@ -23,6 +22,7 @@ export function StepFollowPath({
   forest,
   activePlayer,
   onSubmitPath,
+  user,
 }: StepFollowPathProps) {
   const playerCount = Object.keys(players).length;
 
@@ -83,6 +83,8 @@ export function StepFollowPath({
           map={activePlayer.map}
           onSubmitPath={onSubmitPath}
           pathId={activePlayer.id}
+          user={user}
+          players={players}
         />
       )}
     </Step>

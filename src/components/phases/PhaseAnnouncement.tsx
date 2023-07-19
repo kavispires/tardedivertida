@@ -153,9 +153,7 @@ export function PhaseAnnouncement({
         <div
           className={clsx(
             'phase-announcement',
-            isActive
-              ? getAnimationClass(animationType, undefined, 'fast')
-              : getAnimationClass('bounceOut', undefined),
+            isActive ? getAnimationClass(animationType, { speed: 'fast' }) : getAnimationClass('bounceOut'),
             className
           )}
         >

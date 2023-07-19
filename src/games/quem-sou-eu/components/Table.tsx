@@ -14,7 +14,11 @@ type TableProps = {
 };
 
 export function Table({ characters, playerCharacterId, tableOrder, showAll = true }: TableProps) {
-  const width = useCardWidth(8, 16, 150, 200);
+  const width = useCardWidth(8, {
+    gap: 16,
+    minWidth: 150,
+    maxWidth: 200,
+  });
 
   const topKeys = tableOrder.slice(0, Math.floor(tableOrder.length / 2));
   const bottomKeys = tableOrder.slice(Math.floor(tableOrder.length / 2));

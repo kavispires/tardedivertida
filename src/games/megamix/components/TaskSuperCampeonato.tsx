@@ -19,7 +19,7 @@ import { mockSelection } from '../utils/mock';
 export const TaskSuperCampeonato = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const cardWidth = useCardWidth(6, 32, 200, 270);
+  const cardWidth = useCardWidth(6, { minWidth: 200, maxWidth: 270 });
 
   // DEV Mock
   useMock(() => {
