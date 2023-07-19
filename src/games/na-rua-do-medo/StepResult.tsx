@@ -47,7 +47,12 @@ export function StepResult({
         <Translate pt="Decisões" en="Decisions" />:
       </Title>
 
-      <Title size="small" white level={3} className={clsx('n-subtitle', getAnimationClass('fadeIn', 1))}>
+      <Title
+        size="small"
+        white
+        level={3}
+        className={clsx('n-subtitle', getAnimationClass('fadeIn', { delay: 1 }))}
+      >
         {goingHomePlayerIds.length === 0 && (
           <Translate pt="Todos continuaram..." en="Everybody will continue..." />
         )}

@@ -22,7 +22,9 @@ export function PlayerStatus({ player, side }: PlayerStatusProps) {
             player.target ? (
               <RevolverIcon className={clsx(getAnimationClass('rotateInDownLeft'))} />
             ) : (
-              <ThinkingIcon className={clsx(getAnimationClass('flash', undefined, 'slower', true))} />
+              <ThinkingIcon
+                className={clsx(getAnimationClass('flash', { speed: 'slower', infinite: true }))}
+              />
             )
           }
         />

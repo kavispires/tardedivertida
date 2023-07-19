@@ -6,10 +6,11 @@ import { MapEntry } from './MapEntry';
 type PlayerMapProps = {
   map: MapSegment[];
   selectedTrees?: Tree[];
+  fullMap?: boolean;
 };
 
-export function PlayerMap({ map = [], selectedTrees = [] }: PlayerMapProps) {
-  const currentMap = map.filter((segment) => segment.active);
+export function PlayerMap({ map = [], selectedTrees = [], fullMap = false }: PlayerMapProps) {
+  const currentMap = fullMap ? map : map.filter((segment) => segment.active);
 
   return (
     <Space

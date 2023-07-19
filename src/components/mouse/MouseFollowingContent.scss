@@ -2,8 +2,11 @@
 
 .mouse-following-content {
   position: fixed;
-  @include contained;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 175;
+  padding: get-unit(3);
+  border-radius: get-unit(2);
+  z-index: 300;
+
+  &--contained {
+    @include contained;
+  }
 }

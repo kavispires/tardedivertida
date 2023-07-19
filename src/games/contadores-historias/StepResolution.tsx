@@ -32,7 +32,7 @@ export function StepResolution({
 }: StepResolutionProps) {
   useTemporarilyHidePlayersBar();
 
-  const cardWidth = useCardWidth(10, 32, 75);
+  const cardWidth = useCardWidth(10, { minWidth: 75 });
 
   const solution = table.find((entry) => entry.playerId === storyteller.id);
   const otherCards = table.filter((entry) => entry.playerId !== storyteller.id);

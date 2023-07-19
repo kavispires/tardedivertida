@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { MinigameTitle } from './MinigameTitle';
 
 export const TaskCrimesHediondos = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
-  const cardWidth = useCardWidth(12, 32, 100, 130);
+  const cardWidth = useCardWidth(12, { minWidth: 100, maxWidth: 130 });
   const { dualTranslate } = useLanguage();
   const { isLoading } = useLoading();
 

@@ -92,7 +92,7 @@ function Showcase() {
           return (
             <li
               key={game.gameCode}
-              className={clsx('showcase-entry', getAnimationClass('zoomIn', index + 0.3))}
+              className={clsx('showcase-entry', getAnimationClass('zoomIn', { delay: index + 0.3 }))}
             >
               <TransparentButton
                 onClick={() => setShowModal(game.gameName)}

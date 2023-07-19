@@ -19,7 +19,12 @@ import { VoteVamosAoCinema } from './VoteVamosAoCinema';
 export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
   const playersList = orderBy(Object.values(props.players), ['data.value', 'name'], ['asc', 'asc']);
 
-  const width = useCardWidth(playersList.length + 3, 9, 50, 120, 8);
+  const width = useCardWidth(playersList.length + 3, {
+    gap: 8,
+    minWidth: 50,
+    maxWidth: 120,
+    margin: 8,
+  });
 
   if (!playersList.every((player) => has(player, 'data.value'))) {
     return <></>;

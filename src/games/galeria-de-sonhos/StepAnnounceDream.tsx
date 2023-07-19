@@ -45,7 +45,7 @@ export function StepAnnounceDream({
   gameOrder,
 }: StepAnnounceDreamProps) {
   useTemporarilyHidePlayersBar();
-  const cardWidth = useCardWidth(5, 8, 140, 150);
+  const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
 
   const { matchingPlayers, fallenMatchingPlayers } = useMemo(
     () =>
@@ -70,7 +70,7 @@ export function StepAnnounceDream({
 
   return (
     <Step fullWidth>
-      <div className={clsx('g-dream-result', getAnimationClass('fadeIn', 0, 'slow'))}>
+      <div className={clsx('g-dream-result', getAnimationClass('fadeIn', { speed: 'slow' }))}>
         <header
           className="g-dream-result__header"
           style={{ backgroundColor: getAvatarColorById(lastActivePlayer.avatarId) }}

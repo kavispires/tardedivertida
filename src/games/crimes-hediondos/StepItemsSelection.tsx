@@ -31,7 +31,7 @@ export function StepItemsSelection({
 }: StepItemsSelectionProps) {
   const [weaponId, setWeaponId] = useState<string>(selections.weaponId);
   const [evidenceId, setEvidenceId] = useState<string>(selections.evidenceId);
-  const cardWidth = useCardWidth(12, 8, 50, 200);
+  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 200 });
 
   const userItems = groupedItems[user.itemGroupIndex];
 

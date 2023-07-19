@@ -20,7 +20,7 @@ interface MonsterCardProps extends SpaceProps {
 
 export function MonsterCard({ currentMonster, showControls = true, cardWidth, ...props }: MonsterCardProps) {
   const [monsterOrientation, setMonsterOrientation] = useGlobalState('monsterOrientation');
-  const defaultCardWidth = useCardWidth(5, 16, 120, 360);
+  const defaultCardWidth = useCardWidth(5, { gap: 16, maxWidth: 360 });
 
   useEffectOnce(() => {
     if (currentMonster.orientation === 'horizontal') {

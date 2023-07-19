@@ -37,7 +37,7 @@ export function StepGallery({
 }: StepGalleryProps) {
   useTemporarilyHidePlayersBar();
 
-  const canvasWidth = useCardWidth(2, 16, 200, 500);
+  const canvasWidth = useCardWidth(2, { gap: 16, minWidth: 200, maxWidth: 500 });
 
   const { drawing, artistId, id, text, playersPoints, playersSay } = gallery[activeIndex];
 

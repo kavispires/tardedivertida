@@ -42,7 +42,7 @@ export function StepEvaluation({
 }: StepEvaluationProps) {
   const { isLoading } = useLoading();
   const user = useUser(players);
-  const canvasWidth = useCardWidth(5, 16, 150, 500);
+  const canvasWidth = useCardWidth(5, { gap: 16, minWidth: 150, maxWidth: 500 });
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const { votes, setVotes, activeItem, activateItem, resetVoting, isVotingComplete } = useVotingMatch(
     'drawing',

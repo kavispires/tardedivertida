@@ -3,29 +3,44 @@ import { findLast } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Utils
-import { getAvailableSegments } from '../utils/helpers';
+import { getAnimationClass } from 'utils/helpers';
+import { buildUserMappingForLatestTree, getAvailableSegments } from '../utils/helpers';
+import { mockFollowedPath } from '../utils/mocks';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useDelayedMock } from 'hooks/useMock';
 // Components
 import { Forest } from './Forest';
 import { Translate } from 'components/language';
 import { PlayerMap } from './PlayerMap';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { MapEntry } from './MapEntry';
+import { DevButton } from 'components/debug';
 
 type ClickableForestProps = {
   forest: Tree[];
   map?: MapSegment[];
-  onSubmitPath: GenericFunction;
+  onSubmitPath: OnSubmitPathGuessFunction;
   pathId: PlayerId;
+  user: GamePlayer;
+  players: GamePlayers;
 };
 
-export function ClickableForest({ forest, map = [], onSubmitPath, pathId }: ClickableForestProps) {
+export function ClickableForest({
+  forest,
+  map = [],
+  onSubmitPath,
+  pathId,
+  user,
+  players,
+}: ClickableForestProps) {
   const { isLoading } = useLoading();
 
   const currentMap = map.filter((segment) => !segment.passed && segment.clues.length > 0);
   const currentTreeId = findLast(map, (segment) => segment.passed)?.treeId ?? map?.[0]?.treeId ?? 0;
   const passedTrees = map.filter((segment) => segment.passed).map((segment) => segment.treeId);
+
+  const userMapping = buildUserMappingForLatestTree(user, currentMap, pathId);
 
   const [selection, setSelection] = useState<TreeId[]>([currentTreeId]);
   const [activeTree, setActiveTree] = useState<TreeId>(currentTreeId);
@@ -47,12 +62,25 @@ export function ClickableForest({ forest, map = [], onSubmitPath, pathId }: Clic
   const selectedTrees = selection.map((treeId) => forest[treeId]);
   const currentSegment = currentMap?.[selection.length - 1];
 
+  // DEV Only
+  useDelayedMock(() => {
+    onSubmitPath({
+      guess: mockFollowedPath(map, currentMap, true, Object.values(userMapping).flat().map(Number)),
+      pathId,
+      choseRandomly: true,
+    });
+  });
+
   return (
     <Space direction="vertical" className="space-container">
       <PlayerMap map={map} selectedTrees={selectedTrees} />
 
       <MouseFollowingContent active={Boolean(currentSegment)}>
-        <MapEntry segment={currentSegment} />
+        <MapEntry
+          segment={currentSegment}
+          key={currentSegment?.treeId}
+          className={getAnimationClass('rubberBand')}
+        />
       </MouseFollowingContent>
 
       <Button
@@ -63,6 +91,18 @@ export function ClickableForest({ forest, map = [], onSubmitPath, pathId }: Clic
       >
         <Translate pt="Enviar" en="Submit" />
       </Button>
+      <DevButton
+        onClick={() =>
+          onSubmitPath({
+            guess: mockFollowedPath(map, currentMap, true, Object.values(userMapping).flat().map(Number)),
+            pathId,
+            choseRandomly: true,
+          })
+        }
+        ghost
+      >
+        Random Dev
+      </DevButton>
       <Forest
         forest={forest}
         map={map}
@@ -73,6 +113,8 @@ export function ClickableForest({ forest, map = [], onSubmitPath, pathId }: Clic
           activeTree,
           disabled: isDisabled,
         }}
+        playerMapping={userMapping}
+        players={players}
       />
     </Space>
   );

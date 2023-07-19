@@ -1,3 +1,11 @@
+// Hooks
+import { useDelayedMock } from 'hooks/useMock';
+// Utils
+import { buildPlayerMappingForLatestTree } from './utils/helpers';
+import { mockNewMap } from './utils/mocks';
+// Icons
+import { NoIcon } from 'icons/NoIcon';
+import { TreeIcon } from 'icons/TreeIcon';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -7,17 +15,13 @@ import { CompassHighlight } from './components/Highlights';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { MapBuilder } from './components/MapBuilder';
 import { IconAvatar } from 'components/avatars';
-import { NoIcon } from 'icons/NoIcon';
-import { TreeIcon } from 'icons/TreeIcon';
-import { useDelayedMock } from 'hooks/useMock';
-import { mockNewMap } from './utils/mocks';
 
 type StepBuildMapProps = {
   players: GamePlayers;
   user: GamePlayer;
   forest: Tree[];
   currentRound: number;
-  onSubmitMap: GenericFunction;
+  onSubmitMap: OnSubmitMapFunction;
 } & AnnouncementProps;
 
 export function StepBuildMap({
@@ -32,6 +36,8 @@ export function StepBuildMap({
   useDelayedMock(() => {
     onSubmitMap({ newMap: mockNewMap(user.hand) });
   });
+
+  const playerMapping = buildPlayerMappingForLatestTree(players, user);
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -70,7 +76,14 @@ export function StepBuildMap({
         />
       </Instruction>
 
-      <Forest forest={forest} map={user.map} showPath hidePassedTreeNames />
+      <Forest
+        forest={forest}
+        map={user.map}
+        showPath
+        hidePassedTreeNames
+        players={players}
+        playerMapping={playerMapping}
+      />
 
       <Instruction contained>
         <Translate

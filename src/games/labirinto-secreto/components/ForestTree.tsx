@@ -6,6 +6,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { FlagIcon } from 'icons/FlagIcon';
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { CompassIcon } from 'icons/CompassIcon';
+import { FinishLineIcon } from 'icons/FinishLineIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { TreeCard } from 'components/cards/TreeCard';
@@ -20,6 +21,7 @@ type ForestTreeProps = {
   showArrow?: boolean;
   className?: string;
   hidePassedTreeNames?: boolean;
+  width?: number;
 };
 
 export function ForestTree({
@@ -32,6 +34,7 @@ export function ForestTree({
   showArrow = false,
   className = '',
   hidePassedTreeNames = false,
+  width = 75,
 }: ForestTreeProps) {
   const isSegment = Boolean(segment);
   const isStartingPoint = startingTeeId === tree.id;
@@ -55,13 +58,22 @@ export function ForestTree({
       <TreeCard
         id={String(tree.treeType)}
         text={segment?.passed && hidePassedTreeNames ? '' : tree.card.text}
+        width={width}
       />
+      {showPath && isFinalPoint && (
+        <IconAvatar
+          icon={<FinishLineIcon />}
+          size="large"
+          className={`forest__end forest__end--${segment.direction}`}
+        />
+      )}
+
       {isCurrentTree && (
         <div className="forest__compass">
           <IconAvatar
             icon={<CompassIcon />}
             size="large"
-            className={clsx('forest__compass-icon', getAnimationClass('pulse', undefined, undefined, true))}
+            className={clsx('forest__compass-icon', getAnimationClass('pulse', { infinite: true }))}
           />
         </div>
       )}

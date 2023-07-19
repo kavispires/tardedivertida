@@ -15,7 +15,7 @@ import { Card, ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 
 export const TaskGaleriaDeSonhos = ({ task, round, onSubmitTask, user }: TaskProps) => {
-  const cardWidth = useCardWidth(8, 8, 150, 350, 8);
+  const cardWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
 

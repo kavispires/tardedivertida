@@ -31,7 +31,7 @@ export function StepLocationSelection({
   groupedItems,
   goToStep,
 }: StepLocationSelectionProps) {
-  const cardWidth = useCardWidth(12, 8, 50, 200);
+  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 200 });
   const [location, setLocation] = useState<PlainObject>();
 
   const userItems = groupedItems[user.itemGroupIndex];

@@ -16,7 +16,7 @@ type TableProps = {
 };
 
 export function Table({ table, players }: TableProps) {
-  const cardWidth = useCardWidth(12, 16);
+  const cardWidth = useCardWidth(12, { gap: 16 });
   const baseClass = 'd-table';
 
   if (!table || !table?.length) {

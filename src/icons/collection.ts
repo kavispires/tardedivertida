@@ -64,6 +64,7 @@ export * from './FairyTaleIcon';
 export * from './FeedbackIcon';
 export * from './FilmReelIcon';
 export * from './FilterIcon';
+export * from './FinishLineIcon';
 export * from './FlagIcon';
 export * from './GamblingChipIcon';
 export * from './GameCardsIcon';

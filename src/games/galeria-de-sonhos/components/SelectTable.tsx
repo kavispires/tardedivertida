@@ -15,7 +15,7 @@ type SelectTableProps = {
 };
 
 export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableProps) {
-  const cardWidth = useCardWidth(5, 8, 140, 150);
+  const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
   return (
     <div className="g-table-container">
       <Image.PreviewGroup>

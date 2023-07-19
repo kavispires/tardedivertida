@@ -14,7 +14,7 @@ import { CanvasSVG } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
 
 export const TaskRetratoFalado = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
-  const cardWidth = useCardWidth(5, 32, 250, 270);
+  const cardWidth = useCardWidth(5, { minWidth: 250, maxWidth: 270 });
   const { isLoading } = useLoading();
 
   const onSelect = (value: string) => {
