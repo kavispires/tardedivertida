@@ -4,6 +4,7 @@ import { Image, Tooltip } from 'antd';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 
@@ -21,6 +22,7 @@ export function WordGridHeader({ cell }: WordGridHeaderProps) {
 
 function WordGridHeaderImage({ cell }: WordGridHeaderProps) {
   const { shouldBeBlurred } = useBlurCards();
+  const baseUrl = useTDBaseUrl('tdi');
   const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
 
   const imageURL = cell.id!.replace(/-/g, '/');
@@ -33,7 +35,7 @@ function WordGridHeaderImage({ cell }: WordGridHeaderProps) {
       </Tooltip>
 
       <Image
-        src={`${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.jpg`}
+        src={`${baseUrl}/${imageURL}.jpg`}
         width={cardWidth}
         className={clsx('w-contender-image', isBlurred && 'w-contender-image--blur')}
         fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}

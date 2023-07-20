@@ -4,18 +4,20 @@ import { useAsync } from 'react-use';
 import { Alert, Button, Checkbox, message, Spin } from 'antd';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { Translate } from 'components/language';
 
 export function BlurOptions() {
   const { blurCard } = useBlurCards();
+  const baseUrl = useTDBaseUrl('tdi-data');
 
   const {
     loading,
     error,
     value: data,
   } = useAsync(async () => {
-    const response = await fetch(`${process.env.REACT_APP_TDI_DATA_URL}/credo.json`);
+    const response = await fetch(`${baseUrl}/credo.json`);
     const result = await response.json();
     return result;
   }, []);

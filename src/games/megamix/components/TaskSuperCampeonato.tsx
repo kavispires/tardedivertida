@@ -7,6 +7,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
@@ -87,6 +88,7 @@ type ContenderCardProps = {
 export function ContenderCard({ size, overlayColor, contender, className, hideName }: ContenderCardProps) {
   const { language } = useLanguage();
   const { shouldBeBlurred } = useBlurCards();
+  const baseUrl = useTDBaseUrl('tdi');
 
   const isBlurred = shouldBeBlurred(contender.id);
 
@@ -102,7 +104,7 @@ export function ContenderCard({ size, overlayColor, contender, className, hideNa
         style={{ width: `${size}px` }}
       />
       <Image
-        src={`${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.jpg`}
+        src={`${baseUrl}/${imageURL}.jpg`}
         width={size}
         className={clsx('w-contender-image', isBlurred && 'w-contender-image--blur')}
         fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}

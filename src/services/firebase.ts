@@ -18,8 +18,16 @@ import { message, notification } from 'antd';
 import { setGlobalState } from 'hooks/useGlobalState';
 import { USE_FIRESTORE_EMULATOR, USE_FUNCTIONS_EMULATOR } from 'dev-configs';
 
+const buildKey = () => {
+  return [
+    process.env.REACT_APP_FIREBASE_A,
+    process.env.REACT_APP_FIREBASE_P,
+    process.env.REACT_APP_FIREBASE_I,
+  ].join('');
+};
+
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: buildKey(),
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
