@@ -4,6 +4,7 @@ import { Image } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useBlurCards } from 'hooks/useBlurCards';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
@@ -19,6 +20,7 @@ type CharacterCardProps = {
 export function CharacterCard({ size, character, className }: CharacterCardProps) {
   const { dualTranslate } = useLanguage();
   const { shouldBeBlurred } = useBlurCards();
+  const baseUrl = useTDBaseUrl('tdi');
 
   const isBlurred = shouldBeBlurred(character.id);
 
@@ -31,7 +33,7 @@ export function CharacterCard({ size, character, className }: CharacterCardProps
           <DualTranslate>{character.name}</DualTranslate>
         </span>
         <Image
-          src={`${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.jpg`}
+          src={`${baseUrl}/${imageURL}.jpg`}
           width={size}
           className={clsx('q-character-image', isBlurred && 'q-character-image--blur')}
           fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}

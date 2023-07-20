@@ -7,6 +7,7 @@ import { PUBLIC_URL } from 'utils/constants';
 import placeholder from 'assets/images/placeholder.jpg';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 
 export type ImageCardProps = {
   /**
@@ -47,6 +48,7 @@ export const ImageCard = ({
   fileExtension = 'jpg',
 }: ImageCardProps) => {
   const { shouldBeBlurred } = useBlurCards();
+  const baseUrl = useTDBaseUrl('tdi');
 
   const baseClass = 'image-card';
 
@@ -67,16 +69,13 @@ export const ImageCard = ({
     <div className={clsx(baseClass, isBlurred && `${baseClass}--blur`, className)}>
       <Image
         width={cardWidth}
-        src={`${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.${fileExtension}`}
+        src={`${baseUrl}/${imageURL}.${fileExtension}`}
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         preview={
           Boolean(previewImageId)
             ? {
-                src: `${process.env.REACT_APP_TDI_IMAGES_URL}${previewImageId.replace(
-                  /-/g,
-                  '/'
-                )}.${fileExtension}`,
+                src: `${baseUrl}/${previewImageId.replace(/-/g, '/')}.${fileExtension}`,
               }
             : booleanPreviewConfig
         }
