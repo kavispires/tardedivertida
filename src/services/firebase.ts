@@ -1,4 +1,5 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
 import { getFirestore, connectFirestoreEmulator, Firestore } from 'firebase/firestore';
 import {
   Auth,
@@ -38,8 +39,7 @@ const firebaseConfig = {
 
 const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
 
-// firebase.analytics();
-
+export const analytics = getAnalytics(firebaseApp);
 export const auth: Auth = getAuth(firebaseApp);
 export const firestore: Firestore = getFirestore(firebaseApp);
 export const functions: Functions = getFunctions(firebaseApp);
