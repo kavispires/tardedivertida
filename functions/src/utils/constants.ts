@@ -239,6 +239,7 @@ export const TDR_RESOURCES = {
   NAMING_PROMPTS: 'naming-prompts',
   OPPOSING_IDEAS: 'opposing-ideas',
   QUANTITATIVE_QUESTIONS: 'quantitative-questions',
+  SCENARIOS: 'scenarios',
   SINGLE_WORDS: 'single-words',
   SPY_LOCATIONS: 'spy-locations',
   SPY_QUESTIONS: 'spy-questions',
