@@ -315,7 +315,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.SHORTEST_CLUES,
       playerId: shortest.playerId,
-      value: shortest.eliminatedClues,
+      value: shortest.clueLength,
     });
   }
 
@@ -355,7 +355,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.WORST_GUESSER,
       playerId: wrongGuesses.playerId,
-      value: wrongGuesses.passes,
+      value: wrongGuesses.wrongGuesses,
     });
   }
 
