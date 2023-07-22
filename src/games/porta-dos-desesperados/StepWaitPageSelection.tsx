@@ -1,5 +1,6 @@
-// Hooks
-import { useMemo } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
+// Ant Design Resources
+import { Button, Space } from 'antd';
 // Utils
 import { PHASES } from 'utils/phases';
 import { getAnimationClass } from 'utils/helpers';
@@ -37,12 +38,7 @@ export function StepWaitPageSelection({ possessed, players, trap }: StepSelectPa
             en="Please wait while the possession has finished"
           />
         }
-        icon={
-          <PanicIcon
-            style={{ width: '6rem' }}
-            className={getAnimationClass('shakeX', { speed: 'fast', infinite: true })}
-          />
-        }
+        icon={<PossessionAnimation />}
         instruction={
           <Translate
             pt={
@@ -65,5 +61,41 @@ export function StepWaitPageSelection({ possessed, players, trap }: StepSelectPa
 
       {showTrap && <TrapPopupRule trap={trap} />}
     </Step>
+  );
+}
+
+export function PossessionAnimation() {
+  const [possessionLevel, setPossessionLevel] = useState(0);
+
+  const animation: StringDictionary = {
+    0: getAnimationClass('shakeX', { speed: 'fast', infinite: true }),
+    1: 'super-possession',
+    2: 'extreme-possession',
+    3: getAnimationClass('headShake', { speed: 'slower', infinite: true }),
+  };
+
+  const text: Record<string, ReactNode> = {
+    0: <Translate pt="Tentar acalmar a possessão" en="Try to calm the possession" />,
+    1: <Translate pt="Vixi, piorou!" en="Oh no, it got worse!" />,
+    2: <Translate pt="Ave Maria cheia de graça...!" en="Oh please God make it stop!" />,
+    3: (
+      <Translate
+        pt="Melhor assim, talvez mais um clique pare de vez..."
+        en="This is nicer, maybe one more click will make it stop"
+      />
+    ),
+  };
+
+  const onPossessionLevelChange = () => {
+    setPossessionLevel((level) => (level + 1) % 4);
+  };
+
+  return (
+    <Space direction="vertical">
+      <PanicIcon style={{ width: '6rem' }} className={animation[possessionLevel]} />
+      <Button size="small" onClick={onPossessionLevelChange}>
+        {text[possessionLevel]}
+      </Button>
+    </Space>
   );
 }

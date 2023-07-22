@@ -372,6 +372,7 @@ type AnimationType =
   | 'flipOutX'
   | 'flipOutY'
   | 'heartBeat'
+  | 'headShake'
   | 'hinge'
   | 'jackInTheBox'
   | 'jello'
