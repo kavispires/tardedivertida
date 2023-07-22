@@ -20,6 +20,7 @@ import { MEDALS_IDS } from './utils/constants';
 import { Medal } from 'components/general/Medal';
 import { TreeCard } from 'components/cards/TreeCard';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
+import { EmojiCard } from 'components/cards/EmojiCard';
 
 type SpriteOption = {
   key: string;
@@ -88,6 +89,13 @@ const options: Record<string, SpriteOption> = {
     quantity: 15,
     startAt: 1,
   },
+  emojis: {
+    key: 'emojis',
+    label: 'Emojis',
+    prefix: 'emoji',
+    quantity: 30,
+    startAt: 1,
+  },
   medals: {
     key: 'medals',
     label: 'Medals',
@@ -112,6 +120,7 @@ function SpritesPage() {
     items: <ItemsContent />,
     medals: <MedalsContent />,
     trees: <TreeContent />,
+    emojis: <EmojisContent />,
   }?.[active.key] ?? <Content type={active.key} />;
 
   return (
@@ -225,8 +234,27 @@ function ItemsContent() {
     <ul className="sprites__flex">
       {ids.map((id) => {
         return (
-          <li key={`costume-${id}`} className="sprites__flex-item">
+          <li key={`items-${id}`} className="sprites__flex-item">
             <ItemCard id={String(id)} />
+            {id}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function EmojisContent() {
+  const { quantity, startAt } = options.emojis;
+
+  const ids = makeArray(quantity, startAt);
+
+  return (
+    <ul className="sprites__flex">
+      {ids.map((id) => {
+        return (
+          <li key={`items-${id}`} className="sprites__flex-item">
+            <EmojiCard id={String(id)} />
             {id}
           </li>
         );
@@ -260,10 +288,8 @@ function MedalsContent() {
       {MEDALS_IDS.map((id) => {
         return (
           <Col xs={6} sm={6} md={4} lg={4} xl={2} key={`medal-${id}`} className="sprites__col">
-            {/* <li key={`medal-${id}`} className="sprites__flex-item"> */}
             <Medal id={String(id)} width={100} />
             {id}
-            {/* </li> */}
           </Col>
         );
       })}
