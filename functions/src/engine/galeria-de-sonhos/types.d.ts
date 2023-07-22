@@ -8,7 +8,7 @@ export type GaleriaDeSonhosOptions = {
   /**
    * Use original image decks only
    */
-  originalDecks: boolean;
+  allImageDecks: boolean;
   /**
    * UI will required minimum of 4 cards selected
    */

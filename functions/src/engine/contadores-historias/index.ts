@@ -85,7 +85,7 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getData(utils.players.getPlayerCount(players), store.options.originalDecks);
+    const additionalData = await getData(utils.players.getPlayerCount(players), store.options.allImageDecks);
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);

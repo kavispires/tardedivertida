@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "3.0.24",
+  "version": "3.0.25",
   "title": {
     "pt": "Detetives Imaginativos",
     "en": "Detective Agency"
@@ -74,9 +74,10 @@
   "options": [
     {
       "label": "Images",
-      "key": "originalDecks",
-      "off": "Any",
-      "on": "Original"
+      "key": "allImageDecks",
+      "off": "Originals",
+      "on": "All",
+      "description": "When off, only original Tarde Divertida decks will be used (preferred)"
     }
   ]
 }
