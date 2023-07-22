@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // Hooks
 import { useCountdown } from './useCountdown';
 import { useGlobalState } from './useGlobalState';
@@ -9,32 +9,13 @@ import { getRandomItem, isDevEnv } from 'utils/helpers';
 import { USE_MOCKS } from 'dev-configs';
 
 /**
- * Runs mock function tht performs whatever
- * @param whatToDo
- * @param requirements
- * @param [conditions]
- */
-export function useMock(whatToDo: GenericFunction, conditions: any[] = [], requirements: any[] = []) {
-  const isVIP = useVIP();
-  const [userId] = useGlobalState('userId');
-  const [runOnce, setRunOnce] = useState(false);
-
-  useEffect(() => {
-    if (!runOnce && isDevEnv && USE_MOCKS && !isVIP && userId !== VIEWER_ID && requirements.every(Boolean)) {
-      setRunOnce(true);
-      whatToDo();
-    }
-  }, conditions); // eslint-disable-line
-}
-
-/**
- * Runs mock function tht performs whatever after 3 seconds
+ * Runs mock function tht performs whatever after 3-6 seconds
  * @param whatToDo
  * @param requirements
  * @param delay (default a random value between 3-6 seconds)
  * @returns
  */
-export function useDelayedMock(whatToDo: GenericFunction, requirements: any[] = [], delay?: number) {
+export function useMock(whatToDo: GenericFunction, requirements: any[] = [], delay?: number) {
   const isVIP = useVIP();
   const [userId] = useGlobalState('userId');
   const [runOnce, setRunOnce] = useState(false);

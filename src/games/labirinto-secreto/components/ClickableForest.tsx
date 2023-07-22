@@ -8,7 +8,7 @@ import { buildUserMappingForLatestTree, getAvailableSegments } from '../utils/he
 import { mockFollowedPath } from '../utils/mocks';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 // Components
 import { Forest } from './Forest';
 import { Translate } from 'components/language';
@@ -63,7 +63,7 @@ export function ClickableForest({
   const currentSegment = currentMap?.[selection.length - 1];
 
   // DEV Only
-  useDelayedMock(() => {
+  useMock(() => {
     onSubmitPath({
       guess: mockFollowedPath(map, currentMap, true, Object.values(userMapping).flat().map(Number)),
       pathId,

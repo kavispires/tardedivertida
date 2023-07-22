@@ -1,5 +1,5 @@
 // Hooks
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { buildPlayerMappingForLatestTree } from './utils/helpers';
 import { mockNewMap } from './utils/mocks';
@@ -33,7 +33,7 @@ export function StepBuildMap({
   onSubmitMap,
 }: StepBuildMapProps) {
   // Dev Only
-  useDelayedMock(() => {
+  useMock(() => {
     onSubmitMap({ newMap: mockNewMap(user.hand) });
   });
 

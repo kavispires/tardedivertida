@@ -1,5 +1,5 @@
 // Hooks
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 // Mocks
 import { mockPromptDecision } from './utils/mock';
 // Components
@@ -36,7 +36,7 @@ export function StepSelectPrompt({
   activePlayerId,
 }: StepSelectPromptProps) {
   // DEV: Auto decision
-  useDelayedMock(() => {
+  useMock(() => {
     mockPromptDecision(user, players, onSubmitPrompt, onSubmitTarget);
   });
 
