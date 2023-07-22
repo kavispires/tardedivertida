@@ -47,15 +47,11 @@ export function StepVoting({
     });
   };
 
-  useMock(
-    () => {
-      if (!isUserTheStoryTeller) {
-        onSubmitVote(mockVote(table, user?.hand));
-      }
-    },
-    [],
-    [user?.hand]
-  );
+  useMock(() => {
+    if (!isUserTheStoryTeller) {
+      onSubmitVote(mockVote(table, user?.hand));
+    }
+  }, [user?.hand]);
 
   return (
     <Step fullWidth announcement={announcement}>

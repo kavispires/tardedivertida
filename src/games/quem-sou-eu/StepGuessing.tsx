@@ -7,7 +7,7 @@ import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getEntryId, sortPlayers } from 'utils/helpers';
@@ -88,7 +88,7 @@ export function StepGuessing({
   }, [user]);
 
   // Dev Mocks
-  useDelayedMock(() => {
+  useMock(() => {
     onSubmitGuesses({ guesses: prepareGuesses(onGuessForMe()), choseRandomly });
   });
 

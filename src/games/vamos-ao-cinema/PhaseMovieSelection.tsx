@@ -1,7 +1,7 @@
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 import { useOnSubmitMovieSelectionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -23,7 +23,7 @@ export function PhaseMovieSelection({ players, state, info }: PhaseProps) {
 
   const onSelectMovie = useOnSubmitMovieSelectionAPIRequest(setStep);
 
-  useDelayedMock(() => {
+  useMock(() => {
     onSelectMovie({ movieId: mockMovieSelection() });
   });
 

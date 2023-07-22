@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "title": {
     "pt": "Tá Na Cara",
     "en": "Guess Who What?"

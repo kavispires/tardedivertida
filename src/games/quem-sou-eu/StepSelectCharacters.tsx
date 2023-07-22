@@ -2,7 +2,7 @@
 import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 // Utils
@@ -36,7 +36,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
 
   const availableCharacters = user.availableCharacters ?? [];
 
-  useDelayedMock(() => {
+  useMock(() => {
     onSelectCharacters({ characters: mockSelectCharacters(availableCharacters) });
   });
 
