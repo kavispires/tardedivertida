@@ -43,6 +43,10 @@ export const ESPIAO_ENTRE_NOS_API = {
   submitAction: httpsCallable(functions, 'espiaoEntreNosSubmitAction'),
 };
 
+export const FILEIRA_DE_FATOS_API = {
+  submitAction: httpsCallable(functions, 'fileiraDeFatosSubmitAction'),
+};
+
 export const GALERIA_DE_SONHOS_API = {
   submitAction: httpsCallable(functions, 'galeriaDeSonhosSubmitAction'),
 };

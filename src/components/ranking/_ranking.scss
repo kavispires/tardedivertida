@@ -6,6 +6,11 @@
   position: relative;
   margin-bottom: get-unit(2);
 
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   @include md {
     width: 80vw;
   }

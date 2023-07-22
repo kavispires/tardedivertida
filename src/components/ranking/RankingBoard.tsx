@@ -152,7 +152,7 @@ export function RankingBoard({
 
   return (
     <div
-      className="ranking-board"
+      className={clsx('ranking-board', seconds > 4 && 'ranking-board--hidden')}
       style={{ height: `${(Math.max(60, height) + 8) * sortedRanking.length}px` }}
     >
       {sortedRanking.map((entry, index) => {
