@@ -11,10 +11,10 @@ export const achievementsReference: AchievementReference = {
     },
   },
   WORST_CARDS: {
-    icon: 'x',
+    icon: 'broken-bulb',
     title: {
-      pt: 'Piores Cartas',
-      en: 'Worst Cards',
+      pt: 'Cartas Mais Diferentes',
+      en: 'Most Different Cards',
     },
     description: {
       pt: 'Suas cartas foram escolhidas menos vezes quando não era o Contador de Histórias',
@@ -22,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   WORST_CLUES: {
-    icon: 'face-mental-breakdown',
+    icon: 'spiral',
     title: {
       pt: 'Histórias mais Cabulosas',
       en: 'Most Obscure',
@@ -44,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   HARDEST_CLUES: {
-    icon: 'thumbs-up',
+    icon: 'brain',
     title: {
       pt: 'Histórias Mais Difíceis',
       en: 'Hardest Stories',
