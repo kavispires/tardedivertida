@@ -1,0 +1,65 @@
+@use 'styles/sass' as *;
+
+.scenarios {
+  display: grid;
+  gap: get-unit(2);
+  grid-template-columns: repeat(5, 1fr);
+  align-items: stretch;
+}
+
+.final-scenarios {
+  display: grid;
+  gap: get-unit(2);
+  grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr;
+  align-items: stretch;
+}
+
+.scenario {
+  background: get-color('red');
+  color: get-color('white');
+
+  padding: get-unit(2);
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // aspect-ratio: 1 / 1;
+  height: 100%;
+
+  &__tagline {
+    padding: get-unit(2);
+  }
+
+  &__card {
+    text-align: center;
+    font-family: 'Ubuntu Mono', monospace;
+    margin-top: get-unit(2);
+    flex: 1;
+    background: get-color('red', 6);
+    padding: get-unit(2);
+    border-radius: $border-radius;
+  }
+
+  &__incorrect-result {
+    background: get-color('gray', 3);
+  }
+}
+
+.scenarios-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: get-unit(1);
+
+  &__button {
+    background: get-color('red', 6);
+    color: get-color('white');
+    padding: get-unit(2 4);
+    border-radius: $border-radius;
+    border: get-unit(1) solid get-color('red', 7);
+    @include box-shadow;
+    font-family: 'Ubuntu Mono', monospace;
+    flex: 1;
+  }
+}

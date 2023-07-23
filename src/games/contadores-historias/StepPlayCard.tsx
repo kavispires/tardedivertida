@@ -37,15 +37,11 @@ export function StepPlayCard({
     });
   };
 
-  useMock(
-    () => {
-      if (!isUserTheStoryTeller) {
-        onPlayCard(mockPlayCard(user.hand));
-      }
-    },
-    [],
-    [user.hand]
-  );
+  useMock(() => {
+    if (!isUserTheStoryTeller) {
+      onPlayCard(mockPlayCard(user.hand));
+    }
+  }, [user.hand]);
 
   return (
     <Step fullWidth announcement={announcement}>

@@ -8,7 +8,7 @@ import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
 // import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
 // import DILEMA_DOS_ESQUIADORES from 'games/dilema-dos-esquiadores/utils/achievements';
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
-// import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/utils/achievements';
+import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/utils/achievements';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
 // import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
@@ -44,7 +44,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'detetives-imaginativos': null,
   'dilema-dos-esquiadores': null,
   'espiao-entre-nos': null,
-  'fileira-de-fatos': null,
+  'fileira-de-fatos': FILEIRA_DE_FATOS,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
   'instrumentos-codificados': null,
   'labirinto-secreto': null,

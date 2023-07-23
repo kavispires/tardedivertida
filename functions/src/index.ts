@@ -10,6 +10,7 @@ import * as crimesHediondosEngine from './engine/crimes-hediondos';
 import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
+import * as fileiraDeFatosEngine from './engine/fileira-de-fatos';
 import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
 import * as labirintoSecretoEngine from './engine/labirinto-secreto';
 import * as linhasCruzadasEngine from './engine/linhas-cruzadas';
@@ -100,6 +101,8 @@ exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.s
 exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImaginativosEngine.submitAction);
 
 exports.espiaoEntreNosSubmitAction = functions.https.onCall(espiaoEntreNosEngine.submitAction);
+
+exports.fileiraDeFatosSubmitAction = functions.https.onCall(fileiraDeFatosEngine.submitAction);
 
 exports.galeriaDeSonhosSubmitAction = functions.https.onCall(galeriaDeSonhosEngine.submitAction);
 

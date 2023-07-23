@@ -12,7 +12,7 @@ import utils from '../../utils';
 /**
  * Get cards resources based on the game's language
  * @param language
- * @param originalDecksOnly
+ * @param allImageDecks
  * @returns
  */
 export const getData = async (language: Language): Promise<ResourceData> => {

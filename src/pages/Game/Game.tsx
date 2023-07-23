@@ -41,6 +41,9 @@ const SessionDetetivesImaginativos = lazy(
 const SessionEspiaoEntreNos = lazy(
   () => import('games/espiao-entre-nos/SessionEspiaoEntreNos' /* webpackChunkName: "espiao-entre-nos" */)
 );
+const SessionFileiraDeFatos = lazy(
+  () => import('games/fileira-de-fatos/SessionFileiraDeFatos' /* webpackChunkName: "fileira-de-fatos" */)
+);
 const SessionGaleriaDeSonhos = lazy(
   () => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos' /* webpackChunkName: "galeria-de-sonhos" */)
 );
@@ -165,6 +168,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionEspiaoEntreNos />
+          </Suspense>
+        );
+      case GAME_COLLECTION.FILEIRA_DE_FATOS:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionFileiraDeFatos />
           </Suspense>
         );
       case GAME_COLLECTION.GALERIA_DE_SONHOS:

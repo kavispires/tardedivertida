@@ -11,7 +11,7 @@ import { Space } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { pluralize } from 'utils/helpers';
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 import { mockGuess } from './utils/mock';
 
 type StepGuessPlayerProps = {
@@ -40,7 +40,7 @@ export function StepGuessPlayer({
   activePlayerId,
   points,
 }: StepGuessPlayerProps) {
-  useDelayedMock(() => {
+  useMock(() => {
     onSubmitGuess({ characterId: mockGuess(charactersDict, user, targetedPlayer.id) });
   });
 

@@ -9,7 +9,7 @@ const ACHIEVEMENTS = {
 };
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.MOST_QUESTIONED_OBJECTS]: {
-    icon: 'double-arrow-up',
+    icon: 'loupe',
     title: {
       pt: 'Mais Curioso',
       en: 'Most Curious',
@@ -20,7 +20,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.FEWEST_QUESTIONED_OBJECTS]: {
-    icon: 'double-arrow-down',
+    icon: 'arrow-narrow',
     title: {
       pt: 'Mais sucinto',
       en: 'Most Succinct',
@@ -53,7 +53,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_CURSED_OBJECTS]: {
-    icon: 'empty-box',
+    icon: 'skull',
     title: {
       pt: 'Mais Sombrio',
       en: 'Darkest',
@@ -75,7 +75,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.PLAYED_AS_ALIEN]: {
-    icon: 'controller',
+    icon: 'alien',
     title: {
       pt: 'O alienígena',
       en: 'The Alien',

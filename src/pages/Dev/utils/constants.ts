@@ -1,4 +1,6 @@
-export const MEDALS_IDS = [
+import { orderBy } from 'lodash';
+
+export const MEDALS_IDS = orderBy([
   'arrow-curve-down',
   'arrow-curve-up',
   'arrow-down',
@@ -12,7 +14,16 @@ export const MEDALS_IDS = [
   'arrow-wide',
   'arrows',
   'arrows-reverse',
-  'balance',
+  'scale',
+  'alien',
+  'loupe',
+  'trash',
+  'two',
+  'three',
+  'four',
+  'five',
+  'thought',
+  'yin-yang',
   'bell',
   'block',
   'box',
@@ -30,7 +41,6 @@ export const MEDALS_IDS = [
   'chip',
   'clock',
   'clover',
-  'clue',
   'controller',
   'dialog',
   'dice',
@@ -112,4 +122,5 @@ export const MEDALS_IDS = [
   'thumbs-up',
   'tree',
   'x',
-];
+  'zero',
+]);

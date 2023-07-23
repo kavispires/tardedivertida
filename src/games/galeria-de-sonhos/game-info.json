@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.1.11",
+  "version": "4.1.12",
   "title": {
     "pt": "Galeria de sonhos",
     "en": "Dream Gallery"
@@ -58,9 +58,10 @@
   "options": [
     {
       "label": "Images",
-      "key": "originalDecks",
-      "off": "Any",
-      "on": "Original"
+      "key": "allImageDecks",
+      "off": "Originals",
+      "on": "All",
+      "description": "When off, only original Tarde Divertida decks will be used (preferred)"
     },
     {
       "label": "Hard Mode",

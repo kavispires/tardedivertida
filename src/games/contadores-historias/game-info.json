@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "3.0.25",
+  "version": "3.0.28",
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -72,9 +72,10 @@
     },
     {
       "label": "Images",
-      "key": "originalDecks",
-      "off": "Any",
-      "on": "Original"
+      "key": "allImageDecks",
+      "off": "Originals",
+      "on": "All",
+      "description": "When off, only original Tarde Divertida decks will be used (preferred)"
     }
   ]
 }

@@ -94,7 +94,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   });
 
   // DEV: Auto-ready
-  useMock(() => onBeReady({}), []);
+  useMock(() => onBeReady({}), [], 2);
 
   if (!info?.gameName) {
     return <LoadingPage />;

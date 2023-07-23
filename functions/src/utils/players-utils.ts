@@ -347,7 +347,9 @@ export const neutralizeBotScores = (players: Players) => {
  * Randomizes player ids
  * @param players
  * @param doublingThreshold - doubles the order player count is lower than this
- * @returns
+ * @returns obj - gameOrder is the randomized order of players,
+ * playerIds is the list of player ids in the game,
+ * playerCount is the number of players in the game
  */
 export const buildGameOrder = (
   players: Players,
@@ -437,6 +439,15 @@ export class Scores {
       entry.previousScore = 0;
       entry.newScore = 0;
     });
+  }
+
+  /**
+   * Returns the gained score of a given player
+   * @param playerId
+   * @param index
+   */
+  get(playerId: PlayerId): number {
+    return this.scores[playerId]?.gainedPoints.reduce((acc, g) => acc + g, 0) ?? 0;
   }
 }
 

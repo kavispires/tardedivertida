@@ -21,7 +21,7 @@ import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
 import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
-import { useDelayedMock, useMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 import { mockDoorSelection } from './utils/mock';
 
 type StepSelectPagesProps = {
@@ -70,7 +70,7 @@ export function StepSelectDoor({
     }
   }, [user.ready, possessed.id, isLoading, user.doorId]);
 
-  useDelayedMock(() => {
+  useMock(() => {
     onConfirmDoor();
   }, [user.doorId]);
 

@@ -20,7 +20,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.WORST_ARTIST]: {
-    icon: 'question-mark',
+    icon: 'broken-pencil',
     title: {
       pt: 'Artista Mais Não Convencional',
       en: 'Most Unconventional Artist',

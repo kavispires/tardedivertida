@@ -1,8 +1,8 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "ι",
+  "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "planned",
+  "version": "0.9.0",
   "title": {
     "pt": "Fileira De Fatos",
     "en": "Facts Lineup"
@@ -11,10 +11,10 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "Template",
+  "basedOn": "oiranecS esaC-tsroW",
   "summary": {
-    "pt": "Jogadores respondem uma pergunta com um numero secretamente e tem que colocar todas as respostas em ordem",
-    "en": "TBD"
+    "pt": "Ordene os péssimos cenários de acordo com a sua preferência e tente adivinhar o dos outros jogadores.",
+    "en": "Order the bad scenarios according to your preference and try to guess the others'."
   },
   "appearance": {
     "clouds": "cloud",
@@ -27,16 +27,17 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
-    "min": 2,
+    "best": 5,
+    "min": 3,
     "max": 10
   },
   "duration": {
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "same-time", "writing", "guessing"],
+  "tags": ["competitive", "same-time", "guessing", "achievements"],
   "available": {
-    "pt": false,
-    "en": false
+    "pt": true,
+    "en": true
   }
 }

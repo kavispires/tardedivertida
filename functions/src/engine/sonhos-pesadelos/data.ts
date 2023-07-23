@@ -10,22 +10,19 @@ import { IMAGE_CARDS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 /**
  * Get theme cards resource based on the game's language
  * @param language
- * @param originalDecksOnly
+ * @param allImageDecks
  * @returns
  */
 export const getInspirationThemes = async (
   language: string,
-  originalDecksOnly: boolean
+  allImageDecks: boolean
 ): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.NAMING_PROMPTS}-${language}`;
   const cardsResponse = await resourceUtils.fetchResource(resourceName);
   const cards: NamingPromptCard[] = Object.values(cardsResponse);
 
   // Get images
-  const images = await utils.imageCards.getImageCards(
-    TOTAL_ROUNDS * IMAGE_CARDS_PER_ROUND,
-    originalDecksOnly
-  );
+  const images = await utils.imageCards.getImageCards(TOTAL_ROUNDS * IMAGE_CARDS_PER_ROUND, allImageDecks);
 
   const leveledCards = Object.values(cards).reduce(
     (acc: SonhosPesadelosCards, entry) => {
