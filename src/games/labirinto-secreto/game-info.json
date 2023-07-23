@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "title": {
     "pt": "Labirinto Secreto",
     "en": "Secret Labyrinth"
@@ -21,8 +21,22 @@
     "en": "Players must find the right path in a word maze using adjectives and logic"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Em Labirinto Secreto, estamos em uma floresta e cada árvore tem uma plaquinha com um nome",
+      "A cada jogador é dado um caminho que passa por 10 das 35 árvores da floresta",
+      "A cada jogador também é dado uma mão de cartas com adjetivos e eles devem usá-los para guiar os outros jogadores em qual árvore seguir",
+      "Após todos criarem seus 'mapas', os jogadores tentam adivinhar o caminho dos outros",
+      "Você ganha 1 ponto por jogador que acertou cada segmento do caminho e o dono do mapa também ganha o mesmo número de pontos",
+      "O jogo termina quando todos os jogadores completaram todos os caminhos ou 5 rodadas. Vence quem tiver mais pontos!"
+    ],
+    "en": [
+      "In Secret Labyrinth, we are in a forest and each tree has a sign with a name",
+      "Each player is given a path that passes through 10 of the 35 trees in the forest",
+      "Each player is also given a hand of cards with adjectives and they must use them to guide the other players on which tree to follow",
+      "After everyone creates their 'maps', players try to guess each other's paths",
+      "You get 1 point for each player who guessed each segment of the path with you and the owner of the map also gets the same number of points",
+      "The game ends when all players have completed all paths or 5 rounds. Whoever has the most points wins!"
+    ]
   },
   "playerCount": {
     "best": 4,
