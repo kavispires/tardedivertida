@@ -4,7 +4,7 @@ export interface DetetivesImaginativosOptions {
   /**
    * Use original image decks only
    */
-  originalDecks: boolean;
+  allImageDecks: boolean;
 }
 
 export interface ResourceData {

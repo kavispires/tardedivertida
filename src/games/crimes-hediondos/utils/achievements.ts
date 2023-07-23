@@ -23,7 +23,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_WRONG_GUESSES]: {
-    icon: 'clue',
+    icon: 'loupe',
     title: {
       pt: 'Melhor Examinador',
       en: 'Best Examiner',
@@ -36,8 +36,8 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.MOST_HALF_GUESSES]: {
     icon: 'one',
     title: {
-      pt: '?',
-      en: '?',
+      pt: 'Acertador de Meio Termo',
+      en: 'Half Guesser',
     },
     description: {
       pt: 'Acertou apenas um do par mais vezes',
@@ -45,7 +45,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.EARLIEST_CORRECT_GUESS]: {
-    icon: 'clock',
+    icon: 'hare',
     title: {
       pt: 'Mais Rápido',
       en: 'Fastest',
@@ -56,7 +56,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.LATEST_CORRECT_GUESS]: {
-    icon: 'turtle',
+    icon: 'snail',
     title: {
       pt: 'Mais Analítico',
       en: 'Most Analytical',

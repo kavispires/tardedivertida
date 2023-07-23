@@ -253,7 +253,7 @@ export const buildRanking = (players: Players, clues: ClueEntry[], store: Fireba
   const gotPassivePoints: Record<PlayerId, PlayerId[]> = {};
 
   // Collect points
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     // Achievement: Chose randomly
     if (player.choseRandomly) {
       utils.achievements.increase(store, player.id, 'chooseForMe', 1);

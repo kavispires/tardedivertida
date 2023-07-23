@@ -15,7 +15,7 @@ import { TurnOrder } from 'components/players';
 import { TransparentButton } from 'components/buttons';
 import { IconAvatar } from 'components/avatars';
 import { ViewIf } from 'components/views';
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 import { mockAnswer } from './utils/mock';
 
 type StepAnswerTheQuestionProps = {
@@ -45,7 +45,7 @@ export function StepAnswerTheQuestion({
   const { isLoading } = useLoading();
 
   // Dev Mock
-  useDelayedMock(() => {
+  useMock(() => {
     onSubmitAnswer({ answer: mockAnswer() });
   });
 

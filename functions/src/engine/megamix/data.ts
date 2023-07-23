@@ -74,7 +74,7 @@ export const getData = async (
       ];
 
   // GET IMAGE CARDS DECKS AND SINGLE WORD DECK
-  const imageCardsDecks = await utils.imageCards.getImageCardsDecks(6, options.originalDecks);
+  const imageCardsDecks = await utils.imageCards.getImageCardsDecks(6, options.allImageDecks);
   const words = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.SINGLE_WORDS}-${language}`));
 
   // ARTE_RUIM

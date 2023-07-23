@@ -2,7 +2,7 @@
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 import { useOnSubmitMovieEliminationAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -25,7 +25,7 @@ export function PhaseMovieElimination({ players, state, info }: PhaseProps) {
 
   const onEliminateMovie = useOnSubmitMovieEliminationAPIRequest(setStep);
 
-  useDelayedMock(() => {
+  useMock(() => {
     if (isActivePlayer) {
       onEliminateMovie({ movieId: mockMovieElimination(user.movieId, state.eliminatedMovies) });
     }

@@ -460,7 +460,7 @@ export const getAchievements = (players: Players, store: FirebaseStoreData) => {
     achievements.push({
       type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_DEAD,
       playerId: lastPasture[0],
-      value: null,
+      value: 1,
     });
   }
 
@@ -472,7 +472,7 @@ export const getAchievements = (players: Players, store: FirebaseStoreData) => {
     achievements.push({
       type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_LONELY,
       playerId: loners[0][0],
-      value: null,
+      value: 1,
     });
   }
 

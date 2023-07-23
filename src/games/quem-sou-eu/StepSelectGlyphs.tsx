@@ -4,7 +4,7 @@ import { Button, Popover, Space, Tooltip } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useDelayedMock } from 'hooks/useMock';
+import { useMock } from 'hooks/useMock';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { prepareGlyphs } from './utils/helpers';
@@ -63,7 +63,7 @@ export function StepSelectGlyphs({
 
   const glyphs = user.glyphs ?? [];
 
-  useDelayedMock(() => {
+  useMock(() => {
     onSelectGlyphs({ glyphs: mockGlyphs(glyphs) });
   });
 

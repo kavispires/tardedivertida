@@ -22,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   CANDY_LOSER: {
-    icon: 'candy',
+    icon: 'foot-prints',
     title: {
       pt: 'Mais Desesperado',
       en: 'Most Desperate',
@@ -66,7 +66,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_SIDEWALK: {
-    icon: 'arrow-wide',
+    icon: 'candy',
     title: {
       pt: 'Mais Mendigo',
       en: 'Most Sidewalk Candy',

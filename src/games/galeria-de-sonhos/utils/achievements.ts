@@ -22,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_FULL_MATCHES: {
-    icon: 'heart',
+    icon: 'star',
     title: {
       pt: 'Mais Match Completo',
       en: 'Most Full Matches',
@@ -101,7 +101,7 @@ export const achievementsReference: AchievementReference = {
   POOREST_CHOICES: {
     icon: 'face-oops',
     title: {
-      pt: 'Mais Burro',
+      pt: 'Mais Confuso',
       en: 'Poorest Choices',
     },
     description: {

@@ -10,7 +10,7 @@ const ACHIEVEMENTS = {
 };
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.BEST_CLUES]: {
-    icon: 'thumbs-up',
+    icon: 'intersection',
     title: {
       pt: 'Melhor Cruzador',
       en: 'Best Mixer',
@@ -21,7 +21,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.WORST_CLUES]: {
-    icon: '',
+    icon: 'moon',
     title: {
       pt: 'Mais obscuro',
       en: 'Most obscure',

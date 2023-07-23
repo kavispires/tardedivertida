@@ -11,6 +11,7 @@ export * from './AnonymousIcon';
 export * from './ApplauseIcon';
 export * from './ArrowIcon';
 export * from './ArrowSignIcon';
+export * from './BarChartIcon';
 export * from './BikiniModelIcon';
 export * from './BooksIcon';
 export * from './BossIcon';
