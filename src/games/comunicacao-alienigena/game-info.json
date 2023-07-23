@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -23,8 +23,24 @@
     "backgroundColor": "rgba(53, 32, 48, 0.75)"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Um alienígena chegou a terra e não fala nossa língua, e ele precisa de alguns objetos para conseguir voltar ao seu planeta",
+      "Um jogador será o alienígena e os outros serão os humanos",
+      "Cada rodada, os jogadores mostram uma combinação de objetos ao alienígena com o objetivo de descobrir um símbolo comum para eles",
+      "O alienígena tem uma tabela com atributos seus símbolos correspondentes e deve usá-lo para responder aos humanos",
+      "Após todos os jogadores terem feito uma pergunta com os objetos, é a vez do alienígena user os símbolos que ele ensinou aos alienígenas para pedir um objeto específico",
+      "Mas cuidado, alguns objetos são proibidos e não podem ser pedidos, eles causam os jogadores a perderem uma rodada",
+      "Você consegue entregar todos os objetos ao alienígena antes que o tempo (rodadas) acabe?"
+    ],
+    "en": [
+      "An alien has arrived on earth and he doesn't speak our language, and he needs some objects to be able to return to his planet",
+      "One player will be the alien and the others will be the humans",
+      "Each round, the players show a combination of objects to the alien with the goal of discovering a common symbol for them",
+      "The alien has a table with attributes its corresponding symbols and must use it to answer the humans",
+      "After all players have asked a question with the objects, it is the alien's turn to use the symbols he taught the aliens to ask for a specific object",
+      "But be careful, some objects are forbidden and cannot be requested, they cause the players to lose a round",
+      "Can you deliver all the objects to the alien before the time (rounds) runs out?"
+    ]
   },
   "playerCount": {
     "recommended": [2, 3],
