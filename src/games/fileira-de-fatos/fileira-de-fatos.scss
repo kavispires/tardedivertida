@@ -7,6 +7,11 @@
   align-items: stretch;
 }
 
+.scenarios-results {
+  @extend .scenarios;
+  grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr auto;
+}
+
 .final-scenarios {
   display: grid;
   gap: get-unit(2);

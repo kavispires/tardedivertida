@@ -9,7 +9,7 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { Avatar, AvatarStrip, IconAvatar } from 'components/avatars';
 
 type ResultsProps = {
   players: GamePlayers;
@@ -32,7 +32,8 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
   return (
     <Space className="space-container" direction="vertical">
       {listOfPLayers.map((player) => (
-        <Space className="scenarios">
+        <Space className="scenarios-results">
+          <AvatarStrip player={player} />
           {player.currentOrder.map((cardId: CardId, index: number) => {
             const isCorrect = correctOrder[index] === cardId;
             const backgroundColor = isCorrect ? { backgroundColor: getAvatarColorById(player.avatarId) } : {};
@@ -56,6 +57,7 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
               </div>
             );
           })}
+          <AvatarStrip player={player} />
         </Space>
       ))}
     </Space>

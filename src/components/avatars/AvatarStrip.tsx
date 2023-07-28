@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
+// Ant Design Resources
+import { Tooltip } from 'antd';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
@@ -62,26 +64,33 @@ export const AvatarStrip = ({
   const sizes = getSize(size);
 
   return (
-    <div
-      className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, `${baseClass}--${size}`, className)}
-      style={{ backgroundColor: getAvatarColorById(player.avatarId), width: sizes.width }}
-    >
-      {Boolean(icon) ? (
-        <IconAvatar style={{ width: sizes.avatarSize, height: sizes.avatarSize }} icon={icon} />
-      ) : (
-        <Avatar
-          id={player.avatarId}
-          className="avatar-strip__avatar"
-          shape="square"
-          style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
-        />
-      )}
-      {withName && (
-        <>
-          <div className="avatar-strip__name">{addressUser && isUser ? addressedUser : player.name}</div>
-        </>
-      )}
-    </div>
+    <Tooltip title={player.name} placement="right">
+      <div
+        className={clsx(
+          baseClass,
+          uppercase && `${baseClass}--uppercase`,
+          `${baseClass}--${size}`,
+          className
+        )}
+        style={{ backgroundColor: getAvatarColorById(player.avatarId), width: sizes.width }}
+      >
+        {Boolean(icon) ? (
+          <IconAvatar style={{ width: sizes.avatarSize, height: sizes.avatarSize }} icon={icon} />
+        ) : (
+          <Avatar
+            id={player.avatarId}
+            className="avatar-strip__avatar"
+            shape="square"
+            style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
+          />
+        )}
+        {withName && (
+          <>
+            <div className="avatar-strip__name">{addressUser && isUser ? addressedUser : player.name}</div>
+          </>
+        )}
+      </div>
+    </Tooltip>
   );
 };
 
