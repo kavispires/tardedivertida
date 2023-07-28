@@ -60,13 +60,32 @@ export function StepReveal({
         />
       </Title>
 
-      {roundType !== 'NORMAL' && (
-        <Instruction contained>
-          <RoundTypeExplanation roundType={roundType} />
-        </Instruction>
-      )}
+      <Instruction contained>
+        <Translate
+          pt={
+            <>
+              Essa é a ordem que o(a) juiz(a) {activePlayer.name} escolheu os cenários, do ruim para o pior.
+              Abaixo de cada cenário você pode ver a posição que cada jogador escolheu e se eles ganharam
+              pontos.
+            </>
+          }
+          en={
+            <>
+              This is the order that {activePlayer.name} chose the scenarios, from bad to worst. Below each
+              scenario you can see the position that each player chose and if they got any points.
+            </>
+          }
+        />
 
-      <Scenarios scenarios={result} reference={getReference('negative')} />
+        {roundType !== 'NORMAL' && (
+          <>
+            <br />
+            <RoundTypeExplanation roundType={roundType} />
+          </>
+        )}
+      </Instruction>
+
+      <Scenarios scenarios={result} reference={getReference('negative')} player={activePlayer} />
 
       <Results
         players={players}
@@ -77,7 +96,7 @@ export function StepReveal({
       />
 
       <Space className="space-container" align="center">
-        <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={40} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>

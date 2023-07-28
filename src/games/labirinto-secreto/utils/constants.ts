@@ -8,4 +8,4 @@ export const DIRECTIONS: Record<string, Direction> = {
   LEFT: 'LEFT',
 };
 
-export const PAGE_DURATION = 10;
+export const PAGE_DURATION = 15;
