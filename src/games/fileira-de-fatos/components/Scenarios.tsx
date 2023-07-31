@@ -1,11 +1,11 @@
 // Ant Design Resources
+import clsx from 'clsx';
 import { Avatar, Space } from 'antd';
 // Hook
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { DualTranslate } from 'components/language';
-import clsx from 'clsx';
 import { AvatarStrip } from 'components/avatars';
 
 type ScenarioCardProps = {
