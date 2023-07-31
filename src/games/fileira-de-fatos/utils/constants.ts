@@ -41,35 +41,35 @@ export const NEGATIVE_SCALE: ScaleEntry[] = [
     id: '10',
     text: {
       pt: 'Vish',
-      en: 'Strongly disagree',
+      en: 'Oh!',
     },
   },
   {
     id: '7',
     text: {
       pt: 'Ah não',
-      en: 'Disagree',
+      en: 'Gosh',
     },
   },
   {
     id: '23',
     text: {
       pt: 'Quê?',
-      en: 'Ok',
+      en: 'No way',
     },
   },
   {
     id: '2',
     text: {
       pt: 'PQP',
-      en: 'Agree',
+      en: 'What the...',
     },
   },
   {
     id: '3',
     text: {
       pt: 'Preferia ⭐ Morta',
-      en: 'Strongly agree',
+      en: 'Lord have mercy!',
     },
   },
 ];
