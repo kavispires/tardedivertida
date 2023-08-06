@@ -26,62 +26,62 @@ const DevClassifier = lazy(
 );
 
 const LazyMe = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <Me />
   </Suspense>
 );
 const LazyHub = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <Hub />
   </Suspense>
 );
 const LazyUsers = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <Users />
   </Suspense>
 );
 const LazyGame = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <Game />
   </Suspense>
 );
 const LazyShowcase = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <Showcase />
   </Suspense>
 );
 const LazyTestArea = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <TestArea />
   </Suspense>
 );
 const LazyDevIcons = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <DevIcons />
   </Suspense>
 );
 const LazyDevColors = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <DevColors />
   </Suspense>
 );
 const LazyDevSprites = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <DevSprites />
   </Suspense>
 );
 const LazyDevResources = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <DevResources />
   </Suspense>
 );
 const LazyDevPlayground = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <DevPlayground />
   </Suspense>
 );
 const LazyDevClassifier = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
+  <Suspense fallback={<LoadingPage />}>
     <DevClassifier />
   </Suspense>
 );
@@ -93,7 +93,7 @@ function AdminProtectedRoute({ children }: { children: ReactNode }) {
   const { isAdmin, isLoading } = useCurrentUserContext();
 
   if (isLoading) {
-    return <LoadingPage message="Loading..." />;
+    return <LoadingPage />;
   }
 
   return isAdmin ? <>{children}</> : <Navigate to="/login" />;

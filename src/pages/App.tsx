@@ -66,13 +66,10 @@ function AppLayout() {
     <Layout className="app background" id="app">
       <LoadingBar />
       <HashRouter>
-        {isError ? (
-          <PageError description={Object.values(errors).join(', ')} />
-        ) : isLoading ? (
-          <LoadingPage message="..." />
-        ) : (
-          routes
-        )}
+        {isError && <PageError description={Object.values(errors).join(', ')} />}
+        {isLoading && <LoadingPage />}
+
+        {!isError && !isLoading && routes}
       </HashRouter>
     </Layout>
   );
