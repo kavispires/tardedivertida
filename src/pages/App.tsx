@@ -8,6 +8,7 @@ import { AuthProvider } from 'services/AuthProvider';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useError } from 'hooks/useError';
+import { useAppSetup } from 'hooks/useAppSetup';
 // State
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLocalStorage } from 'hooks/useLocalStorage';
@@ -61,6 +62,7 @@ function App() {
 function AppLayout() {
   const { isLoading } = useCurrentUserContext();
   const { isError, errors } = useError();
+  useAppSetup();
 
   return (
     <Layout className="app background" id="app">
