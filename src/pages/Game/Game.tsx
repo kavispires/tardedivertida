@@ -136,169 +136,169 @@ function Game() {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionArteRuim />
           </Suspense>
         );
       case GAME_COLLECTION.COMUNICACAO_ALIENIGENA:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionComunicacaoAlienigena />
           </Suspense>
         );
       case GAME_COLLECTION.CONTADORES_HISTORIAS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionContadoresHistorias />
           </Suspense>
         );
       case GAME_COLLECTION.CRUZA_PALAVRAS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionCruzaPalavras />
           </Suspense>
         );
       case GAME_COLLECTION.DETETIVES_IMAGINATIVOS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionDetetivesImaginativos />
           </Suspense>
         );
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionEspiaoEntreNos />
           </Suspense>
         );
       case GAME_COLLECTION.FILEIRA_DE_FATOS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionFileiraDeFatos />
           </Suspense>
         );
       case GAME_COLLECTION.GALERIA_DE_SONHOS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionGaleriaDeSonhos />
           </Suspense>
         );
       case GAME_COLLECTION.CRIMES_HEDIONDOS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionCrimesHediondos />
           </Suspense>
         );
       case GAME_COLLECTION.PORTA_DOS_DESESPERADOS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionPortaDosDesesperados />
           </Suspense>
         );
       case GAME_COLLECTION.LABIRINTO_SECRETO:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionLabirintoSecreto />
           </Suspense>
         );
       case GAME_COLLECTION.LINHAS_CRUZADAS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionLinhasCruzadas />
           </Suspense>
         );
       case GAME_COLLECTION.MEGAMIX:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionMegamix />
           </Suspense>
         );
       case GAME_COLLECTION.MENTE_COLETIVA:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionMenteColetiva />
           </Suspense>
         );
       case GAME_COLLECTION.NA_RUA_DO_MEDO:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionNaRuaDoMedo />
           </Suspense>
         );
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionOndaTelepatica />
           </Suspense>
         );
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionPolemicaDaVez />
           </Suspense>
         );
       case GAME_COLLECTION.QUEM_NAO_MATA:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionQuemNaoMata />
           </Suspense>
         );
       case GAME_COLLECTION.QUEM_SOU_EU:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionQuemSouEu />
           </Suspense>
         );
       case GAME_COLLECTION.RETRATO_FALADO:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionRetratoFalado />
           </Suspense>
         );
       case GAME_COLLECTION.SONHOS_PESADELOS:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionSonhosPesadelos />
           </Suspense>
         );
       case GAME_COLLECTION.SUPER_CAMPEONATO:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionSuperCampeonato />
           </Suspense>
         );
       case GAME_COLLECTION.TA_NA_CARA:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionTaNaCara />
           </Suspense>
         );
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionTestemunhaOcular />
           </Suspense>
         );
       case GAME_COLLECTION.TREVO_DA_SORTE:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionTrevoDaSorte />
           </Suspense>
         );
       case GAME_COLLECTION.UE_SO_ISSO:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionUeSoIsso />
           </Suspense>
         );
       case GAME_COLLECTION.VAMOS_AO_CINEMA:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionVamosAoCinema />
           </Suspense>
         );
       case GAME_COLLECTION.VENDAVAL_DE_PALPITE:
         return (
-          <Suspense fallback={<LoadingPage message="" />}>
+          <Suspense fallback={<LoadingPage />}>
             <SessionVendavalDePalpite />
           </Suspense>
         );
