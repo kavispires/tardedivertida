@@ -599,6 +599,13 @@ export const getAchievements = (store: FirebaseStoreData) => {
   return achievements;
 };
 
+/**
+ * Get level 5 id
+ * @param arr - array of ids
+ * @param index - index of the id to get
+ * @param value - value to count
+ * @returns - number of occurrences of value before index
+ */
 function countValueOccurrencesBeforeIndex(arr: number[], index: number, value: number): number {
   let count = 0;
   for (let i = 0; i < index; i++) {
