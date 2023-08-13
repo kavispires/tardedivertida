@@ -37,6 +37,7 @@ export function History({
           signs={signs}
           showIntention={showIntention}
         />
+        {inquiryHistory.length === 0 && <Translate pt="Nenhuma pergunta ainda." en="No questions yet." />}
       </Collapse.Panel>
 
       <Collapse.Panel
@@ -50,6 +51,7 @@ export function History({
           isAlienBot={isAlienBot}
           showIntention={showIntention}
         />
+        {requestHistory.length === 0 && <Translate pt="Nenhum pedido ainda." en="No requests yet." />}
       </Collapse.Panel>
     </Collapse>
   );
