@@ -1,7 +1,9 @@
+import clsx from 'clsx';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
+import { getAnimationClass } from 'utils/helpers';
 
 export const DrawInstruction = () => (
   <Instruction>
@@ -12,7 +14,9 @@ export const DrawInstruction = () => (
           <br />
           Aperte o botão quando estiver pronto!
           <br />
-          <strong>Não vale usar números e letras.</strong>
+          <span className={clsx(getAnimationClass('tada'))}>
+            <strong>Não vale usar números e letras.</strong>
+          </span>
           <br />
           Fique esperto porque o tempo começa assim que você apertar.
         </>
@@ -23,7 +27,9 @@ export const DrawInstruction = () => (
           <br />
           Press the button when you're ready!
           <br />
-          <strong>You can NOT use numbers or letters.</strong>
+          <span className={clsx(getAnimationClass('tada'))}>
+            <strong>You can NOT use numbers or letters.</strong>
+          </span>
           <br />
           Be aware of the timer! It starts as soon as you press the button.
         </>
