@@ -1,7 +1,7 @@
 import { useToggle } from 'react-use';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { Badge, Button, Divider, Drawer, Space } from 'antd';
+import { Avatar as AntAvatar, Badge, Button, Divider, Drawer, Space } from 'antd';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -37,29 +37,32 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
 
   return (
     <>
-      <PlayersStatusBar players={players} onClick={toggleDrawer} />
-      <div className="game-info-drawer">
-        <Button size="small" className="game-info-drawer__button" onClick={toggleDrawer}>
-          {info.title?.[language] ?? '?'} <SettingOutlined />
-          <DebugOnly devOnly>{players?.[userId]?.name}</DebugOnly>
-        </Button>
+      <div className="game-info-drawer-container">
+        <button className="game-info-drawer-button" onClick={toggleDrawer}>
+          <span className="game-info-drawer-button__game-title">
+            {info.title?.[language] ?? '?'}
+            <DebugOnly devOnly>({players?.[userId]?.name})</DebugOnly>
+          </span>
+          <AntAvatar icon={<SettingOutlined />} size="small" />
+          <div className="game-info-drawer-button__player-status-bar">
+            <PlayersStatusBar players={players} />
+          </div>
+        </button>
 
         <Drawer
-          title={info?.title?.[language]}
+          title={
+            <GameBanner
+              title={info?.title}
+              gameName={info.gameName}
+              preview={false}
+              className="round-corners"
+            />
+          }
           placement="right"
-          closable={true}
+          closable={false}
           onClose={toggleDrawer}
           open={isDrawerOpen}
         >
-          <GameBanner
-            title={info?.title}
-            gameName={info.gameName}
-            preview={false}
-            className="round-corners"
-          />
-
-          <Divider />
-
           {isAuthenticated && !isGuest && (
             <p>
               <Badge size="default" dot color="green">
@@ -93,8 +96,6 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
           <Divider />
 
           <SectionMeta round={state?.round || 0} groupScore={state?.groupScore} />
-
-          <Divider />
 
           <SectionRankedPlayers players={players} />
         </Drawer>

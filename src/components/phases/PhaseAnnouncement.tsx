@@ -146,7 +146,7 @@ export function PhaseAnnouncement({
     <div
       className={clsx(
         type === 'overlay' && 'phase-announcement-overlay',
-        !isActive && getAnimationClass('fadeOut')
+        !isActive && getAnimationClass('fadeOut', { speed: 'faster' })
       )}
     >
       <div className="phase-announcement-wrapper">

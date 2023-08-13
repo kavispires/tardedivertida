@@ -340,8 +340,9 @@ export const truncateRecommended = (recommended: number[]): string => {
  * @param players
  * @returns
  */
-export const sortPlayers = memoize((players: GamePlayers, by = 'name') =>
-  orderBy(Object.values(players), [by], ['asc'])
+export const sortPlayers = memoize(
+  (players: GamePlayers, by = ['name'], orders: ('asc' | 'desc')[] = ['asc']) =>
+    orderBy(Object.values(players), by, orders)
 );
 
 /**

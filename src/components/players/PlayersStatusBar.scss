@@ -1,20 +1,21 @@
 .players-status-bar {
   @include box-shadow;
-  position: fixed;
-  top: 20%;
-  right: 0;
-  z-index: 30;
+  position: absolute;
+  top: get-unit(1);
+  right: get-unit(-2);
+  z-index: 0;
 
-  border: 1px solid get-color('white');
-  border-radius: get-unit(4 0 0 4);
-  padding: get-unit(1);
-  background-color: rgba($color: #ffffff, $alpha: 0.8);
+  // border: 1px solid get-color('white');
+  border: none;
+  border-radius: get-unit(0 0 0 4);
+  padding: get-unit(4 2 1 1);
+  background-color: get-color('white', 5, 0.9);
   transition: all 500ms;
 
   cursor: pointer;
 
   &:hover {
-    background-color: rgba($color: #ffffff, $alpha: 1);
+    background-color: get-color('white', 5, 1);
   }
 
   &__player {

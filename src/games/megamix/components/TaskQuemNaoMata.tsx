@@ -45,7 +45,7 @@ export const TaskQuemNaoMata = ({ task, round, onSubmitTask, user, players }: Ta
       </Instruction>
 
       <Space className="space-container" wrap>
-        {sortPlayers(players, 'name').map((player, index, arr) => {
+        {sortPlayers(players).map((player, index, arr) => {
           return (
             <div key={player.id} className="qnm-shooter">
               <IconAvatar

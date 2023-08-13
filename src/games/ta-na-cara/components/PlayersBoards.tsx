@@ -18,7 +18,7 @@ type PlayersBoardsProps = {
 };
 
 export function PlayersBoards({ players, user, questionsDict }: PlayersBoardsProps) {
-  const playersList = sortPlayers(players, 'name');
+  const playersList = sortPlayers(players);
   const cardWidth = useCardWidth(10, { gap: 16, minWidth: 80, maxWidth: 100, margin: 16 });
 
   return (

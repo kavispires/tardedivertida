@@ -1,26 +1,35 @@
-.game-info-drawer {
+.game-info-drawer-container {
   position: fixed;
   top: -1px;
-  right: 50%;
-  transform: translateX(50%);
+  right: 0;
   z-index: 150;
+}
 
-  &__button {
-    @include box-shadow;
+.game-info-drawer-button {
+  @include box-shadow;
 
-    border: 1px solid get-color('white');
-    border-radius: get-unit(0 0 4 4);
-    padding: get-unit(0 6);
-    background-color: rgba($color: #ffffff, $alpha: 0.9);
-    z-index: 155;
+  border: none;
+  border-radius: get-unit(0 0 0 4);
+  padding: get-unit(1 2 1 1);
+  background-color: get-color('white', 5, 0.9);
+  z-index: 155;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    &:hover {
-      background-color: rgba($color: #ffffff, $alpha: 1);
-    }
+  &:hover {
+    background-color: get-color('white', 5, 1);
   }
 
+  &__game-title {
+    padding: get-unit(0 4 0 4);
+  }
+
+  &__player-status-bar {
+    position: relative;
+  }
+}
+
+.game-info-drawer {
   &__inline-separator {
     margin-left: get-unit(2);
   }
