@@ -28,7 +28,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.RESULTS}>
-      <StepSwitcher step={step} conditions={[]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<PathIcon />}

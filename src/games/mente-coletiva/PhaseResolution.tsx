@@ -57,9 +57,6 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           round={state.round}
           pastureSize={state.pastureSize}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

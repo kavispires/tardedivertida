@@ -1,7 +1,6 @@
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useUser } from 'hooks/useUser';
 import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -18,7 +17,6 @@ import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 export function PhaseSuggest({ state, players, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
@@ -50,7 +48,7 @@ export function PhaseSuggest({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.UE_SO_ISSO.SUGGEST}
       className="word-selection-phase"
     >
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserTheGuesser}>
           <GuesserWaitingRoom
@@ -73,9 +71,6 @@ export function PhaseSuggest({ state, players, info }: PhaseProps) {
             announcement={announcement}
           />
         </ViewOr>
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

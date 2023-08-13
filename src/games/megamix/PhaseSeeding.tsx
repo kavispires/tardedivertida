@@ -39,12 +39,9 @@ export function PhaseSeeding({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MEGAMIX.SEEDING}>
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSeeding players={players} announcement={announcement} onSubmitData={onSubmitData} user={user} />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

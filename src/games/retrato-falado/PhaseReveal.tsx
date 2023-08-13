@@ -37,7 +37,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.REVEAL}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResults
           witness={witness}
@@ -52,7 +52,6 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 1 */}
-
         <StepRanking
           ranking={state.ranking}
           players={players}

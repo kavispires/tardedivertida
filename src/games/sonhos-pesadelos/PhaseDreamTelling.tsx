@@ -24,7 +24,7 @@ function PhaseDreamTelling({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.DREAM_TELLING}>
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

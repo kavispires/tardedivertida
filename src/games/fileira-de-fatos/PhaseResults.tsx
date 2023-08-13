@@ -1,5 +1,4 @@
 // State & Hooks
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
@@ -15,7 +14,6 @@ import { StepReveal } from './StepReveal';
 import { Instruction } from 'components/text';
 
 export function PhaseResults({ players, state, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, goToPreviousStep, goToNextStep } = useStep();
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -34,7 +32,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.FILEIRA_DE_FATOS.RESULTS}>
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal
           scenarios={state.scenarios}

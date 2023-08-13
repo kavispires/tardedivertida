@@ -35,22 +35,23 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.EVALUATION}>
       <StepSwitcher
         step={step}
-        conditions={[!user.isReady, !user.isReady]}
         players={players}
-        waitingRoomInstruction={
-          <Translate
-            pt="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
-            en="Please wait while other players finish their evaluations!"
-          />
-        }
-        waitingRoomContent={
-          <EvaluatedDrawings
-            cards={state.cards}
-            drawings={state.drawings}
-            votes={user?.votes}
-            players={players}
-          />
-        }
+        waitingRoom={{
+          instruction: (
+            <Translate
+              pt="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
+              en="Please wait while other players finish their evaluations!"
+            />
+          ),
+          content: (
+            <EvaluatedDrawings
+              cards={state.cards}
+              drawings={state.drawings}
+              votes={user?.votes}
+              players={players}
+            />
+          ),
+        }}
       >
         {/*Step 0 */}
         <StepEvaluation
@@ -61,8 +62,6 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
           levelType={state.levelType}
           announcement={announcement}
         />
-
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

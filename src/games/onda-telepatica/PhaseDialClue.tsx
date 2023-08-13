@@ -1,7 +1,6 @@
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useUser } from 'hooks/useUser';
 import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -21,7 +20,6 @@ import { TurnOrder } from 'components/players';
 import { ViewOr } from 'components/views';
 
 function PhaseDialClue({ players, state, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, goToNextStep } = useStep(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -57,7 +55,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_CLUE}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

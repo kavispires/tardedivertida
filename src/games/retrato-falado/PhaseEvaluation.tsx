@@ -40,7 +40,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.EVALUATION}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepVote
           isUserTheWitness={isUserTheWitness}
@@ -51,9 +51,6 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
           players={players}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

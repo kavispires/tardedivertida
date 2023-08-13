@@ -63,9 +63,6 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
           isUserTheStoryTeller={isUserTheStoryTeller}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

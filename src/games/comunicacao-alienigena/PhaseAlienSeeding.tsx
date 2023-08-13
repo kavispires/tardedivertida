@@ -33,7 +33,7 @@ export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {
       phase={state?.phase}
       allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SEEDING}
     >
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSeedAlien
           players={players}
@@ -42,9 +42,6 @@ export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {
           user={user}
           items={state.items}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

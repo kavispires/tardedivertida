@@ -59,7 +59,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE}
       className="d-secret-clue-phase"
     >
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
@@ -70,7 +70,6 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         />
 
         {/* Step 1 */}
-
         <ViewOr condition={isUserTheLeader}>
           <StepSecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} announcement={announcement} />
 
@@ -82,9 +81,6 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
             announcement={announcement}
           />
         </ViewOr>
-
-        {/* Step 2 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

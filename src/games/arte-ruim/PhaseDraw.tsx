@@ -42,14 +42,15 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
       <StepSwitcher
         step={step}
-        conditions={[!user.isReady, !user.isReady]}
         players={players}
-        waitingRoomInstruction={
-          <Translate
-            pt="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
-            en="Please wait while other players finish their artwork!"
-          />
-        }
+        waitingRoom={{
+          instruction: (
+            <Translate
+              pt="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
+              en="Please wait while other players finish their artwork!"
+            />
+          ),
+        }}
       >
         {/* Step 0 */}
         <RoundAnnouncement

@@ -39,7 +39,7 @@ export function PhaseAlienAnswer({ players, state, info }: PhaseProps) {
       phase={state?.phase}
       allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_ANSWER}
     >
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepAlienAnswers
           players={players}
@@ -59,9 +59,6 @@ export function PhaseAlienAnswer({ players, state, info }: PhaseProps) {
           inquiryHistory={state.inquiryHistory}
           isAlienBot={Boolean(state.alienBot)}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

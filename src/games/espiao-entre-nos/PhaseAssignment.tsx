@@ -29,7 +29,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

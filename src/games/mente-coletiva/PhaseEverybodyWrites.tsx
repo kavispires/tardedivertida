@@ -45,9 +45,6 @@ function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps) {
           pastureSize={state.pastureSize}
           timedAnswers={meta?.options?.timed}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

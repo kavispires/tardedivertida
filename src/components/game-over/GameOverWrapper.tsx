@@ -92,9 +92,6 @@ export function GameOverWrapper({
         >
           {children}
         </GameOver>
-
-        {/*Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

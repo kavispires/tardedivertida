@@ -57,7 +57,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         {state?.outcome?.type !== 'VOTE_FAIL' ? (
           <PhaseAnnouncement

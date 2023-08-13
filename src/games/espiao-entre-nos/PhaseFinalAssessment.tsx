@@ -31,7 +31,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         {state.finalAssessment.playerOrderIndex === 0 ? (
           <PhaseAnnouncement

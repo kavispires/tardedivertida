@@ -53,8 +53,6 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
           isUserTheStoryTeller={isUserTheStoryTeller}
           announcement={announcement}
         />
-
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

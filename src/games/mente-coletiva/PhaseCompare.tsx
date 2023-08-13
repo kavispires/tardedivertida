@@ -54,9 +54,6 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
           round={state.round}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -1,6 +1,5 @@
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -46,7 +45,6 @@ function RoundAnnouncementText({ guesser, group }: RoundAnnouncementTextProps) {
 }
 
 export function PhaseWordSelection({ state, players, info }: PhaseProps) {
-  const user = useUser(players, state);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const { step, setStep, goToNextStep } = useStep(0);
 
@@ -106,7 +104,7 @@ export function PhaseWordSelection({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}>
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

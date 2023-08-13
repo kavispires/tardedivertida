@@ -37,7 +37,7 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.STREET_END}>
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepStreetEnd
           street={state.street}
@@ -53,9 +53,6 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
           candyInHand={state.candyInHand}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

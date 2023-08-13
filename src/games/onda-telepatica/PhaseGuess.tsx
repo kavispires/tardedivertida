@@ -1,7 +1,6 @@
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useUser } from 'hooks/useUser';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -17,7 +16,6 @@ import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
 
 function PhaseGuess({ players, state, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, setStep } = useStep(0);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -39,7 +37,7 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserThePsychic}>
           <StepPsychicGuess
@@ -54,9 +52,6 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
             announcement={announcement}
           />
         </ViewOr>
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -56,7 +56,7 @@ export function PhasePrompt({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.PROMPT}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserTheActivePlayer}>
           <StepSelectPrompt

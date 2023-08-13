@@ -17,7 +17,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.RESOLUTION}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}
@@ -30,7 +30,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <div>Add Content Here</div>
+        <div>Add Content Here {user.name}</div>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -43,7 +43,7 @@ function PhaseContenderSelection({ state, players, info }: PhaseProps) {
       <StepSwitcher
         step={step}
         players={players}
-        waitingRoomContent={<ContendersHand contenders={user.contenders} />}
+        waitingRoom={{ content: <ContendersHand contenders={user.contenders} /> }}
       >
         {/* Step 0 */}
         <StepSelectContenders
@@ -52,9 +52,6 @@ function PhaseContenderSelection({ state, players, info }: PhaseProps) {
           userContenders={user.contenders}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

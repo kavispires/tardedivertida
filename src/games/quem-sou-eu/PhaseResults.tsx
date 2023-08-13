@@ -1,5 +1,4 @@
 // State & Hooks
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useSlideShow } from 'hooks/useSlideShow';
 // Resources & Utils
@@ -16,13 +15,12 @@ import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
 export function PhaseResults({ players, state, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, setStep, goToPreviousStep, goToNextStep } = useStep();
   const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery?.length ?? 1);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.RESULTS}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MirrorIcon />}
