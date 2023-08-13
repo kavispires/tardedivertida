@@ -9,10 +9,10 @@ import { useCardWidth } from './useCardWidth';
 export function useAppSetup() {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const cardWidth = useCardWidth(5, {
-    gap: 64,
-    minWidth: 200,
+    gap: 16,
+    minWidth: 250,
     maxWidth: 500,
-    margin: 64,
+    margin: 16,
     containerId: 'app',
   });
 

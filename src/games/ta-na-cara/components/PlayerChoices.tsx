@@ -77,7 +77,7 @@ export function PlayerChoices({
         </strong>
       </p>
       <Space wrap className="space-container">
-        {sortPlayers(players, 'name')
+        {sortPlayers(players)
           .filter((player) => player.id !== user.id)
           .map((player) => {
             return (
