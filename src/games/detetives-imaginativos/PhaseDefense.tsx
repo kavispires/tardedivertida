@@ -67,9 +67,6 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
           turnOrder={state.turnOrder}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

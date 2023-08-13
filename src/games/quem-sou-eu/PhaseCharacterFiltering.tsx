@@ -46,15 +46,13 @@ export function PhaseCharacterFiltering({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.CHARACTER_FILTERING}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectCharacters
           user={user}
           onSelectCharacters={onSelectCharacters}
           announcement={announcement}
         />
-
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

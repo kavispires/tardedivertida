@@ -59,9 +59,6 @@ function PhaseBattle({ state, players, info }: PhaseProps) {
           players={players}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

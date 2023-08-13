@@ -48,7 +48,7 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
-      <StepSwitcher step={step} conditions={[!user.ready, !user.ready, !user.ready]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}

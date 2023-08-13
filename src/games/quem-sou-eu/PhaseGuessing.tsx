@@ -37,7 +37,7 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.GUESSING}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepGuessing
           user={user}
@@ -48,9 +48,6 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
           announcement={announcement}
           round={state.round}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

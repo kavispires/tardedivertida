@@ -1,5 +1,4 @@
 // State & Hooks
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -13,7 +12,6 @@ import { Translate } from 'components/language';
 import { StepSelectAlien } from './StepSelectAlien';
 
 export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, setStep } = useStep();
 
   const onSubmitAlien = useOnSubmitAlienAPIRequest(setStep);
@@ -33,7 +31,7 @@ export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
       phase={state?.phase}
       allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION}
     >
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectAlien
           players={players}
@@ -41,9 +39,6 @@ export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
           announcement={announcement}
           status={state.status}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

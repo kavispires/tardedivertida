@@ -35,12 +35,7 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION}>
-      <StepSwitcher
-        step={step}
-        conditions={[!user.isReady, !user.isReady, !user.isReady]}
-        players={players}
-        waitingRoomContent={<SelectedDreams user={user} />}
-      >
+      <StepSwitcher step={step} players={players} waitingRoom={{ content: <SelectedDreams user={user} /> }}>
         {/* Step 0 */}
         <StepDreamsSelection
           table={state.table}
@@ -50,9 +45,6 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
           hardModeEnabled={Boolean(meta.options?.hardMode)}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

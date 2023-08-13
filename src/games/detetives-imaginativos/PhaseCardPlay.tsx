@@ -76,9 +76,6 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
           announcement={announcement}
           leaderId={state.leaderId}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

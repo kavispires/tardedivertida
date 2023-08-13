@@ -48,9 +48,8 @@ export function PhaseMovieSelection({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.MOVIE_SELECTION}>
       <StepSwitcher
         step={step}
-        conditions={[!user.isReady, !user.isReady, !user.isReady]}
         players={players}
-        waitingRoomContent={<YourMovie movies={state.movies} movieId={user.movieId} />}
+        waitingRoom={{ content: <YourMovie movies={state.movies} movieId={user.movieId} /> }}
       >
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} time={3} onPressButton={goToNextStep} buttonText=" ">

@@ -49,7 +49,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.GUESSING}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepGuessing
           user={user}
@@ -58,9 +58,6 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
           onSubmitGuesses={onSubmitGuesses}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

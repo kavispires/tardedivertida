@@ -53,9 +53,6 @@ export function PhaseGuess({ state, players, info }: PhaseProps) {
             announcement={announcement}
           />
         </ViewOr>
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

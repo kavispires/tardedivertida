@@ -37,9 +37,8 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>
       <StepSwitcher
         step={step}
-        conditions={[!user.isReady, !user.isReady, !user.isReady]}
         players={players}
-        waitingRoomContent={<PlayerRecentClue grid={state.grid} user={user} />}
+        waitingRoom={{ content: <PlayerRecentClue grid={state.grid} user={user} /> }}
       >
         {/* Step 0 */}
         <RoundAnnouncement

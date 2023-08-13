@@ -3,6 +3,7 @@ import { WaitingRoom } from 'components/players';
 import { Loading } from 'components/loaders';
 import { Translate } from 'components/language';
 import { print } from 'utils/helpers';
+import { ReactNode } from 'react';
 
 const getWaitingRoomInstruction = (kind: string) => {
   switch (kind) {
@@ -27,44 +28,61 @@ type StepSwitcherProps = {
   /**
    * The content of the component
    */
-  children: JSX.Element[];
+  children: JSX.Element[] | JSX.Element;
+  /**
+   * The current step
+   */
   step: number;
+  /*
+   * The conditions to render each step, otherwise the waiting room is rendered
+   */
   conditions?: boolean[];
+  /**
+   * The players dictionary
+   */
   players?: GamePlayers;
-  waitingRoomInstructionType?: 'SERVER' | 'PLAYERS';
-  waitingRoomInstruction?: any;
-  waitingRoomContent?: any;
+  /**
+   * Waiting room customizations
+   */
+  waitingRoom?: {
+    /**
+     * The type of waiting room (for players or server)
+     */
+    type?: 'SERVER' | 'PLAYERS';
+    /**
+     * The instruction to replace the default one
+     */
+    instruction?: ReactNode;
+    /**
+     * Additional content to be rendered
+     */
+    content?: ReactNode;
+  };
 };
 
-export function StepSwitcher({
-  children,
-  step,
-  conditions,
-  players,
-  waitingRoomInstruction,
-  waitingRoomInstructionType = 'PLAYERS',
-  waitingRoomContent = '',
-}: StepSwitcherProps) {
+export function StepSwitcher({ children, step, conditions, players, waitingRoom = {} }: StepSwitcherProps) {
   if (!players) print('SetSwitcher is being used without `players`, please add it.', 'warn');
 
-  if (players && step >= children.length) {
+  const content = Array.isArray(children) ? children : [children];
+
+  if (players && step >= content.length) {
     return (
       <WaitingRoom
         players={players}
         title={<Translate pt="Pronto!" en="Done!" />}
-        instruction={waitingRoomInstruction ?? getWaitingRoomInstruction(waitingRoomInstructionType)}
+        instruction={waitingRoom.instruction ?? getWaitingRoomInstruction(waitingRoom.type ?? 'PLAYERS')}
       >
-        {waitingRoomContent}
+        {waitingRoom.content}
       </WaitingRoom>
     );
   }
 
-  if (!children[step]) {
+  if (!content[step]) {
     return <Loading />;
   }
 
   if (conditions?.[step] ?? true) {
-    return children[step];
+    return content[step];
   }
 
   return <div></div>;

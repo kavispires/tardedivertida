@@ -50,9 +50,10 @@ export function PhaseMapBuilding({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.MAP_BUILDING}>
       <StepSwitcher
         step={step}
-        conditions={[!user.isReady, !user.isReady, !user.isReady]}
         players={players}
-        waitingRoomContent={<PlayerSelectionMap forest={state.forest} map={user.map} newMap={user.newMap} />}
+        waitingRoom={{
+          content: <PlayerSelectionMap forest={state.forest} map={user.map} newMap={user.newMap} />,
+        }}
       >
         {/* Step 0 */}
         <ViewOr condition={isUserMapComplete}>
@@ -67,9 +68,6 @@ export function PhaseMapBuilding({ players, state, info }: PhaseProps) {
             onSubmitMap={onSubmitMap}
           />
         </ViewOr>
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

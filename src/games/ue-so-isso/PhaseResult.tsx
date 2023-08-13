@@ -76,9 +76,6 @@ export function PhaseResult({ state, players, info }: PhaseProps) {
           announcement={announcement}
           group={state.group}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

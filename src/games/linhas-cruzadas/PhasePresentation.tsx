@@ -1,6 +1,5 @@
 // State & Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -14,12 +13,11 @@ import { StepAlbum } from './StepAlbum';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhasePresentation({ players, state, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, goToNextStep } = useStep(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.PRESENTATION}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<PhotoAlbumIcon />}

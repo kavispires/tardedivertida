@@ -59,9 +59,6 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
           onWitnessButtonClick={onWitnessButtonClick}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

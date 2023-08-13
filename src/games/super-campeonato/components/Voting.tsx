@@ -60,7 +60,6 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
   return (
     <StepSwitcher step={step} players={players}>
       {/* Step 0 */}
-
       <Instruction contained>
         <p>
           {tier === 'quarter' ? (

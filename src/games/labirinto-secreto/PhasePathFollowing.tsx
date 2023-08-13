@@ -45,7 +45,7 @@ export function PhasePathFollowing({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.PATH_FOLLOWING}>
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>
           <StepPathWaiting
@@ -65,9 +65,6 @@ export function PhasePathFollowing({ players, state, info }: PhaseProps) {
             isTheActivePlayer={isTheActivePlayer}
           />
         </ViewOr>
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

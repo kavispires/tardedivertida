@@ -70,9 +70,6 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
           table={state.table}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

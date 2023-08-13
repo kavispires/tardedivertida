@@ -37,7 +37,7 @@ export function PhaseAlienRequest({ players, state, info }: PhaseProps) {
       phase={state?.phase}
       allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_REQUEST}
     >
-      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepAlienRequests
           players={players}
@@ -52,9 +52,6 @@ export function PhaseAlienRequest({ players, state, info }: PhaseProps) {
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

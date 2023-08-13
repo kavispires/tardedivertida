@@ -70,9 +70,6 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
           history={state.history}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

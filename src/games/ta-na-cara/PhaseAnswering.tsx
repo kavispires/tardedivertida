@@ -44,9 +44,6 @@ export function PhaseAnswer({ players, state, info }: PhaseProps) {
           onSubmitAnswer={onSubmitAnswer}
           activePlayerId={state.activePlayerId}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

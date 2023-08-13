@@ -1,5 +1,4 @@
 // State & Hooks
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitOrderingAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -20,7 +19,6 @@ import { StepJudgeScenarios } from './StepJudgeScenarios';
 import { FirstRoundIntroduction } from './components/RulesExplanation';
 
 export function PhaseOrdering({ players, state, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -57,7 +55,7 @@ export function PhaseOrdering({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.FILEIRA_DE_FATOS.ORDERING}>
-      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>
           <StepJudgeScenarios

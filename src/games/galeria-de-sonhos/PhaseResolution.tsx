@@ -1,6 +1,5 @@
 // State & Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -14,17 +13,11 @@ import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { VIPNextPhaseButton } from 'components/vip';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, goToNextStep } = useStep();
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.RESOLUTION}>
-      <StepSwitcher
-        step={step}
-        conditions={[!user.isReady, !user.isReady, !user.isReady]}
-        players={players}
-        waitingRoomInstructionType="SERVER"
-      >
+      <StepSwitcher step={step} players={players} waitingRoom={{ type: 'SERVER' }}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<RankIcon />}

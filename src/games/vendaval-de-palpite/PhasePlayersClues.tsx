@@ -28,7 +28,7 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
       <StepSwitcher
         step={step}
         players={players}
-        waitingRoomContent={<Board players={players} clues={state.clues} board={state.board} />}
+        waitingRoom={{ content: <Board players={players} clues={state.clues} board={state.board} /> }}
       >
         {/* Step 0 */}
         <RoundAnnouncement

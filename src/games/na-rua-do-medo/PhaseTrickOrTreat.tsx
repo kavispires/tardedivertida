@@ -26,12 +26,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.TRICK_OR_TREAT}>
-      <StepSwitcher
-        step={step}
-        conditions={[!user.isReady]}
-        players={players}
-        waitingRoomContent={<PlayerStats user={user} />}
-      >
+      <StepSwitcher step={step} players={players} waitingRoom={{ content: <PlayerStats user={user} /> }}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

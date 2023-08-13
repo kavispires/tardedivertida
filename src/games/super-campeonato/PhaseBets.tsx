@@ -42,15 +42,15 @@ function PhaseBets({ state, players, info }: PhaseProps) {
       <StepSwitcher
         step={step}
         players={players}
-        waitingRoomContent={
-          Boolean(user.bets?.final) && (
+        waitingRoom={{
+          content: Boolean(user.bets?.final) && (
             <BetsFloatingHand
               bets={user.bets}
               brackets={state.brackets}
               selectedContenderId={user.selectedContenderId}
             />
-          )
-        }
+          ),
+        }}
       >
         {/* Step 0 */}
         <StepMakeYourBets
@@ -60,9 +60,6 @@ function PhaseBets({ state, players, info }: PhaseProps) {
           players={players}
           announcement={announcement}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );
