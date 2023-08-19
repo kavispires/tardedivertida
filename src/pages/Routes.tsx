@@ -104,6 +104,7 @@ export const routes = (
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/me" element={<LazyMe />} />
+    <Route path="/eu" element={<LazyMe />} />
 
     <Route
       path="/users"
