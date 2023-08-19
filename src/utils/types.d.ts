@@ -153,6 +153,15 @@ interface Me {
   };
   games: Record<GameName, GameUserStatistics>;
   blurredImages?: Record<ImageCardId, true>;
+  // The latest games statistics
+  today: {
+    plays: number;
+    win: number;
+    last: number;
+    achievements: number;
+    duration: number;
+    games: GameUserEntry[];
+  };
 }
 
 interface Me {

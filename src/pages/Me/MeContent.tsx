@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash';
-import { ReactNode, useMemo } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
-import { Layout, Row, Divider, Collapse, Space } from 'antd';
+import { Layout, Row, Divider, Collapse, Space, Switch } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -38,16 +38,6 @@ type MeContentProps = {
 
 export function MeContent({ user, additionalContent }: MeContentProps) {
   const { language } = useLanguage();
-
-  // Count achievable achievements only from the games the user has played
-  const achievementsCount = useMemo(() => {
-    return Object.entries(ACHIEVEMENTS_DICT).reduce((acc, [gameName, references]) => {
-      if (references && user.games?.[gameName]) {
-        return acc + Object.keys(references).length;
-      }
-      return acc;
-    }, 0);
-  }, [user.games]);
 
   const games = useMemo(
     () => orderBy(Object.values(user.games), (game) => GAME_LIST[game.gameName].title[language]),
@@ -87,69 +77,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
         <Divider />
 
-        <Row gutter={8}>
-          <StatisticCard
-            title={<Translate pt="Total de Partidas" en="Total Plays" />}
-            icon={<DiceIcon />}
-            value={user.statistics.plays}
-          />
-
-          <StatisticCard
-            title={<Translate pt="Jogos" en="Played Games" />}
-            icon={<CatalogIcon />}
-            value={user.statistics.uniqueGamesPlayed}
-            suffix={`/${availableGamesCount}`}
-          />
-
-          <StatisticCard
-            title={<Translate pt="Vitórias" en="Victories" />}
-            value={(user.statistics.win / user.statistics.winnableGames) * 100}
-            icon={<TrophyIcon />}
-            precision={0}
-            suffix="%"
-            disabled={!Boolean(user.statistics.winnableGames)}
-          />
-
-          <StatisticCard
-            title={<Translate pt="Jogos em Último" en="Dead Last" />}
-            value={(user.statistics.last / user.statistics.winnableGames) * 100}
-            icon={<SkullIcon />}
-            precision={0}
-            suffix="%"
-            disabled={!Boolean(user.statistics.winnableGames)}
-          />
-
-          <StatisticCard
-            title={<Translate pt="Tempo Jogado" en="Play Duration" />}
-            value={durationToHours(user.statistics.totalPlayDuration)}
-            icon={<ClockIcon />}
-            suffix={<Translate pt="horas" en="hours" />}
-            precision={1}
-          />
-
-          <StatisticCard
-            title={<Translate pt="Partida Mais Recente" en="Latest Play" />}
-            value={timestampToDate(user.statistics.latestPlay.startedAt)}
-            icon={<CalendarIcon />}
-          />
-
-          <StatisticCard
-            title={<Translate pt="Média de Jogadores" en="Average Player Count" />}
-            value={user.statistics.averagePlayerCount}
-            icon={<PlayersIcon />}
-            precision={1}
-            suffix={<Translate pt="jogadores" en="players" />}
-          />
-
-          <StatisticCard
-            title={<Translate pt="Total de Medalhas" en="Total Achievements" />}
-            value={user.statistics.achievements}
-            icon={<SealOfApprovalIcon />}
-            suffix={`/${achievementsCount}`}
-          />
-        </Row>
-
-        <Divider />
+        <Summary user={user} />
 
         <Title size="x-small" level={2} align="left">
           <Translate pt="Jogos" en="Games" />
@@ -180,5 +108,105 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
         </Collapse>
       </Layout.Content>
     </Layout>
+  );
+}
+
+function Summary({ user }: Pick<MeContentProps, 'user'>) {
+  const [today, setToday] = useState(false);
+  // Count achievable achievements only from the games the user has played
+  const achievementsCount = useMemo(() => {
+    return Object.entries(ACHIEVEMENTS_DICT).reduce((acc, [gameName, references]) => {
+      if (references && user.games?.[gameName]) {
+        return acc + Object.keys(references).length;
+      }
+      return acc;
+    }, 0);
+  }, [user.games]);
+
+  return (
+    <>
+      <Title size="x-small" level={1} align="left">
+        {}
+        <Translate pt="Sumário" en="Summary" />{' '}
+        {user.today.plays > 0 && (
+          <Switch
+            checkedChildren={<Translate pt="Mostrar Todas" en="Show All" />}
+            unCheckedChildren={<Translate pt="Mostrar Hoje" en="Show Today" />}
+            onChange={() => setToday(!today)}
+          />
+        )}
+      </Title>
+
+      <Row gutter={8}>
+        <StatisticCard
+          title={<Translate pt="Total de Partidas" en="Total Plays" />}
+          icon={<DiceIcon />}
+          value={today ? user.today.plays : user.statistics.plays}
+        />
+
+        {!today && (
+          <StatisticCard
+            title={<Translate pt="Jogos" en="Played Games" />}
+            icon={<CatalogIcon />}
+            value={user.statistics.uniqueGamesPlayed}
+            suffix={`/${availableGamesCount}`}
+          />
+        )}
+
+        <StatisticCard
+          title={<Translate pt="Vitórias" en="Victories" />}
+          value={today ? user.today.win : (user.statistics.win / user.statistics.winnableGames) * 100}
+          icon={<TrophyIcon />}
+          precision={0}
+          suffix={today ? '' : '%'}
+          disabled={!Boolean(user.statistics.winnableGames)}
+        />
+
+        <StatisticCard
+          title={<Translate pt="Jogos em Último" en="Dead Last" />}
+          value={today ? user.today.last : (user.statistics.last / user.statistics.winnableGames) * 100}
+          icon={<SkullIcon />}
+          precision={0}
+          suffix={today ? '' : '%'}
+          disabled={!Boolean(user.statistics.winnableGames)}
+        />
+        {!today && (
+          <StatisticCard
+            title={<Translate pt="Tempo Jogado" en="Play Duration" />}
+            value={durationToHours(user.statistics.totalPlayDuration)}
+            icon={<ClockIcon />}
+            suffix={<Translate pt="horas" en="hours" />}
+            precision={1}
+          />
+        )}
+
+        {!today && (
+          <StatisticCard
+            title={<Translate pt="Partida Mais Recente" en="Latest Play" />}
+            value={timestampToDate(user.statistics.latestPlay.startedAt)}
+            icon={<CalendarIcon />}
+          />
+        )}
+
+        {!today && (
+          <StatisticCard
+            title={<Translate pt="Média de Jogadores" en="Average Player Count" />}
+            value={user.statistics.averagePlayerCount}
+            icon={<PlayersIcon />}
+            precision={1}
+            suffix={<Translate pt="jogadores" en="players" />}
+          />
+        )}
+
+        <StatisticCard
+          title={<Translate pt="Total de Medalhas" en="Total Achievements" />}
+          value={today ? user.today.achievements : user.statistics.achievements}
+          icon={<SealOfApprovalIcon />}
+          suffix={today ? '' : `/${achievementsCount}`}
+        />
+      </Row>
+
+      <Divider />
+    </>
   );
 }

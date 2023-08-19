@@ -46,6 +46,14 @@ const DEFAULT_ME_DATA: Me = {
     averagePlayerCount: 0,
   },
   games: {},
+  today: {
+    plays: 0,
+    last: 0,
+    win: 0,
+    achievements: 0,
+    duration: 0,
+    games: [],
+  },
 };
 
 export const AuthContext = createContext<{
