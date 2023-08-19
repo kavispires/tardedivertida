@@ -81,7 +81,7 @@ export function GameOver({
         )}
       </div>
 
-      {hasWinnerContent && (
+      {hasWinnerContent && state?.group?.outcome !== 'NON_WINNABLE_GAME' && (
         <Instruction contained>
           {Boolean(state.winners) && state.winners.length > 0 && (
             <div className="game-over__winner-container">
