@@ -1,7 +1,14 @@
 // Types
-import type { Album, Card, LinhasCruzadasOptions, Slide } from './types';
+import type {
+  Album,
+  Card,
+  FirebaseStoreData,
+  LinhasCruzadasAchievement,
+  LinhasCruzadasOptions,
+  Slide,
+} from './types';
 // Constants
-import { LINHAS_CRUZADAS_PHASES } from './constants';
+import { LINHAS_CRUZADAS_ACHIEVEMENTS, LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
 
@@ -139,4 +146,54 @@ export const assignSlideToPlayers = (
       wordCount,
     };
   });
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<LinhasCruzadasAchievement>[] = [];
+
+  // Drawing
+  const { most: quickestDrawer, least: slowestDrawer } = utils.achievements.getMostAndLeastOf(
+    store,
+    'drawingDuration'
+  );
+  if (quickestDrawer) {
+    achievements.push({
+      type: LINHAS_CRUZADAS_ACHIEVEMENTS.QUICKEST_DRAWER,
+      playerId: quickestDrawer.playerId,
+      value: quickestDrawer.drawingDuration,
+    });
+  }
+  if (slowestDrawer) {
+    achievements.push({
+      type: LINHAS_CRUZADAS_ACHIEVEMENTS.SLOWEST_DRAWER,
+      playerId: slowestDrawer.playerId,
+      value: slowestDrawer.drawingDuration,
+    });
+  }
+
+  // Writing
+  const { most: quickestWriting, least: slowestWriting } = utils.achievements.getMostAndLeastOf(
+    store,
+    'writingDuration'
+  );
+  if (quickestWriting) {
+    achievements.push({
+      type: LINHAS_CRUZADAS_ACHIEVEMENTS.QUICKEST_GUESSER,
+      playerId: quickestWriting.playerId,
+      value: quickestWriting.writingDuration,
+    });
+  }
+  if (slowestWriting) {
+    achievements.push({
+      type: LINHAS_CRUZADAS_ACHIEVEMENTS.SLOWEST_GUESSER,
+      playerId: slowestWriting.playerId,
+      value: slowestWriting.writingDuration,
+    });
+  }
+
+  return achievements;
 };

@@ -5,7 +5,13 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
+import {
+  addSlideToAlbum,
+  assignSlideToPlayers,
+  buildAlbum,
+  dealPromptOptions,
+  getAchievements,
+} from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 
 /**
@@ -31,6 +37,11 @@ export const prepareSetupPhase = async (
     playerCount * (store.options.singleWordOnly ? 4 : 2)
   );
 
+  const achievements = utils.achievements.setup(players, store, {
+    drawingDuration: 0,
+    writingDuration: 0,
+  });
+
   // Save
   return {
     update: {
@@ -38,6 +49,7 @@ export const prepareSetupPhase = async (
         expressionsDeck,
         wordsDeck,
         album: {},
+        achievements,
       },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.SETUP,
@@ -96,6 +108,15 @@ export const prepareDrawingPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, ['prompts', 'promptId', 'guess']);
 
+  // Achievements: Drawing
+  if (state.round.current > 0) {
+    utils.players.getListOfPlayers(players).forEach((player) => {
+      if (player.updatedAt) {
+        utils.achievements.increase(store, player.id, 'writingDuration', player.updatedAt - state.updatedAt);
+      }
+    });
+  }
+
   // Save
   return {
     update: {
@@ -125,11 +146,19 @@ export const prepareNamingPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, ['drawing']);
 
+  // Achievements: Drawing
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.updatedAt) {
+      utils.achievements.increase(store, player.id, 'drawingDuration', player.updatedAt - state.updatedAt);
+    }
+  });
+
   // Save
   return {
     update: {
       store: {
         album: store.album,
+        achievements: store.achievements,
       },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.NAMING,
@@ -150,11 +179,19 @@ export const preparePresentationPhase = async (
 
   const orderedAlbum = state.gameOrder.map((playerId: PlayerId) => album[playerId]);
 
+  // Achievements: Writing
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.updatedAt) {
+      utils.achievements.increase(store, player.id, 'writingDuration', player.updatedAt - state.updatedAt);
+    }
+  });
+
   // Save
   return {
     update: {
       store: {
         album,
+        achievements: store.achievements,
       },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.PRESENTATION,
@@ -171,6 +208,8 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const achievements = getAchievements(store);
+
   await utils.firebase.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
@@ -179,7 +218,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners: [],
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -194,7 +233,9 @@ export const prepareGameOverPhase = async (
         group: {
           score: 100,
           victory: 100,
+          outcome: 'NON_WINNABLE_GAME',
         },
+        achievements,
       },
     },
   };
