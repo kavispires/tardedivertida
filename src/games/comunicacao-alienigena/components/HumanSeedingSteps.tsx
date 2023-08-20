@@ -70,7 +70,9 @@ export function HumanSeedingSteps({ user, items, onSubmitSeeds }: HumanSeedingSt
 
   return (
     <Space className="space-container contained seeding-container" direction="vertical" wrap>
-      <Steps progressDot current={currentStep} items={steps} />
+      <div className="seeding-container__stepper">
+        <Steps progressDot current={currentStep} items={steps} />
+      </div>
 
       <Space className="boards-container" wrap>
         <SelectableObjectsGrid

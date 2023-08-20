@@ -189,6 +189,7 @@ export const prepareHumanAskPhase = async (
   // Save
   return {
     update: {
+      ...storeUpdate,
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK,
         turnOrder,
@@ -196,8 +197,13 @@ export const prepareHumanAskPhase = async (
         inquiryHistory,
         players,
       },
-      ...storeUpdate,
-      stateCleanup: ['alienResponse', 'alienRequest', 'currentInquiry', 'currentIntention'],
+      stateCleanup: [
+        'alienResponse',
+        'alienRequest',
+        'currentInquiry',
+        'currentIntention',
+        'shouldPerformSeeding',
+      ],
       storeCleanup: ['alienSeeds'],
     },
   };

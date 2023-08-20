@@ -252,6 +252,11 @@
 .seeding-container {
   display: flex;
   padding: get-unit(10 2);
+
+  &__stepper {
+    max-width: 90vw;
+    overflow-x: auto;
+  }
 }
 
 .seeding-attribute-container {
