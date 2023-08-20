@@ -195,5 +195,17 @@ export const getAchievements = (store: FirebaseStoreData) => {
     });
   }
 
+  const { most: randomPromptSelection } = utils.achievements.getMostAndLeastOf(
+    store,
+    'randomPromptSelection'
+  );
+  if (randomPromptSelection) {
+    achievements.push({
+      type: LINHAS_CRUZADAS_ACHIEVEMENTS.RANDOM_PROMPT_SELECTION,
+      playerId: randomPromptSelection.playerId,
+      value: randomPromptSelection.randomPromptSelection,
+    });
+  }
+
   return achievements;
 };

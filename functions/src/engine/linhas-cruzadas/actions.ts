@@ -15,7 +15,8 @@ export const handleSubmitPrompt = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  promptId: string
+  promptId: string,
+  randomSelection = false
 ) => {
   return await utils.firebase.updatePlayer({
     gameName,
@@ -23,7 +24,7 @@ export const handleSubmitPrompt = async (
     playerId,
     actionText: 'submit prompt',
     shouldReady: true,
-    change: { promptId },
+    change: { promptId, randomSelection },
     nextPhaseFunction: getNextPhase,
   });
 };
