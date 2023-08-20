@@ -14,14 +14,14 @@ import { shuffle } from 'utils/helpers';
 
 type StepSelectPromptProps = {
   prompts: PromptCard[];
-  onSubmitPrompt: GenericFunction;
+  onSubmitPrompt: (props: SubmitPromptPayload) => void;
 };
 
 export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptProps) {
   const { isLoading } = useLoading();
 
   const onRandomSelect = () => {
-    onSubmitPrompt({ promptId: shuffle(prompts.map((prompt) => prompt.id))[0] });
+    onSubmitPrompt({ promptId: shuffle(prompts.map((prompt) => prompt.id))[0], randomSelection: true });
   };
 
   // DEV: Auto auto-select

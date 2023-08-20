@@ -3,6 +3,7 @@ const ACHIEVEMENTS = {
   QUICKEST_DRAWER: 'QUICKEST_DRAWER',
   SLOWEST_GUESSER: 'SLOWEST_GUESSER',
   QUICKEST_GUESSER: 'QUICKEST_GUESSER',
+  RANDOM_PROMPT_SELECTION: 'RANDOM_PROMPT_SELECTION',
 };
 
 export const achievementsReference: AchievementReference = {
@@ -48,6 +49,17 @@ export const achievementsReference: AchievementReference = {
     description: {
       pt: 'Levou mais tempo para adivinhar',
       en: 'Took the most time to guess',
+    },
+  },
+  [ACHIEVEMENTS.RANDOM_PROMPT_SELECTION]: {
+    icon: 'dice',
+    title: {
+      pt: 'Mais Corajoso',
+      en: 'Bravest',
+    },
+    description: {
+      pt: 'Único que clicou em "Aleatório" ao escolher a carta inicial',
+      en: 'The only one who clicked "Random" when choosing the initial card',
     },
   },
 };

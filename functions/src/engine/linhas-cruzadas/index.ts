@@ -125,7 +125,7 @@ export const submitAction = async (data: LinhasCruzadasSubmitAction) => {
   switch (action) {
     case LINHAS_CRUZADAS_ACTIONS.SUBMIT_PROMPT:
       utils.firebase.validateSubmitActionProperties(data, ['promptId'], 'submit prompt');
-      return handleSubmitPrompt(gameName, gameId, playerId, data.promptId);
+      return handleSubmitPrompt(gameName, gameId, playerId, data.promptId, data.randomSelection);
     case LINHAS_CRUZADAS_ACTIONS.SUBMIT_DRAWING:
       utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);

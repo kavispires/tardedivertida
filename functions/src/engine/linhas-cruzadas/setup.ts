@@ -40,6 +40,7 @@ export const prepareSetupPhase = async (
   const achievements = utils.achievements.setup(players, store, {
     drawingDuration: 0,
     writingDuration: 0,
+    randomPromptSelection: 0,
   });
 
   // Save
@@ -104,9 +105,16 @@ export const prepareDrawingPhase = async (
   // Assign next slide name
   assignSlideToPlayers(album, players, state.gameOrder, isFirstSlide);
 
+  // Achievements: Random Prompt Selection
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.randomSelection) {
+      utils.achievements.increase(store, player.id, 'randomPromptSelection', 1);
+    }
+  });
+
   // Unready players
   utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['prompts', 'promptId', 'guess']);
+  utils.players.removePropertiesFromPlayers(players, ['prompts', 'promptId', 'guess', 'randomSelection']);
 
   // Achievements: Drawing
   if (state.round.current > 0) {

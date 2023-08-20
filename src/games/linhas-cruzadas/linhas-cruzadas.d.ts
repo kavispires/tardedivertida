@@ -14,6 +14,7 @@ type Prompt = {
 
 type SubmitPromptPayload = {
   promptId: string;
+  randomSelection?: boolean;
 };
 
 type SubmitDrawingPayload = {
