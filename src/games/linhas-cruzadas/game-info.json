@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.21",
+  "version": "1.2.22",
   "title": {
     "pt": "Linhas Cruzadas",
     "en": "Mis...communication"

@@ -7,7 +7,7 @@ const ACHIEVEMENTS = {
 
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.QUICKEST_DRAWER]: {
-    icon: 'double-arrow-up',
+    icon: 'hare',
     title: {
       pt: 'Desenhista Mais Rápido',
       en: 'Quickest Drawer',
@@ -18,7 +18,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.SLOWEST_DRAWER]: {
-    icon: 'difference',
+    icon: 'snail',
     title: {
       pt: 'Desenhista Mais Metódico',
       en: 'Most Methodical Drawer',
@@ -29,7 +29,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.QUICKEST_GUESSER]: {
-    icon: 'skull',
+    icon: 'check-mark',
     title: {
       pt: 'Adivinhador Mais Rápido',
       en: 'Quickest Guesser',
@@ -40,7 +40,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.SLOWEST_GUESSER]: {
-    icon: 'skull',
+    icon: 'brain',
     title: {
       pt: 'Mais analítico',
       en: 'Most Analytical',
