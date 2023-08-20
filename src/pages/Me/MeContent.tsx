@@ -126,7 +126,6 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
   return (
     <>
       <Title size="x-small" level={1} align="left">
-        {}
         <Translate pt="Sumário" en="Summary" />{' '}
         {user.today.plays > 0 && (
           <Switch
