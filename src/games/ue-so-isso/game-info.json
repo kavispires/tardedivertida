@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.1.10",
+  "version": "3.1.11",
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -29,7 +29,7 @@
       "Quando todas as dicas forem enviadas, todas as iguais são automaticamente eliminadas. Porém, os jogadores devem decidir entre eles quais dicas adicionais também devem ser removidas",
       "São consideradas dicas iguais palavras derivadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortográficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
       "Após as dicas terem sido selecionadas, o Adivinhador tem uma única chance de adivinhar (ou passar, se for um covarde).",
-      "Se a palavra estiver correta, ganha-se 1 ponto, se estiver errada perde-se 1 ponto. Mas se tiver passado a vez, nada acontece. Ganha-se o jogo se os jogadores acertarem 70% ou mais das Palavras Secretas!"
+      "O grupo deve conseguir 7 pontos em 10 rodadas. Uma adivinhação correta dá 2 pontos, mas uma errada remove 1 ponto. Porém, 3 erros fazem vocês perderem o jogo. Será que vocês vão conseguir?"
     ],
     "en": [
       "That's it? is a cooperative game where a player tries to guess the secret word using clues given but the other players, but there's a catch: similar clues are eliminated! That's it?",
@@ -38,7 +38,7 @@
       "When all clues are submitted, all identical clues are automatically eliminated. Then the players must judge what clues should also be eliminated (because of a typo, etc)",
       "Variants of the secret word are considered similar: prince = princess, drive = driving. So, don't be too obvious.",
       "Finally the guesser has a single chance to guess the secret word (or pass, coward).",
-      "If they guess correctly the group gets 1 point, if incorrect the group loses 1 point. Nothing happens if passing. The group wins the game if it scores over 70%!"
+      "The group must get 7 points within 10 rounds. A correct guess gives 2 points but an incorrect removes 1 point. However, 3 incorrect guesses will lose the game. Will you make it?"
     ]
   },
   "playerCount": {
