@@ -1,11 +1,12 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Space } from 'antd';
+import { Badge, Space } from 'antd';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+import { ObjectsKey } from './ObjectsKey';
 
 type ObjectsGridProps = {
   items: Item[];
@@ -33,7 +34,9 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
             {!showAll && Boolean(item.offered) ? (
               <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
             ) : (
-              <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              <Badge size="small" count={item.inquired} color="orange">
+                <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              </Badge>
             )}
             {showAll && Boolean(item.offered) && item.type === 'ITEM' && (
               <span className="objects-grid__offered-icon objects-grid__offered-icon--correct">
@@ -48,32 +51,8 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
           </div>
         ))}
       </div>
-      <div className="objects-key">
-        <div className="objects-key__entry">
-          <span className="objects-key__example objects-key__example--UNKNOWN"></span>
-          <span className="objects-key__text">
-            <Translate pt="Irrelevante" en="Irrelevant" />
-          </span>
-        </div>
-        <div className="objects-key__entry">
-          <span className="objects-key__example objects-key__example--ITEM"></span>
-          <span className="objects-key__text">
-            <Translate pt="Quer" en="Want" />
-          </span>
-        </div>
-        <div className="objects-key__entry">
-          <span className="objects-key__example objects-key__example--CURSE"></span>
-          <span className="objects-key__text">
-            <Translate pt="Amaldiçoado" en="Cursed" />
-          </span>
-        </div>
-        <div className="objects-key__entry">
-          <span className="objects-key__example objects-key__example--BLANK"></span>
-          <span className="objects-key__text">
-            <Translate pt="Alienígena não quis" en="Alien did not want it" />
-          </span>
-        </div>
-      </div>
+
+      <ObjectsKey />
     </Space>
   );
 }

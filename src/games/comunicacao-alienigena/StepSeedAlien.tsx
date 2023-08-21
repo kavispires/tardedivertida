@@ -7,13 +7,12 @@ import { BotPopupRule } from './components/BotPopupRules';
 import { HumanSeedingSteps } from './components/HumanSeedingSteps';
 
 type StepSeedAlienProps = {
-  players: GamePlayers;
   onSubmitSeeds: GenericFunction;
   user: GamePlayer;
   items: Item[];
 } & AnnouncementProps;
 
-export function StepSeedAlien({ user, announcement, players, onSubmitSeeds, items }: StepSeedAlienProps) {
+export function StepSeedAlien({ user, announcement, onSubmitSeeds, items }: StepSeedAlienProps) {
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
