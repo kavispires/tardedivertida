@@ -22,7 +22,7 @@ export function AlienWritingBoard({ onSubmit, disabled }: HumanSignBoardProps) {
         setLines={setLines}
         width={ALIEN_CANVAS.WIDTH}
         height={ALIEN_CANVAS.HEIGHT}
-        showControls={!disabled}
+        showControls
         strokeWidth="large"
         className="alien-canvas"
       />
