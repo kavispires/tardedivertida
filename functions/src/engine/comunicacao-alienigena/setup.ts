@@ -430,6 +430,7 @@ export const prepareRevealPhase = async (
         items,
         status,
         requestHistory,
+        turnOrder: state.turnOrder.reverse(),
       },
     },
   };
