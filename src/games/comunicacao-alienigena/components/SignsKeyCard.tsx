@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Popconfirm, Space } from 'antd';
-import { CheckCircleFilled } from '@ant-design/icons';
+import { Button, Popconfirm, Popover, Space } from 'antd';
+import { CheckCircleFilled, InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
@@ -32,6 +32,18 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
     <Space direction="vertical">
       <Title level={3} size="xx-small">
         <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
+        <Popover
+          content={
+            <Translate
+              pt="Você pode clicar no título do atributo para marcá-lo como usado"
+              en="You may click on the title of an attribute to mark it as used"
+            />
+          }
+          title={<Translate pt="Dica" en="Hint" />}
+          arrow
+        >
+          <Button type="ghost" icon={<InfoCircleOutlined />} shape="circle" />{' '}
+        </Popover>
       </Title>
       <div className="signs-grid">
         {orderBy(signs, `attribute.${language}`).map((sign) => (
