@@ -105,19 +105,22 @@ export function StepReveal({
       </Instruction>
 
       <Space className="space-container" align="center">
-        <Collapse>
-          <Collapse.Panel
-            key="weapons-evidences"
-            header={<Translate pt=" Ver todas Armas e Evidências" en="See all Weapons and Evidence" />}
-          >
-            <GroupedItemsBoard
-              items={items}
-              weaponId={user.weaponId}
-              evidenceId={user.evidenceId}
-              groupedItems={groupedItems}
-            />
-          </Collapse.Panel>
-        </Collapse>
+        <Collapse
+          items={[
+            {
+              key: 'weapons-evidences',
+              label: <Translate pt=" Ver todas Armas e Evidências" en="See all Weapons and Evidence" />,
+              children: (
+                <GroupedItemsBoard
+                  items={items}
+                  weaponId={user.weaponId}
+                  evidenceId={user.evidenceId}
+                  groupedItems={groupedItems}
+                />
+              ),
+            },
+          ]}
+        />
       </Space>
 
       <PlayersCards

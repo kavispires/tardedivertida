@@ -91,21 +91,23 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
           <Translate pt="Estatísticas Por Jogo" en="Per Game Stats" />
         </Title>
 
-        <Collapse>
-          {games.map((game) => {
+        <Collapse
+          items={games.map((game) => {
             const info = GAME_LIST[game.gameName];
-            return (
-              <Collapse.Panel header={<DualTranslate>{info.title}</DualTranslate>} key={game.gameName}>
+            return {
+              key: game.gameName,
+              label: <DualTranslate>{info.title}</DualTranslate>,
+              children: (
                 <GameStatistics
                   key={game.gameName}
                   game={game}
                   info={info}
                   achievements={ACHIEVEMENTS_DICT[game.gameName]}
                 />
-              </Collapse.Panel>
-            );
+              ),
+            };
           })}
-        </Collapse>
+        />
       </Layout.Content>
     </Layout>
   );
