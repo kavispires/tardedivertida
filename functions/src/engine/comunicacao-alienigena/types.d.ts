@@ -19,6 +19,7 @@ export interface Item {
   type: keyof typeof ITEM_TYPES;
   offerings: PlayerId[];
   offered?: boolean;
+  inquired?: number;
 }
 
 export interface Offer {

@@ -36,7 +36,6 @@ export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSeedAlien
-          players={players}
           onSubmitSeeds={onSubmitSeeds}
           announcement={announcement}
           user={user}

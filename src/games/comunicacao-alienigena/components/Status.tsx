@@ -1,7 +1,7 @@
+// Ant Design Resources
+import { Badge } from 'antd';
 // Icons
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
-import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
 import { Translate } from 'components/language';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
@@ -17,32 +17,31 @@ export function Status({ status }: StatusProps) {
     <Instruction>
       <ul>
         <li>
-          <Translate pt="Objetos disponíveis" en="Available Objects" />:{' '}
-          <ItemsHighlight>{status.total}</ItemsHighlight>
-        </li>
-        <li>
-          <Translate pt="Objetos amaldiçoados" en="Cursed Objects" />:{' '}
-          <CurseItemHighlight>{status.totalCurses} </CurseItemHighlight>
-        </li>
-        <li>
-          <Translate pt="Objetos necessários" en="Desired Objects" />:{' '}
-          <MetricHighlight icon={<QuestionIcon />}>{status.needed}</MetricHighlight>
-        </li>
-        <li>
-          <Translate pt="Objetos entregues" en="Delivered Objects" />:{' '}
-          <MetricHighlight icon={<BoxCheckMarkIcon />}>{status.found}</MetricHighlight>
-        </li>
-        <li>
-          <Translate pt="Objetos que faltam" en="Remaining Objects" />:{' '}
-          <MetricHighlight icon={<BoxQuestionMarkIcon />}>
-            {Math.abs(status.needed - status.found)}
-          </MetricHighlight>
+          <Translate pt="Objetos entregues/queridos" en="Delivered/Needed objects" />:{' '}
+          <ItemsHighlight>
+            {status.found}/{status.needed}
+          </ItemsHighlight>
         </li>
         <li>
           <Translate pt="Tempo Sobrando" en="Remaining Time" />:{' '}
-          <TimeHighlight>{status.timeLeft} </TimeHighlight>
+          <TimeHighlight>{status.timeLeft}</TimeHighlight>
+        </li>
+        <li>
+          <Translate pt="Objetos disponíveis" en="Remaining Objects" />:{' '}
+          <MetricHighlight icon={<BoxQuestionMarkIcon />}>{status.total}</MetricHighlight>
+        </li>
+        <li>
+          <Translate pt="Objetos amaldiçoados" en="Cursed Objects" />:{' '}
+          <CurseItemHighlight>{status.totalCurses}</CurseItemHighlight>
         </li>
       </ul>
+      <p>
+        <Badge size="small" count={2} color="orange"></Badge> -{' '}
+        <Translate
+          en="The little orange numbers on the items board indicate the number of times the object was asked about."
+          pt="Os números nos círculos laranjas na grade de itens indicam quantas vezes o objeto foi usado em uma pergunta."
+        />
+      </p>
     </Instruction>
   );
 }

@@ -31,6 +31,7 @@ interface Item {
   type: string;
   offerings: PlayerId[];
   offered?: boolean;
+  inquired?: number;
 }
 
 interface Sign {

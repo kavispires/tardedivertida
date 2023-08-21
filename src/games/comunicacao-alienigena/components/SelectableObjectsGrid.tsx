@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Space } from 'antd';
+import { Badge, Space } from 'antd';
 // Hook
 import { useLoading } from 'hooks/useLoading';
 // Components
@@ -59,7 +59,9 @@ export function SelectableObjectsGrid({
               activeClass={'objects-grid__button--active'}
               onClick={() => selectObject(item.id)}
             >
-              <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              <Badge size="small" count={item.inquired} color="orange">
+                <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              </Badge>
             </TransparentButton>
           )
         )}

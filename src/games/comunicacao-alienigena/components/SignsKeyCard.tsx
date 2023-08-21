@@ -35,7 +35,10 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
       </Title>
       <div className="signs-grid">
         {orderBy(signs, `attribute.${language}`).map((sign) => (
-          <div className={clsx('signs-grid__item', Boolean(cache[sign.signId]) && 'signs-grid__item--used')}>
+          <div
+            className={clsx('signs-grid__item', Boolean(cache[sign.signId]) && 'signs-grid__item--used')}
+            key={sign.attribute[language]}
+          >
             <Popconfirm
               title={<Translate pt="Usado" en="Used" />}
               onConfirm={() => updateCache(sign.signId, true)}
