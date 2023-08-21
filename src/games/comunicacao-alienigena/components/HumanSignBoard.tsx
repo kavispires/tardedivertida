@@ -1,6 +1,7 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Button, Popconfirm, Space } from 'antd';
+import { Button, Popconfirm, Popover, Space } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
@@ -30,6 +31,18 @@ export function HumanSignBoard({ signs }: HumanSignBoardProps) {
     <Space direction="vertical">
       <Title level={3} size="xx-small">
         <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
+        <Popover
+          content={
+            <Translate
+              pt="Você pode clicar no título do atributo para apagar o que você desenhou"
+              en="You may click on the title of an attribute to erase what you drew"
+            />
+          }
+          title={<Translate pt="Dica" en="Hint" />}
+          arrow
+        >
+          <Button type="ghost" icon={<InfoCircleOutlined />} shape="circle" />{' '}
+        </Popover>
       </Title>
       <Space direction="vertical" className="board-container">
         <div className="signs-grid">
