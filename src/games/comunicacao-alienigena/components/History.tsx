@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Collapse } from 'antd';
+import { Collapse, CollapseProps } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { InquiryHistory } from './InquiryHistory';
@@ -24,35 +24,40 @@ export function History({
   showIntention = false,
   signs,
 }: HistoryProps) {
-  return (
-    <Collapse>
-      <Collapse.Panel
-        header={<Translate pt="Histórico de Perguntas dos Humanos" en="Human Inquiry History" />}
-        key="1"
-      >
-        <InquiryHistory
-          inquiryHistory={inquiryHistory}
-          players={players}
-          isAlienBot={isAlienBot}
-          signs={signs}
-          showIntention={showIntention}
-        />
-        {inquiryHistory.length === 0 && <Translate pt="Nenhuma pergunta ainda." en="No questions yet." />}
-      </Collapse.Panel>
+  const panels: CollapseProps['items'] = [
+    {
+      key: '1',
+      label: <Translate pt="Histórico de Perguntas dos Humanos" en="Human Inquiry History" />,
+      children: (
+        <>
+          <InquiryHistory
+            inquiryHistory={inquiryHistory}
+            players={players}
+            isAlienBot={isAlienBot}
+            signs={signs}
+            showIntention={showIntention}
+          />
+          {inquiryHistory.length === 0 && <Translate pt="Nenhuma pergunta ainda." en="No questions yet." />}
+        </>
+      ),
+    },
+    {
+      key: '2',
+      label: <Translate pt="Histórico de Pedidos dos Alienígenas" en="Alien Request History" />,
+      children: (
+        <>
+          <RequestHistory
+            requestHistory={requestHistory}
+            players={players}
+            items={items}
+            isAlienBot={isAlienBot}
+            showIntention={showIntention}
+          />
+          {requestHistory.length === 0 && <Translate pt="Nenhum pedido ainda." en="No requests yet." />}
+        </>
+      ),
+    },
+  ];
 
-      <Collapse.Panel
-        header={<Translate pt="Histórico de Pedidos dos Alienígenas" en="Alien Request History" />}
-        key="2"
-      >
-        <RequestHistory
-          requestHistory={requestHistory}
-          players={players}
-          items={items}
-          isAlienBot={isAlienBot}
-          showIntention={showIntention}
-        />
-        {requestHistory.length === 0 && <Translate pt="Nenhum pedido ainda." en="No requests yet." />}
-      </Collapse.Panel>
-    </Collapse>
-  );
+  return <Collapse items={panels} />;
 }

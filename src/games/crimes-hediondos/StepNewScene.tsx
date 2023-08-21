@@ -55,24 +55,27 @@ export function StepNewScene({
         />
       </Instruction>
 
-      <Collapse>
-        <Collapse.Panel
-          key="weapons-evidences"
-          header={
-            <Translate
-              pt="Clique para ver todas Armas e Evidências"
-              en="Click to see all Weapons and Evidence"
-            />
-          }
-        >
-          <GroupedItemsBoard
-            groupedItems={groupedItems}
-            items={items}
-            weaponId={user.weaponId}
-            evidenceId={user.evidenceId}
-          />
-        </Collapse.Panel>
-      </Collapse>
+      <Collapse
+        items={[
+          {
+            key: 'weapons-evidences',
+            label: (
+              <Translate
+                pt="Clique para ver todas Armas e Evidências"
+                en="Click to see all Weapons and Evidence"
+              />
+            ),
+            children: (
+              <GroupedItemsBoard
+                groupedItems={groupedItems}
+                items={items}
+                weaponId={user.weaponId}
+                evidenceId={user.evidenceId}
+              />
+            ),
+          },
+        ]}
+      />
 
       <div className="">
         <Crime
