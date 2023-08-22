@@ -1,5 +1,5 @@
 import { mean } from 'lodash';
-import { FIRST_ID } from './constants';
+import { ATTRIBUTES, FIRST_ID } from './constants';
 import type { AlienItem, AlienItemDict, Attribute, Weight } from './types';
 
 export const findLatestId = (data: AlienItemDict) => {
@@ -108,3 +108,11 @@ export function replaceAttributes(newData: Record<string, Record<string, Record<
     delete item.attributes.solid;
   });
 }
+
+/**
+ * Generates a new items with attributes in their initial states
+ */
+export const initialAttributeState = Object.keys(ATTRIBUTES).reduce((acc: any, key) => {
+  acc[key] = 0;
+  return acc;
+}, {}) as Record<Attribute, Weight>;

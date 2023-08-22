@@ -1,37 +1,36 @@
 import {
   AutoComplete,
+  Badge,
   Button,
   Card,
   Divider,
   Input,
   notification,
   Radio,
+  Segmented,
+  Select,
   Space,
   Statistic,
-  Switch,
 } from 'antd';
 import { DevHeader } from '../DevHeader';
 import { useTitle } from 'react-use';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ItemCard } from 'components/cards/ItemCard';
 import { ATTRIBUTES, FIRST_ID, LAST_ID } from './constants';
-import type { Attribute, Weight, AlienItemDict, ItemId } from './types';
-import { useAlienItemsDocument, useItem } from './hooks';
+import type { Attribute, Weight, AlienItemDict, ItemId, AlienItem } from './types';
+import { UseAlienItemDocumentReturnValue, useAlienItemsDocument, useItem } from './hooks';
 import { Loading, LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';
-import { countNonZeroAttributes, getStats, validateItem } from './helpers';
-import { isEmpty } from 'lodash';
+import { countNonZeroAttributes, getStats, initialAttributeState, validateItem } from './helpers';
+import { get, isEmpty, orderBy } from 'lodash';
 import { CheckCircleFilled, CloseCircleOutlined } from '@ant-design/icons';
-
-const initialAttributeState = Object.keys(ATTRIBUTES).reduce((acc: any, key) => {
-  acc[key] = 0;
-  return acc;
-}, {}) as Record<Attribute, Weight>;
+import clsx from 'clsx';
 
 function ItemClassifier() {
   useTitle('Classifier | Dev | Tarde Divertida');
   const [api, contextHolder] = notification.useNotification();
-  const { isLoading, isError, data, save, setData, latestId, isSaving } = useAlienItemsDocument(api);
+
+  const { isLoading, isError, data, save, isSaving, itemUtils, isDirty } = useAlienItemsDocument(api);
   const [view, setView] = useState('default');
 
   if (isEmpty(data) && isLoading) {
@@ -42,25 +41,29 @@ function ItemClassifier() {
     return <PageError message="Something is wrong" />;
   }
 
-  console.log(data);
+  const segments = [
+    { label: 'Classifier', value: 'default', disabled: view === 'default' },
+    { label: 'Grouping', value: 'grouping', disabled: view === 'grouping' },
+    { label: 'Stats', value: 'stats', disabled: view === 'stats' },
+  ];
 
   return (
     <div>
       <DevHeader
         title="Classifier"
-        extra={
-          <Switch
-            checkedChildren="Stats On"
-            unCheckedChildren="Stats Off"
-            defaultChecked={view === 'stats'}
-            onChange={(e) => setView(e ? 'stats' : 'default')}
-          />
-        }
+        extra={<Segmented options={segments} defaultValue={view} onChange={(v: any) => setView(v)} />}
       />
       {contextHolder}
       {view === 'default' && (
-        <ClassifyingCard latestId={latestId} data={data} save={save} setData={setData} isSaving={isSaving} />
+        <ClassifyingCard
+          itemUtils={itemUtils}
+          data={data}
+          save={save}
+          isSaving={isSaving}
+          isDirty={isDirty}
+        />
       )}
+      {view === 'grouping' && <Grouping data={data} />}
       {view === 'stats' && <StatsCard data={data} />}
     </div>
   );
@@ -68,53 +71,28 @@ function ItemClassifier() {
 
 export default ItemClassifier;
 
-type ClassifyingCardProps = {
-  latestId: string;
-  data: AlienItemDict;
-  save: (newData: AlienItemDict) => Promise<void>;
-  setData: React.Dispatch<React.SetStateAction<AlienItemDict>>;
-  isSaving: boolean;
-};
+type ClassifyingCardProps = Pick<
+  UseAlienItemDocumentReturnValue,
+  'itemUtils' | 'isSaving' | 'data' | 'save' | 'isDirty'
+>;
 
-function ClassifyingCard({ latestId, data, save, setData, isSaving }: ClassifyingCardProps) {
-  const { itemId, previousItem, nextItem, itemNumber, goTo, setItemId } = useItem(latestId);
+function ClassifyingCard({ data, itemUtils, save, isDirty, isSaving }: ClassifyingCardProps) {
+  const { itemId, previousItem, nextItem, itemNumber, goTo, setItemId } = useItem(itemUtils.latestId);
 
   const current = data[itemId];
 
   useEffect(() => {
     if (!current) {
-      setData((prevData) => ({
-        ...prevData,
-        [itemId]: {
-          id: itemId,
-          name: '',
-          attributes: initialAttributeState,
-        },
-      }));
+      itemUtils.create(itemId);
     }
   }, [current]); // eslint-disable-line
 
   const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setData((prevData) => ({
-      ...prevData,
-      [itemId]: {
-        ...prevData[itemId],
-        name: e.target.value.toLowerCase(),
-      },
-    }));
+    itemUtils.updateName(itemId, e.target.value.toLowerCase());
   };
 
   const updateAttributeValue = (attributeId: string, value: number) => {
-    setData((prevData) => ({
-      ...prevData,
-      [itemId]: {
-        ...prevData[itemId],
-        attributes: {
-          ...prevData[itemId].attributes,
-          [attributeId]: value,
-        },
-      },
-    }));
+    itemUtils.updateAttributeValue(itemId, attributeId, value as Weight);
   };
 
   if (!current) {
@@ -137,12 +115,13 @@ function ClassifyingCard({ latestId, data, save, setData, isSaving }: Classifyin
         goTo={goTo}
         isSaving={isSaving}
         save={save}
-        latestId={latestId}
+        latestId={itemUtils.latestId}
         data={data}
+        isDirty={isDirty}
       />
 
       <Card
-        title={`Classifying ${itemId} - ${current.name} - (${countNonZeroAttributes(current)}/25)`}
+        title={`Classifying ${itemId} - ${current.name} - (${countNonZeroAttributes(current)}/30)`}
         extra={<Search setItemId={setItemId} data={data} />}
       >
         <Space className="classifier__grid">
@@ -205,8 +184,9 @@ function ClassifyingCard({ latestId, data, save, setData, isSaving }: Classifyin
         goTo={goTo}
         isSaving={isSaving}
         save={save}
-        latestId={latestId}
+        latestId={itemUtils.latestId}
         data={data}
+        isDirty={isDirty}
       />
     </Space>
   );
@@ -219,9 +199,10 @@ type ControlsProps = {
   nextItem: () => void;
   goTo: (target: number | 'first' | 'last') => void;
   isSaving: boolean;
-  save: (newData: AlienItemDict) => Promise<void>;
+  save: UseAlienItemDocumentReturnValue['save'];
   latestId: string;
   data: AlienItemDict;
+  isDirty: boolean;
 };
 function Controls({
   itemId,
@@ -233,6 +214,7 @@ function Controls({
   isSaving,
   data,
   latestId,
+  isDirty,
 }: ControlsProps) {
   return (
     <Space className="classifier__navigation" wrap>
@@ -245,7 +227,7 @@ function Controls({
       <Button onClick={previousItem} disabled={itemId === FIRST_ID}>
         Previous
       </Button>
-      <Button type="primary" onClick={() => save(data)} loading={isSaving} disabled={isSaving}>
+      <Button type="primary" onClick={() => save(data)} loading={isSaving} disabled={isSaving || !isDirty}>
         Save
       </Button>
       <Button onClick={nextItem} disabled={itemId === LAST_ID}>
@@ -321,7 +303,6 @@ function StatsCard({ data }: StatsCardProps) {
   // Counts attribute values for -5 -3 -1 0 1 3 5
   // Positive vs Negative
   const stats = getStats(data);
-  console.log(stats.attributeCounts);
   return (
     <Space className="container classifier" direction="vertical">
       <Card title={`Stats`}>
@@ -379,6 +360,169 @@ function StatsCard({ data }: StatsCardProps) {
                   className="stat"
                 />
               </Card>
+            );
+          })}
+        </Space>
+      </Card>
+    </Space>
+  );
+}
+
+function checkCriteria(item: AlienItem, attribute: Attribute, criteria: string) {
+  if (criteria === '>0') {
+    return item.attributes[attribute] > 0;
+  }
+  if (criteria === '>1') {
+    return item.attributes[attribute] > 1;
+  }
+
+  if (criteria === '<0') {
+    return item.attributes[attribute] < 0;
+  }
+  if (criteria === '<1') {
+    return item.attributes[attribute] < 1;
+  }
+
+  if (criteria === '5') {
+    return item.attributes[attribute] === 5;
+  }
+
+  if (criteria === '3') {
+    return item.attributes[attribute] === 3;
+  }
+
+  if (criteria === '1') {
+    return item.attributes[attribute] === 1;
+  }
+
+  if (criteria === '-1') {
+    return item.attributes[attribute] === -1;
+  }
+
+  if (criteria === '-3') {
+    return item.attributes[attribute] === -3;
+  }
+
+  if (criteria === '-5') {
+    return item.attributes[attribute] === -5;
+  }
+
+  return true;
+}
+
+type GroupingProps = Pick<UseAlienItemDocumentReturnValue, 'data'>;
+
+export function Grouping({ data }: GroupingProps) {
+  const attributesList = Object.values(ATTRIBUTES);
+  const [activeAttribute, setActiveAttribute] = useState(attributesList[0]?.id ?? 'alive');
+  const [sorting, setSorting] = useState('id');
+  const [criteria, setCriteria] = useState('>1');
+  const [show, setShow] = useState('all');
+
+  const itemsList = useMemo(() => {
+    return orderBy(
+      Object.values(data),
+      [(obj) => (sorting === 'id' ? Number(obj.id) : get(obj, sorting))],
+      ['asc']
+    );
+  }, [data, sorting]);
+
+  const selection: BooleanDictionary = useMemo(() => {
+    return itemsList.reduce((acc: BooleanDictionary, item) => {
+      if (checkCriteria(item, activeAttribute as Attribute, criteria)) {
+        acc[item.id] = true;
+      }
+      return acc;
+    }, {});
+  }, [itemsList, activeAttribute, criteria]);
+
+  console.log(selection);
+
+  return (
+    <Space className="container classifier" direction="vertical">
+      <Card title="Grouping">
+        <Space wrap size="small">
+          <div>
+            <span>Attribute</span>{' '}
+            <Select
+              onChange={(e) => setActiveAttribute(e)}
+              value={activeAttribute}
+              size="small"
+              style={{ minWidth: '15ch' }}
+            >
+              {Object.values(ATTRIBUTES).map((entry) => (
+                <Select.Option key={entry.id} value={entry.id}>
+                  {entry.name.en}
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
+
+          <div>
+            <span>Sorting</span>{' '}
+            <Select onChange={(e) => setSorting(e)} value={sorting} size="small" style={{ minWidth: '15ch' }}>
+              <Select.Option value="id">id</Select.Option>
+              <Select.Option value="name">name</Select.Option>
+            </Select>
+          </div>
+
+          <div>
+            <span>Criteria</span>{' '}
+            <Select
+              onChange={(e) => setCriteria(e)}
+              value={criteria}
+              size="small"
+              style={{ minWidth: '15ch' }}
+            >
+              <Select.Option value=">1">Very Positive</Select.Option>
+              <Select.Option value=">0">Positive</Select.Option>
+              <Select.Option value="5">5</Select.Option>
+              <Select.Option value="3">3</Select.Option>
+              <Select.Option value="1">1</Select.Option>
+              <Select.Option value="-1">-1</Select.Option>
+              <Select.Option value="-3">3</Select.Option>
+              <Select.Option value="-5">-5</Select.Option>
+              <Select.Option value="<0>">Negative</Select.Option>
+              <Select.Option value="<1>">Very Negative</Select.Option>
+            </Select>
+          </div>
+
+          <div>
+            <span>Show</span>{' '}
+            <Select onChange={(e) => setShow(e)} value={show} size="small" style={{ minWidth: '15ch' }}>
+              <Select.Option value="all">All</Select.Option>
+              <Select.Option value="selected">Selected Only</Select.Option>
+              <Select.Option value="non-selected">Non-Selected Only</Select.Option>
+            </Select>
+          </div>
+
+          <div>
+            <span>Selected</span>{' '}
+            <Badge count={Object.keys(selection).length} color="cyan" overflowCount={1000} />
+          </div>
+        </Space>
+
+        <Space wrap>
+          {itemsList.map((item) => {
+            if (show === 'selected' && !selection[item.id]) {
+              return null;
+            }
+
+            if (show === 'non-selected' && selection[item.id]) {
+              return null;
+            }
+
+            return (
+              <div key={item.id} className="classifier__grouping-item">
+                <Badge count={Number(item.id)} size="small" color="cyan" overflowCount={1000}>
+                  <ItemCard
+                    id={item.id}
+                    width={100}
+                    className={clsx(selection[item.id] && 'classifier__active-item')}
+                  />
+                </Badge>
+                <span className="classifier__grouping-name">{item.name}</span>
+              </div>
             );
           })}
         </Space>
