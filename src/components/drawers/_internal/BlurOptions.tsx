@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAsync } from 'react-use';
+import { useQuery } from 'react-query';
 // Ant Design Resource
 import { Alert, Button, Checkbox, message, Spin } from 'antd';
 // Hooks
@@ -12,15 +12,13 @@ export function BlurOptions() {
   const { blurCard } = useBlurCards();
   const baseUrl = useTDBaseUrl('tdi-data');
 
-  const {
-    loading,
-    error,
-    value: data,
-  } = useAsync(async () => {
-    const response = await fetch(`${baseUrl}/credo.json`);
-    const result = await response.json();
-    return result;
-  }, []);
+  const { isLoading, isError, data } = useQuery({
+    queryKey: 'credo',
+    queryFn: async () => {
+      const response = await fetch(`${baseUrl}/credo.json`);
+      return await response.json();
+    },
+  });
 
   const [selected, setSelected] = useState<BooleanDictionary>({
     aliens: false,
@@ -50,7 +48,7 @@ export function BlurOptions() {
     message.success(<Translate pt="Cartas 'credadas' com sucesso" en="Cards blurred successfully" />);
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="blur-options">
         <Spin />
@@ -58,7 +56,7 @@ export function BlurOptions() {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="blur-options">
         <Alert
@@ -130,7 +128,7 @@ export function BlurOptions() {
       </Checkbox>
 
       <Button type="primary" ghost size="small" onClick={onBlurSelected}>
-        <Translate pt="Credar selecionados" en="Blur all selected" />
+        <Translate pt="Credar selecionados" en="Blur selected" />
       </Button>
     </div>
   );
