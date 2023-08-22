@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
-import { useEffectOnce } from 'react-use';
 import type { AlienItemDict } from './types';
-import { findLatestId } from './helpers';
-import { isEmpty } from 'lodash';
+import { findLatestId, initialAttributeState } from './helpers';
+import { cloneDeep, merge } from 'lodash';
 import type { NotificationInstance } from 'antd/es/notification/interface';
 import { FIRST_ID } from './constants';
+import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 
 export function useItem(initialItem = FIRST_ID) {
   const [itemId, setItemId] = useState(initialItem);
@@ -57,75 +58,159 @@ export function useItem(initialItem = FIRST_ID) {
   };
 }
 
-export function useAlienItemsDocument(notificationApi: NotificationInstance) {
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState(false);
+export type UseAlienItemDocumentReturnValue = {
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  isSaving: boolean;
+  data: AlienItemDict;
+  save: UseMutateFunction<AlienItemDict, unknown, AlienItemDict, unknown>;
+  isDirty: boolean;
+  reload: () => void;
+  itemUtils: {
+    latestId: string;
+    create: (itemId: string) => void;
+    updateName: (itemId: string, name: string) => void;
+    updateAttributeValue: (itemId: string, attributeId: string, value: number) => void;
+  };
+};
+
+/**
+ * Handles the alien items document from Firestore.
+ * @param notificationApi
+ * @returns
+ */
+export function useAlienItemsDocument(
+  notificationApi: NotificationInstance
+): UseAlienItemDocumentReturnValue {
+  const queryClient = useQueryClient();
+  const queryKey = 'data/alienItems';
   const [data, setData] = useState<AlienItemDict>({});
+  const [isDirty, setIsDirty] = useState(false);
 
-  const docRef = doc(firestore, 'data/alienItems');
+  const baseUrl = useTDBaseUrl('tdr');
 
-  async function queryAlienDoc() {
-    if (success) return;
+  const {
+    isLoading: isLoadingTR,
+    isError: isTRError,
+    data: trData,
+    isSuccess: isSuccessTR,
+  } = useQuery<AlienItemDict>({
+    queryKey: 'td/alienItems',
+    queryFn: async () => {
+      const response = await fetch(`${baseUrl}/alien-items.json`);
+      return await response.json();
+    },
+  });
 
-    try {
-      setSuccess(false);
-      setLoading(true);
+  const {
+    // data: firebaseData = {},
+    isLoading: isLoadingFirestore,
+    isSuccess,
+    isError,
+    refetch: fetchItems,
+  } = useQuery<AlienItemDict, unknown, AlienItemDict, QueryKey>({
+    queryKey,
+    queryFn: async () => {
+      const docRef = doc(firestore, 'data/alienItems');
       const querySnapshot = await getDoc(docRef);
-      setData((querySnapshot.data() as AlienItemDict) ?? {});
-
-      setSuccess(true);
+      return (querySnapshot.data() ?? {}) as AlienItemDict;
+    },
+    enabled: isSuccessTR,
+    onSuccess: (response) => {
       notificationApi.info({
         message: 'Data loaded',
         placement: 'bottomLeft',
       });
-    } catch (e) {
-      console.error(e);
-      setError(true);
-      setSuccess(false);
-    } finally {
-      setLoading(false);
-    }
-  }
+      setData(merge({}, trData, response));
+      setIsDirty(false);
+    },
+    select: (response) => {
+      return merge({}, trData, response);
+    },
+    onError: () => {
+      notificationApi.error({
+        message: 'Error loading data',
+        placement: 'bottomLeft',
+      });
+    },
+  });
 
-  async function saveAlienDoc(newData: AlienItemDict) {
-    try {
-      console.log('SAVING', newData);
-      setSuccess(false);
-      setSaving(true);
+  const {
+    isLoading: isMutating,
+    isError: isMutationError,
+    isSuccess: isSaved,
+    mutate,
+  } = useMutation<AlienItemDict, unknown, AlienItemDict, unknown>({
+    mutationKey: queryKey,
+    mutationFn: async (newData: AlienItemDict) => {
+      const docRef = doc(firestore, 'data/alienItems');
       await setDoc(docRef, newData);
-      setData(newData);
+      return newData;
+    },
+    onSuccess: (_, variables) => {
       notificationApi.success({
         message: 'Saved',
         placement: 'bottomLeft',
       });
-    } catch (e) {
-      console.error(e);
-      setError(true);
-      setSuccess(false);
-    } finally {
-      setSaving(false);
-    }
-  }
-
-  useEffectOnce(() => {
-    if (isEmpty(data)) {
-      queryAlienDoc();
-    }
+      queryClient.setQueryData(queryKey, variables);
+      setIsDirty(false);
+    },
   });
 
   const latestId = String(findLatestId(data));
 
+  const createNewItem = (itemId: string) => {
+    setIsDirty(true);
+    setData((prevData) => ({
+      ...prevData,
+      [itemId]: {
+        id: itemId,
+        name: '',
+        attributes: cloneDeep(initialAttributeState),
+      },
+    }));
+  };
+
+  const updateItemName = (itemId: string, name: string) => {
+    setIsDirty(true);
+    setData((prevData) => ({
+      ...prevData,
+      [itemId]: {
+        ...prevData[itemId],
+        name,
+      },
+    }));
+  };
+
+  const updateItemAttributeValue = (itemId: string, attributeId: string, value: number) => {
+    setIsDirty(true);
+    setData((prevData) => ({
+      ...prevData,
+      [itemId]: {
+        ...prevData[itemId],
+        attributes: {
+          ...prevData[itemId].attributes,
+          [attributeId]: value,
+        },
+      },
+    }));
+  };
+
   return {
-    isLoading: loading,
-    isError: error,
-    isSuccessful: success,
-    isSaving: saving,
+    isLoading: isLoadingTR || isLoadingFirestore,
+    isError: isTRError || isError || isMutationError,
+    isSuccess: isSuccess || isSaved,
+    isSaving: isMutating,
     data,
-    setData,
-    reload: queryAlienDoc,
-    save: saveAlienDoc,
-    latestId,
+    save: mutate,
+    isDirty,
+    reload: fetchItems,
+    itemUtils: {
+      latestId,
+      create: createNewItem,
+      updateName: updateItemName,
+      updateAttributeValue: updateItemAttributeValue,
+    },
   };
 }

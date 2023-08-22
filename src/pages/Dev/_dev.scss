@@ -218,4 +218,22 @@ $shade-levels: (
     border-radius: $border-radius;
     padding: get-unit(1 4);
   }
+
+  &__grouping-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: get-unit(2);
+  }
+
+  &__grouping-name {
+    display: flex;
+    align-items: center;
+    max-width: 100px;
+    overflow: hidden;
+  }
+
+  &__active-item.item-card {
+    background: get-color('yellow', 5, 0.6);
+  }
 }
