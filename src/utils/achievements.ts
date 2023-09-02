@@ -12,7 +12,7 @@ import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/utils/achievements';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
 // import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
-// import LINHAS_CRUZADAS from 'games/linhas-cruzadas/utils/achievements';
+import LINHAS_CRUZADAS from 'games/linhas-cruzadas/utils/achievements';
 // import MEGAMIX from 'games/megamix/utils/achievements';
 import MENTE_COLETIVA from 'games/mente-coletiva/utils/achievements';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/utils/achievements';
@@ -25,7 +25,7 @@ import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/utils/achieveme
 import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
 // import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
 // import SONHOS_PESADELOS from 'games/sonhos-pesadelos/utils/achievements';
-// import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
+import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
 // import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
 // import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 // import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
@@ -48,7 +48,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
   'instrumentos-codificados': null,
   'labirinto-secreto': null,
-  'linhas-cruzadas': null,
+  'linhas-cruzadas': LINHAS_CRUZADAS,
   megamix: null,
   'mente-coletiva': MENTE_COLETIVA,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
@@ -61,7 +61,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'quem-sou-eu': QUEM_SOU_EU,
   'retrato-falado': null,
   'sonhos-pesadelos': null,
-  'super-campeonato': null,
+  'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': null,
   'testemunha-ocular': null,
   'trevo-da-sorte': null,

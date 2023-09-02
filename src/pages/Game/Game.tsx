@@ -308,8 +308,6 @@ function Game() {
     }
   }
 
-  console.log('pageError', gameName, gameId);
-
   // If switch fails, it's an error
   return <PageError />;
 }
