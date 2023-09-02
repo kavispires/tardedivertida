@@ -20,10 +20,10 @@ export const setup = (players: Players, store: PlainObject, properties: PlainObj
 
 /**
  * Adds a numeric value to given property in the achievements
- * @param store
- * @param playerId
- * @param property
- * @param value
+ * @param store the store
+ * @param playerId the player id
+ * @param property the property to increase
+ * @param value the value to increase
  * @returns the achievements
  */
 export const increase = (store: PlainObject, playerId: PlayerId, property: string, value: number) => {

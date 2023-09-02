@@ -9,6 +9,8 @@ import { Title } from 'components/text';
 import { ContenderCard } from './components/ContenderCard';
 import { useLanguage } from 'hooks/useLanguage';
 import { Card } from 'components/cards';
+import { Achievements } from 'components/general/Achievements';
+import { achievementsReference } from './utils/achievements';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const pastBattles: PastBattles = state.pastBattles;
@@ -26,11 +28,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
 
       <Divider />
 
-      <Space className="space-container margin" align="center">
-        <Title size="xx-small" className="padding">
-          <Translate pt="Medalhas em breve" en="Achievements coming soon" />
-        </Title>
-      </Space>
+      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <Divider />
 

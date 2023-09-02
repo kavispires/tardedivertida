@@ -1,7 +1,20 @@
 import utils from '../../utils';
-import { CHAMPIONSHIP_ORDER, CONTENDERS_PER_ROUND, SUPER_CAMPEONATO_PHASES, TOTAL_ROUNDS } from './constants';
+import {
+  CHAMPIONSHIP_ORDER,
+  CONTENDERS_PER_ROUND,
+  SUPER_CAMPEONATO_ACHIEVEMENTS,
+  SUPER_CAMPEONATO_PHASES,
+  TOTAL_ROUNDS,
+} from './constants';
 
-import type { Bracket, BracketTier, Contender, ContendersDeck } from './types';
+import type {
+  Bracket,
+  BracketTier,
+  Contender,
+  ContendersDeck,
+  FirebaseStoreData,
+  SuperCampeonatoAchievement,
+} from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -324,4 +337,247 @@ export const getPastBattle = (brackets: Bracket[], challenge: TextCard) => {
     challenge,
     contenders,
   };
+};
+
+export const updateAchievements = (store: FirebaseStoreData, brackets: Bracket[]) => {
+  Object.values(brackets).forEach((bracket) => {
+    if (bracket.playerId !== 'CPU') {
+      // Achievement: Quarter Contender votes
+      if (bracket.tier === 'quarter') {
+        utils.achievements.increase(store, bracket.playerId, 'quarterContender', bracket.votes.length);
+      }
+
+      // Achievement: Semi Contender votes
+      if (bracket.tier === 'semi') {
+        utils.achievements.increase(store, bracket.playerId, 'semiContender', bracket.votes.length);
+      }
+
+      // Achievement: Final Contender votes
+      if (bracket.tier === 'final') {
+        utils.achievements.increase(store, bracket.playerId, 'finalContender', bracket.votes.length);
+      }
+
+      // Achievement: Contender votes
+      utils.achievements.increase(store, bracket.playerId, 'contender', bracket.votes.length);
+    }
+
+    // Achievement: Solitaire votes
+    if (bracket.votes.length === 1) {
+      utils.achievements.increase(store, bracket.votes[0], 'solitaire', 1);
+    } else {
+      // Achievement: group votes
+      bracket.votes.forEach((playerId) => {
+        utils.achievements.increase(store, playerId, 'groupVotes', 1);
+      });
+    }
+
+    // Bets
+    if (bracket.win) {
+      bracket.votes.forEach((playerId) => {
+        utils.achievements.increase(store, playerId, 'bets', 1);
+
+        if (bracket.tier === 'quarter') {
+          utils.achievements.increase(store, playerId, 'quarterBets', 1);
+        }
+        if (bracket.tier === 'semi') {
+          utils.achievements.increase(store, playerId, 'semiBets', 1);
+        }
+        if (bracket.tier === 'final') {
+          utils.achievements.increase(store, playerId, 'finalBets', 1);
+        }
+      });
+    }
+  });
+};
+
+/**
+ * Get achievements:
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<SuperCampeonatoAchievement>[] = [];
+
+  // Most Quarter Bets
+  const { most: bestQuarterBets, least: worstQuarterBets } = utils.achievements.getMostAndLeastOf(
+    store,
+    'quarterBets'
+  );
+  if (bestQuarterBets) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_QUARTER_BETS,
+      playerId: bestQuarterBets.playerId,
+      value: bestQuarterBets.quarterBets,
+    });
+  }
+
+  if (worstQuarterBets) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_QUARTER_BETS,
+      playerId: worstQuarterBets.playerId,
+      value: worstQuarterBets.quarterBets,
+    });
+  }
+
+  // Most Semi Bets
+  const { most: bestSemiBets, least: worstSemiBets } = utils.achievements.getMostAndLeastOf(
+    store,
+    'semiBets'
+  );
+  if (bestSemiBets) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_SEMI_BETS,
+      playerId: bestSemiBets.playerId,
+      value: bestSemiBets.semiBets,
+    });
+  }
+  if (worstSemiBets) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_SEMI_BETS,
+      playerId: worstSemiBets.playerId,
+      value: worstSemiBets.semiBets,
+    });
+  }
+
+  // Most Final Bets
+  const { most: bestFinalBets, least: worstFinalBets } = utils.achievements.getMostAndLeastOf(
+    store,
+    'finalBets'
+  );
+  if (bestFinalBets) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_FINAL_BETS,
+      playerId: bestFinalBets.playerId,
+      value: bestFinalBets.finalBets,
+    });
+  }
+  if (worstFinalBets) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_FINAL_BETS,
+      playerId: worstFinalBets.playerId,
+      value: worstFinalBets.finalBets,
+    });
+  }
+
+  // Most Overall Bets
+  const { most: bestOverallBets, least: worstOverallBets } = utils.achievements.getMostAndLeastOf(
+    store,
+    'bets'
+  );
+  if (bestOverallBets) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_OVERALL_BETS,
+      playerId: bestOverallBets.playerId,
+      value: bestOverallBets.bets,
+    });
+  }
+  if (worstOverallBets) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_OVERALL_BETS,
+      playerId: worstOverallBets.playerId,
+      value: worstOverallBets.bets,
+    });
+  }
+
+  // Most Quarter Contenders
+  const { most: bestQuarterContenders, least: worstQuarterContenders } = utils.achievements.getMostAndLeastOf(
+    store,
+    'quarterContender'
+  );
+  if (bestQuarterContenders) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_QUARTER_CONTENDERS,
+      playerId: bestQuarterContenders.playerId,
+      value: bestQuarterContenders.quarterContender,
+    });
+  }
+  if (worstQuarterContenders) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_QUARTER_CONTENDERS,
+      playerId: worstQuarterContenders.playerId,
+      value: worstQuarterContenders.quarterContender,
+    });
+  }
+
+  // Most Semi Contenders
+  const { most: bestSemiContenders, least: worstSemiContenders } = utils.achievements.getMostAndLeastOf(
+    store,
+    'semiContender'
+  );
+  if (bestSemiContenders) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_SEMI_CONTENDERS,
+      playerId: bestSemiContenders.playerId,
+      value: bestSemiContenders.semiContender,
+    });
+  }
+  if (worstSemiContenders) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_SEMI_CONTENDERS,
+      playerId: worstSemiContenders.playerId,
+      value: worstSemiContenders.semiContender,
+    });
+  }
+
+  // Most Final Contenders
+  const { most: bestFinalContenders, least: worstFinalContenders } = utils.achievements.getMostAndLeastOf(
+    store,
+    'finalContender'
+  );
+  if (bestFinalContenders) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_FINAL_CONTENDERS,
+      playerId: bestFinalContenders.playerId,
+      value: bestFinalContenders.finalContender,
+    });
+  }
+  if (worstFinalContenders) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_FINAL_CONTENDERS,
+      playerId: worstFinalContenders.playerId,
+      value: worstFinalContenders.finalContender,
+    });
+  }
+
+  // Most Contenders
+  const { most: bestContenders, least: worstContenders } = utils.achievements.getMostAndLeastOf(
+    store,
+    'contender'
+  );
+  if (bestContenders) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_CONTENDERS,
+      playerId: bestContenders.playerId,
+      value: bestContenders.contender,
+    });
+  }
+
+  if (worstContenders) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_CONTENDER,
+      playerId: worstContenders.playerId,
+      value: worstContenders.contender,
+    });
+  }
+
+  // Most Group Votes
+  const { most: mostGroupVotes } = utils.achievements.getMostAndLeastOf(store, 'groupVotes');
+  if (mostGroupVotes) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.MOST_GROUP_VOTES,
+      playerId: mostGroupVotes.playerId,
+      value: mostGroupVotes.groupVotes,
+    });
+  }
+
+  // Solitaire Vote
+  const { most: solitaireVote } = utils.achievements.getMostAndLeastOf(store, 'solitaireVote');
+  if (solitaireVote) {
+    achievements.push({
+      type: SUPER_CAMPEONATO_ACHIEVEMENTS.SOLITAIRE_VOTE,
+      playerId: solitaireVote.playerId,
+      value: solitaireVote.solitaireVote,
+    });
+  }
+
+  return achievements;
 };

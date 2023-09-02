@@ -1,4 +1,4 @@
-import { SUPER_CAMPEONATO_ACTIONS } from './constants';
+import { SUPER_CAMPEONATO_ACHIEVEMENTS, SUPER_CAMPEONATO_ACTIONS } from './constants';
 
 export type SuperCampeonatoOptions = {
   alternative?: boolean;
@@ -50,6 +50,8 @@ export interface SuperCampeonatoInitialState extends InitialState {
 export interface SuperCampeonatoSubmitAction extends Payload {
   action: keyof typeof SUPER_CAMPEONATO_ACTIONS;
 }
+
+export type SuperCampeonatoAchievement = keyof typeof SUPER_CAMPEONATO_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | SuperCampeonatoState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | SuperCampeonatoStore;
