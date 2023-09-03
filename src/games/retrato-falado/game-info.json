@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "retrato-falado",
-  "version": "1.8.23",
+  "version": "2.0.0",
   "title": {
     "pt": "Retrato Falado Monstruoso",
     "en": "Monster Sketch"
@@ -22,12 +22,19 @@
     "backgroundColor": "rgba(8, 60, 3, 0.5)"
   },
   "rules": {
-    "pt": ["TBD"],
     "en": [
       "Every round a player will be the witness, they have seen a monster around doing monstrous criminal activities",
-      "They have 20 seconds to memorize the monster's features. Immediately after they have 2 minutes to describe the monster to the other players",
-      "Then each player including the witness vote for the sketch the best matches the original monster, that artist will get 1 point.",
-      "If the witness voted with the group, it is a credible witness and it also gets a point, otherwise whoever the witness voted for gets 1 point"
+      "They have 20 seconds to memorize the monster's features. Immediately after they have 2 minutes to describe the monster to the other players to draw",
+      "Then each player, including the witness, votes for the sketch the best matches the original monster.",
+      "If a sketch got at least 1 vote, it gets 1 point, the most voted sketch gets 3 points",
+      "If the witness voted with the group, it is a credible witness and it also gets 2 points."
+    ],
+    "pt": [
+      "A cada rodada um jogador será a testemunha, ela viu um monstro por aí fazendo atividades criminosas monstruosas",
+      "Ela tem 20 segundos para memorizar as características do monstro. Imediatamente depois ela tem 2 minutos para descrever o monstro para os outros jogadores desenharem",
+      "Então cada jogador, incluindo a testemunha, vota no desenho que mais se parece com o monstro original.",
+      "Se um desenho recebeu pelo menos 1 voto, ele recebe 1 ponto, o desenho mais votado recebe 3 pontos",
+      "Se a testemunha votou com o grupo, ela é uma testemunha crível e também recebe 2 pontos."
     ]
   },
   "playerCount": {

@@ -5,7 +5,7 @@ import { RETRATO_FALADO_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Helpers1
 import utils from '../../utils';
-import { buildDeck, buildRanking, gatherSketches, getMostVotes } from './helpers';
+import { buildDeck, buildRanking, gatherSketches } from './helpers';
 import { saveData } from './data';
 
 /**
@@ -70,7 +70,7 @@ export const prepareCompositeSketchPhase = async (
         witnessId,
         round: utils.helpers.increaseRound(state.round),
       },
-      storeCleanup: ['currentOrientation'],
+      storeCleanup: ['currentOrientation', 'witnessVote', 'mostVotes', 'ranking', 'mostVoted', 'votes'],
     },
   };
 };
@@ -108,12 +108,8 @@ export const prepareRevealPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Calculate mostVotes
-  const mostVotes = getMostVotes(players, state.witnessId);
-  // Get witness vote
-  const witnessVote = players[state.witnessId].vote;
   // Create ranking
-  const ranking = buildRanking(players, state.witnessId, mostVotes, witnessVote);
+  const { ranking, mostVotes, witnessVote, mostVoted, votes } = buildRanking(players, state.witnessId);
 
   const selectedSketches = state.sketches.filter(
     (sketch: MonsterSketch) => sketch.playerId && mostVotes.includes(sketch.playerId)
@@ -133,6 +129,8 @@ export const prepareRevealPhase = async (
         witnessVote,
         mostVotes,
         ranking,
+        mostVoted,
+        votes,
       },
     },
   };

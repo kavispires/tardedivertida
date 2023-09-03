@@ -20,9 +20,11 @@ type StepResultsProps = {
   sketches: Sketch[];
   user: Player | PlainObject;
   players: GamePlayers;
-  mostVotes: PlayerId[];
-  witnessVote: any;
+  witnessVote: PlayerId;
   witness: Player | PlainObject;
+  mostVotes: PlayerId[];
+  mostVoted: PlayerId[];
+  votes: Record<PlayerId, PlayerId[]>;
 } & AnnouncementProps;
 
 type Sketches = {
@@ -36,9 +38,11 @@ export function StepResults({
   currentMonster,
   goToNextStep,
   mostVotes,
+  mostVoted,
   witnessVote,
   witness,
   announcement,
+  votes,
 }: StepResultsProps) {
   useTemporarilyHidePlayersBar();
 
@@ -67,27 +71,36 @@ export function StepResults({
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        {mostVotes.length > 1 ? (
-          <Translate
-            pt="Os monstros mais votados foram..."
-            en="The monsters who got the most votes were..."
-          />
+        {Boolean(mostVoted) ? (
+          <Translate pt="O retrato mais votado foi..." en="The sketch who got the most votes was..." />
         ) : (
-          <Translate pt="O monstro mais votado foi..." en="The monster who got the most votes was..." />
+          <Translate
+            en="The sketches who got the most votes were..."
+            pt="Os retratos que mais receberam votos foram..."
+          />
         )}
       </Title>
 
       <Instruction contained>
-        {mostVotes.length > 1 ? (
+        {Boolean(mostVoted) && mostVotes.length > 1 && (
+          <>
+            <Translate
+              pt="Dois ou mais retratos empataram com a mesma quantidade de votos, mas o voto da testemunha determinou o vencedor."
+              en="Two or more sketches tied with the same amount of votes, but the witness' vote determined the winner."
+            />
+            <br />
+          </>
+        )}
+        {Boolean(mostVoted) ? (
           <Translate
             pt={
               <>
-                Esses jogadores ganharam <PointsHighlight type="positive">2</PointsHighlight> pontos cada.
+                Esse jogador ganha <PointsHighlight type="positive">3</PointsHighlight> pontos.
               </>
             }
             en={
               <>
-                These players get <PointsHighlight type="positive">2</PointsHighlight> points each.
+                This player gets <PointsHighlight type="positive">3</PointsHighlight> points.
               </>
             }
           />
@@ -95,12 +108,12 @@ export function StepResults({
           <Translate
             pt={
               <>
-                Esse jogador ganha <PointsHighlight type="positive">2</PointsHighlight> pontos.
+                Esses jogadores ganharam <PointsHighlight type="positive">3</PointsHighlight> pontos cada.
               </>
             }
             en={
               <>
-                This player gets <PointsHighlight type="positive">2</PointsHighlight> points.
+                These players get <PointsHighlight type="positive">3</PointsHighlight> points each.
               </>
             }
           />
@@ -152,7 +165,7 @@ export function StepResults({
         )}
       </Instruction>
 
-      <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep}>
+      <TimedButton duration={555530} onExpire={goToNextStep} onClick={goToNextStep}>
         <Translate pt="Ver Ranking" en="See Ranking" />
       </TimedButton>
 
@@ -166,6 +179,7 @@ export function StepResults({
           players={players}
           canvasSize={canvasSize / 1.5}
           canvasWidth={canvasWidth / 1.5}
+          votes={votes}
         />
       </Space>
     </Step>

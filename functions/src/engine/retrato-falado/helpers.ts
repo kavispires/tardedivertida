@@ -51,7 +51,7 @@ export const gatherSketches = (
   currentMonster: MonsterCard,
   witnessId: PlayerId
 ): MonsterSketch[] => {
-  const gathering = Object.values(players).reduce((acc: MonsterSketch[], player: Player) => {
+  const gathering = utils.players.getListOfPlayers(players).reduce((acc: MonsterSketch[], player: Player) => {
     if (player.id !== witnessId) {
       acc.push({
         playerId: player.id,
@@ -67,58 +67,73 @@ export const gatherSketches = (
 };
 
 /**
- * Get the players with the most votes
- * @param players
- * @param witnessId
- * @returns
- */
-export const getMostVotes = (players: Players, witnessId: PlayerId): PlayerId[] => {
-  type MostVotesAcc = { [key: string]: number };
-  const votes = Object.values(players).reduce((acc: MostVotesAcc, player: Player) => {
-    if (player.id !== witnessId) {
-      if (acc[player.vote] === undefined) {
-        acc[player.vote] = 1;
-      } else {
-        acc[player.vote] += 1;
-      }
-    }
-    return acc;
-  }, {});
-
-  const max = Math.max(...Object.values(votes));
-
-  return Object.entries(votes).reduce((acc: PlayerId[], [playerId, voteCount]: [PlayerId, number]) => {
-    if (voteCount === max) acc.push(playerId);
-    return acc;
-  }, []);
-};
-
-/**
- *
+ * Score and rank
  * @param players
  * @param witnessId
  * @param mostVotes
  * @param witnessVote
  */
-export const buildRanking = (
-  players: Players,
-  witnessId: PlayerId,
-  mostVotes: PlayerId[],
-  witnessVote: PlayerId
-): RankingEntry[] => {
+export const buildRanking = (players: Players, witnessId: PlayerId) => {
+  // Gained points [Most Voted, votes, witness vote]
   const scores = new utils.players.Scores(players, [0, 0, 0]);
+
+  // Count votes
+  const votes: Record<PlayerId, PlayerId[]> = {};
+  const votesCount = utils.players
+    .getListOfPlayers(players)
+    .reduce((acc: NumberDictionary, player: Player) => {
+      if (player.id !== witnessId) {
+        if (acc[player.vote] === undefined) {
+          scores.add(player.vote, 1, 1);
+          acc[player.vote] = 1;
+          votes[player.vote] = [player.id];
+        } else {
+          acc[player.vote] += 1;
+          votes[player.vote].push(player.id);
+        }
+      }
+      return acc;
+    }, {});
+
+  const max = Math.max(...Object.values(votesCount));
+
+  const mostVotes = Object.entries(votesCount).reduce(
+    (acc: PlayerId[], [playerId, voteCount]: [PlayerId, number]) => {
+      if (voteCount === max) acc.push(playerId);
+      return acc;
+    },
+    []
+  );
+  let mostVoted: PlayerId | null = null;
+
+  // Get witness vote
+  const witnessVote = players[witnessId].vote;
+
+  // In case of a tie, the witness vote is the tie breaker
+  if (mostVotes.length > 1) {
+    const witnessVoteIndex = mostVotes.indexOf(witnessVote);
+    if (witnessVoteIndex > -1) {
+      // Witness point bc their vote was among the most voted
+      mostVoted = mostVotes[witnessVoteIndex];
+      scores.add(witnessId, 2, 1);
+    }
+  } else {
+    mostVoted = mostVotes[0];
+    if (mostVoted === witnessVote) {
+      scores.add(witnessId, 2, 1);
+    }
+  }
 
   // Add points for mostVotes
   mostVotes.forEach((playerId) => {
     scores.add(playerId, 2, 0);
   });
 
-  // Add witness vote
-  if (mostVotes.includes(witnessVote)) {
-    scores.add(witnessId, 2, 1);
-  } else {
-    scores.add(witnessVote, 1, 2);
-  }
-
-  return scores.rank(players);
+  return {
+    ranking: scores.rank(players),
+    mostVotes,
+    mostVoted,
+    witnessVote,
+    votes,
+  };
 };

@@ -52,54 +52,52 @@ export function StepVote({
         <Translate pt="Vote!" en="Vote!" />
       </Title>
       <Instruction contained>
+        <Translate
+          pt="Vote no desenho que mais se aproxima do monstro."
+          en="Vote for the sketch that best represents the monster."
+        />
+        <br />
+        <Translate
+          pt={
+            <>
+              Cada desenho que receber pelo menos um voto, ganha <PointsHighlight>1 ponto</PointsHighlight> e
+              o desenho mais votado ganha <PointsHighlight>3 pontos</PointsHighlight>.
+            </>
+          }
+          en={
+            <>
+              Each sketch that receives at least one vote gets <PointsHighlight>1 point</PointsHighlight> and
+              the sketch with the most votes gets <PointsHighlight>3 points</PointsHighlight>.
+            </>
+          }
+        />
+        <br />
         <ViewOr condition={isUserTheWitness}>
           <Translate
             pt={
               <>
-                Você só ganha ponto se você escolher o desenho mais votado.
-                <br />
-                Caso você não escolha o mais votado, o jogador que você escolher ganha{' '}
-                <PointsHighlight>1</PointsHighlight> ponto.
+                Como testemunha, você ganha <PointsHighlight>2 pontos</PointsHighlight> se você escolher o
+                desenho mais votado pelos outros jogadores. (E você é o desempate em caso de empate!)
               </>
             }
             en={
               <>
-                You only score if you choose the best sketch (the one with the most votes).
-                <br />
-                If you didn't pick the one, the player you chose gets <PointsHighlight>
-                  1
-                </PointsHighlight>{' '}
-                point.
+                As the witness, you get <PointsHighlight>2 points</PointsHighlight> if you choose the sketch
+                with the most votes from the other players. (And you are the tiebreaker in case of a tie!)
               </>
             }
           />
 
           <Translate
-            pt={
-              <>
-                Vote no desenho que mais se aproxima do monstro.
-                <br />
-                Você não pode votar em si mesmo.
-                <br />O desenho (ou desenhos) mais votado receberá <PointsHighlight>2</PointsHighlight>{' '}
-                pontos!
-              </>
-            }
-            en={
-              <>
-                Vote for the sketch that best represents the monster.
-                <br />
-                You cannot vote for yourself.
-                <br />
-                The sketch (or sketches) with the most votes gets <PointsHighlight>2</PointsHighlight> points.
-              </>
-            }
+            pt={<strong>Você não pode votar em si mesmo.</strong>}
+            en={<strong>You cannot vote for yourself.</strong>}
           />
         </ViewOr>
       </Instruction>
 
       <CanvasResizer />
 
-      <Space className="space-container" align="center">
+      <Space className="space-container" align="center" wrap>
         {sketches.map((sketchObj) => {
           const player = players[sketchObj.playerId];
           const ownDrawing = sketchObj.playerId === user.id;
