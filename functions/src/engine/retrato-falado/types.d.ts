@@ -1,4 +1,4 @@
-import { RETRATO_FALADO_ACTIONS } from './constants';
+import { RETRATO_FALADO_ACHIEVEMENTS, RETRATO_FALADO_ACTIONS } from './constants';
 
 export interface MonsterSketch extends MonsterCard {
   playerId: PlayerId | null;
@@ -29,6 +29,8 @@ export interface RetratoFaladoInitialState extends InitialState {
 export interface RetratoFaladoSubmitAction extends Payload {
   action: keyof typeof RETRATO_FALADO_ACTIONS;
 }
+
+export type RetratoFaladoAchievement = keyof typeof RETRATO_FALADO_ACHIEVEMENTS;
 
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | RetratoFaladoStore;
 export type FirebaseStateData = FirebaseFirestore.DocumentData | RetratoFaladoState;

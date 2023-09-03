@@ -23,7 +23,7 @@ import ONDA_TELEPATICA from 'games/onda-telepatica/utils/achievements';
 import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/utils/achievements';
 // import QUEM_NAO_MATA from 'games/quem-nao-mata/utils/achievements';
 import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
-// import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
+import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
 // import SONHOS_PESADELOS from 'games/sonhos-pesadelos/utils/achievements';
 import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
 // import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
@@ -59,7 +59,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'porta-dos-desesperados': PORTA_DOS_DESESPERADOS,
   'quem-nao-mata': null,
   'quem-sou-eu': QUEM_SOU_EU,
-  'retrato-falado': null,
+  'retrato-falado': RETRATO_FALADO,
   'sonhos-pesadelos': null,
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': null,
