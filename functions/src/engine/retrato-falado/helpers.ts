@@ -1,7 +1,7 @@
 // Constants
-import { RETRATO_FALADO_PHASES } from './constants';
+import { RETRATO_FALADO_ACHIEVEMENTS, RETRATO_FALADO_PHASES } from './constants';
 // Types
-import type { AllMonsters, MonsterSketch } from './types';
+import type { AllMonsters, FirebaseStoreData, MonsterSketch, RetratoFaladoAchievement } from './types';
 // Helpers
 import utils from '../../utils';
 
@@ -70,10 +70,9 @@ export const gatherSketches = (
  * Score and rank
  * @param players
  * @param witnessId
- * @param mostVotes
- * @param witnessVote
+ * @param store
  */
-export const buildRanking = (players: Players, witnessId: PlayerId) => {
+export const buildRanking = (players: Players, witnessId: PlayerId, store: FirebaseStoreData) => {
   // Gained points [Most Voted, votes, witness vote]
   const scores = new utils.players.Scores(players, [0, 0, 0]);
 
@@ -85,8 +84,10 @@ export const buildRanking = (players: Players, witnessId: PlayerId) => {
       if (player.id !== witnessId) {
         if (acc[player.vote] === undefined) {
           scores.add(player.vote, 1, 1);
+          utils.achievements.increase(store, player.vote, 'votes', 1);
           acc[player.vote] = 1;
           votes[player.vote] = [player.id];
+          utils.achievements.increase(store, player.vote, 'votes', 1);
         } else {
           acc[player.vote] += 1;
           votes[player.vote].push(player.id);
@@ -106,8 +107,16 @@ export const buildRanking = (players: Players, witnessId: PlayerId) => {
   );
   let mostVoted: PlayerId | null = null;
 
+  // Achievement: Group votes
+  utils.players.getListOfPlayers(players).forEach((player: Player) => {
+    if (mostVotes.includes(player.vote)) {
+      utils.achievements.increase(store, player.vote, 'groupVote', 1);
+    }
+  });
+
   // Get witness vote
   const witnessVote = players[witnessId].vote;
+  utils.achievements.increase(store, witnessVote, 'witnessPick', 1);
 
   // In case of a tie, the witness vote is the tie breaker
   if (mostVotes.length > 1) {
@@ -125,9 +134,15 @@ export const buildRanking = (players: Players, witnessId: PlayerId) => {
   }
 
   // Add points for mostVotes
-  mostVotes.forEach((playerId) => {
-    scores.add(playerId, 2, 0);
-  });
+  if (mostVoted) {
+    scores.add(mostVoted, 3, 0);
+    scores.subtract(mostVoted, 1, 1);
+  } else {
+    mostVotes.forEach((playerId) => {
+      scores.add(playerId, 3, 0);
+      scores.subtract(playerId, 1, 1);
+    });
+  }
 
   return {
     ranking: scores.rank(players),
@@ -136,4 +151,62 @@ export const buildRanking = (players: Players, witnessId: PlayerId) => {
     witnessVote,
     votes,
   };
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<RetratoFaladoAchievement>[] = [];
+
+  // Best and worst sketches (based on total votes)
+  const { most: bestSketches, least: worstSketches } = utils.achievements.getMostAndLeastOf(store, 'votes');
+  if (bestSketches) {
+    achievements.push({
+      type: RETRATO_FALADO_ACHIEVEMENTS.BEST_SKETCHES,
+      playerId: bestSketches.playerId,
+      value: bestSketches.votes,
+    });
+  }
+
+  if (worstSketches) {
+    achievements.push({
+      type: RETRATO_FALADO_ACHIEVEMENTS.WORST_SKETCHES,
+      playerId: worstSketches.playerId,
+      value: worstSketches.votes,
+    });
+  }
+
+  // Most and fewest group votes
+  const { most: mostGroupVotes, least: fewestGroupVotes } = utils.achievements.getMostAndLeastOf(
+    store,
+    'groupVote'
+  );
+  if (mostGroupVotes) {
+    achievements.push({
+      type: RETRATO_FALADO_ACHIEVEMENTS.MOST_GROUP_VOTES,
+      playerId: mostGroupVotes.playerId,
+      value: mostGroupVotes.groupVote,
+    });
+  }
+
+  if (fewestGroupVotes) {
+    achievements.push({
+      type: RETRATO_FALADO_ACHIEVEMENTS.FEWEST_GROUP_VOTES,
+      playerId: fewestGroupVotes.playerId,
+      value: fewestGroupVotes.groupVote,
+    });
+  }
+
+  const { most: witnessPick } = utils.achievements.getMostAndLeastOf(store, 'witnessPick');
+  if (witnessPick) {
+    achievements.push({
+      type: RETRATO_FALADO_ACHIEVEMENTS.WITNESS_PICK,
+      playerId: witnessPick.playerId,
+      value: witnessPick.witnessPick,
+    });
+  }
+
+  return achievements;
 };

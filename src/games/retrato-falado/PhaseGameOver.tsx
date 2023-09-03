@@ -7,6 +7,8 @@ import { Title } from 'components/text';
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
 import { MonsterSketches } from './components/MonsterSketches';
+import { Achievements } from 'components/general/Achievements';
+import { achievementsReference } from './utils/achievements';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const canvasWidth = useCardWidth(6, {
@@ -17,6 +19,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
 
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
+      <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
       <div>
         <Title level={2}>
           <Translate pt="Desenhos" en="Sketches" />

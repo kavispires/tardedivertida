@@ -5,7 +5,7 @@ import { RETRATO_FALADO_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Helpers1
 import utils from '../../utils';
-import { buildDeck, buildRanking, gatherSketches } from './helpers';
+import { buildDeck, buildRanking, gatherSketches, getAchievements } from './helpers';
 import { saveData } from './data';
 
 /**
@@ -26,12 +26,19 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(additionalData.allMonsters, playerCount);
 
+  const achievements = utils.achievements.setup(players, store, {
+    votes: 0,
+    groupVote: 0,
+    witnessPick: 0,
+  });
+
   // Save
   return {
     update: {
       store: {
         deck,
         pastSketches: [],
+        achievements,
       },
       state: {
         phase: RETRATO_FALADO_PHASES.SETUP,
@@ -109,7 +116,7 @@ export const prepareRevealPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Create ranking
-  const { ranking, mostVotes, witnessVote, mostVoted, votes } = buildRanking(players, state.witnessId);
+  const { ranking, mostVotes, witnessVote, mostVoted, votes } = buildRanking(players, state.witnessId, store);
 
   const selectedSketches = state.sketches.filter(
     (sketch: MonsterSketch) => sketch.playerId && mostVotes.includes(sketch.playerId)
@@ -122,6 +129,7 @@ export const prepareRevealPhase = async (
     update: {
       store: {
         pastSketches: [...store.pastSketches, ...selectedSketches],
+        achievements: store.achievements,
       },
       state: {
         phase: RETRATO_FALADO_PHASES.REVEAL,
@@ -146,13 +154,15 @@ export const prepareGameOverPhase = async (
 
   await utils.firebase.markGameAsComplete(gameId);
 
+  const achievements = getAchievements(store);
+
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.RETRATO_FALADO,
     gameId,
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -172,6 +182,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         gallery,
         winners,
+        achievements,
       },
     },
   };

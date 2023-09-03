@@ -23,7 +23,7 @@ type StepResultsProps = {
   witnessVote: PlayerId;
   witness: Player | PlainObject;
   mostVotes: PlayerId[];
-  mostVoted: PlayerId[];
+  mostVoted: PlayerId;
   votes: Record<PlayerId, PlayerId[]>;
 } & AnnouncementProps;
 
@@ -55,6 +55,15 @@ export function StepResults({
 
   const { mostVotedSketches, otherSketches } = sketches.reduce(
     (acc: Sketches, sketch) => {
+      if (mostVoted) {
+        if (mostVoted === sketch.playerId) {
+          acc.mostVotedSketches.push(sketch);
+        } else {
+          acc.otherSketches.push(sketch);
+        }
+        return acc;
+      }
+
       if (mostVotes.includes(sketch.playerId)) {
         acc.mostVotedSketches.push(sketch);
       } else {
@@ -151,21 +160,20 @@ export function StepResults({
             pt={
               <>
                 A testemunha achou que o desenho de <AvatarName player={players[witnessVote]} /> foi o melhor,
-                esse jogador ganha <PointsHighlight type="positive">1</PointsHighlight> ponto.
+                não votou com a maioria, portanto, não ganha pontos.
               </>
             }
             en={
               <>
                 The witness thought that <AvatarName player={players[witnessVote]} />
-                's sketch was the best, so they get <PointsHighlight type="positive">1</PointsHighlight>{' '}
-                point.
+                's sketch was the best. They didn't vote with the majority, so they don't get any points.
               </>
             }
           />
         )}
       </Instruction>
 
-      <TimedButton duration={555530} onExpire={goToNextStep} onClick={goToNextStep}>
+      <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep}>
         <Translate pt="Ver Ranking" en="See Ranking" />
       </TimedButton>
 
