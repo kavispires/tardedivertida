@@ -1,17 +1,25 @@
 // Ant Design Resources
-import { Space } from 'antd';
+import { Space, Avatar as AntAvatar } from 'antd';
 // Components
 import { Avatar } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
+import { Translate } from 'components/language';
 
 type MonsterSketchesProps = {
   sketches: Sketch[];
   players: GamePlayers;
   canvasSize: number;
   canvasWidth: number;
+  votes?: Record<PlayerId, PlayerId[]>;
 };
 
-export function MonsterSketches({ sketches, players, canvasSize, canvasWidth }: MonsterSketchesProps) {
+export function MonsterSketches({
+  sketches,
+  players,
+  canvasSize,
+  canvasWidth,
+  votes = {},
+}: MonsterSketchesProps) {
   return (
     <>
       {sketches.map((sketchObj) => {
@@ -32,6 +40,16 @@ export function MonsterSketches({ sketches, players, canvasSize, canvasWidth }: 
             <div>
               <Avatar id={player.avatarId} size="small" /> {player.name}
             </div>
+            {(votes?.[player.id] ?? []).length > 0 && (
+              <Space align="center">
+                <Translate pt="Votos:" en="Votes:" />
+                <AntAvatar.Group maxCount={5}>
+                  {(votes?.[player.id] ?? []).map((vote) => (
+                    <Avatar key={`vote-${vote}`} id={players[vote].avatarId} size="small" />
+                  ))}
+                </AntAvatar.Group>
+              </Space>
+            )}
           </Space>
         );
       })}

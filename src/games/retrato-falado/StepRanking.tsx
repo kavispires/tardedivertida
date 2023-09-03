@@ -17,8 +17,8 @@ export function StepRanking({ ranking, players, round, goToPreviousStep }: StepR
       ranking={ranking}
       gainedPointsDescriptions={[
         <Translate pt="Mais votado" en="Most votes" />,
-        <Translate pt="Votou com o grupo" en="Voted with the group" />,
-        <Translate pt="Votado pela testemunha" en="Voted by the witness" />,
+        <Translate pt="Recebeu pelo menos 1 voto" en="Got at least 1 vote" />,
+        <Translate pt="Pontos da testemunha" en="Witness points" />,
       ]}
     >
       <Space className="space-container" align="center">

@@ -44,11 +44,13 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           currentMonster={state.currentMonster}
           sketches={state.sketches}
           mostVotes={state.mostVotes}
+          mostVoted={state.mostVoted}
           witnessVote={state.witnessVote}
           user={user}
           players={players}
           goToNextStep={goToNextStep}
           announcement={announcement}
+          votes={state.votes}
         />
 
         {/* Step 1 */}
