@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "retrato-falado",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "title": {
     "pt": "Retrato Falado Monstruoso",
     "en": "Monster Sketch"
@@ -46,7 +46,7 @@
     "base": 4,
     "perPlayer": 5
   },
-  "tags": ["competitive", "drawing", "voting", "discussion", "timed"],
+  "tags": ["competitive", "drawing", "voting", "discussion", "timed", "achievements"],
   "available": {
     "pt": true,
     "en": true

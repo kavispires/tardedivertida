@@ -7,6 +7,7 @@ import { Instruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
 import { MonsterCard } from '../../../components/cards/MonsterCard';
+import { AvatarName } from 'components/avatars';
 
 type ViewWitnessingProps = {
   isUserTheWitness: boolean;
@@ -14,6 +15,7 @@ type ViewWitnessingProps = {
   lines: CanvasLine[];
   setLines: CanvasSetLine;
   currentMonster: Monster;
+  witness: GamePlayer;
 };
 
 export function ViewWitnessing({
@@ -22,6 +24,7 @@ export function ViewWitnessing({
   remainingWitnessingTime,
   lines,
   setLines,
+  witness,
 }: ViewWitnessingProps) {
   return (
     <ViewOr condition={isUserTheWitness}>
@@ -39,8 +42,16 @@ export function ViewWitnessing({
         </Title>
         <Instruction contained>
           <Translate
-            pt="A testemunha está tendo um flashback do monstro."
-            en="The witness is having a flashback of the monster event now."
+            pt={
+              <>
+                A testemunha <AvatarName player={witness} /> está tendo um flashback do monstro.
+              </>
+            }
+            en={
+              <>
+                The witness <AvatarName player={witness} /> is having a flashback of the monster event now.
+              </>
+            }
           />
         </Instruction>
         <TimerBar steps={TIMES.MEMORY} value={remainingWitnessingTime} total={TIMES.MEMORY} />

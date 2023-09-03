@@ -130,6 +130,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
         {/* Step 2 */}
         <StepTestimonial
           isUserTheWitness={isUserTheWitness}
+          witness={witness}
           currentMonster={state.currentMonster}
           onSubmitSketch={onSubmitSketch}
           onSubmitOrientation={onSubmitOrientation}

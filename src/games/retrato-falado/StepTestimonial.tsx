@@ -16,6 +16,7 @@ type StepTestimonialProps = {
   currentMonster: Monster;
   onSubmitSketch: GenericFunction;
   onSubmitOrientation: GenericFunction;
+  witness: GamePlayer;
 };
 
 export function StepTestimonial({
@@ -23,6 +24,7 @@ export function StepTestimonial({
   currentMonster,
   onSubmitSketch,
   onSubmitOrientation,
+  witness,
 }: StepTestimonialProps) {
   const [monsterOrientation] = useGlobalState('monsterOrientation');
   const [view, setView] = useState(VIEWS.WITNESSING);
@@ -68,6 +70,7 @@ export function StepTestimonial({
         remainingWitnessingTime={timeLeft - TIMES.MEMORY_MARK}
         lines={lines}
         setLines={setLines}
+        witness={witness}
       />
       <ViewAnnouncement isUserTheWitness={isUserTheWitness} />
       <ViewSketching
