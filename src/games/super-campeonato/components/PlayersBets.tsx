@@ -6,7 +6,7 @@ import { findBetContenders, getContenderIdsByTier } from '../utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { ContenderCard } from './ContenderCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type PlayersBetsProps = {
   players: GamePlayers;
@@ -75,10 +75,10 @@ function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntr
           contendersByTiers.winner[finalCard!.id] && 'w-players-bets__square--win'
         )}
       >
-        <ContenderCard
+        <CharacterCard
           size={50}
           overlayColor={contendersByTiers.winner[finalCard!.id] ? 'yellow' : 'gray'}
-          contender={finalCard!}
+          character={finalCard!}
           hideName
         />
       </div>
@@ -88,10 +88,10 @@ function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntr
           contendersByTiers.final[semiCard!.id] && 'w-players-bets__square--win'
         )}
       >
-        <ContenderCard
+        <CharacterCard
           size={50}
           overlayColor={contendersByTiers.final[semiCard!.id] ? 'yellow' : 'gray'}
-          contender={semiCard!}
+          character={semiCard!}
           hideName
         />
       </div>
@@ -101,10 +101,10 @@ function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntr
           contendersByTiers.semi[quarterCard!.id] && 'w-players-bets__square--win'
         )}
       >
-        <ContenderCard
+        <CharacterCard
           size={50}
           overlayColor={contendersByTiers.semi[quarterCard!.id] ? 'yellow' : 'gray'}
-          contender={quarterCard!}
+          character={quarterCard!}
           hideName
         />
       </div>
@@ -115,10 +115,10 @@ function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntr
             contendersByTiers.winner[selectedCard!.id] && 'w-players-bets__square--win'
           )}
         >
-          <ContenderCard
+          <CharacterCard
             size={50}
             overlayColor={contendersByTiers.winner[selectedCard!.id] ? 'yellow' : 'gray'}
-            contender={selectedCard!}
+            character={selectedCard!}
             hideName
           />
         </div>

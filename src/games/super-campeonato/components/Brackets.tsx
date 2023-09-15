@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Components
 import { Translate } from 'components/language';
 import { BracketContenderVotes } from './BracketContenderVotes';
-import { ContenderCard } from './ContenderCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type BracketsProps = {
   brackets: WBracket[];
@@ -61,10 +61,10 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
               key={`${entry.id}-${entry.position}`}
               className={clsx('w-team-item', entry.win && 'w-team-item--win')}
             >
-              <ContenderCard
+              <CharacterCard
                 size={100}
                 overlayColor={activeTier === entry.tier ? getContenderColor(index, activeTier) : 'gray'}
-                contender={{
+                character={{
                   id: entry.id,
                   name: entry.name,
                 }}
@@ -80,10 +80,10 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
               key={`${entry.id}-${entry.position}`}
               className={clsx('w-team-item', entry.win && 'w-team-item--win')}
             >
-              <ContenderCard
+              <CharacterCard
                 size={100}
                 overlayColor="gray"
-                contender={{
+                character={{
                   id: entry.id,
                   name: entry.name,
                 }}
@@ -99,10 +99,10 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
               key={`${entry.id}-${entry.position}`}
               className={clsx('w-team-item', entry.win && 'w-team-item--win')}
             >
-              <ContenderCard
+              <CharacterCard
                 size={100}
                 overlayColor="gray"
-                contender={{
+                character={{
                   id: entry.id,
                   name: entry.name,
                 }}
@@ -118,10 +118,10 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
               key={`${entry.id}-${entry.position}`}
               className={clsx('w-team-item', entry.name.pt !== 'TBD' && 'w-team-item--win')}
             >
-              <ContenderCard
+              <CharacterCard
                 size={100}
                 overlayColor={entry.name.pt !== 'TBD' ? 'yellow' : 'gray'}
-                contender={{
+                character={{
                   id: entry.id,
                   name: entry.name,
                 }}

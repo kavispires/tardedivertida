@@ -17,7 +17,7 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { CharacterCard } from './components/CharacterCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { ScoringRules } from './components/RulesBlobs';
 import { RibbonGroup } from 'components/ribbons';
 import { PlayerGlyphs } from './components/PlayerGlyphs';

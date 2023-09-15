@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { FloatingHand } from 'components/cards';
 import { Translate } from 'components/language';
 import { useCardWidth } from 'hooks/useCardWidth';
-import { ContenderCard } from './ContenderCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type ContendersHandProps = {
   contenders: WContender[];
@@ -29,7 +29,7 @@ export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
                 <Translate pt="Selecionar" en="Select" />
               </Button>
             )}
-            <ContenderCard contender={contender} overlayColor="gray" size={cardWidth} />
+            <CharacterCard character={contender} overlayColor="gray" size={cardWidth} />
           </li>
         ))}
       </ul>

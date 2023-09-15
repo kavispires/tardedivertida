@@ -12,8 +12,8 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { CharacterCard } from './components/CharacterCard';
 import { CardHighlight } from 'components/metrics/CardHighlight';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type StepSelectCharactersProps = {
   user: GamePlayer;

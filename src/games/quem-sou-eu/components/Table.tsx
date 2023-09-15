@@ -4,7 +4,7 @@ import { Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { CharacterCard } from './CharacterCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type TableProps = {
   characters: Characters;

@@ -15,7 +15,7 @@ import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ContenderCard } from './ContenderCard';
+import { CharacterCard, OverlayColor } from 'components/cards/CharacterCard';
 import { TierContenders } from './TierContenders';
 
 type VotingProps = {
@@ -104,8 +104,8 @@ type VotingOptionsProps = {
   left: WBracket;
   right: WBracket;
   onClick: GenericFunction;
-  colorLeft: string;
-  colorRight: string;
+  colorLeft: OverlayColor;
+  colorRight: OverlayColor;
   checkActiveVote: (pos: number) => boolean;
 };
 
@@ -118,7 +118,7 @@ function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiv
         className="w-vote"
         activeClass="w-vote--active"
       >
-        <ContenderCard size={200} contender={left} overlayColor={colorLeft} />
+        <CharacterCard size={200} character={left} overlayColor={colorLeft} />
       </TransparentButton>
       <span className="w-voting-options__vs">VS</span>
       <TransparentButton
@@ -127,13 +127,13 @@ function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiv
         className="w-vote"
         activeClass="w-vote--active"
       >
-        <ContenderCard size={200} contender={right} overlayColor={colorRight} />
+        <CharacterCard size={200} character={right} overlayColor={colorRight} />
       </TransparentButton>
     </li>
   );
 }
 
-const getContenderColor = (tier: WBracketTier) => {
+const getContenderColor = (tier: WBracketTier): { left: OverlayColor; right: OverlayColor } => {
   switch (tier) {
     case 'quarter':
       return {
