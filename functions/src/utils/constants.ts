@@ -246,9 +246,10 @@ export const TDR_RESOURCES = {
   TESTIMONY_QUESTIONS: 'testimony-questions',
   THEMES: 'themes',
   TOPICS: 'topics',
-  WORDS_1: 'galeria-de-sonhos',
-  WORDS_2: 'linhas-cruzadas',
-  WORDS_3: 'labirinto-secreto',
+  TWEETS: 'tweets',
+  WORDS_THEME: 'galeria-de-sonhos',
+  WORDS_DRAWING: 'linhas-cruzadas',
+  WORDS_TREES: 'labirinto-secreto',
 };
 
 export const SEPARATOR = ';;';
