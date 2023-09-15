@@ -256,7 +256,9 @@ export const getData = async (
   // GALERIA_DOS_SONHOS (3 cards)
   const hasGaleriaDosSonhos = getGameOnList(availableTasks, GAME_NAMES.GALERIA_DE_SONHOS);
   if (hasGaleriaDosSonhos) {
-    const themes = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_1}-${language}`));
+    const themes = Object.values(
+      await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_THEME}-${language}`)
+    );
     hasGaleriaDosSonhos.forEach(() => {
       tasks.push({
         game: GAME_NAMES.GALERIA_DE_SONHOS,
@@ -342,7 +344,7 @@ export const getData = async (
   const hasPolemicaDaVez = getGameOnList(availableTasks, GAME_NAMES.POLEMICA_DA_VEZ);
   if (hasPolemicaDaVez.length > 0) {
     const topics = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.TOPICS}-${language}`)
+      await resourceUtils.fetchResource(`${TDR_RESOURCES.TWEETS}-${language}`)
     ).filter((topic) => !(topic as Topic).custom);
 
     hasPolemicaDaVez.forEach(() => {
@@ -559,7 +561,9 @@ export const getData = async (
   // CAMINHOS_MAGICOS
   const hasCaminhosMagicos = getGameOnList(availableTasks, GAME_NAMES.CAMINHOS_MAGICOS);
   if (hasCaminhosMagicos.length > 0) {
-    const portals = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_3}-${language}`));
+    const portals = Object.values(
+      await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_TREES}-${language}`)
+    );
     const adjectives = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.ADJECTIVES}-${language}`)
     );
