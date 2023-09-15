@@ -21,7 +21,7 @@ import { FloatingHand, ImageBlurButton, ImageCard, ImageCardHand } from 'compone
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { DoorFrame } from './components/DoorFrame';
+import { DoorFrame } from '../../components/game/DoorFrame';
 import { TrapPopupRule } from './components/RulesBlobs';
 import { IconAvatar } from 'components/avatars';
 

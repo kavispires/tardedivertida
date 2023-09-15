@@ -12,7 +12,7 @@ import { TRAPS } from '../utils/constants';
 // Components
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
 import { Translate } from 'components/language';
-import { DoorFrame } from './DoorFrame';
+import { DoorFrame } from '../../../components/game/DoorFrame';
 import { Avatar } from 'components/avatars';
 
 type CorridorProps = {
