@@ -9,6 +9,6 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getTopics = async (language: string) => {
-  const resourceName = `${TDR_RESOURCES.TOPICS}-${language}`;
+  const resourceName = `${TDR_RESOURCES.TWEETS}-${language}`;
   return await resourceUtils.fetchResource(resourceName);
 };

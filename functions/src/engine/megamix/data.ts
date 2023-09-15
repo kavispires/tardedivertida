@@ -112,7 +112,9 @@ export const getData = async (
   const galeriaDeSonhosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.GALERIA_DE_SONHOS);
   if (galeriaDeSonhosTrack) {
     const imageCardsDeck = await utils.imageCards.getImageCards(10, false);
-    const themes = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_1}-${language}`));
+    const themes = Object.values(
+      await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_THEME}-${language}`)
+    );
     customTracks.push({
       game: GAME_NAMES.GALERIA_DE_SONHOS,
       data: {
@@ -214,14 +216,14 @@ export const getData = async (
   // OPINIONS_TRACKS: POLEMICA_DA_VEZ
   const polemicaDaVezTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.POLEMICA_DA_VEZ);
   if (polemicaDaVezTrack) {
-    const topics = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.TOPICS}-${language}`)
+    const tweets = Object.values(
+      await resourceUtils.fetchResource(`${TDR_RESOURCES.TWEETS}-${language}`)
     ).filter((topic) => !(topic as Topic).custom);
 
     customTracks.push({
       game: GAME_NAMES.POLEMICA_DA_VEZ,
       data: {
-        card: utils.game.getRandomItem(topics),
+        card: utils.game.getRandomItem(tweets),
       },
     });
   }
@@ -352,7 +354,9 @@ export const getData = async (
   // WORDS_TRACKS: LABIRINTO_SECRETO
   const labirintoSecretoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.LABIRINTO_SECRETO);
   if (labirintoSecretoTrack) {
-    const trees = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_3}-${language}`));
+    const trees = Object.values(
+      await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_TREES}-${language}`)
+    );
     const adjectives = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.ADJECTIVES}-${language}`)
     );
