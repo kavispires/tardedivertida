@@ -11,7 +11,7 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getData = async (language: string): Promise<ResourceData> => {
-  const resourceNameLC = `${TDR_RESOURCES.WORDS_2}-${language}`;
+  const resourceNameLC = `${TDR_RESOURCES.WORDS_DRAWING}-${language}`;
   const allWords = await resourceUtils.fetchResource(resourceNameLC);
 
   const resourceNameAR = `${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`;
