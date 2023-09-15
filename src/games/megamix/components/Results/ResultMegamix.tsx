@@ -1,12 +1,10 @@
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { WinningCount } from '../WinningCount';
 
-export function ResultMegamix({ track, winningValues, winningTeam }: ResultComponentProps) {
+export function ResultMegamix({ track, winningValues, winningTeam, playersList }: ResultComponentProps) {
   return (
     <>
-      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="O mais votado foi" en="The most popular was" />:
       </Instruction>

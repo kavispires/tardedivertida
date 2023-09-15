@@ -6,7 +6,7 @@ import { HeartOutlined, MessageOutlined, SendOutlined } from '@ant-design/icons'
 import { BikiniModelIcon } from 'icons/BikiniModelIcon';
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { SocialProfile } from '../SocialProfile';
+import { SocialProfile } from 'components/game/SocialProfile';
 
 type SeedCaminhosMagicosProps = {
   seed: SeedEntryCaminhosMagicos;

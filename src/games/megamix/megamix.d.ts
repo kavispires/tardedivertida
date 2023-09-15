@@ -109,13 +109,6 @@ type SeedEntry =
   | SeedEntryRetratoFalado
   | SeedEntryClubberOutfit;
 
-type ResultComponentProps = {
-  track: Track;
-  winningValues: string[];
-  winningTeam: PlayerId[];
-  players: GamePlayers;
-};
-
 type VoteComponentProps = {
   track: Track;
   winningValues: string[];
@@ -123,3 +116,5 @@ type VoteComponentProps = {
   players: GamePlayers;
   playersList: GamePlayer[];
 };
+
+type ResultComponentProps = VoteComponentProps;

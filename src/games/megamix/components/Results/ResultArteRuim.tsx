@@ -4,9 +4,8 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { WinningCount } from '../WinningCount';
 
-export function ResultArteRuim({ track, winningValues, winningTeam }: ResultComponentProps) {
+export function ResultArteRuim({ track, winningValues, winningTeam, playersList }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {
     gap: 9,
     minWidth: 80,
@@ -21,7 +20,6 @@ export function ResultArteRuim({ track, winningValues, winningTeam }: ResultComp
 
     return (
       <>
-        <WinningCount>{winningTeam.length}</WinningCount>
         <Instruction>
           <Translate pt="A arte mais votada foi" en="The most popular art was" />:
         </Instruction>
@@ -42,7 +40,6 @@ export function ResultArteRuim({ track, winningValues, winningTeam }: ResultComp
 
   return (
     <>
-      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="O mais votado foi" en="The most popular was" />:
       </Instruction>

@@ -43,7 +43,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
   if (track.variant === 'cards') {
     return (
       <>
-        <MinigameTitle title={{ pt: '', en: '' }} />
+        <MinigameTitle title={{ pt: 'Arte Ruim Pra Dedéu', en: 'Questionable Art' }} />
         <Instruction contained>
           <Translate
             pt={
@@ -94,7 +94,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Arte Ruim Pra Dedéu', en: 'Questionable Art' }} />
       <Instruction contained>
         <Translate
           pt={

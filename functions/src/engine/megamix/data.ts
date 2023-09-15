@@ -601,10 +601,12 @@ export const getData = async (
 
   // Build track order
   const tracks: Track[] = [];
-  const customTrackInterval = Math.floor(TOTAL_ROUNDS / customTracks.length);
+  // const customTrackInterval = Math.floor(TOTAL_ROUNDS / customTracks.length);
+  // TODO: This is NOT WORKING
   for (let i = 0; i < TOTAL_ROUNDS; i++) {
-    if (i > 0 && i % customTrackInterval === 0 && customTracks.length > 0) {
-      tracks.push(customTracks.pop() as Track);
+    if (customTracks.length > 0) {
+      const track = customTracks.pop() as Track;
+      tracks.push(track);
     } else {
       const card = selectedChoices.pop() as PlainObject;
       tracks.push({
@@ -614,6 +616,20 @@ export const getData = async (
         },
       });
     }
+    // if (i > 0 && i % customTrackInterval === 0 && customTracks.length > 0) {
+    //   const track = customTracks.pop() as Track;
+    //   console.log({ track: track.game });
+    //   tracks.push(track);
+    // } else {
+    //   const card = selectedChoices.pop() as PlainObject;
+    //   console.log({ track: 'megamix' });
+    //   tracks.push({
+    //     game: `${GAME_NAMES.MEGAMIX}-${card.type}`,
+    //     data: {
+    //       card: card,
+    //     },
+    //   });
+    // }
   }
 
   /**

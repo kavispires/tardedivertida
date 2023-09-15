@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "3.0.1",
+  "version": "3.0.4",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -23,10 +23,10 @@
   },
   "rules": {
     "pt": [
-      "Cada rodada um desafio baseado em um dos jogos do Tarde Divertida é lançado e se você estiver com a maioria você vai para o Time Vencedor. Após 15 rodadas, ganha o vencedor do Time Vencedor"
+      "Cada rodada um desafio é lançado e se você estiver votado com a maioria você vai para a Área VIP. Após 15 rodadas, ganha quem tiver mais pontos e na Área VIP."
     ],
     "en": [
-      "Each round there's a task based on the other games in the platform. If you match the majority of players, you are in the Winning Team. After 15 round, the winner in the Winning Team wins"
+      "Each round a challenge is launched and if you are voted with the majority you go to the VIP Area. After 15 rounds, whoever has the most points and in the VIP Area wins."
     ]
   },
   "playerCount": {
@@ -46,81 +46,71 @@
       "label": "NSFW",
       "on": "Any content",
       "off": "Safe content",
-      "description": "Some games might have inappropriate stuff",
-      "disabled": true
+      "description": "Some games might have inappropriate stuff"
     },
     {
       "key": "moreTracks",
-      "label": "Game Based Tracks",
+      "label": "TD Based Tracks",
       "on": "More",
       "off": "Normal",
-      "description": "3-5 special tracks vs 5-7 special tracks (Select Track types below)",
-      "disabled": true
+      "description": "3-5 special tracks vs 5-9 special tracks (Select Track types below)"
     },
     {
       "key": "imagesTrack",
       "label": "Images Track (recommended)",
-      "on": "No",
-      "off": "Yes",
-      "description": "Adds one track based on Detective Agency, Dream Gallery, Obscure Doors or Story Tellers",
-      "disabled": true
+      "on": "Yes",
+      "off": "No",
+      "description": "Adds one track based on Detective Agency, Dream Gallery, Obscure Doors or Story Tellers"
     },
     {
       "key": "charactersTrack",
       "label": "Characters Track (recommended)",
-      "on": "No",
-      "off": "Yes",
-      "description": "Adds one track based Who Am I or Ultimate Champion",
-      "disabled": true
+      "on": "Yes",
+      "off": "No",
+      "description": "Adds one track based Who Am I or Ultimate Champion"
     },
     {
       "key": "opinionsTrack",
       "label": "Opinions Track (recommended)",
-      "on": "No",
-      "off": "Yes",
-      "description": "Adds one track based on That's Polemic, Facts Lineup, or The Skier's Dilemma",
-      "disabled": true
+      "on": "Yes",
+      "off": "No",
+      "description": "Adds one track based on That's Polemic, Facts Lineup, or The Skier's Dilemma"
     },
     {
       "key": "drawingTrack",
       "label": "Drawing Track",
-      "on": "No",
-      "off": "Yes",
-      "description": "Adds one track based on Questionable Art or Monster Sketch",
-      "disabled": true
+      "on": "Yes",
+      "off": "No",
+      "description": "Adds one track based on Questionable Art or Monster Sketch"
     },
     {
       "key": "wordsTrack",
       "label": "Words Track",
-      "on": "No",
-      "off": "Yes",
-      "description": "Adds one track based on That's It, Mixed Clues, or Herd Mind",
-      "disabled": true
+      "on": "Yes",
+      "off": "No",
+      "description": "Adds one track based on That's It, Mixed Clues, or Herd Mind"
     },
 
     {
       "key": "judgingTrack",
       "label": "Judging Track",
-      "on": "No",
-      "off": "Yes",
-      "description": "Adds one track based Eye Witness or Guess Who What. (NSFW)",
-      "disabled": true
+      "on": "Yes",
+      "off": "No",
+      "description": "Adds one track based Eye Witness or Guess Who What. (NSFW)"
     },
     {
       "key": "specialTrack",
       "label": "Special Track",
-      "on": "No",
-      "off": "Yes",
-      "description": "Adds one track based Alien Communication, or Telepathic Waves",
-      "disabled": true
+      "on": "Yes",
+      "off": "No",
+      "description": "Adds one track based Alien Communication, or Telepathic Waves"
     },
     {
       "key": "unpopularTrack",
       "label": "Unpopular Track",
-      "on": "No",
-      "off": "Yes",
-      "description": "Adds one track based Horrific Crimes, Movie Night, or Fear Street",
-      "disabled": true
+      "on": "Yes",
+      "off": "No",
+      "description": "Adds one track based Horrific Crimes, Movie Night, or Fear Street"
     }
   ]
 }

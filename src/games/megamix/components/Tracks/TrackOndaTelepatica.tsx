@@ -35,7 +35,7 @@ export const TrackOndaTelepatica = ({ track, round, onSubmitAnswer, user, player
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Onda Telepática', en: 'Telepathic Waves' }} />
       <Instruction contained>
         <Translate
           pt={

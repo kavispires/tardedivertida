@@ -4,9 +4,8 @@ import { LETTERS } from 'utils/constants';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
-import { WinningCount } from '../WinningCount';
 
-export function ResultNaRuaDoMedo({ track, winningValues, winningTeam }: ResultComponentProps) {
+export function ResultNaRuaDoMedo({ track, winningValues, winningTeam, playersList }: ResultComponentProps) {
   if (track.variant === 'house') {
     const winningCards: NCard[] = track.data.options.filter((option: PlainObject) => {
       return winningValues.includes(option.id);
@@ -14,7 +13,6 @@ export function ResultNaRuaDoMedo({ track, winningValues, winningTeam }: ResultC
 
     return (
       <>
-        <WinningCount>{winningTeam.length}</WinningCount>
         <Instruction>
           <Translate pt="A escolha mais popular foi" en="The most popular choice was" />:
         </Instruction>
@@ -31,7 +29,6 @@ export function ResultNaRuaDoMedo({ track, winningValues, winningTeam }: ResultC
 
   return (
     <>
-      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="A rua mais votada foi" en="The most voted street was" />:
       </Instruction>

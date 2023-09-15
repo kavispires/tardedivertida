@@ -3,20 +3,18 @@ import { Button, ButtonProps, Space } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useMock } from 'hooks/useMock';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { mockSelection } from '../../utils/mock';
 // Components
 import { Avatar } from 'components/avatars';
-import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';
 import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
+import { SpeechBubble } from 'components/text/SpeechBubble';
 
 export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
   const onSelect = (position: number) => {
@@ -32,28 +30,33 @@ export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: Track
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Cruza Palavras', en: 'Mixed Clues' }} />
       <Instruction contained>
         <Translate
           pt={
             <>
-              Alguém escreveu a dica péssima abaixo, e agora? Aonde ela se encaixa na grade?
+              Bob, o robot, escreveu a dica péssima abaixo usando sua "inteligência artificial", e agora?
+              <br />
+              Aonde ela se encaixa na grade para que combine com a linha e a coluna?
               <br />
               Clique na célula apropriada!
             </>
           }
           en={
             <>
-              Someone wrote this terrible clue below, where does it fit in the grid? Click the appropriate
-              grid cell!
+              Bob the bot wrote this terrible clue below using its AI.
+              <br />
+              Where does it fit in the grid where it would match the column and row?
+              <br />
+              Click the appropriate grid cell!
             </>
           }
         />
       </Instruction>
 
-      <Card header={translate('Dica', 'Clue')} color="red">
-        <Avatar id="A" /> {track.data.clue.text}
-      </Card>
+      <Space className="space-container">
+        <Avatar id="A" size="large" /> <SpeechBubble shadow>{track.data.clue.text}</SpeechBubble>
+      </Space>
 
       <Space className="space-container">
         <SpreadsheetGrid columns={3} rows={3} topLeftCorner>

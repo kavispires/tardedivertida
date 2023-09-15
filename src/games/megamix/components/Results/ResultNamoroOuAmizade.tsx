@@ -1,13 +1,16 @@
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { WinningCount } from '../WinningCount';
 import { Candidate } from '../Candidate';
 
-export function ResultNamoroOuAmizade({ track, winningValues, winningTeam }: ResultComponentProps) {
+export function ResultNamoroOuAmizade({
+  track,
+  winningValues,
+  winningTeam,
+  playersList,
+}: ResultComponentProps) {
   return (
     <>
-      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="O melhor partido foi" en="The best match was" />:{' '}
       </Instruction>

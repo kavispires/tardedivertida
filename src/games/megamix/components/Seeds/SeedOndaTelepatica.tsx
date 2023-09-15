@@ -13,12 +13,10 @@ type SeedOndaTelepaticaProps = {
   updateData: GenericComponent;
 };
 
-const leftSide = Math.random() > 0.5;
-
 export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps) {
   const [value, setValue] = useState('');
   const { translate } = useLanguage();
-  const theme = leftSide ? seed.card.left : seed.card.right;
+
   return (
     <div className="seed-container">
       <Title size="xx-small">
@@ -33,17 +31,25 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
           <Translate
             pt={
               <>
-                Escreva algo simples que combine com o tema abaixo, pode ser uma palavra, duas, uma expressão.
+                A tarefa é escrever algo simples relacionado ao tema abaixo, pode ser uma palavra, duas, uma
+                expressão.
+                <br />
+                Vamos tira 10!
               </>
             }
             en={
-              <>Write something simple that matches the theme below. It could be a word, two, or a phrase.</>
+              <>
+                The task is easy: Write something simple that matches the theme below. It could be a word,
+                two, or a phrase.
+                <br />
+                Let's get that A+!
+              </>
             }
           />
         </Instruction>
 
         <Card header={translate('Tarefa', 'Homework')} color="purple">
-          {theme}
+          {seed.card}
         </Card>
 
         <Input

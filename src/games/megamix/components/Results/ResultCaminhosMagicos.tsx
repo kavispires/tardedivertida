@@ -8,12 +8,15 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { MapIcon } from 'icons/MapIcon';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { WinningCount } from '../WinningCount';
 
-export function ResultCaminhosMagicos({ track, winningValues, winningTeam }: ResultComponentProps) {
+export function ResultCaminhosMagicos({
+  track,
+  winningValues,
+  winningTeam,
+  playersList,
+}: ResultComponentProps) {
   return (
     <>
-      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="O caminho mais votado foi" en="The most popular path was" />:
       </Instruction>

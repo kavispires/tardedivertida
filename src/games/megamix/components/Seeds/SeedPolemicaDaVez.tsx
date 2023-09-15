@@ -1,10 +1,7 @@
-// AntDesign Resources
-import { Button } from 'antd';
-import { DislikeFilled, LikeFilled } from '@ant-design/icons';
 // Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { SocialProfile } from '../SocialProfile';
+import { Tweet } from 'components/game/SocialProfile';
 
 type SeedPolemicaDaVezProps = {
   seed: SeedEntryPolemicaDaVez;
@@ -33,18 +30,16 @@ export function SeedPolemicaDaVez({ seed, updateData }: SeedPolemicaDaVezProps) 
         />
       </Title>
 
-      <div className="tweet">
-        <SocialProfile avatarId="A" name="Bob" handle="@bob" verified />
-        <span className="tweet__text">{seed.card.text}</span>
-        <div className="tweet__buttons">
-          <Button block icon={<LikeFilled />} onClick={() => updateData({ likeTopic: true }, true)}>
-            <Translate pt="Curtir" en="Like" />
-          </Button>
-          <Button block icon={<DislikeFilled />} onClick={() => updateData({ likeTopic: false }, true)}>
-            <Translate pt="Não curto" en="Dislike" />
-          </Button>
-        </div>
-      </div>
+      <Tweet
+        avatarId="A"
+        name="Bob"
+        handle="@imnotarobot"
+        verified
+        onLike={() => updateData({ likeTopic: true }, true)}
+        onDislike={() => updateData({ likeTopic: false }, true)}
+      >
+        {seed.card.text}
+      </Tweet>
     </div>
   );
 }

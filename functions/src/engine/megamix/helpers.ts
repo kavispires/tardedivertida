@@ -5,12 +5,13 @@ import { buildDecks } from '../na-rua-do-medo/helpers';
 import { HouseCard } from '../na-rua-do-medo/types';
 import { MEGAMIX_PHASES, WINNING_CONDITION } from './constants';
 import { AvailableTrack, MostScoring, Track, TrackCandidate } from './types';
+import { orderBy } from 'lodash';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Get the next phase based on the current one
+ * @param currentPhase - current phase
+ * @param round - round data
+ * @returns next phase
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { RULES, SETUP, SEEDING, TRACK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
@@ -27,6 +28,192 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   }
   console.warn('Missing phase check');
   return TRACK;
+};
+
+/**
+ * Distribute seeds to players
+ * @param tracks
+ * @param players
+ * @param clubberIds
+ */
+export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: string[]) => {
+  const individualSeeds: any[] = [];
+  const groupSeeds: any[] = [];
+
+  tracks.forEach((track) => {
+    switch (track.game) {
+      case GAME_NAMES.ARTE_RUIM:
+        if (track.variant === 'cards') {
+          individualSeeds.push({
+            type: GAME_NAMES.ARTE_RUIM,
+            card: utils.game.getRandomItem(track.data.cards),
+          });
+          break;
+        }
+        individualSeeds.push({
+          type: GAME_NAMES.ARTE_RUIM,
+          card: track.data.cards[0],
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.ARTE_RUIM,
+          card: track.data.cards[1],
+        });
+        if (track.data.cards[2]) {
+          individualSeeds.push({
+            type: GAME_NAMES.ARTE_RUIM,
+            card: track.data.cards[2],
+          });
+        }
+        break;
+
+      case GAME_NAMES.CONTADORES_HISTORIAS:
+        individualSeeds.push({
+          type: GAME_NAMES.CONTADORES_HISTORIAS,
+          prompts: track.data.prompts,
+          cards: track.data.cards,
+        });
+        break;
+
+      case GAME_NAMES.LABIRINTO_SECRETO:
+        individualSeeds.push({
+          type: GAME_NAMES.LABIRINTO_SECRETO,
+          portal: track.data.portals[0],
+          cards: track.data.adjectives.slice(0, 3),
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.LABIRINTO_SECRETO,
+          portal: track.data.portals[1],
+          cards: track.data.adjectives.slice(3, 6),
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.LABIRINTO_SECRETO,
+          portal: track.data.portals[2],
+          cards: track.data.adjectives.slice(6, 9),
+        });
+        break;
+
+      case GAME_NAMES.FILEIRA_DE_FATOS:
+        individualSeeds.push({
+          type: GAME_NAMES.FILEIRA_DE_FATOS,
+          card: track.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.FILEIRA_DE_FATOS,
+          card: track.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.FILEIRA_DE_FATOS,
+          card: track.data.card,
+        });
+        break;
+
+      case GAME_NAMES.ONDA_TELEPATICA:
+        individualSeeds.push({
+          type: GAME_NAMES.ONDA_TELEPATICA,
+          card: Math.random() > 0.5 ? track.data.card.left : track.data.card.right,
+        });
+        break;
+
+      case GAME_NAMES.POLEMICA_DA_VEZ:
+        groupSeeds.push({
+          type: GAME_NAMES.POLEMICA_DA_VEZ,
+          card: track.data.card,
+        });
+        break;
+
+      case GAME_NAMES.RETRATO_FALADO:
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: track.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: track.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: track.data.card,
+        });
+        break;
+
+      default:
+      // do nothing
+    }
+  });
+
+  const playersList = utils.game.shuffle(utils.players.getListOfPlayers(players));
+
+  playersList.forEach((player) => {
+    player.seeds = [];
+  });
+
+  individualSeeds.forEach((seed, index) => {
+    const player = playersList[index % playersList.length];
+    player.seeds.push(seed);
+  });
+
+  const clubbers = utils.game.sliceIntoChunks(
+    clubberIds,
+    Math.min(Math.floor(clubberIds.length / playersList.length), 5)
+  );
+
+  playersList.forEach((player, index) => {
+    groupSeeds.forEach((seed) => {
+      player.seeds.push(seed);
+    });
+
+    player.seeds.push({
+      type: 'clubber',
+      outfits: clubbers[index],
+    });
+  });
+};
+
+/**
+ * Parse seeds into game track data
+ * @param tracks
+ * @param players
+ * @returns
+ */
+export const handleSeedingData = (tracks: Track[], players: Players) => {
+  tracks.forEach((track) => {
+    switch (track.game) {
+      case GAME_NAMES.ARTE_RUIM:
+        if (track.variant === 'cards') {
+          track.data.option = buildArteRuimCardOptions(players, track);
+          break;
+        }
+
+        track.data.options = buildArteRuimDrawingsOptions(players, track);
+        break;
+
+      case GAME_NAMES.LABIRINTO_SECRETO:
+        track.data.options = buildCaminhosMagicosOptions(players, track);
+        break;
+
+      case GAME_NAMES.FILEIRA_DE_FATOS:
+        track.data.options = buildFileiraDeFatosOptions(players);
+        break;
+
+      case GAME_NAMES.ONDA_TELEPATICA:
+        track.data.option = buildOndaTelepaticaOptions(players);
+
+        break;
+
+      case GAME_NAMES.POLEMICA_DA_VEZ:
+        track.data.options = buildPolemicaDaVezOptions(players);
+        break;
+
+      case GAME_NAMES.RETRATO_FALADO:
+        track.data.options = buildRetratoFaladoOptions(players, track);
+        break;
+
+      default:
+      // do nothing
+    }
+  });
+
+  return tracks;
 };
 
 export const parseCrimeTiles = (sceneTiles: CrimeTile[]) => {
@@ -310,172 +497,6 @@ export const getCandidatePersonality = (cards: DatingCandidateCard[]) => {
   };
 };
 
-export const distributeSeeds = (tasks: Track[], players: Players, clubberIds: string[]) => {
-  const individualSeeds: any[] = [];
-  const groupSeeds: any[] = [];
-
-  tasks.forEach((task) => {
-    switch (task.game) {
-      case GAME_NAMES.ARTE_RUIM:
-        if (task.variant === 'cards') {
-          individualSeeds.push({
-            type: GAME_NAMES.ARTE_RUIM,
-            card: utils.game.getRandomItem(task.data.cards),
-          });
-          break;
-        }
-        individualSeeds.push({
-          type: GAME_NAMES.ARTE_RUIM,
-          card: task.data.cards[0],
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.ARTE_RUIM,
-          card: task.data.cards[1],
-        });
-        if (task.data.cards[2]) {
-          individualSeeds.push({
-            type: GAME_NAMES.ARTE_RUIM,
-            card: task.data.cards[2],
-          });
-        }
-        break;
-
-      case GAME_NAMES.LABIRINTO_SECRETO:
-        individualSeeds.push({
-          type: GAME_NAMES.LABIRINTO_SECRETO,
-          portal: task.data.portals[0],
-          cards: task.data.adjectives.slice(0, 3),
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.LABIRINTO_SECRETO,
-          portal: task.data.portals[1],
-          cards: task.data.adjectives.slice(3, 6),
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.LABIRINTO_SECRETO,
-          portal: task.data.portals[2],
-          cards: task.data.adjectives.slice(6, 9),
-        });
-        break;
-
-      case GAME_NAMES.FILEIRA_DE_FATOS:
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: task.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: task.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: task.data.card,
-        });
-        break;
-
-      case GAME_NAMES.ONDA_TELEPATICA:
-        individualSeeds.push({
-          type: GAME_NAMES.ONDA_TELEPATICA,
-          card: task.data.card,
-        });
-        break;
-
-      case GAME_NAMES.POLEMICA_DA_VEZ:
-        groupSeeds.push({
-          type: GAME_NAMES.POLEMICA_DA_VEZ,
-          card: task.data.card,
-        });
-        break;
-
-      case GAME_NAMES.RETRATO_FALADO:
-        individualSeeds.push({
-          type: GAME_NAMES.RETRATO_FALADO,
-          card: task.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.RETRATO_FALADO,
-          card: task.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.RETRATO_FALADO,
-          card: task.data.card,
-        });
-        break;
-
-      default:
-      // do nothing
-    }
-  });
-
-  const playersList = utils.players.getListOfPlayers(players);
-
-  playersList.forEach((player) => {
-    player.seeds = [];
-  });
-
-  individualSeeds.forEach((seed, index) => {
-    const player = playersList[index % playersList.length];
-    player.seeds.push(seed);
-  });
-
-  const clubbers = utils.game.sliceIntoChunks(
-    clubberIds,
-    Math.min(Math.floor(clubberIds.length / playersList.length), 5)
-  );
-
-  playersList.forEach((player, index) => {
-    groupSeeds.forEach((seed) => {
-      player.seeds.push(seed);
-    });
-
-    player.seeds.push({
-      type: 'clubber',
-      outfits: clubbers[index],
-    });
-  });
-};
-
-export const handleSeedingData = (tasks: Track[], players: Players) => {
-  tasks.forEach((task) => {
-    switch (task.game) {
-      case GAME_NAMES.ARTE_RUIM:
-        if (task.variant === 'cards') {
-          task.data.option = buildArteRuimCardOptions(players, task);
-          break;
-        }
-
-        task.data.options = buildArteRuimDrawingsOptions(players, task);
-        break;
-
-      case GAME_NAMES.LABIRINTO_SECRETO:
-        task.data.options = buildCaminhosMagicosOptions(players, task);
-        break;
-
-      case GAME_NAMES.FILEIRA_DE_FATOS:
-        task.data.options = buildFileiraDeFatosOptions(players);
-        break;
-
-      case GAME_NAMES.ONDA_TELEPATICA:
-        task.data.option = buildOndaTelepaticaOptions(players);
-
-        break;
-
-      case GAME_NAMES.POLEMICA_DA_VEZ:
-        task.data.options = buildPolemicaDaVezOptions(players);
-        break;
-
-      case GAME_NAMES.RETRATO_FALADO:
-        task.data.options = buildRetratoFaladoOptions(players, task);
-        break;
-
-      default:
-      // do nothing
-    }
-  });
-
-  return tasks;
-};
-
 /**
  * Gather likes, count likes, return a array with 3 possible answers (total likes), always including the correct one
  * @param players
@@ -491,10 +512,11 @@ const buildPolemicaDaVezOptions = (players: Players) => {
       }
       return acc;
     }, 0);
+  const correctPercentage = Math.round((totalLikes / playerCount) * 100);
 
-  const possibleLikes = utils.game.makeArray(playerCount + 1);
+  const possibleLikes = utils.game.makeArray(playerCount, 1).map((v) => Math.round((v * 100) / playerCount));
 
-  return [...new Set([totalLikes, ...utils.game.getRandomItems(possibleLikes, 3)])].sort();
+  return orderBy([...new Set([0, correctPercentage, 100, ...utils.game.getRandomItems(possibleLikes, 3)])]);
 };
 
 /**
@@ -521,12 +543,12 @@ const buildFileiraDeFatosOptions = (players: Players) => {
   return [ordered[2], ordered[0], ordered[1]];
 };
 
-const buildRetratoFaladoOptions = (players: Players, task: Track) => {
+const buildRetratoFaladoOptions = (players: Players, track: Track) => {
   return utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
-    if (player.data[task.data.card.id]) {
+    if (player.data[track.data.card.id]) {
       acc.push({
         playerId: player.id,
-        drawing: player.data[task.data.card.id],
+        drawing: player.data[track.data.card.id],
       });
     }
     return acc;
@@ -545,11 +567,11 @@ const buildOndaTelepaticaOptions = (players: Players) => {
 /**
  * Find the one drawing
  * @param players
- * @param task
+ * @param track
  * @returns
  */
-const buildArteRuimCardOptions = (players: Players, task: Track) => {
-  const cardIds: CardId[] = task.data.cards.map((card: TextCard) => card.id);
+const buildArteRuimCardOptions = (players: Players, track: Track) => {
+  const cardIds: CardId[] = track.data.cards.map((card: TextCard) => card.id);
   const drawing = {
     drawing: '[]',
     playerId: 'Bug!',
@@ -569,11 +591,11 @@ const buildArteRuimCardOptions = (players: Players, task: Track) => {
 /**
  * Find the 2 or 3 drawings
  * @param players
- * @param task
+ * @param track
  * @returns
  */
-const buildArteRuimDrawingsOptions = (players: Players, task: Track) => {
-  const cardIds: CardId[] = task.data.cards.map((card: TextCard) => card.id);
+const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
+  const cardIds: CardId[] = track.data.cards.map((card: TextCard) => card.id);
   const drawings: PlainObject[] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -593,18 +615,19 @@ const buildArteRuimDrawingsOptions = (players: Players, task: Track) => {
 /**
  * Get the 3 portal clues in order, add two random options, shuffle everything
  * @param players
- * @param task
+ * @param track
  * @returns
  */
-const buildCaminhosMagicosOptions = (players: Players, task: Track) => {
-  const portalIds: CardId[] = task.data.portals.map((portal) => portal.id);
+const buildCaminhosMagicosOptions = (players: Players, track: Track) => {
+  const portalIds: CardId[] = track.data.portals.map((portal) => portal.id);
 
   const clues: PlainObject[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
     Object.keys(player.data).forEach((dataKey) => {
       if (portalIds.includes(dataKey)) {
         clues[portalIds.indexOf(dataKey)] = {
-          text: task.data.adjectives.find((adjective) => adjective.id === player.data[dataKey]).text ?? '???',
+          text:
+            track.data.adjectives.find((adjective) => adjective.id === player.data[dataKey]).text ?? '???',
           playerId: player.id,
           portalId: dataKey,
         };
