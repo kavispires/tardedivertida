@@ -34,6 +34,10 @@ type StepRankingWrapperProps = {
    * Optional node that goes under the title
    */
   subtitle?: ReactNode;
+  /**
+   * Whether the title should be white or not
+   */
+  white?: boolean;
 };
 
 export function StepRankingWrapper({
@@ -43,12 +47,13 @@ export function StepRankingWrapper({
   children,
   title,
   subtitle,
+  white,
 }: StepRankingWrapperProps) {
   useTemporarilyHidePlayersBar();
 
   return (
     <Step>
-      <Title>{title ?? 'Ranking'}</Title>
+      <Title white={white}>{title ?? 'Ranking'}</Title>
 
       {subtitle}
 
