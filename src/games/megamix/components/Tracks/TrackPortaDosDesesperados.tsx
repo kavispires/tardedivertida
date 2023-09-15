@@ -11,7 +11,7 @@ import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { Book } from 'games/porta-dos-desesperados/components/Book';
-import { DoorFrame } from 'games/porta-dos-desesperados/components/DoorFrame';
+import { DoorFrame } from 'components/game/DoorFrame';
 import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {

@@ -49,6 +49,7 @@ export interface TrackCandidate {
   nsfw: boolean;
   variant: string;
   weight: number;
+  needsSeeding?: boolean;
 }
 
 export interface PossibleTask {

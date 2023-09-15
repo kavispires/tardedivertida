@@ -1,6 +1,7 @@
 // Components
 import { Step } from 'components/steps';
 import { ClubLine } from './components/ClubLine';
+import { FallbackComponent } from './components/FallbackComponent';
 import { TrackArteRuim } from './components/Tracks/TrackArteRuim';
 import { TrackCaminhosMagicos } from './components/Tracks/TrackCaminhosMagicos';
 import { TrackContadoresHistorias } from './components/Tracks/TrackContadoresHistorias';
@@ -36,10 +37,10 @@ type StepTrackProps = {
 } & AnnouncementProps;
 
 export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
-  const Component =
+  const TrackComponent =
     {
       'arte-ruim': TrackArteRuim,
-      'caminhos-magicos': TrackCaminhosMagicos,
+      'comunicacao-alienigena': FallbackComponent,
       'contadores-historias': TrackContadoresHistorias,
       'crimes-hediondos': TrackCrimesHediondos,
       'cruza-palavras': TrackCruzaPalavras,
@@ -48,6 +49,7 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'espiao-entre-nos': TrackEspiaoEntreNos,
       'fileira-de-fatos': TrackFileiraDeFatos,
       'galeria-de-sonhos': TrackGaleriaDeSonhos,
+      'labirinto-secreto': TrackCaminhosMagicos,
       'megamix-best-of-three': TrackMegamixBestOfThree,
       'megamix-this-that': TrackMegamixThisThat,
       'mente-coletiva': TrackMenteColetiva,
@@ -58,21 +60,19 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'polemica-da-vez': TrackPolemicaDaVez,
       'porta-dos-desesperados': TrackPortaDosDesesperados,
       'quem-nao-mata': TrackQuemNaoMata,
+      'quem-sou-eu': FallbackComponent,
       'retrato-falado': TrackRetratoFalado,
       'super-campeonato': TrackSuperCampeonato,
       'testemunha-ocular': TrackTestemunhaOcular,
+      'ta-na-cara': FallbackComponent,
       'ue-so-isso': TrackUeSoIsso,
       'vamos-ao-cinema': TrackVamosAoCinema,
     }?.[rest.track.game] ?? FallbackComponent;
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Component {...rest} />
+      <TrackComponent {...rest} />
       <ClubLine players={rest.players} currentRound={rest.round.current} />
     </Step>
   );
-};
-
-const FallbackComponent = (_: TrackProps) => {
-  return <div>Something wrong is not right</div>;
 };

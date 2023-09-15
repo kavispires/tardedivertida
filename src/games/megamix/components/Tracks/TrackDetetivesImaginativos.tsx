@@ -31,7 +31,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
   if (track.variant === 'impostor') {
     return (
       <>
-        <MinigameTitle title={{ pt: '', en: '' }} />
+        <MinigameTitle title={{ pt: 'Detetives Imaginativos', en: 'Detective Agency' }} />
         <Instruction contained>
           <Translate
             pt={
@@ -139,7 +139,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Detetives Imaginativos', en: 'Detective Agency' }} />
       <Instruction contained>
         <Translate
           pt={

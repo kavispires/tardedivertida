@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useColorizeBackground } from './utils/useColorizeBackground';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -26,9 +25,6 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
       setIsFirstRunThrough(false);
     }
   }, [step, isFirstRunThrough]);
-
-  // Dynamic background
-  useColorizeBackground(user, state?.round?.current);
 
   const announcement = (
     <PhaseAnnouncement
@@ -67,6 +63,7 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
           players={players}
           goToPreviousStep={goToPreviousStep}
           round={state.round}
+          user={user}
         />
       </StepSwitcher>
     </PhaseContainer>

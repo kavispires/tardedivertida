@@ -57,7 +57,7 @@ export const prepareSeedingPhase = async (
   return {
     update: {
       store: {
-        tracks: utils.game.shuffle(store.tracks),
+        tracks: store.tracks,
       },
       state: {
         phase: MEGAMIX_PHASES.SEEDING,

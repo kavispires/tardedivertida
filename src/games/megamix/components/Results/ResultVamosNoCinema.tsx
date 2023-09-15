@@ -3,14 +3,17 @@ import { getMovieTitles } from '../../utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { WinningCount } from '../WinningCount';
 
-export function ResultVamosAoCinema({ track, winningValues, winningTeam }: ResultComponentProps) {
+export function ResultVamosAoCinema({
+  track,
+  winningValues,
+  winningTeam,
+  playersList,
+}: ResultComponentProps) {
   const movies: StringDictionary = getMovieTitles(track.data.movies);
 
   return (
     <>
-      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="A filme mais votado foi" en="The most popular movie was" />:
       </Instruction>

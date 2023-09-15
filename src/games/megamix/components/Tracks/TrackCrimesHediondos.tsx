@@ -1,23 +1,25 @@
-import clsx from 'clsx';
 // AntDesign Resources
-import { Button, Popover, Tag } from 'antd';
-import { CheckCircleFilled } from '@ant-design/icons';
+import { Button } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSelection } from '../../utils/mock';
+// Icons
+import { KnifeIcon } from 'icons/KnifeIcon';
 // Components
-import { ImageCard } from 'components/cards';
-import { DualTranslate, Translate } from 'components/language';
+import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';
+import { LoupeIcon } from 'icons/LoupeIcon';
+import { MetricHighlight } from 'components/metrics/MetricHighlight';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+import { SceneTile } from 'components/game/SceneTile';
 
-export const TrackCrimesHediondos = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const cardWidth = useCardWidth(12, { minWidth: 100, maxWidth: 130 });
-  const { dualTranslate } = useLanguage();
+
   const { isLoading } = useLoading();
 
   // DEV Mock
@@ -27,24 +29,33 @@ export const TrackCrimesHediondos = ({ track, round, onSubmitAnswer, user, playe
     });
   });
 
+  const icon = track.variant === 'weapon' ? <KnifeIcon /> : <LoupeIcon />;
+
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Crimes Hediondos', en: 'Horrific Crimes' }} />
       <Instruction contained>
         <Translate
           pt={
             <>
               O médico legista examinou o crime e chegou às conclusões abaixo.
               <br />
-              Selecione qual {track.variant === 'weapon' ? 'armas' : 'evidencias'} você acha que foi usada no
-              crime.
+              Selecione qual{' '}
+              <MetricHighlight icon={icon} iconPlacement="before">
+                {track.variant === 'weapon' ? 'arma' : 'evidencia'}
+              </MetricHighlight>{' '}
+              você acha que foi usada no crime.
             </>
           }
           en={
             <>
               The forensic scientist examined the body and came to those conclusions below.
               <br />
-              Select the one {track.variant} you think took part in the crime.
+              Select the one{' '}
+              <MetricHighlight icon={icon} iconPlacement="before">
+                {track.variant}
+              </MetricHighlight>{' '}
+              you think took part in the crime.
             </>
           }
         />
@@ -70,22 +81,9 @@ export const TrackCrimesHediondos = ({ track, round, onSubmitAnswer, user, playe
       <ul className="h-cards">
         {track.data.cards.map((card: HCard) => {
           return (
-            <li
-              className={clsx('h-item-card', user?.data?.value === card.id && 'h-item-card--selected')}
-              key={card.id}
-            >
-              <Popover content={dualTranslate(card.name).toUpperCase()}>
-                <Tag
-                  className="h-item-card__name"
-                  color={card.type === 'weapon' ? 'geekblue' : 'volcano'}
-                  style={{ maxWidth: `${cardWidth + 16}px` }}
-                >
-                  <span>
-                    <DualTranslate>{card.name}</DualTranslate>
-                  </span>
-                </Tag>
-              </Popover>
-              <ImageCard imageId={card.id} cardWidth={cardWidth} className="h-item-card__image" />
+            <li key={card.id} className="margin">
+              <CrimeItemCard item={card} cardWidth={cardWidth} isSelected={user?.data?.value === card.id} />
+
               <Button
                 shape="round"
                 type="primary"
@@ -106,37 +104,3 @@ export const TrackCrimesHediondos = ({ track, round, onSubmitAnswer, user, playe
     </>
   );
 };
-
-type SceneTileProps = {
-  tile: SceneTile;
-  index: number;
-};
-
-function SceneTile({ tile, index }: SceneTileProps) {
-  const { dualTranslate } = useLanguage();
-  return (
-    <li className={clsx('h-scene-tile', `h-scene-tile--${tile.type}`)}>
-      <Popover content={dualTranslate(tile.description)}>
-        <h4 className="h-scene-tile__title">{dualTranslate(tile.title)}</h4>
-      </Popover>
-      <ul className="h-scene-tile__options">
-        {tile.values.map((entry, i) => {
-          const isActive = i === index;
-          return (
-            <li
-              key={`${tile.id}-value-${i}`}
-              className={clsx(
-                'h-scene-tile__item',
-                `h-scene-tile__item--${tile.type}`,
-                isActive && 'h-scene-tile__item--active'
-              )}
-            >
-              {isActive && <CheckCircleFilled className="h-scene-tile__icon" />}
-              {dualTranslate(entry)}
-            </li>
-          );
-        })}
-      </ul>
-    </li>
-  );
-}

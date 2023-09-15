@@ -27,7 +27,7 @@ export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: Tra
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Namoro ou Amizade?', en: 'Love or Friendship?' }} />
       <Instruction contained>
         <Translate
           pt={

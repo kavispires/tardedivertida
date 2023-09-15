@@ -38,7 +38,7 @@ export const buildSeedingSteps = (
         };
       case 'clubber':
         return {
-          title: translate('Roupinha', 'Outfit'),
+          title: translate('Look', 'Outfit'),
           description: translate('Como ir pra balada', 'How to be cool'),
         };
       default:

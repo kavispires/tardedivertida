@@ -1,9 +1,13 @@
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { WinningCount } from '../WinningCount';
 
-export function ResultCruzaPalavras({ track, winningValues, winningTeam }: ResultComponentProps) {
+export function ResultCruzaPalavras({
+  track,
+  winningValues,
+  winningTeam,
+  playersList,
+}: ResultComponentProps) {
   const cheatSheet: PlainObject = {
     0: [track.data.cards[0].text, track.data.cards[2].text],
     1: [track.data.cards[0].text, track.data.cards[3].text],
@@ -13,7 +17,6 @@ export function ResultCruzaPalavras({ track, winningValues, winningTeam }: Resul
 
   return (
     <>
-      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="O mais votado foi" en="The most popular was" />:
       </Instruction>

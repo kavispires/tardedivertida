@@ -6,9 +6,13 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { WinningCount } from '../WinningCount';
 
-export function ResultRetratoFalado({ track, winningValues, winningTeam }: ResultComponentProps) {
+export function ResultRetratoFalado({
+  track,
+  winningValues,
+  winningTeam,
+  playersList,
+}: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {
     gap: 9,
     minWidth: 80,
@@ -22,7 +26,6 @@ export function ResultRetratoFalado({ track, winningValues, winningTeam }: Resul
 
   return (
     <>
-      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="O monstro escolhido foi" en="The best monster was" />:
       </Instruction>

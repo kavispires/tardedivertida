@@ -23,6 +23,7 @@ import { IconAvatar } from 'components/avatars';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TrackTitle } from './components/TrackTitle';
 import { VotesDelegator } from './components/VotesDelegator';
+import { useColorizeBackground } from './utils/useColorizeBackground';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -56,6 +57,9 @@ export function StepResult({
   const playersList = useMemo(() => sortPlayers(players), [players]);
 
   const currentIndex = time.timeLeft > 14 ? round.current - 1 : round.current;
+
+  // Dynamic background
+  useColorizeBackground(user, time.timeLeft > 13 ? round.current : round.current + 1);
 
   return (
     <Step announcement={announcement}>
@@ -105,6 +109,7 @@ export function StepResult({
             winningValues={winningValues}
             players={players}
             winningTeam={winningTeam}
+            playersList={playersList}
           />
         </div>
         <div className="results__gutter">
