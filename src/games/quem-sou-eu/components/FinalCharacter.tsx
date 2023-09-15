@@ -7,7 +7,7 @@ import { YesIcon } from 'icons/YesIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { GlyphCard } from 'components/cards/GlyphCard';
-import { CharacterCard } from './CharacterCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type FinalCharacterProps = {
   players: GamePlayers;

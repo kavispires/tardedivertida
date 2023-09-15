@@ -8,7 +8,7 @@ import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 // Components
 import { FloatingHand, ImageBlurButtonContainer } from 'components/cards';
 import { Translate } from 'components/language';
-import { ContenderCard } from './ContenderCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type BetsFloatingHandProps = {
   bets: WBets;
@@ -34,21 +34,21 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
             <span className="w-floating-bets__label">
               <Translate pt="Quartas de finais" en="Quarterfinals" />
             </span>
-            <ContenderCard contender={quarterCard!} overlayColor="gray" size={cardWidth} />
+            <CharacterCard character={quarterCard!} overlayColor="gray" size={cardWidth} />
           </li>
 
           <li className="w-floating-bets__entry">
             <span className="w-floating-bets__label">
               <Translate pt="Semifinais" en="Semifinals" />
             </span>
-            <ContenderCard contender={semiCard!} overlayColor="gray" size={cardWidth} />
+            <CharacterCard character={semiCard!} overlayColor="gray" size={cardWidth} />
           </li>
 
           <li className="w-floating-bets__entry">
             <span className="w-floating-bets__label">
               <Translate pt="Final" en="Final" />
             </span>
-            <ContenderCard contender={finalCard!} overlayColor="gray" size={cardWidth} />
+            <CharacterCard character={finalCard!} overlayColor="gray" size={cardWidth} />
           </li>
 
           {Boolean(selectedCard) && (
@@ -57,7 +57,7 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
                 <Translate pt="Seu competidor" en="Your contender" />
               </span>
               <ImageBlurButtonContainer cardId={selectedCard!.id}>
-                <ContenderCard contender={selectedCard!} overlayColor="gray" size={cardWidth} />
+                <CharacterCard character={selectedCard!} overlayColor="gray" size={cardWidth} />
               </ImageBlurButtonContainer>
             </li>
           )}

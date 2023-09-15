@@ -6,11 +6,11 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { ContenderCard } from './components/ContenderCard';
 import { useLanguage } from 'hooks/useLanguage';
 import { Card } from 'components/cards';
 import { Achievements } from 'components/general/Achievements';
 import { achievementsReference } from './utils/achievements';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const pastBattles: PastBattles = state.pastBattles;
@@ -23,7 +23,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
       </Title>
 
       <Space className="space-container margin" align="center">
-        <ContenderCard size={200} overlayColor="yellow" contender={state.finalWinner} />
+        <CharacterCard size={200} overlayColor="yellow" character={state.finalWinner} />
       </Space>
 
       <Divider />
@@ -44,11 +44,11 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
                 {battle.challenge.text}
               </Card>
               {battle.contenders.map((contender, index) => (
-                <ContenderCard
+                <CharacterCard
                   key={`${battle.challenge.id}-${contender.id}`}
                   size={80}
                   overlayColor={index === 0 ? 'yellow' : 'gray'}
-                  contender={contender}
+                  character={contender}
                   className="final-gallery__contender"
                 />
               ))}
