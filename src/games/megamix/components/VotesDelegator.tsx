@@ -7,14 +7,15 @@ import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { TDIcon } from 'icons/TDIcon';
 import { Translate } from 'components/language';
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
-import { SplatterSVG } from './TaskPalhetaDeFores';
-import { ContenderCard } from './TaskSuperCampeonato';
-import { VoteArteRuim } from './VoteArteRuim';
-import { VoteCruzaPalavras } from './VoteCruzaPalavras';
-import { VoteNamoroOuAmizade } from './VoteNamoroOuAmizade';
-import { VoteNaRuaDoMedo } from './VoteNaRuaDoMedo';
-import { VoteRetratoFalado } from './VoteRetratoFalado';
-import { VoteVamosAoCinema } from './VoteVamosAoCinema';
+import { SplatterSVG } from './Tracks/TrackPalhetaDeFores';
+import { ContenderCard } from './Tracks/TrackSuperCampeonato';
+import { VoteArteRuim } from './Votes/VoteArteRuim';
+import { VoteCruzaPalavras } from './Votes/VoteCruzaPalavras';
+import { VoteNamoroOuAmizade } from './Votes/VoteNamoroOuAmizade';
+import { VoteNaRuaDoMedo } from './Votes/VoteNaRuaDoMedo';
+import { VoteRetratoFalado } from './Votes/VoteRetratoFalado';
+import { VoteVamosAoCinema } from './Votes/VoteVamosAoCinema';
+import { VoteMegamix } from './Votes/VoteMegamix';
 
 export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
   const playersList = orderBy(Object.values(props.players), ['data.value', 'name'], ['asc', 'asc']);
@@ -30,7 +31,7 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
     return <></>;
   }
 
-  switch (props.task.game) {
+  switch (props.track.game) {
     case 'cruza-palavras':
       return <VoteCruzaPalavras {...props} playersList={playersList} />;
     case 'onda-telepatica':
@@ -119,6 +120,9 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
           ))}
         </SpacePlayerCheckWrapper>
       );
+    case 'megamix-best-of-three':
+    case 'megamix-this-that':
+      return <VoteMegamix {...props} playersList={playersList} />;
     case 'namoro-ou-amizade':
       return <VoteNamoroOuAmizade {...props} playersList={playersList} />;
     case 'arte-ruim':
@@ -148,6 +152,7 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
     case 'mente-coletiva':
     case 'polemica-da-vez':
     case 'ue-so-isso':
+    case 'megamix':
       return (
         <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
           {playersList.map((player) => (

@@ -153,6 +153,7 @@ export * from './SketchIcon';
 export * from './SkiingIcon';
 export * from './SkullIcon';
 export * from './SleepIcon';
+export * from './SmsIcon';
 export * from './SnowHillIcon';
 export * from './SoundWaveIcon';
 export * from './SpeechBubbleAcceptedIcon';

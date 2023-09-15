@@ -1,19 +1,19 @@
-interface Task {
+interface Track {
   game: string;
   variant?: string;
   condition: string;
   data: Record<string, any>;
 }
 
-interface TaskProps {
-  task: Task;
+interface TrackProps {
+  track: Track;
   round: GameRound;
   players: GamePlayers;
   user: GamePlayer;
-  onSubmitTask: GenericFunction;
+  onSubmitAnswer: GenericFunction;
 }
 
-type SubmitTaskPayload = {
+type SubmitAnswerPayload = {
   data: any;
 };
 
@@ -32,6 +32,13 @@ type HCard = {
   type: string;
   name: DualLanguageValue;
   tags?: string[];
+};
+
+type Seed = {
+  card: never;
+  cards: never;
+  outfits: never;
+  portal: never;
 };
 
 type SeedEntryArteRuim = {
@@ -103,14 +110,14 @@ type SeedEntry =
   | SeedEntryClubberOutfit;
 
 type ResultComponentProps = {
-  task: Task;
+  track: Track;
   winningValues: string[];
   winningTeam: PlayerId[];
   players: GamePlayers;
 };
 
 type VoteComponentProps = {
-  task: Task;
+  track: Track;
   winningValues: string[];
   winningTeam: PlayerId[];
   players: GamePlayers;

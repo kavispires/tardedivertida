@@ -7,16 +7,17 @@ import { TDIcon } from 'icons/TDIcon';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { DoorFrame } from 'games/porta-dos-desesperados/components/DoorFrame';
-import { ResultArteRuim } from './ResultArteRuim';
-import { ResultCaminhosMagicos } from './ResultCaminhosMagicos';
-import { ResultCruzaPalavras } from './ResultCruzaPalavras';
-import { ResultNamoroOuAmizade } from './ResultNamoroOuAmizade';
-import { ResultNaRuaDoMedo } from './ResultNaRuaDoMedo';
-import { ResultRetratoFalado } from './ResultRetratoFalado';
-import { ResultVamosAoCinema } from './ResultVamosNoCinema';
-import { SplatterSVG } from './TaskPalhetaDeFores';
-import { ContenderCard } from './TaskSuperCampeonato';
+import { ResultArteRuim } from './Results/ResultArteRuim';
+import { ResultCaminhosMagicos } from './Results/ResultCaminhosMagicos';
+import { ResultCruzaPalavras } from './Results/ResultCruzaPalavras';
+import { ResultNamoroOuAmizade } from './Results/ResultNamoroOuAmizade';
+import { ResultNaRuaDoMedo } from './Results/ResultNaRuaDoMedo';
+import { ResultRetratoFalado } from './Results/ResultRetratoFalado';
+import { ResultVamosAoCinema } from './Results/ResultVamosNoCinema';
+import { SplatterSVG } from './Tracks/TrackPalhetaDeFores';
+import { ContenderCard } from './Tracks/TrackSuperCampeonato';
 import { WinningCount } from './WinningCount';
+import { ResultMegamix } from './Results/ResultMegamix';
 
 export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersList'>) => {
   const width = useCardWidth(props.winningValues.length + 1, {
@@ -26,7 +27,7 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
     containerId: 'results-values',
   });
 
-  switch (props.task.game) {
+  switch (props.track.game) {
     case 'arte-ruim':
       return <ResultArteRuim {...props} />;
     case 'caminhos-magicos':
@@ -38,9 +39,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A história mais popular foi" en="The most popular story was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 {value}
               </div>
             ))}
@@ -54,7 +55,7 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="O item mais votado foi" en="The most voted item was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((cardId) => (
               <ImageBlurButtonContainer cardId={cardId} key={`table-focus-${cardId}`}>
                 <ImageCard imageId={cardId} cardWidth={width} className="d-table__image-card" />
@@ -72,7 +73,7 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="O impostor mais votado foi" en="The most voted impostor was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((cardId) => (
               <ImageBlurButtonContainer cardId={cardId} key={`table-focus-${cardId}`}>
                 <ImageCard imageId={cardId} cardWidth={width} className="d-table__image-card" />
@@ -88,9 +89,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="O lado mais popular foi" en="The most popular side was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 {value}
               </div>
             ))}
@@ -104,9 +105,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="Respostas mais dadas" en="Best answers" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 {value}
               </div>
             ))}
@@ -120,9 +121,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A melhor resposta foi" en="The best answer was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 <Translate pt={value === 'before' ? 'Antes' : 'Depois'} en={value} />
               </div>
             ))}
@@ -136,9 +137,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A sonho mais visitado foi" en="The most visited dream was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 <ImageBlurButtonContainer cardId={value}>
                   <ImageCard
                     key={`table-focus-${value}`}
@@ -152,6 +153,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           </div>
         </>
       );
+    case 'megamix-this-that':
+    case 'megamix-best-of-three':
+      return <ResultMegamix {...props} />;
     case 'mente-coletiva':
       return (
         <>
@@ -159,9 +163,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A resposta mais comum foi" en="The most common answer was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 {value}
               </div>
             ))}
@@ -180,9 +184,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A mais votado foi" en="The most voted was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 {value === 'center' && <Translate pt="Centro" en="Center" />}
                 {value === 'left' && <Translate pt="Esquerda" en="Left" />}
                 {value === 'right' && <Translate pt="Direita" en="Right" />}
@@ -198,9 +202,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A amostra mais selecionada foi" en="The most selected swatch was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 <SplatterSVG color={value} style={{ color: value }} width={48} />
               </div>
             ))}
@@ -214,9 +218,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A quantidade de curtidas foi" en="The number of likes was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 {value}
               </div>
             ))}
@@ -231,7 +235,7 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A saída era na porta" en="The Exit was on this door" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((cardId) => (
               <ImageBlurButtonContainer cardId={cardId} key={cardId}>
                 <DoorFrame width={width}>
@@ -249,9 +253,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="O mais morto foi" en="The most killed was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 <AvatarName player={props.players[value]} />
               </div>
             ))}
@@ -288,9 +292,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="O criminoso mais votado foi" en="The perpetrator with most votes was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 <ImageCard
                   key={`table-focus-${value}`}
                   imageId={value}
@@ -309,9 +313,9 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           <Instruction>
             <Translate pt="A dica eliminada foi" en="The eliminated clue was" />:
           </Instruction>
-          <div className="task-result-values__cards">
+          <div className="track-result-values__cards">
             {props.winningValues.map((value) => (
-              <div key={value} className="task-result-values__text-value">
+              <div key={value} className="track-result-values__text-value">
                 {value}
               </div>
             ))}

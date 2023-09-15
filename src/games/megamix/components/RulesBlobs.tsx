@@ -27,7 +27,7 @@ export function DJInstructions({ round }: { round: GameRound }): JSX.Element {
               <br />
               The goal of the game is to <strong>join</strong> and <strong>stay</strong> in the VIP area!
               <br />
-              You achieve this by always answering the tasks with the majority. It doesn't matter if it's
+              You achieve this by always answering the tracks with the majority. It doesn't matter if it's
               wrong or right.
               <br />
               When answering with the majority, you gain <PointsHighlight type="positive">

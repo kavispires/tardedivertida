@@ -229,6 +229,7 @@ export const TDR_RESOURCES = {
   CATEGORIES: 'categories',
   CHALLENGES: 'challenges',
   CHARACTERS: 'characters',
+  CHOICES: 'choices',
   CONTENDERS: 'contenders', // dual language
   CRIME_TILES: 'crime-tiles', // dual language
   DATING_CANDIDATE: 'dating-candidate',
