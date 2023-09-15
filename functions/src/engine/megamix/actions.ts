@@ -20,7 +20,7 @@ export const handleSubmitSeeds = async (
   });
 };
 
-export const handleSubmitTask = async (
+export const handleSubmitTrackAnswer = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
@@ -30,7 +30,7 @@ export const handleSubmitTask = async (
     gameName,
     gameId,
     playerId,
-    actionText: 'submit task',
+    actionText: 'submit track answer',
     shouldReady: true,
     change: { data },
     nextPhaseFunction: getNextPhase,

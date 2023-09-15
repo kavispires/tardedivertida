@@ -16,7 +16,7 @@ export function useOnSubmitSeedAPIRequest(setStep: GenericFunction) {
     ),
   });
 
-  return (payload: SubmitTaskPayload) => {
+  return (payload: SubmitAnswerPayload) => {
     request({
       action: 'SUBMIT_SEEDS',
       ...payload,
@@ -24,23 +24,23 @@ export function useOnSubmitSeedAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitTaskAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitTrackAnswerAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: MEGAMIX_API.submitAction,
     actionName: 'submit-task',
     onSuccess: () => setStep(3),
-    successMessage: translate('Tarefa enviada com sucesso', 'Task submitted successfully'),
+    successMessage: translate('Tarefa enviada com sucesso', 'Track submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua tarefa',
       'Oops, the application found an error while trying to submit your task'
     ),
   });
 
-  return (payload: SubmitTaskPayload) => {
+  return (payload: SubmitAnswerPayload) => {
     request({
-      action: 'SUBMIT_TASK',
+      action: 'SUBMIT_TRACK_ANSWER',
       ...payload,
     });
   };

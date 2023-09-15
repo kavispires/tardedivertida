@@ -39,6 +39,14 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Galeria de Sonhos',
     en: 'Dream Gallery',
   },
+  'megamix-best-of-three': {
+    pt: 'Melhor de 3',
+    en: 'Best of 3',
+  },
+  'megamix-this-that': {
+    pt: 'Isso ou Aquilo?',
+    en: 'This or That?',
+  },
   'mente-coletiva': {
     pt: 'Mente Coletiva',
     en: 'Herd Mind',
@@ -133,6 +141,10 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   'galeria-de-sonhos': {
     pt: 'Um tema, um sonho, várias images',
     en: 'A theme, a dream, many images',
+  },
+  megamix: {
+    pt: 'Qual opção você escolhe?',
+    en: 'Which option do you choose?',
   },
   'mente-coletiva': {
     pt: 'Junte-se as ovelhas!',

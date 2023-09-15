@@ -12,13 +12,13 @@ import { mockSeeding } from './utils/mock';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { SeedArteRuim } from './components/SeedArteRuim';
-import { SeedCaminhosMagicos } from './components/SeedCaminhosMagicos';
-import { SeedClubber } from './components/SeedClubber';
-import { SeedFileiraDeFatos } from './components/SeedFileiraDeFatos';
-import { SeedOndaTelepatica } from './components/SeedOndaTelepatica';
-import { SeedPolemicaDaVez } from './components/SeedPolemicaDaVez';
-import { SeedRetratoFalado } from './components/SeedRetratoFalado';
+import { SeedArteRuim } from './components/Seeds/SeedArteRuim';
+import { SeedCaminhosMagicos } from './components/Seeds/SeedCaminhosMagicos';
+import { SeedClubber } from './components/Seeds/SeedClubber';
+import { SeedFileiraDeFatos } from './components/Seeds/SeedFileiraDeFatos';
+import { SeedOndaTelepatica } from './components/Seeds/SeedOndaTelepatica';
+import { SeedPolemicaDaVez } from './components/Seeds/SeedPolemicaDaVez';
+import { SeedRetratoFalado } from './components/Seeds/SeedRetratoFalado';
 
 type StepSeedingProps = {
   players: GamePlayers;

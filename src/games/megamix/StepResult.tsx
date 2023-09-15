@@ -21,7 +21,7 @@ import { TimedButton } from 'components/buttons';
 import { ClubberAvatar } from './components/ClubberAvatar';
 import { IconAvatar } from 'components/avatars';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
-import { TaskTitle } from './components/TaskTitle';
+import { TrackTitle } from './components/TrackTitle';
 import { VotesDelegator } from './components/VotesDelegator';
 
 type StepResultProps = {
@@ -30,7 +30,7 @@ type StepResultProps = {
   onSeeRanking: GenericFunction;
   round: GameRound;
   isFirstRunThrough: boolean;
-  task: Task;
+  track: Track;
   winningValues: string[];
   winningTeam: PlayerId[];
   scoringType: string;
@@ -43,7 +43,7 @@ export function StepResult({
   round,
   isFirstRunThrough,
   announcement,
-  task,
+  track,
   winningValues,
   winningTeam,
   scoringType,
@@ -59,8 +59,8 @@ export function StepResult({
 
   return (
     <Step announcement={announcement}>
-      <Title size="small">
-        <Translate pt="Resultado" en="Results" />: <TaskTitle task={task} />
+      <Title size="small" white>
+        <Translate pt="Resultado" en="Results" />: <TrackTitle track={track} />
       </Title>
 
       <Instruction contained>
@@ -101,7 +101,7 @@ export function StepResult({
         </div>
         <div className="results__values" id="results-values">
           <ResultValueDelegator
-            task={task}
+            track={track}
             winningValues={winningValues}
             players={players}
             winningTeam={winningTeam}
@@ -145,7 +145,12 @@ export function StepResult({
         )}
       </Space>
 
-      <VotesDelegator task={task} winningValues={winningValues} players={players} winningTeam={winningTeam} />
+      <VotesDelegator
+        track={track}
+        winningValues={winningValues}
+        players={players}
+        winningTeam={winningTeam}
+      />
     </Step>
   );
 }

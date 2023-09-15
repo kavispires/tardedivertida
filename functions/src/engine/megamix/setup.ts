@@ -1,8 +1,8 @@
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import { MEGAMIX_PHASES, TOTAL_CLUBBERS, WINNING_CONDITION } from './constants';
-import { distributeSeeds, getMostMatching, getMostVotes, getRanking, handleSeedingData } from './helpers';
-import { FirebaseStateData, FirebaseStoreData, ResourceData, Task } from './types';
+import { MEGAMIX_PHASES, TOTAL_CLUBBERS } from './constants';
+import { distributeSeeds, getMostVotes, getRanking, handleSeedingData } from './helpers';
+import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 
 /**
  * Setup
@@ -22,13 +22,13 @@ export const prepareSetupPhase = async (
   return {
     update: {
       store: {
-        tasks: resourceData.tasks,
+        tracks: resourceData.tracks,
       },
       state: {
         phase: MEGAMIX_PHASES.SETUP,
         round: {
           current: 0,
-          total: resourceData.tasks.length,
+          total: resourceData.tracks.length,
         },
         players,
       },
@@ -51,13 +51,13 @@ export const prepareSeedingPhase = async (
   );
 
   // Prepare seeds
-  distributeSeeds(store.tasks, players, clubbers);
+  distributeSeeds(store.tracks, players, clubbers);
 
   // Save
   return {
     update: {
       store: {
-        tasks: utils.game.shuffle(store.tasks),
+        tracks: utils.game.shuffle(store.tracks),
       },
       state: {
         phase: MEGAMIX_PHASES.SEEDING,
@@ -67,7 +67,7 @@ export const prepareSeedingPhase = async (
   };
 };
 
-export const prepareTaskPhase = async (
+export const prepareTrackPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -81,7 +81,7 @@ export const prepareTaskPhase = async (
     });
 
     // Handle seeding data
-    const tasks = handleSeedingData(store.tasks, players);
+    const tracks = handleSeedingData(store.tracks, players);
 
     const playerData = utils.players.getListOfPlayers(players).reduce((acc, player) => {
       acc[player.id] = {
@@ -97,12 +97,12 @@ export const prepareTaskPhase = async (
     return {
       update: {
         store: {
-          tasks,
+          tracks,
           playerData,
         },
         state: {
-          phase: MEGAMIX_PHASES.TASK,
-          task: tasks[state.round.current],
+          phase: MEGAMIX_PHASES.TRACK,
+          track: tracks[state.round.current],
           round: utils.helpers.increaseRound(state.round),
           players,
         },
@@ -116,8 +116,8 @@ export const prepareTaskPhase = async (
   return {
     update: {
       state: {
-        phase: MEGAMIX_PHASES.TASK,
-        task: store.tasks[state.round.current],
+        phase: MEGAMIX_PHASES.TRACK,
+        track: store.tracks[state.round.current],
         round: utils.helpers.increaseRound(state.round),
         players,
       },
@@ -130,12 +130,7 @@ export const prepareResultPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const task: Task = state.task;
-
-  const scoring =
-    task.condition === WINNING_CONDITION.MOST_VOTED
-      ? getMostVotes(players, 'value')
-      : getMostMatching(players, 'value', 0.6);
+  const scoring = getMostVotes(players, 'value');
 
   const ranking = getRanking(players, scoring, state.round.current);
 
@@ -181,7 +176,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, ['tasks']),
+      storeCleanup: utils.firebase.cleanupStore(store, ['tracks']),
     },
     set: {
       state: {

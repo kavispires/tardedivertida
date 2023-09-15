@@ -3,8 +3,8 @@ import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import { HouseCard } from '../na-rua-do-medo/types';
-import { MEGAMIX_PHASES, MINI_GAMES_LIST, TOTAL_ROUNDS, WINNING_CONDITION } from './constants';
-import { AvailableTask, MostScoring, Task } from './types';
+import { MEGAMIX_PHASES, WINNING_CONDITION } from './constants';
+import { AvailableTrack, MostScoring, Track, TrackCandidate } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -13,11 +13,11 @@ import { AvailableTask, MostScoring, Task } from './types';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, SEEDING, TASK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
-  const order = [RULES, SETUP, SEEDING, TASK, RESULT, GAME_OVER];
+  const { RULES, SETUP, SEEDING, TRACK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
+  const order = [RULES, SETUP, SEEDING, TRACK, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
-    return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TASK;
+    return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TRACK;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -26,23 +26,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return order[currentPhaseIndex + 1];
   }
   console.warn('Missing phase check');
-  return TASK;
-};
-
-/**
- * Get random task list
- * @param includeAllMiniGameTypes
- * @param isFullGame
- * @returns
- */
-export const getTaskList = (includeAllMiniGameTypes: boolean, isFullGame: boolean) => {
-  const list = includeAllMiniGameTypes ? MINI_GAMES_LIST : MINI_GAMES_LIST.filter((game) => !game.upcoming);
-
-  if (isFullGame) {
-    return utils.game.shuffle(list);
-  }
-
-  return utils.game.getRandomItems(list, TOTAL_ROUNDS);
+  return TRACK;
 };
 
 export const parseCrimeTiles = (sceneTiles: CrimeTile[]) => {
@@ -326,7 +310,7 @@ export const getCandidatePersonality = (cards: DatingCandidateCard[]) => {
   };
 };
 
-export const distributeSeeds = (tasks: Task[], players: Players, clubberIds: string[]) => {
+export const distributeSeeds = (tasks: Track[], players: Players, clubberIds: string[]) => {
   const individualSeeds: any[] = [];
   const groupSeeds: any[] = [];
 
@@ -356,19 +340,19 @@ export const distributeSeeds = (tasks: Task[], players: Players, clubberIds: str
         }
         break;
 
-      case GAME_NAMES.CAMINHOS_MAGICOS:
+      case GAME_NAMES.LABIRINTO_SECRETO:
         individualSeeds.push({
-          type: GAME_NAMES.CAMINHOS_MAGICOS,
+          type: GAME_NAMES.LABIRINTO_SECRETO,
           portal: task.data.portals[0],
           cards: task.data.adjectives.slice(0, 3),
         });
         individualSeeds.push({
-          type: GAME_NAMES.CAMINHOS_MAGICOS,
+          type: GAME_NAMES.LABIRINTO_SECRETO,
           portal: task.data.portals[1],
           cards: task.data.adjectives.slice(3, 6),
         });
         individualSeeds.push({
-          type: GAME_NAMES.CAMINHOS_MAGICOS,
+          type: GAME_NAMES.LABIRINTO_SECRETO,
           portal: task.data.portals[2],
           cards: task.data.adjectives.slice(6, 9),
         });
@@ -451,7 +435,7 @@ export const distributeSeeds = (tasks: Task[], players: Players, clubberIds: str
   });
 };
 
-export const handleSeedingData = (tasks: Task[], players: Players) => {
+export const handleSeedingData = (tasks: Track[], players: Players) => {
   tasks.forEach((task) => {
     switch (task.game) {
       case GAME_NAMES.ARTE_RUIM:
@@ -463,7 +447,7 @@ export const handleSeedingData = (tasks: Task[], players: Players) => {
         task.data.options = buildArteRuimDrawingsOptions(players, task);
         break;
 
-      case GAME_NAMES.CAMINHOS_MAGICOS:
+      case GAME_NAMES.LABIRINTO_SECRETO:
         task.data.options = buildCaminhosMagicosOptions(players, task);
         break;
 
@@ -537,7 +521,7 @@ const buildFileiraDeFatosOptions = (players: Players) => {
   return [ordered[2], ordered[0], ordered[1]];
 };
 
-const buildRetratoFaladoOptions = (players: Players, task: Task) => {
+const buildRetratoFaladoOptions = (players: Players, task: Track) => {
   return utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
     if (player.data[task.data.card.id]) {
       acc.push({
@@ -564,7 +548,7 @@ const buildOndaTelepaticaOptions = (players: Players) => {
  * @param task
  * @returns
  */
-const buildArteRuimCardOptions = (players: Players, task: Task) => {
+const buildArteRuimCardOptions = (players: Players, task: Track) => {
   const cardIds: CardId[] = task.data.cards.map((card: TextCard) => card.id);
   const drawing = {
     drawing: '[]',
@@ -588,7 +572,7 @@ const buildArteRuimCardOptions = (players: Players, task: Task) => {
  * @param task
  * @returns
  */
-const buildArteRuimDrawingsOptions = (players: Players, task: Task) => {
+const buildArteRuimDrawingsOptions = (players: Players, task: Track) => {
   const cardIds: CardId[] = task.data.cards.map((card: TextCard) => card.id);
   const drawings: PlainObject[] = [];
 
@@ -612,7 +596,7 @@ const buildArteRuimDrawingsOptions = (players: Players, task: Task) => {
  * @param task
  * @returns
  */
-const buildCaminhosMagicosOptions = (players: Players, task: Task) => {
+const buildCaminhosMagicosOptions = (players: Players, task: Track) => {
   const portalIds: CardId[] = task.data.portals.map((portal) => portal.id);
 
   const clues: PlainObject[] = [];
@@ -645,7 +629,11 @@ const buildCaminhosMagicosOptions = (players: Players, task: Task) => {
   };
 };
 
-export const getGameOnList = (list: AvailableTask[], gameName: string): AvailableTask[] => {
+export const getCandidateOnList = (list: TrackCandidate[], name: string): TrackCandidate | undefined => {
+  return list.find((game) => game.game === name);
+};
+
+export const getGameOnList = (list: AvailableTrack[], gameName: string): AvailableTrack[] => {
   return list.filter((game) => game.game === gameName);
 };
 

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "2.1.25",
+  "version": "3.0.0",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -13,8 +13,8 @@
   },
   "basedOn": "sniW maeT neerG ehT",
   "summary": {
-    "pt": "Todos jogos de uma vez só!",
-    "en": "All games all at once"
+    "pt": "Responda uma pergunta e entre para área VIP!",
+    "en": "Answer a question correctly and join the VIP area!"
   },
   "appearance": {
     "clouds": "vinyl-cloud",
@@ -41,14 +41,86 @@
     "en": true
   },
   "options": [
-    { "key": "nsfw", "label": "NSFW", "on": "Any content", "off": "Safe content" },
-    { "key": "allMinigames", "label": "Minigames", "on": "All Games (~27)", "off": "15 games" },
     {
-      "label": "Images",
-      "key": "allImageDecks",
-      "off": "Originals",
-      "on": "All",
-      "description": "When off, only original Tarde Divertida decks will be used (preferred)"
+      "key": "nsfw",
+      "label": "NSFW",
+      "on": "Any content",
+      "off": "Safe content",
+      "description": "Some games might have inappropriate stuff",
+      "disabled": true
+    },
+    {
+      "key": "moreTracks",
+      "label": "Game Based Tracks",
+      "on": "More",
+      "off": "Normal",
+      "description": "3-5 special tracks vs 5-7 special tracks (Select Track types below)",
+      "disabled": true
+    },
+    {
+      "key": "imagesTrack",
+      "label": "Images Track (recommended)",
+      "on": "No",
+      "off": "Yes",
+      "description": "Adds one track based on Detective Agency, Dream Gallery, Obscure Doors or Story Tellers",
+      "disabled": true
+    },
+    {
+      "key": "charactersTrack",
+      "label": "Characters Track (recommended)",
+      "on": "No",
+      "off": "Yes",
+      "description": "Adds one track based Who Am I or Ultimate Champion",
+      "disabled": true
+    },
+    {
+      "key": "opinionsTrack",
+      "label": "Opinions Track (recommended)",
+      "on": "No",
+      "off": "Yes",
+      "description": "Adds one track based on That's Polemic, Facts Lineup, or The Skier's Dilemma",
+      "disabled": true
+    },
+    {
+      "key": "drawingTrack",
+      "label": "Drawing Track",
+      "on": "No",
+      "off": "Yes",
+      "description": "Adds one track based on Questionable Art or Monster Sketch",
+      "disabled": true
+    },
+    {
+      "key": "wordsTrack",
+      "label": "Words Track",
+      "on": "No",
+      "off": "Yes",
+      "description": "Adds one track based on That's It, Mixed Clues, or Herd Mind",
+      "disabled": true
+    },
+
+    {
+      "key": "judgingTrack",
+      "label": "Judging Track",
+      "on": "No",
+      "off": "Yes",
+      "description": "Adds one track based Eye Witness or Guess Who What. (NSFW)",
+      "disabled": true
+    },
+    {
+      "key": "specialTrack",
+      "label": "Special Track",
+      "on": "No",
+      "off": "Yes",
+      "description": "Adds one track based Alien Communication, or Telepathic Waves",
+      "disabled": true
+    },
+    {
+      "key": "unpopularTrack",
+      "label": "Unpopular Track",
+      "on": "No",
+      "off": "Yes",
+      "description": "Adds one track based Horrific Crimes, Movie Night, or Fear Street",
+      "disabled": true
     }
   ]
 }

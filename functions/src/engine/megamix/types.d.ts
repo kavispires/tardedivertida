@@ -6,14 +6,50 @@ export type MegamixGameOptions = {
    */
   nsfw: boolean;
   /**
-   * Include all mini-games
+   * Adds more special tracks to the game (default: 3-5, more: 6-8)
    */
-  allMinigames: boolean;
+  moreTracks: boolean;
   /**
-   * Use original image decks only
+   * Use a track that involves images
    */
-  allImageDecks: boolean;
+  imagesTrack: boolean;
+  /**
+   * Use a track that involves characters
+   */
+  charactersTrack: boolean;
+  /**
+   * Use a track that involves opinions
+   */
+  opinionsTrack: boolean;
+  /**
+   * Use a track that involves drawing
+   */
+  drawingTrack: boolean;
+  /**
+   * Use a track that involves words
+   */
+  wordsTrack: boolean;
+  /**
+   * Use a track that involves judging appearances
+   */
+  judgingTrack: boolean;
+  /**
+   * Use a track that are special
+   */
+  specialTrack: boolean;
+  /**
+   * Use a track that involves unpopular games
+   */
+  unpopularTrack: boolean;
 };
+
+export interface TrackCandidate {
+  game: GameName;
+  type: string;
+  nsfw: boolean;
+  variant: string;
+  weight: number;
+}
 
 export interface PossibleTask {
   game: string;
@@ -23,17 +59,16 @@ export interface PossibleTask {
   nsfw?: boolean;
 }
 
-export interface AvailableTask {
+export interface AvailableTrack {
   game: string;
   variant?: string;
   upcoming?: boolean;
   nsfw?: boolean;
 }
 
-export interface Task {
+export interface Track {
   game: string;
   variant?: string;
-  condition: string;
   data: Record<string, any>;
 }
 
@@ -50,7 +85,7 @@ type MegamixCard = any;
 export type CardsByLevel = Record<string, MegamixCard[]>;
 
 export type ResourceData = {
-  tasks: Task[];
+  tracks: Track[];
 };
 
 export interface MegamixDrawing extends MegamixCard {

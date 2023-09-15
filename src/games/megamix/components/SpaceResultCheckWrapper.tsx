@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { Space } from 'antd';
 
 type SpaceResultCheckWrapperProps = {
-  task: Task;
+  task: Track;
   paths: string[];
   children: ReactNode;
 };
