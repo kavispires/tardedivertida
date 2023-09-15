@@ -10,8 +10,8 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { ItemCard } from './components/ItemCard';
 import { ContinueButton } from './components/ContinueButton';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 type StepItemsSelectionProps = {
   user: GamePlayer;
@@ -88,7 +88,7 @@ export function StepItemsSelection({
         {userItems.map((itemId) => (
           <li key={itemId} className="h-items-selection__item">
             <TransparentButton onClick={() => onSelectItem(items[itemId])}>
-              <ItemCard
+              <CrimeItemCard
                 item={items[itemId]}
                 cardWidth={cardWidth}
                 preview={false}

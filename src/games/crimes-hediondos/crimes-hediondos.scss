@@ -5,29 +5,6 @@
   background-size: 1000% 1000%;
 }
 
-.h-item-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  &--selected {
-    border: 2px dashed get-color('yellow');
-    background-color: get-color('yellow', 6);
-    border-radius: $border-radius;
-  }
-
-  &__name {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.6rem;
-    margin: 0;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis;
-    width: 100%;
-  }
-}
-
 .h-items-selection {
   display: grid;
   grid-template-columns: repeat(4, auto);
@@ -87,107 +64,6 @@
     border: 2px solid get-color('brown');
     border-radius: get-unit(2);
     padding: get-unit(2);
-  }
-}
-
-.h-scene-tile {
-  $self: &;
-
-  background-color: get-color('black');
-  padding: get-unit(2);
-  border-radius: get-unit(2);
-  margin: get-unit(2);
-
-  &__title {
-    text-align: center;
-  }
-
-  &__button {
-    color: get-color('white');
-  }
-
-  &__options {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    li {
-      margin-bottom: get-unit(1);
-      width: 100%;
-
-      #{ $self }__button {
-        width: 100%;
-      }
-    }
-  }
-
-  &--cause {
-    border: 5px solid get-color('violet', 6);
-
-    #{ $self }__title {
-      color: get-color('violet', 5);
-    }
-
-    #{ $self }__button {
-      background-color: get-color('violet', 7);
-      border-color: get-color('violet', 7);
-    }
-
-    #{ $self }__icon {
-      color: get-color('violet', 5);
-    }
-  }
-
-  &--evidence {
-    border: 5px solid get-color('red', 8);
-
-    #{ $self }__title {
-      color: get-color('red', 5);
-    }
-
-    #{ $self }__button {
-      background-color: get-color('red', 7);
-      border-color: get-color('red', 7);
-    }
-
-    #{ $self }__icon {
-      color: get-color('red', 5);
-    }
-  }
-
-  &--location {
-    border: 5px solid get-color('green', 8);
-
-    #{ $self }__title {
-      color: get-color('green', 5);
-    }
-
-    #{ $self }__button {
-      background-color: get-color('green', 7);
-      border-color: get-color('green', 7);
-    }
-
-    #{ $self }__icon {
-      color: get-color('green', 5);
-    }
-  }
-
-  &--scene {
-    border: 5px solid get-color('orange', 8);
-
-    #{ $self }__title {
-      color: get-color('orange', 5);
-    }
-
-    #{ $self }__button {
-      background-color: get-color('orange', 7);
-      border-color: get-color('orange', 7);
-    }
-
-    #{ $self }__icon {
-      color: get-color('orange', 5);
-    }
   }
 }
 

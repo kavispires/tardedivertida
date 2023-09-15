@@ -8,7 +8,7 @@ import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { SceneTile } from './components/SceneTile';
+import { SceneTile } from 'components/game/SceneTile';
 import { SelectedItems } from './components/SelectedItems';
 
 type StepReviewCrimeProps = {

@@ -1,0 +1,24 @@
+@use 'styles/sass' as *;
+
+.crime-item-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &--selected {
+    border: 2px dashed get-color('yellow');
+    background-color: get-color('yellow', 6);
+    border-radius: $border-radius;
+  }
+
+  &__name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.6rem;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}

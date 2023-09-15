@@ -4,7 +4,7 @@ import { PlusSquareFilled } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { ItemCard } from './ItemCard';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 type SelectedItemsProps = {
   items: ItemsDict;
@@ -26,7 +26,7 @@ export function SelectedItems({
   return (
     <ul className="h-items-crime-selection">
       <li>
-        <ItemCard
+        <CrimeItemCard
           item={items[weaponId]}
           cardWidth={cardWidth}
           preview
@@ -37,7 +37,7 @@ export function SelectedItems({
         <PlusSquareFilled style={{ color: 'white' }} />
       </li>
       <li>
-        <ItemCard
+        <CrimeItemCard
           item={items[evidenceId]}
           cardWidth={cardWidth}
           preview

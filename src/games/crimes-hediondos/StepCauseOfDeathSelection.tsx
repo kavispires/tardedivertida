@@ -4,7 +4,7 @@ import { Space } from 'antd';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { SceneTile } from './components/SceneTile';
+import { SceneTile } from '../../components/game/SceneTile';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
