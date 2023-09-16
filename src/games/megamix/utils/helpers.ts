@@ -12,11 +12,24 @@ export const buildSeedingSteps = (
           description: translate('Se expresse!', 'Express yourself!'),
         };
 
+      case 'contadores-historias':
+        return {
+          title: translate('Torpedo da sua mãe', 'Text from your mom'),
+          description: translate('O que ela quer agora?', 'What does she want now?'),
+        };
+
       case 'labirinto-secreto':
         return {
           title: translate('Postando no Insta', 'Instagram post'),
           description: translate('Não existe sexy demais!', 'Do it for the likes!'),
         };
+
+      case 'mente-coletiva':
+        return {
+          title: translate('Tik Tok', 'Tik Tok'),
+          description: translate('Sempre temos um tempinho!', "There's always time!"),
+        };
+
       case 'onda-telepatica':
         return {
           title: translate('Tarefa de Casa', 'Homework'),

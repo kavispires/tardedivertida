@@ -12,16 +12,17 @@ import { ResultImage } from './Results/ResultImage';
 import { ResultText } from './Results/ResultText';
 import { ResultCharacter } from './Results/ResultCharacter';
 import { ResultOndaTelepatica } from './Results/ResultOndaTelepatica';
-import { ResultadoComunicacaoAlienigena } from './Results/ResultadoComunicacaoAlienigena';
+import { ResultComunicacaoAlienigena } from './Results/ResultComunicacaoAlienigena';
 import { ResultTaNaCara } from './Results/ResultTaNaCara';
 import { ResultLabirintoSecreto } from './Results/ResultLabirintoSecreto';
 import { ResultPalhetaDeCores } from './Results/ResultPalhetaDeCores';
+import { ResultQuemNaoMata } from './Results/ResultQuemNaoMata';
 
 export const ResultValueDelegator = (props: ResultComponentProps) => {
   const ResultComponent =
     {
       'arte-ruim': ResultArteRuim,
-      'comunicacao-alienigena': ResultadoComunicacaoAlienigena,
+      'comunicacao-alienigena': ResultComunicacaoAlienigena,
       'contadores-historias': ResultImage,
       'crimes-hediondos': ResultImage,
       'cruza-palavras': ResultCruzaPalavras,
@@ -40,7 +41,7 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
       'palheta-de-cores': ResultPalhetaDeCores,
       'polemica-da-vez': ResultText,
       'porta-dos-desesperados': ResultImage,
-      'quem-nao-mata': ResultText,
+      'quem-nao-mata': ResultQuemNaoMata,
       'quem-sou-eu': ResultCharacter,
       'retrato-falado': ResultRetratoFalado,
       'super-campeonato': ResultCharacter,

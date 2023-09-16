@@ -71,8 +71,8 @@ export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: s
       case GAME_NAMES.CONTADORES_HISTORIAS:
         individualSeeds.push({
           type: GAME_NAMES.CONTADORES_HISTORIAS,
+          card: utils.game.getRandomItem(track.data.cards),
           prompts: track.data.prompts,
-          cards: track.data.cards,
         });
         break;
 
@@ -91,6 +91,21 @@ export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: s
           type: GAME_NAMES.LABIRINTO_SECRETO,
           tree: track.data.trees[2],
           cards: track.data.adjectives.slice(6, 9),
+        });
+        break;
+
+      case GAME_NAMES.MENTE_COLETIVA:
+        individualSeeds.push({
+          type: GAME_NAMES.MENTE_COLETIVA,
+          card: track.data.question,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.MENTE_COLETIVA,
+          card: track.data.question,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.MENTE_COLETIVA,
+          card: track.data.question,
         });
         break;
 
@@ -201,8 +216,17 @@ export const handleSeedingData = (tracks: Track[], players: Players) => {
         track.data.options = buildArteRuimDrawingsOptions(players, track);
         break;
 
+      case GAME_NAMES.CONTADORES_HISTORIAS:
+        track.data.prompt = buildContadoresHistoriasOptions(players);
+        delete track.data.prompts;
+        break;
+
       case GAME_NAMES.LABIRINTO_SECRETO:
         track.data.options = buildLabirintoSecretoOptions(players, track);
+        break;
+
+      case GAME_NAMES.MENTE_COLETIVA:
+        track.data.options = buildMenteColetivaOptions(players);
         break;
 
       case GAME_NAMES.ONDA_TELEPATICA:
@@ -510,6 +534,35 @@ export const getCandidatePersonality = (cards: DatingCandidateCard[]) => {
     needs: utils.game.getRandomItems(needs, 3),
     funFacts: utils.game.getRandomItems(funFacts, 3),
   };
+};
+
+export const buildContadoresHistoriasOptions = (players: Players) => {
+  let prompt = '';
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.data.prompt) {
+      prompt = player.data.prompt;
+    }
+  });
+  return prompt;
+};
+
+export const buildMenteColetivaOptions = (players: Players) => {
+  const answers: string[] = [];
+  const sanitizedAnswers: string[] = [];
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    (player.data.answers ?? []).forEach((answer: string) => {
+      const cleanedUpWork = utils.helpers.stringRemoveAccents(answer);
+      const similar = sanitizedAnswers.some((a) => {
+        const similarity = stringSimilarity.compareTwoStrings(a, cleanedUpWork);
+        return similarity >= 0.75;
+      });
+      if (!similar) {
+        answers.push(answer);
+        sanitizedAnswers.push(cleanedUpWork);
+      }
+    });
+  });
+  return answers;
 };
 
 /**

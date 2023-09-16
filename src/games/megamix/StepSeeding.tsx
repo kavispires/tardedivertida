@@ -20,6 +20,8 @@ import { SeedOndaTelepatica } from './components/Seeds/SeedOndaTelepatica';
 import { SeedPolemicaDaVez } from './components/Seeds/SeedPolemicaDaVez';
 import { SeedRetratoFalado } from './components/Seeds/SeedRetratoFalado';
 import { SeedUeSoIsso } from './components/Seeds/SeedUeSoIsso';
+import { SeedMenteColetiva } from './components/Seeds/SeedMenteColetiva';
+import { SeedContadoresHistorias } from './components/Seeds/SeedContadoresHistorias';
 
 type StepSeedingProps = {
   players: GamePlayers;
@@ -56,8 +58,16 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
 
         {currentSeed?.type === 'arte-ruim' && <SeedArteRuim seed={currentSeed} updateData={updateData} />}
 
+        {currentSeed?.type === 'contadores-historias' && (
+          <SeedContadoresHistorias seed={currentSeed} updateData={updateData} />
+        )}
+
         {currentSeed?.type === 'labirinto-secreto' && (
           <SeedLabirintoSecreto seed={currentSeed} updateData={updateData} user={user} />
+        )}
+
+        {currentSeed?.type === 'mente-coletiva' && (
+          <SeedMenteColetiva seed={currentSeed} updateData={updateData} />
         )}
 
         {currentSeed?.type === 'onda-telepatica' && (

@@ -150,10 +150,10 @@ export const getData = async (
       await resourceUtils.fetchResource(`${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`)
     );
     customTracks.push({
-      game: GAME_NAMES.GALERIA_DE_SONHOS,
+      game: GAME_NAMES.CONTADORES_HISTORIAS,
       data: {
         cards: utils.game.getRandomItems(imageCardsDeck, 3),
-        prompts: utils.game.getRandomItem(cards),
+        prompts: utils.game.getRandomItems(cards, 5),
       },
     });
   }
