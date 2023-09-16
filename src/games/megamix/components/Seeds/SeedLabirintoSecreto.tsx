@@ -61,7 +61,7 @@ export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSe
           </div>
         </div>
 
-        <Space>
+        <Space className="space-container" wrap>
           {seed.cards.map((card) => (
             <Button
               key={card.id}

@@ -55,21 +55,21 @@ export const IMAGES_TRACKS: TrackCandidate[] = [
   //   variant: 'default',
   //   weight: 4,
   // },
-  {
-    game: GAME_NAMES.PORTA_DOS_DESESPERADOS,
-    type: 'images',
-    nsfw: false,
-    variant: 'default',
-    weight: 4,
-  },
   // {
-  //   game: GAME_NAMES.CONTADORES_HISTORIAS,
+  //   game: GAME_NAMES.PORTA_DOS_DESESPERADOS,
   //   type: 'images',
   //   nsfw: false,
   //   variant: 'default',
-  //   weight: 2,
-  // needsSeeding: true,
+  //   weight: 4,
   // },
+  {
+    game: GAME_NAMES.CONTADORES_HISTORIAS,
+    type: 'images',
+    nsfw: false,
+    variant: 'default',
+    weight: 2,
+    needsSeeding: true,
+  },
 ];
 
 export const CHARACTERS_TRACKS: TrackCandidate[] = [
@@ -87,13 +87,13 @@ export const CHARACTERS_TRACKS: TrackCandidate[] = [
   //   variant: 'default',
   //   weight: 2,
   // },
-  {
-    game: GAME_NAMES.PALHETA_DE_CORES,
-    type: 'characters',
-    nsfw: false,
-    variant: 'default',
-    weight: 1,
-  },
+  //   {
+  //     game: GAME_NAMES.PALHETA_DE_CORES,
+  //     type: 'characters',
+  //     nsfw: false,
+  //     variant: 'default',
+  //     weight: 1,
+  //   },
 ];
 
 export const OPINIONS_TRACKS: TrackCandidate[] = [
@@ -112,13 +112,13 @@ export const OPINIONS_TRACKS: TrackCandidate[] = [
   //   variant: 'default',
   //   weight: 1,
   // },
-  {
-    game: GAME_NAMES.DILEMA_DOS_ESQUIADORES,
-    type: 'opinions',
-    nsfw: false,
-    variant: 'default',
-    weight: 1,
-  },
+  // {
+  //   game: GAME_NAMES.DILEMA_DOS_ESQUIADORES,
+  //   type: 'opinions',
+  //   nsfw: false,
+  //   variant: 'default',
+  //   weight: 1,
+  // },
 ];
 
 export const DRAWING_TRACKS: TrackCandidate[] = [
@@ -164,22 +164,22 @@ export const WORDS_TRACKS: TrackCandidate[] = [
   //   weight: 2,
   //   needsSeeding: true,
   // },
-  {
-    game: GAME_NAMES.LABIRINTO_SECRETO,
-    type: 'words',
-    nsfw: false,
-    variant: 'default',
-    weight: 1,
-    needsSeeding: true,
-  },
   // {
-  //   game: GAME_NAMES.MENTE_COLETIVA,
-  //   type: 'special',
+  //   game: GAME_NAMES.LABIRINTO_SECRETO,
+  //   type: 'words',
   //   nsfw: false,
   //   variant: 'default',
-  //   weight: 2,
-  //  needsSeeding: true,
+  //   weight: 1,
+  //   needsSeeding: true,
   // },
+  {
+    game: GAME_NAMES.MENTE_COLETIVA,
+    type: 'special',
+    nsfw: false,
+    variant: 'default',
+    weight: 2,
+    needsSeeding: true,
+  },
 ];
 
 export const JUDGING_TRACKS: TrackCandidate[] = [
@@ -197,13 +197,13 @@ export const JUDGING_TRACKS: TrackCandidate[] = [
   //   variant: 'default',
   //   weight: 1,
   // },
-  {
-    game: GAME_NAMES.TA_NA_CARA,
-    type: 'judging',
-    nsfw: true,
-    variant: 'default',
-    weight: 1,
-  },
+  // {
+  //   game: GAME_NAMES.TA_NA_CARA,
+  //   type: 'judging',
+  //   nsfw: true,
+  //   variant: 'default',
+  //   weight: 1,
+  // },
 ];
 
 export const SPECIAL_TRACKS: TrackCandidate[] = [
@@ -246,20 +246,20 @@ export const UNPOPULAR_TRACKS: TrackCandidate[] = [
   //   variant: 'default',
   //   weight: 4,
   // },
-  {
-    game: GAME_NAMES.NA_RUA_DO_MEDO,
-    type: 'unpopular',
-    nsfw: false,
-    variant: 'default',
-    weight: 2,
-  },
   // {
-  //   game: GAME_NAMES.QUEM_NAO_MATA,
+  //   game: GAME_NAMES.NA_RUA_DO_MEDO,
   //   type: 'unpopular',
   //   nsfw: false,
-  //   variant: 'kill',
-  //   weight: 1,
+  //   variant: 'default',
+  //   weight: 2,
   // },
+  {
+    game: GAME_NAMES.QUEM_NAO_MATA,
+    type: 'unpopular',
+    nsfw: false,
+    variant: 'kill',
+    weight: 1,
+  },
 ];
 
 export const WINNING_CONDITION = {

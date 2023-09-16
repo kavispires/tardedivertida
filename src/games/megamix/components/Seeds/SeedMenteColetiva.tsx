@@ -1,0 +1,82 @@
+import { useState } from 'react';
+// AntDesign Resources
+import { Button, Input, Space } from 'antd';
+import { FlagFilled, HeartFilled, MessageFilled } from '@ant-design/icons';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Icons
+import { SixPackIcon } from 'icons/SixPackIcon';
+// Components
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { Title } from 'components/text';
+import { SVGPhone } from '../SVGPhone';
+import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
+
+type SeedMenteColetivaProps = {
+  seed: SeedMenteColetiva;
+  updateData: GenericComponent;
+};
+
+export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) {
+  const { translate } = useLanguage();
+  const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
+
+  return (
+    <div className="seed-container">
+      <Title size="xx-small">
+        <Translate
+          pt="Depois de ver alguns vídeos, você decidiu fazer esse teste no TikTok"
+          en="After watching some videos, you decided to do this test on TikTok"
+        />
+      </Title>
+
+      <Space className="space-container" direction="vertical">
+        <SVGPhone>
+          <div className="tt-phone">
+            <div className="tt-phone__header">
+              <span>STEM</span>
+              <span>Following</span>
+              <span>For You</span>
+            </div>
+
+            <div className="tt-phone__icons">
+              <Avatar id="D" size="large" />
+              <MessageFilled />
+              <HeartFilled />
+              <FlagFilled />
+            </div>
+
+            <div className="tt-phone__background">
+              <SixPackIcon />
+            </div>
+
+            <div className="tt-phone__question">
+              <GroupQuestionCard question={seed.card} overrideNumber={2} />
+            </div>
+          </div>
+        </SVGPhone>
+        <Space className="space-container">
+          <Input
+            onChange={(e) => setValue1(e.target.value)}
+            size="large"
+            placeholder={translate('Resposta 1', 'Answer 1')}
+          />
+          <Input
+            onChange={(e) => setValue2(e.target.value)}
+            size="large"
+            placeholder={translate('Resposta 2', 'Answer 2')}
+          />
+        </Space>
+        <Button
+          block
+          onClick={() => updateData({ answers: [value1, value2] }, true)}
+          disabled={!value1 || !value2}
+        >
+          <Translate pt="Enviar" en="Submit" />
+        </Button>
+      </Space>
+    </div>
+  );
+}

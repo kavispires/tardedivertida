@@ -44,6 +44,7 @@ type Seed = {
   cards: never;
   outfits: never;
   tree: never;
+  prompts: never;
 };
 
 type SeedEntryArteRuim = {
@@ -52,6 +53,16 @@ type SeedEntryArteRuim = {
   cards: never;
   outfits: never;
   tree: never;
+  prompts: never;
+};
+
+type SeedEntryContadoresHistorias = {
+  type: 'contadores-historias';
+  cards: TextCard[];
+  tree: TextCard;
+  card: string;
+  outfits: never;
+  prompts: TextCard[];
 };
 
 type SeedEntryLabirintoSecreto = {
@@ -60,6 +71,16 @@ type SeedEntryLabirintoSecreto = {
   tree: TextCard;
   card: never;
   outfits: never;
+  prompts: never;
+};
+
+type SeedMenteColetiva = {
+  type: 'mente-coletiva';
+  card: GroupQuestionCard;
+  cards: never;
+  outfits: never;
+  tree: never;
+  prompts: never;
 };
 
 type SeedEntryOndaTelepatica = {
@@ -68,6 +89,7 @@ type SeedEntryOndaTelepatica = {
   cards: never;
   outfits: never;
   tree: never;
+  prompts: never;
 };
 
 type SeedEntryPolemicaDaVez = {
@@ -76,6 +98,7 @@ type SeedEntryPolemicaDaVez = {
   cards: never;
   outfits: never;
   tree: never;
+  prompts: never;
 };
 
 type SeedEntryRetratoFalado = {
@@ -87,6 +110,7 @@ type SeedEntryRetratoFalado = {
   cards: never;
   outfits: never;
   tree: never;
+  prompts: never;
 };
 
 type SeedEntryUeSoIsso = {
@@ -95,6 +119,7 @@ type SeedEntryUeSoIsso = {
   cards: never;
   outfits: never;
   tree: never;
+  prompts: never;
 };
 
 type SeedEntryClubberOutfit = {
@@ -103,11 +128,14 @@ type SeedEntryClubberOutfit = {
   card: never;
   cards: never;
   tree: never;
+  prompts: never;
 };
 
 type SeedEntry =
   | SeedEntryArteRuim
+  | SeedEntryContadoresHistorias
   | SeedEntryLabirintoSecreto
+  | SeedMenteColetiva
   | SeedEntryOndaTelepatica
   | SeedEntryPolemicaDaVez
   | SeedEntryRetratoFalado
