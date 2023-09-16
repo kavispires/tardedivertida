@@ -2,14 +2,14 @@
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitTopicAPIRequest } from './utils/api-requests';
+import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { mockTopicSelection } from './utils/mock';
+import { mockTweetSelection } from './utils/mock';
 // Icons
 import { TrendingIcon } from 'icons/TrendingIcon';
 // Components
-import { StepTopicSelection } from './StepTopicSelection';
+import { StepTweetSelection } from './StepTweetSelection';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Step, StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
@@ -21,16 +21,16 @@ import { TurnOrder, WaitingRoom } from 'components/players';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TargetHighlight } from 'components/metrics/TargetHighlight';
 
-function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
+function PhaseTweetSelection({ state, players, info, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
-  const onSubmitTopic = useOnSubmitTopicAPIRequest(setStep);
+  const onSubmitTweet = useOnSubmitTweetAPIRequest(setStep);
   const isFixedRounds = Boolean(meta?.options?.fixedRounds);
 
   useMock(() => {
     if (step === 1 && isUserTheActivePlayer) {
-      onSubmitTopic(mockTopicSelection(state.currentTopics));
+      onSubmitTweet(mockTweetSelection(state.currentTweets));
     }
   }, [step]);
 
@@ -71,8 +71,8 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
           }
           en={
             <>
-              All players must like or dislike a topic then must vote how trendy it is (how many players liked
-              the topic). If you guess correctly you get <PointsHighlight>3</PointsHighlight> points.
+              All players must like or dislike a tweet then must vote how trendy it is (how many players liked
+              the tweet). If you guess correctly you get <PointsHighlight>3</PointsHighlight> points.
               <br />
               If you got 1 number off (more or less), you get <PointsHighlight>1</PointsHighlight> point.
               <br />
@@ -89,7 +89,7 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
               )}
               <br />
               <Instruction contained>
-                <AvatarName player={activePlayer} addressUser /> will choose the topic for this round.
+                <AvatarName player={activePlayer} addressUser /> will choose the tweet for this round.
               </Instruction>
             </>
           }
@@ -112,17 +112,17 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
           <Instruction contained>
             <Translate
               pt="Cada rodada um novo assunto, a sua opinião e a opinião dos outros."
-              en="Every round a new topic, your opinion and everybody else's."
+              en="Every round a new tweet, your opinion and everybody else's."
             />
           </Instruction>
         </RoundAnnouncement>
 
         {/* Step 1 */}
         <ViewOr condition={isUserTheActivePlayer}>
-          <StepTopicSelection
-            currentTopics={state.currentTopics}
-            currentCustomTopic={state.currentCustomTopic}
-            onSubmitTopic={onSubmitTopic}
+          <StepTweetSelection
+            currentTweets={state.currentTweets}
+            currentCustomTweet={state.currentCustomTweet}
+            onSubmitTweet={onSubmitTweet}
             announcement={announcement}
           />
 
@@ -134,7 +134,7 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
                   <AvatarName player={activePlayer} addressUser />{' '}
                   <Translate
                     pt="está escolhendo a polêmica da rodada."
-                    en="is choosing the topic for the round."
+                    en="is choosing the tweet for the round."
                   />
                   <TurnOrder
                     order={state.gameOrder}
@@ -152,4 +152,4 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
   );
 }
 
-export default PhaseTopicSelection;
+export default PhaseTweetSelection;

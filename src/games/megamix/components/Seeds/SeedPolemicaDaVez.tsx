@@ -24,7 +24,7 @@ export function SeedPolemicaDaVez({ seed, updateData }: SeedPolemicaDaVezProps) 
             <>
               Let's procrastinate:
               <br />
-              You open twitter and see this topic. Like or Dislike?
+              You open twitter and see this tweet. Like or Dislike?
             </>
           }
         />
@@ -35,8 +35,8 @@ export function SeedPolemicaDaVez({ seed, updateData }: SeedPolemicaDaVezProps) 
         name="Bob"
         handle="@imnotarobot"
         verified
-        onLike={() => updateData({ likeTopic: true }, true)}
-        onDislike={() => updateData({ likeTopic: false }, true)}
+        onLike={() => updateData({ likeTweet: true }, true)}
+        onDislike={() => updateData({ likeTweet: false }, true)}
       >
         {seed.card.text}
       </Tweet>

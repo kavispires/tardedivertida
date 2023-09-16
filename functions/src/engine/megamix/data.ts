@@ -220,7 +220,7 @@ export const getData = async (
   if (polemicaDaVezTrack) {
     const tweets = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.TWEETS}-${language}`)
-    ).filter((topic) => !(topic as Topic).custom);
+    ).filter((tweet) => !(tweet as Tweet).custom);
 
     customTracks.push({
       game: GAME_NAMES.POLEMICA_DA_VEZ,

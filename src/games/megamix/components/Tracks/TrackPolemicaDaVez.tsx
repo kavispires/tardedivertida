@@ -33,13 +33,13 @@ export const TrackPolemicaDaVez = ({ track, round, onSubmitAnswer, user }: Track
           <Translate
             pt={
               <>
-                Observe o tópico abaixo, qual a porcentagem de <strong>curtidas</strong> entre os jogadores
+                Observe a twitada abaixo, qual a porcentagem de <strong>curtidas</strong> entre os jogadores
                 você acha que ele ganhou?
               </>
             }
             en={
               <>
-                Based on the topic below, what percentage of <strong>likes</strong> among the players do you
+                Based on the tweet below, what percentage of <strong>likes</strong> among the players do you
                 think it got?
               </>
             }

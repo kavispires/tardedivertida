@@ -10,7 +10,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 // Components
-import { Topic } from './components/Topic';
+import { Tweet } from './components/Tweet';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
@@ -18,15 +18,15 @@ import { TransparentButton } from 'components/buttons';
 import { IconAvatar } from 'components/avatars';
 
 type StepLikingProps = {
-  currentTopic: Topic;
-  customTopic: string;
+  currentTweet: Tweet;
+  customTweet: string;
   onSubmitReaction: GenericFunction;
   players: GamePlayers;
 } & AnnouncementProps;
 
 export function StepLiking({
-  currentTopic,
-  customTopic,
+  currentTweet,
+  customTweet,
   onSubmitReaction,
   players,
   announcement,
@@ -53,7 +53,7 @@ export function StepLiking({
       </Title>
 
       <div className="p-reaction-buttons">
-        <Topic topic={customTopic ?? currentTopic?.text} className="p-reaction-buttons__topic" />
+        <Tweet tweet={customTweet ?? currentTweet?.text} className="p-reaction-buttons__tweet" />
         <TransparentButton
           className={clsx(
             'p-reaction-button',
@@ -83,7 +83,7 @@ export function StepLiking({
           <Instruction contained>
             <Translate
               pt="Quantas curtidas esse assunto vai receber?"
-              en="How many likes will this topic get?"
+              en="How many likes will this tweet get?"
             />
           </Instruction>
 

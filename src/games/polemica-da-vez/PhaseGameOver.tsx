@@ -15,19 +15,19 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
   return (
     <GameOverWrapper announcementIcon={<TrophyIcon />} info={info} state={state} players={players}>
       <ul
-        className="p-all-topics"
+        className="p-all-tweets"
         style={{ gridTemplateColumns: `repeat(${playerCount % 3 === 0 ? 3 : 5}, 1fr)` }}
       >
-        {orderBy(state.allTopics, ['likes', 'text'], ['desc', 'asc']).map((topic: PastTopic) => {
-          const trended = topic.likes > playerCount / 2;
+        {orderBy(state.allTweets, ['likes', 'text'], ['desc', 'asc']).map((tweet: PastTweet) => {
+          const trended = tweet.likes > playerCount / 2;
           return (
-            <li className="p-all-topics__topic" key={topic.id}>
+            <li className="p-all-tweets__tweet" key={tweet.id}>
               <h3>
-                {trended ? <RiseOutlined /> : <FallOutlined />} {topic.text}
+                {trended ? <RiseOutlined /> : <FallOutlined />} {tweet.text}
               </h3>
-              <div className="p-all-topics__comment">
+              <div className="p-all-tweets__comment">
                 <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" />{' '}
-                {topic.likes} <Translate pt="curtidas" en="likes" />
+                {tweet.likes} <Translate pt="curtidas" en="likes" />
               </div>
               {}
             </li>

@@ -6,7 +6,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { Topic } from './components/Topic';
+import { Tweet } from './components/Tweet';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -16,16 +16,16 @@ import { TweetComment } from './components/TweetComment';
 type StepResolutionProps = {
   players: GamePlayers;
   totalLikes: number;
-  customTopic: string;
-  currentTopic: Topic;
+  customTweet: string;
+  currentTweet: Tweet;
   goToNextStep: GenericFunction;
 } & AnnouncementProps;
 
 export function StepResolution({
   players,
   totalLikes,
-  customTopic,
-  currentTopic,
+  customTweet,
+  currentTweet,
   goToNextStep,
   announcement,
 }: StepResolutionProps) {
@@ -39,8 +39,8 @@ export function StepResolution({
 
       <div className="p-tweet-container">
         <div className="p-tweet">
-          <div className="p-tweet__topic">
-            <Topic topic={customTopic ?? currentTopic?.text} />
+          <div className="p-tweet__tweet">
+            <Tweet tweet={customTweet ?? currentTweet?.text} />
           </div>
           <div className="p-tweet__actions">
             <div className="p-tweet__action" style={{ color: totalLikes > 0 ? 'DodgerBlue' : 'gray' }}>

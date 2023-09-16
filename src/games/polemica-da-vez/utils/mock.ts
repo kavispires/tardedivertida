@@ -1,8 +1,8 @@
 import { getRandomItem } from 'utils/helpers';
 
-export function mockTopicSelection(currentTopics: Topic[]) {
+export function mockTweetSelection(currentTweets: Tweet[]) {
   return {
-    topicId: getRandomItem(currentTopics).id,
+    tweetId: getRandomItem(currentTweets).id,
   };
 }
 

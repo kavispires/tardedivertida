@@ -94,7 +94,7 @@ type SeedEntryOndaTelepatica = {
 
 type SeedEntryPolemicaDaVez = {
   type: 'polemica-da-vez';
-  card: TopicCard;
+  card: TweetCard;
   cards: never;
   outfits: never;
   tree: never;

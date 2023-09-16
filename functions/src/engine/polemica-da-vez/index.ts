@@ -13,15 +13,15 @@ import type {
 import utils from '../../utils';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
-import { getTopics } from './data';
+import { getTweets } from './data';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
   prepareReactPhase,
   prepareResolutionPhase,
-  prepareTopicSelectionPhase,
+  prepareTweetSelectionPhase,
 } from './setup';
-import { handleSubmitReaction, handleSubmitTopic } from './actions';
+import { handleSubmitReaction, handleSubmitTweet } from './actions';
 
 /**
  * Get Initial Game State
@@ -45,7 +45,7 @@ export const getInitialState = (
     initialPhase: POLEMICA_DA_VEZ_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
-      pastTopics: [],
+      pastTweets: [],
       gameOrder: [],
     },
     options,
@@ -78,7 +78,7 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getTopics(store.language);
+    const additionalData = await getTweets(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
@@ -86,7 +86,7 @@ export const getNextPhase = async (
 
   // * -> TOPIC_SELECTION
   if (nextPhase === POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION) {
-    const newPhase = await prepareTopicSelectionPhase(store, state, players);
+    const newPhase = await prepareTweetSelectionPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -123,8 +123,8 @@ export const submitAction = async (data: PolemicaDaVezSubmitAction) => {
 
   switch (action) {
     case POLEMICA_DA_VEZ_ACTIONS.SUBMIT_TOPIC:
-      utils.firebase.validateSubmitActionProperties(data, ['topicId'], 'submit topic');
-      return handleSubmitTopic(gameName, gameId, playerId, data.topicId, data?.customTopic);
+      utils.firebase.validateSubmitActionProperties(data, ['tweetId'], 'submit tweet');
+      return handleSubmitTweet(gameName, gameId, playerId, data.tweetId, data?.customTweet);
     case POLEMICA_DA_VEZ_ACTIONS.SUBMIT_REACTION:
       utils.firebase.validateSubmitActionProperties(data, ['reaction', 'likesGuess'], 'submit reaction');
       return handleSubmitReaction(gameName, gameId, playerId, data.reaction, data.likesGuess);

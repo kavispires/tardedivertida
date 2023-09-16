@@ -7,7 +7,7 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseTopicSelection from './PhaseTopicSelection';
+import PhaseTweetSelection from './PhaseTweetSelection';
 import PhaseReact from './PhaseReact';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
@@ -28,7 +28,7 @@ function getActiveComponent(state: GameState) {
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
     case PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION:
-      return PhaseTopicSelection;
+      return PhaseTweetSelection;
     case PHASES.POLEMICA_DA_VEZ.REACT:
       return PhaseReact;
     case PHASES.POLEMICA_DA_VEZ.RESOLUTION:

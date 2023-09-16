@@ -567,7 +567,7 @@ const buildPolemicaDaVezOptions = (players: Players) => {
   const playerCount = utils.players.getPlayerCount(players);
   const totalLikes = utils.players
     .getListOfPlayers(players)
-    .map((player) => player.data.likeTopic)
+    .map((player) => player.data.likeTweet)
     .reduce((acc: number, like) => {
       if (like) {
         acc += 1;

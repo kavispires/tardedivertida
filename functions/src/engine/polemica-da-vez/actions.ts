@@ -4,20 +4,20 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 
 /**
- * When active player chooses the round's topic
+ * When active player chooses the round's tweet
  * @param gameName
  * @param gameId
  * @param playerId
- * @param topicId
- * @param customTopic
+ * @param tweetId
+ * @param customTweet
  * @returns
  */
-export const handleSubmitTopic = async (
+export const handleSubmitTweet = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  topicId: string,
-  customTopic?: string
+  tweetId: string,
+  customTweet?: string
 ) => {
   return await utils.firebase.updateStore({
     gameName,
@@ -25,8 +25,8 @@ export const handleSubmitTopic = async (
     playerId,
     actionText: 'submit the question',
     change: {
-      topicId,
-      customTopic: customTopic ?? null,
+      tweetId,
+      customTweet: customTweet ?? null,
     },
     nextPhaseFunction: getNextPhase,
   });

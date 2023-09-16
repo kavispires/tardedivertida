@@ -4,11 +4,11 @@ import { TDR_RESOURCES } from '../../utils/constants';
 import * as resourceUtils from '../resource';
 
 /**
- * Get word cards resource based on the game's language
+ * Get tweet cards resource based on the game's language
  * @param language
  * @returns
  */
-export const getTopics = async (language: string) => {
+export const getTweets = async (language: string) => {
   const resourceName = `${TDR_RESOURCES.TWEETS}-${language}`;
   return await resourceUtils.fetchResource(resourceName);
 };

@@ -40,11 +40,11 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
 
 /**
  * Build deck and custom deck
- * @param allTopics
+ * @param allTweets
  * @returns
  */
-export const buildDeck = (allTopics): Decks => {
-  const { deck, customDeck } = Object.values(allTopics).reduce(
+export const buildDeck = (allTweets): Decks => {
+  const { deck, customDeck } = Object.values(allTweets).reduce(
     (acc: Decks, item: any) => {
       if (item?.custom) {
         acc.customDeck.push(item);

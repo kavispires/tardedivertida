@@ -37,7 +37,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
           }
           en={
             <>
-              So... did the topic trend?
+              So... did the tweet trend?
               <br />
               If you guessed the correct number of likes, you get <PointsHighlight>3</PointsHighlight> points.
               <br />
@@ -55,8 +55,8 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <StepResolution
           players={players}
-          customTopic={state.customTopic}
-          currentTopic={state.currentTopic}
+          customTweet={state.customTweet}
+          currentTweet={state.currentTweet}
           totalLikes={state.totalLikes}
           goToNextStep={goToNextStep}
           announcement={announcement}
