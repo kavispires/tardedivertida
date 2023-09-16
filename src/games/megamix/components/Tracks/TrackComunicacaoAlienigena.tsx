@@ -29,7 +29,6 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
   useMock(() => {
     onSelect(String(mockSelection(track.data.items)));
   });
-  console.log(track.data);
 
   return (
     <>

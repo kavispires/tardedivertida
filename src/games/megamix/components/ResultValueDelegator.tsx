@@ -13,6 +13,9 @@ import { ResultText } from './Results/ResultText';
 import { ResultCharacter } from './Results/ResultCharacter';
 import { ResultOndaTelepatica } from './Results/ResultOndaTelepatica';
 import { ResultadoComunicacaoAlienigena } from './Results/ResultadoComunicacaoAlienigena';
+import { ResultTaNaCara } from './Results/ResultTaNaCara';
+import { ResultLabirintoSecreto } from './Results/ResultLabirintoSecreto';
+import { ResultPalhetaDeCores } from './Results/ResultPalhetaDeCores';
 
 export const ResultValueDelegator = (props: ResultComponentProps) => {
   const ResultComponent =
@@ -27,22 +30,22 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
       'espiao-entre-nos': ResultText,
       'fileira-de-fatos': ResultText,
       'galeria-de-sonhos': ResultImage,
-      'labirinto-secreto': FallbackComponent,
+      'labirinto-secreto': ResultLabirintoSecreto,
       'megamix-best-of-three': ResultMegamix,
       'megamix-this-that': ResultMegamix,
-      'mente-coletiva': FallbackComponent,
+      'mente-coletiva': ResultText,
       'namoro-ou-amizade': ResultNamoroOuAmizade,
       'na-rua-do-medo': ResultNaRuaDoMedo,
       'onda-telepatica': ResultOndaTelepatica,
-      'palheta-de-cores': FallbackComponent,
+      'palheta-de-cores': ResultPalhetaDeCores,
       'polemica-da-vez': ResultText,
       'porta-dos-desesperados': ResultImage,
-      'quem-nao-mata': FallbackComponent,
+      'quem-nao-mata': ResultText,
       'quem-sou-eu': ResultCharacter,
       'retrato-falado': ResultRetratoFalado,
       'super-campeonato': ResultCharacter,
       'testemunha-ocular': ResultImage,
-      'ta-na-cara': FallbackComponent,
+      'ta-na-cara': ResultTaNaCara,
       'ue-so-isso': ResultText,
       'vamos-ao-cinema': ResultVamosAoCinema,
     }?.[props.track.game] ?? FallbackComponent;

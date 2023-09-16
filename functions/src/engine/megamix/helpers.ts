@@ -79,17 +79,17 @@ export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: s
       case GAME_NAMES.LABIRINTO_SECRETO:
         individualSeeds.push({
           type: GAME_NAMES.LABIRINTO_SECRETO,
-          portal: track.data.portals[0],
+          tree: track.data.trees[0],
           cards: track.data.adjectives.slice(0, 3),
         });
         individualSeeds.push({
           type: GAME_NAMES.LABIRINTO_SECRETO,
-          portal: track.data.portals[1],
+          tree: track.data.trees[1],
           cards: track.data.adjectives.slice(3, 6),
         });
         individualSeeds.push({
           type: GAME_NAMES.LABIRINTO_SECRETO,
-          portal: track.data.portals[2],
+          tree: track.data.trees[2],
           cards: track.data.adjectives.slice(6, 9),
         });
         break;
@@ -202,7 +202,7 @@ export const handleSeedingData = (tracks: Track[], players: Players) => {
         break;
 
       case GAME_NAMES.LABIRINTO_SECRETO:
-        track.data.options = buildCaminhosMagicosOptions(players, track);
+        track.data.options = buildLabirintoSecretoOptions(players, track);
         break;
 
       case GAME_NAMES.ONDA_TELEPATICA:
@@ -616,23 +616,23 @@ const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
 };
 
 /**
- * Get the 3 portal clues in order, add two random options, shuffle everything
+ * Get the 3 tree clues in order, add two random options, shuffle everything
  * @param players
  * @param track
  * @returns
  */
-const buildCaminhosMagicosOptions = (players: Players, track: Track) => {
-  const portalIds: CardId[] = track.data.portals.map((portal) => portal.id);
+const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
+  const treeIds: CardId[] = track.data.trees.map((tree: TextCard) => tree.id);
 
   const clues: PlainObject[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
     Object.keys(player.data).forEach((dataKey) => {
-      if (portalIds.includes(dataKey)) {
-        clues[portalIds.indexOf(dataKey)] = {
+      if (treeIds.includes(dataKey)) {
+        clues[treeIds.indexOf(dataKey)] = {
           text:
             track.data.adjectives.find((adjective) => adjective.id === player.data[dataKey]).text ?? '???',
           playerId: player.id,
-          portalId: dataKey,
+          treeId: dataKey,
         };
       }
     });
@@ -656,7 +656,7 @@ const buildCaminhosMagicosOptions = (players: Players, track: Track) => {
 };
 
 export const getCandidateOnList = (list: TrackCandidate[], name: string): TrackCandidate | undefined => {
-  return list.find((game) => game.game === name);
+  return list.find((game) => game && game.game === name);
 };
 
 export const getGameOnList = (list: AvailableTrack[], gameName: string): AvailableTrack[] => {

@@ -823,6 +823,10 @@
     grid-template-columns: repeat(7, auto);
     align-items: center;
     gap: get-unit(2);
+
+    &--small {
+      font-size: 0.75em;
+    }
   }
 
   &__clue-text {
@@ -1139,6 +1143,18 @@ $o-card-width: 300px;
 
     &--negative {
       background-color: get-color('red', 8, 0.5);
+    }
+  }
+}
+
+.dd-animated-skiier {
+  &__skiier {
+    transition: transform 250ms ease-in-out;
+    &--left {
+      transform: scaleX(100%);
+    }
+    &--right {
+      transform: scaleX(-100%);
     }
   }
 }

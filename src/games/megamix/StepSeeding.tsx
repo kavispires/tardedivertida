@@ -14,7 +14,7 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { SeedArteRuim } from './components/Seeds/SeedArteRuim';
-import { SeedCaminhosMagicos } from './components/Seeds/SeedCaminhosMagicos';
+import { SeedLabirintoSecreto } from './components/Seeds/SeedLabirintoSecreto';
 import { SeedClubber } from './components/Seeds/SeedClubber';
 import { SeedOndaTelepatica } from './components/Seeds/SeedOndaTelepatica';
 import { SeedPolemicaDaVez } from './components/Seeds/SeedPolemicaDaVez';
@@ -56,8 +56,8 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
 
         {currentSeed?.type === 'arte-ruim' && <SeedArteRuim seed={currentSeed} updateData={updateData} />}
 
-        {currentSeed?.type === 'caminhos-magicos' && (
-          <SeedCaminhosMagicos seed={currentSeed} updateData={updateData} user={user} />
+        {currentSeed?.type === 'labirinto-secreto' && (
+          <SeedLabirintoSecreto seed={currentSeed} updateData={updateData} user={user} />
         )}
 
         {currentSeed?.type === 'onda-telepatica' && (

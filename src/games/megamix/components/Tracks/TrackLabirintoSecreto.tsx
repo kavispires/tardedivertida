@@ -18,7 +18,7 @@ import { TreeThreeIcon } from 'icons/TreeThreeIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { RightSquareOutlined } from '@ant-design/icons';
 
-export const TrackCaminhosMagicos = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackLabirintoSecreto = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSelect = (value: number) => {
@@ -34,7 +34,7 @@ export const TrackCaminhosMagicos = ({ track, round, onSubmitAnswer, user }: Tra
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Labirinto Secreto', en: 'Secret Labyrinth' }} />
       <Instruction contained>
         <Translate
           pt={
@@ -42,8 +42,8 @@ export const TrackCaminhosMagicos = ({ track, round, onSubmitAnswer, user }: Tra
               Para atravessar a floresta, você precisa passar por essas 3 árvores.
               <br />
               Com mapa feito de adjetivos (que útil), qual rota você selecionaria ir da{' '}
-              <TextHighlight>{track.data.portals[0].text}</TextHighlight> ao{' '}
-              <TextHighlight>{track.data.portals[2].text}</TextHighlight>?
+              <TextHighlight>{track.data.trees[0].text}</TextHighlight> ao{' '}
+              <TextHighlight>{track.data.trees[2].text}</TextHighlight>?
             </>
           }
           en={
@@ -51,8 +51,8 @@ export const TrackCaminhosMagicos = ({ track, round, onSubmitAnswer, user }: Tra
               To cross the woods, you need to pass by 3 trees.
               <br />
               With a map made of adjectives (wow, so useful), what route would to select to go from{' '}
-              <TextHighlight>{track.data.portals[0].text}</TextHighlight> to{' '}
-              <TextHighlight>{track.data.portals[2].text}</TextHighlight>?
+              <TextHighlight>{track.data.trees[0].text}</TextHighlight> to{' '}
+              <TextHighlight>{track.data.trees[2].text}</TextHighlight>?
             </>
           }
         />
@@ -61,17 +61,17 @@ export const TrackCaminhosMagicos = ({ track, round, onSubmitAnswer, user }: Tra
       <div className="cm-trees">
         <div className="cm-trees__tree">
           <IconAvatar icon={<TreeOneIcon />} size={84} />
-          <div className="cm-trees__text">{track.data.portals[0].text}</div>
+          <div className="cm-trees__text">{track.data.trees[0].text}</div>
         </div>
 
         <div className="cm-trees__tree">
           <IconAvatar icon={<TreeTwoIcon />} size={84} />
-          <div className="cm-trees__text">{track.data.portals[1].text}</div>
+          <div className="cm-trees__text">{track.data.trees[1].text}</div>
         </div>
 
         <div className="cm-trees__tree">
           <IconAvatar icon={<TreeThreeIcon />} size={84} />
-          <div className="cm-trees__text">{track.data.portals[2].text}</div>
+          <div className="cm-trees__text">{track.data.trees[2].text}</div>
         </div>
       </div>
 

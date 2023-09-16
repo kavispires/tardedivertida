@@ -2,7 +2,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { SplatterSVG } from '../Tracks/TrackPalhetaDeFores';
 
-export function ResultPalhetaDeCores({ winningTeam, winningValues, playersList }: ResultComponentProps) {
+export function ResultPalhetaDeCores({ winningValues }: ResultComponentProps) {
   return (
     <>
       <Instruction>
@@ -12,7 +12,6 @@ export function ResultPalhetaDeCores({ winningTeam, winningValues, playersList }
           <Translate pt="A amostra mais selecionada foi" en="The most selected swatch was" />
         )}
         :
-        <Translate pt="Respostas mais dadas" en="Best answers" />:
       </Instruction>
       <div className="track-result-values__cards">
         {winningValues.map((value) => (

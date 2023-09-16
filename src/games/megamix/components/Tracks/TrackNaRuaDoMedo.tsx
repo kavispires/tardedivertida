@@ -11,6 +11,8 @@ import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';
 import { TransparentButton } from 'components/buttons';
 import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
+import { StreetIcon } from 'icons/StreetIcon';
+import { IconAvatar } from 'components/avatars';
 
 export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
@@ -33,7 +35,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
   if (track.variant === 'kids') {
     return (
       <>
-        <MinigameTitle title={{ pt: '', en: '' }} />
+        <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
         <Instruction contained>
           <Translate
             pt={
@@ -59,7 +61,10 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
             disabled={user.ready || isLoading}
             onClick={() => onSelect('0')}
           >
-            <Avatar>A</Avatar>
+            <Space direction="vertical" align="center" className="margin">
+              <Avatar style={{ backgroundColor: 'brown' }}>A</Avatar>
+              <IconAvatar icon={<StreetIcon />} size="large" />
+            </Space>
             <div className="n-street__houses">
               {track.data.options['0'].map((house: NCard) => (
                 <HouseCard key={`A-${house.id}`} card={house} candyLeftover={0} preview={false} />
@@ -71,7 +76,10 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
             disabled={user.ready || isLoading}
             onClick={() => onSelect('1')}
           >
-            <Avatar>B</Avatar>
+            <Space direction="vertical" align="center" className="margin">
+              <Avatar style={{ backgroundColor: 'dodgerblue' }}>B</Avatar>
+              <IconAvatar icon={<StreetIcon />} size="large" />
+            </Space>
             <div className="n-street__houses">
               {track.data.options['1'].map((house: NCard) => (
                 <HouseCard key={`B-${house.id}`} card={house} candyLeftover={0} preview={false} />
@@ -83,9 +91,10 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
     );
   }
 
+  // TODO: This variant does not exist yet
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
       <Instruction contained>
         <Translate
           pt={

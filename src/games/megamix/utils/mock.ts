@@ -9,9 +9,9 @@ export function mockSeeding(seeds: SeedEntry[]) {
       case 'arte-ruim':
         data[seed.card.id] = JSON.stringify(mockDrawing());
         break;
-      case 'caminhos-magicos':
+      case 'labirinto-secreto':
         const ids = getIds(seed.cards);
-        data[seed.portal.id] = getRandomItem(ids);
+        data[seed.tree.id] = getRandomItem(ids);
         break;
       case 'onda-telepatica':
         data.wave = mockClue();

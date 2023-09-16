@@ -403,7 +403,7 @@ export const getData = async (
     const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
     const suspect = utils.game.getRandomItem(suspects);
     customTracks.push({
-      game: GAME_NAMES.TESTEMUNHA_OCULAR,
+      game: GAME_NAMES.TA_NA_CARA,
 
       variant: 'witness',
       data: {
@@ -601,14 +601,14 @@ export const getData = async (
   const neededDefaultTracks = TOTAL_ROUNDS - customTracks.length;
   const allChoices = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.CHOICES}-${language}`));
   const selectedChoices = utils.game.getRandomItems(allChoices, neededDefaultTracks);
-
+  const filteredCustomTracks = customTracks.filter((track) => !!track?.game);
   // Build track order
   const tracks: Track[] = [];
   // const customTrackInterval = Math.floor(TOTAL_ROUNDS / customTracks.length);
   // TODO: This is NOT WORKING
   for (let i = 0; i < TOTAL_ROUNDS; i++) {
-    if (customTracks.length > 0) {
-      const track = customTracks.pop() as Track;
+    if (filteredCustomTracks.length > 0) {
+      const track = filteredCustomTracks.pop() as Track;
       tracks.push(track);
     } else {
       const card = selectedChoices.pop() as PlainObject;
