@@ -20,6 +20,9 @@ type SceneTileProps = {
   onSelectValue?: GenericFunction;
 };
 
+/**
+ * Scene tile component
+ */
 export function SceneTile({ tile, index, onSelectValue }: SceneTileProps) {
   const { language } = useLanguage();
   return (

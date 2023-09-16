@@ -4,7 +4,6 @@ import { Space } from 'antd';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { SuggestionEasel } from './components/SuggestionEasel';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
@@ -13,6 +12,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { GroupProgress } from './components/GroupProgress';
 import { WrongGuessHighlight } from './components/Highlights';
 import { VIPNextPhaseButton } from 'components/vip';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepResultProps = {
   guess: string;

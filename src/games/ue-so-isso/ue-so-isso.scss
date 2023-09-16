@@ -123,16 +123,6 @@
   }
 }
 
-.u-suggestion-easel {
-  font-family: 'Architects Daughter', cursive;
-
-  &__input {
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1.2em;
-  }
-}
-
 .u-suggestion-card {
   &__suggestion-avatar {
     margin-right: get-unit(3);
