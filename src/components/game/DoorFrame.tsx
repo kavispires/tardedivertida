@@ -1,12 +1,27 @@
 import { ReactNode } from 'react';
 
 type DoorFrameProps = {
+  /**
+   * The optional children
+   */
   children?: ReactNode;
+  /**
+   * The optional class name
+   */
   className?: string;
+  /**
+   * The optional width
+   */
   width?: number;
+  /**
+   * The optional index
+   */
   index?: number;
 };
 
+/**
+ * Door frame component
+ */
 export function DoorFrame({ children, width, index, className = '' }: DoorFrameProps) {
   return (
     <svg

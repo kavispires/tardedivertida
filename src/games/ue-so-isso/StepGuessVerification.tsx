@@ -9,7 +9,6 @@ import { useLanguage } from 'hooks/useLanguage';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { SuggestionEasel } from './components/SuggestionEasel';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
@@ -17,6 +16,7 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { ViewIf } from 'components/views';
 import { VIPOnlyContainer } from 'components/vip';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepGuessVerificationProps = {
   guess: string;
