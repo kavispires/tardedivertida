@@ -43,7 +43,7 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
           className="c-book-pages"
           leftPage={
             <Space className="space-container" direction="vertical" align="center">
-              <ImageCard imageId="back-default" cardWidth={100} />
+              <ImageCard imageId="back-question" cardWidth={100} />
             </Space>
           }
           rightPage={<div className="c-book-content">{track.data?.prompt ?? track.data?.options ?? '?'}</div>}
