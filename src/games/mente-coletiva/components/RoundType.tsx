@@ -5,7 +5,10 @@ import { ArrowSignIcon } from 'icons/ArrowSignIcon';
 import { Translate } from 'components/language';
 
 type RoundTypeProps = {
-  roundType: Number;
+  /**
+   * Round type
+   */
+  roundType: number;
   /**
    * Optional custom class name
    */
