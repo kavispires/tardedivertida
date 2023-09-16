@@ -30,49 +30,51 @@ export const TrackRetratoFalado = ({ track, round, onSubmitAnswer, user, players
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
-      <Instruction contained>
-        <Translate
-          pt={
-            <>
-              Dentre as ilustrações abaixo, qual melhor ilustra o mostro?
-              <br />
-              Foi você quem desenhou? Você pode votar em si mesmo se quiser.
-            </>
-          }
-          en={
-            <>
-              Among the illustrations below, which one best illustrates the monster?
-              <br />
-              Is that your drawing? You may vote for yourself if you want.
-            </>
-          }
-        />
-      </Instruction>
+      <MinigameTitle title={{ pt: 'Retrato Falado Monstruoso', en: 'Monster Sketch' }} />
+      <Space direction="vertical" align="center" className="contained margin">
+        <Instruction contained>
+          <Translate
+            pt={
+              <>
+                Dentre as ilustrações abaixo, qual melhor ilustra o mostro?
+                <br />
+                Foi você quem desenhou? Você pode votar em si mesmo se quiser.
+              </>
+            }
+            en={
+              <>
+                Among the illustrations below, which one best illustrates the monster?
+                <br />
+                Is that your drawing? You may vote for yourself if you want.
+              </>
+            }
+          />
+        </Instruction>
 
-      <Space className="space-container">
-        <MonsterCard currentMonster={track.data.card} showControls cardWidth={250} />
+        <Space className="space-container">
+          <MonsterCard currentMonster={track.data.card} showControls cardWidth={200} />
+        </Space>
+
+        <div className="a-drawings">
+          {track.data.options.map((entry: PlainObject) => (
+            <div className="a-drawings__entry" key={entry.playerId}>
+              <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
+
+              <Space className="space-container">
+                <Button
+                  shape="round"
+                  type="primary"
+                  disabled={user.ready}
+                  loading={isLoading}
+                  onClick={() => onSelect(entry.playerId)}
+                >
+                  <Translate pt="Selecionar" en="Select" />
+                </Button>
+              </Space>
+            </div>
+          ))}
+        </div>
       </Space>
-
-      <div className="a-drawings">
-        {track.data.options.map((entry: PlainObject) => (
-          <div className="a-drawings__entry" key={entry.playerId}>
-            <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
-
-            <Space className="space-container">
-              <Button
-                shape="round"
-                type="primary"
-                disabled={user.ready}
-                loading={isLoading}
-                onClick={() => onSelect(entry.playerId)}
-              >
-                <Translate pt="Selecionar" en="Select" />
-              </Button>
-            </Space>
-          </div>
-        ))}
-      </div>
     </>
   );
 };

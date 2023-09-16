@@ -8,6 +8,7 @@ import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+import { useColorizeBackground } from './utils/useColorizeBackground';
 
 type StepRankingProps = {
   user: GamePlayer;
@@ -17,7 +18,10 @@ type StepRankingProps = {
   round: GameRound;
 };
 
-export function StepRanking({ ranking, players, goToPreviousStep, round }: StepRankingProps) {
+export function StepRanking({ ranking, players, goToPreviousStep, round, user }: StepRankingProps) {
+  // Dynamic background
+  useColorizeBackground(user, round.current + 1);
+
   const innerContent = (
     <>
       <Instruction contained>

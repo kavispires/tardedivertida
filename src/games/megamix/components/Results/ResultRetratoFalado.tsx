@@ -1,5 +1,3 @@
-// AntDesign Resources
-import { Badge } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -31,11 +29,9 @@ export function ResultRetratoFalado({
       </Instruction>
       <div className="track-result-values__cards">
         {winningArtworks.map((value) => (
-          <Badge key={value.playerId} count={winningTeam.length} color="#faad14">
-            <div className="track-result-values__text-value">
-              <CanvasSVG drawing={value.drawing} width={width} className="a-drawing" />
-            </div>
-          </Badge>
+          <div className="track-result-values__text-value" key={value.drawing}>
+            <CanvasSVG drawing={value.drawing} width={width} className="a-drawing" />
+          </div>
         ))}
       </div>
     </>

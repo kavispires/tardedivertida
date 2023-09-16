@@ -39,6 +39,8 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: string[]) => {
   const individualSeeds: any[] = [];
   const groupSeeds: any[] = [];
+  const playersList = utils.game.shuffle(utils.players.getListOfPlayers(players));
+  const playerCount = playersList.length;
 
   tracks.forEach((track) => {
     switch (track.game) {
@@ -92,21 +94,6 @@ export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: s
         });
         break;
 
-      case GAME_NAMES.FILEIRA_DE_FATOS:
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: track.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: track.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: track.data.card,
-        });
-        break;
-
       case GAME_NAMES.ONDA_TELEPATICA:
         individualSeeds.push({
           type: GAME_NAMES.ONDA_TELEPATICA,
@@ -136,12 +123,39 @@ export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: s
         });
         break;
 
+      case GAME_NAMES.UE_SO_ISSO:
+        individualSeeds.push({
+          type: GAME_NAMES.UE_SO_ISSO,
+          card: track.data.cards[0],
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.UE_SO_ISSO,
+          card: track.data.cards[1],
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.UE_SO_ISSO,
+          card: track.data.cards[2],
+        });
+        if (playerCount > 5) {
+          individualSeeds.push({
+            type: GAME_NAMES.UE_SO_ISSO,
+            card: track.data.cards[0],
+          });
+          individualSeeds.push({
+            type: GAME_NAMES.UE_SO_ISSO,
+            card: track.data.cards[1],
+          });
+          individualSeeds.push({
+            type: GAME_NAMES.UE_SO_ISSO,
+            card: track.data.cards[2],
+          });
+        }
+        break;
+
       default:
       // do nothing
     }
   });
-
-  const playersList = utils.game.shuffle(utils.players.getListOfPlayers(players));
 
   playersList.forEach((player) => {
     player.seeds = [];
@@ -191,10 +205,6 @@ export const handleSeedingData = (tracks: Track[], players: Players) => {
         track.data.options = buildCaminhosMagicosOptions(players, track);
         break;
 
-      case GAME_NAMES.FILEIRA_DE_FATOS:
-        track.data.options = buildFileiraDeFatosOptions(players);
-        break;
-
       case GAME_NAMES.ONDA_TELEPATICA:
         track.data.option = buildOndaTelepaticaOptions(players);
 
@@ -206,6 +216,11 @@ export const handleSeedingData = (tracks: Track[], players: Players) => {
 
       case GAME_NAMES.RETRATO_FALADO:
         track.data.options = buildRetratoFaladoOptions(players, track);
+        break;
+
+      case GAME_NAMES.UE_SO_ISSO:
+        track.data.cards = utils.game.getRandomItems(track.data.cards, 2);
+        track.data.options = buildUeSoIssoOptions(players);
         break;
 
       default:
@@ -519,30 +534,6 @@ const buildPolemicaDaVezOptions = (players: Players) => {
   return orderBy([...new Set([0, correctPercentage, 100, ...utils.game.getRandomItems(possibleLikes, 3)])]);
 };
 
-/**
- * Gather facts, order them
- * @param players
- */
-const buildFileiraDeFatosOptions = (players: Players) => {
-  const allFacts = utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
-    if (player.data.fact !== undefined) {
-      acc.push({
-        playerId: player.id,
-        value: player.data.fact,
-      });
-    }
-    return acc;
-  }, []);
-
-  const ordered = utils.helpers.orderBy(allFacts, 'value', 'asc');
-
-  if (Math.random() > 0.5) {
-    return [ordered[0], ordered[1], ordered[2]];
-  }
-
-  return [ordered[2], ordered[0], ordered[1]];
-};
-
 const buildRetratoFaladoOptions = (players: Players, track: Track) => {
   return utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
     if (player.data[track.data.card.id]) {
@@ -562,6 +553,18 @@ const buildOndaTelepaticaOptions = (players: Players) => {
     playerId: player?.id ?? 'Bug!',
     value: player?.data?.wave ?? 'Bug!',
   };
+};
+
+const buildUeSoIssoOptions = (players: Players) => {
+  // Choose one card to be the card result
+  const clues: string[] = [];
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.data.singleClue) {
+      clues.push(player.data.singleClue.trim().toLowerCase());
+    }
+  });
+
+  return utils.game.getRandomItems([...new Set(clues)], Math.min(5, clues.length));
 };
 
 /**

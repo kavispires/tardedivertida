@@ -17,6 +17,7 @@ import { TransparentButton } from 'components/buttons';
 import { SnowHillIcon } from 'icons/SnowHillIcon';
 
 export const TrackDilemaDosEsquiadores = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+  console.log(track);
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
 

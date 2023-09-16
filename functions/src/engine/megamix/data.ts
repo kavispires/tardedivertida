@@ -184,12 +184,14 @@ export const getData = async (
       Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.CONTENDERS)) as ContenderCard[]
     ).filter((c) => !c.exclusivity || c.exclusivity === language);
 
+    const glyphs = utils.game.sliceInParts(utils.game.getRandomItems(utils.game.makeArray(365, 1), 4), 2);
+
     customTracks.push({
-      game: GAME_NAMES.SUPER_CAMPEONATO,
+      game: GAME_NAMES.QUEM_SOU_EU,
       data: {
         contenders: utils.game.getRandomItems(contenders, 3),
-        positive: 2,
-        negative: 2,
+        positive: glyphs[0],
+        negative: glyphs[1],
       },
     });
   }
@@ -233,7 +235,7 @@ export const getData = async (
   if (fileiraDeFatosTrack) {
     const allScenarios = await resourceUtils.fetchResource(`${TDR_RESOURCES.SCENARIOS}-${language}`);
     customTracks.push({
-      game: GAME_NAMES.DILEMA_DOS_ESQUIADORES,
+      game: GAME_NAMES.FILEIRA_DE_FATOS,
       data: {
         scenarios: utils.game.getRandomItems(Object.values(allScenarios), 3),
       },
@@ -376,14 +378,16 @@ export const getData = async (
     const testimonyQuestions = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`)
     );
-    const suspects = Object.values(await resourceUtils.fetchTDIData('us/info'));
+    const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchTDIData('us/info'));
+    const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
     customTracks.push({
       game: GAME_NAMES.TESTEMUNHA_OCULAR,
-
-      variant: 'suspects',
       data: {
         question: utils.game.getRandomItem(testimonyQuestions),
-        suspects: utils.game.getRandomItems(suspects, 3),
+        suspects: utils.game.getRandomItems(suspects, 3).map((suspect) => ({
+          ...suspect,
+          id: `us-${deckType}-${suspect.id.split('-')[1]}`,
+        })),
         answer: Boolean(utils.game.getRandomItem([true, false])),
       },
     });
@@ -395,14 +399,16 @@ export const getData = async (
     const testimonyQuestions = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`)
     );
-    const suspects = Object.values(await resourceUtils.fetchTDIData('us/info'));
+    const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchTDIData('us/info'));
+    const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
+    const suspect = utils.game.getRandomItem(suspects);
     customTracks.push({
       game: GAME_NAMES.TESTEMUNHA_OCULAR,
 
       variant: 'witness',
       data: {
         question: utils.game.getRandomItem(testimonyQuestions),
-        suspect: utils.game.getRandomItem(suspects),
+        suspect: { ...suspect, id: `us-${deckType}-${suspect.id.split('-')[1]}` },
       },
     });
   }
@@ -481,17 +487,14 @@ export const getData = async (
       warm: { id: 'warm', name: { en: 'Warm', pt: 'Quente' } },
       weapon: { id: 'weapon', name: { en: 'Weapon', pt: 'Arma' } },
     };
-    const selectedAttributes = utils.game.sliceInParts(
-      utils.game.getRandomItems(Object.values(attributes), 4),
-      2
-    );
+    const selectedAttributes = utils.game.getRandomItems(Object.values(attributes), 2);
 
     customTracks.push({
       game: GAME_NAMES.COMUNICACAO_ALIENIGENA,
       data: {
-        items: utils.game.getRandomItems(utils.game.makeArray(1, 250), 3),
-        positiveAttributes: selectedAttributes[0],
-        negativeAttributes: selectedAttributes[1],
+        items: utils.game.getRandomItems(utils.game.makeArray(250, 1), 5),
+        attributes: selectedAttributes,
+        signs: utils.game.getRandomItems(utils.game.makeArray(25, 0), 2),
       },
     });
   }

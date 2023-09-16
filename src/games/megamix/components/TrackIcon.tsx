@@ -1,4 +1,5 @@
 // Components
+import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
 import { BoxingGlovesIcon } from 'icons/BoxingGlovesIcon';
 import { ChoiceIcon } from 'icons/ChoiceIcon';
 import { ColorWheelIcon } from 'icons/ColorWheelIcon';
@@ -12,12 +13,14 @@ import { FairyTaleIcon } from 'icons/FairyTaleIcon';
 import { GuessIcon } from 'icons/GuessIcon';
 import { LoveIcon } from 'icons/LoveIcon';
 import { MagicDoorIcon } from 'icons/MagicDoorIcon';
+import { MirrorIcon } from 'icons/MirrorIcon';
 import { MonsterIcon } from 'icons/MonsterIcon';
 import { MovieTheaterIcon } from 'icons/MovieTheaterIcon';
 import { PassportIcon } from 'icons/PassportIcon';
 import { PathIcon } from 'icons/PathIcon';
 import { PictureIcon } from 'icons/PictureIcon';
 import { QueueIcon } from 'icons/QueueIcon';
+import { ReviewIcon } from 'icons/ReviewIcon';
 import { RevolverIcon } from 'icons/RevolverIcon';
 import { SheepIcon } from 'icons/SheepIcon';
 import { SkiingIcon } from 'icons/SkiingIcon';
@@ -31,60 +34,37 @@ type TrackIconProps = {
 };
 
 export const TrackIcon = ({ track }: TrackIconProps) => {
-  switch (track.game) {
-    case 'arte-ruim':
-      return <PictureIcon />;
-    case 'caminhos-magicos':
-      return <PathIcon />;
-    case 'contadores-historias':
-      return <FairyTaleIcon />;
-    case 'crimes-hediondos':
-      return <CrimeSceneIcon />;
-    case 'cruza-palavras':
-      return <CrossWordsIcon />;
-    case 'detetives-imaginativos':
-      return <DetectiveIcon />;
-    case 'dilema-dos-esquiadores':
-      return <SkiingIcon />;
-    case 'espiao-entre-nos':
-      return <PassportIcon />;
-    case 'fileira-de-fatos':
-      return <QueueIcon />;
-    case 'galeria-de-sonhos':
-      return <DreamIcon />;
-    case 'megamix-best-of-three':
-      return <ChoiceIcon />;
-    case 'megamix-this-that':
-      return <DirectionsIcon />;
-    case 'mente-coletiva':
-      return <SheepIcon />;
-    case 'namoro-ou-amizade':
-      return <LoveIcon />;
-    case 'na-rua-do-medo':
-      return <TrickOrTreatIcon />;
-    case 'namoro-amizade':
-      return <LoveIcon />;
-    case 'onda-telepatica':
-      return <WavelengthDeviceIcon />;
-    case 'palheta-de-cores':
-      return <ColorWheelIcon />;
-    case 'polemica-da-vez':
-      return <TrendingIcon />;
-    case 'porta-dos-desesperados':
-      return <MagicDoorIcon />;
-    case 'quem-nao-mata':
-      return <RevolverIcon />;
-    case 'retrato-falado':
-      return <MonsterIcon />;
-    case 'super-campeonato':
-      return <BoxingGlovesIcon />;
-    case 'testemunha-ocular':
-      return <CriminalIcon />;
-    case 'ue-so-isso':
-      return <GuessIcon />;
-    case 'vamos-ao-cinema':
-      return <MovieTheaterIcon />;
-    default:
-      return <TDIcon />;
-  }
+  const IconComponent =
+    {
+      'arte-ruim': PictureIcon,
+      'comunicacao-alienigena': AlienCommunicationIcon,
+      'contadores-historias': FairyTaleIcon,
+      'crimes-hediondos': CrimeSceneIcon,
+      'cruza-palavras': CrossWordsIcon,
+      'detetives-imaginativos': DetectiveIcon,
+      'dilema-dos-esquiadores': SkiingIcon,
+      'espiao-entre-nos': PassportIcon,
+      'fileira-de-fatos': QueueIcon,
+      'galeria-de-sonhos': DreamIcon,
+      'labirinto-secreto': PathIcon,
+      'megamix-best-of-three': ChoiceIcon,
+      'megamix-this-that': DirectionsIcon,
+      'mente-coletiva': SheepIcon,
+      'namoro-ou-amizade': LoveIcon,
+      'na-rua-do-medo': TrickOrTreatIcon,
+      'onda-telepatica': WavelengthDeviceIcon,
+      'palheta-de-cores': ColorWheelIcon,
+      'polemica-da-vez': TrendingIcon,
+      'porta-dos-desesperados': MagicDoorIcon,
+      'quem-nao-mata': RevolverIcon,
+      'quem-sou-eu': MirrorIcon,
+      'retrato-falado': MonsterIcon,
+      'super-campeonato': BoxingGlovesIcon,
+      'testemunha-ocular': CriminalIcon,
+      'ta-na-cara': ReviewIcon,
+      'ue-so-isso': GuessIcon,
+      'vamos-ao-cinema': MovieTheaterIcon,
+    }?.[track.game] ?? TDIcon;
+
+  return <IconComponent />;
 };

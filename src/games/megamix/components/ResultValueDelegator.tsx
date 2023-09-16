@@ -1,4 +1,5 @@
 // Components
+import { WinningCount } from './WinningCount';
 import { FallbackComponent } from './FallbackComponent';
 import { ResultArteRuim } from './Results/ResultArteRuim';
 import { ResultCruzaPalavras } from './Results/ResultCruzaPalavras';
@@ -10,21 +11,21 @@ import { ResultMegamix } from './Results/ResultMegamix';
 import { ResultImage } from './Results/ResultImage';
 import { ResultText } from './Results/ResultText';
 import { ResultCharacter } from './Results/ResultCharacter';
-import { WinningCount } from './WinningCount';
 import { ResultOndaTelepatica } from './Results/ResultOndaTelepatica';
+import { ResultadoComunicacaoAlienigena } from './Results/ResultadoComunicacaoAlienigena';
 
 export const ResultValueDelegator = (props: ResultComponentProps) => {
   const ResultComponent =
     {
       'arte-ruim': ResultArteRuim,
-      'comunicacao-alienigena': FallbackComponent,
+      'comunicacao-alienigena': ResultadoComunicacaoAlienigena,
       'contadores-historias': ResultImage,
       'crimes-hediondos': ResultImage,
       'cruza-palavras': ResultCruzaPalavras,
-      'dilema-dos-esquiadores': ResultText,
       'detetives-imaginativos': ResultImage,
+      'dilema-dos-esquiadores': ResultText,
       'espiao-entre-nos': ResultText,
-      'fileira-de-fatos': FallbackComponent,
+      'fileira-de-fatos': ResultText,
       'galeria-de-sonhos': ResultImage,
       'labirinto-secreto': FallbackComponent,
       'megamix-best-of-three': ResultMegamix,
@@ -42,7 +43,7 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
       'super-campeonato': ResultCharacter,
       'testemunha-ocular': ResultImage,
       'ta-na-cara': FallbackComponent,
-      'ue-so-isso': FallbackComponent,
+      'ue-so-isso': ResultText,
       'vamos-ao-cinema': ResultVamosAoCinema,
     }?.[props.track.game] ?? FallbackComponent;
 

@@ -27,6 +27,11 @@ type SceneTile = {
   tags?: Record<number | string, string[]>;
 };
 
+type AlienSign = {
+  id: string;
+  name: DualLanguageValue;
+};
+
 type HCard = {
   id: string;
   type: string;
@@ -57,14 +62,6 @@ type SeedEntryCaminhosMagicos = {
   outfits: never;
 };
 
-type SeedEntryFileiraDeFatos = {
-  type: 'fileira-de-fatos';
-  card: QuantitativeQuestionCard;
-  cards: never;
-  outfits: never;
-  portal: never;
-};
-
 type SeedEntryOndaTelepatica = {
   type: 'onda-telepatica';
   card: OpposingIdeaCard;
@@ -92,6 +89,14 @@ type SeedEntryRetratoFalado = {
   portal: never;
 };
 
+type SeedEntryUeSoIsso = {
+  type: 'ue-so-isso';
+  card: TextCard;
+  cards: never;
+  outfits: never;
+  portal: never;
+};
+
 type SeedEntryClubberOutfit = {
   type: 'clubber';
   outfits: string[];
@@ -103,10 +108,10 @@ type SeedEntryClubberOutfit = {
 type SeedEntry =
   | SeedEntryArteRuim
   | SeedEntryCaminhosMagicos
-  | SeedEntryFileiraDeFatos
   | SeedEntryOndaTelepatica
   | SeedEntryPolemicaDaVez
   | SeedEntryRetratoFalado
+  | SeedEntryUeSoIsso
   | SeedEntryClubberOutfit;
 
 type VoteComponentProps = {
