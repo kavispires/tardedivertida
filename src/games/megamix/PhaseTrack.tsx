@@ -51,7 +51,7 @@ function PhaseTrack({ players, state, info }: PhaseProps) {
           title={<DJAnnouncementTitle round={state.round} />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          duration={state?.round?.current < 2 ? 5 : 7} // TODO: 20 instead of 5
+          duration={state?.round?.current < 2 ? 20 : 7}
           unskippable
           type="block"
         >
