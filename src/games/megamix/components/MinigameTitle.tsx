@@ -1,21 +1,17 @@
 // Utils
-import { INSTRUCTIONS } from '../utils/constants';
+import { DualTranslate } from 'components/language';
+
 // Components
 import { Title } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
 
 type MinigameTitleProps = {
-  round: GameRound;
-  task: Task;
+  title: DualLanguageValue;
 };
 
-export function MinigameTitle({ round, task }: MinigameTitleProps) {
-  const { dualTranslate } = useLanguage();
+export function MinigameTitle({ title }: MinigameTitleProps) {
   return (
-    <Title size="small">
-      <span className="minigame-title__number">Minigame {round.current}</span>
-      <br />
-      {dualTranslate(INSTRUCTIONS[task.game])}
+    <Title size="small" white level={2} className="minigame-title__number">
+      <DualTranslate>{title}</DualTranslate>
     </Title>
   );
 }

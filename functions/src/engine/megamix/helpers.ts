@@ -3,21 +3,29 @@ import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import { HouseCard } from '../na-rua-do-medo/types';
-import { MEGAMIX_PHASES, MINI_GAMES_LIST, TOTAL_ROUNDS, WINNING_CONDITION } from './constants';
-import { AvailableTask, MostScoring, Task } from './types';
+import { MEGAMIX_ACHIEVEMENTS, MEGAMIX_PHASES, WINNING_CONDITION } from './constants';
+import {
+  AvailableTrack,
+  FirebaseStoreData,
+  MegamixAchievement,
+  MostScoring,
+  Track,
+  TrackCandidate,
+} from './types';
+import { orderBy } from 'lodash';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Get the next phase based on the current one
+ * @param currentPhase - current phase
+ * @param round - round data
+ * @returns next phase
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, SEEDING, TASK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
-  const order = [RULES, SETUP, SEEDING, TASK, RESULT, GAME_OVER];
+  const { RULES, SETUP, SEEDING, TRACK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
+  const order = [RULES, SETUP, SEEDING, TRACK, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
-    return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TASK;
+    return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TRACK;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -26,23 +34,232 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return order[currentPhaseIndex + 1];
   }
   console.warn('Missing phase check');
-  return TASK;
+  return TRACK;
 };
 
 /**
- * Get random task list
- * @param includeAllMiniGameTypes
- * @param isFullGame
+ * Distribute seeds to players
+ * @param tracks
+ * @param players
+ * @param clubberIds
+ */
+export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: string[]) => {
+  const individualSeeds: any[] = [];
+  const groupSeeds: any[] = [];
+  const playersList = utils.game.shuffle(utils.players.getListOfPlayers(players));
+  const playerCount = playersList.length;
+
+  tracks.forEach((track) => {
+    switch (track.game) {
+      case GAME_NAMES.ARTE_RUIM:
+        if (track.variant === 'cards') {
+          individualSeeds.push({
+            type: GAME_NAMES.ARTE_RUIM,
+            card: utils.game.getRandomItem(track.data.cards),
+          });
+          break;
+        }
+        individualSeeds.push({
+          type: GAME_NAMES.ARTE_RUIM,
+          card: track.data.cards[0],
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.ARTE_RUIM,
+          card: track.data.cards[1],
+        });
+        if (track.data.cards[2]) {
+          individualSeeds.push({
+            type: GAME_NAMES.ARTE_RUIM,
+            card: track.data.cards[2],
+          });
+        }
+        break;
+
+      case GAME_NAMES.CONTADORES_HISTORIAS:
+        individualSeeds.push({
+          type: GAME_NAMES.CONTADORES_HISTORIAS,
+          card: utils.game.getRandomItem(track.data.cards),
+          prompts: track.data.prompts,
+        });
+        break;
+
+      case GAME_NAMES.LABIRINTO_SECRETO:
+        individualSeeds.push({
+          type: GAME_NAMES.LABIRINTO_SECRETO,
+          tree: track.data.trees[0],
+          cards: track.data.adjectives.slice(0, 3),
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.LABIRINTO_SECRETO,
+          tree: track.data.trees[1],
+          cards: track.data.adjectives.slice(3, 6),
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.LABIRINTO_SECRETO,
+          tree: track.data.trees[2],
+          cards: track.data.adjectives.slice(6, 9),
+        });
+        break;
+
+      case GAME_NAMES.MENTE_COLETIVA:
+        individualSeeds.push({
+          type: GAME_NAMES.MENTE_COLETIVA,
+          card: track.data.question,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.MENTE_COLETIVA,
+          card: track.data.question,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.MENTE_COLETIVA,
+          card: track.data.question,
+        });
+        break;
+
+      case GAME_NAMES.ONDA_TELEPATICA:
+        individualSeeds.push({
+          type: GAME_NAMES.ONDA_TELEPATICA,
+          card: Math.random() > 0.5 ? track.data.card.left : track.data.card.right,
+        });
+        break;
+
+      case GAME_NAMES.POLEMICA_DA_VEZ:
+        groupSeeds.push({
+          type: GAME_NAMES.POLEMICA_DA_VEZ,
+          card: track.data.card,
+        });
+        break;
+
+      case GAME_NAMES.RETRATO_FALADO:
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: track.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: track.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: track.data.card,
+        });
+        break;
+
+      case GAME_NAMES.UE_SO_ISSO:
+        individualSeeds.push({
+          type: GAME_NAMES.UE_SO_ISSO,
+          card: track.data.cards[0],
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.UE_SO_ISSO,
+          card: track.data.cards[1],
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.UE_SO_ISSO,
+          card: track.data.cards[2],
+        });
+        if (playerCount > 5) {
+          individualSeeds.push({
+            type: GAME_NAMES.UE_SO_ISSO,
+            card: track.data.cards[0],
+          });
+          individualSeeds.push({
+            type: GAME_NAMES.UE_SO_ISSO,
+            card: track.data.cards[1],
+          });
+          individualSeeds.push({
+            type: GAME_NAMES.UE_SO_ISSO,
+            card: track.data.cards[2],
+          });
+        }
+        break;
+
+      default:
+      // do nothing
+    }
+  });
+
+  playersList.forEach((player) => {
+    player.seeds = [];
+  });
+
+  individualSeeds.forEach((seed, index) => {
+    const player = playersList[index % playersList.length];
+    player.seeds.push(seed);
+  });
+
+  const clubbers = utils.game.sliceIntoChunks(
+    clubberIds,
+    Math.min(Math.floor(clubberIds.length / playersList.length), 5)
+  );
+
+  playersList.forEach((player, index) => {
+    groupSeeds.forEach((seed) => {
+      player.seeds.push(seed);
+    });
+
+    player.seeds.push({
+      type: 'clubber',
+      outfits: clubbers[index],
+    });
+  });
+};
+
+/**
+ * Parse seeds into game track data
+ * @param tracks
+ * @param players
  * @returns
  */
-export const getTaskList = (includeAllMiniGameTypes: boolean, isFullGame: boolean) => {
-  const list = includeAllMiniGameTypes ? MINI_GAMES_LIST : MINI_GAMES_LIST.filter((game) => !game.upcoming);
+export const handleSeedingData = (tracks: Track[], players: Players) => {
+  tracks.forEach((track) => {
+    switch (track.game) {
+      case GAME_NAMES.ARTE_RUIM:
+        if (track.variant === 'cards') {
+          track.data.option = buildArteRuimCardOptions(players, track);
+          break;
+        }
 
-  if (isFullGame) {
-    return utils.game.shuffle(list);
-  }
+        track.data.options = buildArteRuimDrawingsOptions(players, track);
+        break;
 
-  return utils.game.getRandomItems(list, TOTAL_ROUNDS);
+      case GAME_NAMES.CONTADORES_HISTORIAS:
+        track.data.prompt = buildContadoresHistoriasOptions(players);
+        delete track.data.prompts;
+        break;
+
+      case GAME_NAMES.LABIRINTO_SECRETO:
+        track.data.options = buildLabirintoSecretoOptions(players, track);
+        break;
+
+      case GAME_NAMES.MENTE_COLETIVA:
+        track.data.options = buildMenteColetivaOptions(players);
+        break;
+
+      case GAME_NAMES.ONDA_TELEPATICA:
+        track.data.option = buildOndaTelepaticaOptions(players);
+
+        break;
+
+      case GAME_NAMES.POLEMICA_DA_VEZ:
+        track.data.options = buildPolemicaDaVezOptions(players);
+        break;
+
+      case GAME_NAMES.RETRATO_FALADO:
+        track.data.options = buildRetratoFaladoOptions(players, track);
+        break;
+
+      case GAME_NAMES.UE_SO_ISSO:
+        track.data.cards = utils.game.getRandomItems(track.data.cards, 2);
+        track.data.options = buildUeSoIssoOptions(players);
+        break;
+
+      default:
+      // do nothing
+    }
+  });
+
+  return tracks;
 };
 
 export const parseCrimeTiles = (sceneTiles: CrimeTile[]) => {
@@ -234,12 +451,7 @@ export const getMostMatching = (players: Players, property: string, acceptance =
   };
 };
 
-export const getRanking = (
-  players: Players,
-  scoring: MostScoring,
-  currentRound: number
-  // store: FirebaseStoreData
-): NewScore[] => {
+export const getRanking = (players: Players, scoring: MostScoring, currentRound: number): NewScore[] => {
   // Gained points: [already on Winning team, joining Winning team]
   const scores = new utils.players.Scores(players, [0, 0]);
 
@@ -260,19 +472,15 @@ export const getRanking = (
         if (previousTeam === 'W') {
           scores.add(player.id, 2, 0);
           player.team.push('W');
-          // TODO: achievement stayed winning
         } else {
           player.team.push('L');
-          // TODO: achievement joined winning
         }
       } else {
         // Was in the winning team
         if (previousTeam === 'W') {
           player.team.push('L');
-          // TODO: achievement left winning
         } else {
           player.team.push('L');
-          // TODO: achievement stayed losing
         }
       }
     } else {
@@ -282,20 +490,16 @@ export const getRanking = (
         if (previousTeam === 'W') {
           scores.add(player.id, 2, 0);
           player.team.push('W');
-          // TODO: achievement stayed winning
         } else {
           scores.add(player.id, 1, 1);
           player.team.push('W');
-          // TODO: achievement joined winning
         }
       } else {
         // Was in the winning team
         if (previousTeam === 'W') {
           player.team.push('L');
-          // TODO: achievement left winning
         } else {
           player.team.push('L');
-          // TODO: achievement stayed losing
         }
       }
     }
@@ -326,170 +530,33 @@ export const getCandidatePersonality = (cards: DatingCandidateCard[]) => {
   };
 };
 
-export const distributeSeeds = (tasks: Task[], players: Players, clubberIds: string[]) => {
-  const individualSeeds: any[] = [];
-  const groupSeeds: any[] = [];
-
-  tasks.forEach((task) => {
-    switch (task.game) {
-      case GAME_NAMES.ARTE_RUIM:
-        if (task.variant === 'cards') {
-          individualSeeds.push({
-            type: GAME_NAMES.ARTE_RUIM,
-            card: utils.game.getRandomItem(task.data.cards),
-          });
-          break;
-        }
-        individualSeeds.push({
-          type: GAME_NAMES.ARTE_RUIM,
-          card: task.data.cards[0],
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.ARTE_RUIM,
-          card: task.data.cards[1],
-        });
-        if (task.data.cards[2]) {
-          individualSeeds.push({
-            type: GAME_NAMES.ARTE_RUIM,
-            card: task.data.cards[2],
-          });
-        }
-        break;
-
-      case GAME_NAMES.CAMINHOS_MAGICOS:
-        individualSeeds.push({
-          type: GAME_NAMES.CAMINHOS_MAGICOS,
-          portal: task.data.portals[0],
-          cards: task.data.adjectives.slice(0, 3),
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.CAMINHOS_MAGICOS,
-          portal: task.data.portals[1],
-          cards: task.data.adjectives.slice(3, 6),
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.CAMINHOS_MAGICOS,
-          portal: task.data.portals[2],
-          cards: task.data.adjectives.slice(6, 9),
-        });
-        break;
-
-      case GAME_NAMES.FILEIRA_DE_FATOS:
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: task.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: task.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.FILEIRA_DE_FATOS,
-          card: task.data.card,
-        });
-        break;
-
-      case GAME_NAMES.ONDA_TELEPATICA:
-        individualSeeds.push({
-          type: GAME_NAMES.ONDA_TELEPATICA,
-          card: task.data.card,
-        });
-        break;
-
-      case GAME_NAMES.POLEMICA_DA_VEZ:
-        groupSeeds.push({
-          type: GAME_NAMES.POLEMICA_DA_VEZ,
-          card: task.data.card,
-        });
-        break;
-
-      case GAME_NAMES.RETRATO_FALADO:
-        individualSeeds.push({
-          type: GAME_NAMES.RETRATO_FALADO,
-          card: task.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.RETRATO_FALADO,
-          card: task.data.card,
-        });
-        individualSeeds.push({
-          type: GAME_NAMES.RETRATO_FALADO,
-          card: task.data.card,
-        });
-        break;
-
-      default:
-      // do nothing
+export const buildContadoresHistoriasOptions = (players: Players) => {
+  let prompt = '';
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.data.prompt) {
+      prompt = player.data.prompt;
     }
   });
-
-  const playersList = utils.players.getListOfPlayers(players);
-
-  playersList.forEach((player) => {
-    player.seeds = [];
-  });
-
-  individualSeeds.forEach((seed, index) => {
-    const player = playersList[index % playersList.length];
-    player.seeds.push(seed);
-  });
-
-  const clubbers = utils.game.sliceIntoChunks(
-    clubberIds,
-    Math.min(Math.floor(clubberIds.length / playersList.length), 5)
-  );
-
-  playersList.forEach((player, index) => {
-    groupSeeds.forEach((seed) => {
-      player.seeds.push(seed);
-    });
-
-    player.seeds.push({
-      type: 'clubber',
-      outfits: clubbers[index],
-    });
-  });
+  return prompt;
 };
 
-export const handleSeedingData = (tasks: Task[], players: Players) => {
-  tasks.forEach((task) => {
-    switch (task.game) {
-      case GAME_NAMES.ARTE_RUIM:
-        if (task.variant === 'cards') {
-          task.data.option = buildArteRuimCardOptions(players, task);
-          break;
-        }
-
-        task.data.options = buildArteRuimDrawingsOptions(players, task);
-        break;
-
-      case GAME_NAMES.CAMINHOS_MAGICOS:
-        task.data.options = buildCaminhosMagicosOptions(players, task);
-        break;
-
-      case GAME_NAMES.FILEIRA_DE_FATOS:
-        task.data.options = buildFileiraDeFatosOptions(players);
-        break;
-
-      case GAME_NAMES.ONDA_TELEPATICA:
-        task.data.option = buildOndaTelepaticaOptions(players);
-
-        break;
-
-      case GAME_NAMES.POLEMICA_DA_VEZ:
-        task.data.options = buildPolemicaDaVezOptions(players);
-        break;
-
-      case GAME_NAMES.RETRATO_FALADO:
-        task.data.options = buildRetratoFaladoOptions(players, task);
-        break;
-
-      default:
-      // do nothing
-    }
+export const buildMenteColetivaOptions = (players: Players) => {
+  const answers: string[] = [];
+  const sanitizedAnswers: string[] = [];
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    (player.data.answers ?? []).forEach((answer: string) => {
+      const cleanedUpWork = utils.helpers.stringRemoveAccents(answer);
+      const similar = sanitizedAnswers.some((a) => {
+        const similarity = stringSimilarity.compareTwoStrings(a, cleanedUpWork);
+        return similarity >= 0.75;
+      });
+      if (!similar) {
+        answers.push(answer);
+        sanitizedAnswers.push(cleanedUpWork);
+      }
+    });
   });
-
-  return tasks;
+  return answers;
 };
 
 /**
@@ -507,42 +574,19 @@ const buildPolemicaDaVezOptions = (players: Players) => {
       }
       return acc;
     }, 0);
+  const correctPercentage = Math.round((totalLikes / playerCount) * 100);
 
-  const possibleLikes = utils.game.makeArray(playerCount + 1);
+  const possibleLikes = utils.game.makeArray(playerCount, 1).map((v) => Math.round((v * 100) / playerCount));
 
-  return [...new Set([totalLikes, ...utils.game.getRandomItems(possibleLikes, 3)])].sort();
+  return orderBy([...new Set([0, correctPercentage, 100, ...utils.game.getRandomItems(possibleLikes, 3)])]);
 };
 
-/**
- * Gather facts, order them
- * @param players
- */
-const buildFileiraDeFatosOptions = (players: Players) => {
-  const allFacts = utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
-    if (player.data.fact !== undefined) {
-      acc.push({
-        playerId: player.id,
-        value: player.data.fact,
-      });
-    }
-    return acc;
-  }, []);
-
-  const ordered = utils.helpers.orderBy(allFacts, 'value', 'asc');
-
-  if (Math.random() > 0.5) {
-    return [ordered[0], ordered[1], ordered[2]];
-  }
-
-  return [ordered[2], ordered[0], ordered[1]];
-};
-
-const buildRetratoFaladoOptions = (players: Players, task: Task) => {
+const buildRetratoFaladoOptions = (players: Players, track: Track) => {
   return utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
-    if (player.data[task.data.card.id]) {
+    if (player.data[track.data.card.id]) {
       acc.push({
         playerId: player.id,
-        drawing: player.data[task.data.card.id],
+        drawing: player.data[track.data.card.id],
       });
     }
     return acc;
@@ -558,14 +602,26 @@ const buildOndaTelepaticaOptions = (players: Players) => {
   };
 };
 
+const buildUeSoIssoOptions = (players: Players) => {
+  // Choose one card to be the card result
+  const clues: string[] = [];
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.data.singleClue) {
+      clues.push(player.data.singleClue.trim().toLowerCase());
+    }
+  });
+
+  return utils.game.getRandomItems([...new Set(clues)], Math.min(5, clues.length));
+};
+
 /**
  * Find the one drawing
  * @param players
- * @param task
+ * @param track
  * @returns
  */
-const buildArteRuimCardOptions = (players: Players, task: Task) => {
-  const cardIds: CardId[] = task.data.cards.map((card: TextCard) => card.id);
+const buildArteRuimCardOptions = (players: Players, track: Track) => {
+  const cardIds: CardId[] = track.data.cards.map((card: TextCard) => card.id);
   const drawing = {
     drawing: '[]',
     playerId: 'Bug!',
@@ -585,11 +641,11 @@ const buildArteRuimCardOptions = (players: Players, task: Task) => {
 /**
  * Find the 2 or 3 drawings
  * @param players
- * @param task
+ * @param track
  * @returns
  */
-const buildArteRuimDrawingsOptions = (players: Players, task: Task) => {
-  const cardIds: CardId[] = task.data.cards.map((card: TextCard) => card.id);
+const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
+  const cardIds: CardId[] = track.data.cards.map((card: TextCard) => card.id);
   const drawings: PlainObject[] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -607,22 +663,23 @@ const buildArteRuimDrawingsOptions = (players: Players, task: Task) => {
 };
 
 /**
- * Get the 3 portal clues in order, add two random options, shuffle everything
+ * Get the 3 tree clues in order, add two random options, shuffle everything
  * @param players
- * @param task
+ * @param track
  * @returns
  */
-const buildCaminhosMagicosOptions = (players: Players, task: Task) => {
-  const portalIds: CardId[] = task.data.portals.map((portal) => portal.id);
+const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
+  const treeIds: CardId[] = track.data.trees.map((tree: TextCard) => tree.id);
 
   const clues: PlainObject[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
     Object.keys(player.data).forEach((dataKey) => {
-      if (portalIds.includes(dataKey)) {
-        clues[portalIds.indexOf(dataKey)] = {
-          text: task.data.adjectives.find((adjective) => adjective.id === player.data[dataKey]).text ?? '???',
+      if (treeIds.includes(dataKey)) {
+        clues[treeIds.indexOf(dataKey)] = {
+          text:
+            track.data.adjectives.find((adjective) => adjective.id === player.data[dataKey]).text ?? '???',
           playerId: player.id,
-          portalId: dataKey,
+          treeId: dataKey,
         };
       }
     });
@@ -645,7 +702,11 @@ const buildCaminhosMagicosOptions = (players: Players, task: Task) => {
   };
 };
 
-export const getGameOnList = (list: AvailableTask[], gameName: string): AvailableTask[] => {
+export const getCandidateOnList = (list: TrackCandidate[], name: string): TrackCandidate | undefined => {
+  return list.find((game) => game && game.game === name);
+};
+
+export const getGameOnList = (list: AvailableTrack[], gameName: string): AvailableTrack[] => {
   return list.filter((game) => game.game === gameName);
 };
 
@@ -723,4 +784,127 @@ export const getMovieReviews = (reviews: MovieReviewCard[]) => {
     good: utils.game.getRandomItem(good),
     bad: utils.game.getRandomItem(bad),
   };
+};
+
+export const calculateAllAchievements = (players: Players, store: FirebaseStoreData) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    utils.achievements.increase(
+      store,
+      player.id,
+      'longestVIP',
+      utils.game.calculateLongestRun(player.team, 'W')
+    );
+    utils.achievements.increase(
+      store,
+      player.id,
+      'longestLoser',
+      utils.game.calculateLongestRun(player.team, 'L')
+    );
+
+    player.team.forEach((team: string, index: number) => {
+      if (index > 0 && team) {
+        if (team !== player.team[index - 1]) {
+          utils.achievements.increase(store, player.id, 'switchedTeam', 1);
+        }
+        if (team === 'W' && player.team[index - 1] === 'L') {
+          utils.achievements.increase(store, player.id, 'joinedVIP', 1);
+        }
+        if (team === 'L' && player.team[index - 1] === 'W') {
+          utils.achievements.increase(store, player.id, 'leftVIP', 1);
+        }
+      }
+    });
+  });
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<MegamixAchievement>[] = [];
+
+  // Solitary Winner: Was on the VIP area by themselves the most
+  const { most: solitaryWinner } = utils.achievements.getMostAndLeastOf(store, 'solitaryWinner');
+  if (solitaryWinner) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.SOLITARY_VIP,
+      playerId: solitaryWinner.playerId,
+      value: solitaryWinner.solitaryWinner,
+    });
+  }
+
+  // Solitary Loser: Was on the Loser area by themselves the most
+  const { most: solitaryLoser } = utils.achievements.getMostAndLeastOf(store, 'solitaryLoser');
+  if (solitaryLoser) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.SOLITARY_LOSER,
+      playerId: solitaryLoser.playerId,
+      value: solitaryLoser.solitaryLoser,
+    });
+  }
+
+  // VIP longest
+  const { most: longestVIP } = utils.achievements.getMostAndLeastOf(store, 'longestVIP');
+  if (longestVIP) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.LONGEST_VIP,
+      playerId: longestVIP.playerId,
+      value: longestVIP.longestVIP,
+    });
+  }
+
+  // Loser longest
+  const { most: longestLoser } = utils.achievements.getMostAndLeastOf(store, 'longestLoser');
+  if (longestLoser) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.LONGEST_VIP,
+      playerId: longestLoser.playerId,
+      value: longestLoser.longestLoser,
+    });
+  }
+
+  // Longest words
+  const { most: switchedMost, least: switchedLeast } = utils.achievements.getMostAndLeastOf(
+    store,
+    'switchedTeam'
+  );
+  if (switchedMost) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.MOST_SWITCHED,
+      playerId: switchedMost.playerId,
+      value: switchedMost.switchedTeam,
+    });
+  }
+
+  // Shortest words
+  if (switchedLeast) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.LEAST_SWITCHED,
+      playerId: switchedLeast.playerId,
+      value: switchedLeast.switchedTeam,
+    });
+  }
+
+  // Savior
+  const { most: joinedVIP } = utils.achievements.getMostAndLeastOf(store, 'joinedVIP');
+  if (joinedVIP) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.MOST_JOIN,
+      playerId: joinedVIP.playerId,
+      value: joinedVIP.joinedVIP,
+    });
+  }
+
+  // Choose for me: gave up on trying to match the clues the most
+  const { most: leftVIP } = utils.achievements.getMostAndLeastOf(store, 'leftVIP');
+  if (leftVIP) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.MOST_LEFT,
+      playerId: leftVIP.playerId,
+      value: leftVIP.chooseForMe,
+    });
+  }
+
+  return achievements;
 };

@@ -4,11 +4,11 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Guess } from './components/Guess';
-import { SuggestionEasel } from './components/SuggestionEasel';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepGuessingProps = {
   guesser: GamePlayer;

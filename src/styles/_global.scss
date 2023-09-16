@@ -109,3 +109,7 @@ body {
 .svg-mirror {
   transform: scaleX(-1);
 }
+
+.grayscale {
+  filter: grayscale(0.85);
+}

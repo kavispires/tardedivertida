@@ -10,7 +10,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { Challenge } from './components/Challenge';
-import { ContenderCard } from './components/ContenderCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type StepWinnerProps = {
   challenge: TextCard;
@@ -39,7 +39,7 @@ export function StepWinner({
       <Challenge challenge={challenge} />
 
       <Space className="space-container margin" align="center">
-        <ContenderCard size={200} overlayColor="yellow" contender={brackets[brackets.length - 1]} />
+        <CharacterCard size={200} overlayColor="yellow" character={brackets[brackets.length - 1]} />
       </Space>
 
       <Space className="space-container " align="center">

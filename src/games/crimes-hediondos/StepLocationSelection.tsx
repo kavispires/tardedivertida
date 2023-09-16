@@ -6,10 +6,10 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { ItemCard } from './components/ItemCard';
-import { SceneTile } from './components/SceneTile';
+import { SceneTile } from 'components/game/SceneTile';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 type StepLocationSelectionProps = {
   user: GamePlayer;
@@ -72,7 +72,7 @@ export function StepLocationSelection({
       <ul className="h-items-selection">
         {userItems.map((itemId) => (
           <li key={itemId} className="h-items-selection__item">
-            <ItemCard
+            <CrimeItemCard
               item={items[itemId]}
               cardWidth={cardWidth}
               preview={false}

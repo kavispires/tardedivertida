@@ -1,7 +1,6 @@
 // Hooks
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { useCardWidth } from 'hooks/useCardWidth';
-// Components
-import { ItemCard } from './ItemCard';
 
 type GroupedItemsBoardProps = {
   groupedItems: GroupedItems;
@@ -19,7 +18,7 @@ export function GroupedItemsBoard({ items, weaponId, evidenceId, groupedItems }:
           <ul className="h-grouped-items-board__group">
             {group.map((itemId) => (
               <li key={itemId}>
-                <ItemCard
+                <CrimeItemCard
                   item={items[itemId]}
                   cardWidth={cardWidth}
                   isSelected={[weaponId, evidenceId].includes(itemId)}

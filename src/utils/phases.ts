@@ -97,7 +97,7 @@ export const PHASES = {
   },
   MEGAMIX: {
     SEEDING: 'SEEDING',
-    TASK: 'TASK',
+    TRACK: 'TRACK',
     RESULT: 'RESULT',
   },
   MENTE_COLETIVA: {

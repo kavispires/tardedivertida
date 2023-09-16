@@ -8,15 +8,20 @@ import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+import { useColorizeBackground } from './utils/useColorizeBackground';
 
 type StepRankingProps = {
-  ranking: GameRanking;
+  user: GamePlayer;
   players: GamePlayers;
+  ranking: GameRanking;
   goToPreviousStep: GenericFunction;
   round: GameRound;
 };
 
-export function StepRanking({ ranking, players, goToPreviousStep, round }: StepRankingProps) {
+export function StepRanking({ ranking, players, goToPreviousStep, round, user }: StepRankingProps) {
+  // Dynamic background
+  useColorizeBackground(user, round.current + 1);
+
   const innerContent = (
     <>
       <Instruction contained>
@@ -25,6 +30,11 @@ export function StepRanking({ ranking, players, goToPreviousStep, round }: StepR
           en="Only players in the VIP area can be ranked since you can't win if you're not there"
         />
       </Instruction>
+    </>
+  );
+
+  const actions = (
+    <>
       <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>
           <Translate pt="Ver resultado novamente" en="See results again" />
@@ -45,6 +55,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round }: StepR
           <BouncerIcon width="120" />
         </Space>
         {innerContent}
+        {actions}
       </Step>
     );
   }
@@ -63,8 +74,11 @@ export function StepRanking({ ranking, players, goToPreviousStep, round }: StepR
           en={<>Points for joining the Winning Team.</>}
         />,
       ]}
+      title={<Translate pt={<>Ranking da Área VIP</>} en={<>VIP Ranking</>} />}
+      white
+      subtitle={innerContent}
     >
-      {innerContent}
+      {actions}
     </StepRankingWrapper>
   );
 }

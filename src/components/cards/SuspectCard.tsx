@@ -1,0 +1,27 @@
+// Components
+import { DualTranslate } from 'components/language';
+import { ImageCard } from './ImageCard';
+// Sass
+import './SuspectCard.scss';
+
+type SuspectCardProps = {
+  /**
+   * Suspect object
+   */
+  suspect: Suspect;
+  /**
+   * Card width
+   */
+  width: number;
+};
+
+export function SuspectCard({ suspect, width }: SuspectCardProps) {
+  return (
+    <div className="suspect-card">
+      <ImageCard imageId={suspect.id} className="suspect-card__image" cardWidth={width} preview={false} />
+      <div className="suspect-card__name">
+        <DualTranslate>{suspect.name}</DualTranslate>
+      </div>
+    </div>
+  );
+}

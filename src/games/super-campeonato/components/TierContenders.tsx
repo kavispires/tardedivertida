@@ -1,7 +1,7 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { ContenderCard } from './ContenderCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 type TierContendersProps = {
   contenders: WBracket[][];
@@ -15,7 +15,7 @@ export function TierContenders({ contenders }: TierContendersProps) {
     <ul className="w-tier-contenders">
       {flatContenders.map((contender) => (
         <li className="w-tier-contender" key={`w-tier-contender-${contender.id}`}>
-          <ContenderCard contender={contender} overlayColor="gray" size={cardWidth} />
+          <CharacterCard character={contender} overlayColor="gray" size={cardWidth} />
         </li>
       ))}
     </ul>

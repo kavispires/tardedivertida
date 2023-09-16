@@ -1,19 +1,19 @@
-interface Task {
+interface Track {
   game: string;
   variant?: string;
   condition: string;
   data: Record<string, any>;
 }
 
-interface TaskProps {
-  task: Task;
+interface TrackProps {
+  track: Track;
   round: GameRound;
   players: GamePlayers;
   user: GamePlayer;
-  onSubmitTask: GenericFunction;
+  onSubmitAnswer: GenericFunction;
 }
 
-type SubmitTaskPayload = {
+type SubmitAnswerPayload = {
   data: any;
 };
 
@@ -27,6 +27,11 @@ type SceneTile = {
   tags?: Record<number | string, string[]>;
 };
 
+type AlienSign = {
+  id: string;
+  name: DualLanguageValue;
+};
+
 type HCard = {
   id: string;
   type: string;
@@ -34,28 +39,48 @@ type HCard = {
   tags?: string[];
 };
 
+type Seed = {
+  card: never;
+  cards: never;
+  outfits: never;
+  tree: never;
+  prompts: never;
+};
+
 type SeedEntryArteRuim = {
   type: 'arte-ruim';
   card: TextCard;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
+  prompts: never;
 };
 
-type SeedEntryCaminhosMagicos = {
-  type: 'caminhos-magicos';
+type SeedEntryContadoresHistorias = {
+  type: 'contadores-historias';
   cards: TextCard[];
-  portal: TextCard;
+  tree: TextCard;
+  card: string;
+  outfits: never;
+  prompts: TextCard[];
+};
+
+type SeedEntryLabirintoSecreto = {
+  type: 'labirinto-secreto';
+  cards: TextCard[];
+  tree: TextCard;
   card: never;
   outfits: never;
+  prompts: never;
 };
 
-type SeedEntryFileiraDeFatos = {
-  type: 'fileira-de-fatos';
-  card: QuantitativeQuestionCard;
+type SeedMenteColetiva = {
+  type: 'mente-coletiva';
+  card: GroupQuestionCard;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
+  prompts: never;
 };
 
 type SeedEntryOndaTelepatica = {
@@ -63,7 +88,8 @@ type SeedEntryOndaTelepatica = {
   card: OpposingIdeaCard;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
+  prompts: never;
 };
 
 type SeedEntryPolemicaDaVez = {
@@ -71,7 +97,8 @@ type SeedEntryPolemicaDaVez = {
   card: TopicCard;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
+  prompts: never;
 };
 
 type SeedEntryRetratoFalado = {
@@ -82,7 +109,17 @@ type SeedEntryRetratoFalado = {
   };
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
+  prompts: never;
+};
+
+type SeedEntryUeSoIsso = {
+  type: 'ue-so-isso';
+  card: TextCard;
+  cards: never;
+  outfits: never;
+  tree: never;
+  prompts: never;
 };
 
 type SeedEntryClubberOutfit = {
@@ -90,29 +127,27 @@ type SeedEntryClubberOutfit = {
   outfits: string[];
   card: never;
   cards: never;
-  portal: never;
+  tree: never;
+  prompts: never;
 };
 
 type SeedEntry =
   | SeedEntryArteRuim
-  | SeedEntryCaminhosMagicos
-  | SeedEntryFileiraDeFatos
+  | SeedEntryContadoresHistorias
+  | SeedEntryLabirintoSecreto
+  | SeedMenteColetiva
   | SeedEntryOndaTelepatica
   | SeedEntryPolemicaDaVez
   | SeedEntryRetratoFalado
+  | SeedEntryUeSoIsso
   | SeedEntryClubberOutfit;
 
-type ResultComponentProps = {
-  task: Task;
-  winningValues: string[];
-  winningTeam: PlayerId[];
-  players: GamePlayers;
-};
-
 type VoteComponentProps = {
-  task: Task;
+  track: Track;
   winningValues: string[];
   winningTeam: PlayerId[];
   players: GamePlayers;
   playersList: GamePlayer[];
 };
+
+type ResultComponentProps = VoteComponentProps;

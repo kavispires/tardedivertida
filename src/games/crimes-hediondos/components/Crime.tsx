@@ -18,9 +18,9 @@ import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { ItemCard } from './ItemCard';
 import { ItemCardEmpty } from './ItemCardEmpty';
 import { CrimeGuessStatus } from './CrimeGuessStatus';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 const CARD_WIDTH = 100;
 
@@ -119,13 +119,13 @@ export function Crime({
 
       <div className="h-crime-selections">
         {activeWeaponId ? (
-          <ItemCard item={items[activeWeaponId]} cardWidth={CARD_WIDTH} preview />
+          <CrimeItemCard item={items[activeWeaponId]} cardWidth={CARD_WIDTH} preview />
         ) : (
           <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="weapon" />
         )}
 
         {evidenceWeaponId ? (
-          <ItemCard item={items[evidenceWeaponId]} cardWidth={CARD_WIDTH} preview />
+          <CrimeItemCard item={items[evidenceWeaponId]} cardWidth={CARD_WIDTH} preview />
         ) : (
           <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="evidence" />
         )}

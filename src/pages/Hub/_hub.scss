@@ -6,6 +6,11 @@
     margin-top: get-unit(3);
   }
 
+  &__list {
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
   &__option {
     display: grid;
     grid-template-columns: 1fr 1fr auto 1fr;

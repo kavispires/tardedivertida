@@ -1,0 +1,7 @@
+@use 'styles/sass' as *;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.book-pages {
+  filter: drop-shadow(2px 4px 4px rgba(#000, 0.3));
+  font-family: 'Dancing Script', cursive;
+}

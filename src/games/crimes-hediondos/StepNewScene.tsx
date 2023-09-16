@@ -1,14 +1,15 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Collapse, Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Crime } from './components/Crime';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
-import { SceneTile } from './components/SceneTile';
-import { useLanguage } from 'hooks/useLanguage';
+import { SceneTile } from 'components/game/SceneTile';
 
 type StepNewSceneProps = {
   user: GamePlayer;

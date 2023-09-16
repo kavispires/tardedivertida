@@ -1,0 +1,75 @@
+// AntDesign Resources
+import { Button, Space } from 'antd';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelection } from '../../utils/mock';
+// Components
+import { Card, ImageBlurButtonContainer } from 'components/cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from '../MinigameTitle';
+import { CharacterCard } from 'components/cards/CharacterCard';
+
+export const TrackSuperCampeonato = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+  const { translate } = useLanguage();
+  const { isLoading } = useLoading();
+  const cardWidth = useCardWidth(6, { minWidth: 200, maxWidth: 270 });
+
+  // DEV Mock
+  useMock(() => {
+    onSubmitAnswer({
+      data: { value: mockSelection(track.data.contenders, 'id') },
+    });
+  });
+
+  return (
+    <>
+      <MinigameTitle title={{ pt: 'Super Campeonato', en: 'Ultimate Championship' }} />
+      <Instruction contained>
+        <Translate
+          pt={<>É a batalha final, qual desses dois venceria esse desafio?</>}
+          en={<>It's the final showdown, which one of these two would win this challenge?</>}
+        />
+      </Instruction>
+
+      <Space className="space-container">
+        <Card header={translate('Desafio', 'Challenge')} color="purple">
+          {track.data.challenge.text}
+        </Card>
+      </Space>
+
+      <Space className="space-container center">
+        {track.data.contenders.map((contender: WContender, index: number) => {
+          return (
+            <Space direction="vertical" key={contender.id}>
+              <ImageBlurButtonContainer cardId={contender.id}>
+                <CharacterCard
+                  size={cardWidth}
+                  overlayColor={index === 0 ? 'red' : 'blue'}
+                  character={contender}
+                />
+              </ImageBlurButtonContainer>
+              <Button
+                shape="round"
+                type="primary"
+                disabled={user.ready}
+                loading={isLoading}
+                onClick={() =>
+                  onSubmitAnswer({
+                    data: { value: contender.id },
+                  })
+                }
+              >
+                <Translate pt="Selecionar" en="Select" />
+              </Button>
+            </Space>
+          );
+        })}
+      </Space>
+    </>
+  );
+};

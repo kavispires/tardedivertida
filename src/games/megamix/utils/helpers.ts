@@ -11,16 +11,25 @@ export const buildSeedingSteps = (
           title: translate('Hobby Artístico', 'Artistic Hobby'),
           description: translate('Se expresse!', 'Express yourself!'),
         };
-      case 'caminhos-magicos':
+
+      case 'contadores-historias':
+        return {
+          title: translate('Torpedo da sua mãe', 'Text from your mom'),
+          description: translate('O que ela quer agora?', 'What does she want now?'),
+        };
+
+      case 'labirinto-secreto':
         return {
           title: translate('Postando no Insta', 'Instagram post'),
           description: translate('Não existe sexy demais!', 'Do it for the likes!'),
         };
-      case 'fileira-de-fatos':
+
+      case 'mente-coletiva':
         return {
-          title: translate('Torpedo do Amigo', "A friend's text"),
-          description: translate('Responda!', 'Reply!'),
+          title: translate('Tik Tok', 'Tik Tok'),
+          description: translate('Sempre temos um tempinho!', "There's always time!"),
         };
+
       case 'onda-telepatica':
         return {
           title: translate('Tarefa de Casa', 'Homework'),
@@ -36,9 +45,14 @@ export const buildSeedingSteps = (
           title: translate('Flashback', 'Flashback'),
           description: translate('Um evento traumatizante', 'A traumatizing event'),
         };
+      case 'ue-so-isso':
+        return {
+          title: translate('Torpedo do Amigo', "A friend's text"),
+          description: translate('Responda!', 'Reply!'),
+        };
       case 'clubber':
         return {
-          title: translate('Roupinha', 'Outfit'),
+          title: translate('Look', 'Outfit'),
           description: translate('Como ir pra balada', 'How to be cool'),
         };
       default:

@@ -1,5 +1,5 @@
 // Components
-import { ItemCard } from './ItemCard';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 type ItemCardEmptyProps = {
   cardWidth: number;
@@ -8,7 +8,7 @@ type ItemCardEmptyProps = {
 
 export function ItemCardEmpty({ cardWidth, cardType }: ItemCardEmptyProps) {
   return (
-    <ItemCard
+    <CrimeItemCard
       item={{
         id: `dmhk-${cardType === 'evidence' ? 'ev' : 'wp'}-000`,
         type: cardType,

@@ -8,13 +8,12 @@ import { getAnimationClass } from 'utils/helpers';
 import { useLanguage } from 'hooks/useLanguage';
 import { useVIP } from 'hooks/useVIP';
 // Components
-
-import { Question } from './Question';
 import { SheepAvatar } from './SheepAvatar';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Card } from 'components/cards';
+import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type AnswerGroupProps = {
   currentQuestion: MQuestion;
@@ -45,7 +44,7 @@ export function AnswerGroup({
         className="m-question-card"
         footer={Array(remainingGroupsCount).fill('•').join('')}
       >
-        <Question question={currentQuestion} />
+        <GroupQuestionCard question={currentQuestion} />
       </Card>
 
       <Instruction contained>

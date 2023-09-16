@@ -11,12 +11,9 @@ type SubmitGuessesPayload = {
   choseRandomly: boolean;
 };
 
-interface Character {
-  id: CardId;
-  name: DualLanguageValue;
-  exclusivity?: boolean;
+type Character = ContenderCard & {
   playerId?: PlayerId;
-}
+};
 
 type Characters = Record<CardId, Character>;
 

@@ -2,7 +2,7 @@
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { TransparentButton } from 'components/buttons';
-import { ItemCard } from './ItemCard';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 const getEliminatedCard = (cardType: string) => ({
   id: `dmhk-${cardType === 'ev' ? 'ev' : 'wp'}-xxx`,
@@ -52,7 +52,7 @@ export function SelectableGroupedItemsBoard({
                   <TransparentButton
                     onClick={isLocked || isGroupWrong ? undefined : () => onSelectItem(itemId)}
                   >
-                    <ItemCard
+                    <CrimeItemCard
                       item={isGroupWrong ? getEliminatedCard(itemId.split('-')[1]) : items[itemId]}
                       cardWidth={cardWidth}
                       isSelected={[weaponId, evidenceId].includes(itemId)}

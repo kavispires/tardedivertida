@@ -3,9 +3,9 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Arte Ruim Pra Dedéu',
     en: 'Questionable Art',
   },
-  'caminhos-magicos': {
-    pt: 'Caminhos Mágicos',
-    en: 'Magic Pathways',
+  'comunicacao-alienigena': {
+    pt: 'Comunicação Alienígena',
+    en: 'Alien Communication',
   },
   'contadores-historias': {
     pt: 'Contadores de Histórias',
@@ -38,6 +38,18 @@ export const TITLES: Record<string, DualLanguageValue> = {
   'galeria-de-sonhos': {
     pt: 'Galeria de Sonhos',
     en: 'Dream Gallery',
+  },
+  'labirinto-secreto': {
+    pt: 'Labirinto Secreto',
+    en: 'Secret Labyrinth',
+  },
+  'megamix-best-of-three': {
+    pt: 'Melhor de 3',
+    en: 'Best of 3',
+  },
+  'megamix-this-that': {
+    pt: 'Isso ou Aquilo?',
+    en: 'This or That?',
   },
   'mente-coletiva': {
     pt: 'Mente Coletiva',
@@ -75,9 +87,17 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Quem Não Mata, Morre',
     en: 'Mortal Standoff',
   },
+  'quem-sou-eu': {
+    pt: 'Quem Sou Eu?',
+    en: 'Who Am I?',
+  },
   'super-campeonato': {
     pt: 'Super Campeonato',
     en: 'Ultimate Championship',
+  },
+  'ta-na-cara': {
+    pt: 'Tá Na Cara',
+    en: 'Guess Who What?',
   },
   'testemunha-ocular': {
     pt: 'Testemunha Ocular',
@@ -98,10 +118,11 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     pt: 'Uma imagem vale mais que mil palavras',
     en: "That's art!",
   },
-  'caminhos-magicos': {
-    pt: 'Vamos andar pela floresta',
-    en: "Let's walk into the woods",
+  'comunicacao-alienigena': {
+    pt: 'Vamos falar com os ETs',
+    en: 'Let us talk to the aliens',
   },
+
   'contadores-historias': {
     pt: 'Conte uma história',
     en: 'Tell us a story',
@@ -133,6 +154,14 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   'galeria-de-sonhos': {
     pt: 'Um tema, um sonho, várias images',
     en: 'A theme, a dream, many images',
+  },
+  'labirinto-secreto': {
+    pt: 'Vamos andar pela floresta',
+    en: "Let's walk into the woods",
+  },
+  megamix: {
+    pt: 'Qual opção você escolhe?',
+    en: 'Which option do you choose?',
   },
   'mente-coletiva': {
     pt: 'Junte-se as ovelhas!',
@@ -166,6 +195,10 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     pt: 'Mate alguém...',
     en: 'Kill someone...',
   },
+  'quem-sou-eu': {
+    pt: 'Decifre os símbolos!',
+    en: 'Decipher the glyphs',
+  },
   'retrato-falado': {
     pt: 'Qual o melhor monstro?',
     en: 'What is the best monster?',
@@ -173,6 +206,10 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   'super-campeonato': {
     pt: 'Quem ganha essa batalha?',
     en: 'Who will win this battle?',
+  },
+  'ta-na-cara': {
+    pt: 'E esse aí? O que acha?',
+    en: 'What about this one? What do you think?',
   },
   'testemunha-ocular': {
     pt: 'Quem é o criminoso?',

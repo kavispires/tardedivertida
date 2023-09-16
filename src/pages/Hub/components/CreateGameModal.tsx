@@ -289,37 +289,39 @@ function Options({ options = [], disabled, onChangeOptions, selectedOptions }: O
       <Typography.Title level={5} className="create-game-modal-options__title">
         <Translate pt="Opções:" en="Options:" />
       </Typography.Title>
-      {(options ?? []).map((option) => (
-        <Typography.Paragraph
-          key={`option-${option.label}`}
-          className={clsx(
-            'create-game-modal-options__option',
-            option.disabled && 'create-game-modal-options__option--disabled'
-          )}
-        >
-          <span className="create-game-modal-options__label">{option.label}</span>
-          <span
+      <div className="create-game-modal-options__list">
+        {(options ?? []).map((option) => (
+          <Typography.Paragraph
+            key={`option-${option.label}`}
             className={clsx(
-              'create-game-modal-options__off',
-              !selectedOptions[option.key] && 'create-game-modal-options--selected'
+              'create-game-modal-options__option',
+              option.disabled && 'create-game-modal-options__option--disabled'
             )}
           >
-            {option?.off ?? ''}
-          </span>
-          <Switch disabled={disabled || option.disabled} onChange={(e) => onChangeOptions(option.key, e)} />
-          <span
-            className={clsx(
-              'create-game-modal-options__on',
-              selectedOptions[option.key] && 'create-game-modal-options--selected'
+            <span className="create-game-modal-options__label">{option.label}</span>
+            <span
+              className={clsx(
+                'create-game-modal-options__off',
+                !selectedOptions[option.key] && 'create-game-modal-options--selected'
+              )}
+            >
+              {option?.off ?? ''}
+            </span>
+            <Switch disabled={disabled || option.disabled} onChange={(e) => onChangeOptions(option.key, e)} />
+            <span
+              className={clsx(
+                'create-game-modal-options__on',
+                selectedOptions[option.key] && 'create-game-modal-options--selected'
+              )}
+            >
+              {option?.on ?? ''}
+            </span>
+            {Boolean(option.description) && (
+              <span className="create-game-modal-options__option-description">{option.description}</span>
             )}
-          >
-            {option?.on ?? ''}
-          </span>
-          {Boolean(option.description) && (
-            <span className="create-game-modal-options__option-description">{option.description}</span>
-          )}
-        </Typography.Paragraph>
-      ))}
+          </Typography.Paragraph>
+        ))}
+      </div>
     </div>
   ) : (
     <div className="create-game-modal-options create-game-modal-options__no-options">

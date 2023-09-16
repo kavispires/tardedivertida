@@ -8,7 +8,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { mockStory } from '../utils/mock';
 // Components
-import { BookPages } from './BookPages';
+import { BookPages } from '../../../components/game/BookPages';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';

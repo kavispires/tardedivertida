@@ -21,8 +21,9 @@ import { TimedButton } from 'components/buttons';
 import { ClubberAvatar } from './components/ClubberAvatar';
 import { IconAvatar } from 'components/avatars';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
-import { TaskTitle } from './components/TaskTitle';
+import { TrackTitle } from './components/TrackTitle';
 import { VotesDelegator } from './components/VotesDelegator';
+import { useColorizeBackground } from './utils/useColorizeBackground';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -30,7 +31,7 @@ type StepResultProps = {
   onSeeRanking: GenericFunction;
   round: GameRound;
   isFirstRunThrough: boolean;
-  task: Task;
+  track: Track;
   winningValues: string[];
   winningTeam: PlayerId[];
   scoringType: string;
@@ -43,7 +44,7 @@ export function StepResult({
   round,
   isFirstRunThrough,
   announcement,
-  task,
+  track,
   winningValues,
   winningTeam,
   scoringType,
@@ -57,10 +58,13 @@ export function StepResult({
 
   const currentIndex = time.timeLeft > 14 ? round.current - 1 : round.current;
 
+  // Dynamic background
+  useColorizeBackground(user, time.timeLeft > 13 ? round.current : round.current + 1);
+
   return (
     <Step announcement={announcement}>
-      <Title size="small">
-        <Translate pt="Resultado" en="Results" />: <TaskTitle task={task} />
+      <Title size="small" white>
+        <Translate pt="Resultado" en="Results" />: <TrackTitle track={track} />
       </Title>
 
       <Instruction contained>
@@ -101,10 +105,11 @@ export function StepResult({
         </div>
         <div className="results__values" id="results-values">
           <ResultValueDelegator
-            task={task}
+            track={track}
             winningValues={winningValues}
             players={players}
             winningTeam={winningTeam}
+            playersList={playersList}
           />
         </div>
         <div className="results__gutter">
@@ -145,7 +150,12 @@ export function StepResult({
         )}
       </Space>
 
-      <VotesDelegator task={task} winningValues={winningValues} players={players} winningTeam={winningTeam} />
+      <VotesDelegator
+        track={track}
+        winningValues={winningValues}
+        players={players}
+        winningTeam={winningTeam}
+      />
     </Step>
   );
 }

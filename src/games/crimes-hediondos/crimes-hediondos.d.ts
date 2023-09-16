@@ -1,10 +1,3 @@
-type HCard = {
-  id: string;
-  type: string;
-  name: DualLanguageValue;
-  tags?: string[];
-};
-
 type GroupedItems = {
   [key: string]: string[];
 };
