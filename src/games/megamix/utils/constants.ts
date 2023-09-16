@@ -3,9 +3,9 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Arte Ruim Pra Dedéu',
     en: 'Questionable Art',
   },
-  'caminhos-magicos': {
-    pt: 'Caminhos Mágicos',
-    en: 'Magic Pathways',
+  'comunicacao-alienigena': {
+    pt: 'Comunicação Alienígena',
+    en: 'Alien Communication',
   },
   'contadores-historias': {
     pt: 'Contadores de Histórias',
@@ -83,6 +83,10 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Quem Não Mata, Morre',
     en: 'Mortal Standoff',
   },
+  'quem-sou-eu': {
+    pt: 'Quem Sou Eu?',
+    en: 'Who Am I?',
+  },
   'super-campeonato': {
     pt: 'Super Campeonato',
     en: 'Ultimate Championship',
@@ -105,6 +109,10 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   'arte-ruim': {
     pt: 'Uma imagem vale mais que mil palavras',
     en: "That's art!",
+  },
+  'comunicacao-alienigena': {
+    pt: 'Vamos falar com os ETs',
+    en: 'Let us talk to the aliens',
   },
   'caminhos-magicos': {
     pt: 'Vamos andar pela floresta',
@@ -177,6 +185,10 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   'quem-nao-mata': {
     pt: 'Mate alguém...',
     en: 'Kill someone...',
+  },
+  'quem-sou-eu': {
+    pt: 'Decifre os símbolos!',
+    en: 'Decipher the glyphs',
   },
   'retrato-falado': {
     pt: 'Qual o melhor monstro?',

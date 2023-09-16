@@ -13,9 +13,6 @@ export function mockSeeding(seeds: SeedEntry[]) {
         const ids = getIds(seed.cards);
         data[seed.portal.id] = getRandomItem(ids);
         break;
-      case 'fileira-de-fatos':
-        data.fact = Math.round(Math.random() * 100);
-        break;
       case 'onda-telepatica':
         data.wave = mockClue();
         break;
@@ -24,6 +21,9 @@ export function mockSeeding(seeds: SeedEntry[]) {
         break;
       case 'retrato-falado':
         data[seed.card.id] = JSON.stringify(mockDrawing());
+        break;
+      case 'ue-so-isso':
+        data.singleClue = mockClue();
         break;
       case 'clubber':
         data.clubberId = seed.outfits[0];

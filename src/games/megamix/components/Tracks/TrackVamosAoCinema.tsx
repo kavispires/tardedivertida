@@ -28,7 +28,7 @@ export const TrackVamosAoCinema = ({ track, round, onSubmitAnswer, user }: Track
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Vamos ao Cinema!', en: 'Movie Night!' }} />
       <Instruction contained>
         <Translate
           pt={

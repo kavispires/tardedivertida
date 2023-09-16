@@ -8,7 +8,7 @@ import { Translate } from 'components/language';
 import { Title } from 'components/text';
 
 type SeedFileiraDeFatosProps = {
-  seed: SeedEntryFileiraDeFatos;
+  seed: any;
   updateData: GenericComponent;
 };
 

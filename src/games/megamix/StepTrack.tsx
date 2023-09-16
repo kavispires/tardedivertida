@@ -27,6 +27,8 @@ import { TrackUeSoIsso } from './components/Tracks/TrackUeSoIsso';
 import { TrackVamosAoCinema } from './components/Tracks/TrackVamosAoCinema';
 import { TrackMegamixBestOfThree } from './components/Tracks/TrackMegamixBestOfThree';
 import { TrackMegamixThisThat } from './components/Tracks/TrackMegamixThisThat';
+import { TrackComunicacaoAlienigena } from './components/Tracks/TrackComunicacaoAlienigena';
+import { TrackQuemSouEu } from './components/Tracks/TrackQuemSouEu';
 
 type StepTrackProps = {
   round: GameRound;
@@ -40,12 +42,12 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
   const TrackComponent =
     {
       'arte-ruim': TrackArteRuim,
-      'comunicacao-alienigena': FallbackComponent,
+      'comunicacao-alienigena': TrackComunicacaoAlienigena,
       'contadores-historias': TrackContadoresHistorias,
       'crimes-hediondos': TrackCrimesHediondos,
       'cruza-palavras': TrackCruzaPalavras,
-      'dilema-dos-esquiadores': TrackDilemaDosEsquiadores,
       'detetives-imaginativos': TrackDetetivesImaginativos,
+      'dilema-dos-esquiadores': TrackDilemaDosEsquiadores,
       'espiao-entre-nos': TrackEspiaoEntreNos,
       'fileira-de-fatos': TrackFileiraDeFatos,
       'galeria-de-sonhos': TrackGaleriaDeSonhos,
@@ -60,7 +62,7 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'polemica-da-vez': TrackPolemicaDaVez,
       'porta-dos-desesperados': TrackPortaDosDesesperados,
       'quem-nao-mata': TrackQuemNaoMata,
-      'quem-sou-eu': FallbackComponent,
+      'quem-sou-eu': TrackQuemSouEu,
       'retrato-falado': TrackRetratoFalado,
       'super-campeonato': TrackSuperCampeonato,
       'testemunha-ocular': TrackTestemunhaOcular,

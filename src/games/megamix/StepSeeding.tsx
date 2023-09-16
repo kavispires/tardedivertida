@@ -8,6 +8,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { buildSeedingSteps } from './utils/helpers';
 import { mockSeeding } from './utils/mock';
+
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -15,10 +16,10 @@ import { Title } from 'components/text';
 import { SeedArteRuim } from './components/Seeds/SeedArteRuim';
 import { SeedCaminhosMagicos } from './components/Seeds/SeedCaminhosMagicos';
 import { SeedClubber } from './components/Seeds/SeedClubber';
-import { SeedFileiraDeFatos } from './components/Seeds/SeedFileiraDeFatos';
 import { SeedOndaTelepatica } from './components/Seeds/SeedOndaTelepatica';
 import { SeedPolemicaDaVez } from './components/Seeds/SeedPolemicaDaVez';
 import { SeedRetratoFalado } from './components/Seeds/SeedRetratoFalado';
+import { SeedUeSoIsso } from './components/Seeds/SeedUeSoIsso';
 
 type StepSeedingProps = {
   players: GamePlayers;
@@ -71,9 +72,7 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
           <SeedRetratoFalado seed={currentSeed} updateData={updateData} />
         )}
 
-        {currentSeed?.type === 'fileira-de-fatos' && (
-          <SeedFileiraDeFatos seed={currentSeed} updateData={updateData} />
-        )}
+        {currentSeed?.type === 'ue-so-isso' && <SeedUeSoIsso seed={currentSeed} updateData={updateData} />}
 
         {currentSeed?.type === 'clubber' && (
           <SeedClubber

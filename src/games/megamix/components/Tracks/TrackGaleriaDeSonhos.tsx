@@ -32,7 +32,7 @@ export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: Tra
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Galeria dos Sonhos', en: 'Dream Gallery' }} />
       <Instruction contained>
         <Translate
           pt={

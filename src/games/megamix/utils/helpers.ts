@@ -11,15 +11,11 @@ export const buildSeedingSteps = (
           title: translate('Hobby Artístico', 'Artistic Hobby'),
           description: translate('Se expresse!', 'Express yourself!'),
         };
+
       case 'caminhos-magicos':
         return {
           title: translate('Postando no Insta', 'Instagram post'),
           description: translate('Não existe sexy demais!', 'Do it for the likes!'),
-        };
-      case 'fileira-de-fatos':
-        return {
-          title: translate('Torpedo do Amigo', "A friend's text"),
-          description: translate('Responda!', 'Reply!'),
         };
       case 'onda-telepatica':
         return {
@@ -35,6 +31,11 @@ export const buildSeedingSteps = (
         return {
           title: translate('Flashback', 'Flashback'),
           description: translate('Um evento traumatizante', 'A traumatizing event'),
+        };
+      case 'ue-so-isso':
+        return {
+          title: translate('Torpedo do Amigo', "A friend's text"),
+          description: translate('Responda!', 'Reply!'),
         };
       case 'clubber':
         return {

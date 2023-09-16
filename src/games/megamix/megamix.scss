@@ -598,17 +598,23 @@
   position: relative;
 }
 
+.svg-phone {
+  width: clamp(200px, 50%, 400px);
+  font-size: 2rem;
+  & path {
+    fill: get-color('gray', 9);
+  }
+}
+
 .ff-phone {
   background-color: get-color('white');
-  border: get-unit(2) solid get-color('gray', 8);
-  border-radius: get-unit(2);
-  width: 200px;
-  padding-bottom: get-unit(10);
+  width: 100%;
+  height: 100%;
 
   &__contact {
     padding: get-unit(2);
     border-bottom: 1px solid get-color('gray', 3);
-    background: get-color('green', 1);
+    background: get-color('teal', 2);
   }
 
   &__name {
@@ -625,32 +631,38 @@
     color: get-color('black');
     width: fit-content;
     margin: get-unit(1 0 0 2);
-    border-radius: 1.15rem;
+    border-radius: 1.15em;
     line-height: 1.25;
-    max-width: 75%;
-    padding: 0.5rem 0.875rem;
+    max-width: 85%;
+    padding: 0.5em 0.875em;
     position: relative;
     word-wrap: break-word;
     text-align: left;
 
+    &--important {
+      outline: get-unit(2) dashed get-color('yellow');
+      text-transform: uppercase;
+      max-width: 95%;
+    }
+
     &::before {
       bottom: -0.1rem;
       content: '';
-      height: 1rem;
+      height: 1em;
       position: absolute;
-      border-bottom-right-radius: 0.8rem 0.7rem;
-      border-left: 1rem solid get-color('white', 8);
+      border-bottom-right-radius: 0.8em 0.7em;
+      border-left: 1em solid get-color('white', 8);
       left: -0.35rem;
-      transform: translate(0, -0.1rem);
+      transform: translate(0, -0.1em);
     }
 
     &::after {
-      bottom: -0.1rem;
+      bottom: -0.1em;
       content: '';
-      height: 1rem;
+      height: 1em;
       position: absolute;
       background-color: get-color('white');
-      border-bottom-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5em;
       left: 20px;
       transform: translate(-30px, -2px);
       width: 10px;
@@ -1004,33 +1016,34 @@ $o-card-width: 300px;
   }
 }
 
-.t-suspects-table {
-  &__suspect {
-    position: relative;
+.scenario {
+  background: get-color('red');
+  color: get-color('white');
+
+  padding: get-unit(2);
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // aspect-ratio: 1 / 1;
+  height: 100%;
+
+  &__tagline {
+    padding: get-unit(2);
   }
 
-  &__suspect-image {
-    & > .ant-image {
-      max-width: 250px;
-    }
-
-    &--active {
-      border: 3px solid gold;
-      border-radius: get-unit(4);
-    }
-    &--disabled {
-      cursor: not-allowed;
-    }
+  &__card {
+    text-align: center;
+    font-family: 'Ubuntu Mono', monospace;
+    margin-top: get-unit(2);
+    flex: 1;
+    background: get-color('red', 6);
+    padding: get-unit(2);
+    border-radius: $border-radius;
   }
 
-  &__suspect-name {
-    font-family: 'Architects Daughter', cursive;
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-size: 1rem;
+  &__incorrect-result {
+    background: get-color('gray', 3);
   }
 }
 
@@ -1100,4 +1113,32 @@ $o-card-width: 300px;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-evenly;
+}
+
+.q-player-glyphs {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  border-radius: $border-radius;
+  background: get-color('gray', 8);
+  margin: get-unit(1);
+  min-height: 100px;
+
+  &__strip {
+    justify-content: flex-start;
+  }
+
+  &__entry {
+    padding: get-unit(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--positive {
+      background-color: get-color('green', 8, 0.5);
+    }
+
+    &--negative {
+      background-color: get-color('red', 8, 0.5);
+    }
+  }
 }
