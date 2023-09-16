@@ -23,7 +23,7 @@ export function mockSeeding(seeds: SeedEntry[]) {
         data.wave = mockClue();
         break;
       case 'polemica-da-vez':
-        data.likeTopic = getRandomItem([true, false]);
+        data.likeTweet = getRandomItem([true, false]);
         break;
       case 'retrato-falado':
         data[seed.card.id] = JSON.stringify(mockDrawing());

@@ -3,22 +3,22 @@ import { POLEMICA_DA_VEZ_API } from 'services/adapters';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 
-export function useOnSubmitTopicAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitTweetAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: POLEMICA_DA_VEZ_API.submitAction,
-    actionName: 'submit-topic',
+    actionName: 'submit-tweet',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
-    successMessage: translate('Assunto enviada com sucesso!', 'Topic send successfully!'),
+    successMessage: translate('Assunto enviada com sucesso!', 'Tweet send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu assunto',
-      'Oops, the application failed to submit the topic'
+      'Oops, the application failed to submit the tweet'
     ),
   });
 
-  return (payload: SubmitTopicPayload) => {
+  return (payload: SubmitTweetPayload) => {
     request({
       action: 'SUBMIT_TOPIC',
       ...payload,

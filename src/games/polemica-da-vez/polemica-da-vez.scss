@@ -4,7 +4,7 @@
   min-width: 50vw;
 }
 
-.p-topics-card {
+.p-tweets-card {
   background-color: get-color('white');
   font-size: 1rem;
   min-width: 200px;
@@ -59,7 +59,7 @@
   }
 }
 
-.p-topic {
+.p-tweet {
   &--button {
     border: none;
     background: none;
@@ -75,7 +75,7 @@
   }
 }
 
-.p-custom-topic {
+.p-custom-tweet {
   &__button {
     margin: get-unit(2);
   }
@@ -89,7 +89,7 @@
   }
 }
 
-.p-trending-topic {
+.p-trending-tweet {
   background-color: get-color('white');
   padding: get-unit(2 8);
   position: relative;
@@ -120,13 +120,13 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
-    'topic topic'
+    'tweet tweet'
     'like dislike';
 
   margin-top: get-unit(4);
 
-  &__topic {
-    grid-area: topic;
+  &__tweet {
+    grid-area: tweet;
     padding: get-unit(10);
     margin: get-unit(0);
   }
@@ -257,7 +257,7 @@
   background-color: get-color('white');
   border-bottom: 1px solid get-color('gray');
 
-  &__topic {
+  &__tweet {
     margin: 0;
   }
 
@@ -304,13 +304,13 @@
   }
 }
 
-.p-all-topics {
+.p-all-tweets {
   display: grid;
   gap: get-unit(2);
   margin-top: get-unit(10);
   grid-template-columns: repeat(3, 1fr);
 
-  &__topic {
+  &__tweet {
     min-width: 20ch;
     background-color: white;
     padding: get-unit(2);

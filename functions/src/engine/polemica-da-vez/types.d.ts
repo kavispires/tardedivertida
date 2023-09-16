@@ -4,19 +4,19 @@ export type PolemicaDaVezOptions = {
   fixedRounds: boolean;
 };
 
-export interface CustomTopic extends Topic {
+export interface CustomTweet extends Tweet {
   custom: boolean;
 }
 
-export type Deck = Topic[];
-export type CustomDeck = CustomTopic[];
+export type Deck = Tweet[];
+export type CustomDeck = CustomTweet[];
 
 export interface Decks {
   deck: Deck;
   customDeck: CustomDeck;
   deckIndex?: number;
   customDeckIndex?: number;
-  pastTopics?: any[];
+  pastTweets?: any[];
 }
 
 export interface PolemicaDaVezStore extends DefaultStore {
@@ -26,10 +26,10 @@ export interface PolemicaDaVezStore extends DefaultStore {
 export interface PolemicaDaVezState extends DefaultState {
   activePlayerId?: PlayerId;
   gameOrder?: PlayerId[];
-  currentTopics?: any;
-  currentCustomTopic?: any;
-  currentTopic?: any;
-  customTopic?: any;
+  currentTweets?: any;
+  currentCustomTweet?: any;
+  currentTweet?: any;
+  customTweet?: any;
   totalLikes?: any;
   ranking?: any;
   winners?: any;

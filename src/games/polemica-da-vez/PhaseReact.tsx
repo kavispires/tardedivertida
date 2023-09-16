@@ -56,8 +56,8 @@ function PhaseReact({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepLiking
-          currentTopic={state.currentTopic}
-          customTopic={state.customTopic}
+          currentTweet={state.currentTweet}
+          customTweet={state.customTweet}
           onSubmitReaction={onSubmitReaction}
           players={players}
           announcement={announcement}

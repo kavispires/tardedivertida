@@ -77,11 +77,13 @@ type ThemeCard = {
   description?: string;
 };
 
-type Topic = {
+type Tweet = {
   id: CardId;
   text: string;
   custom?: boolean;
 };
+
+// type Topic = {}
 
 type DatingCandidateCard = {
   id: CardId;

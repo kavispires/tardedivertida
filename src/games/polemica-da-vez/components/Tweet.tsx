@@ -5,8 +5,8 @@ import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 
-type TopicProps = {
-  topic: string;
+type TweetProps = {
+  tweet: string;
   likes?: number;
   /**
    * Optional custom class name
@@ -14,17 +14,17 @@ type TopicProps = {
   className?: string;
 };
 
-export function Topic({ topic, likes, className = '' }: TopicProps) {
+export function Tweet({ tweet, likes, className = '' }: TweetProps) {
   return (
-    <div className={clsx('p-trending-topic', className)}>
-      <TwitterOutlined /> {topic} <RiseOutlined />{' '}
+    <div className={clsx('p-trending-tweet', className)}>
+      <TwitterOutlined /> {tweet} <RiseOutlined />{' '}
       {Boolean(likes) && (
-        <span className="p-trending-topic__likes">
+        <span className="p-trending-tweet__likes">
           <Avatar
             src={<SpeechBubbleThumbsUpIcon />}
             shape="square"
             size="large"
-            className="p-trending-topic__icon-like"
+            className="p-trending-tweet__icon-like"
           />{' '}
           {likes}
         </span>

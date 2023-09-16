@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "2.7.18",
+  "version": "2.7.19",
   "title": {
     "pt": "Polêmica da Vez",
     "en": "That's Polemic"
@@ -30,10 +30,10 @@
     ],
     "en": [
       "Can you predict the trending topic?",
-      "Each round a player will select a topic that's very polemic.",
-      "Every player then chooses if they like or dislike that topic and immediately tries to guess how many likes that topic will get",
+      "Each round a player will select a tweet that's very polemic.",
+      "Every player then chooses if they like or dislike that tweet and immediately tries to guess how many likes that tweet will get",
       "If you get the right number of likes, you get 3 points. If you're one of, you get 1 point. you get 1 point.",
-      "The game ends when a player gets 10 points (or 15 rounds), or each player chooses the topic once (or twice), it depends on the mode."
+      "The game ends when a player gets 10 points (or 15 rounds), or each player chooses the tweet once (or twice), it depends on the mode."
     ]
   },
   "playerCount": {

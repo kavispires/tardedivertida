@@ -17,7 +17,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  allTopics: PlainObject
+  allTweets: PlainObject
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   // Determine turn order
@@ -28,7 +28,7 @@ export const prepareSetupPhase = async (
   const totalRounds = store.options.fixedRounds ? gameOrder.length : MAX_ROUNDS;
 
   // Build deck
-  const { deck, customDeck } = buildDeck(allTopics);
+  const { deck, customDeck } = buildDeck(allTweets);
 
   // Save
   return {
@@ -39,7 +39,7 @@ export const prepareSetupPhase = async (
         customDeck,
         deckIndex: 0,
         customDeckIndex: 0,
-        pastTopics: [],
+        pastTweets: [],
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.SETUP,
@@ -53,7 +53,7 @@ export const prepareSetupPhase = async (
   };
 };
 
-export const prepareTopicSelectionPhase = async (
+export const prepareTweetSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -69,11 +69,11 @@ export const prepareTopicSelectionPhase = async (
   utils.players.unReadyPlayer(players, activePlayerId);
 
   // Get questions
-  const currentTopics = Array(TOPICS_PER_ROUND)
+  const currentTweets = Array(TOPICS_PER_ROUND)
     .fill(store.deckIndex)
     .map((deckIndex, index) => store.deck[deckIndex + index]);
 
-  const currentCustomTopic = store.customDeck[store.customDeckIndex];
+  const currentCustomTweet = store.customDeck[store.customDeckIndex];
 
   // Save
   return {
@@ -87,8 +87,8 @@ export const prepareTopicSelectionPhase = async (
         round: utils.helpers.increaseRound(state.round),
         players,
         activePlayerId,
-        currentTopics,
-        currentCustomTopic,
+        currentTweets,
+        currentCustomTweet,
       },
     },
   };
@@ -102,12 +102,12 @@ export const prepareReactPhase = async (
   // Modify players
   utils.players.unReadyPlayers(players);
 
-  let currentTopic = {};
-  const customTopic = store.customTopic ?? null;
-  if (customTopic) {
-    currentTopic = store.customDeck.find((topic) => topic.id === store.topicId);
+  let currentTweet = {};
+  const customTweet = store.customTweet ?? null;
+  if (customTweet) {
+    currentTweet = store.customDeck.find((tweet) => tweet.id === store.tweetId);
   } else {
-    currentTopic = store.deck.find((topic) => topic.id === store.topicId);
+    currentTweet = store.deck.find((tweet) => tweet.id === store.tweetId);
   }
 
   // Save
@@ -116,10 +116,10 @@ export const prepareReactPhase = async (
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.REACT,
         players,
-        currentTopic,
-        customTopic,
+        currentTweet,
+        customTweet,
       },
-      stateCleanup: ['currentTopics', 'currentCustomTopic'],
+      stateCleanup: ['currentTweets', 'currentCustomTweet'],
     },
   };
 };
@@ -135,18 +135,18 @@ export const prepareResolutionPhase = async (
   // Score players
   const ranking = getRanking(players, totalLikes);
 
-  const pastTopics = [
-    ...store.pastTopics,
-    state.customTopic
-      ? { text: state.customTopic, id: `custom-${state.customTopic}`, likes: totalLikes }
-      : { ...state.currentTopic, likes: totalLikes },
+  const pastTweets = [
+    ...store.pastTweets,
+    state.customTweet
+      ? { text: state.customTweet, id: `custom-${state.customTweet}`, likes: totalLikes }
+      : { ...state.currentTweet, likes: totalLikes },
   ];
 
   // Save
   return {
     update: {
       store: {
-        pastTopics,
+        pastTweets,
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.RESOLUTION,
@@ -186,7 +186,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         players,
         winners,
-        allTopics: store.pastTopics,
+        allTweets: store.pastTweets,
       },
     },
   };

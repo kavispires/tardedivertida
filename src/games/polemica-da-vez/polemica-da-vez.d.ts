@@ -1,18 +1,18 @@
-type Topic = {
+type Tweet = {
   id: string;
   text: string;
 };
 
-type PastTopic = {
+type PastTweet = {
   id: string;
   text: string;
   likes: number;
   custom?: boolean;
 };
 
-type SubmitTopicPayload = {
-  topicId: string;
-  customTopic?: string;
+type SubmitTweetPayload = {
+  tweetId: string;
+  customTweet?: string;
 };
 
 type SubmitReactionPayload = {
