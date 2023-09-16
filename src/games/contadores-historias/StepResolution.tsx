@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { BookPages } from './components/BookPages';
+import { BookPages } from '../../components/game/BookPages';
 import { ScoringRules } from './components/RulesBlobs';
 
 type StepResolutionProps = {
