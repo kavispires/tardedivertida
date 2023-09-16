@@ -1,0 +1,31 @@
+@use 'styles/sass' as *;
+
+.group-question-card {
+  width: 100%;
+  font-size: 1.25em;
+  border-radius: get-unit(5);
+  margin: get-unit(2 0 3 0);
+  padding: get-unit(1 5);
+  text-align: center;
+
+  &--button {
+    cursor: pointer;
+  }
+
+  &--span {
+    display: block;
+    background-color: get-color('white');
+    font-size: 1.25rem;
+  }
+
+  &__number {
+    background-color: get-color('yellow');
+    border-radius: 50%;
+    width: 2ch;
+    height: 2ch;
+    margin: get-unit(0 2);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

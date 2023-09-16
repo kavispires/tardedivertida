@@ -10,7 +10,6 @@ import { getEntryId } from 'utils/helpers';
 import { mockAnswers } from './utils/mock';
 // Components
 import { Pasture } from './components/Pasture';
-import { Question } from './components/Question';
 import { AnsweringRules } from './components/RulesBlobs';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
@@ -18,6 +17,7 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { DevButton } from 'components/debug';
 import { TimerClock } from 'components/timers';
+import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type StepAnsweringProps = {
   currentQuestion: MQuestion;
@@ -84,7 +84,7 @@ export function StepAnswering({
           :
         </Title>
 
-        <Question question={currentQuestion} />
+        <GroupQuestionCard question={currentQuestion} />
 
         <PopoverRule content={<AnsweringRules />} />
 
