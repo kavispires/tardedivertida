@@ -47,7 +47,7 @@ export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: T
           />
         </Instruction>
 
-        <Space className="space-container">
+        <Space className="space-container" wrap>
           {track.data.options.map((option: string) => (
             <SuggestionEasel id={option} key={option} value={option} />
           ))}

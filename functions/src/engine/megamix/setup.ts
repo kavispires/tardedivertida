@@ -1,7 +1,14 @@
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import { MEGAMIX_PHASES, TOTAL_CLUBBERS } from './constants';
-import { distributeSeeds, getMostVotes, getRanking, handleSeedingData } from './helpers';
+import {
+  calculateAllAchievements,
+  distributeSeeds,
+  getAchievements,
+  getMostVotes,
+  getRanking,
+  handleSeedingData,
+} from './helpers';
 import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 
 /**
@@ -18,11 +25,22 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.addPropertiesToPlayers(players, { team: ['L'] });
 
+  const achievements = utils.achievements.setup(players, store, {
+    solitaryLoser: 0,
+    solitaryWinner: 0,
+    longestVIP: 0,
+    longestLoser: 0,
+    switchedTeam: 0,
+    joinedVIP: 0,
+    leftVIP: 0,
+  });
+
   // Save
   return {
     update: {
       store: {
         tracks: resourceData.tracks,
+        achievements,
       },
       state: {
         phase: MEGAMIX_PHASES.SETUP,
@@ -134,9 +152,19 @@ export const prepareResultPhase = async (
 
   const ranking = getRanking(players, scoring, state.round.current);
 
+  if (scoring.losingTeam.length === 1) {
+    utils.achievements.increase(store, scoring.losingTeam[0], 'solitaryLoser', 1);
+  }
+  if (scoring.winningTeam.length === 1) {
+    utils.achievements.increase(store, scoring.winningTeam[0], 'solitaryWinner', 1);
+  }
+
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: MEGAMIX_PHASES.RESULT,
         ...scoring,
@@ -160,7 +188,11 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(utils.helpers.buildObjectFromList(winningPlayers));
   const fairWinners = utils.players.determineWinners(players);
 
+  calculateAllAchievements(players, store);
+
   await utils.firebase.markGameAsComplete(gameId);
+
+  const achievements = getAchievements(store);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.MEGAMIX,
@@ -168,7 +200,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -186,6 +218,7 @@ export const prepareGameOverPhase = async (
         players,
         winners,
         fairWinners,
+        achievements,
       },
     },
   };

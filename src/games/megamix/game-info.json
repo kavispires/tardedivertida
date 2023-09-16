@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "3.0.8",
+  "version": "3.1.0",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -35,7 +35,17 @@
     "min": 4,
     "max": 16
   },
-  "tags": ["competitive", "images", "drawing", "guessing", "pairing", "same-time", "writing", "voting"],
+  "tags": [
+    "competitive",
+    "images",
+    "drawing",
+    "guessing",
+    "pairing",
+    "same-time",
+    "writing",
+    "voting",
+    "achievements"
+  ],
   "available": {
     "pt": true,
     "en": true
