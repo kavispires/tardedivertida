@@ -51,6 +51,7 @@ export const TrackPalhetaDeCores = ({ track, round, onSubmitAnswer, user }: Trac
                 onClick={() => onSelect(color)}
                 className="k-swatch-button"
                 disabled={user.read || isLoading}
+                key={color}
               >
                 <SplatterSVG color={color} />
               </TransparentButton>

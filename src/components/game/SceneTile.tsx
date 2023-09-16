@@ -4,6 +4,8 @@ import { Button, Popover } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Sass
+import './SceneTile.scss';
 
 type SceneTileProps = {
   /**
@@ -33,10 +35,15 @@ export function SceneTile({ tile, index, onSelectValue }: SceneTileProps) {
       <ul className="scene-tile__options">
         {tile.values.map((entry, i) => {
           const isActive = i === index;
+          const isInative = index !== undefined && !isActive;
           return (
             <li key={`${tile.id}-value-${i}`}>
               <Button
-                className={clsx('scene-tile__button', `scene-tile__button--${tile.type}`)}
+                className={clsx(
+                  'scene-tile__button',
+                  `scene-tile__button--${tile.type}`,
+                  isInative && 'scene-tile__button--inactive'
+                )}
                 icon={isActive ? <CheckCircleFilled className="scene-tile__icon" /> : undefined}
                 onClick={onSelectValue ? () => onSelectValue({ tileId: tile.id, value: i }) : () => {}}
               >

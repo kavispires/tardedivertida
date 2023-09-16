@@ -3,8 +3,15 @@ import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import { HouseCard } from '../na-rua-do-medo/types';
-import { MEGAMIX_PHASES, WINNING_CONDITION } from './constants';
-import { AvailableTrack, MostScoring, Track, TrackCandidate } from './types';
+import { MEGAMIX_ACHIEVEMENTS, MEGAMIX_PHASES, WINNING_CONDITION } from './constants';
+import {
+  AvailableTrack,
+  FirebaseStoreData,
+  MegamixAchievement,
+  MostScoring,
+  Track,
+  TrackCandidate,
+} from './types';
 import { orderBy } from 'lodash';
 
 /**
@@ -444,12 +451,7 @@ export const getMostMatching = (players: Players, property: string, acceptance =
   };
 };
 
-export const getRanking = (
-  players: Players,
-  scoring: MostScoring,
-  currentRound: number
-  // store: FirebaseStoreData
-): NewScore[] => {
+export const getRanking = (players: Players, scoring: MostScoring, currentRound: number): NewScore[] => {
   // Gained points: [already on Winning team, joining Winning team]
   const scores = new utils.players.Scores(players, [0, 0]);
 
@@ -470,19 +472,15 @@ export const getRanking = (
         if (previousTeam === 'W') {
           scores.add(player.id, 2, 0);
           player.team.push('W');
-          // TODO: achievement stayed winning
         } else {
           player.team.push('L');
-          // TODO: achievement joined winning
         }
       } else {
         // Was in the winning team
         if (previousTeam === 'W') {
           player.team.push('L');
-          // TODO: achievement left winning
         } else {
           player.team.push('L');
-          // TODO: achievement stayed losing
         }
       }
     } else {
@@ -492,20 +490,16 @@ export const getRanking = (
         if (previousTeam === 'W') {
           scores.add(player.id, 2, 0);
           player.team.push('W');
-          // TODO: achievement stayed winning
         } else {
           scores.add(player.id, 1, 1);
           player.team.push('W');
-          // TODO: achievement joined winning
         }
       } else {
         // Was in the winning team
         if (previousTeam === 'W') {
           player.team.push('L');
-          // TODO: achievement left winning
         } else {
           player.team.push('L');
-          // TODO: achievement stayed losing
         }
       }
     }
@@ -790,4 +784,127 @@ export const getMovieReviews = (reviews: MovieReviewCard[]) => {
     good: utils.game.getRandomItem(good),
     bad: utils.game.getRandomItem(bad),
   };
+};
+
+export const calculateAllAchievements = (players: Players, store: FirebaseStoreData) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    utils.achievements.increase(
+      store,
+      player.id,
+      'longestVIP',
+      utils.game.calculateLongestRun(player.team, 'W')
+    );
+    utils.achievements.increase(
+      store,
+      player.id,
+      'longestLoser',
+      utils.game.calculateLongestRun(player.team, 'L')
+    );
+
+    player.team.forEach((team: string, index: number) => {
+      if (index > 0 && team) {
+        if (team !== player.team[index - 1]) {
+          utils.achievements.increase(store, player.id, 'switchedTeam', 1);
+        }
+        if (team === 'W' && player.team[index - 1] === 'L') {
+          utils.achievements.increase(store, player.id, 'joinedVIP', 1);
+        }
+        if (team === 'L' && player.team[index - 1] === 'W') {
+          utils.achievements.increase(store, player.id, 'leftVIP', 1);
+        }
+      }
+    });
+  });
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<MegamixAchievement>[] = [];
+
+  // Solitary Winner: Was on the VIP area by themselves the most
+  const { most: solitaryWinner } = utils.achievements.getMostAndLeastOf(store, 'solitaryWinner');
+  if (solitaryWinner) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.SOLITARY_VIP,
+      playerId: solitaryWinner.playerId,
+      value: solitaryWinner.solitaryWinner,
+    });
+  }
+
+  // Solitary Loser: Was on the Loser area by themselves the most
+  const { most: solitaryLoser } = utils.achievements.getMostAndLeastOf(store, 'solitaryLoser');
+  if (solitaryLoser) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.SOLITARY_LOSER,
+      playerId: solitaryLoser.playerId,
+      value: solitaryLoser.solitaryLoser,
+    });
+  }
+
+  // VIP longest
+  const { most: longestVIP } = utils.achievements.getMostAndLeastOf(store, 'longestVIP');
+  if (longestVIP) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.LONGEST_VIP,
+      playerId: longestVIP.playerId,
+      value: longestVIP.longestVIP,
+    });
+  }
+
+  // Loser longest
+  const { most: longestLoser } = utils.achievements.getMostAndLeastOf(store, 'longestLoser');
+  if (longestLoser) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.LONGEST_VIP,
+      playerId: longestLoser.playerId,
+      value: longestLoser.longestLoser,
+    });
+  }
+
+  // Longest words
+  const { most: switchedMost, least: switchedLeast } = utils.achievements.getMostAndLeastOf(
+    store,
+    'switchedTeam'
+  );
+  if (switchedMost) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.MOST_SWITCHED,
+      playerId: switchedMost.playerId,
+      value: switchedMost.switchedTeam,
+    });
+  }
+
+  // Shortest words
+  if (switchedLeast) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.LEAST_SWITCHED,
+      playerId: switchedLeast.playerId,
+      value: switchedLeast.switchedTeam,
+    });
+  }
+
+  // Savior
+  const { most: joinedVIP } = utils.achievements.getMostAndLeastOf(store, 'joinedVIP');
+  if (joinedVIP) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.MOST_JOIN,
+      playerId: joinedVIP.playerId,
+      value: joinedVIP.joinedVIP,
+    });
+  }
+
+  // Choose for me: gave up on trying to match the clues the most
+  const { most: leftVIP } = utils.achievements.getMostAndLeastOf(store, 'leftVIP');
+  if (leftVIP) {
+    achievements.push({
+      type: MEGAMIX_ACHIEVEMENTS.MOST_LEFT,
+      playerId: leftVIP.playerId,
+      value: leftVIP.chooseForMe,
+    });
+  }
+
+  return achievements;
 };
