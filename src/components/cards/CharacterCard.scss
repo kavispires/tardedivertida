@@ -6,35 +6,35 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-}
 
-.character-card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.character-card-image {
-  margin: 0;
-  padding: 0;
-
-  &--blur {
-    filter: blur(10px);
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
-}
 
-.character-card-name {
-  font-family: 'Bangers', monospace;
-  position: absolute;
-  bottom: get-unit(1);
-  left: get-unit(1);
-  text-align: left;
-  z-index: 2;
-  color: get-color('white');
-  text-shadow: 2px 2px 2px #000;
-  letter-spacing: 2px;
-  overflow-y: hidden;
-  font-size: 1.25rem;
-  line-height: 1rem;
+  &__image {
+    margin: 0;
+    padding: 0;
+
+    &--blur {
+      filter: blur(10px);
+    }
+  }
+
+  &__name {
+    font-family: 'Bangers', monospace;
+    position: absolute;
+    bottom: get-unit(1);
+    left: get-unit(1);
+    text-align: left;
+    z-index: 2;
+    color: get-color('white');
+    text-shadow: 2px 2px 2px #000;
+    letter-spacing: 2px;
+    overflow-y: hidden;
+    font-size: 1.25rem;
+    line-height: 1rem;
+  }
 }

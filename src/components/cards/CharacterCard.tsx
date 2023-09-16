@@ -51,14 +51,14 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
     <ImageBlurButtonContainer cardId={character.id}>
       <div className={clsx('character-card', className)} style={{ width: `${size}px` }}>
         {!hideName && (
-          <span className="character-card-name">
+          <span className="character-card__name">
             <DualTranslate>{character.name}</DualTranslate>
           </span>
         )}
         {overlayColor && (
           <img
             src={`${PUBLIC_URL.IN_GAME}/w-overlay-${overlayColor}.png`}
-            className="character-card-overlay"
+            className="character-card__overlay"
             alt="character"
             style={{ width: `${size}px` }}
           />
@@ -66,7 +66,7 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
         <Image
           src={`${baseUrl}${imageURL}.jpg`}
           width={size}
-          className={clsx('character-card-image', isBlurred && 'character-card-image--blur')}
+          className={clsx('character-card__image', isBlurred && 'character-card__image--blur')}
           fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
           alt={dualTranslate(character.name)}
           preview={false}
