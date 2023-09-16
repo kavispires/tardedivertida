@@ -479,6 +479,13 @@ type CrimeTile = {
   tags?: Record<number | string, string[]>;
 };
 
+type CrimesHediondosCard = {
+  id: CardId;
+  type: string;
+  name: DualLanguageValue;
+  tags?: string[];
+};
+
 type GroupQuestionCard = {
   id: CardId;
   prefix: string;

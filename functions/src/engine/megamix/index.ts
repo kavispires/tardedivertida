@@ -17,11 +17,11 @@ import {
   prepareSetupPhase,
   prepareGameOverPhase,
   prepareSeedingPhase,
-  prepareTaskPhase,
+  prepareTrackPhase,
   prepareResultPhase,
 } from './setup';
 import { getData } from './data';
-import { handleSubmitSeeds, handleSubmitTask } from './actions';
+import { handleSubmitSeeds, handleSubmitTrackAnswer } from './actions';
 
 /**
  * Get Initial Game State
@@ -98,13 +98,13 @@ export const getNextPhase = async (
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
-  // SEEDING/RESULT -> TASK
-  if (nextPhase === MEGAMIX_PHASES.TASK) {
-    const newPhase = await prepareTaskPhase(store, state, players);
+  // SEEDING/RESULT -> TRACK
+  if (nextPhase === MEGAMIX_PHASES.TRACK) {
+    const newPhase = await prepareTrackPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
-  // TASK -> RESULT
+  // TRACK -> RESULT
   if (nextPhase === MEGAMIX_PHASES.RESULT) {
     const newPhase = await prepareResultPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
@@ -134,9 +134,9 @@ export const submitAction = async (data: MegamixSubmitAction) => {
     case MEGAMIX_ACTIONS.SUBMIT_SEEDS:
       utils.firebase.validateSubmitActionProperties(data, ['data'], 'submit seeds');
       return handleSubmitSeeds(gameName, gameId, playerId, data.data);
-    case MEGAMIX_ACTIONS.SUBMIT_TASK:
+    case MEGAMIX_ACTIONS.SUBMIT_TRACK_ANSWER:
       utils.firebase.validateSubmitActionProperties(data, ['data'], 'submit data');
-      return handleSubmitTask(gameName, gameId, playerId, data.data);
+      return handleSubmitTrackAnswer(gameName, gameId, playerId, data.data);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

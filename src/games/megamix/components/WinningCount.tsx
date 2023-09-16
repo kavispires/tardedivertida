@@ -1,13 +1,18 @@
-import { ReactNode } from 'react';
 // AntDesign Resources
 import { Space } from 'antd';
 // Components
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 
-export function WinningCount({ children }: { children: ReactNode }) {
+type WinningCountProps = {
+  winners: number;
+  total: number;
+};
+
+export function WinningCount({ winners, total }: WinningCountProps) {
   return (
     <Space className="space-container">
-      <PlayersHighlight>{children}</PlayersHighlight>
+      <PlayersHighlight>{winners}</PlayersHighlight> <span>vs</span>{' '}
+      <PlayersHighlight className="grayscale">{total - winners}</PlayersHighlight>
     </Space>
   );
 }

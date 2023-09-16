@@ -15,7 +15,7 @@ import { Translate } from 'components/language';
 import { GameOverWrapper } from 'components/game-over';
 import { LoseGameText } from './components/RulesBlobs';
 import { Achievements } from 'components/general/Achievements';
-import { DoorFrame } from './components/DoorFrame';
+import { DoorFrame } from '../../components/game/DoorFrame';
 import { ImageCard } from 'components/cards';
 import { CaretRightOutlined } from '@ant-design/icons';
 

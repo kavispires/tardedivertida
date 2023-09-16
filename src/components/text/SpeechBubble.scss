@@ -1,0 +1,156 @@
+@use 'styles/sass' as *;
+@import url('https://fonts.googleapis.com/css2?family=Passion+One');
+
+$shadow: rgba(0, 0, 0, 0.1);
+
+$px: get-unit(1);
+
+$bubble-border:
+  0 -1 * $px get-color('white'),
+  0 -2 * $px get-color('black'),
+  $px 0 get-color('white'),
+  $px -1 * $px get-color('black'),
+  2 * $px 0 get-color('black'),
+  0 $px get-color('white'),
+  0 2 * $px get-color('black'),
+  -1 * $px 0 get-color('white'),
+  -1 * $px $px get-color('black'),
+  -2 * $px 0 get-color('black'),
+  -1 * $px -1 * $px get-color('black'),
+  $px $px get-color('black');
+
+.speech-bubble {
+  position: relative;
+  display: inline-block;
+  margin: get-unit(5);
+  text-align: center;
+  font-family: 'Passion One', cursive;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  line-height: 1.3em;
+  background-color: get-color('white');
+  color: get-color('black');
+  padding: get-unit(3);
+  box-shadow: $bubble-border;
+
+  box-sizing: border-box;
+  width: 200px;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  &--shadow {
+    box-shadow:
+      $bubble-border,
+      $px 3 * $px $shadow,
+      3 * $px $px $shadow,
+      2 * $px 2 * $px $shadow;
+  }
+
+  &--small {
+    width: 110px;
+    font-size: 1rem;
+    padding: get-unit(1);
+    // font-family: monospace;
+  }
+  &--medium {
+    width: 350px;
+  }
+  &--large {
+    width: 560px;
+    font-size: 24px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  &--grow {
+    width: initial;
+  }
+
+  &--top::after {
+    height: $px;
+    width: $px;
+    top: -2 * $px;
+    left: 8 * $px;
+    box-shadow:
+      0 -1 * $px get-color('black'),
+      0 -2 * $px get-color('black'),
+      0 -3 * $px get-color('black'),
+      0 -4 * $px get-color('black'),
+      -1 * $px -3 * $px get-color('black'),
+      -2 * $px -2 * $px get-color('black'),
+      -3 * $px -1 * $px get-color('black'),
+      -1 * $px -1 * $px get-color('white'),
+      -2 * $px -1 * $px get-color('white'),
+      -1 * $px -2 * $px get-color('white'),
+      -1 * $px 0 get-color('white'),
+      -2 * $px 0 get-color('white'),
+      -3 * $px 0 get-color('white');
+  }
+
+  &--right::after {
+    height: $px;
+    width: $px;
+    top: 21 * $px;
+    right: -2 * $px;
+    background: white;
+    box-shadow:
+      1 * $px -1 * $px get-color('white'),
+      1 * $px 0 get-color('white'),
+      2 * $px 0 get-color('white'),
+      0 -2 * $px get-color('white'),
+      1 * $px 1 * $px get-color('black'),
+      2 * $px 1 * $px get-color('black'),
+      3 * $px 1 * $px get-color('black'),
+      4 * $px 1 * $px get-color('black'),
+      3 * $px 0 get-color('black'),
+      2 * $px -1 * $px get-color('black'),
+      1 * $px -2 * $px get-color('black'),
+      0 -1 * $px get-color('white');
+  }
+
+  &--bottom::after {
+    height: $px;
+    width: $px;
+    bottom: -2 * $px;
+    left: 8 * $px;
+    box-shadow:
+      0 $px get-color('black'),
+      0 2 * $px get-color('black'),
+      0 3 * $px get-color('black'),
+      0 4 * $px get-color('black'),
+      -1 * $px 3 * $px get-color('black'),
+      -2 * $px 2 * $px get-color('black'),
+      -3 * $px 1 * $px get-color('black'),
+      -1 * $px $px get-color('white'),
+      -2 * $px $px get-color('white'),
+      -1 * $px 2 * $px get-color('white'),
+      -1 * $px 0 get-color('white'),
+      -2 * $px 0 get-color('white'),
+      -3 * $px 0 get-color('white');
+  }
+
+  &--left::after {
+    height: $px;
+    width: $px;
+    top: 5 * $px;
+    left: -2 * $px;
+    background: white;
+    box-shadow:
+      -1 * $px -1 * $px get-color('white'),
+      -1 * $px 0 get-color('white'),
+      -2 * $px 0 get-color('white'),
+      0 -2 * $px get-color('white'),
+      -1 * $px 1 * $px get-color('black'),
+      -2 * $px 1 * $px get-color('black'),
+      -3 * $px 1 * $px get-color('black'),
+      -4 * $px 1 * $px get-color('black'),
+      -3 * $px 0 get-color('black'),
+      -2 * $px -1 * $px get-color('black'),
+      -1 * $px -2 * $px get-color('black'),
+      0 -1 * $px get-color('white');
+  }
+}

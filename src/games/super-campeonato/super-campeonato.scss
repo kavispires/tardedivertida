@@ -1,43 +1,5 @@
 @use 'styles/sass' as *;
 
-.w-contender {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.w-contender-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.w-contender-image {
-  margin: 0;
-  padding: 0;
-
-  &--blur {
-    filter: blur(10px);
-  }
-}
-
-.w-contender-name {
-  font-family: 'Bangers', monospace;
-  position: absolute;
-  bottom: get-unit(1);
-  left: get-unit(1);
-  text-align: left;
-  z-index: 2;
-  color: get-color('white');
-  text-shadow: 2px 2px 2px #000;
-  letter-spacing: 2px;
-  overflow-y: hidden;
-  font-size: 1.25rem;
-  line-height: 1rem;
-}
-
 .w-bracket-contender {
   .w-contender-name {
     font-size: 1rem;

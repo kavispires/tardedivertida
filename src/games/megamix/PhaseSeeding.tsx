@@ -5,7 +5,7 @@ import { useOnSubmitSeedAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { ExperimentIcon } from 'icons/ExperimentIcon';
+import { SmsIcon } from 'icons/SmsIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -21,17 +21,15 @@ export function PhaseSeeding({ players, state, info }: PhaseProps) {
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<ExperimentIcon />}
-      title={
-        <Translate pt="Seus amigos te chamaram para a balada!" en="Your friend invited to to the club!" />
-      }
+      icon={<SmsIcon />}
+      title={<Translate pt="Seu amigo te chamou pra balada!" en="Your friend invited to to the club!" />}
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
         <Translate
           pt="Mas antes de ir, você tem que fazer suas obrigações..."
-          en="But before that, you need to finish your chores..."
+          en="But before that, you must finish your chores..."
         />
       </Instruction>
     </PhaseAnnouncement>

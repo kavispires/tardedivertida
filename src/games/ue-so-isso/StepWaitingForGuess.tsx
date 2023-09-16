@@ -2,11 +2,11 @@
 import { Space } from 'antd';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { SuggestionEasel } from './components/SuggestionEasel';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepWaitingForGuessProps = {
   guesser: GamePlayer;

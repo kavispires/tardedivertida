@@ -1,0 +1,53 @@
+@use 'styles/sass' as *;
+
+.profile {
+  display: grid;
+  grid-template-columns: 3rem auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'avatar username'
+    'avatar handle';
+
+  &__avatar {
+    grid-area: avatar;
+  }
+
+  &__name {
+    grid-area: username;
+    text-align: left;
+  }
+
+  &__handle {
+    grid-area: handle;
+    text-align: left;
+    color: get-color('gray', 6);
+  }
+}
+
+.tweet {
+  width: 400px;
+  @include box-shadow;
+  background-color: get-color('white');
+  margin: get-unit(2 auto);
+  padding: get-unit(6);
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    'profile'
+    'message'
+    'buttons';
+
+  &__text {
+    grid-area: message;
+    padding: get-unit(12 6);
+    font-size: 1.15rem;
+  }
+
+  &__buttons {
+    grid-area: buttons;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: get-unit(2);
+  }
+}

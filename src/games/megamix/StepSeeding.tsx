@@ -8,17 +8,20 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { buildSeedingSteps } from './utils/helpers';
 import { mockSeeding } from './utils/mock';
+
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { SeedArteRuim } from './components/SeedArteRuim';
-import { SeedCaminhosMagicos } from './components/SeedCaminhosMagicos';
-import { SeedClubber } from './components/SeedClubber';
-import { SeedFileiraDeFatos } from './components/SeedFileiraDeFatos';
-import { SeedOndaTelepatica } from './components/SeedOndaTelepatica';
-import { SeedPolemicaDaVez } from './components/SeedPolemicaDaVez';
-import { SeedRetratoFalado } from './components/SeedRetratoFalado';
+import { SeedArteRuim } from './components/Seeds/SeedArteRuim';
+import { SeedLabirintoSecreto } from './components/Seeds/SeedLabirintoSecreto';
+import { SeedClubber } from './components/Seeds/SeedClubber';
+import { SeedOndaTelepatica } from './components/Seeds/SeedOndaTelepatica';
+import { SeedPolemicaDaVez } from './components/Seeds/SeedPolemicaDaVez';
+import { SeedRetratoFalado } from './components/Seeds/SeedRetratoFalado';
+import { SeedUeSoIsso } from './components/Seeds/SeedUeSoIsso';
+import { SeedMenteColetiva } from './components/Seeds/SeedMenteColetiva';
+import { SeedContadoresHistorias } from './components/Seeds/SeedContadoresHistorias';
 
 type StepSeedingProps = {
   players: GamePlayers;
@@ -55,8 +58,16 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
 
         {currentSeed?.type === 'arte-ruim' && <SeedArteRuim seed={currentSeed} updateData={updateData} />}
 
-        {currentSeed?.type === 'caminhos-magicos' && (
-          <SeedCaminhosMagicos seed={currentSeed} updateData={updateData} user={user} />
+        {currentSeed?.type === 'contadores-historias' && (
+          <SeedContadoresHistorias seed={currentSeed} updateData={updateData} />
+        )}
+
+        {currentSeed?.type === 'labirinto-secreto' && (
+          <SeedLabirintoSecreto seed={currentSeed} updateData={updateData} user={user} />
+        )}
+
+        {currentSeed?.type === 'mente-coletiva' && (
+          <SeedMenteColetiva seed={currentSeed} updateData={updateData} />
         )}
 
         {currentSeed?.type === 'onda-telepatica' && (
@@ -71,9 +82,7 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
           <SeedRetratoFalado seed={currentSeed} updateData={updateData} />
         )}
 
-        {currentSeed?.type === 'fileira-de-fatos' && (
-          <SeedFileiraDeFatos seed={currentSeed} updateData={updateData} />
-        )}
+        {currentSeed?.type === 'ue-so-isso' && <SeedUeSoIsso seed={currentSeed} updateData={updateData} />}
 
         {currentSeed?.type === 'clubber' && (
           <SeedClubber

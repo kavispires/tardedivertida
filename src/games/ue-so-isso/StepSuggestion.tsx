@@ -5,7 +5,6 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSuggestions } from './utils/mock';
 // Components
-import { SuggestionEasel } from './components/SuggestionEasel';
 import { WritingRules } from './components/RulesBlobs';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Step } from 'components/steps';
@@ -15,6 +14,7 @@ import { AvatarName } from 'components/avatars';
 import { ControlledInputWriting } from 'components/input';
 import { DevButton } from 'components/debug';
 import { WritingHighlight } from './components/Highlights';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepSuggestionProps = {
   guesser: GamePlayer;

@@ -15,7 +15,7 @@ import { SlideShow } from 'components/slide-show';
 import { ScoringRules } from './components/RulesBlobs';
 import { AvatarName } from 'components/avatars';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
-import { CharacterCard } from './components/CharacterCard';
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { GalleryGuesses } from './components/GalleryGuesses';
 
 type StepGalleryProps = {

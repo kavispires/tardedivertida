@@ -338,3 +338,30 @@ export function calculateAverage(values: number[], round = false): number {
 
   return average;
 }
+
+/**
+ * Calculates the longest run of a given value in a list
+ * @param values
+ * @param value
+ * @returns the longest run of a given value in a list
+ */
+export function calculateLongestRun(
+  values: (string | number | boolean)[],
+  target: string | number | boolean
+): number {
+  let currentStreak = 0;
+  let longestStreak = 0;
+
+  values.forEach((v) => {
+    if (v === target) {
+      currentStreak++;
+      if (currentStreak > longestStreak) {
+        longestStreak = currentStreak;
+      }
+    } else {
+      currentStreak = 0;
+    }
+  });
+
+  return longestStreak;
+}
