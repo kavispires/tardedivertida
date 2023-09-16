@@ -43,7 +43,7 @@ type Seed = {
   card: never;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
 };
 
 type SeedEntryArteRuim = {
@@ -51,13 +51,13 @@ type SeedEntryArteRuim = {
   card: TextCard;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
 };
 
-type SeedEntryCaminhosMagicos = {
-  type: 'caminhos-magicos';
+type SeedEntryLabirintoSecreto = {
+  type: 'labirinto-secreto';
   cards: TextCard[];
-  portal: TextCard;
+  tree: TextCard;
   card: never;
   outfits: never;
 };
@@ -67,7 +67,7 @@ type SeedEntryOndaTelepatica = {
   card: OpposingIdeaCard;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
 };
 
 type SeedEntryPolemicaDaVez = {
@@ -75,7 +75,7 @@ type SeedEntryPolemicaDaVez = {
   card: TopicCard;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
 };
 
 type SeedEntryRetratoFalado = {
@@ -86,7 +86,7 @@ type SeedEntryRetratoFalado = {
   };
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
 };
 
 type SeedEntryUeSoIsso = {
@@ -94,7 +94,7 @@ type SeedEntryUeSoIsso = {
   card: TextCard;
   cards: never;
   outfits: never;
-  portal: never;
+  tree: never;
 };
 
 type SeedEntryClubberOutfit = {
@@ -102,12 +102,12 @@ type SeedEntryClubberOutfit = {
   outfits: string[];
   card: never;
   cards: never;
-  portal: never;
+  tree: never;
 };
 
 type SeedEntry =
   | SeedEntryArteRuim
-  | SeedEntryCaminhosMagicos
+  | SeedEntryLabirintoSecreto
   | SeedEntryOndaTelepatica
   | SeedEntryPolemicaDaVez
   | SeedEntryRetratoFalado

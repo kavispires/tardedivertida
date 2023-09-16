@@ -8,13 +8,13 @@ import { Translate } from 'components/language';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { SocialProfile } from 'components/game/SocialProfile';
 
-type SeedCaminhosMagicosProps = {
-  seed: SeedEntryCaminhosMagicos;
+type SeedLabirintoSecretoProps = {
+  seed: SeedEntryLabirintoSecreto;
   updateData: GenericComponent;
   user: GamePlayer;
 };
 
-export function SeedCaminhosMagicos({ seed, updateData, user }: SeedCaminhosMagicosProps) {
+export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSecretoProps) {
   return (
     <div className="seed-container">
       <Title size="xx-small">
@@ -29,14 +29,14 @@ export function SeedCaminhosMagicos({ seed, updateData, user }: SeedCaminhosMagi
           <Translate
             pt={
               <>
-                Para não pensarem mal de você, você escolheu <TextHighlight>{seed.portal.text}</TextHighlight>{' '}
+                Para não pensarem mal de você, você escolheu <TextHighlight>{seed.tree.text}</TextHighlight>{' '}
                 como a legenda de impacto da sua postagem. Agora escolha o melhor adjetivo que vai bem com
                 ela.
               </>
             }
             en={
               <>
-                Thinking about the haters, you chose <TextHighlight>{seed.portal.text}</TextHighlight> as a
+                Thinking about the haters, you chose <TextHighlight>{seed.tree.text}</TextHighlight> as a
                 caption. Now select the best adjective to go with it.
               </>
             }
@@ -57,7 +57,7 @@ export function SeedCaminhosMagicos({ seed, updateData, user }: SeedCaminhosMagi
             <HeartOutlined /> <MessageOutlined /> <SendOutlined />
           </div>
           <div className="cm-instagram__post">
-            <strong>{user.name.toLowerCase()}</strong> {capitalize(seed.portal.text)}...
+            <strong>{user.name.toLowerCase()}</strong> {capitalize(seed.tree.text)}...
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export function SeedCaminhosMagicos({ seed, updateData, user }: SeedCaminhosMagi
           {seed.cards.map((card) => (
             <Button
               key={card.id}
-              onClick={() => updateData({ [seed.portal.id]: card.id }, true)}
+              onClick={() => updateData({ [seed.tree.id]: card.id }, true)}
               type="primary"
             >
               {card.text}

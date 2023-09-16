@@ -31,7 +31,7 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle title={{ pt: 'Porta dos Desesperados', en: 'Obscure Doors' }} />
       <Instruction contained>
         <Translate
           pt={

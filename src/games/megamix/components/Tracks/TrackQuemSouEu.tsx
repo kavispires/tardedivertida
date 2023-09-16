@@ -26,8 +26,6 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
     });
   });
 
-  console.log(track.data);
-
   const botPlayer = useMemo(() => {
     const selectedGlyphs: BooleanDictionary = {};
     track.data.positive.forEach((glyph: number) => {

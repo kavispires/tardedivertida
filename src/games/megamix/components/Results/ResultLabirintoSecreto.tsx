@@ -9,12 +9,7 @@ import { MapIcon } from 'icons/MapIcon';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 
-export function ResultCaminhosMagicos({
-  track,
-  winningValues,
-  winningTeam,
-  playersList,
-}: ResultComponentProps) {
+export function ResultLabirintoSecreto({ track, winningValues }: ResultComponentProps) {
   return (
     <>
       <Instruction>
@@ -25,7 +20,7 @@ export function ResultCaminhosMagicos({
           const index = Number(value);
           const entry = track.data?.options?.[index] ?? {};
           return (
-            <div key={index} className="cm-clues__clue">
+            <div key={index} className="cm-clues__clue cm-clues__clue--small">
               {LETTERS[Number(value)]}
               <IconAvatar icon={<MapIcon />} size={48} />
               {Object.values<PlainObject>(entry).map((option, index, arr) => {

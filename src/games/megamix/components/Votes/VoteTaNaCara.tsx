@@ -1,19 +1,20 @@
-// Ant Design Resources
-import { Tooltip } from 'antd';
 // Components
 import { Avatar } from 'components/avatars';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
+import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 
-export function VoteValue({ playersList }: VoteComponentProps) {
+export function VoteTaNaCara({ playersList }: VoteComponentProps) {
   return (
     <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
       {playersList.map((player) => (
         <div key={`vote-${player.id}`} className="player-vote">
           <Avatar id={player.avatarId} />
           <div className="player-vote__name">{player.name}</div>
-          <Tooltip title={player.data.value}>
-            <div className="player-vote__value">{player.data.value}</div>
-          </Tooltip>
+
+          <div className="player-vote__value">
+            {player.data.value ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
+          </div>
         </div>
       ))}
     </SpacePlayerCheckWrapper>

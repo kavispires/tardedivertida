@@ -3,7 +3,7 @@ import { Step } from 'components/steps';
 import { ClubLine } from './components/ClubLine';
 import { FallbackComponent } from './components/FallbackComponent';
 import { TrackArteRuim } from './components/Tracks/TrackArteRuim';
-import { TrackCaminhosMagicos } from './components/Tracks/TrackCaminhosMagicos';
+import { TrackLabirintoSecreto } from './components/Tracks/TrackLabirintoSecreto';
 import { TrackContadoresHistorias } from './components/Tracks/TrackContadoresHistorias';
 import { TrackCrimesHediondos } from './components/Tracks/TrackCrimesHediondos';
 import { TrackCruzaPalavras } from './components/Tracks/TrackCruzaPalavras';
@@ -29,6 +29,7 @@ import { TrackMegamixBestOfThree } from './components/Tracks/TrackMegamixBestOfT
 import { TrackMegamixThisThat } from './components/Tracks/TrackMegamixThisThat';
 import { TrackComunicacaoAlienigena } from './components/Tracks/TrackComunicacaoAlienigena';
 import { TrackQuemSouEu } from './components/Tracks/TrackQuemSouEu';
+import { TrackTaNaCara } from './components/Tracks/TrackTaNaCara';
 
 type StepTrackProps = {
   round: GameRound;
@@ -51,7 +52,7 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'espiao-entre-nos': TrackEspiaoEntreNos,
       'fileira-de-fatos': TrackFileiraDeFatos,
       'galeria-de-sonhos': TrackGaleriaDeSonhos,
-      'labirinto-secreto': TrackCaminhosMagicos,
+      'labirinto-secreto': TrackLabirintoSecreto,
       'megamix-best-of-three': TrackMegamixBestOfThree,
       'megamix-this-that': TrackMegamixThisThat,
       'mente-coletiva': TrackMenteColetiva,
@@ -66,7 +67,7 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'retrato-falado': TrackRetratoFalado,
       'super-campeonato': TrackSuperCampeonato,
       'testemunha-ocular': TrackTestemunhaOcular,
-      'ta-na-cara': FallbackComponent,
+      'ta-na-cara': TrackTaNaCara,
       'ue-so-isso': TrackUeSoIsso,
       'vamos-ao-cinema': TrackVamosAoCinema,
     }?.[rest.track.game] ?? FallbackComponent;

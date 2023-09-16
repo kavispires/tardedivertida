@@ -16,6 +16,8 @@ import { VoteCharacterTrack } from './Votes/VoteCharacterTrack';
 import { VotePalhetaDeCores } from './Votes/VotePalhetaDeCores';
 import { VoteQuemNaoMata } from './Votes/VoteQuemNaoMata';
 import { VoteComunicacaoAlienigena } from './Votes/VoteComunicacaoAlienigena';
+import { VoteTaNaCara } from './Votes/VoteTaNaCara';
+import { VoteLabirintoSecreto } from './Votes/VoteLabirintoSecreto';
 
 export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
   const playersList = useMemo(
@@ -35,7 +37,7 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
       'espiao-entre-nos': VoteValue,
       'fileira-de-fatos': VoteValue,
       'galeria-de-sonhos': VoteImagesTrack,
-      'labirinto-secreto': VoteValue,
+      'labirinto-secreto': VoteLabirintoSecreto,
       'megamix-best-of-three': VoteMegamix,
       'megamix-this-that': VoteMegamix,
       'mente-coletiva': VoteValue,
@@ -49,7 +51,7 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
       'quem-sou-eu': VoteCharacterTrack,
       'retrato-falado': VoteRetratoFalado,
       'super-campeonato': VoteCharacterTrack,
-      'ta-na-cara': VoteImagesTrack,
+      'ta-na-cara': VoteTaNaCara,
       'testemunha-ocular': VoteImagesTrack,
       'ue-so-isso': VoteValue,
       'vamos-ao-cinema': VoteVamosAoCinema,

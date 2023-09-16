@@ -39,6 +39,10 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Galeria de Sonhos',
     en: 'Dream Gallery',
   },
+  'labirinto-secreto': {
+    pt: 'Labirinto Secreto',
+    en: 'Secret Labyrinth',
+  },
   'megamix-best-of-three': {
     pt: 'Melhor de 3',
     en: 'Best of 3',
@@ -91,6 +95,10 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Super Campeonato',
     en: 'Ultimate Championship',
   },
+  'ta-na-cara': {
+    pt: 'Tá Na Cara',
+    en: 'Guess Who What?',
+  },
   'testemunha-ocular': {
     pt: 'Testemunha Ocular',
     en: 'Eye Witness',
@@ -114,10 +122,7 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     pt: 'Vamos falar com os ETs',
     en: 'Let us talk to the aliens',
   },
-  'caminhos-magicos': {
-    pt: 'Vamos andar pela floresta',
-    en: "Let's walk into the woods",
-  },
+
   'contadores-historias': {
     pt: 'Conte uma história',
     en: 'Tell us a story',
@@ -149,6 +154,10 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   'galeria-de-sonhos': {
     pt: 'Um tema, um sonho, várias images',
     en: 'A theme, a dream, many images',
+  },
+  'labirinto-secreto': {
+    pt: 'Vamos andar pela floresta',
+    en: "Let's walk into the woods",
   },
   megamix: {
     pt: 'Qual opção você escolhe?',
@@ -197,6 +206,10 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   'super-campeonato': {
     pt: 'Quem ganha essa batalha?',
     en: 'Who will win this battle?',
+  },
+  'ta-na-cara': {
+    pt: 'E esse aí? O que acha?',
+    en: 'What about this one? What do you think?',
   },
   'testemunha-ocular': {
     pt: 'Quem é o criminoso?',

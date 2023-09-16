@@ -12,7 +12,7 @@ export const buildSeedingSteps = (
           description: translate('Se expresse!', 'Express yourself!'),
         };
 
-      case 'caminhos-magicos':
+      case 'labirinto-secreto':
         return {
           title: translate('Postando no Insta', 'Instagram post'),
           description: translate('Não existe sexy demais!', 'Do it for the likes!'),

@@ -12,6 +12,7 @@ import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';
 import { TransparentButton } from 'components/buttons';
+import { CharacterCard } from 'components/cards/CharacterCard';
 
 export const TrackPalhetaDeCores = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();
@@ -23,37 +24,39 @@ export const TrackPalhetaDeCores = ({ track, round, onSubmitAnswer, user }: Trac
     });
   };
 
-  // // DEV Mock
+  // DEV Mock
   useMock(() => {
     onSelect(mockSelection(track.data.palette));
   });
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
-      <Instruction contained>
-        <Translate
-          pt={<>Selecione a cor que melhor representa o personagem abaixo!</>}
-          en={<>Select the color that best represents the character below!</>}
-        />
-      </Instruction>
+      <MinigameTitle title={{ pt: 'Palheta de Cores', en: 'Color Palette' }} />
+      <Space direction="vertical" align="center" className="contained margin">
+        <Instruction contained>
+          <Translate
+            pt={<>Selecione a cor que melhor representa o personagem abaixo!</>}
+            en={<>Select the color that best represents the character below!</>}
+          />
+        </Instruction>
 
-      <Card header={translate('Dica', 'Clue')} color="red">
-        {track.data.card.text}
-      </Card>
+        <Card header={translate('Dica', 'Clue')} color="red">
+          <CharacterCard character={track.data.card} className="grayscale" size={200} />
+        </Card>
 
-      <Space className="space-container k-palette" wrap>
-        {track.data.palette.map((color: string) => {
-          return (
-            <TransparentButton
-              onClick={() => onSelect(color)}
-              className="k-swatch-button"
-              disabled={user.read || isLoading}
-            >
-              <SplatterSVG color={color} />
-            </TransparentButton>
-          );
-        })}
+        <Space className="space-container k-palette" wrap>
+          {track.data.palette.map((color: string) => {
+            return (
+              <TransparentButton
+                onClick={() => onSelect(color)}
+                className="k-swatch-button"
+                disabled={user.read || isLoading}
+              >
+                <SplatterSVG color={color} />
+              </TransparentButton>
+            );
+          })}
+        </Space>
       </Space>
     </>
   );
