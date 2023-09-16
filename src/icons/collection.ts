@@ -149,6 +149,7 @@ export * from './SecretIcon';
 export * from './SelectListIcon';
 export * from './SheepIcon';
 export * from './ShooterIcon';
+export * from './SixPackIcon';
 export * from './SketchIcon';
 export * from './SkiingIcon';
 export * from './SkullIcon';
