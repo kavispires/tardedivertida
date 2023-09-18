@@ -523,6 +523,13 @@ type ThemeCard = {
   description?: string;
 };
 
+type TopicCard = {
+  id: CardId;
+  label: string;
+  category: string;
+  level: number;
+};
+
 type Tweet = {
   id: CardId;
   text: string;

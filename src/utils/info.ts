@@ -1,3 +1,4 @@
+import ADEDANHX from 'games/adedanhx/game-info.json';
 import ARTE_RUIM from 'games/arte-ruim/game-info.json';
 import BOMBA_RELOGIO from 'games/bomba-relogio/game-info.json';
 import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/game-info.json';
@@ -39,6 +40,7 @@ const others = comingSoonGames as Record<GameName, GameInfo>;
 
 export const GAME_LIST: Record<GameName, GameInfo> = {
   ...others,
+  adedanhx: ADEDANHX,
   'arte-ruim': ARTE_RUIM,
   'bomba-relogio': BOMBA_RELOGIO,
   'cinegrafistas-amadores': CINEGRAFISTAS_AMADORES,

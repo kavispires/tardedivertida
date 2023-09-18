@@ -1,10 +1,11 @@
 import { MetricHighlight, MetricHighlightProps } from 'components/metrics/MetricHighlight';
+import { useCountdown, useCountdownSettings } from 'hooks/useCountdown';
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { ReactNode } from 'react';
 
 const padTime = (value: number) => (value < 10 ? `0${value}` : value);
 
-type TimerClockProps = {
+type TimedTimerClockProps = {
   /**
    * Replacement icon for the clock icon
    */
@@ -13,29 +14,23 @@ type TimerClockProps = {
    * Optional children that comes after the time
    */
   children?: ReactNode;
-  /**
-   * Minutes
-   */
-  minutes?: number;
-  /**
-   * Seconds
-   */
-  seconds: number;
-} & Omit<MetricHighlightProps, 'icon' | 'children'>;
+} & useCountdownSettings &
+  Omit<MetricHighlightProps, 'icon' | 'children'>;
 
 /**
  * Timer highlight with countdown functionality
  */
-export function TimerClock({
+export function TimedTimerClock({
   icon,
   type,
   iconSize,
   children,
   className = '',
   iconPlacement = 'before',
-  minutes = 0,
-  seconds,
-}: TimerClockProps) {
+  ...timerProps
+}: TimedTimerClockProps) {
+  const { minutes, seconds } = useCountdown({ ...timerProps });
+
   return (
     <MetricHighlight
       icon={icon ?? <AnimatedClockIcon />}

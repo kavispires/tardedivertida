@@ -235,6 +235,7 @@ export const ADMIN_ACTIONS = {
  * Enum of available games
  */
 export const GAME_COLLECTION = {
+  ADEDANHX: 'adedanhx',
   ARTE_RUIM: 'arte-ruim',
   BOMBA_RELOGIO: 'bomba-relogio',
   COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',

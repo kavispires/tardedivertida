@@ -15,6 +15,10 @@ export const ADMIN_API = {
   performAdminAction: httpsCallable(functions, 'performAdminAction'),
 };
 
+export const ADEDANHX_API = {
+  submitAction: httpsCallable(functions, 'adedanhxSubmitAction'),
+};
+
 export const ARTE_RUIM_API = {
   submitAction: httpsCallable(functions, 'arteRuimSubmitAction'),
 };

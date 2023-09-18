@@ -1,0 +1,38 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "K",
+  "gameName": "adedanhx",
+  "version": "alpha",
+  "title": {
+    "pt": "Adedanhx",
+    "en": "Stop-ish!"
+  },
+  "popularName": {
+    "pt": "Adedanha de tabela",
+    "en": "Stop with a twist"
+  },
+  "basedOn": "sgaT",
+  "summary": {
+    "pt": "Seja o primeiro a preencher a tabela com palavras que comecem com as letras sorteadas!",
+    "en": "Be the first to fill the table with words that start with the drawn letters!"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "#3653ad",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["same-time", "timed", "writing", "competitive"],
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}

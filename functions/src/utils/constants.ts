@@ -6,6 +6,11 @@ export const LETTERS_PT = 'NOPQRSTUVWXYZ';
 
 const GAMES = [
   {
+    name: 'adedanhx',
+    code: 'K',
+    key: 'ADEDANHX',
+  },
+  {
     name: 'arte-ruim',
     code: 'A',
     key: 'ARTE_RUIM',

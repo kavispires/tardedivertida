@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Components
@@ -20,9 +21,13 @@ type TimedTimerBarProps = {
    * Type of bar. Default: line
    */
   type?: 'circle' | 'line' | 'dashboard';
+  /**
+   * Optional class name
+   */
+  className?: string;
 };
 
-export function TimedTimerBar({ duration, onExpire, type, steps = 10 }: TimedTimerBarProps) {
+export function TimedTimerBar({ duration, onExpire, type, steps = 10, className }: TimedTimerBarProps) {
   const { timeLeft } = useCountdown({
     duration,
     autoStart: true,
@@ -30,7 +35,7 @@ export function TimedTimerBar({ duration, onExpire, type, steps = 10 }: TimedTim
   });
 
   return (
-    <div className="timer-number">
+    <div className={clsx('timer-number', className)}>
       {timeLeft} <TimerBar steps={steps} value={timeLeft} total={duration} type={type} /> {timeLeft}
     </div>
   );
