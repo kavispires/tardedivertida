@@ -14,7 +14,7 @@ export interface useCountdownSettings extends SelectedTimeSettings {
   disabled?: boolean;
 }
 
-interface useCountdownResults extends TimerResult {
+interface useCountdownReturnValue extends TimerResult {
   /**
    * Time left in total seconds (minutes + seconds)
    */
@@ -31,7 +31,7 @@ export function useCountdown({
   onExpire,
   disabled = false,
   ...rest
-}: useCountdownSettings): useCountdownResults {
+}: useCountdownSettings): useCountdownReturnValue {
   const timer = useTimer({
     expiryTimestamp: inNSeconds(duration),
     onExpire: disabled ? undefined : onExpire,

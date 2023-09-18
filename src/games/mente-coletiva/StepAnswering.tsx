@@ -16,7 +16,7 @@ import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { DevButton } from 'components/debug';
-import { TimerClock } from 'components/timers';
+import { TimedTimerClock } from 'components/timers';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type StepAnsweringProps = {
@@ -71,7 +71,7 @@ export function StepAnswering({
         <Title level={3} size="small">
           <Translate pt="Responda a pergunta" en="Answer the question" />
           {Boolean(timedAnswers) && (
-            <TimerClock
+            <TimedTimerClock
               duration={2 * 60}
               onExpire={() => {
                 if (!user.ready && !isLoading) {
