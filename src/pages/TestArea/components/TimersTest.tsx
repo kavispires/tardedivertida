@@ -5,7 +5,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { TimedTimerBar, TimerClock } from 'components/timers';
+import { TimedTimerBar, TimedTimerClock } from 'components/timers';
 import { TimedButton } from 'components/buttons';
 
 export function TimersTest({ onResult, step }: TestStepProps) {
@@ -21,7 +21,7 @@ export function TimersTest({ onResult, step }: TestStepProps) {
 
       <Space wrap className="space-container full-width" direction="vertical">
         <TimedTimerBar duration={120} onExpire={() => {}} />
-        <TimerClock duration={120} onExpire={() => {}} />
+        <TimedTimerClock duration={120} onExpire={() => {}} />
         <TimedButton duration={120} onExpire={() => {}}>
           Testando...
         </TimedButton>

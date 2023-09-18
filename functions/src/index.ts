@@ -3,6 +3,7 @@ import * as functions from 'firebase-functions';
 import { initializeApp } from 'firebase-admin/app';
 import * as commonEngine from './engine/common';
 import * as adminEngine from './engine/admin';
+import * as adedanhxEngine from './engine/adedanhx';
 import * as arteRuimEngine from './engine/arte-ruim';
 import * as comunicacaoAlienigenaEngine from './engine/comunicacao-alienigena';
 import * as contadoresHistoriasEngine from './engine/contadores-historias';
@@ -87,6 +88,8 @@ exports.rateGame = functions.https.onCall(commonEngine.rateGame);
 exports.getUser = functions.https.onCall(commonEngine.getUser);
 
 // SUBMIT ACTIONS
+
+exports.adedanhxSubmitAction = functions.https.onCall(adedanhxEngine.submitAction);
 
 exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitAction);
 

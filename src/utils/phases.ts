@@ -9,6 +9,11 @@ export const PHASES = {
     GAME_OVER: 'GAME_OVER',
     WAIT: 'WAIT',
   },
+  ADEDANHX: {
+    ANSWERING: 'ANSWERING',
+    EVALUATION: 'EVALUATION',
+    RESULTS: 'RESULTS',
+  },
   ARTE_RUIM: {
     DRAW: 'DRAW',
     EVALUATION: 'EVALUATION',

@@ -1,4 +1,5 @@
 import { GAME_NAMES } from './constants';
+import * as adedanhxEngine from '../engine/adedanhx';
 import * as arteRuimEngine from '../engine/arte-ruim';
 import * as comunicacaoAlienigenaEngine from '../engine/comunicacao-alienigena';
 import * as contadoresHistoriasEngine from '../engine/contadores-historias';
@@ -35,6 +36,8 @@ import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
  */
 export const getEngine = (gameName: string): Engine => {
   switch (gameName) {
+    case GAME_NAMES.ADEDANHX:
+      return adedanhxEngine;
     case GAME_NAMES.ARTE_RUIM:
       return arteRuimEngine;
     case GAME_NAMES.COMUNICACAO_ALIENIGENA:

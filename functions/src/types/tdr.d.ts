@@ -83,7 +83,12 @@ type Tweet = {
   custom?: boolean;
 };
 
-// type Topic = {}
+type TopicCard = {
+  id: CardId;
+  label: string;
+  category: string;
+  level: number;
+};
 
 type DatingCandidateCard = {
   id: CardId;

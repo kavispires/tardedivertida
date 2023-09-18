@@ -1,0 +1,137 @@
+@use 'styles/sass' as *;
+@import url('https://fonts.googleapis.com/css2?family=Passion+One');
+
+.adedanhx-grid {
+  display: grid;
+  grid-template-columns: auto repeat(5, 1fr);
+  grid-template-rows: auto repeat(4, 1fr);
+  gap: get-unit(2);
+}
+
+.adedanhx-grid-cell {
+  background: get-color('white');
+  padding: get-unit(2);
+  max-width: 300px;
+  border-radius: $border-radius;
+
+  &__corner {
+    opacity: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Zilla Slab', monospace;
+    position: relative;
+    padding: get-unit(2);
+  }
+
+  &__category-label {
+    max-width: 20ch;
+    text-align: center;
+    font-size: 1.25em;
+  }
+
+  &__level {
+    color: get-color('yellow', 7);
+    display: block;
+  }
+
+  &__letters-label {
+    font-size: 2em;
+    font-weight: bold;
+    min-width: 5ch;
+    text-align: center;
+    padding: get-unit(4 0 2);
+  }
+
+  &__letters-type {
+    position: absolute;
+    background: get-color('blue', 2);
+    color: get-color('blue', 8);
+    padding: get-unit(1);
+    top: get-unit(-1);
+    left: get-unit(-5);
+    border-radius: $border-radius;
+    transform: rotate(-5deg);
+
+    &--starts-with {
+      opacity: 0;
+    }
+  }
+
+  &__writing {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    gap: get-unit(2);
+  }
+
+  &__input {
+    text-align: center;
+  }
+
+  &__results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: get-unit(1);
+  }
+
+  &__results-divider {
+    margin: get-unit(1 0);
+  }
+
+  &__results-players {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.evaluation-entry {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: 1fr;
+  gap: get-unit(2);
+
+  &__side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: get-unit(2);
+    background: get-color('white', 5, 0.85);
+    padding: get-unit(2);
+    border-radius: $border-radius;
+    min-width: 200px;
+    height: 100%;
+  }
+
+  &__player {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 7ch 20ch 30ch auto;
+    gap: get-unit(2);
+    align-items: center;
+  }
+
+  &__answer-text {
+    text-transform: uppercase;
+    margin: get-unit(0 2);
+    font-style: italic;
+    border-radius: $border-radius;
+    background: get-color('gray', 1);
+    padding: get-unit(1 2);
+    overflow-x: hidden;
+
+    &--rejected {
+      text-decoration: line-through;
+    }
+  }
+}

@@ -11,6 +11,9 @@ import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 
 // Game lazy imports
+const SessionAdedanhx = lazy(
+  () => import('games/adedanhx/SessionAdedanhx' /* webpackChunkName: "adedanhx" */)
+);
 const SessionArteRuim = lazy(
   () => import('games/arte-ruim/SessionArteRuim' /* webpackChunkName: "arte-ruim" */)
 );
@@ -134,6 +137,12 @@ function Game() {
 
   if (gameId && gameName) {
     switch (gameName) {
+      case GAME_COLLECTION.ADEDANHX:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionAdedanhx />
+          </Suspense>
+        );
       case GAME_COLLECTION.ARTE_RUIM:
         return (
           <Suspense fallback={<LoadingPage />}>

@@ -246,7 +246,7 @@ export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
  */
 export const getStateAndStoreReferences = async <
   A = FirebaseFirestore.DocumentData,
-  O = FirebaseFirestore.DocumentData
+  O = FirebaseFirestore.DocumentData,
 >(
   gameName: GameName,
   gameId: GameId,
@@ -435,12 +435,12 @@ export const updateStore = async ({
 
 /**
  * Aides updating simple state properties on submit actions
- * @param args.gameName
- * @param args.gameId
- * @param args.playerId
- * @param args.actionText
- * @param args.change
- * @param args.nextPhaseFunction
+ * @param args.gameName - Game name
+ * @param args.gameId - Game id
+ * @param args.playerId - Player id who trigger the action
+ * @param args.actionText - Action text to be used on error messages
+ * @param args.change - Object with properties to be updated
+ * @param args.nextPhaseFunction - Function to be triggered after update
  * @returns
  */
 export const updateState = async ({
