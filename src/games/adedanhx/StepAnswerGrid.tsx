@@ -85,7 +85,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
         <TimerClock seconds={seconds} minutes={minutes} iconSize="large" className="timer" />
       </Title>
 
-      {stoppedBy && <StopAnnouncement stopper={players[stoppedBy]} timeLeft={timeLeft} onSubmit={onSubmit} />}
+      {stoppedBy && <StopAnnouncement stopper={players[stoppedBy]} onSubmit={onSubmit} />}
 
       <Instruction contained>
         <Translate
@@ -127,7 +127,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
           size="large"
           className="button"
           onClick={() => onSubmit(true)}
-          disabled={isLoading || !allLocked}
+          disabled={isLoading || timeLeft < 20 || !allLocked}
           loading={isLoading}
           icon={<IconAvatar size="small" icon={<StopIcon />} />}
         >
