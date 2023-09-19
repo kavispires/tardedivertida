@@ -228,8 +228,8 @@ const autoEvaluateAnswer = (answer: string, letterEntry: LetterEntry): boolean =
   }
 
   if (type === 'includes') {
-    if (hasAccents(letter)) {
-      return hasAccents(answer);
+    if (isAccent(letter)) {
+      return hasAccent(answer, letter);
     }
     return answer.includes(letter);
   }
@@ -237,9 +237,21 @@ const autoEvaluateAnswer = (answer: string, letterEntry: LetterEntry): boolean =
   return false;
 };
 
-function hasAccents(word: string): boolean {
+function isAccent(word: string): boolean {
   // Define a regular expression to match the accents
   const accentRegex = /[˜ˆ´]/;
+
+  // Use the test() method to check if any of the accents are present in the word
+  return accentRegex.test(word);
+}
+
+function hasAccent(word: string, accent: string): boolean {
+  const accentRegex =
+    {
+      '˜': /[ñãõ]/,
+      ˆ: /[âêîôû]/,
+      '´': /[áéíóú]/,
+    }?.[accent] ?? /[˜ˆ´]/;
 
   // Use the test() method to check if any of the accents are present in the word
   return accentRegex.test(word);
