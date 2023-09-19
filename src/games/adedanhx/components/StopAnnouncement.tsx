@@ -1,10 +1,12 @@
+// Icons
+import { StopIcon } from 'icons/StopIcon';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from 'components/phases';
 import { Instruction } from 'components/text';
 import { TimedTimerBar } from 'components/timers';
-import { StopIcon } from 'icons/StopIcon';
 
 type StopAnnouncementProps = {
   stopper: Player;

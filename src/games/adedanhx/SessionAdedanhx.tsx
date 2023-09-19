@@ -7,12 +7,12 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-// Sass
-import './adedanhx.scss';
 import { PhaseAnswering } from './PhaseAnswering';
 import { PhaseEvaluation } from './PhaseEvaluation';
 import { PhaseResults } from './PhaseResults';
 import { PhaseGameOver } from './PhaseGameOver';
+// Sass
+import './adedanhx.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

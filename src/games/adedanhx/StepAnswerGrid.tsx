@@ -4,22 +4,23 @@ import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useCountdown } from 'hooks/useCountdown';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { buildAnswerSheet } from './utils/helpers';
+import { SEPARATOR } from 'utils/constants';
+import { mockAnswers } from './utils/mocks';
+// Icons
+import { LockIcon } from 'icons/LockIcon';
+import { StopIcon } from 'icons/StopIcon';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
-import { LockIcon } from 'icons/LockIcon';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Grid } from './components/Grid';
 import { TimerClock } from 'components/timers';
-import { useMock } from 'hooks/useMock';
-import { mockAnswers } from './utils/mocks';
-import { StopIcon } from 'icons/StopIcon';
 import { StopAnnouncement } from './components/StopAnnouncement';
-import { SEPARATOR } from 'utils/constants';
 import { DevButton } from 'components/debug';
 
 type StepAnswerGridProps = {
