@@ -3,27 +3,15 @@ import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from 'components/phases';
 import { Instruction } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
+import { TimedTimerBar } from 'components/timers';
 import { StopIcon } from 'icons/StopIcon';
-import { useEffect, useState } from 'react';
 
 type StopAnnouncementProps = {
   stopper: Player;
-  timeLeft: number;
   onSubmit: () => void;
 };
 
-export function StopAnnouncement({ stopper, onSubmit, timeLeft }: StopAnnouncementProps) {
-  const { isLoading } = useLoading();
-  const [stoppedAt] = useState(timeLeft);
-
-  useEffect(() => {
-    if (!isLoading && timeLeft === stoppedAt) {
-      // onSubmit();
-      console.log('BOOM!');
-    }
-  }, [timeLeft, stoppedAt, isLoading]);
-
+export function StopAnnouncement({ stopper, onSubmit }: StopAnnouncementProps) {
   return (
     <>
       <PhaseAnnouncement icon={<StopIcon />} title="STOP!" currentRound={1} type="overlay" duration={4}>
@@ -46,6 +34,7 @@ export function StopAnnouncement({ stopper, onSubmit, timeLeft }: StopAnnounceme
           />
         </Instruction>
       </PhaseAnnouncement>
+      <TimedTimerBar duration={12} onExpire={onSubmit} />
     </>
   );
 }
