@@ -11,7 +11,6 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-
 import { StepEvaluateGroup } from './StepEvaluateGroup';
 import { ScoringRule } from './components/RulesBlobs';
 

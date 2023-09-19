@@ -1,4 +1,3 @@
-// Utils
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
