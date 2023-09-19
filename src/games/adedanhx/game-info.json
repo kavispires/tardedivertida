@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "alpha",
+  "version": "0.0.1",
   "title": {
     "pt": "Adedanhx",
     "en": "Stop-ish!"
@@ -17,7 +17,7 @@
     "en": "Be the first to fill the table with words that start with the drawn letters!"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "letter-clouds",
     "color": "#3653ad",
     "backgroundColor": ""
   },
