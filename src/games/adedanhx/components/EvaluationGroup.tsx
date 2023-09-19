@@ -56,14 +56,21 @@ export function EvaluationGroup({
   };
 
   return (
-    <div className={clsx(getAnimationClass('fadeIn'))} key={answerGroup.id}>
+    <div>
       <div className="space-container evaluation-entry">
         <div className="space-container evaluation-entry__side">
-          <CategoryCell data={answerGroup.topic} updateAnswer={NOOP} />
+          <span className={clsx(getAnimationClass('flipInY'))} key={answerGroup.topic.id}>
+            <CategoryCell data={answerGroup.topic} updateAnswer={NOOP} />
+          </span>
           <PlusOutlined />
-          <LetterCell data={answerGroup.letter} updateAnswer={NOOP} />
+          <span className={clsx(getAnimationClass('flipInY'))} key={answerGroup.letter.letters}>
+            <LetterCell data={answerGroup.letter} updateAnswer={NOOP} />
+          </span>
         </div>
-        <div className="space-container evaluation-entry__side">
+        <div
+          className={clsx('space-container evaluation-entry__side', getAnimationClass('fadeIn'))}
+          key={answerGroup.id}
+        >
           {answerGroup.answers.map((answer, index) => {
             return (
               <div className="evaluation-entry__player" key={answer.playerId}>
@@ -99,7 +106,7 @@ export function EvaluationGroup({
               </div>
             );
           })}
-          <Space className="space-container">
+          <Space className="space-container evaluation-entry__reject-button">
             <Button
               type="primary"
               shape="round"
@@ -108,7 +115,7 @@ export function EvaluationGroup({
               loading={isLoading}
               disabled={Object.keys(rejections).length === 0 || user?.evaluations[answerGroup.id]}
             >
-              <Translate pt="Confirmar" en="Confirm" />
+              <Translate pt="Enviar errors" en="Submit wrong answers" />
             </Button>
           </Space>
         </div>

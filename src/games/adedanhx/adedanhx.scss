@@ -134,4 +134,8 @@
       text-decoration: line-through;
     }
   }
+
+  &__reject-button {
+    justify-content: flex-end;
+  }
 }
