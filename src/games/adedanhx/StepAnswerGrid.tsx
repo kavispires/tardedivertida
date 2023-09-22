@@ -8,6 +8,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { buildAnswerSheet } from './utils/helpers';
 import { SEPARATOR } from 'utils/constants';
+import { ANSWERING_TIME, ANSWERING_TIME_IN_MINUTES } from './utils/constants';
 import { mockAnswers } from './utils/mocks';
 // Icons
 import { LockIcon } from 'icons/LockIcon';
@@ -48,7 +49,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
   };
 
   const { timeLeft, seconds, minutes } = useCountdown({
-    duration: 180,
+    duration: ANSWERING_TIME,
     onExpire: onSubmit,
   });
 
@@ -57,7 +58,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
       ...prev,
       [id]: {
         ...prev[id],
-        answer,
+        answer: answer.trim(),
       },
     }));
   };
@@ -96,7 +97,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
               <IconAvatar size="small" icon={<LockIcon />} /> a cada resposta para que seu tempo seja gravado
               corretamente.
               <br />
-              Você tem <TimeHighlight>3 minutos</TimeHighlight>!
+              Você tem <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutos</TimeHighlight>!
             </>
           }
           en={
@@ -104,7 +105,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
               Write it in the order you think is best and don't forget to press the lock button{' '}
               <IconAvatar size="small" icon={<LockIcon />} /> after each answer.
               <br />
-              You have <TimeHighlight>3 minutes</TimeHighlight>!
+              You have <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutes</TimeHighlight>!
             </>
           }
         />
@@ -117,24 +118,29 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
           pt="Se você acabar todas as células antes do tempo você pode apertar stop para finalizar a rodada."
           en="If you finish all the cells before the time you can press stop to end the round."
         />
+        <Space className="space-container">
+          <DevButton ghost onClick={() => setAnswers(mockAnswers(answers, grid.xHeaders, grid.yHeaders))}>
+            Mock Answers
+          </DevButton>
+          <DevButton
+            ghost
+            onClick={() => setAnswers(mockAnswers(answers, grid.xHeaders, grid.yHeaders, true))}
+          >
+            Mock Stop
+          </DevButton>
+          <Button
+            type="primary"
+            size="large"
+            className="button"
+            onClick={() => onSubmit(true)}
+            disabled={isLoading || timeLeft < 20 || !allLocked}
+            loading={isLoading}
+            icon={<IconAvatar size="small" icon={<StopIcon />} />}
+          >
+            <Translate pt="STOP!" en="STOP!" />
+          </Button>
+        </Space>
       </Instruction>
-
-      <Space className="space-container">
-        <DevButton ghost onClick={() => setAnswers(mockAnswers(answers, grid.xHeaders, grid.yHeaders))}>
-          Mock Answers
-        </DevButton>
-        <Button
-          type="primary"
-          size="large"
-          className="button"
-          onClick={() => onSubmit(true)}
-          disabled={isLoading || timeLeft < 20 || !allLocked}
-          loading={isLoading}
-          icon={<IconAvatar size="small" icon={<StopIcon />} />}
-        >
-          <Translate pt="STOP!" en="STOP!" />
-        </Button>
-      </Space>
     </Step>
   );
 }

@@ -1,3 +1,4 @@
+import ADEDANHX from 'games/adedanhx/utils/achievements';
 import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
@@ -34,6 +35,7 @@ import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 // import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/utils/achievements';
 
 export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = {
+  adedanhx: ADEDANHX,
   'arte-ruim': ARTE_RUIM,
   'bomba-relogio': null,
   'cinegrafistas-amadores': null,

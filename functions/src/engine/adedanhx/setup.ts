@@ -6,7 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildGrid, evaluateAnswers, getCurrentGrid, groupAnswers } from './helpers';
+import { buildGrid, evaluateAnswers, getAchievements, getCurrentGrid, groupAnswers } from './helpers';
 
 /**
  * Setup
@@ -24,13 +24,19 @@ export const prepareSetupPhase = async (
   const { allTopics, allLetters } = resourceData;
   const { letters, topics } = buildGrid(allTopics, allLetters);
 
-  // const achievements = utils.achievements.setup(players, store, {});
+  const achievements = utils.achievements.setup(players, store, {
+    stop: 0,
+    first: 0,
+    cells: 0,
+    badClues: 0,
+    autoReject: 0,
+  });
 
   // Save
   return {
     update: {
       store: {
-        // achievements,
+        achievements,
         letters,
         topics,
       },
@@ -65,7 +71,7 @@ export const prepareAnsweringPhase = async (
         players,
         stop: false,
       },
-      stateCleanup: ['ranking', 'answerGroup', 'answerGroupIndex', 'answerGrid'],
+      stateCleanup: ['ranking', 'answerGroup', 'answerGroupIndex', 'answerGrid', 'stop'],
     },
   };
 };
@@ -80,11 +86,19 @@ export const prepareEvaluationPhase = async (
   utils.players.addPropertiesToPlayers(players, { evaluations: {} });
 
   // Gather answers per player per cell, and auto-verify them
-  const answerGroups = groupAnswers(players, state.grid.xHeaders, state.grid.yHeaders);
+  const answerGroups = groupAnswers(players, state.grid.xHeaders, state.grid.yHeaders, store);
+
+  if (state.stop) {
+    // Achievement: stop
+    utils.achievements.increase(store, state.stop, 'stop', 1);
+  }
 
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: ADEDANHX_PHASES.EVALUATION,
         players,
@@ -101,11 +115,14 @@ export const prepareResultsPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather votes
-  const { answersGrid, ranking } = evaluateAnswers(players, state.answerGroups);
+  const { answersGrid, ranking } = evaluateAnswers(players, state.answerGroups, store);
 
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: ADEDANHX_PHASES.RESULTS,
         ranking,
@@ -124,8 +141,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  // const achievements = getAchievements(store);
-  const achievements = [];
+  const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
 

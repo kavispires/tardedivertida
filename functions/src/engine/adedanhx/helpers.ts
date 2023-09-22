@@ -1,7 +1,20 @@
 // Types
 // Constants
-import { ADEDANHX_PHASES, LETTERS_PER_ROUND, TOPICS_PER_ROUND, TOTAL_ROUNDS } from './constants';
-import { AnswerEvaluationEntry, AnswerGridEntry, GroupAnswerEvaluationEntry, LetterEntry } from './types';
+import {
+  ADEDANHX_ACHIEVEMENTS,
+  ADEDANHX_PHASES,
+  LETTERS_PER_ROUND,
+  TOPICS_PER_ROUND,
+  TOTAL_ROUNDS,
+} from './constants';
+import {
+  AdedanhxAchievement,
+  AnswerEvaluationEntry,
+  AnswerGridEntry,
+  FirebaseStoreData,
+  GroupAnswerEvaluationEntry,
+  LetterEntry,
+} from './types';
 // Utils
 import utils from '../../utils';
 import { SEPARATOR } from '../../utils/constants';
@@ -169,7 +182,12 @@ export const getCurrentGrid = (topics: TopicCard[], letters: LetterEntry[], curr
   };
 };
 
-export const groupAnswers = (players: Players, topics: TopicCard[], letters: LetterEntry[]) => {
+export const groupAnswers = (
+  players: Players,
+  topics: TopicCard[],
+  letters: LetterEntry[],
+  store: FirebaseStoreData
+) => {
   const result: GroupAnswerEvaluationEntry[] = [];
 
   topics.forEach((topic, topicIndex) => {
@@ -182,12 +200,22 @@ export const groupAnswers = (players: Players, topics: TopicCard[], letters: Let
         const answer = possibleAnswer.toLowerCase();
 
         if (answer) {
+          const isAutoRejected = !autoEvaluateAnswer(answer, letter);
+          if (isAutoRejected) {
+            // Achievement: autoReject
+            utils.achievements.increase(store, playerId, 'autoReject', 1);
+            // Achievement: badClues
+            utils.achievements.increase(store, playerId, 'badClues', 1);
+          }
+          // Achievement: cells
+          utils.achievements.increase(store, playerId, 'cells', 1);
+
           answers.push({
             id: `${id}${SEPARATOR}${playerId}`,
             playerId,
             answer: answer,
             timestamp: Number(timestamp),
-            autoRejected: !autoEvaluateAnswer(answer, letter),
+            autoRejected: isAutoRejected,
             rejected: false,
             points: letter.level,
           });
@@ -257,7 +285,11 @@ function hasAccent(word: string, accent: string): boolean {
   return accentRegex.test(word);
 }
 
-export const evaluateAnswers = (players: Players, answerGroups: GroupAnswerEvaluationEntry[]) => {
+export const evaluateAnswers = (
+  players: Players,
+  answerGroups: GroupAnswerEvaluationEntry[],
+  store: FirebaseStoreData
+) => {
   const playerCount = utils.players.getPlayerCount(players);
   const acceptableRejections = playerCount > 4 ? 2 : 1;
 
@@ -277,6 +309,8 @@ export const evaluateAnswers = (players: Players, answerGroups: GroupAnswerEvalu
           const answer = answerGroup.answers.find((answer) => answer.id === answerId);
           if (answer) {
             answer.rejected = true;
+            // Achievement: badClues
+            utils.achievements.increase(store, player.id, 'badClues', 1);
           }
         }
       }
@@ -319,6 +353,8 @@ export const evaluateAnswers = (players: Players, answerGroups: GroupAnswerEvalu
       answerGridEntry.main.answer = top.answer;
       scores.add(top.playerId, group.topic.level, 1);
       scores.add(top.playerId, group.letter.level, 0);
+      // Achievement: top answer/first
+      utils.achievements.increase(store, top.playerId, 'first', 1);
     }
 
     otherAnswers.forEach((answer) => {
@@ -336,4 +372,87 @@ export const evaluateAnswers = (players: Players, answerGroups: GroupAnswerEvalu
   });
 
   return { answersGrid, ranking: scores.rank(players) };
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<AdedanhxAchievement>[] = [];
+
+  // Most Stops: stopped the game the most
+  const { most: mostStops } = utils.achievements.getMostAndLeastOf(store, 'stop');
+  if (mostStops) {
+    achievements.push({
+      type: ADEDANHX_ACHIEVEMENTS.MOST_STOPS,
+      playerId: mostStops.playerId,
+      value: mostStops.stop,
+    });
+  }
+
+  // Never stopped
+  const neverStopped = utils.achievements.getOnlyExactMatch(store, 'stop', 0);
+
+  if (neverStopped) {
+    achievements.push({
+      type: ADEDANHX_ACHIEVEMENTS.NEVER_STOPPED,
+      playerId: neverStopped.playerId,
+      value: neverStopped.stop,
+    });
+  }
+
+  // Most first answers
+  const { most: mostFirstAnswers, least: fewestFirstAnswers } = utils.achievements.getMostAndLeastOf(
+    store,
+    'first'
+  );
+
+  if (mostFirstAnswers) {
+    achievements.push({
+      type: ADEDANHX_ACHIEVEMENTS.MOST_FIRST_ANSWERS,
+      playerId: mostFirstAnswers.playerId,
+      value: mostFirstAnswers.first,
+    });
+  }
+
+  // Fewest first answers
+  if (fewestFirstAnswers) {
+    achievements.push({
+      type: ADEDANHX_ACHIEVEMENTS.LEAST_FIRST_ANSWERS,
+      playerId: fewestFirstAnswers.playerId,
+      value: fewestFirstAnswers.first,
+    });
+  }
+
+  // Most cells: answered the most
+  const { most: mostCells, least: fewestCells } = utils.achievements.getMostAndLeastOf(store, 'cells');
+  if (mostCells) {
+    achievements.push({
+      type: ADEDANHX_ACHIEVEMENTS.MOST_CELLS,
+      playerId: mostCells.playerId,
+      value: mostCells.cells,
+    });
+  }
+
+  // Fewest cells: answered the least
+  if (fewestCells) {
+    achievements.push({
+      type: ADEDANHX_ACHIEVEMENTS.FEWEST_CELLS,
+      playerId: fewestCells.playerId,
+      value: fewestCells.cells,
+    });
+  }
+
+  // Most auto rejects: auto rejected the most
+  const { most: mostAutoRejects } = utils.achievements.getMostAndLeastOf(store, 'autoReject');
+  if (mostAutoRejects) {
+    achievements.push({
+      type: ADEDANHX_ACHIEVEMENTS.MOST_AUTO_REJECTS,
+      playerId: mostAutoRejects.playerId,
+      value: mostAutoRejects.autoReject,
+    });
+  }
+
+  return achievements;
 };

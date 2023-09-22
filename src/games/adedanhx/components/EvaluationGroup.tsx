@@ -115,12 +115,12 @@ export function EvaluationGroup({
               loading={isLoading}
               disabled={Object.keys(rejections).length === 0 || user?.evaluations[answerGroup.id]}
             >
-              <Translate pt="Enviar errors" en="Submit wrong answers" />
+              <Translate pt="Enviar erros" en="Submit wrong answers" />
             </Button>
           </Space>
         </div>
       </div>
-      <Space className="space-container">
+      <Space className="space-container" key={answerGroup.id}>
         <TimedTimerBar duration={timer} onExpire={NOOP} className="margin" />
       </Space>
     </div>
