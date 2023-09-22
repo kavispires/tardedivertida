@@ -49,7 +49,11 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
   return (
     <Step fullWidth announcement={announcement}>
       <Title size="x-small">
-        <Translate pt="Termine todas suas obrigações" en="Finish all your chores" />
+        {seeds.length > 1 ? (
+          <Translate pt="Termine todas suas obrigações" en="Finish all your chores" />
+        ) : (
+          <Translate pt="Hora de se arrumar" en="Time to get ready" />
+        )}
       </Title>
       <div className="full-width container center">
         <Steps current={currentStep} items={items} />
