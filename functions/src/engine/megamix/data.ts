@@ -598,15 +598,36 @@ export const getData = async (
   }
 
   // Get default megamix tracks
-  const allChoices = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.CHOICES}-${language}`));
-  const selectedChoices = utils.game.getRandomItems(allChoices, TOTAL_ROUNDS);
+  const allChoices = Object.values(
+    await resourceUtils.fetchResource(`${TDR_RESOURCES.CHOICES}-${language}`)
+  ) as PlainObject[];
+  const shuffledChoices = utils.game.shuffle(allChoices);
+
+  const selectedChoices = new Array(TOTAL_ROUNDS).fill(null);
+  let thisThatIndex = 0;
+  let bestOfThreeIndex = 1;
+  for (let i = 0; i < shuffledChoices.length; i++) {
+    const choice = shuffledChoices[i];
+    if (choice.type === 'this-that' && thisThatIndex <= TOTAL_ROUNDS) {
+      selectedChoices[thisThatIndex] = choice;
+      thisThatIndex += 2;
+    }
+    if (choice.type === 'best-of-three' && bestOfThreeIndex <= TOTAL_ROUNDS) {
+      selectedChoices[bestOfThreeIndex] = choice;
+      bestOfThreeIndex += 2;
+    }
+    if (bestOfThreeIndex >= TOTAL_ROUNDS + 3) {
+      break;
+    }
+  }
+  selectedChoices.reverse();
+
   const filteredCustomTracks = utils.game.shuffle(customTracks.filter((track) => !!track?.game));
   // Build track order
   const tracks: Track[] = [];
   const customTrackInterval = Math.ceil(TOTAL_ROUNDS / filteredCustomTracks.length);
-
   for (let i = 0; i < TOTAL_ROUNDS; i++) {
-    if (i > 0 && i % customTrackInterval === 0 && filteredCustomTracks.length > 0) {
+    if (i > 0 && i % customTrackInterval === 1 && filteredCustomTracks.length > 0) {
       const track = filteredCustomTracks.pop() as Track;
       tracks.push(track);
     } else {

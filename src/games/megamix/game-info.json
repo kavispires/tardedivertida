@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -23,10 +23,20 @@
   },
   "rules": {
     "pt": [
-      "Cada rodada um desafio é lançado e se você estiver votado com a maioria você vai para a Área VIP. Após 15 rodadas, ganha quem tiver mais pontos e na Área VIP."
+      "Cada rodada um desafio é lançado e o objetivo é entrar para a área VIP!",
+      "A maioria dos desafios você tem que escolher entra duas, três ou quatro opções. Quem escolheu o mesmo que a maioria vai para a área VIP ou permanece lá.",
+      "Porém, se houve um empate entre 2 opções, quem estiver na área VIP fica, quem não estava, mesmo que tenha votado no empate, fica de fora.",
+      "Em desafios com mais de duas opções, se todas as opções tiverem o mesmo número de votos, deu velha! Todo mundo sai da área VIP.",
+      "Ao entrar para a área VIP, você ganha 1 ponto. Se permanecer na área VIP, você ganha 2 pontos.",
+      "O jogo termina após 15 rodadas e quem estiver na área VIP e tiver mais pontos ganha!"
     ],
     "en": [
-      "Each round a challenge is launched and if you are voted with the majority you go to the VIP Area. After 15 rounds, whoever has the most points and in the VIP Area wins."
+      "Each round a challenge is launched and the goal is to join the VIP area!",
+      "Most challenges you have to choose between two, three or four options. Whoever chose the same as the majority goes to the VIP area or stays there.",
+      "However, if there is a tie between 2 options, whoever is in the VIP area stays, whoever was not, even if they voted in the majority, stays out.",
+      "In challenges with more than two options, if all options have the same number of votes, it's a draw! Everyone leaves the VIP area.",
+      "When you join the VIP area, you get 1 point. If you stay in the VIP area, you get 2 points.",
+      "The game ends after 15 rounds and whoever is in the VIP area and has the most points wins!"
     ]
   },
   "playerCount": {
