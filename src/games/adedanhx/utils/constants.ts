@@ -1,0 +1,3 @@
+export const ANSWERING_TIME = 180;
+
+export const ANSWERING_TIME_IN_MINUTES = ANSWERING_TIME / 60;

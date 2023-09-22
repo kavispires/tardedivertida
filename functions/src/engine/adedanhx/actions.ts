@@ -11,16 +11,6 @@ export const handleSubmitAnswers = async (
   answers: StringDictionary,
   stop?: boolean
 ) => {
-  await utils.firebase.updatePlayer({
-    gameName,
-    gameId,
-    playerId,
-    actionText: 'submit your answers',
-    shouldReady: true,
-    change: { answers },
-    nextPhaseFunction: getNextPhase,
-  });
-
   if (stop) {
     await utils.firebase.updateState({
       gameName,
@@ -31,7 +21,15 @@ export const handleSubmitAnswers = async (
     });
   }
 
-  return true;
+  return await utils.firebase.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'submit your answers',
+    shouldReady: true,
+    change: { answers },
+    nextPhaseFunction: getNextPhase,
+  });
 };
 
 export const handleNextEvaluationGroup = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {

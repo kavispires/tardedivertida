@@ -8,8 +8,8 @@ export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: ADEDANHX_API.submitAction,
     actionName: 'submit-answers',
-    onSuccess: () => setStep(2),
-    onError: () => setStep(0),
+    onSuccess: () => setStep(3),
+    onError: () => setStep(2),
     successMessage: translate('Respostas submetidas com sucesso', 'Answers submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',

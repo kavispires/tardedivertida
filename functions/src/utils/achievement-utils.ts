@@ -196,3 +196,22 @@ export const getEarliestAndLatestOccurrence = (
 
   return getMostAndLeastOf(store, property, ineligiblePlayers, (v) => v >= 0);
 };
+
+export const getOnlyExactMatch = (
+  store: PlainObject,
+  property: string,
+  value: any,
+  ineligiblePlayers: PlayerId[] = []
+) => {
+  const eligibleAchievements = Object.values(store.achievements).filter((pa) => {
+    const achievement = pa as PlainObject;
+    return !ineligiblePlayers.includes(achievement.playerId);
+  });
+
+  const achievements = eligibleAchievements.filter((pa) => {
+    const achievement = pa as PlainObject;
+    return achievement[property] === value;
+  });
+
+  return achievements.length === 1 ? (achievements[0] as PlainObject) : null;
+};

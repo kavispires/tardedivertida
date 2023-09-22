@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useLoading } from 'hooks/useLoading';
 import { RocketFilled } from '@ant-design/icons';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { isDevEnv, pluralize } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
@@ -39,7 +39,7 @@ export function StepEvaluateGroup({
   // How long to wait to enable the button to give type to players to evaluate
   const waitDuration = useMemo(() => {
     // Dev
-    // if (isDevEnv) return 1;
+    if (isDevEnv) return 2;
     // When only 2 or less answers left
     return Math.min(answerGroup.answers.length * 3, 12);
   }, [answerGroup.answers.length]);
