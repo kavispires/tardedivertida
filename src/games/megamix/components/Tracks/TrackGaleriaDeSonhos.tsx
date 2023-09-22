@@ -43,8 +43,7 @@ export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: Tra
           }
           en={
             <>
-              With the theme below, what is the <CardHighlight>Dream Card</CardHighlight> most likely to be
-              visited by other players?
+              With the theme below, which <CardHighlight>Dream Card</CardHighlight> best relates to it?
             </>
           }
         />
