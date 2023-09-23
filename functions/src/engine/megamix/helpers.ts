@@ -556,7 +556,8 @@ export const buildMenteColetivaOptions = (players: Players) => {
       }
     });
   });
-  return answers;
+
+  return answers.slice(0, 3);
 };
 
 /**
