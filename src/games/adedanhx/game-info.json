@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "title": {
     "pt": "Adedanhx",
     "en": "Stop-ish!"
@@ -22,8 +22,22 @@
     "backgroundColor": ""
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "en": [
+      "Stop-ish is a mix of scateggories and stop!",
+      "Each round 5 categories and 4 letters will be dis played on a grid and players must write an answer that would match the column and row",
+      "Make sure to click on the Lock symbol on each answer to lock your timestamp",
+      "You will get points equal to the level of the letter for each answer you gave",
+      "You also get points equal to the category level if you were the first to write and lock an answer for that category",
+      "At the end of 5 rounds, the winner is the player with the most points"
+    ],
+    "pt": [
+      "Adedanhx é uma adedanha diferente!!!",
+      "Cada rodada 5 categorias e 4 letras serão exibidas em uma grade e os jogadores devem escrever uma resposta que corresponda à coluna e à linha",
+      "Certifique-se de clicar no símbolo de bloqueio em cada resposta para marcar o seu tempo",
+      "Você receberá pontos iguais ao nível da letra para cada resposta que você deu",
+      "Você também recebe pontos iguais ao nível da categoria se você foi o primeiro a escrever e bloquear uma resposta para essa categoria",
+      "Ao final de 5 rodadas, o vencedor é o jogador com mais pontos"
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],

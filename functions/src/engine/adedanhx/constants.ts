@@ -183,17 +183,17 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
     },
     {
       type: 'ends-with',
-      letters: '-e',
+      letters: 'e',
       level: 2,
     },
     {
       type: 'ends-with',
-      letters: '-s',
+      letters: 's',
       level: 3,
     },
     {
       type: 'ends-with',
-      letters: '-y',
+      letters: 'y',
       level: 3,
     },
   ],
