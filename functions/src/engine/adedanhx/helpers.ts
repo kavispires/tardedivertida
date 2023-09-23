@@ -256,8 +256,9 @@ const autoEvaluateAnswer = (answer: string, letterEntry: LetterEntry): boolean =
   }
 
   if (type === 'includes') {
-    if (isAccent(letter)) {
-      return hasAccent(answer, letter);
+    if (isAccent(letter) || ['˜', '´', 'ˆ'].includes(letter)) {
+      // return hasAccent(answer, letter);
+      return true;
     }
     return answer.includes(letter);
   }
@@ -273,17 +274,17 @@ function isAccent(word: string): boolean {
   return accentRegex.test(word);
 }
 
-function hasAccent(word: string, accent: string): boolean {
-  const accentRegex =
-    {
-      '˜': /[ñãõ]/,
-      ˆ: /[âêîôû]/,
-      '´': /[áéíóú]/,
-    }?.[accent] ?? /[˜ˆ´]/;
+// function hasAccent(word: string, accent: string): boolean {
+//   const accentRegex =
+//     {
+//       '˜': /[ñãõ]/,
+//       ˆ: /[âêîôû]/,
+//       '´': /[áéíóú]/,
+//     }?.[accent] ?? /[˜ˆ´]/;
 
-  // Use the test() method to check if any of the accents are present in the word
-  return accentRegex.test(word);
-}
+//   // Use the test() method to check if any of the accents are present in the word
+//   return accentRegex.test(word);
+// }
 
 export const evaluateAnswers = (
   players: Players,
@@ -333,17 +334,21 @@ export const evaluateAnswers = (
       playerIds: [],
       score: 0,
     };
-    let topAnswer: AnswerEvaluationEntry | undefined = undefined;
+    const topAnswers: AnswerEvaluationEntry[] = [];
+    let topTime = 0;
     const otherAnswers: AnswerEvaluationEntry[] = [];
     group.answers.forEach((answer) => {
       if (!answer.rejected && !answer.autoRejected) {
-        if (!topAnswer) {
-          topAnswer = answer;
+        if (topAnswers.length === 0 || answer.timestamp === topTime) {
+          topTime = answer.timestamp;
+          topAnswers.push(answer);
         } else {
           otherAnswers.push(answer);
         }
       }
     });
+
+    const topAnswer = topAnswers.length === 1 ? topAnswers[0] : undefined;
 
     // Skip the whole thing is top answer doesn't exist
     if (topAnswer) {
