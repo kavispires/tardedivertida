@@ -406,7 +406,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_QUARTER_BETS,
       playerId: bestQuarterBets.playerId,
-      value: bestQuarterBets.quarterBets,
+      value: bestQuarterBets.value,
     });
   }
 
@@ -414,7 +414,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_QUARTER_BETS,
       playerId: worstQuarterBets.playerId,
-      value: worstQuarterBets.quarterBets,
+      value: worstQuarterBets.value,
     });
   }
 
@@ -427,14 +427,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_SEMI_BETS,
       playerId: bestSemiBets.playerId,
-      value: bestSemiBets.semiBets,
+      value: bestSemiBets.value,
     });
   }
   if (worstSemiBets) {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_SEMI_BETS,
       playerId: worstSemiBets.playerId,
-      value: worstSemiBets.semiBets,
+      value: worstSemiBets.value,
     });
   }
 
@@ -447,14 +447,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_FINAL_BETS,
       playerId: bestFinalBets.playerId,
-      value: bestFinalBets.finalBets,
+      value: bestFinalBets.value,
     });
   }
   if (worstFinalBets) {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_FINAL_BETS,
       playerId: worstFinalBets.playerId,
-      value: worstFinalBets.finalBets,
+      value: worstFinalBets.value,
     });
   }
 
@@ -467,14 +467,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_OVERALL_BETS,
       playerId: bestOverallBets.playerId,
-      value: bestOverallBets.bets,
+      value: bestOverallBets.value,
     });
   }
   if (worstOverallBets) {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_OVERALL_BETS,
       playerId: worstOverallBets.playerId,
-      value: worstOverallBets.bets,
+      value: worstOverallBets.value,
     });
   }
 
@@ -487,14 +487,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_QUARTER_CONTENDERS,
       playerId: bestQuarterContenders.playerId,
-      value: bestQuarterContenders.quarterContender,
+      value: bestQuarterContenders.value,
     });
   }
   if (worstQuarterContenders) {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_QUARTER_CONTENDERS,
       playerId: worstQuarterContenders.playerId,
-      value: worstQuarterContenders.quarterContender,
+      value: worstQuarterContenders.value,
     });
   }
 
@@ -507,14 +507,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_SEMI_CONTENDERS,
       playerId: bestSemiContenders.playerId,
-      value: bestSemiContenders.semiContender,
+      value: bestSemiContenders.value,
     });
   }
   if (worstSemiContenders) {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_SEMI_CONTENDERS,
       playerId: worstSemiContenders.playerId,
-      value: worstSemiContenders.semiContender,
+      value: worstSemiContenders.value,
     });
   }
 
@@ -527,14 +527,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_FINAL_CONTENDERS,
       playerId: bestFinalContenders.playerId,
-      value: bestFinalContenders.finalContender,
+      value: bestFinalContenders.value,
     });
   }
   if (worstFinalContenders) {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_FINAL_CONTENDERS,
       playerId: worstFinalContenders.playerId,
-      value: worstFinalContenders.finalContender,
+      value: worstFinalContenders.value,
     });
   }
 
@@ -547,7 +547,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.BEST_CONTENDERS,
       playerId: bestContenders.playerId,
-      value: bestContenders.contender,
+      value: bestContenders.value,
     });
   }
 
@@ -555,7 +555,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.WORST_CONTENDER,
       playerId: worstContenders.playerId,
-      value: worstContenders.contender,
+      value: worstContenders.value,
     });
   }
 
@@ -565,7 +565,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.MOST_GROUP_VOTES,
       playerId: mostGroupVotes.playerId,
-      value: mostGroupVotes.groupVotes,
+      value: mostGroupVotes.value,
     });
   }
 
@@ -575,7 +575,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: SUPER_CAMPEONATO_ACHIEVEMENTS.SOLITAIRE_VOTE,
       playerId: solitaireVote.playerId,
-      value: solitaireVote.solitaireVote,
+      value: solitaireVote.value,
     });
   }
 

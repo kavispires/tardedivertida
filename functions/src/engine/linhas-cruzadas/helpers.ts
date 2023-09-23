@@ -164,14 +164,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: LINHAS_CRUZADAS_ACHIEVEMENTS.QUICKEST_DRAWER,
       playerId: quickestDrawer.playerId,
-      value: quickestDrawer.drawingDuration,
+      value: quickestDrawer.value,
     });
   }
   if (slowestDrawer) {
     achievements.push({
       type: LINHAS_CRUZADAS_ACHIEVEMENTS.SLOWEST_DRAWER,
       playerId: slowestDrawer.playerId,
-      value: slowestDrawer.drawingDuration,
+      value: slowestDrawer.value,
     });
   }
 
@@ -184,14 +184,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: LINHAS_CRUZADAS_ACHIEVEMENTS.QUICKEST_GUESSER,
       playerId: quickestWriting.playerId,
-      value: quickestWriting.writingDuration,
+      value: quickestWriting.value,
     });
   }
   if (slowestWriting) {
     achievements.push({
       type: LINHAS_CRUZADAS_ACHIEVEMENTS.SLOWEST_GUESSER,
       playerId: slowestWriting.playerId,
-      value: slowestWriting.writingDuration,
+      value: slowestWriting.value,
     });
   }
 
@@ -203,7 +203,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: LINHAS_CRUZADAS_ACHIEVEMENTS.RANDOM_PROMPT_SELECTION,
       playerId: randomPromptSelection.playerId,
-      value: randomPromptSelection.randomPromptSelection,
+      value: randomPromptSelection.value,
     });
   }
 

@@ -230,7 +230,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CONTADORES_HISTORIAS_ACHIEVEMENTS.MOST_DECEIVING,
       playerId: most.playerId,
-      value: most.playerVotes,
+      value: most.value,
     });
   }
 
@@ -239,7 +239,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CONTADORES_HISTORIAS_ACHIEVEMENTS.WORST_CARDS,
       playerId: least.playerId,
-      value: least.playerVotes,
+      value: least.value,
     });
   }
 
@@ -249,7 +249,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CONTADORES_HISTORIAS_ACHIEVEMENTS.WORST_CLUES,
       playerId: worstClues.playerId,
-      value: worstClues.badClues,
+      value: worstClues.value,
     });
   }
 
@@ -259,7 +259,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CONTADORES_HISTORIAS_ACHIEVEMENTS.EASIEST_CLUES,
       playerId: easyClues.playerId,
-      value: easyClues.easyClues,
+      value: easyClues.value,
     });
   }
 
@@ -268,7 +268,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CONTADORES_HISTORIAS_ACHIEVEMENTS.HARDEST_CLUES,
       playerId: hardestClues.playerId,
-      value: hardestClues.easyClues,
+      value: hardestClues.value,
     });
   }
 
@@ -278,7 +278,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CONTADORES_HISTORIAS_ACHIEVEMENTS.TABLE_VOTES,
       playerId: tableVotes.playerId,
-      value: tableVotes.tableVotes,
+      value: tableVotes.value,
     });
   }
 

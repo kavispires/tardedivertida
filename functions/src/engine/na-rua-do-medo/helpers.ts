@@ -445,7 +445,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: NA_RUA_DO_MEDO_ACHIEVEMENTS.BRAVEST,
       playerId: most.playerId,
-      value: most.facingMonsters,
+      value: most.value,
     });
   }
 
@@ -454,7 +454,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: NA_RUA_DO_MEDO_ACHIEVEMENTS.LUCKIEST,
       playerId: least.playerId,
-      value: least.facingMonsters,
+      value: least.value,
     });
   }
 
@@ -464,7 +464,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: NA_RUA_DO_MEDO_ACHIEVEMENTS.CANDY_LOSER,
       playerId: candyLoser.playerId,
-      value: candyLoser.lostCandy,
+      value: candyLoser.value,
     });
   }
 
@@ -474,7 +474,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: NA_RUA_DO_MEDO_ACHIEVEMENTS.MOST_HOUSES,
       playerId: mostHouses.playerId,
-      value: mostHouses.houses,
+      value: mostHouses.value,
     });
   }
 
@@ -483,7 +483,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: NA_RUA_DO_MEDO_ACHIEVEMENTS.MOST_SCARED,
       playerId: fewestHouses.playerId,
-      value: fewestHouses.houses,
+      value: fewestHouses.value,
     });
   }
 
@@ -493,7 +493,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: NA_RUA_DO_MEDO_ACHIEVEMENTS.MOST_JACKPOTS,
       playerId: mostJackpots.playerId,
-      value: mostJackpots.jackpots,
+      value: mostJackpots.value,
     });
   }
 
@@ -503,7 +503,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: NA_RUA_DO_MEDO_ACHIEVEMENTS.MOST_SIDEWALK,
       playerId: mostSidewalk.playerId,
-      value: mostSidewalk.sidewalk,
+      value: mostSidewalk.value,
     });
   }
 

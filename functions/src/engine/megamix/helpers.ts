@@ -831,7 +831,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.SOLITARY_VIP,
       playerId: solitaryWinner.playerId,
-      value: solitaryWinner.solitaryWinner,
+      value: solitaryWinner.value,
     });
   }
 
@@ -841,7 +841,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.SOLITARY_LOSER,
       playerId: solitaryLoser.playerId,
-      value: solitaryLoser.solitaryLoser,
+      value: solitaryLoser.value,
     });
   }
 
@@ -851,7 +851,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.LONGEST_VIP,
       playerId: longestVIP.playerId,
-      value: longestVIP.longestVIP,
+      value: longestVIP.value,
     });
   }
 
@@ -861,7 +861,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.LONGEST_VIP,
       playerId: longestLoser.playerId,
-      value: longestLoser.longestLoser,
+      value: longestLoser.value,
     });
   }
 
@@ -874,7 +874,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.MOST_SWITCHED,
       playerId: switchedMost.playerId,
-      value: switchedMost.switchedTeam,
+      value: switchedMost.value,
     });
   }
 
@@ -883,7 +883,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.LEAST_SWITCHED,
       playerId: switchedLeast.playerId,
-      value: switchedLeast.switchedTeam,
+      value: switchedLeast.value,
     });
   }
 
@@ -893,7 +893,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.MOST_JOIN,
       playerId: joinedVIP.playerId,
-      value: joinedVIP.joinedVIP,
+      value: joinedVIP.value,
     });
   }
 
@@ -903,7 +903,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.MOST_LEFT,
       playerId: leftVIP.playerId,
-      value: leftVIP.leftVIP,
+      value: leftVIP.value,
     });
   }
 

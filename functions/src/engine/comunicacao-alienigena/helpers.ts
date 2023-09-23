@@ -518,7 +518,7 @@ export const getAchievements = (
     achievements.push({
       type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.MOST_QUESTIONED_OBJECTS,
       playerId: mostObjects.playerId,
-      value: mostObjects.objectInquiries,
+      value: mostObjects.value,
     });
   }
 
@@ -527,7 +527,7 @@ export const getAchievements = (
     achievements.push({
       type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.FEWEST_QUESTIONED_OBJECTS,
       playerId: fewestObjects.playerId,
-      value: fewestObjects.objectInquiries,
+      value: fewestObjects.value,
     });
   }
 
@@ -537,7 +537,7 @@ export const getAchievements = (
     achievements.push({
       type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.MOST_CORRECT_OBJECTS,
       playerId: correct.playerId,
-      value: correct.correct,
+      value: correct.value,
     });
   }
 
@@ -547,7 +547,7 @@ export const getAchievements = (
     achievements.push({
       type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.MOST_CURSED_OBJECTS,
       playerId: cursed.playerId,
-      value: cursed.cursed,
+      value: cursed.value,
     });
   }
 
@@ -557,7 +557,7 @@ export const getAchievements = (
     achievements.push({
       type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.MOST_BLANK_OBJECTS,
       playerId: blank.playerId,
-      value: blank.blank,
+      value: blank.value,
     });
   }
 
@@ -568,7 +568,7 @@ export const getAchievements = (
       achievements.push({
         type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.PLAYED_AS_ALIEN,
         playerId: alien.playerId,
-        value: alien.alien,
+        value: alien.value,
       });
     }
   }

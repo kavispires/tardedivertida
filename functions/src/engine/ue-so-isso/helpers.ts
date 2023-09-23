@@ -287,7 +287,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.MOST_ELIMINATED_CLUES,
       playerId: mostEliminatedClues.playerId,
-      value: mostEliminatedClues.eliminatedClues,
+      value: mostEliminatedClues.value,
     });
   }
 
@@ -296,7 +296,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.FEWEST_ELIMINATED_CLUES,
       playerId: fewestEliminatedClues.playerId,
-      value: fewestEliminatedClues.eliminatedClues,
+      value: fewestEliminatedClues.value,
     });
   }
 
@@ -306,7 +306,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.LONGEST_CLUES,
       playerId: longest.playerId,
-      value: longest.clueLength,
+      value: longest.value,
     });
   }
 
@@ -315,7 +315,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.SHORTEST_CLUES,
       playerId: shortest.playerId,
-      value: shortest.clueLength,
+      value: shortest.value,
     });
   }
 
@@ -325,7 +325,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.MOST_PASSES,
       playerId: passes.playerId,
-      value: passes.passes,
+      value: passes.value,
     });
   }
 
@@ -340,7 +340,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.BEST_GUESSER,
       playerId: correctGuesses.playerId,
-      value: correctGuesses.correctGuesses,
+      value: correctGuesses.value,
     });
   }
 
@@ -355,7 +355,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: UE_SO_ISSO_ACHIEVEMENTS.WORST_GUESSER,
       playerId: wrongGuesses.playerId,
-      value: wrongGuesses.wrongGuesses,
+      value: wrongGuesses.value,
     });
   }
 

@@ -542,7 +542,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ARTE_RUIM_ACHIEVEMENTS.BEST_ARTIST,
       playerId: bestArtist.playerId,
-      value: bestArtist.artistPoints,
+      value: bestArtist.value,
     });
   }
 
@@ -552,7 +552,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ARTE_RUIM_ACHIEVEMENTS.WORST_ARTIST,
       playerId: worstArtist.playerId,
-      value: worstArtist.worstArtist,
+      value: worstArtist.value,
     });
   }
 
@@ -562,7 +562,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ARTE_RUIM_ACHIEVEMENTS.SOLITARY_WINNER,
       playerId: solitaryWinner.playerId,
-      value: solitaryWinner.solitaryWin,
+      value: solitaryWinner.value,
     });
   }
 
@@ -572,7 +572,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ARTE_RUIM_ACHIEVEMENTS.SOLITARY_LOSER,
       playerId: solitaryLoser.playerId,
-      value: solitaryLoser.solitaryFail,
+      value: solitaryLoser.value,
     });
   }
 
@@ -582,7 +582,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ARTE_RUIM_ACHIEVEMENTS.TABLE_VOTES,
       playerId: tableVotes.playerId,
-      value: tableVotes.tableVotes,
+      value: tableVotes.value,
     });
   }
 
@@ -592,7 +592,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ARTE_RUIM_ACHIEVEMENTS.CHOOSE_FOR_ME,
       playerId: chooseForMe.playerId,
-      value: chooseForMe.chooseForMe,
+      value: chooseForMe.value,
     });
   }
 

@@ -271,7 +271,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_MATCHES,
       playerId: most.playerId,
-      value: most.matches,
+      value: most.value,
     });
   }
 
@@ -280,7 +280,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.FEWEST_MATCHES,
       playerId: least.playerId,
-      value: least.matches,
+      value: least.value,
     });
   }
 
@@ -290,7 +290,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_FULL_MATCHES,
       playerId: fullMatches.playerId,
-      value: fullMatches.fullMatches,
+      value: fullMatches.value,
     });
   }
 
@@ -303,7 +303,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_VISITS,
       playerId: mostDreamCount.playerId,
-      value: mostDreamCount.dreamCount,
+      value: mostDreamCount.value,
     });
   }
 
@@ -312,7 +312,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.LEAST_ADVENTUROUS,
       playerId: fewestDreamCount.playerId,
-      value: fewestDreamCount.dreamCount,
+      value: fewestDreamCount.value,
     });
   }
 
@@ -322,7 +322,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_ADVENTUROUS,
       playerId: nightmare.playerId,
-      value: nightmare.nightmare,
+      value: nightmare.value,
     });
   }
 
@@ -332,7 +332,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_PAIRS,
       playerId: pairs.playerId,
-      value: pairs.pairs,
+      value: pairs.value,
     });
   }
 
@@ -342,7 +342,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_OUT_OF_THE_BOX,
       playerId: outOfTheBox.playerId,
-      value: outOfTheBox.noMatches,
+      value: outOfTheBox.value,
     });
   }
 
@@ -352,7 +352,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_LONELY,
       playerId: lonely.playerId,
-      value: lonely.zeroMatches,
+      value: lonely.value,
     });
   }
 
@@ -362,7 +362,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.POOREST_CHOICES,
       playerId: falls.playerId,
-      value: falls.falls,
+      value: falls.value,
     });
   }
 
@@ -371,7 +371,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: GALERIA_DE_SONHOS_ACHIEVEMENTS.SMARTEST_CHOICES,
       playerId: smart.playerId,
-      value: smart.falls,
+      value: smart.value,
     });
   }
 

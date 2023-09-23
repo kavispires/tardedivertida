@@ -521,7 +521,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_WRONG_GROUPS,
       playerId: wrongGroups.playerId,
-      value: wrongGroups.wrongGroups,
+      value: wrongGroups.value,
     });
   }
 
@@ -531,7 +531,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_WRONG_GUESSES,
       playerId: wrong.playerId,
-      value: wrong.wrong,
+      value: wrong.value,
     });
   }
 
@@ -541,7 +541,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_HALF_GUESSES,
       playerId: half.playerId,
-      value: half.half,
+      value: half.value,
     });
   }
 
@@ -552,7 +552,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.EARLIEST_CORRECT_GUESS,
       playerId: earliestOccurrence.playerId,
-      value: earliestOccurrence.correct,
+      value: earliestOccurrence.value,
     });
   }
 
@@ -561,7 +561,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.LATEST_CORRECT_GUESS,
       playerId: latestOccurrence.playerId,
-      value: latestOccurrence.correct,
+      value: latestOccurrence.value,
     });
   }
 
@@ -574,7 +574,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_SELECTED_WEAPONS,
       playerId: mostWeapons.playerId,
-      value: mostWeapons.weapons,
+      value: mostWeapons.value,
     });
   }
 
@@ -583,7 +583,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.FEWEST_SELECTED_WEAPONS,
       playerId: leastWeapons.playerId,
-      value: leastWeapons.weapons,
+      value: leastWeapons.value,
     });
   }
 
@@ -596,7 +596,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_SELECTED_EVIDENCE,
       playerId: mostEvidence.playerId,
-      value: mostEvidence.evidence,
+      value: mostEvidence.value,
     });
   }
 
@@ -605,7 +605,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRIMES_HEDIONDOS_ACHIEVEMENTS.FEWEST_SELECTED_EVIDENCE,
       playerId: leastEvidence.playerId,
-      value: leastEvidence.evidence,
+      value: leastEvidence.value,
     });
   }
 
