@@ -22,15 +22,19 @@ export function PhaseSeeding({ players, state, info }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<SmsIcon />}
-      title={<Translate pt="Seu amigo te chamou pra balada!" en="Your friend invited to to the club!" />}
+      title={<Translate pt="Seu amigo te chamou pra balada!" en="Your friend invited to the club!" />}
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate
-          pt="Mas antes de ir, você tem que fazer suas obrigações..."
-          en="But before that, you must finish your chores..."
-        />
+        {state.seeds.length > 1 ? (
+          <Translate
+            pt="Mas antes de ir, você tem que fazer suas obrigações..."
+            en="But before that, you must finish some chores..."
+          />
+        ) : (
+          <Translate pt="Mas antes de ir, escolha seu modelito" en="Time to get ready!!!" />
+        )}
       </Instruction>
     </PhaseAnnouncement>
   );
