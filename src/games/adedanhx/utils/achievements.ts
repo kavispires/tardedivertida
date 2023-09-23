@@ -11,7 +11,7 @@ const ACHIEVEMENTS = {
 
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.MOST_STOPS]: {
-    icon: 'bell',
+    icon: 'siren',
     title: {
       en: 'Most Stops',
       pt: 'Mais Stops',
@@ -66,7 +66,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.FEWEST_CELLS]: {
-    icon: 'grid',
+    icon: 'minus',
     title: {
       en: 'Fewest Answers',
       pt: 'Menos Respostas',
