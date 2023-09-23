@@ -902,7 +902,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: MEGAMIX_ACHIEVEMENTS.MOST_LEFT,
       playerId: leftVIP.playerId,
-      value: leftVIP.chooseForMe,
+      value: leftVIP.leftVIP,
     });
   }
 
