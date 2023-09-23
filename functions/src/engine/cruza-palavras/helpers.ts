@@ -348,7 +348,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRUZA_PALAVRAS_ACHIEVEMENTS.BEST_CLUES,
       playerId: bestClueGiver.playerId,
-      value: bestClueGiver.clues,
+      value: bestClueGiver.value,
     });
   }
 
@@ -358,7 +358,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRUZA_PALAVRAS_ACHIEVEMENTS.WORST_CLUES,
       playerId: worstClueGiver.playerId,
-      value: worstClueGiver.badClues,
+      value: worstClueGiver.value,
     });
   }
 
@@ -368,7 +368,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRUZA_PALAVRAS_ACHIEVEMENTS.BEST_GUESSER,
       playerId: bestGuesses.playerId,
-      value: bestGuesses.guesses,
+      value: bestGuesses.value,
     });
   }
 
@@ -377,7 +377,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRUZA_PALAVRAS_ACHIEVEMENTS.WORST_GUESSER,
       playerId: worstGuesser.playerId,
-      value: worstGuesser.guesses,
+      value: worstGuesser.value,
     });
   }
 
@@ -387,7 +387,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRUZA_PALAVRAS_ACHIEVEMENTS.LONGEST_WORDS,
       playerId: longest.playerId,
-      value: longest.wordLength,
+      value: longest.value,
     });
   }
 
@@ -396,7 +396,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRUZA_PALAVRAS_ACHIEVEMENTS.SHORTEST_WORDS,
       playerId: shortest.playerId,
-      value: shortest.wordLength,
+      value: shortest.value,
     });
   }
 
@@ -406,7 +406,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRUZA_PALAVRAS_ACHIEVEMENTS.SAVIOR,
       playerId: savior.playerId,
-      value: savior.savior,
+      value: savior.value,
     });
   }
 
@@ -416,7 +416,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: CRUZA_PALAVRAS_ACHIEVEMENTS.CHOOSE_FOR_ME,
       playerId: chooseForMe.playerId,
-      value: chooseForMe.chooseForMe,
+      value: chooseForMe.value,
     });
   }
 

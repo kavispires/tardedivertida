@@ -123,7 +123,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.BEST_COMMON_SENSE,
       playerId: most.playerId,
-      value: most.sense,
+      value: most.value,
     });
   }
 
@@ -132,7 +132,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.WORST_COMMON_SENSE,
       playerId: least.playerId,
-      value: least.sense,
+      value: least.value,
     });
   }
 
@@ -142,7 +142,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_FIRST_POSITIONS,
       playerId: most1.playerId,
-      value: most1.first,
+      value: most1.value,
     });
   }
 
@@ -151,7 +151,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_FIRST_POSITIONS,
       playerId: fewest1.playerId,
-      value: fewest1.first,
+      value: fewest1.value,
     });
   }
 
@@ -161,7 +161,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_SECOND_POSITIONS,
       playerId: most2.playerId,
-      value: most2.second,
+      value: most2.value,
     });
   }
 
@@ -170,7 +170,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_SECOND_POSITIONS,
       playerId: fewest2.playerId,
-      value: fewest2.second,
+      value: fewest2.value,
     });
   }
 
@@ -180,7 +180,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_THIRD_POSITIONS,
       playerId: most3.playerId,
-      value: most3.third,
+      value: most3.value,
     });
   }
 
@@ -189,7 +189,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_THIRD_POSITIONS,
       playerId: fewest3.playerId,
-      value: fewest3.third,
+      value: fewest3.value,
     });
   }
 
@@ -199,7 +199,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_FOURTH_POSITIONS,
       playerId: most4.playerId,
-      value: most4.fourth,
+      value: most4.value,
     });
   }
 
@@ -208,7 +208,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_FOURTH_POSITIONS,
       playerId: fewest4.playerId,
-      value: fewest4.fourth,
+      value: fewest4.value,
     });
   }
 
@@ -218,7 +218,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_FIFTH_POSITIONS,
       playerId: most5.playerId,
-      value: most5.fifth,
+      value: most5.value,
     });
   }
 
@@ -227,7 +227,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_FIFTH_POSITIONS,
       playerId: fewest5.playerId,
-      value: fewest5.fifth,
+      value: fewest5.value,
     });
   }
 
@@ -237,7 +237,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: FILEIRA_DE_FATOS_ACHIEVEMENTS.PERFECT_GUESS,
       playerId: perfect.playerId,
-      value: perfect.perfect,
+      value: perfect.value,
     });
   }
 

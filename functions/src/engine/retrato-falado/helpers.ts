@@ -166,7 +166,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: RETRATO_FALADO_ACHIEVEMENTS.BEST_SKETCHES,
       playerId: bestSketches.playerId,
-      value: bestSketches.votes,
+      value: bestSketches.value,
     });
   }
 
@@ -174,7 +174,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: RETRATO_FALADO_ACHIEVEMENTS.WORST_SKETCHES,
       playerId: worstSketches.playerId,
-      value: worstSketches.votes,
+      value: worstSketches.value,
     });
   }
 
@@ -187,7 +187,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: RETRATO_FALADO_ACHIEVEMENTS.MOST_GROUP_VOTES,
       playerId: mostGroupVotes.playerId,
-      value: mostGroupVotes.groupVote,
+      value: mostGroupVotes.value,
     });
   }
 
@@ -195,7 +195,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: RETRATO_FALADO_ACHIEVEMENTS.FEWEST_GROUP_VOTES,
       playerId: fewestGroupVotes.playerId,
-      value: fewestGroupVotes.groupVote,
+      value: fewestGroupVotes.value,
     });
   }
 
@@ -204,7 +204,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: RETRATO_FALADO_ACHIEVEMENTS.WITNESS_PICK,
       playerId: witnessPick.playerId,
-      value: witnessPick.witnessPick,
+      value: witnessPick.value,
     });
   }
 

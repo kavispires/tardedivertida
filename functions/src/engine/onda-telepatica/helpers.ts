@@ -173,7 +173,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ONDA_TELEPATICA_ACHIEVEMENTS.LEAST_ACCURATE,
       playerId: most.playerId,
-      value: most.accuracy,
+      value: most.value,
     });
   }
 
@@ -182,7 +182,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ONDA_TELEPATICA_ACHIEVEMENTS.MOST_ACCURATE,
       playerId: least.playerId,
-      value: least.accuracy,
+      value: least.value,
     });
   }
 
@@ -193,7 +193,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ONDA_TELEPATICA_ACHIEVEMENTS.MOST_EXACT,
       playerId: exact.playerId,
-      value: exact.exact,
+      value: exact.value,
     });
   }
 
@@ -204,7 +204,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ONDA_TELEPATICA_ACHIEVEMENTS.MOST_ZEROS,
       playerId: zeros.playerId,
-      value: zeros.zero,
+      value: zeros.value,
     });
   }
 
@@ -215,7 +215,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ONDA_TELEPATICA_ACHIEVEMENTS.BEST_PSYCHIC,
       playerId: psychicPoints.playerId,
-      value: psychicPoints.psychicPoints,
+      value: psychicPoints.value,
     });
   }
 

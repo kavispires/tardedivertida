@@ -387,7 +387,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ADEDANHX_ACHIEVEMENTS.MOST_STOPS,
       playerId: mostStops.playerId,
-      value: mostStops.stop,
+      value: mostStops.value,
     });
   }
 
@@ -398,7 +398,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ADEDANHX_ACHIEVEMENTS.NEVER_STOPPED,
       playerId: neverStopped.playerId,
-      value: neverStopped.stop,
+      value: neverStopped.value,
     });
   }
 
@@ -412,7 +412,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ADEDANHX_ACHIEVEMENTS.MOST_FIRST_ANSWERS,
       playerId: mostFirstAnswers.playerId,
-      value: mostFirstAnswers.first,
+      value: mostFirstAnswers.value,
     });
   }
 
@@ -421,7 +421,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ADEDANHX_ACHIEVEMENTS.LEAST_FIRST_ANSWERS,
       playerId: fewestFirstAnswers.playerId,
-      value: fewestFirstAnswers.first,
+      value: fewestFirstAnswers.value,
     });
   }
 
@@ -431,7 +431,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ADEDANHX_ACHIEVEMENTS.MOST_CELLS,
       playerId: mostCells.playerId,
-      value: mostCells.cells,
+      value: mostCells.value,
     });
   }
 
@@ -440,7 +440,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ADEDANHX_ACHIEVEMENTS.FEWEST_CELLS,
       playerId: fewestCells.playerId,
-      value: fewestCells.cells,
+      value: fewestCells.value,
     });
   }
 
@@ -450,7 +450,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: ADEDANHX_ACHIEVEMENTS.MOST_AUTO_REJECTS,
       playerId: mostAutoRejects.playerId,
-      value: mostAutoRejects.autoReject,
+      value: mostAutoRejects.value,
     });
   }
 

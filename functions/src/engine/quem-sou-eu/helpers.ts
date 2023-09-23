@@ -141,7 +141,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.MOST_GLYPHS,
       playerId: mostGlyphs.playerId,
-      value: mostGlyphs.glyphs,
+      value: mostGlyphs.value,
     });
   }
 
@@ -150,7 +150,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.LEAST_GLYPHS,
       playerId: leastGlyphs.playerId,
-      value: leastGlyphs.glyphs,
+      value: leastGlyphs.value,
     });
   }
 
@@ -164,7 +164,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.MOST_POSITIVE,
       playerId: mostPositive.playerId,
-      value: mostPositive.positive,
+      value: mostPositive.value,
     });
   }
 
@@ -173,7 +173,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.LEAST_POSITIVE,
       playerId: leastPositive.playerId,
-      value: leastPositive.positive,
+      value: leastPositive.value,
     });
   }
 
@@ -187,7 +187,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.MOST_NEGATIVE,
       playerId: mostNegative.playerId,
-      value: mostNegative.negative,
+      value: mostNegative.value,
     });
   }
 
@@ -196,7 +196,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.LEAST_NEGATIVE,
       playerId: leastNegative.playerId,
-      value: leastNegative.negative,
+      value: leastNegative.value,
     });
   }
 
@@ -206,7 +206,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.SINGLE_ICON,
       playerId: single.playerId,
-      value: single.single,
+      value: single.value,
     });
   }
 
@@ -216,7 +216,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.TABLE_VOTES,
       playerId: tableVotes.playerId,
-      value: tableVotes.tableVotes,
+      value: tableVotes.value,
     });
   }
 
@@ -226,7 +226,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: QUEM_SOU_EU_ACHIEVEMENTS.CHOOSE_FOR_ME,
       playerId: chooseForMe.playerId,
-      value: chooseForMe.chooseForMe,
+      value: chooseForMe.value,
     });
   }
 

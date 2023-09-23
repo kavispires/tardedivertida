@@ -134,14 +134,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_POSSESSED,
       playerId: mostPossessed.playerId,
-      value: mostPossessed.possessions,
+      value: mostPossessed.value,
     });
   }
   if (leastPossessed) {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.LEAST_POSSESSED,
       playerId: leastPossessed.playerId,
-      value: leastPossessed.possessions,
+      value: leastPossessed.value,
     });
   }
 
@@ -151,7 +151,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.BEST_GUIDE,
       playerId: possessionWins.playerId,
-      value: possessionWins.possessionWins,
+      value: possessionWins.value,
     });
   }
 
@@ -161,7 +161,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.BEGINNER_GUIDE,
       playerId: possessionLosses.playerId,
-      value: possessionLosses.possessionLosses,
+      value: possessionLosses.value,
     });
   }
 
@@ -174,14 +174,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.SLOW_READER,
       playerId: longestPossession.playerId,
-      value: Math.round(longestPossession.possessionDuration / 1000),
+      value: Math.round(longestPossession.value / 1000),
     });
   }
   if (shortestPossession) {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.FAST_LEARNER,
       playerId: shortestPossession.playerId,
-      value: Math.round(shortestPossession.possessionDuration / 1000),
+      value: Math.round(shortestPossession.value / 1000),
     });
   }
 
@@ -191,14 +191,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_PAGES,
       playerId: mostPages.playerId,
-      value: mostPages.pages,
+      value: mostPages.value,
     });
   }
   if (fewestPages) {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.FEWEST_PAGES,
       playerId: fewestPages.playerId,
-      value: fewestPages.pages,
+      value: fewestPages.value,
     });
   }
 
@@ -208,7 +208,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_CORRECT_DOORS,
       playerId: correctDoors.playerId,
-      value: correctDoors.correctDoors,
+      value: correctDoors.value,
     });
   }
 
@@ -218,7 +218,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_WRONG_DOORS,
       playerId: wrongDoors.playerId,
-      value: wrongDoors.wrongDoors,
+      value: wrongDoors.value,
     });
   }
 
@@ -228,7 +228,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_SOLO_CORRECT_DOORS,
       playerId: soloCorrectDoors.playerId,
-      value: soloCorrectDoors.soloCorrectDoors,
+      value: soloCorrectDoors.value,
     });
   }
 
@@ -238,7 +238,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_SOLO_WRONG_DOORS,
       playerId: soloWrongDoors.playerId,
-      value: soloWrongDoors.soloWrongDoors,
+      value: soloWrongDoors.value,
     });
   }
 
@@ -251,14 +251,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.SLOW_DECISIONS,
       playerId: longestDecision.playerId,
-      value: Math.round(longestDecision.doorDuration / 1000),
+      value: Math.round(longestDecision.value / 1000),
     });
   }
   if (shortestDecision) {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.QUICK_DECISIONS,
       playerId: shortestDecision.playerId,
-      value: Math.round(shortestDecision.doorDuration / 1000),
+      value: Math.round(shortestDecision.value / 1000),
     });
   }
 
@@ -268,14 +268,14 @@ export const getAchievements = (store: FirebaseStoreData) => {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MAGIC_WASTER,
       playerId: mostMagic.playerId,
-      value: (Math.round(mostMagic.magic * 100) / 100).toFixed(2),
+      value: (Math.round(mostMagic.value * 100) / 100).toFixed(2),
     });
   }
   if (fewestMagic) {
     achievements.push({
       type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MAGIC_SAVER,
       playerId: fewestMagic.playerId,
-      value: (Math.round(fewestMagic.magic * 100) / 100).toFixed(2),
+      value: (Math.round(fewestMagic.value * 100) / 100).toFixed(2),
     });
   }
 

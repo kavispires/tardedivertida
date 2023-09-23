@@ -430,7 +430,7 @@ export const getAchievements = (players: Players, store: FirebaseStoreData) => {
     achievements.push({
       type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_MATCHES,
       playerId: most.playerId,
-      value: most.secretScore,
+      value: most.value,
     });
   }
 
@@ -439,7 +439,7 @@ export const getAchievements = (players: Players, store: FirebaseStoreData) => {
     achievements.push({
       type: MENTE_COLETIVA_ACHIEVEMENTS.LEAST_MATCHES,
       playerId: least.playerId,
-      value: least.secretScore,
+      value: least.value,
     });
   }
 
@@ -450,7 +450,7 @@ export const getAchievements = (players: Players, store: FirebaseStoreData) => {
     achievements.push({
       type: MENTE_COLETIVA_ACHIEVEMENTS.BEST_TRAVELER,
       playerId: mostTravel.playerId,
-      value: mostTravel.distance,
+      value: mostTravel.value,
     });
   }
 
