@@ -361,7 +361,8 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   });
 
   // Average player count
-  globalStatistics.averagePlayerCount = playerCounts / Object.values(playsStatistics).length;
+  globalStatistics.averagePlayerCount =
+    playerCounts > 0 ? playerCounts / Object.values(playsStatistics).length : 0;
 
   //
   const todaySummary = {
