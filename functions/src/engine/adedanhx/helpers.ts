@@ -379,6 +379,37 @@ export const evaluateAnswers = (
   return { answersGrid, ranking: scores.rank(players) };
 };
 
+export const storeGalleryData = (
+  store: FirebaseStoreData,
+  topics: TopicCard[],
+  letters: LetterEntry[],
+  answersGrid: Record<string, AnswerGridEntry>
+) => {
+  const { topAnswers, noAnswers } = store;
+
+  topics.forEach((topic, topicIndex) => {
+    letters.forEach((letter, letterIndex) => {
+      const entryKey = `${topic.id}${SEPARATOR}${letter.letters}`;
+      const id = `${topicIndex}-${letterIndex}`;
+      const topAnswer = answersGrid?.[id]?.main;
+      if (topAnswer) {
+        topAnswers.push({
+          id: entryKey,
+          topic,
+          letter,
+          topAnswer,
+        });
+      } else {
+        noAnswers.push({
+          id: entryKey,
+          topic,
+          letter,
+        });
+      }
+    });
+  });
+};
+
 /**
  * Get achievements
  * @param store
