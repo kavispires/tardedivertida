@@ -52,3 +52,10 @@ type AnswerGridEntry = {
   playerIds: PlayerId[];
   score: number;
 };
+
+type AdedanhxGalleryEntry = {
+  id: string;
+  topic: TopicCard;
+  letter: LetterEntry;
+  topAnswer?: AnswerGridEntry['main'];
+};

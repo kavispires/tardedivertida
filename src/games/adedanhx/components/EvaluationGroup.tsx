@@ -7,6 +7,7 @@ import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { NOOP } from 'utils/constants';
+import { ANSWERING_TIME } from '../utils/constants';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 // Components
@@ -74,7 +75,7 @@ export function EvaluationGroup({
           {answerGroup.answers.map((answer, index) => {
             return (
               <div className="evaluation-entry__player" key={answer.playerId}>
-                <TimeHighlight>{answer.timestamp}"</TimeHighlight>{' '}
+                <TimeHighlight>{ANSWERING_TIME - answer.timestamp}"</TimeHighlight>{' '}
                 <AvatarName player={players[answer.playerId]} />{' '}
                 <span
                   className={clsx(

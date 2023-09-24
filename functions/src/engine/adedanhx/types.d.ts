@@ -54,6 +54,13 @@ export type AnswerGridEntry = {
   score: number;
 };
 
+export type GalleryEntry = {
+  id: string;
+  topic: TopicCard;
+  letter: LetterEntry;
+  topAnswer?: AnswerGridEntry['main'];
+};
+
 export type AdedanhxAchievement = keyof typeof ADEDANHX_ACHIEVEMENTS;
 
 export interface AdedanhxStore extends DefaultStore {

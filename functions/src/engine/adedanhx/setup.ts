@@ -6,7 +6,14 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildGrid, evaluateAnswers, getAchievements, getCurrentGrid, groupAnswers } from './helpers';
+import {
+  buildGrid,
+  evaluateAnswers,
+  getAchievements,
+  getCurrentGrid,
+  groupAnswers,
+  storeGalleryData,
+} from './helpers';
 
 /**
  * Setup
@@ -39,6 +46,8 @@ export const prepareSetupPhase = async (
         achievements,
         letters,
         topics,
+        topAnswers: [],
+        noAnswers: [],
       },
       state: {
         phase: ADEDANHX_PHASES.SETUP,
@@ -117,11 +126,15 @@ export const prepareResultsPhase = async (
   // Gather votes
   const { answersGrid, ranking } = evaluateAnswers(players, state.answerGroups, store);
 
+  storeGalleryData(store, state.grid.xHeaders, state.grid.yHeaders, answersGrid);
+
   // Save
   return {
     update: {
       store: {
         achievements: store.achievements,
+        topAnswers: store.topAnswers,
+        noAnswers: store.noAnswers,
       },
       state: {
         phase: ADEDANHX_PHASES.RESULTS,
@@ -155,6 +168,9 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  const topAnswers = utils.helpers.deepCopy(store.topAnswers);
+  const noAnswers = utils.helpers.deepCopy(store.noAnswers);
+
   // Save data
   // await saveData(store.language, store.pastClues, store.options.imageGrid);
 
@@ -172,6 +188,8 @@ export const prepareGameOverPhase = async (
         winners,
         players,
         achievements,
+        topAnswers,
+        noAnswers,
       },
     },
   };

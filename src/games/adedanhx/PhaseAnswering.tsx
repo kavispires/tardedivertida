@@ -66,7 +66,7 @@ export function PhaseAnswering({ players, state, info }: PhaseProps) {
           currentRound={state?.round?.current}
           type="block"
           onClose={goToNextStep}
-          duration={10}
+          duration={12}
           unskippable
         >
           <Instruction>
