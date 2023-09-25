@@ -1,5 +1,6 @@
 // Hooks
 import { useMock } from 'hooks/useMock';
+import { useLoading } from 'hooks/useLoading';
 // Utils
 import { mockSelectQuestion } from './utils/mock';
 // Components
@@ -10,7 +11,8 @@ import { Title } from 'components/text';
 import { Pasture } from './components/Pasture';
 import { GamePremiseRules } from './components/RulesBlobs';
 import { CustomQuestion } from './components/CustomQuestion';
-import { useLoading } from 'hooks/useLoading';
+import { TransparentButton } from 'components/buttons';
+import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type StepQuestionSelectionProps = {
   activePlayer: GamePlayer;
@@ -51,16 +53,13 @@ export function StepQuestionSelection({
 
       <ul className="contained">
         {currentQuestions.map((question) => (
-          <li className="m-questions__item" key={question.id}>
-            <button
+          <li className="m-question-selection-item" key={question.id}>
+            <TransparentButton
               onClick={() => onSubmitQuestion({ questionId: question.id })}
-              className="m-question m-question--button"
               disabled={isLoading || user.ready}
             >
-              <span className="m-question__prefix">{question.prefix}</span>
-              <span className="m-question__number">{question.number}</span>
-              <span className="m-question__suffix">{question.suffix}</span>
-            </button>
+              <GroupQuestionCard question={question} />
+            </TransparentButton>
           </li>
         ))}
       </ul>

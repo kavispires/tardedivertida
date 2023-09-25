@@ -26,8 +26,8 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
         <Title size="xx-small">
           <Translate pt="Criar pergunta" en="Write custom question" />:
         </Title>
-        <div className="m-custom-question-form">
-          <Select value={questionType} onChange={(e) => setQuestionType(e)} size="small">
+        <Space className="m-custom-question-form">
+          <Select value={questionType} onChange={(e) => setQuestionType(e)}>
             <Select.Option value={translate('Cite', 'What are')}>
               <Translate pt="Cite" en="What are" />
             </Select.Option>
@@ -41,11 +41,10 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
             max={4}
             onChange={(e) => setQuestionNumber(e ?? 3)}
             value={questionNumber}
-            size="small"
             placeholder={translate('...escreva aqui', '...write here')}
           />
-          <Input onChange={(e) => setQuestionText(e.target.value)} size="small" />
-        </div>
+          <Input onChange={(e) => setQuestionText(e.target.value)} />
+        </Space>
         <div className="m-custom-question-sample">
           "{questionType} {questionNumber} {questionText || '...'}"
         </div>

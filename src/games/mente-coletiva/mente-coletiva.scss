@@ -456,3 +456,9 @@
     margin: get-unit(1);
   }
 }
+
+.m-question-selection-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
