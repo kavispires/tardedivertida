@@ -63,11 +63,6 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
     },
     {
       type: 'starts-with',
-      letters: 'F',
-      level: 2,
-    },
-    {
-      type: 'starts-with',
       letters: 'G',
       level: 1,
     },
@@ -75,21 +70,6 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
       type: 'starts-with',
       letters: 'H',
       level: 1,
-    },
-    {
-      type: 'starts-with',
-      letters: 'I',
-      level: 2,
-    },
-    {
-      type: 'starts-with',
-      letters: 'J',
-      level: 2,
-    },
-    {
-      type: 'starts-with',
-      letters: 'K',
-      level: 2,
     },
     {
       type: 'starts-with',
@@ -105,11 +85,6 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
       type: 'starts-with',
       letters: 'N',
       level: 1,
-    },
-    {
-      type: 'starts-with',
-      letters: 'O',
-      level: 2,
     },
     {
       type: 'starts-with',
@@ -131,6 +106,53 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
       letters: 'T',
       level: 1,
     },
+
+    {
+      type: 'starts-with',
+      letters: 'F',
+      level: 2,
+    },
+    {
+      type: 'starts-with',
+      letters: 'I',
+      level: 2,
+    },
+    {
+      type: 'starts-with',
+      letters: 'J',
+      level: 2,
+    },
+    {
+      type: 'starts-with',
+      letters: 'K',
+      level: 2,
+    },
+    {
+      type: 'starts-with',
+      letters: 'O',
+      level: 2,
+    },
+    {
+      type: 'includes',
+      letters: 'an',
+      level: 2,
+    },
+    {
+      type: 'includes',
+      letters: 'in',
+      level: 2,
+    },
+    {
+      type: 'includes',
+      letters: 'th',
+      level: 2,
+    },
+    {
+      type: 'ends-with',
+      letters: 'e',
+      level: 2,
+    },
+
     {
       type: 'starts-with',
       letters: 'U',
@@ -158,33 +180,13 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
     },
     {
       type: 'includes',
-      letters: 'an',
-      level: 2,
-    },
-    {
-      type: 'includes',
-      letters: 'in',
-      level: 2,
-    },
-    {
-      type: 'includes',
       letters: 'qu',
       level: 3,
     },
     {
       type: 'includes',
-      letters: 'th',
-      level: 2,
-    },
-    {
-      type: 'includes',
       letters: 'x',
       level: 3,
-    },
-    {
-      type: 'ends-with',
-      letters: 'e',
-      level: 2,
     },
     {
       type: 'ends-with',
@@ -225,28 +227,8 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
     },
     {
       type: 'starts-with',
-      letters: 'F',
-      level: 2,
-    },
-    {
-      type: 'starts-with',
       letters: 'G',
       level: 1,
-    },
-    {
-      type: 'starts-with',
-      letters: 'H',
-      level: 3,
-    },
-    {
-      type: 'starts-with',
-      letters: 'I',
-      level: 2,
-    },
-    {
-      type: 'starts-with',
-      letters: 'J',
-      level: 2,
     },
     {
       type: 'starts-with',
@@ -265,11 +247,6 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
     },
     {
       type: 'starts-with',
-      letters: 'O',
-      level: 2,
-    },
-    {
-      type: 'starts-with',
       letters: 'P',
       level: 1,
     },
@@ -284,6 +261,32 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
       level: 1,
     },
     {
+      type: 'ends-with',
+      letters: 's',
+      level: 1,
+    },
+
+    {
+      type: 'starts-with',
+      letters: 'F',
+      level: 2,
+    },
+    {
+      type: 'starts-with',
+      letters: 'I',
+      level: 2,
+    },
+    {
+      type: 'starts-with',
+      letters: 'J',
+      level: 2,
+    },
+    {
+      type: 'starts-with',
+      letters: 'O',
+      level: 2,
+    },
+    {
       type: 'starts-with',
       letters: 'T',
       level: 2,
@@ -292,6 +295,22 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
       type: 'starts-with',
       letters: 'V',
       level: 2,
+    },
+    {
+      type: 'ends-with',
+      letters: 'o',
+      level: 2,
+    },
+    {
+      type: 'ends-with',
+      letters: 'r',
+      level: 2,
+    },
+
+    {
+      type: 'starts-with',
+      letters: 'H',
+      level: 3,
     },
     {
       type: 'includes',
@@ -315,11 +334,6 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
     },
     {
       type: 'includes',
-      letters: 'ç',
-      level: 3,
-    },
-    {
-      type: 'includes',
       letters: 'gu',
       level: 3,
     },
@@ -330,33 +344,33 @@ export const LETTERS_ENTRIES_BY_LANGUAGE = {
     },
     {
       type: 'includes',
-      letters: '~',
-      level: 3,
-    },
-    {
-      type: 'includes',
-      letters: '^',
-      level: 3,
-    },
-    {
-      type: 'includes',
-      letters: '´',
-      level: 3,
-    },
-    {
-      type: 'includes',
       letters: 'ss',
       level: 3,
     },
     {
       type: 'ends-with',
-      letters: 's',
-      level: 1,
+      letters: 'm',
+      level: 3,
     },
-    {
-      type: 'ends-with',
-      letters: 'r',
-      level: 2,
-    },
+    // {
+    //   type: 'includes',
+    //   letters: 'ç',
+    //   level: 3,
+    // },
+    // {
+    //   type: 'includes',
+    //   letters: '~',
+    //   level: 3,
+    // },
+    // {
+    //   type: 'includes',
+    //   letters: '^',
+    //   level: 3,
+    // },
+    // {
+    //   type: 'includes',
+    //   letters: '´',
+    //   level: 3,
+    // },
   ],
 };
