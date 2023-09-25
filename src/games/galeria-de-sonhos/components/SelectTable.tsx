@@ -4,6 +4,8 @@ import { Button, Image } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+// Utils
+import { BORDER_TOTAL_SIZE } from '../utils/constants';
 // Components
 import { ImageBlurButton, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
@@ -30,7 +32,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                 </div>
                 <ImageCard
                   imageId={card.id}
-                  cardWidth={cardWidth - 6} // 6 is the border total size
+                  cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
                   className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
                 />
 
