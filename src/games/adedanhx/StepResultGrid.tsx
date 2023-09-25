@@ -37,7 +37,7 @@ export function StepResultGrid({
       <AnswersGrid grid={grid} answersGrid={answersGrid} players={players} />
 
       <Space className="space-container" align="center">
-        <TimedButton duration={45} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={25} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>
