@@ -7,6 +7,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+import { BORDER_TOTAL_SIZE } from '../utils/constants';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
@@ -42,7 +43,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                     <ImageBlurButton cardId={card.id} />
                   </div>
                   <ImageCardBack
-                    cardWidth={cardWidth - 6}
+                    cardWidth={cardWidth - BORDER_TOTAL_SIZE}
                     className={clsx(
                       'g-table-image',
                       isSelected && 'g-table-image--selected',
@@ -68,7 +69,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                 </div>
                 <ImageCard
                   imageId={card.id}
-                  cardWidth={cardWidth - 6} // 6 is the border total size
+                  cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
                   className={clsx(
                     'g-table-image',
                     isSelected && 'g-table-image--selected',
