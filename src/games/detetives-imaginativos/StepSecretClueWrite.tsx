@@ -7,7 +7,7 @@ import { Button, Input, Space } from 'antd';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { ImageCardHand } from 'components/cards';
+import { ImageCardHand } from 'components/image-cards';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 // Components
 

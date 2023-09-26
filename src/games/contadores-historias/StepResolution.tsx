@@ -6,7 +6,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Components
 import { Avatar, AvatarName, AvatarNPC } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
-import { ImageBlurButton, ImageCard } from 'components/cards';
+import { ImageBlurButton, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';

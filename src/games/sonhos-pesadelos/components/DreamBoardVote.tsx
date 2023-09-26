@@ -8,7 +8,7 @@ import { getClueId } from '../utils/helpers';
 
 import { DreamCard } from './DreamCard';
 import { RibbonGroup } from 'components/ribbons';
-import { ImageBlurButton, ImageCardSelectButton } from 'components/cards';
+import { ImageBlurButton, ImageCardSelectButton } from 'components/image-cards';
 
 type DreamBoardVoteProps = {
   table: ImageCard[];

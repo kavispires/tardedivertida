@@ -7,7 +7,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSelection } from '../../utils/mock';
 // Components
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { Book } from 'games/porta-dos-desesperados/components/Book';

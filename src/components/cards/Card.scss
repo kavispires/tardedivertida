@@ -1,0 +1,101 @@
+@use 'styles/sass' as *;
+
+.card {
+  $self: &;
+
+  background-color: get-color('white');
+  border-radius: get-unit(2);
+  min-width: 150px;
+  max-width: 300px;
+  border: 2px solid get-color('black');
+  min-height: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 0 5px 7px 0px rgba($color: #000, $alpha: 0.5);
+  margin: get-unit(2);
+  position: relative;
+
+  &--small {
+    min-width: 75px;
+    min-height: 8px;
+  }
+
+  &--large {
+    min-width: 300px;
+    min-height: 30px;
+  }
+
+  &__header {
+    background-color: get-color('gray');
+    color: get-color('white');
+    font-weight: bold;
+    font-size: 0.75em;
+    border-radius: get-unit(1 1 0 0);
+
+    #{$self}--large & {
+      font-size: 1.5em;
+    }
+
+    #{$self}--small & {
+      font-size: 0.75em;
+    }
+  }
+
+  &__text {
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: bolder;
+    padding: get-unit(3 4);
+    font-family: 'Ubuntu Mono', monospace;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    #{$self}--large & {
+      font-size: 1.75em;
+    }
+
+    #{$self}--small & {
+      font-size: 0.75em;
+      padding: get-unit(2 3 1);
+    }
+  }
+
+  &__footer {
+    color: get-color('white', 8);
+    font-size: 0.5em;
+
+    #{$self}--large & {
+      font-size: 1em;
+    }
+  }
+}
+
+.s-clue-card {
+  font-size: 0.8rem;
+
+  &__footer {
+    font-size: 0.75em;
+  }
+
+  &__previous--clue {
+    border-top: 1px dashed get-color('gray', 1);
+    font-size: 0.85em;
+    color: get-color('gray', 4);
+  }
+}
+
+.image-card-select-button {
+  position: absolute;
+  bottom: get-unit(4);
+  left: 50%;
+  transform: translateX(-50%);
+
+  &:hover.ant-btn {
+    background-color: get-color('white');
+    color: get-color('yellow');
+    border-color: get-color('yellow');
+  }
+}

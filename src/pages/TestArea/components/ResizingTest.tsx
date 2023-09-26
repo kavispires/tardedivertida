@@ -6,7 +6,7 @@ import { Instruction, Title } from 'components/text';
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
 import { CanvasResizer } from 'components/canvas';
-import { ImageCardBack } from 'components/cards';
+import { ImageCardBack } from 'components/image-cards';
 import { useGlobalState } from 'hooks/useGlobalState';
 
 export function ResizingTest({ onResult, step }: TestStepProps) {

@@ -6,7 +6,8 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { FloatingHand, ImageCardHand } from 'components/cards';
+import { ImageCardHand } from 'components/image-cards';
+import { FloatingHand } from 'components/general/FloatingHand';
 
 const hand = Array(8)
   .fill(0)

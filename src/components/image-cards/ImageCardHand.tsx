@@ -5,10 +5,13 @@ import { Button, Image } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageBlurButton, ImageCard } from '.';
 import { Translate } from 'components/language';
-import { getAnimationClass } from 'utils/helpers';
+// Sass
+import './ImageCardHand.scss';
 
 type ImageCardHandProps = {
   /**

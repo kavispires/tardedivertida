@@ -7,7 +7,7 @@ import { AVATARS } from 'utils/avatars';
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { getAnimationClass } from 'utils/helpers';
 
 type TableFocusProps = {

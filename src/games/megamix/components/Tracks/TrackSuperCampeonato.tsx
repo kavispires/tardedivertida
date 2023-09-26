@@ -8,11 +8,12 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSelection } from '../../utils/mock';
 // Components
-import { Card, ImageBlurButtonContainer } from 'components/cards';
+import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';
 import { CharacterCard } from 'components/cards/CharacterCard';
+import { ImageBlurButtonContainer } from 'components/image-cards';
 
 export const TrackSuperCampeonato = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const { translate } = useLanguage();

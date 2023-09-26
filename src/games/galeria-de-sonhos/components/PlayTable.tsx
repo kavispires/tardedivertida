@@ -11,7 +11,7 @@ import { BORDER_TOTAL_SIZE } from '../utils/constants';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
+import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-cards';
 import { Translate } from 'components/language';
 
 type PlayTableProps = {

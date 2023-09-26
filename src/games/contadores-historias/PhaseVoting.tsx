@@ -10,7 +10,7 @@ import { VoteIcon } from 'icons/VoteIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { ImageCardPreloadHand } from 'components/cards';
+import { ImageCardPreloadHand } from 'components/image-cards';
 import { StepVoting } from './StepVoting';
 import { VotingRules } from './components/RulesBlobs';
 import { Translate } from 'components/language';

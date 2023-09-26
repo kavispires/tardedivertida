@@ -5,8 +5,9 @@ import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
-import { FloatingHand, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
+import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageCard } from 'components/image-cards';
 
 type PlayerStatsProps = {
   user: GamePlayer;

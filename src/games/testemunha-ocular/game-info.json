@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "3.0.19",
+  "version": "3.0.20",
   "title": {
     "pt": "Testemunha Ocular",
     "en": "Eye Witness"

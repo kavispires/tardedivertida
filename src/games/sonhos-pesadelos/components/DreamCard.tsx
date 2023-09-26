@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ImageBlurButton, ImageCard } from 'components/cards';
+import { ImageBlurButton, ImageCard } from 'components/image-cards';
 // Components
 
 type DreamCardProps = {

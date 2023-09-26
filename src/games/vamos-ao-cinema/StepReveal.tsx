@@ -19,7 +19,7 @@ import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 import { MovieHighlight } from './components/MovieHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TransparentButton } from 'components/buttons';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { ViewIf } from 'components/views';
 
 type StepRevealProps = {

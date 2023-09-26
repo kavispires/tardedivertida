@@ -6,7 +6,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
 import { AvatarCard, IconAvatar } from 'components/avatars';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';

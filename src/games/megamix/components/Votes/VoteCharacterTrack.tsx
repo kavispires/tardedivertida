@@ -2,7 +2,7 @@
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
-import { ImageBlurButtonContainer } from 'components/cards';
+import { ImageBlurButtonContainer } from 'components/image-cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 

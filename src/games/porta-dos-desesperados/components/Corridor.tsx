@@ -10,7 +10,7 @@ import { useLoading } from 'hooks/useLoading';
 import { getAnimationClass } from 'utils/helpers';
 import { TRAPS } from '../utils/constants';
 // Components
-import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
+import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { DoorFrame } from '../../../components/game/DoorFrame';
 import { Avatar } from 'components/avatars';

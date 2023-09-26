@@ -6,7 +6,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { CandyCount } from './CandyCount';
 

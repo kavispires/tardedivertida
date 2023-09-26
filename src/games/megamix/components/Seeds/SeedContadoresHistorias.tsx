@@ -6,7 +6,7 @@ import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { SVGPhone } from '../SVGPhone';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 
 const now = moment().format('MMMM YYYY, h:mm');
 

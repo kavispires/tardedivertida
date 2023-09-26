@@ -8,13 +8,14 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import { mockVote } from './utils/mock';
 // Components
-import { Card, ImageBlurButton, ImageCard } from 'components/cards';
+import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { VotingRules } from './components/RulesBlobs';
 import { DebugOnly } from 'components/debug';
+import { ImageBlurButton, ImageCard } from 'components/image-cards';
 
 type StepVotingProps = {
   players: GamePlayers;

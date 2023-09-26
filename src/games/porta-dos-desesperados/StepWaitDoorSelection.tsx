@@ -3,7 +3,7 @@
 // Utils
 // Components
 import { Space } from 'antd';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';

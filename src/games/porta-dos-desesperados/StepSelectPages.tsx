@@ -17,13 +17,14 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { MagicDoorIcon } from 'icons/MagicDoorIcon';
 // Components
-import { FloatingHand, ImageBlurButton, ImageCard, ImageCardHand } from 'components/cards';
+import { ImageBlurButton, ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { DoorFrame } from '../../components/game/DoorFrame';
 import { TrapPopupRule } from './components/RulesBlobs';
 import { IconAvatar } from 'components/avatars';
+import { FloatingHand } from 'components/general/FloatingHand';
 
 type StepSelectPagesProps = {
   pages: CardId[];

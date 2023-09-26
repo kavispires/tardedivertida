@@ -7,7 +7,7 @@ import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 // Sass
 import './MonsterCard.scss';

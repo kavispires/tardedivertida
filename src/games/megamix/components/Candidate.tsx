@@ -1,5 +1,5 @@
 // Components
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 
 type CandidateProps = {

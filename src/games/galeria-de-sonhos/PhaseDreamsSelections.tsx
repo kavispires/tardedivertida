@@ -7,7 +7,7 @@ import { PHASES } from 'utils/phases';
 // Icons
 import { DreamIcon } from 'icons/DreamIcon';
 // Components
-import { ImageCardPreloadHand } from 'components/cards';
+import { ImageCardPreloadHand } from 'components/image-cards';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { DreamSelectionRules } from './components/RulesBlobs';

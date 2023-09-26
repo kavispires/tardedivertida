@@ -6,7 +6,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Helpers
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ImageBlurButton, ImageCard } from 'components/cards';
+import { ImageBlurButton, ImageCard } from 'components/image-cards';
 
 type TableProps = {
   table: GImageCard[];

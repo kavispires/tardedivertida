@@ -3,7 +3,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 
 export function VoteImagesTrack({ playersList }: VoteComponentProps) {
   const width = useCardWidth(playersList.length + 4, {

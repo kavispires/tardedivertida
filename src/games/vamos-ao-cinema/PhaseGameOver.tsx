@@ -5,7 +5,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';

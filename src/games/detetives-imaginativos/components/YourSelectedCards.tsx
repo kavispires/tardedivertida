@@ -1,4 +1,5 @@
-import { FloatingHand, ImageCardHand } from 'components/cards';
+import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 
 type YourSelectedCardsProps = {

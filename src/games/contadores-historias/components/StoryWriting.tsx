@@ -12,7 +12,7 @@ import { BookPages } from '../../../components/game/BookPages';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
-import { ImageCard, ImageCardHand } from 'components/cards';
+import { ImageCard, ImageCardHand } from 'components/image-cards';
 
 type StoryWritingProps = {
   user: GamePlayer;

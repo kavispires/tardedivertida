@@ -4,8 +4,9 @@ import { Space } from 'antd';
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter } from 'utils/helpers';
 // Components
-import { Card, FloatingHand } from 'components/cards';
+import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { FloatingHand } from 'components/general/FloatingHand';
 
 type UserQuestionsProps = {
   user: GamePlayer;

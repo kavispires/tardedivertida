@@ -1,10 +1,10 @@
 // Ant Design Resources
 import { Button } from 'antd';
 // Components
-import { FloatingHand } from 'components/cards';
 import { Translate } from 'components/language';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { CharacterCard } from 'components/cards/CharacterCard';
+import { FloatingHand } from 'components/general/FloatingHand';
 
 type ContendersHandProps = {
   contenders: WContender[];

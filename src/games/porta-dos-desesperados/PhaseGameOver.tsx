@@ -16,7 +16,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { LoseGameText } from './components/RulesBlobs';
 import { Achievements } from 'components/general/Achievements';
 import { DoorFrame } from '../../components/game/DoorFrame';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { CaretRightOutlined } from '@ant-design/icons';
 
 function PhaseGameOver({ players, state, info }: PhaseProps) {
