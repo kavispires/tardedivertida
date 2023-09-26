@@ -11,7 +11,7 @@ import { AVATARS, BOTS_LIST } from 'utils/avatars';
 import { mockSelection } from '../../utils/mock';
 // Components
 import { Avatar } from 'components/avatars';
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';

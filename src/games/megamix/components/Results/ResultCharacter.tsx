@@ -3,7 +3,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { ImageBlurButtonContainer } from 'components/cards';
+import { ImageBlurButtonContainer } from 'components/image-cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
 
 export function ResultCharacter({ winningTeam, winningValues, playersList }: ResultComponentProps) {

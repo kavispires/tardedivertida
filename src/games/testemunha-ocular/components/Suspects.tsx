@@ -6,7 +6,7 @@ import { useDimensions } from 'hooks/useDimensions';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 
 type SuspectsProps = {

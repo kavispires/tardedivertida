@@ -16,7 +16,8 @@ import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewIf } from 'components/views';
 import { AvatarName, IconAvatar } from 'components/avatars';
-import { FloatingHand, ImageCardHand } from 'components/cards';
+import { ImageCardHand } from 'components/image-cards';
+import { FloatingHand } from 'components/general/FloatingHand';
 import { TurnOrder } from 'components/players';
 import { isEarliestPlayerWithFewestCards } from './utils/helpers';
 

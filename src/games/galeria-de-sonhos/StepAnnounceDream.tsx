@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { Alert, Divider, Space } from 'antd';
 import { useMemo } from 'react';
@@ -12,13 +13,12 @@ import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 import { Step } from 'components/steps';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { TimedButton } from 'components/buttons';
 import { VIPNextPhaseButton } from 'components/vip';
 import { ListPlayers } from './components/ListPlayers';
 import { MatchCount } from './components/MatchCount';
 import { TurnOrder } from 'components/players';
-import clsx from 'clsx';
 
 type MatchingPlayersReduceResult = {
   matchingPlayers: GamePlayer[];

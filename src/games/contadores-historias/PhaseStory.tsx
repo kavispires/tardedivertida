@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { TurnOrder } from 'components/players';
-import { ImageCardPreloadHand } from 'components/cards';
+import { ImageCardPreloadHand } from 'components/image-cards';
 import { ViewOr } from 'components/views';
 
 function PhaseStory({ state, players, info }: PhaseProps) {

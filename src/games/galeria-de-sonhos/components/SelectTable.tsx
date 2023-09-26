@@ -7,7 +7,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { BORDER_TOTAL_SIZE } from '../utils/constants';
 // Components
-import { ImageBlurButton, ImageCard } from 'components/cards';
+import { ImageBlurButton, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 
 type SelectTableProps = {

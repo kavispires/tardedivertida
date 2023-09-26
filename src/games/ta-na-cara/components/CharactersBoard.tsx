@@ -6,7 +6,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 

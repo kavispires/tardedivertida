@@ -7,7 +7,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { mockSelection } from '../../utils/mock';
 // Components
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { BookPages } from 'components/game/BookPages';

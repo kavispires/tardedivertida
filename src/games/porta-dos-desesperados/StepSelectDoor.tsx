@@ -11,7 +11,7 @@ import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';

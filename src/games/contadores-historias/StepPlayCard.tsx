@@ -6,9 +6,11 @@ import { TableFaceDown } from './components/TableFaceDown';
 import { mockPlayCard } from './utils/mock';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Card, FloatingHand, ImageCardHand } from 'components/cards';
+import { Card } from 'components/cards';
 import { ViewOr } from 'components/views';
 import { Translate } from 'components/language';
+import { ImageCardHand } from 'components/image-cards';
+import { FloatingHand } from 'components/general/FloatingHand';
 
 type StepPlayCardProps = {
   players: GamePlayers;

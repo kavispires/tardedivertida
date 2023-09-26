@@ -7,6 +7,8 @@ import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
 // Components
 import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
+// Sass
+import './FloatingHand.scss';
 
 type FloatingHandProps = {
   /**

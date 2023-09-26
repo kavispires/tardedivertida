@@ -6,7 +6,7 @@ import { useCountdown } from 'hooks/useCountdown';
 import { NOOP } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 
 type NewHouseCardProps = {
   /**

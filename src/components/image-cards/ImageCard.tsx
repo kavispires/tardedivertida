@@ -8,6 +8,8 @@ import placeholder from 'assets/images/placeholder.jpg';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+// Sass
+import './ImageCard.scss';
 
 export type ImageCardProps = {
   /**

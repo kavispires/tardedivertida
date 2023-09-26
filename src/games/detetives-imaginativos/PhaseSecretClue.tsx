@@ -14,7 +14,7 @@ import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
-import { ImageCardPreloadHand } from 'components/cards';
+import { ImageCardPreloadHand } from 'components/image-cards';
 import { ViewOr } from 'components/views';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';

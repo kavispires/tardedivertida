@@ -8,7 +8,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSelection } from '../../utils/mock';
 // Components
-import { ImageBlurButtonContainer } from 'components/cards';
+import { ImageBlurButtonContainer } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';

@@ -9,7 +9,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { DualTranslate } from 'components/language';
-import { ImageBlurButtonContainer } from './ImageBlurButtonContainer';
+import { ImageBlurButtonContainer } from 'components/image-cards';
 // Sass
 import './CharacterCard.scss';
 

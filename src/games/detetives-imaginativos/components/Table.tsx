@@ -8,7 +8,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 
 type TableProps = {
   table: DetetivesImaginativosCardEntry[];

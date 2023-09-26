@@ -10,7 +10,7 @@ import { Instruction, Title } from 'components/text';
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
 import { TransparentButton } from 'components/buttons';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { RibbonGroup } from 'components/ribbons';
 
 const imageId = `cnt-${random(1, 100)}`;

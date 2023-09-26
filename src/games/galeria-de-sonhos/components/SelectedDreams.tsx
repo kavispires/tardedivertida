@@ -1,5 +1,5 @@
 // Components
-import { ImageCardHand } from 'components/cards';
+import { ImageCardHand } from 'components/image-cards';
 
 type SelectedDreamsProps = {
   user: GamePlayer;

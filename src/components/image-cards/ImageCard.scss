@@ -1,0 +1,23 @@
+@use 'styles/sass' as *;
+
+.image-card {
+  border-radius: get-unit(5);
+  margin: get-unit(1);
+  transition: 500ms transform;
+
+  &__preview-mask {
+    border-radius: get-unit(5);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .ant-image-img {
+    border-radius: get-unit(5);
+  }
+
+  &--blur {
+    filter: blur(10px);
+  }
+}

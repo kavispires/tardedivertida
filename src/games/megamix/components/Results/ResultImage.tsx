@@ -3,7 +3,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 
 export function ResultImage({ winningTeam, winningValues, playersList }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {

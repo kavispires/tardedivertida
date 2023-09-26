@@ -6,9 +6,10 @@ import { findBetContenders } from '../utils/helpers';
 // Icons
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 // Components
-import { FloatingHand, ImageBlurButtonContainer } from 'components/cards';
+import { ImageBlurButtonContainer } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { CharacterCard } from 'components/cards/CharacterCard';
+import { FloatingHand } from 'components/general/FloatingHand';
 
 type BetsFloatingHandProps = {
   bets: WBets;

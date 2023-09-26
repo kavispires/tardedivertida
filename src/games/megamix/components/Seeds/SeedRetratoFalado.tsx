@@ -13,7 +13,7 @@ import { Instruction, Title } from 'components/text';
 import { DrawingCanvas } from 'components/canvas';
 import { PanicIcon } from 'icons/PanicIcon';
 import { MonsterCard } from 'components/cards/MonsterCard';
-import { ImageCardPreloadHand } from 'components/cards';
+import { ImageCardPreloadHand } from 'components/image-cards';
 // Sound
 const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
 

@@ -5,7 +5,7 @@ import { Popover, Tag } from 'antd';
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 // Sass
 import './CrimeItemCard.scss';

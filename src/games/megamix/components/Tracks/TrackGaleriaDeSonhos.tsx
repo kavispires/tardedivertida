@@ -11,8 +11,9 @@ import { mockSelection } from '../../utils/mock';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';
-import { Card, ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { Card } from 'components/cards';
 import { CardHighlight } from 'components/metrics/CardHighlight';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 
 export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const cardWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });

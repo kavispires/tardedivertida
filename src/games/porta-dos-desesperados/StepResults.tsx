@@ -4,7 +4,7 @@ import { Alert, Space } from 'antd';
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 // Components
 import { VIPNextPhaseButton } from 'components/vip';
-import { ImageCard } from 'components/cards';
+import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';

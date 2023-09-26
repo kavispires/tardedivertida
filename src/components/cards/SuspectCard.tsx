@@ -1,6 +1,6 @@
 // Components
 import { DualTranslate } from 'components/language';
-import { ImageCard } from './ImageCard';
+import { ImageCard } from 'components/image-cards';
 // Sass
 import './SuspectCard.scss';
 

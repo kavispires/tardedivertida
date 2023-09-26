@@ -9,7 +9,7 @@ import { DreamIcon } from 'icons/DreamIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
-import { ImageCardPreloadHand } from 'components/cards';
+import { ImageCardPreloadHand } from 'components/image-cards';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepTellDream } from './StepTellDream';

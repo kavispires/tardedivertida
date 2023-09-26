@@ -17,7 +17,7 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { DebugOnly } from 'components/debug';
-import { FloatingHand } from 'components/cards';
+import { FloatingHand } from 'components/general/FloatingHand';
 
 type StepGuessingProps = {
   user: GamePlayer;

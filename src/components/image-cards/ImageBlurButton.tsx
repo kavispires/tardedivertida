@@ -31,7 +31,7 @@ export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
       <Button ghost onClick={() => blurCard(cardId)} size="small" className="image-blur-button">
         {shouldBeBlurred(cardId) ? (
           <>
-            <EyeOutlined /> <Translate pt="Descredar" en="Unblur" />
+            <EyeOutlined /> <Translate pt="Descredar" en="Focus" />
           </>
         ) : (
           <>

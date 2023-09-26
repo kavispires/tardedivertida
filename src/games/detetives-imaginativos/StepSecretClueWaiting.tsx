@@ -2,7 +2,8 @@
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
-import { FloatingHand, ImageCardHand } from 'components/cards';
+import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step } from 'components/steps';
