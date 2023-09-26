@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 // Design Resources
-import { Button, Image } from 'antd';
-import { UpCircleOutlined } from '@ant-design/icons';
+import { Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { BORDER_TOTAL_SIZE } from '../utils/constants';
 // Components
-import { ImageBlurButton, ImageCard } from 'components/image-cards';
+import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { CloseCircleOutlined } from '@ant-design/icons';
 
 type SelectTableProps = {
   table: GImageCard[];
@@ -27,30 +27,26 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
 
             return (
               <li key={`g-table-${card.id}`} className="g-table-item" style={{ width: `${cardWidth + 8}px` }}>
-                <div className="center">
-                  <ImageBlurButton cardId={card.id} />
-                </div>
-                <ImageCard
+                <ImageCardButton
                   imageId={card.id}
-                  cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
-                  className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
-                />
-
-                <Button
-                  shape="round"
-                  size="small"
-                  ghost={!isSelected}
-                  className="g-table-item-button"
                   onClick={() => onSelectCard(card.id)}
+                  over
+                  buttonPosition="bottom"
+                  icon={isSelected ? <CloseCircleOutlined /> : undefined}
+                  buttonText={
+                    isSelected ? (
+                      <Translate pt="Desmarcar" en="Deselect" />
+                    ) : (
+                      <Translate pt="Selecionar" en="Select" />
+                    )
+                  }
                 >
-                  <UpCircleOutlined />
-                  {isSelected ? (
-                    <Translate pt="Desmarcar" en="Deselect" />
-                  ) : (
-                    <Translate pt="Selecionar" en="Select" />
-                  )}
-                  <UpCircleOutlined />
-                </Button>
+                  <ImageCard
+                    imageId={card.id}
+                    cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
+                    className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
+                  />
+                </ImageCardButton>
               </li>
             );
           })}

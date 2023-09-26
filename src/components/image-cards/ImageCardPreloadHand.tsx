@@ -1,7 +1,7 @@
 // Components
 import { ImageCard } from './ImageCard';
 // Sass
-import './ImageCardHand.scss';
+import './ImageCardPreloadHand.scss';
 
 type ImageCardPreloadHandProps = {
   hand: string[];

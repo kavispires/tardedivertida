@@ -1,11 +1,9 @@
 import clsx from 'clsx';
-// Ant Design Resources
-import { Button } from 'antd';
-import { DownSquareOutlined } from '@ant-design/icons';
-// Hooks & Utils
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+// Utils
 import { mockVote } from './utils/mock';
 // Components
 import { Card } from 'components/cards';
@@ -14,8 +12,7 @@ import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { VotingRules } from './components/RulesBlobs';
-import { DebugOnly } from 'components/debug';
-import { ImageBlurButton, ImageCard } from 'components/image-cards';
+import { ImageCard, ImageCardButton } from 'components/image-cards';
 
 type StepVotingProps = {
   players: GamePlayers;
@@ -70,25 +67,20 @@ export function StepVoting({
           const isUserVote = cardEntry.cardId === user.vote;
           return (
             <div key={`hand-${cardEntry.cardId}`} className="c-game-table__card-container">
-              {!hasPlayedCardAlready && (
-                <Button
-                  icon={<DownSquareOutlined />}
-                  onClick={() => onSelectCard(cardEntry.cardId)}
-                  size="small"
-                  disabled={isLoading || isUserCard}
-                  shape="round"
-                >
-                  {isUserCard ? <Translate pt="Sua" en="Yours" /> : <Translate pt="Votar" en="Vote" />}
-                </Button>
-              )}
-              <ImageCard
+              <ImageCardButton
                 imageId={cardEntry.cardId}
-                cardWidth={cardWidth}
-                className={clsx(isUserVote && 'c-game-table--vote')}
-              />
-              <DebugOnly div>{cardEntry.cardId}</DebugOnly>
-
-              <ImageBlurButton cardId={cardEntry.cardId} />
+                onClick={!hasPlayedCardAlready ? onSelectCard : undefined}
+                disabled={isLoading || isUserCard}
+                buttonText={
+                  isUserCard ? <Translate pt="Sua" en="Yours" /> : <Translate pt="Votar" en="Vote" />
+                }
+              >
+                <ImageCard
+                  imageId={cardEntry.cardId}
+                  cardWidth={cardWidth}
+                  className={clsx(isUserVote && 'c-game-table--vote')}
+                />
+              </ImageCardButton>
             </div>
           );
         })}
