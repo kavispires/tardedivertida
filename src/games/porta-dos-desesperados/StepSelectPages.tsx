@@ -153,7 +153,7 @@ export function StepSelectPages({
           hand={Object.keys(selections)}
           cardSize={100}
           selectButtonIcon={<CloseCircleFilled />}
-          selectButtonLabel={<Translate pt="Remover" en="Remove" />}
+          selectButtonText={<Translate pt="Remover" en="Remove" />}
           onSelectCard={select}
           cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
         />

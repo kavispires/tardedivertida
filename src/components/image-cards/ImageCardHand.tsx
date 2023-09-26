@@ -1,15 +1,13 @@
 import { ReactNode } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Image } from 'antd';
-import { DownSquareOutlined } from '@ant-design/icons';
+import { Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ImageBlurButton, ImageCard } from '.';
-import { Translate } from 'components/language';
+import { ImageCard, ImageCardButton } from '.';
 // Sass
 import './ImageCardHand.scss';
 
@@ -25,7 +23,7 @@ type ImageCardHandProps = {
   /**
    * Select button custom label
    */
-  selectButtonLabel?: ReactNode;
+  selectButtonText?: ReactNode;
   /**
    * Select button custom icon
    */
@@ -71,7 +69,7 @@ type ImageCardHandProps = {
 export function ImageCardHand({
   hand = [],
   onSelectCard,
-  selectButtonLabel,
+  selectButtonText,
   selectButtonIcon,
   className = '',
   selectButtonClass = '',
@@ -95,25 +93,21 @@ export function ImageCardHand({
               key={`hand-${cardId}`}
               className={clsx('image-card-hand__card-container', getAnimationClass('slideInRight'))}
             >
-              {Boolean(onSelectCard) && (
-                <Button
-                  icon={selectButtonIcon ?? <DownSquareOutlined />}
-                  className={selectButtonClass}
-                  onClick={() => onSelectCard!(cardId)}
-                  size="small"
-                  disabled={disabledSelectButton}
-                  shape="round"
-                >
-                  <Translate pt="Selecionar" en="Select" custom={selectButtonLabel} />
-                </Button>
-              )}
-              <ImageCard
+              <ImageCardButton
+                onClick={onSelectCard}
                 imageId={cardId}
-                cardWidth={cardSize || cardWidth}
-                className={clsx(selectedCards[cardId] && 'image-card-hand__selected', cardClassName)}
-                preview={preview}
-              />
-              <ImageBlurButton cardId={cardId} />
+                buttonProps={{ className: selectButtonClass }}
+                icon={selectButtonIcon}
+                buttonText={selectButtonText}
+                disabled={disabledSelectButton}
+              >
+                <ImageCard
+                  imageId={cardId}
+                  cardWidth={cardSize || cardWidth}
+                  className={clsx(selectedCards[cardId] && 'image-card-hand__selected', cardClassName)}
+                  preview={preview}
+                />
+              </ImageCardButton>
             </div>
           );
         })}
