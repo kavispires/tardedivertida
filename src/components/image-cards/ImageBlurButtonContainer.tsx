@@ -22,6 +22,10 @@ interface ImageBlurButtonContainerProps extends React.HTMLAttributes<HTMLDivElem
    * The position of the button (default: bottom)
    */
   position?: 'top' | 'bottom';
+  /**
+   * Determines if the button is ghost or not (default: true)
+   */
+  ghost?: boolean;
 }
 
 export function ImageBlurButtonContainer({
@@ -29,13 +33,14 @@ export function ImageBlurButtonContainer({
   children,
   className = '',
   position = 'bottom',
+  ghost = true,
   ...rest
 }: ImageBlurButtonContainerProps) {
   return (
     <div className={clsx('image-blur-button-container', className)} {...rest}>
-      {position === 'top' && <ImageBlurButton cardId={cardId} />}
+      {position === 'top' && <ImageBlurButton cardId={cardId} ghost={ghost} />}
       {children}
-      {position === 'bottom' && <ImageBlurButton cardId={cardId} />}
+      {position === 'bottom' && <ImageBlurButton cardId={cardId} ghost={ghost} />}
     </div>
   );
 }

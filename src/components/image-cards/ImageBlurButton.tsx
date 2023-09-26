@@ -13,9 +13,13 @@ type ImageBlurButtonProps = {
    * The card to be blurred
    */
   cardId: string;
+  /**
+   * Determines if the button is ghost or not (default: true)
+   */
+  ghost?: boolean;
 };
 
-export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
+export function ImageBlurButton({ cardId, ghost = true }: ImageBlurButtonProps) {
   const { blurCard, isBlurEnabled, shouldBeBlurred } = useBlurCards();
 
   return isBlurEnabled ? (
@@ -28,7 +32,7 @@ export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
         />
       }
     >
-      <Button ghost onClick={() => blurCard(cardId)} size="small" className="image-blur-button">
+      <Button ghost={ghost} onClick={() => blurCard(cardId)} size="small" className="image-blur-button">
         {shouldBeBlurred(cardId) ? (
           <>
             <EyeOutlined /> <Translate pt="Descredar" en="Focus" />

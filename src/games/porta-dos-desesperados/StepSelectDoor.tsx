@@ -11,7 +11,7 @@ import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
-import { ImageCard } from 'components/image-cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -169,28 +169,34 @@ export function StepSelectDoor({
         <Image.PreviewGroup>
           <Book>
             {Boolean(pages[0]) && (
-              <ImageCard
-                imageId={pages[0]}
-                cardWidth={140}
-                className={bookCardClass}
-                preview={trap !== TRAPS.NO_PREVIEW}
-              />
+              <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
+                <ImageCard
+                  imageId={pages[0]}
+                  cardWidth={140}
+                  className={bookCardClass}
+                  preview={trap !== TRAPS.NO_PREVIEW}
+                />
+              </ImageBlurButtonContainer>
             )}
             {Boolean(pages[1]) && (
-              <ImageCard
-                imageId={pages[1]}
-                cardWidth={140}
-                className={bookCardClass}
-                preview={trap !== TRAPS.NO_PREVIEW}
-              />
+              <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
+                <ImageCard
+                  imageId={pages[1]}
+                  cardWidth={140}
+                  className={bookCardClass}
+                  preview={trap !== TRAPS.NO_PREVIEW}
+                />
+              </ImageBlurButtonContainer>
             )}
             {Boolean(pages[2]) && (
-              <ImageCard
-                imageId={pages[2]}
-                cardWidth={140}
-                className={bookCardClass}
-                preview={trap !== TRAPS.NO_PREVIEW}
-              />
+              <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
+                <ImageCard
+                  imageId={pages[2]}
+                  cardWidth={140}
+                  className={bookCardClass}
+                  preview={trap !== TRAPS.NO_PREVIEW}
+                />
+              </ImageBlurButtonContainer>
             )}
           </Book>
         </Image.PreviewGroup>
