@@ -10,7 +10,7 @@ export function Book({ children }: BookProps) {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 725.95 328.66"
-      style={{ width: '50vw', maxWidth: '500px' }}
+      style={{ width: '50vw', maxWidth: '600px' }}
     >
       <defs>
         <linearGradient id="a" x1="171.8" x2="354.26" y1="170.82" y2="170.82" gradientUnits="userSpaceOnUse">

@@ -3,7 +3,7 @@
 // Utils
 // Components
 import { Space } from 'antd';
-import { ImageCard } from 'components/image-cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -108,9 +108,21 @@ export function StepWaitDoorSelection({
 
       <Space className="i-book-container">
         <Book>
-          {Boolean(pages[0]) && <ImageCard imageId={pages[0]} cardWidth={140} />}
-          {Boolean(pages[1]) && <ImageCard imageId={pages[1]} cardWidth={140} />}
-          {Boolean(pages[2]) && <ImageCard imageId={pages[2]} cardWidth={140} />}
+          {Boolean(pages[0]) && (
+            <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
+              <ImageCard imageId={pages[0]} cardWidth={120} />
+            </ImageBlurButtonContainer>
+          )}
+          {Boolean(pages[1]) && (
+            <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
+              <ImageCard imageId={pages[1]} cardWidth={120} />
+            </ImageBlurButtonContainer>
+          )}
+          {Boolean(pages[2]) && (
+            <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
+              <ImageCard imageId={pages[2]} cardWidth={120} />
+            </ImageBlurButtonContainer>
+          )}
         </Book>
       </Space>
     </Step>
