@@ -1,0 +1,39 @@
+@use 'styles/sass' as *;
+
+.image-card-button {
+  isolation: isolate;
+  box-sizing: border-box;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__button {
+    $self: &;
+
+    z-index: 1;
+    margin: get-unit(1 auto);
+
+    &--over {
+      position: absolute;
+
+      &:hover.ant-btn {
+        background-color: get-color('white');
+      }
+    }
+
+    &--over-top {
+      top: get-unit(2);
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    &--over-bottom {
+      bottom: get-unit(2);
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+}
