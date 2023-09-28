@@ -62,13 +62,14 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
+
         <StepPlayCard
           clue={state.clue}
           currentPlayer={currentPlayer}
           isLoading={isLoading}
           isUserTheImpostor={isUserTheImpostor}
-          isUserTheCurrentPlayer={isUserTheCurrentPlayer}
           onPlayCard={onPlayCard}
+          isUserTheCurrentPlayer={isUserTheCurrentPlayer}
           players={players}
           table={state.table}
           user={user}

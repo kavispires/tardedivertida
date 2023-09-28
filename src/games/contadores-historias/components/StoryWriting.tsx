@@ -95,7 +95,7 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
         hand={user.hand}
         onSelectCard={setCardId}
         disabledSelectButton={isLoading}
-        sizeRatio={user.hand.length}
+        sizeRatio={user.hand?.length}
       />
     </Step>
   );

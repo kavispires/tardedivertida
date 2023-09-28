@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "3.0.27",
+  "version": "3.0.28",
   "title": {
     "pt": "Detetives Imaginativos",
     "en": "Detective Agency"
