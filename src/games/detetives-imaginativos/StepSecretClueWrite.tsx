@@ -92,7 +92,7 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
         </Button>
       </Space>
 
-      <ImageCardHand hand={user.hand} sizeRatio={user.hand.length + 1} />
+      <ImageCardHand hand={user.hand} sizeRatio={user.hand?.length} />
     </Step>
   );
 }

@@ -1,25 +1,10 @@
-import { useEffect } from 'react';
-// Ant Design Resources
-import { message } from 'antd';
-import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
-// Icons
-import { ImageCardsIcon } from 'icons/ImageCardsIcon';
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { Table } from './components/Table';
-import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
-import { Instruction, TextHighlight, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { ViewIf } from 'components/views';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { ImageCardHand } from 'components/image-cards';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { TurnOrder } from 'components/players';
-import { isEarliestPlayerWithFewestCards } from './utils/helpers';
+import { ViewOr } from 'components/views';
+import { StepPlayCardAction } from './StepPlayCardAction';
+import { StepPlayCardWaiting } from './StepPlayCardWaiting';
 
 type StepPlayCardProps = {
   isUserTheImpostor: boolean;
@@ -37,7 +22,6 @@ type StepPlayCardProps = {
 
 export function StepPlayCard({
   isUserTheImpostor,
-  isUserTheCurrentPlayer,
   clue,
   currentPlayer,
   table,
@@ -48,111 +32,38 @@ export function StepPlayCard({
   turnOrder,
   leaderId,
   announcement,
+  isUserTheCurrentPlayer,
 }: StepPlayCardProps) {
   useTemporarilyHidePlayersBar();
-  const { translate } = useLanguage();
-  const onSelectCard = (cardId: string) => onPlayCard({ cardId });
-
-  useEffect(() => {
-    if (isUserTheCurrentPlayer && !isLoading && isEarliestPlayerWithFewestCards(table, user.id, turnOrder)) {
-      message.info(
-        messageContent(
-          translate('Escolha uma carta!', 'Choose a card to play'),
-          translate(
-            'Aperte o botão Selecionar acima da carta escolhida',
-            'Press the select button above each card'
-          ),
-
-          currentPlayer.id,
-          3
-        )
-      );
-    }
-  }, [
-    isUserTheCurrentPlayer,
-    currentPlayer.id,
-    translate,
-    isLoading,
-    user.updatedAt,
-    table,
-    user.id,
-    turnOrder,
-  ]);
 
   return (
-    <Step key={1} announcement={announcement}>
-      <Title>
-        {isUserTheImpostor ? (
-          <>
-            <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
-            <TextHighlight>
-              <QuestionCircleFilled />
-            </TextHighlight>{' '}
-            <Translate pt="Você é o impostor!" en="You are the impostor!" />
-          </>
-        ) : (
-          <>
-            <Translate pt="A pista secreta é" en="The secret clue is" /> <TextHighlight>{clue}</TextHighlight>
-          </>
-        )}
-      </Title>
-
-      <Instruction>
-        <ViewIf condition={isUserTheCurrentPlayer && !isUserTheImpostor}>
-          <>
-            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
-            <Translate
-              pt="Selecione uma carta que mais combine com a pista secreta."
-              en="Select a card that best fits the secret clue."
-            />
-          </>
-        </ViewIf>
-        <ViewIf condition={isUserTheCurrentPlayer && isUserTheImpostor}>
-          <>
-            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
-            <Translate
-              pt="Selecione uma carta que mais combine com as cartas que os outros
-                jogadores estão usando."
-              en="Select a card that best fits with what others are playing."
-            />
-          </>
-        </ViewIf>
-        <ViewIf condition={!isUserTheCurrentPlayer}>
-          <>
-            <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
-            <Translate
-              pt={
-                <>
-                  Aguarde enquanto <AvatarName player={currentPlayer} addressUser /> escolhe uma carta.
-                </>
-              }
-              en={
-                <>
-                  Wait while <AvatarName player={currentPlayer} /> picks a card.
-                </>
-              }
-            />
-          </>
-        </ViewIf>
-      </Instruction>
-
-      <Table table={table} players={players} />
-
-      <TurnOrder
-        players={players}
-        activePlayerId={currentPlayer.id}
-        order={turnOrder}
-        reorderByUser={leaderId}
-      />
-
-      <FloatingHand>
-        <ImageCardHand
-          hand={user.hand}
-          onSelectCard={isUserTheCurrentPlayer ? onSelectCard : undefined}
-          disabledSelectButton={isLoading}
-          sizeRatio={6}
+    <Step announcement={announcement}>
+      <ViewOr condition={isUserTheCurrentPlayer}>
+        <StepPlayCardAction
+          clue={clue}
+          currentPlayer={currentPlayer}
+          isLoading={isLoading}
+          isUserTheImpostor={isUserTheImpostor}
+          onPlayCard={onPlayCard}
+          players={players}
+          table={table}
+          user={user}
+          turnOrder={turnOrder}
+          leaderId={leaderId}
         />
-      </FloatingHand>
+
+        <StepPlayCardWaiting
+          clue={clue}
+          currentPlayer={currentPlayer}
+          isLoading={isLoading}
+          isUserTheImpostor={isUserTheImpostor}
+          players={players}
+          table={table}
+          user={user}
+          turnOrder={turnOrder}
+          leaderId={leaderId}
+        />
+      </ViewOr>
     </Step>
   );
 }

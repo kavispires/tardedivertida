@@ -22,4 +22,4 @@ export const PLAYER_COUNTS = {
   MAX: 10,
 };
 
-export const HAND_LIMIT = 6;
+export const HAND_LIMIT = 8;
