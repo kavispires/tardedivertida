@@ -8,7 +8,6 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSelection } from '../../utils/mock';
 // Components
-import { ImageBlurButtonContainer } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';
@@ -55,9 +54,8 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
         {track.data.contenders.map((contender: WContender) => {
           return (
             <Space direction="vertical" key={contender.id}>
-              <ImageBlurButtonContainer cardId={contender.id}>
-                <CharacterCard size={cardWidth} character={contender} />
-              </ImageBlurButtonContainer>
+              <CharacterCard size={cardWidth} character={contender} />
+
               <Button
                 shape="round"
                 type="primary"

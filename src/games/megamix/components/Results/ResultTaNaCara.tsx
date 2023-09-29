@@ -20,7 +20,7 @@ export function ResultTaNaCara({ winningValues }: ResultComponentProps) {
           <div key={`answer-${value}`} className="track-result-values__text-value">
             <IconAvatar
               size="large"
-              icon={value ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
+              icon={value === 'yes' ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
             />
           </div>
         ))}

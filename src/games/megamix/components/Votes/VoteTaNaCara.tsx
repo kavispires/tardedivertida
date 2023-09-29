@@ -13,7 +13,7 @@ export function VoteTaNaCara({ playersList }: VoteComponentProps) {
           <div className="player-vote__name">{player.name}</div>
 
           <div className="player-vote__value">
-            {player.data.value ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
+            {player.data.value === 'yes' ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
           </div>
         </div>
       ))}
