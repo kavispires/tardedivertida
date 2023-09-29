@@ -22,7 +22,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
 
-  const onSelect = (value: boolean) => {
+  const onSelect = (value: string) => {
     onSubmitAnswer({
       data: { value },
     });
@@ -56,7 +56,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
         <Button
           size="large"
           icon={<IconAvatar icon={<SpeechBubbleDeclinedIcon />} />}
-          onClick={() => onSelect(false)}
+          onClick={() => onSelect('no')}
           disabled={isLoading}
           shape="round"
         >
@@ -66,8 +66,9 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
         <Button
           size="large"
           icon={<IconAvatar icon={<SpeechBubbleAcceptedIcon />} />}
-          onClick={() => onSelect(true)}
+          onClick={() => onSelect('yes')}
           disabled={isLoading}
+          shape="round"
         >
           <Translate en="YES" pt="SIM" />
         </Button>

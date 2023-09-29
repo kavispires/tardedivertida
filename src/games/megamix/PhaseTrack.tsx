@@ -19,8 +19,9 @@ import { TrackTitle } from './components/TrackTitle';
 import { DJInstructions } from './components/RulesBlobs';
 import { Translate } from 'components/language';
 import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
+import { Avatar } from 'antd';
 
-function PhaseTrack({ players, state, info }: PhaseProps) {
+export function PhaseTrack({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep(showDJPruPruPruStep(state.round));
 
@@ -32,7 +33,14 @@ function PhaseTrack({ players, state, info }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<TrackIcon track={state.track} />}
-      title={<TrackTitle track={state.track} />}
+      title={
+        <>
+          <Avatar size="large" style={{ backgroundColor: 'DimGray', verticalAlign: 'middle' }}>
+            {state.round.current}
+          </Avatar>{' '}
+          <TrackTitle track={state.track} />
+        </>
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -72,8 +80,6 @@ function PhaseTrack({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseTrack;
 
 function DJAnnouncementTitle({ round }: { round: GameRound }) {
   if (round.current < 2) return <Translate pt="A Balada" en="The Club" />;
