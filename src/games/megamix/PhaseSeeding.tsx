@@ -27,7 +27,7 @@ export function PhaseSeeding({ players, state, info }: PhaseProps) {
       type="overlay"
     >
       <Instruction>
-        {state?.seeds?.length > 1 ? (
+        {user?.seeds?.length > 1 ? (
           <Translate
             pt="Mas antes de ir, você tem que fazer suas obrigações..."
             en="But before that, you must finish some chores..."
