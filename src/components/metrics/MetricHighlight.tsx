@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import clsx from 'clsx';
+// Types
+import type { AvatarSize } from 'antd/lib/avatar/AvatarContext';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-
-import { AvatarSize } from 'antd/lib/avatar/SizeContext';
 
 export type MetricHighlightProps = {
   /**
