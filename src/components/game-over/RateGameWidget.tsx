@@ -126,7 +126,7 @@ function RateGameWidgetContent({
             <Translate pt="Enviar" en="Send" />
           </Button>
           <p style={{ marginTop: '1rem' }}>
-            <Button type="ghost" ghost onClick={() => setHideWidget(true)} size="small">
+            <Button ghost onClick={() => setHideWidget(true)} size="small">
               <Translate pt="Hide" en="Hide" />
             </Button>
           </p>

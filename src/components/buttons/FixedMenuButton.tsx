@@ -117,7 +117,7 @@ function FixedMenuButtonContent({
       onMouseLeave={() => setActive(showLabel ?? false)}
       onClick={onClick ? onClick : undefined}
       icon={icon}
-      type="ghost"
+      ghost
       {...buttonProps}
     >
       {isActive && hasLabel && <span className="fixed-menu-button__label">{label}</span>}

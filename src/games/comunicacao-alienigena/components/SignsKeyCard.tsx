@@ -42,7 +42,7 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
           title={<Translate pt="Dica" en="Hint" />}
           arrow
         >
-          <Button type="ghost" icon={<InfoCircleOutlined />} shape="circle" />{' '}
+          <Button ghost icon={<InfoCircleOutlined />} shape="circle" />{' '}
         </Popover>
       </Title>
       <div className="signs-grid">
