@@ -859,7 +859,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   const { most: longestLoser } = utils.achievements.getMostAndLeastOf(store, 'longestLoser');
   if (longestLoser) {
     achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.LONGEST_VIP,
+      type: MEGAMIX_ACHIEVEMENTS.LONGEST_LOSER,
       playerId: longestLoser.playerId,
       value: longestLoser.value,
     });
