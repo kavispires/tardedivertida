@@ -140,7 +140,7 @@ export function StepResult({
 
       <Space className="space-container" align="center">
         {isFirstRunThrough ? (
-          <TimedButton onClick={onSeeRanking} onExpire={onSeeRanking} duration={20} icon={<TrophyOutlined />}>
+          <TimedButton onClick={onSeeRanking} onExpire={onSeeRanking} duration={15} icon={<TrophyOutlined />}>
             <Translate pt="Ver Ranking" en="See Ranking" />
           </TimedButton>
         ) : (
