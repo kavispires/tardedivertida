@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { Button, ButtonProps, Popconfirm, message } from 'antd';
+import { App, Button, ButtonProps, Popconfirm } from 'antd';
 // Services
 import { signOut } from 'services/firebase';
 // Components
@@ -9,6 +9,7 @@ import { Translate } from 'components/language';
 
 export function LogoutButton(props: ButtonProps) {
   const navigate = useNavigate();
+  const { message } = App.useApp();
 
   const { isLoading, refetch } = useQuery({
     queryKey: 'sign-out',

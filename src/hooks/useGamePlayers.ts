@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 // Ant Design Resources
-import { notification } from 'antd';
+import { App } from 'antd';
 // Hooks
 import { useFirestoreDocument } from './useFirestoreDocument';
 // Utils
@@ -8,6 +8,7 @@ import { print } from 'utils/helpers';
 
 export function useGamePlayers(gameId: GameId, gameName: GameName): GamePlayers {
   const docPath = `games/${gameName}/${gameId}/players`;
+  const { notification } = App.useApp();
 
   const { isLoading, isRefetching, isError, error, data } = useFirestoreDocument(docPath, true);
 

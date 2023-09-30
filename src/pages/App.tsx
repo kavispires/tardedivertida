@@ -2,7 +2,7 @@ import { useEffectOnce } from 'react-use';
 import { HashRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 // Ant Design Resources
-import { ConfigProvider, Layout } from 'antd';
+import { ConfigProvider, Layout, App as AntApp } from 'antd';
 // Services
 import { AuthProvider } from 'services/AuthProvider';
 // Hooks
@@ -51,9 +51,11 @@ function App() {
           },
         }}
       >
-        <AuthProvider>
-          <AppLayout />
-        </AuthProvider>
+        <AntApp>
+          <AuthProvider>
+            <AppLayout />
+          </AuthProvider>
+        </AntApp>
       </ConfigProvider>
     </QueryClientProvider>
   );

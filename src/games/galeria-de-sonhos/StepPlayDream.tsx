@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { message } from 'antd';
+import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -50,6 +50,7 @@ export function StepPlayDream({
   playerInNightmareId,
   botEnabled = false,
 }: StepDreamsSelectionProps) {
+  const { message } = App.useApp();
   useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
   const [showedMessage, setShowedMessage] = useState(false);
@@ -73,7 +74,7 @@ export function StepPlayDream({
       );
       setShowedMessage(true);
     }
-  }, [isActivePlayer, activePlayer.id, translate, isLoading, showedMessage]);
+  }, [isActivePlayer, activePlayer.id, translate, isLoading, showedMessage, message]);
 
   return (
     <Step fullWidth>

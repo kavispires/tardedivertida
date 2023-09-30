@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 // Ant Design Resources
-import { notification } from 'antd';
+import { App } from 'antd';
 // Hooks
 import { useLocalStorage } from './useLocalStorage';
 import { useLoading } from './useLoading';
@@ -17,6 +17,7 @@ import { print } from 'utils/helpers';
  * Gets stale after 30 minutes
  */
 export function useGameMeta(): GameMeta {
+  const { notification } = App.useApp();
   const gameId = useGameId();
   const [, setLocalStorage] = useLocalStorage();
   const { setLoader } = useLoading();

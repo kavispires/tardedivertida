@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 // Ant Design Resources
-import { Button, Form, Input, Alert, Image, message } from 'antd';
+import { Button, Form, Input, Alert, Image, App } from 'antd';
 // API
 import { resetPassword, signIn } from 'services/firebase';
 // Hooks
@@ -117,6 +117,7 @@ type ResetPasswordFormProps = {
 };
 
 function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
+  const { message } = App.useApp();
   const [form] = Form.useForm();
   const { translate } = useLanguage();
 

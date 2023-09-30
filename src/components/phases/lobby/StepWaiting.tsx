@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 // Ant Design Resources
-import { Space, Typography, message, notification } from 'antd';
+import { App, Space, Typography } from 'antd';
 // API & Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useGameMeta } from 'hooks/useGameMeta';
@@ -20,6 +20,7 @@ type StepWaitingProps = {
 };
 
 export function StepWaiting({ players }: StepWaitingProps) {
+  const { message, notification } = App.useApp();
   const { gameId, gameName } = useGameMeta();
   const { translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();

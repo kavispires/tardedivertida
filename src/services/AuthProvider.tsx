@@ -2,11 +2,13 @@ import { ReactNode, createContext, useState } from 'react';
 import { auth } from './firebase';
 import type { User } from 'firebase/auth';
 import { useQuery } from 'react-query';
-import { useLoading } from 'hooks/useLoading';
-import { GAME_API } from './adapters';
-import { message, notification } from 'antd';
-import { print } from 'utils/helpers';
 import { useEffectOnce } from 'react-use';
+import { App } from 'antd';
+import { GAME_API } from './adapters';
+// Utils
+import { print } from 'utils/helpers';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
 import { useLanguage } from 'hooks/useLanguage';
 import { useGlobalState } from 'hooks/useGlobalState';
 
@@ -79,6 +81,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const { translate } = useLanguage();
   const [, setUserId] = useGlobalState('userId');
+  const { message, notification } = App.useApp();
 
   useEffectOnce(() => {
     auth.onAuthStateChanged((user) => {

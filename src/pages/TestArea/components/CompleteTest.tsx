@@ -1,20 +1,21 @@
 import { useEffect } from 'react';
 import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
-import { Button, Input, Space, message } from 'antd';
+import { Button, Input, Space, App } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { TestStepProps } from '../TestArea';
 
 export function CompleteTest({ results }: TestStepProps) {
+  const { message } = App.useApp();
   const [state, copyToClipboard] = useCopyToClipboard();
 
   useEffect(() => {
     if (state.value) {
       message.info(`Copied to clipboard: ${state.value}`);
     }
-  }, [state]);
+  }, [state, message]);
 
   const result = `Tarde Divertida Test:\n${(results ?? []).map((r) => (r ? `✅` : `❌`)).join('')}`;
 

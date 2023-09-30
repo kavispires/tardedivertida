@@ -1,6 +1,4 @@
 import { ReactNode } from 'react';
-// Ant Design Resources
-import { message } from 'antd';
 // Icons
 import { VideoGameControllerIcon } from 'icons/VideoGameControllerIcon';
 // Components
@@ -49,6 +47,5 @@ export const messageContent = (
       ) : (
         <RulesIcon style={{ width: '64px' }} />
       ),
-    onClick: () => message.destroy(key),
   };
 };

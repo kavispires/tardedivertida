@@ -1,6 +1,6 @@
 import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
-import { Layout, message } from 'antd';
+import { Layout, App } from 'antd';
 // Components
 import * as icons from 'icons/collection';
 import { DevHeader } from './DevHeader';
@@ -8,6 +8,8 @@ import { TransparentButton } from 'components/buttons';
 import { useEffect } from 'react';
 
 function IconsPage() {
+  const { message } = App.useApp();
+
   useTitle('Icons | Dev | Tarde Divertida');
   const styles: React.CSSProperties = {
     width: '100%',
@@ -32,7 +34,7 @@ function IconsPage() {
     if (state.value) {
       message.info(`Copied to clipboard: ${state.value}`);
     }
-  }, [state]);
+  }, [state, message]);
 
   const iconEntries = Object.entries(icons);
   return (

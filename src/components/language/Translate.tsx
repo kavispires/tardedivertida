@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 // Ant Design Resources
-import { message } from 'antd';
+import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 
@@ -24,6 +24,7 @@ type TransLateProps = {
  * @returns the text/element according to the current language
  */
 export function Translate({ en, pt, custom }: TransLateProps) {
+  const { message } = App.useApp();
   const { language } = useLanguage();
 
   if (!language) {

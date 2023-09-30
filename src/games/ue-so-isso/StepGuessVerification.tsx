@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, message, Space } from 'antd';
+import { Button, App, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -40,6 +40,7 @@ export function StepGuessVerification({
   validSuggestions,
   announcement,
 }: StepGuessVerificationProps) {
+  const { message } = App.useApp();
   const { translate } = useLanguage();
 
   useEffect(() => {
@@ -53,7 +54,7 @@ export function StepGuessVerification({
         )
       );
     }
-  }, [isUserTheController, controller.id, translate, isLoading]);
+  }, [isUserTheController, controller.id, translate, isLoading, message]);
 
   return (
     <Step fullWidth announcement={announcement}>

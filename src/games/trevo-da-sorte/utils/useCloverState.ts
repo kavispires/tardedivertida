@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { notification } from 'antd';
+import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Helpers
@@ -17,6 +17,7 @@ import { getRandomItem } from 'utils/helpers';
  * @returns
  */
 export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves, onSubmit?: GenericFunction) {
+  const { notification } = App.useApp();
   const { translate } = useLanguage();
   const [attempts, setAttempts] = useState(0);
   const [clues, setClues] = useState<string[]>(['', '', '', '']);

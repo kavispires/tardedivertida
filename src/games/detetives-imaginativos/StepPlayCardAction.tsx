@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { message } from 'antd';
+import { App } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -45,6 +45,7 @@ export function StepPlayCardAction({
   turnOrder,
   leaderId,
 }: StepPlayCardActionProps) {
+  const { message } = App.useApp();
   useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
@@ -75,6 +76,7 @@ export function StepPlayCardAction({
     table,
     user.id,
     turnOrder,
+    message,
   ]);
 
   return (

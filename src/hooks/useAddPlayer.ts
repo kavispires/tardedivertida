@@ -1,4 +1,4 @@
-import { notification } from 'antd';
+import { App } from 'antd';
 import { useQuery } from 'react-query';
 // Services
 import localStorage from 'services/localStorage';
@@ -17,6 +17,7 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [volume] = useGlobalState('volume');
   const { language, translate } = useLanguage();
+  const { notification } = App.useApp();
 
   const query = useQuery({
     queryKey: 'add-player',

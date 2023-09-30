@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Space, message } from 'antd';
+import { App, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -38,6 +38,7 @@ export function StepDefendingAction({
   players,
   turnOrder,
 }: StepDefendingActionProps) {
+  const { message } = App.useApp();
   const { translate } = useLanguage();
   const [wasMessageDisplayed, setWasMessageDisplayed] = useState(false);
 
@@ -57,7 +58,7 @@ export function StepDefendingAction({
       );
       setWasMessageDisplayed(true);
     }
-  }, [wasMessageDisplayed, currentPlayer?.id, translate, isLoading, user.updatedAt]);
+  }, [wasMessageDisplayed, message, currentPlayer?.id, translate, isLoading, user.updatedAt]);
 
   return (
     <>

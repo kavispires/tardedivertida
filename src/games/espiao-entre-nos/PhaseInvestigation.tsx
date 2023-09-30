@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 // Ant Design Resources
-import { notification } from 'antd';
+import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
@@ -29,6 +29,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
+  const { notification } = App.useApp();
 
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
   const [startingPlayer] = useWhichPlayerIsThe('startingPlayerId', state, players);

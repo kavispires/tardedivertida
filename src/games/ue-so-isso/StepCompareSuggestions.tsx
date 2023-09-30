@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button, message, Space } from 'antd';
+import { Button, App, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -40,6 +40,7 @@ export function StepCompareSuggestions({
   suggestions,
   announcement,
 }: StepCompareSuggestionsProps) {
+  const { message } = App.useApp();
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
@@ -75,7 +76,7 @@ export function StepCompareSuggestions({
       );
       setWasMessageShown(true);
     }
-  }, [isUserTheController, controller.id, translate, wasMessageShown, isLoading]);
+  }, [isUserTheController, controller.id, translate, wasMessageShown, isLoading, message]);
 
   const suggestionsValues = Object.values(myRecommendation);
 

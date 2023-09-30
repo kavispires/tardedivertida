@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, notification, Space } from 'antd';
+import { Button, App, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
@@ -22,6 +22,7 @@ export function StepSecretWordSelection({
   categories,
   onSubmitSecretWord,
 }: StepSecretWordSelectionProps) {
+  const { notification } = App.useApp();
   const { isLoading } = useLoading();
   const [secretWord, setSecretWord] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<BooleanDictionary>({});

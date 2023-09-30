@@ -1,10 +1,11 @@
-import { notification } from 'antd';
+import { App } from 'antd';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useIdle } from 'react-use';
 import { useLanguage } from './useLanguage';
 
 export function useIdleRedirect() {
+  const { notification } = App.useApp();
   const navigate = useNavigate();
   const { translate } = useLanguage();
 
@@ -23,5 +24,5 @@ export function useIdleRedirect() {
         placement: 'top',
       });
     }
-  }, [isIdle, navigate, translate]);
+  }, [isIdle, navigate, translate, notification]);
 }
