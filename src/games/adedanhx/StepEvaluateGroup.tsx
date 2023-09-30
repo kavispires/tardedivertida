@@ -115,6 +115,7 @@ export function StepEvaluateGroup({
         onNextGroup={onNextGroup}
         isLoading={isLoading}
         duration={answerGroupIndex === 0 ? 15 : waitDuration}
+        players={players}
       />
     </Step>
   );
@@ -124,13 +125,19 @@ type VIPNextGroupProps = {
   onNextGroup: () => void;
   isLoading: boolean;
   duration: number;
+  players: GamePlayers;
 };
 
-function VIPNextGroup({ onNextGroup, isLoading, duration }: VIPNextGroupProps) {
+function VIPNextGroup({ onNextGroup, isLoading, duration, players }: VIPNextGroupProps) {
   const [disableButton, setDisableButton] = useState(true);
+
+  const rejections = useMemo(() => Object.values(players).filter((p) => p.ready).length, [players]);
 
   return (
     <VIPOnlyContainer className="m-admin" direction="vertical" align="center">
+      <span>
+        <Translate pt="Rejeições" en="Rejections" />: <TextHighlight>{rejections}</TextHighlight>
+      </span>
       <TimedButton
         onClick={onNextGroup}
         disabled={disableButton || isLoading}
