@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 // Ant Design Resources
-import { notification } from 'antd';
+import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -35,6 +35,7 @@ export function StepFinalAssessment({
   outcome,
 }: StepFinalAssessmentProps) {
   useTemporarilyHidePlayersBar();
+  const { notification } = App.useApp();
   const { translate } = useLanguage();
 
   useEffect(() => {

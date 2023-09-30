@@ -1,6 +1,6 @@
 import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
-import { Layout, message } from 'antd';
+import { Layout, App } from 'antd';
 // Components
 import * as icons from 'icons/collection';
 import { DevHeader } from './DevHeader';
@@ -28,6 +28,7 @@ const COLOR_NAMES = [
 const COLOR_SHADES = new Array(9).fill(1).map((e, i) => e + i);
 
 function ColorsPage() {
+  const { message } = App.useApp();
   useTitle('Colors | Dev | Tarde Divertida');
   const styles: React.CSSProperties = {
     width: '100%',
@@ -52,7 +53,7 @@ function ColorsPage() {
     if (state.value) {
       message.info(`Copied to clipboard: ${state.value}`);
     }
-  }, [state]);
+  }, [state, message]);
 
   const iconEntries = Object.entries(icons);
   return (

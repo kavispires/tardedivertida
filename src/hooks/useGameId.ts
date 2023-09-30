@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 // Ant Design Resources
-import { message } from 'antd';
+import { App } from 'antd';
 // Hooks
 import { useLanguage } from './useLanguage';
 // Utils
 import { getGameIdFromPathname, isValidGameId } from 'utils/helpers';
 
 export function useGameId() {
+  const { message } = App.useApp();
   const { pathname } = useLocation();
   const { translate } = useLanguage();
   const [gameId, setGameId] = useState(getGameIdFromPathname(pathname));

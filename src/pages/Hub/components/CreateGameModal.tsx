@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Image, Modal, message, Button, notification, Divider, Typography, Switch, Space, Alert } from 'antd';
+import { Image, Modal, Button, Divider, Typography, Switch, Space, Alert, App } from 'antd';
 // Adapters
 import { ADMIN_API } from 'services/adapters';
 // Hooks
@@ -60,6 +60,7 @@ type CreateGameModalProps = {
 };
 
 export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element {
+  const { message, notification } = App.useApp();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [state, copyToClipboard] = useCopyToClipboard();
@@ -82,7 +83,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
     if (state.value && gameId) {
       message.info(`Copied to clipboard: ${state.value}`);
     }
-  }, [state, gameId]);
+  }, [state, gameId, message]);
 
   const onCloseModal = useCallback(() => {
     setVisibility(false);

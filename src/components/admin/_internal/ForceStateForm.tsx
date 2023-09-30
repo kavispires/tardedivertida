@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { AutoComplete, Button, Form, message, Select } from 'antd';
+import { AutoComplete, Button, Form, Select, App } from 'antd';
 // Utils
 import { ADMIN_ACTIONS } from 'utils/constants';
 // Components
@@ -22,6 +22,7 @@ type ForceStateFormProps = {
 };
 
 export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: ForceStateFormProps) => {
+  const { message } = App.useApp();
   const [form] = Form.useForm();
   const [valueType, setValueType] = useState('string');
   const stateKeys = Object.keys(state).map((k) => ({ label: k, value: k }));

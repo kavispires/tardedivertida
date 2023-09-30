@@ -1,4 +1,4 @@
-import { message, notification } from 'antd';
+import { App } from 'antd';
 import { HttpsCallable } from 'firebase/functions';
 import { useMutation } from 'react-query';
 // Hooks
@@ -56,6 +56,7 @@ export function useAPICall({
   successMessage = 'API call was successful',
   errorMessage = 'API call has failed',
 }: useAPICallArgs): (...args: any[]) => any {
+  const { message, notification } = App.useApp();
   const { setLoader } = useLoading();
   const { gameId, gameName } = useGameMeta();
   const [userId] = useGlobalState('userId');

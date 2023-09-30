@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { notification, Space } from 'antd';
+import { App, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -44,6 +44,7 @@ export function StepInvestigation({
   useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
+  const { notification } = App.useApp();
 
   useEffect(() => {
     if (outcome?.type === 'VOTE_FAIL') {

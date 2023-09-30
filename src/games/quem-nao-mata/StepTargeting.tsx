@@ -1,5 +1,5 @@
 import { ReadOutlined } from '@ant-design/icons';
-import { Button, message } from 'antd';
+import { Button, App } from 'antd';
 import { Translate } from 'components/language';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
@@ -29,6 +29,7 @@ export function StepTargeting({
   onSubmitMessage,
   messages,
 }: StepTargetingProps) {
+  const { message } = App.useApp();
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [isVotingDisabled, setIsVotingDisabled] = useState(false);

@@ -1,4 +1,4 @@
-import { notification } from 'antd';
+import { App } from 'antd';
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { GAME_API } from 'services/adapters';
@@ -11,6 +11,7 @@ type GameMetaResponse = {
 };
 
 export function useRedirectToNewGame() {
+  const { notification } = App.useApp();
   const { currentUser } = useCurrentUserContext();
   const [happenedOnce, setHappenedOnce] = useState(false);
   const [previousGameId, setPreviousGameId] = useState('');

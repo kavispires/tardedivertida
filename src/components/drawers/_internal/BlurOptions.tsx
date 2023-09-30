@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 // Ant Design Resource
-import { Alert, Button, Checkbox, message, Spin } from 'antd';
+import { Alert, App, Button, Checkbox, Spin } from 'antd';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
@@ -9,6 +9,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { Translate } from 'components/language';
 
 export function BlurOptions() {
+  const { message } = App.useApp();
   const { blurCard } = useBlurCards();
   const baseUrl = useTDBaseUrl('tdi-data');
 
