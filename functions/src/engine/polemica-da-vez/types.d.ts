@@ -1,4 +1,4 @@
-import { POLEMICA_DA_VEZ_ACTIONS } from './constants';
+import { POLEMICA_DA_VEZ_ACHIEVEMENTS, POLEMICA_DA_VEZ_ACTIONS } from './constants';
 
 export type PolemicaDaVezOptions = {
   fixedRounds: boolean;
@@ -44,6 +44,8 @@ export interface PolemicaDaVezInitialState extends InitialState {
 export interface PolemicaDaVezSubmitAction extends Payload {
   action: keyof typeof POLEMICA_DA_VEZ_ACTIONS;
 }
+
+export type PolemicaDaVezAchievement = keyof typeof POLEMICA_DA_VEZ_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;

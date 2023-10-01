@@ -5,7 +5,7 @@ import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
-import { buildDeck, countLikes, getRanking } from './helpers';
+import { buildDeck, countLikes, getAchievements, getRanking } from './helpers';
 
 /**
  * Setup
@@ -30,6 +30,13 @@ export const prepareSetupPhase = async (
   // Build deck
   const { deck, customDeck } = buildDeck(allTweets);
 
+  const achievements = utils.achievements.setup(players, store, {
+    likes: 0,
+    exactGuesses: 0,
+    almostGuesses: 0,
+    guessDistance: 0,
+  });
+
   // Save
   return {
     update: {
@@ -40,6 +47,7 @@ export const prepareSetupPhase = async (
         deckIndex: 0,
         customDeckIndex: 0,
         pastTweets: [],
+        achievements,
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.SETUP,
@@ -90,6 +98,7 @@ export const prepareTweetSelectionPhase = async (
         currentTweets,
         currentCustomTweet,
       },
+      stateCleanup: ['currentTweet', 'totalLikes', 'ranking'],
     },
   };
 };
@@ -130,10 +139,10 @@ export const prepareResolutionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather all reactions
-  const totalLikes = countLikes(players);
+  const totalLikes = countLikes(players, store);
 
   // Score players
-  const ranking = getRanking(players, totalLikes);
+  const ranking = getRanking(players, totalLikes, store);
 
   const pastTweets = [
     ...store.pastTweets,
@@ -147,6 +156,7 @@ export const prepareResolutionPhase = async (
     update: {
       store: {
         pastTweets,
+        achievements: store.achievements,
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.RESOLUTION,
@@ -168,17 +178,24 @@ export const prepareGameOverPhase = async (
 
   await utils.firebase.markGameAsComplete(gameId);
 
+  const achievements = getAchievements(store);
+
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.POLEMICA_DA_VEZ,
     gameId,
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements: achievements,
     language: store.language,
   });
 
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.GAME_OVER,
@@ -187,6 +204,7 @@ export const prepareGameOverPhase = async (
         players,
         winners,
         allTweets: store.pastTweets,
+        achievements,
       },
     },
   };

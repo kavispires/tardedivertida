@@ -20,7 +20,7 @@ import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/utils/achievements';
 // import NAUFRAGOS from 'games/naufragos/utils/achievements';
 import ONDA_TELEPATICA from 'games/onda-telepatica/utils/achievements';
 // import PALHETA_DE_CORES from 'games/palheta-de-cores/utils/achievements';
-// import POLEMICA_DA_VEZ from 'games/polemica-da-vez/utils/achievements';
+import POLEMICA_DA_VEZ from 'games/polemica-da-vez/utils/achievements';
 import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/utils/achievements';
 // import QUEM_NAO_MATA from 'games/quem-nao-mata/utils/achievements';
 import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
@@ -57,7 +57,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   naufragos: null,
   'onda-telepatica': ONDA_TELEPATICA,
   'palheta-de-cores': null,
-  'polemica-da-vez': null,
+  'polemica-da-vez': POLEMICA_DA_VEZ,
   'porta-dos-desesperados': PORTA_DOS_DESESPERADOS,
   'quem-nao-mata': null,
   'quem-sou-eu': QUEM_SOU_EU,
