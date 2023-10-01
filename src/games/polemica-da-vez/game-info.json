@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "2.7.19",
+  "version": "2.8.0",
   "title": {
     "pt": "Polêmica da Vez",
     "en": "That's Polemic"
