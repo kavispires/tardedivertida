@@ -2,7 +2,7 @@ import { useTitle } from 'react-use';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
-import { MeContent } from './MeContent';
+import { MeContent } from './components/MeContent';
 // Sass
 import './Me.scss';
 import { useQuery } from 'react-query';

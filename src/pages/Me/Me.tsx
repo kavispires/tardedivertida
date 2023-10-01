@@ -3,7 +3,7 @@ import { useTitle } from 'react-use';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
 import { LoginModal } from './components/LoginModal';
-import { MeContent } from './MeContent';
+import { MeContent } from './components/MeContent';
 // Sass
 import './Me.scss';
 import { useEffect } from 'react';
