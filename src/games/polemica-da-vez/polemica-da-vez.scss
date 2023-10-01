@@ -67,10 +67,10 @@
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
-    transition: 500ms transform;
+    transition: 500ms background-color;
 
     &:hover {
-      transform: scale(1.1);
+      background: get-color('blue', 1);
     }
   }
 }
@@ -287,6 +287,29 @@
 }
 
 .p-tweet-comment {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding: get-unit(0 0 4 0);
+  gap: get-unit(2);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__author {
+    font-size: 0.85em;
+  }
+
+  &__author-name {
+    color: get-color('black', 5, 0.65);
+  }
+
+  &__author-date {
+    color: get-color('black', 5, 0.45);
+    margin-left: get-unit(1);
+  }
+
   & .ant-comment-inner {
     padding: get-unit(0 0 4 0);
   }

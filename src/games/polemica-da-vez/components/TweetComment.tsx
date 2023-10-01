@@ -1,6 +1,4 @@
 import moment from 'moment';
-// Ant Design Resources
-import { Comment } from '@ant-design/compatible';
 // Components
 import { Avatar } from 'components/avatars';
 import { CommentText } from './CommentText';
@@ -16,19 +14,22 @@ export function TweetComment({ player, totalLikes }: TweetCommentProps) {
   const points = isCorrect ? 3 : isAlmost ? 1 : 0;
 
   return (
-    <Comment
-      author={player.name}
-      avatar={<Avatar id={player.avatarId} />}
-      content={
+    <div className="p-tweet-comment">
+      <div className="p-tweet-comment__avatar">
+        <Avatar id={player.avatarId} />
+      </div>
+      <div className="p-tweet-comment__content">
+        <div className="p-tweet-comment__author">
+          <span className="p-tweet-comment__author-name">{player.name}</span>
+          <span className="p-tweet-comment__author-date">{moment(player.updatedAt).fromNow()}</span>
+        </div>
         <CommentText
           reaction={player.reaction}
           likes={player.likesGuess}
           points={points}
           playerId={player.id}
         />
-      }
-      datetime={moment(player.updatedAt).fromNow()}
-      className="p-tweet-comment"
-    />
+      </div>
+    </div>
   );
 }

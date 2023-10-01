@@ -63,7 +63,7 @@ export function StepLiking({
           onClick={() => setLike(true)}
         >
           <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" />
-          <Translate pt="Curtir" en="Like" />
+          <Translate pt="Curto" en="Like" />
         </TransparentButton>
         <TransparentButton
           className={clsx(

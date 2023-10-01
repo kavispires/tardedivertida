@@ -33,7 +33,7 @@ export function StepTweetSelection({
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        <Translate pt="Selecione uma assunto" en="Select one tweet" />
+        <Translate pt="Selecione um assunto" en="Select one tweet" />
       </Title>
 
       <ul className="p-tweets-card">

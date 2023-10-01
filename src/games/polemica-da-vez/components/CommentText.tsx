@@ -29,7 +29,7 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
             className="p-like-icon"
             size={20}
           />{' '}
-          <Translate pt="Não curto, mas" en="I dislike it but" />
+          <Translate pt="Não curto, mas " en="I dislike it but " />
         </>
       )}
 
