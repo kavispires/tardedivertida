@@ -67,8 +67,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
           label={<Translate pt=" Admin" en=" Admin" />}
           onClick={showDrawer}
           buttonProps={{
-            type: 'primary',
-            danger: true,
+            type: 'default',
           }}
         />
 
