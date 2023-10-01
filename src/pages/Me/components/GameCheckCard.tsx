@@ -1,15 +1,21 @@
 import clsx from 'clsx';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Badge, Col, Modal, Row } from 'antd';
+// Hooks
+import { useDimensions } from 'hooks/useDimensions';
+import { useQueryParams } from 'hooks/useQueryParams';
+// Utils
+import ACHIEVEMENTS_DICT from 'utils/achievements';
 // Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { GameBanner } from 'components/general/GameBanner';
 import { DualTranslate, Translate } from 'components/language';
-import { GameCard } from 'pages/Hub/components/GameCard';
+import { GameStatistics } from './GameStatistics';
 
 type GameUserStatisticsProps = {
   info: GameInfo[];
@@ -18,10 +24,13 @@ type GameUserStatisticsProps = {
 
 export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
   const [open, setOpen] = useState(false);
-  const [activeGameName, setActiveGame] = useState<GameName>('arte-ruim');
+  const [activeGameName, setActiveGame] = useState<GameName | null>(null);
+  const [rootWidth] = useDimensions('root');
 
-  const activeGame: GameInfo = useMemo(() => {
-    return info.find((g) => g.gameName === activeGameName) ?? info[0];
+  const qp = useQueryParams();
+
+  const activeGame: GameInfo | null = useMemo(() => {
+    return info.find((g) => g.gameName === activeGameName) ?? null;
   }, [activeGameName, info]);
 
   const activateGameCard = (gameName: GameName) => {
@@ -29,17 +38,41 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
     setActiveGame(gameName);
   };
 
+  useEffect(() => {
+    console.log({ qp: qp.queryParams, activeGameName, open, activeGame });
+    if (qp.queryParams.game && qp.queryParams.game !== activeGameName) {
+      activateGameCard(qp.queryParams.game);
+    }
+    if (!qp.queryParams.game) {
+      setOpen(false);
+      setActiveGame('');
+    }
+  }, [qp.queryParams.game]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const modal = (
     <Modal
       open={open}
-      title={<DualTranslate>{activeGame.title}</DualTranslate>}
+      title={<DualTranslate>{activeGame ? activeGame.title : { pt: '?', en: '?' }}</DualTranslate>}
       cancelText={<Translate pt="Fechar" en="Close" />}
-      onCancel={() => setOpen(false)}
+      onCancel={() => qp.remove('game')}
       okButtonProps={{
         style: { display: 'none' },
       }}
+      centered
+      className="me-modal"
+      width={rootWidth}
     >
-      <GameCard game={activeGame} isAdmin={false} />
+      {activeGame && activeGameName ? (
+        <GameStatistics
+          game={games[activeGameName]}
+          info={activeGame}
+          achievements={ACHIEVEMENTS_DICT?.[activeGameName]}
+        />
+      ) : (
+        <div className="me-modal__content">
+          <IconAvatar icon={<AnimatedVideoConferenceIcon />} size={100} />
+        </div>
+      )}
     </Modal>
   );
 
@@ -48,24 +81,20 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
       {modal}
       {info.map((gameInfo) => (
         <Col xs={12} sm={6} md={6} lg={3} key={`info-${gameInfo.gameName}`}>
-          <TransparentButton onClick={() => activateGameCard(gameInfo.gameName)}>
-            {Boolean(games[gameInfo.gameName]) ? (
-              <Badge count={<IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" />}>
-                <GameBanner
-                  title={gameInfo.title}
-                  gameName={gameInfo.gameName}
-                  className={clsx('me__game-bingo-banner', 'me__game-bingo-banner--played')}
-                  preview={false}
-                />
-              </Badge>
-            ) : (
+          <TransparentButton onClick={() => qp.add('game', gameInfo.gameName)}>
+            <Badge
+              count={
+                games[gameInfo.gameName] ? <IconAvatar icon={<SpeechBubbleAcceptedIcon />} /> : undefined
+              }
+              size="small"
+            >
               <GameBanner
                 title={gameInfo.title}
                 gameName={gameInfo.gameName}
-                className={clsx('me__game-bingo-banner')}
+                className={clsx('me__game-bingo-banner', 'me__game-bingo-banner--played')}
                 preview={false}
               />
-            )}
+            </Badge>
           </TransparentButton>
         </Col>
       ))}

@@ -1,13 +1,12 @@
 import { orderBy } from 'lodash';
 import { ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
-import { Layout, Row, Divider, Collapse, Space, Switch } from 'antd';
+import { Layout, Row, Divider, Space, Switch } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import GAME_LIST from 'utils/info';
 import ACHIEVEMENTS_DICT from 'utils/achievements';
-import { availableGamesCount, durationToHours, playableGames, timestampToDate } from './utils';
+import { availableGamesCount, durationToHours, playableGames, timestampToDate } from '../utils';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
@@ -19,17 +18,16 @@ import { ClockIcon } from 'icons/ClockIcon';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { PlayersIcon } from 'icons/PlayersIcon';
 // Components
-import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
+import { LanguageSwitch, Translate } from 'components/language';
 import { Title } from 'components/text';
-import { UserName } from './components/UserName';
+import { UserName } from './UserName';
 import { Avatar, IconAvatar } from 'components/avatars';
-import { StatisticCard } from './components/StatisticCard';
-import { GameStatistics } from './components/GameStatistics';
-import { InfoCard } from './components/InfoCard';
-import { GameCheckCard } from './components/GameCheckCard';
+import { StatisticCard } from './StatisticCard';
+import { InfoCard } from './InfoCard';
+import { GameCheckCard } from './GameCheckCard';
 import { LogoutButton } from 'components/auth/LogoutButton';
 // Sass
-import './Me.scss';
+import '../Me.scss';
 
 type MeContentProps = {
   user: Me;
@@ -38,11 +36,6 @@ type MeContentProps = {
 
 export function MeContent({ user, additionalContent }: MeContentProps) {
   const { language } = useLanguage();
-
-  const games = useMemo(
-    () => orderBy(Object.values(user.games), (game) => GAME_LIST[game.gameName].title[language]),
-    [user.games, language]
-  );
 
   const alphabetizedPlayableGames = useMemo(
     () => orderBy(Object.values(playableGames), `title.${language}`),
@@ -84,30 +77,6 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
         </Title>
 
         <GameCheckCard info={alphabetizedPlayableGames} games={user.games} />
-
-        <Divider />
-
-        <Title size="x-small" level={2} align="left">
-          <Translate pt="Estatísticas Por Jogo" en="Per Game Stats" />
-        </Title>
-
-        <Collapse
-          items={games.map((game) => {
-            const info = GAME_LIST[game.gameName];
-            return {
-              key: game.gameName,
-              label: <DualTranslate>{info.title}</DualTranslate>,
-              children: (
-                <GameStatistics
-                  key={game.gameName}
-                  game={game}
-                  info={info}
-                  achievements={ACHIEVEMENTS_DICT[game.gameName]}
-                />
-              ),
-            };
-          })}
-        />
       </Layout.Content>
     </Layout>
   );

@@ -40,3 +40,27 @@
     }
   }
 }
+
+.me-modal {
+  & .ant-modal-body {
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &__content {
+    display: grid;
+    place-items: center;
+    height: 100%;
+  }
+
+  &__no-plays {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.15rem;
+    padding: get-unit(4);
+  }
+}
