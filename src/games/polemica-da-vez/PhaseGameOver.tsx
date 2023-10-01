@@ -8,12 +8,16 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
+import { Achievements } from 'components/general/Achievements';
+import achievementsReference from './utils/achievements';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const playerCount = Object.keys(players).length;
 
   return (
     <GameOverWrapper announcementIcon={<TrophyIcon />} info={info} state={state} players={players}>
+      <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
+
       <ul
         className="p-all-tweets"
         style={{ gridTemplateColumns: `repeat(${playerCount % 3 === 0 ? 3 : 5}, 1fr)` }}

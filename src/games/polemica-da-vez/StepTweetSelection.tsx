@@ -3,15 +3,18 @@ import { useState } from 'react';
 import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { Step } from 'components/steps';
-import { Title } from 'components/text';
-import { Translate } from 'components/language';
 // Components
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { ScoringRules } from './components/RulesBlobs';
 
 type StepTweetSelectionProps = {
   currentTweets: Tweet[];
   currentCustomTweet: Tweet;
   onSubmitTweet: GenericFunction;
+  round: GameRound;
+  isFixedRounds: boolean;
 } & AnnouncementProps;
 
 export function StepTweetSelection({
@@ -19,6 +22,8 @@ export function StepTweetSelection({
   currentCustomTweet,
   onSubmitTweet,
   announcement,
+  round,
+  isFixedRounds,
 }: StepTweetSelectionProps) {
   const { translate } = useLanguage();
 
@@ -35,6 +40,10 @@ export function StepTweetSelection({
       <Title>
         <Translate pt="Selecione um assunto" en="Select one tweet" />
       </Title>
+
+      <Instruction contained>
+        <ScoringRules round={round} isFixedRounds={isFixedRounds} />
+      </Instruction>
 
       <ul className="p-tweets-card">
         {currentTweets.map((tweet) => (
