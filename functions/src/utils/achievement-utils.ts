@@ -42,7 +42,9 @@ export const setup = (players: Players, store: PlainObject, properties: PlainObj
  * @returns the achievements
  */
 export const increase = (store: PlainObject, playerId: PlayerId, property: string, value: number) => {
-  store.achievements[playerId][property] += value;
+  if (store.achievements[playerId] !== undefined) {
+    store.achievements[playerId][property] += value;
+  }
   return store.achievements;
 };
 
@@ -55,7 +57,9 @@ export const increase = (store: PlainObject, playerId: PlayerId, property: strin
  * @returns the achievements
  */
 export const push = (store: PlainObject, playerId: PlayerId, property: string, value: any) => {
-  store.achievements[playerId][property].push(value);
+  if (store.achievements[playerId] !== undefined) {
+    store.achievements[playerId][property].push(value);
+  }
   return store.achievements;
 };
 
@@ -75,7 +79,9 @@ export const insert = (
   value: any,
   index: number
 ) => {
-  store.achievements[playerId][property][index] = value;
+  if (store.achievements[playerId] !== undefined) {
+    store.achievements[playerId][property][index] = value;
+  }
   return store.achievements;
 };
 
