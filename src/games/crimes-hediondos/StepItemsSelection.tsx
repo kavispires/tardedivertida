@@ -12,6 +12,7 @@ import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { ContinueButton } from './components/ContinueButton';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+import { EvidenceHighlight, WeaponHighlight } from './components/Highlights';
 
 type StepItemsSelectionProps = {
   user: GamePlayer;
@@ -69,7 +70,9 @@ export function StepItemsSelection({
               Selecione uma carta azul e uma carta vermelha.
               <br />
               Elas representam a arma usada em seu último crime e um objeto da cena do crime.
-              <br />O jogo contém 16 armas e 16 objetos, mas para essa parte, você vê apenas 4 opções de cada.
+              <br />O jogo contém <WeaponHighlight>16 armas</WeaponHighlight> e{' '}
+              <EvidenceHighlight>16 objetos</EvidenceHighlight>, mas para essa parte, você vê apenas 4 opções
+              de cada.
             </>
           }
           en={
@@ -78,7 +81,9 @@ export function StepItemsSelection({
               <br />
               They represent the weapon used in your latest crime and an object that was in the crime scene.
               <br />
-              The game has 16 weapons and 16 objects, but for this phase, you only see 4 options of each.
+              The game has <WeaponHighlight>16 weapons</WeaponHighlight> and{' '}
+              <EvidenceHighlight>16 objects</EvidenceHighlight>, but for this phase, you only see 4 options of
+              each.
             </>
           }
         />

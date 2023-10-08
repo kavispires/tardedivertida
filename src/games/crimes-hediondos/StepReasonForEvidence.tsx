@@ -8,6 +8,7 @@ import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
 import { Space } from 'antd';
 import { ResetButton } from './components/ResetButton';
+import { EvidenceHighlight } from './components/Highlights';
 
 type StepReasonForEvidenceProps = {
   items: ItemsDict;
@@ -34,17 +35,21 @@ export function StepReasonForEvidence({
   return (
     <Step announcement={announcement}>
       <Title>
-        <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
+        <Translate pt="O que tinha no seu último crime?" en="What was in your last crime?" />
       </Title>
       <Instruction contained>
         <Translate
           pt={
             <>
-              Baseado somente em seu objeto (carta vermelha), selecione o que o objeto significa para o crime.
+              Baseado somente em seu <EvidenceHighlight>objeto (carta vermelha)</EvidenceHighlight>, selecione
+              o que o objeto significa para o crime.
             </>
           }
           en={
-            <>Based solely on the object (red card) you've chosen, select the meaning of it to the crime.</>
+            <>
+              Based solely on the <EvidenceHighlight>object (red card)</EvidenceHighlight> you've chosen,
+              select the meaning of it to the crime.
+            </>
           }
         />
       </Instruction>
