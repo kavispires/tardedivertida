@@ -13,6 +13,7 @@ import { EvaluationRules } from './components/TextBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 import { Translate } from 'components/language';
+import { ViewIf } from 'components/views';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
@@ -54,14 +55,17 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
         }}
       >
         {/*Step 0 */}
-        <StepEvaluation
-          drawings={state.drawings}
-          cards={state.cards}
-          players={players}
-          onSubmitVoting={onSubmitVoting}
-          levelType={state.levelType}
-          announcement={announcement}
-        />
+        <ViewIf condition={state.drawings && user.id}>
+          <StepEvaluation
+            drawings={state.drawings}
+            cards={state.cards}
+            players={players}
+            onSubmitVoting={onSubmitVoting}
+            levelType={state.levelType}
+            announcement={announcement}
+            user={user}
+          />
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );
