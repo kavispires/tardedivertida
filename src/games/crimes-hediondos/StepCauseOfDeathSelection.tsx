@@ -8,6 +8,7 @@ import { SceneTile } from '../../components/game/SceneTile';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
+import { WeaponHighlight } from './components/Highlights';
 
 type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;
@@ -34,14 +35,22 @@ export function StepCauseOfDeathSelection({
   return (
     <Step announcement={announcement}>
       <Title>
-        <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
+        <Translate pt="Como foi seu último crime?" en="How was your last crime?" />
       </Title>
       <Instruction contained>
         <Translate
           pt={
-            <>Baseado somente em sua arma do crime (carta azul), selecione a causa da morte de sua vítima.</>
+            <>
+              Baseado somente em sua <WeaponHighlight>arma do crime (carta azul)</WeaponHighlight>, selecione
+              a causa da morte de sua vítima.
+            </>
           }
-          en={<>Based solely on the weapon (blue card) you've chosen, select your victim's cause of death.</>}
+          en={
+            <>
+              Based solely on the <WeaponHighlight>weapon (blue card)</WeaponHighlight> you've chosen, select
+              your victim's cause of death.
+            </>
+          }
         />
       </Instruction>
 

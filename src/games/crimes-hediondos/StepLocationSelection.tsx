@@ -51,8 +51,6 @@ export function StepLocationSelection({
             <>
               Baseado em qualquer uma das suas cartas (ou ambas), selecione o local onde o crime aconteceu.
               <br />
-              Temos 4 colunas de locais agrupador por tema, selecione qualquer um.
-              <br />
               Lembre-se que você está tentando ajudar os outros jogadores adivinhar o seu crime, seja
               inteligente!
             </>
@@ -60,8 +58,6 @@ export function StepLocationSelection({
           en={
             <>
               Based on any card (or both), select where the crime occurred.
-              <br />
-              There are 4 columns of locations grouped by theme, you may select any.
               <br />
               Remember you are trying to help the players guess your crime, so be smart!
             </>

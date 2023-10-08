@@ -16,6 +16,7 @@ export * from './BikiniModelIcon';
 export * from './BooksIcon';
 export * from './BossIcon';
 export * from './BouncerIcon';
+export * from './BoxIcon';
 export * from './BoxAlertIcon';
 export * from './BoxBlankIcon';
 export * from './BoxCheckMarkIcon';
