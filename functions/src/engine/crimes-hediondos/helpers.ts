@@ -239,8 +239,8 @@ export const updateOrCreateGuessHistory = (
 
         if (status === GUESS_STATUS.WRONG_GROUP) {
           wrongGroups[crime.playerId].push(groupIndex);
-          // Achievements: WrongGroup
-          utils.achievements.increase(store, player.id, 'wrongGroup', 1);
+          // Achievements: wrongGroups
+          utils.achievements.increase(store, player.id, 'wrongGroups', 1);
         }
 
         // If player knows the group, eliminate all other groups
@@ -262,7 +262,7 @@ export const updateOrCreateGuessHistory = (
 
         if (status !== GUESS_STATUS.LOCKED) {
           // Achievements: Wrong
-          utils.achievements.push(store, player.id, 'weapon', guess.weaponId);
+          utils.achievements.push(store, player.id, 'weapons', guess.weaponId);
           utils.achievements.push(store, player.id, 'evidence', guess.evidenceId);
         }
 
