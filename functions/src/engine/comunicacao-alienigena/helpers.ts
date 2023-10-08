@@ -283,15 +283,11 @@ export const calculateAttributeUsage = (items: AlienItem[]) => {
 /**
  * Integrate players seeds into the bot knowledge
  */
-export function applySeedsToAlienItemKnowledge(store: FirebaseStoreData, players: Players, items: Item[]) {
+export function applySeedsToAlienItemKnowledge(store: FirebaseStoreData, players: Players) {
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.alienSeeds) {
       Object.entries(player.alienSeeds).forEach(([attributeKey, itemsSeeds]) => {
         const selectedItems = itemsSeeds as string[];
-        const notSelectedItems = items
-          .filter((item) => !selectedItems.includes(item.id))
-          .map((item) => item.id);
-
         // For selected items, make any selected attribute a 3 (or keep it as 5 if already 5)
         selectedItems.forEach((itemId) => {
           if (store.botAlienItemKnowledge[itemId]) {
@@ -299,24 +295,6 @@ export function applySeedsToAlienItemKnowledge(store: FirebaseStoreData, players
             if (store.botAlienItemKnowledge[itemId].attributes[attributeKey] !== undefined) {
               if (value < 5) {
                 store.botAlienItemKnowledge[itemId].attributes[attributeKey] = 3;
-              }
-            }
-          }
-        });
-
-        // For not selected items, make any selected attribute a -3 (or keep it as -5 if already -5)
-        notSelectedItems.forEach((itemId) => {
-          if (store.botAlienItemKnowledge[itemId]) {
-            const value = store.botAlienItemKnowledge[itemId].attributes[attributeKey] ?? 0;
-            if (store.botAlienItemKnowledge[itemId].attributes[attributeKey] !== undefined) {
-              if (value === 5) {
-                store.botAlienItemKnowledge[itemId].attributes[attributeKey] = 3;
-              }
-              if (value === 3) {
-                store.botAlienItemKnowledge[itemId].attributes[attributeKey] = 1;
-              }
-              if (value < 3 && value !== -5) {
-                store.botAlienItemKnowledge[itemId].attributes[attributeKey] = -3;
               }
             }
           }

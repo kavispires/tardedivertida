@@ -33,6 +33,15 @@ export const getResourceData = async (
 
   // Filter out used items
   let availableAlienItems: Record<string, AlienItem> = utils.game.filterOutByIds(allAlienItemsObj, usedItems);
+  // TODO: Revert
+  availableAlienItems = Array(TOTAL_ITEMS)
+    .fill(0)
+    .reduce((acc, _, index) => {
+      const id = String(index + 1);
+      const alienItem = allAlienItemsObj[id];
+      acc[id] = alienItem;
+      return acc;
+    }, {});
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableAlienItems).length < TOTAL_ITEMS) {
