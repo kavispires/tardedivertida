@@ -45,9 +45,6 @@ export function RateGameWidget({ customText }: RateGameWidgetProps) {
       icon={<StarFilled />}
       position={3}
       open={true}
-      buttonProps={{
-        type: 'primary',
-      }}
     />
   );
 }

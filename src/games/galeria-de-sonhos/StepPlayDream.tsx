@@ -129,9 +129,6 @@ export function StepPlayDream({
           icon={<RobotOutlined />}
           content={<BotsRules />}
           label={<Translate pt=" Bots" en=" Bots" />}
-          buttonProps={{
-            type: 'primary',
-          }}
         />
       )}
 
