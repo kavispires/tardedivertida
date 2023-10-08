@@ -29,9 +29,6 @@ export function PopoverRule({ content, label, showLabel = false }: PopoverRulePr
       content={content}
       label={label || <Translate pt=" Regras" en=" Rules" />}
       showLabel={showLabel}
-      buttonProps={{
-        type: 'primary',
-      }}
     />
   );
 }

@@ -118,6 +118,7 @@ function FixedMenuButtonContent({
       onClick={onClick ? onClick : undefined}
       icon={icon}
       ghost
+      type="primary"
       {...buttonProps}
     >
       {isActive && hasLabel && <span className="fixed-menu-button__label">{label}</span>}
