@@ -41,7 +41,7 @@ export function HumanSignBoard({ signs }: HumanSignBoardProps) {
           title={<Translate pt="Dica" en="Hint" />}
           arrow
         >
-          <Button ghost icon={<InfoCircleOutlined />} shape="circle" />{' '}
+          <Button type="text" icon={<InfoCircleOutlined />} shape="circle" />{' '}
         </Popover>
       </Title>
       <Space direction="vertical" className="board-container">
