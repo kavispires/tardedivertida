@@ -8,7 +8,6 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { useUser } from 'hooks/useUser';
 import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { LETTERS } from 'utils/constants';
@@ -30,6 +29,7 @@ type StepEvaluationProps = {
   players: GamePlayers;
   onSubmitVoting: GenericFunction;
   levelType: string;
+  user: GamePlayer;
 } & AnnouncementProps;
 
 export function StepEvaluation({
@@ -39,9 +39,10 @@ export function StepEvaluation({
   onSubmitVoting,
   levelType,
   announcement,
+  user,
 }: StepEvaluationProps) {
   const { isLoading } = useLoading();
-  const user = useUser(players);
+
   const canvasWidth = useCardWidth(5, { gap: 16, minWidth: 150, maxWidth: 500 });
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const { votes, setVotes, activeItem, activateItem, resetVoting, isVotingComplete } = useVotingMatch(
