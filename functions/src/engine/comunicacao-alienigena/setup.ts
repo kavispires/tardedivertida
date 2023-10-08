@@ -137,7 +137,6 @@ export const prepareAlienSeedingPhase = async (
     update: {
       store: {
         achievements,
-        alienSeeds: {},
       },
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING,
@@ -154,11 +153,12 @@ export const prepareHumanAskPhase = async (
 ): Promise<SaveGamePayload> => {
   const storeUpdate: PlainObject = {};
   if (state.shouldPerformSeeding) {
-    applySeedsToAlienItemKnowledge(store, players, state.items as Item[]);
+    applySeedsToAlienItemKnowledge(store, players);
     storeUpdate.store = {
       botAlienItemKnowledge: store.botAlienItemKnowledge,
     };
-    utils.players.removePropertiesFromPlayers(players, ['seeds']);
+
+    utils.players.removePropertiesFromPlayers(players, ['seeds', 'alienSeeds']);
   }
 
   // Save any inquiry to history
@@ -204,7 +204,6 @@ export const prepareHumanAskPhase = async (
         'currentIntention',
         'shouldPerformSeeding',
       ],
-      storeCleanup: ['alienSeeds'],
     },
   };
 };
