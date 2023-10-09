@@ -17,6 +17,8 @@ import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { SelectableObjectsGrid } from './components/SelectableObjectsGrid';
+import { DebugOnly } from 'components/debug';
+import { useGlobalState } from 'hooks/useGlobalState';
 
 type StepAlienRequestsProps = {
   players: GamePlayers;
@@ -46,6 +48,7 @@ export function StepAlienRequests({
 }: StepAlienRequestsProps) {
   const { isLoading } = useLoading();
   const [intention, setIntention] = useState<string>('');
+  const [isDebugEnabled] = useGlobalState('isDebugEnabled');
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -144,7 +147,12 @@ export function StepAlienRequests({
         items={items}
         isAlienBot={false}
         signs={signs}
+        showIntention={isDebugEnabled}
       />
+
+      <DebugOnly>
+        <SignsKeyCard signs={signs} />
+      </DebugOnly>
     </Step>
   );
 }

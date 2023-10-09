@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Hooks
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -14,6 +16,7 @@ import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
+import { DebugOnly } from 'components/debug';
 
 type StepHumansOfferProps = {
   players: GamePlayers;
@@ -43,6 +46,7 @@ export function StepHumansOffer({
   inquiryHistory,
   isAlienBot,
 }: StepHumansOfferProps) {
+  const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
@@ -107,7 +111,12 @@ export function StepHumansOffer({
         items={items}
         isAlienBot={isAlienBot}
         signs={signs}
+        showIntention={isDebugEnabled}
       />
+
+      <DebugOnly>
+        <SignsKeyCard signs={signs} />
+      </DebugOnly>
     </Step>
   );
 }

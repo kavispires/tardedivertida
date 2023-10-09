@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Hooks
+import { useGlobalState } from 'hooks/useGlobalState';
 // Icons
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 import { ClockIcon } from 'icons/ClockIcon';
@@ -22,6 +24,7 @@ import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
 import { ViewIf } from 'components/views';
+import { DebugOnly } from 'components/debug';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -52,6 +55,7 @@ export function StepReveal({
   inquiryHistory,
   isAlienBot,
 }: StepRevealProps) {
+  const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   const latestRequest = requestHistory?.[0] ?? {};
 
   return (
@@ -127,7 +131,12 @@ export function StepReveal({
         items={items}
         isAlienBot={isAlienBot}
         signs={signs}
+        showIntention={isDebugEnabled}
       />
+
+      <DebugOnly>
+        <SignsKeyCard signs={signs} />
+      </DebugOnly>
 
       <VIPNextPhaseButton round={round} />
     </Step>

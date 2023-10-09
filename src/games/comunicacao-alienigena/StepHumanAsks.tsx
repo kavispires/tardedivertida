@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Hooks
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -16,6 +18,7 @@ import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { BotPopupRule } from './components/BotPopupRules';
 import { ItemsHighlight } from './components/Highlights';
+import { DebugOnly } from 'components/debug';
 
 type StepHumanAsksProps = {
   players: GamePlayers;
@@ -49,6 +52,7 @@ export function StepHumanAsks({
   status,
   isAlienBot,
 }: StepHumanAsksProps) {
+  const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step fullWidth announcement={isUserTheCurrentHuman ? announcement : undefined}>
       <Title>
@@ -131,7 +135,12 @@ export function StepHumanAsks({
         items={items}
         isAlienBot={isAlienBot}
         signs={signs}
+        showIntention={isDebugEnabled}
       />
+
+      <DebugOnly>
+        <SignsKeyCard signs={signs} />
+      </DebugOnly>
     </Step>
   );
 }

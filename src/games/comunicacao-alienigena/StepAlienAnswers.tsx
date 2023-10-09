@@ -2,6 +2,7 @@
 import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
@@ -21,6 +22,7 @@ import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { ItemCard } from 'components/cards/ItemCard';
 import { BotPopupRule } from './components/BotPopupRules';
+import { DebugOnly } from 'components/debug';
 
 type StepAlienAnswersProps = {
   players: GamePlayers;
@@ -59,6 +61,7 @@ export function StepAlienAnswers({
   isAlienBot,
 }: StepAlienAnswersProps) {
   const { isLoading } = useLoading();
+  const [isDebugEnabled] = useGlobalState('isDebugEnabled');
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -171,7 +174,12 @@ export function StepAlienAnswers({
         items={items}
         isAlienBot={isAlienBot}
         signs={signs}
+        showIntention={isDebugEnabled}
       />
+
+      <DebugOnly>
+        <SignsKeyCard signs={signs} />
+      </DebugOnly>
     </Step>
   );
 }
