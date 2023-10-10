@@ -10,6 +10,8 @@ export type AlienItem = {
   id: ItemId;
   name: string;
   attributes: Record<Attribute, Weight>;
+  nsfw?: boolean;
+  categories?: string[];
 };
 
 export type AlienItemDict = Record<ItemId, AlienItem>;

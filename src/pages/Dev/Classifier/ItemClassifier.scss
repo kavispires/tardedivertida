@@ -1,0 +1,80 @@
+@use 'styles/sass' as *;
+
+.classifier {
+  max-width: 100%;
+
+  &__grid {
+    align-items: start;
+
+    @include sm {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    & .ant-space-item {
+      position: sticky;
+      top: get-unit(4);
+    }
+  }
+
+  &__item {
+    align-self: start;
+    align-items: center;
+    position: sticky;
+    top: get-unit(4);
+  }
+
+  &__attributes {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  &__entry {
+    background: get-color('gray', 1, 0.5);
+    align-items: center;
+    border-radius: $border-radius;
+    padding: get-unit(1);
+  }
+
+  &__verifiers {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: get-unit(2);
+    margin: get-unit(3 0);
+
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__navigation {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__verifier {
+    border: 1px solid get-color('white', 6);
+    border-radius: $border-radius;
+    padding: get-unit(1 4);
+  }
+
+  &__grouping-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: get-unit(2);
+  }
+
+  &__grouping-name {
+    display: flex;
+    align-items: center;
+    max-width: 100px;
+    overflow: hidden;
+  }
+
+  &__active-item.item-card {
+    background: get-color('yellow', 5, 0.6);
+  }
+}

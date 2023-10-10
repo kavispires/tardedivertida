@@ -116,3 +116,61 @@ export const initialAttributeState = Object.keys(ATTRIBUTES).reduce((acc: any, k
   acc[key] = 0;
   return acc;
 }, {}) as Record<Attribute, Weight>;
+
+/**
+ * Checks if an item matches the criteria
+ * @param item
+ * @param attribute
+ * @param criteria
+ * @returns
+ */
+export function checkCriteria(item: AlienItem, attribute: Attribute, criteria: string) {
+  if (criteria === '>0') {
+    return item.attributes[attribute] > 0;
+  }
+  if (criteria === '>1') {
+    return item.attributes[attribute] > 1;
+  }
+
+  if (criteria === '<0') {
+    return item.attributes[attribute] < 0;
+  }
+  if (criteria === '<1') {
+    return item.attributes[attribute] < 1;
+  }
+
+  if (criteria === '5') {
+    return item.attributes[attribute] === 5;
+  }
+
+  if (criteria === '3') {
+    return item.attributes[attribute] === 3;
+  }
+
+  if (criteria === '1') {
+    return item.attributes[attribute] === 1;
+  }
+
+  if (criteria === '-1') {
+    return item.attributes[attribute] === -1;
+  }
+
+  if (criteria === '-3') {
+    return item.attributes[attribute] === -3;
+  }
+
+  if (criteria === '-5') {
+    return item.attributes[attribute] === -5;
+  }
+
+  return true;
+}
+
+export function downloadObjectAsFile(obj: PlainObject, filename: string): void {
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+  const anchorElement = document.createElement('a');
+  anchorElement.href = window.URL.createObjectURL(blob);
+  anchorElement.download = filename;
+  anchorElement.click();
+  window.URL.revokeObjectURL(anchorElement.href);
+}
