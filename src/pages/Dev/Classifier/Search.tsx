@@ -9,7 +9,7 @@ type SearchProps = {
 
 export function Search({ data, setItemId }: SearchProps) {
   const namesDict = Object.values(data).reduce((acc: Record<string, ItemId>, entry) => {
-    acc[entry.name] = entry.id;
+    acc[entry.name.en] = entry.id;
     return acc;
   }, {});
   const names = Object.keys(namesDict).map((name) => ({ value: name }));
@@ -20,7 +20,7 @@ export function Search({ data, setItemId }: SearchProps) {
     }
   };
 
-  const onSearch = (e: any) => console.log({ search: e });
+  // const onSearch = (e: any) => console.log({ search: e });
 
   return (
     <Space>
@@ -28,7 +28,7 @@ export function Search({ data, setItemId }: SearchProps) {
         options={names}
         style={{ width: 150 }}
         onSelect={onSelect}
-        onSearch={onSearch}
+        // onSearch={onSearch}
         placeholder="Go to..."
         filterOption={(inputValue, option) =>
           option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1

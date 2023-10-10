@@ -28,12 +28,20 @@ export function ClassifyingCard({ data, itemUtils, save, isDirty, isSaving }: Cl
     }
   }, [current]); // eslint-disable-line
 
-  const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    itemUtils.updateName(itemId, e.target.value.toLowerCase());
+  const updateNameEN = (e: React.ChangeEvent<HTMLInputElement>) => {
+    itemUtils.updateNameEN(itemId, e.target.value.toLowerCase());
+  };
+
+  const updateNamePT = (e: React.ChangeEvent<HTMLInputElement>) => {
+    itemUtils.updateNamePT(itemId, e.target.value.toLowerCase());
   };
 
   const updateAttributeValue = (attributeId: string, value: number) => {
     itemUtils.updateAttributeValue(itemId, attributeId, value as Weight);
+  };
+
+  const updateNSFW = (value: boolean) => {
+    itemUtils.updateNSFW(itemId, value);
   };
 
   if (!current) {
@@ -45,6 +53,16 @@ export function ClassifyingCard({ data, itemUtils, save, isDirty, isSaving }: Cl
   }
 
   const validation = validateItem(current, initialAttributeState);
+
+  const currentItemComponent = (
+    <CurrentItem
+      itemId={itemId}
+      activeItem={current}
+      updateNameEN={updateNameEN}
+      updateNamePT={updateNamePT}
+      updateNSFW={updateNSFW}
+    />
+  );
 
   return (
     <Space className="container classifier" direction="vertical">
@@ -66,7 +84,7 @@ export function ClassifyingCard({ data, itemUtils, save, isDirty, isSaving }: Cl
         extra={<Search setItemId={setItemId} data={data} />}
       >
         <Space className="classifier__grid">
-          <CurrentItem itemId={itemId} updateName={updateName} activeItem={current} />
+          {currentItemComponent}
 
           <Space className="classifier__attributes" wrap>
             {Object.values(ATTRIBUTES).map((entry) => {
@@ -101,7 +119,7 @@ export function ClassifyingCard({ data, itemUtils, save, isDirty, isSaving }: Cl
             })}
           </Space>
 
-          <CurrentItem itemId={itemId} updateName={updateName} activeItem={current} />
+          {currentItemComponent}
         </Space>
         <Space className="classifier__verifiers">
           <Verifier label="Has name" value={validation.hasName} />

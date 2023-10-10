@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
-import type { AlienItemDict } from './types';
+import type { AlienItemDict, LegacyAlienItemDict } from './types';
 import { findLatestId, initialAttributeState } from './helpers';
 import { cloneDeep, merge } from 'lodash';
-import type { NotificationInstance } from 'antd/es/notification/interface';
 import { FIRST_ID } from './constants';
 import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { App } from 'antd';
 
 export function useItem(initialItem = FIRST_ID) {
   const [itemId, setItemId] = useState(initialItem);
@@ -70,20 +70,20 @@ export type UseAlienItemDocumentReturnValue = {
   itemUtils: {
     latestId: string;
     create: (itemId: string) => void;
-    updateName: (itemId: string, name: string) => void;
+    updateNameEN: (itemId: string, name: string) => void;
+    updateNamePT: (itemId: string, name: string) => void;
     updateAttributeValue: (itemId: string, attributeId: string, value: number) => void;
+    updateNSFW: (itemId: string, value: boolean) => void;
   };
 };
 
 /**
  * Handles the alien items document from Firestore.
- * @param notificationApi
  * @returns
  */
-export function useAlienItemsDocument(
-  notificationApi: NotificationInstance
-): UseAlienItemDocumentReturnValue {
+export function useAlienItemsDocument(): UseAlienItemDocumentReturnValue {
   const queryClient = useQueryClient();
+  const { notification } = App.useApp();
   const queryKey = 'data/alienItems';
   const [data, setData] = useState<AlienItemDict>({});
   const [isDirty, setIsDirty] = useState(false);
@@ -95,7 +95,7 @@ export function useAlienItemsDocument(
     isError: isTRError,
     data: trData,
     isSuccess: isSuccessTR,
-  } = useQuery<AlienItemDict>({
+  } = useQuery<LegacyAlienItemDict>({
     queryKey: 'td/alienItems',
     queryFn: async () => {
       const response = await fetch(`${baseUrl}/alien-items.json`);
@@ -109,7 +109,7 @@ export function useAlienItemsDocument(
     isSuccess,
     isError,
     refetch: fetchItems,
-  } = useQuery<AlienItemDict, unknown, AlienItemDict, QueryKey>({
+  } = useQuery<any, unknown, AlienItemDict, QueryKey>({
     queryKey,
     queryFn: async () => {
       const docRef = doc(firestore, 'data/alienItems');
@@ -118,18 +118,28 @@ export function useAlienItemsDocument(
     },
     enabled: isSuccessTR,
     onSuccess: (response) => {
-      notificationApi.info({
+      notification.info({
         message: 'Data loaded',
         placement: 'bottomLeft',
       });
-      setData(merge({}, trData, response));
+      const merged = merge({}, trData, response) as any;
+      // Remove hard
+      Object.values(merged).forEach((item: any) => {
+        delete item.attributes.hard;
+        item.attributes.soft = 0;
+        if (typeof item.name === 'string') {
+          item.name = {
+            en: item.name,
+            pt: '',
+          };
+        }
+      });
+      // Make it dual language
+      setData(merged);
       setIsDirty(false);
     },
-    select: (response) => {
-      return merge({}, trData, response);
-    },
     onError: () => {
-      notificationApi.error({
+      notification.error({
         message: 'Error loading data',
         placement: 'bottomLeft',
       });
@@ -149,7 +159,7 @@ export function useAlienItemsDocument(
       return newData;
     },
     onSuccess: (_, variables) => {
-      notificationApi.success({
+      notification.success({
         message: 'Saved',
         placement: 'bottomLeft',
       });
@@ -166,19 +176,39 @@ export function useAlienItemsDocument(
       ...prevData,
       [itemId]: {
         id: itemId,
-        name: '',
+        name: {
+          en: '',
+          pt: '',
+        },
         attributes: cloneDeep(initialAttributeState),
       },
     }));
   };
 
-  const updateItemName = (itemId: string, name: string) => {
+  const updateItemNameEN = (itemId: string, name: string) => {
     setIsDirty(true);
     setData((prevData) => ({
       ...prevData,
       [itemId]: {
         ...prevData[itemId],
-        name,
+        name: {
+          pt: prevData[itemId].name.pt ?? '',
+          en: name,
+        },
+      },
+    }));
+  };
+
+  const updateItemNamePT = (itemId: string, name: string) => {
+    setIsDirty(true);
+    setData((prevData) => ({
+      ...prevData,
+      [itemId]: {
+        ...prevData[itemId],
+        name: {
+          en: prevData[itemId].name.en ?? '',
+          pt: name,
+        },
       },
     }));
   };
@@ -197,6 +227,19 @@ export function useAlienItemsDocument(
     }));
   };
 
+  const updateNSFW = (itemId: string, nsfw: boolean) => {
+    setIsDirty(true);
+    setData((prevData) => {
+      const copy = cloneDeep(prevData);
+      if (nsfw) {
+        copy[itemId].nsfw = true;
+      } else {
+        delete copy[itemId].nsfw;
+      }
+      return copy;
+    });
+  };
+
   return {
     isLoading: isLoadingTR || isLoadingFirestore,
     isError: isTRError || isError || isMutationError,
@@ -209,8 +252,10 @@ export function useAlienItemsDocument(
     itemUtils: {
       latestId,
       create: createNewItem,
-      updateName: updateItemName,
+      updateNameEN: updateItemNameEN,
+      updateNamePT: updateItemNamePT,
       updateAttributeValue: updateItemAttributeValue,
+      updateNSFW,
     },
   };
 }

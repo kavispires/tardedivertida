@@ -1,4 +1,4 @@
-import { notification, Segmented } from 'antd';
+import { Segmented } from 'antd';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 import { isEmpty } from 'lodash';
@@ -16,9 +16,7 @@ import './ItemClassifier.scss';
 
 function ItemClassifier() {
   useTitle('Classifier | Dev | Tarde Divertida');
-  const [api, contextHolder] = notification.useNotification();
-
-  const { isLoading, isError, data, save, isSaving, itemUtils, isDirty } = useAlienItemsDocument(api);
+  const { isLoading, isError, data, save, isSaving, itemUtils, isDirty } = useAlienItemsDocument();
   const [view, setView] = useState('default');
 
   if (isEmpty(data) && isLoading) {
@@ -41,7 +39,7 @@ function ItemClassifier() {
         title="Classifier"
         extra={<Segmented options={segments} defaultValue={view} onChange={(v: any) => setView(v)} />}
       />
-      {contextHolder}
+
       {view === 'default' && (
         <ClassifyingCard
           itemUtils={itemUtils}
