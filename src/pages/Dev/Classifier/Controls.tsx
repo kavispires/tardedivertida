@@ -1,4 +1,4 @@
-import { Button, Space } from 'antd';
+import { Button, Divider, Space } from 'antd';
 
 import { FIRST_ID, LAST_ID } from './constants';
 import { UseAlienItemDocumentReturnValue } from './hooks';
@@ -48,7 +48,7 @@ export function Controls({
         <Button onClick={previousItem} disabled={itemId === FIRST_ID}>
           Previous
         </Button>
-
+        <Divider type="vertical" />
         <Button onClick={nextItem} disabled={itemId === LAST_ID}>
           Next
         </Button>

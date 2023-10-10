@@ -36,8 +36,6 @@ export function Grouping({ data }: GroupingProps) {
     }, {});
   }, [itemsList, activeAttribute, criteria]);
 
-  console.log(selection);
-
   return (
     <Space className="container classifier" direction="vertical">
       <Card title="Grouping">

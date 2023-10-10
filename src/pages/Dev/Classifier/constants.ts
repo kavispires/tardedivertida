@@ -28,7 +28,8 @@ export const ATTRIBUTES = {
   old: { id: 'old', name: { en: 'Old', pt: 'Velho' } }, // New
   sound: { id: 'sound', name: { en: 'Sound', pt: 'Som' } }, // New
   machine: { id: 'machine', name: { en: 'Machine', pt: 'Máquina' } }, // New
-  hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
+  // hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
+  soft: { id: 'soft', name: { en: 'Soft', pt: 'Mole' } }, // New
 };
 
 export const FIRST_ID = '1';
