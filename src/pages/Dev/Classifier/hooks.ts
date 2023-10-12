@@ -125,8 +125,19 @@ export function useAlienItemsDocument(): UseAlienItemDocumentReturnValue {
       const merged = merge({}, trData, response) as any;
       // Remove hard
       Object.values(merged).forEach((item: any) => {
+        if (!item.attributes.soft) {
+          const softVal = (item.attributes.hard ?? 0) * -1;
+          item.attributes.soft = softVal;
+        }
+        if (!item.attributes.solid) {
+          item.attributes.solid = 0;
+        }
+        if (!item.attributes.singular) {
+          item.attributes.singular = 0;
+        }
+
         delete item.attributes.hard;
-        item.attributes.soft = 0;
+        setData(merged);
         if (typeof item.name === 'string') {
           item.name = {
             en: item.name,
@@ -135,7 +146,6 @@ export function useAlienItemsDocument(): UseAlienItemDocumentReturnValue {
         }
       });
       // Make it dual language
-      setData(merged);
       setIsDirty(false);
     },
     onError: () => {

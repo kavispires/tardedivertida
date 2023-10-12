@@ -10,6 +10,8 @@ import { UseAlienItemDocumentReturnValue } from './hooks';
 
 import type { Attribute } from './types';
 
+const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
+
 type GroupingProps = Pick<UseAlienItemDocumentReturnValue, 'data'>;
 
 export function Grouping({ data }: GroupingProps) {
@@ -39,7 +41,7 @@ export function Grouping({ data }: GroupingProps) {
   return (
     <Space className="container classifier" direction="vertical">
       <Card title="Grouping">
-        <Space wrap size="small">
+        <Space wrap size="small" className="margin">
           <div>
             <span>Attribute</span>{' '}
             <Select
@@ -48,7 +50,7 @@ export function Grouping({ data }: GroupingProps) {
               size="small"
               style={{ minWidth: '15ch' }}
             >
-              {Object.values(ATTRIBUTES).map((entry) => (
+              {SORTED_ATTRIBUTES.map((entry) => (
                 <Select.Option key={entry.id} value={entry.id}>
                   {entry.name.en}
                 </Select.Option>
@@ -60,7 +62,7 @@ export function Grouping({ data }: GroupingProps) {
             <span>Sorting</span>{' '}
             <Select onChange={(e) => setSorting(e)} value={sorting} size="small" style={{ minWidth: '15ch' }}>
               <Select.Option value="id">id</Select.Option>
-              <Select.Option value="name">name</Select.Option>
+              <Select.Option value="name.en">name</Select.Option>
             </Select>
           </div>
 
@@ -119,7 +121,9 @@ export function Grouping({ data }: GroupingProps) {
                     className={clsx(selection[item.id] && 'classifier__active-item')}
                   />
                 </Badge>
-                <span className="classifier__grouping-name">{item.name}</span>
+                <span className="classifier__grouping-name">
+                  {typeof item?.name?.en === 'string' ? item?.name?.en : '?'}
+                </span>
               </div>
             );
           })}

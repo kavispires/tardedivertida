@@ -7,6 +7,7 @@ export const ATTRIBUTES = {
   danger: { id: 'danger', name: { en: 'Danger', pt: 'Perigo' } },
   defense: { id: 'defense', name: { en: 'Defense', pt: 'Defesa' } },
   fast: { id: 'fast', name: { en: 'Fast', pt: 'Rápido' } },
+  flat: { id: 'flat', name: { en: 'Flat', pt: 'Plano' } }, // New
   flight: { id: 'flight', name: { en: 'Flight', pt: 'Vôo' } },
   food: { id: 'food', name: { en: 'Food', pt: 'Comida' } },
   heavy: { id: 'heavy', name: { en: 'Heavy', pt: 'Pesado' } },
@@ -14,23 +15,24 @@ export const ATTRIBUTES = {
   knowledge: { id: 'knowledge', name: { en: 'Knowledge', pt: 'Conhecimento' } },
   liquid: { id: 'liquid', name: { en: 'Liquid', pt: 'Líquido' } },
   long: { id: 'long', name: { en: 'Long', pt: 'Longo' } },
+  machine: { id: 'machine', name: { en: 'Machine', pt: 'Máquina' } }, // New
   metal: { id: 'metal', name: { en: 'Metal', pt: 'Metal' } },
+  odor: { id: 'odor', name: { en: 'Odor', pt: 'Cheiro' } }, // New
+  old: { id: 'old', name: { en: 'Old', pt: 'Velho' } }, // New
   plant: { id: 'plant', name: { en: 'Plant', pt: 'Planta' } },
   power: { id: 'power', name: { en: 'Power', pt: 'Força' } },
   round: { id: 'round', name: { en: 'Round', pt: 'Redondo' } },
   sharp: { id: 'sharp', name: { en: 'Sharp', pt: 'Afiado' } },
+  singular: { id: 'singular', name: { en: 'Singular', pt: 'Singular' } }, // Newer
+  soft: { id: 'soft', name: { en: 'Soft', pt: 'Mole' } }, // Newer
+  solid: { id: 'solid', name: { en: 'Solid', pt: 'Sólido' } }, // Newer
+  sound: { id: 'sound', name: { en: 'Sound', pt: 'Som' } }, // New
   tool: { id: 'tool', name: { en: 'Tool', pt: 'Ferramenta' } },
   valuable: { id: 'valuable', name: { en: 'Valuable', pt: 'Valioso' } },
   warm: { id: 'warm', name: { en: 'Warm', pt: 'Quente' } },
   weapon: { id: 'weapon', name: { en: 'Weapon', pt: 'Arma' } },
-  flat: { id: 'flat', name: { en: 'Flat', pt: 'Plano' } }, // New
-  odor: { id: 'odor', name: { en: 'Odor', pt: 'Cheiro' } }, // New
-  old: { id: 'old', name: { en: 'Old', pt: 'Velho' } }, // New
-  sound: { id: 'sound', name: { en: 'Sound', pt: 'Som' } }, // New
-  machine: { id: 'machine', name: { en: 'Machine', pt: 'Máquina' } }, // New
   // hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
-  soft: { id: 'soft', name: { en: 'Soft', pt: 'Mole' } }, // New
 };
 
 export const FIRST_ID = '1';
-export const LAST_ID = '300';
+export const LAST_ID = '450';
