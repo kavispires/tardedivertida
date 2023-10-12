@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.64f57b23.css",
-    "main.js": "/tardedivertida/static/js/main.4a1b41e0.js",
+    "main.css": "/tardedivertida/static/css/main.804daab9.css",
+    "main.js": "/tardedivertida/static/js/main.168a0f29.js",
     "page-me.css": "/tardedivertida/static/css/page-me.70bbf67e.chunk.css",
     "page-me.js": "/tardedivertida/static/js/page-me.f604be33.chunk.js",
     "page-users.css": "/tardedivertida/static/css/page-users.70bbf67e.chunk.css",
@@ -125,7 +125,7 @@
     "static/js/4755.9072b917.chunk.js": "/tardedivertida/static/js/4755.9072b917.chunk.js",
     "static/js/5442.cb7d0b87.chunk.js": "/tardedivertida/static/js/5442.cb7d0b87.chunk.js",
     "static/js/8207.76ae916f.chunk.js": "/tardedivertida/static/js/8207.76ae916f.chunk.js",
-    "static/js/3196.e0c53bb5.chunk.js": "/tardedivertida/static/js/3196.e0c53bb5.chunk.js",
+    "static/js/3196.abb00b33.chunk.js": "/tardedivertida/static/js/3196.abb00b33.chunk.js",
     "static/js/2985.b92a4559.chunk.js": "/tardedivertida/static/js/2985.b92a4559.chunk.js",
     "static/js/5660.43149759.chunk.js": "/tardedivertida/static/js/5660.43149759.chunk.js",
     "static/js/8005.f49c29f7.chunk.js": "/tardedivertida/static/js/8005.f49c29f7.chunk.js",
@@ -157,7 +157,7 @@
     "static/js/3598.c2246ea8.chunk.js": "/tardedivertida/static/js/3598.c2246ea8.chunk.js",
     "static/js/5275.636cc006.chunk.js": "/tardedivertida/static/js/5275.636cc006.chunk.js",
     "static/js/4565.821343f2.chunk.js": "/tardedivertida/static/js/4565.821343f2.chunk.js",
-    "static/media/alien-items.svg": "/tardedivertida/static/media/alien-items.bae6fbfdea31d39f36ca06cc8d81c3e9.svg",
+    "static/media/alien-items.svg": "/tardedivertida/static/media/alien-items.c8fcd4189fb7d58a1104172073af507d.svg",
     "static/media/glyphs.svg": "/tardedivertida/static/media/glyphs.62971b5d33090284d41adbb8ecfe51f2.svg",
     "static/media/clubbers.svg": "/tardedivertida/static/media/clubbers.a2acf417af2aeec2eebed014692c7cc4.svg",
     "static/media/arte-ruim-timer-remix.mp3": "/tardedivertida/static/media/arte-ruim-timer-remix.0bb0272b397c9b0884a7.mp3",
@@ -178,8 +178,8 @@
     "static/media/round-title-en.svg": "/tardedivertida/static/media/round-title-en.2ad07e1f265a85634ad7940a33f96552.svg",
     "static/media/round-title-pt.svg": "/tardedivertida/static/media/round-title-pt.2e3f9c1deb85d58d118aa6e3dfa7af23.svg",
     "index.html": "/tardedivertida/index.html",
-    "main.64f57b23.css.map": "/tardedivertida/static/css/main.64f57b23.css.map",
-    "main.4a1b41e0.js.map": "/tardedivertida/static/js/main.4a1b41e0.js.map",
+    "main.804daab9.css.map": "/tardedivertida/static/css/main.804daab9.css.map",
+    "main.168a0f29.js.map": "/tardedivertida/static/js/main.168a0f29.js.map",
     "page-me.70bbf67e.chunk.css.map": "/tardedivertida/static/css/page-me.70bbf67e.chunk.css.map",
     "page-me.f604be33.chunk.js.map": "/tardedivertida/static/js/page-me.f604be33.chunk.js.map",
     "page-users.70bbf67e.chunk.css.map": "/tardedivertida/static/css/page-users.70bbf67e.chunk.css.map",
@@ -303,7 +303,7 @@
     "4755.9072b917.chunk.js.map": "/tardedivertida/static/js/4755.9072b917.chunk.js.map",
     "5442.cb7d0b87.chunk.js.map": "/tardedivertida/static/js/5442.cb7d0b87.chunk.js.map",
     "8207.76ae916f.chunk.js.map": "/tardedivertida/static/js/8207.76ae916f.chunk.js.map",
-    "3196.e0c53bb5.chunk.js.map": "/tardedivertida/static/js/3196.e0c53bb5.chunk.js.map",
+    "3196.abb00b33.chunk.js.map": "/tardedivertida/static/js/3196.abb00b33.chunk.js.map",
     "2985.b92a4559.chunk.js.map": "/tardedivertida/static/js/2985.b92a4559.chunk.js.map",
     "5660.43149759.chunk.js.map": "/tardedivertida/static/js/5660.43149759.chunk.js.map",
     "8005.f49c29f7.chunk.js.map": "/tardedivertida/static/js/8005.f49c29f7.chunk.js.map",
@@ -337,7 +337,7 @@
     "4565.821343f2.chunk.js.map": "/tardedivertida/static/js/4565.821343f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.64f57b23.css",
-    "static/js/main.4a1b41e0.js"
+    "static/css/main.804daab9.css",
+    "static/js/main.168a0f29.js"
   ]
 }
