@@ -80,7 +80,7 @@ export function ClassifyingCard({ data, itemUtils, save, isDirty, isSaving }: Cl
       />
 
       <Card
-        title={`Classifying ${itemId} - ${current.name} - (${countNonZeroAttributes(current)}/30)`}
+        title={`Classifying ${itemId} - ${current.name.en} - (${countNonZeroAttributes(current)}/30)`}
         extra={<Search setItemId={setItemId} data={data} />}
       >
         <Space className="classifier__grid">
