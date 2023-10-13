@@ -19,7 +19,6 @@ const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc'
 export function Grouping() {
   const { data, isDirty, isSaving, save, itemUtils } = useClassifier();
   const { itemId, setItemId } = useItem('');
-  console.log({ itemId });
   const [activeAttribute, setActiveAttribute] = useState(SORTED_ATTRIBUTES[0]?.id ?? 'alive');
   const [sorting, setSorting] = useState('id');
   const [criteria, setCriteria] = useState('>1');

@@ -20,15 +20,12 @@ export function Search({ data, setItemId }: SearchProps) {
     }
   };
 
-  // const onSearch = (e: any) => console.log({ search: e });
-
   return (
     <Space>
       <AutoComplete
         options={names}
         style={{ width: 150 }}
         onSelect={onSelect}
-        // onSearch={onSearch}
         placeholder="Go to..."
         filterOption={(inputValue, option) =>
           option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
