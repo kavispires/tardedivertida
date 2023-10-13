@@ -1,4 +1,4 @@
-import { Badge, Card, Select, Space } from 'antd';
+import { Badge, Button, Card, Modal, Select, Space, Tag, Typography } from 'antd';
 import clsx from 'clsx';
 import { ItemCard } from 'components/cards/ItemCard';
 import { get, orderBy } from 'lodash';
@@ -6,17 +6,21 @@ import { useMemo, useState } from 'react';
 
 import { ATTRIBUTES } from './constants';
 import { checkCriteria } from './helpers';
-import { UseAlienItemDocumentReturnValue } from './hooks';
 
-import type { Attribute } from './types';
+import type { Attribute, Weight } from './types';
+import { useClassifier } from './ClassifierContext';
+import { TransparentButton } from 'components/buttons';
+import { useItem } from './hooks';
+import { AttributeLevelRadioGroup } from './AttributeLevelRadioGroup';
+import { TextHighlight } from 'components/text';
 
 const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 
-type GroupingProps = Pick<UseAlienItemDocumentReturnValue, 'data'>;
-
-export function Grouping({ data }: GroupingProps) {
-  const attributesList = Object.values(ATTRIBUTES);
-  const [activeAttribute, setActiveAttribute] = useState(attributesList[0]?.id ?? 'alive');
+export function Grouping() {
+  const { data, isDirty, isSaving, save, itemUtils } = useClassifier();
+  const { itemId, setItemId } = useItem('');
+  console.log({ itemId });
+  const [activeAttribute, setActiveAttribute] = useState(SORTED_ATTRIBUTES[0]?.id ?? 'alive');
   const [sorting, setSorting] = useState('id');
   const [criteria, setCriteria] = useState('>1');
   const [show, setShow] = useState('all');
@@ -38,69 +42,40 @@ export function Grouping({ data }: GroupingProps) {
     }, {});
   }, [itemsList, activeAttribute, criteria]);
 
+  const handleOpenItem = (id: string) => {
+    setItemId(id);
+  };
+
+  const activeItem = data[itemId];
+
   return (
     <Space className="container classifier" direction="vertical">
-      <Card title="Grouping">
-        <Space wrap size="small" className="margin">
-          <div>
-            <span>Attribute</span>{' '}
-            <Select
-              onChange={(e) => setActiveAttribute(e)}
-              value={activeAttribute}
-              size="small"
-              style={{ minWidth: '15ch' }}
+      <Card
+        title="Grouping"
+        extra={
+          isDirty && (
+            <Button
+              type="primary"
+              onClick={() => save(data)}
+              loading={isSaving}
+              disabled={isSaving || !isDirty}
             >
-              {SORTED_ATTRIBUTES.map((entry) => (
-                <Select.Option key={entry.id} value={entry.id}>
-                  {entry.name.en}
-                </Select.Option>
-              ))}
-            </Select>
-          </div>
-
-          <div>
-            <span>Sorting</span>{' '}
-            <Select onChange={(e) => setSorting(e)} value={sorting} size="small" style={{ minWidth: '15ch' }}>
-              <Select.Option value="id">id</Select.Option>
-              <Select.Option value="name.en">name</Select.Option>
-            </Select>
-          </div>
-
-          <div>
-            <span>Criteria</span>{' '}
-            <Select
-              onChange={(e) => setCriteria(e)}
-              value={criteria}
-              size="small"
-              style={{ minWidth: '15ch' }}
-            >
-              <Select.Option value=">1">Very Positive</Select.Option>
-              <Select.Option value=">0">Positive</Select.Option>
-              <Select.Option value="5">5</Select.Option>
-              <Select.Option value="3">3</Select.Option>
-              <Select.Option value="1">1</Select.Option>
-              <Select.Option value="-1">-1</Select.Option>
-              <Select.Option value="-3">3</Select.Option>
-              <Select.Option value="-5">-5</Select.Option>
-              <Select.Option value="<0>">Negative</Select.Option>
-              <Select.Option value="<1>">Very Negative</Select.Option>
-            </Select>
-          </div>
-
-          <div>
-            <span>Show</span>{' '}
-            <Select onChange={(e) => setShow(e)} value={show} size="small" style={{ minWidth: '15ch' }}>
-              <Select.Option value="all">All</Select.Option>
-              <Select.Option value="selected">Selected Only</Select.Option>
-              <Select.Option value="non-selected">Non-Selected Only</Select.Option>
-            </Select>
-          </div>
-
-          <div>
-            <span>Selected</span>{' '}
-            <Badge count={Object.keys(selection).length} color="cyan" overflowCount={1000} />
-          </div>
-        </Space>
+              Save
+            </Button>
+          )
+        }
+      >
+        <Filters
+          selection={selection}
+          activeAttribute={activeAttribute}
+          setActiveAttribute={setActiveAttribute}
+          sorting={sorting}
+          setSorting={setSorting}
+          criteria={criteria}
+          setCriteria={setCriteria}
+          show={show}
+          setShow={setShow}
+        />
 
         <Space wrap>
           {itemsList.map((item) => {
@@ -113,7 +88,11 @@ export function Grouping({ data }: GroupingProps) {
             }
 
             return (
-              <div key={item.id} className="classifier__grouping-item">
+              <TransparentButton
+                key={item.id}
+                className="classifier__grouping-item"
+                onClick={() => handleOpenItem(item.id)}
+              >
                 <Badge count={Number(item.id)} size="small" color="cyan" overflowCount={1000}>
                   <ItemCard
                     id={item.id}
@@ -124,11 +103,119 @@ export function Grouping({ data }: GroupingProps) {
                 <span className="classifier__grouping-name">
                   {typeof item?.name?.en === 'string' ? item?.name?.en : '?'}
                 </span>
-              </div>
+              </TransparentButton>
             );
           })}
         </Space>
+
+        <Modal
+          title="Item Quick Edit"
+          open={Boolean(itemId)}
+          onCancel={() => setItemId('')}
+          okButtonProps={{ style: { display: 'none' } }}
+        >
+          {Boolean(activeItem) && (
+            <div className="quick-edit-modal">
+              <ItemCard id={activeItem.id} width={100} />
+              <div>
+                <Typography.Title level={4}>
+                  <TextHighlight>{activeAttribute}</TextHighlight>- {activeItem.name.en || '?'} |{' '}
+                  {activeItem.name.pt || '?'} {activeItem.nsfw && <Tag color="magenta">NSFW</Tag>}
+                </Typography.Title>
+                <AttributeLevelRadioGroup
+                  value={activeItem.attributes[activeAttribute as Attribute]}
+                  onChange={(e) => {
+                    itemUtils.updateAttributeValue(itemId, activeAttribute, e.target.value as Weight);
+                    setItemId('');
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </Modal>
       </Card>
+    </Space>
+  );
+}
+
+type FiltersProps = {
+  selection: BooleanDictionary;
+  activeAttribute: string;
+  setActiveAttribute: (e: string) => void;
+  sorting: string;
+  setSorting: (e: string) => void;
+  criteria: string;
+  setCriteria: (e: string) => void;
+  show: string;
+  setShow: (e: string) => void;
+};
+
+function Filters({
+  selection,
+  activeAttribute,
+  setActiveAttribute,
+  sorting,
+  setSorting,
+  criteria,
+  setCriteria,
+  show,
+  setShow,
+}: FiltersProps) {
+  return (
+    <Space wrap className="margin">
+      <Space size="small">
+        <span>Attribute</span>
+        <Select
+          onChange={(e) => setActiveAttribute(e)}
+          value={activeAttribute}
+          size="small"
+          style={{ minWidth: '15ch' }}
+        >
+          {SORTED_ATTRIBUTES.map((entry) => (
+            <Select.Option key={entry.id} value={entry.id}>
+              {entry.name.en}
+            </Select.Option>
+          ))}
+        </Select>
+      </Space>
+
+      <Space size="small">
+        <span>Sorting</span>
+        <Select onChange={(e) => setSorting(e)} value={sorting} size="small" style={{ minWidth: '15ch' }}>
+          <Select.Option value="id">id</Select.Option>
+          <Select.Option value="name.en">name</Select.Option>
+        </Select>
+      </Space>
+
+      <Space size="small">
+        <span>Criteria</span>
+        <Select onChange={(e) => setCriteria(e)} value={criteria} size="small" style={{ minWidth: '15ch' }}>
+          <Select.Option value=">1">Very Positive</Select.Option>
+          <Select.Option value=">0">Positive</Select.Option>
+          <Select.Option value="5">5</Select.Option>
+          <Select.Option value="3">3</Select.Option>
+          <Select.Option value="1">1</Select.Option>
+          <Select.Option value="-1">-1</Select.Option>
+          <Select.Option value="-3">3</Select.Option>
+          <Select.Option value="-5">-5</Select.Option>
+          <Select.Option value="<0>">Negative</Select.Option>
+          <Select.Option value="<1>">Very Negative</Select.Option>
+        </Select>
+      </Space>
+
+      <Space size="small">
+        <span>Show</span>
+        <Select onChange={(e) => setShow(e)} value={show} size="small" style={{ minWidth: '15ch' }}>
+          <Select.Option value="all">All</Select.Option>
+          <Select.Option value="selected">Selected Only</Select.Option>
+          <Select.Option value="non-selected">Non-Selected Only</Select.Option>
+        </Select>
+      </Space>
+
+      <Space size="small">
+        <span>Selected</span>
+        <Badge count={Object.keys(selection).length} color="cyan" overflowCount={1000} />
+      </Space>
     </Space>
   );
 }

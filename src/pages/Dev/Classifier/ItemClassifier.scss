@@ -78,3 +78,8 @@
     background: get-color('yellow', 5, 0.6);
   }
 }
+
+.quick-edit-modal {
+  display: grid;
+  grid-template-columns: auto auto;
+}

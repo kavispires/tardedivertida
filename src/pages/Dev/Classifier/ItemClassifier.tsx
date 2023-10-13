@@ -6,17 +6,16 @@ import { useState } from 'react';
 import { useTitle } from 'react-use';
 
 import { DevHeader } from '../DevHeader';
-import { useAlienItemsDocument } from './hooks';
 
 import { StatsCard } from './StatsCard';
 import { Grouping } from './Grouping';
 import { ClassifyingCard } from './ClassifyingCard';
+import { ClassifierProvider, useClassifier } from './ClassifierContext';
 
 import './ItemClassifier.scss';
 
 function ItemClassifier() {
-  useTitle('Classifier | Dev | Tarde Divertida');
-  const { isLoading, isError, data, save, isSaving, itemUtils, isDirty } = useAlienItemsDocument();
+  const { isLoading, isError, data } = useClassifier();
   const [view, setView] = useState('default');
 
   if (isEmpty(data) && isLoading) {
@@ -40,19 +39,21 @@ function ItemClassifier() {
         extra={<Segmented options={segments} defaultValue={view} onChange={(v: any) => setView(v)} />}
       />
 
-      {view === 'default' && (
-        <ClassifyingCard
-          itemUtils={itemUtils}
-          data={data}
-          save={save}
-          isSaving={isSaving}
-          isDirty={isDirty}
-        />
-      )}
-      {view === 'grouping' && <Grouping data={data} />}
-      {view === 'stats' && <StatsCard data={data} />}
+      {view === 'default' && <ClassifyingCard />}
+      {view === 'grouping' && <Grouping />}
+      {view === 'stats' && <StatsCard />}
     </div>
   );
 }
 
-export default ItemClassifier;
+function ItemClassifierPage() {
+  useTitle('Items Classifier | Dev | Tarde Divertida');
+
+  return (
+    <ClassifierProvider>
+      <ItemClassifier />
+    </ClassifierProvider>
+  );
+}
+
+export default ItemClassifierPage;

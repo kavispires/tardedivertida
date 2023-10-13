@@ -3,17 +3,12 @@ import { Card, Divider, Select, Space, Statistic } from 'antd';
 import { ATTRIBUTES } from './constants';
 import { getStats } from './helpers';
 
-import type { AlienItemDict } from './types';
 import { orderBy } from 'lodash';
 import { useMemo, useState } from 'react';
+import { useClassifier } from './ClassifierContext';
 
-const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
-
-type StatsCardProps = {
-  data: AlienItemDict;
-};
-
-export function StatsCard({ data }: StatsCardProps) {
+export function StatsCard() {
+  const { data } = useClassifier();
   // Count 5s and -5s among objects
   // Counts attribute values for -5 -3 -1 0 1 3 5
   // Positive vs Negative

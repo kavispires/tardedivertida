@@ -1,23 +1,21 @@
-import { Card, Radio, Space } from 'antd';
+import { Card, Space } from 'antd';
 import { Loading } from 'components/loaders';
 import { useEffect } from 'react';
 
+import { useClassifier } from './ClassifierContext';
 import { ATTRIBUTES } from './constants';
-import { countNonZeroAttributes, initialAttributeState, validateItem } from './helpers';
-import { UseAlienItemDocumentReturnValue, useItem } from './hooks';
-
-import type { Attribute, Weight } from './types';
-import { Search } from './Search';
-import { Verifier } from './Verifier';
 import { Controls } from './Controls';
 import { CurrentItem } from './CurrentItem';
+import { countNonZeroAttributes, initialAttributeState, validateItem } from './helpers';
+import { useItem } from './hooks';
+import { Search } from './Search';
+import { Verifier } from './Verifier';
 
-type ClassifyingCardProps = Pick<
-  UseAlienItemDocumentReturnValue,
-  'itemUtils' | 'isSaving' | 'data' | 'save' | 'isDirty'
->;
+import type { Attribute, Weight } from './types';
+import { AttributeLevelRadioGroup } from './AttributeLevelRadioGroup';
 
-export function ClassifyingCard({ data, itemUtils, save, isDirty, isSaving }: ClassifyingCardProps) {
+export function ClassifyingCard() {
+  const { data, save, isSaving, itemUtils, isDirty } = useClassifier();
   const { itemId, previousItem, nextItem, itemNumber, goTo, setItemId } = useItem(itemUtils.latestId);
 
   const current = data[itemId];
@@ -91,29 +89,10 @@ export function ClassifyingCard({ data, itemUtils, save, isDirty, isSaving }: Cl
               return (
                 <Space className="classifier__entry" direction="vertical" key={entry.id}>
                   <div className="title">{`${entry.name.en} - ${entry.name.pt}`}</div>
-                  <Radio.Group
+                  <AttributeLevelRadioGroup
                     value={current.attributes[entry.id as Attribute]}
                     onChange={(e) => updateAttributeValue(entry.id, e.target.value)}
-                    optionType="button"
-                    buttonStyle="solid"
-                  >
-                    <Radio.Button type="primary" value={-5}>
-                      -5
-                    </Radio.Button>
-                    <Radio.Button value={-3}>-3</Radio.Button>
-                    <Radio.Button value={-1}>-1</Radio.Button>
-                    <Radio.Button
-                      value={0}
-                      style={{
-                        backgroundColor: current.attributes[entry.id as Attribute] === 0 ? 'red' : 'white',
-                      }}
-                    >
-                      0
-                    </Radio.Button>
-                    <Radio.Button value={1}>1</Radio.Button>
-                    <Radio.Button value={3}>3</Radio.Button>
-                    <Radio.Button value={5}>5</Radio.Button>
-                  </Radio.Group>
+                  />
                 </Space>
               );
             })}
