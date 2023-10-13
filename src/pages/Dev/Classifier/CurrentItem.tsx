@@ -18,7 +18,6 @@ export function CurrentItem({
   activeItem,
   updateNSFW,
 }: CurrentItemsProps) {
-  console.log({ activeItem });
   return (
     <Space className="classifier__item" direction="vertical">
       <Input placeholder="Type name" onChange={updateNameEN} value={activeItem.name.en} />

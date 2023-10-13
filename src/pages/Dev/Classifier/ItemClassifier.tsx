@@ -2,7 +2,7 @@ import { Segmented } from 'antd';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 import { isEmpty } from 'lodash';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTitle } from 'react-use';
 
 import { DevHeader } from '../DevHeader';
@@ -13,10 +13,16 @@ import { ClassifyingCard } from './ClassifyingCard';
 import { ClassifierProvider, useClassifier } from './ClassifierContext';
 
 import './ItemClassifier.scss';
+import { useQueryParams } from 'hooks/useQueryParams';
 
 function ItemClassifier() {
   const { isLoading, isError, data } = useClassifier();
   const [view, setView] = useState('default');
+  const qp = useQueryParams({ view: 'default' });
+
+  useEffect(() => {
+    setView(qp.queryParams.view ?? 'default');
+  }, [qp.queryParams.view]);
 
   if (isEmpty(data) && isLoading) {
     return <LoadingPage />;
@@ -36,7 +42,7 @@ function ItemClassifier() {
     <div>
       <DevHeader
         title="Classifier"
-        extra={<Segmented options={segments} defaultValue={view} onChange={(v: any) => setView(v)} />}
+        extra={<Segmented options={segments} defaultValue={view} onChange={(v: any) => qp.add('view', v)} />}
       />
 
       {view === 'default' && <ClassifyingCard />}
