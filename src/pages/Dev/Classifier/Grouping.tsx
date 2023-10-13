@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Modal, Select, Space, Tag, Typography } from 'antd';
+import { Badge, Button, Card, FloatButton, Modal, Select, Space, Tag, Typography } from 'antd';
 import clsx from 'clsx';
 import { ItemCard } from 'components/cards/ItemCard';
 import { get, orderBy } from 'lodash';
@@ -13,6 +13,7 @@ import { TransparentButton } from 'components/buttons';
 import { useItem } from './hooks';
 import { AttributeLevelRadioGroup } from './AttributeLevelRadioGroup';
 import { TextHighlight } from 'components/text';
+import { SaveFilled, SaveOutlined } from '@ant-design/icons';
 
 const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 
@@ -52,18 +53,26 @@ export function Grouping() {
       <Card
         title="Grouping"
         extra={
-          isDirty && (
-            <Button
-              type="primary"
-              onClick={() => save(data)}
-              loading={isSaving}
-              disabled={isSaving || !isDirty}
-            >
-              Save
-            </Button>
-          )
+          <Button
+            type="primary"
+            onClick={() => save(data)}
+            loading={isSaving}
+            disabled={isSaving || !isDirty}
+          >
+            Save
+          </Button>
         }
       >
+        {isDirty && (
+          <FloatButton
+            type="primary"
+            onClick={!isSaving ? () => save(data) : () => {}}
+            shape="square"
+            icon={!isSaving ? <SaveFilled /> : <SaveOutlined />}
+            tooltip="Save"
+          />
+        )}
+
         <Filters
           selection={selection}
           activeAttribute={activeAttribute}
