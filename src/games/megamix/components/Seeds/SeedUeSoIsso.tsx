@@ -48,7 +48,7 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
                 <Translate pt="fala aí" en="Answer this" />
               </div>
               <div className="ff-phone__message">
-                <Translate pt="Diga uma palavra relacionada à..." en="Tem a single word related to..." />
+                <Translate pt="Diga uma palavra relacionada à..." en="Say a single word related to..." />
               </div>
               <div className="ff-phone__timestamp">
                 <Translate pt="Recebido" en="Received" /> {now}

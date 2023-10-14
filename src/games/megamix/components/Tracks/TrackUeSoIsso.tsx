@@ -36,12 +36,14 @@ export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: T
           <Translate
             pt={
               <>
-                Jogando <strong>Ué, Só Isso</strong>, os outros jogadores deram as seguintes dicas:
+                Jogando <strong>Ué, Só Isso</strong>, você recebeu as seguintes pistas que estão de alguma
+                forma relacionadas à palavra secreta:
               </>
             }
             en={
               <>
-                Playing <strong>Ué, Só Isso</strong>, the other players gave the following clues:
+                Playing the game <strong>That's it</strong>, you received the following clues that are somehow
+                related to the secret word:
               </>
             }
           />
@@ -54,10 +56,7 @@ export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: T
         </Space>
 
         <Instruction contained>
-          <Translate
-            pt="Qual você acha que é a resposta correta?"
-            en="Which one do you think is the correct answer?"
-          />
+          <Translate pt="Qual você acha que é a palavra secreta?" en="Which one is the secret word?" />
         </Instruction>
 
         <Space className="space-container">
