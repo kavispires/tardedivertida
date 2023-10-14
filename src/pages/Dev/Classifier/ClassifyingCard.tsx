@@ -2,6 +2,7 @@ import { Card, Space } from 'antd';
 import { Loading } from 'components/loaders';
 import { useEffect } from 'react';
 
+import { AttributeLevelRadioGroup } from './AttributeLevelRadioGroup';
 import { useClassifier } from './ClassifierContext';
 import { ATTRIBUTES } from './constants';
 import { Controls } from './Controls';
@@ -12,11 +13,12 @@ import { Search } from './Search';
 import { Verifier } from './Verifier';
 
 import type { Attribute, Weight } from './types';
-import { AttributeLevelRadioGroup } from './AttributeLevelRadioGroup';
+import { useQueryParams } from 'hooks/useQueryParams';
 
 export function ClassifyingCard() {
   const { data, save, isSaving, itemUtils, isDirty } = useClassifier();
   const { itemId, previousItem, nextItem, itemNumber, goTo, setItemId } = useItem(itemUtils.latestId);
+  const qp = useQueryParams();
 
   const current = data[itemId];
 
@@ -25,6 +27,14 @@ export function ClassifyingCard() {
       itemUtils.create(itemId);
     }
   }, [current]); // eslint-disable-line
+
+  useEffect(() => {
+    console.log('reading');
+    if (qp.queryParams.item) {
+      console.log('redirect');
+      setItemId(qp.queryParams.item);
+    }
+  }, [qp.queryParams.item]); // eslint-disable-line
 
   const updateNameEN = (e: React.ChangeEvent<HTMLInputElement>) => {
     itemUtils.updateNameEN(itemId, e.target.value.toLowerCase());
@@ -78,11 +88,15 @@ export function ClassifyingCard() {
       />
 
       <Card
-        title={`Classifying ${itemId} - ${current.name.en} - (${countNonZeroAttributes(current)}/30)`}
+        title={
+          <>
+            Classifying {itemId} - {current.name.en} - ({countNonZeroAttributes(current)}/30)
+          </>
+        }
         extra={<Search setItemId={setItemId} data={data} />}
       >
         <Space className="classifier__grid">
-          {currentItemComponent}
+          <div>{currentItemComponent}</div>
 
           <Space className="classifier__attributes" wrap>
             {Object.values(ATTRIBUTES).map((entry) => {
@@ -100,7 +114,8 @@ export function ClassifyingCard() {
 
           {currentItemComponent}
         </Space>
-        <Space className="classifier__verifiers">
+        <Space className="classifier__verifiers space-container">
+          <span></span>
           <Verifier label="Has name" value={validation.hasName} />
           <Verifier label="Has no zeroes" value={validation.hasNoZeroes} />
           <Verifier label="Has positive values" value={validation.hasPositive} />
