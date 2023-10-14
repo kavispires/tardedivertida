@@ -1,6 +1,6 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { ATTRIBUTES, TOTAL_ITEMS } from './constants';
+import { ATTRIBUTES, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
 // Type
 import { Item, Sign, ResourceData } from './types';
 // Helpers
@@ -75,7 +75,7 @@ export const getResourceData = async (
     botAlienItemKnowledge = utils.helpers.buildObjectFromList(selectedAlienItems, 'id');
   }
 
-  const signIds = utils.game.shuffle(utils.game.makeArray(TOTAL_ITEMS));
+  const signIds = utils.game.shuffle(utils.game.makeArray(TOTAL_SIGNS));
 
   // Get random list of attributes and signs, then alphabetically order them
   const signs: Sign[] = utils.helpers.orderBy(
