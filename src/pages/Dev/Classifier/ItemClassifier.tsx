@@ -14,6 +14,8 @@ import { ClassifierProvider, useClassifier } from './ClassifierContext';
 
 import './ItemClassifier.scss';
 import { useQueryParams } from 'hooks/useQueryParams';
+import { Scenarios } from './Scenarios';
+import { Priority } from './Priority';
 
 function ItemClassifier() {
   const { isLoading, isError, data } = useClassifier();
@@ -36,6 +38,8 @@ function ItemClassifier() {
     { label: 'Classifier', value: 'default', disabled: view === 'default' },
     { label: 'Grouping', value: 'grouping', disabled: view === 'grouping' },
     { label: 'Stats', value: 'stats', disabled: view === 'stats' },
+    { label: 'Priority', value: 'priority', disabled: view === 'priority' },
+    { label: 'Scenarios', value: 'scenarios', disabled: view === 'scenarios' },
   ];
 
   return (
@@ -48,6 +52,8 @@ function ItemClassifier() {
       {view === 'default' && <ClassifyingCard />}
       {view === 'grouping' && <Grouping />}
       {view === 'stats' && <StatsCard />}
+      {view === 'priority' && <Priority />}
+      {view === 'scenarios' && <Scenarios />}
     </div>
   );
 }

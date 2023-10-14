@@ -1,3 +1,6 @@
+import { orderBy } from 'lodash';
+import { Attribute, SignKey } from './types';
+
 export const ATTRIBUTES = {
   alive: { id: 'alive', name: { en: 'Alive', pt: 'Vivo' } },
   beautiful: { id: 'beautiful', name: { en: 'Beautiful', pt: 'Bonito' } },
@@ -36,3 +39,27 @@ export const ATTRIBUTES = {
 
 export const FIRST_ID = '1';
 export const LAST_ID = '450';
+
+export const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
+
+export const ATTRIBUTE_SIGN_DICT = SORTED_ATTRIBUTES.reduce(
+  (acc: Record<string, SignKey>, attribute, index) => {
+    acc[attribute.id] = String(index);
+    return acc;
+  },
+  {}
+);
+
+export const SIGN_ATTRIBUTE_DICT = SORTED_ATTRIBUTES.reduce(
+  (acc: Record<string, Attribute>, attribute, index) => {
+    acc[index] = attribute.id as Attribute;
+    return acc;
+  },
+  {}
+);
+
+export const SIGNS: Sign[] = SORTED_ATTRIBUTES.map((attribute, index) => ({
+  key: attribute.id,
+  attribute: attribute.name,
+  signId: String(index),
+}));

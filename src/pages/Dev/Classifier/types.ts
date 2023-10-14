@@ -6,6 +6,8 @@ export type Weight = -5 | -3 | -1 | 0 | 1 | 3 | 5;
 
 export type ItemId = string;
 
+export type SignKey = string;
+
 export type LegacyAlienItem = {
   id: ItemId;
   name: string;
@@ -23,3 +25,16 @@ export type AlienItem = {
 export type LegacyAlienItemDict = Record<ItemId, LegacyAlienItem>;
 
 export type AlienItemDict = Record<ItemId, AlienItem>;
+
+/**
+ * Previously given sign with respective items
+ */
+export type AlienSignKnowledge = Record<SignKey, ItemId[]>;
+
+export type InquiryScenario = {
+  description: string;
+  inquiry: ItemId[];
+  attributes: Attribute[];
+  knownAttributes: SignKey[];
+  expected: Attribute;
+};

@@ -29,6 +29,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    justify-content: center;
   }
 
   &__entry {
@@ -40,9 +41,9 @@
 
   &__verifiers {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: get-unit(2);
-    margin: get-unit(3 0);
+    margin: get-unit(3 auto);
 
     @include sm {
       grid-template-columns: repeat(2, 1fr);
@@ -82,4 +83,22 @@
 .quick-edit-modal {
   display: grid;
   grid-template-columns: auto auto;
+}
+
+.sign-attribute {
+  display: block;
+  max-width: 55px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.priority-attributes {
+  display: grid;
+  grid-template-columns: repeat(10, 65px);
+}
+
+.sign {
+  display: grid;
+  place-items: center;
 }
