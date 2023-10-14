@@ -38,7 +38,9 @@ export const PLAYER_COUNTS = {
 
 export const MAX_ROUNDS = 12;
 
-export const TOTAL_ITEMS = 25;
+export const TOTAL_ITEMS = 450;
+
+export const TOTAL_SIGNS = 32;
 
 /**
  * The number of items to be selected for each player count
@@ -92,7 +94,7 @@ export const ATTRIBUTES = {
   flat: { id: 'flat', name: { en: 'Flat', pt: 'Plano' } }, // New
   flight: { id: 'flight', name: { en: 'Flight', pt: 'Vôo' } },
   food: { id: 'food', name: { en: 'Food', pt: 'Comida' } },
-  hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
+  // hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
   heavy: { id: 'heavy', name: { en: 'Heavy', pt: 'Pesado' } },
   human: { id: 'human', name: { en: 'Human', pt: 'Humano' } },
   knowledge: { id: 'knowledge', name: { en: 'Knowledge', pt: 'Conhecimento' } },

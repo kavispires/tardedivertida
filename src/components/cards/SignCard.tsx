@@ -2,9 +2,9 @@ import clsx from 'clsx';
 // Images
 import signs from 'assets/images/alien-signs.svg';
 // Sass
-import './GlyphCard.scss';
+import './SignCard.scss';
 
-type GlyphCardProps = {
+type SignCardProps = {
   /**
    * The id of the sign
    */
@@ -19,7 +19,7 @@ type GlyphCardProps = {
   className?: string;
 };
 
-export function SignCard({ id, width = 50, className = '' }: GlyphCardProps) {
+export function SignCard({ id, width = 50, className = '' }: SignCardProps) {
   return (
     <div className={clsx('sign-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
       <svg viewBox="0 0 512 512" style={{ width: `${width - 12}px`, height: `${width - 12}px` }}>
