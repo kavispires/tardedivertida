@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.9cd730a5.css",
-    "main.js": "/tardedivertida/static/js/main.2e63632a.js",
+    "main.css": "/tardedivertida/static/css/main.f62865e5.css",
+    "main.js": "/tardedivertida/static/js/main.cded16ec.js",
     "page-me.css": "/tardedivertida/static/css/page-me.70bbf67e.chunk.css",
     "page-me.js": "/tardedivertida/static/js/page-me.f604be33.chunk.js",
     "page-users.css": "/tardedivertida/static/css/page-users.70bbf67e.chunk.css",
     "page-users.js": "/tardedivertida/static/js/page-users.d81dde2f.chunk.js",
     "page-hub.css": "/tardedivertida/static/css/page-hub.d0df80bb.chunk.css",
     "page-hub.js": "/tardedivertida/static/js/page-hub.62f9f693.chunk.js",
-    "page-game.js": "/tardedivertida/static/js/page-game.9bf5f694.chunk.js",
+    "page-game.js": "/tardedivertida/static/js/page-game.f38b1b41.chunk.js",
     "page-showcase.css": "/tardedivertida/static/css/page-showcase.d0df80bb.chunk.css",
     "page-showcase.js": "/tardedivertida/static/js/page-showcase.856df9ed.chunk.js",
     "page-test-area.css": "/tardedivertida/static/css/page-test-area.4cf6613f.chunk.css",
@@ -22,7 +22,7 @@
     "page-dev-resources.js": "/tardedivertida/static/js/page-dev-resources.253222a8.chunk.js",
     "page-dev-playground.js": "/tardedivertida/static/js/page-dev-playground.42078e57.chunk.js",
     "page-dev-classifier.css": "/tardedivertida/static/css/page-dev-classifier.8ef11498.chunk.css",
-    "page-dev-classifier.js": "/tardedivertida/static/js/page-dev-classifier.c7d9f64f.chunk.js",
+    "page-dev-classifier.js": "/tardedivertida/static/js/page-dev-classifier.bd9020ae.chunk.js",
     "static/js/787.77c0f794.chunk.js": "/tardedivertida/static/js/787.77c0f794.chunk.js",
     "adedanhx.css": "/tardedivertida/static/css/adedanhx.8228ed96.chunk.css",
     "adedanhx.js": "/tardedivertida/static/js/adedanhx.a821a3af.chunk.js",
@@ -182,15 +182,15 @@
     "static/media/round-title-en.svg": "/tardedivertida/static/media/round-title-en.2ad07e1f265a85634ad7940a33f96552.svg",
     "static/media/round-title-pt.svg": "/tardedivertida/static/media/round-title-pt.2e3f9c1deb85d58d118aa6e3dfa7af23.svg",
     "index.html": "/tardedivertida/index.html",
-    "main.9cd730a5.css.map": "/tardedivertida/static/css/main.9cd730a5.css.map",
-    "main.2e63632a.js.map": "/tardedivertida/static/js/main.2e63632a.js.map",
+    "main.f62865e5.css.map": "/tardedivertida/static/css/main.f62865e5.css.map",
+    "main.cded16ec.js.map": "/tardedivertida/static/js/main.cded16ec.js.map",
     "page-me.70bbf67e.chunk.css.map": "/tardedivertida/static/css/page-me.70bbf67e.chunk.css.map",
     "page-me.f604be33.chunk.js.map": "/tardedivertida/static/js/page-me.f604be33.chunk.js.map",
     "page-users.70bbf67e.chunk.css.map": "/tardedivertida/static/css/page-users.70bbf67e.chunk.css.map",
     "page-users.d81dde2f.chunk.js.map": "/tardedivertida/static/js/page-users.d81dde2f.chunk.js.map",
     "page-hub.d0df80bb.chunk.css.map": "/tardedivertida/static/css/page-hub.d0df80bb.chunk.css.map",
     "page-hub.62f9f693.chunk.js.map": "/tardedivertida/static/js/page-hub.62f9f693.chunk.js.map",
-    "page-game.9bf5f694.chunk.js.map": "/tardedivertida/static/js/page-game.9bf5f694.chunk.js.map",
+    "page-game.f38b1b41.chunk.js.map": "/tardedivertida/static/js/page-game.f38b1b41.chunk.js.map",
     "page-showcase.d0df80bb.chunk.css.map": "/tardedivertida/static/css/page-showcase.d0df80bb.chunk.css.map",
     "page-showcase.856df9ed.chunk.js.map": "/tardedivertida/static/js/page-showcase.856df9ed.chunk.js.map",
     "page-test-area.4cf6613f.chunk.css.map": "/tardedivertida/static/css/page-test-area.4cf6613f.chunk.css.map",
@@ -204,7 +204,7 @@
     "page-dev-resources.253222a8.chunk.js.map": "/tardedivertida/static/js/page-dev-resources.253222a8.chunk.js.map",
     "page-dev-playground.42078e57.chunk.js.map": "/tardedivertida/static/js/page-dev-playground.42078e57.chunk.js.map",
     "page-dev-classifier.8ef11498.chunk.css.map": "/tardedivertida/static/css/page-dev-classifier.8ef11498.chunk.css.map",
-    "page-dev-classifier.c7d9f64f.chunk.js.map": "/tardedivertida/static/js/page-dev-classifier.c7d9f64f.chunk.js.map",
+    "page-dev-classifier.bd9020ae.chunk.js.map": "/tardedivertida/static/js/page-dev-classifier.bd9020ae.chunk.js.map",
     "787.77c0f794.chunk.js.map": "/tardedivertida/static/js/787.77c0f794.chunk.js.map",
     "adedanhx.8228ed96.chunk.css.map": "/tardedivertida/static/css/adedanhx.8228ed96.chunk.css.map",
     "adedanhx.a821a3af.chunk.js.map": "/tardedivertida/static/js/adedanhx.a821a3af.chunk.js.map",
@@ -345,7 +345,7 @@
     "4565.821343f2.chunk.js.map": "/tardedivertida/static/js/4565.821343f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9cd730a5.css",
-    "static/js/main.2e63632a.js"
+    "static/css/main.f62865e5.css",
+    "static/js/main.cded16ec.js"
   ]
 }
