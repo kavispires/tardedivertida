@@ -130,10 +130,10 @@ export function useAlienItemsDocument(): UseAlienItemDocumentReturnValue {
           item.attributes.soft = softVal;
         }
         if (!item.attributes.solid) {
-          item.attributes.solid = 0;
+          item.attributes.solid = 1;
         }
         if (!item.attributes.singular) {
-          item.attributes.singular = 0;
+          item.attributes.singular = 1;
         }
 
         delete item.attributes.hard;

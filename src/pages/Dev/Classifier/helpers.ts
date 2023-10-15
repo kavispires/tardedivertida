@@ -163,6 +163,10 @@ export function checkCriteria(item: AlienItem, attribute: Attribute, criteria: s
     return item.attributes[attribute] === -5;
   }
 
+  if (criteria === '0') {
+    return item.attributes[attribute] === 0;
+  }
+
   return true;
 }
 

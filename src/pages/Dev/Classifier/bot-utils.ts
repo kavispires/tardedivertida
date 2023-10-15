@@ -109,10 +109,55 @@ export const determineAttributePriorityResponse = (
   // Calculate total weight of attributes in current inquiry
   const totalWeights = calculateTotalWeights(currentInquiry, botAlienItemKnowledge);
 
+  const PRIORITY_ORDER: Attribute[] = [
+    'food',
+    'weapon',
+    'plant',
+    'valuable',
+    'liquid',
+    'clothes',
+    'beautiful',
+    'sharp',
+    'human',
+    'flight',
+    'alive',
+    'power',
+    'warm',
+    'sound',
+    'machine',
+    'knowledge',
+    'bright',
+    'round',
+    'danger',
+    'defense',
+    'fast',
+    'tool',
+    'long',
+    'metal',
+    'odor',
+    'old',
+    'flat',
+    'soft',
+    'singular',
+    'heavy',
+    'big',
+    'solid',
+  ];
+
   //
   const sortedAttributes = Object.entries(totalWeights)
     // Sort counts by total weight
-    .sort(([, weightA], [, weightB]) => weightB - weightA)
+    // TODO: account for attribute priority TBD
+    .sort(([attributeA, weightA], [attributeB, weightB]) => {
+      if (weightA === weightB) {
+        const indexA = PRIORITY_ORDER.indexOf(attributeA as Attribute);
+        const indexB = PRIORITY_ORDER.indexOf(attributeB as Attribute);
+
+        return indexA - indexB;
+      }
+
+      return weightB - weightA;
+    })
     // Remove any attribute that could be negative for any item
     .filter(([attribute]) => {
       return currentInquiry.every(

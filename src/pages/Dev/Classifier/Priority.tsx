@@ -6,12 +6,13 @@ import { useClassifier } from './ClassifierContext';
 
 import type { AlienItem } from './types';
 import { Sign } from './Sign';
-import { useNavigate } from 'react-router-dom';
+
 import { DualTranslate, LanguageSwitch } from 'components/language';
+import { useQueryParams } from 'hooks/useQueryParams';
 
 export function Priority() {
   const { data } = useClassifier();
-  const navigate = useNavigate();
+  const qp = useQueryParams();
 
   const columns: TableColumnsType<AlienItem> = [
     {
@@ -19,7 +20,13 @@ export function Priority() {
       dataIndex: 'id',
       key: 'id',
       render: (id) => (
-        <Button shape="round" onClick={() => navigate(`dev/classifier?view=default&item=${id}`)}>
+        <Button
+          shape="round"
+          onClick={() => {
+            qp.add('item', id);
+            qp.add('view', 'default');
+          }}
+        >
           {id}
         </Button>
       ),
@@ -45,7 +52,7 @@ export function Priority() {
         return (
           <Space size="small" className="priority-attributes">
             {attributePriority.map((attributeId) => (
-              <Sign attribute={attributeId} key={attributeId} />
+              <Sign attribute={attributeId} key={attributeId} value={item.attributes[attributeId]} />
             ))}
           </Space>
         );
