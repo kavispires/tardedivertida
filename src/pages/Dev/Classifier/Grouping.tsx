@@ -203,6 +203,7 @@ function Filters({
           <Select.Option value="5">5</Select.Option>
           <Select.Option value="3">3</Select.Option>
           <Select.Option value="1">1</Select.Option>
+          <Select.Option value="0">Zeroes</Select.Option>
           <Select.Option value="-1">-1</Select.Option>
           <Select.Option value="-3">3</Select.Option>
           <Select.Option value="-5">-5</Select.Option>
