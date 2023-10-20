@@ -8,7 +8,6 @@ import utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import * as dataUtils from '../collections';
-import { modifySuspectIdsByOptions } from './helpers';
 
 /**
  * Get question resource based on the game's language
@@ -44,7 +43,7 @@ export const getQuestionsAndSuspects = async (
 
   return {
     allCards: availableCards,
-    allSuspects: modifySuspectIdsByOptions(Object.values(allSuspects), options),
+    allSuspects: utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects), options),
   };
 };
 

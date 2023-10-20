@@ -1,15 +1,6 @@
 import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
-export type TestemunhaOcularOptions = {
-  /**
-   * Use AI deck or not
-   */
-  aiDeck?: boolean;
-  /**
-   * Use alternative AI versions of the cartoon or ai deck
-   */
-  alternativeVersion?: boolean;
-};
+export type TestemunhaOcularOptions = SuspectCardsOptions;
 
 export type SuspectId = CardId;
 
