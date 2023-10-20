@@ -1,4 +1,4 @@
-import { Badge, Button, Card, FloatButton, Modal, Select, Space, Tag, Typography } from 'antd';
+import { Badge, Button, Card, FloatButton, Modal, Popconfirm, Select, Space, Tag, Typography } from 'antd';
 import clsx from 'clsx';
 import { ItemCard } from 'components/cards/ItemCard';
 import { get, orderBy } from 'lodash';
@@ -46,6 +46,14 @@ export function Grouping() {
     setItemId(id);
   };
 
+  const markAllAsMinusThree = () => {
+    itemsList.forEach((item) => {
+      if (show === 'selected' && selection[item.id]) {
+        itemUtils.updateAttributeValue(item.id, activeAttribute, -3);
+      }
+    });
+  };
+
   const activeItem = data[itemId];
 
   return (
@@ -84,6 +92,13 @@ export function Grouping() {
           show={show}
           setShow={setShow}
         />
+        {criteria === '0' && show === 'selected' && (
+          <Popconfirm title="Are you sure?" onConfirm={markAllAsMinusThree}>
+            <Button size="small" type="primary">
+              Mark all as -3
+            </Button>
+          </Popconfirm>
+        )}
 
         <Space wrap>
           {itemsList.map((item) => {
@@ -205,7 +220,7 @@ function Filters({
           <Select.Option value="1">1</Select.Option>
           <Select.Option value="0">Zeroes</Select.Option>
           <Select.Option value="-1">-1</Select.Option>
-          <Select.Option value="-3">3</Select.Option>
+          <Select.Option value="-3">-3</Select.Option>
           <Select.Option value="-5">-5</Select.Option>
           <Select.Option value="<0>">Negative</Select.Option>
           <Select.Option value="<1>">Very Negative</Select.Option>

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "3.0.23",
+  "version": "3.0.24",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -58,6 +58,13 @@
     "en": true
   },
   "options": [
+    {
+      "key": "nsfw",
+      "label": "NSFW Items",
+      "off": "No",
+      "on": "Yes",
+      "description": "Allow NSFW items"
+    },
     {
       "key": "botAlien",
       "label": "Alien Bot",
