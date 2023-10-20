@@ -1,28 +1,7 @@
 import { DUMMY_ID, TA_NA_CARA_PHASES } from './constants';
-import { CharacterFace, TaNaCaraOptions, TaNaCaraState, TaNaCaraStore } from './types';
+import { CharacterFace, TaNaCaraState, TaNaCaraStore } from './types';
 // Helpers
 import utils from '../../utils';
-
-export const modifySuspectIdsByOptions = (
-  suspects: SuspectCard[],
-  options: TaNaCaraOptions
-): SuspectCard[] => {
-  if (!options.aiDeck && !options.alternativeVersion) {
-    return suspects;
-  }
-
-  let deckType = '';
-  if (options.alternativeVersion) {
-    deckType = options.aiDeck ? 'alt' : 'ct';
-  } else {
-    deckType = 'ai';
-  }
-
-  return suspects.map((suspect) => ({
-    ...suspect,
-    id: `us-${deckType}-${suspect.id.split('-')[1]}`,
-  }));
-};
 
 /**
  * Determine the next phase based on the current one
