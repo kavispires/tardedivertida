@@ -106,6 +106,41 @@ export const getItems = (playerCount: number) => {
  */
 export const checkIsBot = (store: FirebaseStoreData) => Boolean(store?.options?.botAlien);
 
+const PRIORITY_ORDER = [
+  'food',
+  'weapon',
+  'plant',
+  'valuable',
+  'liquid',
+  'clothes',
+  'beautiful',
+  'sharp',
+  'human',
+  'flight',
+  'alive',
+  'power',
+  'warm',
+  'sound',
+  'machine',
+  'knowledge',
+  'bright',
+  'round',
+  'danger',
+  'defense',
+  'fast',
+  'tool',
+  'long',
+  'metal',
+  'odor',
+  'old',
+  'flat',
+  'soft',
+  'singular',
+  'heavy',
+  'big',
+  'solid',
+];
+
 /**
  * Generates the Alien response when a player asks about a set of items
  * @param currentInquiry
@@ -123,10 +158,19 @@ export const determineAlienResponse = (
   //
   const sortedAttributes = Object.entries(totalWeights)
     // Sort counts by total weight
-    .sort(([, weightA], [, weightB]) => weightB - weightA)
+    .sort(([attributeA, weightA], [attributeB, weightB]) => {
+      if (weightA === weightB) {
+        const indexA = PRIORITY_ORDER.indexOf(attributeA);
+        const indexB = PRIORITY_ORDER.indexOf(attributeB);
+
+        return indexA - indexB;
+      }
+
+      return weightB - weightA;
+    })
     // Remove any attribute that could be negative for any item
     .filter(([attribute]) => {
-      return currentInquiry.every((itemId) => store.botAlienItemKnowledge[itemId].attributes[attribute] > 0);
+      return currentInquiry.every((itemId) => store.botAlienItemKnowledge[itemId].attributes[attribute] > 1);
     })
     // Get attribute name only
     .map(([attribute]) => attribute);
@@ -165,7 +209,7 @@ export const determineAlienResponse = (
     .sort(([, weightA], [, weightB]) => weightA - weightB)
     // Remove any attribute that could be negative for any item
     .filter(([attribute]) => {
-      return currentInquiry.every((itemId) => store.botAlienItemKnowledge[itemId].attributes[attribute] < 0);
+      return currentInquiry.every((itemId) => store.botAlienItemKnowledge[itemId].attributes[attribute] > 1);
     })
     // Get attribute name only
     .map(([attribute]) => attribute);

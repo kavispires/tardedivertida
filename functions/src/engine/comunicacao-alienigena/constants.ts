@@ -38,9 +38,11 @@ export const PLAYER_COUNTS = {
 
 export const MAX_ROUNDS = 12;
 
-export const TOTAL_ITEMS = 450;
+export const TOTAL_ITEMS = 25;
 
-export const TOTAL_SIGNS = 32;
+export const AVAILABLE_SIGNS = 32;
+
+export const TOTAL_SIGNS = 25;
 
 /**
  * The number of items to be selected for each player count
@@ -94,7 +96,6 @@ export const ATTRIBUTES = {
   flat: { id: 'flat', name: { en: 'Flat', pt: 'Plano' } }, // New
   flight: { id: 'flight', name: { en: 'Flight', pt: 'Vôo' } },
   food: { id: 'food', name: { en: 'Food', pt: 'Comida' } },
-  // hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
   heavy: { id: 'heavy', name: { en: 'Heavy', pt: 'Pesado' } },
   human: { id: 'human', name: { en: 'Human', pt: 'Humano' } },
   knowledge: { id: 'knowledge', name: { en: 'Knowledge', pt: 'Conhecimento' } },
@@ -108,11 +109,15 @@ export const ATTRIBUTES = {
   power: { id: 'power', name: { en: 'Power', pt: 'Força' } },
   round: { id: 'round', name: { en: 'Round', pt: 'Redondo' } },
   sharp: { id: 'sharp', name: { en: 'Sharp', pt: 'Afiado' } },
+  singular: { id: 'singular', name: { en: 'Singular', pt: 'Singular' } }, // Newer
+  soft: { id: 'soft', name: { en: 'Soft', pt: 'Mole' } }, // Newer
+  solid: { id: 'solid', name: { en: 'Solid', pt: 'Sólido' } }, // Newer
   sound: { id: 'sound', name: { en: 'Sound', pt: 'Som' } }, // New
   tool: { id: 'tool', name: { en: 'Tool', pt: 'Ferramenta' } },
   valuable: { id: 'valuable', name: { en: 'Valuable', pt: 'Valioso' } },
   warm: { id: 'warm', name: { en: 'Warm', pt: 'Quente' } },
   weapon: { id: 'weapon', name: { en: 'Weapon', pt: 'Arma' } },
+  // hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
 };
 
 export const ITEM_TYPES = {

@@ -489,10 +489,21 @@ export const getData = async (
     };
     const selectedAttributes = utils.game.getRandomItems(Object.values(attributes), 2);
 
+    const allAlienItemsObj: Record<CardId, AlienItem> = await resourceUtils.fetchResource(
+      TDR_RESOURCES.ALIEN_ITEMS
+    );
+
+    const selectedAlienItems: AlienItem[] = utils.game.getRandomItems(
+      allowNSFW
+        ? Object.values(allAlienItemsObj)
+        : Object.values(allAlienItemsObj).filter((item) => !item.nsfw),
+      5
+    );
+
     customTracks.push({
       game: GAME_NAMES.COMUNICACAO_ALIENIGENA,
       data: {
-        items: utils.game.getRandomItems(utils.game.makeArray(250, 1), 5),
+        items: selectedAlienItems,
         attributes: selectedAttributes,
         signs: utils.game.getRandomItems(utils.game.makeArray(25, 0), 2),
       },

@@ -1,6 +1,13 @@
 import { COMUNICACAO_ALIENIGENA_ACHIEVEMENTS, COMUNICACAO_ALIENIGENA_ACTIONS, ITEM_TYPES } from './constants';
 
 export interface ComunicacaoAlienigenaOptions {
+  /**
+   * Possibly include nsfw items
+   */
+  nsfw?: boolean;
+  /**
+   * Enables alien bot
+   */
   botAlien?: boolean;
 }
 

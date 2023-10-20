@@ -1,6 +1,6 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { ATTRIBUTES, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
+import { ATTRIBUTES, AVAILABLE_SIGNS, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
 // Type
 import { Item, Sign, ResourceData } from './types';
 // Helpers
@@ -19,7 +19,8 @@ import { calculateAttributeUsage, getItems } from './helpers';
 export const getResourceData = async (
   language: Language,
   playerCount: number,
-  botAlien: boolean
+  botAlien: boolean,
+  allowNSFW: boolean
 ): Promise<ResourceData> => {
   const allAlienItemsObj: Record<CardId, AlienItem> = await resourceUtils.fetchResource(
     TDR_RESOURCES.ALIEN_ITEMS
@@ -33,15 +34,15 @@ export const getResourceData = async (
 
   // Filter out used items
   let availableAlienItems: Record<string, AlienItem> = utils.game.filterOutByIds(allAlienItemsObj, usedItems);
-  // TODO: Revert
-  availableAlienItems = Array(TOTAL_ITEMS)
-    .fill(0)
-    .reduce((acc, _, index) => {
-      const id = String(index + 1);
-      const alienItem = allAlienItemsObj[id];
-      acc[id] = alienItem;
-      return acc;
-    }, {});
+  // // TODO: Revert
+  // availableAlienItems = Array(TOTAL_ITEMS)
+  //   .fill(0)
+  //   .reduce((acc, _, index) => {
+  //     const id = String(index + 1);
+  //     const alienItem = allAlienItemsObj[id];
+  //     acc[id] = alienItem;
+  //     return acc;
+  //   }, {});
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableAlienItems).length < TOTAL_ITEMS) {
@@ -53,7 +54,9 @@ export const getResourceData = async (
 
   // Get the 25 needed items randomly
   const selectedAlienItems: AlienItem[] = utils.game.getRandomItems(
-    Object.values(availableAlienItems),
+    allowNSFW
+      ? Object.values(availableAlienItems)
+      : Object.values(availableAlienItems).filter((item) => !item.nsfw),
     TOTAL_ITEMS
   );
 
@@ -75,7 +78,7 @@ export const getResourceData = async (
     botAlienItemKnowledge = utils.helpers.buildObjectFromList(selectedAlienItems, 'id');
   }
 
-  const signIds = utils.game.shuffle(utils.game.makeArray(TOTAL_SIGNS));
+  const signIds = utils.game.getRandomItems(utils.game.makeArray(AVAILABLE_SIGNS), TOTAL_SIGNS);
 
   // Get random list of attributes and signs, then alphabetically order them
   const signs: Sign[] = utils.helpers.orderBy(
