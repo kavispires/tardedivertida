@@ -110,3 +110,29 @@ export const getImageCardsDecks = async (
 
   return cards;
 };
+
+export const modifySuspectIdsByOptions = (
+  suspects: SuspectCard[],
+  options: SuspectCardsOptions
+): SuspectCard[] => {
+  // If only official is requested
+  if (options.official && !options.models && !options.wacky && !options.realistic) {
+    return suspects;
+  }
+  let deckType = 'ct';
+
+  if (options.realistic) {
+    deckType = 'ai';
+  }
+  if (options.models) {
+    deckType = 'md';
+  }
+  if (options.wacky) {
+    deckType = 'wc';
+  }
+
+  return suspects.map((suspect) => ({
+    ...suspect,
+    id: `us-${deckType}-${suspect.id.split('-')[1]}`,
+  }));
+};

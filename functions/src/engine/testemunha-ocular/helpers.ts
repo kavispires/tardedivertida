@@ -2,7 +2,6 @@
 import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
-import { TestemunhaOcularOptions } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -89,25 +88,4 @@ export const calculateScore = (
   if (currentRound === 0) return 0;
 
   return currentScore + currentRound * eliminatedSuspectsCount;
-};
-
-export const modifySuspectIdsByOptions = (
-  suspects: SuspectCard[],
-  options: TestemunhaOcularOptions
-): SuspectCard[] => {
-  if (!options.aiDeck && !options.alternativeVersion) {
-    return suspects;
-  }
-
-  let deckType = '';
-  if (options.alternativeVersion) {
-    deckType = options.aiDeck ? 'alt' : 'ct';
-  } else {
-    deckType = 'ai';
-  }
-
-  return suspects.map((suspect) => ({
-    ...suspect,
-    id: `us-${deckType}-${suspect.id.split('-')[1]}`,
-  }));
 };
