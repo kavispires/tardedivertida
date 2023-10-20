@@ -28,6 +28,10 @@
     border-radius: $border-radius;
   }
 
+  &__game-bingo-badge {
+    z-index: 1;
+  }
+
   &__game-bingo-banner {
     border-radius: $border-radius;
     filter: grayscale(100);

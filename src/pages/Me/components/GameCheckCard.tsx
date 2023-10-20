@@ -87,6 +87,9 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
                 games[gameInfo.gameName] ? <IconAvatar icon={<SpeechBubbleAcceptedIcon />} /> : undefined
               }
               size="small"
+              classNames={{
+                indicator: 'me__game-bingo-badge',
+              }}
             >
               <GameBanner
                 title={gameInfo.title}
