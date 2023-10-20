@@ -1,15 +1,6 @@
 import { TA_NA_CARA_ACTIONS } from './constants';
 
-export type TaNaCaraOptions = {
-  /**
-   * Use AI deck or not
-   */
-  aiDeck?: boolean;
-  /**
-   * Use alternative AI versions of the cartoon or ai deck
-   */
-  alternativeVersion?: boolean;
-};
+export type TaNaCaraOptions = SuspectCardsOptions;
 
 export interface CharacterFace extends SuspectCard {
   revealed: boolean;
