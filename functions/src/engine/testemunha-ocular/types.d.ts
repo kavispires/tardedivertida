@@ -1,6 +1,11 @@
 import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
-export type TestemunhaOcularOptions = SuspectCardsOptions;
+export type TestemunhaOcularOptions = {
+  /**
+   * Allow nsfw traits
+   */
+  nsfw?: boolean;
+} & SuspectCardsOptions;
 
 export type SuspectId = CardId;
 
@@ -11,9 +16,7 @@ export interface TestemunhaOcularEntry {
 }
 
 export interface ResourceData {
-  allCards: {
-    [key: string]: TestimonyQuestionCard;
-  };
+  allCards: TestimonyQuestionCard[];
   allSuspects: SuspectCard[];
 }
 
