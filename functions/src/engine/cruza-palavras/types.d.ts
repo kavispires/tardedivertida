@@ -21,7 +21,7 @@ export type ResourceData = {
 
 export type Deck = TextCard[];
 
-export type PastClues = Record<CardId, string[]>;
+export type PastClues = Collection<string[]>;
 
 export type ClueEntry = {
   playerId: PlayerId;

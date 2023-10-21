@@ -70,7 +70,7 @@ export const buildRanking = (players: Players, currentRound: number) => {
 type GalleryEntry = {
   playerId: PlayerId;
   characterId: CardId;
-  playersSay: Record<CardId, PlayerId[]>;
+  playersSay: Collection<PlayerId[]>;
   playersPoints: Record<PlayerId, number>;
 };
 

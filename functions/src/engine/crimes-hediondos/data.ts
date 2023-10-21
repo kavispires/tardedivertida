@@ -11,10 +11,10 @@ import * as resourceUtils from '../resource';
  */
 export const getData = async (): Promise<ResourceData> => {
   // Get weapon cards
-  const allWeapons = await resourceUtils.fetchTDIData('dmhk/wp');
+  const allWeapons: Collection<CrimesHediondosCard> = await resourceUtils.fetchTDIData('dmhk/wp');
 
   // Get evidence cards
-  const allEvidence = await resourceUtils.fetchTDIData('dmhk/ev');
+  const allEvidence: Collection<CrimesHediondosCard> = await resourceUtils.fetchTDIData('dmhk/ev');
 
   // Get scene tiles
   const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_TILES);

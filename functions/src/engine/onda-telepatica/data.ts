@@ -17,7 +17,7 @@ import utils from '../../utils';
 export const getCategories = async (language: string): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.OPPOSING_IDEAS}-${language}`;
   // Get full deck
-  const allCategories = await resourceUtils.fetchResource(resourceName);
+  const allCategories: Collection<OpposingIdeaCard> = await resourceUtils.fetchResource(resourceName);
   // Get used deck
   const usedCategories = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 

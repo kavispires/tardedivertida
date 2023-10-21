@@ -5,8 +5,8 @@ export type VamosAoCinemaOptions = {
 };
 
 export interface ResourceData {
-  movies: Record<CardId, MovieCard>;
-  reviews: Record<CardId, MovieReviewCard>;
+  movies: Collection<MovieCard>;
+  reviews: Collection<MovieReviewCard>;
 }
 
 export type UsedCards = (MovieCard | MovieReviewCard)[];

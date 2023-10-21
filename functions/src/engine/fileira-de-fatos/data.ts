@@ -13,7 +13,7 @@ import * as resourceUtils from '../resource';
 export const getScenarios = async (language: string): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.SCENARIOS}-${language}`;
   // Get full deck
-  const allScenarios = await resourceUtils.fetchResource(resourceName);
+  const allScenarios: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
 
   return { scenarios: Object.values(allScenarios) };
 };

@@ -17,7 +17,7 @@ import utils from '../../utils';
  */
 export const getResourceData = async (language: string, playerCount: number): Promise<ResourceData> => {
   // Get full characters deck
-  const charactersResponse: Record<CardId, ContenderCard> = await resourceUtils.fetchResource(
+  const charactersResponse: Collection<ContenderCard> = await resourceUtils.fetchResource(
     TDR_RESOURCES.CONTENDERS
   );
 
@@ -27,7 +27,7 @@ export const getResourceData = async (language: string, playerCount: number): Pr
   // Get only characters that match the language selected
   const languageCharacters = Object.values(charactersResponse)
     .filter((c) => !c.exclusivity || c.exclusivity === language)
-    .reduce((acc: Record<CardId, ContenderCard>, entry) => {
+    .reduce((acc: Collection<ContenderCard>, entry) => {
       acc[entry.id] = entry;
       return acc;
     }, {});
@@ -54,7 +54,7 @@ export const getResourceData = async (language: string, playerCount: number): Pr
  * @param contendersGlyphs
  * @returns
  */
-export const saveData = async (contendersGlyphs: Record<CardId, BooleanDictionary>): Promise<boolean> => {
+export const saveData = async (contendersGlyphs: Collection<BooleanDictionary>): Promise<boolean> => {
   const contenderIds = Object.keys(contendersGlyphs).reduce((acc, id) => {
     acc[id] = true;
     return acc;

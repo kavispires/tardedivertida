@@ -22,7 +22,7 @@ export const getResourceData = async (
   botAlien: boolean,
   allowNSFW: boolean
 ): Promise<ResourceData> => {
-  const allAlienItemsObj: Record<CardId, AlienItem> = await resourceUtils.fetchResource(
+  const allAlienItemsObj: Collection<AlienItem> = await resourceUtils.fetchResource(
     TDR_RESOURCES.ALIEN_ITEMS
   );
 
@@ -50,7 +50,7 @@ export const getResourceData = async (
     availableAlienItems = allAlienItemsObj;
   }
 
-  let botAlienItemKnowledge: Record<CardId, AlienItem> = {};
+  let botAlienItemKnowledge: Collection<AlienItem> = {};
 
   // Get the 25 needed items randomly
   const selectedAlienItems: AlienItem[] = utils.game.getRandomItems(

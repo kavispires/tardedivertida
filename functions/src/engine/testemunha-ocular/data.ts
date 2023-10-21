@@ -20,7 +20,7 @@ export const getQuestionsAndSuspects = async (
 ): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
-  const allCards: Record<CardId, TestimonyQuestionCard> = await resourceUtils.fetchResource(resourceName);
+  const allCards: Collection<TestimonyQuestionCard> = await resourceUtils.fetchResource(resourceName);
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
@@ -54,7 +54,7 @@ export const getQuestionsAndSuspects = async (
 export const saveData = async (pastQuestions: TestemunhaOcularEntry[]) => {
   const usedQuestionsIds: BooleanDictionary = {};
   const usedSuspectsIds: BooleanDictionary = {};
-  const suspectAnswers: Record<CardId, Record<CardId, boolean>> = {};
+  const suspectAnswers: Collection<Collection<boolean>> = {};
 
   pastQuestions.forEach((entry: PlainObject) => {
     usedQuestionsIds[entry.id] = true;
