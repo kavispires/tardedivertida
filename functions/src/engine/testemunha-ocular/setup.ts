@@ -19,7 +19,7 @@ export const prepareSetupPhase = async (additionalData: ResourceData): Promise<S
   const suspects = utils.game.getRandomItems(additionalData.allSuspects, SUSPECT_COUNT);
   const perpetrator = utils.game.getRandomItem(suspects);
 
-  const shuffledAvailableCards = utils.game.shuffle(Object.values(additionalData.allCards));
+  const shuffledAvailableCards = utils.game.shuffle(additionalData.allCards);
 
   // Build deck
   const deck = utils.game.getRandomItems(shuffledAvailableCards, QUESTION_COUNT);
