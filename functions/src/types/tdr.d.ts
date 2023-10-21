@@ -69,6 +69,8 @@ type SpyLocation = {
 type TestimonyQuestionCard = {
   id: CardId;
   question: string;
+  answer: string;
+  nsfw?: boolean;
 };
 
 type ThemeCard = {
@@ -127,4 +129,6 @@ type AlienItem = {
   id: string;
   name: string;
   attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;
+  nsfw?: boolean;
+  categories?: string[];
 };
