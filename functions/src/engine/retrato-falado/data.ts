@@ -20,7 +20,7 @@ export const getMonsterCards = async (): Promise<ResourceData> => {
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MONSTERS, {});
 
   // Filter out used cards
-  const availableMonsters: Record<string, MonsterCard> = utils.game.filterOutByIds(allMonsters, usedCards);
+  const availableMonsters: Collection<MonsterCard> = utils.game.filterOutByIds(allMonsters, usedCards);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableMonsters).length < PLAYER_COUNTS.MAX) {

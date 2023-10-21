@@ -114,7 +114,7 @@ export const prepareCharacterDescriptionPhase = async (
 
   const glyphs = utils.game.shuffle(utils.game.makeArray(TOTAL_GLYPHS, 1));
 
-  const characters: Record<CardId, Character> = {};
+  const characters: Collection<Character> = {};
 
   // Get a character for each player and their glyphs
   utils.players.getListOfPlayers(players).forEach((player, index) => {
@@ -234,7 +234,7 @@ export const prepareResultsPhase = async (
   const ranking = buildRanking(players, state.round.current);
 
   // Achievement: Table Votes
-  const characters: Record<CardId, Character> = state.characters;
+  const characters: Collection<Character> = state.characters;
   const botCharacterIds = Object.values(characters)
     .filter((character) => character.playerId === 'bot')
     .map((character) => character.id);

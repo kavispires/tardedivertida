@@ -489,7 +489,7 @@ export const getData = async (
     };
     const selectedAttributes = utils.game.getRandomItems(Object.values(attributes), 2);
 
-    const allAlienItemsObj: Record<CardId, AlienItem> = await resourceUtils.fetchResource(
+    const allAlienItemsObj: Collection<AlienItem> = await resourceUtils.fetchResource(
       TDR_RESOURCES.ALIEN_ITEMS
     );
 

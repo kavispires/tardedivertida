@@ -24,7 +24,7 @@ export const handleSubmitGlyphs = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  glyphs: Record<CardId, boolean>
+  glyphs: Collection<boolean>
 ) => {
   return await utils.firebase.updatePlayer({
     gameName,

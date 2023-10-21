@@ -40,7 +40,7 @@ export const buildRankingAndOutcome = (
   players: Players,
   targetId: PlayerId,
   points: number,
-  charactersDict: Record<CardId, CharacterFace>
+  charactersDict: Collection<CharacterFace>
 ) => {
   // Gained Points [correct guess, guesses on your character]
   const scores = new utils.players.Scores(players, [0, 0]);
@@ -103,7 +103,7 @@ export const buildRankingAndOutcome = (
 const assignNewCharacterToPlayer = (
   players: Players,
   playerId: PlayerId,
-  charactersDict: Record<CardId, CharacterFace>
+  charactersDict: Collection<CharacterFace>
 ) => {
   // Erase answers
   players[playerId].answers = [];

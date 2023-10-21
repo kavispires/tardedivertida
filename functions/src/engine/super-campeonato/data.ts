@@ -20,7 +20,7 @@ export const getResourceData = async (
 ): Promise<ResourceData> => {
   const challengesResourceName = `${TDR_RESOURCES.CHALLENGES}${isAlternativeDecks ? '-2' : ''}-${language}`;
   // Get full challenges deck
-  const challengesResponse = await resourceUtils.fetchResource(challengesResourceName);
+  const challengesResponse: Collection<TextCard> = await resourceUtils.fetchResource(challengesResourceName);
   // Get used challenges deck
   const usedChallenges = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.CHALLENGES, {});
 
@@ -37,7 +37,7 @@ export const getResourceData = async (
   }
 
   // Get full contenders deck
-  const contendersResponse: Record<CardId, ContenderCard> = await resourceUtils.fetchResource(
+  const contendersResponse: Collection<ContenderCard> = await resourceUtils.fetchResource(
     isAlternativeDecks ? `${TDR_RESOURCES.CONTENDERS}-2` : TDR_RESOURCES.CONTENDERS
   );
   // Get used challenges deck
@@ -46,7 +46,7 @@ export const getResourceData = async (
   // Get only contenders that match the language selected
   const languageContenders = Object.values(contendersResponse)
     .filter((c) => !c.exclusivity || c.exclusivity === language)
-    .reduce((acc: Record<CardId, ContenderCard>, entry) => {
+    .reduce((acc: Collection<ContenderCard>, entry) => {
       acc[entry.id] = entry;
       return acc;
     }, {});

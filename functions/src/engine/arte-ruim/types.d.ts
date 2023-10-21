@@ -24,7 +24,7 @@ export type CardsByLevel = Record<string, ArteRuimCard[]>;
 export type Level5Type = 'pairs' | 'contenders' | 'movies' | 'adjectives';
 
 export type ResourceData = {
-  allCards: Record<CardId, ArteRuimCard>;
+  allCards: Collection<ArteRuimCard>;
   availableCards: CardsByLevel;
   cardsGroups: ArteRuimGroup[];
   specialLevels: {

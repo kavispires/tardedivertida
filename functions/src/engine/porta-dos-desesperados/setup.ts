@@ -200,7 +200,7 @@ export const prepareResolutionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const doorPlayerDict: Record<CardId, PlayerId[]> = {};
+  const doorPlayerDict: Collection<PlayerId[]> = {};
   // Gather all players door choices
   const visitedDoors = utils.players.getListOfPlayers(players, true).reduce((acc: string[], player) => {
     if (player.doorId) {

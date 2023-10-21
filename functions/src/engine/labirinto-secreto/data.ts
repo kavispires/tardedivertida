@@ -18,11 +18,11 @@ import utils from '../../utils';
 export const getData = async (language: Language): Promise<ResourceData> => {
   // Get cards
   const resourceName = `${TDR_RESOURCES.WORDS_TREES}-${language}`;
-  const allWords = await resourceUtils.fetchResource(resourceName);
+  const allWords: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
 
   // Get Adjectives
   const resourceName2 = `${TDR_RESOURCES.ADJECTIVES}-${language}`;
-  const allAdjectives = await resourceUtils.fetchResource(resourceName2);
+  const allAdjectives: Collection<TextCard> = await resourceUtils.fetchResource(resourceName2);
 
   return {
     forestCards: utils.game.getRandomItems(Object.values(allWords), FOREST_HEIGHT * FOREST_WIDTH),

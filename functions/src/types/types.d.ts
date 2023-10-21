@@ -42,6 +42,8 @@ type FirebaseContext = {
   [key: string]: any;
 };
 
+type Collection<T> = Record<CardId, T>;
+
 interface CreateGamePayload {
   gameName: string;
   language: string;

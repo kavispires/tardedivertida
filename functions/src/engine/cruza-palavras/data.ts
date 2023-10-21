@@ -16,7 +16,7 @@ import utils from '../../utils';
 export const getWords = async (language: string, isImageGrid: boolean): Promise<ResourceData> => {
   if (isImageGrid) {
     // Get full contenders deck
-    const contendersResponse: Record<CardId, ContenderCard> = await resourceUtils.fetchResource(
+    const contendersResponse: Collection<ContenderCard> = await resourceUtils.fetchResource(
       TDR_RESOURCES.CONTENDERS
     );
 
