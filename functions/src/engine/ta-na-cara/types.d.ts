@@ -1,6 +1,11 @@
 import { TA_NA_CARA_ACTIONS } from './constants';
 
-export type TaNaCaraOptions = SuspectCardsOptions;
+export type TaNaCaraOptions = {
+  /**
+   * Allow nsfw traits
+   */
+  nsfw?: boolean;
+} & SuspectCardsOptions;
 
 export interface CharacterFace extends SuspectCard {
   revealed: boolean;
