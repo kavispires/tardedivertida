@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { UseQueryResult, useQuery } from 'react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
 
@@ -11,9 +11,12 @@ import { firestore } from 'services/firebase';
  */
 export function useFirestoreDocument(docPath: string, subscribe = false): UseQueryResult {
   const docRef = doc(firestore, docPath);
-  const query = useQuery(docPath, async () => {
-    const snapshot = await getDoc(docRef);
-    return snapshot.data();
+  const query = useQuery({
+    queryKey: ['firestore', 'doc', docPath],
+    queryFn: async () => {
+      const snapshot = await getDoc(docRef);
+      return snapshot.data();
+    },
   });
 
   useEffect(() => {

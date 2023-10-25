@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { COLLECTIONS_FILE_NAMES, markAsLoaded } from './restructure-state';
 import { FIREFOO_COLLECTIONS_KEY } from './restructure-utils';
 import { useEffect } from 'react';
@@ -48,7 +48,7 @@ export function useBackupJson(key: string, enabled: boolean, onSuccess = () => {
   });
 
   const query = useQuery({
-    queryKey: fileName,
+    queryKey: [fileName],
     queryFn: async () => {
       const response = await fetch(`${process.env.PUBLIC_URL}/back-up/${fileName}.json`);
       return response.json();

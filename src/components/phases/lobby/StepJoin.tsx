@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, Button, Divider, Modal, Space } from 'antd';
@@ -20,7 +20,7 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
   const { isAuthenticated } = useCurrentUserContext();
 
   const { isLoading, refetch, isError, error } = useQuery({
-    queryKey: 'sign-in-anon',
+    queryKey: ['sign-in-anon'],
     queryFn: async () => signInAsGuest,
     enabled: false,
     onSuccess: () => setStep(1),

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 // Ant Design Resource
 import { Alert, App, Button, Checkbox, Spin } from 'antd';
 // Hooks
@@ -14,7 +14,7 @@ export function BlurOptions() {
   const baseUrl = useTDBaseUrl('tdi-data');
 
   const { isLoading, isError, data } = useQuery({
-    queryKey: 'credo',
+    queryKey: ['credo'],
     queryFn: async () => {
       const response = await fetch(`${baseUrl}/credo.json`);
       return await response.json();

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 // Ant Design Resources
 import { App, Space, Typography } from 'antd';
 // API & Hooks
@@ -31,7 +31,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
   const [userAvatarId] = useGlobalState('userAvatarId');
 
   const { refetch, isLoading: isLocking } = useQuery({
-    queryKey: 'lock-game',
+    queryKey: ['lock-game'],
     queryFn: async () => {
       setLoader('lock-game', true);
       return await ADMIN_API.lockGame({

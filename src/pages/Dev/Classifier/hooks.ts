@@ -5,7 +5,7 @@ import type { AlienItemDict, LegacyAlienItemDict } from './types';
 import { findLatestId, initialAttributeState } from './helpers';
 import { cloneDeep, merge } from 'lodash';
 import { FIRST_ID } from './constants';
-import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
+import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { App } from 'antd';
 
@@ -84,7 +84,7 @@ export type UseAlienItemDocumentReturnValue = {
 export function useAlienItemsDocument(): UseAlienItemDocumentReturnValue {
   const queryClient = useQueryClient();
   const { notification } = App.useApp();
-  const queryKey = 'data/alienItems';
+  const queryKey = ['data/alienItems'];
   const [data, setData] = useState<AlienItemDict>({});
   const [isDirty, setIsDirty] = useState(false);
 
@@ -96,7 +96,7 @@ export function useAlienItemsDocument(): UseAlienItemDocumentReturnValue {
     data: trData,
     isSuccess: isSuccessTR,
   } = useQuery<LegacyAlienItemDict>({
-    queryKey: 'td/alienItems',
+    queryKey: ['td/alienItems'],
     queryFn: async () => {
       const response = await fetch(`${baseUrl}/alien-items.json`);
       return await response.json();

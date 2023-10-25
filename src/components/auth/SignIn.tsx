@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, App } from 'antd';
 // API
@@ -21,7 +21,7 @@ export function SignIn({ onSuccess }: SignInProps) {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const { isLoading, refetch, isError } = useQuery({
-    queryKey: 'sign-in',
+    queryKey: ['sign-in'],
     queryFn: async () => await signIn(form.getFieldValue('username'), form.getFieldValue('password')),
     enabled: false,
     onSuccess: () => {
@@ -122,7 +122,7 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
   const { translate } = useLanguage();
 
   const { isLoading, refetch, isError } = useQuery({
-    queryKey: 'forgot-password',
+    queryKey: ['forgot-password'],
     queryFn: async () => await resetPassword(form.getFieldValue('username')),
     enabled: false,
     onSuccess: () => {

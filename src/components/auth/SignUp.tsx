@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, FormInstance } from 'antd';
 // API
@@ -18,7 +18,7 @@ export function SignUp({ onSuccess }: SignUpProps) {
   const [form] = Form.useForm();
 
   const { isLoading, refetch, isError } = useQuery({
-    queryKey: 'sign-up',
+    queryKey: ['sign-up'],
     queryFn: async () => await signUp(form.getFieldValue('username'), form.getFieldValue('password')),
     enabled: false,
     onSuccess: () => {
