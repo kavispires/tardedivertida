@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { App, Button, ButtonProps, Popconfirm } from 'antd';
@@ -12,7 +12,7 @@ export function LogoutButton(props: ButtonProps) {
   const { message } = App.useApp();
 
   const { isLoading, refetch } = useQuery({
-    queryKey: 'sign-out',
+    queryKey: ['sign-out'],
     queryFn: async () => await signOut(),
     enabled: false,
     onSuccess: () => {

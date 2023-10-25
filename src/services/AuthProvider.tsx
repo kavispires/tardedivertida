@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useState } from 'react';
 import { auth } from './firebase';
 import type { User } from 'firebase/auth';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useEffectOnce } from 'react-use';
 import { App } from 'antd';
 import { GAME_API } from './adapters';
@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   // Game gameID
   const query = useQuery<any>({
-    queryKey: 'user',
+    queryKey: ['user'],
     queryFn: async () => {
       console.count('Fetching user...');
       return await GAME_API.getUser();

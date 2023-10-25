@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
 
@@ -14,7 +14,7 @@ interface Games {
 
 export function SaveGames() {
   const q = useQuery({
-    queryKey: 'games',
+    queryKey: ['games'],
     queryFn: async () => {
       const response = await fetch(`${process.env.PUBLIC_URL}/back-up/games.json`);
       return response.json();

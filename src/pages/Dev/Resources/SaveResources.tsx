@@ -1,12 +1,11 @@
-import { Button, Space, notification } from 'antd';
-import { useQuery } from 'react-query';
-import { collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { Button, notification } from 'antd';
+import { useQuery } from '@tanstack/react-query';
+import { doc, setDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
 import { useState } from 'react';
-import { Canvas } from 'components/canvas';
 import { wait } from './RestructureUI';
 
-interface Games {
+export interface Games {
   [key: string]: {
     [key: string]: {
       store: PlainObject;
@@ -178,7 +177,7 @@ export function SaveResources() {
   const [ranOnce, setRanOnce] = useState(false);
 
   const q = useQuery({
-    queryKey: 'current-library',
+    queryKey: ['current-library'],
     queryFn: async () => {
       const response = await fetch(`${process.env.PUBLIC_URL}/back-up/dataMonsterDrawings.json`);
       return response.json();
@@ -275,7 +274,7 @@ export function SaveResources() {
 
 type ImageCardsStories = Record<ImageCardId, string[]>;
 
-function mergeImageCardsStoriesEn(current: ImageCardsStories, backup: ImageCardsStories) {
+export function mergeImageCardsStoriesEn(current: ImageCardsStories, backup: ImageCardsStories) {
   Object.entries(backup).forEach(([cardId, words]) => {
     if (current[cardId]) {
       current[cardId] = [...current[cardId], ...words];
@@ -288,7 +287,7 @@ function mergeImageCardsStoriesEn(current: ImageCardsStories, backup: ImageCards
 
 type ContendersGlyphs = Record<CardId, BooleanDictionary>;
 
-function mergeContendersGlyphs(current: ContendersGlyphs, backup: ContendersGlyphs) {
+export function mergeContendersGlyphs(current: ContendersGlyphs, backup: ContendersGlyphs) {
   Object.entries(backup).forEach(([cardId, glyphs]) => {
     if (current[cardId]) {
       current[cardId] = { ...current[cardId], ...glyphs };

@@ -3,7 +3,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { cloneDeep, merge } from 'lodash';
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
+import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { firestore } from 'services/firebase';
 
 import { findLatestId, initialAttributeState } from './helpers';
@@ -52,7 +52,7 @@ type ClassifierProviderProps = {
 export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
   const queryClient = useQueryClient();
   const { notification } = App.useApp();
-  const queryKey = 'data/alienItems';
+  const queryKey = ['data/alienItems'];
   const [data, setData] = useState<AlienItemDict>({});
   const [isDirty, setIsDirty] = useState(false);
 
@@ -64,7 +64,7 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
     data: trData,
     isSuccess: isSuccessTR,
   } = useQuery<LegacyAlienItemDict>({
-    queryKey: 'td/alienItems',
+    queryKey: ['td/alienItems'],
     queryFn: async () => {
       const response = await fetch(`${baseUrl}/alien-items.json`);
       return await response.json();
