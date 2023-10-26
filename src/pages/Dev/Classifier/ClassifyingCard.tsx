@@ -29,7 +29,6 @@ export function ClassifyingCard() {
   }, [current]); // eslint-disable-line
 
   useEffect(() => {
-    console.log('reading');
     if (qp.queryParams.item) {
       console.log('redirect');
       setItemId(qp.queryParams.item);

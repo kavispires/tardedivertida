@@ -24,6 +24,9 @@ const DevPlayground = lazy(
 const DevClassifier = lazy(
   () => import('pages/Dev/Classifier/ItemClassifier' /* webpackChunkName: "page-dev-classifier" */)
 );
+const DevDailySetup = lazy(
+  () => import('pages/Dev/DailySetup/DailySetup' /* webpackChunkName: "page-dev-dailysetup" */)
+);
 
 const LazyMe = () => (
   <Suspense fallback={<LoadingPage />}>
@@ -83,6 +86,11 @@ const LazyDevPlayground = () => (
 const LazyDevClassifier = () => (
   <Suspense fallback={<LoadingPage />}>
     <DevClassifier />
+  </Suspense>
+);
+const LazyDevDailySetup = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <DevDailySetup />
   </Suspense>
 );
 
@@ -163,12 +171,19 @@ export const routes = (
         </AdminProtectedRoute>
       }
     />
-
     <Route
       path="/dev/classifier"
       element={
         <AdminProtectedRoute>
           <LazyDevClassifier />
+        </AdminProtectedRoute>
+      }
+    />
+    <Route
+      path="/dev/dailysetup"
+      element={
+        <AdminProtectedRoute>
+          <LazyDevDailySetup />
         </AdminProtectedRoute>
       }
     />

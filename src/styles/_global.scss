@@ -117,3 +117,7 @@ body {
 .grayscale {
   filter: grayscale(0.85);
 }
+
+.border {
+  border: 1px solid get-color('black');
+}
