@@ -13,6 +13,7 @@ export function DevMenu() {
     { label: 'Sprites', value: '/dev/sprites', disabled: pathname === '/dev/sprites' },
     { label: 'Resources', value: '/dev/resources', disabled: pathname === '/dev/resources' },
     { label: 'Playground', value: '/dev/playground', disabled: pathname === '/dev/playground' },
+    { label: 'Daily Setup', value: '/dev/dailysetup', disabled: pathname === '/dev/dailysetup' },
     { label: 'Showcase', value: '/showcase', disabled: pathname === '/showcase' },
   ];
 
