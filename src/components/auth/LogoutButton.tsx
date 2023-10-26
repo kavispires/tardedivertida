@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { App, Button, ButtonProps, Popconfirm } from 'antd';
@@ -11,10 +11,9 @@ export function LogoutButton(props: ButtonProps) {
   const navigate = useNavigate();
   const { message } = App.useApp();
 
-  const { isLoading, refetch } = useQuery({
-    queryKey: ['sign-out'],
-    queryFn: async () => await signOut(),
-    enabled: false,
+  const { isLoading, mutate } = useMutation({
+    // mutationKey: ['sign-out'],
+    mutationFn: async () => await signOut(),
     onSuccess: () => {
       navigate('/');
     },
@@ -26,7 +25,7 @@ export function LogoutButton(props: ButtonProps) {
   return (
     <Popconfirm
       title={<Translate pt="Tem certeza que quer deslogar?" en="Are you sure you want to log out?" />}
-      onConfirm={() => refetch()}
+      onConfirm={() => mutate()}
       key="logout-button"
     >
       <Button danger ghost {...props} loading={isLoading}>
