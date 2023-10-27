@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from 'react-query';
 // Ant Design Resources
 import { Button, Form, Image, Modal, Space } from 'antd';
 // API

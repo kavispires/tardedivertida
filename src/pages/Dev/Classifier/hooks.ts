@@ -5,7 +5,7 @@ import type { AlienItemDict, LegacyAlienItemDict } from './types';
 import { findLatestId, initialAttributeState } from './helpers';
 import { cloneDeep, merge } from 'lodash';
 import { FIRST_ID } from './constants';
-import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { App } from 'antd';
 

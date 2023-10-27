@@ -5,7 +5,7 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { MeContent } from './components/MeContent';
 // Sass
 import './Me.scss';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 import { useState } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { firestore } from 'services/firebase';

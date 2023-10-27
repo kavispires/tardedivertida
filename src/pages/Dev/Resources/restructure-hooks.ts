@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 import { COLLECTIONS_FILE_NAMES, markAsLoaded } from './restructure-state';
 import { FIREFOO_COLLECTIONS_KEY } from './restructure-utils';
 import { useEffect } from 'react';

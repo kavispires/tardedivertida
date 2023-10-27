@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 // Ant Design Resource
 import { Alert, App, Button, Checkbox, Spin } from 'antd';
 // Hooks

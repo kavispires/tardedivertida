@@ -3,7 +3,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { cloneDeep, merge } from 'lodash';
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
 import { firestore } from 'services/firebase';
 
 import { findLatestId, initialAttributeState } from './helpers';
