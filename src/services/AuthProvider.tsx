@@ -92,6 +92,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       } else {
         setAuthenticatedUser(null);
       }
+
       setIsLoading(false);
     });
   });
@@ -137,7 +138,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     <AuthContext.Provider
       value={{
         currentUser: firestoreUser,
-        isLoading: isLoading || query.isLoading,
+        isLoading: isLoading || (isAuthenticated && query.isLoading),
         isAdmin: Boolean(firestoreUser.isAdmin),
         isAuthenticated,
         isGuest: Boolean(authenticatedUser?.isAnonymous),

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, App } from 'antd';
 // API
@@ -10,6 +10,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import logo from 'assets/images/tarde-divertida-logo.svg';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+import { UserCredential } from 'firebase/auth';
 
 type SignInProps = {
   onSuccess: GenericFunction;
@@ -20,17 +21,17 @@ export function SignIn({ onSuccess }: SignInProps) {
   const { translate } = useLanguage();
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const { isLoading, refetch, isError } = useQuery({
-    queryKey: ['sign-in'],
-    queryFn: async () => await signIn(form.getFieldValue('username'), form.getFieldValue('password')),
-    enabled: false,
-    onSuccess: () => {
-      onSuccess();
-    },
-  });
+  const { isLoading, mutate, isError } = useMutation<UserCredential, Error, void, unknown>(
+    async () => await signIn(form.getFieldValue('username'), form.getFieldValue('password')),
+    {
+      onSuccess: () => {
+        onSuccess();
+      },
+    }
+  );
 
   const onFinish = () => {
-    refetch();
+    mutate();
   };
 
   return (
@@ -87,7 +88,7 @@ export function SignIn({ onSuccess }: SignInProps) {
         )}
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit" disabled={isLoading}>
+          <Button type="primary" htmlType="submit" loading={isLoading}>
             <Translate pt="Entrar" en="Submit" />
           </Button>
 
@@ -121,23 +122,23 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
   const [form] = Form.useForm();
   const { translate } = useLanguage();
 
-  const { isLoading, refetch, isError } = useQuery({
-    queryKey: ['forgot-password'],
-    queryFn: async () => await resetPassword(form.getFieldValue('username')),
-    enabled: false,
-    onSuccess: () => {
-      onSuccess();
-      message.success(
-        translate(
-          'Verifique seu e-mail enviado para redefinir a sua senha',
-          'Verify your email to reset your password'
-        )
-      );
-    },
-  });
+  const { isLoading, mutate, isError } = useMutation(
+    async () => await resetPassword(form.getFieldValue('username')),
+    {
+      onSuccess: () => {
+        onSuccess();
+        message.success(
+          translate(
+            'Verifique seu e-mail enviado para redefinir a sua senha',
+            'Verify your email to reset your password'
+          )
+        );
+      },
+    }
+  );
 
   const onFinish = () => {
-    refetch();
+    mutate();
   };
 
   return (
