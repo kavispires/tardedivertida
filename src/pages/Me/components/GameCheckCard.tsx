@@ -39,7 +39,6 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
   };
 
   useEffect(() => {
-    console.log({ qp: qp.queryParams, activeGameName, open, activeGame });
     if (qp.queryParams.game && qp.queryParams.game !== activeGameName) {
       activateGameCard(qp.queryParams.game);
     }
