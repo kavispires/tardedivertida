@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
-import { QueryKey, useMutation, useQuery, useQueryClient, useQueries } from '@tanstack/react-query';
+import { QueryKey, useMutation, useQuery, useQueryClient, useQueries, UseQueryOptions } from 'react-query';
 import { App } from 'antd';
 import { DailyEntry, DailyHistory, DataDrawing, DataSuffixCounts } from './types';
 import { shuffle } from 'lodash';
@@ -169,7 +169,7 @@ export function useLoadDailySetup() {
 function useLoadDrawings(enabled: boolean, libraryCount: number) {
   const { notification } = App.useApp();
 
-  const queries = useMemo(() => {
+  const queries: UseQueryOptions[] = useMemo(() => {
     return new Array(libraryCount).fill(0).map((_, index) => {
       return {
         queryKey: ['data', `drawingsPT${index + 1}`],
@@ -185,9 +185,7 @@ function useLoadDrawings(enabled: boolean, libraryCount: number) {
     });
   }, [libraryCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return useQueries({
-    queries,
-  });
+  return useQueries(queries);
 }
 
 export function useSaveDailySetup() {

@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
 

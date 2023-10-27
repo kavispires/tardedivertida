@@ -1,5 +1,5 @@
 import { Button, notification } from 'antd';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 import { doc, setDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
 import { useState } from 'react';

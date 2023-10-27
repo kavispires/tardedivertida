@@ -1,6 +1,6 @@
 import { App } from 'antd';
 import { HttpsCallable } from 'firebase/functions';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from 'react-query';
 // Hooks
 import { useLoading } from './useLoading';
 import { useGlobalState } from './useGlobalState';

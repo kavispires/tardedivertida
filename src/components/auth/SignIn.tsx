@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from 'react-query';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, App } from 'antd';
 // API

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks

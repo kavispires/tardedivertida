@@ -5,7 +5,7 @@ import { Divider, Layout } from 'antd';
 import { DevHeader } from './DevHeader';
 import { RestructureUI } from './Resources/RestructureUI';
 import { TransferGlobal } from './Resources/TransferGlobal';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 import { RestructureJson } from './Resources/RestructureJson';
 import { SaveGames } from './Resources/SaveGames';
 import { SaveResources } from './Resources/SaveResources';

@@ -7,7 +7,7 @@ import { Button, Space } from 'antd';
 import { DevHeader } from './DevHeader';
 import { useTitle } from 'react-use';
 import { CSSProperties, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 import { doc, updateDoc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
 

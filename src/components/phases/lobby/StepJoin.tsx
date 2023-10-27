@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, Button, Divider, Modal, Space } from 'antd';
