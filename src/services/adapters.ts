@@ -9,6 +9,11 @@ export const GAME_API = {
   rateGame: httpsCallable(functions, 'rateGame'),
 };
 
+export const DAILY_API = {
+  getDaily: httpsCallable(functions, 'getDaily'),
+  saveDaily: httpsCallable(functions, 'saveDaily'),
+};
+
 export const ADMIN_API = {
   createGame: httpsCallable(functions, 'createGame'),
   lockGame: httpsCallable(functions, 'lockGame'),

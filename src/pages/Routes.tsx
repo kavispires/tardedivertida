@@ -27,6 +27,7 @@ const DevClassifier = lazy(
 const DevDailySetup = lazy(
   () => import('pages/Dev/DailySetup/DailySetup' /* webpackChunkName: "page-dev-dailysetup" */)
 );
+const Daily = lazy(() => import('pages/Daily/Daily' /* webpackChunkName: "page-td-daily" */));
 
 const LazyMe = () => (
   <Suspense fallback={<LoadingPage />}>
@@ -93,6 +94,11 @@ const LazyDevDailySetup = () => (
     <DevDailySetup />
   </Suspense>
 );
+const LazyDaily = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <Daily />
+  </Suspense>
+);
 
 /**
  * Wraps admin components that are exclusive to Administrators
@@ -113,6 +119,7 @@ export const routes = (
     <Route path="/login" element={<Login />} />
     <Route path="/me" element={<LazyMe />} />
     <Route path="/eu" element={<LazyMe />} />
+    <Route path="/daily" element={<LazyDaily />} />
 
     <Route
       path="/users"
@@ -192,6 +199,7 @@ export const routes = (
     <Route path="/teste" element={<LazyTestArea />} />
     <Route path="/showcase" element={<LazyShowcase />} />
     <Route path="/vitrine" element={<LazyShowcase />} />
+
     <Route path="*" element={<LazyGame />} />
   </Routes>
 );

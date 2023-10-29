@@ -12,7 +12,6 @@ import { resetGlobalState } from 'hooks/useGlobalState';
 import logo from 'assets/images/tarde-divertida-logo.svg';
 // Components
 import { Translate } from 'components/language';
-import { LogoutButton } from 'components/auth/LogoutButton';
 
 function Home() {
   useTitle('Tarde Divertida');
@@ -64,10 +63,12 @@ function Home() {
                 <Button ghost onClick={() => navigate('/me')}>
                   <Translate pt="Página de Usuário" en="User page" />
                 </Button>
-                <LogoutButton />
+                <Button ghost onClick={() => navigate('/daily')}>
+                  <Translate pt="Desafio Diário" en="Daily Challenge" />
+                </Button>
               </>
             )}
-            {isAdmin && (
+            {isAuthenticated && isAdmin && (
               <Button type="primary" danger onClick={() => navigate('/hub')}>
                 HUB
               </Button>
