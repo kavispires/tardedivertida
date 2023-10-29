@@ -56,6 +56,12 @@ const DEFAULT_ME_DATA: Me = {
     duration: 0,
     games: [],
   },
+  daily: {
+    total: 0,
+    longestStreak: 0,
+    streak: 0,
+    latestChallenge: 0,
+  },
 };
 
 export const AuthContext = createContext<{
