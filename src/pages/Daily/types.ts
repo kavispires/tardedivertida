@@ -10,3 +10,7 @@ export type DailyEntry = {
   drawings: string[];
   dataIds: string[];
 };
+
+export type DailyResponse = {
+  data: DailyEntry;
+};

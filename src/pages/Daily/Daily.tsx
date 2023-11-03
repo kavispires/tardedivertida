@@ -11,7 +11,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useTitle } from 'react-use';
 import { DAILY_API } from 'services/adapters';
-import { print } from 'utils/helpers';
+import { isDevEnv, print } from 'utils/helpers';
 
 import { DrawingCarousel } from './components/DrawingCarousel';
 import { Keyboard } from './components/Keyboard';
@@ -19,7 +19,8 @@ import { Menu } from './components/Menu';
 import { Prompt } from './components/Prompt';
 import { ResultsModalContent } from './components/ResultsModalContent';
 import { DailyEntry } from './types';
-import { getLettersInWord } from './utils';
+import { getLettersInWord, getToday } from './utils';
+import { PageError } from 'components/errors';
 
 const { Header, Content } = Layout;
 
@@ -34,7 +35,7 @@ function DailyChrome({ challenge, children }: DailyChromeProps) {
       <Header className="daily-header">
         <IconAvatar icon={<CalendarIcon />} />
         <Typography.Title level={1} className="daily-heading">
-          TD Desafio Diário {challenge}
+          TD Diário {challenge}
         </Typography.Title>
       </Header>
       <Content>{children}</Content>
@@ -60,8 +61,7 @@ function DailyPage() {
 function DailyContent() {
   const { notification } = App.useApp();
   const { currentUser } = useCurrentUserContext();
-  // const today = getToday();
-  const today = '2023-10-31';
+  const today = isDevEnv ? '2023-10-31' : getToday();
 
   // Load challenge
   const challengeQuery = useQuery<any>({
@@ -87,6 +87,14 @@ function DailyContent() {
     return (
       <DailyChrome>
         <LoadingPage />
+      </DailyChrome>
+    );
+  }
+
+  if (challengeQuery.isError) {
+    return (
+      <DailyChrome>
+        <PageError />
       </DailyChrome>
     );
   }
@@ -139,7 +147,7 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
       <Header className="daily-header">
         <IconAvatar icon={<CalendarIcon />} />
         <Typography.Title level={1} className="daily-heading">
-          TD Desafio Diário #{daily.number}!
+          TD Diário #{daily.number}
         </Typography.Title>
       </Header>
       <Content>
