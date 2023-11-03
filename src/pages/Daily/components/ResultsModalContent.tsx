@@ -55,12 +55,13 @@ export function ResultsModalContent({ text, challenge, win, hearts }: ResultsMod
 function writeResult(challenge: number, hearts: number) {
   let result = '';
 
-  result += '💻 Desafio TD #' + challenge + '\n';
+  result += '💻 TD Diário #' + challenge + '\n';
   result +=
     Array(hearts).fill('❤️').join('') +
     Array(3 - hearts)
       .fill('🩶')
       .join('');
+  result += '\nhttps://www.kavispires.com/tardedivertida/#/daily';
 
   return result;
 }
