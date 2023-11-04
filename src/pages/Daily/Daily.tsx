@@ -9,7 +9,7 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { LoginModal } from 'pages/Me/components/LoginModal';
 import { ReactNode, useEffect, useState } from 'react';
-import { useTitle } from 'react-use';
+import { useEffectOnce, useTitle } from 'react-use';
 import { isDevEnv } from 'utils/helpers';
 
 import { DrawingCarousel } from './components/DrawingCarousel';
@@ -20,6 +20,7 @@ import { ResultsModalContent } from './components/ResultsModalContent';
 import { DailyEntry } from './types';
 import { useDailyChallenge, useDailyChallengeMutation } from './useDaily';
 import { getLettersInWord, getToday } from './utils';
+import { useLanguage } from 'hooks/useLanguage';
 
 const { Header, Content } = Layout;
 
@@ -91,6 +92,11 @@ type DailyGameProps = {
 };
 
 function DailyGame({ daily, currentUser }: DailyGameProps) {
+  const { setLanguage } = useLanguage();
+  useEffectOnce(() => {
+    setLanguage('pt');
+  });
+
   // Build game: word, letters, lives
   const [hearts, setHearts] = useState<number>(3);
   const [guessedLetters, setGuessedLetters] = useState<BooleanDictionary>({});
@@ -154,7 +160,7 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
         </Typography.Title>
       </Header>
       <Content>
-        <Menu userDaily={currentUser.daily} hearts={hearts} />
+        <Menu userDaily={currentUser.daily} hearts={hearts} openRules={!today} />
 
         <DrawingCarousel drawings={daily.drawings} />
 

@@ -1,12 +1,12 @@
 import { ReactNode, createContext, useState } from 'react';
-import { auth, signOut } from './firebase';
+import { auth } from './firebase';
 import type { User } from 'firebase/auth';
 import { useQuery } from 'react-query';
 import { useEffectOnce } from 'react-use';
 import { App } from 'antd';
 import { USER_API } from './adapters';
 // Utils
-import { isDevEnv, print } from 'utils/helpers';
+import { print } from 'utils/helpers';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useLanguage } from 'hooks/useLanguage';
@@ -92,20 +92,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffectOnce(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        // TODO: Remove after migration?
-        if (!isDevEnv && !user.isAnonymous && user.providerId === 'firebase') {
-          signOut();
-          message.info(
-            translate(
-              'Você foi deslogado, favor entrar com sua conta Google',
-              "You've been logged out, please enter with a google account"
-            )
-          );
-        } else {
-          setAuthenticatedUser(user);
-          setUserId(user.uid);
-          message.info(translate('Você está logado.', 'You are logged in'));
-        }
+        setAuthenticatedUser(user);
+        setUserId(user.uid);
+        message.info(translate('Você está logado.', 'You are logged in'));
       } else {
         setAuthenticatedUser(null);
       }
