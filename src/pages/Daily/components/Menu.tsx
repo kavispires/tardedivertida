@@ -6,9 +6,10 @@ import { useState } from 'react';
 type MenuProps = {
   userDaily: Me['daily'];
   hearts: number;
+  openRules: boolean;
 };
 
-export function Menu({ userDaily, hearts }: MenuProps) {
+export function Menu({ userDaily, hearts, openRules }: MenuProps) {
   return (
     <div className="menu">
       <StreakCount userDaily={userDaily} />
@@ -17,7 +18,7 @@ export function Menu({ userDaily, hearts }: MenuProps) {
         {hearts > 1 ? <HeartFilled /> : <HeartOutlined />}
         {hearts > 2 ? <HeartFilled /> : <HeartOutlined />}
       </div>
-      <Rules />
+      <Rules defaultOpen={openRules} />
     </div>
   );
 }
@@ -28,15 +29,23 @@ function StreakCount({ userDaily }: Pick<MenuProps, 'userDaily'>) {
       title={<Translate pt="Estatísticas" en="Stats" />}
       content={
         <Space direction="vertical" size="small">
-          <Typography.Paragraph>
-            <Translate pt="Maior sequência" en="Longest streak" />: {userDaily.longestStreak}
-          </Typography.Paragraph>
-          <Typography.Paragraph>
-            <Translate pt="Desafios completados" en="Challenges completed" />: {userDaily.streak}
-          </Typography.Paragraph>
-          <Typography.Paragraph>
-            <Translate pt="Desafios jogados" en="Challenges played" />: {userDaily.total}
-          </Typography.Paragraph>
+          <ul className="list">
+            <li>
+              <Typography>
+                <Translate pt="Maior sequência" en="Longest streak" />: {userDaily.longestStreak}
+              </Typography>
+            </li>
+            <li>
+              <Typography>
+                <Translate pt="Desafios completados" en="Challenges completed" />: {userDaily.streak}
+              </Typography>
+            </li>
+            <li>
+              <Typography>
+                <Translate pt="Desafios jogados" en="Challenges played" />: {userDaily.total}
+              </Typography>
+            </li>
+          </ul>
         </Space>
       }
       trigger="click"
@@ -47,8 +56,8 @@ function StreakCount({ userDaily }: Pick<MenuProps, 'userDaily'>) {
   );
 }
 
-function Rules() {
-  const [open, setOpen] = useState(true);
+function Rules({ defaultOpen = true }: { defaultOpen: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
     <Popover
