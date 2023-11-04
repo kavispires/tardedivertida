@@ -4,7 +4,7 @@ import { Button, Layout, Modal, Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { PageError } from 'components/errors';
 import { Translate } from 'components/language';
-import { LoadingPage } from 'components/loaders';
+import { Loading } from 'components/loaders';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { LoginModal } from 'pages/Me/components/LoginModal';
@@ -68,7 +68,9 @@ function DailyContent() {
   if (challengeQuery.isLoading) {
     return (
       <DailyChrome>
-        <LoadingPage />
+        <Space className="space-container">
+          <Loading message="Carregando desafio" margin />
+        </Space>
       </DailyChrome>
     );
   }
