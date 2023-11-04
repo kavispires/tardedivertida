@@ -120,6 +120,14 @@ export function getUserRef(): FirebaseFirestore.CollectionReference<FirebaseFire
 }
 
 /**
+ * Get Firebase session for the daily collection
+ * @returns firebase public reference
+ */
+export function getDailyRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return getFirestore().collection('daily');
+}
+
+/**
  * Get Firebase session for gameId in collection
  * @param gameName
  * @param gameId

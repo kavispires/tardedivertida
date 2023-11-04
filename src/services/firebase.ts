@@ -11,6 +11,8 @@ import {
   signInWithEmailAndPassword,
   UserCredential,
   sendPasswordResetEmail,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/functions';
 // Ant Design Resources
@@ -83,6 +85,14 @@ export function signUp(email: string, password: string): Promise<UserCredential>
  */
 export function signIn(email: string, password: string): Promise<UserCredential> {
   return signInWithEmailAndPassword(auth, email, password);
+}
+
+/**
+ * Sign in user via google through firebase auth
+ * @returns - the user credential
+ */
+export function signInWithGoogle(): Promise<UserCredential> {
+  return signInWithPopup(auth, new GoogleAuthProvider());
 }
 
 /**

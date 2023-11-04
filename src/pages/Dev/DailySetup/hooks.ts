@@ -4,7 +4,7 @@ import { firestore } from 'services/firebase';
 import { QueryKey, useMutation, useQuery, useQueryClient, useQueries, UseQueryOptions } from 'react-query';
 import { App } from 'antd';
 import { DailyEntry, DailyHistory, DataDrawing, DataSuffixCounts } from './types';
-import { shuffle } from 'lodash';
+import { sampleSize, shuffle } from 'lodash';
 import { getNextDay } from './utils';
 
 function getDocQueryFunction<T>(path: string, docId: string) {
@@ -111,7 +111,7 @@ export function useLoadDailySetup() {
 
     const shortList = Object.values(atLeastTwoDrawingsList).filter((e) => !usedCards.includes(e.cardId));
 
-    const shuffledShortList = shuffle(shortList);
+    const shuffledShortList = sampleSize(shuffle(shortList), 45);
 
     let lastDate = latestDate;
 

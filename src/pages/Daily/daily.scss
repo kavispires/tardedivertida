@@ -1,0 +1,112 @@
+@use 'styles/sass' as *;
+
+.daily-header.daily-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: get-unit(2);
+}
+
+.daily-heading.daily-heading {
+  color: get-color('white') !important;
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+}
+
+.keyboard {
+  width: 100%;
+  position: absolute;
+  bottom: get-unit(6);
+}
+
+.daily-keyboard-key {
+  background: get-color('blue', 7);
+  color: get-color('white');
+  border-radius: $border-radius;
+  border: 1px outset get-color('blue', 3);
+  text-transform: uppercase;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &--guessed {
+    background: get-color('gray', 6);
+    color: get-color('gray', 4);
+  }
+
+  &--correct {
+    background: get-color('green', 5);
+    color: get-color('white');
+  }
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  font-size: 1.25rem;
+  // justify-content: center;
+  gap: get-unit(2);
+  place-items: center;
+  background: get-color('blue', 7);
+  @include box-shadow;
+  color: get-color('white');
+}
+
+.menu-hearts {
+  color: get-color('red');
+  font-size: 1.5rem;
+}
+
+.canvas {
+  background: get-color('white');
+  border-radius: $border-radius;
+  border: 3px solid get-color('blue', 7);
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: get-unit(1);
+  margin: get-unit(6 2);
+  text-transform: uppercase;
+}
+
+.letter-correct {
+  background: get-color('green');
+  color: get-color('white');
+}
+
+.carousel {
+  margin: get-unit(6 auto);
+}
+
+.carousel-item {
+  display: grid;
+  place-items: center;
+}
+
+.slick-dots {
+  transform: translateY(get-unit(6));
+}
+
+.slick-slide {
+  div {
+    display: grid;
+    place-items: center;
+  }
+}
+
+.list {
+  margin-left: get-unit(6);
+  list-style: disc;
+}
+
+.result-answer .ant-typography {
+  font-size: 1.25rem;
+  color: get-color('blue', 6);
+}

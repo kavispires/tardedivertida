@@ -50,7 +50,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
         <header className="me__header">
           <Title size="small" level={1} align="left">
             <IconAvatar icon={<UserStatsIcon />} size="large" />
-            <Translate pt="Página do Usuário" en="User Page" /> <UserName names={user.names} />
+            <Translate pt="Página do" en="User Page" /> <UserName names={user.names} />
           </Title>
           <Space>
             <LanguageSwitch />
@@ -63,9 +63,15 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
           <InfoCard title={<Translate pt="Avatares preferidos" en="Favorite Avatars" />}>
             {user.avatars.map((avatarId) => (
-              <Avatar key={avatarId} id={avatarId} shape="square" />
+              <Avatar key={avatarId} id={avatarId} shape="square" size="small" />
             ))}
           </InfoCard>
+
+          {Boolean(user?.daily) && (
+            <InfoCard title={<Translate pt="TD Diários" en="Daily TD" />}>
+              <Translate pt="Vitórias" en="Streak" />: {user.daily?.streak} / Total: {user.daily?.total}
+            </InfoCard>
+          )}
         </Row>
 
         <Divider />

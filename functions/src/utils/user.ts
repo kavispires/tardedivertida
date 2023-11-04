@@ -47,8 +47,18 @@ interface GameUserStatistics {
 type AvatarId = string;
 type AchievementKey = string;
 type GameName = string;
+type DailyEntry = {
+  id: string; // Format YYYY-MM-DD
+  number: number;
+  victory: boolean;
+  hearts: number;
+  letters: string[];
+};
 
-interface FirebaseUserDB {
+/**
+ * User database structure saved in Firestore
+ */
+export interface FirebaseUserDB {
   id: string;
   isAdmin?: boolean;
   isGuest?: boolean;
@@ -59,6 +69,7 @@ interface FirebaseUserDB {
   ratings: Record<GameName, number>;
   games: Record<GameName, Record<GameId, GameUserEntry>>;
   blurredImages: Record<ImageCardId, true>;
+  daily: Collection<DailyEntry>;
 }
 
 interface FirebaseUIStatistics {
@@ -100,6 +111,9 @@ interface FirebaseUIStatistics {
   averagePlayerCount: number;
 }
 
+/**
+ * User interface parsed for the UI
+ */
 interface FirebaseUserUI {
   id: string;
   isAdmin: boolean;
@@ -119,6 +133,12 @@ interface FirebaseUserUI {
     duration: number;
     games: GameUserEntry[];
   };
+  daily: {
+    total: number;
+    longestStreak: number;
+    streak: number;
+    todaysChallenge?: DailyEntry;
+  };
 }
 
 const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
@@ -130,6 +150,7 @@ const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
   gender: 'unknown',
   ratings: {},
   blurredImages: {},
+  daily: {},
 };
 
 const PLACEHOLDER_GAME_USER_ENTRY: GameUserEntry = {
@@ -160,9 +181,10 @@ const isWinnableGame = (gameName: GameName): boolean => {
 /**
  * Serialize user for the UI
  * @param dbUser
+ * @param dailyDate - format YYYY-MM-DD
  * @returns
  */
-export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
+export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): FirebaseUserUI => {
   // Get top avatars
   const topAvatars = Object.keys(dbUser.avatars)
     .sort((a, b) => dbUser.avatars[b] - dbUser.avatars[a])
@@ -374,6 +396,18 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     games: todaysGames,
   };
 
+  // Daily
+  const orderedDaily = Object.values(dbUser.daily ?? {}).sort((a, b) => b.number - a.number);
+  const daily: FirebaseUserUI['daily'] = {
+    longestStreak: calculateLongestStreak(orderedDaily),
+    total: orderedDaily.length,
+    streak: calculateCurrentStreak(orderedDaily),
+  };
+
+  if (dailyDate && dbUser.daily[dailyDate]) {
+    daily.todaysChallenge = dbUser.daily[dailyDate];
+  }
+
   return {
     id: dbUser.id,
     names: dbUser?.names ?? [],
@@ -383,6 +417,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     statistics: globalStatistics,
     games: playsStatistics,
     today: todaySummary,
+    daily,
   };
 };
 
@@ -510,4 +545,40 @@ async function fetchUser(id: string) {
 async function saveNewUserData(id: string, data: FirebaseUserDB) {
   const userRef = getUserRef().doc(id);
   await userRef.update({ ...data });
+}
+
+function calculateCurrentStreak(dailyPlays: DailyEntry[]): number {
+  if (dailyPlays.length === 0) {
+    return 0;
+  }
+
+  let streak = 0;
+  for (let i = 0; i < dailyPlays.length; i++) {
+    if (dailyPlays[i].victory) {
+      streak += 1;
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+
+function calculateLongestStreak(dailyPlays: DailyEntry[]): number {
+  if (dailyPlays.length === 0) {
+    return 0;
+  }
+
+  let longestStreak = 0;
+  let currentStreak = 0;
+  for (let i = 0; i < dailyPlays.length; i++) {
+    if (dailyPlays[i].victory) {
+      currentStreak += 1;
+    } else {
+      if (currentStreak > longestStreak) {
+        longestStreak = currentStreak;
+      }
+      currentStreak = 0;
+    }
+  }
+  return longestStreak;
 }

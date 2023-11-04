@@ -187,25 +187,3 @@ export const rateGame = async (data: ExtendedPayload, context: FirebaseContext) 
   }
   return true;
 };
-
-export const getUser = async (_: unknown, context: FirebaseContext) => {
-  const userRef = utils.firebase.getUserRef();
-  const uid = context?.auth?.uid;
-
-  if (!uid) {
-    return utils.firebase.throwException('User not authenticated', 'get user');
-  }
-
-  const user = await userRef.doc(uid).get();
-
-  // If the user object doesn't exist, just create one
-  if (!user.exists) {
-    const newUser = utils.user.generateNewUser(uid, context?.auth?.token?.provider_id === 'anonymous');
-    userRef.doc(uid).set(newUser);
-
-    return utils.user.serializeUser(newUser);
-  }
-
-  const userData = user.data();
-  return utils.user.serializeUser(utils.user.mergeUserData(uid, userData));
-};

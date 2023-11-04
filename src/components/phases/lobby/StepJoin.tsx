@@ -1,14 +1,14 @@
 import { useQuery } from 'react-query';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Alert, Button, Divider, Modal, Space } from 'antd';
+import { Alert, Button, Divider, Modal } from 'antd';
 // API & Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Services
 import { signInAsGuest } from 'services/firebase';
 // Components
 import { DualTranslate, Translate } from 'components/language';
-import { SignIn } from 'components/auth/SignIn';
+import { SignIn, SignInWithGoogle } from 'components/auth/SignIn';
 import { SignUp } from 'components/auth/SignUp';
 
 type StepJoinProps = {
@@ -44,6 +44,14 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
         </p>
       )}
 
+      <SignInWithGoogle onSuccess={() => setStep(1)} block size="middle" />
+
+      {isError && <Alert message="Error" description={JSON.stringify(error)} type="error" showIcon />}
+
+      <Divider>
+        <Translate pt="ou" en="or" />
+      </Divider>
+
       <Button
         type="primary"
         block
@@ -53,17 +61,6 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
       >
         <Translate pt="Entrar como visitante" en="Join as a Guest" />
       </Button>
-
-      {isError && <Alert message="Error" description={JSON.stringify(error)} type="error" showIcon />}
-
-      <Divider>
-        <Translate pt="ou" en="or" />
-      </Divider>
-      <Space split={<Divider type="vertical" />} className="lobby-step__space-buttons" size="small">
-        <LoginButton disabled={isAuthenticated || isLoading} setStep={setStep} />
-
-        <SignUpButton disabled={isAuthenticated || isLoading} setStep={setStep} />
-      </Space>
     </>
   );
 }
@@ -73,7 +70,7 @@ type LoginButtonProps = {
   setStep: GenericFunction;
 };
 
-function LoginButton({ disabled, setStep }: LoginButtonProps) {
+export function LoginButton({ disabled, setStep }: LoginButtonProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -101,7 +98,7 @@ type SignUpButtonProps = {
   setStep: GenericFunction;
 };
 
-function SignUpButton({ disabled, setStep }: SignUpButtonProps) {
+export function SignUpButton({ disabled, setStep }: SignUpButtonProps) {
   const [open, setOpen] = useState(false);
 
   return (

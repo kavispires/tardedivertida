@@ -75,6 +75,7 @@ $shade-levels: (
   &__heading {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   &__left {

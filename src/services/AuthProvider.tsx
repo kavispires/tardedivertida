@@ -4,13 +4,14 @@ import type { User } from 'firebase/auth';
 import { useQuery } from 'react-query';
 import { useEffectOnce } from 'react-use';
 import { App } from 'antd';
-import { GAME_API } from './adapters';
+import { USER_API } from './adapters';
 // Utils
 import { print } from 'utils/helpers';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useLanguage } from 'hooks/useLanguage';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { getToday } from 'pages/Daily/utils';
 
 const PLACEHOLDER_GAME_USER_ENTRY = {
   gameId: '',
@@ -55,6 +56,11 @@ const DEFAULT_ME_DATA: Me = {
     achievements: 0,
     duration: 0,
     games: [],
+  },
+  daily: {
+    total: 0,
+    longestStreak: 0,
+    streak: 0,
   },
 };
 
@@ -110,7 +116,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     queryKey: ['user'],
     queryFn: async () => {
       console.count('Fetching user...');
-      return await GAME_API.getUser();
+      return await USER_API.getUser({ date: getToday() });
     },
     enabled: isAuthenticated,
     retry: false,

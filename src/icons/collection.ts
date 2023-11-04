@@ -74,6 +74,7 @@ export * from './GarbageIcon';
 export * from './GoalsIcon';
 export * from './GridIcon';
 export * from './GuessIcon';
+export * from './GoogleIcon';
 export * from './HalloweenBalloonsIcon';
 export * from './HandIcon';
 export * from './HandcuffsIcon';

@@ -3,6 +3,7 @@ import * as functions from 'firebase-functions';
 import { initializeApp } from 'firebase-admin/app';
 import * as commonEngine from './engine/common';
 import * as adminEngine from './engine/admin';
+import * as dailyEngine from './engine/daily';
 import * as adedanhxEngine from './engine/adedanhx';
 import * as arteRuimEngine from './engine/arte-ruim';
 import * as comunicacaoAlienigenaEngine from './engine/comunicacao-alienigena';
@@ -32,6 +33,8 @@ import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
+import * as userEngine from './engine/user';
+
 import { feedEmulatorUser } from './utils/mocks/emulator';
 
 initializeApp();
@@ -85,7 +88,28 @@ exports.rateGame = functions.https.onCall(commonEngine.rateGame);
 /**
  * Load user
  */
-exports.getUser = functions.https.onCall(commonEngine.getUser);
+exports.getUser = functions.https.onCall(userEngine.getUser);
+
+/**
+ * Load users by id
+ */
+exports.getUserById = functions.https.onCall(userEngine.getUserById);
+
+/**
+ * Load users
+ */
+exports.getUsers = functions.https.onCall(userEngine.getUsers);
+
+/**
+ * Update user db
+ */
+exports.updateUserDB = functions.https.onCall(userEngine.updateUserDB);
+
+/**
+ * Daily actions
+ */
+exports.getDaily = functions.https.onCall(dailyEngine.getDaily);
+exports.saveDaily = functions.https.onCall(dailyEngine.saveDaily);
 
 // SUBMIT ACTIONS
 
