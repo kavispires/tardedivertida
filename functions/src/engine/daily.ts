@@ -44,6 +44,7 @@ export type DailySetterPayload = {
   number: number;
   victory: boolean;
   hearts: number;
+  letters: string[];
 };
 
 // Save today to user
@@ -55,13 +56,20 @@ export const saveDaily = async (data: DailySetterPayload, context: FirebaseConte
     return utils.firebase.throwException('User not authenticated', actionText);
   }
 
-  const { id, number, victory, hearts } = data;
+  const { id, number, victory, hearts, letters } = data;
   if (!id) {
     return utils.firebase.throwException('Payload is missing data', actionText);
   }
+  const userRef = utils.firebase.getUserRef();
 
-  await utils.firebase
-    .getUserRef()
-    .doc(id)
-    .update({ [`daily.${id}`]: { number, victory, hearts } });
+  try {
+    await userRef.doc(id).update({ [`daily.${id}`]: { id, number, victory, hearts } });
+  } catch (e) {
+    const newUser = utils.user.generateNewUser(uid, context?.auth?.token?.provider_id === 'anonymous');
+    // Add daily
+    newUser.daily = { [id]: { id, number, victory, hearts, letters } };
+    await userRef.doc(uid).set(newUser);
+  }
+
+  return true;
 };

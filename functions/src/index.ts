@@ -33,6 +33,7 @@ import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
+import * as userEngine from './engine/user';
 
 import { feedEmulatorUser } from './utils/mocks/emulator';
 
@@ -87,7 +88,22 @@ exports.rateGame = functions.https.onCall(commonEngine.rateGame);
 /**
  * Load user
  */
-exports.getUser = functions.https.onCall(commonEngine.getUser);
+exports.getUser = functions.https.onCall(userEngine.getUser);
+
+/**
+ * Load users by id
+ */
+exports.getUserById = functions.https.onCall(userEngine.getUserById);
+
+/**
+ * Load users
+ */
+exports.getUsers = functions.https.onCall(userEngine.getUsers);
+
+/**
+ * Update user db
+ */
+exports.updateUserDB = functions.https.onCall(userEngine.updateUserDB);
 
 /**
  * Daily actions
