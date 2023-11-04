@@ -83,7 +83,11 @@ function DataPopulation() {
       {dataLoad.isLoading && <div>Loading...</div>}
       <h1>Total: {dataLoad.entries.length}</h1>
       <Table columns={columns} dataSource={dataLoad.entries ?? []} />
-      <Button onClick={() => save(dataLoad.entries)} loading={isMutating}>
+      <Button
+        onClick={() => save(dataLoad.entries)}
+        loading={isMutating}
+        disabled={(dataLoad.entries ?? []).length === 0}
+      >
         Save
       </Button>
     </div>
