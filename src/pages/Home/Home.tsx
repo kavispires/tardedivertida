@@ -12,10 +12,12 @@ import { resetGlobalState } from 'hooks/useGlobalState';
 import logo from 'assets/images/tarde-divertida-logo.svg';
 // Components
 import { Translate } from 'components/language';
+import { useLanguage } from 'hooks/useLanguage';
 
 function Home() {
   useTitle('Tarde Divertida');
   const { isAdmin, isAuthenticated } = useCurrentUserContext();
+  const { language } = useLanguage();
 
   const [showInput, setShowInput] = useState(isAuthenticated);
   const [gameId, setGameId] = useState('');
@@ -57,10 +59,10 @@ function Home() {
             </Button>
           </Space>
 
-          <Space className="space-container">
+          <Space.Compact className="space-container">
             {isAuthenticated && (
               <>
-                <Button ghost onClick={() => navigate('/me')}>
+                <Button ghost onClick={() => navigate(language === 'pt' ? '/eu' : '/me')}>
                   <Translate pt="Página de Usuário" en="User page" />
                 </Button>
                 <Button ghost onClick={() => navigate('/daily')}>
@@ -73,7 +75,7 @@ function Home() {
                 HUB
               </Button>
             )}
-          </Space>
+          </Space.Compact>
         </Space>
       </div>
       <div className="home__background">

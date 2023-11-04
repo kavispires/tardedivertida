@@ -166,30 +166,16 @@ interface Me {
     total: number;
     longestStreak: number;
     streak: number;
-    latestChallenge: DailyEntry['number'];
+    todaysChallenge?: {
+      id: string; // Format YYYY-MM-DD
+      number: number;
+      victory: boolean;
+      hearts: number;
+      letters: string[];
+    };
   };
 }
 
-// interface Me {
-//   id: string;
-//   isAdmin: boolean;
-//   isGuest?: boolean;
-//   names: string[];
-//   avatars: AvatarId[];
-//   gender?: string;
-//   statistics: {
-//     gamesPlayed: number;
-//     uniqueGamesPlayed: number;
-//     winnableGames: number;
-//     win: number;
-//     last: number;
-//     achievements: number;
-//     lastPlay: number;
-//     totalPlayDuration: number;
-//   };
-//   games: Record<GameName, GameUserEntry[]>;
-//   blurredImages?: Record<ImageCardId, true>;
-// }
 interface Player {
   id: PlayerId;
   name: PlayerName;

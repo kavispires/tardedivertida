@@ -105,3 +105,8 @@
   margin-left: get-unit(6);
   list-style: disc;
 }
+
+.result-answer .ant-typography {
+  font-size: 1.25rem;
+  color: get-color('blue', 6);
+}

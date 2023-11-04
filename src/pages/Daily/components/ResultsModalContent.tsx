@@ -1,7 +1,10 @@
 import { App, Input, Space, Typography } from 'antd';
+import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
+import { BoxXIcon } from 'icons/BoxXIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
 import { useEffect } from 'react';
 import { useCopyToClipboard } from 'react-use';
 
@@ -24,35 +27,45 @@ export function ResultsModalContent({ text, challenge, win, hearts }: ResultsMod
   }, [state, message]);
 
   return (
-    <Space direction="vertical">
-      <Typography.Title level={2}>
+    <Space direction="vertical" className="space-container">
+      <Typography.Title level={2} className="center">
         {win ? (
-          <Translate pt="Parabéns!" en="Congratulations!" />
+          <>
+            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+          </>
         ) : (
-          <Translate pt="Que pena!" en="Too bad!" />
+          <>
+            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+          </>
         )}
       </Typography.Title>
-      <Typography.Paragraph>
+      <Typography.Paragraph className="center">
         {win ? (
           <Translate pt="Você acertou a palavra!" en="You guessed the word!" />
         ) : (
           <Translate pt="Você errou a palavra!" en="You missed the word!" />
         )}
       </Typography.Paragraph>
-      <TextHighlight>{<Typography.Paragraph>{text}</Typography.Paragraph>}</TextHighlight>
+
+      <TextHighlight className="result-answer">
+        {<Typography.Paragraph>{text}</Typography.Paragraph>}
+      </TextHighlight>
 
       <TransparentButton onClick={() => copyToClipboard(result)}>
-        <Input.TextArea value={result} readOnly />
+        <Input.TextArea value={result} readOnly cols={30} rows={3} />
       </TransparentButton>
 
-      <Typography.Paragraph>
-        <Translate pt="Copie e compartilhe com os amigos" en="Copy and share it with friends" />
+      <Typography.Paragraph className="center">
+        <Translate
+          pt="Clique no campo acima para copiar e compartilhe com os amigos"
+          en="Click the field above to copy and share it with friends"
+        />
       </Typography.Paragraph>
     </Space>
   );
 }
 
-function writeResult(challenge: number, hearts: number) {
+function writeResult(challenge: number, hearts: number = 0) {
   let result = '';
 
   result += '💻 TD Diário #' + challenge + '\n';

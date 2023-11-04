@@ -1,17 +1,16 @@
 import './daily.scss';
 
-import { App, Button, Layout, Modal, Space, Typography } from 'antd';
+import { Button, Layout, Modal, Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
+import { PageError } from 'components/errors';
 import { Translate } from 'components/language';
 import { LoadingPage } from 'components/loaders';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { LoginModal } from 'pages/Me/components/LoginModal';
 import { ReactNode, useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 import { useTitle } from 'react-use';
-import { DAILY_API } from 'services/adapters';
-import { isDevEnv, print } from 'utils/helpers';
+import { isDevEnv } from 'utils/helpers';
 
 import { DrawingCarousel } from './components/DrawingCarousel';
 import { Keyboard } from './components/Keyboard';
@@ -19,8 +18,8 @@ import { Menu } from './components/Menu';
 import { Prompt } from './components/Prompt';
 import { ResultsModalContent } from './components/ResultsModalContent';
 import { DailyEntry } from './types';
+import { useDailyChallenge, useDailyChallengeMutation } from './useDaily';
 import { getLettersInWord, getToday } from './utils';
-import { PageError } from 'components/errors';
 
 const { Header, Content } = Layout;
 
@@ -59,29 +58,11 @@ function DailyPage() {
 }
 
 function DailyContent() {
-  const { notification } = App.useApp();
   const { currentUser } = useCurrentUserContext();
   const today = isDevEnv ? '2023-10-31' : getToday();
 
   // Load challenge
-  const challengeQuery = useQuery<any>({
-    queryKey: ['daily'],
-    queryFn: async () => {
-      console.count('Fetching user...');
-      return await DAILY_API.getDaily({ date: today });
-    },
-    retry: false,
-    onSuccess: (response) => {
-      const data = response.data;
-      print({ daily: data }, 'table');
-    },
-    onError: (e: any) => {
-      notification.error({
-        message: 'Failed to load user',
-        description: JSON.stringify(e.message),
-      });
-    },
-  });
+  const challengeQuery = useDailyChallenge(today);
 
   if (challengeQuery.isLoading) {
     return (
@@ -110,15 +91,14 @@ type DailyGameProps = {
 };
 
 function DailyGame({ daily, currentUser }: DailyGameProps) {
-  // If already play, show winning screen
-
   // Build game: word, letters, lives
   const [hearts, setHearts] = useState<number>(3);
   const [guessedLetters, setGuessedLetters] = useState<BooleanDictionary>({});
   const [correctLetters, setCorrectLetters] = useState<BooleanDictionary>(getLettersInWord(daily.text));
   const isComplete = Object.values(correctLetters).every(Boolean);
-
   const [showResultModal, setShowResultModal] = useState(false);
+
+  const today = currentUser?.daily?.todaysChallenge;
 
   const guessLetter = (letter: string) => {
     // Ignore previously guessed letters
@@ -136,11 +116,34 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
     }
   };
 
+  // If already play, show winning screen
+  useEffect(() => {
+    if (today) {
+      const today = currentUser?.daily?.todaysChallenge;
+      today!.letters.forEach((letter) => {
+        guessLetter(letter);
+      });
+    }
+  }, [today]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const dailyMutation = useDailyChallengeMutation();
+
+  // Controls auto result modal
   useEffect(() => {
     if (isComplete || hearts <= 0) {
       setShowResultModal(true);
+
+      if (!today && !dailyMutation.isLoading) {
+        dailyMutation.mutate({
+          id: getToday(),
+          number: daily.number,
+          victory: isComplete,
+          hearts,
+          letters: Object.keys(guessedLetters),
+        });
+      }
     }
-  }, [isComplete, hearts]);
+  }, [isComplete, hearts, today, dailyMutation.isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Layout className="app">
@@ -163,7 +166,7 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
           disabled={hearts <= 0 || isComplete}
         />
 
-        {isComplete && (
+        {(isComplete || hearts <= 0) && (
           <Space className="space-container">
             <Button onClick={() => setShowResultModal(true)} size="small" type="primary">
               <Translate pt="Ver Resultado" en="Show Results" />

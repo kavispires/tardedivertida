@@ -1,16 +1,17 @@
 import { ReactNode, createContext, useState } from 'react';
-import { auth } from './firebase';
+import { auth, signOut } from './firebase';
 import type { User } from 'firebase/auth';
 import { useQuery } from 'react-query';
 import { useEffectOnce } from 'react-use';
 import { App } from 'antd';
-import { GAME_API } from './adapters';
+import { USER_API } from './adapters';
 // Utils
-import { print } from 'utils/helpers';
+import { isDevEnv, print } from 'utils/helpers';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useLanguage } from 'hooks/useLanguage';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { getToday } from 'pages/Daily/utils';
 
 const PLACEHOLDER_GAME_USER_ENTRY = {
   gameId: '',
@@ -60,7 +61,6 @@ const DEFAULT_ME_DATA: Me = {
     total: 0,
     longestStreak: 0,
     streak: 0,
-    latestChallenge: 0,
   },
 };
 
@@ -92,9 +92,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffectOnce(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        setAuthenticatedUser(user);
-        setUserId(user.uid);
-        message.info(translate('Você está logado.', 'You are logged in'));
+        // TODO: Remove after migration?
+        if (!isDevEnv && !user.isAnonymous && user.providerId === 'firebase') {
+          signOut();
+          message.info(
+            translate(
+              'Você foi deslogado, favor entrar com sua conta Google',
+              "You've been logged out, please enter with a google account"
+            )
+          );
+        } else {
+          setAuthenticatedUser(user);
+          setUserId(user.uid);
+          message.info(translate('Você está logado.', 'You are logged in'));
+        }
       } else {
         setAuthenticatedUser(null);
       }
@@ -116,7 +127,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     queryKey: ['user'],
     queryFn: async () => {
       console.count('Fetching user...');
-      return await GAME_API.getUser();
+      return await USER_API.getUser({ date: getToday() });
     },
     enabled: isAuthenticated,
     retry: false,

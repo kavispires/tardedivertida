@@ -29,8 +29,6 @@ export const determineAlienResponse = (
     // Get attribute name only
     .map(([attribute]) => attribute);
 
-  console.log({ sortedAttributes });
-
   // Filter only attributes that will be new to players, however, if only one item, return the best one
   let uniqueMatches =
     currentInquiry.length > 1 ? getArrayUniqueness(sortedAttributes, Object.keys(botAlienSignKnowledge)) : [];
