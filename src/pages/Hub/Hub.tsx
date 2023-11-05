@@ -177,6 +177,14 @@ type RowOfGamesProps = {
 };
 
 function RowOfGames({ games }: RowOfGamesProps) {
+  if (games.length === 0) {
+    return (
+      <Typography.Text type="secondary">
+        <Translate pt="Nenhum jogo encontrado nessa categoria" en="No games found in this category" />
+      </Typography.Text>
+    );
+  }
+
   return (
     <Row gutter={[8, 16]}>
       {games.map((game: GameInfo) => (
