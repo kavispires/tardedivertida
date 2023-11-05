@@ -63,7 +63,7 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
                 {Boolean(cache[sign.signId]) && <CheckCircleFilled />}
               </TransparentButton>
             </Popconfirm>
-            <SignCard id={`${sign.signId}`} />
+            <SignCard id={`${sign.signId}`} className="transparent" />
           </div>
         ))}
       </div>
