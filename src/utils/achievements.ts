@@ -29,6 +29,7 @@ import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
 import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
 // import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
 // import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
+import TESTE_DE_ELENCO from 'games/teste-de-elenco/utils/achievements';
 // import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
 import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 // import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
@@ -66,6 +67,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': null,
   'testemunha-ocular': null,
+  'teste-de-elenco': TESTE_DE_ELENCO,
   'trevo-da-sorte': null,
   'ue-so-isso': UE_SO_ISSO,
   'vamos-ao-cinema': null,
