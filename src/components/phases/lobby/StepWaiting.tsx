@@ -10,7 +10,7 @@ import { useLoading } from 'hooks/useLoading';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Services
-import { ADMIN_API } from 'services/adapters';
+import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
 // Components
 import { Translate } from 'components/language';
 import { VIPButton, VIPOnlyContainer } from 'components/vip';
@@ -34,7 +34,8 @@ export function StepWaiting({ players }: StepWaitingProps) {
     queryKey: ['lock-game'],
     queryFn: async () => {
       setLoader('lock-game', true);
-      return await ADMIN_API.lockGame({
+      return await ADMIN_API.run({
+        action: ADMIN_API_ACTIONS.LOCK_GAME,
         gameId,
         gameName,
       });

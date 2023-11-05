@@ -6,7 +6,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Image, Modal, Button, Divider, Typography, Switch, Space, Alert, App } from 'antd';
 // Adapters
-import { ADMIN_API } from 'services/adapters';
+import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
@@ -100,7 +100,8 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
     try {
       setLoader('create', true);
       setLoading(true);
-      const response: PlainObject = await ADMIN_API.createGame({
+      const response: PlainObject = await ADMIN_API.run({
+        action: ADMIN_API_ACTIONS.CREATE_GAME,
         gameName: gameInfo.gameName,
         language,
         options,

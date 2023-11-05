@@ -12,7 +12,7 @@ import { feedEmulatorDB } from '../utils/mocks/emulator';
  * @param context a logged in user is required to perform this
  * @returns
  */
-export const createGame = async (data: CreateGamePayload, context: FirebaseContext) => {
+const createGame = async (data: CreateGamePayload, context: FirebaseContext) => {
   if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
     feedEmulatorDB();
   }
@@ -97,7 +97,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
  * @param context
  * @returns
  */
-export const lockGame = async (data: BasicGamePayload, context: FirebaseContext) => {
+const lockGame = async (data: BasicGamePayload, context: FirebaseContext) => {
   const { gameId, gameName } = data;
 
   const actionText = 'lock game';
@@ -307,6 +307,9 @@ const playAgain = async (gameId: GameId, gameName: GameName) => {
   return false;
 };
 
-const ADMIN_API_ACTIONS = {};
+const ADMIN_API_ACTIONS = {
+  CREATE_GAME: createGame,
+  LOCK_GAME: lockGame,
+};
 
-export const adminApi = utils.firebase.apiDelegator('user api', ADMIN_API_ACTIONS);
+export const adminApi = utils.firebase.apiDelegator('admin api', ADMIN_API_ACTIONS);
