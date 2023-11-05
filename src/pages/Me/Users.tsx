@@ -8,7 +8,7 @@ import { cloneDeep, merge } from 'lodash';
 import { useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useTitle } from 'react-use';
-import { USER_API } from 'services/adapters';
+import { USER_API, USER_API_ACTIONS } from 'services/adapters';
 import { firestore } from 'services/firebase';
 
 interface GameUserEntry {
@@ -86,7 +86,7 @@ function Users() {
   const usersMutation = useMutation({
     mutationKey: ['users'],
     mutationFn: async (data: FirebaseUserDB) => {
-      USER_API.updateUserDB({ ...data });
+      USER_API.run({ action: USER_API_ACTIONS.UPDATE_USER_DB, ...data });
     },
     onSuccess: () => {
       message.success('User updated');

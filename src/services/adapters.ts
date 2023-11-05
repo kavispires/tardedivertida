@@ -8,11 +8,15 @@ export const GAME_API = {
   rateGame: httpsCallable(functions, 'rateGame'),
 };
 
+export const USER_API_ACTIONS = {
+  GET_USER: 'GET_USER',
+  GET_USER_BY_ID: 'GET_USER_BY_ID',
+  GET_USERS: 'GET_USERS',
+  UPDATE_USER_DB: 'UPDATE_USER_DB',
+};
+
 export const USER_API = {
-  getUser: httpsCallable(functions, 'getUser'),
-  getUserById: httpsCallable(functions, 'getUserById'),
-  getUsers: httpsCallable(functions, 'getUsers'),
-  updateUserDB: httpsCallable(functions, 'updateUserDB'),
+  run: httpsCallable(functions, 'userActions'),
 };
 
 export const DAILY_API = {

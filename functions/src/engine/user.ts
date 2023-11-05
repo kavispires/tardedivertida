@@ -12,7 +12,7 @@ type OptionalDailyGetterPayload = {
  * @param context
  * @returns
  */
-export const getUser = async ({ date }: OptionalDailyGetterPayload, context: FirebaseContext) => {
+const getUser = async ({ date }: OptionalDailyGetterPayload, context: FirebaseContext) => {
   const uid = context?.auth?.uid;
 
   if (!uid) {
@@ -40,7 +40,7 @@ export const getUser = async ({ date }: OptionalDailyGetterPayload, context: Fir
  * @param context
  * @returns
  */
-export const getUserById = async (userUid: string, context: FirebaseContext) => {
+const getUserById = async (userUid: string, context: FirebaseContext) => {
   const uid = context?.auth?.uid;
 
   if (!uid) {
@@ -65,7 +65,7 @@ export const getUserById = async (userUid: string, context: FirebaseContext) => 
  * @param context
  * @returns
  */
-export const getUsers = async (_: unknown, context: FirebaseContext) => {
+const getUsers = async (_: unknown, context: FirebaseContext) => {
   const uid = context?.auth?.uid;
 
   if (!uid) {
@@ -82,7 +82,7 @@ export const getUsers = async (_: unknown, context: FirebaseContext) => {
  * @param context
  * @returns
  */
-export const updateUserDB = async (data: FirebaseUserDB, context: FirebaseContext) => {
+const updateUserDB = async (data: FirebaseUserDB, context: FirebaseContext) => {
   const uid = context?.auth?.uid;
 
   if (!uid) {
@@ -98,3 +98,12 @@ export const updateUserDB = async (data: FirebaseUserDB, context: FirebaseContex
 
   return true;
 };
+
+const USER_API_ACTIONS = {
+  GET_USER: getUser,
+  GET_USER_BY_ID: getUserById,
+  GET_USERS: getUsers,
+  UPDATE_USER_DB: updateUserDB,
+};
+
+export const userApi = utils.firebase.apiDelegator('user api', USER_API_ACTIONS);

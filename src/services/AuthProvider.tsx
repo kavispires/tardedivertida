@@ -4,7 +4,7 @@ import type { User } from 'firebase/auth';
 import { useQuery } from 'react-query';
 import { useEffectOnce } from 'react-use';
 import { App } from 'antd';
-import { USER_API } from './adapters';
+import { USER_API, USER_API_ACTIONS } from './adapters';
 // Utils
 import { print } from 'utils/helpers';
 // Hooks
@@ -116,7 +116,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     queryKey: ['user'],
     queryFn: async () => {
       console.count('Fetching user...');
-      return await USER_API.getUser({ date: getToday() });
+      return await USER_API.run({ action: USER_API_ACTIONS.GET_USER, date: getToday() });
     },
     enabled: isAuthenticated,
     retry: false,
