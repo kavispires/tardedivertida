@@ -1,0 +1,87 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "T",
+  "gameName": "teste-de-elenco",
+  "version": "0.0.10",
+  "title": {
+    "pt": "Teste De Elenco",
+    "en": "Re-Casting Call"
+  },
+  "popularName": {
+    "pt": "Preconceito grupal cinemático",
+    "en": "Cinematic group prejudice"
+  },
+  "basedOn": "enoN",
+  "summary": {
+    "pt": "Monte o elenco perfeito para o filme",
+    "en": "Build the perfect cast for the movie"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "en": [
+      "In Re-Casting Call, players will have to select 5 actors for 5 roles in a movie",
+      "The decision is made by judging the actors appearance and the given traits to each role",
+      "If an actor gets more than 50% of the votes, they are cast.",
+      "A player will get points equal to the number of votes the actor they selected got",
+      "The game ends when all 5 roles are cast or each role had gone through 3 rounds"
+    ],
+    "pt": [
+      "Em Teste de Elenco, os jogadores terão que selecionar 5 atores para 5 papéis em um filme",
+      "A decisão é tomada julgando a aparência dos atores e os traços dados a cada papel",
+      "Se um ator receber mais de 50% dos votos, ele é escalado.",
+      "Um jogador receberá pontos iguais ao número de votos que o ator que eles selecionaram recebeu",
+      "O jogo termina quando os 5 papéis são escalados ou cada papel passou por 3 rodadas"
+    ]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["competitive", "voting", "achievements", "same-time"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [
+    {
+      "key": "nsfw",
+      "label": "NSFW questions",
+      "off": "No",
+      "on": "Yes",
+      "description": "Allow NSFW questions"
+    },
+    {
+      "label": "Original Cartoon",
+      "key": "official",
+      "off": "Cartoon",
+      "on": "Official",
+      "description": "Not recommended"
+    },
+    {
+      "label": "Realistic",
+      "key": "realistic",
+      "off": "No",
+      "on": "Yes",
+      "description": "This setting has priority over any other above"
+    },
+    {
+      "label": "Models",
+      "key": "models",
+      "off": "No",
+      "on": "Yes",
+      "description": "This setting has priority over any other above"
+    },
+    {
+      "label": "Wacky",
+      "key": "wacky",
+      "off": "No",
+      "on": "Yes",
+      "description": "This setting has priority over any other above"
+    }
+  ]
+}
