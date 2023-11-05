@@ -1,11 +1,15 @@
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 
+export const GAME_API_ACTIONS = {
+  ADD_PLAYER: 'ADD_PLAYER',
+  LOAD_GAME: 'LOAD_GAME',
+  MAKE_PLAYER_READY: 'MAKE_PLAYER_READY',
+  RATE_GAME: 'RATE_GAME',
+};
+
 export const GAME_API = {
-  addPlayer: httpsCallable(functions, 'addPlayer'),
-  loadGame: httpsCallable(functions, 'loadGame'),
-  makePlayerReady: httpsCallable(functions, 'makePlayerReady'),
-  rateGame: httpsCallable(functions, 'rateGame'),
+  run: httpsCallable(functions, 'gameActions'),
 };
 
 export const USER_API_ACTIONS = {

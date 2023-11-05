@@ -1,8 +1,8 @@
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
-import { GAME_API } from 'services/adapters';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
 
 const submitAction = httpsCallable(functions, 'portaDosDesesperadosSubmitAction');
 
@@ -29,7 +29,7 @@ export function useOnSubmitPagesAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitDoorAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitDoorAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -53,9 +53,7 @@ export function useOnSubmitDoorAPIRequest(setStep: GenericFunction) {
 export function useOnMakeReady(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: GAME_API.makePlayerReady,
-    actionName: 'be-ready',
+  return useOnMakeMeReady({
     onSuccess: () => setStep(3),
     successMessage: translate(
       'Pronto! Aguarde os outros jogadores estarem prontos',
@@ -66,6 +64,4 @@ export function useOnMakeReady(setStep: GenericFunction) {
       'Oops, the application failed to confirm your door'
     ),
   });
-
-  return request;
 }

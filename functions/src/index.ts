@@ -64,30 +64,13 @@ exports.lockGame = functions.https.onCall(adminEngine.lockGame);
  */
 exports.performAdminAction = functions.https.onCall(adminEngine.performAdminAction);
 
-// COMMON HTTP CALLS
-
 /**
- * Load an existing game
+ * Common game actions
  */
-exports.loadGame = functions.https.onCall(commonEngine.loadGame);
+exports.gameActions = functions.https.onCall(commonEngine.gameApi);
 
 /**
- * Add player to the game, if it's an existing player, only return its state
- */
-exports.addPlayer = functions.https.onCall(commonEngine.addPlayer);
-
-/**
- * Make player ready and go to next game phase if all players are ready
- */
-exports.makePlayerReady = functions.https.onCall(commonEngine.makePlayerReady);
-
-/**
- * Rate game
- */
-exports.rateGame = functions.https.onCall(commonEngine.rateGame);
-
-/**
- * Load user
+ * User actions
  */
 exports.userActions = functions.https.onCall(userEngine.userApi);
 

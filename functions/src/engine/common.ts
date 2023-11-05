@@ -7,7 +7,7 @@ import utils from '../utils';
  * @param data
  * @returns
  */
-export const loadGame = async (data: LoadGamePayload) => {
+const loadGame = async (data: LoadGamePayload) => {
   const { gameId } = data;
 
   const actionText = 'load game';
@@ -32,7 +32,7 @@ export const loadGame = async (data: LoadGamePayload) => {
  * @param data
  * @returns
  */
-export const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
+const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
   const { gameId, gameName, playerName, playerAvatarId, isGuest } = data;
 
   const actionText = 'add player';
@@ -101,7 +101,7 @@ export const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext
  * @param data
  * @returns
  */
-export const makePlayerReady = async (data: Payload) => {
+const makePlayerReady = async (data: Payload) => {
   const { gameId, gameName, playerId } = data;
 
   const actionText = 'make you ready';
@@ -139,7 +139,7 @@ export const makePlayerReady = async (data: Payload) => {
   }
 };
 
-export const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
+const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
   const { gameId, gameName, playerId } = data;
   const actionText = 'submit ratings';
 
@@ -187,3 +187,12 @@ export const rateGame = async (data: ExtendedPayload, context: FirebaseContext) 
   }
   return true;
 };
+
+const GAME_API_ACTIONS = {
+  LOAD_GAME: loadGame,
+  ADD_PLAYER: addPlayer,
+  MAKE_PLAYER_READY: makePlayerReady,
+  RATE_GAME: rateGame,
+};
+
+export const gameApi = utils.firebase.apiDelegator('game api', GAME_API_ACTIONS);
