@@ -1,6 +1,6 @@
 import { App } from 'antd';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { DAILY_API } from 'services/adapters';
+import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
 import { print } from 'utils/helpers';
 
 export function useDailyChallenge(today: string) {
@@ -10,7 +10,7 @@ export function useDailyChallenge(today: string) {
     queryKey: ['daily'],
     queryFn: async () => {
       console.count('Fetching user...');
-      return await DAILY_API.getDaily({ date: today });
+      return await DAILY_API.run({ action: DAILY_API_ACTIONS.GET_DAILY, date: today });
     },
     retry: false,
     onSuccess: (response) => {
@@ -40,7 +40,7 @@ export function useDailyChallengeMutation() {
   return useMutation({
     mutationKey: ['daily', 'submit'],
     mutationFn: async (data: DailySetterPayload) => {
-      return await DAILY_API.saveDaily(data);
+      return await DAILY_API.run({ action: DAILY_API_ACTIONS.SAVE_DAILY, ...data });
     },
     onSuccess: () => {
       queryClient.refetchQueries(['user']);

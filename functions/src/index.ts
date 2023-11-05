@@ -94,8 +94,7 @@ exports.userActions = functions.https.onCall(userEngine.userApi);
 /**
  * Daily actions
  */
-exports.getDaily = functions.https.onCall(dailyEngine.getDaily);
-exports.saveDaily = functions.https.onCall(dailyEngine.saveDaily);
+exports.dailyActions = functions.https.onCall(dailyEngine.dailyApi);
 
 // SUBMIT ACTIONS
 

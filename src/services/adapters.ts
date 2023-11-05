@@ -19,9 +19,13 @@ export const USER_API = {
   run: httpsCallable(functions, 'userActions'),
 };
 
+export const DAILY_API_ACTIONS = {
+  GET_DAILY: 'GET_DAILY',
+  SAVE_DAILY: 'SAVE_DAILY',
+};
+
 export const DAILY_API = {
-  getDaily: httpsCallable(functions, 'getDaily'),
-  saveDaily: httpsCallable(functions, 'saveDaily'),
+  run: httpsCallable(functions, 'dailyActions'),
 };
 
 export const ADMIN_API = {
