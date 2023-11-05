@@ -1,0 +1,75 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "T",
+  "gameName": "teste-de-elenco",
+  "version": "alpha",
+  "title": {
+    "pt": "Teste De Elenco",
+    "en": "Re-Casting Call"
+  },
+  "popularName": {
+    "pt": "Preconceito grupal",
+    "en": ""
+  },
+  "basedOn": "enoN",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["competitive", "voting"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [
+    {
+      "key": "nsfw",
+      "label": "NSFW questions",
+      "off": "No",
+      "on": "Yes",
+      "description": "Allow NSFW questions"
+    },
+    {
+      "label": "Original Cartoon",
+      "key": "official",
+      "off": "Cartoon",
+      "on": "Official",
+      "description": "Not recommended"
+    },
+    {
+      "label": "Realistic",
+      "key": "realistic",
+      "off": "No",
+      "on": "Yes",
+      "description": "This setting has priority over any other above"
+    },
+    {
+      "label": "Models",
+      "key": "models",
+      "off": "No",
+      "on": "Yes",
+      "description": "This setting has priority over any other above"
+    },
+    {
+      "label": "Wacky",
+      "key": "wacky",
+      "off": "No",
+      "on": "Yes",
+      "description": "This setting has priority over any other above"
+    }
+  ]
+}

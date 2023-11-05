@@ -126,6 +126,10 @@ export const TESTEMUNHA_OCULAR_API = {
   submitAction: httpsCallable(functions, 'testemunhaOcularSubmitAction'),
 };
 
+export const TESTE_DE_ELENCO_API = {
+  submitAction: httpsCallable(functions, 'testeDeElencoSubmitAction'),
+};
+
 export const TREVO_DA_SORTE_API = {
   submitAction: httpsCallable(functions, 'trevoDaSorteSubmitAction'),
 };
