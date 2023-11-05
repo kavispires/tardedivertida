@@ -1,5 +1,5 @@
 // Types
-import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
+import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import {
   ALLOWED_MISTAKES,
@@ -38,7 +38,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  allWords: AllWords
+  allWords: TextCard[]
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder } = utils.players.buildGameOrder(players);

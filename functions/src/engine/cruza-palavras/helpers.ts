@@ -1,6 +1,5 @@
 // Types
 import type {
-  AllWords,
   ClueEntry,
   CruzaPalavrasAchievement,
   Deck,
@@ -46,11 +45,8 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @param largerGridCount
  * @returns
  */
-export const buildDeck = (words: AllWords, playerCount: number, largerGridCount: number): Deck => {
-  return utils.game.getRandomItems(
-    Object.values(words),
-    WORDS_PER_PLAYER_COUNT[playerCount] + 2 + largerGridCount
-  );
+export const buildDeck = (words: TextCard[], playerCount: number, largerGridCount: number): Deck => {
+  return utils.game.getRandomItems(words, WORDS_PER_PLAYER_COUNT[playerCount] + 2 + largerGridCount);
 };
 
 /**

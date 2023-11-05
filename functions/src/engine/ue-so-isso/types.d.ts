@@ -19,10 +19,6 @@ export type UeSoIssoGameOptions = {
   withHints: boolean;
 };
 
-export interface AllWords {
-  [key: string]: TextCard;
-}
-
 export interface UsedWord {
   id: string;
   text: string;

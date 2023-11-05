@@ -4,9 +4,9 @@ export type TrevoDaSorteOptions = {
   hardGame: boolean;
 };
 
-export interface AllWords {
-  [key: string]: TextCard;
-}
+export type ResourceData = {
+  allWords: TextCard[];
+};
 
 export type Position = 'A' | 'B' | 'C' | 'D';
 

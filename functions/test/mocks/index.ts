@@ -10,14 +10,12 @@ export const mockArteRuimCardDatabase: Record<CardId, ArteRuimCard> = Array(120)
     return acc;
   }, {});
 
-export const mockUseSoIssoCardDatabase: Record<CardId, TextCard> = Array(100)
+export const mockUseSoIssoCardDatabase: TextCard[] = Array(100)
   .fill(1)
-  .reduce((acc, element, index) => {
+  .map((element, index) => {
     const id = `u-${element + index}-br`;
-    acc[id] = {
+    return {
       id,
       text: `blah ${element + index}`,
     };
-
-    return acc;
   }, {});

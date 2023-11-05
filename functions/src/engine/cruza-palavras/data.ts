@@ -1,10 +1,9 @@
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../utils/constants';
 // Types
 import type { PastClues, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
-import * as globalUtils from '../global';
 import * as dataUtils from '../collections';
 import utils from '../../utils';
 
@@ -13,7 +12,7 @@ import utils from '../../utils';
  * @param language
  * @returns
  */
-export const getWords = async (language: string, isImageGrid: boolean): Promise<ResourceData> => {
+export const getWords = async (language: Language, isImageGrid: boolean): Promise<ResourceData> => {
   if (isImageGrid) {
     // Get full contenders deck
     const contendersResponse: Collection<ContenderCard> = await resourceUtils.fetchResource(
@@ -33,12 +32,10 @@ export const getWords = async (language: string, isImageGrid: boolean): Promise<
       return acc;
     }, {});
 
-    return { allWords };
+    return { allWords: Object.values(allWords) };
   }
 
-  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS}-${language}`;
-  // Get full deck
-  const allWords = await resourceUtils.fetchResource(resourceName);
+  const allWords = await utils.tdr.getSingleWords(language, 15);
 
   return { allWords };
 };
@@ -47,7 +44,7 @@ export const saveData = async (language: Language, pastClues: PastClues, isImage
   // Save used cards
   if (!isImageGrid) {
     const usedIds = utils.helpers.buildBooleanDictionary(Object.keys(pastClues));
-    await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedIds);
+    await utils.tdr.saveUsedSingleWords(usedIds);
   }
 
   // Save card clues data

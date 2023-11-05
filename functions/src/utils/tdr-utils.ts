@@ -57,3 +57,42 @@ export const saveUsedAlienItems = async (items: AlienItem[]) => {
   const itemsIdsDict = buildIdDictionary(items);
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, itemsIdsDict);
 };
+
+/**
+ * Get single words for given quantity or all of them
+ * @param language
+ * @param quantity
+ * @returns
+ */
+export const getSingleWords = async (language: Language, quantity?: number): Promise<TextCard[]> => {
+  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS}-${language}`;
+  // Get full deck
+  const allWords: Collection<TextCard> = await fetchResource(resourceName);
+
+  if (!quantity) {
+    return Object.values(allWords);
+  }
+
+  // Get used WORDS deck
+  const usedWords: BooleanDictionary = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, {});
+
+  // Filter out used WORDS
+  let availableWords = gameUtils.filterOutByIds(allWords, usedWords);
+
+  // If not the minimum items needed, reset and use all
+  if (Object.keys(availableWords).length < quantity) {
+    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS);
+    availableWords = allWords;
+  }
+
+  return gameUtils.getRandomItems(Object.values(availableWords), quantity);
+};
+
+/**
+ * Saves list of used single words ids into the global used document
+ * @param usedWords
+ * @returns
+ */
+export const saveUsedSingleWords = async (usedWords: BooleanDictionary) => {
+  return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedWords);
+};

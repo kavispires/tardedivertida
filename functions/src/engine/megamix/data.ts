@@ -32,7 +32,7 @@ import {
  * @returns
  */
 export const getData = async (
-  language: string,
+  language: Language,
   options: MegamixGameOptions,
   playerCount: number
 ): Promise<ResourceData> => {
@@ -327,9 +327,8 @@ export const getData = async (
   // WORDS_TRACKS: CRUZA_PALAVRAS
   const cruzaPalavrasTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CRUZA_PALAVRAS);
   if (cruzaPalavrasTrack) {
-    const words = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.SINGLE_WORDS}-${language}`)
-    );
+    const words = await utils.tdr.getSingleWords(language);
+
     customTracks.push({
       game: GAME_NAMES.CRUZA_PALAVRAS,
       data: {
@@ -342,9 +341,7 @@ export const getData = async (
   // WORDS_TRACKS: UE_SO_ISSO
   const ueSoIssoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.UE_SO_ISSO);
   if (ueSoIssoTrack) {
-    const words = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.SINGLE_WORDS}-${language}`)
-    );
+    const words = await utils.tdr.getSingleWords(language);
     customTracks.push({
       game: GAME_NAMES.UE_SO_ISSO,
       data: {
