@@ -1,12 +1,15 @@
-import { LABIRINTO_SECRETO_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'labirintoSecretoSubmitAction');
 
 export function useOnSubmitMapAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: LABIRINTO_SECRETO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-map',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -29,7 +32,7 @@ export function useOnSubmitPathAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: LABIRINTO_SECRETO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-path',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),

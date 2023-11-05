@@ -1,13 +1,15 @@
-import { POLEMICA_DA_VEZ_API } from 'services/adapters';
-
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'polemicaDaVezSubmitAction');
 
 export function useOnSubmitTweetAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: POLEMICA_DA_VEZ_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-tweet',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
@@ -30,7 +32,7 @@ export function useOnSubmitReactionAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: POLEMICA_DA_VEZ_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-reaction',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

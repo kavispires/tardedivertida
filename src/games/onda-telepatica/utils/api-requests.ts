@@ -1,13 +1,15 @@
-import { ONDA_TELEPATICA_API } from 'services/adapters';
-
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'ondaTelepaticaSubmitAction');
 
 export function useOnSubmitCategoryAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ONDA_TELEPATICA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-category',
     successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
     errorMessage: translate(
@@ -28,7 +30,7 @@ export function useOnSubmitClueAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ONDA_TELEPATICA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-category',
     successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
     errorMessage: translate(
@@ -49,7 +51,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ONDA_TELEPATICA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-guess',
     onSuccess: () => setStep(2),
     onError: () => setStep(1),

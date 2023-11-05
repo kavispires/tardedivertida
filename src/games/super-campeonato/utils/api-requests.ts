@@ -1,13 +1,16 @@
-import { SUPER_CAMPEONATO_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 import { ACTIONS } from './constants';
+
+const submitAction = httpsCallable(functions, 'superCampeonatoSubmitAction');
 
 export function useOnSubmitChallengeAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: SUPER_CAMPEONATO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-challenge',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -30,7 +33,7 @@ export function useOnSubmitContenderAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: SUPER_CAMPEONATO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-contender',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -53,7 +56,7 @@ export function useOnSubmitBetsAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: SUPER_CAMPEONATO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-bets',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -76,7 +79,7 @@ export function useOnSubmitVotesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: SUPER_CAMPEONATO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

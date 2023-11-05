@@ -1,11 +1,13 @@
-import { RETRATO_FALADO_API } from 'services/adapters';
-
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 
+const submitAction = httpsCallable(functions, 'retratoFaladoSubmitAction');
+
 export function useOnSubmitOrientationAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
-    apiFunction: RETRATO_FALADO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-sketch',
     onBeforeCall: () => setStep(3),
   });
@@ -22,7 +24,7 @@ export function useOnSubmitSketchAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: RETRATO_FALADO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-sketch',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -48,7 +50,7 @@ export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: RETRATO_FALADO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-vote',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

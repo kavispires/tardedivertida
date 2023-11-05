@@ -1,13 +1,17 @@
-import { ADMIN_API, ESPIAO_ENTRE_NOS_API } from 'services/adapters';
+import { ADMIN_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 import { ADMIN_ACTIONS } from 'utils/constants';
+
+const submitAction = httpsCallable(functions, 'espiaoEntreNosSubmitAction');
 
 export function useOnGuessLocationAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ESPIAO_ENTRE_NOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-guess',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -30,7 +34,7 @@ export function useOnMakeAccusationAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ESPIAO_ENTRE_NOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'make-accusation',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -53,7 +57,7 @@ export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ESPIAO_ENTRE_NOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-vote',
     onError: () => setStep(1),
     successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully'),
@@ -75,7 +79,7 @@ export function useOnSendLastQuestionerAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ESPIAO_ENTRE_NOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-last-questioner',
     onError: () => setStep(1),
     successMessage: translate(

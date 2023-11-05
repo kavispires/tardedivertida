@@ -1,12 +1,15 @@
-import { TESTE_DE_ELENCO_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'testeDeElencoSubmitAction');
 
 export function useOnSubmitMovieGenreAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TESTE_DE_ELENCO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-genre',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -29,7 +32,7 @@ export function useOnSubmitMovieActorAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TESTE_DE_ELENCO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-genre',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),

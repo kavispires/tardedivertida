@@ -1,12 +1,15 @@
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import { MEGAMIX_API } from 'services/adapters';
+
+const submitAction = httpsCallable(functions, 'megamixSubmitAction');
 
 export function useOnSubmitSeedAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: MEGAMIX_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-seed',
     onSuccess: () => setStep(3),
     successMessage: translate('Dados enviados com sucesso', 'Data submitted successfully'),
@@ -28,7 +31,7 @@ export function useOnSubmitTrackAnswerAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: MEGAMIX_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-task',
     onSuccess: () => setStep(3),
     successMessage: translate('Tarefa enviada com sucesso', 'Track submitted successfully'),

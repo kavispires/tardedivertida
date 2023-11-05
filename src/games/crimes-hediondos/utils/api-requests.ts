@@ -1,12 +1,15 @@
-import { CRIMES_HEDIONDOS_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'crimesHediondosSubmitAction');
 
 export function useOnSubmitCrimeAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: CRIMES_HEDIONDOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-crime',
     onBeforeCall: () => setStep(11),
     onError: () => setStep(9),
@@ -29,7 +32,7 @@ export function useOnSubmitMarkAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: CRIMES_HEDIONDOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-mark',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
@@ -55,7 +58,7 @@ export function useOnSubmitGuessesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: CRIMES_HEDIONDOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-guesses',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

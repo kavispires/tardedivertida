@@ -1,12 +1,15 @@
-import { ADEDANHX_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'adedanhxSubmitAction');
 
 export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ADEDANHX_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-answers',
     onSuccess: () => setStep(3),
     onError: () => setStep(2),
@@ -29,7 +32,7 @@ export function useOnNextEvaluationGroupAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ADEDANHX_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'go-to-next-evaluation-group',
 
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
@@ -50,7 +53,7 @@ export function useOnRejectAnswersAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ADEDANHX_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'go-to-next-evaluation-group',
 
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),

@@ -1,13 +1,16 @@
-import { GAME_API, PORTA_DOS_DESESPERADOS } from 'services/adapters';
-// Hooks
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
+import { GAME_API } from 'services/adapters';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'portaDosDesesperadosSubmitAction');
 
 export function useOnSubmitPagesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: PORTA_DOS_DESESPERADOS.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-word',
     onBeforeCall: () => setStep(4),
     onError: () => setStep(2),
@@ -30,7 +33,7 @@ export function useOnSubmitDoorAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: PORTA_DOS_DESESPERADOS.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-word',
     successMessage: translate('Porta enviada com sucesso', 'Door submitted successfully'),
     errorMessage: translate(

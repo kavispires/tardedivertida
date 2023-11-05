@@ -1,12 +1,15 @@
-import { GALERIA_DE_SONHOS_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'galeriaDeSonhosSubmitAction');
 
 export function useOnSubmitWordAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: GALERIA_DE_SONHOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-word',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
@@ -29,7 +32,7 @@ export function useOnSubmitCardsAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: GALERIA_DE_SONHOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-cards',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -52,7 +55,7 @@ export function useOnPlayCardAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: GALERIA_DE_SONHOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'play-card',
     // onBeforeCall: () => setStep(3),
     onError: () => setStep(2),

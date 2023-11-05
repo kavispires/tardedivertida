@@ -1,12 +1,15 @@
-import { NA_RUA_DO_MEDO_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'naRuaDoMedoSubmitAction');
 
 export function useOnSubmitDecisionAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: NA_RUA_DO_MEDO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-decision',
     onSuccess: () => {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });

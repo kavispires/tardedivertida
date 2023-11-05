@@ -1,12 +1,15 @@
-import { VENDAVAL_DE_PALPITE_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'vendavalDePalpiteSubmitAction');
 
 export function useOnSubmitBossPlayerAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VENDAVAL_DE_PALPITE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-boss',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -29,7 +32,7 @@ export function useOnSubmitSecretWordAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VENDAVAL_DE_PALPITE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-secret-word',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -52,7 +55,7 @@ export function useOnSubmitPlayerCluesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VENDAVAL_DE_PALPITE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-player-clues',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -75,7 +78,7 @@ export function useOnSubmitEvaluationAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VENDAVAL_DE_PALPITE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-evaluation',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -98,7 +101,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VENDAVAL_DE_PALPITE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-outcome',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -121,7 +124,7 @@ export function useOnSubmitHelpAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VENDAVAL_DE_PALPITE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-help',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),

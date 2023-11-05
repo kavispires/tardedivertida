@@ -1,13 +1,15 @@
-import { LINHAS_CRUZADAS_API } from 'services/adapters';
-
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'linhasCruzadasSubmitAction');
 
 export function useOnSubmitPromptAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: LINHAS_CRUZADAS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-prompt',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -30,7 +32,7 @@ export function useOnSubmitDrawingAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: LINHAS_CRUZADAS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-drawing',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -56,7 +58,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: LINHAS_CRUZADAS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-guess',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

@@ -1,12 +1,16 @@
-import { COMUNICACAO_ALIENIGENA_API, GAME_API } from 'services/adapters';
+import { GAME_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'comunicacaoAlienigenaSubmitAction');
 
 export function useOnSubmitAlienAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: COMUNICACAO_ALIENIGENA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -29,7 +33,7 @@ export function useOnSubmitSeedingAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: COMUNICACAO_ALIENIGENA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-seeds',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -52,7 +56,7 @@ export function useOnSubmitHumanInquiryAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: COMUNICACAO_ALIENIGENA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -75,7 +79,7 @@ export function useOnSubmitAlienResponseAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: COMUNICACAO_ALIENIGENA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-action',
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
     errorMessage: translate(
@@ -112,7 +116,7 @@ export function useOnSubmitAlienRequestAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: COMUNICACAO_ALIENIGENA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -135,7 +139,7 @@ export function useOnSubmitOfferingAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: COMUNICACAO_ALIENIGENA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
