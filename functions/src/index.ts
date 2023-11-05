@@ -50,14 +50,11 @@ if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
 // ADMIN HTTP CALLS (require auth)
 
 /**
+ * Admin Actions
  * Create a new game instance returning its meta data with gameId
- */
-exports.createGame = functions.https.onCall(adminEngine.createGame);
-
-/**
  * Lock game so new players cannot join
  */
-exports.lockGame = functions.https.onCall(adminEngine.lockGame);
+exports.adminActions = functions.https.onCall(adminEngine.adminApi);
 
 /**
  * Collection of admin actions like `nextPhase`, `playAgain`, `endGame`, etc

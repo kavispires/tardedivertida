@@ -32,8 +32,12 @@ export const DAILY_API = {
   run: httpsCallable(functions, 'dailyActions'),
 };
 
+export const ADMIN_API_ACTIONS = {
+  CREATE_GAME: 'CREATE_GAME',
+  LOCK_GAME: 'LOCK_GAME',
+};
+
 export const ADMIN_API = {
-  createGame: httpsCallable(functions, 'createGame'),
-  lockGame: httpsCallable(functions, 'lockGame'),
+  run: httpsCallable(functions, 'adminActions'),
   performAdminAction: httpsCallable(functions, 'performAdminAction'),
 };
