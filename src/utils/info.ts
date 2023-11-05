@@ -8,6 +8,7 @@ import CRIMES_HEDIONDOS from 'games/crimes-hediondos/game-info.json';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/game-info.json';
 import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/game-info.json';
 import DILEMA_DOS_ESQUIADORES from 'games/dilema-dos-esquiadores/game-info.json';
+import DUETOS from 'games/duetos/game-info.json';
 import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/game-info.json';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/game-info.json';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/game-info.json';
@@ -17,6 +18,7 @@ import LINHAS_CRUZADAS from 'games/linhas-cruzadas/game-info.json';
 import MEGAMIX from 'games/megamix/game-info.json';
 import MENTE_COLETIVA from 'games/mente-coletiva/game-info.json';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/game-info.json';
+import NAO_SOU_ROBO from 'games/nao-sou-robo/game-info.json';
 import NAUFRAGOS from 'games/naufragos/game-info.json';
 import ONDA_TELEPATICA from 'games/onda-telepatica/game-info.json';
 import PALHETA_DE_CORES from 'games/palheta-de-cores/game-info.json';
@@ -51,6 +53,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': DETETIVES_IMAGINATIVOS,
   'dilema-dos-esquiadores': DILEMA_DOS_ESQUIADORES,
+  duetos: DUETOS,
   'espiao-entre-nos': ESPIAO_ENTRE_NOS,
   'fileira-de-fatos': FILEIRA_DE_FATOS,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
@@ -60,6 +63,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
+  'nao-sou-robo': NAO_SOU_ROBO,
   naufragos: NAUFRAGOS,
   'onda-telepatica': ONDA_TELEPATICA,
   'palheta-de-cores': PALHETA_DE_CORES,

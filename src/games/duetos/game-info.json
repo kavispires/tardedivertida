@@ -1,0 +1,38 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "D",
+  "gameName": "duetos",
+  "version": "planned",
+  "title": {
+    "pt": "Duetos",
+    "en": "Duets"
+  },
+  "popularName": {
+    "pt": "Dos pares",
+    "en": "To pair things"
+  },
+  "basedOn": "souD",
+  "summary": {
+    "pt": "Faça pares com as cartas como os outros jogadores",
+    "en": "Pair the cards like the other players"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["competitive", "pairing"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}

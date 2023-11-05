@@ -1,0 +1,38 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "B",
+  "gameName": "nao-sou-robo",
+  "version": "planned",
+  "title": {
+    "pt": "Eu Não Sou Um Robô",
+    "en": "I'm Not A Robot"
+  },
+  "popularName": {
+    "pt": "Cartas bonitos contro o robô",
+    "en": "Image cards against the bot"
+  },
+  "basedOn": "stuanorienO",
+  "summary": {
+    "pt": "Descobra o robô entre as imagens",
+    "en": "Find the bot among the images"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["cooperative", "images", "guessing", "same-time"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}
