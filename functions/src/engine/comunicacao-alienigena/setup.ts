@@ -467,7 +467,7 @@ export const prepareGameOverPhase = async (
   });
 
   // Save data (alien items)
-  await saveUsedItems(utils.helpers.buildIdDictionary(state.items));
+  await saveUsedItems(state.items);
 
   utils.players.cleanup(players, ['role']);
 
