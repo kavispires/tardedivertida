@@ -1,13 +1,15 @@
-import { MENTE_COLETIVA_API } from 'services/adapters';
-
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'menteColetivaSubmitAction');
 
 export function useOnSubmitQuestionAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-question',
     onSuccess: () => setStep(3),
     onError: () => setStep(1),
@@ -30,7 +32,7 @@ export function useOnSubmitCustomQuestionAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-question',
     onSuccess: () => setStep(3),
     onError: () => setStep(1),
@@ -53,7 +55,7 @@ export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-answers',
     onSuccess: () => setStep(2),
     onError: () => setStep(1),
@@ -76,7 +78,7 @@ export function useOnAddAnswerAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'add-answer',
     successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!'),
     errorMessage: translate(
@@ -97,7 +99,7 @@ export function useOnNextAnswersAPIRequest(clearAllowList: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'next-answers',
     onSuccess: clearAllowList,
     successMessage: translate(

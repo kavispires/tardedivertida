@@ -1,13 +1,16 @@
-import { TREVO_DA_SORTE_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 import { ACTIONS } from './constants';
+
+const submitAction = httpsCallable(functions, 'trevoDaSorteSubmitAction');
 
 export function useOnSubmitBadWordsAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TREVO_DA_SORTE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-bad-words',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -30,7 +33,7 @@ export function useOnSubmitCluesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TREVO_DA_SORTE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-clues',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -53,7 +56,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TREVO_DA_SORTE_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-guess',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

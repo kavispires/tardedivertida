@@ -1,12 +1,15 @@
-import { ARTE_RUIM_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'arteRuimSubmitAction');
 
 export function useOnSubmitDrawingAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ARTE_RUIM_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-drawing',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -32,7 +35,7 @@ export function useOnSubmitVotingAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: ARTE_RUIM_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-voting',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),

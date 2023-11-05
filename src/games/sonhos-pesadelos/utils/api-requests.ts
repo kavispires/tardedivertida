@@ -1,12 +1,15 @@
-import { SONHOS_PESADELOS_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'sonhosPesadelosSubmitAction');
 
 export function useOnSubmitDreamAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: SONHOS_PESADELOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-dream',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -29,7 +32,7 @@ export function useOnSubmitVotesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: SONHOS_PESADELOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(0),

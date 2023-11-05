@@ -1,12 +1,15 @@
-import { DETETIVES_IMAGINATIVOS_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'detetivesImaginativosSubmitAction');
 
 export function useOnSubmitSecretClueAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-secret-clue',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -29,7 +32,7 @@ export function useOnPlayCardAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'play-card',
     successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
     errorMessage: translate(
@@ -50,7 +53,7 @@ export function useOnFinishDefenseRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'finish-defense',
     successMessage: translate('Defesa concluída com sucesso', 'Defense concluded successfully'),
     errorMessage: translate(
@@ -70,7 +73,7 @@ export function useOnSubmitVoteAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-vote',
     successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(

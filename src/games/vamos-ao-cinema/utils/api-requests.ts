@@ -1,12 +1,15 @@
-import { VAMOS_AO_CINEMA_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'vamosAoCinemaSubmitAction');
 
 export function useOnSubmitMovieSelectionAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VAMOS_AO_CINEMA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-action',
 
     onSuccess: () => setStep(2),
@@ -30,7 +33,7 @@ export function useOnSubmitMovieEliminationAPIRequest(setStep: GenericFunction) 
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VAMOS_AO_CINEMA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-action',
     onBeforeCall: () =>
       window.scrollTo({
@@ -59,7 +62,7 @@ export function useOnSubmitMoviePosterAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: VAMOS_AO_CINEMA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-action',
     onError: () => setStep(0),
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),

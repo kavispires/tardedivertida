@@ -1,12 +1,15 @@
-import { CRUZA_PALAVRAS_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'cruzaPalavrasSubmitAction');
 
 export function useOnSubmitClueAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: CRUZA_PALAVRAS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-clue',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -29,7 +32,7 @@ export function useOnSubmitGuessesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: CRUZA_PALAVRAS_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-guesses',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

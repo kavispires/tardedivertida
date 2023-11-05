@@ -1,12 +1,15 @@
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import { QUEM_NAO_MATA_API } from 'services/adapters';
+
+const submitAction = httpsCallable(functions, 'quemNaoMataSubmitAction');
 
 export function useOnSubmitTargetAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: QUEM_NAO_MATA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-target',
     successMessage: translate('Alvo selecionado com sucesso', 'Target set successfully'),
     errorMessage: translate(
@@ -27,7 +30,7 @@ export function useOnSubmitMessageAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: QUEM_NAO_MATA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-message',
     successMessage: translate('Mensagem enviada com sucesso!', 'Message sent successfully!'),
     errorMessage: translate(
@@ -48,7 +51,7 @@ export function useOnSubmitDecisionAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: QUEM_NAO_MATA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-decision',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

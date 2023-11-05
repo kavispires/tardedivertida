@@ -1,12 +1,15 @@
-import { TA_NA_CARA_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'taNaCaraSubmitAction');
 
 export function useOnSubmitPromptAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TA_NA_CARA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-prompt',
     onSuccess: () => setStep(2),
     successMessage: translate('Pergunta submetida com sucesso', 'Question submitted successfully'),
@@ -28,7 +31,7 @@ export function useOnSubmitTargetAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TA_NA_CARA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-target',
     onSuccess: () => setStep(2),
     successMessage: translate('Alvo submetida com sucesso', 'Target submitted successfully'),
@@ -50,7 +53,7 @@ export function useOnSubmitAnswerAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TA_NA_CARA_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-answer',
     successMessage: translate('Resposta submetida com sucesso', 'Answer submitted successfully'),
     errorMessage: translate(
@@ -71,7 +74,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TA_NA_CARA_API.submitAction,
+    apiFunction: submitAction,
     onSuccess: () => setStep(2),
     actionName: 'submit-guess',
     successMessage: translate('Palpite submetido com sucesso', 'Guess submitted successfully'),

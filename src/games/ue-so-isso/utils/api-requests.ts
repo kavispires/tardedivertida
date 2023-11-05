@@ -1,12 +1,15 @@
-import { UE_SO_ISSO_API } from 'services/adapters';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'ueSoIssoSubmitAction');
 
 export function useOnSubmitVotesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -29,7 +32,7 @@ export function useOnSubmitSuggestionsAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-suggestion',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -52,7 +55,7 @@ export function useOnSubmitValidationsAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-validations',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -75,7 +78,7 @@ export function useOnValidateSuggestionAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'validate-suggestion',
     successMessage: translate('Atualizado!', 'Updated!'),
     errorMessage: translate(
@@ -96,7 +99,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-outcome',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -119,7 +122,7 @@ export function useOnSendGuessAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'send-guess',
     successMessage: translate('Chute enviado!', 'Guess sent!'),
     errorMessage: translate(

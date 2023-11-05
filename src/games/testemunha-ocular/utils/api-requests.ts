@@ -1,13 +1,15 @@
-import { TESTEMUNHA_OCULAR_API } from 'services/adapters';
-
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+
+const submitAction = httpsCallable(functions, 'testemunhaOcularSubmitAction');
 
 export function useOnSelectWitnessAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'select-witness',
     successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully'),
     errorMessage: translate(
@@ -28,7 +30,7 @@ export function useOnSelectQuestionAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'select-question',
     successMessage: translate('Pergunta enviada com sucesso', 'Question submitted successfully'),
     errorMessage: translate(
@@ -49,7 +51,7 @@ export function useOnSubmitTestimonyAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'submit-testimony',
     successMessage: translate('Testemunho enviada com sucesso', 'Testimony submitted successfully'),
     errorMessage: translate(
@@ -70,7 +72,7 @@ export function useOnEliminateSuspectAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useAPICall({
-    apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
+    apiFunction: submitAction,
     actionName: 'eliminate-suspect',
     successMessage: translate('Suspeito eliminado com sucesso', 'Suspect release submitted successfully'),
     errorMessage: translate(
