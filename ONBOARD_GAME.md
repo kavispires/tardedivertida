@@ -48,10 +48,6 @@ All file paths here are relative to `/src`.
 - Create a `game-info.json` for game info object.
 - Update `pages/Game.tsx` to include the new Game Session.
 
-# Add cloud functions Adapter
-
-- Update `/services/adapters.ts` with the new cloud functions
-
 # Add game to the list
 
 - Update `src/utils/info.ts` with the game entry for its game-info
