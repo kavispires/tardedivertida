@@ -23,7 +23,7 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
 
-  const onSubmitDoor = useOnSubmitDoorAPIRequest(setStep);
+  const onSubmitDoor = useOnSubmitDoorAPIRequest();
   const onConfirmDoor = useOnMakeReady(setStep);
 
   return (

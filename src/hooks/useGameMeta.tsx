@@ -8,7 +8,7 @@ import { useLoading } from './useLoading';
 import { useGameId } from './useGameId';
 import { useError } from './useError';
 // API
-import { GAME_API } from 'services/adapters';
+import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
 // Utils
 import { print } from 'utils/helpers';
 
@@ -28,7 +28,7 @@ export function useGameMeta(): GameMeta {
     queryKey: ['meta', gameId],
     queryFn: async () => {
       console.count('Fetching game meta...');
-      return await GAME_API.loadGame({ gameId });
+      return await GAME_API.run({ action: GAME_API_ACTIONS.LOAD_GAME, gameId });
     },
     enabled: Boolean(gameId),
     staleTime: 30 * 60 * 1000, // 30 minutes

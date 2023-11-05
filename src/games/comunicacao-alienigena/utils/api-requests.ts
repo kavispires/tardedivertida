@@ -1,8 +1,8 @@
-import { GAME_API } from 'services/adapters';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
 
 const submitAction = httpsCallable(functions, 'comunicacaoAlienigenaSubmitAction');
 
@@ -97,19 +97,7 @@ export function useOnSubmitAlienResponseAPIRequest() {
 }
 
 export function useOnMakeReady() {
-  const { translate } = useLanguage();
-
-  const request = useAPICall({
-    apiFunction: GAME_API.makePlayerReady,
-    actionName: 'be-ready',
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar confirmar',
-      'Oops, the application found an error while trying to confirm'
-    ),
-  });
-
-  return request;
+  return useOnMakeMeReady({});
 }
 
 export function useOnSubmitAlienRequestAPIRequest(setStep: GenericFunction) {

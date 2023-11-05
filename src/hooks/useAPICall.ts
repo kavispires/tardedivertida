@@ -16,7 +16,7 @@ const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
   };
 };
 
-type useAPICallArgs = {
+export type UseAPICallArgs = {
   apiFunction: HttpsCallable<unknown, unknown>;
   actionName: string;
   onBeforeCall?: (...args: any) => any;
@@ -55,7 +55,7 @@ export function useAPICall({
   onSuccess = () => {},
   successMessage = 'API call was successful',
   errorMessage = 'API call has failed',
-}: useAPICallArgs): (...args: any[]) => any {
+}: UseAPICallArgs): (...args: any[]) => any {
   const { message, notification } = App.useApp();
   const { setLoader } = useLoading();
   const { gameId, gameName } = useGameMeta();

@@ -1,7 +1,7 @@
 import { App } from 'antd';
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
-import { GAME_API } from 'services/adapters';
+import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
 import { ADMIN_API } from 'services/adapters';
 import { useCurrentUserContext } from './useCurrentUserContext';
 import { ADMIN_ACTIONS } from 'utils/constants';
@@ -24,7 +24,10 @@ export function useRedirectToNewGame() {
     queryKey: ['meta', previousGameId],
     queryFn: async () => {
       console.count('Fetching game meta...');
-      return (await GAME_API.loadGame({ gameId: previousGameId })) as GameMetaResponse;
+      return (await GAME_API.run({
+        action: GAME_API_ACTIONS.LOAD_GAME,
+        gameId: previousGameId,
+      })) as GameMetaResponse;
     },
     enabled: Boolean(previousGameId),
     onError: (e: any) => {
