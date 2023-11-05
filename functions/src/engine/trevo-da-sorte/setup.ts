@@ -1,5 +1,5 @@
 // Types
-import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
+import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { CARDS_PER_PLAYER, TREVO_DA_SORTE_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
@@ -18,12 +18,12 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  allWords: AllWords
+  allWords: TextCard[]
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder, playerCount } = utils.players.buildGameOrder(players);
 
-  const deck = utils.game.getRandomItems(Object.values(allWords), playerCount * CARDS_PER_PLAYER);
+  const deck = utils.game.getRandomItems(allWords, playerCount * CARDS_PER_PLAYER);
 
   // Save
   return {

@@ -25,6 +25,8 @@ export const PLAYER_COUNTS = {
 
 export const MAX_ROUNDS = 7;
 
+export const TOTAL_WORDS_NEEDED = 5;
+
 // The count includes the Boss
 export const CLUES_PER_PLAYER = {
   2: 4,

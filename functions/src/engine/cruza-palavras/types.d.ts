@@ -11,12 +11,8 @@ export type CruzaPalavrasOptions = {
   imageGrid: boolean;
 };
 
-export type AllWords = {
-  [key: string]: TextCard;
-};
-
 export type ResourceData = {
-  allWords: AllWords;
+  allWords: TextCard[];
 };
 
 export type Deck = TextCard[];

@@ -1,11 +1,8 @@
 // Types
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { PastSuggestion } from './types';
 // Helpers
-import * as resourceUtils from '../resource';
-import * as globalUtils from '../global';
 import * as dataUtils from '../collections';
 import utils from '../../utils';
-import { PastSuggestion } from './types';
 import { findDuplicateSuggestions } from './helpers';
 
 /**
@@ -13,25 +10,23 @@ import { findDuplicateSuggestions } from './helpers';
  * @param language
  * @returns
  */
-export const getWords = async (language: string) => {
-  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS}-${language}`;
-  return await resourceUtils.fetchResource(resourceName);
+export const getWords = async (language: Language) => {
+  return await utils.tdr.getSingleWords(language);
 };
 
 /**
  * Saves used cards and created data
- * @param language
  * @param pastSuggestions
+ * @param language
  */
 export const saveData = async (pastSuggestions: PastSuggestion[], language: Language) => {
   // Save used cards
   const usedIds = utils.helpers.buildIdDictionary(pastSuggestions);
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedIds);
+  await utils.tdr.saveUsedSingleWords(usedIds);
 
   // Save card clues data
   const toBeSaved = pastSuggestions.reduce((acc, entry) => {
     const result = findDuplicateSuggestions(entry);
-
     acc[entry.id] = result;
     return acc;
   }, {});

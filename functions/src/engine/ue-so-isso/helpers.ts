@@ -1,6 +1,5 @@
 // Types
 import type {
-  AllWords,
   CurrentSuggestions,
   FirebaseStoreData,
   Outcome,
@@ -67,8 +66,8 @@ export const determineNextPhase = (
  * @param allWords
  * @param numberOfRounds
  */
-export const buildDeck = (allWords: AllWords, numberOfRounds: number, wordsPerCard) => {
-  const shuffledWords = utils.game.shuffle(Object.values(allWords));
+export const buildDeck = (allWords: TextCard[], numberOfRounds: number, wordsPerCard) => {
+  const shuffledWords = utils.game.shuffle(allWords);
 
   const deck: string[] = [];
   for (let i = 0; i < numberOfRounds * wordsPerCard; i += wordsPerCard) {
