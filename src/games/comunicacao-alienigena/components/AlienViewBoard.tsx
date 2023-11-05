@@ -22,7 +22,7 @@ export function AlienViewBoard({ request, isAlienBot, size }: AlienViewBoardProp
           className="alien-canvas alien-canvas--small alien-canvas--bot"
           style={{ width: `${width}px`, height: `${height}px` }}
         >
-          <SignCard id={`${request}`} width={75} />
+          <SignCard id={`${request}`} width={75} className="transparent" />
         </div>
       );
     }
