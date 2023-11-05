@@ -109,6 +109,9 @@ const SessionQuemSouEu = lazy(
 const SessionTaNaCara = lazy(
   () => import('games/ta-na-cara/SessionTaNaCara' /* webpackChunkName: "ta-na-cara" */)
 );
+const SessionTesteDeElenco = lazy(
+  () => import('games/teste-de-elenco/SessionTesteDeElenco' /* webpackChunkName: "teste-de-elenco" */)
+);
 
 function Game() {
   const { translate } = useLanguage();
@@ -285,6 +288,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionTestemunhaOcular />
+          </Suspense>
+        );
+      case GAME_COLLECTION.TESTE_DE_ELENCO:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionTesteDeElenco />
           </Suspense>
         );
       case GAME_COLLECTION.TREVO_DA_SORTE:

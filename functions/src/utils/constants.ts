@@ -151,6 +151,11 @@ const GAMES = [
     key: 'TESTEMUNHA_OCULAR',
   },
   {
+    name: 'teste-de-elenco',
+    code: 'T',
+    key: 'TESTE_DE_ELENCO',
+  },
+  {
     name: 'trevo-da-sorte',
     code: 'Y',
     key: 'TREVO_DA_SORTE',

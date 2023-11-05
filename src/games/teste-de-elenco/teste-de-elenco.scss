@@ -1,0 +1,50 @@
+@use 'styles/sass' as *;
+
+.movie-genre-selection {
+  &__button {
+    width: 100%;
+    background: get-color('white');
+    border-radius: $border-radius;
+    display: grid;
+    place-items: center;
+    padding: get-unit(2);
+    text-transform: uppercase;
+  }
+}
+
+.role {
+  @include contained;
+  padding: get-unit(2 10);
+  margin: get-unit(2);
+  position: relative;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__round {
+    position: absolute;
+    top: get-unit(-2);
+    left: get-unit(-2);
+    transform: rotate(-15deg);
+  }
+
+  &__description {
+    font-weight: bold;
+    font-style: italic;
+    margin: 0;
+  }
+
+  &__instructions {
+    margin: 0;
+  }
+
+  &__traits {
+    margin: 0;
+  }
+
+  &__cancelled {
+    color: get-color('red');
+    text-decoration: underline;
+  }
+}

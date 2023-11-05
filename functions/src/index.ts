@@ -29,6 +29,7 @@ import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from './engine/super-campeonato';
 import * as taNaCaraEngine from './engine/ta-na-cara';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
+import * as testeDeElencoEngine from './engine/teste-de-elenco';
 import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
@@ -162,6 +163,8 @@ exports.superCampeonatoSubmitAction = functions.https.onCall(superCampeonatoEngi
 exports.taNaCaraSubmitAction = functions.https.onCall(taNaCaraEngine.submitAction);
 
 exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
+
+exports.testeDeElencoSubmitAction = functions.https.onCall(testeDeElencoEngine.submitAction);
 
 exports.trevoDaSorteSubmitAction = functions.https.onCall(trevoDaSorteEngine.submitAction);
 
