@@ -29,6 +29,7 @@ import SONHOS_PESADELOS from 'games/sonhos-pesadelos/game-info.json';
 import SUPER_CAMPEONATO from 'games/super-campeonato/game-info.json';
 import TA_NA_CARA from 'games/ta-na-cara/game-info.json';
 import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/game-info.json';
+import TESTE_DE_ELENCO from 'games/teste-de-elenco/game-info.json';
 import TREVO_DA_SORTE from 'games/trevo-da-sorte/game-info.json';
 import UE_SO_ISSO from 'games/ue-so-isso/game-info.json';
 import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/game-info.json';
@@ -71,6 +72,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': TA_NA_CARA,
   'testemunha-ocular': TESTEMUNHA_OCULAR,
+  'teste-de-elenco': TESTE_DE_ELENCO,
   'trevo-da-sorte': TREVO_DA_SORTE,
   'ue-so-isso': UE_SO_ISSO,
   'vamos-ao-cinema': VAMOS_AO_CINEMA,

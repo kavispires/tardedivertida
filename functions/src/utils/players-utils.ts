@@ -409,6 +409,19 @@ export class Scores {
   }
 
   /**
+   * Adds a value to all players's gained score in the list
+   * @param playerIds
+   * @param value
+   * @param gainedIndex
+   */
+  addMultiple(playerIds: PlayerId[], value: number, gainedIndex = 0): void {
+    playerIds.forEach((playerId) => {
+      this.scores[playerId].gainedPoints[gainedIndex] += value;
+      this.scores[playerId].newScore += value;
+    });
+  }
+
+  /**
    * Subtracts a value from given player's gained score
    * @param playerId
    * @param value
@@ -468,4 +481,50 @@ export const cleanup = (players: Players, keepKeys: string[]) => {
     });
   });
   return players;
+};
+
+type MostVotesResult = { property: string; value: string; votes: PlayerId[]; count: number; tie?: boolean };
+
+/**
+ * Ranks the votes of Players objects based on a given property.
+ * @param players - A collection of players objects
+ * @param property - The property to be compared
+ */
+export const getRankedVotes = (players: Players, property: string, winnerOnly = false): MostVotesResult[] => {
+  const propertyCounts: Record<string, MostVotesResult> = {};
+
+  // Calculate the counts for each property value
+  Object.values(players).forEach((player) => {
+    const playerProperty = String(player[property]);
+
+    if (!propertyCounts[playerProperty]) {
+      propertyCounts[playerProperty] = {
+        property,
+        value: playerProperty,
+        votes: [],
+        count: 0,
+      };
+    }
+
+    propertyCounts[playerProperty].votes.push(player.id);
+    propertyCounts[playerProperty].count++;
+  });
+
+  // Find the most repeating property values
+  const resultArray: MostVotesResult[] = Object.values(propertyCounts);
+  resultArray.sort((a, b) => b.count - a.count);
+
+  const mostRepeatingCount = resultArray[0].count;
+
+  if (resultArray[0].count === resultArray[1]?.count) {
+    resultArray.forEach((result) => {
+      result.tie = result.count === mostRepeatingCount;
+    });
+  }
+
+  if (winnerOnly) {
+    return resultArray.filter((result) => result.count === mostRepeatingCount);
+  }
+
+  return resultArray;
 };
