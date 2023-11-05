@@ -11,7 +11,7 @@ type DailyGetterPayload = {
  * @param context
  * @returns
  */
-export const getDaily = async (data: DailyGetterPayload, context: FirebaseContext) => {
+const getDaily = async (data: DailyGetterPayload, context: FirebaseContext) => {
   if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
     feedEmulatorDaily();
   }
@@ -48,7 +48,7 @@ export type DailySetterPayload = {
 };
 
 // Save today to user
-export const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => {
+const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => {
   const actionText = 'save daily';
   const uid = context?.auth?.uid;
 
@@ -104,3 +104,10 @@ export const saveDaily = async (data: DailySetterPayload, context: FirebaseConte
 
   return true;
 };
+
+const DAILY_API_ACTIONS = {
+  GET_DAILY: getDaily,
+  SAVE_DAILY: saveDaily,
+};
+
+export const dailyApi = utils.firebase.apiDelegator('daily api', DAILY_API_ACTIONS);
