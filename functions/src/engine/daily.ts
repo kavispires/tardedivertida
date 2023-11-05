@@ -62,13 +62,44 @@ export const saveDaily = async (data: DailySetterPayload, context: FirebaseConte
   }
   const userRef = utils.firebase.getUserRef();
 
+  let isError = false;
+
   try {
-    await userRef.doc(id).update({ [`daily.${id}`]: { id, number, victory, hearts } });
-  } catch (e) {
-    const newUser = utils.user.generateNewUser(uid, context?.auth?.token?.provider_id === 'anonymous');
-    // Add daily
-    newUser.daily = { [id]: { id, number, victory, hearts, letters } };
-    await userRef.doc(uid).set(newUser);
+    await userRef.doc(uid).update({ [`daily.${id}`]: { id, number, victory, hearts, letters } });
+  } catch (_) {
+    isError = true;
+    console.log('Fail to update');
+  }
+
+  // Error: possibly because the daily object does not exist
+  if (isError) {
+    try {
+      await userRef.doc(id).update({
+        daily: {
+          [id]: { id, number, victory, hearts, letters },
+        },
+      });
+      isError = false;
+    } catch (_) {
+      isError = true;
+      console.log('Fail to create daily');
+    }
+  }
+
+  // Error: possibly because the user does not exist
+  if (isError) {
+    const userRef = utils.firebase.getUserRef();
+    const user = await userRef.doc(uid).get();
+
+    // If the user object doesn't exist, just create one
+    if (!user.exists) {
+      const newUser = utils.user.generateNewUser(uid, context?.auth?.token?.provider_id === 'anonymous');
+      await userRef.doc(uid).set(newUser);
+
+      // Add daily
+      newUser.daily = { [id]: { id, number, victory, hearts, letters } };
+      return utils.user.serializeUser(newUser);
+    }
   }
 
   return true;
