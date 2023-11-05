@@ -44,6 +44,16 @@ type FirebaseContext = {
 
 type Collection<T> = Record<CardId, T>;
 
+/**
+ * Generic HttpsCallable function
+ */
+type GenericCallableFunction = (data: any, context: FirebaseContext) => unknown;
+
+/**
+ * Used to wrap HttpsCallable functions groups
+ */
+type CallablePayload<TPayload> = TPayload & { action: string };
+
 interface CreateGamePayload {
   gameName: string;
   language: string;

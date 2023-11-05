@@ -7,6 +7,28 @@ import utils from '../utils';
 export const config = functions.config;
 
 /**
+ * Created a delegating function for API actions
+ * @param actions Dictionary of actions accepted by the API
+ * @returns a function that delegates given action to the corresponding function
+ */
+
+export const apiDelegator = (apiName: string, actions: Record<string, GenericCallableFunction>) => {
+  return (payload: CallablePayload<unknown>, context: FirebaseContext) => {
+    const { action, ...data } = payload;
+
+    if (!action) {
+      return throwException('Missing action', apiName);
+    }
+
+    if (!actions[action]) {
+      return throwException('Invalid action', apiName);
+    }
+
+    return actions[action](data, context);
+  };
+};
+
+/**
  * Validate if payload property exists
  * @param property
  * @param propertyName

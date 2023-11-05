@@ -306,3 +306,7 @@ const playAgain = async (gameId: GameId, gameName: GameName) => {
 
   return false;
 };
+
+const ADMIN_API_ACTIONS = {};
+
+export const adminApi = utils.firebase.apiDelegator('user api', ADMIN_API_ACTIONS);

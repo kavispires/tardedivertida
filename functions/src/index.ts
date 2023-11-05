@@ -89,22 +89,7 @@ exports.rateGame = functions.https.onCall(commonEngine.rateGame);
 /**
  * Load user
  */
-exports.getUser = functions.https.onCall(userEngine.getUser);
-
-/**
- * Load users by id
- */
-exports.getUserById = functions.https.onCall(userEngine.getUserById);
-
-/**
- * Load users
- */
-exports.getUsers = functions.https.onCall(userEngine.getUsers);
-
-/**
- * Update user db
- */
-exports.updateUserDB = functions.https.onCall(userEngine.updateUserDB);
+exports.userActions = functions.https.onCall(userEngine.userApi);
 
 /**
  * Daily actions
