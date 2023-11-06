@@ -40,12 +40,10 @@ export const getAlienItems = async (quantity: number, allowNSFW: boolean): Promi
     return gameUtils.getRandomItems(safeItems, quantity);
   }
 
-  // If not the minimum items needed, reset and use all
+  // If not the minimum items needed, reset and use all safe
   await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
-
-  const allAvailableItems = Object.values(allAlienItemsObj).filter((item) => !item.nsfw);
-
-  return gameUtils.getRandomItems(allAvailableItems, quantity);
+  const allSafeItems = Object.values(allAlienItemsObj).filter((item) => !item.nsfw);
+  return gameUtils.getRandomItems(allSafeItems, quantity);
 };
 
 /**
@@ -95,4 +93,66 @@ export const getSingleWords = async (language: Language, quantity?: number): Pro
  */
 export const saveUsedSingleWords = async (usedWords: BooleanDictionary) => {
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedWords);
+};
+
+/**
+ * Get contenders
+ * @param language
+ * @param allowNSFW
+ * @param quantity
+ * @returns
+ */
+export const getContenders = async (
+  language: Language,
+  allowNSFW?: boolean,
+  quantity?: number
+): Promise<ContenderCard[]> => {
+  const contendersResponse: Collection<ContenderCard> = await fetchResource(TDR_RESOURCES.CONTENDERS);
+
+  // Get only contenders that match the language selected
+  const languageContenders = Object.values(contendersResponse)
+    .filter((c) => !c.exclusivity || c.exclusivity === language)
+    .reduce((acc: Collection<ContenderCard>, entry) => {
+      acc[entry.id] = entry;
+      return acc;
+    }, {});
+
+  if (!quantity) {
+    if (allowNSFW) {
+      return Object.values(languageContenders);
+    }
+
+    return Object.values(languageContenders).filter((c) => !c.nsfw);
+  }
+
+  // Get used items deck
+  const usedContenders: BooleanDictionary = await getGlobalFirebaseDocData(
+    GLOBAL_USED_DOCUMENTS.CONTENDERS,
+    {}
+  );
+
+  // Filter out used items
+  let availableContenders = gameUtils.filterOutByIds(contendersResponse, usedContenders);
+
+  // If not the minimum items needed, reset and use all
+  if (Object.keys(availableContenders).length < quantity) {
+    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+    availableContenders = languageContenders;
+  }
+
+  if (allowNSFW) {
+    return gameUtils.getRandomItems(Object.values(availableContenders), quantity);
+  }
+
+  const safeContenders = Object.values(availableContenders).filter((c) => !c.nsfw);
+
+  // If there are enough safe items, return them
+  if (safeContenders.length >= quantity) {
+    return gameUtils.getRandomItems(safeContenders, quantity);
+  }
+
+  // If not the minimum items needed, reset and use all safe
+  await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+  const allSafeContenders = Object.values(languageContenders).filter((c) => !c.nsfw);
+  return gameUtils.getRandomItems(Object.values(allSafeContenders), quantity);
 };

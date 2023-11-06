@@ -6,19 +6,21 @@ import { PastBattles, ResourceData } from './types';
 import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
 import utils from '../../utils';
-import { CHALLENGES_PER_GAME } from './constants';
+import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER } from './constants';
 
 /**
  * Get challenges and contenders  based on the game's language
  * @param language
- * @param isAlternativeDecks
+ * @param playerCount
+ * @param allowNSFW
  * @returns
  */
 export const getResourceData = async (
-  language: string,
-  isAlternativeDecks: boolean
+  language: Language,
+  playerCount: number,
+  allowNSFW: boolean
 ): Promise<ResourceData> => {
-  const challengesResourceName = `${TDR_RESOURCES.CHALLENGES}${isAlternativeDecks ? '-2' : ''}-${language}`;
+  const challengesResourceName = `${TDR_RESOURCES.CHALLENGES}-${language}`;
   // Get full challenges deck
   const challengesResponse: Collection<TextCard> = await resourceUtils.fetchResource(challengesResourceName);
   // Get used challenges deck
@@ -37,35 +39,11 @@ export const getResourceData = async (
   }
 
   // Get full contenders deck
-  const contendersResponse: Collection<ContenderCard> = await resourceUtils.fetchResource(
-    isAlternativeDecks ? `${TDR_RESOURCES.CONTENDERS}-2` : TDR_RESOURCES.CONTENDERS
-  );
-  // Get used challenges deck
-  const usedContenders = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.CONTENDERS, {});
-
-  // Get only contenders that match the language selected
-  const languageContenders = Object.values(contendersResponse)
-    .filter((c) => !c.exclusivity || c.exclusivity === language)
-    .reduce((acc: Collection<ContenderCard>, entry) => {
-      acc[entry.id] = entry;
-      return acc;
-    }, {});
-
-  // Filter out used cards
-  let availableContenders: Record<string, ContenderCard> = utils.game.filterOutByIds(
-    languageContenders,
-    usedContenders
-  );
-
-  // If not the minimum cards needed, reset and use all
-  if (Object.keys(availableContenders).length < CHALLENGES_PER_GAME) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
-    availableContenders = languageContenders;
-  }
+  const contenders = await utils.tdr.getContenders(language, allowNSFW, playerCount * CONTENDERS_PER_PLAYER);
 
   return {
     challenges: Object.values(availableChallenges),
-    contenders: Object.values(availableContenders),
+    contenders,
   };
 };
 

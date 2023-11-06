@@ -9,6 +9,10 @@ export type CruzaPalavrasOptions = {
    * Uses images instead of words
    */
   imageGrid: boolean;
+  /**
+   * Possibly include nsfw images
+   */
+  nsfw?: boolean;
 };
 
 export type ResourceData = {

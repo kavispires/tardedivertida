@@ -28,6 +28,8 @@ type ContenderCard = {
   id: CardId;
   name: DualLanguageValue;
   exclusivity?: Language;
+  groups?: string[];
+  nsfw?: boolean;
 };
 
 type CrimeTile = {
