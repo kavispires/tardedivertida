@@ -5,6 +5,10 @@ export type QuemSouEuOptions = {
    * Adds two more characters to the table
    */
   moreCharacters?: boolean;
+  /**
+   * Possibly include nsfw characters
+   */
+  nsfw?: boolean;
 };
 
 export interface ResourceData {

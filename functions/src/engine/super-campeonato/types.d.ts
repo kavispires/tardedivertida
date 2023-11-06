@@ -1,7 +1,13 @@
 import { SUPER_CAMPEONATO_ACHIEVEMENTS, SUPER_CAMPEONATO_ACTIONS } from './constants';
 
 export type SuperCampeonatoOptions = {
-  alternative?: boolean;
+  /**
+   * Possibly include nsfw contenders
+   */
+  nsfw?: boolean;
+  /**
+   * Automatically select contenders for the round (for games over 8 players)
+   */
   autoContenders?: boolean;
 };
 

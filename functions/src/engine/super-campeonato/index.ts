@@ -87,8 +87,11 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const isAlternativeGame = store.options?.alternative ?? false;
-    const additionalData = await getResourceData(store.language, isAlternativeGame);
+    const additionalData = await getResourceData(
+      store.language,
+      utils.players.getPlayerCount(players),
+      !!store.options?.nsfw
+    );
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
@@ -106,7 +109,7 @@ export const getNextPhase = async (
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
-  // // CONTENDER_SELECTION -> BETS
+  // CONTENDER_SELECTION -> BETS
   if (nextPhase === SUPER_CAMPEONATO_PHASES.BETS) {
     const newPhase = await prepareBetsPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);

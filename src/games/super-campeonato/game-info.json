@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.8",
+  "version": "2.3.9",
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"
@@ -54,5 +54,13 @@
     "pt": true,
     "en": true
   },
-  "options": [{ "key": "alternative", "label": "Decks", "on": "Babies", "off": "Normal" }]
+  "options": [
+    {
+      "key": "nsfw",
+      "label": "NSFW",
+      "off": "No",
+      "on": "Yes",
+      "description": "Allow NSFW contenders"
+    }
+  ]
 }

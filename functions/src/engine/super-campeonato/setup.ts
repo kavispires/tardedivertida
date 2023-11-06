@@ -48,7 +48,7 @@ export const prepareSetupPhase = async (
   const deck = utils.game.getRandomItems(resourceData.challenges, CHALLENGES_PER_GAME);
 
   // Shuffle contenders
-  const contendersDeck = utils.game.shuffle(resourceData.contenders);
+  const contendersDeck = resourceData.contenders;
 
   if (options.autoContenders) {
     utils.players.addPropertiesToPlayers(players, { contenders: [], usedContenders: [] });

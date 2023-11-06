@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "1.4.42",
+  "version": "1.4.43",
   "title": {
     "pt": "Quem Sou Eu?",
     "en": "Who Am I?"
@@ -61,6 +61,13 @@
       "key": "moreCharacters",
       "off": "Normal",
       "on": "More (Harder)"
+    },
+    {
+      "key": "nsfw",
+      "label": "NSFW",
+      "off": "No",
+      "on": "Yes",
+      "description": "Allow NSFW characters"
     }
   ]
 }

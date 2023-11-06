@@ -161,9 +161,7 @@ export const getData = async (
   // CHARACTERS_TRACKS: SUPER_CAMPEONATO
   const superCampeonatoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.SUPER_CAMPEONATO);
   if (superCampeonatoTrack) {
-    const contenders = (
-      Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.CONTENDERS)) as ContenderCard[]
-    ).filter((c) => !c.exclusivity || c.exclusivity === language);
+    const contenders = await utils.tdr.getContenders(language, allowNSFW, 2);
     const challenges = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.CHALLENGES}-${language}`)
     );
@@ -171,7 +169,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.SUPER_CAMPEONATO,
       data: {
-        contenders: utils.game.getRandomItems(contenders, 2),
+        contenders,
         challenge: utils.game.getRandomItem(challenges),
       },
     });
@@ -180,16 +178,14 @@ export const getData = async (
   // CHARACTERS_TRACKS: QUEM_SOU_EU
   const quemSouEuTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.QUEM_SOU_EU);
   if (quemSouEuTrack) {
-    const contenders = (
-      Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.CONTENDERS)) as ContenderCard[]
-    ).filter((c) => !c.exclusivity || c.exclusivity === language);
+    const contenders = await utils.tdr.getContenders(language, allowNSFW, 3);
 
     const glyphs = utils.game.sliceInParts(utils.game.getRandomItems(utils.game.makeArray(365, 1), 4), 2);
 
     customTracks.push({
       game: GAME_NAMES.QUEM_SOU_EU,
       data: {
-        contenders: utils.game.getRandomItems(contenders, 3),
+        contenders,
         positive: glyphs[0],
         negative: glyphs[1],
       },
@@ -199,9 +195,7 @@ export const getData = async (
   // CHARACTERS_TRACKS: PALHETA_DE_CORES
   const palhetaDeCoresTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.PALHETA_DE_CORES);
   if (palhetaDeCoresTrack) {
-    const contenders = (
-      Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.CONTENDERS)) as ContenderCard[]
-    ).filter((c) => !c.exclusivity || c.exclusivity === language);
+    const contenders = await utils.tdr.getContenders(language, allowNSFW, 1);
 
     customTracks.push({
       game: GAME_NAMES.PALHETA_DE_CORES,
