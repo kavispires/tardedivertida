@@ -1,1 +1,8 @@
 @use 'styles/sass' as *;
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  place-items: center;
+}

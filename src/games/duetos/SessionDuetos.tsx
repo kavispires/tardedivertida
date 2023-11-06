@@ -9,6 +9,7 @@ import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 // Sass
 import './duetos.scss';
+import { PhasePairing } from './PhasePairing';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -21,7 +22,9 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TEMPLATE.UNKNOWN:
+    case PHASES.DUETOS.PAIRING:
+      return PhasePairing;
+    case PHASES.DUETOS.RESULTS:
       return PhasePlaceholder;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;

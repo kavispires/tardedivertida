@@ -21,6 +21,7 @@ type CardProps = {
   className?: string;
   headerClassName?: string;
   footerClassName?: string;
+  hideHeader?: boolean;
 };
 export const Card = ({
   children,
@@ -32,6 +33,7 @@ export const Card = ({
   className = '',
   headerClassName = '',
   footerClassName = '',
+  hideHeader = false,
 }: CardProps) => {
   const baseClass = 'card';
 
@@ -47,12 +49,14 @@ export const Card = ({
 
   return (
     <div className={clsx(baseClass, `${baseClass}--${size}`, className)}>
-      <span
-        className={clsx(`${baseClass}__header`, `color-background--${bgColor}`, headerClassName)}
-        style={color.startsWith('#') ? { backgroundColor: color } : {}}
-      >
-        {header}
-      </span>
+      {!hideHeader && (
+        <span
+          className={clsx(`${baseClass}__header`, `color-background--${bgColor}`, headerClassName)}
+          style={color.startsWith('#') ? { backgroundColor: color } : {}}
+        >
+          {header}
+        </span>
+      )}
       <span className={`${baseClass}__text`}>{children}</span>
       {footer && <span className={clsx(`${baseClass}__footer`, footerClassName)}>{footer}</span>}
     </div>

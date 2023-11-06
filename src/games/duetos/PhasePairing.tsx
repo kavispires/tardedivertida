@@ -10,7 +10,6 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { StepTemplate } from './StepTemplate';
 import { StepMakePairs } from './StepMakePairs';
 
 export function PhasePairing({ players, state, info }: PhaseProps) {

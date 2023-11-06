@@ -41,6 +41,7 @@ const SessionDetetivesImaginativos = lazy(
       'games/detetives-imaginativos/SessionDetetivesImaginativos' /* webpackChunkName: "detetives-imaginativos" */
     )
 );
+const SessionDuetos = lazy(() => import('games/duetos/SessionDuetos' /* webpackChunkName: "duetos" */));
 const SessionEspiaoEntreNos = lazy(
   () => import('games/espiao-entre-nos/SessionEspiaoEntreNos' /* webpackChunkName: "espiao-entre-nos" */)
 );
@@ -174,6 +175,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionDetetivesImaginativos />
+          </Suspense>
+        );
+      case GAME_COLLECTION.DUETOS:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionDuetos />
           </Suspense>
         );
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:

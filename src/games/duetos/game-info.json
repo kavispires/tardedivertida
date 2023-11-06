@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "planned",
+  "version": "dev",
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -30,9 +30,60 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["competitive", "pairing"],
+  "tags": ["competitive", "pairing", "same-time"],
   "available": {
-    "pt": false,
-    "en": false
-  }
+    "pt": true,
+    "en": true
+  },
+  "options": [
+    {
+      "key": "nsfw",
+      "label": "NSFW",
+      "off": "No",
+      "on": "Yes",
+      "description": "Allow NSFW content"
+    },
+    {
+      "key": "withBots",
+      "label": "Add Bots",
+      "off": "No",
+      "on": "Yes",
+      "description": "Add bots to the game (for 2-3 player games only)"
+    },
+    {
+      "key": "withImages",
+      "label": "Image Cards Special Round",
+      "off": "No",
+      "on": "Yes",
+      "description": "Up to 3 special rounds are allowed"
+    },
+    {
+      "key": "withEmojis",
+      "label": "Emoji Special Round",
+      "off": "No",
+      "on": "Yes",
+      "description": "Up to 3 special rounds are allowed"
+    },
+    {
+      "key": "withWords",
+      "label": "Word Special Round",
+      "off": "No",
+      "on": "Yes",
+      "description": "Up to 3 special rounds are allowed"
+    },
+    {
+      "key": "withContenders",
+      "label": "Celebrities Special Round",
+      "off": "No",
+      "on": "Yes",
+      "description": "Up to 3 special rounds are allowed"
+    },
+    {
+      "key": "withSuspects",
+      "label": "Characters Special Round",
+      "off": "No",
+      "on": "Yes",
+      "description": "Up to 3 special rounds are allowed"
+    }
+  ]
 }
