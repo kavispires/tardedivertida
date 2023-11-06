@@ -6,6 +6,7 @@ import * as contadoresHistoriasEngine from '../engine/contadores-historias';
 import * as crimesHediondosEngine from '../engine/crimes-hediondos';
 import * as cruzaPalavrasEngine from '../engine/cruza-palavras';
 import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
+import * as duetosEngine from '../engine/duetos';
 import * as espiaoEntreNosEngine from '../engine/espiao-entre-nos';
 import * as fileiraDeFatosEngine from '../engine/fileira-de-fatos';
 import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
@@ -30,74 +31,50 @@ import * as ueSoIssoEngine from '../engine/ue-so-isso';
 import * as vamosAoCinemaEngine from '../engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
 
+const engines = {
+  [GAME_NAMES.ADEDANHX]: adedanhxEngine,
+  [GAME_NAMES.ARTE_RUIM]: arteRuimEngine,
+  [GAME_NAMES.COMUNICACAO_ALIENIGENA]: comunicacaoAlienigenaEngine,
+  [GAME_NAMES.CONTADORES_HISTORIAS]: contadoresHistoriasEngine,
+  [GAME_NAMES.CRIMES_HEDIONDOS]: crimesHediondosEngine,
+  [GAME_NAMES.CRUZA_PALAVRAS]: cruzaPalavrasEngine,
+  [GAME_NAMES.DETETIVES_IMAGINATIVOS]: detetivesImaginativosEngine,
+  [GAME_NAMES.DUETOS]: duetosEngine,
+  [GAME_NAMES.ESPIAO_ENTRE_NOS]: espiaoEntreNosEngine,
+  [GAME_NAMES.FILEIRA_DE_FATOS]: fileiraDeFatosEngine,
+  [GAME_NAMES.GALERIA_DE_SONHOS]: galeriaDeSonhosEngine,
+  [GAME_NAMES.LABIRINTO_SECRETO]: labirintoSecretoEngine,
+  [GAME_NAMES.LINHAS_CRUZADAS]: linhasCruzadasEngine,
+  [GAME_NAMES.MEGAMIX]: megamixEngine,
+  [GAME_NAMES.MENTE_COLETIVA]: menteColetivaEngine,
+  [GAME_NAMES.NA_RUA_DO_MEDO]: naRuaDoMedoEngine,
+  [GAME_NAMES.ONDA_TELEPATICA]: ondaTelepaticaEngine,
+  [GAME_NAMES.POLEMICA_DA_VEZ]: polemicaDaVezEngine,
+  [GAME_NAMES.QUEM_NAO_MATA]: quemNaoMataEngine,
+  [GAME_NAMES.QUEM_SOU_EU]: quemSouEuEngine,
+  [GAME_NAMES.PORTA_DOS_DESESPERADOS]: portadosDesesperadosEngine,
+  [GAME_NAMES.RETRATO_FALADO]: retratoFaladoEngine,
+  [GAME_NAMES.SONHOS_PESADELOS]: sonhosPesadelosEngine,
+  [GAME_NAMES.SUPER_CAMPEONATO]: superCampeonatoEngine,
+  [GAME_NAMES.TA_NA_CARA]: taNaCaraEngine,
+  [GAME_NAMES.TESTEMUNHA_OCULAR]: testemunhaOcularEngine,
+  [GAME_NAMES.TESTE_DE_ELENCO]: testeDeElencoEngine,
+  [GAME_NAMES.TREVO_DA_SORTE]: trevoDaSorteEngine,
+  [GAME_NAMES.UE_SO_ISSO]: ueSoIssoEngine,
+  [GAME_NAMES.VAMOS_AO_CINEMA]: vamosAoCinemaEngine,
+  [GAME_NAMES.VENDAVAL_DE_PALPITE]: vendavalDePalpiteEngine,
+};
+
 /**
  *
  * @param gameName
  * @returns
  */
 export const getEngine = (gameName: string): Engine => {
-  switch (gameName) {
-    case GAME_NAMES.ADEDANHX:
-      return adedanhxEngine;
-    case GAME_NAMES.ARTE_RUIM:
-      return arteRuimEngine;
-    case GAME_NAMES.COMUNICACAO_ALIENIGENA:
-      return comunicacaoAlienigenaEngine;
-    case GAME_NAMES.CONTADORES_HISTORIAS:
-      return contadoresHistoriasEngine;
-    case GAME_NAMES.CRIMES_HEDIONDOS:
-      return crimesHediondosEngine;
-    case GAME_NAMES.CRUZA_PALAVRAS:
-      return cruzaPalavrasEngine;
-    case GAME_NAMES.DETETIVES_IMAGINATIVOS:
-      return detetivesImaginativosEngine;
-    case GAME_NAMES.ESPIAO_ENTRE_NOS:
-      return espiaoEntreNosEngine;
-    case GAME_NAMES.FILEIRA_DE_FATOS:
-      return fileiraDeFatosEngine;
-    case GAME_NAMES.GALERIA_DE_SONHOS:
-      return galeriaDeSonhosEngine;
-    case GAME_NAMES.PORTA_DOS_DESESPERADOS:
-      return portadosDesesperadosEngine;
-    case GAME_NAMES.LABIRINTO_SECRETO:
-      return labirintoSecretoEngine;
-    case GAME_NAMES.LINHAS_CRUZADAS:
-      return linhasCruzadasEngine;
-    case GAME_NAMES.MEGAMIX:
-      return megamixEngine;
-    case GAME_NAMES.MENTE_COLETIVA:
-      return menteColetivaEngine;
-    case GAME_NAMES.NA_RUA_DO_MEDO:
-      return naRuaDoMedoEngine;
-    case GAME_NAMES.ONDA_TELEPATICA:
-      return ondaTelepaticaEngine;
-    case GAME_NAMES.POLEMICA_DA_VEZ:
-      return polemicaDaVezEngine;
-    case GAME_NAMES.QUEM_NAO_MATA:
-      return quemNaoMataEngine;
-    case GAME_NAMES.QUEM_SOU_EU:
-      return quemSouEuEngine;
-    case GAME_NAMES.RETRATO_FALADO:
-      return retratoFaladoEngine;
-    case GAME_NAMES.SONHOS_PESADELOS:
-      return sonhosPesadelosEngine;
-    case GAME_NAMES.SUPER_CAMPEONATO:
-      return superCampeonatoEngine;
-    case GAME_NAMES.TA_NA_CARA:
-      return taNaCaraEngine;
-    case GAME_NAMES.TESTEMUNHA_OCULAR:
-      return testemunhaOcularEngine;
-    case GAME_NAMES.TESTE_DE_ELENCO:
-      return testeDeElencoEngine;
-    case GAME_NAMES.TREVO_DA_SORTE:
-      return trevoDaSorteEngine;
-    case GAME_NAMES.UE_SO_ISSO:
-      return ueSoIssoEngine;
-    case GAME_NAMES.VAMOS_AO_CINEMA:
-      return vamosAoCinemaEngine;
-    case GAME_NAMES.VENDAVAL_DE_PALPITE:
-      return vendavalDePalpiteEngine;
-    default:
-      throw new Error(`Collection '${gameName}' initial state does not exist`);
+  const engine = engines?.[gameName];
+  if (engine) {
+    return engine;
   }
+
+  throw new Error(`Collection '${gameName}' initial state does not exist`);
 };

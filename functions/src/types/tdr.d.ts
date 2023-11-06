@@ -129,7 +129,7 @@ type MovieReviewCard = {
 
 type AlienItem = {
   id: string;
-  name: string;
+  name: DualLanguageValue;
   attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;
   nsfw?: boolean;
   categories?: string[];

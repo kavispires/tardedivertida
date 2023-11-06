@@ -4,6 +4,8 @@ import { initializeApp } from 'firebase-admin/app';
 import * as commonEngine from './engine/common';
 import * as adminEngine from './engine/admin';
 import * as dailyEngine from './engine/daily';
+import * as userEngine from './engine/user';
+
 import * as adedanhxEngine from './engine/adedanhx';
 import * as arteRuimEngine from './engine/arte-ruim';
 import * as comunicacaoAlienigenaEngine from './engine/comunicacao-alienigena';
@@ -11,6 +13,7 @@ import * as contadoresHistoriasEngine from './engine/contadores-historias';
 import * as crimesHediondosEngine from './engine/crimes-hediondos';
 import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
+import * as duetosEngine from './engine/duetos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as fileiraDeFatosEngine from './engine/fileira-de-fatos';
 import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
@@ -34,7 +37,6 @@ import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
-import * as userEngine from './engine/user';
 
 import { feedEmulatorUser } from './utils/mocks/emulator';
 
@@ -91,6 +93,8 @@ exports.crimesHediondosSubmitAction = functions.https.onCall(crimesHediondosEngi
 exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
 
 exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImaginativosEngine.submitAction);
+
+exports.duetosSubmitAction = functions.https.onCall(duetosEngine.submitAction);
 
 exports.espiaoEntreNosSubmitAction = functions.https.onCall(espiaoEntreNosEngine.submitAction);
 
