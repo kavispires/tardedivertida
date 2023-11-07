@@ -1,6 +1,7 @@
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
+import { useOnSubmitMovieGenreAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -11,7 +12,6 @@ import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepSelectGenre } from './StepSelectGenre';
-import { useOnSubmitMovieGenreAPIRequest } from './utils/api-requests';
 
 export function PhaseMovieGenreSelection({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

@@ -218,6 +218,13 @@ export const shuffle = (list: any[]): any[] => {
 export const getEntryId = (arr: string[]): string => arr.join(SEPARATOR);
 
 /**
+ * Parses entry id into its different parts by a separator
+ * @param key
+ * @returns
+ */
+export const parseEntryId = (key: string): string[] => key.split(SEPARATOR);
+
+/**
  * Check if array has duplicates
  * @param arr
  * @returns
