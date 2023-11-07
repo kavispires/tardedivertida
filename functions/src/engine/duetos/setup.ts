@@ -6,7 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import { addAlienItems, addSpecial } from './helpers';
+import { addAlienItems, addSpecial, calculateResults } from './helpers';
 
 /**
  * Setup
@@ -67,9 +67,10 @@ export const prepareSetupPhase = async (
   ];
 
   const achievements = utils.achievements.setup(players, store, {
-    matches: 0,
-    pair: 0,
-    noMatches: 0,
+    alone: 0,
+    duos: 0,
+    groups: 0,
+    leftOut: 0,
   });
 
   // Save
@@ -81,9 +82,10 @@ export const prepareSetupPhase = async (
           2: round2,
           3: round3,
           4: round4,
-          5: round5,
+          5: utils.game.shuffle(round5),
         },
         achievements,
+        gallery: [],
       },
       state: {
         phase: DUETOS_PHASES.SETUP,
@@ -124,18 +126,20 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Get Matching pairs
-
-  // Get unmatched pairs
-
-  // Build ranking
+  const { ranking, gallery, leftOut } = calculateResults(players, state.pool, store);
 
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+        gallery: [...store.gallery, ...gallery],
+      },
       state: {
         phase: DUETOS_PHASES.RESULTS,
         players,
-        ranking: [],
+        ranking,
+        gallery,
+        leftOut,
       },
     },
   };

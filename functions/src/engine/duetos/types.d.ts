@@ -31,6 +31,12 @@ export interface DuetosOptions {
   withSuspects?: boolean;
 }
 
+export type ItemEntry = {
+  id: string;
+  type: string;
+  value: any;
+};
+
 export interface ResourceData {
   items: AlienItem[];
   images: CardId[];
