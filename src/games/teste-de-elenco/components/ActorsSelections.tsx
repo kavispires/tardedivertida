@@ -1,3 +1,4 @@
+// Ant Design Resources
 import { Avatar as AntAvatar, Space } from 'antd';
 import { Avatar } from 'components/avatars';
 import { SuspectCard } from 'components/cards/SuspectCard';
