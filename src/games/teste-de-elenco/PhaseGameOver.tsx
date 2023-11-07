@@ -1,14 +1,16 @@
+// Ant Design Resources
+import { Space } from 'antd';
+// Utils
+import { achievementsReference } from './utils/achievements';
+import { Icons } from './utils/helpers';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
+import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { achievementsReference } from './utils/achievements';
 import { Achievements } from 'components/general/Achievements';
 import { Container } from 'components/general/Container';
 import { DualTranslate, Translate } from 'components/language';
-import { Icons } from './utils/helpers';
-import { MovieGenreIcon } from 'icons/MovieGenreIcon';
-import { Space } from 'antd';
 import { Title } from 'components/text';
 import { RoleBoard } from './components/RoleBoard';
 import { SuspectCard } from 'components/cards/SuspectCard';

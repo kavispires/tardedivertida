@@ -68,7 +68,6 @@ const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => 
     await userRef.doc(uid).update({ [`daily.${id}`]: { id, number, victory, hearts, letters } });
   } catch (_) {
     isError = true;
-    console.log('Fail to update');
   }
 
   // Error: possibly because the daily object does not exist
@@ -82,7 +81,6 @@ const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => 
       isError = false;
     } catch (_) {
       isError = true;
-      console.log('Fail to create daily');
     }
   }
 
