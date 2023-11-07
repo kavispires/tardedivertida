@@ -1,9 +1,5 @@
 // Ant Design Resources
 import { Space } from 'antd';
-// Hooks
-
-// Utils
-
 // Components
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';

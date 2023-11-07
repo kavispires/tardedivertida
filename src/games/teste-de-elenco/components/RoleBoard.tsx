@@ -1,14 +1,15 @@
 // Ant Design Resources
 import { Space, Avatar as AntAvatar } from 'antd';
-// Hooks
+// Utils
+import { pluralize } from 'utils/helpers';
+import { Icons } from '../utils/helpers';
+// Icons
+import { MovieGenreIcon } from 'icons/MovieGenreIcon';
+import { NoIcon } from 'icons/NoIcon';
 // Components
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { DualTranslate, Translate } from 'components/language';
-import { pluralize } from 'utils/helpers';
-import { Icons } from '../utils/helpers';
-import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 import { IconAvatar } from 'components/avatars';
-import { NoIcon } from 'icons/NoIcon';
 
 type RoleBoardProps = {
   movie?: FeatureFilm;
