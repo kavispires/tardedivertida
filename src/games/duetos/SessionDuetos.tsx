@@ -4,9 +4,12 @@ import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { PhasePairing } from './PhasePairing';
+import { PhaseResults } from './PhaseResults';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './duetos.scss';
 
@@ -21,10 +24,12 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TEMPLATE.UNKNOWN:
-      return PhasePlaceholder;
+    case PHASES.DUETOS.PAIRING:
+      return PhasePairing;
+    case PHASES.DUETOS.RESULTS:
+      return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PageError;
   }

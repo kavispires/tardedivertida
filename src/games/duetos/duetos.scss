@@ -1,1 +1,74 @@
 @use 'styles/sass' as *;
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  place-items: center;
+  margin: get-unit(4);
+
+  &--9 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &--selected {
+    opacity: 0.1;
+  }
+}
+
+.pairs-grid {
+  display: grid;
+  border: get-unit(2) solid get-color('gray');
+  border-radius: $border-radius;
+  padding: get-unit(2);
+  margin: get-unit(4);
+  @include contained;
+
+  &--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &--6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  &__pair {
+    border: get-unit(2) solid get-color('gray');
+    border-radius: $border-radius;
+    padding: get-unit(2);
+    margin: get-unit(2);
+  }
+
+  &__pair--0 {
+    border-color: get-color('red', 3);
+  }
+
+  &__pair--1 {
+    border-color: get-color('green', 3);
+  }
+
+  &__pair--2 {
+    border-color: get-color('yellow', 3);
+  }
+
+  &__pair--3 {
+    border-color: get-color('blue', 3);
+  }
+
+  &__pair--4 {
+    border-color: get-color('orange', 3);
+  }
+
+  &__pair--5 {
+    border-color: get-color('purple', 3);
+  }
+
+  &__slot {
+    border-radius: $border-radius;
+    background: get-color('gray', 3, 0.5);
+  }
+
+  &__empty-slot {
+    opacity: 0;
+  }
+}

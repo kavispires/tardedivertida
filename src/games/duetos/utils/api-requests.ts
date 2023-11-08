@@ -3,26 +3,26 @@ import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'templateSubmitAction');
+const submitAction = httpsCallable(functions, 'duetosSubmitAction');
 
-export function useOnSubmitVotingAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitPairsAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: submitAction,
-    actionName: 'submit-action',
+    actionName: 'submit-pairs',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
+    successMessage: translate('Pares submetidos com sucesso', 'Paris submitted successfully'),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus pares',
+      'Oops, the application found an error while trying to submit your pairs'
     ),
   });
 
-  return (payload: SubmitActionPayload) => {
+  return (payload: SubmitPairsPayload) => {
     request({
-      action: 'SUBMIT_ACTION',
+      action: 'SUBMIT_PAIRS',
       ...payload,
     });
   };

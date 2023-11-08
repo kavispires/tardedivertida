@@ -51,6 +51,11 @@ const GAMES = [
     key: 'DILEMA_DOS_ESQUIADORES',
   },
   {
+    name: 'duetos',
+    code: 'D',
+    key: 'DUETOS',
+  },
+  {
     name: 'espiao-entre-nos',
     code: 'E',
     key: 'ESPIAO_ENTRE_NOS',

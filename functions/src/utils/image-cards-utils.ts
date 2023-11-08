@@ -27,7 +27,7 @@ const generateDeck = (deckPrefix: string, quantity: number) => {
  * @param quantity the number of cards needed
  * @returns
  */
-export const getImageCards = async (quantity: number, allImageDecks?: boolean): Promise<ImageCardId[]> => {
+export const getImageCards = async (quantity: number, allImageDecks = false): Promise<ImageCardId[]> => {
   const cardInfo: Record<string, number> = await requestTDIInfo();
 
   // If only original decks, get decks prefixed with td-
