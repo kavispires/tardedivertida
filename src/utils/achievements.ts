@@ -8,6 +8,7 @@ import CRIMES_HEDIONDOS from 'games/crimes-hediondos/utils/achievements';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
 // import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
 // import DILEMA_DOS_ESQUIADORES from 'games/dilema-dos-esquiadores/utils/achievements';
+import DUETOS from 'games/duetos/utils/achievements';
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/utils/achievements';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/utils/achievements';
@@ -46,6 +47,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': null,
   'dilema-dos-esquiadores': null,
+  duetos: DUETOS,
   'espiao-entre-nos': null,
   'fileira-de-fatos': FILEIRA_DE_FATOS,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,

@@ -6,7 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import { addAlienItems, addSpecial, calculateResults } from './helpers';
+import { addAlienItems, addSpecial, calculateResults, getAchievements } from './helpers';
 
 /**
  * Setup
@@ -153,7 +153,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  // const achievements = getAchievements(store);
+  const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
 
@@ -185,7 +185,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
-        // achievements,
+        achievements,
         gallery,
       },
     },
