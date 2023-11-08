@@ -8,6 +8,7 @@ const ACHIEVEMENTS = {
   LONGEST_WORDS: 'LONGEST_WORDS',
   SAVIOR: 'SAVIOR',
 };
+
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.BEST_CLUES]: {
     icon: 'intersection',
