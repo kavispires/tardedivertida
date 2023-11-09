@@ -5,15 +5,15 @@ export function getToday(): string {
 }
 
 export function getLettersInWord(text: string): Record<string, boolean> {
-  const normalizedText = text
+  const cleanedUpText = text
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase();
-  const letters = normalizedText.split('');
+  const letters = cleanedUpText.split('');
   const lettersInWord: Record<string, boolean> = {};
 
   letters.forEach((letter) => {
-    if (letter.match(/[a-zA-Z\s]/)) {
+    if (letter.match(/[a-zA-Z]/)) {
       lettersInWord[letter] = false;
     }
   });
@@ -29,5 +29,6 @@ export function cleanupLetter(char: string): string {
 }
 
 export function isLetter(char: string): boolean {
+  console.log({ char });
   return cleanupLetter(char).match(/[a-zA-Z]/) !== null;
 }
