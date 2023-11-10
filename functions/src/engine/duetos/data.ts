@@ -5,6 +5,7 @@ import { DuetosOptions, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
+import { SPRITE_LIBRARIES } from '../../utils/constants';
 
 /**
  * Get characters based on the game's language
@@ -48,7 +49,7 @@ export const getResourceData = async (language: Language, options: DuetosOptions
 
   let emojis: number[] = [];
   if (specialDeckTypes.includes('emojis')) {
-    emojis = utils.game.getRandomItems(utils.game.makeArray(30), quantityNeeded);
+    emojis = utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
   }
 
   let words: TextCard[] = [];

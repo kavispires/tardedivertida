@@ -7,6 +7,7 @@ import {
   QUESTIONS_PER_ROUND,
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
+import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
 import {
@@ -27,7 +28,6 @@ import {
   calculateSheepTravelDistance,
   getMostFrequentAnswers,
 } from './helpers';
-import { GAME_NAMES } from '../../utils/constants';
 import { saveData } from './data';
 
 /**
@@ -54,7 +54,7 @@ export const prepareSetupPhase = async (
     answers: [],
   });
 
-  utils.players.distributeNumberIds(players, 0, 24, 'sheepId');
+  utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.SHEEP - 1, 'sheepId');
 
   // Setup achievements
   const achievements = utils.achievements.setup(players, store, { secretScore: 0, distance: 0 });
