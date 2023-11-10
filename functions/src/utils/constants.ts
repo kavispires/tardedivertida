@@ -210,6 +210,7 @@ export const GAME_KEYS = generateGameKeys();
 export const GAME_NAMES = generateGameCollections();
 
 export const GLOBAL_USED_DOCUMENTS = {
+  ADJECTIVES: 'usedAdjectives',
   ALIEN_ITEMS: 'usedAlienItems',
   ARTE_RUIM: 'usedArteRuimCards',
   CHALLENGES: 'usedChallenges',

@@ -156,3 +156,45 @@ export const getContenders = async (
   const allSafeContenders = Object.values(languageContenders).filter((c) => !c.nsfw);
   return gameUtils.getRandomItems(Object.values(allSafeContenders), quantity);
 };
+
+/**
+ * Get adjectives for given quantity or all of them
+ * @param language
+ * @param quantity
+ * @returns
+ */
+export const getAdjectives = async (language: Language, quantity?: number): Promise<TextCard[]> => {
+  const resourceName = `${TDR_RESOURCES.ADJECTIVES}-${language}`;
+  // Get full deck
+  const allAdjectives: Collection<TextCard> = await fetchResource(resourceName);
+
+  if (!quantity) {
+    return gameUtils.shuffle(Object.values(allAdjectives));
+  }
+
+  // Get used WORDS deck
+  const usedAdjectives: BooleanDictionary = await getGlobalFirebaseDocData(
+    GLOBAL_USED_DOCUMENTS.ADJECTIVES,
+    {}
+  );
+
+  // Filter out used WORDS
+  let availableAdjectives = gameUtils.filterOutByIds(allAdjectives, usedAdjectives);
+
+  // If not the minimum items needed, reset and use all
+  if (Object.keys(availableAdjectives).length < quantity) {
+    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ADJECTIVES);
+    availableAdjectives = allAdjectives;
+  }
+
+  return gameUtils.getRandomItems(Object.values(availableAdjectives), quantity);
+};
+
+/**
+ * Saves list of used adjectives ids into the global used document
+ * @param usedAdjectives
+ * @returns
+ */
+export const saveUsedAdjectives = async (usedAdjectives: BooleanDictionary) => {
+  return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ADJECTIVES, usedAdjectives);
+};
