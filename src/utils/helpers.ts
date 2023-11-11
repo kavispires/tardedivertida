@@ -257,35 +257,36 @@ export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.col
  * @param options.repeat - animation repeat
  * @returns
  */
-export const getAnimationClass = memoize(
-  (
-    type: AnimationType,
-    options?: {
-      delay?: number;
-      speed?: 'slow' | 'slower' | 'fast' | 'faster';
-      infinite?: boolean;
-      repeat?: 1 | 2 | 3;
-    }
-  ) => {
-    const result = ['animate__animated', `animate__${type}`];
-
-    if (options?.delay) {
-      result.push(`animate__delay-${options?.delay}s`);
-    }
-
-    if (options?.speed) {
-      result.push(`animate__${options?.speed}`);
-    }
-
-    if (options?.infinite) {
-      result.push(`animate__infinite`);
-    } else if (options?.repeat) {
-      result.push(`animate__repeat-${options?.repeat}`);
-    }
-
-    return result.join(' ');
+export const getAnimationClass = (
+  type: AnimationType,
+  options?: {
+    /**
+     * Delay (0-20) in 0.5 increments
+     */
+    delay?: number;
+    speed?: 'slow' | 'slower' | 'fast' | 'faster';
+    infinite?: boolean;
+    repeat?: 1 | 2 | 3;
   }
-);
+) => {
+  const result = ['animate__animated', `animate__${type}`];
+
+  if (options?.delay) {
+    result.push(`animate__delay-${options?.delay}s`);
+  }
+
+  if (options?.speed) {
+    result.push(`animate__${options?.speed}`);
+  }
+
+  if (options?.infinite) {
+    result.push(`animate__infinite`);
+  } else if (options?.repeat) {
+    result.push(`animate__repeat-${options?.repeat}`);
+  }
+
+  return result.join(' ');
+};
 
 /**
  * Convert a yyyy/mm/dd date to milliseconds

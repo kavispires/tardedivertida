@@ -69,6 +69,9 @@ const SessionMenteColetiva = lazy(
 const SessionNaRuaDoMedo = lazy(
   () => import('games/na-rua-do-medo/SessionNaRuaDoMedo' /* webpackChunkName: "na-rua-do-medo" */)
 );
+const SessionNaoSouRobo = lazy(
+  () => import('games/nao-sou-robo/SessionNaoSouRobo' /* webpackChunkName: "nao-sou-robo" */)
+);
 const SessionOndaTelepatica = lazy(
   () => import('games/onda-telepatica/SessionOndaTelepatica' /* webpackChunkName: "onda-telepatica" */)
 );
@@ -241,6 +244,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionNaRuaDoMedo />
+          </Suspense>
+        );
+      case GAME_COLLECTION.NAO_SOU_ROBO:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionNaoSouRobo />
           </Suspense>
         );
       case GAME_COLLECTION.ONDA_TELEPATICA:

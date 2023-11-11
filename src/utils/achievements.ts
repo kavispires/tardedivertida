@@ -18,6 +18,7 @@ import LINHAS_CRUZADAS from 'games/linhas-cruzadas/utils/achievements';
 import MEGAMIX from 'games/megamix/utils/achievements';
 import MENTE_COLETIVA from 'games/mente-coletiva/utils/achievements';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/utils/achievements';
+import NAO_SOU_ROBO from 'games/nao-sou-robo/utils/achievements';
 // import NAUFRAGOS from 'games/naufragos/utils/achievements';
 import ONDA_TELEPATICA from 'games/onda-telepatica/utils/achievements';
 // import PALHETA_DE_CORES from 'games/palheta-de-cores/utils/achievements';
@@ -57,6 +58,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
+  'nao-sou-robo': NAO_SOU_ROBO,
   naufragos: null,
   'onda-telepatica': ONDA_TELEPATICA,
   'palheta-de-cores': null,

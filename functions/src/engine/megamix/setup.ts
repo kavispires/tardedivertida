@@ -1,6 +1,6 @@
 import utils from '../../utils';
-import { GAME_NAMES } from '../../utils/constants';
-import { MEGAMIX_PHASES, TOTAL_CLUBBERS } from './constants';
+import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
+import { MEGAMIX_PHASES } from './constants';
 import {
   calculateAllAchievements,
   distributeSeeds,
@@ -63,7 +63,7 @@ export const prepareSeedingPhase = async (
 
   // Give each player 5 outfits
   const clubbers = utils.game.shuffle(
-    Array(TOTAL_CLUBBERS)
+    Array(AVATAR_SPRITE_LIBRARIES.CLUBBERS)
       .fill(0)
       .map((e, i) => String(e + i))
   );

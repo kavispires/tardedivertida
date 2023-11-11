@@ -1,6 +1,6 @@
 import stringSimilarity from 'string-similarity';
 import utils from '../../utils';
-import { GAME_NAMES } from '../../utils/constants';
+import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import { HouseCard } from '../na-rua-do-medo/types';
 import { MEGAMIX_ACHIEVEMENTS, MEGAMIX_PHASES, WINNING_CONDITION } from './constants';
@@ -766,8 +766,8 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
       utils.game.getRandomItem(decks.horrorDeck),
       ...utils.game.getRandomItems([...decks.candyDeck, utils.game.getRandomItem(decks.jackpotDeck)], 2),
     ],
-    costumes: utils.game.getRandomItems(utils.game.makeArray(14), playerCount),
-    kids: utils.game.getRandomItems(utils.game.makeArray(14), 5),
+    costumes: utils.game.getRandomItems(utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), playerCount),
+    kids: utils.game.getRandomItems(utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), 5),
   };
 };
 

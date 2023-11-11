@@ -101,6 +101,11 @@ const GAMES = [
     key: 'NAMORO_OU_AMIZADE',
   },
   {
+    name: 'nao-sou-robo',
+    code: 'N',
+    key: 'NAO_SOU_ROBO',
+  },
+  {
     name: 'onda-telepatica',
     code: 'O',
     key: 'ONDA_TELEPATICA',
@@ -205,6 +210,7 @@ export const GAME_KEYS = generateGameKeys();
 export const GAME_NAMES = generateGameCollections();
 
 export const GLOBAL_USED_DOCUMENTS = {
+  ADJECTIVES: 'usedAdjectives',
   ALIEN_ITEMS: 'usedAlienItems',
   ARTE_RUIM: 'usedArteRuimCards',
   CHALLENGES: 'usedChallenges',
@@ -275,3 +281,26 @@ export const USED_GAME_IDS = 'usedGameIds';
 export const DOUBLE_ROUNDS_THRESHOLD = 6;
 
 export const NPC = 'NPC';
+
+/**
+ * Avatar Sprite libraries
+ * Libraries that also display an avatar
+ */
+export const AVATAR_SPRITE_LIBRARIES = {
+  CLUBBERS: 60,
+  COSTUMES: 25,
+  SHEEP: 25,
+  SUPER_HEROES: 50,
+};
+
+/**
+ * Sprite libraries
+ * Libraries that are only sprites
+ */
+export const SPRITE_LIBRARIES = {
+  GLYPHS: 365,
+  ITEMS: 500,
+  TREES: 15,
+  EMOJIS: 30,
+  ALIEN_SIGNS: 32,
+};

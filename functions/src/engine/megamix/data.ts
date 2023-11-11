@@ -1,5 +1,5 @@
 // Constants
-import { GAME_NAMES, TDR_RESOURCES } from '../../utils/constants';
+import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Types
 import type { MegamixGameOptions, ResourceData, Track, TrackCandidate } from './types';
 // Helpers
@@ -180,7 +180,10 @@ export const getData = async (
   if (quemSouEuTrack) {
     const contenders = await utils.tdr.getContenders(language, allowNSFW, 3);
 
-    const glyphs = utils.game.sliceInParts(utils.game.getRandomItems(utils.game.makeArray(365, 1), 4), 2);
+    const glyphs = utils.game.sliceInParts(
+      utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.GLYPHS, 1), 4),
+      2
+    );
 
     customTracks.push({
       game: GAME_NAMES.QUEM_SOU_EU,
@@ -496,7 +499,7 @@ export const getData = async (
       data: {
         items: selectedAlienItems,
         attributes: selectedAttributes,
-        signs: utils.game.getRandomItems(utils.game.makeArray(25, 0), 2),
+        signs: utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
       },
     });
   }
