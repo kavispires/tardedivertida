@@ -80,7 +80,7 @@ function Rules({ defaultOpen = true }: { defaultOpen: boolean }) {
                       Cada letra que você aperta que não está presente na resposta remove um coração e você
                       tem apenas 3 <HeartFilled />.
                     </li>
-                    <li>O 'espaço' também é uma opção que pode estar presente ou não. Boa sorte!</li>
+                    <li>Boa sorte!</li>
                   </>
                 }
                 en={
@@ -93,7 +93,7 @@ function Rules({ defaultOpen = true }: { defaultOpen: boolean }) {
                       Each letter you press that is not present in the answer removes a heart and you only
                       have 3 <HeartFilled />.
                     </li>
-                    <li>The 'space' is also an option that may or may not be present. Good luck!</li>
+                    <li>Good luck!</li>
                   </>
                 }
               />

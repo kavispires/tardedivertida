@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import clsx from 'clsx';
 // Sass
 import './SpeechBubble.scss';
@@ -8,12 +8,13 @@ type SpeechBubbleProps = {
   direction?: 'left' | 'right' | 'top' | 'bottom';
   shadow?: boolean;
   size?: 'small' | 'medium' | 'large';
-};
+} & ComponentProps<'div'>;
 
-export function SpeechBubble({ children, direction = 'left', shadow, size }: SpeechBubbleProps) {
+export function SpeechBubble({ children, direction = 'left', shadow, size, ...rest }: SpeechBubbleProps) {
   const baseClass = 'speech-bubble';
   return (
     <div
+      {...rest}
       className={clsx(
         baseClass,
         `${baseClass}--${direction}`,

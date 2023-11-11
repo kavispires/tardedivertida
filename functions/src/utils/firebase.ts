@@ -319,7 +319,10 @@ export const saveGame = async (
     if (saveContent?.set?.state) {
       await sessionRef.doc('state').set({ ...saveContent.set.state, updatedAt: Date.now() } ?? {});
     }
-
+  } catch (error) {
+    throwException(error, 'set game state');
+  }
+  try {
     if (saveContent?.update?.store || saveContent?.update?.storeCleanup) {
       const cleanup = (saveContent?.update?.storeCleanup ?? []).reduce((acc, key) => {
         if (key) {
@@ -329,7 +332,11 @@ export const saveGame = async (
       }, {});
       await sessionRef.doc('store').update({ ...(saveContent.update.store ?? {}), ...cleanup });
     }
+  } catch (error) {
+    throwException(error, 'update game store');
+  }
 
+  try {
     if (saveContent?.update?.state || saveContent?.update?.stateCleanup) {
       const cleanup = (saveContent?.update?.stateCleanup ?? []).reduce((acc, key) => {
         if (key) {
@@ -343,7 +350,7 @@ export const saveGame = async (
         .update({ ...(saveContent.update.state ?? {}), ...cleanup, updatedAt: Date.now() });
     }
   } catch (error) {
-    throwException(error, 'update game');
+    throwException(error, 'update game state');
   }
 
   return true;

@@ -1,48 +1,37 @@
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { FOREST_HEIGHT, FOREST_WIDTH } from './constants';
+import { TDR_RESOURCES } from '../../utils/constants';
+import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 // Types
 import type { ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
-import * as dataUtils from '../collections';
-import * as globalUtils from '../global';
 import utils from '../../utils';
 
 /**
  * Get cards resources based on the game's language
  * @param language
- * @param allImageDecks
+ * @param playerCount
  * @returns
  */
-export const getData = async (language: Language): Promise<ResourceData> => {
+export const getData = async (language: Language, playerCount: number): Promise<ResourceData> => {
   // Get cards
   const resourceName = `${TDR_RESOURCES.WORDS_TREES}-${language}`;
   const allWords: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
 
   // Get Adjectives
-  const resourceName2 = `${TDR_RESOURCES.ADJECTIVES}-${language}`;
-  const allAdjectives: Collection<TextCard> = await resourceUtils.fetchResource(resourceName2);
+  const adjectivesPerPlayer = playerCount * CARDS_PER_PLAYER + 1;
+  const adjectives = await utils.tdr.getAdjectives(language, adjectivesPerPlayer);
 
   return {
     forestCards: utils.game.getRandomItems(Object.values(allWords), FOREST_HEIGHT * FOREST_WIDTH),
-    allCards: utils.game.shuffle(Object.values(allAdjectives)),
+    allCards: adjectives,
   };
 };
 
-// TODO
-export const saveData = async (language: Language) => {
-  const usedCardsIds: BooleanDictionary = {};
-  // const clues = bestMatches.reduce((acc, entry) => {
-  //   usedCardsIds[entry.id] = true;
-  //   if (acc[entry.id] === undefined) {
-  //     acc[entry.id] = [];
-  //   }
-  //   acc[entry.id].push(entry.text);
-  //   return acc;
-  // }, {});
-
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
-
-  await dataUtils.updateCardDataCollection('imageCards', language, {});
+// TODO: Add to game over
+export const saveData = async (
+  usedAdjectives: BooleanDictionary
+  // usedTreeCards: BooleanDictionary,
+) => {
+  await utils.tdr.saveUsedAdjectives(usedAdjectives);
 };

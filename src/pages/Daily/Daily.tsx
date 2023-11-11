@@ -6,12 +6,15 @@ import { PageError } from 'components/errors';
 import { Translate } from 'components/language';
 import { Loading } from 'components/loaders';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { LoginModal } from 'pages/Me/components/LoginModal';
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useEffectOnce, useTitle } from 'react-use';
-import { isDevEnv } from 'utils/helpers';
+import { isDevEnv, removeDuplicates } from 'utils/helpers';
 
+import { DailyChrome } from './components/DailyChrome';
 import { DrawingCarousel } from './components/DrawingCarousel';
 import { Keyboard } from './components/Keyboard';
 import { Menu } from './components/Menu';
@@ -20,28 +23,8 @@ import { ResultsModalContent } from './components/ResultsModalContent';
 import { DailyEntry } from './types';
 import { useDailyChallenge, useDailyChallengeMutation } from './useDaily';
 import { getLettersInWord, getToday } from './utils';
-import { useLanguage } from 'hooks/useLanguage';
 
 const { Header, Content } = Layout;
-
-type DailyChromeProps = {
-  challenge?: ReactNode;
-  children: ReactNode;
-};
-
-function DailyChrome({ challenge, children }: DailyChromeProps) {
-  return (
-    <Layout className="app">
-      <Header className="daily-header">
-        <IconAvatar icon={<CalendarIcon />} />
-        <Typography.Title level={1} className="daily-heading">
-          TD Diário {challenge}
-        </Typography.Title>
-      </Header>
-      <Content>{children}</Content>
-    </Layout>
-  );
-}
 
 function DailyPage() {
   useTitle('TD Diário - Tarde Divertida');
@@ -95,6 +78,7 @@ type DailyGameProps = {
 
 function DailyGame({ daily, currentUser }: DailyGameProps) {
   const { setLanguage } = useLanguage();
+  const [getLocalProperty, setLocalProperty] = useLocalStorage();
   useEffectOnce(() => {
     setLanguage('pt');
   });
@@ -103,10 +87,12 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
   const [hearts, setHearts] = useState<number>(3);
   const [guessedLetters, setGuessedLetters] = useState<BooleanDictionary>({});
   const [correctLetters, setCorrectLetters] = useState<BooleanDictionary>(getLettersInWord(daily.text));
-  const isComplete = Object.values(correctLetters).every(Boolean);
   const [showResultModal, setShowResultModal] = useState(false);
 
-  const today = currentUser?.daily?.todaysChallenge;
+  const isComplete = Object.values(correctLetters).every(Boolean);
+
+  const localToday = getLocalProperty(daily.id);
+  const today = currentUser?.daily?.todaysChallenge ?? localToday;
 
   const guessLetter = (letter: string) => {
     // Ignore previously guessed letters
@@ -115,6 +101,17 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
     }
     // Add to the guessed letters
     setGuessedLetters((prev) => ({ ...prev, [letter]: true }));
+    // SAve to local storage
+    const localTodayTemp = getLocalProperty(daily.id);
+    if (localTodayTemp) {
+      setLocalProperty({
+        [daily.id]: {
+          ...localTodayTemp,
+          letters: removeDuplicates([...(localTodayTemp.letters ?? {}), letter]),
+        },
+      });
+    }
+
     // If it is a correct letter, make it true
     if (correctLetters[letter] !== undefined) {
       setCorrectLetters((prev) => ({ ...prev, [letter]: true }));
@@ -127,9 +124,22 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
   // If already play, show winning screen
   useEffect(() => {
     if (today) {
-      const today = currentUser?.daily?.todaysChallenge;
-      today!.letters.forEach((letter) => {
+      today!.letters.forEach((letter: string) => {
         guessLetter(letter);
+      });
+      if (currentUser?.daily?.todaysChallenge) {
+        setLocalProperty({ [daily.id]: null });
+      }
+    } else {
+      // Save to local storage
+      setLocalProperty({
+        [daily.id]: {
+          id: daily.id,
+          number: daily.number,
+          victory: false,
+          hearts,
+          letters: Object.keys(guessedLetters),
+        },
       });
     }
   }, [today]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -140,15 +150,17 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
   useEffect(() => {
     if (isComplete || hearts <= 0) {
       setShowResultModal(true);
+      setLocalProperty({ [daily.id]: null });
 
       if (!today && !dailyMutation.isLoading) {
         dailyMutation.mutate({
-          id: getToday(),
+          id: daily.id,
           number: daily.number,
           victory: isComplete,
           hearts,
           letters: Object.keys(guessedLetters),
         });
+        setLocalProperty({ [daily.id]: null });
       }
     }
   }, [isComplete, hearts, today, dailyMutation.isLoading]); // eslint-disable-line react-hooks/exhaustive-deps

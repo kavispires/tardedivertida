@@ -1,6 +1,6 @@
 // Constants
 import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
+import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
@@ -41,7 +41,7 @@ export const prepareSetupPhase = async (
     isTrickOrTreating: true,
   });
 
-  utils.players.distributeNumberIds(players, 0, 14, 'costumeId');
+  utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.COSTUMES - 1, 'costumeId');
 
   const achievements = utils.achievements.setup(players, store, {
     facingMonsters: 0,

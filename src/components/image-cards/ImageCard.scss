@@ -20,4 +20,9 @@
   &--blur {
     filter: blur(10px);
   }
+
+  &--square {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
 }

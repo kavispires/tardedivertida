@@ -15,7 +15,6 @@ type KeyboardProps = {
 
 export function Keyboard({ guessedLetters, correctLetters, onLetterClick, disabled }: KeyboardProps) {
   const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30, containerId: 'root' });
-  const baseClassName = 'daily-keyboard-key';
 
   return (
     <Space direction="vertical" align="center" className="keyboard" size="small">
@@ -57,19 +56,6 @@ export function Keyboard({ guessedLetters, correctLetters, onLetterClick, disabl
             disabled={disabled}
           />
         ))}
-      </Space>
-      <Space size="small">
-        <button
-          className={clsx(
-            baseClassName,
-            guessedLetters[' '] && `${baseClassName}--guessed`,
-            correctLetters[' '] && `${baseClassName}--correct`
-          )}
-          onClick={() => onLetterClick(' ')}
-          disabled={disabled}
-        >
-          Space
-        </button>
       </Space>
     </Space>
   );

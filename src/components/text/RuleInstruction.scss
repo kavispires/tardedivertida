@@ -1,0 +1,42 @@
+@use 'styles/sass' as *;
+
+.rule-instruction {
+  $self: &;
+
+  background-color: rgba($color: white, $alpha: 0.6);
+  border-radius: $border-radius;
+  max-width: $max-width;
+  min-width: $max-width / 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin: get-unit(5);
+  font-size: 1em;
+
+  &__icon {
+    background: get-color('gray', 5, 0.5);
+    color: get-color('white');
+    padding: get-unit(2 3);
+    border-radius: $border-radius 0 0 $border-radius;
+
+    &--rule {
+      background: get-color('gray', 5, 0.5);
+    }
+
+    &--event {
+      background: get-color('orange', 4, 0.5);
+    }
+
+    &--action {
+      background: get-color('gray', 6, 0.5);
+    }
+  }
+
+  &__content {
+    padding: get-unit(2);
+    text-wrap: wrap;
+  }
+
+  & > .ant-typography {
+    margin-bottom: 0;
+  }
+}
