@@ -4,11 +4,15 @@ import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 // Sass
 import './nao-sou-robo.scss';
+import { PhaseCardSelection } from './PhaseCardSelection';
+import { PhaseAreYouARobot } from './PhaseAreYouARobot';
+import { PhaseResults } from './PhaseResults';
+import { PhaseGameOver } from './PhaseGameOver';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -21,10 +25,14 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TEMPLATE.UNKNOWN:
-      return PhasePlaceholder;
+    case PHASES.NAO_SOU_ROBO.CARD_SELECTION:
+      return PhaseCardSelection;
+    case PHASES.NAO_SOU_ROBO.ARE_YOU_A_ROBOT:
+      return PhaseAreYouARobot;
+    case PHASES.NAO_SOU_ROBO.RESULTS:
+      return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PageError;
   }

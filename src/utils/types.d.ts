@@ -40,6 +40,7 @@ type DualLanguageValue = {
 };
 type CardId = string;
 type ImageCardId = string;
+type Collection<T> = Record<CardId, T>;
 type Color =
   | 'red'
   | 'blue'
