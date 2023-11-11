@@ -47,6 +47,7 @@ export const getImageCards = async (quantity: number, allImageDecks = false): Pr
   }
 
   const shuffledDecks = shuffle(decks);
+
   const selectedDecks: string[] = [];
   let selectedCardQuantity = 0;
   while (selectedCardQuantity < quantity) {

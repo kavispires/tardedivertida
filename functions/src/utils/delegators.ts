@@ -16,6 +16,7 @@ import * as linhasCruzadasEngine from '../engine/linhas-cruzadas';
 import * as megamixEngine from '../engine/megamix';
 import * as menteColetivaEngine from '../engine/mente-coletiva';
 import * as naRuaDoMedoEngine from '../engine/na-rua-do-medo';
+import * as naoSouRoboEngine from '../engine/nao-sou-robo';
 import * as ondaTelepaticaEngine from '../engine/onda-telepatica';
 import * as polemicaDaVezEngine from '../engine/polemica-da-vez';
 import * as retratoFaladoEngine from '../engine/retrato-falado';
@@ -48,6 +49,7 @@ const engines = {
   [GAME_NAMES.MEGAMIX]: megamixEngine,
   [GAME_NAMES.MENTE_COLETIVA]: menteColetivaEngine,
   [GAME_NAMES.NA_RUA_DO_MEDO]: naRuaDoMedoEngine,
+  [GAME_NAMES.NAO_SOU_ROBO]: naoSouRoboEngine,
   [GAME_NAMES.ONDA_TELEPATICA]: ondaTelepaticaEngine,
   [GAME_NAMES.POLEMICA_DA_VEZ]: polemicaDaVezEngine,
   [GAME_NAMES.QUEM_NAO_MATA]: quemNaoMataEngine,
