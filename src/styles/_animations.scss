@@ -15,3 +15,16 @@
     opacity: 0;
   }
 }
+$delay-steps: 20; // Number of steps (0.5s to 10s in 0.5s increments)
+
+@for $i from 1 through $delay-steps {
+  $delay-index: $i * 0.5;
+  $delay-value: $i * 0.5s;
+
+  .animate__animated.animate__delay-#{$i}s {
+    -webkit-animation-delay: $delay-value;
+    animation-delay: $delay-value;
+    -webkit-animation-delay: calc(var(--animate-delay) * #{$delay-index});
+    animation-delay: calc(var(--animate-delay) * #{$delay-index});
+  }
+}
