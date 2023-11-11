@@ -87,11 +87,16 @@ export function ImageCardHand({
   return (
     <Image.PreviewGroup>
       <div className={clsx('image-card-hand', className)}>
-        {hand.map((cardId) => {
+        {hand.map((cardId, index) => {
           return (
             <div
               key={`hand-${cardId}`}
-              className={clsx('image-card-hand__card-container', getAnimationClass('slideInRight'))}
+              className={clsx(
+                'image-card-hand__card-container',
+                getAnimationClass('slideInUp', {
+                  delay: index,
+                })
+              )}
             >
               <ImageCardButton
                 onClick={onSelectCard}

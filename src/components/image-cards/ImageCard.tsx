@@ -36,6 +36,10 @@ export type ImageCardProps = {
    * The file extension for the image (default: jpg)
    */
   fileExtension?: 'jpg' | 'png' | 'gif';
+  /**
+   * Forces height to be the same as the width
+   */
+  square?: boolean;
 };
 
 /**
@@ -48,6 +52,7 @@ export const ImageCard = ({
   preview = true,
   previewImageId = '',
   fileExtension = 'jpg',
+  square = false,
 }: ImageCardProps) => {
   const { shouldBeBlurred } = useBlurCards();
   const baseUrl = useTDBaseUrl('tdi');
@@ -68,9 +73,18 @@ export const ImageCard = ({
       : false;
 
   return (
-    <div className={clsx(baseClass, isBlurred && `${baseClass}--blur`, className)}>
+    <div
+      className={clsx(
+        baseClass,
+        isBlurred && `${baseClass}--blur`,
+        square && `${baseClass}--square`,
+        className
+      )}
+      style={{ height: square ? `${cardWidth}px` : undefined }}
+    >
       <Image
         width={cardWidth}
+        // height={square ? cardWidth : undefined}
         src={`${baseUrl}/${imageURL}.${fileExtension}`}
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
