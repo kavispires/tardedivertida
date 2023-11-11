@@ -22,6 +22,7 @@ import * as linhasCruzadasEngine from './engine/linhas-cruzadas';
 import * as megamixEngine from './engine/megamix';
 import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
+import * as naoSouRoboEngine from './engine/nao-sou-robo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
 import * as quemNaoMataEngine from './engine/quem-nao-mata';
@@ -111,6 +112,8 @@ exports.megamixSubmitAction = functions.https.onCall(megamixEngine.submitAction)
 exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
 
 exports.naRuaDoMedoSubmitAction = functions.https.onCall(naRuaDoMedoEngine.submitAction);
+
+exports.naoSouRoboSubmitAction = functions.https.onCall(naoSouRoboEngine.submitAction);
 
 exports.ondaTelepaticaSubmitAction = functions.https.onCall(ondaTelepaticaEngine.submitAction);
 
