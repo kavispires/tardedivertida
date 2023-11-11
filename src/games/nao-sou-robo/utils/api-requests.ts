@@ -3,9 +3,32 @@ import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'templateSubmitAction');
+const submitAction = httpsCallable(functions, 'naoSouRoboSubmitAction');
 
-export function useOnSubmitVotingAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitCardAPIRequest(setStep: GenericFunction) {
+  const { translate } = useLanguage();
+
+  const request = useAPICall({
+    apiFunction: submitAction,
+    actionName: 'submit-action',
+    onSuccess: () => setStep(2),
+    onError: () => setStep(0),
+    successMessage: translate('Carta submetida com sucesso', 'Card submitted successfully'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
+      'Oops, the application found an error while trying to submit your card'
+    ),
+  });
+
+  return (payload: SubmitRobotCardPayload) => {
+    request({
+      action: 'SUBMIT_CARD',
+      ...payload,
+    });
+  };
+}
+
+export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -20,9 +43,9 @@ export function useOnSubmitVotingAPIRequest(setStep: GenericFunction) {
     ),
   });
 
-  return (payload: SubmitActionPayload) => {
+  return (payload: SubmitRobotGuessPayload) => {
     request({
-      action: 'SUBMIT_ACTION',
+      action: 'SUBMIT_GUESS',
       ...payload,
     });
   };
