@@ -24,6 +24,7 @@ import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { RulesCarousel } from '../rules';
+import { AutoNextPhase } from './rules/AutoNextPhase';
 
 type PhaseRulesProps = {
   players: GamePlayers;
@@ -145,6 +146,8 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           <Translate pt="Quê?" en="What?" />
         </Button>
       </Space>
+
+      <AutoNextPhase players={players} />
     </Layout.Content>
   );
 }
