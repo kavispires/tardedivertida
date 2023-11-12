@@ -87,6 +87,19 @@ export const ROLES: Record<string, MovieRole> = {
     complexity: MEDIUM_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
   },
+  THE_FRIEND: {
+    id: 'THE_FRIEND',
+    title: {
+      en: 'The Friend',
+      pt: 'A Amiga/O Amigo',
+    },
+    description: {
+      en: 'The character who accompanies the protagonist',
+      pt: 'O personagem que acompanha o protagonista',
+    },
+    complexity: MEDIUM_ROLE_REQUIREMENTS,
+    pool: SMALL_ROLE_ACTORS,
+  },
   THE_MENTOR: {
     id: 'THE_MENTOR',
     title: {
@@ -94,8 +107,8 @@ export const ROLES: Record<string, MovieRole> = {
       pt: 'O Mentor',
     },
     description: {
-      en: 'The character who guides the protagonist',
-      pt: 'O personagem que guia o protagonista',
+      en: 'The character who guides the protagonist through their journey',
+      pt: 'O personagem que guia o protagonista em sua jornada',
     },
     complexity: MEDIUM_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
@@ -139,6 +152,19 @@ export const ROLES: Record<string, MovieRole> = {
     complexity: SMALL_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
   },
+  THE_FIRST_TO_DIE: {
+    id: 'THE_FIRST_TO_DIE',
+    title: {
+      en: 'The Special Guest',
+      pt: 'O Convidado Especial',
+    },
+    description: {
+      en: 'The one who dies in the opening scene',
+      pt: 'O personagem que morre na cena de abertura',
+    },
+    complexity: SMALL_ROLE_REQUIREMENTS,
+    pool: SMALL_ROLE_ACTORS,
+  },
   THE_NARRATOR: {
     id: 'THE_NARRATOR',
     title: {
@@ -161,6 +187,19 @@ export const ROLES: Record<string, MovieRole> = {
     description: {
       en: 'The character who appears in the background',
       pt: 'O personagem que aparece no fundo',
+    },
+    complexity: SMALL_ROLE_REQUIREMENTS,
+    pool: SMALL_ROLE_ACTORS,
+  },
+  THE_EYE_CANDY: {
+    id: 'THE_EYE_CANDY',
+    title: {
+      en: 'The Eye Candy',
+      pt: 'O(a) Bonitão(Gata)',
+    },
+    description: {
+      en: 'The character who just looks good in bathing suits',
+      pt: 'O personagem que fica bem de sunga/biquíni',
     },
     complexity: SMALL_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
@@ -192,8 +231,8 @@ export const GENRES: Record<string, MovieGenre> = {
       ROLES.THE_PROTAGONIST,
       ROLES.THE_ANTAGONIST,
       ROLES.THE_LOVE_INTEREST,
+      ROLES.THE_EYE_CANDY,
       ROLES.THE_COMIC_RELIEF,
-      ROLES.THE_EXTRA,
     ],
   },
   DRAMA: {
@@ -220,8 +259,8 @@ export const GENRES: Record<string, MovieGenre> = {
       ROLES.THE_PROTAGONIST,
       ROLES.THE_ANTAGONIST,
       ROLES.THE_MENTOR,
-      ROLES.THE_SIDEKICK,
-      ROLES.THE_SPECIAL_GUEST,
+      ROLES.THE_FRIEND,
+      ROLES.THE_FIRST_TO_DIE,
     ],
   },
   SCI_FI: {

@@ -1,8 +1,8 @@
 // Ant Design Resources
-import { Space } from 'antd';
+import { Input, Space } from 'antd';
 // Utils
 import { achievementsReference } from './utils/achievements';
-import { Icons } from './utils/helpers';
+import { Icons, chatGPTMoviePrompt } from './utils/helpers';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
@@ -15,8 +15,12 @@ import { Title } from 'components/text';
 import { RoleBoard } from './components/RoleBoard';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
+import { VIPOnlyContainer } from 'components/vip';
+import { useLanguage } from 'hooks/useLanguage';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
+  const { language } = useLanguage();
+
   const movie: FeatureFilm = state.movie;
   const movieId = movie?.id ?? '';
   const Icon = Icons?.[movieId] ?? MovieGenreIcon;
@@ -57,6 +61,18 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
           )}
         </Space>
       </Container>
+
+      <VIPOnlyContainer>
+        <Container title="Chat GPT Prompt">
+          <Input.TextArea
+            readOnly
+            value={chatGPTMoviePrompt(state.movie, language)}
+            rows={5}
+            cols={20}
+            className="chat-gpt"
+          />
+        </Container>
+      </VIPOnlyContainer>
     </GameOverWrapper>
   );
 }

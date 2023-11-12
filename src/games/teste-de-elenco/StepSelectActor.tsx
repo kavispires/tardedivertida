@@ -4,7 +4,7 @@ import { useMock } from 'hooks/useMock';
 import { getRandomItem } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ActorsBoard } from './components/ActorsBoard';
 import { RoleBoard } from './components/RoleBoard';
@@ -43,7 +43,7 @@ export function StepSelectActor({
         onSubmitActor={onSubmitActor}
       />
 
-      <Instruction contained>
+      <RuleInstruction>
         <Translate
           pt={
             <>
@@ -65,7 +65,7 @@ export function StepSelectActor({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
     </Step>
   );
 }
