@@ -17,6 +17,8 @@ import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { VIPOnlyContainer } from 'components/vip';
 import { useLanguage } from 'hooks/useLanguage';
+import { useMemo } from 'react';
+import { MovieStats } from './components/MovieStats';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const { language } = useLanguage();
@@ -41,7 +43,9 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
                 <DualTranslate>{movie.title}</DualTranslate>
               </Title>
 
-              {movie.rolesOrder.map((roleId) => {
+              <MovieStats movie={movie} />
+
+              {movie.rolesOrder.reverse().map((roleId) => {
                 const role = movie.roles[roleId];
 
                 if (role.cast) {

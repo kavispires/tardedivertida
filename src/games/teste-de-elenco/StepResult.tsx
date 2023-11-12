@@ -96,7 +96,7 @@ export function StepResult({
       />
 
       <Space className="space-container" align="center">
-        <TimedButton duration={35} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={25} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>
