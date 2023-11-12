@@ -19,6 +19,8 @@ type AchievementsProps = {
 const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
 export function Achievements({ players, achievements, reference }: AchievementsProps) {
+  if (achievements.length === 0) return <></>;
+
   return (
     <div className={clsx('achievements', getAnimationClass('fadeIn'))}>
       <Title size="small" level={3}>
