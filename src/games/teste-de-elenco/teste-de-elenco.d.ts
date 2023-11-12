@@ -29,6 +29,7 @@ type ActingRole = {
   cast: boolean;
   round: number;
   directors: PlayerId[];
+  type: string;
 };
 
 type FeatureFilm = {

@@ -9,6 +9,7 @@ import { Translate } from 'components/language';
 import { ActorsBoard } from './components/ActorsBoard';
 import { RoleBoard } from './components/RoleBoard';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { CastSummary } from './components/CastSummary';
 
 type StepSelectActorProps = {
   user: GamePlayer;
@@ -66,6 +67,8 @@ export function StepSelectActor({
           }
         />
       </RuleInstruction>
+
+      <CastSummary movie={movie} />
     </Step>
   );
 }

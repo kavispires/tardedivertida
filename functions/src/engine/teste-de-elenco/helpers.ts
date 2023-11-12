@@ -77,6 +77,7 @@ export const buildMovie = (players: Players, store: FirebaseStoreData): Movie =>
       id: role.id,
       title: role.title,
       description: role.description,
+      type: role.type,
       candidates,
       traits: new Array(role.complexity).fill(0).map(() => store.traits.pop()),
       cast: false,
