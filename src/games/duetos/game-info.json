@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -22,10 +22,21 @@
     "backgroundColor": ""
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Coloque os itens em pares e tente ganhe pontos por cada par que seja igual a de outros jogadores!",
+      "Você ganha pontos igual a quantos jogadores fizeram o par do mesmo jeito.Ao final de 5 rodadas quem tiver mais pontos ganha!"
+    ],
+    "en": [
+      "Pair the items and try to score points for each pair that is the same as other players!",
+      "You score points equal to how many players made the pair the same way. At the end of 5 rounds whoever has the most points wins!"
+    ]
+  },
+  "duration": {
+    "base": 20,
+    "perPlayer": 1
   },
   "playerCount": {
+    "best": 4,
     "recommended": [4, 5, 6],
     "min": 2,
     "max": 10
