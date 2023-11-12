@@ -52,3 +52,24 @@
 .chat-gpt {
   width: $max-width;
 }
+
+.cast-summary {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-radius: $border-radius;
+  place-items: center;
+  padding: get-unit(2);
+  margin: get-unit(4 2);
+  border: 2px solid get-color('white', 5, 0.5);
+  gap: get-unit(1);
+
+  &__entry {
+    @include contained;
+    display: grid;
+    place-items: center;
+  }
+
+  & .ant-divider {
+    border: 1px solid get-color('white', 5, 0.5);
+  }
+}

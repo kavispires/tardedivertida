@@ -60,6 +60,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: LARGE_ROLE_REQUIREMENTS,
     pool: LARGE_ROLE_ACTORS,
+    type: 'main',
   },
   THE_ANTAGONIST: {
     id: 'THE_ANTAGONIST',
@@ -73,6 +74,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: LARGE_ROLE_REQUIREMENTS,
     pool: LARGE_ROLE_ACTORS,
+    type: 'anti',
   },
   THE_SIDEKICK: {
     id: 'THE_SIDEKICK',
@@ -86,6 +88,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: MEDIUM_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'supporting',
   },
   THE_FRIEND: {
     id: 'THE_FRIEND',
@@ -99,6 +102,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: MEDIUM_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'supporting',
   },
   THE_MENTOR: {
     id: 'THE_MENTOR',
@@ -112,6 +116,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: MEDIUM_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'mentor',
   },
   THE_LOVE_INTEREST: {
     id: 'THE_LOVE_INTEREST',
@@ -125,6 +130,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: MEDIUM_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'love',
   },
   THE_COMIC_RELIEF: {
     id: 'THE_COMIC_RELIEF',
@@ -138,6 +144,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: SMALL_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'comic',
   },
   THE_SPECIAL_GUEST: {
     id: 'THE_SPECIAL_GUEST',
@@ -151,6 +158,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: SMALL_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'important',
   },
   THE_FIRST_TO_DIE: {
     id: 'THE_FIRST_TO_DIE',
@@ -164,6 +172,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: SMALL_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'dead',
   },
   THE_NARRATOR: {
     id: 'THE_NARRATOR',
@@ -177,6 +186,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: SMALL_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'voice',
   },
   THE_EXTRA: {
     id: 'THE_EXTRA',
@@ -190,6 +200,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: SMALL_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'minor',
   },
   THE_EYE_CANDY: {
     id: 'THE_EYE_CANDY',
@@ -203,6 +214,7 @@ export const ROLES: Record<string, MovieRole> = {
     },
     complexity: SMALL_ROLE_REQUIREMENTS,
     pool: SMALL_ROLE_ACTORS,
+    type: 'visual',
   },
 };
 

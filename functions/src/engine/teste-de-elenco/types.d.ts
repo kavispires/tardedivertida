@@ -15,6 +15,7 @@ export type MovieRole = {
   description: DualLanguageValue;
   complexity: number;
   pool: number;
+  type: string;
 };
 
 export type ActingRole = {
@@ -25,7 +26,7 @@ export type ActingRole = {
   cast: boolean;
   round: number;
   directors: PlayerId[];
-} & Pick<MovieRole, 'id' | 'title' | 'description'>;
+} & Pick<MovieRole, 'id' | 'title' | 'description' | 'type'>;
 
 export type MovieGenre = {
   id: string;
