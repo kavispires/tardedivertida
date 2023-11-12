@@ -20,6 +20,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { useMock } from 'hooks/useMock';
 import { mockCardPick } from './utils/mock';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
+import { Summary } from './components/Summary';
 
 type StepSelectCardProps = {
   players: GamePlayers;
@@ -60,12 +61,12 @@ export function StepSelectCard({
               Estamos tentando comprar ingressos para um <EventHighlight>super evento</EventHighlight>, mas
               precisamos provar que não somos robôs.
               <br />
-              Para isso, temos que passar por <CaptchaHighlight>3 captchas</CaptchaHighlight>. Se algum de nós
-              passa, a gente consegue comprar e quem tiver mais pontos fica no melhor lugar!
+              Para isso, você tem que passar por <CaptchaHighlight>3 captchas</CaptchaHighlight>. Se algum dos
+              jogadores consegue, a gente consegue comprar e quem tiver mais pontos fica no melhor lugar!
               <br />
-              Cada vez que você ganha escolhe uma imagem do robô, você recebe{' '}
-              <SuspicionHighlight>1 marca suspeita</SuspicionHighlight> e se tiver 3 o robô fecha o sistema
-              para todos nós.
+              Cada vez que você escolhe uma imagem do robô, ele fica suspeito de você e você ganha{' '}
+              <SuspicionHighlight>1 marca suspeita</SuspicionHighlight>. Com 3 marcas, o robô fecha o sistema
+              para todos nós e o jogo acaba.
               <br />
               Enquanto isso, o <RobotHighlight>robô</RobotHighlight> está tentando começar uma rebelião das
               máquinas e precisa de <EnergyHighlight>{robot.goal} pontos</EnergyHighlight> (votos em imagens
@@ -77,7 +78,7 @@ export function StepSelectCard({
               We are trying to buy tickets for a <EventHighlight>super event</EventHighlight>, but we need to
               prove we are not robots.
               <br />
-              For that, we have to go through <CaptchaHighlight>3 captchas</CaptchaHighlight>. If any of us
+              For that, you have to go through <CaptchaHighlight>3 captchas</CaptchaHighlight>. If any of us
               passes, we can buy the tickets and whoever has the most points gets the best seats!
               <br />
               Every time you win a captcha, you get <SuspicionHighlight>
@@ -92,6 +93,8 @@ export function StepSelectCard({
           }
         />
       </RuleInstruction>
+
+      <Summary user={user} robot={robot} />
 
       {areTicketsInCart ? (
         <Flex vertical className={getAnimationClass('fadeIn')} align="center">

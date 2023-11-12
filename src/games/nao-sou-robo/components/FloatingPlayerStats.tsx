@@ -12,8 +12,10 @@ type FloatingPlayerStatsProps = {
 };
 
 export function FloatingPlayerStats({ user, robot }: FloatingPlayerStatsProps) {
-  const correctCaptcha = user.beat.filter(Boolean).length;
-  const suspicion = user.suspicion.filter(Boolean).length;
+  if (!user || !robot) return <></>;
+
+  const correctCaptcha = (user.beat ?? []).filter(Boolean).length;
+  const suspicion = (user.suspicion ?? []).filter(Boolean).length;
 
   return (
     <FixedMenuButton
