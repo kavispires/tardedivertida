@@ -84,3 +84,17 @@
     background-color: get-color('gray', 4);
   }
 }
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  border-radius: $border-radius;
+  place-items: center;
+  padding: get-unit(2);
+  margin: get-unit(4 2);
+  border: 2px solid get-color('white', 5, 0.5);
+
+  & .ant-divider {
+    border: 1px solid get-color('white', 5, 0.5);
+  }
+}

@@ -21,6 +21,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { useMock } from 'hooks/useMock';
 import { mockGuess } from './utils/mock';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
+import { Summary } from './components/Summary';
 
 type StepSelectAllProps = {
   players: GamePlayers;
@@ -167,6 +168,8 @@ export function StepSelectAll({
           <Translate pt="Enviar Captcha" en="Submit Captcha" />
         </Button>
       </Flex>
+
+      <Summary user={user} robot={robot} />
     </Step>
   );
 }
