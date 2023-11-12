@@ -2,13 +2,16 @@
 import { Space } from 'antd';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { DualTranslate, Translate } from 'components/language';
 import { RoleBoard } from './components/RoleBoard';
 import { TimedButton } from 'components/buttons';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { ActorsSelections } from './components/ActorsSelections';
+import { ReleasedActors } from './components/ReleasedActors';
+import { Container } from 'components/general/Container';
+import { useMemo } from 'react';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -26,6 +29,16 @@ export function StepResult({
   outcome,
   players,
 }: StepResultProps) {
+  const playersSelections = useMemo(() => {
+    return Object.values(players).reduce((acc: Record<CardId, PlayerId[]>, player) => {
+      if (acc[player.actorId] === undefined) {
+        acc[player.actorId] = [];
+      }
+      acc[player.actorId].push(player.id);
+      return acc;
+    }, {});
+  }, [players]);
+
   return (
     <Step fullWidth announcement={announcement}>
       <Title size="x-small">
@@ -40,7 +53,7 @@ export function StepResult({
         )}
       </RoleBoard>
 
-      <Instruction contained>
+      <RuleInstruction type="event">
         {outcome === 'CONTINUE' && (
           <Translate
             pt="Os diretores não chegaram num consenso. Aqui estão os atores selecionados para a próxima fase:"
@@ -73,15 +86,36 @@ export function StepResult({
             en="Oh no! Nobody was chosen for the role! And they will remove the character from the script"
           />
         )}
-      </Instruction>
+      </RuleInstruction>
 
-      <ActorsSelections actors={activeRole.candidates} selection={activeRole.selection} players={players} />
+      <ActorsSelections
+        actors={activeRole.candidates}
+        selection={activeRole.selection}
+        players={players}
+        playersSelections={playersSelections}
+      />
 
       <Space className="space-container" align="center">
-        <TimedButton duration={15} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={35} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>
+
+      <Container
+        title={
+          <Translate
+            pt="Atores não foram selecionados para a próxima fase"
+            en="Actors who didn't move to the next phase"
+          />
+        }
+      >
+        <ReleasedActors
+          actors={activeRole.candidates ?? {}}
+          selection={activeRole.selection ?? []}
+          players={players}
+          playersSelections={playersSelections}
+        />
+      </Container>
     </Step>
   );
 }

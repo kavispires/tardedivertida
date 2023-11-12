@@ -10,6 +10,7 @@ import { NoIcon } from 'icons/NoIcon';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { DualTranslate, Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
+import { Fragment } from 'react';
 
 type RoleBoardProps = {
   movie?: FeatureFilm;
@@ -89,7 +90,7 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
           <ul>
             {activeRole.traits.map((trait, index) => {
               if (index === traitCount - 1 && instruction === 'RESULT' && outcome === 'CONTINUE') {
-                return <></>;
+                return <Fragment key={trait} />;
               }
               return (
                 <li key={trait}>
