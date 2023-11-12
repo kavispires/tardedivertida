@@ -19,11 +19,11 @@ import { VIPButton } from './VIPButton';
 import { useVIP } from 'hooks/useVIP';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
-  return !round || round.current === round.total || round.forceLastRound ? (
-    <Translate pt="Tela de Game Over" en="Game Over Screen" />
-  ) : (
-    <Translate pt="Próxima rodada" en="Next Round" />
-  );
+  if (!round || round.current === round.total || round.forceLastRound) {
+    return <Translate pt="Tela de Game Over" en="Game Over Screen" />;
+  }
+
+  return <Translate pt="Próxima rodada" en="Next Round" />;
 }
 
 type VIPNextPhaseButtonProps = {
