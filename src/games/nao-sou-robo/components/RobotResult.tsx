@@ -18,7 +18,6 @@ export function RobotResult({ players, result, robot }: RobotResultProps) {
   const { outcome, beaters } = result;
   const someoneBeat = beaters.length > 0;
   const robotGotPoints = robot.state > 0;
-  console.log(robot);
 
   return (
     <>
