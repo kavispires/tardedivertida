@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -48,7 +48,8 @@
       "label": "Add Bots",
       "off": "No",
       "on": "Yes",
-      "description": "Add bots to the game (for 2-3 player games only)"
+      "description": "Add bots to the game (for 2-3 player games only)",
+      "disabled": true
     },
     {
       "key": "withImages",

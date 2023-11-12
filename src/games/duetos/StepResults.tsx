@@ -50,6 +50,11 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
       </Instruction>
 
       <Space wrap className="space-container">
+        {galleryMatches.length === 0 && (
+          <Instruction contained>
+            <Translate pt="Ninguém deu match!" en="Nobody matched anything" />
+          </Instruction>
+        )}
         {galleryMatches.map((entry, index) => {
           return (
             <Space key={entry.pairId} className="pairs-grid__pair space-container" direction="vertical">
@@ -76,7 +81,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
         })}
       </Space>
 
-      {leftOut.length > 0 && (
+      {leftOut.length > 1 && (
         <>
           <Title size="xx-small">
             <Translate pt="Sobras Vencedoras" en="Left Out Matches" />
@@ -124,7 +129,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
       )}
 
       <Space className="space-container" align="center">
-        <TimedButton duration={20} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>
