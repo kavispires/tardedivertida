@@ -575,3 +575,11 @@ interface GroupProgress {
   score: number;
   goal: number;
 }
+
+type Suspect = {
+  id: string;
+  name: DualLanguageValue;
+  gender: string;
+  ethnicity: string;
+  age: string;
+};

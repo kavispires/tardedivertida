@@ -15,12 +15,6 @@ type EliminatePayload = {
   pass: boolean;
 };
 
-type Suspect = {
-  id: string;
-  name: DualLanguageValue;
-  gender: string;
-};
-
 type TQuestion = {
   id: string;
   question: string;
