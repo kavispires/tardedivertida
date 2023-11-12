@@ -66,7 +66,7 @@ export const getImageCards = async (quantity: number, allImageDecks = false): Pr
     return deckCache[deckPrefix];
   });
 
-  return cards.reduce((acc, val) => acc.concat(val), []);
+  return shuffle(cards.reduce((acc, val) => acc.concat(val), []));
 };
 
 /**
