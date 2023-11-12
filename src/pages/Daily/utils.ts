@@ -29,6 +29,5 @@ export function cleanupLetter(char: string): string {
 }
 
 export function isLetter(char: string): boolean {
-  console.log({ char });
   return cleanupLetter(char).match(/[a-zA-Z]/) !== null;
 }
