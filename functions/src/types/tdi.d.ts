@@ -14,6 +14,8 @@ type SuspectCard = {
   id: CardId;
   name: DualLanguageValue;
   gender: string;
+  ethnicity: string;
+  age: string;
 };
 
 type SuspectCardsOptions = {
