@@ -109,7 +109,7 @@ export const getImageCardsDecks = async (
     return deckCache[deckPrefix];
   });
 
-  return cards;
+  return shuffle(cards);
 };
 
 export const modifySuspectIdsByOptions = (
