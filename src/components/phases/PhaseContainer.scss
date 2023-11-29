@@ -20,6 +20,7 @@
   &--full-screen {
     width: calc(100vw - #{get-unit(8)});
     height: calc(100vh - #{get-unit(8)});
+    height: calc(100dvh - #{get-unit(8)});
     overflow: hidden;
   }
 
