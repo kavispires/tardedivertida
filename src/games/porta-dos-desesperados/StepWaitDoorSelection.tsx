@@ -1,22 +1,22 @@
+import { useMemo } from 'react';
 // Ant Design Resources
+import { Space } from 'antd';
 // Hooks
 // Utils
+import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
+import { shouldAnnounceTrap } from './utils/helpers';
+import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 // Components
-import { Space } from 'antd';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-import { useMemo } from 'react';
-import { NOOP } from 'utils/constants';
-import { PHASES } from 'utils/phases';
+import { RuleInstruction, Title } from 'components/text';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
 import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
-import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
-import { shouldAnnounceTrap } from './utils/helpers';
 
 type StepWaitDoorSelectionProps = {
   doors: CardId[];
@@ -54,7 +54,7 @@ export function StepWaitDoorSelection({
 
       {botEnabled && <BotPopupRule />}
 
-      <Instruction contained className="i-sand-timer-container">
+      <RuleInstruction type="rule" className="i-sand-timer-container">
         <Translate
           pt={
             <>
@@ -102,7 +102,7 @@ export function StepWaitDoorSelection({
           onMakeReady={NOOP}
           user={{ doorId: 'ABC', ready: true }}
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Corridor doors={doors} trap={trap} players={players} answerDoorId={answerDoorId} />
 

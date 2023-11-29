@@ -25,8 +25,8 @@ export function RoundOneRule({ magic }: RoundOneRuleProps) {
             <br />
             Devemos que passar por <DoorHighlight>{TOTAL_DOORS}</DoorHighlight> portas.
             <br />
-            Mas temos apenas <CrystalHighlight>{magic}</CrystalHighlight> cristais mágicos e cada porta que
-            abrimos usamos <CrystalHighlight type="negative">1</CrystalHighlight> cristal.
+            Mas o Livro só tem <CrystalHighlight>{magic}</CrystalHighlight> cristais mágicos de energia e cada
+            porta que abrimos usamos <CrystalHighlight type="negative">-1</CrystalHighlight> cristal.
             <br />
             Será que conseguimos sair antes que nossa mágica acabe?
           </>
@@ -38,8 +38,8 @@ export function RoundOneRule({ magic }: RoundOneRuleProps) {
             We must go through <DoorHighlight>{TOTAL_DOORS}</DoorHighlight>
             doors.
             <br />
-            But we only have <CrystalHighlight>{magic}</CrystalHighlight> magic crystals and each door we go
-            through costs us <CrystalHighlight type="negative">1</CrystalHighlight> crystal.
+            But the Book only has <CrystalHighlight>{magic}</CrystalHighlight> magic energy crystals and each
+            door we go through costs us <CrystalHighlight type="negative">-1</CrystalHighlight> crystal.
             <br />
             Can we get out before our crystals are gone?
           </>

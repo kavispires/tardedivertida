@@ -10,7 +10,7 @@ import { MagicCultLeaderIcon } from 'icons/MagicCultLeaderIcon';
 import { MagicSkullIcon } from 'icons/MagicSkullIcon';
 import { MagicCandlesIcon } from 'icons/MagicCandlesIcon';
 // Components
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { GameOverWrapper } from 'components/game-over';
 import { LoseGameText } from './components/RulesBlobs';
@@ -57,7 +57,7 @@ function PhaseGameOver({ players, state, info }: PhaseProps) {
         <MagicCandlesIcon style={{ width: '4rem' }} />
       </Space>
 
-      <Instruction contained>
+      <RuleInstruction type="lore">
         {isVictory ? (
           <Translate
             pt="Quando saímos, formos abortados pelo Líder do Oculto e entramos para um culto de bruxaria!!! Viva!"
@@ -66,7 +66,7 @@ function PhaseGameOver({ players, state, info }: PhaseProps) {
         ) : (
           <LoseGameText players={players} />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 

@@ -3,6 +3,8 @@
 .title {
   $self: &;
 
+  max-width: $max-width;
+  text-wrap: balance;
   text-align: center;
   color: get-color('black');
 
