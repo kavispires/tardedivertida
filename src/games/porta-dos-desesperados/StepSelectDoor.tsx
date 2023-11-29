@@ -14,7 +14,7 @@ import { AvatarName } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { getAnimationClass } from 'utils/helpers';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
@@ -96,7 +96,7 @@ export function StepSelectDoor({
         </Button>
       )}
 
-      <Instruction contained className="i-sand-timer-container">
+      <RuleInstruction type="rule" className="i-sand-timer-container">
         <Translate
           pt={
             <>
@@ -145,7 +145,7 @@ export function StepSelectDoor({
           onMakeReady={onConfirmDoor}
           user={user}
         />
-      </Instruction>
+      </RuleInstruction>
 
       {trap === TRAPS.NO_COMMUNICATION && (
         <Instruction contained className={getAnimationClass('pulse', { speed: 'slower', infinite: true })}>
@@ -154,6 +154,26 @@ export function StepSelectDoor({
           </strong>
         </Instruction>
       )}
+
+      <RuleInstruction type="action">
+        <Translate
+          pt={
+            <>
+              <strong>Selecione</strong> uma das portas que você acha que mais se relaciona com o livro.
+              <br />
+              Você pode trocar de porta quantas vezes quiser até confirmar sua escolha ou o tempo acabar.
+            </>
+          }
+          en={
+            <>
+              <strong>Select</strong> one of the doors you think is most related to the book.
+              <br />
+              You can change your door as many times as you want until you confirm your choice or time runs
+              out.
+            </>
+          }
+        />
+      </RuleInstruction>
 
       <Corridor
         doors={doors}

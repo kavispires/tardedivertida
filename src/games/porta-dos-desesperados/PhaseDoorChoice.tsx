@@ -39,7 +39,7 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
               : () => setStep(3)
           }
           currentRound={state?.round?.current}
-          duration={5}
+          duration={3}
           unskippable
           type="block"
         >

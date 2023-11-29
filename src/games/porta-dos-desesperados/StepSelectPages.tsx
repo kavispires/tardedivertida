@@ -14,17 +14,15 @@ import { TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockPageSelection } from './utils/mock';
 import { getAnimationClass } from 'utils/helpers';
-// Icons
-import { MagicDoorIcon } from 'icons/MagicDoorIcon';
 // Components
 import { ImageBlurButton, ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { DoorFrame } from '../../components/game/DoorFrame';
 import { TrapPopupRule } from './components/RulesBlobs';
-import { IconAvatar } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
+import { BookHighlight, DoorHighlight } from './components/Highlights';
 
 type StepSelectPagesProps = {
   pages: CardId[];
@@ -65,20 +63,12 @@ export function StepSelectPages({
         <Translate
           pt={
             <>
-              Ajude os jogadores a encontrar a porta{' '}
-              <TextHighlight>
-                <IconAvatar icon={<MagicDoorIcon />} size="large" /> {currentCorridor}
-              </TextHighlight>
-              :
+              Ajude os jogadores a encontrar a porta <DoorHighlight>{currentCorridor}</DoorHighlight>:
             </>
           }
           en={
             <>
-              Help players find the door{' '}
-              <TextHighlight>
-                <IconAvatar icon={<MagicDoorIcon />} size="large" /> {currentCorridor}
-              </TextHighlight>
-              :
+              Help players find the door <DoorHighlight>{currentCorridor}</DoorHighlight>:
             </>
           }
         />
@@ -94,19 +84,21 @@ export function StepSelectPages({
         <ImageBlurButton cardId={answerDoorId} />
       </Space>
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
               Acima está a porta que você deve ajudar os outros jogadores a selecionar. <br />
-              Consulte as páginas do livro (cartas) e selecione as que você acha que mais vão ajudar!
+              Consulte as páginas do livro (cartas) e <strong>selecione</strong> as que você acha que mais vão
+              ajudar!
             </>
           }
           en={
             <>
               Above it's the door you need to help the other players to find.
               <br />
-              Check the book pages(cards) below and select the one you think will help them best!
+              Check the book pages(cards) below and <strong>select</strong> the one you think will help them
+              best!
             </>
           }
         />
@@ -115,11 +107,22 @@ export function StepSelectPages({
           <>
             <br />
             <strong>
-              <Translate pt="Selecione exatamente 3 páginas do livro." en="Select exactly 3 book pages." />
+              <Translate
+                pt={
+                  <>
+                    Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
+                  </>
+                }
+                en={
+                  <>
+                    Select exactly <BookHighlight>3</BookHighlight> book pages
+                  </>
+                }
+              />
             </strong>
           </>
         )}
-      </Instruction>
+      </RuleInstruction>
 
       {isSelectionComplete && (
         <Button
@@ -139,12 +142,35 @@ export function StepSelectPages({
           <Translate pt="Páginas selecionadas" en="Selected Pages" />
         </Title>
 
-        {Object.keys(selections).length === 0 && (
+        {Object.keys(selections).length < 2 && (
           <p>
             {trap === TRAPS.MORE_CLUES ? (
-              <Translate pt="Selecione exatamente 3 páginas do livro" en="Select exactly 3 book pages" />
+              <Translate
+                pt={
+                  <>
+                    Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
+                  </>
+                }
+                en={
+                  <>
+                    Select exactly <BookHighlight>3</BookHighlight> book pages
+                  </>
+                }
+              />
             ) : (
-              <Translate pt="Selecione 1 ou 2 páginas do livro" en="Select 1 or 2 book pages" />
+              <Translate
+                pt={
+                  <>
+                    Selecione <BookHighlight>1</BookHighlight> ou <BookHighlight>2</BookHighlight> páginas do
+                    livro
+                  </>
+                }
+                en={
+                  <>
+                    Select <BookHighlight>1</BookHighlight> or <BookHighlight>2</BookHighlight> book pages
+                  </>
+                }
+              />
             )}
           </p>
         )}

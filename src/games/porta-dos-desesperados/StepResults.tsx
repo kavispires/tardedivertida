@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Alert, Space } from 'antd';
+import { Space } from 'antd';
 // Utils
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 // Components
@@ -7,11 +7,12 @@ import { VIPNextPhaseButton } from 'components/vip';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight } from './components/Highlights';
 import { TrapPopupRule } from './components/RulesBlobs';
+import { pluralize } from 'utils/helpers';
 
 type StepResultsProps = {
   doors: CardId[];
@@ -45,7 +46,7 @@ export function StepResults({
         <OutcomeTitle outcome={outcome} />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="event">
         <OutcomeInstruction outcome={outcome} />
 
         {trap === TRAPS.DOUBLE_MAGIC && (
@@ -75,16 +76,17 @@ export function StepResults({
         <Translate
           pt={
             <>
-              E <DoorHighlight>{doorsLeft}</DoorHighlight> portas pra encontrar a saída.
+              E faltam <DoorHighlight>{doorsLeft}</DoorHighlight> portas pra encontrar a saída.
             </>
           }
           en={
             <>
-              And <DoorHighlight>{doorsLeft}</DoorHighlight> doors to find the exit.
+              And there {pluralize(doorsLeft, 'is', 'are')} <DoorHighlight>{doorsLeft}</DoorHighlight> doors
+              left to find the exit.
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <OutcomeAlert outcome={outcome} />
 
@@ -138,15 +140,11 @@ function OutcomeAlert({ outcome }: OutcomeProps) {
   }
 
   return (
-    <Alert
-      type="warning"
-      showIcon
-      message={
-        <Translate
-          pt="Para a próxima rodada, as portas e armadilha continuarão as mesmas, mas a 'porta resposta' será aleatória."
-          en="For the next round, the doors and trap will remain the same, but the 'door answer' will be randomized again."
-        />
-      }
-    />
+    <RuleInstruction type="alert">
+      <Translate
+        pt="Para a próxima rodada, as portas e armadilha continuarão as mesmas, mas a 'porta resposta' será aleatória."
+        en="For the next round, the doors and trap will remain the same, but the 'door answer' will be randomized again."
+      />
+    </RuleInstruction>
   );
 }

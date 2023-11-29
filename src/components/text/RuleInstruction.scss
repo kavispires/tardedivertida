@@ -18,16 +18,28 @@
     padding: get-unit(2 3);
     border-radius: $border-radius 0 0 $border-radius;
 
-    &--rule {
-      background: get-color('gray', 5, 0.5);
+    &--action {
+      opacity: 0.85;
+    }
+
+    &--alert {
+      background: get-color('red', 5, 0.65);
     }
 
     &--event {
       background: get-color('orange', 4, 0.5);
     }
 
-    &--action {
-      background: get-color('gray', 6, 0.5);
+    &--lore {
+      background: get-color('purple', 4, 0.5);
+    }
+
+    &--rule {
+      background: get-color('gray', 5, 0.5);
+    }
+
+    &--tip {
+      background: get-color('gray', 3, 0.5);
     }
   }
 
