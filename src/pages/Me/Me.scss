@@ -48,6 +48,7 @@
 .me-modal {
   & .ant-modal-body {
     height: calc(100vh - 200px);
+    height: calc(100dvh - 200px);
     overflow-y: auto;
     overflow-x: hidden;
   }

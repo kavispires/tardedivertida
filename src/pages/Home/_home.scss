@@ -6,12 +6,14 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
 .home {
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   position: relative;
 
   &__logo-container {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,6 +49,7 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
     position: absolute;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     background-color: #3e1e68;
 
