@@ -60,15 +60,17 @@ export const getMovieSummary = (movie: FeatureFilm) => {
   // Calculate Gender diversity
   const maleCount = roles.filter((role) => role.candidates[role.actor].gender === 'male').length;
   const femaleCount = totalActors - maleCount;
-  const genderDiversity = Math.abs((maleCount - femaleCount) / totalActors) * 100;
+  const difference = Math.abs(maleCount - femaleCount + 1);
+
+  const genderDiversity = ((totalActors - difference) / totalActors) * 100;
 
   // Calculate Age diversity
   const uniqueAges = new Set(roles.map((role) => role.candidates[role.actor].age));
-  const ageDiversity = (uniqueAges.size / totalActors) * 100;
+  const ageDiversity = ((uniqueAges.size - 1) / totalActors) * 100;
 
   // Calculate Ethnicity diversity
   const uniqueRaces = new Set(roles.map((role) => role.candidates[role.actor].ethnicity));
-  const ethnicityDiversity = (uniqueRaces.size / totalActors) * 100;
+  const ethnicityDiversity = ((uniqueRaces.size - 1) / totalActors) * 100;
 
   let isLGBTQA = false;
   if (
