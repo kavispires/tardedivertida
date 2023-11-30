@@ -25,8 +25,16 @@ export const TRAPS = {
   SECRET_CHOICE: 'SECRET_CHOICE',
   // Guess Phase: A random card is added to the clues (backend) ✓
   RANDOM_INTERJECTION: 'RANDOM_INTERJECTION',
-  // Guess Phase: The time is cut in half (front-end) ✓
+  // Guess Phase: The time is cut in half (frontend) ✓
   HALF_TIME: 'HALF_TIME',
+  // Guess Phase: Doors keep moving around (frontend)
+  DANCING_DOORS: 'DANCING_DOORS',
+  // Guess Phase: Doors randomly fade in and fade out, on expand, they are 50% opacity (frontend)
+  FADE_DOORS: 'FADE_DOORS',
+  // Guess Phase: Each player cannot see one random door (frontend)
+  BLIND_DOOR: 'BLIND_DOOR',
+  // Guess Phase: Every 30 seconds a door is removed from A to F (frontend)
+  VANISHING_DOORS: 'VANISHING_DOORS',
 };
 
 export const OUTCOME = {
