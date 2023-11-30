@@ -1,14 +1,15 @@
 import { useTitle } from 'react-use';
 // Ant Design Resources
-import { Divider, Layout } from 'antd';
+import { Layout } from 'antd';
 // Components
 import { DevHeader } from './DevHeader';
-import { RestructureUI } from './Resources/RestructureUI';
-import { TransferGlobal } from './Resources/TransferGlobal';
-import { useQuery } from 'react-query';
-import { RestructureJson } from './Resources/RestructureJson';
-import { SaveGames } from './Resources/SaveGames';
-import { SaveResources } from './Resources/SaveResources';
+// import { RestructureUI } from './Resources/RestructureUI';
+// import { TransferGlobal } from './Resources/TransferGlobal';
+// import { useQuery } from 'react-query';
+// import { RestructureJson } from './Resources/RestructureJson';
+// import { SaveGames } from './Resources/SaveGames';
+// import { SaveResources } from './Resources/SaveResources';
+import { Link } from 'react-router-dom';
 
 function ResourcesPage() {
   useTitle('Resources | Dev | Tarde Divertida');
@@ -20,6 +21,7 @@ function ResourcesPage() {
         {/* <RestructureJson /> */}
         {/* <SaveGames /> */}
         {/* <SaveResources /> */}
+        <Link to="/dev/imageCards">Image Cards</Link>
       </Layout.Content>
     </Layout>
   );
