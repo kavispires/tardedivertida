@@ -25,9 +25,12 @@ const DevClassifier = lazy(
   () => import('pages/Dev/Classifier/ItemClassifier' /* webpackChunkName: "page-dev-classifier" */)
 );
 const DevDailySetup = lazy(
-  () => import('pages/Dev/DailySetup/DailySetup' /* webpackChunkName: "page-dev-dailysetup" */)
+  () => import('pages/Dev/DailySetup/DailySetup' /* webpackChunkName: "page-dev-daily-setup" */)
 );
 const Daily = lazy(() => import('pages/Daily/Daily' /* webpackChunkName: "page-td-daily" */));
+const ImageCards = lazy(
+  () => import('pages/Dev/ImageCards/ImageCards' /* webpackChunkName: "page-dev-image-cards" */)
+);
 
 const LazyMe = () => (
   <Suspense fallback={<LoadingPage />}>
@@ -97,6 +100,11 @@ const LazyDevDailySetup = () => (
 const LazyDaily = () => (
   <Suspense fallback={<LoadingPage />}>
     <Daily />
+  </Suspense>
+);
+const LazyImageCards = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <ImageCards />
   </Suspense>
 );
 
@@ -191,6 +199,14 @@ export const routes = (
       element={
         <AdminProtectedRoute>
           <LazyDevDailySetup />
+        </AdminProtectedRoute>
+      }
+    />
+    <Route
+      path="/dev/imagecards"
+      element={
+        <AdminProtectedRoute>
+          <LazyImageCards />
         </AdminProtectedRoute>
       }
     />
