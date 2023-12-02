@@ -17,7 +17,7 @@ import { prepareVotes } from './utils/helpers';
 import { Step } from 'components/steps';
 import { PopoverRule } from 'components/rules';
 import { CanvasResizer } from 'components/canvas';
-import { Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
 import { EvaluationAllCards } from './components/EvaluationAllCards';
@@ -113,57 +113,86 @@ export function StepEvaluation({
   }, []);
 
   return (
-    <Step className="a-evaluation-step" announcement={announcement} fullWidth>
+    <Step announcement={announcement} fullWidth>
       <PopoverRule content={<EvaluationRules />} />
       <CanvasResizer />
       <Title>
         <Translate pt="Adivinhação" en="Match the Pairs" />
       </Title>
 
-      <Space className="space-container" align="center" wrap>
-        <Button
-          type="default"
-          icon={<ThunderboltOutlined />}
-          onClick={() => resetVoting(selectOwnDrawing())}
-          disabled={isLoading}
-        >
-          <Translate pt="Limpar seleções" en="Clear selections" />
-        </Button>
-        <Button
-          type="default"
-          icon={<ThunderboltOutlined />}
-          onClick={onGuessForMe}
-          disabled={isLoading || Object.values(votes).length === drawings.length}
-        >
-          <Translate pt="Chutar restantes" en="Guess for me" />
-        </Button>
-        <Button
-          type="primary"
-          onClick={() => onSubmitVoting({ votes: prepareVotes(votes), choseRandomly })}
-          disabled={isLoading || !isVotingComplete}
-          icon={<CloudUploadOutlined />}
-          loading={isLoading}
-        >
-          <Translate pt="Enviar sua avaliação" en="Send evaluation" />
-        </Button>
+      <RuleInstruction type="action">
+        <Translate
+          pt={
+            <>
+              Faça pares com as cartas e os desenhos.
+              <br />
+              Basta clicar em um desenho e depois em sua carta correspondente, ou vice-versa.
+              <br />
+              Para refazer, basta reselecionar o desenho ou carta normalmente.
+              <br />
+              Quando estiver pronto, clique em <b>Enviar sua avaliação</b>.
+            </>
+          }
+          en={
+            <>
+              Match the cards and drawings.
+              <br />
+              Just click on a drawing and then on its corresponding card, or vice versa.
+              <br />
+              To redo, just reselect the drawing or card normally.
+              <br />
+              When you're ready, click <b>Send evaluation</b>.
+            </>
+          }
+        />
+      </RuleInstruction>
+
+      <Space direction="vertical" className="a-evaluation-step">
+        <Space className="space-container" align="center" wrap>
+          <Button
+            type="default"
+            icon={<ThunderboltOutlined />}
+            onClick={() => resetVoting(selectOwnDrawing())}
+            disabled={isLoading}
+          >
+            <Translate pt="Limpar seleções" en="Clear selections" />
+          </Button>
+          <Button
+            type="default"
+            icon={<ThunderboltOutlined />}
+            onClick={onGuessForMe}
+            disabled={isLoading || Object.values(votes).length === drawings.length}
+          >
+            <Translate pt="Chutar restantes" en="Guess for me" />
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => onSubmitVoting({ votes: prepareVotes(votes), choseRandomly })}
+            disabled={isLoading || !isVotingComplete}
+            icon={<CloudUploadOutlined />}
+            loading={isLoading}
+          >
+            <Translate pt="Enviar sua avaliação" en="Send evaluation" />
+          </Button>
+        </Space>
+
+        <EvaluationAllDrawings
+          drawings={drawings ?? []}
+          activeItem={activeItem}
+          onActivateItem={activateItem}
+          votes={votes}
+          canvasSize={canvasSize}
+          players={players}
+        />
+
+        <EvaluationAllCards
+          cards={cards ?? []}
+          activeItem={activeItem}
+          onActivateItem={activateItem}
+          votes={votes}
+          levelType={levelType}
+        />
       </Space>
-
-      <EvaluationAllDrawings
-        drawings={drawings ?? []}
-        activeItem={activeItem}
-        onActivateItem={activateItem}
-        votes={votes}
-        canvasSize={canvasSize}
-        players={players}
-      />
-
-      <EvaluationAllCards
-        cards={cards ?? []}
-        activeItem={activeItem}
-        onActivateItem={activateItem}
-        votes={votes}
-        levelType={levelType}
-      />
     </Step>
   );
 }

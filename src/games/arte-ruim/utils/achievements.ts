@@ -38,7 +38,7 @@ export const achievementsReference: AchievementReference = {
     },
     description: {
       pt: 'Foi o único que acertou o desenho mais vezes',
-      en: 'Was the only one to get the drawing the most',
+      en: 'Was the only one to get the drawings correctly the most',
     },
   },
   [ACHIEVEMENTS.SOLITARY_LOSER]: {
@@ -49,7 +49,7 @@ export const achievementsReference: AchievementReference = {
     },
     description: {
       pt: 'Foi o único que errou o desenho mais vezes',
-      en: 'Was the only one to get the drawing the most',
+      en: 'Was the only one to NOT get the drawings the most',
     },
   },
   [ACHIEVEMENTS.TABLE_VOTES]: {
