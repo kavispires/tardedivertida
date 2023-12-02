@@ -13,7 +13,7 @@ export function Prompt({ text, correctLetters }: PromptProps) {
   const prompt = useMemo(() => text.split(' ').map((word) => word.split('')), [text]);
   return (
     <Space className="prompt" wrap align="center">
-      {prompt.map((word, i) => {
+      {prompt.map((word, i, p) => {
         return (
           <Space key={i} className="prompt-word" wrap align="center">
             {word.map((l, j) => {
@@ -35,7 +35,7 @@ export function Prompt({ text, correctLetters }: PromptProps) {
                 </Avatar>
               );
             })}
-            <Avatar shape="square" className="transparent"></Avatar>
+            {i + i < p.length && <Avatar shape="square"></Avatar>}
           </Space>
         );
       })}

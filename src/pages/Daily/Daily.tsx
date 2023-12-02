@@ -179,12 +179,6 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
         <DrawingCarousel drawings={daily.drawings} />
 
         <Prompt text={daily.text} correctLetters={correctLetters} />
-        <Keyboard
-          guessedLetters={guessedLetters}
-          correctLetters={correctLetters}
-          onLetterClick={guessLetter}
-          disabled={hearts <= 0 || isComplete}
-        />
 
         {(isComplete || hearts <= 0) && (
           <Space className="space-container">
@@ -202,6 +196,13 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
         >
           <ResultsModalContent challenge={daily.number} win={isComplete} hearts={hearts} text={daily.text} />
         </Modal>
+
+        <Keyboard
+          guessedLetters={guessedLetters}
+          correctLetters={correctLetters}
+          onLetterClick={guessLetter}
+          disabled={hearts <= 0 || isComplete}
+        />
       </Content>
     </Layout>
   );
