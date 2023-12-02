@@ -84,18 +84,6 @@ export function StepSelectDoor({
 
       {botEnabled && <BotPopupRule />}
 
-      {Boolean(user.doorId) && (
-        <Button
-          type="primary"
-          size="large"
-          loading={isLoading}
-          disabled={!user.doorId || user.ready || isButtonDisabled}
-          onClick={() => onConfirmDoor()}
-        >
-          <Translate pt="Confirmar Porta" en="Confirm Door" />
-        </Button>
-      )}
-
       <RuleInstruction type="rule" className="i-sand-timer-container">
         <Translate
           pt={
@@ -174,6 +162,18 @@ export function StepSelectDoor({
           }
         />
       </RuleInstruction>
+
+      {Boolean(user.doorId) && (
+        <Button
+          type="primary"
+          size="large"
+          loading={isLoading}
+          disabled={!user.doorId || user.ready || isButtonDisabled}
+          onClick={() => onConfirmDoor()}
+        >
+          <Translate pt="Confirmar Porta" en="Confirm Door" />
+        </Button>
+      )}
 
       <Corridor
         doors={doors}

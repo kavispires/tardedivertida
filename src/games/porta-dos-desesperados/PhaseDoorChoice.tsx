@@ -17,6 +17,7 @@ import { ViewOr } from 'components/views';
 import { StepSelectDoor } from './StepSelectDoor';
 import { StepWaitDoorSelection } from './StepWaitDoorSelection';
 import { Translate } from 'components/language';
+import { ImageCardPreloadHand } from 'components/image-cards';
 
 function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
   const user = useUser(players, state);
@@ -49,6 +50,8 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
               en="Select the door which could lead you closer to the exit"
             />
           </Instruction>
+          <ImageCardPreloadHand hand={state?.doors ?? []} />
+          <ImageCardPreloadHand hand={state?.selectedPagesIds ?? []} />
         </PhaseAnnouncement>
 
         {/* Step 1 */}
