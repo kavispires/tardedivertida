@@ -10,15 +10,23 @@ type ItemEntryProps = {
   itemEntry: ItemEntry;
   className?: string;
   size?: 'small';
+  looseItem?: boolean;
 };
 
-export function ItemEntry({ itemEntry, className, size }: ItemEntryProps) {
+export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryProps) {
   const sizeMultiplier = size === 'small' ? 0.75 : 1;
   if (itemEntry.type === 'alien-item') {
     return <ItemCard id={itemEntry.value.id} width={75 * sizeMultiplier} className={className} />;
   }
   if (itemEntry.type === 'images') {
-    return <ImageCard imageId={itemEntry.value} cardWidth={100 * sizeMultiplier} className={className} />;
+    return (
+      <ImageCard
+        imageId={itemEntry.value}
+        cardWidth={(looseItem ? 1.5 : 1) * 100 * sizeMultiplier}
+        className={className}
+        preview={false}
+      />
+    );
   }
   if (itemEntry.type === 'words') {
     return (
@@ -30,7 +38,7 @@ export function ItemEntry({ itemEntry, className, size }: ItemEntryProps) {
   if (itemEntry.type === 'suspects') {
     return (
       <div className={className}>
-        <SuspectCard suspect={itemEntry.value} width={100 * sizeMultiplier} />
+        <SuspectCard suspect={itemEntry.value} width={100 * sizeMultiplier} hideName />
       </div>
     );
   }

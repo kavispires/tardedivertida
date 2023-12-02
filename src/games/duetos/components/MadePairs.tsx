@@ -14,7 +14,7 @@ export function MadePairs({ pool, pairs, size }: MadePairsProps) {
   const pairsCount = Math.floor(pool.length / 2);
 
   return (
-    <Space className={clsx('pairs-grid', `pairs-grid--${pairsCount}`)} wrap>
+    <Space className={clsx('pairs-grid', `pairs-grid--made-${pairsCount}`)} wrap>
       {Array.from({ length: pairsCount }).map((_, index) => {
         const firstItemIndex = index * 2;
         const firstItemId = pairs[firstItemIndex];
