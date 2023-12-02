@@ -1,4 +1,4 @@
-import { cloneDeep, padStart, random } from 'lodash';
+import { cloneDeep, merge, padStart, random } from 'lodash';
 import { useEffect, useState } from 'react';
 import { CARDS_PER_DECK, DEFAULT_ENTRY, TOTAL_DECKS } from './constants';
 import { FirebaseImageCardLibrary, ImageCardData } from './types';
@@ -6,6 +6,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { firestore } from 'services/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { App } from 'antd';
+import { cleanupData } from './utils';
 
 const getRandomCardNumber = () => padStart(String(random(1, CARDS_PER_DECK)), 2, '0');
 
@@ -22,19 +23,18 @@ export function useRandomCard(
     setCardNumber(getRandomCardNumber());
   };
 
-  const card = { ...(cardData?.[cardId] ?? cloneDeep(DEFAULT_ENTRY)) };
-  console.log({ card });
+  const card = merge(cloneDeep(DEFAULT_ENTRY), cardData?.[cardId] ?? {});
 
   const add = (key: keyof ImageCardData, value: string) => {
-    if (key !== 'highlight') {
-      card[key].push(value);
+    if (key !== 'highlight' && card[key]) {
+      card[key]!.push(value);
       setDirty(true);
     }
   };
 
   const remove = (key: keyof ImageCardData, value: string) => {
-    if (key !== 'highlight') {
-      const entry = card[key];
+    if (key !== 'highlight' && card[key]) {
+      const entry = card[key] ?? [];
       entry.splice(entry.indexOf(value), 1);
       setDirty(true);
     }
@@ -111,15 +111,16 @@ export function useImageCardsData() {
     mutationKey: queryKey,
     mutationFn: async () => {
       const docRef = doc(firestore, 'data/imageCards');
-      await setDoc(docRef, data);
+      const cleanData = cleanupData(data);
+      await setDoc(docRef, cleanData);
       return data;
     },
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       notification.success({
         message: 'Saved',
         placement: 'bottomLeft',
       });
-      queryClient.setQueryData(queryKey, variables);
+      queryClient.refetchQueries(queryKey);
       setDirty(false);
     },
   });

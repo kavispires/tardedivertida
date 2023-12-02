@@ -50,7 +50,8 @@ function ImageCardsPage() {
       <DevHeader title="Image Cards" />
       <Layout.Content className="dev-content">
         {isLoading && <div>Loading...</div>}
-        {isSuccess && (
+        {isSaving && <div>Saving...</div>}
+        {isSuccess && !isSaving && (
           <Space className="space-container" direction="vertical">
             <Button onClick={onRandomCard}>Random Card</Button>
 
@@ -73,6 +74,7 @@ function ImageCardsPage() {
                       placeholder="Focus"
                       onChange={handleFocusChange}
                       options={elements}
+                      defaultValue={card.focus}
                     />
                   </div>
 
@@ -85,6 +87,7 @@ function ImageCardsPage() {
                       placeholder="Actions"
                       onChange={handleActionsChange}
                       options={actions}
+                      defaultValue={card.actions}
                     />
                   </div>
 
@@ -97,6 +100,7 @@ function ImageCardsPage() {
                       placeholder="Colors"
                       onChange={handleColorChange}
                       options={colors}
+                      defaultValue={card.colors}
                     />
                   </div>
 
@@ -109,6 +113,7 @@ function ImageCardsPage() {
                       placeholder="Mood"
                       onChange={handleMoodChange}
                       options={mood}
+                      defaultValue={card.mood}
                     />
                   </div>
 
@@ -121,13 +126,14 @@ function ImageCardsPage() {
                       placeholder="Elements"
                       onChange={handleElementsChange}
                       options={elements}
+                      defaultValue={card.elements}
                     />
                   </div>
 
                   <div className="image-card-card__item">
                     <label>Highlight</label>
                     <div>
-                      <Switch defaultChecked={card.highlight} onChange={toggleHighlight} />
+                      <Switch checked={card.highlight} onChange={toggleHighlight} />
                     </div>
                   </div>
                 </div>
