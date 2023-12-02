@@ -2,6 +2,7 @@
 
 // Constants
 import {
+  NEW_TRAPS,
   DOOR_LEVELS,
   DOOR_OPTIONS_PER_ROUND,
   OUTCOME,
@@ -79,8 +80,9 @@ export const determineGameOver = (
  * Randomly choose order of traps, always starting with NONE
  * @returns
  */
-export const createTrapOrder = (): string[] => {
-  const trapKeys = Object.keys(TRAPS);
+export const createTrapOrder = (useNewTraps?: boolean): string[] => {
+  const trapKeys = Object.keys(useNewTraps ? NEW_TRAPS : TRAPS);
+
   return [TRAPS.NONE, ...utils.game.shuffle(trapKeys), ...utils.game.shuffle(trapKeys)].slice(0, DOOR_LEVELS);
 };
 

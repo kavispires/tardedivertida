@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 // Icons
 import { MagicBookIcon } from 'icons/MagicBookIcon';
@@ -25,8 +28,15 @@ import { TurnOrder } from 'components/players';
 function PhaseBookPossession({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
+  const [, setCache] = useGlobalState('cache');
 
   const onSubmitPages = useOnSubmitPagesAPIRequest(setStep);
+
+  useEffect(() => {
+    if (state.trap === TRAPS.DELAYING_DOORS || state.trap === TRAPS.VANISHING_DOORS) {
+      setCache({ doors: [] });
+    }
+  }, [state.trap, setCache]);
 
   return (
     <PhaseContainer

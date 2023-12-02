@@ -7,7 +7,6 @@ import { CloseCircleFilled } from '@ant-design/icons';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { useSepiaPreview } from './utils/useSepiaPreview';
 // Utils
 import { PHASES } from 'utils/phases';
 import { TRAPS } from './utils/constants';
@@ -50,8 +49,6 @@ export function StepSelectPages({
     [trap]
   );
 
-  useSepiaPreview(trap === TRAPS.SEPIA);
-
   // DEV Only
   useMock(() => {
     onSubmitPages({ pageIds: mockPageSelection(pages, trap) });
@@ -78,7 +75,14 @@ export function StepSelectPages({
 
       <Space className="space-container">
         <DoorFrame width={200}>
-          <ImageCard imageId={answerDoorId} cardWidth={150} />
+          <ImageCard
+            imageId={answerDoorId}
+            cardWidth={150}
+            className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
+            preview={{
+              className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-faded'),
+            }}
+          />
         </DoorFrame>
 
         <ImageBlurButton cardId={answerDoorId} />
@@ -182,6 +186,9 @@ export function StepSelectPages({
           selectButtonText={<Translate pt="Remover" en="Remove" />}
           onSelectCard={select}
           cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
+          imageGroupPreview={{
+            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
+          }}
         />
       </Instruction>
 
@@ -193,6 +200,9 @@ export function StepSelectPages({
           sizeRatio={8}
           selectedCards={selections}
           cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
+          imageGroupPreview={{
+            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
+          }}
         />
       </FloatingHand>
     </Step>

@@ -69,7 +69,7 @@ export const prepareSetupPhase = async (
 
   const magic = MAGIC_UNITS_PER_PLAYER_COUNT[playerCount];
 
-  const traps = createTrapOrder();
+  const traps = createTrapOrder(store.options?.newTraps);
 
   // Save
   return {

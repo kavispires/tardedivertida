@@ -90,7 +90,7 @@ export function StepResults({
 
       <OutcomeAlert outcome={outcome} />
 
-      <Corridor doors={doors} trap={trap} players={players} answerDoorId={answerDoorId} />
+      <Corridor doors={doors} trap={trap} players={players} answerDoorId={answerDoorId} disableTrap />
 
       <Space className="i-book-container">
         <Book>

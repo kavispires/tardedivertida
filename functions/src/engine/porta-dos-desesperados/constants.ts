@@ -90,7 +90,7 @@ export const TRAPS = {
   // Guess Phase: This turn all magic use is doubled (backend) ✓
   DOUBLE_MAGIC: 'DOUBLE_MAGIC',
   // Guess Phase: Doors are revealed one at a time and players must choose in order (frontend & backend)
-  // ORDERED_DOORS: 'ORDERED_DOORS',
+  ORDERED_DOORS: 'ORDERED_DOORS',
   // Guess Phase: Players don't see what others are choosing ✓
   SECRET_CHOICE: 'SECRET_CHOICE',
   // Guess Phase: A random card is added to the clues (backend) ✓
@@ -98,11 +98,30 @@ export const TRAPS = {
   // Guess Phase: The time is cut in half (front-end) ✓
   HALF_TIME: 'HALF_TIME',
   // Guess Phase: Doors keep moving around (frontend)
-  // DANCING_DOORS: 'DANCING_DOORS',
+  DANCING_DOORS: 'DANCING_DOORS',
   // Guess Phase: Doors randomly fade in and fade out, on expand, they are 50% opacity (frontend)
-  // FADE_DOORS: 'FADE_DOORS',
+  FADED_DOORS: 'FADED_DOORS',
   // Guess Phase: Each player cannot see one random door (frontend)
-  // BLIND_DOOR: 'BLIND_DOOR',
+  BLIND_DOOR: 'BLIND_DOOR',
   // Guess Phase: Every 30 seconds a door is removed from A to F (frontend)
-  // VANISHING_DOORS: 'VANISHING_DOORS',
+  VANISHING_DOORS: 'VANISHING_DOORS',
+  // Guess Phase: Every 30 seconds a door is revealed (frontend)
+  DELAYING_DOORS: 'DELAYING_DOORS',
+  // Guess Phase: Players can't chance their choice after selecting a door (frontend)
+  LOCKED_CHOICE: 'LOCKED_CHOICE',
+};
+
+export const NEW_TRAPS = {
+  // Guess Phase: Doors keep moving around (frontend)
+  DANCING_DOORS: 'DANCING_DOORS',
+  // Guess Phase: Doors randomly fade in and fade out, on expand, they are 50% opacity (frontend)
+  FADED_DOORS: 'FADED_DOORS',
+  // Guess Phase: Each player cannot see one random door (frontend)
+  BLIND_DOOR: 'BLIND_DOOR',
+  // Guess Phase: Every 30 seconds a door is removed from A to F (frontend)
+  VANISHING_DOORS: 'VANISHING_DOORS',
+  // Guess Phase: Every 30 seconds a door is revealed (frontend)
+  DELAYING_DOORS: 'DELAYING_DOORS',
+  // Guess Phase: Players can't chance their choice after selecting a door (frontend)
+  LOCKED_CHOICE: 'LOCKED_CHOICE',
 };

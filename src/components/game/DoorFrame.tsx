@@ -238,7 +238,7 @@ export function DoorFrame({ children, width, index, className = '' }: DoorFrameP
           opacity="0.45"
         ></path>
         <path
-          fill="#fff67e"
+          fill="#231f20"
           stroke="#231f20"
           strokeMiterlimit="10"
           d="M54.95 84.1h150v225h-150z"
