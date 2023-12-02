@@ -16,8 +16,8 @@
 
 .keyboard {
   width: 100%;
-  position: absolute;
-  bottom: get-unit(6);
+  position: sticky;
+  bottom: get-unit(1);
 }
 
 .daily-keyboard-key {
