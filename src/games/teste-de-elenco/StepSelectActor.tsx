@@ -44,7 +44,7 @@ export function StepSelectActor({
         onSubmitActor={onSubmitActor}
       />
 
-      <RuleInstruction>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>

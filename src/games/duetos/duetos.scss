@@ -32,6 +32,14 @@
     grid-template-columns: repeat(6, 1fr);
   }
 
+  &--made-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &--made-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   &__pair {
     border: get-unit(2) solid get-color('gray');
     border-radius: $border-radius;
@@ -66,6 +74,8 @@
   &__slot {
     border-radius: $border-radius;
     background: get-color('gray', 3, 0.5);
+    display: grid;
+    place-items: center;
   }
 
   &__empty-slot {

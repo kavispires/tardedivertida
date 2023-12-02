@@ -9,7 +9,7 @@ import { useMock } from 'hooks/useMock';
 import { mockPairs } from './utils/mock';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ItemEntry } from './components/ItemEntry';
 import { TransparentButton } from 'components/buttons';
@@ -77,7 +77,7 @@ export function StepMakePairs({ players, user, announcement, pool, onSubmitPairs
       </Title>
 
       {isLoading}
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -87,31 +87,28 @@ export function StepMakePairs({ players, user, announcement, pool, onSubmitPairs
           }
           en={
             <>
-              You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair then
+              You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair than
               you!
             </>
           }
         />
-        {pool.length % 2 === 1 && (
-          <>
-            <br />
-            <Translate
-              pt={
-                <>
-                  Um item ficará sobrando, você também ganha pontos por cada jogador que também deixou esse
-                  item sobrando!
-                </>
-              }
-              en={
-                <>
-                  One item will be left over, you also get points for each player who also left this item
-                  over!
-                </>
-              }
-            />
-          </>
-        )}
-      </Instruction>
+      </RuleInstruction>
+
+      {pool.length % 2 === 1 && (
+        <RuleInstruction type="event">
+          <Translate
+            pt={
+              <>
+                Um item ficará sobrando, você também ganha pontos por cada jogador que também deixou esse item
+                sobrando!
+              </>
+            }
+            en={
+              <>One item will be left out, you also get points for each player who also left this item out!</>
+            }
+          />
+        </RuleInstruction>
+      )}
 
       <Space className={clsx('pairs-grid', `pairs-grid--${pairsCount}`)} wrap>
         {Array.from({ length: pairsCount }).map((_, index) => {
@@ -156,7 +153,7 @@ export function StepMakePairs({ players, user, announcement, pool, onSubmitPairs
           }
           return (
             <TransparentButton onClick={() => addItem(entry.id)} key={entry.id}>
-              <ItemEntry itemEntry={entry} />
+              <ItemEntry itemEntry={entry} looseItem />
             </TransparentButton>
           );
         })}

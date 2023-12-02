@@ -41,6 +41,10 @@
     &--tip {
       background: get-color('gray', 3, 0.5);
     }
+
+    &--scoring {
+      background: get-color('yellow', 5, 0.5);
+    }
   }
 
   &__content {

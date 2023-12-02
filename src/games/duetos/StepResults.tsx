@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { Avatar as AntAvatar, Space } from 'antd';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -32,7 +32,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
         <Translate pt="Pares Vencedores" en="Winnings Pairs" />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="scoring">
         <Translate
           pt={
             <>
@@ -42,18 +42,18 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
           }
           en={
             <>
-              You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair then
+              You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair than
               you!
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space wrap className="space-container">
         {galleryMatches.length === 0 && (
-          <Instruction contained>
+          <RuleInstruction type="event">
             <Translate pt="Ninguém deu match!" en="Nobody matched anything" />
-          </Instruction>
+          </RuleInstruction>
         )}
         {galleryMatches.map((entry, index) => {
           return (
@@ -87,7 +87,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
             <Translate pt="Sobras Vencedoras" en="Left Out Matches" />
           </Title>
 
-          <Instruction contained>
+          <RuleInstruction type="scoring">
             <Translate
               pt={
                 <>
@@ -102,7 +102,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
                 </>
               }
             />
-          </Instruction>
+          </RuleInstruction>
 
           <Space wrap className="space-container">
             {leftOut.map((entry, index) => {

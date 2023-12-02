@@ -9,6 +9,7 @@ import {
   MessageFilled,
   PlayCircleFilled,
   ReadFilled,
+  StarFilled,
 } from '@ant-design/icons';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
@@ -33,10 +34,11 @@ type RuleInstructionsProps = {
    * Rule is used for general rules
    * Action is used when the player must do something
    * Event is used when something happens like the result of an action or decision
-   * Alert is used when something very important needs attention
+   * Alert is used when something very important needs attention (constant animation)
    * Lore is used for story elements
+   * Score for result points (not rule)
    */
-  type?: 'rule' | 'action' | 'event' | 'alert' | 'lore' | 'tip';
+  type: 'rule' | 'action' | 'event' | 'alert' | 'lore' | 'tip' | 'scoring';
   /**
    * Optional sound effect played when the component is rendered
    */
@@ -64,6 +66,7 @@ export const RuleInstruction = ({
     lore: <MessageFilled />,
     rule: <ReadFilled />,
     tip: <BulbFilled />,
+    scoring: <StarFilled />,
   }[type];
 
   const animationClass = {
@@ -73,6 +76,7 @@ export const RuleInstruction = ({
     lore: getAnimationClass('pulse'),
     rule: getAnimationClass('pulse'),
     tip: getAnimationClass('pulse'),
+    scoring: getAnimationClass('pulse'),
   }[type];
 
   const { token } = theme.useToken();
