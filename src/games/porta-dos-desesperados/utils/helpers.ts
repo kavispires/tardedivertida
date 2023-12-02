@@ -6,10 +6,15 @@ import { DreamCatcherIcon } from 'icons/DreamCatcherIcon';
 import { MagicCandlesIcon } from 'icons/MagicCandlesIcon';
 import { MagicTarotCardsIcon } from 'icons/MagicTarotCardsIcon';
 import { MagicVoodooDollIcon } from 'icons/MagicVoodooDollIcon';
+import { MagicHamsaIcon } from 'icons/MagicHamsaIcon';
+import { MagicDivinationIcon } from 'icons/MagicDivinationIcon';
+import { MagicRunesIcon } from 'icons/MagicRunesIcon';
 
 export function shouldAnnounceTrap(trap: string, phase: string) {
   if (phase === PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION) {
-    return [TRAPS.FEWER_PAGES, TRAPS.MORE_CLUES, TRAPS.NO_PREVIEW, TRAPS.SEPIA].includes(trap);
+    return [TRAPS.FEWER_PAGES, TRAPS.MORE_CLUES, TRAPS.NO_PREVIEW, TRAPS.SEPIA, TRAPS.FADED_DOORS].includes(
+      trap
+    );
   }
 
   return [
@@ -17,13 +22,18 @@ export function shouldAnnounceTrap(trap: string, phase: string) {
     TRAPS.EXTRA_DOOR,
     TRAPS.CONCEALED_DOOR,
     TRAPS.MORE_CLUES,
-    TRAPS.ORDERED_DOORS,
     TRAPS.NO_PREVIEW,
     TRAPS.RANDOM_INTERJECTION,
     TRAPS.SECRET_CHOICE,
     TRAPS.NO_COMMUNICATION,
     TRAPS.SEPIA,
     TRAPS.HALF_TIME,
+    TRAPS.BLIND_DOOR,
+    TRAPS.VANISHING_DOORS,
+    TRAPS.DANCING_DOORS,
+    TRAPS.DELAYING_DOORS,
+    TRAPS.LOCKED_CHOICE,
+    TRAPS.FADED_DOORS,
   ].includes(trap);
 }
 
@@ -91,7 +101,7 @@ export function getTrapDetails(trap: string) {
       };
     case TRAPS.NO_PREVIEW:
       return {
-        TrapIcon: MagicTarotCardsIcon,
+        TrapIcon: MagicRunesIcon,
         title: {
           pt: 'O Livreto Diminuto',
           en: 'The Little Booklet',
@@ -101,21 +111,9 @@ export function getTrapDetails(trap: string) {
           en: 'Expanding/Zooming in cards is not available this round.',
         },
       };
-    case TRAPS.ORDERED_DOORS:
-      return {
-        TrapIcon: MagicTarotCardsIcon,
-        title: {
-          pt: 'ORDERED_DOORS',
-          en: 'ORDERED_DOORS',
-        },
-        description: {
-          pt: 'ORDERED_DOORS',
-          en: 'ORDERED_DOORS',
-        },
-      };
     case TRAPS.RANDOM_INTERJECTION:
       return {
-        TrapIcon: MagicTarotCardsIcon,
+        TrapIcon: MagicVoodooDollIcon,
         title: {
           pt: 'O Intruso',
           en: 'The Deceiving Intruder',
@@ -171,6 +169,78 @@ export function getTrapDetails(trap: string) {
         description: {
           pt: 'Jogadores tem que decidir qual porta visitar na metade do tempo.',
           en: 'Players have half the time to decide what door to enter',
+        },
+      };
+    case TRAPS.BLIND_DOOR:
+      return {
+        TrapIcon: MagicTarotCardsIcon,
+        title: {
+          pt: 'A Porta Cega',
+          en: 'The Blind Door',
+        },
+        description: {
+          pt: 'Cada jogador não pode ver uma porta aleatória.',
+          en: 'Each player cannot see one random door.',
+        },
+      };
+    case TRAPS.DANCING_DOORS:
+      return {
+        TrapIcon: MagicRunesIcon,
+        title: {
+          pt: 'As Portas Dançantes',
+          en: 'The Dancing Doors',
+        },
+        description: {
+          pt: 'As portas ficam se movendo.',
+          en: 'The doors keep moving around.',
+        },
+      };
+    case TRAPS.DELAYING_DOORS:
+      return {
+        TrapIcon: MagicDivinationIcon,
+        title: {
+          pt: 'As Portas Atrasadas',
+          en: 'The Delaying Doors',
+        },
+        description: {
+          pt: 'Uma porta aparece a cada 30 segundos...',
+          en: 'A door appears every 30 seconds...',
+        },
+      };
+    case TRAPS.VANISHING_DOORS:
+      return {
+        TrapIcon: MagicDivinationIcon,
+        title: {
+          pt: 'As Portas Desvanecentes',
+          en: 'The Vanishing Doors',
+        },
+        description: {
+          pt: 'Um porta some a cada 30 segundos...',
+          en: 'A door vanishes every 30 seconds...',
+        },
+      };
+    case TRAPS.LOCKED_CHOICE:
+      return {
+        TrapIcon: MagicTarotCardsIcon,
+        title: {
+          pt: 'A Escolha Permanente',
+          en: 'The Locked Choice',
+        },
+        description: {
+          pt: 'Jogadores não podem mudar de ideia depois de escolher uma porta.',
+          en: 'Players cannot change their mind after selecting a door.',
+        },
+      };
+    case TRAPS.FADED_DOORS:
+      return {
+        TrapIcon: MagicHamsaIcon,
+        title: {
+          pt: 'As Portas Enfraquecidas',
+          en: 'The Fading Doors',
+        },
+        description: {
+          pt: 'As imagens das portas estão bem fracas e desaparecendo...',
+          en: 'The doors are fading...',
         },
       };
     default:

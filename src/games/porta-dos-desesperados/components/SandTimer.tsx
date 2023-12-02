@@ -3,6 +3,8 @@ import { MagicHourGlassIcon } from 'icons/MagicHourGlassIcon';
 import { useCountdown } from 'hooks/useCountdown';
 import { formatTime, getRandomItem } from 'utils/helpers';
 import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useEffect } from 'react';
 
 type SandTimerProps = {
   trap: string;
@@ -21,6 +23,8 @@ export function SandTimer({
   onSubmitDoor,
   onMakeReady,
 }: SandTimerProps) {
+  const [, setCache] = useGlobalState('cache');
+
   const handleExpire = () => {
     if (!user.doorId) {
       onSubmitDoor({ doorId: getRandomItem(doors), ready: true });
@@ -33,6 +37,28 @@ export function SandTimer({
     duration: ROUND_DURATION * 60 * (trap === TRAPS.HALF_TIME ? 0.5 : 1) + TIMER_LEAD,
     onExpire: handleExpire,
   });
+
+  useEffect(() => {
+    if ((timeLeft - TIMER_LEAD) % 30 === 0) {
+      if (trap === TRAPS.DELAYING_DOORS) {
+        setCache((prevState) => {
+          const prevDoors = prevState.doors || [];
+          prevDoors.push(prevDoors.length - 1 + 1);
+
+          return { doors: prevDoors };
+        });
+      }
+      if (trap === TRAPS.VANISHING_DOORS) {
+        setCache((prevState) => {
+          const prevDoors = prevState.doors || [];
+          prevDoors.push(prevDoors.length - 2 + 1);
+
+          return { doors: prevDoors };
+        });
+      }
+    }
+    return () => {};
+  }, [timeLeft, setCache]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (timeLeft - TIMER_LEAD === 0) {
     onDisableButtons();

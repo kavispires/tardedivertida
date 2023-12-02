@@ -53,11 +53,62 @@ $door-base-color: #3d1931;
   filter: sepia(1) blur(1px) !important;
 }
 
+@keyframes fading-doors {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  25%,
+  75% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.i-faded-card {
+  animation: fading-doors 5s ease-in-out infinite;
+  background-color: #743e62;
+}
+
+.image-preview-faded {
+  // animation: fading-doors 5s ease-in-out infinite;
+  opacity: 0.5;
+}
+
 .image-preview-sepia {
-  // Intercepts image preview to make then look like cards
+  filter: sepia(1) blur(2px);
+}
+
+@keyframes door-dance {
+  0%,
+  10% {
+    transform: translate(0, 0) rotate(0) scale(1);
+  }
+  20%,
+  30% {
+    transform: translate(-30px, 30px) rotate(45deg) scale(1.2);
+  }
+  40%,
+  50% {
+    transform: translate(50px, -50px) rotate(-90deg) scale(1.5);
+  }
+  60%,
+  70% {
+    transform: translate(-20px, 20px) rotate(180deg) scale(1.1);
+  }
+  80%,
+  90%,
+  95% {
+    transform: translate(0, 0) rotate(0) scale(0.1);
+  }
+}
+
+.image-preview-dancing {
   .ant-image-preview-img {
     border-radius: get-unit(8);
-    filter: sepia(1) blur(2px) !important;
+    animation: door-dance 2s ease-in-out infinite;
   }
 }
 

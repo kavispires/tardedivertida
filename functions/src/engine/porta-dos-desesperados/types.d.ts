@@ -9,6 +9,10 @@ export type PortaDosDesesperadosOptions = {
    * Use original image decks only
    */
   allImageDecks: boolean;
+  /**
+   *
+   */
+  newTraps?: boolean;
 };
 
 export interface ResourceData {

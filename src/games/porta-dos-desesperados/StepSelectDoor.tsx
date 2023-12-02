@@ -4,7 +4,6 @@ import { Button, Image, Space } from 'antd';
 import { RadarChartOutlined } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useSepiaPreview } from './utils/useSepiaPreview';
 // Utils
 import { PHASES } from 'utils/phases';
 import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
@@ -23,6 +22,8 @@ import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
 import { useMock } from 'hooks/useMock';
 import { mockDoorSelection } from './utils/mock';
+import clsx from 'clsx';
+import { useDancingDoors } from './utils/useTrapHooks';
 
 type StepSelectPagesProps = {
   doors: CardId[];
@@ -58,9 +59,9 @@ export function StepSelectDoor({
 
   const showTrap = useMemo(() => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE), [trap]);
 
-  useSepiaPreview(trap === TRAPS.SEPIA);
-
   const bookCardClass = trap === TRAPS.SEPIA ? 'i-sepia-card' : '';
+
+  useDancingDoors(trap === TRAPS.DANCING_DOORS);
 
   // DEV Only
   useMock(() => {
@@ -149,15 +150,18 @@ export function StepSelectDoor({
             <>
               <strong>Selecione</strong> uma das portas que você acha que mais se relaciona com o livro.
               <br />
-              Você pode trocar de porta quantas vezes quiser até confirmar sua escolha ou o tempo acabar.
+              {trap === TRAPS.LOCKED_CHOICE
+                ? 'Você não pode trocar de porta depois de escolher!'
+                : 'Você pode trocar de porta quantas vezes quiser até confirmar sua escolha ou o tempo acabar.'}
             </>
           }
           en={
             <>
               <strong>Select</strong> one of the doors you think is most related to the book.
               <br />
-              You can change your door as many times as you want until you confirm your choice or time runs
-              out.
+              {trap === TRAPS.LOCKED_CHOICE
+                ? 'You cannot change your door after you choose!'
+                : 'You can change your door as many times as you want until you confirm your choice or time runs out.'}
             </>
           }
         />
@@ -182,11 +186,15 @@ export function StepSelectDoor({
         players={players}
         user={user}
         hideVotes={trap === TRAPS.SECRET_CHOICE}
-        disabled={isButtonDisabled}
+        disabled={isButtonDisabled || (trap === TRAPS.LOCKED_CHOICE && user.doorId)}
       />
 
       <Space className="i-book-container">
-        <Image.PreviewGroup>
+        <Image.PreviewGroup
+          preview={{
+            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
+          }}
+        >
           <Book>
             {Boolean(pages[0]) && (
               <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>

@@ -14,6 +14,8 @@ import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-card
 import { Translate } from 'components/language';
 import { DoorFrame } from '../../../components/game/DoorFrame';
 import { Avatar } from 'components/avatars';
+import { random, sample } from 'lodash';
+import { useGlobalState } from 'hooks/useGlobalState';
 
 type CorridorProps = {
   doors: CardId[];
@@ -24,6 +26,7 @@ type CorridorProps = {
   user?: GamePlayer;
   hideVotes?: boolean;
   disabled?: boolean;
+  disableTrap?: boolean;
 };
 
 export function Corridor({
@@ -35,6 +38,7 @@ export function Corridor({
   user,
   hideVotes = false,
   disabled = false,
+  disableTrap = false,
 }: CorridorProps) {
   const doorWidth = useCardWidth(8, {
     gap: 8,
@@ -43,6 +47,7 @@ export function Corridor({
     margin: 8,
   });
   const { isLoading } = useLoading();
+  const [cache] = useGlobalState('cache');
 
   const voteMap = useMemo(
     () =>
@@ -58,8 +63,25 @@ export function Corridor({
     [players]
   );
 
+  // Trap: Blind Door
+  const blindDoor = useMemo(
+    () => (trap === TRAPS.BLIND_DOOR && !disableTrap ? random(0, doors.length) : undefined),
+    [trap, doors.length, disableTrap]
+  );
+
+  // Trap: Vanishing doors OR Delaying Doors
+  const hiddenDoorsIndexes = useMemo(() => {
+    if ([TRAPS.VANISHING_DOORS, TRAPS.DELAYING_DOORS].includes(trap) && !disableTrap) {
+      return cache?.doors || [];
+    }
+  }, [cache, trap, disableTrap]);
+
   return (
-    <Image.PreviewGroup>
+    <Image.PreviewGroup
+      preview={{
+        className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-faded'),
+      }}
+    >
       <div className="i-corridor">
         {doors.map((doorId, index) => {
           const animationDelayIndex = index < 3 ? index : doors.length - 1 - index;
@@ -73,11 +95,35 @@ export function Corridor({
                 getAnimationClass('zoomIn', { delay: animationDelayIndex })
               )}
             >
-              <DoorFrame width={doorWidth} index={index}>
-                {isConcealed ? (
+              <DoorFrame
+                width={doorWidth}
+                index={index}
+                className={clsx(
+                  trap === TRAPS.VANISHING_DOORS
+                    ? hiddenDoorsIndexes?.includes(index) && getAnimationClass('fadeOut', { speed: 'slower' })
+                    : '',
+                  trap === TRAPS.DELAYING_DOORS && !disableTrap
+                    ? !hiddenDoorsIndexes?.includes(index)
+                      ? 'invisible'
+                      : getAnimationClass('fadeIn', { speed: 'slower' })
+                    : '',
+                  trap === TRAPS.DANCING_DOORS &&
+                    !disableTrap &&
+                    getAnimationClass(sample(['swing', 'wobble', 'rubberBand']), {
+                      infinite: true,
+                      delay: random(0, 10) / 2,
+                    })
+                )}
+              >
+                {isConcealed || blindDoor === index ? (
                   <ImageCardBack cardWidth={150} imageId="back-lockedDoor" />
                 ) : (
-                  <ImageCard imageId={doorId} cardWidth={150} preview={trap !== TRAPS.NO_PREVIEW} />
+                  <ImageCard
+                    imageId={doorId}
+                    cardWidth={150}
+                    className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
+                    preview={trap !== TRAPS.NO_PREVIEW ? false : undefined}
+                  />
                 )}
               </DoorFrame>
 

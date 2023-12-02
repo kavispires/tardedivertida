@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
-import { Image } from 'antd';
+import { Image, ImageProps } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -64,6 +64,10 @@ type ImageCardHandProps = {
    * Enable preview (default: true)
    */
   preview?: boolean;
+  /**
+   *
+   */
+  imageGroupPreview?: ImageProps['preview'];
 };
 
 export function ImageCardHand({
@@ -80,12 +84,13 @@ export function ImageCardHand({
   selectedCards = {},
   cardClassName = '',
   preview = true,
+  imageGroupPreview,
 }: ImageCardHandProps) {
   // Prefers cardSize otherwise calculates width based on screen and ratio
   const cardWidth = useCardWidth(Math.max(sizeRatio, 6), { minWidth: minCardSize });
 
   return (
-    <Image.PreviewGroup>
+    <Image.PreviewGroup preview={imageGroupPreview}>
       <div className={clsx('image-card-hand', className)}>
         {hand.map((cardId, index) => {
           return (

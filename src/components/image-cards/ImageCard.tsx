@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Image } from 'antd';
+import { Image, ImageProps } from 'antd';
 // Constants
 import { PUBLIC_URL } from 'utils/constants';
 // Assets
@@ -27,7 +27,7 @@ export type ImageCardProps = {
   /**
    * Enables or disables the preview (default: true)
    */
-  preview?: Boolean;
+  preview?: ImageProps['preview'];
   /**
    * Replacement image when the preview is open
    */
@@ -65,12 +65,7 @@ export const ImageCard = ({
 
   const isBlurred = shouldBeBlurred(imageId);
 
-  const booleanPreviewConfig =
-    preview && !isBlurred
-      ? {
-          maskClassName: `${baseClass}__preview-mask`,
-        }
-      : false;
+  const previewConfig = typeof preview === 'boolean' ? {} : preview;
 
   return (
     <div
@@ -84,16 +79,19 @@ export const ImageCard = ({
     >
       <Image
         width={cardWidth}
-        // height={square ? cardWidth : undefined}
         src={`${baseUrl}/${imageURL}.${fileExtension}`}
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         preview={
-          Boolean(previewImageId)
-            ? {
-                src: `${baseUrl}/${previewImageId.replace(/-/g, '/')}.${fileExtension}`,
+          isBlurred
+            ? false
+            : {
+                ...previewConfig,
+                maskClassName: clsx(`${baseClass}__preview-mask`, previewConfig?.maskClassName),
+                src: Boolean(previewImageId)
+                  ? `${baseUrl}/${previewImageId.replace(/-/g, '/')}.${fileExtension}`
+                  : previewConfig?.src,
               }
-            : booleanPreviewConfig
         }
       />
     </div>
