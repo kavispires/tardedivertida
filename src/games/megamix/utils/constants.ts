@@ -21,7 +21,7 @@ export const TITLES: Record<string, DualLanguageValue> = {
   },
   'detetives-imaginativos': {
     pt: 'Detetives Imaginativos',
-    en: 'Detectives Agency',
+    en: 'Detective Agency',
   },
   'dilema-dos-esquiadores': {
     pt: 'O Dilema do Esquiador',
