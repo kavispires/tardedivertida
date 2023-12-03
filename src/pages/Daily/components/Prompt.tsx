@@ -35,7 +35,7 @@ export function Prompt({ text, correctLetters }: PromptProps) {
                 </Avatar>
               );
             })}
-            {i + i < p.length && <Avatar shape="square"></Avatar>}
+            {i + 1 < p.length && <Avatar shape="square">?</Avatar>}
           </Space>
         );
       })}
