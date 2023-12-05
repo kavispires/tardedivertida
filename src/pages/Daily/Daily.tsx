@@ -194,7 +194,13 @@ function DailyGame({ daily, currentUser }: DailyGameProps) {
           okButtonProps={{ hidden: true }}
           cancelButtonProps={{ hidden: true }}
         >
-          <ResultsModalContent challenge={daily.number} win={isComplete} hearts={hearts} text={daily.text} />
+          <ResultsModalContent
+            challenge={daily.number}
+            win={isComplete}
+            hearts={hearts}
+            text={daily.text}
+            correctLetters={correctLetters}
+          />
         </Modal>
 
         <Keyboard

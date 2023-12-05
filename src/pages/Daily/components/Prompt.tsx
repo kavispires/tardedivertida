@@ -15,22 +15,23 @@ export function Prompt({ text, correctLetters }: PromptProps) {
     <Space className="prompt" wrap align="center">
       {prompt.map((word, i, p) => {
         return (
-          <Space key={i} className="prompt-word" wrap align="center">
+          <Space key={`word-${i}`} className="prompt-word" wrap align="center">
             {word.map((l, j) => {
               const letter = cleanupLetter(l);
               const isCorrect = correctLetters[letter];
+              const key = `${j}-${l}-${i}`;
               if (isLetter(letter)) {
                 return isCorrect ? (
-                  <Avatar key={`${l}-${i}`} className="letter-correct" shape="square">
+                  <Avatar key={key} className="letter-correct" shape="square">
                     {l}
                   </Avatar>
                 ) : (
-                  <IconAvatar key={`${l}-${i}`} icon={<BoxBlankIcon />} />
+                  <IconAvatar key={key} icon={<BoxBlankIcon />} />
                 );
               }
 
               return (
-                <Avatar key={`${l}-${i}`} shape="square">
+                <Avatar key={key} shape="square">
                   {l}
                 </Avatar>
               );

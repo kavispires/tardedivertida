@@ -13,12 +13,19 @@ type ResultsModalContentProps = {
   text: string;
   win: boolean;
   hearts: number;
+  correctLetters: BooleanDictionary;
 };
 
-export function ResultsModalContent({ text, challenge, win, hearts }: ResultsModalContentProps) {
+export function ResultsModalContent({
+  text,
+  challenge,
+  win,
+  hearts,
+  correctLetters,
+}: ResultsModalContentProps) {
   const { message } = App.useApp();
   const [state, copyToClipboard] = useCopyToClipboard();
-  const result = writeResult(challenge, hearts);
+  const result = writeResult(challenge, hearts, correctLetters);
 
   useEffect(() => {
     if (state.value) {
@@ -65,8 +72,10 @@ export function ResultsModalContent({ text, challenge, win, hearts }: ResultsMod
   );
 }
 
-function writeResult(challenge: number, hearts: number = 0) {
+function writeResult(challenge: number, hearts: number = 0, correctLetters: BooleanDictionary = {}) {
   let result = '';
+  const totalLetters = Object.keys(correctLetters).length;
+  const guessedLetters = Object.values(correctLetters).filter(Boolean).length;
 
   result += '💻 TD Diário #' + challenge + '\n';
   result +=
@@ -74,6 +83,7 @@ function writeResult(challenge: number, hearts: number = 0) {
     Array(3 - hearts)
       .fill('🩶')
       .join('');
+  result += ` (${Math.round((guessedLetters / totalLetters) * 100)}%)`;
   result += '\nhttps://www.kavispires.com/tardedivertida/#/daily';
 
   return result;
