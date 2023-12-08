@@ -17,6 +17,7 @@ import { ResultTaNaCara } from './Results/ResultTaNaCara';
 import { ResultLabirintoSecreto } from './Results/ResultLabirintoSecreto';
 import { ResultPalhetaDeCores } from './Results/ResultPalhetaDeCores';
 import { ResultQuemNaoMata } from './Results/ResultQuemNaoMata';
+import { ResultWhoSaidThis } from './Results/ResultWhoSaidThis';
 
 export const ResultValueDelegator = (props: ResultComponentProps) => {
   const ResultComponent =
@@ -34,6 +35,7 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
       'labirinto-secreto': ResultLabirintoSecreto,
       'megamix-best-of-three': ResultMegamix,
       'megamix-this-that': ResultMegamix,
+      'megamix-who-said-this': ResultWhoSaidThis,
       'mente-coletiva': ResultText,
       'namoro-ou-amizade': ResultNamoroOuAmizade,
       'na-rua-do-medo': ResultNaRuaDoMedo,

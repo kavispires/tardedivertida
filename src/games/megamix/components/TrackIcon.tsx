@@ -1,5 +1,6 @@
 // Components
 import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
+import { AnonymousIcon } from 'icons/AnonymousIcon';
 import { BoxingGlovesIcon } from 'icons/BoxingGlovesIcon';
 import { ChoiceIcon } from 'icons/ChoiceIcon';
 import { ColorWheelIcon } from 'icons/ColorWheelIcon';
@@ -49,6 +50,7 @@ export const TrackIcon = ({ track }: TrackIconProps) => {
       'labirinto-secreto': PathIcon,
       'megamix-best-of-three': ChoiceIcon,
       'megamix-this-that': DirectionsIcon,
+      'megamix-who-said-this': AnonymousIcon,
       'mente-coletiva': SheepIcon,
       'namoro-ou-amizade': LoveIcon,
       'na-rua-do-medo': TrickOrTreatIcon,

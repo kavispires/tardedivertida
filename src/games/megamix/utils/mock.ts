@@ -17,7 +17,7 @@ export function mockSeeding(seeds: SeedEntry[]) {
         data[seed.tree.id] = getRandomItem(ids);
         break;
       case 'mente-coletiva':
-        data.answers = [mockClue(), mockClue()];
+        data.answers = [mockClue(), mockClue('low')];
         break;
       case 'onda-telepatica':
         data.wave = mockClue();
@@ -29,7 +29,13 @@ export function mockSeeding(seeds: SeedEntry[]) {
         data[seed.card.id] = JSON.stringify(mockDrawing());
         break;
       case 'ue-so-isso':
-        data.singleClue = mockClue();
+        data.singleClue = mockClue('high');
+        break;
+      case 'party':
+        data.partyAnswers = seed.cards.reduce((acc: StringDictionary, card) => {
+          acc[card.id] = mockClue('high');
+          return acc;
+        }, {});
         break;
       case 'clubber':
         data.clubberId = seed.outfits[0];

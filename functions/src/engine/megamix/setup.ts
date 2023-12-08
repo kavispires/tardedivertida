@@ -69,7 +69,7 @@ export const prepareSeedingPhase = async (
   );
 
   // Prepare seeds
-  distributeSeeds(store.tracks, players, clubbers);
+  distributeSeeds(store.tracks, players, clubbers, !!store?.options?.partyMode);
 
   // Save
   return {
@@ -99,7 +99,7 @@ export const prepareTrackPhase = async (
     });
 
     // Handle seeding data
-    const tracks = handleSeedingData(store.tracks, players);
+    const tracks = handleSeedingData(store.tracks, players, !!store?.options?.partyMode, store.language);
 
     const playerData = utils.players.getListOfPlayers(players).reduce((acc, player) => {
       acc[player.id] = {
