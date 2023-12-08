@@ -3,7 +3,15 @@ import utils from '../../utils';
 import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import { HouseCard } from '../na-rua-do-medo/types';
-import { MEGAMIX_ACHIEVEMENTS, MEGAMIX_PHASES, WINNING_CONDITION } from './constants';
+import {
+  MEGAMIX_ACHIEVEMENTS,
+  MEGAMIX_PHASES,
+  PARTY_GAMES,
+  PARTY_GAMES_NAMES,
+  PARTY_TRACKS,
+  TOTAL_ROUNDS,
+  WINNING_CONDITION,
+} from './constants';
 import {
   AvailableTrack,
   FirebaseStoreData,
@@ -12,7 +20,7 @@ import {
   Track,
   TrackCandidate,
 } from './types';
-import { orderBy } from 'lodash';
+import { cloneDeep, orderBy } from 'lodash';
 
 /**
  * Get the next phase based on the current one
@@ -43,7 +51,12 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @param players
  * @param clubberIds
  */
-export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: string[]) => {
+export const distributeSeeds = (
+  tracks: Track[],
+  players: Players,
+  clubberIds: string[],
+  partyMode: boolean
+) => {
   const individualSeeds: any[] = [];
   const groupSeeds: any[] = [];
   const playersList = utils.game.shuffle(utils.players.getListOfPlayers(players));
@@ -179,9 +192,71 @@ export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: s
     }
   });
 
+  // Boilerplate seeds
   playersList.forEach((player) => {
     player.seeds = [];
   });
+
+  // Party mode
+  // Count players and distribute the questions, each question should go to 3 players, and each player should get a maximum of 5 questions
+
+  if (partyMode) {
+    const customQuestionLimit = playerCount * 3;
+
+    let customQuestionCount = playerCount;
+    let customSeedIndex = 0;
+
+    const customIndividualTracks: any[] = utils.game.makeArray(playerCount).map(() => {
+      return cloneDeep({
+        type: 'party',
+        cards: [],
+      });
+    });
+
+    const increaseCustomSeedIndex = () => {
+      customSeedIndex += 1;
+      customQuestionCount += 1;
+      if (customSeedIndex >= customIndividualTracks.length) {
+        customSeedIndex = 0;
+      }
+    };
+
+    PARTY_TRACKS.forEach((track) => {
+      if (track.game === PARTY_GAMES.WHO_SAID_THIS) {
+        customIndividualTracks.forEach((customTrack) => {
+          customTrack.cards.push(track.card);
+        });
+        return;
+      }
+
+      if (customQuestionCount < customQuestionLimit) {
+        if (track.game === PARTY_GAMES.CUSTOM_THIS_THAT) {
+          customIndividualTracks[customSeedIndex].cards.push(track.card);
+          increaseCustomSeedIndex();
+          customIndividualTracks[customSeedIndex].cards.push(track.card);
+          increaseCustomSeedIndex();
+          customIndividualTracks[customSeedIndex].cards.push(track.card);
+          increaseCustomSeedIndex();
+        }
+
+        if (track.game === PARTY_GAMES.CUSTOM_BEST_OF_THREE) {
+          customIndividualTracks[customSeedIndex].cards.push(track.card);
+          increaseCustomSeedIndex();
+          customIndividualTracks[customSeedIndex].cards.push(track.card);
+          increaseCustomSeedIndex();
+          customIndividualTracks[customSeedIndex].cards.push(track.card);
+          increaseCustomSeedIndex();
+          customIndividualTracks[customSeedIndex].cards.push(track.card);
+          increaseCustomSeedIndex();
+        }
+      }
+    });
+
+    customIndividualTracks.forEach((seed, index) => {
+      const player = playersList[index];
+      player.seeds.push(seed);
+    });
+  }
 
   individualSeeds.forEach((seed, index) => {
     const player = playersList[index % playersList.length];
@@ -211,7 +286,12 @@ export const distributeSeeds = (tracks: Track[], players: Players, clubberIds: s
  * @param players
  * @returns
  */
-export const handleSeedingData = (tracks: Track[], players: Players) => {
+export const handleSeedingData = (
+  tracks: Track[],
+  players: Players,
+  partyMode: boolean,
+  language: Language
+) => {
   tracks.forEach((track) => {
     switch (track.game) {
       case GAME_NAMES.ARTE_RUIM:
@@ -259,6 +339,17 @@ export const handleSeedingData = (tracks: Track[], players: Players) => {
     }
   });
 
+  // Build party tracks
+  if (partyMode) {
+    const partyTracks = buildPartyOptions(players, language);
+
+    const tracksNeeded = Math.max(TOTAL_ROUNDS - partyTracks.length, 0);
+    for (let i = 0; i < tracksNeeded; i++) {
+      partyTracks.push(tracks[i]);
+    }
+
+    return utils.game.getRandomItems(partyTracks, TOTAL_ROUNDS);
+  }
   return tracks;
 };
 
@@ -701,6 +792,106 @@ const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
     1: options[1],
     2: options[2],
   };
+};
+
+const buildPartyOptions = (players: Players, language: Language) => {
+  const options: Record<string, string[]> = {};
+  const whoOptions: { text: string; playerId: string }[] = [];
+  const listOfPlayers = utils.players.getListOfPlayers(players);
+
+  listOfPlayers.forEach((player) => {
+    Object.entries<string>(player.data.partyAnswers).forEach(([key, answer]) => {
+      if (key !== 'fact') {
+        if (options[key] === undefined) {
+          options[key] = [];
+        }
+        if (
+          !options[key].some(
+            (a) => utils.helpers.stringRemoveAccents(a) === utils.helpers.stringRemoveAccents(answer)
+          )
+        ) {
+          options[key].push(answer);
+        }
+      } else {
+        whoOptions.push({
+          text: answer,
+          playerId: player.id,
+        });
+      }
+    });
+  });
+
+  const tracks: Track[] = [];
+
+  whoOptions.forEach((option) => {
+    tracks.push({
+      game: PARTY_GAMES_NAMES[PARTY_GAMES.WHO_SAID_THIS],
+      variant: 'fact',
+      data: {
+        card: {
+          id: option.playerId,
+          text: option.text,
+          options: utils.game.removeDuplicates(
+            utils.game.shuffle([option.playerId, ...utils.game.getRandomItems(Object.keys(players), 2)])
+          ),
+        },
+      },
+    });
+  });
+
+  Object.entries(options).forEach(([variant, values]) => {
+    const trackCandidate = PARTY_TRACKS.find((t) => t.variant === variant);
+
+    if (trackCandidate && values.length > 1) {
+      tracks.push({
+        game: PARTY_GAMES_NAMES[trackCandidate.game],
+        variant,
+        data: {
+          card: {
+            question: getQuestion(variant, language),
+            options: utils.game.shuffle(values),
+          },
+        },
+      });
+    }
+  });
+
+  return tracks;
+};
+
+export const getQuestion = (variant: string, language: Language) => {
+  return (
+    {
+      object: {
+        en: 'Which of these objects is the most useful?',
+        pt: 'Qual desses objetos é o mais útil?',
+      },
+      'good-food': {
+        en: 'Best food?',
+        pt: 'Melhor comida?',
+      },
+      'bad-food': {
+        en: 'Best food?',
+        pt: 'Melhor comida?',
+      },
+      sport: {
+        pt: 'Qual desses é o melhor esporte?',
+        en: 'Which of these is the best sport?',
+      },
+      skill: {
+        pt: 'Qual dessas é a melhor habilidade?',
+        en: 'Which of these is the best skill?',
+      },
+      hobby: {
+        pt: 'Qual desses é o melhor hobby?',
+        en: 'Which of these is the best hobby?',
+      },
+    }?.[variant]?.[language] ??
+    {
+      en: 'Which of these is the best?',
+      pt: 'Qual desses é o melhor?',
+    }[language]
+  );
 };
 
 export const getCandidateOnList = (list: TrackCandidate[], name: string): TrackCandidate | undefined => {

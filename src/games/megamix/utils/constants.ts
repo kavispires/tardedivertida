@@ -51,6 +51,10 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Isso ou Aquilo?',
     en: 'This or That?',
   },
+  'megamix-who-said-this': {
+    pt: 'Quem Disse Isso?',
+    en: 'Who Said This?',
+  },
   'mente-coletiva': {
     pt: 'Mente Coletiva',
     en: 'Herd Mind',
@@ -122,7 +126,6 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     pt: 'Vamos falar com os ETs',
     en: 'Let us talk to the aliens',
   },
-
   'contadores-historias': {
     pt: 'Conte uma história',
     en: 'Tell us a story',
@@ -159,9 +162,17 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     pt: 'Vamos andar pela floresta',
     en: "Let's walk into the woods",
   },
-  megamix: {
+  'megamix-best-of-three': {
     pt: 'Qual opção você escolhe?',
     en: 'Which option do you choose?',
+  },
+  'megamix-this-that': {
+    pt: 'Qual opção você escolhe?',
+    en: 'Which option do you choose?',
+  },
+  'megamix-who-said-this': {
+    pt: 'Quem tem mais cara de ter disso isso?',
+    en: "Who could've possibly said this?",
   },
   'mente-coletiva': {
     pt: 'Junte-se as ovelhas!',

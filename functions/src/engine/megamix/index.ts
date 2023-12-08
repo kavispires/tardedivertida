@@ -45,7 +45,7 @@ export const getInitialState = (
     initialPhase: MEGAMIX_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
-      tasks: [],
+      tracks: [],
     },
     options,
   });
