@@ -1,7 +1,7 @@
 import { cloneDeep, merge, padStart, random } from 'lodash';
 import { useEffect, useState } from 'react';
 import { CARDS_PER_DECK, DEFAULT_ENTRY, TOTAL_DECKS } from './constants';
-import { FirebaseImageCardLibrary, ImageCardData } from './types';
+import { FirebaseImageCardLibrary, ImageCardData, ImageCardRelationship } from './types';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { firestore } from 'services/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -10,16 +10,18 @@ import { cleanupData } from './utils';
 
 const getRandomCardNumber = () => padStart(String(random(1, CARDS_PER_DECK)), 2, '0');
 
+const getRandomDeck = () => random(1, TOTAL_DECKS);
+
 export function useRandomCard(
   cardData: FirebaseImageCardLibrary,
   setDirty: (value: React.SetStateAction<boolean>) => void
 ) {
-  const [deck, setDeck] = useState(random(1, TOTAL_DECKS));
+  const [deck, setDeck] = useState(getRandomDeck());
   const [cardNumber, setCardNumber] = useState(getRandomCardNumber());
   const cardId = `td-d${deck}-${cardNumber}`;
 
   const onRandomCard = () => {
-    setDeck(random(1, TOTAL_DECKS));
+    setDeck(getRandomDeck());
     setCardNumber(getRandomCardNumber());
   };
 
@@ -113,6 +115,119 @@ export function useImageCardsData() {
       const docRef = doc(firestore, 'data/imageCards');
       const cleanData = cleanupData(data);
       await setDoc(docRef, cleanData);
+      return data;
+    },
+    onSuccess: () => {
+      notification.success({
+        message: 'Saved',
+        placement: 'bottomLeft',
+      });
+      queryClient.refetchQueries(queryKey);
+      setDirty(false);
+    },
+  });
+
+  return {
+    data,
+    isLoading,
+    isSuccess,
+    isError,
+    hasData: isSuccess && Object.keys(data).length > 0,
+    refetch,
+    isSaving,
+    isMutationError,
+    isSaved,
+    save,
+    setDirty,
+    isDirty,
+  };
+}
+
+export function useRandomCards(
+  cardData: ImageCardRelationship,
+  setDirty: (value: React.SetStateAction<boolean>) => void
+) {
+  const [deckA, setDeckA] = useState(getRandomDeck());
+  const [cardNumberA, setCardNumberA] = useState(getRandomCardNumber());
+  const [deckB, setDeckB] = useState(getRandomDeck());
+  const [cardNumberB, setCardNumberB] = useState(getRandomCardNumber());
+  const cardAId = `td-d${deckA}-${cardNumberA}`;
+  const cardBId = `td-d${deckB}-${cardNumberB}`;
+
+  const cardA = cardData?.[cardAId] ?? [];
+  const cardB = cardData?.[cardBId] ?? [];
+
+  const relate = () => {
+    cardA.push(cardBId);
+    cardData[cardAId] = cardA;
+    cardB.push(cardAId);
+    cardData[cardBId] = cardB;
+    setDirty(true);
+    setDeckA(deckB);
+    setCardNumberA(cardNumberB);
+    setDeckB(getRandomDeck());
+    setCardNumberB(getRandomCardNumber());
+  };
+
+  const unrelate = () => {
+    setDeckB(getRandomDeck());
+    setCardNumberB(getRandomCardNumber());
+  };
+
+  return {
+    cardAId,
+    cardBId,
+    relate,
+    unrelate,
+    areRelated: cardA.includes(cardBId),
+  };
+}
+
+export function useImageCardsRelationshipData() {
+  const [isDirty, setDirty] = useState(false);
+  const queryKey = ['data/imageCardsRelationships'];
+  const queryClient = useQueryClient();
+  const { notification } = App.useApp();
+
+  const {
+    data = {},
+    isLoading,
+    isSuccess,
+    isError,
+    refetch,
+  } = useQuery<any>({
+    queryKey,
+    queryFn: async () => {
+      const docRef = doc(firestore, 'data/imageCardsRelationships');
+      const querySnapshot = await getDoc(docRef);
+      return (querySnapshot.data() ?? {}) as ImageCardRelationship;
+    },
+    onSuccess: () => {
+      notification.info({
+        message: 'Data loaded',
+        placement: 'bottomLeft',
+      });
+      setDirty(false);
+    },
+    onError: () => {
+      notification.error({
+        message: 'Error loading data',
+        placement: 'bottomLeft',
+      });
+    },
+  });
+
+  const {
+    isLoading: isSaving,
+    isError: isMutationError,
+    isSuccess: isSaved,
+    mutate: save,
+  } = useMutation<{}, unknown, ImageCardRelationship, unknown>({
+    mutationKey: queryKey,
+    mutationFn: async () => {
+      const docRef = doc(firestore, 'data/imageCardsRelationships');
+
+      await setDoc(docRef, data);
       return data;
     },
     onSuccess: () => {

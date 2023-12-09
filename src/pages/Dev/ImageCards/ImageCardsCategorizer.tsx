@@ -12,8 +12,8 @@ import './dev-image-cards.scss';
 import { useImageCardsData, useRandomCard } from './hooks';
 import { useCardWidth } from 'hooks/useCardWidth';
 
-function ImageCardsPage() {
-  useTitle('Image Cards | Dev | Tarde Divertida');
+function ImageCardsCategorizerPage() {
+  useTitle('Image Cards Categorizer | Dev | Tarde Divertida');
 
   const cardWidth = useCardWidth(2, { containerId: 'root' });
 
@@ -47,7 +47,7 @@ function ImageCardsPage() {
 
   return (
     <Layout className="dev-layout">
-      <DevHeader title="Image Cards" />
+      <DevHeader title="Image Cards Categorizer" />
       <Layout.Content className="dev-content">
         {isLoading && <div>Loading...</div>}
         {isSaving && <div>Saving...</div>}
@@ -150,4 +150,4 @@ function ImageCardsPage() {
   );
 }
 
-export default ImageCardsPage;
+export default ImageCardsCategorizerPage;
