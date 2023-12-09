@@ -28,8 +28,17 @@ const DevDailySetup = lazy(
   () => import('pages/Dev/DailySetup/DailySetup' /* webpackChunkName: "page-dev-daily-setup" */)
 );
 const Daily = lazy(() => import('pages/Daily/Daily' /* webpackChunkName: "page-td-daily" */));
-const ImageCards = lazy(
-  () => import('pages/Dev/ImageCards/ImageCards' /* webpackChunkName: "page-dev-image-cards" */)
+const ImageCardsCategorizer = lazy(
+  () =>
+    import(
+      'pages/Dev/ImageCards/ImageCardsCategorizer' /* webpackChunkName: "page-dev-image-cards-categorizer" */
+    )
+);
+const ImageCardsRelationships = lazy(
+  () =>
+    import(
+      'pages/Dev/ImageCards/ImageCardsRelationships' /* webpackChunkName: "page-dev-image-cards-relationships" */
+    )
 );
 
 const LazyMe = () => (
@@ -102,9 +111,14 @@ const LazyDaily = () => (
     <Daily />
   </Suspense>
 );
-const LazyImageCards = () => (
+const LazyImageCardsCategorizer = () => (
   <Suspense fallback={<LoadingPage />}>
-    <ImageCards />
+    <ImageCardsCategorizer />
+  </Suspense>
+);
+const LazyImageCardsRelationships = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <ImageCardsRelationships />
   </Suspense>
 );
 
@@ -203,10 +217,18 @@ export const routes = (
       }
     />
     <Route
-      path="/dev/imagecards"
+      path="/dev/imagecardscategorizer"
       element={
         <AdminProtectedRoute>
-          <LazyImageCards />
+          <LazyImageCardsCategorizer />
+        </AdminProtectedRoute>
+      }
+    />
+    <Route
+      path="/dev/imagecardsrelationships"
+      element={
+        <AdminProtectedRoute>
+          <LazyImageCardsRelationships />
         </AdminProtectedRoute>
       }
     />

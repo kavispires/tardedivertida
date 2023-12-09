@@ -8,3 +8,5 @@ export type ImageCardData = {
 };
 
 export type FirebaseImageCardLibrary = Record<ImageCardId, ImageCardData>;
+
+export type ImageCardRelationship = Record<ImageCardId, ImageCardId[]>;

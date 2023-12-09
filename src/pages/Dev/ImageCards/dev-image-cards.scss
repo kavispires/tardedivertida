@@ -14,3 +14,10 @@
     min-width: 300px;
   }
 }
+
+.image-card-categorizer-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  margin: 2rem 0;
+}

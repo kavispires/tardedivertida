@@ -1,6 +1,6 @@
 import { useTitle } from 'react-use';
 // Ant Design Resources
-import { Layout } from 'antd';
+import { Layout, Space } from 'antd';
 // Components
 import { DevHeader } from './DevHeader';
 // import { RestructureUI } from './Resources/RestructureUI';
@@ -21,7 +21,10 @@ function ResourcesPage() {
         {/* <RestructureJson /> */}
         {/* <SaveGames /> */}
         {/* <SaveResources /> */}
-        <Link to="/dev/imageCards">Image Cards</Link>
+        <Space className="space-container" direction="vertical">
+          <Link to="/dev/imagecardscategorizer">Image Cards Categorizer</Link>
+          <Link to="/dev/imagecardsrelationships">Image Cards Relationsips</Link>
+        </Space>
       </Layout.Content>
     </Layout>
   );
