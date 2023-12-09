@@ -22,6 +22,7 @@ import { SeedRetratoFalado } from './components/Seeds/SeedRetratoFalado';
 import { SeedUeSoIsso } from './components/Seeds/SeedUeSoIsso';
 import { SeedMenteColetiva } from './components/Seeds/SeedMenteColetiva';
 import { SeedContadoresHistorias } from './components/Seeds/SeedContadoresHistorias';
+import { SeedParty } from './components/Seeds/SeedParty';
 
 type StepSeedingProps = {
   players: GamePlayers;
@@ -87,6 +88,8 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
         )}
 
         {currentSeed?.type === 'ue-so-isso' && <SeedUeSoIsso seed={currentSeed} updateData={updateData} />}
+
+        {currentSeed?.type === 'party' && <SeedParty seed={currentSeed} updateData={updateData} />}
 
         {currentSeed?.type === 'clubber' && (
           <SeedClubber

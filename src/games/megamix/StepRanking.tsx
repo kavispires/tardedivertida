@@ -2,13 +2,14 @@
 import { Button, Space } from 'antd';
 // Icons
 import { BouncerIcon } from 'icons/BouncerIcon';
+// Hooks
+import { useColorizeBackground } from './utils/useColorizeBackground';
 // Components
 import { VIPNextPhaseButton } from 'components/vip';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-import { useColorizeBackground } from './utils/useColorizeBackground';
+import { RuleInstruction, Title } from 'components/text';
 
 type StepRankingProps = {
   user: GamePlayer;
@@ -24,12 +25,12 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
 
   const innerContent = (
     <>
-      <Instruction contained>
+      <RuleInstruction type="alert">
         <Translate
           pt="Somente jogadores na área VIP são ranqueados, porque você não pode ganhar se não estiver lá!"
           en="Only players in the VIP area can be ranked since you can't win if you're not there"
         />
-      </Instruction>
+      </RuleInstruction>
     </>
   );
 
@@ -47,7 +48,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
   if (ranking.length === 0) {
     return (
       <Step>
-        <Title size="small">
+        <Title size="small" white>
           <Translate pt="Ranking" en="Ranking" />?
         </Title>
 

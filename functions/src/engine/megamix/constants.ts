@@ -1,5 +1,5 @@
 import { GAME_NAMES } from '../../utils/constants';
-import { TrackCandidate } from './types';
+import { PartyTrackCandidate, TrackCandidate } from './types';
 
 export const MEGAMIX_PHASES = {
   LOBBY: 'LOBBY',
@@ -29,7 +29,7 @@ export const MEGAMIX_ACHIEVEMENTS = {
 
 export const PLAYER_COUNTS = {
   MIN: 3,
-  MAX: 16,
+  MAX: 25,
 };
 
 export const TOTAL_ROUNDS = 15;
@@ -260,6 +260,119 @@ export const UNPOPULAR_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'kill',
     weight: 1,
+  },
+];
+
+export const PARTY_GAMES = {
+  CUSTOM_THIS_THAT: 'CUSTOM_THIS_THAT',
+  CUSTOM_BEST_OF_THREE: 'CUSTOM_BEST_OF_THREE',
+  WHO_SAID_THIS: 'WHO_SAID_THIS',
+};
+
+export const PARTY_GAMES_NAMES = {
+  [PARTY_GAMES.CUSTOM_THIS_THAT]: 'megamix-this-that',
+  [PARTY_GAMES.CUSTOM_BEST_OF_THREE]: 'megamix-best-of-three',
+  [PARTY_GAMES.WHO_SAID_THIS]: 'megamix-who-said-this',
+};
+
+export const PARTY_TRACKS: PartyTrackCandidate[] = [
+  {
+    game: PARTY_GAMES.CUSTOM_THIS_THAT,
+    type: 'party',
+    nsfw: false,
+    variant: 'good-food',
+    weight: 1,
+    card: {
+      id: 'good-food',
+      text: {
+        en: 'Favorite food',
+        pt: 'Comida favorita',
+      },
+    },
+  },
+  {
+    game: PARTY_GAMES.CUSTOM_THIS_THAT,
+    type: 'party',
+    nsfw: false,
+    variant: 'bad-food',
+    weight: 1,
+    card: {
+      id: 'bad-food',
+      text: {
+        en: 'Food you dislike',
+        pt: 'Comida que você não gosta',
+      },
+    },
+  },
+  {
+    game: PARTY_GAMES.CUSTOM_THIS_THAT,
+    type: 'party',
+    nsfw: false,
+    variant: 'object',
+    weight: 1,
+    card: {
+      id: 'object',
+      text: {
+        en: 'Favorite object',
+        pt: 'Objeto favorito',
+      },
+    },
+  },
+  {
+    game: PARTY_GAMES.CUSTOM_THIS_THAT,
+    type: 'party',
+    nsfw: false,
+    variant: 'sport',
+    weight: 1,
+    card: {
+      id: 'sport',
+      text: {
+        en: 'Favorite sport',
+        pt: 'Esporte favorito',
+      },
+    },
+  },
+  {
+    game: PARTY_GAMES.CUSTOM_BEST_OF_THREE,
+    type: 'party',
+    nsfw: false,
+    variant: 'skill',
+    weight: 1,
+    card: {
+      id: 'skill',
+      text: {
+        en: 'A skill you have',
+        pt: 'Uma habilidade que você tem',
+      },
+    },
+  },
+  {
+    game: PARTY_GAMES.CUSTOM_BEST_OF_THREE,
+    type: 'party',
+    nsfw: false,
+    variant: 'hobby',
+    weight: 1,
+    card: {
+      id: 'hobby',
+      text: {
+        en: 'A hobby',
+        pt: 'Hobby favorito',
+      },
+    },
+  },
+  {
+    game: PARTY_GAMES.WHO_SAID_THIS,
+    type: 'party',
+    nsfw: false,
+    variant: 'fact',
+    weight: 1,
+    card: {
+      id: 'fact',
+      text: {
+        en: 'A fact about yourself',
+        pt: 'Um fato sobre você',
+      },
+    },
   },
 ];
 

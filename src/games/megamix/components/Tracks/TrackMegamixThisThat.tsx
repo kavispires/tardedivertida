@@ -9,7 +9,7 @@ import { mockSelection } from '../../utils/mock';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { MinigameTitle } from '../MinigameTitle';
 
 import { TransparentButton } from 'components/buttons';
@@ -32,11 +32,10 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
   return (
     <>
       <MinigameTitle title={{ pt: 'Isso ou Aquilo?', en: 'This or That?' }} />
+      <RuleInstruction type="action">
+        <Translate pt="Selecione qual você prefere:" en="Select which one you prefer:" />
+      </RuleInstruction>
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction>
-          <Translate pt="Selecione qual você prefere:" en="Select which one you prefer:" />
-        </Instruction>
-
         <Space className="space-container">
           <TransparentButton onClick={() => onSelect(0)} disabled={isLoading || user.ready}>
             <Card header={translate('Isso', 'This')} color="red">

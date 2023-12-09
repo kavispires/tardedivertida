@@ -30,6 +30,7 @@ import { TrackMegamixThisThat } from './components/Tracks/TrackMegamixThisThat';
 import { TrackComunicacaoAlienigena } from './components/Tracks/TrackComunicacaoAlienigena';
 import { TrackQuemSouEu } from './components/Tracks/TrackQuemSouEu';
 import { TrackTaNaCara } from './components/Tracks/TrackTaNaCara';
+import { TrackMegamixWhoSaidThis } from './components/Tracks/TrackMegamixWhoSaidThis';
 
 type StepTrackProps = {
   round: GameRound;
@@ -55,6 +56,7 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'labirinto-secreto': TrackLabirintoSecreto,
       'megamix-best-of-three': TrackMegamixBestOfThree,
       'megamix-this-that': TrackMegamixThisThat,
+      'megamix-who-said-this': TrackMegamixWhoSaidThis,
       'mente-coletiva': TrackMenteColetiva,
       'namoro-ou-amizade': TrackNamoroOuAmizade,
       'na-rua-do-medo': TrackNaRuaDoMedo,

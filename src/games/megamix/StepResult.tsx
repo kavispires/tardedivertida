@@ -15,7 +15,7 @@ import { GarbageIcon } from 'icons/GarbageIcon';
 import { VIPLineIcon } from 'icons/VIPLineIcon';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
 import { ClubberAvatar } from './components/ClubberAvatar';
@@ -61,13 +61,17 @@ export function StepResult({
   // Dynamic background
   useColorizeBackground(user, time.timeLeft > 13 ? round.current : round.current + 1);
 
+  // Counts to aid the animation positioning. It doesn't trigger re-renders because it's handled by css
+  let winningCount = 0;
+  let losingCount = 0;
+
   return (
     <Step announcement={announcement}>
       <Title size="small" white>
         <Translate pt="Resultado" en="Results" />: <TrackTitle track={track} />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="event">
         <IconAvatar icon={<DJIcon />} size="large" />
         {scoringType === 'NORMAL' && (
           <Translate
@@ -92,10 +96,10 @@ export function StepResult({
             en={<>Did everybody just choose something different? Everybody out!</>}
           />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <div className="results" id="results">
-        <div className="results__vip">
+        <div className="results__vip" id="area-w">
           <span className="results__icon">
             <IconAvatar icon={<VIPLineIcon />} size="large" />
           </span>
@@ -112,7 +116,7 @@ export function StepResult({
             playersList={playersList}
           />
         </div>
-        <div className="results__gutter">
+        <div className="results__gutter" id="area-l">
           <span className="results__icon">
             <IconAvatar icon={<GarbageIcon />} size="large" />
           </span>
@@ -121,26 +125,32 @@ export function StepResult({
           </span>
         </div>
 
-        {playersList.map((player, index) => (
-          <div
-            className="results__player"
-            key={`${player.id}-${player.clubberId}`}
-            style={getPosition(index, player.team[currentIndex] === 'W' ? 0 : 1, width)}
-          >
-            <ClubberAvatar
-              id={player.avatarId}
-              clubberId={player.clubberId}
-              width={45}
-              animate={player.team[currentIndex] === 'W'}
-            />
-            <span className="results__player-name">{player.name}</span>
-          </div>
-        ))}
+        {playersList.map((player, index) => {
+          const isWinningArea = player.team[currentIndex] === 'W';
+          winningCount = isWinningArea ? winningCount + 1 : winningCount;
+          losingCount = !isWinningArea ? losingCount + 1 : losingCount;
+
+          return (
+            <div
+              className="results__player"
+              key={`${player.id}-${player.clubberId}`}
+              style={getPosition(isWinningArea ? winningCount : losingCount, isWinningArea ? 0 : 1, width)}
+            >
+              <ClubberAvatar
+                id={player.avatarId}
+                clubberId={player.clubberId}
+                width={45}
+                animate={isWinningArea}
+              />
+              <span className="results__player-name">{player.name}</span>
+            </div>
+          );
+        })}
       </div>
 
       <Space className="space-container" align="center">
         {isFirstRunThrough ? (
-          <TimedButton onClick={onSeeRanking} onExpire={onSeeRanking} duration={15} icon={<TrophyOutlined />}>
+          <TimedButton onClick={onSeeRanking} onExpire={onSeeRanking} duration={20} icon={<TrophyOutlined />}>
             <Translate pt="Ver Ranking" en="See Ranking" />
           </TimedButton>
         ) : (

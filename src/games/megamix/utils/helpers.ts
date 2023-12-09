@@ -29,7 +29,7 @@ export const buildSeedingSteps = (
           title: translate('Tik Tok', 'Tik Tok'),
           description: translate('Sempre temos um tempinho!', "There's always time!"),
         };
-
+      case 'party':
       case 'onda-telepatica':
         return {
           title: translate('Tarefa de Casa', 'Homework'),

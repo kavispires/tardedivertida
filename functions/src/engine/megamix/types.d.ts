@@ -6,6 +6,10 @@ export type MegamixGameOptions = {
    */
   nsfw: boolean;
   /**
+   * Use party mode
+   */
+  partyMode: boolean;
+  /**
    * Adds more special tracks to the game (default: 3-5, more: 6-8)
    */
   moreTracks: boolean;
@@ -50,6 +54,13 @@ export interface TrackCandidate {
   variant: string;
   weight: number;
   needsSeeding?: boolean;
+}
+
+export interface PartyTrackCandidate extends TrackCandidate {
+  card: {
+    id: CardId;
+    text: DualLanguageValue;
+  };
 }
 
 export interface PossibleTask {

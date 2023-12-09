@@ -84,7 +84,7 @@ export function mockPlayers(
         avatarId: getRandomUniqueItemFromList(AVAILABLE_AVATAR_IDS, Object.keys(usedAvatars), cacheAvatars),
         updatedAt: Date.now(),
         ready: true,
-        ...(typeof properties === 'function' ? properties() : properties),
+        ...(typeof properties === 'function' ? properties(i) : properties),
       };
     });
 
