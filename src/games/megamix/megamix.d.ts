@@ -122,6 +122,18 @@ type SeedEntryUeSoIsso = {
   prompts: never;
 };
 
+type SeedEntryParty = {
+  type: 'party';
+  card: never;
+  cards: {
+    id: CardId;
+    text: DualLanguageValue;
+  }[];
+  outfits: never;
+  tree: never;
+  prompts: never;
+};
+
 type SeedEntryClubberOutfit = {
   type: 'clubber';
   outfits: string[];
@@ -140,6 +152,7 @@ type SeedEntry =
   | SeedEntryPolemicaDaVez
   | SeedEntryRetratoFalado
   | SeedEntryUeSoIsso
+  | SeedEntryParty
   | SeedEntryClubberOutfit;
 
 type VoteComponentProps = {

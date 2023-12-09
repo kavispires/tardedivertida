@@ -249,7 +249,10 @@
   }
 
   &__player-name {
-    transform: translateY(-150%);
+    transform: translateY(-100%);
+    background: get-color('white', 5, 0.5);
+    padding: get-unit(0 1);
+    border-radius: get-unit(1);
   }
 }
 

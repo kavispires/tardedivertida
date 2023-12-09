@@ -18,6 +18,7 @@ import { VoteQuemNaoMata } from './Votes/VoteQuemNaoMata';
 import { VoteComunicacaoAlienigena } from './Votes/VoteComunicacaoAlienigena';
 import { VoteTaNaCara } from './Votes/VoteTaNaCara';
 import { VoteLabirintoSecreto } from './Votes/VoteLabirintoSecreto';
+import { VoteWhoSaidThis } from './Votes/VoteWhoSaidThis';
 
 export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
   const playersList = useMemo(
@@ -40,6 +41,7 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
       'labirinto-secreto': VoteLabirintoSecreto,
       'megamix-best-of-three': VoteMegamix,
       'megamix-this-that': VoteMegamix,
+      'megamix-who-said-this': VoteWhoSaidThis,
       'mente-coletiva': VoteValue,
       'namoro-ou-amizade': VoteNamoroOuAmizade,
       'na-rua-do-medo': VoteNaRuaDoMedo,
@@ -56,10 +58,6 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
       'ue-so-isso': VoteValue,
       'vamos-ao-cinema': VoteVamosAoCinema,
     }?.[props.track.game] ?? FallbackComponent;
-
-  // if (!playersList.every((player) => has(player, 'data.value'))) {
-  //   return <></>;
-  // }
 
   return <VotesComponent {...props} playersList={playersList} />;
 };
