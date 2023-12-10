@@ -30,7 +30,7 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
 
   return (
     <Space direction="vertical">
-      <Title level={3} size="xx-small">
+      <Title level={3} size="xx-small" white>
         <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
         <Popover
           content={
@@ -42,7 +42,7 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
           title={<Translate pt="Dica" en="Hint" />}
           arrow
         >
-          <Button type="text" icon={<InfoCircleOutlined />} shape="circle" />{' '}
+          <Button type="text" icon={<InfoCircleOutlined color="white" />} shape="circle" />{' '}
         </Popover>
       </Title>
       <div className="signs-grid">

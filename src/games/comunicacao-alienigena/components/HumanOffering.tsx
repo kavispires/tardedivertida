@@ -4,7 +4,7 @@ import { Button, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { CurseItemHighlight, ItemsHighlight } from './Highlights';
 import { HumanSignBoard } from './HumanSignBoard';
 import { SelectableObjectsGrid } from './SelectableObjectsGrid';
@@ -22,7 +22,7 @@ export function HumanOffering({ signs, items, submitOffer, user, status }: Human
 
   return (
     <Space className="space-container" direction="vertical">
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -48,7 +48,8 @@ export function HumanOffering({ signs, items, submitOffer, user, status }: Human
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
+
       <Button
         size="large"
         type="primary"
@@ -57,7 +58,8 @@ export function HumanOffering({ signs, items, submitOffer, user, status }: Human
       >
         <Translate pt="Enviar Objeto" en="Submit Object" />
       </Button>
-      <Space className="space-container" wrap>
+
+      <Space className="boards-container" wrap>
         <SelectableObjectsGrid
           items={items}
           selectedObjects={{ [offeringId]: true }}

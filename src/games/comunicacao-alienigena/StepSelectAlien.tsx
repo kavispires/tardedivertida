@@ -5,7 +5,7 @@ import { useLoading } from 'hooks/useLoading';
 import { useVIP } from 'hooks/useVIP';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { AvatarCard } from 'components/avatars';
@@ -24,11 +24,11 @@ export function StepSelectAlien({ players, announcement, onSubmitAlien, status }
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate pt="Quem quer ser o alienígena?" en="Who will be the Alien?" />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="lore">
         <Translate
           pt={
             <>
@@ -72,7 +72,7 @@ export function StepSelectAlien({ players, announcement, onSubmitAlien, status }
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Instruction contained>
         <Space className="space-container">

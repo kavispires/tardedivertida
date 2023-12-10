@@ -7,7 +7,7 @@ import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 import { ClockIcon } from 'icons/ClockIcon';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -60,7 +60,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate pt={<>Resultado</>} en={<>Results</>} />
       </Title>
 
@@ -68,7 +68,7 @@ export function StepReveal({
 
       {isAlienBot && <BotPopupRule />}
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -89,7 +89,7 @@ export function StepReveal({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <ViewIf condition={Boolean(latestRequest)}>
         <AlienViewBoard request={latestRequest.request} isAlienBot={isAlienBot} />
@@ -111,14 +111,14 @@ export function StepReveal({
       </Instruction>
 
       <AlienContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} />
           <SignsKeyCard signs={signs} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} />
           <HumanSignBoard signs={signs} />
         </Space>

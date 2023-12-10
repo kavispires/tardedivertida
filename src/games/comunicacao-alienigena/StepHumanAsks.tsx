@@ -4,7 +4,7 @@ import { Space } from 'antd';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
@@ -55,7 +55,7 @@ export function StepHumanAsks({
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step fullWidth announcement={isUserTheCurrentHuman ? announcement : undefined}>
-      <Title>
+      <Title white>
         {isUserTheCurrentHuman ? (
           <Translate pt={<>Pergunte ao Alienígena!</>} en={<>Ask the Alien!</>} />
         ) : (
@@ -67,7 +67,7 @@ export function StepHumanAsks({
 
       <PopoverRule content={<Status status={status} />} />
 
-      <Instruction contained>
+      <RuleInstruction type={isUserTheCurrentHuman ? 'action' : 'wait'}>
         {isUserTheCurrentHuman ? (
           <>
             <Translate
@@ -106,7 +106,7 @@ export function StepHumanAsks({
             />
           </>
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <AlienContent user={user}>
         <Space className="boards-container" wrap>

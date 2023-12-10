@@ -4,7 +4,7 @@ import { Space } from 'antd';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
@@ -49,7 +49,7 @@ export function StepHumansOffer({
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate pt={<>Ofereça um objeto</>} en={<>Offer an object</>} />
       </Title>
 
@@ -57,43 +57,45 @@ export function StepHumansOffer({
 
       {isAlienBot && <BotPopupRule />}
 
-      <Instruction contained>
-        <Translate
-          pt={
-            <>
-              O(A) alienígena <AvatarName player={alien} /> fez esse pedido. Você consegue decifrar qual
-              objeto ele(a) quer?
-            </>
-          }
-          en={
-            <>
-              The alien <AvatarName player={alien} /> made this request. Can you decipher what object they
-              want?
-            </>
-          }
-        />
-      </Instruction>
+      <HumanContent user={user}>
+        <RuleInstruction type="rule">
+          <Translate
+            pt={
+              <>
+                O(A) alienígena <AvatarName player={alien} /> fez esse pedido. Você consegue decifrar qual
+                objeto ele(a) quer?
+              </>
+            }
+            en={
+              <>
+                The alien <AvatarName player={alien} /> made this request. Can you decipher what object they
+                want?
+              </>
+            }
+          />
+        </RuleInstruction>
+      </HumanContent>
 
       <AlienContent user={user}>
-        <Instruction contained>
+        <RuleInstruction type="wait">
           <Translate
             pt={<>Aguarde enquanto os humanos escolhem um objeto para te oferecer.</>}
             en={<>Wait while the humans choose an object to offer.</>}
           />
-        </Instruction>
+        </RuleInstruction>
       </AlienContent>
 
       <AlienViewBoard request={requestHistory[0].request} isAlienBot={isAlienBot} />
 
       <AlienContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} />
           <SignsKeyCard signs={signs} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="space-container" wrap>
+        <Space className="boards-container" wrap>
           <HumanOffering
             signs={signs}
             items={items}

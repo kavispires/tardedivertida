@@ -1,7 +1,7 @@
 // Ant Design Resources
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { BotPopupRule } from './components/BotPopupRules';
 import { HumanSeedingSteps } from './components/HumanSeedingSteps';
@@ -15,13 +15,13 @@ type StepSeedAlienProps = {
 export function StepSeedAlien({ user, announcement, onSubmitSeeds, items }: StepSeedAlienProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate pt="Análise de Objetos" en="Objects analyses" />
       </Title>
 
       <BotPopupRule />
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -38,7 +38,7 @@ export function StepSeedAlien({ user, announcement, onSubmitSeeds, items }: Step
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <HumanSeedingSteps onSubmitSeeds={onSubmitSeeds} user={user} items={items} />
     </Step>
