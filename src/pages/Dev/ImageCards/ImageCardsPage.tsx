@@ -12,6 +12,7 @@ import { isEmpty } from 'lodash';
 import { PageError } from 'components/errors';
 import { useQueryParams } from 'hooks/useQueryParams';
 import { Comparator } from './Comparator';
+import { Grouping } from './Grouping';
 
 function ImageCardsRelationshipsPage() {
   useTitle('Image Cards Relationships | Dev | Tarde Divertida');
@@ -34,7 +35,7 @@ function ImageCardsRelationshipsPage() {
 
   const segments = [
     { label: 'Compare', value: 'default', disabled: view === 'default' },
-    { label: 'Grouping', value: 'grouping', disabled: true },
+    { label: 'Grouping', value: 'grouping', disabled: view === 'grouping' },
   ];
 
   return (
@@ -45,7 +46,7 @@ function ImageCardsRelationshipsPage() {
       />
 
       {view === 'default' && <Comparator query={query} />}
-      {/* {view === 'grouping' && <Grouping />} */}
+      {view === 'grouping' && <Grouping query={query} />}
     </div>
   );
 }

@@ -6,7 +6,6 @@
 
   &__image {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
 
@@ -28,6 +27,22 @@
 .image-card-categorizer-options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  margin: 2rem 0;
+}
+
+.image-cards-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  &__active {
+    outline: 3px solid hotPink;
+  }
+}
+
+.image-card-categorizer-group-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   place-items: center;
   margin: 2rem 0;
 }

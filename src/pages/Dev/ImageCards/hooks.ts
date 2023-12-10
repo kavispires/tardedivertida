@@ -7,10 +7,13 @@ import { firestore } from 'services/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { App } from 'antd';
 import { cleanupData } from './utils';
+import { removeDuplicates } from 'utils/helpers';
 
 const getRandomCardNumber = () => padStart(String(random(1, CARDS_PER_DECK)), 2, '0');
 
 const getRandomDeck = () => random(1, TOTAL_DECKS);
+
+const getRandomCardId = () => `td-d${getRandomDeck()}-${getRandomCardNumber()}`;
 
 export function useRandomCard(
   cardData: FirebaseImageCardLibrary,
@@ -293,5 +296,73 @@ export function useImageCardsRelationshipData(): UseImageCardsRelationshipDataRe
     save,
     setDirty,
     isDirty,
+  };
+}
+
+export function useRandomGroups(
+  cardData: ImageCardRelationship,
+  setDirty: (value: React.SetStateAction<boolean>) => void
+) {
+  const [cardIds, setCardIds] = useState<string[]>([]);
+  const [cards, setCards] = useState<string[][]>([]);
+
+  const [selection, setSelection] = useState<string[]>([]);
+
+  const updateCards = (ids?: string[]) => {
+    setCards((ids ?? cardIds).map((id) => cardData?.[id] ?? []));
+  };
+
+  const onRandomCards = () => {
+    setSelection([]);
+    const ids: string[] = [];
+    while (ids.length < 9) {
+      const id = getRandomCardId();
+      if (!ids.includes(id)) {
+        ids.push(id);
+      }
+    }
+    setCardIds(ids);
+    updateCards(ids);
+  };
+
+  // On Load get sample of cards
+  useEffect(() => {
+    if (cardIds.length === 0) {
+      onRandomCards();
+    }
+  }, [cardIds]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const onSelect = (id: string) => {
+    setSelection((ps) => {
+      const copy = [...ps];
+      const index = copy.indexOf(id);
+      if (index > -1) {
+        copy.splice(index, 1);
+      } else {
+        copy.push(id);
+      }
+      return copy;
+    });
+  };
+
+  const relate = () => {
+    selection.forEach((id) => {
+      const card = cardData[id] ?? [];
+
+      card.push(...selection.filter((s) => s !== id));
+      cardData[id] = removeDuplicates(card);
+    });
+    setDirty(true);
+    setSelection([]);
+    updateCards();
+  };
+
+  return {
+    cardIds,
+    cards,
+    selection,
+    onSelect,
+    relate,
+    nextSet: onRandomCards,
   };
 }
