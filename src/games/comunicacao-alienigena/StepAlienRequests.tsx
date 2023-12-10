@@ -5,7 +5,7 @@ import { Space } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
@@ -52,7 +52,7 @@ export function StepAlienRequests({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate
           pt={
             <>
@@ -70,7 +70,7 @@ export function StepAlienRequests({
       <PopoverRule content={<Status status={status} />} />
 
       <HumanContent user={user}>
-        <Instruction contained>
+        <RuleInstruction type="wait">
           <Translate
             pt={
               <>
@@ -83,36 +83,40 @@ export function StepAlienRequests({
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
       </HumanContent>
 
       <AlienContent user={user}>
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
                 <strong>Selecione</strong> um dos objetos desejados (verde).
                 <br />
-                Então, descreva o objeto usando quantos símbolos você quiser.
+                Então, <strong>descreva</strong> o objeto usando quantos símbolos você quiser.
                 <br />
-                Se você precisar inferir negação, coloque um traço horizontal em cima do símbolo.
+                Se você precisar inferir negação, coloque um traço horizontal em cima do{' '}
+                <span style={{ textDecoration: 'overline' }}>símbolo</span>.
                 <br />
-                Se você precisa inferir ênfase, coloque um traço horizontal embaixo do símbolo.
+                Se você precisa inferir ênfase, coloque um traço horizontal embaixo do{' '}
+                <span style={{ textDecoration: 'underline' }}>símbolo</span>.
               </>
             }
             en={
               <>
                 <strong>Select</strong> one of the desired objects (green).
                 <br />
-                Then, describe the object using as many symbols you wish.
+                Then, <strong>describe</strong> the object using as many symbols you wish.
                 <br />
-                If you need to infer negation or the contrary, draw an horizontal line on top of the symbol.
+                If you need to infer negation or the contrary, draw an horizontal line on top of the{' '}
+                <span style={{ textDecoration: 'overline' }}>symbol</span>.
                 <br />
-                If you need to infer emphasis, draw an horizontal line below the symbol.
+                If you need to infer emphasis, draw an horizontal line below the{' '}
+                <span style={{ textDecoration: 'underline' }}>symbol</span>.
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <AlienWritingBoard
           onSubmit={(alienRequest) => onSubmitAlienRequest({ alienRequest, intention })}

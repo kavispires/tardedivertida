@@ -33,7 +33,7 @@ export function SelectableObjectsGrid({
 
   return (
     <Space direction="vertical">
-      <Title level={3} size="xx-small">
+      <Title level={3} size="xx-small" white>
         <Translate pt="Itens" en="Items" />
       </Title>
       <div className="objects-grid">

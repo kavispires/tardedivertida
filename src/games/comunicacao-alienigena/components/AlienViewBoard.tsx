@@ -9,9 +9,10 @@ type AlienViewBoardProps = {
   request: string | string[];
   isAlienBot?: boolean;
   size?: 'normal' | 'small';
+  className?: string;
 };
 
-export function AlienViewBoard({ request, isAlienBot, size }: AlienViewBoardProps) {
+export function AlienViewBoard({ request, isAlienBot, size, className }: AlienViewBoardProps) {
   const width = size === 'small' ? ALIEN_CANVAS.WIDTH / 2 : ALIEN_CANVAS.WIDTH;
   const height = size === 'small' ? ALIEN_CANVAS.HEIGHT / 2 : ALIEN_CANVAS.HEIGHT;
 
@@ -19,7 +20,7 @@ export function AlienViewBoard({ request, isAlienBot, size }: AlienViewBoardProp
     if (typeof request === 'string') {
       return (
         <div
-          className="alien-canvas alien-canvas--small alien-canvas--bot"
+          className={clsx('alien-canvas alien-canvas--small alien-canvas--bot', className)}
           style={{ width: `${width}px`, height: `${height}px` }}
         >
           <SignCard id={`${request}`} width={75} className="transparent" />
@@ -29,7 +30,7 @@ export function AlienViewBoard({ request, isAlienBot, size }: AlienViewBoardProp
 
     return (
       <div
-        className="alien-canvas alien-canvas--small alien-canvas--bot"
+        className={clsx('alien-canvas alien-canvas--small alien-canvas--bot', className)}
         style={{ width: `${width}px`, height: `${height}px` }}
       >
         {request.map((entry) => {
@@ -56,7 +57,7 @@ export function AlienViewBoard({ request, isAlienBot, size }: AlienViewBoardProp
       height={height}
       viewBox={`0 0 ${ALIEN_CANVAS.WIDTH} ${ALIEN_CANVAS.HEIGHT}`}
       strokeWidth="large"
-      className="alien-canvas alien-canvas--small"
+      className={clsx('alien-canvas alien-canvas--small', className)}
     />
   );
 }

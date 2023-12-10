@@ -5,6 +5,7 @@ import { Typography, theme } from 'antd';
 import {
   AlertFilled,
   BulbFilled,
+  ClockCircleFilled,
   ExclamationCircleFilled,
   MessageFilled,
   PlayCircleFilled,
@@ -38,7 +39,7 @@ type RuleInstructionsProps = {
    * Lore is used for story elements
    * Score for result points (not rule)
    */
-  type: 'rule' | 'action' | 'event' | 'alert' | 'lore' | 'tip' | 'scoring';
+  type: 'rule' | 'action' | 'event' | 'alert' | 'lore' | 'tip' | 'scoring' | 'wait';
   /**
    * Optional sound effect played when the component is rendered
    */
@@ -67,6 +68,7 @@ export const RuleInstruction = ({
     rule: <ReadFilled />,
     tip: <BulbFilled />,
     scoring: <StarFilled />,
+    wait: <ClockCircleFilled />,
   }[type];
 
   const animationClass = {
@@ -77,6 +79,7 @@ export const RuleInstruction = ({
     rule: getAnimationClass('pulse'),
     tip: getAnimationClass('pulse'),
     scoring: getAnimationClass('pulse'),
+    wait: getAnimationClass('pulse'),
   }[type];
 
   const { token } = theme.useToken();

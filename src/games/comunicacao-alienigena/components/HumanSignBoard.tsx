@@ -29,7 +29,7 @@ export function HumanSignBoard({ signs }: HumanSignBoardProps) {
 
   return (
     <Space direction="vertical">
-      <Title level={3} size="xx-small">
+      <Title level={3} size="xx-small" white>
         <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
         <Popover
           content={

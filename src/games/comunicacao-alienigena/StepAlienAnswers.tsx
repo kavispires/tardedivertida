@@ -4,10 +4,10 @@ import { Button, Space } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
@@ -65,7 +65,7 @@ export function StepAlienAnswers({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate
           pt={
             <>
@@ -84,7 +84,7 @@ export function StepAlienAnswers({
 
       {isAlienBot && <BotPopupRule />}
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -99,7 +99,7 @@ export function StepAlienAnswers({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container" wrap>
         {currentInquiry.map((itemId) => (
@@ -109,7 +109,7 @@ export function StepAlienAnswers({
 
       <ViewIf condition={!Boolean(alienResponse)}>
         <AlienContent user={user}>
-          <Instruction contained>
+          <RuleInstruction type="action">
             <Translate
               pt={
                 <>
@@ -124,7 +124,7 @@ export function StepAlienAnswers({
                 </>
               }
             />
-          </Instruction>
+          </RuleInstruction>
           <AlienWritingBoard
             onSubmit={(alienResponse) => onSubmitAlienResponse({ alienResponse })}
             disabled={isLoading}
@@ -133,11 +133,15 @@ export function StepAlienAnswers({
       </ViewIf>
 
       <ViewIf condition={Boolean(alienResponse)}>
-        <Instruction contained>
+        <RuleInstruction type="event">
           <Translate pt={<>O Alienígena respondeu:</>} en={<>The Alien answered:</>} />
-        </Instruction>
+        </RuleInstruction>
 
-        <AlienViewBoard request={alienResponse!} isAlienBot={isAlienBot} />
+        <AlienViewBoard
+          request={alienResponse!}
+          isAlienBot={isAlienBot}
+          className={getAnimationClass('fadeIn')}
+        />
 
         <HumanContent user={user}>
           <Space className="space-container">
