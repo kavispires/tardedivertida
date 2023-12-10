@@ -135,6 +135,8 @@ const PRIORITY_ORDER = [
   'old',
   'flat',
   'soft',
+  'personal',
+  'holdable',
   'singular',
   'heavy',
   'big',

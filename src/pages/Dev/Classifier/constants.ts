@@ -35,6 +35,8 @@ export const ATTRIBUTES = {
   warm: { id: 'warm', name: { en: 'Warm', pt: 'Quente' } },
   weapon: { id: 'weapon', name: { en: 'Weapon', pt: 'Arma' } },
   // hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
+  holdable: { id: 'holdable', name: { en: 'Holdable', pt: 'Segurável' } }, // Newest
+  personal: { id: 'personal', name: { en: 'Personal', pt: 'Pessoal' } }, // Newest
 };
 
 export const FIRST_ID = '1';
