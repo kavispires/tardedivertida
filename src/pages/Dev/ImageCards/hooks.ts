@@ -2,7 +2,7 @@ import { cloneDeep, merge, padStart, random } from 'lodash';
 import { useEffect, useState } from 'react';
 import { CARDS_PER_DECK, DEFAULT_ENTRY, TOTAL_DECKS } from './constants';
 import { FirebaseImageCardLibrary, ImageCardData, ImageCardRelationship } from './types';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
 import { firestore } from 'services/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { App } from 'antd';
@@ -153,11 +153,21 @@ export function useRandomCards(
   const [cardNumberB, setCardNumberB] = useState(getRandomCardNumber());
   const cardAId = `td-d${deckA}-${cardNumberA}`;
   const cardBId = `td-d${deckB}-${cardNumberB}`;
+  const [unrelatedCount, setUnrelatedCount] = useState(0);
 
   const cardA = cardData?.[cardAId] ?? [];
   const cardB = cardData?.[cardBId] ?? [];
 
+  const onRandomCards = () => {
+    setUnrelatedCount(0);
+    setDeckA(getRandomDeck());
+    setCardNumberA(getRandomCardNumber());
+    setDeckB(getRandomDeck());
+    setCardNumberB(getRandomCardNumber());
+  };
+
   const relate = () => {
+    setUnrelatedCount(0);
     cardA.push(cardBId);
     cardData[cardAId] = cardA;
     cardB.push(cardAId);
@@ -170,20 +180,50 @@ export function useRandomCards(
   };
 
   const unrelate = () => {
-    setDeckB(getRandomDeck());
-    setCardNumberB(getRandomCardNumber());
+    if (unrelatedCount >= 10) {
+      setUnrelatedCount(0);
+      onRandomCards();
+    } else {
+      setUnrelatedCount((ps) => ps + 1);
+      setDeckB(getRandomDeck());
+      setCardNumberB(getRandomCardNumber());
+    }
   };
+
+  useEffect(() => {
+    if (cardAId === cardBId) {
+      setCardNumberB(getRandomCardNumber());
+    }
+  }, [cardAId, cardBId]);
 
   return {
     cardAId,
+    cardA,
     cardBId,
+    cardB,
     relate,
     unrelate,
     areRelated: cardA.includes(cardBId),
+    onRandomCards,
   };
 }
 
-export function useImageCardsRelationshipData() {
+export type UseImageCardsRelationshipDataReturnValue = {
+  data: ImageCardRelationship;
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  hasData: boolean;
+  refetch: () => void;
+  isSaving: boolean;
+  isMutationError: boolean;
+  isSaved: boolean;
+  save: UseMutateFunction<{}, unknown, ImageCardRelationship, unknown>;
+  setDirty: (value: React.SetStateAction<boolean>) => void;
+  isDirty: boolean;
+};
+
+export function useImageCardsRelationshipData(): UseImageCardsRelationshipDataReturnValue {
   const [isDirty, setDirty] = useState(false);
   const queryKey = ['data/imageCardsRelationships'];
   const queryClient = useQueryClient();
