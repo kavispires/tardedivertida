@@ -2,6 +2,16 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
+
+  &__image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
 
   &__data {
     min-width: 300px;

@@ -36,9 +36,7 @@ const ImageCardsCategorizer = lazy(
 );
 const ImageCardsRelationships = lazy(
   () =>
-    import(
-      'pages/Dev/ImageCards/ImageCardsRelationships' /* webpackChunkName: "page-dev-image-cards-relationships" */
-    )
+    import('pages/Dev/ImageCards/ImageCardsPage' /* webpackChunkName: "page-dev-image-cards-relationships" */)
 );
 
 const LazyMe = () => (
