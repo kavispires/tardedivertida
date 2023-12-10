@@ -83,7 +83,7 @@ export const ImageCard = ({
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         preview={
-          isBlurred
+          isBlurred || !preview
             ? false
             : {
                 ...previewConfig,
