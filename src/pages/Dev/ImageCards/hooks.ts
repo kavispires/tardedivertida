@@ -211,6 +211,13 @@ export function useRandomCards(
   };
 }
 
+type Stats = {
+  total: number;
+  overdone: number;
+  complete: number;
+  single: number;
+};
+
 export type UseImageCardsRelationshipDataReturnValue = {
   data: ImageCardRelationship;
   isLoading: boolean;
@@ -224,6 +231,7 @@ export type UseImageCardsRelationshipDataReturnValue = {
   save: UseMutateFunction<{}, unknown, ImageCardRelationship, unknown>;
   setDirty: (value: React.SetStateAction<boolean>) => void;
   isDirty: boolean;
+  stats: Stats;
 };
 
 export function useImageCardsRelationshipData(): UseImageCardsRelationshipDataReturnValue {
@@ -231,21 +239,24 @@ export function useImageCardsRelationshipData(): UseImageCardsRelationshipDataRe
   const queryKey = ['data/imageCardsRelationships'];
   const queryClient = useQueryClient();
   const { notification } = App.useApp();
+  const [stats, setStats] = useState<Stats>({ total: 0, overdone: 0, complete: 0, single: 0 });
 
   const {
     data = {},
     isLoading,
     isSuccess,
     isError,
+    isFetched,
+    isRefetching,
     refetch,
-  } = useQuery<any>({
+  } = useQuery<Record<string, string[]>>({
     queryKey,
     queryFn: async () => {
       const docRef = doc(firestore, 'data/imageCardsRelationships');
       const querySnapshot = await getDoc(docRef);
       return (querySnapshot.data() ?? {}) as ImageCardRelationship;
     },
-    onSuccess: () => {
+    onSuccess: (a) => {
       notification.info({
         message: 'Data loaded',
         placement: 'bottomLeft',
@@ -283,6 +294,29 @@ export function useImageCardsRelationshipData(): UseImageCardsRelationshipDataRe
     },
   });
 
+  console.log(data);
+
+  useEffect(() => {
+    if (!isRefetching && isFetched) {
+      const total = Object.keys(data).length;
+      let overdone = 0;
+      let complete = 0;
+      let single = 0;
+      Object.values(data).forEach((v) => {
+        if (v.length > 8) {
+          overdone += 1;
+        }
+        if (v.length === 1) {
+          single += 1;
+        }
+        if (v.length > 2) {
+          complete += 1;
+        }
+      });
+      setStats({ total, overdone, complete, single });
+    }
+  }, [isFetched, isRefetching]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return {
     data,
     isLoading,
@@ -296,15 +330,21 @@ export function useImageCardsRelationshipData(): UseImageCardsRelationshipDataRe
     save,
     setDirty,
     isDirty,
+    stats,
   };
 }
 
 export function useRandomGroups(
   cardData: ImageCardRelationship,
-  setDirty: (value: React.SetStateAction<boolean>) => void
+  setDirty: (value: React.SetStateAction<boolean>) => void,
+  sampleSize: number,
+  tagThreshold: number
 ) {
   const [cardIds, setCardIds] = useState<string[]>([]);
   const [cards, setCards] = useState<string[][]>([]);
+  const [cycledCards, setCycleCards] = useState<string[]>([]);
+  const [cycles, setCycles] = useState(0);
+  const [filterUseCycles, setFIlterUseCycles] = useState(true);
 
   const [selection, setSelection] = useState<string[]>([]);
 
@@ -313,16 +353,28 @@ export function useRandomGroups(
   };
 
   const onRandomCards = () => {
-    setSelection([]);
-    const ids: string[] = [];
-    while (ids.length < 9) {
+    // setSelection([]);
+    const ids: string[] = [...selection];
+    let cycleCount = 0;
+    const cycledCardsSample = cycledCards.length < 2000 ? cycledCards : [];
+
+    // Avoid infinite loop failsafe
+    let tries = 0;
+    while (tries < 400 && ids.length < sampleSize) {
       const id = getRandomCardId();
-      if (!ids.includes(id)) {
+      const card = cardData[id] ?? [];
+      const isNew = tagThreshold > 0 ? card.length < tagThreshold : true;
+      const isCycled = filterUseCycles ? cycledCardsSample.includes(id) : false;
+      if (!ids.includes(id) && !isCycled && isNew) {
         ids.push(id);
+        cycleCount += 1;
       }
+      tries += 1;
     }
     setCardIds(ids);
+    setCycleCards((pv) => [...pv, ...ids]);
     updateCards(ids);
+    setCycles((ps) => ps + cycleCount);
   };
 
   // On Load get sample of cards
@@ -332,6 +384,9 @@ export function useRandomGroups(
     }
   }, [cardIds]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  /**
+   * Selects or deselects a card
+   */
   const onSelect = (id: string) => {
     setSelection((ps) => {
       const copy = [...ps];
@@ -345,6 +400,9 @@ export function useRandomGroups(
     });
   };
 
+  /**
+   * Relates all selected cards in the selection array
+   */
   const relate = () => {
     selection.forEach((id) => {
       const card = cardData[id] ?? [];
@@ -355,6 +413,19 @@ export function useRandomGroups(
     setDirty(true);
     setSelection([]);
     updateCards();
+    setCycleCards([]);
+    setCycles(0);
+  };
+
+  /**
+   * Deselects all cards
+   */
+  const deselectAll = () => {
+    setSelection([]);
+  };
+
+  const toggleFilterUseCycles = () => {
+    setFIlterUseCycles((ps) => !ps);
   };
 
   return {
@@ -364,5 +435,11 @@ export function useRandomGroups(
     onSelect,
     relate,
     nextSet: onRandomCards,
+    deselectAll,
+    cycles,
+    filters: {
+      useCycles: filterUseCycles,
+      toggleUseCycles: toggleFilterUseCycles,
+    },
   };
 }
