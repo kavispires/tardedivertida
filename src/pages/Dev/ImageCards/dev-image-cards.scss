@@ -1,3 +1,7 @@
+.image-card-categorizer-card {
+  width: 100%;
+}
+
 .image-card-card {
   display: flex;
   flex-wrap: wrap;
@@ -35,8 +39,16 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  &__active {
-    outline: 3px solid hotPink;
+  &__button {
+    background: #cccccc;
+
+    &:hover {
+      transform: none !important;
+    }
+
+    &--active {
+      outline: 3px solid hotPink;
+    }
   }
 }
 
@@ -44,5 +56,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
+}
+
+.sample-size-select {
+  min-width: 10ch;
 }
