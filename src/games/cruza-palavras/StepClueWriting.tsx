@@ -2,7 +2,7 @@
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { WordGrid } from './components/WordGrid';
@@ -33,7 +33,7 @@ export function StepClueWriting({ grid, user, onSubmitClue, players, announcemen
 
       <PopoverRule content={<WritingCluesRule playerCount={Object.keys(players).length} />} />
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -54,7 +54,7 @@ export function StepClueWriting({ grid, user, onSubmitClue, players, announcemen
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <WordGrid
         grid={grid}

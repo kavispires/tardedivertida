@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 //Design Resources
 import { Space, Table } from 'antd';
-import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined, WarningOutlined } from '@ant-design/icons';
+import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined } from '@ant-design/icons';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -10,7 +10,7 @@ import { AVATARS as avatars } from 'utils/avatars';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { WordGrid } from './components/WordGrid';
@@ -233,8 +233,7 @@ export function StepReveal({
       <PopoverRule content={<ScoringRule playerCount={playerCount} />} />
 
       {Boolean(whoGotNoPoints.length) && (
-        <Instruction contained>
-          <WarningOutlined style={{ color: 'red' }} />
+        <RuleInstruction type="alert">
           <Translate
             pt={
               <>
@@ -251,7 +250,7 @@ export function StepReveal({
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
       )}
 
       <WordGrid
