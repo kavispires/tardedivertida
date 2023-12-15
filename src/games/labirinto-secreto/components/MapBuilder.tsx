@@ -4,8 +4,7 @@ import { Button, Space, Tooltip } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
-import { getAnimationClass, getColorFromLetter } from 'utils/helpers';
-import { LETTERS } from 'utils/constants';
+import { getAnimationClass } from 'utils/helpers';
 import { getPossibleTreeIds } from '../utils/helpers';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
@@ -172,9 +171,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
             disabled={usedCards.includes(card.id) || currentIndex >= map.length}
             className="map-builder__card-button"
           >
-            <Card header={LETTERS[index]} color={getColorFromLetter(LETTERS[index])}>
-              {card.text}
-            </Card>
+            <Card hideHeader>{card.text}</Card>
           </TransparentButton>
         ))}
         <Button
