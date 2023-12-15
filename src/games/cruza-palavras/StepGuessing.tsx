@@ -7,7 +7,7 @@ import { shuffle } from 'utils/helpers';
 import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { WordGrid } from './components/WordGrid';
 import { SelectableCell } from './components/SelectableCell';
@@ -120,12 +120,13 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, announcement 
       </Title>
 
       <Clues clues={clues} onSelectClue={onSelectClue} active={active} guesses={guesses} />
-      <Instruction contained>
+
+      <RuleInstruction type="action">
         <Translate
           pt="Clique em uma dica acima e em uma célula abaixo, ou vice-versa."
           en="Click on a clue above then on a cell below, or vice-versa."
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container" align="center">
         <Button
