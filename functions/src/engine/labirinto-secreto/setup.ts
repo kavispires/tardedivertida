@@ -47,7 +47,10 @@ export const prepareSetupPhase = async (
   const { gameOrder } = utils.players.buildGameOrder(players);
 
   // const achievements = utils.achievements.setup(players, store, {
-  //   // matches: 0,
+  //   adjectives: 0,
+  //   complete: 0,
+  //   distance: 0,
+  //   guiding: 0,
   // });
 
   utils.players.addPropertiesToPlayers(players, { history: {} });

@@ -3,7 +3,7 @@ import { Button, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { VIPNextPhaseButton } from 'components/vip';
 
 type StepRankingProps = {
@@ -23,12 +23,12 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
         <Translate pt="Pontos por sua rota" en="Points for your route" />,
       ]}
     >
-      <Instruction contained>
+      <RuleInstruction type="event">
         <Translate
           pt="Não se preocupe se você ficou pra trás! o jogador mais a frente de cada rota, te gritou e você conseguiu encontrá-lo."
           en="Don't worry if you were left behind! The player furthest ahead on that route, call you and you caught up"
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>

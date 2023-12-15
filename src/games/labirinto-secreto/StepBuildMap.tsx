@@ -8,7 +8,7 @@ import { NoIcon } from 'icons/NoIcon';
 import { TreeIcon } from 'icons/TreeIcon';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Forest } from './components/Forest';
 import { CompassHighlight } from './components/Highlights';
@@ -49,7 +49,7 @@ export function StepBuildMap({
         )}
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -74,7 +74,7 @@ export function StepBuildMap({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Forest
         forest={forest}
@@ -85,7 +85,7 @@ export function StepBuildMap({
         playerMapping={playerMapping}
       />
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -118,7 +118,7 @@ export function StepBuildMap({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <MapBuilder user={user} forest={forest} onSubmitMap={onSubmitMap} />
     </Step>

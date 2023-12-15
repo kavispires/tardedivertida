@@ -1,6 +1,6 @@
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ClickableForest } from './components/ClickableForest';
 import { AvatarName } from 'components/avatars';
@@ -44,7 +44,7 @@ export function StepFollowPath({
         />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -75,7 +75,7 @@ export function StepFollowPath({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       {Boolean(forest) && activePlayer.map && (
         <ClickableForest

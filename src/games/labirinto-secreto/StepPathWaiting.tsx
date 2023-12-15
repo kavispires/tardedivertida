@@ -1,6 +1,6 @@
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Forest } from './components/Forest';
 import { MapHighlight, TreeHighlight } from './components/Highlights';
@@ -24,7 +24,7 @@ export function StepPathWaiting({ players, announcement, forest, activePlayer }:
         />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="wait">
         <Translate
           pt={
             <>
@@ -55,7 +55,7 @@ export function StepPathWaiting({ players, announcement, forest, activePlayer }:
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <PlayerMap map={activePlayer.map} />
 
