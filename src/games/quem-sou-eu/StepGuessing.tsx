@@ -14,7 +14,7 @@ import { getEntryId, sortPlayers } from 'utils/helpers';
 import { getRibbons, prepareGuesses } from './utils/helpers';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { CharacterCard } from 'components/cards/CharacterCard';
@@ -108,14 +108,30 @@ export function StepGuessing({
         <Translate pt={<>Pareie os cada personagem com um jogador</>} en={<>Pair player and characters</>} />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
-          pt={<>De acordo com a seleção de ícones de cada jogador, tente adivinhar todos os pares.</>}
-          en={<>Based on each player's glyphs selection, try to guess the pairs.</>}
+          pt={
+            <>
+              De acordo com a seleção de ícones de cada jogador, tente adivinhar todos os pares.
+              <br />
+              <strong>Clique</strong> em uma das barras de ícones então no personagem correspondente.
+              <br />
+              Para desfazer, basta selecionar normalmente que sua escolha era sobreposta.
+            </>
+          }
+          en={
+            <>
+              Based on each player's glyphs selection, try to guess the pairs.
+              <br />
+              <strong>Click</strong> on one of the glyph bars and then on the corresponding character.
+              <br />
+              To undo, just select normally that your choice was overridden.
+            </>
+          }
         />
         <br />
         <ScoringRules currentRound={round.current} />
-      </Instruction>
+      </RuleInstruction>
 
       <div className="q-voting-container">
         <div className="q-voting-characters">

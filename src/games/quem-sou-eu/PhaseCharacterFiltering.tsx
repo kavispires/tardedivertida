@@ -12,7 +12,6 @@ import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepSelectCharacters } from './StepSelectCharacters';
-import { CardHighlight } from 'components/metrics/CardHighlight';
 
 export function PhaseCharacterFiltering({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
@@ -29,16 +28,8 @@ export function PhaseCharacterFiltering({ players, state, info }: PhaseProps) {
     >
       <Instruction>
         <Translate
-          pt={
-            <>
-              Selecione <CardHighlight>6 cartas</CardHighlight> com personagens/pessoas que você conhece
-            </>
-          }
-          en={
-            <>
-              Select <CardHighlight>6 cards</CardHighlight> with characters/people you know
-            </>
-          }
+          pt={<>Selecione personagens/pessoas que você conhece</>}
+          en={<>Select characters/people you know</>}
         />
       </Instruction>
     </PhaseAnnouncement>

@@ -9,7 +9,7 @@ import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { mockSelectCharacters } from './utils/mock';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { CardHighlight } from 'components/metrics/CardHighlight';
@@ -57,24 +57,26 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
-              Não queremos que você receba uma carta que não conheça, então das cartas abaixo, selecione 6
-              para entrar no jogo.
+              <strong>Selecione</strong> 6 personagens/celebridades abaixo, dessas 5 serão usadas no jogo.
+              <br />
+              Essa etapa é necessária para que você não receba um personagem que não conheça.
             </>
           }
           en={
             <>
-              We don't want a card you don't know to be assigned to you, so from the cards below, select 6 to
-              be in the game.
+              <strong>Select</strong> 6 characters/celebrities below, 5 of them will be used in the game.
+              <br />
+              This step is necessary so that you don't receive a character you don't know.
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
-      <Space className="space-container" wrap>
+      <Space className="grid-container grid-template-6" wrap>
         {availableCharacters.map((character: ContenderCard) => (
           <TransparentButton
             key={character.id}
