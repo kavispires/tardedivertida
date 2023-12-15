@@ -3,7 +3,7 @@ import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AnswersGrid } from './components/Grid';
 import { TimedButton } from 'components/buttons';
@@ -30,9 +30,9 @@ export function StepResultGrid({
         <Translate pt={<>Resultado</>} en={<>Results</>} />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <ScoringRule />
-      </Instruction>
+      </RuleInstruction>
 
       <AnswersGrid grid={grid} answersGrid={answersGrid} players={players} />
 

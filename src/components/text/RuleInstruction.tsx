@@ -10,6 +10,7 @@ import {
   MessageFilled,
   PlayCircleFilled,
   ReadFilled,
+  RobotFilled,
   StarFilled,
 } from '@ant-design/icons';
 // Utils
@@ -37,9 +38,10 @@ type RuleInstructionsProps = {
    * Event is used when something happens like the result of an action or decision
    * Alert is used when something very important needs attention (constant animation)
    * Lore is used for story elements
-   * Score for result points (not rule)
+   * Scoring for result points (not rule)
+   * Wait for when the player must wait for something to happen
    */
-  type: 'rule' | 'action' | 'event' | 'alert' | 'lore' | 'tip' | 'scoring' | 'wait';
+  type: 'rule' | 'action' | 'event' | 'alert' | 'lore' | 'tip' | 'scoring' | 'wait' | 'bot';
   /**
    * Optional sound effect played when the component is rendered
    */
@@ -69,6 +71,7 @@ export const RuleInstruction = ({
     tip: <BulbFilled />,
     scoring: <StarFilled />,
     wait: <ClockCircleFilled />,
+    bot: <RobotFilled />,
   }[type];
 
   const animationClass = {
@@ -80,6 +83,7 @@ export const RuleInstruction = ({
     tip: getAnimationClass('pulse'),
     scoring: getAnimationClass('pulse'),
     wait: getAnimationClass('pulse'),
+    bot: getAnimationClass('pulse'),
   }[type];
 
   const { token } = theme.useToken();

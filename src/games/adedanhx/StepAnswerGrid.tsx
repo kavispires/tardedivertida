@@ -15,7 +15,7 @@ import { LockIcon } from 'icons/LockIcon';
 import { StopIcon } from 'icons/StopIcon';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
@@ -89,27 +89,28 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
 
       {stoppedBy && <StopAnnouncement stopper={players[stoppedBy]} onSubmit={onSubmit} />}
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
-              Faça na ordem que achar melhor e não esqueça de aperta do botão de cadeado{' '}
-              <IconAvatar size="small" icon={<LockIcon />} /> a cada resposta para que seu tempo seja gravado
-              corretamente.
+              <strong>Escreva</strong> na ordem que achar melhor e não esqueça de <strong>apertar</strong> do
+              botão de cadeado <IconAvatar size="small" icon={<LockIcon />} /> a cada resposta para que seu
+              tempo seja gravado corretamente.
               <br />
               Você tem <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutos</TimeHighlight>!
             </>
           }
           en={
             <>
-              Write it in the order you think is best and don't forget to press the lock button{' '}
-              <IconAvatar size="small" icon={<LockIcon />} /> after each answer.
+              <strong>Write</strong> tne the answers in the order you think is best and don't forget to{' '}
+              <strong>press</strong> the lock button <IconAvatar size="small" icon={<LockIcon />} /> after
+              each answer.
               <br />
               You have <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutes</TimeHighlight>!
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Grid grid={grid} answers={answers} updateAnswer={updateAnswer} toggleLock={toggleLock} />
 
