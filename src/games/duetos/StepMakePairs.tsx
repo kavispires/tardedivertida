@@ -83,12 +83,20 @@ export function StepMakePairs({ players, user, announcement, pool, onSubmitPairs
             <>
               Você ganha <PointsHighlight>pontos</PointsHighlight> por cada jogador que fez o mesmo par que
               você!
+              <br />
+              <strong>Clique</strong> em um item para adicioná-lo ao par.
+              <br />
+              Para remover, basta clicar no item novamente.
             </>
           }
           en={
             <>
               You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair than
               you!
+              <br />
+              <strong>Click</strong> on an item to add it to the pair.
+              <br />
+              To remove, just click on the item again.
             </>
           }
         />
