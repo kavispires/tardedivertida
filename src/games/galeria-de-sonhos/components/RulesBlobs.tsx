@@ -1,11 +1,11 @@
 import { AvatarName } from 'components/avatars';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { BotHighlight } from 'components/metrics/BotHighlight';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Instruction } from 'components/text';
+import { Instruction, RuleInstruction } from 'components/text';
 
 type WordSelectionRulesProps = {
   scout: GamePlayer;
@@ -71,28 +71,33 @@ export function GeneralRules() {
 
 export function DreamSelectionRules({ contained = false, hardModeEnabled = false }) {
   const minimumDreams = hardModeEnabled ? 4 : 1;
-  return (
-    <Instruction contained={contained}>
-      <Translate
-        pt={
-          <>
-            Selecione sonhos (cartas) que você acha que se relacionam com a palavra-tema da rodada.
-            <br />
-            Você deve selecionar pelo menos <CardHighlight>{minimumDreams}</CardHighlight> e no máximo{' '}
-            <CardHighlight>10</CardHighlight>.
-          </>
-        }
-        en={
-          <>
-            Now select cards that you think match the round's card.
-            <br />
-            You must select at least <CardHighlight>{minimumDreams}</CardHighlight> card and a maximum of{' '}
-            <CardHighlight>10</CardHighlight>.
-          </>
-        }
-      />
-    </Instruction>
+
+  const rules = (
+    <Translate
+      pt={
+        <>
+          Selecione sonhos (cartas) que você acha que se relacionam com a palavra-tema da rodada.
+          <br />
+          Você deve selecionar pelo menos <CardHighlight>{minimumDreams}</CardHighlight> e no máximo{' '}
+          <CardHighlight>10</CardHighlight>.
+        </>
+      }
+      en={
+        <>
+          Now select cards that you think match the round's card.
+          <br />
+          You must select at least <CardHighlight>{minimumDreams}</CardHighlight> card and a maximum of{' '}
+          <CardHighlight>10</CardHighlight>.
+        </>
+      }
+    />
   );
+
+  if (contained) {
+    return <RuleInstruction type="action">{rules}</RuleInstruction>;
+  }
+
+  return <Instruction>{rules}</Instruction>;
 }
 
 export function DreamSelectionExtendedRules() {
@@ -128,7 +133,7 @@ export function DreamSelectionExtendedRules() {
 
 export function CardPlayRules() {
   return (
-    <Instruction contained>
+    <Instruction>
       <Translate
         pt={
           <>
@@ -186,7 +191,7 @@ export function BotsRules() {
         }
         en={
           <>
-            In a game with bos, the <BotHighlight>3</BotHighlight> bots are added to the game.
+            In a game with bots, the <BotHighlight>3</BotHighlight> bots are added to the game.
             <br />
             Before the Dream Bingo phase, the three bots select cards based on a pre-determined logic:
             <br />
@@ -200,5 +205,49 @@ export function BotsRules() {
         }
       />
     </Instruction>
+  );
+}
+
+type DreamSelectionRulesProps = {
+  round: GameRound;
+};
+
+export function RowSwapInstruction({ round }: DreamSelectionRulesProps) {
+  const changedRows: Record<string, DualLanguageValue> = {
+    1: {
+      pt: '3ª',
+      en: '3rd',
+    },
+    2: {
+      pt: '2ª',
+      en: '2nd',
+    },
+    3: {
+      pt: '1ª',
+      en: '1st',
+    },
+  };
+
+  if (round.current > 3) {
+    return <></>;
+  }
+
+  return (
+    <RuleInstruction type="event">
+      <Translate
+        pt={
+          <>
+            <strong>Atenção!</strong> A <DualTranslate>{changedRows[round.current]}</DualTranslate> linha de
+            cartas sera trocada para a próxima rodada.
+          </>
+        }
+        en={
+          <>
+            <strong>Attention!</strong> The <DualTranslate>{changedRows[round.current]}</DualTranslate> row of
+            cards will be swapped for the next round.
+          </>
+        }
+      />
+    </RuleInstruction>
   );
 }

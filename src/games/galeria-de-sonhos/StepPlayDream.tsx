@@ -11,7 +11,7 @@ import { BotsRules, CardPlayRules } from './components/RulesBlobs';
 import { PlayTable } from './components/PlayTable';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Card } from 'components/cards';
 import { AvatarName } from 'components/avatars';
@@ -20,6 +20,7 @@ import { TurnOrder } from 'components/players';
 import { PlayersDreamsCount } from './components/PlayersDreamsCount';
 import { FixedMenuButton } from 'components/buttons';
 import { RobotOutlined } from '@ant-design/icons';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepDreamsSelectionProps = {
   table: GImageCard[];
@@ -88,15 +89,25 @@ export function StepPlayDream({
       <PlayersDreamsCount players={players} playerInNightmareId={playerInNightmareId} />
 
       {Boolean(user.fallen) && (
-        <Instruction contained>
+        <RuleInstruction type="event">
           <Translate
-            pt="Você estava em apuros e não conseguiu dar match em uma de suas cartas, então perdeu um ponto por carta que você deu match."
-            en="You were in danger and didn't get a match in one of your cards. You lost 1 point per scored card."
+            pt={
+              <>
+                Você estava em apuros e não conseguiu dar match em uma de suas cartas, então perdeu{' '}
+                <PointsHighlight type="negative">1 ponto</PointsHighlight> por carta que você deu match.
+              </>
+            }
+            en={
+              <>
+                You were in danger and didn't get a match in one of your cards. You lost{' '}
+                <PointsHighlight type="negative">1 point</PointsHighlight> per scored card.
+              </>
+            }
           />
-        </Instruction>
+        </RuleInstruction>
       )}
 
-      <Instruction contained>
+      <RuleInstruction type={isActivePlayer ? 'action' : 'wait'}>
         {isActivePlayer ? (
           <Translate
             pt="Selecione a carta-sonho que você acha que vai dar match com pelo menos um jogador!"
@@ -118,7 +129,7 @@ export function StepPlayDream({
             }
           />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <PopoverRule content={<CardPlayRules />} />
 
