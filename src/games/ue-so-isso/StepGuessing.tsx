@@ -5,10 +5,11 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Guess } from './components/Guess';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepGuessingProps = {
   guesser: GamePlayer;
@@ -29,18 +30,42 @@ export function StepGuessing({
       <Title>
         <Translate pt="Hora de brilhar" en="Time to shine" />, <AvatarName player={guesser} />!
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt="Você tem uma única chance de adivinhar a palavra secreta!"
           en="You have a single chance to guess the secret word!"
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Card word={<QuestionCircleOutlined />} />
 
-      <Instruction contained>
-        <Translate pt="Escreva seu palpite no campo abaixo" en="Write your guess below" />
-      </Instruction>
+      <RuleInstruction type="action">
+        <Translate
+          pt={
+            <>
+              <strong>Escreva</strong> sua adivinhação abaixo.
+              <br />
+              Se você acertar, o grupo ganha <PointsHighlight type="positive">2 pontos</PointsHighlight> mas
+              se você errar, o grupo perde <PointsHighlight type="negative">2 pontos</PointsHighlight>.
+              <br />
+              Você pode pular se não estiver se sentindo seguro.
+            </>
+          }
+          en={
+            <>
+              <strong>Write</strong> your guess below.
+              <br />
+              If you get it right, the group wins <PointsHighlight type="positive">
+                2 points
+              </PointsHighlight>{' '}
+              but if you get it wrong, the group loses{' '}
+              <PointsHighlight type="negative">2 points</PointsHighlight>.
+              <br />
+              You can skip if you're not feeling confident.
+            </>
+          }
+        />
+      </RuleInstruction>
 
       <Guess onSubmitOutcome={onSubmitOutcome} onSendGuess={onSendGuess} />
 
@@ -50,12 +75,12 @@ export function StepGuessing({
           return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
         })}
         {validSuggestions.length === 0 && (
-          <Instruction contained>
+          <RuleInstruction type="alert">
             <Translate
               pt="Seus companheiros eliminaram todas as dicas, super burros..."
               en="All clues were eliminated! Good luck..."
             />
-          </Instruction>
+          </RuleInstruction>
         )}
       </Space>
     </Step>

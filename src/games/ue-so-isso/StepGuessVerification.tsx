@@ -11,7 +11,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { ViewIf } from 'components/views';
@@ -65,7 +65,7 @@ export function StepGuessVerification({
 
       <Card word={secretWord.text} />
 
-      <Instruction contained>
+      <RuleInstruction type="alert">
         <Translate
           pt={
             <>
@@ -82,7 +82,7 @@ export function StepGuessVerification({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="u-word-guess-phase__suggestions space-container">
         {validSuggestions.map((suggestionEntry, index) => {
@@ -92,6 +92,9 @@ export function StepGuessVerification({
       </Space>
 
       <ViewIf condition={isUserTheController}>
+        <RuleInstruction type="action">
+          <Translate pt="Aperte o botão correspondente" en="Press the corresponding button" />:
+        </RuleInstruction>
         <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
       </ViewIf>
 

@@ -5,7 +5,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Step } from 'components/steps';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -71,7 +71,7 @@ export function StepResult({
 
       <GroupProgress group={group} />
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -86,7 +86,7 @@ export function StepResult({
           }
           en={
             <>
-              Remember that the gol is to get <PointsHighlight>7 points</PointsHighlight> within 10 rounds,
+              Remember that the goal is to get <PointsHighlight>7 points</PointsHighlight> within 10 rounds,
               but you immediately lose if you get
               <WrongGuessHighlight>3 errors</WrongGuessHighlight>.
               <br />
@@ -96,9 +96,9 @@ export function StepResult({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
-      <Title size="x-small" className="margin">
+      <Title size="xx-small" className="margin">
         <Translate pt="Dicas válidas" en="Valid clues" />
       </Title>
 

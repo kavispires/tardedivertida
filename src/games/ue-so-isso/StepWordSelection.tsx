@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
@@ -64,20 +64,24 @@ export function StepWordSelection({
         />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
-              A palavra com mais votos será escolhida para essa rodada. Você pode selecionar quantas quiser!
+              A palavra com mais votos será escolhida para essa rodada.
+              <br />
+              Você pode selecionar quantas quiser!
             </>
           }
           en={
             <>
-              The word with the most votes will be selected for the round. You can choose as many as you wish!
+              The word with the most votes will be selected for the round.
+              <br />
+              You can choose as many as you wish!
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <ul className="u-word-card">
         {words.map((word) => {
