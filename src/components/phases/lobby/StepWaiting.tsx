@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 // Ant Design Resources
@@ -9,6 +10,8 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 // Images
 import avatars from 'assets/images/avatars.svg';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Services
 import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
 // Components
@@ -78,7 +81,9 @@ export function StepWaiting({ players }: StepWaitingProps) {
 
   return (
     <>
-      <h1 className="lobby-step__title">{username || translate('Fulano', 'Unknown')}</h1>
+      <h1 className={clsx('lobby-step__title', getAnimationClass('tada'))}>
+        {username || translate('Fulano', 'Unknown')}
+      </h1>
 
       <Space className="space-container">
         <svg viewBox="0 0 100 100" className="lobby-avatar">
