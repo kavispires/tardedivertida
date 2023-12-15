@@ -14,7 +14,7 @@ import { YesIcon } from 'icons/YesIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { Table } from './components/Table';
@@ -76,7 +76,7 @@ export function StepSelectGlyphs({
         />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -98,7 +98,7 @@ export function StepSelectGlyphs({
             </>
           }
         />
-        {roundType === 'SHOW' ? (
+        {roundType === 'SHOW' && (
           <Translate
             pt={
               <>
@@ -115,7 +115,11 @@ export function StepSelectGlyphs({
               </>
             }
           />
-        ) : (
+        )}
+      </RuleInstruction>
+
+      {roundType !== 'SHOW' && (
+        <RuleInstruction type="event">
           <Translate
             pt={
               <>
@@ -130,8 +134,8 @@ export function StepSelectGlyphs({
               </>
             }
           />
-        )}
-      </Instruction>
+        </RuleInstruction>
+      )}
 
       <Table
         characters={characters}

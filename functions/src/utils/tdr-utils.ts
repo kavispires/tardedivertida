@@ -111,7 +111,7 @@ export const getContenders = async (
 
   // Get only contenders that match the language selected
   const languageContenders = Object.values(contendersResponse)
-    .filter((c) => !c.exclusivity || c.exclusivity === language)
+    .filter((c) => (c.exclusivity ? c.exclusivity === language : true))
     .reduce((acc: Collection<ContenderCard>, entry) => {
       acc[entry.id] = entry;
       return acc;

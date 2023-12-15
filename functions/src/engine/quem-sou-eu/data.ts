@@ -1,6 +1,6 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, DATA_DOCUMENTS } from '../../utils/constants';
-import { CHARACTERS_PER_PLAYER } from './constants';
+import { CHARACTERS_PER_PLAYER, EXTRA_CHARACTERS, MINIMUM_CHARACTERS } from './constants';
 // Type
 import { ResourceData } from './types';
 // Helpers
@@ -19,7 +19,8 @@ export const getResourceData = async (
   playerCount: number,
   allowNSFW: boolean
 ): Promise<ResourceData> => {
-  const quantityNeeded = playerCount * CHARACTERS_PER_PLAYER;
+  const quantityNeeded =
+    (Math.max(playerCount, MINIMUM_CHARACTERS) + EXTRA_CHARACTERS) * CHARACTERS_PER_PLAYER;
 
   const characters = await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);
 
