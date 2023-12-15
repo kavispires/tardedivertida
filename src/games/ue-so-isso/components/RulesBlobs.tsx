@@ -1,19 +1,16 @@
-// Ant Design Resources
-import { ExclamationCircleOutlined } from '@ant-design/icons';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { Instruction, RuleInstruction } from 'components/text';
 
 export function WritingRules(): JSX.Element {
   return (
-    <Instruction contained>
+    <RuleInstruction type="action">
       <Translate
         pt={
           <>
             Hora de escrever uma dica para a palavra secreta!
-            <br />
-            A dica tem que ser uma palavra única que ajude o adivinhador... adivinhar.
+            <br />A dica tem que ser uma <strong>palavra única</strong> que ajude o adivinhador... adivinhar.
             <br />
             É proibido usar derivados, partes da palavra ou traduções em outras línguas.
             <br />E não seja tão óbvio, já que dicas similares são eliminadas!
@@ -23,7 +20,7 @@ export function WritingRules(): JSX.Element {
           <>
             Time to write a clue for the secret word!
             <br />
-            The clue MUST be a single word or compound word that helps the guesser... guess.
+            The clue MUST be a <strong>single word or compound word</strong> that helps the guesser... guess.
             <br />
             You can't use parts of the Secret word, translations, words in the same family (prince/princess),
             made-up words, or phonetically identical (weather/whether).
@@ -32,7 +29,7 @@ export function WritingRules(): JSX.Element {
           </>
         }
       />
-    </Instruction>
+    </RuleInstruction>
   );
 }
 
@@ -91,12 +88,11 @@ export function ComparisonDetailedRules(): JSX.Element {
 }
 export function ComparisonPhaseRules({ controller }: { controller: GamePlayer }): JSX.Element {
   return (
-    <Instruction contained>
+    <RuleInstruction type="event">
       <Translate
         pt={
           <>
-            <ExclamationCircleOutlined /> Para não virar bagunça, somente{' '}
-            <AvatarName player={controller} addressUser />
+            Para não virar bagunça, somente <AvatarName player={controller} addressUser />
             pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir.
             <br />
             <strong>Uma dica ser muito ruim não significa que ela seja inválida.</strong>
@@ -106,7 +102,7 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
         }
         en={
           <>
-            <ExclamationCircleOutlined /> <AvatarName player={controller} />
+            <AvatarName player={controller} />
             is in charge of clicking on the clues to disable or enable them as valid but everybody (but the
             guesser) should discuss.
             <br />
@@ -116,13 +112,13 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
           </>
         }
       />
-    </Instruction>
+    </RuleInstruction>
   );
 }
 
 export function GuessingRules({ guesser }: { guesser: GamePlayer }): JSX.Element {
   return (
-    <Instruction>
+    <RuleInstruction type="rule">
       <Translate
         pt={
           <>
@@ -143,6 +139,6 @@ export function GuessingRules({ guesser }: { guesser: GamePlayer }): JSX.Element
           </>
         }
       />
-    </Instruction>
+    </RuleInstruction>
   );
 }

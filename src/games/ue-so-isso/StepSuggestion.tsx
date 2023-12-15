@@ -8,7 +8,7 @@ import { mockSuggestions } from './utils/mock';
 import { WritingRules } from './components/RulesBlobs';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ControlledInputWriting } from 'components/input';
@@ -60,7 +60,7 @@ export function StepSuggestion({
       <Card word={secretWord.text} />
 
       {suggestionsNumber > 1 && (
-        <Instruction contained>
+        <RuleInstruction type="event">
           <Translate
             pt={
               <>
@@ -75,7 +75,7 @@ export function StepSuggestion({
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
       )}
 
       <ControlledInputWriting

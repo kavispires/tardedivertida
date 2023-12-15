@@ -3,10 +3,11 @@ import { Space } from 'antd';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepWaitingForGuessProps = {
   guesser: GamePlayer;
@@ -37,12 +38,33 @@ export function StepWaitingForGuess({
         />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="wait">
         <Translate
-          pt={<>{guesser.name} tem uma única chance de adivinhar a palavra secreta!</>}
-          en={<>{guesser.name} has a single chance to guess the secret word!</>}
+          pt={
+            <>
+              {guesser.name} tem uma única chance de adivinhar a palavra secreta!
+              <br />
+              Se acertar, o grupo ganha <PointsHighlight type="positive">2 pontos</PointsHighlight> mas se
+              errar, o grupo perde <PointsHighlight type="negative">2 pontos</PointsHighlight>.
+              <br />
+              Há a opção de pular a rodada, mas só faz o grupo perder tempo.
+            </>
+          }
+          en={
+            <>
+              {guesser.name} has a single chance to guess the secret word!
+              <br />
+              If they get it right, the group wins <PointsHighlight type="positive">
+                2 points
+              </PointsHighlight>{' '}
+              but if they get it wrong, the group loses{' '}
+              <PointsHighlight type="negative">2 points</PointsHighlight>.
+              <br />
+              There's the option to skip the round, but it only wastes time.
+            </>
+          }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Card word={secretWord.text} />
 
@@ -58,12 +80,12 @@ export function StepWaitingForGuess({
       </Space>
 
       {validSuggestions.length === 0 && (
-        <Instruction contained>
+        <RuleInstruction type="alert">
           <Translate
             pt="Vocês eliminaram todas as dicas, super burros... coitado do(a) adivinhador(a)"
             en="Y'all eliminated all the clues! Poor guesser..."
           />
-        </Instruction>
+        </RuleInstruction>
       )}
     </Step>
   );

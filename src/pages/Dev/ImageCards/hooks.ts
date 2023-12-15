@@ -294,8 +294,6 @@ export function useImageCardsRelationshipData(): UseImageCardsRelationshipDataRe
     },
   });
 
-  console.log(data);
-
   useEffect(() => {
     if (!isRefetching && isFetched) {
       const total = Object.keys(data).length;
