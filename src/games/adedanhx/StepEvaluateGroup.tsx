@@ -7,7 +7,7 @@ import { RocketFilled } from '@ant-design/icons';
 import { isDevEnv, pluralize } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { VIPOnlyContainer } from 'components/vip';
 import { TimedButton } from 'components/buttons';
@@ -66,7 +66,8 @@ export function StepEvaluateGroup({
           }
         />
       </Title>
-      <Instruction contained>
+
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -86,7 +87,8 @@ export function StepEvaluateGroup({
           }
           en={
             <>
-              If you think any of them is wrong, press the button.
+              If you think any of the answers is wrong, <strong>hit</strong> the check mark switch and submit
+              wrong answers.
               <br />
               Everyone who answered earns{' '}
               <PointsHighlight>
@@ -100,7 +102,7 @@ export function StepEvaluateGroup({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <EvaluationGroup
         answerGroup={answerGroup}
