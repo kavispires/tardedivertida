@@ -60,7 +60,7 @@ $door-base-color: #3d1931;
   }
   25%,
   75% {
-    opacity: 0.45;
+    opacity: 0.55;
   }
   50% {
     opacity: 0.15;
@@ -70,11 +70,6 @@ $door-base-color: #3d1931;
 .i-faded-card {
   animation: fading-doors 5s ease-in-out infinite;
   background-color: #743e62;
-}
-
-.image-preview-faded {
-  // animation: fading-doors 5s ease-in-out infinite;
-  opacity: 0.5;
 }
 
 .image-preview-sepia {
@@ -109,6 +104,13 @@ $door-base-color: #3d1931;
   .ant-image-preview-img {
     border-radius: get-unit(8);
     animation: door-dance 2s ease-in-out infinite;
+  }
+}
+
+.image-preview-fading {
+  .ant-image-preview-img {
+    border-radius: get-unit(8);
+    animation: fading-doors 5s ease-in-out infinite;
   }
 }
 
