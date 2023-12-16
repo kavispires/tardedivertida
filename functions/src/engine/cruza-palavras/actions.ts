@@ -7,7 +7,8 @@ export const handleSubmitClue = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  clue: string
+  clue: string,
+  currentClueCoordinate: number
 ) => {
   return await utils.firebase.updatePlayer({
     gameName,
@@ -15,7 +16,7 @@ export const handleSubmitClue = async (
     playerId,
     actionText: 'submit your clue',
     shouldReady: true,
-    change: { clue },
+    change: { clue, currentClueCoordinate },
     nextPhaseFunction: getNextPhase,
   });
 };

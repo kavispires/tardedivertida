@@ -17,7 +17,9 @@ export function WritingCell({ onSubmitClue, cell, user, disabled }: WritingCellP
   if (cell.writable && user.id === cell.playerId) {
     return (
       <Popover
-        content={<WordForm x={cell.xText ?? ''} y={cell.yText ?? ''} onSubmit={onSubmitClue} />}
+        content={
+          <WordForm x={cell.xText ?? ''} y={cell.yText ?? ''} index={cell.index} onSubmit={onSubmitClue} />
+        }
         title={<Translate pt="Escreva" en="Write" />}
         trigger="click"
       >
