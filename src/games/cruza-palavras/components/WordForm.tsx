@@ -9,11 +9,12 @@ import { Translate } from 'components/language';
 type WordFormProps = {
   x: string;
   y: string;
+  index: number;
   onSubmit: GenericFunction;
   disabled?: boolean;
 };
 
-export function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
+export function WordForm({ x, y, onSubmit, disabled, index }: WordFormProps) {
   const [clue, setClue] = useState('');
   const textInput = useRef<InputRef | null>(null);
 
@@ -25,7 +26,7 @@ export function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
 
   // DEV: Submit made-up words
   useMock(() => {
-    onSubmit(`${x.substring(0, x.length / 2)}${y.substring(y.length / 2)}`);
+    onSubmit({ clue: `${x.substring(0, x.length / 2)}${y.substring(y.length / 2)}`, coordinate: index });
   }, []);
 
   return (
@@ -34,9 +35,13 @@ export function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
         ref={textInput}
         placeholder={`${x} + ${y}`}
         onChange={onChange}
-        onPressEnter={() => onSubmit(clue)}
+        onPressEnter={() => onSubmit({ clue, coordinate: index })}
       />
-      <Button type="primary" onClick={() => onSubmit(clue)} disabled={disabled || !clue.length}>
+      <Button
+        type="primary"
+        onClick={() => onSubmit({ clue, coordinate: index })}
+        disabled={disabled || !clue.length}
+      >
         <Translate pt="Enviar" en="Submit" />
       </Button>
     </Space>

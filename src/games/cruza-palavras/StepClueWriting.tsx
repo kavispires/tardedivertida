@@ -19,9 +19,10 @@ type StepClueWritingProps = {
 export function StepClueWriting({ grid, user, onSubmitClue, players, announcement }: StepClueWritingProps) {
   const { isLoading } = useLoading();
 
-  const onSubmitClueClick = (payload: string) => {
+  const onSubmitClueClick = (payload: { clue: string; coordinate: number }) => {
     onSubmitClue({
-      clue: payload.trim().toLowerCase(),
+      clue: payload.clue.trim().toLowerCase(),
+      currentClueCoordinate: payload.coordinate,
     });
   };
 
@@ -37,7 +38,7 @@ export function StepClueWriting({ grid, user, onSubmitClue, players, announcemen
         <Translate
           pt={
             <>
-              Clique no ícone na grade e escreva sua dica.
+              Clique em um dos ícones na grade e escreva sua dica.
               <br />
               Sua dica deve conter apenas <strong>uma palavra única</strong>.
               <br />
@@ -46,7 +47,7 @@ export function StepClueWriting({ grid, user, onSubmitClue, players, announcemen
           }
           en={
             <>
-              Click on the icon on the table cell and write your clue.\
+              Click on the icon on either of the table cell and write your clue.
               <br />
               Your clue must be a <strong>single-word</strong> clue.
               <br />

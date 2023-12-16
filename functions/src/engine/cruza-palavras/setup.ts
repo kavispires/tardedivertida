@@ -44,6 +44,8 @@ export const prepareSetupPhase = async (
     savior: 0,
   });
 
+  utils.players.addPropertiesToPlayers(players, { coordinates: [] });
+
   // Save
   return {
     update: {
@@ -86,12 +88,18 @@ export const prepareClueWritingPhase = async (
 
   // Remove clues before the distribution of coordinates
   if (shouldBuildGrid) {
-    utils.players.removePropertiesFromPlayers(players, ['clue', 'guesses', 'coordinate']);
+    utils.players.removePropertiesFromPlayers(players, [
+      'clue',
+      'guesses',
+      'coordinate',
+      'currentClueCoordinate',
+    ]);
+    utils.players.addPropertiesToPlayers(players, { coordinates: [] });
   }
 
   const updatedGrid = distributeCoordinates(players, grid);
 
-  utils.players.removePropertiesFromPlayers(players, ['clue', 'guesses']);
+  utils.players.removePropertiesFromPlayers(players, ['clue', 'guesses', 'currentClueCoordinate']);
 
   // Save
   return {

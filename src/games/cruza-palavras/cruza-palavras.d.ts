@@ -22,6 +22,7 @@ type CruzaPalavraGrid = CruzaPalavrasGridCell[];
 
 type SubmitCluePayload = {
   clue: string;
+  currentClueCoordinate: number;
 };
 
 type SubmitGuessesPayload = {

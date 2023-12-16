@@ -12,6 +12,7 @@ import { SEPARATOR } from '../../utils/constants';
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES, CRUZA_PALAVRAS_ACHIEVEMENTS } from './constants';
 // Utils
 import utils from '../../utils';
+import { getListOfPlayers } from '../../utils/players-utils';
 
 /**
  * Determine the next phase based on the current one
@@ -182,18 +183,40 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
   const available = grid.filter((entry: GridCell) => entry.available);
   const shuffledCoordinates = utils.game.shuffle(available);
 
-  Object.values(players).forEach((player) => {
-    const cell = shuffledCoordinates.pop();
+  const distribute = (player: Player, cell: GridCell) => {
     if (cell) {
       // Add to player
-      player.coordinate = cell.index;
-      player.x = cell.x;
-      player.y = cell.y;
+      player.coordinates.push({
+        coordinate: cell.index,
+        x: cell.x,
+        y: cell.y,
+        used: false,
+      });
+
       // update grid
       grid[cell.index].playerId = player.id;
       grid[cell.index].writable = true;
     }
+  };
+
+  const listOfPlayers = getListOfPlayers(players);
+
+  listOfPlayers.forEach((player) => {
+    const cell = shuffledCoordinates.pop();
+    if (cell) {
+      distribute(player, cell);
+    }
   });
+
+  // If possible to give players a second card, do so
+  if (shuffledCoordinates.length >= listOfPlayers.length) {
+    listOfPlayers.forEach((player) => {
+      const cell = shuffledCoordinates.pop();
+      if (cell) {
+        distribute(player, cell);
+      }
+    });
+  }
 
   return grid;
 };
@@ -206,11 +229,13 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
  */
 export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): GridCell[] => {
   Object.values(players).forEach((player) => {
-    if (player.coordinate) {
-      grid[player.coordinate].available = false;
-      grid[player.coordinate].writable = false;
-      grid[player.coordinate].text = player.clue;
-    }
+    (player.coordinates ?? []).forEach((coordinate) => {
+      if (coordinate.used) {
+        grid[coordinate.coordinate].available = false;
+        grid[coordinate.coordinate].writable = false;
+        grid[coordinate.coordinate].text = player.clue;
+      }
+    });
   });
 
   return grid;
@@ -222,11 +247,19 @@ export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): 
  * @returns
  */
 export const getPlayerClues = (players: Players): ClueEntry[] => {
-  return Object.values(players).map((player) => ({
-    playerId: player.id,
-    clue: player.clue,
-    coordinate: player.coordinate,
-  }));
+  return Object.values(players).map((player) => {
+    const index = player.coordinates.findIndex(
+      (coordinate) => coordinate.coordinate === player.currentClueCoordinate
+    );
+    player.coordinates[index].used = true;
+    const coordinate = player.coordinates[index].coordinate;
+
+    return {
+      playerId: player.id,
+      clue: player.clue,
+      coordinate,
+    };
+  });
 };
 
 /**

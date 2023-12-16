@@ -119,8 +119,12 @@ export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
 
   switch (action) {
     case CRUZA_PALAVRAS_ACTIONS.SUBMIT_CLUE:
-      utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit category');
-      return handleSubmitClue(gameName, gameId, playerId, data.clue);
+      utils.firebase.validateSubmitActionProperties(
+        data,
+        ['clue', 'currentClueCoordinate'],
+        'submit category'
+      );
+      return handleSubmitClue(gameName, gameId, playerId, data.clue, data.currentClueCoordinate);
     case CRUZA_PALAVRAS_ACTIONS.SUBMIT_GUESSES:
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
       return handleSubmitGuesses(gameName, gameId, playerId, data.guesses, data.choseRandomly);
