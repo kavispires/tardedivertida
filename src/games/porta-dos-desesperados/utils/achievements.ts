@@ -70,7 +70,7 @@ export const achievementsReference: AchievementReference = {
     },
     description: {
       pt: 'Demorou mais tempo para escolher páginas do livro',
-      en: 'Took the longest total to choose book pages',
+      en: 'Took the longest total time to choose book pages',
     },
   },
   [ACHIEVEMENTS.FAST_LEARNER]: {
@@ -81,7 +81,7 @@ export const achievementsReference: AchievementReference = {
     },
     description: {
       pt: 'Demorou menos tempo para escolher páginas do livro',
-      en: 'Took the shortest total to choose book pages',
+      en: 'Took the shortest total time to choose book pages',
     },
   },
   [ACHIEVEMENTS.MOST_PAGES]: {

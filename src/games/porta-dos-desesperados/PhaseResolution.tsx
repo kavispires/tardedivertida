@@ -22,8 +22,9 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
           title={<Translate pt="Vocês escolheram a porta correta?" en="Have you opened the right door?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          duration={4}
+          duration={3}
           type="block"
+          unskippable
         />
 
         {/* Step 1 */}

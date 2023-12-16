@@ -173,7 +173,7 @@ export function getTrapDetails(trap: string) {
       };
     case TRAPS.BLIND_DOOR:
       return {
-        TrapIcon: MagicTarotCardsIcon,
+        TrapIcon: MagicHamsaIcon,
         title: {
           pt: 'A Porta Cega',
           en: 'The Blind Door',
@@ -191,7 +191,7 @@ export function getTrapDetails(trap: string) {
           en: 'The Dancing Doors',
         },
         description: {
-          pt: 'As portas ficam se movendo.',
+          pt: 'As portas ficam se movendo, possuídas pelo ritmo Ragatanga.',
           en: 'The doors keep moving around.',
         },
       };
@@ -209,7 +209,7 @@ export function getTrapDetails(trap: string) {
       };
     case TRAPS.VANISHING_DOORS:
       return {
-        TrapIcon: MagicDivinationIcon,
+        TrapIcon: MagicHamsaIcon,
         title: {
           pt: 'As Portas Desvanecentes',
           en: 'The Vanishing Doors',

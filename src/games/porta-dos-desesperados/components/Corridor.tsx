@@ -65,7 +65,7 @@ export function Corridor({
 
   // Trap: Blind Door
   const blindDoor = useMemo(
-    () => (trap === TRAPS.BLIND_DOOR && !disableTrap ? random(0, doors.length) : undefined),
+    () => (trap === TRAPS.BLIND_DOOR && !disableTrap ? random(0, doors.length - 1) : undefined),
     [trap, doors.length, disableTrap]
   );
 
@@ -79,13 +79,16 @@ export function Corridor({
   return (
     <Image.PreviewGroup
       preview={{
-        className: clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card'),
+        className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-fading'),
       }}
     >
       <div className="i-corridor">
         {doors.map((doorId, index) => {
           const animationDelayIndex = index < 3 ? index : doors.length - 1 - index;
           const isConcealed = trap === TRAPS.CONCEALED_DOOR && index === 2;
+          const isVanished = trap === TRAPS.VANISHING_DOORS && hiddenDoorsIndexes?.includes(index);
+          const isDelayed =
+            trap === TRAPS.DELAYING_DOORS && !disableTrap && !hiddenDoorsIndexes?.includes(index);
           return (
             <div
               key={doorId}
@@ -100,10 +103,12 @@ export function Corridor({
                 index={index}
                 className={clsx(
                   trap === TRAPS.VANISHING_DOORS
-                    ? hiddenDoorsIndexes?.includes(index) && getAnimationClass('fadeOut', { speed: 'slower' })
+                    ? isVanished
+                      ? getAnimationClass('fadeOut', { speed: 'slower' })
+                      : ''
                     : '',
-                  trap === TRAPS.DELAYING_DOORS && !disableTrap
-                    ? !hiddenDoorsIndexes?.includes(index)
+                  trap === TRAPS.DELAYING_DOORS
+                    ? isDelayed
                       ? 'invisible'
                       : getAnimationClass('fadeIn', { speed: 'slower' })
                     : '',
@@ -123,6 +128,7 @@ export function Corridor({
                     cardWidth={150}
                     className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
                     preview={trap !== TRAPS.NO_PREVIEW ? true : undefined}
+                    previewImageId={isDelayed || isVanished ? 'back-lockedDoor' : undefined}
                   />
                 )}
               </DoorFrame>
