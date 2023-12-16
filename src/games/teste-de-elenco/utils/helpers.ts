@@ -14,13 +14,25 @@ export const Icons: Record<string, any> = {
 
 export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): string => {
   if (language === 'en') {
-    let prompt = `Write the plot of a ${movie.title.en} movie that contains the following characters and their traits. Give the characters names and if the story contains a narrator, make him/her also one of the characters related to the protagonist. End the text with an impactful question. Here are the characters:\n`;
+    let prompt = `Write the script for the trailer of a ${movie.title.en} movie that contains the following characters and their traits. Give the characters names and if the story contains a narrator, make him/her also one of the characters related to the protagonist. End the text with an impactful question. Here are the characters:\n`;
 
     Object.values(movie.roles).forEach((role) => {
       if (role.cast) {
-        prompt += `\n${role.title.pt} - ${role.description.pt}:`;
+        if (role.id === 'THE_SPECIAL_GUEST') {
+          prompt += `\nThe reveal `;
+        } else {
+          prompt += `\n${role.title.en} `;
+        }
+        if (role.id === 'THE_NARRATOR') {
+          prompt += `(reveal the narrator as one of the characters related to the protagonist) `;
+        }
+
+        prompt += `- ${role.description.en}:`;
+
         const actor = role.candidates[role.actor];
-        prompt += ` ${actor.gender}, age ${actor.age}, ${actor.ethnicity},`;
+        prompt += ` ${actor.name[language].split(' ')[0]}, ${actor.gender}, age ${actor.age}, ${
+          actor.ethnicity
+        },`;
         prompt += ` with the traits: ${role.traits.join(', ')}.\n`;
       }
     });
@@ -33,7 +45,7 @@ export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): stri
   Object.values(movie.roles).forEach((role) => {
     if (role.cast) {
       if (role.id === 'THE_SPECIAL_GUEST') {
-        prompt += `\nA revelação`;
+        prompt += `\nA revelação `;
       } else {
         prompt += `\n${role.title.pt} `;
       }
@@ -43,9 +55,9 @@ export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): stri
 
       prompt += `- ${role.description.pt}:`;
       const actor = role.candidates[role.actor];
-      prompt += ` ${actor.gender === 'male' ? 'homem' : 'mulher'}, idade entre ${actor.age}, ${
-        actor.ethnicity
-      },`;
+      prompt += ` ${actor.name[language].split(' ')[0]},  ${
+        actor.gender === 'male' ? 'homem' : 'mulher'
+      }, idade entre ${actor.age}, ${actor.ethnicity},`;
       prompt += ` com as características: ${role.traits.join(', ')}.\n`;
     }
   });
