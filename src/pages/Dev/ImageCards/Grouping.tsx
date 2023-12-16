@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Card, FloatButton, Image, Layout, Popover, Select, Space, Switch } from 'antd';
+import { Button, Card, FloatButton, Image, Layout, Popover, Select, Space, Switch, Tag } from 'antd';
 
 import { ImageCard } from 'components/image-cards';
 
@@ -30,6 +30,7 @@ export function Grouping({ query }: GroupingProps) {
   const [sampleSize, setSampleSize] = useState(15);
   const [tagThreshold, setTagThreshold] = useState(5);
   const [cardSize, setCardSize] = useState(120);
+  const [showIds, setShowIds] = useState(false);
   // Get screen size and calculate how many 120px cards can fit in a row
   const [ref, { width: containerWidth }] = useMeasure<HTMLDivElement>();
   const cardQuantity = useMemo(() => {
@@ -77,6 +78,12 @@ export function Grouping({ query }: GroupingProps) {
               unCheckedChildren="Any Card"
               checked={filters.useCycles}
               onChange={() => filters.toggleUseCycles()}
+            />
+            <Switch
+              checkedChildren="Show Ids"
+              unCheckedChildren="No Ids"
+              checked={showIds}
+              onChange={(c) => setShowIds(c)}
             />
             <Select
               onChange={(value) => setTagThreshold(value)}
@@ -153,10 +160,11 @@ export function Grouping({ query }: GroupingProps) {
                         activeClass="image-cards-group__button--active"
                       >
                         <ImageCard imageId={cardId} cardWidth={cardWidth} preview={false} />
-                        <Space>
-                          <Button size="small">{isSelected ? 'Deselect' : 'Select'}</Button>
+                        <div>
+                          {showIds && <Tag>{cardId}</Tag>}
+                          {/* <Button size="small">{isSelected ? 'Deselect' : 'Select'}</Button> */}
                           <RelationshipCountTag card={card} />
-                        </Space>
+                        </div>
                       </TransparentButton>
                     </div>
                   );

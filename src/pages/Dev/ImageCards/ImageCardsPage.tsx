@@ -17,10 +17,10 @@ import { Grouping } from './Grouping';
 function ImageCardsRelationshipsPage() {
   useTitle('Image Cards Relationships | Dev | Tarde Divertida');
   const [view, setView] = useState('default');
-  const qp = useQueryParams({ view: 'default' });
+  const qp = useQueryParams({ view: 'grouping' });
 
   useEffect(() => {
-    setView(qp.queryParams.view ?? 'default');
+    setView(qp.queryParams.view ?? 'grouping');
   }, [qp.queryParams.view]);
 
   const query = useImageCardsRelationshipData();
@@ -34,14 +34,14 @@ function ImageCardsRelationshipsPage() {
   }
 
   const segments = [
-    { label: 'Compare', value: 'default', disabled: view === 'default' },
+    { label: 'Compare', value: 'default', disabled: view === 'compare' },
     { label: 'Grouping', value: 'grouping', disabled: view === 'grouping' },
   ];
 
   return (
     <div>
       <DevHeader
-        title="Classifier"
+        title="Image Cards Relationships"
         extra={<Segmented options={segments} defaultValue={view} onChange={(v: any) => qp.add('view', v)} />}
       />
 
