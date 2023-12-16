@@ -29,21 +29,21 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        <Translate pt="Quais palavras deveriam estar no jogo?" en="What words should be in the game?" />
+        <Translate pt="Quais cards deveriam estar no jogo?" en="What cards should be in the game?" />
       </Title>
 
       <RuleInstruction type="action">
         <Translate
           pt={
             <>
-              <strong>Selecione</strong> pelo 10 palavras para estar no jogo.
+              <strong>Selecione</strong> pelo 10 cartas para estar no jogo.
               <br />
               Quanto mais melhor!
             </>
           }
           en={
             <>
-              <strong>Select</strong> at least 10 words to be in the game.
+              <strong>Select</strong> at least 10 cards to be in the game.
               <br />
               The more the merrier!
             </>
@@ -57,7 +57,7 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
           onClick={() => onSubmitWords({ words: deck })}
           disabled={length < 10 || isLoading || user.ready}
         >
-          <Translate pt={`Enviar palavras (${length})`} en={`Submit words (${length})`} />
+          <Translate pt={`Enviar cartas (${length})`} en={`Submit cards (${length})`} />
         </Button>
       </Space>
 

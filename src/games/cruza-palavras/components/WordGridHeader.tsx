@@ -10,17 +10,18 @@ import { PUBLIC_URL } from 'utils/constants';
 
 type WordGridHeaderProps = {
   cell: CruzaPalavrasGridCell;
+  gridType: CruzaPalavrasGridType;
 };
 
-export function WordGridHeader({ cell }: WordGridHeaderProps) {
-  if (cell?.id?.startsWith('cnt')) {
-    return <WordGridHeaderImage cell={cell} />;
+export function WordGridHeader({ cell, gridType }: WordGridHeaderProps) {
+  if (gridType === 'contenders') {
+    return <WordGridHeaderImage cell={cell} gridType={gridType} />;
   }
 
   return <>{cell.text}</>;
 }
 
-function WordGridHeaderImage({ cell }: WordGridHeaderProps) {
+function WordGridHeaderImage({ cell, gridType }: WordGridHeaderProps) {
   const { shouldBeBlurred } = useBlurCards();
   const baseUrl = useTDBaseUrl('tdi');
   const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });

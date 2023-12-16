@@ -10,13 +10,21 @@ import { WritingCell } from './components/WritingCell';
 import { WritingCluesRule } from './components/RulesBlobs';
 
 type StepClueWritingProps = {
-  grid: CruzaPalavraGrid;
+  grid: CruzaPalavrasGrid;
+  gridType: CruzaPalavrasGridType;
   user: GamePlayer;
   onSubmitClue: GenericFunction;
   players: GamePlayers;
 } & AnnouncementProps;
 
-export function StepClueWriting({ grid, user, onSubmitClue, players, announcement }: StepClueWritingProps) {
+export function StepClueWriting({
+  grid,
+  gridType,
+  user,
+  onSubmitClue,
+  players,
+  announcement,
+}: StepClueWritingProps) {
   const { isLoading } = useLoading();
 
   const onSubmitClueClick = (payload: { clue: string; coordinate: number }) => {
@@ -62,6 +70,7 @@ export function StepClueWriting({ grid, user, onSubmitClue, players, announcemen
         user={user}
         CellComponent={WritingCell}
         cellComponentProps={{ onSubmitClue: onSubmitClueClick, disabled: isLoading }}
+        gridType={gridType}
       />
     </Step>
   );

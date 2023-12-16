@@ -14,13 +14,21 @@ import { SelectableCell } from './components/SelectableCell';
 import { Clues } from './components/Clues';
 
 type StepGuessingProps = {
-  grid: CruzaPalavraGrid;
+  grid: CruzaPalavrasGrid;
+  gridType: CruzaPalavrasGridType;
   user: GamePlayer;
   clues: CruzaPalavrasClue[];
   onSubmitGuesses: GenericFunction;
 } & AnnouncementProps;
 
-export function StepGuessing({ grid, user, clues, onSubmitGuesses, announcement }: StepGuessingProps) {
+export function StepGuessing({
+  grid,
+  gridType,
+  user,
+  clues,
+  onSubmitGuesses,
+  announcement,
+}: StepGuessingProps) {
   const [active, setActive] = useState(null);
   const [guesses, setGuesses] = useState<any>({});
   const [choseRandomly, setChoseRandomly] = useState(false);
@@ -144,6 +152,7 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, announcement 
 
       <WordGrid
         grid={grid}
+        gridType={gridType}
         user={user}
         CellComponent={SelectableCell}
         cellComponentProps={{ onSelectCell, onClearCell, active, guesses, clues, user }}

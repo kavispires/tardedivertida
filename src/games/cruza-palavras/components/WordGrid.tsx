@@ -3,13 +3,14 @@ import clsx from 'clsx';
 import { WordGridHeader } from './WordGridHeader';
 
 type WordGridProps = {
-  grid: CruzaPalavraGrid;
+  grid: CruzaPalavrasGrid;
+  gridType: CruzaPalavrasGridType;
   user: GamePlayer;
   CellComponent: any;
   cellComponentProps: any;
 };
 
-export function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }: WordGridProps) {
+export function WordGrid({ grid, user, CellComponent, gridType, cellComponentProps = {} }: WordGridProps) {
   const length = Math.sqrt(grid.length);
 
   const gridStyle = {
@@ -21,7 +22,7 @@ export function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }:
     <div className="x-grid" style={gridStyle}>
       {grid.map((cell) => (
         <div className={clsx('x-grid-cell', `x-grid-cell--${cell.kind}`)} key={`${cell.index}-${cell.kind}`}>
-          {cell.kind === 'header' && <WordGridHeader cell={cell} />}
+          {cell.kind === 'header' && <WordGridHeader cell={cell} gridType={gridType} />}
 
           {cell.kind === 'cell' && <CellComponent {...cellComponentProps} cell={cell} user={user} />}
         </div>

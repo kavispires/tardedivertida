@@ -13,6 +13,7 @@ export const getWords = async (language: Language, options: CruzaPalavrasOptions
   const isContenderGrid = !!options?.contenderGrid;
   const allowNSFW = !!options?.nsfw;
   const quantityNeeded = isContenderGrid ? 15 : 30;
+  console.log({ isContenderGrid });
 
   if (isContenderGrid) {
     const contenders = await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);

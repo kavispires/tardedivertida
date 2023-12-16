@@ -54,6 +54,7 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
         <StepGuessing
           user={user}
           grid={state.grid}
+          gridType={state.gameType}
           clues={state.clues}
           onSubmitGuesses={onSubmitGuesses}
           announcement={announcement}
