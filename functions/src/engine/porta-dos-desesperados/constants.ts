@@ -72,7 +72,7 @@ export const WIN_CONDITION = {
 
 export const TRAPS = {
   // No traps ✓
-  NONE: 'NONE',
+  // NONE: 'NONE',
   // Clue Phase: 3 book clues are used (frontend) ✓
   MORE_CLUES: 'MORE_CLUES',
   // Clue Phase: Possessed player can only see 4 cards (backend) ✓
