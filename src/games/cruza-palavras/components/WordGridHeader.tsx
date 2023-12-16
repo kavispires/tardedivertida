@@ -7,6 +7,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 
 type WordGridHeaderProps = {
   cell: CruzaPalavrasGridCell;
@@ -15,13 +16,17 @@ type WordGridHeaderProps = {
 
 export function WordGridHeader({ cell, gridType }: WordGridHeaderProps) {
   if (gridType === 'contenders') {
+    return <WordGridHeaderContender cell={cell} gridType={gridType} />;
+  }
+
+  if (gridType === 'images') {
     return <WordGridHeaderImage cell={cell} gridType={gridType} />;
   }
 
   return <>{cell.text}</>;
 }
 
-function WordGridHeaderImage({ cell, gridType }: WordGridHeaderProps) {
+function WordGridHeaderContender({ cell }: WordGridHeaderProps) {
   const { shouldBeBlurred } = useBlurCards();
   const baseUrl = useTDBaseUrl('tdi');
   const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
@@ -42,6 +47,18 @@ function WordGridHeaderImage({ cell, gridType }: WordGridHeaderProps) {
         fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
         alt={cell.text}
       />
+    </div>
+  );
+}
+
+function WordGridHeaderImage({ cell, gridType }: WordGridHeaderProps) {
+  const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
+
+  return (
+    <div className="w-contender" style={{ width: `${cardWidth}px` }}>
+      <ImageBlurButtonContainer cardId={cell.id!}>
+        <ImageCard imageId={cell.id!} cardWidth={cardWidth} />
+      </ImageBlurButtonContainer>
     </div>
   );
 }

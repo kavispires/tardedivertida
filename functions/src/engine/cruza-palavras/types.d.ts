@@ -6,9 +6,13 @@ export type CruzaPalavrasOptions = {
    */
   largerGrid: boolean;
   /**
-   * Uses images instead of words
+   * Uses contenders instead of words
    */
-  contenderGrid: boolean;
+  contenderGrid?: boolean;
+  /**
+   * Use image cards instead of words
+   */
+  imageGrid?: boolean;
   /**
    * Possibly include nsfw images
    */

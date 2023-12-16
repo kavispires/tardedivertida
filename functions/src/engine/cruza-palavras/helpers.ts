@@ -30,7 +30,7 @@ export const determineNextPhase = (
   const order = [RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
 
   if (currentPhase === SETUP) {
-    return !options.contenderGrid ? WORDS_SELECTION : CLUE_WRITING;
+    return !options.imageGrid ? WORDS_SELECTION : CLUE_WRITING;
   }
 
   if (currentPhase === REVEAL) {
@@ -58,7 +58,7 @@ export const determineNextPhase = (
 export const checkForAvailableCells = (
   grid: GridCell[] = [],
   playerCount: number,
-  largerGridCount
+  largerGridCount: number
 ): boolean => {
   const availableCells = grid.filter((cell) => cell.available);
   return availableCells.length >= playerCount + largerGridCount;

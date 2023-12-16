@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "5.0.2",
+  "version": "5.1.1",
   "title": {
     "pt": "Cruza Palavras",
     "en": "Mixed Clues"
@@ -67,6 +67,13 @@
       "off": "No",
       "on": "Yes",
       "description": "The first grid uses Characters/Celebrities then uses player's clues as usual"
+    },
+    {
+      "label": "Image Cards Grid",
+      "key": "imageGrid",
+      "off": "No",
+      "on": "Yes",
+      "description": "The first grid uses Image cards then uses player's clues as usual (this overrides Characters Grid)"
     }
   ]
 }
