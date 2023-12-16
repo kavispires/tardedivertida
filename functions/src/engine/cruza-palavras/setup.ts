@@ -41,7 +41,7 @@ export const prepareSetupPhase = async (
 
   utils.players.addPropertiesToPlayers(players, { coordinates: [] });
 
-  const gameType = store.options.contenderGrid ? 'contenders' : 'words';
+  const gameType = store.options.contenderGrid ? 'contenders' : store.options.imageGrid ? 'images' : 'words';
 
   // Save
   return {

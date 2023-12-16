@@ -11,9 +11,15 @@ import utils from '../../utils';
  */
 export const getWords = async (language: Language, options: CruzaPalavrasOptions): Promise<ResourceData> => {
   const isContenderGrid = !!options?.contenderGrid;
+  const isImageGrid = !!options?.imageGrid;
   const allowNSFW = !!options?.nsfw;
-  const quantityNeeded = isContenderGrid ? 15 : 30;
-  console.log({ isContenderGrid });
+  const quantityNeeded = isImageGrid ? 15 : 30;
+
+  if (isImageGrid) {
+    const deck = await utils.imageCards.getImageCards(quantityNeeded);
+
+    return { deck: deck.map((entry) => ({ id: entry, text: entry })) };
+  }
 
   if (isContenderGrid) {
     const contenders = await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);

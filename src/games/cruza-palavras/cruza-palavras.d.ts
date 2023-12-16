@@ -19,7 +19,7 @@ type CruzaPalavrasGridCell = {
 };
 
 type CruzaPalavrasGrid = CruzaPalavrasGridCell[];
-type CruzaPalavrasGridType = 'words' | 'contenders';
+type CruzaPalavrasGridType = 'words' | 'contenders' | 'images';
 
 type SubmitWordsPayload = {
   words: string[];
