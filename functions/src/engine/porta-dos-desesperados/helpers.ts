@@ -83,7 +83,7 @@ export const determineGameOver = (
 export const createTrapOrder = (useNewTraps?: boolean): string[] => {
   const trapKeys = Object.keys(useNewTraps ? NEW_TRAPS : TRAPS);
 
-  return [TRAPS.NONE, ...utils.game.shuffle(trapKeys), ...utils.game.shuffle(trapKeys)].slice(0, DOOR_LEVELS);
+  return ['NONE', ...utils.game.shuffle(trapKeys), ...utils.game.shuffle(trapKeys)].slice(0, DOOR_LEVELS);
 };
 
 export const getDoorSet = (doorDeck: ImageCardId[], doorDeckIndex: number, trap: Trap) => {

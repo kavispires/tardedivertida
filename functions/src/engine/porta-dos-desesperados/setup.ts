@@ -167,7 +167,7 @@ export const prepareDoorChoicePhase = async (
     store,
     state.possessedId,
     'possessionDuration',
-    (players[state.possessedId].updatedAt ?? 0) - state.updatedAt
+    state.updatedAt - (players[state.possessedId].updatedAt ?? 0)
   );
 
   if (state.trap === TRAPS.RANDOM_INTERJECTION) {
@@ -214,7 +214,7 @@ export const prepareResolutionPhase = async (
 
       // Achievement: DECISION
       if (player.updatedAt) {
-        utils.achievements.increase(store, player.id, 'doorDuration', player.updatedAt - state.updatedAt);
+        utils.achievements.increase(store, player.id, 'doorDuration', state.updatedAt - player.updatedAt);
       }
     }
     return acc;
