@@ -7,6 +7,21 @@
 
 .q-character-player {
   outline: get-unit(3) dotted gold;
+  animation: characterOutline 2s infinite;
+}
+
+@keyframes characterOutline {
+  0%,
+  100% {
+    outline-color: gold;
+  }
+  25%,
+  75% {
+    outline-color: get-color('white', 5, 5);
+  }
+  50% {
+    outline-color: gold;
+  }
 }
 
 .q-selections {

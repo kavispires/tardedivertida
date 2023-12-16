@@ -110,6 +110,7 @@ export const prepareCharacterDescriptionPhase = async (
     'glyphs',
     'selectedGlyphs',
     'choseRandomly',
+    'availableCharacters',
   ]);
 
   const glyphs = utils.game.shuffle(utils.game.makeArray(TOTAL_GLYPHS, 1));
