@@ -13,7 +13,7 @@ import { Instruction } from 'components/text';
 import { StepGuessing } from './StepGuessing';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseGuessing({ players, state, info }: PhaseProps) {
+export function PhaseGuessing({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 

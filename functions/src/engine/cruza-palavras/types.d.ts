@@ -16,7 +16,7 @@ export type CruzaPalavrasOptions = {
 };
 
 export type ResourceData = {
-  allWords: TextCard[];
+  deck: TextCard[];
 };
 
 export type Deck = TextCard[];

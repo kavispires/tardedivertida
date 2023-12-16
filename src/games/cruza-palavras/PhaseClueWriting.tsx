@@ -15,7 +15,7 @@ import { WritingCluesRule } from './components/RulesBlobs';
 import { Translate } from 'components/language';
 import { PlayerRecentClue } from './components/PlayerRecentClue';
 
-function PhaseClueWriting({ players, state, info }: PhaseProps) {
+export function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const user = useUser(players, state);
@@ -61,5 +61,3 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseClueWriting;

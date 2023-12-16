@@ -1,5 +1,5 @@
 // Types
-import type { PastClues, ResourceData } from './types';
+import type { CruzaPalavrasOptions, PastClues, ResourceData } from './types';
 // Utils
 import * as dataUtils from '../collections';
 import utils from '../../utils';
@@ -9,29 +9,27 @@ import utils from '../../utils';
  * @param language
  * @returns
  */
-export const getWords = async (
-  language: Language,
-  isContenderGrid: boolean,
-  allowNSFW: boolean
-): Promise<ResourceData> => {
-  const QUANTITY_NEEDED = 15;
-  if (isContenderGrid) {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, QUANTITY_NEEDED);
+export const getWords = async (language: Language, options: CruzaPalavrasOptions): Promise<ResourceData> => {
+  const isContenderGrid = !!options?.contenderGrid;
+  const allowNSFW = !!options?.nsfw;
+  const quantityNeeded = isContenderGrid ? 15 : 30;
 
-    const allWords = contenders.reduce((acc, entry) => {
-      acc[entry.id] = {
+  if (isContenderGrid) {
+    const contenders = await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);
+
+    const deck = contenders.map((entry) => {
+      return {
         id: entry.id,
         text: entry.name[language],
       };
-      return acc;
-    }, {});
+    });
 
-    return { allWords: Object.values(allWords) };
+    return { deck };
   }
 
-  const allWords = await utils.tdr.getSingleWords(language, QUANTITY_NEEDED);
+  const deck = await utils.tdr.getSingleWords(language, quantityNeeded);
 
-  return { allWords };
+  return { deck };
 };
 
 export const saveData = async (language: Language, pastClues: PastClues, isContenderGrid: boolean) => {

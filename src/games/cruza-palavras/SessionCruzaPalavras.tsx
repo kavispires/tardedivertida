@@ -7,12 +7,13 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseClueWriting from './PhaseClueWriting';
-import PhaseGuessing from './PhaseGuessing';
-import PhaseReveal from './PhaseReveal';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseClueWriting } from './PhaseClueWriting';
+import { PhaseGuessing } from './PhaseGuessing';
+import { PhaseReveal } from './PhaseReveal';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './cruza-palavras.scss';
+import { PhaseWordsSelection } from './PhaseWordsSelection';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -25,6 +26,8 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
+    case PHASES.CRUZA_PALAVRAS.WORDS_SELECTION:
+      return PhaseWordsSelection;
     case PHASES.CRUZA_PALAVRAS.CLUE_WRITING:
       return PhaseClueWriting;
     case PHASES.CRUZA_PALAVRAS.GUESSING:
