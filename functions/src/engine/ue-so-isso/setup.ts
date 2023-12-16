@@ -145,6 +145,8 @@ export const prepareSuggestPhase = async (
 
   utils.players.unReadyPlayers(players, state.guesserId);
 
+  utils.players.removePropertiesFromPlayers(players, ['votes']);
+
   // Save
   return {
     update: {
