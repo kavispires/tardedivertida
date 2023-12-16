@@ -14,7 +14,7 @@ import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
@@ -74,6 +74,21 @@ export function StepSelectDoor({
   useMock(() => {
     onConfirmDoor();
   }, [user.doorId]);
+
+  const selectedDoors = useMemo(
+    () =>
+      removeDuplicates(
+        Object.values(players)
+          .map((player) => player.doorId)
+          .filter(Boolean)
+      ).length,
+    [players]
+  );
+
+  /**
+   * When there are less crystals than doors, disabled additional voting doors
+   */
+  const shouldRestrainDoorConfirmation = magic && magic < doors.length && selectedDoors > magic;
 
   return (
     <Step fullWidth>
@@ -172,7 +187,7 @@ export function StepSelectDoor({
           type="primary"
           size="large"
           loading={isLoading}
-          disabled={!user.doorId || user.ready || isButtonDisabled}
+          disabled={!user.doorId || user.ready || isButtonDisabled || shouldRestrainDoorConfirmation}
           onClick={() => onConfirmDoor()}
         >
           <Translate pt="Confirmar Porta" en="Confirm Door" />
