@@ -21,6 +21,8 @@ import { Medal } from 'components/general/Medal';
 import { TreeCard } from 'components/cards/TreeCard';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { EmojiCard } from 'components/cards/EmojiCard';
+import { orderBy } from 'lodash';
+import { SignCard } from 'components/cards/SignCard';
 
 type SpriteOption = {
   key: string;
@@ -38,6 +40,13 @@ const options: Record<string, SpriteOption> = {
     prefix: 'avatar',
     quantity: 50,
     extra: ['A', 'B', 'C', 'D', 'E', 'N'],
+    startAt: 0,
+  },
+  'alien-signs': {
+    key: 'alien-signs',
+    label: 'Alien Signs',
+    prefix: 'sign',
+    quantity: 36,
     startAt: 0,
   },
   sheep: {
@@ -105,6 +114,8 @@ const options: Record<string, SpriteOption> = {
   },
 };
 
+const optionsList = orderBy(Object.values(options), ['label'], ['asc']);
+
 function SpritesPage() {
   const [active, setActive] = useState(options.avatars);
   useTitle(`${active.label} Sprites | Dev | Tarde Divertida`);
@@ -121,6 +132,7 @@ function SpritesPage() {
     medals: <MedalsContent />,
     trees: <TreeContent />,
     emojis: <EmojisContent />,
+    'alien-signs': <AlienSignsContent />,
   }?.[active.key] ?? <Content type={active.key} />;
 
   return (
@@ -133,7 +145,7 @@ function SpritesPage() {
             size="small"
             style={{ minWidth: '15ch' }}
           >
-            {Object.values(options).map((option) => (
+            {optionsList.map((option) => (
               <Select.Option value={option.key} key={option.key}>
                 {option.label}
               </Select.Option>
@@ -236,6 +248,25 @@ function ItemsContent() {
         return (
           <li key={`items-${id}`} className="sprites__flex-item">
             <ItemCard id={String(id)} />
+            {id}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function AlienSignsContent() {
+  const { quantity, startAt } = options['alien-signs'];
+
+  const ids = makeArray(quantity, startAt);
+
+  return (
+    <ul className="sprites__flex">
+      {ids.map((id) => {
+        return (
+          <li key={`items-${id}`} className="sprites__flex-item">
+            <SignCard id={String(id)} />
             {id}
           </li>
         );

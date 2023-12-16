@@ -40,7 +40,7 @@ export const MAX_ROUNDS = 12;
 
 export const TOTAL_ITEMS = 25;
 
-export const AVAILABLE_SIGNS = 32;
+export const AVAILABLE_SIGNS = 36;
 
 export const TOTAL_SIGNS = 25;
 
