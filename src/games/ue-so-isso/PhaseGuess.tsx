@@ -9,7 +9,6 @@ import { GuessIcon } from 'icons/GuessIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepGuessing } from './StepGuessing';
-import { GuessingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
@@ -29,7 +28,7 @@ export function PhaseGuess({ state, players, info }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <GuessingRules guesser={guesser} />
+      <Translate pt="Hora de adivinhar a palavra secreta!" en="Time to guess the secret word!" />
     </PhaseAnnouncement>
   );
 

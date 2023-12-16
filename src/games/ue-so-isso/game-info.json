@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.1.17",
+  "version": "3.1.18",
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"

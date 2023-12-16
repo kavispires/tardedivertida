@@ -2,6 +2,7 @@
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -12,11 +13,12 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { StepSuggestion } from './StepSuggestion';
-import { WritingRules } from './components/RulesBlobs';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { WaitingRoomSuggestions } from './components/WaitingRoomSuggestions';
 
 export function PhaseSuggest({ state, players, info }: PhaseProps) {
+  const user = useUser(players, state);
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
@@ -29,12 +31,18 @@ export function PhaseSuggest({ state, players, info }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <WritingRules />
-      {isUserTheGuesser && (
-        <Instruction contained>
+      {isUserTheGuesser ? (
+        <Instruction>
           <Translate
             pt="Já que você é o adivinhador, relaxe e aguarde..."
             en="Since you're the guesser, just relax and wait..."
+          />
+        </Instruction>
+      ) : (
+        <Instruction>
+          <Translate
+            pt="Hora de escrever uma dica para a palavra secreta!"
+            en="Time to write a clue for the secret word!"
           />
         </Instruction>
       )}
@@ -48,7 +56,11 @@ export function PhaseSuggest({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.UE_SO_ISSO.SUGGEST}
       className="word-selection-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{ content: <WaitingRoomSuggestions user={user} /> }}
+      >
         {/* Step 0 */}
         <ViewOr condition={isUserTheGuesser}>
           <GuesserWaitingRoom

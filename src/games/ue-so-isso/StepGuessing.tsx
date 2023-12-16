@@ -46,7 +46,7 @@ export function StepGuessing({
               <strong>Escreva</strong> sua adivinhação abaixo.
               <br />
               Se você acertar, o grupo ganha <PointsHighlight type="positive">2 pontos</PointsHighlight> mas
-              se você errar, o grupo perde <PointsHighlight type="negative">2 pontos</PointsHighlight>.
+              se você errar, o grupo perde <PointsHighlight type="negative">1 ponto</PointsHighlight>.
               <br />
               Você pode pular se não estiver se sentindo seguro.
             </>
@@ -59,7 +59,7 @@ export function StepGuessing({
                 2 points
               </PointsHighlight>{' '}
               but if you get it wrong, the group loses{' '}
-              <PointsHighlight type="negative">2 points</PointsHighlight>.
+              <PointsHighlight type="negative">1 point</PointsHighlight>.
               <br />
               You can skip if you're not feeling confident.
             </>
