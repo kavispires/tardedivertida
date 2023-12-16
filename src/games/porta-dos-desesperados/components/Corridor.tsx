@@ -79,7 +79,7 @@ export function Corridor({
   return (
     <Image.PreviewGroup
       preview={{
-        className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-faded'),
+        className: clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card'),
       }}
     >
       <div className="i-corridor">
@@ -122,7 +122,7 @@ export function Corridor({
                     imageId={doorId}
                     cardWidth={150}
                     className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
-                    preview={trap !== TRAPS.NO_PREVIEW ? false : undefined}
+                    preview={trap !== TRAPS.NO_PREVIEW ? true : undefined}
                   />
                 )}
               </DoorFrame>
