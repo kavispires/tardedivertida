@@ -76,13 +76,14 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         />
       </RuleInstruction>
 
-      <Space className="grid-container grid-template-6" wrap>
+      <Space className="grid-container grid-template-6 gap-4" wrap>
         {availableCharacters.map((character: ContenderCard) => (
           <TransparentButton
             key={character.id}
             disabled={user.ready || isLoading}
             onClick={() => update(character.id)}
             active={selection[character.id]}
+            activeClass="q-character-player"
           >
             <CharacterCard size={cardWidth} character={character} />
           </TransparentButton>

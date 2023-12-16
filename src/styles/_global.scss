@@ -125,6 +125,18 @@ body {
   grid-template-columns: repeat(8, 1fr);
 }
 
+.gap-1 {
+  gap: get-unit(1);
+}
+
+.gap-2 {
+  gap: get-unit(2);
+}
+
+.gap-4 {
+  gap: get-unit(3);
+}
+
 .invisible {
   opacity: 0;
 }

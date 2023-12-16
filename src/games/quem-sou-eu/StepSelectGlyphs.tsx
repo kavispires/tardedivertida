@@ -121,18 +121,8 @@ export function StepSelectGlyphs({
       {roundType !== 'SHOW' && (
         <RuleInstruction type="event">
           <Translate
-            pt={
-              <>
-                <br />
-                De agora em diante, você vê apenas o seu personagem.
-              </>
-            }
-            en={
-              <>
-                <br />
-                From now on, you only see your own character.
-              </>
-            }
+            pt={<>De agora em diante, você vê apenas o seu personagem.</>}
+            en={<>From now on, you only see your own character.</>}
           />
         </RuleInstruction>
       )}

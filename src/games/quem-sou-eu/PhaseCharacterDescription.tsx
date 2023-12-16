@@ -13,6 +13,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepSelectGlyphs } from './StepSelectGlyphs';
 import { RoundAnnouncement } from 'components/round';
+import { WaitingRoomCharacter } from './components/WaitingRoomCharacter';
 
 export function PhaseCharacterDescription({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
@@ -38,7 +39,13 @@ export function PhaseCharacterDescription({ players, state, info }: PhaseProps) 
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.CHARACTER_DESCRIPTION}>
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{
+          content: <WaitingRoomCharacter user={user} />,
+        }}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
