@@ -1,13 +1,12 @@
 // Constants
-import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
+import { CRUZA_PALAVRAS_PHASES, WORDS_PER_COORDINATE } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { Deck, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
 import {
-  buildDeck,
   buildGrid,
   buildRanking,
   checkForAvailableCells,
@@ -31,10 +30,6 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
-  const largerGridCount = store.options.largerGrid ? 2 : 0;
-  // Build deck
-  const deck = buildDeck(resourceData.allWords, Object.keys(players).length, largerGridCount);
-
   const achievements = utils.achievements.setup(players, store, {
     clues: 0,
     badClues: 0,
@@ -50,7 +45,7 @@ export const prepareSetupPhase = async (
   return {
     update: {
       store: {
-        deck,
+        deck: resourceData.deck,
         playersClues: [],
         availableCoordinates: {},
         gridRebuilds: 0,
@@ -64,11 +59,57 @@ export const prepareSetupPhase = async (
   };
 };
 
+export const prepareWordsSelectionPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  // Unready players
+  utils.players.unReadyPlayers(players);
+
+  // Save
+  return {
+    update: {
+      state: {
+        phase: CRUZA_PALAVRAS_PHASES.WORDS_SELECTION,
+        players,
+        deck: store.deck,
+      },
+    },
+  };
+};
+
 export const prepareClueWritingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  if (state.phase === CRUZA_PALAVRAS_PHASES.WORDS_SELECTION) {
+    const deckDict: BooleanDictionary = {};
+    utils.players.getListOfPlayers(players).forEach((player) => {
+      player.selectedWordsIds.forEach((wordId: string) => (deckDict[wordId] = true));
+    });
+
+    const originalDeck: Deck = store.deck;
+
+    while (Object.keys(deckDict).length < 15) {
+      const cardId = utils.game.getRandomItem(originalDeck).id;
+      deckDict[cardId] = true;
+    }
+
+    const newDeck = Object.keys(deckDict).reduce((acc: Deck, cardId) => {
+      const card = originalDeck.find((card) => card.id === cardId);
+      if (card) {
+        acc.push(card);
+      }
+      return acc;
+    }, []);
+
+    store.deck = newDeck;
+
+    utils.players.removePropertiesFromPlayers(players, ['selectedWordsIds']);
+  }
+
   // Unready players
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
@@ -76,7 +117,7 @@ export const prepareClueWritingPhase = async (
   const round = utils.helpers.increaseRound(state.round);
   const playerCount = Object.keys(players).length;
   const largerGridCount = store.options.largerGrid ? 1 : 0;
-  const coordinateLength = WORDS_PER_PLAYER_COUNT[playerCount] / 2 + store.gridRebuilds + largerGridCount;
+  const coordinateLength = WORDS_PER_COORDINATE[playerCount] + store.gridRebuilds + largerGridCount;
 
   // Build grid if rounds 1 or if there is not enough available cells for all players
   const largerGridAvailability = store.options.largerGrid ? 2 : 0;
@@ -114,7 +155,7 @@ export const prepareClueWritingPhase = async (
         grid: updatedGrid,
         players,
       },
-      stateCleanup: ['clues', 'ranking', 'whoGotNoPoints'],
+      stateCleanup: ['clues', 'ranking', 'whoGotNoPoints', 'deck'],
     },
   };
 };

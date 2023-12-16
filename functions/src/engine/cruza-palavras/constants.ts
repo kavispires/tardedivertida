@@ -2,6 +2,7 @@ export const CRUZA_PALAVRAS_PHASES = {
   LOBBY: 'LOBBY',
   RULES: 'RULES',
   SETUP: 'SETUP',
+  WORDS_SELECTION: 'WORDS_SELECTION',
   CLUE_WRITING: 'CLUE_WRITING',
   GUESSING: 'GUESSING',
   REVEAL: 'REVEAL',
@@ -9,6 +10,7 @@ export const CRUZA_PALAVRAS_PHASES = {
 };
 
 export const CRUZA_PALAVRAS_ACTIONS = {
+  SUBMIT_WORDS: 'SUBMIT_WORDS',
   SUBMIT_CLUE: 'SUBMIT_CLUE',
   SUBMIT_GUESSES: 'SUBMIT_GUESSES',
 };
@@ -31,13 +33,15 @@ export const PLAYER_COUNTS = {
 
 export const TOTAL_ROUNDS = 5;
 
-export const WORDS_PER_PLAYER_COUNT = {
-  3: 6,
-  4: 6,
-  5: 8,
-  6: 8,
-  7: 8,
-  8: 8,
-  9: 10,
-  10: 10,
+export const MINIMUM_WORDS = 15;
+
+export const WORDS_PER_COORDINATE = {
+  3: 3,
+  4: 3,
+  5: 4,
+  6: 4,
+  7: 4,
+  8: 4,
+  9: 5,
+  10: 5,
 };

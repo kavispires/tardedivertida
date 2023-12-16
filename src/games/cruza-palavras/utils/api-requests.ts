@@ -5,6 +5,29 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'cruzaPalavrasSubmitAction');
 
+export function useOnSubmitWordsAPIRequest(setStep: GenericFunction) {
+  const { translate } = useLanguage();
+
+  const request = useAPICall({
+    apiFunction: submitAction,
+    actionName: 'submit-words',
+    onBeforeCall: () => setStep(2),
+    onError: () => setStep(0),
+    successMessage: translate('Palavras enviadas com sucesso', 'Words submitted successfully'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas palavras',
+      'Oops, the application failed to send your words'
+    ),
+  });
+
+  return (payload: SubmitWordsPayload) => {
+    request({
+      action: 'SUBMIT_WORDS',
+      ...payload,
+    });
+  };
+}
+
 export function useOnSubmitClueAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 

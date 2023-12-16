@@ -2,6 +2,7 @@
 import type {
   ClueEntry,
   CruzaPalavrasAchievement,
+  CruzaPalavrasOptions,
   Deck,
   FirebaseStoreData,
   GridCell,
@@ -9,7 +10,7 @@ import type {
 } from './types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
-import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES, CRUZA_PALAVRAS_ACHIEVEMENTS } from './constants';
+import { CRUZA_PALAVRAS_PHASES, CRUZA_PALAVRAS_ACHIEVEMENTS } from './constants';
 // Utils
 import utils from '../../utils';
 import { getListOfPlayers } from '../../utils/players-utils';
@@ -20,9 +21,17 @@ import { getListOfPlayers } from '../../utils/players-utils';
  * @param round
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
-  const order = [RULES, SETUP, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  options: CruzaPalavrasOptions
+): string => {
+  const { RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
+  const order = [RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
+
+  if (currentPhase === SETUP && !options.contenderGrid) {
+    return WORDS_SELECTION;
+  }
 
   if (currentPhase === REVEAL) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -37,17 +46,6 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   }
   console.warn('Missing phase check');
   return CLUE_WRITING;
-};
-
-/**
- * Gets the correct number of word cards based on player count
- * @param words
- * @param playerCount
- * @param largerGridCount
- * @returns
- */
-export const buildDeck = (words: TextCard[], playerCount: number, largerGridCount: number): Deck => {
-  return utils.game.getRandomItems(words, WORDS_PER_PLAYER_COUNT[playerCount] + 2 + largerGridCount);
 };
 
 /**

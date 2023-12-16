@@ -3,6 +3,23 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
+export const handleSubmitWords = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  words: CardId[]
+) => {
+  return await utils.firebase.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'submit your clue',
+    shouldReady: true,
+    change: { selectedWordsIds: words },
+    nextPhaseFunction: getNextPhase,
+  });
+};
+
 export const handleSubmitClue = async (
   gameName: GameName,
   gameId: GameId,

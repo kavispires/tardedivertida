@@ -20,6 +20,10 @@ type CruzaPalavrasGridCell = {
 
 type CruzaPalavraGrid = CruzaPalavrasGridCell[];
 
+type SubmitWordsPayload = {
+  words: string[];
+};
+
 type SubmitCluePayload = {
   clue: string;
   currentClueCoordinate: number;

@@ -19,9 +19,10 @@ import {
   prepareGameOverPhase,
   prepareRevealPhase,
   prepareSetupPhase,
+  prepareWordsSelectionPhase,
 } from './setup';
 import { getWords } from './data';
-import { handleSubmitClue, handleSubmitGuesses } from './actions';
+import { handleSubmitClue, handleSubmitGuesses, handleSubmitWords } from './actions';
 
 /**
  * Get Initial Game State
@@ -67,7 +68,7 @@ export const getNextPhase = async (
   >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, store.options);
 
   // RULES -> SETUP
   if (nextPhase === CRUZA_PALAVRAS_PHASES.SETUP) {
@@ -75,14 +76,16 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getWords(
-      store.language,
-      store.options?.contenderGrid,
-      !!store.options?.nsfw
-    );
+    const additionalData = await getWords(store.language, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
+  }
+
+  // SETUP -> WORDS_SELECTION
+  if (nextPhase === CRUZA_PALAVRAS_PHASES.WORDS_SELECTION) {
+    const newPhase = await prepareWordsSelectionPhase(store, state, players);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // * -> CLUE_WRITING
@@ -122,6 +125,9 @@ export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
+    case CRUZA_PALAVRAS_ACTIONS.SUBMIT_WORDS:
+      utils.firebase.validateSubmitActionProperties(data, ['words'], 'submit words');
+      return handleSubmitWords(gameName, gameId, playerId, data.words);
     case CRUZA_PALAVRAS_ACTIONS.SUBMIT_CLUE:
       utils.firebase.validateSubmitActionProperties(
         data,

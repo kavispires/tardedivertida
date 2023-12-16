@@ -13,7 +13,7 @@ import { ScoringRule } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 
-function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players, state);
 
