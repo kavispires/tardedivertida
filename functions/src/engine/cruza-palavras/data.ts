@@ -11,11 +11,11 @@ import utils from '../../utils';
  */
 export const getWords = async (
   language: Language,
-  isImageGrid: boolean,
+  isContenderGrid: boolean,
   allowNSFW: boolean
 ): Promise<ResourceData> => {
   const QUANTITY_NEEDED = 15;
-  if (isImageGrid) {
+  if (isContenderGrid) {
     const contenders = await utils.tdr.getContenders(language, allowNSFW, QUANTITY_NEEDED);
 
     const allWords = contenders.reduce((acc, entry) => {
@@ -34,9 +34,9 @@ export const getWords = async (
   return { allWords };
 };
 
-export const saveData = async (language: Language, pastClues: PastClues, isImageGrid: boolean) => {
+export const saveData = async (language: Language, pastClues: PastClues, isContenderGrid: boolean) => {
   // Save used cards
-  if (!isImageGrid) {
+  if (!isContenderGrid) {
     const usedIds = utils.helpers.buildBooleanDictionary(Object.keys(pastClues));
     await utils.tdr.saveUsedSingleWords(usedIds);
   }

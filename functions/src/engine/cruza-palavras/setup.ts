@@ -201,7 +201,7 @@ export const prepareGameOverPhase = async (
   });
 
   // Save data
-  await saveData(store.language, store.pastClues, store.options.imageGrid);
+  await saveData(store.language, store.pastClues, store.options.contenderGrid);
 
   utils.players.cleanup(players, []);
 

@@ -8,7 +8,7 @@ export type CruzaPalavrasOptions = {
   /**
    * Uses images instead of words
    */
-  imageGrid: boolean;
+  contenderGrid: boolean;
   /**
    * Possibly include nsfw images
    */
