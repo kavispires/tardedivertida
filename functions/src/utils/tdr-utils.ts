@@ -132,7 +132,7 @@ export const getContenders = async (
   );
 
   // Filter out used items
-  let availableContenders = gameUtils.filterOutByIds(contendersResponse, usedContenders);
+  let availableContenders = gameUtils.filterOutByIds(languageContenders, usedContenders);
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableContenders).length < quantity) {
