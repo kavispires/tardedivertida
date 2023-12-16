@@ -53,6 +53,7 @@ export function PhaseClueWriting({ players, state, info }: PhaseProps) {
         <StepClueWriting
           user={user}
           grid={state.grid}
+          gridType={state.gameType}
           onSubmitClue={onSubmitClue}
           players={players}
           announcement={announcement}

@@ -89,7 +89,7 @@ function ResultCell({ cell, clues, players, playerPerVotedCell, colorCodedCluesP
 
 type AnswersListProps = {
   players: GamePlayers;
-  grid: CruzaPalavraGrid;
+  grid: CruzaPalavrasGrid;
   correctCoordinatesPerPlayer: any;
 };
 
@@ -177,7 +177,8 @@ function BadCluesPlayersList({ badCluesPlayersList }: BadCluesPlayersListProps) 
 
 type StepRevealProps = {
   players: GamePlayers;
-  grid: CruzaPalavraGrid;
+  grid: CruzaPalavrasGrid;
+  gridType: CruzaPalavrasGridType;
   user: GamePlayer;
   clues: CruzaPalavrasClue[];
   goToNextStep: GenericFunction;
@@ -186,6 +187,7 @@ type StepRevealProps = {
 
 export function StepReveal({
   grid,
+  gridType,
   user,
   players,
   clues,
@@ -255,6 +257,7 @@ export function StepReveal({
 
       <WordGrid
         grid={grid}
+        gridType={gridType}
         user={user}
         CellComponent={ResultCell}
         cellComponentProps={{ clues, players, playerPerVotedCell, colorCodedCluesPerPlayer }}

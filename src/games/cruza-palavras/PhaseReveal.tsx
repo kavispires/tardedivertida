@@ -37,6 +37,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
         <StepReveal
           user={user}
           grid={state.grid}
+          gridType={state.gameType}
           clues={state.clues}
           goToNextStep={goToNextStep}
           players={players}

@@ -29,8 +29,8 @@ export const determineNextPhase = (
   const { RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
   const order = [RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
 
-  if (currentPhase === SETUP && !options.contenderGrid) {
-    return WORDS_SELECTION;
+  if (currentPhase === SETUP) {
+    return !options.contenderGrid ? WORDS_SELECTION : CLUE_WRITING;
   }
 
   if (currentPhase === REVEAL) {

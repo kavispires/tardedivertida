@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "title": {
     "pt": "Cruza Palavras",
     "en": "Mixed Clues"
@@ -62,10 +62,10 @@
       "description": "The word grid will have one more column and row making it more difficult"
     },
     {
-      "label": "Grid Type",
+      "label": "Characters Grid",
       "key": "contenderGrid",
-      "off": "Words",
-      "on": "Characters",
+      "off": "No",
+      "on": "Yes",
       "description": "The first grid uses Characters/Celebrities then uses player's clues as usual"
     }
   ]

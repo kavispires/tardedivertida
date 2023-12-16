@@ -41,6 +41,8 @@ export const prepareSetupPhase = async (
 
   utils.players.addPropertiesToPlayers(players, { coordinates: [] });
 
+  const gameType = store.options.contenderGrid ? 'contenders' : 'words';
+
   // Save
   return {
     update: {
@@ -54,6 +56,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.SETUP,
+        gameType,
       },
     },
   };

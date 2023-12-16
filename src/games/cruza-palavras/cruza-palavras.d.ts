@@ -18,7 +18,8 @@ type CruzaPalavrasGridCell = {
   y?: number;
 };
 
-type CruzaPalavraGrid = CruzaPalavrasGridCell[];
+type CruzaPalavrasGrid = CruzaPalavrasGridCell[];
+type CruzaPalavrasGridType = 'words' | 'contenders';
 
 type SubmitWordsPayload = {
   words: string[];
