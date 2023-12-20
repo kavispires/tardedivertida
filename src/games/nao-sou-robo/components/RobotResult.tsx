@@ -80,7 +80,7 @@ export function RobotResult({ players, result, robot }: RobotResultProps) {
               purchase the tickets.
               <br />
               {result.suspicion > 0 ? 'But' : 'And'} the suspicion is{' '}
-              <SuspicionHighlight>{result.suspicion} pontos</SuspicionHighlight>!
+              <SuspicionHighlight>{result.suspicion} points</SuspicionHighlight>!
             </>
           }
         />
