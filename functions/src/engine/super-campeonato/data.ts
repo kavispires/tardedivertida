@@ -6,7 +6,7 @@ import { PastBattles, ResourceData } from './types';
 import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
 import utils from '../../utils';
-import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER } from './constants';
+import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER, CONTENDERS_PER_ROUND } from './constants';
 
 /**
  * Get challenges and contenders  based on the game's language
@@ -39,7 +39,11 @@ export const getResourceData = async (
   }
 
   // Get full contenders deck
-  const contenders = await utils.tdr.getContenders(language, allowNSFW, playerCount * CONTENDERS_PER_PLAYER);
+  const contenders = await utils.tdr.getContenders(
+    language,
+    allowNSFW,
+    Math.max(playerCount, CONTENDERS_PER_ROUND) * CONTENDERS_PER_PLAYER
+  );
 
   return {
     challenges: Object.values(availableChallenges),
