@@ -37,7 +37,7 @@ export function StepPathWaiting({ players, announcement, forest, activePlayer }:
               Se somente um jogador acertar o caminho, ele ganha{' '}
               <PointsHighlight>{playerCount} pontos</PointsHighlight>.
               <br />
-              Você, como criador do mapa ganha o mesmo número de pontos que os jogadores.
+              Você, como criador do mapa, ganha o mesmo número de pontos que os jogadores.
             </>
           }
           en={
