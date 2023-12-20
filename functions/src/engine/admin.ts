@@ -174,6 +174,12 @@ const unlockAndResetGame = async (data: BasicGamePayload, context: FirebaseConte
     // Set state with new Phase: Lobby
     await sessionRef.doc('state').set({
       phase: 'LOBBY',
+      round: {
+        current: 0,
+        total: 0,
+        forceLastRound: false,
+      },
+      players: {},
     });
 
     return true;
