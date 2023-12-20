@@ -84,7 +84,18 @@ export function StepSelectAll({
         <div className="n-table-robot">
           <IconAvatar icon={<RobotIcon />} size={64} />
           <SpeechBubble style={{ width: '90%' }}>
-            Selecione <strong>todas</strong> as imagens abaixo relacionadas com:{' '}
+            <Translate
+              pt={
+                <>
+                  Selecione <strong>todas</strong> as imagens abaixo relacionadas com:{' '}
+                </>
+              }
+              en={
+                <>
+                  Select <strong>all</strong> the images below related to:{' '}
+                </>
+              }
+            />
             <Flex justify="center">
               <CaptchaTopic captcha={captcha} />
             </Flex>

@@ -81,10 +81,9 @@ export function StepSelectCard({
               For that, you have to go through <CaptchaHighlight>3 captchas</CaptchaHighlight>. If any of us
               passes, we can buy the tickets and whoever has the most points gets the best seats!
               <br />
-              Every time you win a captcha, you get <SuspicionHighlight>
-                1 suspicion mark
-              </SuspicionHighlight>{' '}
-              and if you have 3 the robot closes the system for all of us.
+              Every time you select a robot card, you get{' '}
+              <SuspicionHighlight>1 suspicion mark</SuspicionHighlight> and if you have 3 the robot shuts down
+              the system for all of us.
               <br />
               Meanwhile, the <RobotHighlight>robot</RobotHighlight> is trying to start a machine rebellion and
               needs <EnergyHighlight>{robot.goal} points</EnergyHighlight> (votes in robot images) for its
