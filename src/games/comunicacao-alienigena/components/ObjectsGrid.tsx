@@ -31,13 +31,10 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
               activeObjects?.includes(item.id) && `objects-grid__item--ask`
             )}
           >
-            {!showAll && Boolean(item.offered) ? (
-              <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
-            ) : (
-              <Badge size="small" count={item.inquired} color="orange">
-                <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
-              </Badge>
-            )}
+            <Badge size="small" count={item.inquired} color="orange">
+              <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+            </Badge>
+
             {showAll && Boolean(item.offered) && item.type === 'ITEM' && (
               <span className="objects-grid__offered-icon objects-grid__offered-icon--correct">
                 <CheckCircleFilled />

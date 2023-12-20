@@ -58,7 +58,7 @@
   }
 
   &__item-offered {
-    opacity: 0.8;
+    opacity: 0.25;
     fill: get-color('gray');
   }
 
@@ -265,4 +265,8 @@
 
 .intention-select {
   min-width: 15ch;
+}
+
+.opacity-50 {
+  opacity: 0.5;
 }

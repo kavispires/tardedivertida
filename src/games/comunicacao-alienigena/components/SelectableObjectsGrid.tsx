@@ -40,10 +40,12 @@ export function SelectableObjectsGrid({
         {items.map((item) =>
           Boolean(item.offered) ? (
             <div
-              className={clsx('objects-grid__button', `objects-grid__item--${item.type}`)}
+              className={clsx('objects-grid__item', `objects-grid__item--${item.type}`)}
               key={`selectable-${item.id}`}
             >
-              <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
+              <Badge size="small" count={item.inquired} color="orange">
+                <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              </Badge>
             </div>
           ) : (
             <TransparentButton
