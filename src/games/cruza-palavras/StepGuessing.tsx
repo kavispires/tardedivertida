@@ -131,8 +131,8 @@ export function StepGuessing({
 
       <RuleInstruction type="action">
         <Translate
-          pt="Clique em uma dica acima e em uma célula abaixo, ou vice-versa."
-          en="Click on a clue above then on a cell below, or vice-versa."
+          pt="Clique em uma dica acima e em uma célula abaixo, ou vice-versa para posicionar as dicas nas células corretas."
+          en="Click on a clue above then on a cell below, or vice-versa, to position the clues in their correct cells."
         />
       </RuleInstruction>
 
