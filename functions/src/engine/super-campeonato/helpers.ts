@@ -74,7 +74,7 @@ export const isFinalRound = (round: Round): boolean => {
 export const getTableContenders = (contendersDeck: ContendersDeck, players: Players): Contender[] => {
   const playerCount = utils.players.getPlayerCount(players);
   const neededContendersPerRound =
-    playerCount > 8 ? CONTENDERS_PER_ROUND : CONTENDERS_PER_ROUND - playerCount;
+    playerCount > CONTENDERS_PER_ROUND ? CONTENDERS_PER_ROUND : CONTENDERS_PER_ROUND - playerCount;
 
   const quantityNeeded = neededContendersPerRound * TOTAL_ROUNDS;
 
@@ -138,7 +138,7 @@ const getBracketTier = (position: number): BracketTier => {
 export const makeBrackets = (players: Players, deck: Contender[], currentRound: number) => {
   const contenders: Contender[] = [];
   // Gather contenders selected by players, remove those from the players cards
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     // Get contender
     const contender = player.contenders.find((c: Contender) => c.id === player.selectedContenderId);
 
