@@ -192,6 +192,7 @@ export function StepSelectGlyphs({
       <Space className="glyphs" wrap>
         {glyphs.map((glyphId: string) => (
           <Popover
+            key={glyphId}
             content={
               <PopoverGlyph
                 id={glyphId}

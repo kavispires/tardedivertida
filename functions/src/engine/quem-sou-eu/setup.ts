@@ -105,13 +105,6 @@ export const prepareCharacterDescriptionPhase = async (
   const round = utils.helpers.increaseRound(state.round);
   // Unready players
   utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, [
-    'guesses',
-    'glyphs',
-    'selectedGlyphs',
-    'choseRandomly',
-    'availableCharacters',
-  ]);
 
   const glyphs = utils.game.shuffle(utils.game.makeArray(TOTAL_GLYPHS, 1));
 
@@ -152,6 +145,8 @@ export const prepareCharacterDescriptionPhase = async (
       name: tableCharacter.name,
     };
   }
+
+  utils.players.removePropertiesFromPlayers(players, ['guesses', 'choseRandomly']);
 
   // Save
   return {
