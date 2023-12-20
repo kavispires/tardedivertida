@@ -20,25 +20,27 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <Space className="space-container" wrap>
-        <ObjectsGrid items={state.items} showTypes showAll />
-        <Space className="space-container" wrap direction="vertical">
-          <SignsKeyCard signs={state.signs} />
-          <ViewIf condition={!isUserAlien}>
-            <HumanSignBoard signs={state.signs} />
-          </ViewIf>
+      <ViewIf condition={state.items && state.signs && state.inquiryHistory && state.requestHistory}>
+        <Space className="space-container" wrap>
+          <ObjectsGrid items={state.items} showTypes showAll />
+          <Space className="space-container" wrap direction="vertical">
+            <SignsKeyCard signs={state.signs} />
+            <ViewIf condition={!isUserAlien}>
+              <HumanSignBoard signs={state.signs} />
+            </ViewIf>
+          </Space>
         </Space>
-      </Space>
 
-      <History
-        inquiryHistory={state.inquiryHistory}
-        requestHistory={state.requestHistory}
-        players={players}
-        items={state.items}
-        isAlienBot={state.isAlienBot}
-        showIntention
-        signs={state.signs}
-      />
+        <History
+          inquiryHistory={state.inquiryHistory}
+          requestHistory={state.requestHistory}
+          players={players}
+          items={state.items}
+          isAlienBot={state.isAlienBot}
+          showIntention
+          signs={state.signs}
+        />
+      </ViewIf>
     </GameOverWrapper>
   );
 }
