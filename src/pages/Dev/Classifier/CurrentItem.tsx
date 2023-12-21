@@ -43,9 +43,9 @@ export function CurrentItem({
         Response Priority
       </Typography.Paragraph>
 
-      {attributePriority.map((attributeId) => (
-        <Sign attribute={attributeId} key={attributeId} />
-      ))}
+      {attributePriority.map(({ attribute, value }) => {
+        return <Sign attribute={attribute} key={attribute} very={value === 5} not={value === -5} />;
+      })}
     </Space>
   );
 }

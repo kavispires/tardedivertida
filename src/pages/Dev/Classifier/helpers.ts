@@ -19,6 +19,31 @@ export const findLatestId = (data: AlienItemDict) => {
   return orderedNumberedIds[orderedNumberedIds.length - 1];
 };
 
+export const findFirstIncomplete = (data: AlienItemDict) => {
+  const orderedNumberedIds = Object.keys(data)
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  for (let i = 0; i < orderedNumberedIds.length; i++) {
+    const id = orderedNumberedIds[i];
+    const item = data[id];
+    if (Object.values(item.attributes).includes(0)) {
+      return id;
+    }
+  }
+
+  if (orderedNumberedIds.length < 1) {
+    return FIRST_ID;
+  }
+
+  for (let i = 1; i < orderedNumberedIds.length; i++) {
+    if (orderedNumberedIds[i] - orderedNumberedIds[i - 1] !== 1) {
+      return orderedNumberedIds[i];
+    }
+  }
+  return orderedNumberedIds[orderedNumberedIds.length - 1];
+};
+
 export function countNonZeroAttributes(item: AlienItem): number {
   let count = 0;
   for (const weight of Object.values(item.attributes)) {

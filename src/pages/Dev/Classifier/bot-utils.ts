@@ -134,11 +134,12 @@ export const determineAttributePriorityResponse = (
     'metal',
     'odor',
     'old',
+    'fragile',
+    'multiple',
     'flat',
     'soft',
-    'personal',
     'holdable',
-    'singular',
+    'personal',
     'heavy',
     'big',
     'solid',
@@ -147,7 +148,6 @@ export const determineAttributePriorityResponse = (
   //
   const sortedAttributes = Object.entries(totalWeights)
     // Sort counts by total weight
-    // TODO: account for attribute priority TBD
     .sort(([attributeA, weightA], [attributeB, weightB]) => {
       if (weightA === weightB) {
         const indexA = PRIORITY_ORDER.indexOf(attributeA as Attribute);
@@ -161,13 +161,18 @@ export const determineAttributePriorityResponse = (
     // Remove any attribute that could be negative for any item
     .filter(([attribute]) => {
       return currentInquiry.every(
-        (itemId) => botAlienItemKnowledge[itemId].attributes[attribute as Attribute] > 1
+        (itemId) =>
+          botAlienItemKnowledge[itemId].attributes[attribute as Attribute] > 1 ||
+          botAlienItemKnowledge[itemId].attributes[attribute as Attribute] === -5
       );
     })
     // Get attribute name only
-    .map(([attribute]) => attribute);
+    .map(([attribute, value]) => ({
+      attribute: attribute as Attribute,
+      value: value as number,
+    }));
 
-  return sortedAttributes as Attribute[];
+  return sortedAttributes;
 };
 
 /**

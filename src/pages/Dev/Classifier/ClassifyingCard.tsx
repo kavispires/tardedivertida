@@ -14,6 +14,9 @@ import { Verifier } from './Verifier';
 
 import type { Attribute, Weight } from './types';
 import { useQueryParams } from 'hooks/useQueryParams';
+import { orderBy } from 'lodash';
+
+const attributeList = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 
 export function ClassifyingCard() {
   const { data, save, isSaving, itemUtils, isDirty } = useClassifier();
@@ -70,20 +73,24 @@ export function ClassifyingCard() {
     />
   );
 
+  const controls = (
+    <Controls
+      itemId={itemId}
+      itemNumber={itemNumber}
+      previousItem={previousItem}
+      nextItem={nextItem}
+      goTo={goTo}
+      isSaving={isSaving}
+      save={save}
+      latestId={itemUtils.latestId}
+      data={data}
+      isDirty={isDirty}
+    />
+  );
+
   return (
     <Space className="container classifier" direction="vertical">
-      <Controls
-        itemId={itemId}
-        itemNumber={itemNumber}
-        previousItem={previousItem}
-        nextItem={nextItem}
-        goTo={goTo}
-        isSaving={isSaving}
-        save={save}
-        latestId={itemUtils.latestId}
-        data={data}
-        isDirty={isDirty}
-      />
+      {controls}
 
       <Card
         title={
@@ -97,7 +104,7 @@ export function ClassifyingCard() {
           <div>{currentItemComponent}</div>
 
           <Space className="classifier__attributes" wrap>
-            {Object.values(ATTRIBUTES).map((entry) => {
+            {attributeList.map((entry) => {
               return (
                 <Space className="classifier__entry" direction="vertical" key={entry.id}>
                   <div className="title">{`${entry.name.en} - ${entry.name.pt}`}</div>
@@ -121,18 +128,7 @@ export function ClassifyingCard() {
         </Space>
       </Card>
 
-      <Controls
-        itemId={itemId}
-        itemNumber={itemNumber}
-        previousItem={previousItem}
-        nextItem={nextItem}
-        goTo={goTo}
-        isSaving={isSaving}
-        save={save}
-        latestId={itemUtils.latestId}
-        data={data}
-        isDirty={isDirty}
-      />
+      {controls}
     </Space>
   );
 }
