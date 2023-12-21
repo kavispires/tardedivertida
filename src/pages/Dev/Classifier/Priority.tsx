@@ -51,8 +51,8 @@ export function Priority() {
         const attributePriority = determineAttributePriorityResponse([item.id], { [item.id]: item });
         return (
           <Space size="small" className="priority-attributes">
-            {attributePriority.map((attributeId) => (
-              <Sign attribute={attributeId} key={attributeId} value={item.attributes[attributeId]} />
+            {attributePriority.map(({ attribute, value }) => (
+              <Sign attribute={attribute} key={attribute} value={value} />
             ))}
           </Space>
         );

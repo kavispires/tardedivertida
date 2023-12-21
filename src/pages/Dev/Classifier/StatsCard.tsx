@@ -6,6 +6,8 @@ import { getStats } from './helpers';
 import { orderBy } from 'lodash';
 import { useMemo, useState } from 'react';
 import { useClassifier } from './ClassifierContext';
+import { Sign } from './Sign';
+import { Attribute } from './types';
 
 export function StatsCard() {
   const { data } = useClassifier();
@@ -67,10 +69,18 @@ export function StatsCard() {
         <Divider />
 
         <Space wrap size="small">
-          {attributeList.map((entry) => {
+          {attributeList.map((entry, index) => {
             const attribute = stats.attributeCounts[entry.id];
             return (
-              <Card title={`${entry.name.en} - ${entry.name.pt}`} key={entry.id}>
+              <Card
+                title={
+                  <div>
+                    <div>{`${entry.name.en} - ${entry.name.pt}`}</div>
+                    <Sign attribute={entry.id as Attribute} hideName />
+                  </div>
+                }
+                key={entry.id}
+              >
                 <Statistic
                   title="Positive Five"
                   value={(attribute['5'] * 100) / stats.total}

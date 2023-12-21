@@ -6,7 +6,7 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
 import { firestore } from 'services/firebase';
 
-import { findLatestId, initialAttributeState } from './helpers';
+import { findFirstIncomplete, initialAttributeState } from './helpers';
 
 import type { AlienItemDict, LegacyAlienItemDict } from './types';
 export const ClassifierContext = createContext<{
@@ -98,12 +98,22 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
           item.attributes.soft = softVal;
         }
         if (!item.attributes.solid) {
-          item.attributes.solid = 0;
+          item.attributes.solid = 1;
         }
-        if (!item.attributes.singular) {
-          item.attributes.singular = 0;
+        if (!item.attributes.multiple) {
+          item.attributes.multiple = 0;
+        }
+        if (!item.attributes.fragile) {
+          item.attributes.fragile = 0;
+        }
+        if (!item.attributes.personal) {
+          item.attributes.personal = 0;
+        }
+        if (!item.attributes.holdable) {
+          item.attributes.holdable = 0;
         }
 
+        delete item.attributes.singular;
         delete item.attributes.hard;
         setData(merged);
         if (typeof item.name === 'string') {
@@ -146,7 +156,7 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
     },
   });
 
-  const latestId = String(findLatestId(data));
+  const latestId = String(findFirstIncomplete(data));
 
   const createNewItem = (itemId: string) => {
     setIsDirty(true);

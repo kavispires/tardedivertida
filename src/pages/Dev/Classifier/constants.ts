@@ -26,7 +26,7 @@ export const ATTRIBUTES = {
   power: { id: 'power', name: { en: 'Power', pt: 'Força' } },
   round: { id: 'round', name: { en: 'Round', pt: 'Redondo' } },
   sharp: { id: 'sharp', name: { en: 'Sharp', pt: 'Afiado' } },
-  singular: { id: 'singular', name: { en: 'Singular', pt: 'Singular' } }, // Newer
+  // singular: { id: 'singular', name: { en: 'Singular', pt: 'Singular' } }, // deprecated
   soft: { id: 'soft', name: { en: 'Soft', pt: 'Mole' } }, // Newer
   solid: { id: 'solid', name: { en: 'Solid', pt: 'Sólido' } }, // Newer
   sound: { id: 'sound', name: { en: 'Sound', pt: 'Som' } }, // New
@@ -34,9 +34,11 @@ export const ATTRIBUTES = {
   valuable: { id: 'valuable', name: { en: 'Valuable', pt: 'Valioso' } },
   warm: { id: 'warm', name: { en: 'Warm', pt: 'Quente' } },
   weapon: { id: 'weapon', name: { en: 'Weapon', pt: 'Arma' } },
-  // hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
+  // hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // deprecated
   holdable: { id: 'holdable', name: { en: 'Holdable', pt: 'Segurável' } }, // Newest
   personal: { id: 'personal', name: { en: 'Personal', pt: 'Pessoal' } }, // Newest
+  multiple: { id: 'multiple', name: { en: 'Multiple', pt: 'Múltiplo' } }, // Newest
+  fragile: { id: 'fragile', name: { en: 'Fragile', pt: 'Frágil' } }, // Newest
 };
 
 export const FIRST_ID = '1';

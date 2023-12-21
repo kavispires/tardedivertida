@@ -91,6 +91,14 @@
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
+
+  &__very {
+    border-bottom: 2px solid get-color('gray', 8);
+  }
+
+  &__not {
+    border-top: 2px solid get-color('red', 6);
+  }
 }
 
 .priority-attributes {
