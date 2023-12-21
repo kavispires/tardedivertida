@@ -1,6 +1,6 @@
 import { mean } from 'lodash';
 import { ATTRIBUTES, FIRST_ID } from './constants';
-import type { AlienItem, AlienItemDict, Attribute, Weight } from './types';
+import type { AlienItem, AlienItemDict, Attribute, Weight, FirebaseAlienItemDict } from './types';
 
 export const findLatestId = (data: AlienItemDict) => {
   const orderedNumberedIds = Object.keys(data)
@@ -203,3 +203,35 @@ export function downloadObjectAsFile(obj: PlainObject, filename: string): void {
   anchorElement.click();
   window.URL.revokeObjectURL(anchorElement.href);
 }
+
+export const prepareFirebaseAlienItemDict = (data: AlienItemDict): FirebaseAlienItemDict => {
+  const newData: FirebaseAlienItemDict = {};
+  Object.values(data).forEach((item) => {
+    newData[item.id] = {
+      id: item.id,
+      name: item.name,
+      attributesStr: JSON.stringify(item.attributes),
+    };
+    if (item.nsfw) {
+      newData[item.id].nsfw = true;
+    }
+    if (item.categories) {
+      newData[item.id].categories = item.categories;
+    }
+  });
+  return newData;
+};
+
+export const parseFirebaseAlienItemDict = (data: FirebaseAlienItemDict): AlienItemDict => {
+  const newData: AlienItemDict = {};
+  Object.values(data).forEach((item) => {
+    newData[item.id] = {
+      id: item.id,
+      name: item.name,
+      attributes: JSON.parse(item.attributesStr),
+      nsfw: item.nsfw,
+      categories: item.categories,
+    };
+  });
+  return newData;
+};

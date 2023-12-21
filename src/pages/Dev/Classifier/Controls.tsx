@@ -1,10 +1,10 @@
 import { Button, Divider, Space } from 'antd';
 
 import { FIRST_ID, LAST_ID } from './constants';
-import { UseAlienItemDocumentReturnValue } from './hooks';
 
 import type { AlienItemDict } from './types';
 import { downloadObjectAsFile } from './helpers';
+import { ClassifierContextType } from './ClassifierContext';
 
 type ControlsProps = {
   itemId: string;
@@ -13,7 +13,7 @@ type ControlsProps = {
   nextItem: () => void;
   goTo: (target: number | 'first' | 'last') => void;
   isSaving: boolean;
-  save: UseAlienItemDocumentReturnValue['save'];
+  save: ClassifierContextType['save'];
   latestId: string;
   data: AlienItemDict;
   isDirty: boolean;

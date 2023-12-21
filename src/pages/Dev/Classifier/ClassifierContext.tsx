@@ -6,16 +6,22 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
 import { firestore } from 'services/firebase';
 
-import { findFirstIncomplete, initialAttributeState } from './helpers';
+import {
+  findFirstIncomplete,
+  initialAttributeState,
+  parseFirebaseAlienItemDict,
+  prepareFirebaseAlienItemDict,
+} from './helpers';
 
-import type { AlienItemDict, LegacyAlienItemDict } from './types';
-export const ClassifierContext = createContext<{
+import type { AlienItemDict, FirebaseAlienItemDict } from './types';
+
+export type ClassifierContextType = {
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
   isSaving: boolean;
   data: AlienItemDict;
-  save: UseMutateFunction<AlienItemDict, unknown, AlienItemDict, unknown>;
+  save: UseMutateFunction<FirebaseAlienItemDict, unknown, AlienItemDict, unknown>;
   isDirty: boolean;
   reload: () => void;
   itemUtils: {
@@ -26,7 +32,9 @@ export const ClassifierContext = createContext<{
     updateAttributeValue: (itemId: string, attributeId: string, value: number) => void;
     updateNSFW: (itemId: string, value: boolean) => void;
   };
-}>({
+};
+
+export const ClassifierContext = createContext<ClassifierContextType>({
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -63,8 +71,8 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
     isError: isTRError,
     data: trData,
     isSuccess: isSuccessTR,
-  } = useQuery<LegacyAlienItemDict>({
-    queryKey: ['td/alienItems'],
+  } = useQuery<AlienItemDict>({
+    queryKey: ['tdr', 'alienItems'],
     queryFn: async () => {
       const response = await fetch(`${baseUrl}/alien-items.json`);
       return await response.json();
@@ -82,7 +90,8 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
     queryFn: async () => {
       const docRef = doc(firestore, 'data/alienItems');
       const querySnapshot = await getDoc(docRef);
-      return (querySnapshot.data() ?? {}) as AlienItemDict;
+      const firebaseData = querySnapshot.data() ?? {};
+      return parseFirebaseAlienItemDict(firebaseData);
     },
     enabled: isSuccessTR,
     onSuccess: (response) => {
@@ -139,12 +148,13 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
     isError: isMutationError,
     isSuccess: isSaved,
     mutate,
-  } = useMutation<AlienItemDict, unknown, AlienItemDict, unknown>({
+  } = useMutation<FirebaseAlienItemDict, unknown, AlienItemDict, unknown>({
     mutationKey: queryKey,
     mutationFn: async (newData: AlienItemDict) => {
       const docRef = doc(firestore, 'data/alienItems');
-      await setDoc(docRef, newData);
-      return newData;
+      const stringifiedData = prepareFirebaseAlienItemDict(newData);
+      await setDoc(docRef, stringifiedData);
+      return stringifiedData;
     },
     onSuccess: (_, variables) => {
       notification.success({

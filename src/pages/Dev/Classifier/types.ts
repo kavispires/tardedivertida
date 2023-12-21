@@ -22,7 +22,15 @@ export type AlienItem = {
   categories?: string[];
 };
 
-export type LegacyAlienItemDict = Record<ItemId, LegacyAlienItem>;
+export type FirebaseAlienItem = {
+  id: ItemId;
+  name: DualLanguageValue;
+  attributesStr: string;
+  nsfw?: boolean;
+  categories?: string[];
+};
+
+export type FirebaseAlienItemDict = Record<ItemId, FirebaseAlienItem>;
 
 export type AlienItemDict = Record<ItemId, AlienItem>;
 
