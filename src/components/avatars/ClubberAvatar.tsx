@@ -9,13 +9,5 @@ import './ClubberAvatar.scss';
  * Clubber Avatar
  */
 export const ClubberAvatar = (props: CustomAvatarProps) => {
-  return (
-    <CustomAvatarWrapper
-      sprite={clubbers}
-      prefix="clubber"
-      baseClassName="clubber-avatar"
-      animationClassName="bounce"
-      {...props}
-    />
-  );
+  return <CustomAvatarWrapper sprite={clubbers} prefix="clubber" {...props} />;
 };
