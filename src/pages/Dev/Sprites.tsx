@@ -11,7 +11,7 @@ import { makeArray } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
-import { CostumeAvatar } from 'games/na-rua-do-medo/components/CostumeAvatar';
+import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -60,7 +60,7 @@ const options: Record<string, SpriteOption> = {
     key: 'costumes',
     label: 'Costumes',
     prefix: 'costume',
-    quantity: 25,
+    quantity: 50,
     startAt: 0,
   },
   clubbers: {
@@ -75,7 +75,7 @@ const options: Record<string, SpriteOption> = {
     label: 'Super Heroes',
     prefix: 'super-hero',
     quantity: 50,
-    startAt: 1,
+    startAt: 0,
   },
   glyphs: {
     key: 'glyphs',
@@ -227,7 +227,7 @@ function Content({ type }: { type: string }) {
         return (
           <li key={`content-${id}`} className="sprites__flex-item">
             {type === 'sheep' && <SheepAvatar sheepId={String(id)} id="A" />}
-            {type === 'costumes' && <CostumeAvatar costumeId={String(id)} id="A" />}
+            {type === 'costumes' && <CostumeAvatar id={String(id)} avatarId="A" />}
             {type === 'clubbers' && <ClubberAvatar id={String(id)} avatarId="A" />}
             {type === 'super-heroes' && <SuperHeroAvatar id={String(id)} avatarId="A" />}
           </li>

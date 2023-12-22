@@ -288,7 +288,7 @@ export const NPC = 'NPC';
  */
 export const AVATAR_SPRITE_LIBRARIES = {
   CLUBBERS: 60,
-  COSTUMES: 25,
+  COSTUMES: 50,
   SHEEP: 25,
   SUPER_HEROES: 50,
 };

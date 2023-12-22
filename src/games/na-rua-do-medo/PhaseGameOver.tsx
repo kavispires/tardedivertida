@@ -14,7 +14,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { Achievements } from 'components/general/Achievements';
-import { CostumeAvatar } from './components/CostumeAvatar';
+import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 
 const GRID_REPEAT: NumberDictionary = {
   3: 3,
@@ -64,8 +64,8 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
               <div className="n-game-over-player">
                 <CostumeAvatar
                   key={`winner-${player.id}`}
-                  id={state.winners[0].avatarId}
-                  costumeId={player.costumeId}
+                  avatarId={state.winners[0].avatarId}
+                  id={player.costumeId}
                 />
                 <div>
                   <CandyCount candyCount={player.score} size="default" />
@@ -83,7 +83,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
         {nonWinningPlayers.map((player) => (
           <li className="n-game-over-player" key={`game-over-player-${player.id}`}>
             <div className="n-game-over-player__name">
-              <CostumeAvatar id={player.avatarId} costumeId={player.costumeId} />
+              <CostumeAvatar avatarId={player.avatarId} id={player.costumeId} />
               <br />
               <strong>{player.name}</strong>, {AVATARS[player.avatarId].description[language]}
             </div>

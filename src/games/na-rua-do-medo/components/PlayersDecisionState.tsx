@@ -11,7 +11,7 @@ import { ScaredIcon } from 'icons/ScaredIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { CostumeAvatar } from './CostumeAvatar';
+import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 
 type PlayersDecisionStateProps = {
   players: GamePlayers;
@@ -146,7 +146,7 @@ function DecisionSection({ players, playersInSection, icon, title, description }
             const player = players[playerId];
             return (
               <span key={`going-home-player-${player.id}`} className="n-players-decision__player">
-                <CostumeAvatar id={player.avatarId} costumeId={player.costumeId} />
+                <CostumeAvatar avatarId={player.avatarId} id={player.costumeId} />
                 {player.name}
               </span>
             );
