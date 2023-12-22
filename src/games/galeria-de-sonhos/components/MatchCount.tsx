@@ -8,6 +8,7 @@ import { StarPoints } from 'components/points';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { SuperSparkFireworks } from './SuperSparkFireworks';
 
 type MatchCountProps = {
   matchCount: number;
@@ -22,7 +23,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
   const isPlayerInNightmare = playerInNightmare?.id === lastActivePlayer.id;
 
   return (
-    <div>
+    <div className="match-count-container">
       {isSpark ? (
         <Translate
           pt={
@@ -50,6 +51,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               {pluralize(matchCount, 'player')} there!
               <br />
               {isSuperSpark && 'Super Spark!'}
+              {isSuperSpark && <SuperSparkFireworks />}
               <StarPoints keyPrefix="dream-result" quantity={isSuperSpark ? 3 : 2} />
             </p>
           }
