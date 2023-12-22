@@ -9,6 +9,7 @@ import { sortPlayers } from 'utils/helpers';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import { useCountdown } from 'hooks/useCountdown';
 import { useDimensions } from 'hooks/useDimensions';
+import { useColorizeBackground } from './utils/useColorizeBackground';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
 import { GarbageIcon } from 'icons/GarbageIcon';
@@ -18,12 +19,11 @@ import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
-import { ClubberAvatar } from './components/ClubberAvatar';
+import { ClubberAvatar } from '../../components/avatars/ClubberAvatar';
 import { IconAvatar } from 'components/avatars';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TrackTitle } from './components/TrackTitle';
 import { VotesDelegator } from './components/VotesDelegator';
-import { useColorizeBackground } from './utils/useColorizeBackground';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -137,8 +137,8 @@ export function StepResult({
               style={getPosition(isWinningArea ? winningCount : losingCount, isWinningArea ? 0 : 1, width)}
             >
               <ClubberAvatar
-                id={player.avatarId}
-                clubberId={player.clubberId}
+                avatarId={player.avatarId}
+                id={player.clubberId}
                 width={45}
                 animate={isWinningArea}
               />

@@ -12,7 +12,7 @@ import { makeArray } from 'utils/helpers';
 import { Avatar } from 'components/avatars';
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 import { CostumeAvatar } from 'games/na-rua-do-medo/components/CostumeAvatar';
-import { ClubberAvatar } from 'games/megamix/components/ClubberAvatar';
+import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DevHeader } from './DevHeader';
@@ -228,7 +228,7 @@ function Content({ type }: { type: string }) {
           <li key={`content-${id}`} className="sprites__flex-item">
             {type === 'sheep' && <SheepAvatar sheepId={String(id)} id="A" />}
             {type === 'costumes' && <CostumeAvatar costumeId={String(id)} id="A" />}
-            {type === 'clubbers' && <ClubberAvatar clubberId={String(id)} id="A" />}
+            {type === 'clubbers' && <ClubberAvatar id={String(id)} avatarId="A" />}
             {type === 'super-heroes' && <SuperHeroAvatar superHeroId={String(id)} id="A" />}
           </li>
         );

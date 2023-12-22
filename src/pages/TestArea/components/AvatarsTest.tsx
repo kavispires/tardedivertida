@@ -9,7 +9,7 @@ import { TestStepProps } from '../TestArea';
 import { AvatarCard, AvatarName, AvatarStrip } from 'components/avatars';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { CostumeAvatar } from 'games/na-rua-do-medo/components/CostumeAvatar';
-import { ClubberAvatar } from 'games/megamix/components/ClubberAvatar';
+import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 
 const superHeroId = String(random(0, 20));
@@ -43,10 +43,10 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
       </Space>
 
       <Space wrap className="space-container full-width">
-        <SuperHeroAvatar id={player.avatarId} size="large" superHeroId={superHeroId} />
-        <CostumeAvatar id={player.avatarId} size="large" costumeId={superHeroId} />
-        <ClubberAvatar id={player.avatarId} size="large" clubberId={superHeroId} />
-        <SheepAvatar id={player.avatarId} size="large" sheepId={superHeroId} animate />
+        <SuperHeroAvatar id={player.avatarId} superHeroId={superHeroId} />
+        <CostumeAvatar id={player.avatarId} costumeId={superHeroId} />
+        <ClubberAvatar avatarId={player.avatarId} id={superHeroId} />
+        <SheepAvatar id={player.avatarId} sheepId={superHeroId} animate />
       </Space>
 
       <DecisionButtons

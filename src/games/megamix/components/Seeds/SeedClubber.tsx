@@ -8,7 +8,7 @@ import { LETTERS } from 'utils/constants';
 // Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { ClubberAvatar } from '../ClubberAvatar';
+import { ClubberAvatar } from '../../../../components/avatars/ClubberAvatar';
 
 type SeedClubberProps = {
   seed: SeedEntryClubberOutfit;
@@ -28,7 +28,7 @@ export function SeedClubber({ seed, updateData, user, data, onSubmitData }: Seed
   const clubbers = (seed.outfits ?? []).map((cId: string, index: number) => ({
     label: (
       <div className="clubber-selection">
-        <ClubberAvatar id={user.avatarId} clubberId={cId} />
+        <ClubberAvatar avatarId={user.avatarId} id={cId} />
         <div>{LETTERS[index]}</div>
       </div>
     ),

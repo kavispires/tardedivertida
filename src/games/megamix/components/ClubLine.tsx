@@ -6,7 +6,7 @@ import { Tooltip } from 'antd';
 import { sortPlayers } from 'utils/helpers';
 // Components
 import { VIPLineIcon } from 'icons/VIPLineIcon';
-import { ClubberAvatar } from './ClubberAvatar';
+import { ClubberAvatar } from '../../../components/avatars/ClubberAvatar';
 
 type MinigameTitleProps = {
   players: GamePlayers;
@@ -32,8 +32,8 @@ export function ClubLine({ players, currentRound }: MinigameTitleProps) {
             <div className="club-line__player" key={`${player.id}-${player.clubberId}`}>
               <Tooltip title={player.name}>
                 <ClubberAvatar
-                  id={player.avatarId}
-                  clubberId={player.clubberId}
+                  avatarId={player.avatarId}
+                  id={player.clubberId}
                   className="club-line__clubber"
                   animate
                 />
@@ -51,8 +51,8 @@ export function ClubLine({ players, currentRound }: MinigameTitleProps) {
               <Tooltip title={player.name}>
                 <ClubberAvatar
                   key={`${player.id}-${player.clubberId}`}
-                  id={player.avatarId}
-                  clubberId={player.clubberId}
+                  avatarId={player.avatarId}
+                  id={player.clubberId}
                   className="club-line__clubber"
                 />
               </Tooltip>
