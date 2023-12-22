@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Button, Select, Space } from 'antd';
+import { Badge, Button, Select, Space } from 'antd';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
@@ -13,12 +13,13 @@ import { SelectableObjectsGrid } from './SelectableObjectsGrid';
 
 type HumanInquiryProps = {
   signs: Sign[];
+  startingAttributes: Sign[];
   items: Item[];
   submitInquiry: GenericFunction;
   user: GamePlayer;
 };
 
-export function HumanInquiry({ signs, items, submitInquiry, user }: HumanInquiryProps) {
+export function HumanInquiry({ signs, items, submitInquiry, user, startingAttributes }: HumanInquiryProps) {
   const { isLoading } = useLoading();
   const { language } = useLanguage();
   const [attribute, setAttribute] = useState<string>('');
@@ -46,14 +47,16 @@ export function HumanInquiry({ signs, items, submitInquiry, user }: HumanInquiry
             </Select.Option>
           ))}
         </Select>
-        <Button
-          size="large"
-          type="primary"
-          disabled={!attribute || objectsIds.length < 1 || isLoading}
-          onClick={() => submitInquiry({ objectsIds, intention: attribute })}
-        >
-          <Translate pt="Enviar Objetos" en="Submit Objects" /> ({objectsIds.length})
-        </Button>
+        <Badge count={objectsIds.length}>
+          <Button
+            size="large"
+            type="primary"
+            disabled={!attribute || objectsIds.length < 1 || isLoading}
+            onClick={() => submitInquiry({ objectsIds, intention: attribute })}
+          >
+            <Translate pt="Enviar Objetos" en="Submit Objects" />
+          </Button>
+        </Badge>
       </Space>
       <Space className="boards-container" wrap>
         <SelectableObjectsGrid
@@ -62,7 +65,7 @@ export function HumanInquiry({ signs, items, submitInquiry, user }: HumanInquiry
           selectObject={updateSelected}
           user={user}
         />
-        <HumanSignBoard signs={signs} />
+        <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
       </Space>
     </Space>
   );

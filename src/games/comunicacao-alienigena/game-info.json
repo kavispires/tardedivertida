@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "3.0.34",
+  "version": "4.0.0",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -71,6 +71,13 @@
       "off": "No",
       "on": "Yes",
       "description": "The bot will play as the alien and try to convey and guess clues through AI"
+    },
+    {
+      "key": "easyMode",
+      "label": "Difficulty",
+      "off": "Normal",
+      "on": "Easy",
+      "description": "Easy mode gives 3 starting known attributes instead of 1"
     }
   ]
 }

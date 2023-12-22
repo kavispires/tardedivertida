@@ -40,6 +40,7 @@ type StepRevealProps = {
   curses: Record<CardId, PlayerId[]>;
   round: GameRound;
   isAlienBot: boolean;
+  startingAttributes: Sign[];
 } & AnnouncementProps;
 
 export function StepReveal({
@@ -54,6 +55,7 @@ export function StepReveal({
   requestHistory,
   inquiryHistory,
   isAlienBot,
+  startingAttributes,
 }: StepRevealProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   const latestRequest = requestHistory?.[0] ?? {};
@@ -113,14 +115,14 @@ export function StepReveal({
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} />
-          <SignsKeyCard signs={signs} />
+          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} />
-          <HumanSignBoard signs={signs} />
+          <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </HumanContent>
 
@@ -135,7 +137,7 @@ export function StepReveal({
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} />
+        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
       </DebugOnly>
 
       <VIPNextPhaseButton round={round} />

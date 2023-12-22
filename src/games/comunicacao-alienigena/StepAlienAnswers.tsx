@@ -40,6 +40,7 @@ type StepAlienAnswersProps = {
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
+  startingAttributes: Sign[];
 } & AnnouncementProps;
 
 export function StepAlienAnswers({
@@ -59,6 +60,7 @@ export function StepAlienAnswers({
   inquiryHistory,
   status,
   isAlienBot,
+  startingAttributes,
 }: StepAlienAnswersProps) {
   const { isLoading } = useLoading();
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
@@ -160,14 +162,14 @@ export function StepAlienAnswers({
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} />
-          <SignsKeyCard signs={signs} />
+          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} />
-          <HumanSignBoard signs={signs} />
+          <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </HumanContent>
 
@@ -182,7 +184,7 @@ export function StepAlienAnswers({
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} />
+        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
       </DebugOnly>
     </Step>
   );

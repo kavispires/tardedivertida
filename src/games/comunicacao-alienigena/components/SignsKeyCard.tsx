@@ -11,12 +11,14 @@ import { TransparentButton } from 'components/buttons';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
+import { useEffect } from 'react';
 
 type SignsKeyCardProps = {
   signs: Sign[];
+  startingAttributes?: Sign[];
 };
 
-export function SignsKeyCard({ signs }: SignsKeyCardProps) {
+export function SignsKeyCard({ signs, startingAttributes = [] }: SignsKeyCardProps) {
   const { cache, setCache } = useCache();
   const { language } = useLanguage();
 
@@ -27,6 +29,12 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
       return copy;
     });
   };
+
+  useEffect(() => {
+    startingAttributes.forEach((sign) => {
+      updateCache(sign.signId, true);
+    });
+  }, [startingAttributes]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Space direction="vertical">
@@ -57,6 +65,7 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
               onCancel={() => updateCache(sign.signId, false)}
               okText={<Translate pt="Sim" en="Yes" />}
               cancelText={<Translate pt="Não" en="No" />}
+              disabled={!!startingAttributes.find((attr) => attr.signId === sign.signId)}
             >
               <TransparentButton>
                 <DualTranslate>{sign.attribute}</DualTranslate>

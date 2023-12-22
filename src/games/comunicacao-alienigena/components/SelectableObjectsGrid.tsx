@@ -18,6 +18,7 @@ type SelectableObjectsGridProps = {
   maxObjects?: number;
   hideKey?: boolean;
   showTypes?: boolean;
+  isAlienRequest?: boolean;
 };
 
 export function SelectableObjectsGrid({
@@ -28,6 +29,7 @@ export function SelectableObjectsGrid({
   maxObjects = 5,
   hideKey = false,
   showTypes = false,
+  isAlienRequest = false,
 }: SelectableObjectsGridProps) {
   const { isLoading } = useLoading();
 
@@ -38,7 +40,7 @@ export function SelectableObjectsGrid({
       </Title>
       <div className="objects-grid">
         {items.map((item) =>
-          Boolean(item.offered) ? (
+          Boolean(item.offered) || (isAlienRequest && item.type !== 'ITEM') ? (
             <div
               className={clsx('objects-grid__item', `objects-grid__item--${item.type}`)}
               key={`selectable-${item.id}`}

@@ -1,7 +1,7 @@
 // Constants
 import { ATTRIBUTES, AVAILABLE_SIGNS, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
 // Type
-import { Item, Sign, ResourceData } from './types';
+import { Item, Sign, ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Helpers
 import utils from '../../utils';
 import { calculateAttributeUsage, getItems } from './helpers';
@@ -17,9 +17,12 @@ import { calculateAttributeUsage, getItems } from './helpers';
 export const getResourceData = async (
   language: Language,
   playerCount: number,
-  botAlien: boolean,
-  allowNSFW: boolean
+  options: ComunicacaoAlienigenaOptions
 ): Promise<ResourceData> => {
+  const isBotAlien = !!options.botAlien;
+  const allowNSFW = !!options.nsfw;
+  const isEasyGame = !!options.easyMode;
+
   let botAlienItemKnowledge: Collection<AlienItem> = {};
 
   // Get the 25 needed items randomly
@@ -33,7 +36,7 @@ export const getResourceData = async (
 
   const selectedAttributesKeys = utils.game.shuffle(calculateAttributeUsage(selectedAlienItems));
 
-  if (botAlien) {
+  if (isBotAlien) {
     // Cleanup items from attributes not belonging to the game
     selectedAlienItems.forEach((item) => {
       utils.game.getUniqueItems(selectedAttributesKeys, Object.keys(item.attributes)).forEach((attribute) => {
@@ -56,10 +59,13 @@ export const getResourceData = async (
     'asc'
   );
 
+  const startingAttributes = utils.game.getRandomItems(signs, isEasyGame ? 3 : 1);
+
   return {
     items,
     signs,
     botAlienItemKnowledge,
+    startingAttributes,
   };
 };
 

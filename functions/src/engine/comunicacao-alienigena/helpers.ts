@@ -1,5 +1,6 @@
 // Constants
 import {
+  ATTRIBUTES,
   COMUNICACAO_ALIENIGENA_ACHIEVEMENTS,
   COMUNICACAO_ALIENIGENA_PHASES,
   ITEMS_COUNT,
@@ -282,6 +283,9 @@ export const calculateAttributeUsage = (items: AlienItem[]) => {
 
   items.forEach((item) => {
     Object.entries(item.attributes).forEach(([attribute, weight]) => {
+      if (!ATTRIBUTES[attribute]) {
+        return;
+      }
       // Count any fives
       if (weight === 5) {
         if (fiveUsage[attribute] === undefined) {
@@ -299,10 +303,10 @@ export const calculateAttributeUsage = (items: AlienItem[]) => {
       totalUsage[attribute] +=
         {
           '-5': 2,
-          '-3': 1,
+          '-3': 0,
           '-1': 0,
-          '1': 1,
-          3: 2,
+          '1': 0,
+          3: 3,
         }?.[weight] ?? 0;
     });
   });

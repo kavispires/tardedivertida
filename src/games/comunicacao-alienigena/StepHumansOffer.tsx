@@ -30,6 +30,7 @@ type StepHumansOfferProps = {
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
+  startingAttributes: Sign[];
 } & AnnouncementProps;
 
 export function StepHumansOffer({
@@ -45,6 +46,7 @@ export function StepHumansOffer({
   requestHistory,
   inquiryHistory,
   isAlienBot,
+  startingAttributes,
 }: StepHumansOfferProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
@@ -90,7 +92,7 @@ export function StepHumansOffer({
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} />
-          <SignsKeyCard signs={signs} />
+          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
 
@@ -98,6 +100,7 @@ export function StepHumansOffer({
         <Space className="boards-container" wrap>
           <HumanOffering
             signs={signs}
+            startingAttributes={startingAttributes}
             items={items}
             submitOffer={onSubmitOffering}
             user={user}
@@ -117,7 +120,7 @@ export function StepHumansOffer({
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} />
+        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
       </DebugOnly>
     </Step>
   );
