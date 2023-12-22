@@ -42,7 +42,7 @@ export const ATTRIBUTES = {
 };
 
 export const FIRST_ID = '1';
-export const LAST_ID = '500';
+export const LAST_ID = '512';
 
 export const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 

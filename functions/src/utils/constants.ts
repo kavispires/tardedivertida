@@ -299,7 +299,7 @@ export const AVATAR_SPRITE_LIBRARIES = {
  */
 export const SPRITE_LIBRARIES = {
   GLYPHS: 365,
-  ITEMS: 500,
+  ITEMS: 512,
   TREES: 15,
   EMOJIS: 30,
   ALIEN_SIGNS: 32,
