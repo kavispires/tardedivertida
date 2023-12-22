@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -70,13 +70,6 @@
       "description": "Up to 3 special rounds are allowed"
     },
     {
-      "key": "withEmojis",
-      "label": "Emoji Special Round",
-      "off": "No",
-      "on": "Yes",
-      "description": "Up to 3 special rounds are allowed"
-    },
-    {
       "key": "withWords",
       "label": "Word Special Round",
       "off": "No",
@@ -93,6 +86,20 @@
     {
       "key": "withSuspects",
       "label": "Characters Special Round",
+      "off": "No",
+      "on": "Yes",
+      "description": "Up to 3 special rounds are allowed"
+    },
+    {
+      "key": "withSprites",
+      "label": "Sprites Special Round (Emojis, Glyphs)",
+      "off": "No",
+      "on": "Yes",
+      "description": "Up to 3 special rounds are allowed"
+    },
+    {
+      "key": "withAvatars",
+      "label": "Avatars Special Round (Clubbers, Costumes, Super Heroes)",
       "off": "No",
       "on": "Yes",
       "description": "Up to 3 special rounds are allowed"

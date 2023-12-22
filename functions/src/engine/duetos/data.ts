@@ -5,7 +5,7 @@ import { DuetosOptions, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
-import { SPRITE_LIBRARIES } from '../../utils/constants';
+import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../utils/constants';
 
 /**
  * Get characters based on the game's language
@@ -21,8 +21,13 @@ export const getResourceData = async (language: Language, options: DuetosOptions
   if (options.withImages) {
     specialDeckTypes.push('images');
   }
-  if (options.withEmojis) {
-    specialDeckTypes.push('emojis');
+  if (options.withAvatars) {
+    specialDeckTypes.push(
+      utils.game.getRandomItem(['super-heroes', 'clubbers', 'super-heroes', 'clubbers', 'costumes'])
+    );
+  }
+  if (options.withSprites) {
+    specialDeckTypes.push(utils.game.getRandomItem(['emojis', 'glyphs', 'glyphs']));
   }
   if (options.withWords) {
     specialDeckTypes.push('words');
@@ -52,6 +57,35 @@ export const getResourceData = async (language: Language, options: DuetosOptions
     emojis = utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
   }
 
+  let glyphs: number[] = [];
+  if (specialDeckTypes.includes('glyphs')) {
+    glyphs = utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded);
+  }
+
+  let superHeroes: number[] = [];
+  if (specialDeckTypes.includes('super-heroes')) {
+    superHeroes = utils.game.getRandomItems(
+      utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES),
+      quantityNeeded
+    );
+  }
+
+  let clubbers: number[] = [];
+  if (specialDeckTypes.includes('clubbers')) {
+    clubbers = utils.game.getRandomItems(
+      utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS),
+      quantityNeeded
+    );
+  }
+
+  let costumes: number[] = [];
+  if (specialDeckTypes.includes('costumes')) {
+    costumes = utils.game.getRandomItems(
+      utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES),
+      quantityNeeded
+    );
+  }
+
   let words: TextCard[] = [];
   if (specialDeckTypes.includes('words')) {
     words = await utils.tdr.getSingleWords(language, quantityNeeded);
@@ -75,6 +109,10 @@ export const getResourceData = async (language: Language, options: DuetosOptions
     items,
     images,
     emojis,
+    glyphs,
+    superHeroes,
+    clubbers,
+    costumes,
     words,
     suspects,
     contenders,

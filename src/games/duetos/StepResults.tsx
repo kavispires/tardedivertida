@@ -32,27 +32,29 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
         <Translate pt="Pares Vencedores" en="Winnings Pairs" />
       </Title>
 
-      <RuleInstruction type="scoring">
-        <Translate
-          pt={
-            <>
-              Você ganha <PointsHighlight>pontos</PointsHighlight> por cada jogador que fez o mesmo par que
-              você!
-            </>
-          }
-          en={
-            <>
-              You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair than
-              you!
-            </>
-          }
-        />
-      </RuleInstruction>
+      {galleryMatches.length > 0 && (
+        <RuleInstruction type="scoring">
+          <Translate
+            pt={
+              <>
+                Você ganha <PointsHighlight>pontos</PointsHighlight> por cada jogador que fez o mesmo par que
+                você!
+              </>
+            }
+            en={
+              <>
+                You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair than
+                you!
+              </>
+            }
+          />
+        </RuleInstruction>
+      )}
 
       <Space wrap className="space-container">
         {galleryMatches.length === 0 && (
           <RuleInstruction type="event">
-            <Translate pt="Ninguém deu match!" en="Nobody matched anything" />
+            <Translate pt="Ninguém deu match!" en="Nobody matched anything!" />
           </RuleInstruction>
         )}
         {galleryMatches.map((entry, index) => {

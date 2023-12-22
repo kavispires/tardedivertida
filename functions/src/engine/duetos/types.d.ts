@@ -14,9 +14,13 @@ export interface DuetosOptions {
    */
   withImages?: boolean;
   /**
-   * Enables emojis round
+   * Enables sprites round
    */
-  withEmojis?: boolean;
+  withSprites?: boolean;
+  /**
+   * Enables avatars round
+   */
+  withAvatars?: boolean;
   /**
    * Enables words round
    */
@@ -41,6 +45,10 @@ export interface ResourceData {
   items: AlienItem[];
   images: CardId[];
   emojis: number[];
+  glyphs: number[];
+  clubbers: number[];
+  costumes: number[];
+  superHeroes: number[];
   words: TextCard[];
   suspects: SuspectCard[];
   contenders: ContenderCard[];
