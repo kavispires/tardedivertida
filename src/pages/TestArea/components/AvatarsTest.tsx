@@ -8,7 +8,7 @@ import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
 import { AvatarCard, AvatarName, AvatarStrip } from 'components/avatars';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
-import { CostumeAvatar } from 'games/na-rua-do-medo/components/CostumeAvatar';
+import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 
@@ -44,7 +44,7 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
 
       <Space wrap className="space-container full-width">
         <SuperHeroAvatar avatarId={player.avatarId} id={superHeroId} />
-        <CostumeAvatar id={player.avatarId} costumeId={superHeroId} />
+        <CostumeAvatar avatarId={player.avatarId} id={superHeroId} />
         <ClubberAvatar avatarId={player.avatarId} id={superHeroId} />
         <SheepAvatar id={player.avatarId} sheepId={superHeroId} animate />
       </Space>

@@ -38,6 +38,10 @@ type CustomAvatarWrapperProps = {
    * The prefix the accompanies the sprite number id (clubber-, super-hero-)
    */
   prefix: string;
+  /**
+   * ViewBox overRider when sprites are in a different size then 512x512
+   */
+  viewBox?: string;
 } & CustomAvatarProps;
 
 export const CustomAvatarWrapper = ({
@@ -48,7 +52,7 @@ export const CustomAvatarWrapper = ({
   animate = false,
   className = '',
   width = 60,
-  children,
+  viewBox,
   ...props
 }: CustomAvatarWrapperProps) => {
   const avatarData = AVATARS?.[avatarId ?? 0];
@@ -73,7 +77,7 @@ export const CustomAvatarWrapper = ({
       )}
 
       {/* content */}
-      <svg viewBox="0 0 512 512">
+      <svg viewBox={viewBox ?? '0 0 512 512'}>
         <use href={sprite + `#${prefix}-${id}`}></use>
       </svg>
 
