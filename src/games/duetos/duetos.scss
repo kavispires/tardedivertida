@@ -82,3 +82,9 @@
     opacity: 0;
   }
 }
+
+.avatar-entry-background {
+  background-color: get-color('purple', 1, 0.85);
+  border-radius: $border-radius;
+  padding: get-unit(1);
+}

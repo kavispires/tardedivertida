@@ -14,6 +14,7 @@ import { Translate } from 'components/language';
 import { ItemEntry } from './components/ItemEntry';
 import { TransparentButton } from 'components/buttons';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { getAnimationClass } from 'utils/helpers';
 
 type StepTemplateProps = {
   players: GamePlayers;
@@ -132,7 +133,10 @@ export function StepMakePairs({ players, user, announcement, pool, onSubmitPairs
             >
               <div className="pairs-grid__slot">
                 {Boolean(firstItem) ? (
-                  <TransparentButton onClick={() => removeItem(firstItem!)}>
+                  <TransparentButton
+                    onClick={() => removeItem(firstItem!)}
+                    className={getAnimationClass('bounceIn')}
+                  >
                     <ItemEntry itemEntry={selectedPairs[firstItemIndex]!} />
                   </TransparentButton>
                 ) : (
@@ -141,7 +145,10 @@ export function StepMakePairs({ players, user, announcement, pool, onSubmitPairs
               </div>
               <div className="pairs-grid__slot">
                 {Boolean(secondItem) ? (
-                  <TransparentButton onClick={() => removeItem(secondItem!)}>
+                  <TransparentButton
+                    onClick={() => removeItem(secondItem!)}
+                    className={getAnimationClass('bounceIn')}
+                  >
                     <ItemEntry itemEntry={selectedPairs[firstItemIndex + 1]!} />
                   </TransparentButton>
                 ) : (

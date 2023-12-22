@@ -117,6 +117,7 @@ export const preparePairPhase = async (
         pool,
         roundType,
       },
+      stateCleanup: ['gallery', 'ranking'],
     },
   };
 };
