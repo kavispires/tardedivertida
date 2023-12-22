@@ -38,21 +38,11 @@ type CustomAvatarWrapperProps = {
    * The prefix the accompanies the sprite number id (clubber-, super-hero-)
    */
   prefix: string;
-  /**
-   * The custom avatar base class
-   */
-  baseClassName: string;
-  /**
-   * The custom avatar animation class
-   */
-  animationClassName: string;
 } & CustomAvatarProps;
 
 export const CustomAvatarWrapper = ({
   sprite,
   prefix,
-  baseClassName,
-  animationClassName,
   id,
   avatarId,
   animate = false,
@@ -67,7 +57,7 @@ export const CustomAvatarWrapper = ({
   return (
     <svg
       viewBox={`0 0 100 ${hasAvatar ? 200 : 100}`}
-      className={clsx(baseClassName, animate && `${baseClassName}--${animationClassName}`, className)}
+      className={clsx(`${prefix}-avatar`, animate && `${prefix}-avatar--animated`, className)}
       style={{
         animationDuration: `${500 + (Math.random() + Number(id)) * 53}ms`,
         width: `${width}px`,

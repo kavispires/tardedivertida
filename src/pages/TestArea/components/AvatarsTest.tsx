@@ -43,7 +43,7 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
       </Space>
 
       <Space wrap className="space-container full-width">
-        <SuperHeroAvatar id={player.avatarId} superHeroId={superHeroId} />
+        <SuperHeroAvatar avatarId={player.avatarId} id={superHeroId} />
         <CostumeAvatar id={player.avatarId} costumeId={superHeroId} />
         <ClubberAvatar avatarId={player.avatarId} id={superHeroId} />
         <SheepAvatar id={player.avatarId} sheepId={superHeroId} animate />

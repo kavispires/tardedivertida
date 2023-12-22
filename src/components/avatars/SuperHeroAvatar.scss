@@ -3,7 +3,7 @@
   border-radius: $border-radius;
   margin: get-unit(0 2);
 
-  &--bounce {
+  &--animated {
     animation: bounce-kid 2000ms ease-in-out infinite;
   }
 }

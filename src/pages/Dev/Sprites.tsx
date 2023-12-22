@@ -229,7 +229,7 @@ function Content({ type }: { type: string }) {
             {type === 'sheep' && <SheepAvatar sheepId={String(id)} id="A" />}
             {type === 'costumes' && <CostumeAvatar costumeId={String(id)} id="A" />}
             {type === 'clubbers' && <ClubberAvatar id={String(id)} avatarId="A" />}
-            {type === 'super-heroes' && <SuperHeroAvatar superHeroId={String(id)} id="A" />}
+            {type === 'super-heroes' && <SuperHeroAvatar id={String(id)} avatarId="A" />}
           </li>
         );
       })}
