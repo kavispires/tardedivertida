@@ -26,7 +26,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
           <Space className="space-container" wrap direction="vertical">
             <SignsKeyCard signs={state.signs} />
             <ViewIf condition={!isUserAlien}>
-              <HumanSignBoard signs={state.signs} />
+              <HumanSignBoard signs={state.signs} startingAttributes={state.startingAttributes} />
             </ViewIf>
           </Space>
         </Space>

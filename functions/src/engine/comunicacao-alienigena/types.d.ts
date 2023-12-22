@@ -9,6 +9,10 @@ export interface ComunicacaoAlienigenaOptions {
    * Enables alien bot
    */
   botAlien?: boolean;
+  /**
+   * Enables easy mode (3 attributes in the beginning instead of 1)
+   */
+  easyMode?: boolean;
 }
 
 export type ItemId = string;
@@ -19,6 +23,7 @@ export interface ResourceData {
   signs: Sign[];
   items: Item[];
   botAlienItemKnowledge: Record<string, AlienItem>;
+  startingAttributes: Sign[];
 }
 
 export interface Item {

@@ -106,8 +106,7 @@ export const getNextPhase = async (
     const additionalData = await getResourceData(
       store.language,
       Object.keys(players).length,
-      !!(store.options ?? {}).botAlien,
-      !!(store.options ?? {}).nsfw
+      store.options ?? {}
     );
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);

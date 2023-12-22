@@ -76,6 +76,8 @@ export const prepareSetupPhase = async (
           curses: {},
           totalCurses: itemsInfo.curses,
         },
+        // TODO: tell alien bot that these are known
+        startingAttributes: additionalData.startingAttributes,
         ...extraInfo,
       },
     },
@@ -486,6 +488,7 @@ export const prepareGameOverPhase = async (
         signs: state.signs,
         inquiryHistory: state.inquiryHistory,
         requestHistory: state.requestHistory,
+        startingAttributes: state.startingAttributes,
         status: state.status,
         alienId: state.alienId,
         isAlienBot: state.alienBot,

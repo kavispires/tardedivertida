@@ -47,6 +47,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
           isAlienBot={Boolean(state.alienBot)}
+          startingAttributes={state.startingAttributes}
         />
       </StepSwitcher>
     </PhaseContainer>

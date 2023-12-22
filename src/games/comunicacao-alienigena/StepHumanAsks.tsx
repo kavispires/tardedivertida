@@ -34,6 +34,7 @@ type StepHumanAsksProps = {
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
+  startingAttributes: Sign[];
 } & AnnouncementProps;
 
 export function StepHumanAsks({
@@ -51,6 +52,7 @@ export function StepHumanAsks({
   inquiryHistory,
   status,
   isAlienBot,
+  startingAttributes,
 }: StepHumanAsksProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
@@ -111,19 +113,25 @@ export function StepHumanAsks({
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} />
-          <SignsKeyCard signs={signs} />
+          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <ViewIf condition={isUserTheCurrentHuman}>
-          <HumanInquiry items={items} signs={signs} submitInquiry={onSubmitHumanInquiry} user={user} />
+          <HumanInquiry
+            items={items}
+            signs={signs}
+            submitInquiry={onSubmitHumanInquiry}
+            user={user}
+            startingAttributes={startingAttributes}
+          />
         </ViewIf>
 
         <ViewIf condition={!isUserTheCurrentHuman}>
           <Space className="boards-container" wrap>
             <ObjectsGrid items={items} showTypes={false} />
-            <HumanSignBoard signs={signs} />
+            <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
           </Space>
         </ViewIf>
       </HumanContent>
@@ -139,7 +147,7 @@ export function StepHumanAsks({
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} />
+        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
       </DebugOnly>
     </Step>
   );

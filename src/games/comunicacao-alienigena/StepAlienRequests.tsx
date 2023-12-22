@@ -31,6 +31,7 @@ type StepAlienRequestsProps = {
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
+  startingAttributes: Sign[];
 } & AnnouncementProps;
 
 export function StepAlienRequests({
@@ -45,6 +46,7 @@ export function StepAlienRequests({
   requestHistory,
   inquiryHistory,
   status,
+  startingAttributes,
 }: StepAlienRequestsProps) {
   const { isLoading } = useLoading();
   const [intention, setIntention] = useState<string>('');
@@ -132,15 +134,16 @@ export function StepAlienRequests({
             user={user}
             selectedObjects={{ [intention]: true }}
             selectObject={(itemId) => setIntention(itemId)}
+            isAlienRequest
           />
-          <SignsKeyCard signs={signs} />
+          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} />
-          <HumanSignBoard signs={signs} />
+          <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </HumanContent>
 
@@ -155,7 +158,7 @@ export function StepAlienRequests({
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} />
+        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
       </DebugOnly>
     </Step>
   );

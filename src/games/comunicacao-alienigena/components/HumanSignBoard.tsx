@@ -10,12 +10,14 @@ import { TransparentButton } from 'components/buttons';
 import { DrawingCanvas } from 'components/canvas';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
+import { SignCard } from 'components/cards/SignCard';
 
 type HumanSignBoardProps = {
   signs: Sign[];
+  startingAttributes: Sign[];
 };
 
-export function HumanSignBoard({ signs }: HumanSignBoardProps) {
+export function HumanSignBoard({ signs, startingAttributes = [] }: HumanSignBoardProps) {
   const { cache, setCache } = useCache();
   const { language } = useLanguage();
 
@@ -46,30 +48,41 @@ export function HumanSignBoard({ signs }: HumanSignBoardProps) {
       </Title>
       <Space direction="vertical" className="board-container">
         <div className="signs-grid">
-          {orderBy(signs, `attribute.${language}`).map((sign) => (
-            <div className="signs-grid__item" key={sign.signId}>
-              <Popconfirm
-                title={<Translate pt="Apagar símbolo" en="Erase symbol" />}
-                onConfirm={() => updateCache(sign.signId, [])}
-                okText={<Translate pt="Sim" en="Yes" />}
-                cancelText={<Translate pt="Não" en="No" />}
-              >
-                <TransparentButton>
+          {orderBy(signs, `attribute.${language}`).map((sign) => {
+            if (startingAttributes.find((attr) => attr.signId === sign.signId)) {
+              return (
+                <div className="signs-grid__item" key={sign.signId}>
                   <DualTranslate>{sign.attribute}</DualTranslate>
-                </TransparentButton>
-              </Popconfirm>
-              <DrawingCanvas
-                lines={cache?.[sign.signId] ?? []}
-                setLines={(content: any) => updateCache(sign.signId, content)}
-                width={60}
-                height={60}
-                showControls={false}
-                strokeWidth="small"
-                className="signs-grid__canvas"
-                willReadFrequently
-              />
-            </div>
-          ))}
+                  <SignCard id={`${sign.signId}`} className="transparent" />
+                </div>
+              );
+            }
+
+            return (
+              <div className="signs-grid__item" key={sign.signId}>
+                <Popconfirm
+                  title={<Translate pt="Apagar símbolo" en="Erase symbol" />}
+                  onConfirm={() => updateCache(sign.signId, [])}
+                  okText={<Translate pt="Sim" en="Yes" />}
+                  cancelText={<Translate pt="Não" en="No" />}
+                >
+                  <TransparentButton>
+                    <DualTranslate>{sign.attribute}</DualTranslate>
+                  </TransparentButton>
+                </Popconfirm>
+                <DrawingCanvas
+                  lines={cache?.[sign.signId] ?? []}
+                  setLines={(content: any) => updateCache(sign.signId, content)}
+                  width={60}
+                  height={60}
+                  showControls={false}
+                  strokeWidth="small"
+                  className="signs-grid__canvas"
+                  willReadFrequently
+                />
+              </div>
+            );
+          })}
         </div>
         <div className="signs-grid__item">
           <Popconfirm
