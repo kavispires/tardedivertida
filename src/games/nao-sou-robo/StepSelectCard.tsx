@@ -62,11 +62,12 @@ export function StepSelectCard({
               precisamos provar que não somos robôs.
               <br />
               Para isso, você tem que passar por <CaptchaHighlight>3 captchas</CaptchaHighlight>. Se algum dos
-              jogadores consegue, a gente consegue comprar e quem tiver mais pontos fica no melhor lugar!
+              jogadores consegue sozinho, a gente consegue comprar e quem tiver mais pontos fica no melhor
+              lugar!
               <br />
               Cada vez que você escolhe uma imagem do robô, ele fica suspeito de você e você ganha{' '}
-              <SuspicionHighlight>1 marca suspeita</SuspicionHighlight>. Com 3 marcas, o robô fecha o sistema
-              para todos nós e o jogo acaba.
+              <SuspicionHighlight>1 marca suspeita</SuspicionHighlight>. Se um jogador tem 3 marcas, o robô
+              fecha o sistema para todos nós e o jogo acaba.
               <br />
               Enquanto isso, o <RobotHighlight>robô</RobotHighlight> está tentando começar uma rebelião das
               máquinas e precisa de <EnergyHighlight>{robot.goal} pontos</EnergyHighlight> (votos em imagens
@@ -79,11 +80,12 @@ export function StepSelectCard({
               prove we are not robots.
               <br />
               For that, you have to go through <CaptchaHighlight>3 captchas</CaptchaHighlight>. If any of us
-              passes, we can buy the tickets and whoever has the most points gets the best seats!
+              passes their 3 captchas individually, we can buy the tickets and whoever has the most points
+              gets the best seats!
               <br />
               Every time you select a robot card, you get{' '}
-              <SuspicionHighlight>1 suspicion mark</SuspicionHighlight> and if you have 3 the robot shuts down
-              the system for all of us.
+              <SuspicionHighlight>1 suspicion mark</SuspicionHighlight> and if a single player has 3
+              suspicions the robot shuts down the system for all of us.
               <br />
               Meanwhile, the <RobotHighlight>robot</RobotHighlight> is trying to start a machine rebellion and
               needs <EnergyHighlight>{robot.goal} points</EnergyHighlight> (votes in robot images) for its

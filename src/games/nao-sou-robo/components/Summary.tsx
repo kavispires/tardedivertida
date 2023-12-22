@@ -17,19 +17,21 @@ export function Summary({ user, robot }: SummaryProps) {
 
   return (
     <div className="summary">
-      <Tooltip title={<Translate pt="Captcha corretos" en="Captcha correct" />}>
+      <Tooltip title={<Translate pt="Captcha corretos (individual)" en="Captcha correct (individual)" />}>
         <div>
           <CaptchaHighlight>{correctCaptcha}/3</CaptchaHighlight>
         </div>
       </Tooltip>
       <Divider type="vertical" />
-      <Tooltip title={<Translate pt="Suspeita levantada" en="Suspicion caused" />}>
+      <Tooltip title={<Translate pt="Suspeita levantada (individual)" en="Suspicion caused (individual)" />}>
         <div>
           <SuspicionHighlight>{suspicion}/3</SuspicionHighlight>
         </div>
       </Tooltip>
       <Divider type="vertical" />
-      <Tooltip title={<Translate pt="Pontos do Robô para revolução" en="Robot Points to Doom" />}>
+      <Tooltip
+        title={<Translate pt="Pontos do Robô para revolução (group)" en="Robot Points to Doom (group)" />}
+      >
         <div>
           <EnergyHighlight>
             {robot.points}/{robot.goal}
