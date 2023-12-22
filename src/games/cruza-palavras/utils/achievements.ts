@@ -28,8 +28,8 @@ export const achievementsReference: AchievementReference = {
       en: 'Most obscure',
     },
     description: {
-      pt: 'Foi possuído menos vezes',
-      en: 'Was possessed the least',
+      pt: 'Jogadores erraram suas dicas mais vezes',
+      en: 'Players got their clues wrong the most',
     },
   },
   [ACHIEVEMENTS.BEST_GUESSER]: {
