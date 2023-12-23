@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktardedivertida=self.webpackChunktardedivertida||[]).push([[3058],{73058:function(e,t,a){a.d(t,{T:function(){return n}});var i=a(18489);a(72791);var r=a.p+"static/media/costumes.4db46ad06403a69060af0fd83065f2e8.svg",s=a(81058),d=(a(12704),a(80184)),n=function(e){return(0,d.jsx)(s.n,(0,i.Z)({sprite:r,prefix:"costume",viewBox:"0 0 100 155"},e))}}}]);
+//# sourceMappingURL=3058.6b16337e.chunk.js.map
