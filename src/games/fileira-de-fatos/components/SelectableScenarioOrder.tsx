@@ -11,7 +11,7 @@ import { getReference } from '../utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Scenarios } from './Scenarios';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { mockOrder } from '../utils/mock';
@@ -63,14 +63,14 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
     <Space className="space-container" direction="vertical">
       <Scenarios scenarios={selection} reference={reference} />
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt="Você deve escolher os cenários em ordem do menos pior para o pior. Você pode desfazer a seleção, se precisar. Quando estiver pronto(a), clique em 'Enviar'."
           en="You must choose the scenarios in order from the least bad to the worst. You may undo your selection if needed. When you're ready, click 'Submit'."
         />
-      </Instruction>
+      </RuleInstruction>
 
-      <Space className="scenarios-buttons">
+      <div className="scenarios-buttons">
         {availableScenarios.map((card) => (
           <TransparentButton
             className="scenarios-buttons__button"
@@ -81,9 +81,9 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
             {card.text}
           </TransparentButton>
         ))}
-      </Space>
+      </div>
 
-      <Space className="scenarios-buttons">
+      <Space className="space-container">
         <Button
           size="large"
           onClick={onRemoveScenario}

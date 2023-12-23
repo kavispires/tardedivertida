@@ -7,7 +7,7 @@ import { getReference } from './utils/helpers';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Scenarios } from './components/Scenarios';
 import { AvatarName } from 'components/avatars';
 import { Results } from './components/Results';
@@ -60,7 +60,7 @@ export function StepReveal({
         />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -83,7 +83,7 @@ export function StepReveal({
             <RoundTypeExplanation roundType={roundType} />
           </>
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <Scenarios scenarios={result} reference={getReference('negative')} player={activePlayer} />
 

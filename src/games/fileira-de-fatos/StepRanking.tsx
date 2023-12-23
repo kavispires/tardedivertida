@@ -3,7 +3,7 @@ import { Button, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { VIPNextPhaseButton } from 'components/vip';
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -27,7 +27,7 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, roundTy
         <Translate pt="Bonus por acertar todos" en="Bonus points for getting all correct" />,
       ]}
     >
-      <Instruction contained>
+      <RuleInstruction type="alert">
         <Translate
           pt={
             <>
@@ -41,8 +41,8 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, roundTy
           }
         />
         <br />
-        <RoundTypeExplanation roundType={roundType} />
-      </Instruction>
+      </RuleInstruction>
+      <RoundTypeExplanation roundType={roundType} />
 
       <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>

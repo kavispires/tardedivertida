@@ -1,6 +1,6 @@
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
@@ -38,7 +38,7 @@ export function StepOrderScenarios({
         />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -57,9 +57,9 @@ export function StepOrderScenarios({
             </>
           }
         />
-        <br />
-        <RoundTypeExplanation roundType={roundType} />
-      </Instruction>
+      </RuleInstruction>
+
+      <RoundTypeExplanation roundType={roundType} />
 
       <SelectableScenarioOrder scenarios={scenarios} kind="negative" onSubmitOrder={onSubmitOrder} />
     </Step>

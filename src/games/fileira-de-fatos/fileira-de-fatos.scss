@@ -51,11 +51,11 @@
 }
 
 .scenarios-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   width: 100%;
-  margin-top: get-unit(1);
+  gap: get-unit(2);
+  margin: get-unit(1);
 
   &__button {
     background: get-color('red', 6);
