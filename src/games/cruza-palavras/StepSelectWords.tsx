@@ -1,6 +1,6 @@
 import { sampleSize } from 'lodash';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Badge, Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -52,13 +52,16 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
       </RuleInstruction>
 
       <Space className="space-container">
-        <Button
-          type="primary"
-          onClick={() => onSubmitWords({ words: deck })}
-          disabled={length < 10 || isLoading || user.ready}
-        >
-          <Translate pt={`Enviar cartas (${length})`} en={`Submit cards (${length})`} />
-        </Button>
+        <Badge count={length}>
+          <Button
+            type="primary"
+            onClick={() => onSubmitWords({ words: deck })}
+            size="large"
+            disabled={length < 10 || isLoading || user.ready}
+          >
+            <Translate pt="Enviar cartas" en="Submit cards" />
+          </Button>
+        </Badge>
       </Space>
 
       <Space className="space-container max-width" wrap>
