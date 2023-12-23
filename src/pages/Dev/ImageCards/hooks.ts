@@ -2,7 +2,7 @@ import { cloneDeep, merge, padStart, random } from 'lodash';
 import { useEffect, useState } from 'react';
 import { CARDS_PER_DECK, DEFAULT_ENTRY, TOTAL_DECKS } from './constants';
 import { FirebaseImageCardLibrary, ImageCardData, ImageCardRelationship } from './types';
-import { UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
+import { UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { firestore } from 'services/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { App } from 'antd';

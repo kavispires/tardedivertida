@@ -1,6 +1,6 @@
 import { useEffectOnce } from 'react-use';
 import { HashRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // Ant Design Resources
 import { ConfigProvider, Layout, App as AntApp } from 'antd';
 // Services

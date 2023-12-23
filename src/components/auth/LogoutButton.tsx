@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { App, Button, ButtonProps, Popconfirm } from 'antd';

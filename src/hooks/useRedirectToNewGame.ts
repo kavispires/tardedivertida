@@ -1,6 +1,6 @@
 import { App } from 'antd';
 import { useEffect, useState } from 'react';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
 import { ADMIN_API } from 'services/adapters';
 import { useCurrentUserContext } from './useCurrentUserContext';

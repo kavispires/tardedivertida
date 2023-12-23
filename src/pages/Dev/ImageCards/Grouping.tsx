@@ -212,7 +212,8 @@ const Actions = ({ isSaving, isDirty, selection, relate, deselectAll, onNextSet 
 
   return (
     // <FloatButton.Group shape="square" style={{ right: 24 }}>
-    <>
+    // </FloatButton.Group>
+    (<>
       {isDirty && (
         <FloatButton icon={<WarningOutlined />} type="primary" style={{ right: 24 + 70 + 70 + 70 }} />
       )}
@@ -236,7 +237,6 @@ const Actions = ({ isSaving, isDirty, selection, relate, deselectAll, onNextSet 
         // tooltip="Next Set"
         onClick={onNextSet}
       />
-    </>
-    // </FloatButton.Group>
+    </>)
   );
 };

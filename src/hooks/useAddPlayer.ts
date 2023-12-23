@@ -1,5 +1,5 @@
 import { App } from 'antd';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 // Services
 import localStorage from 'services/localStorage';
 import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
@@ -20,7 +20,7 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
   const { notification } = App.useApp();
 
   const query = useQuery({
-    queryKey: 'add-player',
+    queryKey: ['add-player'],
     queryFn: async () =>
       await GAME_API.run({
         action: GAME_API_ACTIONS.ADD_PLAYER,
