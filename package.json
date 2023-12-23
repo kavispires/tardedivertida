@@ -1,21 +1,21 @@
 {
   "name": "tardedivertida",
   "homepage": "http://www.kavispires.com/tardedivertida/",
-  "version": "43.1.0",
+  "version": "43.1.1",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "@types/jest": "^27.5.2",
     "@types/lodash": "^4.14.202",
-    "@types/node": "^20.8.0",
+    "@types/node": "^20.10.5",
     "@types/react": "^17.0.62",
     "@types/react-dom": "^17.0.17",
-    "@types/react-highlight-words": "^0.16.5",
+    "@types/react-highlight-words": "^0.16.7",
     "@types/react-router-dom": "^5.3.3",
     "animate.css": "^4.1.1",
-    "antd": "^5.10.2",
+    "antd": "^5.12.5",
     "clsx": "^2.0.0",
-    "firebase": "^10.5.0",
+    "firebase": "^10.7.1",
     "konva": "^8.3.9",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
@@ -25,7 +25,7 @@
     "react-hooks-global-state": "^2.1.0",
     "react-konva": "^17.0.2-6",
     "react-query": "^3.39.3",
-    "react-router-dom": "6.17.0",
+    "react-router-dom": "6.21.1",
     "react-scripts": "5.0.1",
     "react-timer-hook": "^3.0.7",
     "react-use": "^17.4.2",
@@ -92,6 +92,6 @@
     "gh-pages": "^5.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
-    "prettier": "^3.0.3"
+    "prettier": "^3.1.1"
   }
 }
