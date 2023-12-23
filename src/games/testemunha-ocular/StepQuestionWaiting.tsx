@@ -4,7 +4,7 @@ import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
 
@@ -33,7 +33,7 @@ export function StepQuestionWaiting({
         <br />
         <Translate pt={<>Examine os suspeitos</>} en={<>Examine the suspects</>} />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="wait">
         <Translate
           pt={
             <>
@@ -52,7 +52,7 @@ export function StepQuestionWaiting({
             en="The criminal you saw is highlighted in yellow"
           />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <Suspects
         suspects={suspects}

@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar, Button } from 'antd';
+import { Avatar, Button, Flex, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
@@ -9,10 +9,11 @@ import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { Card } from 'components/cards';
+import { ViewIf } from 'components/views';
 
 type StepQuestioningProps = {
   suspects: Suspect[];
@@ -55,9 +56,11 @@ export function StepQuestioning({
             </>
           }
         />
-        <br />
-        <div className="t-questioning-answer-grid">
-          {isUserTheWitness ? (
+      </Title>
+
+      <ViewIf condition={isUserTheWitness}>
+        <Flex align="center" className="margin">
+          <Instruction contained>
             <Button
               type="text"
               size="large"
@@ -75,14 +78,18 @@ export function StepQuestioning({
                 shape="square"
               />
             </Button>
-          ) : (
-            <div></div>
-          )}
+          </Instruction>
 
-          <Card header={translate('O suspeito...', 'The perpetrator...')} randomColor className="t-card">
+          <Card
+            header={translate('O suspeito...', 'The perpetrator...')}
+            randomColor
+            className="t-card"
+            size="large"
+          >
             {question.question}
           </Card>
-          {isUserTheWitness ? (
+
+          <Instruction contained>
             <Button
               type="text"
               size="large"
@@ -100,11 +107,26 @@ export function StepQuestioning({
                 <Translate pt="Sim" en="Yes" />
               </span>
             </Button>
-          ) : (
-            <div></div>
-          )}
-        </div>
-      </Title>
+          </Instruction>
+        </Flex>
+      </ViewIf>
+
+      <ViewIf condition={!isUserTheWitness}>
+        <Space className="space-container" align="center" direction="vertical">
+          <Card
+            header={translate('O suspeito...', 'The perpetrator...')}
+            randomColor
+            className="t-card"
+            size="large"
+          >
+            {question.question}
+          </Card>
+        </Space>
+
+        <RuleInstruction type="wait">
+          <Translate pt="Aguarde a testemunha responder." en="Wait for the witness to answer." />
+        </RuleInstruction>
+      </ViewIf>
 
       <Suspects
         suspects={suspects}

@@ -9,7 +9,7 @@ import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Card } from 'components/cards';
@@ -54,7 +54,7 @@ export function StepSuspectElimination({
   return (
     <Step announcement={announcement}>
       <Title level={3} size="medium">
-        <AvatarName player={witness} />
+        <AvatarName player={witness} addressUser />
         <Translate en="answered" pt="respondeu" />{' '}
         {testimony ? (
           <Translate en="YES" pt="SIM" />
@@ -68,40 +68,43 @@ export function StepSuspectElimination({
           icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
         />{' '}
         <Translate en="to the question" pt="para a pergunta:" />
-        <br />
-        <Space className="space-container" align="center">
-          <Card
-            header={translate('O suspeito...', 'The perpetrator...')}
-            color={testimony ? 'green' : 'red'}
-            className="t-card"
-          >
-            {question.question}
-          </Card>
-        </Space>
       </Title>
+
+      <Space className="space-container" align="center">
+        <Card
+          header={translate('O suspeito...', 'The perpetrator...')}
+          color={testimony ? 'green' : 'red'}
+          className="t-card"
+          size="large"
+        >
+          {question.question}
+        </Card>
+      </Space>
+
       {isUserTheQuestioner ? (
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
-            pt="Clique em um suspeito para liberá-lo(a)"
-            en="Click on a suspect card to release it"
+            pt="Clique em um suspeito para liberá-lo(a)."
+            en="Click on a suspect card to release it."
           />
           <br />
           {Boolean(eliminatedSuspects?.length && isUserTheQuestioner) && (
-            <Space className="space-container" align="center">
-              <Button type="primary" onClick={onPass} disabled={isLoading}>
-                <Translate
-                  pt="Parar de eliminar e ir para a próxima pergunta"
-                  en="Stop releasing suspects and go to next question"
-                />
-              </Button>
-            </Space>
+            <Button type="primary" onClick={onPass} disabled={isLoading}>
+              <Translate
+                pt="Parar de eliminar e ir para a próxima pergunta"
+                en="Stop releasing suspects and go to next question"
+              />
+            </Button>
           )}
-        </Instruction>
+        </RuleInstruction>
       ) : (
-        <Instruction contained>
+        <RuleInstruction type="wait">
           <AvatarName player={questioner} />{' '}
-          <Translate pt="é quem libera os suspeitos" en="is who is releasing the suspects" />
-        </Instruction>
+          <Translate
+            pt="é quem libera os suspeitos e ele(a) precisa liberar pelo menos um."
+            en="is the one who is releasing the suspects and they must release at least one."
+          />
+        </RuleInstruction>
       )}
 
       <Suspects
