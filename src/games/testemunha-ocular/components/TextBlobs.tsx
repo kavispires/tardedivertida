@@ -1,10 +1,10 @@
 import { Translate } from 'components/language';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
-import { Instruction } from 'components/text';
+import { Instruction, RuleInstruction } from 'components/text';
 
 export function WitnessRules() {
   return (
-    <Instruction contained>
+    <RuleInstruction type="lore">
       <Translate
         pt={
           <>
@@ -23,7 +23,7 @@ export function WitnessRules() {
           </>
         }
       />
-    </Instruction>
+    </RuleInstruction>
   );
 }
 

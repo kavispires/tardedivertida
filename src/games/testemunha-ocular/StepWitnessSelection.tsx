@@ -12,7 +12,7 @@ import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { AvatarCard, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { WitnessRules } from './components/TextBlobs';
 
@@ -60,10 +60,9 @@ export function StepWitnessSelection({
         </Space>
       </Instruction>
 
-      <Instruction>
-        (
-        <Translate pt="O administrator selecionará a testemunha" en="The VIP will select the witness" />)
-      </Instruction>
+      <RuleInstruction type="event">
+        <Translate pt="O Anfitrião selecionará a testemunha" en="The Host will select the witness" />
+      </RuleInstruction>
     </Step>
   );
 }
