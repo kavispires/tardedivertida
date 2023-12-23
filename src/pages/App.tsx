@@ -17,6 +17,7 @@ import { LoadingBar, LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';
 // Pages
 import { routes } from './Routes';
+import ErrorBoundary from 'components/errors/ErrorBoundary';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,21 +44,23 @@ function App() {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ConfigProvider
-        theme={{
-          token: {
-            fontFamily: "'Lato', sans-serif",
-          },
-        }}
-      >
-        <AntApp>
-          <AuthProvider>
-            <AppLayout />
-          </AuthProvider>
-        </AntApp>
-      </ConfigProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ConfigProvider
+          theme={{
+            token: {
+              fontFamily: "'Lato', sans-serif",
+            },
+          }}
+        >
+          <AntApp>
+            <AuthProvider>
+              <AppLayout />
+            </AuthProvider>
+          </AntApp>
+        </ConfigProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 
