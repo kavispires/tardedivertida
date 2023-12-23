@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Badge, Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -91,14 +91,16 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
       </Space>
 
       <Space className="space-container">
-        <Button
-          size="large"
-          type="primary"
-          onClick={() => onSelectCharacters({ characters: selectedCharacters })}
-          disabled={isLoading || user.ready || count !== 6}
-        >
-          <Translate pt={<>Enviar {count} cartas</>} en={<>Submit {count} cards</>} />
-        </Button>
+        <Badge count={count}>
+          <Button
+            size="large"
+            type="primary"
+            onClick={() => onSelectCharacters({ characters: selectedCharacters })}
+            disabled={isLoading || user.ready || count !== 6}
+          >
+            <Translate pt="Enviar cartas" en="Submit cards" />
+          </Button>
+        </Badge>
         <Button
           size="large"
           onClick={() => onSelectCharacters({ characters: mockSelectCharacters(availableCharacters) })}
