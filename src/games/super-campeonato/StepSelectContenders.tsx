@@ -5,7 +5,7 @@ import { useMock } from 'hooks/useMock';
 import { mockSelectContender } from './utils/mock';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ContendersHand } from './components/ContendersHand';
 import { Challenge } from './components/Challenge';
@@ -34,12 +34,12 @@ export function StepSelectContenders({
 
       <Challenge challenge={challenge} />
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt="Selecione um de seus competidores para entrar no campeonato"
           en="Select one of your contenders to join the championship"
         />
-      </Instruction>
+      </RuleInstruction>
 
       <ContendersHand
         contenders={userContenders}
