@@ -15,7 +15,7 @@ import { PlayerStats } from './components/PlayerStats';
 import { CardCountExplanation, DecisionExplanation } from './components/RulesBlobs';
 import { Street } from './components/Street';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { TransparentButton } from 'components/buttons';
@@ -129,7 +129,7 @@ export function StepMakeDecision({
       {user.isTrickOrTreating ? (
         <DecisionExplanation user={user} totalCandyInSidewalk={totalCandyInSidewalk} />
       ) : (
-        <Instruction contained>
+        <RuleInstruction type="wait">
           <Translate
             pt={
               <>
@@ -146,7 +146,7 @@ export function StepMakeDecision({
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
       )}
 
       {user.isTrickOrTreating && !user.ready && (

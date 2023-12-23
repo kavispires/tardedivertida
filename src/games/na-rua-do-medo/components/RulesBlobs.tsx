@@ -1,7 +1,7 @@
 // Components
 import { Translate } from 'components/language';
 import { RulesList } from 'components/rules';
-import { Instruction } from 'components/text';
+import { Instruction, RuleInstruction } from 'components/text';
 import { CandyHighlight } from './Highlights';
 
 const CANDY_VALUES = [1, 2, 3, 4, 5, 5, 5, 7, 7, 7, 8, 9, 10, 11, 11, 12, 13, 14, 15, 17, 19];
@@ -15,7 +15,7 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
   const isThereAnyCandy = Boolean(user.hand + totalCandyInSidewalk);
 
   return (
-    <Instruction contained>
+    <RuleInstruction type="action">
       {isThereAnyCandy ? (
         <Translate
           pt={
@@ -47,7 +47,7 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
         pt="Lembre-se que se dois monstros iguais aparecerem, todos entram em pânico, derrubam todos os doces em mãos e correm pra casa."
         en="Remember that if two of the same monster show up, you lose all candy in hand because you freaked out, dropped everything, and ran home."
       />
-    </Instruction>
+    </RuleInstruction>
   );
 }
 
