@@ -1,22 +1,34 @@
-import { Component } from 'react';
+import React from 'react';
+
 import { PageError } from './PageError';
 
-class ErrorBoundary extends Component {
-  state = { hasError: false };
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
 
-  static getDerivedStateFromError(error: any) {
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
     return { hasError: true };
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
-    console.log(error, errorInfo);
-  }
+  render(): React.ReactNode {
+    const { hasError } = this.state;
+    const { children } = this.props;
 
-  render() {
-    if (this.state.hasError) {
+    if (hasError) {
       return <PageError description="Kaboom!" />;
     }
-    return this.props.children;
+
+    return children;
   }
 }
 
