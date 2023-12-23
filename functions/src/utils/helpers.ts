@@ -1,4 +1,5 @@
 import { LETTERS, LETTERS_EN, LETTERS_PT } from './constants';
+import { getListOfPlayers } from './players-utils';
 
 /**
  * Generates an unique game id starting with the gameCode character
@@ -118,7 +119,7 @@ export function getDefaultInitialState<T = InitialState>({
  * @returns
  */
 export const getPointsToVictory = (players: Players, victory: number): number => {
-  const max = Object.values(players).reduce((acc, player) => {
+  const max = getListOfPlayers(players, true).reduce((acc, player) => {
     return Math.max(acc, player.score);
   }, 0);
   return max < victory ? victory - max : 0;

@@ -38,7 +38,7 @@ export const determineNextPhase = (
 };
 
 export const buildLeaves = (players: Players, gameMode: string) => {
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     const selectedWords: TextCard[] = utils.game.shuffle(
       player.hand.filter((card: TextCard) => !player.badWordsIds.includes(card.id))
     );
@@ -59,7 +59,7 @@ export const buildLeaves = (players: Players, gameMode: string) => {
 };
 
 export const buildClovers = (players: Players) => {
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     const leaves: string[] = utils.game.shuffle(Object.keys(player.leaves));
 
     const clover: Clover = {

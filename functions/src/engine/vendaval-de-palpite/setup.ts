@@ -72,7 +72,7 @@ export const prepareSecretWordSelection = async (
         words: store.words,
         categories: store.categories,
         finalAnswersLeft: FINAL_ANSWER_COUNT,
-        cluesPerPlayer: CLUES_PER_PLAYER[Object.keys(players).length],
+        cluesPerPlayer: CLUES_PER_PLAYER[utils.players.getPlayerCount(players)],
       },
     },
   };

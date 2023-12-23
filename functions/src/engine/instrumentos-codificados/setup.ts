@@ -30,12 +30,12 @@ export const prepareSetupPhase = async (
   const themes = utils.game.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
 
   // Build final code
-  const playerCount = Object.keys(players).length;
+  const playerCount = utils.players.getPlayerCount(players);
 
   const passCodeOrders = utils.game.shuffle(DIGITS);
 
   // Get each player's password fragment, add instrument
-  Object.values(players).forEach((player, index) => {
+  utils.players.getListOfPlayers(players).forEach((player, index) => {
     player.instrument = INSTRUMENTS[passCodeOrders[index]];
     player.order = passCodeOrders[index];
     player.fragment = buildCodeFragment();

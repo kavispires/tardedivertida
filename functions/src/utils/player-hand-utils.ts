@@ -1,5 +1,6 @@
 // Helpers
 import { removeItem } from './game-utils';
+import { getListOfPlayersIds } from './players-utils';
 
 /**
  * Deal cards to players from their own deck
@@ -13,9 +14,10 @@ export const dealPlayersCard = (
   players: Players,
   handLimit: number,
   quantity?: number,
-  playerId?: PlayerId
+  playerId?: PlayerId,
+  includeBots = false
 ): Players => {
-  const toPlayers = playerId ? [playerId] : Object.keys(players);
+  const toPlayers = playerId ? [playerId] : getListOfPlayersIds(players, includeBots);
 
   toPlayers.forEach((playerId) => {
     const player = players[playerId];

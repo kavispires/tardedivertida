@@ -136,7 +136,7 @@ export const prepareVotingPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const tableCardsCount = TABLE_CARDS_BY_PLAYER_COUNT[Object.keys(players).length];
+  const tableCardsCount = TABLE_CARDS_BY_PLAYER_COUNT[utils.players.getPlayerCount(players)];
 
   // Get N cards from tableDeck
   const tableCards = getTableCards(store.tableDeck, store.tableDeckIndex, tableCardsCount);

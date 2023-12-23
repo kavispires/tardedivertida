@@ -83,7 +83,7 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
   }
 
   const usedContenders = utils.helpers.flattenArray<ContenderCard>(
-    Object.values(players).map((player) => player.contenders)
+    utils.players.getListOfPlayers(players).map((player) => player.contenders)
   );
 
   const selectedContenders = utils.game.getRandomUniqueObjects<ContenderCard>(
@@ -103,7 +103,7 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
 export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) => {
   const votes: NumberDictionary = {};
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     if (votes[player.challengeId] === undefined) {
       votes[player.challengeId] = 0;
     }
@@ -200,7 +200,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
   const votes: Record<number, Record<number, number>> = {};
 
   // Count votes
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     const pVotes: NumberDictionary = player.votes;
     Object.keys(pVotes).forEach((vote) => {
       const target = Number(vote);
@@ -260,7 +260,7 @@ export const buildRanking = (players: Players, brackets: Bracket[]) => {
     return acc;
   }, {});
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     if (parsedBrackets?.[player.bets.final]?.includes('winner')) {
       scores.add(player.id, 5, 0);
     }

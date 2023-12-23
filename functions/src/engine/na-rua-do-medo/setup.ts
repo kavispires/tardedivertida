@@ -124,7 +124,8 @@ export const prepareTrickOrTreatPhase = async (
           totalCandyInSidewalk,
           candyPerPlayer: candyStatus.perPlayer,
           candyInHand: candyStatus.perPlayer,
-          continuingPlayerIds: Object.keys(players).sort(),
+          // TODO: This should sort by name not id
+          continuingPlayerIds: utils.players.getListOfPlayersIds(players).sort(),
           alreadyAtHomePlayerIds: [],
         },
         stateCleanup: ['isEverybodyHome', 'isDoubleHorror', 'cashedInCandy'],

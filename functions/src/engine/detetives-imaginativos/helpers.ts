@@ -43,7 +43,7 @@ export const determinePhaseOrder = (
   repeat?: boolean
 ): PlayerId[] => {
   const result: PlayerId[] = [];
-  const playerIds = Object.values(players);
+  const playerIds = utils.players.getListOfPlayers(players);
   const tempGameOrder = [...gameOrder, ...gameOrder];
   const leaderIndex = tempGameOrder.indexOf(leaderId);
 
@@ -61,7 +61,7 @@ export const determinePhaseOrder = (
  * @returns
  */
 export const countImpostorVotes = (players: Players, impostorId: PlayerId): number =>
-  Object.values(players).reduce((total: number, player: Player) => {
+  utils.players.getListOfPlayers(players).reduce((total: number, player: Player) => {
     if (player.vote === impostorId) {
       total += 1;
     }
@@ -87,7 +87,7 @@ export const calculateRanking = (
 
   const relevantPlayers = [impostorId, leaderId];
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     // If detectives won
     if (impostorVotes > 1 && !relevantPlayers.includes(player.id)) {
       // If the player voted for the impostor

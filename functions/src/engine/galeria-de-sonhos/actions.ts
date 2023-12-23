@@ -63,7 +63,7 @@ export const handlePlayCard = async (
     actionText
   );
 
-  const playersList = Object.values(players);
+  const playersList = utils.players.getListOfPlayers(players);
 
   // Group each players in a dictionary of cardIds and players array
   const cardCache: Collection<PlayerId[]> = {};
@@ -169,7 +169,7 @@ export const handlePlayCard = async (
   if (availableTurnOrder.length === 1) {
     const leftOverPlayerId = availableTurnOrder[0];
 
-    const cardsLeftToMatch = Object.values(players).reduce((acc, player) => {
+    const cardsLeftToMatch = utils.players.getListOfPlayers(players).reduce((acc, player) => {
       if (player.id !== leftOverPlayerId) {
         const cards: PlayerCard[] = Object.values(player.cards);
         acc += cards.filter((card) => !card.used).length;

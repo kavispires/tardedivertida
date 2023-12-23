@@ -61,7 +61,7 @@ export const getTableCards = (
 export const buildTable = (players: Players, tableCards: ImageCardId[], storyteller: PlayerId): Table => {
   const table: Table = [];
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     table.push({
       cardId: player.cardId,
       playerId: player.id,
@@ -124,7 +124,7 @@ export const getRanking = (
 
   const solutionEntry = table.find((entry) => entry.isSolution);
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     const playerCard = table.find((entry) => entry.playerId === player.id);
     // Calculate additional points when not storyteller
     if (player.id !== storytellerId) {
@@ -177,12 +177,12 @@ export const scoreRound = (
   const { solutionIndex, cardIndexDictionary } = buildCardIndex(table);
 
   // Add player votes to table
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     const cardIndex = cardIndexDictionary[player.vote];
     table[cardIndex].votes.push(player.id);
   });
 
-  const outcome = determineOutcome(table, solutionIndex, Object.keys(players).length);
+  const outcome = determineOutcome(table, solutionIndex, utils.players.getPlayerCount(players));
 
   const ranking = getRanking(table, players, outcome, storyteller, store);
 
@@ -206,10 +206,12 @@ export const determineGameOver = (
   round: Round
 ): boolean => {
   if (!options.fixedRounds) {
-    return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+    return utils.players
+      .getListOfPlayers(players)
+      .some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
   }
 
-  const playerCount = Object.keys(players).length;
+  const playerCount = utils.players.getPlayerCount(players);
   if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
     return round.current >= playerCount * 2;
   }

@@ -31,7 +31,7 @@ export const createPlayer = (
   players: Players = {},
   isGuest?: boolean
 ): Player => {
-  const playerList = Object.values(players);
+  const playerList = getListOfPlayers(players, true);
   const usedAvatars = playerList.map((player) => player.avatarId);
   const newAvatarId = usedAvatars.includes(avatarId)
     ? getRandomUniqueItem(AVATAR_IDS, usedAvatars)
@@ -164,7 +164,7 @@ export const resetPlayers = (players: Players): Players => {
  * @returns
  */
 export const isEverybodyReady = (players: Players): boolean => {
-  return Object.values(players).every((player) => player.ready);
+  return getListOfPlayers(players, true).every((player) => player.ready);
 };
 
 /**
@@ -173,8 +173,9 @@ export const isEverybodyReady = (players: Players): boolean => {
  * @returns array of winning players
  */
 export const determineWinners = (players: Players): Player[] => {
-  const maxScore = Math.max(...Object.values(players).map((player) => player.score));
-  return Object.values(players).filter((player) => {
+  const listOfPlayers = getListOfPlayers(players, true);
+  const maxScore = Math.max(...listOfPlayers.map((player) => player.score));
+  return listOfPlayers.filter((player) => {
     return player.score === maxScore;
   });
 };
@@ -222,7 +223,8 @@ export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayer
  * @param players
  * @returns
  */
-export const getPlayerCount = (players: Players): number => Object.keys(players).length;
+export const getPlayerCount = (players: Players, includeBots = true): number =>
+  getListOfPlayersIds(players, includeBots).length;
 
 /**
  * Creates number ids and distribute them as given propertyName to players
@@ -235,11 +237,12 @@ export const distributeNumberIds = (
   players: Players,
   startingId: number,
   endingId: number,
-  propertyName: string
+  propertyName: string,
+  includeBots = false
 ) => {
   const ids = shuffle(new Array(startingId + endingId + 1).fill(0).map((e, i) => e + i));
   // Add sheep id
-  Object.values(players).forEach((player, index) => {
+  getListOfPlayers(players, includeBots).forEach((player, index) => {
     player[propertyName] = `${ids[index]}`;
   });
 };
@@ -314,12 +317,21 @@ export const addBots = (
  * Get list of non-bot players
  * @param players
  * @param includeBots default=false
- * @returns
+ * @returns array of players
  */
 export const getListOfPlayers = (players: Players, includeBots = false): Player[] => {
   if (includeBots) return Object.values(players);
-
   return Object.values(players).filter((player) => player.type === 'player');
+};
+
+/**
+ * Get list of players ids
+ * @param players
+ * @param includeBots
+ * @returns
+ */
+export const getListOfPlayersIds = (players: Players, includeBots = false): PlayerId[] => {
+  return getListOfPlayers(players, includeBots).map((player) => player.id);
 };
 
 /**
@@ -336,10 +348,8 @@ export const getListOfBots = (players: Players): Player[] => {
  * @param players
  */
 export const neutralizeBotScores = (players: Players) => {
-  Object.values(players).forEach((player) => {
-    if (player.type === 'bot') {
-      player.score = 0;
-    }
+  getListOfBots(players).forEach((botPlayer) => {
+    botPlayer.score = 0;
   });
 };
 
@@ -353,9 +363,10 @@ export const neutralizeBotScores = (players: Players) => {
  */
 export const buildGameOrder = (
   players: Players,
-  doublingThreshold = 0
+  doublingThreshold = 0,
+  includeBots = false
 ): { gameOrder: PlayerId[]; playerIds: PlayerId[]; playerCount: number } => {
-  const playerIds = shuffle(Object.keys(players));
+  const playerIds = shuffle(getListOfPlayersIds(players, includeBots));
   const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
   return { gameOrder, playerIds, playerCount: playerIds.length };
 };
@@ -385,16 +396,18 @@ export class Scores {
   }
 
   private init(players: Players | Player[], gainedPointsInitialState?: number[]) {
-    this.scores = Object.values(players).reduce((scores, player) => {
-      scores[player.id] = {
-        playerId: player.id,
-        name: player.name,
-        previousScore: player.score,
-        gainedPoints: gainedPointsInitialState ? [...gainedPointsInitialState] : new Array(1).fill(0),
-        newScore: player.score,
-      };
-      return scores;
-    }, {});
+    this.scores = Object.values(players)
+      .filter((player) => player.type !== 'audience')
+      .reduce((scores, player) => {
+        scores[player.id] = {
+          playerId: player.id,
+          name: player.name,
+          previousScore: player.score,
+          gainedPoints: gainedPointsInitialState ? [...gainedPointsInitialState] : new Array(1).fill(0),
+          newScore: player.score,
+        };
+        return scores;
+      }, {});
   }
 
   /**
@@ -438,7 +451,7 @@ export class Scores {
   rank(players: Players): NewScore[] {
     // Add the new score to the player
     if (players) {
-      Object.values(players).forEach((player) => (player.score = this.scores[player.id].newScore));
+      getListOfPlayers(players, true).forEach((player) => (player.score = this.scores[player.id].newScore));
     }
 
     return Object.values(this.scores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
@@ -473,7 +486,7 @@ export class Scores {
  */
 export const cleanup = (players: Players, keepKeys: string[]) => {
   const keys = ['avatarId', 'id', 'name', 'ready', 'score', 'updatedAt', 'type', ...keepKeys];
-  Object.values(players).forEach((player) => {
+  getListOfPlayers(players, true).forEach((player) => {
     Object.keys(player).forEach((key) => {
       if (!keys.includes(key)) {
         delete player[key];
@@ -494,7 +507,7 @@ export const getRankedVotes = (players: Players, property: string, winnerOnly = 
   const propertyCounts: Record<string, MostVotesResult> = {};
 
   // Calculate the counts for each property value
-  Object.values(players).forEach((player) => {
+  getListOfPlayers(players, true).forEach((player) => {
     const playerProperty = String(player[property]);
 
     if (!propertyCounts[playerProperty]) {

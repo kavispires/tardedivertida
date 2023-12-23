@@ -226,7 +226,7 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
  * @returns the modified grid
  */
 export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): GridCell[] => {
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     (player.coordinates ?? []).forEach((coordinate) => {
       if (coordinate.used) {
         grid[coordinate.coordinate].available = false;
@@ -245,7 +245,7 @@ export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): 
  * @returns
  */
 export const getPlayerClues = (players: Players): ClueEntry[] => {
-  return Object.values(players).map((player) => {
+  return utils.players.getListOfPlayers(players).map((player) => {
     const index = player.coordinates.findIndex(
       (coordinate) => coordinate.coordinate === player.currentClueCoordinate
     );
@@ -314,7 +314,7 @@ export const buildRanking = (players: Players, clues: ClueEntry[], store: Fireba
   });
 
   // 0 correct guesses on your clue gets minus player count in points
-  const whoGotNoPoints: PlayerId[] = Object.keys(players).filter((playerId) => {
+  const whoGotNoPoints: PlayerId[] = utils.players.getListOfPlayersIds(players).filter((playerId) => {
     if (gotPassivePoints[playerId] === undefined || gotPassivePoints[playerId].length === 0) {
       return true;
     }

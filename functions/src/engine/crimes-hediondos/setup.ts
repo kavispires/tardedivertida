@@ -128,7 +128,7 @@ export const prepareSceneMarkingPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
   // Update pastCorrectCrimes
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     player.pastCorrectCrimes += player.correctCrimes ?? 0;
   });
 

@@ -134,7 +134,7 @@ export const getFinalMovies = (
 
   Object.values(movies).forEach((movie) => {
     const votes: string[] = [];
-    Object.values(players).forEach((player) => {
+    utils.players.getListOfPlayers(players).forEach((player) => {
       if (player.posters[movie.id]) {
         votes.push(player.posters[movie.id]);
       }

@@ -116,7 +116,7 @@ export const determineSuggestionsNumber = (players: Players) => {
  */
 export const tallyVotes = (currentWords: UsedWords, players: Players): UsedWords => {
   const currentWordsCopy = { ...currentWords };
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     if (player?.votes) {
       player.votes.forEach((wordId: string) => {
         currentWordsCopy[wordId].votes += 1;
@@ -163,7 +163,7 @@ export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
  * @returns
  */
 export const groupSuggestions = (players: Players): CurrentSuggestions => {
-  return Object.values(players).reduce((acc: CurrentSuggestions, player: Player) => {
+  return utils.players.getListOfPlayers(players).reduce((acc: CurrentSuggestions, player: Player) => {
     if (player.suggestions) {
       player.suggestions.forEach((sug: string) => {
         const suggestion = sug.toLowerCase();

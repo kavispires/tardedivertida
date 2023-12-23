@@ -122,7 +122,7 @@ export const handleNextAnswers = async (
   });
 
   // Removed updated accepted answers
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     Object.keys(player.answers).forEach((id) => {
       if (matchingAnswers.includes(id)) {
         player.answers[id].isLocked = true;

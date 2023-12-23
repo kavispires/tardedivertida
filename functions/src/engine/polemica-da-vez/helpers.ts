@@ -68,7 +68,7 @@ export const buildDeck = (allTweets): Decks => {
 };
 
 export const countLikes = (players: Players, store: FirebaseStoreData): number => {
-  return Object.values(players).reduce((acc, player) => {
+  return utils.players.getListOfPlayers(players).reduce((acc, player) => {
     if (player.reaction) {
       utils.achievements.increase(store, player.id, 'likes', 1);
     }
@@ -110,7 +110,7 @@ export const getRanking = (players: Players, totalLikes: number, store: Firebase
  */
 export const determineGameOver = (players: Players, options: PolemicaDaVezOptions, round: Round) => {
   if (!options.fixedRounds) {
-    return Object.values(players).some((player) => player.score >= SCORE_GOAL);
+    return utils.players.getListOfPlayers(players).some((player) => player.score >= SCORE_GOAL);
   }
 
   const playerCount = utils.players.getPlayerCount(players);

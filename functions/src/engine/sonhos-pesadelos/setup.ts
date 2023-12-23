@@ -115,7 +115,7 @@ export const prepareResolutionPhase = async (
 ): Promise<SaveGamePayload> => {
   const gallery = buildGallery(players, state.table);
   const ranking = buildRanking(players);
-  const correctGuessPoints = Object.values(players)[0]?.theme?.level ?? 2;
+  const correctGuessPoints = utils.players.getListOfPlayers(players)[0]?.theme?.level ?? 2;
 
   // Save
   return {

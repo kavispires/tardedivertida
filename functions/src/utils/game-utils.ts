@@ -1,4 +1,5 @@
 import { buildIdDictionary } from './helpers';
+import { getListOfPlayersIds } from './players-utils';
 
 // Shuffling
 
@@ -206,9 +207,10 @@ export const dealList = <T>(
   players: Players,
   quantity = 1,
   propertyName = 'hand',
-  recursive = false
+  recursive = false,
+  includeBots = false
 ): Players => {
-  const playerIds = Object.keys(players);
+  const playerIds = getListOfPlayersIds(players, includeBots);
   // Ensure there are enough cards
   const availableList = recursive && playerIds.length * quantity > list.length ? [...list, ...list] : list;
   const hands = sliceIntoChunks(availableList, quantity);

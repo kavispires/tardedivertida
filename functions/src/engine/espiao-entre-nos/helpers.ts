@@ -83,7 +83,7 @@ export const createRolesPool = (roles: string[], playerCount: number): string[] 
 export const distributeRoles = (roles: string[], locationName: string, players: Players) => {
   let currentSpyId = '';
 
-  Object.values(players).forEach((player, index) => {
+  utils.players.getListOfPlayers(players).forEach((player, index) => {
     const playerRole = roles[index];
     if (playerRole === SPY) {
       currentSpyId = player.id;
@@ -135,8 +135,9 @@ export const checkOutcome = (
   }
 
   if (state.phase === ESPIAO_ENTRE_NOS_PHASES.ASSESSMENT) {
-    const playersWhoVotedYes = Object.values(players).filter((player) => player.vote);
-    const isVotingSuccessful = Object.keys(players).length - 1 === Object.keys(playersWhoVotedYes).length;
+    const playersWhoVotedYes = utils.players.getListOfPlayers(players).filter((player) => player.vote);
+    const isVotingSuccessful =
+      utils.players.getPlayerCount(players) - 1 === Object.keys(playersWhoVotedYes).length;
 
     // Voting passes
     if (isVotingSuccessful) {
@@ -170,7 +171,7 @@ export const calculateScore = (
   accuserId: PlayerId
 ) => {
   // Calculate Points
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     // If spy was successful, gets 4 points (if he guessed, otherwise 2 for not being found)
     if (isSpyWin && currentSpyId === player.id) {
       if (isSpyGuess) {
