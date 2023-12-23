@@ -6,7 +6,7 @@ import { App, Button, Input, Select, Space, Typography } from 'antd';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { cloneDeep, merge } from 'lodash';
 import { useMemo, useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTitle } from 'react-use';
 import { USER_API, USER_API_ACTIONS } from 'services/adapters';
 import { firestore } from 'services/firebase';
