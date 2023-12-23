@@ -115,7 +115,7 @@ export const determineCast = (players: Players, state: FirebaseStateData, store:
   });
 
   // Determine success threshold (how many votes are necessary to consider the role cast)
-  const successThreshold = Math.ceil(Object.values(players).length / 2); // 50% + 1
+  const successThreshold = Math.ceil(utils.players.getListOfPlayers(players).length / 2); // 50% + 1
 
   const activeRole = state.movie.roles[state.activeRoleId];
 

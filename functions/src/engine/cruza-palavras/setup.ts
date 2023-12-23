@@ -118,7 +118,7 @@ export const prepareClueWritingPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
 
   const round = utils.helpers.increaseRound(state.round);
-  const playerCount = Object.keys(players).length;
+  const playerCount = utils.players.getPlayerCount(players);
   const largerGridCount = store.options.largerGrid ? 1 : 0;
   const coordinateLength = WORDS_PER_COORDINATE[playerCount] + store.gridRebuilds + largerGridCount;
 

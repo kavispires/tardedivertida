@@ -105,7 +105,7 @@ export const getNextPhase = async (
     // Request data
     const additionalData = await getResourceData(
       store.language,
-      Object.keys(players).length,
+      utils.players.getPlayerCount(players),
       store.options ?? {}
     );
 

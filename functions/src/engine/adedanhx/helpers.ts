@@ -194,7 +194,7 @@ export const groupAnswers = (
     letters.forEach((letter, letterIndex) => {
       const id = `${topicIndex}-${letterIndex}`;
       const answers: AnswerEvaluationEntry[] = [];
-      Object.keys(players).forEach((playerId) => {
+      utils.players.getListOfPlayersIds(players).forEach((playerId) => {
         const [possibleAnswer, timestamp = 0] = (players[playerId].answers[id] ?? '').split(SEPARATOR);
 
         const answer = possibleAnswer.toLowerCase();

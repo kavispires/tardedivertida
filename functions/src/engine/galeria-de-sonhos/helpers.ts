@@ -132,10 +132,12 @@ export const buildRanking = (players: Players, store: FirebaseStoreData, playerI
 
 export const getPlayersWithMaxDreams = (players: Players) => {
   // Count selected cards per player
-  const cardCount = Object.values(players).reduce((acc: NumberDictionary, player: PlainObject) => {
-    acc[player.id] = Object.keys(player.cards).length;
-    return acc;
-  }, {});
+  const cardCount = utils.players
+    .getListOfPlayers(players)
+    .reduce((acc: NumberDictionary, player: PlainObject) => {
+      acc[player.id] = Object.keys(player.cards).length;
+      return acc;
+    }, {});
 
   // Check if anybody is having a nightmare (in the dark) (uniquely most cards)
   const maxDreamCount = Math.max(...Object.values(cardCount));

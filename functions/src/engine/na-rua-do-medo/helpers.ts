@@ -146,7 +146,9 @@ export const shareCandy = (players: Players, currentCard?: HouseCard): CandyStat
     };
   }
 
-  const continuingPlayers = Object.values(players).filter((player) => player.isTrickOrTreating);
+  const continuingPlayers = utils.players
+    .getListOfPlayers(players)
+    .filter((player) => player.isTrickOrTreating);
   const playerCount = continuingPlayers.length;
   const perPlayer = Math.floor(currentCard.value / playerCount);
   const leftover = currentCard.value % playerCount;
@@ -218,7 +220,7 @@ export const parseDecisions = (
   const continuingPlayerIds: PlayerId[] = [];
   const alreadyAtHomePlayerIds: PlayerId[] = [];
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     switch (player.decision) {
       case DECISIONS.HOME:
         alreadyHomePlayers.push(player);
@@ -356,7 +358,9 @@ export const determineOutcome = (
 
   if (state.phase === NA_RUA_DO_MEDO_PHASES.RESULT) {
     // if everybody is home or going home => end of street
-    const isEverybodyHome = Object.values(players).every((player) => !player.isTrickOrTreating);
+    const isEverybodyHome = utils.players
+      .getListOfPlayers(players)
+      .every((player) => !player.isTrickOrTreating);
     if (isEverybodyHome) {
       return {
         status: OUTCOME_STATUS.END_STREET,
@@ -393,7 +397,7 @@ export const determineOutcome = (
 
 export const sendPlayersHome = (players: Players): PlayerId[] => {
   const atHome: PlayerId[] = [];
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.decision === DECISIONS.HOME) {
       atHome.push(player.id);
     }
@@ -420,7 +424,7 @@ export const resetHorrorCount = (horrorCount: NumberDictionary): NumberDictionar
 };
 
 export const tallyCandyAsScore = (players: Players) => {
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     const jackpots = player.jackpots.reduce((t: number, j: HouseCard) => t + j.value, 0);
     player.score = player.totalCandy + jackpots;
   });

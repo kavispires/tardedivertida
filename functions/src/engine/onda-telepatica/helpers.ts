@@ -56,7 +56,9 @@ export const determineGameOver = (
   round: Round
 ): boolean => {
   if (!options.fixedRounds) {
-    return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+    return utils.players
+      .getListOfPlayers(players)
+      .some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
   }
 
   const playerCount = utils.players.getPlayerCount(players);
@@ -122,7 +124,7 @@ export const buildRanking = (
   let playersMaxPoints = 0;
 
   // Build score object
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.id !== psychicId) {
       const points = determineScore(player.guess, currentCategory?.target ?? 0);
       scores.add(player.id, points, 0);
@@ -147,7 +149,7 @@ export const buildRanking = (
   utils.achievements.increase(store, psychicId, 'psychicPoints', psychicPoints);
 
   // If psychic predicted the win
-  const isMoreThanHalf = psychicPoints >= (Object.keys(players).length - 1) / 2;
+  const isMoreThanHalf = psychicPoints >= (utils.players.getPlayerCount(players) - 1) / 2;
   // Psychic gets a maximum of 3 points for other players votes
   psychicPoints = psychicPoints > 3 ? 3 : psychicPoints;
   // Psychic gets 1 points if he bet on the guess amount correctly

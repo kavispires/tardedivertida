@@ -120,7 +120,7 @@ export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
  * @returns
  */
 export const extendPlayerAnswers = (players: Players) => {
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     const answers: PlainObject = player.answers;
     Object.entries(answers).forEach(([key, answer]) => {
       player.answers[key] = {
@@ -251,7 +251,7 @@ export const buildPastureChange = (players: Players, lowestScores: PlayerId[], h
 
   // First change: previous levels
   change.push(
-    Object.values(players).map((player) => ({
+    utils.players.getListOfPlayers(players).map((player) => ({
       id: player.id,
       avatarId: player.avatarId,
       name: player.name,
@@ -374,10 +374,12 @@ export const updateLevelsForPlayers = (players: Players, pastureChange: PastureC
  * @returns
  */
 export const determineGameOver = (players: Players, isShortPasture: boolean) => {
-  return Object.values(players).some(
-    (player) =>
-      player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD)
-  );
+  return utils.players
+    .getListOfPlayers(players)
+    .some(
+      (player) =>
+        player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD)
+    );
 };
 
 /**
@@ -502,7 +504,7 @@ export const calculateSheepTravelDistance = (
 
 export function isLevelDifferenceGreaterThanOne(players: Players): boolean {
   // Sort the players by level in descending order
-  const sortedPlayers = Object.values(players).sort((a, b) => b.level - a.level);
+  const sortedPlayers = utils.players.getListOfPlayers(players).sort((a, b) => b.level - a.level);
 
   // Calculate the difference between the highest level and the second highest level
   const highestLevel = sortedPlayers[0].level;

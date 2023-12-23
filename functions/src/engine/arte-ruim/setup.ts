@@ -122,7 +122,9 @@ export const prepareEvaluationPhase = async (
     level === 5 ? getTheTwoLevel5Cards(store.currentCards) : utils.game.shuffle(store.currentCards);
 
   // Shuffle drawings
-  const shuffledDrawings = utils.game.shuffle(Object.values(players).map((player) => player.currentCard));
+  const shuffledDrawings = utils.game.shuffle(
+    utils.players.getListOfPlayers(players).map((player) => player.currentCard)
+  );
 
   return {
     update: {

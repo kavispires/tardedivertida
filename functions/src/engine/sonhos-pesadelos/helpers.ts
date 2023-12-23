@@ -111,7 +111,7 @@ export const determineDreamsNightmaresAndThemes = (
 
   const shufflePairs: [NamingPromptCard, ImageCardId][] = utils.game.shuffle(dictionaryPair);
 
-  Object.values(players).forEach((player, index) => {
+  utils.players.getListOfPlayers(players).forEach((player, index) => {
     const dreamSelection = shufflePairs[index];
     player.theme = dreamSelection[0];
     player.dreamId = dreamSelection[1];
@@ -131,7 +131,7 @@ export const determineDreamsNightmaresAndThemes = (
  * @returns
  */
 export const gatherDreams = (players: Players): PlainObject[] => {
-  const dreams = Object.values(players).reduce((acc: PlainObject[], player) => {
+  const dreams = utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
     acc.push({
       id: player.id,
       dream: player.dream,
@@ -178,7 +178,7 @@ export const buildRanking = (players: Players) => {
  * @returns
  */
 export const buildGallery = (players: Players, table: ImageCardId[]): PlainObject[] => {
-  return orderBy(Object.values(players), 'name', 'asc').map((player) => {
+  return orderBy(utils.players.getListOfPlayers(players), 'name', 'asc').map((player) => {
     return {
       playerId: player.id,
       dreamId: player.dreamId,
@@ -186,7 +186,8 @@ export const buildGallery = (players: Players, table: ImageCardId[]): PlainObjec
       cards: table.map((imageCardId) => {
         return {
           cardId: imageCardId,
-          votes: Object.values(players)
+          votes: utils.players
+            .getListOfPlayers(players)
             .filter((p) => p.votes[player.id] === imageCardId)
             .map((p) => p.id),
           isDream: imageCardId === player.dreamId,

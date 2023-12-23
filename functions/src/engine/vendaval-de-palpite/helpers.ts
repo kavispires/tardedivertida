@@ -51,7 +51,7 @@ export const gatherClues = (
 ): { clues: Clues; board: Board } => {
   let newBoardEntry: Clue[] = [];
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     if (!player.isBoss) {
       player.clues.forEach((clue: string, index: number) => {
         const clueId = buildClueId(player.id, currentRound, index);

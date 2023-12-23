@@ -189,7 +189,7 @@ export const prepareResolutionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Add up score
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     Object.values(player.answers).forEach((playerAnswer: any) => {
       player.score += playerAnswer.score;
     });
@@ -252,7 +252,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const farthestPasturePosition = Object.values(players).reduce((acc, player) => {
+  const farthestPasturePosition = utils.players.getListOfPlayers(players).reduce((acc, player) => {
     if (player.level > acc) {
       return player.level;
     }

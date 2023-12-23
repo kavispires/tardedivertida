@@ -81,7 +81,7 @@ export const prepareAssignmentPhase = async (
 
   const currentLocation = utils.game.getRandomItem(availableLocations);
 
-  const availableRoles = createRolesPool(currentLocation.roles, Object.keys(players).length);
+  const availableRoles = createRolesPool(currentLocation.roles, utils.players.getPlayerCount(players));
 
   const currentSpyId = distributeRoles(availableRoles, currentLocation.name, players);
 

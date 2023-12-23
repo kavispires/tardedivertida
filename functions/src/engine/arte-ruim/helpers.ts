@@ -56,7 +56,7 @@ export const determineGameOver = (players: Players, round: Round): boolean => {
 
   const playerCount = utils.players.getPlayerCount(players);
   const threshold = GAME_OVER_SCORE_THRESHOLD?.[playerCount] ?? 100;
-  return Object.values(players).some((player) => player.score >= threshold);
+  return utils.players.getListOfPlayers(players).some((player) => player.score >= threshold);
 };
 
 /**
@@ -323,7 +323,7 @@ export const determineNumberOfCards = (playerCount: number): number => {
  * @param store - it modifies store
  */
 export const dealCards = (players: Players, store: FirebaseStoreData) => {
-  const playersArray = Object.values(players);
+  const playersArray = utils.players.getListOfPlayers(players);
   const numberOfCards = determineNumberOfCards(playersArray.length);
 
   store.currentCards = new Array(numberOfCards).fill(0).map((i, index) => {
@@ -466,7 +466,7 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
     const correctAnswer = getLevel5Id(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
-    Object.values(players).forEach((player) => {
+    utils.players.getListOfPlayers(players).forEach((player) => {
       if (artistId === player.id) return;
 
       if (artistId) {
@@ -493,7 +493,7 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
  */
 export const getNewPastDrawings = (players: Players, gallery) => {
   // Remove currentCard from players and add it to past drawings in the store
-  return Object.values(players).map((playerData) => {
+  return utils.players.getListOfPlayers(players).map((playerData) => {
     const card = playerData.currentCard;
     // Get playersSay from gallery and calculate success rate
     const galleryEntry = gallery.find((e) => e.originalId === card.id);

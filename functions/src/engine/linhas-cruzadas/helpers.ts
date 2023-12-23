@@ -54,7 +54,7 @@ export const dealPromptOptions = (
 
   if (options.singleWordOnly) {
     const dealCardEveryNTimes = Math.floor(wordsDeck.length / playerCount);
-    Object.values(players).forEach((player, index) => {
+    utils.players.getListOfPlayers(players).forEach((player, index) => {
       player.prompts = utils.game.shuffle(
         Array(dealCardEveryNTimes)
           .fill(0)
@@ -67,7 +67,7 @@ export const dealPromptOptions = (
       ? [...expressionDeck, ...wordsDeck]
       : utils.game.shuffle([...expressionDeck, ...wordsDeck]);
     const dealCardEveryNTimes = Math.floor(deck.length / playerCount);
-    Object.values(players).forEach((player, index) => {
+    utils.players.getListOfPlayers(players).forEach((player, index) => {
       player.prompts = Array(dealCardEveryNTimes)
         .fill(0)
         .map((e, i) => deck[e + index + i * playerCount]);
@@ -76,7 +76,7 @@ export const dealPromptOptions = (
 };
 
 export const buildAlbum = (players: Players): Album => {
-  return Object.values(players).reduce((album: Album, player) => {
+  return utils.players.getListOfPlayers(players).reduce((album: Album, player) => {
     const card = player.prompts.find((card: Card) => card.id === player.promptId) ?? {};
 
     album[player.id] = {
@@ -102,7 +102,7 @@ export const buildAlbum = (players: Players): Album => {
 };
 
 export const addSlideToAlbum = (album: Album, players: Players): Album => {
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     album[player.currentPrompt.id].slides.push({
       author: player.id,
       content: player.drawing ?? player.guess,

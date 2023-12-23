@@ -38,7 +38,7 @@ export const buildCodeFragment = () => {
 export const buildCode = (players: Players, playerCount: number): string[] => {
   const arrayOrder = new Array(playerCount);
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     arrayOrder[player.order] = player.fragment;
   });
 

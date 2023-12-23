@@ -832,7 +832,10 @@ const buildPartyOptions = (players: Players, language: Language) => {
           id: option.playerId,
           text: option.text,
           options: utils.game.removeDuplicates(
-            utils.game.shuffle([option.playerId, ...utils.game.getRandomItems(Object.keys(players), 2)])
+            utils.game.shuffle([
+              option.playerId,
+              ...utils.game.getRandomItems(utils.players.getListOfPlayersIds(players), 2),
+            ])
           ),
         },
       },

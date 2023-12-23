@@ -46,7 +46,7 @@ export const determineNextPhase = (
  * @returns
  */
 export const determineTurnOrder = (players: Players, witnessId: PlayerId): PlayerId[] => {
-  const availablePlayers = Object.keys(players).filter((id) => id !== witnessId);
+  const availablePlayers = utils.players.getListOfPlayersIds(players).filter((id) => id !== witnessId);
   return utils.game.shuffle(availablePlayers);
 };
 
