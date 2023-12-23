@@ -7,7 +7,7 @@ import { LETTERS } from 'utils/constants';
 import { mockSelectChallenge } from './utils/mock';
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
@@ -38,7 +38,7 @@ export function StepSelectChallenge({
         <Translate pt="Selecione o desafio da rodada" en="Select the theme for the round" />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={<>Cada rodada é feita ao redor de um desafio.</>}
           en={<>Each round has a challenge for the contenders to battle on!</>}
@@ -92,7 +92,7 @@ export function StepSelectChallenge({
             }
           />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container" align="center">
         {challenges.map((challenge, index) => {
