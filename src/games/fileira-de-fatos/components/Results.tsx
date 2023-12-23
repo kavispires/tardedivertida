@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Space, Avatar as AntAvatar } from 'antd';
+import { Space, Avatar as AntAvatar, Tooltip } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -9,7 +9,8 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { Avatar, AvatarStrip, IconAvatar } from 'components/avatars';
+import { Avatar, AvatarName, AvatarStrip, IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type ResultsProps = {
   players: GamePlayers;
@@ -50,7 +51,26 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
                   </span>
                 ) : (
                   <span>
-                    <AntAvatar size="small">{correctOrder.indexOf(cardId) + 1}</AntAvatar>
+                    <Tooltip
+                      title={
+                        <Translate
+                          pt={
+                            <>
+                              <AvatarName player={player} addressUser size="small" /> achou que esse cenário
+                              era na posição #{correctOrder.indexOf(cardId) + 1}
+                            </>
+                          }
+                          en={
+                            <>
+                              <AvatarName player={player} addressUser size="small" /> thought this scenario
+                              would go in position #{correctOrder.indexOf(cardId) + 1}
+                            </>
+                          }
+                        />
+                      }
+                    >
+                      <AntAvatar size="small">{correctOrder.indexOf(cardId) + 1}</AntAvatar>
+                    </Tooltip>
                     <NegativeStarPoints roundType={roundType} position={index + 1} />
                   </span>
                 )}

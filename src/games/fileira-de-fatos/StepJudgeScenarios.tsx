@@ -1,6 +1,6 @@
 // Components
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
@@ -23,7 +23,7 @@ export function StepJudgeScenarios({
         <Translate pt={<>Você é o juiz da rodada!</>} en={<>You are the round's judge!</>} />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -43,8 +43,9 @@ export function StepJudgeScenarios({
           }
         />
         <br />
-        <RoundTypeExplanation roundType={roundType} />
-      </Instruction>
+      </RuleInstruction>
+
+      <RoundTypeExplanation roundType={roundType} />
 
       <SelectableScenarioOrder scenarios={scenarios} kind="negative" onSubmitOrder={onSubmitOrder} />
     </Step>
