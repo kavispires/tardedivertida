@@ -5,7 +5,7 @@ import { PlayerStats } from './components/PlayerStats';
 import { Street } from './components/Street';
 import { CardCountExplanation } from './components/RulesBlobs';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { VIPNextPhaseButton } from 'components/vip';
@@ -58,7 +58,7 @@ export function StepStreetEnd({
 
       <PopoverRule content={<CardCountExplanation />} />
 
-      <Instruction contained>
+      <RuleInstruction type={isDoubleHorror ? 'alert' : 'event'}>
         {isDoubleHorror && (
           <>
             <Translate
@@ -86,7 +86,7 @@ export function StepStreetEnd({
         ) : (
           <Translate pt="Próxima rua?" en="Let's hit the next street?" />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <PlayersDecisionState
         players={players}

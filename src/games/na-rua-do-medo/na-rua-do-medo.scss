@@ -110,6 +110,7 @@ $stats-height: get-unit(40);
   width: 80vw;
   display: flex;
   flex-direction: row;
+  min-height: 200px;
   margin: get-unit(1 0 5 0);
 
   @include mobile {
@@ -183,6 +184,7 @@ $stats-height: get-unit(40);
 .n-decision-button {
   padding: get-unit(2 4);
   width: 45%;
+  border-radius: $border-radius;
   display: flex;
   flex-direction: column;
   align-items: center;
