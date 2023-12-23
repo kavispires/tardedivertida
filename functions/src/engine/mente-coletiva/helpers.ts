@@ -256,6 +256,7 @@ export const buildPastureChange = (players: Players, lowestScores: PlayerId[], h
       avatarId: player.avatarId,
       name: player.name,
       level: player.level,
+      sheepId: player.sheepId,
     }))
   );
 
