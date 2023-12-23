@@ -1,6 +1,6 @@
 // Components
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { pluralize } from 'utils/helpers';
 
 type RoundsLeftInstructionProps = {
@@ -18,14 +18,14 @@ export function RoundsLeftInstruction({ round }: RoundsLeftInstructionProps) {
 
   if (left === 0 || round.forceLastRound) {
     return (
-      <Instruction contained>
+      <RuleInstruction type="event">
         <Translate pt="Essa foi a última rodada" en="No more rounds left" />
-      </Instruction>
+      </RuleInstruction>
     );
   }
 
   return (
-    <Instruction contained>
+    <RuleInstruction type="tip">
       <Translate
         pt={
           <>
@@ -39,6 +39,6 @@ export function RoundsLeftInstruction({ round }: RoundsLeftInstructionProps) {
           </>
         }
       />
-    </Instruction>
+    </RuleInstruction>
   );
 }
