@@ -8,7 +8,6 @@ import { sortPlayers } from 'utils/helpers';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import { useCountdown } from 'hooks/useCountdown';
-import { useDimensions } from 'hooks/useDimensions';
 import { useColorizeBackground } from './utils/useColorizeBackground';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
@@ -51,7 +50,7 @@ export function StepResult({
   scoringType,
 }: StepResultProps) {
   useTemporarilyHidePlayersBar();
-  const [width] = useDimensions('results');
+  const [resultRef, { width }] = useMeasure();
 
   const time = useCountdown({ duration: 20 });
 
@@ -101,7 +100,7 @@ export function StepResult({
         )}
       </RuleInstruction>
 
-      <div className="results" id="results">
+      <div className="results" ref={resultRef as LegacyRef<HTMLDivElement>}>
         <div className="results__vip" id="area-w">
           <span className="results__icon">
             <IconAvatar icon={<VIPLineIcon />} size="large" />
@@ -129,7 +128,7 @@ export function StepResult({
           </span>
         </div>
 
-        {playersList.map((player, index) => {
+        {playersList.map((player) => {
           const isWinningArea = player.team[currentIndex] === 'W';
           winningCount = isWinningArea ? winningCount + 1 : winningCount;
           losingCount = !isWinningArea ? losingCount + 1 : losingCount;

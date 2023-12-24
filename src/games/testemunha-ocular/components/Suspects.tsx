@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image, Popconfirm } from 'antd';
 // Hooks
-import { useDimensions } from 'hooks/useDimensions';
+import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
@@ -19,9 +19,7 @@ type SuspectsProps = {
 export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspects = [] }: SuspectsProps) {
   const { language, translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [width] = useDimensions();
-
-  const cardWidth = Math.floor(width / 7);
+  const cardWidth = useCardWidth(7);
 
   if (onCardClick) {
     return (

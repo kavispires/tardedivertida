@@ -1,7 +1,6 @@
+import { useWindowSize } from 'react-use';
 // Ant Design Resources
 import { Button, Divider, Drawer, Space } from 'antd';
-// Hooks
-import { useDimensions } from 'hooks/useDimensions';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { CustomFilterOptions } from './CustomFilterOptions';
@@ -23,7 +22,7 @@ export function FiltersDrawer({
   showFilters,
   setShowFilters,
 }: FiltersDrawerProps) {
-  const [width] = useDimensions('app');
+  const { width } = useWindowSize();
 
   const updateFilters = (e: any) => {
     setFilters((s: PlainObject) => ({
