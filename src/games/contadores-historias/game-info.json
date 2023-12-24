@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "3.0.38",
+  "version": "3.0.39",
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -49,16 +49,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": [
-    "competitive",
-    "turn-based",
-    "images",
-    "writing",
-    "guessing",
-    "mobile-friendly",
-    "achievements",
-    "audience-mode"
-  ],
+  "tags": ["competitive", "turn-based", "images", "writing", "guessing", "mobile-friendly", "achievements"],
   "available": {
     "pt": true,
     "en": true
