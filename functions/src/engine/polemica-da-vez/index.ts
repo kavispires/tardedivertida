@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: PolemicaDaVezOptions
 ): PolemicaDaVezInitialState => {
   return utils.helpers.getDefaultInitialState<PolemicaDaVezInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.POLEMICA_DA_VEZ,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: POLEMICA_DA_VEZ_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

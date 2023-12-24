@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: OndaTelepaticaOptions
 ): OndaTelepaticaInitialState => {
   return utils.helpers.getDefaultInitialState<OndaTelepaticaInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.ONDA_TELEPATICA,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: ONDA_TELEPATICA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

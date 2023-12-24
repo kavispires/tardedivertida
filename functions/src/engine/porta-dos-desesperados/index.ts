@@ -39,6 +39,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: PortaDosDesesperadosOptions
 ): PortaDosDesesperadosInitialState => {
   return utils.helpers.getDefaultInitialState<PortaDosDesesperadosInitialState>({
@@ -46,6 +47,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.PORTA_DOS_DESESPERADOS,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: PORTA_DOS_DESESPERADOS_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

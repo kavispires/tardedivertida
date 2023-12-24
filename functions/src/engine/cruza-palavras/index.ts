@@ -35,6 +35,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: CruzaPalavrasOptions
 ): CruzaPalavrasInitialState => {
   return utils.helpers.getDefaultInitialState<CruzaPalavrasInitialState>({
@@ -42,6 +43,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.CRUZA_PALAVRAS,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: CRUZA_PALAVRAS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

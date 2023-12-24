@@ -32,13 +32,15 @@ import { handleSubmitOrientation, handleSubmitSketch, handleSubmitVote } from '.
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  version: string
 ): RetratoFaladoInitialState => {
   return utils.helpers.getDefaultInitialState<RetratoFaladoInitialState>({
     gameId,
     gameName: GAME_NAMES.RETRATO_FALADO,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: RETRATO_FALADO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

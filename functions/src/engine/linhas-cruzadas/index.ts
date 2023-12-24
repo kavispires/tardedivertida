@@ -35,6 +35,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: LinhasCruzadasOptions
 ): LinhasCruzadasInitialState => {
   return utils.helpers.getDefaultInitialState<LinhasCruzadasInitialState>({
@@ -42,6 +43,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.LINHAS_CRUZADAS,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: LINHAS_CRUZADAS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

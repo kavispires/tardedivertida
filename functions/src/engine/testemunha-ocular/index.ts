@@ -35,6 +35,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: string,
+  version: string,
   options: TestemunhaOcularOptions
 ): TestemunhaOcularInitialState => {
   return utils.helpers.getDefaultInitialState<TestemunhaOcularInitialState>({
@@ -42,6 +43,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: TESTEMUNHA_OCULAR_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
