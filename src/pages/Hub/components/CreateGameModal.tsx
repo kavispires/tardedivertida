@@ -234,8 +234,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
                             onClick={() =>
                               startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName)
                             }
-                            // disabled={!gameId || !previousGameId}
-                            disabled
+                            disabled={!gameId || !previousGameId}
                             loading={isSettingRedirect}
                           >
                             <Translate pt="Redirecione-os" en="Redirect them" />

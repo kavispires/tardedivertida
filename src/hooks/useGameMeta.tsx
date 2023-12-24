@@ -52,7 +52,7 @@ export function useGameMeta(): GameMeta {
   });
 
   useEffect(() => {
-    if (!query.isError) {
+    if (!query.isError && query.isSuccess) {
       setError('meta', '');
     }
   }, [query.isError]); // eslint-disable-line
