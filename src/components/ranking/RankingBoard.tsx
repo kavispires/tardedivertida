@@ -1,13 +1,14 @@
 import clsx from 'clsx';
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { LegacyRef, ReactNode, useEffect, useMemo, useState } from 'react';
 import { orderBy } from 'lodash';
-import { useEffectOnce } from 'react-use';
+import { useEffectOnce, useMeasure } from 'react-use';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-import { useDimensions } from 'hooks/useDimensions';
+// Helpers
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
@@ -85,7 +86,7 @@ export function RankingBoard({
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
   const [reRank, setReRank] = useState(0);
-  const [, height] = useDimensions('ranking-row-0');
+  const [ref, { height }] = useMeasure();
 
   const maxPoints = useMemo(() => Math.max(...ranking.map((scores) => scores.newScore)), [ranking]);
 
@@ -152,9 +153,40 @@ export function RankingBoard({
 
   return (
     <div
-      className={clsx('ranking-board', seconds > 4 && 'ranking-board--hidden')}
+      className={clsx(
+        'ranking-board',
+        seconds > 4 && 'ranking-board--hidden',
+        seconds === 4 && getAnimationClass('fadeIn')
+      )}
       style={{ height: `${(Math.max(60, height) + 8) * sortedRanking.length}px` }}
     >
+      <div
+        className="ranking-board__row"
+        id="ranking-row-placeholder"
+        style={{ opacity: 0 }}
+        ref={ref as LegacyRef<HTMLDivElement>}
+      >
+        <div className="ranking-board__cell-crown">
+          <CrownFilled className="ranking-board__crown-icon" />
+        </div>
+        <div className="ranking-board__cell-position">#0</div>
+        <div className="ranking-board__cell-player">
+          <div className="ranking-board__avatar">
+            <Avatar id="A" />
+          </div>
+          <div className="ranking-board__name">Placeholder</div>
+        </div>
+        <Tooltip title={<Translate pt="Pontos Anteriores" en="Previous Points" />} color="gray">
+          <div className="ranking-board__cell-points">0</div>
+        </Tooltip>
+
+        <GainedPoints gainedPoints={0} playerId="A" />
+
+        <Tooltip title="Total" color="gold">
+          <span className="ranking-board__cell-points-total">0</span>
+        </Tooltip>
+      </div>
+
       {sortedRanking.map((entry, index) => {
         const { playerId, newScore, previousScore, gainedPoints, order, position } = entry;
         const hPosition = (Math.max(60, height) + 8) * (order[reRank] ?? 0);
@@ -163,7 +195,7 @@ export function RankingBoard({
           <div
             className={`ranking-board__row ranking-board__row--${index}`}
             key={`ranking-${playerId}`}
-            id={`ranking-row-${index}`}
+            // id={`ranking-row-${index}`}
             style={{ top: `${hPosition}px` }}
           >
             <div className="ranking-board__cell-crown">
