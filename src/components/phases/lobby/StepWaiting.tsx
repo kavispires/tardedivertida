@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { App, Space, Typography } from 'antd';
 // API & Hooks
@@ -33,9 +33,9 @@ export function StepWaiting({ players }: StepWaitingProps) {
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
 
-  const { refetch, isLoading: isLocking } = useQuery({
-    queryKey: ['lock-game'],
-    queryFn: async () => {
+  const { mutate, isLoading: isLocking } = useMutation({
+    mutationKey: ['lock-game'],
+    mutationFn: async () => {
       setLoader('lock-game', true);
       return await ADMIN_API.run({
         action: ADMIN_API_ACTIONS.LOCK_GAME,
@@ -43,7 +43,6 @@ export function StepWaiting({ players }: StepWaitingProps) {
         gameName,
       });
     },
-    enabled: false,
     onSuccess: (response) => {
       const data = response.data as PlainObject;
 
@@ -99,7 +98,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
           <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
         </Typography.Text>
         <VIPButton
-          onClick={() => refetch()}
+          onClick={() => mutate()}
           disabled={isLoading || numPlayers < gameMeta.min}
           loading={isLoading}
           block

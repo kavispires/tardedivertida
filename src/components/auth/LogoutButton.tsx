@@ -12,7 +12,7 @@ export function LogoutButton(props: ButtonProps) {
   const { message } = App.useApp();
 
   const { isLoading, mutate } = useMutation({
-    // mutationKey: ['sign-out'],
+    mutationKey: ['sign-out'],
     mutationFn: async () => await signOut(),
     onSuccess: () => {
       navigate('/');
