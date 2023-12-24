@@ -37,6 +37,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: TaNaCaraOptions
 ): TaNaCaraInitialState => {
   return utils.helpers.getDefaultInitialState<TaNaCaraInitialState>({
@@ -44,6 +45,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.TA_NA_CARA,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: TA_NA_CARA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

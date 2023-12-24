@@ -52,6 +52,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: ComunicacaoAlienigenaOptions
 ): ComunicacaoAlienigenaInitialState => {
   return utils.helpers.getDefaultInitialState<ComunicacaoAlienigenaInitialState>({
@@ -59,6 +60,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.COMUNICACAO_ALIENIGENA,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: COMUNICACAO_ALIENIGENA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

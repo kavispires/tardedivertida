@@ -33,13 +33,15 @@ import { getLocations } from './data';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  version: string
 ): EspiaoEntreNosInitialState => {
   return utils.helpers.getDefaultInitialState<EspiaoEntreNosInitialState>({
     gameId,
     gameName: GAME_NAMES.ESPIAO_ENTRE_NOS,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: ESPIAO_ENTRE_NOS_PHASES.LOBBY,
     totalRounds: 0,

@@ -29,12 +29,18 @@ import { handleSubmitDecision, handleSubmitMessage, handleSubmitTarget } from '.
  * @param language
  * @returns
  */
-export const getInitialState = (gameId: GameId, uid: string, language: Language): QuemNaoMataInitialState => {
+export const getInitialState = (
+  gameId: GameId,
+  uid: string,
+  language: Language,
+  version: string
+): QuemNaoMataInitialState => {
   return utils.helpers.getDefaultInitialState<QuemNaoMataInitialState>({
     gameId,
     gameName: GAME_NAMES.QUEM_NAO_MATA,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: QUEM_NAO_MATA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

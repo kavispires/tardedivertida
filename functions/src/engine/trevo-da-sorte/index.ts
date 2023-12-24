@@ -35,6 +35,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: string,
+  version: string,
   options: TrevoDaSorteOptions
 ): TrevoDaSorteInitialState => {
   return utils.helpers.getDefaultInitialState<TrevoDaSorteInitialState>({
@@ -42,6 +43,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.TREVO_DA_SORTE,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: TREVO_DA_SORTE_PHASES.LOBBY,
     totalRounds: 0,

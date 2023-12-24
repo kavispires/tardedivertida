@@ -40,6 +40,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: GaleriaDeSonhosOptions
 ): GaleriaDeSonhosInitialState => {
   return utils.helpers.getDefaultInitialState<GaleriaDeSonhosInitialState>({
@@ -47,6 +48,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.GALERIA_DE_SONHOS,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: GALERIA_DE_SONHOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

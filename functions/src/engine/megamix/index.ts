@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: MegamixGameOptions
 ): MegamixInitialState => {
   return utils.helpers.getDefaultInitialState<MegamixInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.MEGAMIX,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: MEGAMIX_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

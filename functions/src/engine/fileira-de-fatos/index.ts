@@ -33,6 +33,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: FileiraDeFatosOptions
 ): FileiraDeFatosInitialState => {
   return utils.helpers.getDefaultInitialState<FileiraDeFatosInitialState>({
@@ -40,6 +41,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.FILEIRA_DE_FATOS,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: FILEIRA_DE_FATOS_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
