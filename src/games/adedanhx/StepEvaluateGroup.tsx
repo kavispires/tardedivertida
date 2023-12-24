@@ -9,7 +9,7 @@ import { isDevEnv, pluralize } from 'utils/helpers';
 import { Step } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { VIPOnlyContainer } from 'components/vip';
+import { HostOnlyContainer } from 'components/host';
 import { TimedButton } from 'components/buttons';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { EvaluationGroup } from './components/EvaluationGroup';
@@ -136,7 +136,7 @@ function VIPNextGroup({ onNextGroup, isLoading, duration, players }: VIPNextGrou
   const rejections = useMemo(() => Object.values(players).filter((p) => p.ready).length, [players]);
 
   return (
-    <VIPOnlyContainer className="m-admin" direction="vertical" align="center">
+    <HostOnlyContainer className="m-admin" direction="vertical" align="center">
       <span>
         <Translate pt="Rejeições" en="Rejections" />: <TextHighlight>{rejections}</TextHighlight>
       </span>
@@ -150,6 +150,6 @@ function VIPNextGroup({ onNextGroup, isLoading, duration, players }: VIPNextGrou
       >
         <Translate pt="Confirmar e ir paro o próximo grupo" en="Confirm and go to next answer" />
       </TimedButton>
-    </VIPOnlyContainer>
+    </HostOnlyContainer>
   );
 }

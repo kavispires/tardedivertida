@@ -14,9 +14,9 @@ import { ADMIN_ACTIONS } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
-import { VIPOnlyContainer } from './VIPOnlyContainer';
-import { VIPButton } from './VIPButton';
-import { useVIP } from 'hooks/useVIP';
+import { HostOnlyContainer } from './HostOnlyContainer';
+import { HostButton } from './HostButton';
+import { useHost } from 'hooks/useHost';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
   if (!round || round.current === round.total || round.forceLastRound) {
@@ -46,12 +46,12 @@ type VIPNextPhaseButtonProps = {
 };
 
 /**
- * Button only available to the VIP to go to the next phase.
+ * Button only available to the Host to go to the next phase.
  * It will be auto-triggered after 60 seconds unless value is overridden with a 0
  * It may be paused
  */
-export function VIPNextPhaseButton({ round, autoTriggerTime = 30, children }: VIPNextPhaseButtonProps) {
-  const isVIP = useVIP();
+export function HostNextPhaseButton({ round, autoTriggerTime = 30, children }: VIPNextPhaseButtonProps) {
+  const isVIP = useHost();
   const { translate } = useLanguage();
   const { loaders } = useLoading();
   const isLoading = loaders['go-to-next-phase'];
@@ -85,25 +85,25 @@ export function VIPNextPhaseButton({ round, autoTriggerTime = 30, children }: VI
   }, [isLoading]); // eslint-disable-line
 
   return (
-    <VIPOnlyContainer
-      label="VIP Action"
-      className={clsx('vip-only-container--float', getAnimationClass('slideInUp'))}
+    <HostOnlyContainer
+      label="Host Action"
+      className={clsx('host-only-container--float', getAnimationClass('slideInUp'))}
     >
       <Tooltip title="Pause">
-        <VIPButton
+        <HostButton
           icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
           onClick={isRunning ? pause : resume}
           disabled={isLoading}
         />
       </Tooltip>
-      <VIPButton
+      <HostButton
         disabled={isLoading}
         onClick={handleClick}
         icon={
           hasTimer && (
             <span
               className={clsx(
-                'vip-button-timer',
+                'host-button-timer',
                 !isRunning &&
                   getAnimationClass('flash', {
                     speed: 'slow',
@@ -117,7 +117,7 @@ export function VIPNextPhaseButton({ round, autoTriggerTime = 30, children }: VI
         }
       >
         {children ?? <ButtonLabel round={round} />}
-      </VIPButton>
-    </VIPOnlyContainer>
+      </HostButton>
+    </HostOnlyContainer>
   );
 }

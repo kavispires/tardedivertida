@@ -5,13 +5,13 @@ import { Button, ButtonProps } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Sass
-import './VIPButton.scss';
+import './HostButton.scss';
 
 /**
- * VIP Button (orange with rocket icon)
- * Important: This button is NOT guarded by VIPOnlyContainer, and it must be wrapped by it.
+ * Host Button (orange with rocket icon)
+ * Important: This button is NOT guarded by HostOnlyContainer, and it must be wrapped by it.
  */
-export function VIPButton({ onClick, icon, disabled, className = '', ...rest }: ButtonProps) {
+export function HostButton({ onClick, icon, disabled, className = '', ...rest }: ButtonProps) {
   const { isLoading } = useLoading();
 
   return (
@@ -20,7 +20,7 @@ export function VIPButton({ onClick, icon, disabled, className = '', ...rest }: 
       ghost
       onClick={onClick}
       disabled={disabled || isLoading}
-      className={clsx('vip-button', className)}
+      className={clsx('host-button', className)}
       {...rest}
     />
   );

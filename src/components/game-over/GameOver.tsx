@@ -10,7 +10,7 @@ import { AVATARS } from 'utils/avatars';
 // Components
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
-import { VIPOnlyButton } from 'components/vip';
+import { HostOnlyButton } from 'components/host';
 import { Instruction } from 'components/text';
 import { RateGameWidget } from './RateGameWidget';
 import { useCountdown } from 'hooks/useCountdown';
@@ -184,7 +184,7 @@ export function GameOver({
           <Translate pt="Página Inicial" en="Home Page" />
         </Button>
 
-        <VIPOnlyButton onClick={() => navigate('/hub')}>Hub</VIPOnlyButton>
+        <HostOnlyButton onClick={() => navigate('/hub')}>Hub</HostOnlyButton>
       </Space>
     </Step>
   );

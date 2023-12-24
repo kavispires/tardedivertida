@@ -5,7 +5,7 @@ import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components
@@ -15,7 +15,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { VIPButton, VIPOnlyContainer } from 'components/vip';
+import { HostButton, HostOnlyContainer } from 'components/host';
 import { messageContent } from 'components/pop-up';
 import { Cards } from './components/Cards';
 import { ViewIf } from 'components/views';
@@ -44,7 +44,7 @@ export function StepCompareSuggestions({
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
-  const isVIP = useVIP();
+  const isVIP = useHost();
   const [wasMessageShown, setWasMessageShown] = useState(false);
 
   const onSetValidation = (index: number, suggestionEntry: UseSoIssoSuggestion, notAllowed?: boolean) => {
@@ -119,11 +119,11 @@ export function StepCompareSuggestions({
       </ViewIf>
 
       <ViewIf condition={!isUserTheController}>
-        <VIPOnlyContainer
+        <HostOnlyContainer
           label={
             <Translate
-              pt="VIP Controls (use somente se o jogador controlador não controlar)"
-              en="VIP Controls (only use if the assign player doesn't)"
+              pt="Host Controls (use somente se o jogador controlador não controlar)"
+              en="Host Controls (only use if the assign player doesn't)"
             />
           }
           direction="vertical"
@@ -137,7 +137,7 @@ export function StepCompareSuggestions({
             isLoading={isLoading}
             myRecommendation={myRecommendation}
           />
-          <VIPButton
+          <HostButton
             onClick={() =>
               onValidateSuggestions({
                 validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
@@ -145,8 +145,8 @@ export function StepCompareSuggestions({
             }
           >
             <Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" />
-          </VIPButton>
-        </VIPOnlyContainer>
+          </HostButton>
+        </HostOnlyContainer>
       </ViewIf>
     </Step>
   );

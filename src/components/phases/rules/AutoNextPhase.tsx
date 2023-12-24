@@ -1,5 +1,5 @@
 import { Translate } from 'components/language';
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 
 type AutoNextPhaseProps = {
   players: GamePlayers;
@@ -14,8 +14,8 @@ export function AutoNextPhase({ players }: AutoNextPhaseProps) {
   if (!isEverybodyReady) return <></>;
 
   return (
-    <VIPNextPhaseButton round={{ current: -1, total: 10, forceLastRound: false }} autoTriggerTime={15}>
+    <HostNextPhaseButton round={{ current: -1, total: 10, forceLastRound: false }} autoTriggerTime={15}>
       <Translate pt="Começar o jogo" en="Start the game" />
-    </VIPNextPhaseButton>
+    </HostNextPhaseButton>
   );
 }

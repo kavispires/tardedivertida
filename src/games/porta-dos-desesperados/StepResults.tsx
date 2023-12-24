@@ -3,7 +3,7 @@ import { Space } from 'antd';
 // Utils
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 // Components
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -102,7 +102,7 @@ export function StepResults({
 
       <TrapPopupRule trap={trap} />
 
-      <VIPNextPhaseButton round={round} />
+      <HostNextPhaseButton round={round} />
     </Step>
   );
 }

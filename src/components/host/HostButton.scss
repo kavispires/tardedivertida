@@ -1,6 +1,6 @@
 @use 'styles/sass' as *;
 
-.vip-button.vip-button {
+.host-button.host-button {
   background: get-color('orange');
 
   &:hover:hover {
@@ -10,7 +10,7 @@
   }
 }
 
-.vip-button-timer {
+.host-button-timer {
   margin-right: get-unit(1);
   padding: get-unit(0 2);
   background: get-color('white', 5, 0.5);

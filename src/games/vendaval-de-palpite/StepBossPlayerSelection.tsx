@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
@@ -19,7 +19,7 @@ type StepBossPlayerSelectionProps = {
 
 export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBossPlayerSelectionProps) {
   const { isLoading } = useLoading();
-  const isVIP = useVIP();
+  const isVIP = useHost();
 
   return (
     <Step key={1}>
