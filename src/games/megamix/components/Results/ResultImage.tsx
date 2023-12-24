@@ -5,12 +5,12 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 
-export function ResultImage({ winningTeam, winningValues, playersList }: ResultComponentProps) {
+export function ResultImage({ winningValues, containerWidth }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {
     gap: 9,
     minWidth: 80,
     maxWidth: 200,
-    containerId: 'results-values',
+    containerWidth,
   });
 
   return (

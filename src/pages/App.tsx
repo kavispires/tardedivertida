@@ -1,4 +1,4 @@
-import { useEffectOnce } from 'react-use';
+import { useEffectOnce, useMeasure } from 'react-use';
 import { HashRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // Ant Design Resources
@@ -18,6 +18,7 @@ import { PageError } from 'components/errors';
 // Pages
 import { routes } from './Routes';
 import ErrorBoundary from 'components/errors/ErrorBoundary';
+import { Ref, useEffect } from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -69,13 +70,20 @@ function AppLayout() {
   const { isError, errors } = useError();
   useAppSetup();
 
+  // Handle screen size
+  const [, setScreenSize] = useGlobalState('screenSize');
+  const [ref, { width, height }] = useMeasure();
+
+  useEffect(() => {
+    setScreenSize([width, height]);
+  }, [width, height]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
-    <Layout className="app background" id="app">
+    <Layout className="app background" id="app" ref={ref as Ref<HTMLElement>}>
       <LoadingBar />
       <HashRouter>
         {isError && <PageError description={Object.values(errors).join(', ')} />}
         {isLoading && <LoadingPage />}
-
         {!isError && !isLoading && routes}
       </HashRouter>
     </Layout>

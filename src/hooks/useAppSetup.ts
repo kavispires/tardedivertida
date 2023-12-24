@@ -6,6 +6,7 @@ import { useCardWidth } from './useCardWidth';
  * Setup basic app settings
  * - Set the canvas size to the card width
  */
+// TODO: Check if this is still needed
 export function useAppSetup() {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const cardWidth = useCardWidth(5, {
@@ -13,7 +14,6 @@ export function useAppSetup() {
     minWidth: 250,
     maxWidth: 500,
     margin: 16,
-    containerId: 'app',
   });
 
   useEffectOnce(() => {

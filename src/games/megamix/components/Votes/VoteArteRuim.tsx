@@ -10,7 +10,6 @@ export function VoteArteRuim({ track, playersList }: VoteComponentProps) {
     gap: 9,
     minWidth: 80,
     maxWidth: 200,
-    containerId: 'results-values',
   });
 
   if (track.variant === 'drawings') {

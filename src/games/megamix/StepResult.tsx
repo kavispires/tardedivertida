@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { LegacyRef, useMemo } from 'react';
 import { memoize } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
@@ -24,6 +24,7 @@ import { IconAvatar } from 'components/avatars';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TrackTitle } from './components/TrackTitle';
 import { VotesDelegator } from './components/VotesDelegator';
+import { useMeasure } from 'react-use';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -64,6 +65,8 @@ export function StepResult({
   // Counts to aid the animation positioning. It doesn't trigger re-renders because it's handled by css
   let winningCount = 0;
   let losingCount = 0;
+
+  const [ref, { width: resultsValueWidth }] = useMeasure();
 
   return (
     <Step announcement={announcement}>
@@ -107,13 +110,14 @@ export function StepResult({
             <Translate pt="Área VIP" en="VIP Lounge" />
           </span>
         </div>
-        <div className="results__values" id="results-values">
+        <div className="results__values" ref={ref as LegacyRef<HTMLDivElement>}>
           <ResultValueDelegator
             track={track}
             winningValues={winningValues}
             players={players}
             winningTeam={winningTeam}
             playersList={playersList}
+            containerWidth={resultsValueWidth}
           />
         </div>
         <div className="results__gutter" id="area-l">
