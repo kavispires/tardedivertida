@@ -51,7 +51,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
     }
   }, [gameMeta.language]); // eslint-disable-line
 
-  if (!userId) {
+  if (!userId || !players[userId]) {
     return (
       <>
         <RedirectSession state={state} />
