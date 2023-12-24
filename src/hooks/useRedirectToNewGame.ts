@@ -1,10 +1,11 @@
 import { App } from 'antd';
-import { useEffect, useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
-import { ADMIN_API } from 'services/adapters';
-import { useCurrentUserContext } from './useCurrentUserContext';
+import { useState } from 'react';
+import { ADMIN_API, GAME_API, GAME_API_ACTIONS } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
+
+import { useCurrentUserContext } from './useCurrentUserContext';
 
 type GameMetaResponse = {
   data: GameMeta;
@@ -66,25 +67,6 @@ export function useRedirectToNewGame() {
     },
   });
 
-  useEffect(() => {
-    if (
-      !happenedOnce &&
-      previousGameId &&
-      newGame.gameId &&
-      newGame.gameName &&
-      metaQuery.isSuccess &&
-      metaQuery?.data?.data?.gameName
-    ) {
-      setHappenedOnce(true);
-      mutation.mutate({
-        redirect: {
-          redirectAt: Date.now(),
-          ...newGame,
-        },
-      });
-    }
-  }, [previousGameId, happenedOnce, newGame, metaQuery?.data?.data?.gameName, metaQuery.isSuccess, mutation]);
-
   const startRedirect = async (previousGameId: GameId, newGameId: GameId, newGameName: GameName) => {
     if (happenedOnce) {
       notification.error({
@@ -97,6 +79,14 @@ export function useRedirectToNewGame() {
       gameName: newGameName,
     });
     setPreviousGameId(previousGameId);
+    setHappenedOnce(true);
+    mutation.mutate({
+      redirect: {
+        redirectAt: Date.now(),
+        gameId: newGameId,
+        gameName: newGameName,
+      },
+    });
   };
 
   return {
