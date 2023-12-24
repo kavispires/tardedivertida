@@ -2,12 +2,11 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useEffectOnce, useTitle } from 'react-use';
+import { useEffectOnce, useTitle, useWindowSize } from 'react-use';
 // Ant Design Resources
 import { Avatar, Image, Layout, Modal, Space } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 // Hooks
-import { useDimensions } from 'hooks/useDimensions';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -27,7 +26,7 @@ function Showcase() {
   useTitle('Showcase | Tarde Divertida');
   const { language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [width] = useDimensions('app');
+  const { width } = useWindowSize();
   const [, setLanguage] = useGlobalState('language');
 
   const [showFilters, setShowFilters] = useState(false);
