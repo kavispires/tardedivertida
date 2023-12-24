@@ -68,15 +68,15 @@ export const ImageCard = ({
   const previewConfig = typeof preview === 'boolean' ? {} : preview;
 
   return (
-    (<div
-        className={clsx(
-          baseClass,
-          isBlurred && `${baseClass}--blur`,
-          square && `${baseClass}--square`,
-          className
-        )}
-        style={{ height: square ? `${cardWidth}px` : undefined }}
-      >
+    <div
+      className={clsx(
+        baseClass,
+        isBlurred && `${baseClass}--blur`,
+        square && `${baseClass}--square`,
+        className
+      )}
+      style={{ height: square ? `${cardWidth}px` : undefined }}
+    >
       <Image
         width={cardWidth}
         src={`${baseUrl}/${imageURL}.${fileExtension}`}
@@ -94,6 +94,6 @@ export const ImageCard = ({
               }
         }
       />
-    </div>)
+    </div>
   );
 };
