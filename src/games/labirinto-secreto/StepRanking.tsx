@@ -4,7 +4,7 @@ import { Button, Space } from 'antd';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { RuleInstruction } from 'components/text';
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 
 type StepRankingProps = {
   players: GamePlayers;
@@ -35,7 +35,7 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <VIPNextPhaseButton round={round} />
+      <HostNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }

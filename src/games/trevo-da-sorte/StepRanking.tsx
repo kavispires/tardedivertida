@@ -1,7 +1,7 @@
 // Hooks
 import { useCloverState } from './utils/useCloverState';
 // Components
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Clover } from './components/Clover';
@@ -43,9 +43,9 @@ export function StepRanking({ players, ranking, round, clover, leaves, activeClo
         activeCloverId={activeCloverId}
       />
 
-      <VIPNextPhaseButton round={round}>
+      <HostNextPhaseButton round={round}>
         <Translate pt="Próximo Trevo ou Game Over" en="Next Clover or Game Over" />
-      </VIPNextPhaseButton>
+      </HostNextPhaseButton>
     </StepRankingWrapper>
   );
 }

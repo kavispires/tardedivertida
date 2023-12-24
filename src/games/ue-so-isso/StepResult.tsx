@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { GroupProgress } from './components/GroupProgress';
 import { WrongGuessHighlight } from './components/Highlights';
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepResultProps = {
@@ -124,7 +124,7 @@ export function StepResult({
         </div>
       )}
 
-      <VIPNextPhaseButton />
+      <HostNextPhaseButton />
     </Step>
   );
 }

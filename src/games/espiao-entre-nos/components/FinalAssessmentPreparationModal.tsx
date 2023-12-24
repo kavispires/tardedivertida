@@ -2,7 +2,7 @@
 import { Button, Modal, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Components
 import { Translate } from 'components/language';
 
@@ -17,7 +17,7 @@ export function FinalAssessmentPreparationModal({
   onSendLastQuestioner,
   players,
 }: FinalAssessmentModalProps) {
-  const isVIP = useVIP();
+  const isVIP = useHost();
 
   return (
     <Modal

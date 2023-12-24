@@ -16,7 +16,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
 // Components
 import { Translate } from 'components/language';
-import { VIPButton, VIPOnlyContainer } from 'components/vip';
+import { HostButton, HostOnlyContainer } from 'components/host';
 
 type StepWaitingProps = {
   players: GamePlayers;
@@ -93,19 +93,19 @@ export function StepWaiting({ players }: StepWaitingProps) {
       <h3 className="lobby-heading">
         <Translate pt="Aguarde os outros jogadores entrarem." en="Please, wait while other players join..." />
       </h3>
-      <VIPOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
+      <HostOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
         <Typography.Text className="center padding">
           <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
         </Typography.Text>
-        <VIPButton
+        <HostButton
           onClick={() => mutate()}
           disabled={isLoading || numPlayers < gameMeta.min}
           loading={isLoading}
           block
         >
           <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
-        </VIPButton>
-      </VIPOnlyContainer>
+        </HostButton>
+      </HostOnlyContainer>
     </>
   );
 }

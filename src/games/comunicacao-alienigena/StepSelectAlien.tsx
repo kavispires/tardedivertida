@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
@@ -20,7 +20,7 @@ type StepSelectAlienProps = {
 
 export function StepSelectAlien({ players, announcement, onSubmitAlien, status }: StepSelectAlienProps) {
   const { isLoading } = useLoading();
-  const isVIP = useVIP();
+  const isVIP = useHost();
 
   return (
     <Step fullWidth announcement={announcement}>

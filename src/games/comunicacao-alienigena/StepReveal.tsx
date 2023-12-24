@@ -11,7 +11,7 @@ import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
@@ -140,7 +140,7 @@ export function StepReveal({
         <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
       </DebugOnly>
 
-      <VIPNextPhaseButton round={round} />
+      <HostNextPhaseButton round={round} />
     </Step>
   );
 }

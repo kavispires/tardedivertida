@@ -15,7 +15,7 @@ import { Title } from 'components/text';
 import { RoleBoard } from './components/RoleBoard';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
-import { VIPOnlyContainer } from 'components/vip';
+import { HostOnlyContainer } from 'components/host';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMemo } from 'react';
 import { MovieStats } from './components/MovieStats';
@@ -66,7 +66,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
         </Space>
       </Container>
 
-      <VIPOnlyContainer>
+      <HostOnlyContainer>
         <Container title="Chat GPT Prompt">
           <Input.TextArea
             readOnly
@@ -76,7 +76,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
             className="chat-gpt"
           />
         </Container>
-      </VIPOnlyContainer>
+      </HostOnlyContainer>
     </GameOverWrapper>
   );
 }

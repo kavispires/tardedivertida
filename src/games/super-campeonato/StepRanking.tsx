@@ -1,5 +1,5 @@
 // Components
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { RoundsLeftInstruction } from 'components/text';
@@ -41,7 +41,7 @@ export function StepRanking({
 
       <PlayersBets players={players} brackets={brackets} />
 
-      <VIPNextPhaseButton round={round} />
+      <HostNextPhaseButton round={round} />
 
       <Brackets brackets={brackets} activeTier="winner" players={players} />
 

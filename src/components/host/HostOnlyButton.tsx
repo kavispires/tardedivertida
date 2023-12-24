@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 // Ant Design Resources
 import { ButtonProps } from 'antd';
 // Components
-import { VIPButton, VIPOnlyContainer } from './index';
+import { HostButton, HostOnlyContainer } from './index';
 
 type VIPOnlyButtonProps = {
   /**
@@ -15,12 +15,12 @@ type VIPOnlyButtonProps = {
   children: ReactNode;
 } & ButtonProps;
 
-export function VIPOnlyButton({ onClick, children, ...buttonProps }: VIPOnlyButtonProps) {
+export function HostOnlyButton({ onClick, children, ...buttonProps }: VIPOnlyButtonProps) {
   return (
-    <VIPOnlyContainer>
-      <VIPButton onClick={onClick} {...buttonProps}>
+    <HostOnlyContainer>
+      <HostButton onClick={onClick} {...buttonProps}>
         {children}
-      </VIPButton>
-    </VIPOnlyContainer>
+      </HostButton>
+    </HostOnlyContainer>
   );
 }

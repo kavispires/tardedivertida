@@ -1,6 +1,6 @@
 @use 'styles/sass' as *;
 
-.vip-only-container {
+.host-only-container {
   max-width: 100%;
   background-color: get-color('orange', 5, 0.5);
   padding: get-unit(2);
