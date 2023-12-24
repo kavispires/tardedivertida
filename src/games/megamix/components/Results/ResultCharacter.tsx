@@ -6,12 +6,12 @@ import { Translate } from 'components/language';
 import { ImageBlurButtonContainer } from 'components/image-cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
 
-export function ResultCharacter({ winningTeam, winningValues, playersList }: ResultComponentProps) {
+export function ResultCharacter({ winningValues, containerWidth }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {
     gap: 9,
     minWidth: 80,
     maxWidth: 200,
-    containerId: 'results-values',
+    containerWidth,
   });
 
   return (

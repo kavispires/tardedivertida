@@ -14,7 +14,7 @@ type KeyboardProps = {
 };
 
 export function Keyboard({ guessedLetters, correctLetters, onLetterClick, disabled }: KeyboardProps) {
-  const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30, containerId: 'root' });
+  const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30 });
 
   return (
     <Space direction="vertical" align="center" className="keyboard" size="small">
@@ -68,7 +68,7 @@ type KeyProps = {
 
 function Key({ letter, guessedLetters, correctLetters, onLetterClick, disabled }: KeyProps) {
   const baseClassName = 'daily-keyboard-key';
-  const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30, containerId: 'root' });
+  const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30 });
 
   return (
     <button

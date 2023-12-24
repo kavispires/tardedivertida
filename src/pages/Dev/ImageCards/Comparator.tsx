@@ -15,7 +15,7 @@ type ComparatorProps = {
 };
 
 export function Comparator({ query }: ComparatorProps) {
-  const cardWidth = useCardWidth(2, { containerId: 'root' });
+  const cardWidth = useCardWidth(2);
 
   const { data, isDirty, setDirty, isSuccess, isSaving, save } = query;
 
