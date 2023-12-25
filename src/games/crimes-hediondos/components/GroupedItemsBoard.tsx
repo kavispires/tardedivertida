@@ -1,6 +1,7 @@
 // Hooks
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { useCardWidth } from 'hooks/useCardWidth';
+// Components
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 type GroupedItemsBoardProps = {
   groupedItems: GroupedItems;

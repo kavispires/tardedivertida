@@ -3,6 +3,8 @@ import { Input, Space } from 'antd';
 // Utils
 import { achievementsReference } from './utils/achievements';
 import { Icons, chatGPTMoviePrompt } from './utils/helpers';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
@@ -16,8 +18,6 @@ import { RoleBoard } from './components/RoleBoard';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { HostOnlyContainer } from 'components/host';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMemo } from 'react';
 import { MovieStats } from './components/MovieStats';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {

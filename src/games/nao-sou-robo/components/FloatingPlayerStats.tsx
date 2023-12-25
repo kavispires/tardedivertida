@@ -1,10 +1,11 @@
+// Icons
+import { UserStatsIcon } from 'icons/UserStatsIcon';
+// Components
 import { IconAvatar } from 'components/avatars';
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
-
-import { UserStatsIcon } from 'icons/UserStatsIcon';
-import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type FloatingPlayerStatsProps = {
   user: GamePlayer;
