@@ -1,13 +1,18 @@
 import { useState } from 'react';
+// Ant Design Resources
+import { Button, Flex, InputNumber, Space, Typography } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockCardPick } from './utils/mock';
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCardHand } from 'components/image-cards';
 import { CaptchaTopic } from './components/CaptchaTopic';
-import { Button, Flex, InputNumber, Space, Typography } from 'antd';
 import {
   CaptchaHighlight,
   EnergyHighlight,
@@ -16,9 +21,6 @@ import {
   SuspicionHighlight,
 } from './components/Highlights';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { getAnimationClass } from 'utils/helpers';
-import { useMock } from 'hooks/useMock';
-import { mockCardPick } from './utils/mock';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';
 

@@ -1,5 +1,10 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar as AntAvatar, Flex, Space } from 'antd';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Icons
+import { RobotIcon } from 'icons/RobotIcon';
 // Components
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
@@ -8,10 +13,7 @@ import { TimedButton } from 'components/buttons';
 import { Avatar, IconAvatar } from 'components/avatars';
 import { CaptchaTopic } from './components/CaptchaTopic';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { RobotIcon } from 'icons/RobotIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
-import clsx from 'clsx';
 import { RobotResult } from './components/RobotResult';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';

@@ -1,12 +1,15 @@
+// Utils
+import { BEAT_THRESHOLD, OUTCOME } from '../utils/constants';
+// Icons
+import { RobotIcon } from 'icons/RobotIcon';
+import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
+// Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
-import { RobotIcon } from 'icons/RobotIcon';
-import { BEAT_THRESHOLD, OUTCOME } from '../utils/constants';
-import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 import { CardHighlight } from 'components/metrics/CardHighlight';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
+import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type RobotResultProps = {
   players: GamePlayers;
