@@ -31,6 +31,7 @@ type StepHumansOfferProps = {
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
   startingAttributes: Sign[];
+  debugMode?: boolean;
 } & AnnouncementProps;
 
 export function StepHumansOffer({
@@ -47,6 +48,7 @@ export function StepHumansOffer({
   inquiryHistory,
   isAlienBot,
   startingAttributes,
+  debugMode,
 }: StepHumansOfferProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
@@ -117,6 +119,7 @@ export function StepHumansOffer({
         isAlienBot={isAlienBot}
         signs={signs}
         showIntention={isDebugEnabled}
+        debugMode={debugMode}
       />
 
       <DebugOnly>

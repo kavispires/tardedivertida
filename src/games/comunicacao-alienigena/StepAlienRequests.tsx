@@ -32,6 +32,7 @@ type StepAlienRequestsProps = {
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   startingAttributes: Sign[];
+  debugMode?: boolean;
 } & AnnouncementProps;
 
 export function StepAlienRequests({
@@ -47,6 +48,7 @@ export function StepAlienRequests({
   inquiryHistory,
   status,
   startingAttributes,
+  debugMode,
 }: StepAlienRequestsProps) {
   const { isLoading } = useLoading();
   const [intention, setIntention] = useState<string>('');
@@ -155,6 +157,7 @@ export function StepAlienRequests({
         isAlienBot={false}
         signs={signs}
         showIntention={isDebugEnabled}
+        debugMode={debugMode}
       />
 
       <DebugOnly>

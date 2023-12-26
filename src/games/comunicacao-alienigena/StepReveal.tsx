@@ -41,6 +41,7 @@ type StepRevealProps = {
   round: GameRound;
   isAlienBot: boolean;
   startingAttributes: Sign[];
+  debugMode?: boolean;
 } & AnnouncementProps;
 
 export function StepReveal({
@@ -56,6 +57,7 @@ export function StepReveal({
   inquiryHistory,
   isAlienBot,
   startingAttributes,
+  debugMode,
 }: StepRevealProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   const latestRequest = requestHistory?.[0] ?? {};
@@ -134,6 +136,7 @@ export function StepReveal({
         isAlienBot={isAlienBot}
         signs={signs}
         showIntention={isDebugEnabled}
+        debugMode={debugMode}
       />
 
       <DebugOnly>

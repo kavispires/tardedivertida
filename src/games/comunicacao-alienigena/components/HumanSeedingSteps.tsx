@@ -1,70 +1,82 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space, Steps } from 'antd';
+import { Button, Flex, Space, Steps, Switch } from 'antd';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+import { SEPARATOR } from 'utils/constants';
 // Components
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { Card } from 'components/cards';
-import { SelectableObjectsGrid } from './SelectableObjectsGrid';
+import { ItemCard } from 'components/cards/ItemCard';
 
 type HumanSeedingStepsProps = {
   user: GamePlayer;
-  items: Item[];
   onSubmitSeeds: GenericFunction;
 };
 
-export function HumanSeedingSteps({ user, items, onSubmitSeeds }: HumanSeedingStepsProps) {
-  const { translate } = useLanguage();
+export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProps) {
   const { isLoading } = useLoading();
-  const [seeds, setSeeds] = useState<Record<string, string[]>>({});
   const [currentStep, setCurrentStep] = useState(0);
-  const {
-    dict: selected,
-    updateDict: updateSelected,
-    setDict,
-    reset,
-    keys: selectedObjectsIds,
-  } = useBooleanDictionary({});
+  const [seeds, setSeeds] = useState<NumberDictionary>({});
+  const { dict: selected, updateDict: updateSelected, setDict, reset } = useBooleanDictionary({});
 
-  const attributes = (user.seeds ?? []) as Sign[];
-  const steps = attributes.map((attribute) => ({
-    title: <DualTranslate>{attribute.attribute}</DualTranslate>,
-    description: seeds[attribute.key]?.length ?? 0,
+  const seeders = Object.values<Seed>(user.seeds);
+  const steps = seeders.map((seed) => ({
+    title: <DualTranslate>{seed.attribute.attribute}</DualTranslate>,
+    description: seed.items.length ?? 0,
   }));
 
+  const seed = seeders[currentStep];
+
   const onAddSeeds = () => {
+    const values = seed.items.reduce((acc: NumberDictionary, item) => {
+      const key = `${item.id}${SEPARATOR}${seed.attribute.key}`;
+      acc[key] = selected[key] ? 3 : -3;
+      return acc;
+    }, {});
+
     setSeeds((previousSeeds) => ({
       ...previousSeeds,
-      [attributes[currentStep].key]: selectedObjectsIds,
+      ...values,
     }));
     reset();
     setCurrentStep((previousStep) => previousStep + 1);
   };
 
-  const previousAttribute = () => {
+  const onGoToPreviousAttribute = () => {
+    const newStep = currentStep - 1;
     setCurrentStep((previousStep) => previousStep - 1);
-    const newCurrentDict = (seeds[attributes[currentStep - 1].key] ?? []).reduce(
-      (acc: BooleanDictionary, entry) => {
-        acc[entry] = true;
-        return acc;
-      },
-      {}
-    );
-    setDict(newCurrentDict);
+
+    const previousSeed = seeders[newStep];
+
+    const values = seeders[newStep].items.reduce((acc: BooleanDictionary, item) => {
+      const key = `${item.id}${SEPARATOR}${previousSeed.attribute.key}`;
+      if (seeds[key] === 3) {
+        acc[key] = true;
+      }
+      return acc;
+    }, {});
+
+    setDict(values);
   };
 
   const onDoneSeeding = () => {
+    const values = seed.items.reduce((acc: NumberDictionary, item) => {
+      const key = `${item.id}${SEPARATOR}${seed.attribute.key}`;
+      acc[key] = selected[key] ? 3 : -3;
+      return acc;
+    }, {});
+
     setSeeds((previousSeeds) => ({
       ...previousSeeds,
-      [attributes[currentStep].key]: selectedObjectsIds,
+      ...values,
     }));
+
     onSubmitSeeds({ seeds });
   };
 
@@ -74,60 +86,65 @@ export function HumanSeedingSteps({ user, items, onSubmitSeeds }: HumanSeedingSt
         <Steps progressDot current={currentStep} items={steps} />
       </div>
 
-      <Space className="boards-container" wrap>
-        <SelectableObjectsGrid
-          items={items}
-          selectedObjects={selected}
-          selectObject={updateSelected}
-          user={user}
-          maxObjects={25}
-          hideKey
-        />
-        <Space direction="vertical" key={currentStep} className="seeding-attribute-container">
-          <Title level={3} size="xx-small">
-            <Translate pt="Análise" en="Analysis" />
-          </Title>
-          {Boolean(attributes?.[currentStep]) && (
-            <div className="attribute-card-container">
-              <Instruction>
-                <Translate
-                  pt="Selecione todos os itens que possuem a característica:"
-                  en="Select all the items that have the attribute"
-                />
-              </Instruction>
-              <Card
-                className={clsx('attribute-card', getAnimationClass('tada'))}
-                header={translate('Atributo', 'Attribute')}
-                randomColor
-                key={attributes[currentStep].key}
-              >
-                <DualTranslate>{attributes[currentStep].attribute}</DualTranslate>
-              </Card>
+      <Space wrap direction="vertical">
+        <Title level={3} size="xx-small">
+          <Translate pt="Análise" en="Analysis" />
+        </Title>
+        <Instruction>
+          <Translate
+            pt="Ative o botão de todos os itens que possuem a característica:"
+            en="Activate the switch of all items that have the attribute"
+          />
+        </Instruction>
 
-              <Instruction>
-                <Translate
-                  pt="Se nenhum item combina com a característica, apenas vá para o próximo."
-                  en="If no item matches the attribute, just go to the next one."
-                />
-              </Instruction>
+        <Space className="space-container">
+          <Card
+            className={clsx('attribute-card', getAnimationClass('tada'))}
+            key={seed.attribute.key}
+            hideHeader
+          >
+            <DualTranslate>{seed.attribute.attribute}</DualTranslate>
+          </Card>
+        </Space>
 
-              <Space className="seeds-button-container">
-                {currentStep > 0 && (
-                  <Button size="large" onClick={previousAttribute} disabled={isLoading}>
-                    <Translate pt="Atributo anterior" en="Previous attribute" />
-                  </Button>
-                )}
-                {currentStep < attributes.length - 1 ? (
-                  <Button size="large" type="primary" onClick={onAddSeeds} disabled={user.ready}>
-                    <Translate pt="Próximo atributo" en="Next attribute" />
-                  </Button>
-                ) : (
-                  <Button size="large" type="primary" onClick={onDoneSeeding} disabled={isLoading}>
-                    <Translate pt="Enviar análises" en="Submit Analyses" />
-                  </Button>
-                )}
-              </Space>
-            </div>
+        <Flex justify="center" gap="middle" wrap="wrap">
+          {seed.items.map((item) => {
+            const key = `${item.id}${SEPARATOR}${seed.attribute.key}`;
+            return (
+              <Flex vertical justify="center" align="center" gap="small" key={key}>
+                <ItemCard id={`${item.id}`} />
+                <Switch
+                  checkedChildren={<Translate pt="Sim" en="Yes" />}
+                  unCheckedChildren={<Translate pt="Não" en="No" />}
+                  onChange={() => updateSelected(key)}
+                  checked={selected[key]}
+                />
+              </Flex>
+            );
+          })}
+        </Flex>
+
+        <Instruction>
+          <Translate
+            pt="Se nenhum item combina com a característica, apenas vá para o próximo."
+            en="If no item matches the attribute, just go to the next one."
+          />
+        </Instruction>
+
+        <Space className="space-container">
+          {currentStep < seeders.length - 1 && (
+            <Button size="large" onClick={onGoToPreviousAttribute} disabled={isLoading || currentStep === 0}>
+              <Translate pt="Atributo anterior" en="Previous attribute" />
+            </Button>
+          )}
+          {currentStep < seeders.length - 1 ? (
+            <Button size="large" type="primary" onClick={onAddSeeds} disabled={user.ready}>
+              <Translate pt="Próximo atributo" en="Next attribute" />
+            </Button>
+          ) : (
+            <Button size="large" type="primary" onClick={onDoneSeeding} disabled={isLoading}>
+              <Translate pt="Enviar análises" en="Submit Analyses" />
+            </Button>
           )}
         </Space>
       </Space>

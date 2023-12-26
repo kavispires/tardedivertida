@@ -5,7 +5,7 @@ type SubmitAlienPayload = {
 };
 
 type SubmitSeedingPayload = {
-  seeds: Record<CardId, CardId[]>;
+  seeds: NumberDictionary;
 };
 
 type SubmitHumanInquiryPayload = {
@@ -39,6 +39,11 @@ interface Sign {
   signId: string;
   attribute: DualLanguageValue;
 }
+
+type Seed = {
+  attribute: Sign;
+  items: Item[];
+};
 
 interface InquiryHistoryEntry {
   objectIds: CardId[];

@@ -19,6 +19,7 @@ import {
   Sign,
   SignKey,
 } from './types';
+import { SEPARATOR } from '../../utils/constants';
 
 /**
  * Determine the next phase based on the current one
@@ -337,19 +338,11 @@ export const calculateAttributeUsage = (items: AlienItem[]) => {
 export function applySeedsToAlienItemKnowledge(store: FirebaseStoreData, players: Players) {
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.alienSeeds) {
-      Object.entries(player.alienSeeds).forEach(([attributeKey, itemsSeeds]) => {
-        const selectedItems = itemsSeeds as string[];
-        // For selected items, make any selected attribute a 3 (or keep it as 5 if already 5)
-        selectedItems.forEach((itemId) => {
-          if (store.botAlienItemKnowledge[itemId]) {
-            const value = store.botAlienItemKnowledge[itemId].attributes[attributeKey] ?? 0;
-            if (store.botAlienItemKnowledge[itemId].attributes[attributeKey] !== undefined) {
-              if (value < 5) {
-                store.botAlienItemKnowledge[itemId].attributes[attributeKey] = 3;
-              }
-            }
-          }
-        });
+      Object.entries(player.alienSeeds).forEach(([itemAttributeKey, value]) => {
+        const [itemId, attributeKey] = itemAttributeKey.split(SEPARATOR);
+        if (store.botAlienItemKnowledge[itemId]) {
+          store.botAlienItemKnowledge[itemId].attributes[attributeKey] = value;
+        }
       });
     }
   });

@@ -13,6 +13,10 @@ export interface ComunicacaoAlienigenaOptions {
    * Enables easy mode (3 attributes in the beginning instead of 1)
    */
   easyMode?: boolean;
+  /**
+   * Enables debug mode
+   */
+  debugMode?: boolean;
 }
 
 export type ItemId = string;
