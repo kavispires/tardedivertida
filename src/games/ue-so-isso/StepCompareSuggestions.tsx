@@ -44,7 +44,7 @@ export function StepCompareSuggestions({
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
-  const isVIP = useHost();
+  const isHost = useHost();
   const [wasMessageShown, setWasMessageShown] = useState(false);
 
   const onSetValidation = (index: number, suggestionEntry: UseSoIssoSuggestion, notAllowed?: boolean) => {
@@ -131,7 +131,7 @@ export function StepCompareSuggestions({
         >
           <Cards
             suggestions={suggestions}
-            readOnly={!isVIP}
+            readOnly={!isHost}
             players={players}
             onSetValidation={onSetValidation}
             isLoading={isLoading}

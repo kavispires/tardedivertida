@@ -28,7 +28,7 @@ export function StepWitnessSelection({
 }: StepWitnessSelectionProps) {
   useTemporarilyHidePlayersBar();
   const { isLoading } = useLoading();
-  const isVIP = useHost();
+  const isHost = useHost();
 
   return (
     <Step announcement={announcement}>
@@ -43,7 +43,7 @@ export function StepWitnessSelection({
       <Instruction contained>
         <Space>
           {sortPlayers(players).map((player) => {
-            if (isVIP) {
+            if (isHost) {
               return (
                 <TransparentButton
                   key={`p-bt-${player.id}`}
