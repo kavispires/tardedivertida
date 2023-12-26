@@ -41,6 +41,7 @@ type StepAlienAnswersProps = {
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
   startingAttributes: Sign[];
+  debugMode?: boolean;
 } & AnnouncementProps;
 
 export function StepAlienAnswers({
@@ -61,6 +62,7 @@ export function StepAlienAnswers({
   status,
   isAlienBot,
   startingAttributes,
+  debugMode,
 }: StepAlienAnswersProps) {
   const { isLoading } = useLoading();
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
@@ -181,6 +183,7 @@ export function StepAlienAnswers({
         isAlienBot={isAlienBot}
         signs={signs}
         showIntention={isDebugEnabled}
+        debugMode={debugMode}
       />
 
       <DebugOnly>

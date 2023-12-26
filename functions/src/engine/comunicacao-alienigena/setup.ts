@@ -8,9 +8,11 @@ import type {
   FirebaseStoreData,
   InquiryHistoryEntry,
   Item,
+  ItemId,
   OfferingsStatus,
   RequestHistoryEntry,
   ResourceData,
+  Sign,
 } from './types';
 // Utils
 import utils from '../../utils';
@@ -43,9 +45,12 @@ export const prepareSetupPhase = async (
 
   const itemsInfo = ITEMS_COUNT[playerCount];
 
-  const extraInfo: PlainObject = {};
+  const extraInfo: BooleanDictionary = {};
   if (hasBot) {
     extraInfo.shouldPerformSeeding = true;
+  }
+  if (store.options.debugMode) {
+    extraInfo.debugMode = true;
   }
 
   // Save
@@ -126,19 +131,65 @@ export const prepareAlienSeedingPhase = async (
     alien: 0,
   });
 
+  // Unready players
+  utils.players.unReadyPlayers(players, state.alienId);
+
+  const botAlienItemKnowledge: Collection<AlienItem> = store.botAlienItemKnowledge;
+
+  // Tell alien about the starting attributes
+  const startingAttributes: Sign[] = state.startingAttributes;
+  const items: Item[] = state.items;
+  const botAlienSignKnowledge = store.botAlienSignKnowledge as Record<string, ItemId[]>;
+  items.forEach((item) => {
+    startingAttributes.forEach((sign) => {
+      const itemInfo = botAlienItemKnowledge[item.id];
+      if (itemInfo.attributes[sign.key] > 1) {
+        if (botAlienSignKnowledge[sign.key] === undefined) {
+          botAlienSignKnowledge[sign.key] = [];
+        }
+        botAlienSignKnowledge[sign.key].push(item.id);
+      }
+    });
+  });
+
+  const alienItems: AlienItem[] = Object.values(botAlienItemKnowledge);
+
   // Distribute attributes to players to seed the alien information. Players will select objects they think match each attribute
-  const signs = state.signs as string[];
+  const signs: Sign[] = state.signs;
+
   const playersCount = utils.players.getPlayerCount(players);
+
   const quantityPerPlayer = Math.floor(signs.length / playersCount);
   utils.players.dealItemsToPlayers(players, utils.game.shuffle(signs), quantityPerPlayer, 'seeds');
 
-  utils.players.unReadyPlayers(players, state.alienId);
+  // For each seed, give only items that have -1 or 1 as values
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    const { seeds = [] } = player;
+    const seedItems = {};
+
+    seeds.forEach((seed: Sign) => {
+      alienItems.forEach((item) => {
+        if ([-1, 0, 1].includes(item.attributes[seed.key])) {
+          if (seedItems[seed.key] === undefined) {
+            seedItems[seed.key] = {
+              attribute: seed,
+              items: [],
+            };
+          }
+          seedItems[seed.key].items.push(item);
+        }
+      });
+    });
+
+    player.seeds = seedItems;
+  });
 
   // Save
   return {
     update: {
       store: {
         achievements,
+        botAlienSignKnowledge,
       },
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING,
@@ -160,7 +211,7 @@ export const prepareHumanAskPhase = async (
       botAlienItemKnowledge: store.botAlienItemKnowledge,
     };
 
-    utils.players.removePropertiesFromPlayers(players, ['seeds', 'alienSeeds']);
+    utils.players.removePropertiesFromPlayers(players, ['seeds', 'seedItems']);
   }
 
   // Save any inquiry to history

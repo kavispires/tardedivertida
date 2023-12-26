@@ -227,6 +227,7 @@
 .bot-sign {
   margin: get-unit(0 1);
   border-radius: $border-radius;
+  background-color: transparent;
 
   &--negative {
     border-top: get-unit(2) solid get-color('black');

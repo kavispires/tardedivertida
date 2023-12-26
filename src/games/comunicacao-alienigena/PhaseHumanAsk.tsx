@@ -62,6 +62,7 @@ export function PhaseHumanAsk({ players, state, info }: PhaseProps) {
           inquiryHistory={state.inquiryHistory}
           isAlienBot={Boolean(state.alienBot)}
           startingAttributes={state.startingAttributes}
+          debugMode={Boolean(state.debugMode)}
         />
       </StepSwitcher>
     </PhaseContainer>

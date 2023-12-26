@@ -27,20 +27,21 @@ export function StepSeedAlien({ user, announcement, onSubmitSeeds, items }: Step
             <>
               Você passou sua vida analisando as propriedades de diversos objetos.
               <br />
-              Agora, para cada uma dos atributos dados, escolha todos os objetos que você acha que combinam.
+              Agora, para cada uma dos atributos dados, determine se os itens tem ou não a propriedade.
             </>
           }
           en={
             <>
               You have spent your life analyzing the properties of various items.
               <br />
-              Now, for each of the attributes given to you, choose all the objects that you think match.
+              Now, for each of the attributes given to you, determine whether the items have the property or
+              not.
             </>
           }
         />
       </RuleInstruction>
 
-      <HumanSeedingSteps onSubmitSeeds={onSubmitSeeds} user={user} items={items} />
+      {user.seeds && <HumanSeedingSteps onSubmitSeeds={onSubmitSeeds} user={user} />}
     </Step>
   );
 }

@@ -52,6 +52,7 @@ export function PhaseAlienRequest({ players, state, info }: PhaseProps) {
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
           startingAttributes={state.startingAttributes}
+          debugMode={Boolean(state.debugMode)}
         />
       </StepSwitcher>
     </PhaseContainer>
