@@ -129,6 +129,7 @@ export const determineAttributePriorityResponse = (
     'danger',
     'defense',
     'fast',
+    'toy',
     'tool',
     'long',
     'metal',

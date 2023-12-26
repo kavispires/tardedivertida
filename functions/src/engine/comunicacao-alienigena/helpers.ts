@@ -130,6 +130,7 @@ const PRIORITY_ORDER = [
   'danger',
   'defense',
   'fast',
+  'toy',
   'tool',
   'long',
   'metal',
