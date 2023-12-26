@@ -13,6 +13,7 @@ type InquiryHistoryProps = {
   isAlienBot?: boolean;
   signs: Sign[];
   showIntention?: boolean;
+  debugMode: boolean;
 };
 
 export function InquiryHistory({
@@ -21,6 +22,7 @@ export function InquiryHistory({
   isAlienBot,
   signs,
   showIntention,
+  debugMode,
 }: InquiryHistoryProps) {
   if (inquiryHistory.length < 1) return <></>;
 
@@ -45,12 +47,28 @@ export function InquiryHistory({
     },
   ];
 
-  if (showIntention) {
+  if (showIntention || debugMode) {
     columns.push({
       key: 'intention',
       title: <Translate pt="Intenção" en="Intention" />,
       dataIndex: 'intention',
       render: (intention) => <Intention signs={signs} intention={intention} />,
+    });
+  }
+
+  if (isAlienBot) {
+    columns.push({
+      key: 'confidence',
+      title: <Translate pt="Confiança" en="Confidence" />,
+      dataIndex: 'confidence',
+    });
+  }
+  if (debugMode) {
+    columns.push({
+      key: 'assumption',
+      title: <Translate pt="Suposição" en="Assumption" />,
+      dataIndex: 'assumption',
+      // render: (debug) => <Translate pt={debug} en={debug} />,
     });
   }
 

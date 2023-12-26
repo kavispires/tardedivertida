@@ -13,7 +13,7 @@ type HistoryProps = {
   isAlienBot: boolean;
   showIntention?: boolean;
   signs: Sign[];
-  debugMode?: boolean;
+  debugMode: boolean;
 };
 
 export function History({
@@ -37,7 +37,8 @@ export function History({
             players={players}
             isAlienBot={isAlienBot}
             signs={signs}
-            showIntention={showIntention || debugMode}
+            showIntention={showIntention}
+            debugMode={debugMode}
           />
           {inquiryHistory.length === 0 && <Translate pt="Nenhuma pergunta ainda." en="No questions yet." />}
         </>

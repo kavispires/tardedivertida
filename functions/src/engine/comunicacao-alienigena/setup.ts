@@ -226,6 +226,8 @@ export const prepareHumanAskPhase = async (
       objectIds: state.currentInquiry,
       playerId: state.humanId,
       intention: state.currentIntention ?? '',
+      assumption: store.assumption,
+      confidence: store.confidence ?? 0,
     });
   }
 
@@ -301,6 +303,8 @@ export const prepareAlienAnswerPhase = async (
   if (hasBot) {
     storeUpdate = {
       botAlienSignKnowledge: store.botAlienSignKnowledge,
+      assumption: store.assumption ?? '?',
+      confidence: store.confidence ?? 0,
     };
   }
 
@@ -339,6 +343,8 @@ export const prepareAlienRequestPhase = async (
       objectIds: state.currentInquiry,
       playerId: state.humanId,
       intention: state.currentIntention ?? '',
+      assumption: store.assumption ?? '',
+      confidence: store.confidence ?? 0,
     });
   }
 
@@ -373,6 +379,8 @@ export const prepareOfferingsPhase = async (
         objectIds: state.currentInquiry,
         playerId: state.humanId,
         intention: state.currentIntention ?? '',
+        assumption: store.assumption ?? '',
+        confidence: store.confidence ?? 0,
       });
     }
   }

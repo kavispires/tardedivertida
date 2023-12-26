@@ -63,6 +63,8 @@ export interface InquiryHistoryEntry {
   answer: string;
   playerId: PlayerId;
   intention?: SignKey;
+  assumption?: SignKey;
+  confidence?: number;
 }
 export interface RequestHistoryEntry {
   request: string;
