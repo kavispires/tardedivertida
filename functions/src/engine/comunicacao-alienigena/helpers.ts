@@ -147,20 +147,73 @@ const PRIORITY_ORDER = [
 ];
 
 /**
- * Generates the Alien response when a player asks about a set of items
- * @param currentInquiry
- * @param store
- * @param signs
- * @returns the attributes related to the set of items
+ * Determines the alien's response based on the current inquiry, store, and available signs.
+ * @param currentInquiry - Array of item IDs in the current inquiry.
+ * @param store - The communication store containing alien knowledge.
+ * @param signs - Array of signs available for communication.
+ * @returns The sign ID representing the alien's response.
  */
 export const determineAlienResponse = (
   currentInquiry: string[],
   store: ComunicacaoAlienigenaStore,
   signs: Sign[]
 ) => {
-  // Calculate total weight of attributes in current inquiry
+  // Step 1: Calculate total weight of attributes in the current inquiry
   const totalWeights = calculateTotalWeights(currentInquiry, store.botAlienItemKnowledge);
-  //
+
+  // Get the best match
+  let bestMatch = getBestMatch(currentInquiry, store, signs, totalWeights, 1, false);
+
+  if (bestMatch) {
+    return bestMatch;
+  }
+
+  // Retry without carrying about uniqueness
+  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeights, 2, true);
+
+  if (bestMatch) {
+    return bestMatch;
+  }
+
+  // Recalculate totals with any values
+  const totalWeightsAny = calculateTotalWeights(currentInquiry, store.botAlienItemKnowledge, true);
+
+  // Retry without carrying only about positive values
+  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeightsAny, 3, false);
+
+  if (bestMatch) {
+    return bestMatch;
+  }
+
+  // Retry without caring about anything
+  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeightsAny, 4, true);
+
+  if (bestMatch) {
+    return bestMatch;
+  }
+
+  store.confidence = 0;
+  return signs.find((sign) => sign.key === 'solid')?.signId ?? signs[0].signId;
+};
+
+/**
+ *
+ * @param currentInquiry
+ * @param store
+ * @param signs
+ * @param totalWeights
+ * @param attempt
+ * @returns
+ */
+const getBestMatch = (
+  currentInquiry: string[],
+  store: ComunicacaoAlienigenaStore,
+  signs: Sign[],
+  totalWeights: NumberDictionary,
+  attempt: number,
+  unique: boolean
+) => {
+  // Step 2: Sort attributes by total weight and priority order
   const sortedAttributes = Object.entries(totalWeights)
     // Sort counts by total weight
     .sort(([attributeA, weightA], [attributeB, weightB]) => {
@@ -177,20 +230,24 @@ export const determineAlienResponse = (
     .filter(([attribute]) => {
       return currentInquiry.every((itemId) => store.botAlienItemKnowledge[itemId].attributes[attribute] > 1);
     })
-    // Get attribute name only
+    // Get attribute key only
     .map(([attribute]) => attribute);
 
-  // Filter only attributes that will be new to players, however, if only one item, return the best one
-  let uniqueMatches =
-    currentInquiry.length > 1
-      ? getArrayUniqueness(sortedAttributes, Object.keys(store.botAlienSignKnowledge))
-      : [];
+  // Step 3: If there is more than one item in the inquiry, filter only new attributes (that haven't been presented before)
+  const topMatch = sortedAttributes[0];
+  const uniqueMatches = getArrayUniqueness(sortedAttributes, Object.keys(store.botAlienSignKnowledge));
+  const uniqueMatch = uniqueMatches[0];
+  const useTopMatch = !unique || totalWeights[topMatch] > (uniqueMatch ? totalWeights[uniqueMatch] : 0);
 
-  let bestMatch = uniqueMatches?.[0] ?? sortedAttributes[0];
+  // Step 4: Determine the best matching attribute
+  const bestMatch = useTopMatch ? topMatch : uniqueMatch;
 
-  let matchingSign = signs.find((sign) => sign.key === bestMatch);
+  // Step 5: Find the matching sign for the best attribute
+  const matchingSign = signs.find((sign) => sign.key === bestMatch);
 
-  // Save that the humans know about this sign now
+  const wasAttributePresentedBefore = !!store.botAlienSignKnowledge[matchingSign?.key ?? ''];
+
+  // Step 6: Update knowledge if a positive match is found
   if (matchingSign?.key) {
     if (store.botAlienSignKnowledge[matchingSign.key] === undefined) {
       store.botAlienSignKnowledge[matchingSign.key] = [];
@@ -202,61 +259,33 @@ export const determineAlienResponse = (
     ];
   }
 
-  let result = matchingSign?.signId ?? '';
+  const result = matchingSign?.signId ?? '';
 
+  // Step 7: If a positive match is found, update assumptions and return the result
   if (result) {
+    store.assumption = signs.find((sign) => sign.signId === result)?.key ?? '?';
+    // Determine the base points for the match (minimum 3 points per item)
+    const matchBasePoints = currentInquiry.length * 5;
+    store.confidence = Math.round((100 * totalWeights[bestMatch]) / matchBasePoints);
+    if (wasAttributePresentedBefore) {
+      store.confidence = store.confidence / 1.25;
+    }
+    store.confidence = Math.round(store.confidence / attempt);
+
     return result;
   }
-
-  // If no positive attribute is found, try the most known negative
-  const sortedAttributesReverse = Object.entries(totalWeights)
-    // Sort counts by total weight
-    .sort(([, weightA], [, weightB]) => weightA - weightB)
-    // Remove any attribute that could be negative for any item
-    .filter(([attribute]) => {
-      return currentInquiry.every((itemId) => store.botAlienItemKnowledge[itemId].attributes[attribute] > 1);
-    })
-    // Get attribute name only
-    .map(([attribute]) => attribute);
-
-  // Filter only attributes that will be new to players, however, if only one item, return the best one
-  uniqueMatches =
-    currentInquiry.length > 1
-      ? getArrayUniqueness(sortedAttributesReverse, Object.keys(store.botAlienSignKnowledge))
-      : [];
-
-  bestMatch = uniqueMatches?.[0] ?? sortedAttributesReverse[0];
-
-  matchingSign = signs.find((sign) => sign.key === bestMatch);
-
-  result = matchingSign?.signId ?? '';
-
-  if (result) {
-    return result;
-  }
-
-  // If still there's no good icon, respond with the best one regardless if every one is positive
-  const sortedAttributesAny = Object.entries(totalWeights)
-    // Sort counts by total weight
-    .sort(([, weightA], [, weightB]) => weightA - weightB)
-    // Get attribute name only
-    .map(([attribute]) => attribute);
-  bestMatch = sortedAttributesAny[0];
-
-  matchingSign = signs.find((sign) => sign.key === bestMatch);
-
-  return matchingSign?.signId ?? '?';
 };
 
 /**
- * Calculate the total eights for a set of items for each attribute
+ * Calculate the total weights for a set of items for each attribute
  * @param itemIds
  * @param botAlienItemKnowledge
  * @returns
  */
 export const calculateTotalWeights = (
   itemIds: ItemId[],
-  botAlienItemKnowledge: Record<string, AlienItem>
+  botAlienItemKnowledge: Record<string, AlienItem>,
+  anyValue?: boolean
 ) => {
   const totalWeights: NumberDictionary = {};
 
@@ -266,7 +295,12 @@ export const calculateTotalWeights = (
       if (totalWeights[attribute] === undefined) {
         totalWeights[attribute] = 0;
       }
-      totalWeights[attribute] += weight;
+      if (anyValue) {
+        totalWeights[attribute] += weight;
+        // Ignore "-3" as they don't necessarily negate and might just mean not relevant
+      } else if (weight > -3 || weight === -5) {
+        totalWeights[attribute] += weight;
+      }
     });
   });
 
@@ -356,6 +390,7 @@ export function applySeedsToAlienItemKnowledge(store: FirebaseStoreData, players
  * @returns An object containing the alien's request and intention.
  */
 export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: Sign[], items: Item[]) {
+  // Step 1: Count the occurrences of each item in the bot's knowledge of signs
   const itemsWithInformationDict = Object.values(store.botAlienSignKnowledge).reduce(
     (acc: NumberDictionary, itemIds) => {
       itemIds.forEach((itemId) => {
@@ -371,48 +406,51 @@ export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: 
     {}
   );
 
+  // Step 2: Sort items by the number of occurrences in the bot's knowledge
   const itemsWithInformation = getKeysSortedByValue(itemsWithInformationDict);
 
   const knownSigns = Object.keys(store.botAlienSignKnowledge);
 
-  // Get all needed items that haven't been offered
-  const neededItemsIds = sortArrayByPriority(
+  // Step 3: Get needed items that haven't been offered and sort them by priority
+  const neededItems = sortArrayByPriority(
     items.filter((item) => !item.offered && item.type === 'ITEM').map((e) => e.id),
     itemsWithInformation
-  );
+  ).map((id) => store.botAlienItemKnowledge[id]);
 
-  const neededItems = neededItemsIds.map((id) => store.botAlienItemKnowledge[id]);
-
-  // Get all cursed items that haven't been offered
+  // Step 4: Get cursed items that haven't been offered and shuffle them
   const cursedItems = utils.game
     .shuffle(items.filter((item) => !item.offered && item.type === 'CURSE'))
     .map((e) => e.id)
     .map((id) => store.botAlienItemKnowledge[id]);
 
+  // Step 5: For each needed item, find the best attributes sorted by specific weight
   const bestAttributesDict: string[][] = [];
-
   neededItems.forEach((neededItem) => {
     bestAttributesDict.push(sortItemAttributesBySpecificWeight(neededItem, knownSigns));
   });
 
+  // Step 6: For each cursed item, find the best attributes sorted by specific weight
   const bestCursedAttributesDict: string[][] = [];
-
   cursedItems.forEach((cursedItem) => {
     bestCursedAttributesDict.push(sortItemAttributesBySpecificWeight(cursedItem, knownSigns));
   });
 
+  // Step 7: Create a dictionary to map sign keys to sign IDs
   const signKeyIdDict = signs.reduce((acc, sign) => {
     acc[sign.key] = sign.signId;
     acc[`!${sign.key}`] = `!${sign.signId}`;
+    acc[`+${sign.key}`] = `+${sign.signId}`;
     return acc;
   }, {});
 
+  // Step 8: Check for matching attributes between needed and cursed items
   for (let i = 0; i < bestAttributesDict.length; i++) {
     const needList = bestAttributesDict[i];
     const isMatched = bestCursedAttributesDict.some((cursedList) => {
       return needList.every((attr) => cursedList.includes(attr));
     });
 
+    // Step 9: If no match is found, return the request and intention
     if (!isMatched) {
       return {
         request: needList.map((attributeKey) => signKeyIdDict[attributeKey]),
@@ -456,6 +494,8 @@ function sortItemAttributesBySpecificWeight(item: AlienItem, knownSigns: SignKey
       const weight = item.attributes[attr];
       if (weight && weight < 0) {
         return `!${attr}`;
+      } else if (weight && weight === 5) {
+        return `+${attr}`;
       } else {
         return attr;
       }
@@ -463,6 +503,12 @@ function sortItemAttributesBySpecificWeight(item: AlienItem, knownSigns: SignKey
     .slice(0, 5);
 }
 
+/**
+ * Returns a list of strings that are in the first list but not in the second.
+ * @param list
+ * @param used
+ * @returns
+ */
 function getArrayUniqueness(list: string[], used: string[]) {
   return list.filter((item) => !used.includes(item));
 }

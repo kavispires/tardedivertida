@@ -32,7 +32,7 @@ type StepAlienRequestsProps = {
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   startingAttributes: Sign[];
-  debugMode?: boolean;
+  debugMode: boolean;
 } & AnnouncementProps;
 
 export function StepAlienRequests({

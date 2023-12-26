@@ -26,6 +26,7 @@ export type FirebaseAlienItem = {
   id: ItemId;
   name: DualLanguageValue;
   attributesStr: string;
+  attributes?: Record<Attribute, Weight>;
   nsfw?: boolean;
   categories?: string[];
 };

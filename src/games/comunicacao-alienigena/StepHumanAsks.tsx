@@ -35,7 +35,7 @@ type StepHumanAsksProps = {
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
   startingAttributes: Sign[];
-  debugMode?: boolean;
+  debugMode: boolean;
 } & AnnouncementProps;
 
 export function StepHumanAsks({

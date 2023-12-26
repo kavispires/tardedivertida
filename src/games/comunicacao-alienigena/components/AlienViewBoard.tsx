@@ -31,18 +31,19 @@ export function AlienViewBoard({ request, isAlienBot, size, className }: AlienVi
     return (
       <div
         className={clsx('alien-canvas alien-canvas--small alien-canvas--bot', className)}
-        style={{ width: `${width}px`, height: `${height}px` }}
+        style={size === 'small' ? undefined : { width: `${width}px`, height: `${height}px` }}
       >
         {request.map((entry) => {
           const isNegative = entry.startsWith('!');
-          const id = entry.substring(isNegative ? 1 : 0);
+          const isVery = entry.startsWith('+');
+          const id = entry.substring(isNegative || isVery ? 1 : 0);
 
           return (
             <SignCard
               key={`request-${id}`}
               id={id}
               width={75}
-              className={clsx('bot-sign', isNegative && 'bot-sign--negative')}
+              className={clsx('bot-sign', isNegative && 'bot-sign--negative', isVery && 'bot-sign--very')}
             />
           );
         })}

@@ -23,6 +23,7 @@ import { AlienViewBoard } from './components/AlienViewBoard';
 import { ItemCard } from 'components/cards/ItemCard';
 import { BotPopupRule } from './components/BotPopupRules';
 import { DebugOnly } from 'components/debug';
+import { useMock } from 'hooks/useMock';
 
 type StepAlienAnswersProps = {
   players: GamePlayers;
@@ -41,7 +42,7 @@ type StepAlienAnswersProps = {
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
   startingAttributes: Sign[];
-  debugMode?: boolean;
+  debugMode: boolean;
 } & AnnouncementProps;
 
 export function StepAlienAnswers({
@@ -66,6 +67,9 @@ export function StepAlienAnswers({
 }: StepAlienAnswersProps) {
   const { isLoading } = useLoading();
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
+
+  // Dev Only
+  useMock(() => onConfirmNote());
 
   return (
     <Step fullWidth announcement={announcement}>

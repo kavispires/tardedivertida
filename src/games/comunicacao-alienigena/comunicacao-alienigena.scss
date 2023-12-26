@@ -59,7 +59,6 @@
 
   &__item-offered {
     opacity: 0.25;
-    fill: get-color('gray');
   }
 
   &__button {
@@ -232,6 +231,10 @@
   &--negative {
     border-top: get-unit(2) solid get-color('black');
   }
+
+  &--very {
+    border-bottom: get-unit(2) solid get-color('black');
+  }
 }
 
 .attribute-card-container {
@@ -255,7 +258,7 @@
   padding: get-unit(10 2);
 
   &__stepper {
-    max-width: 90vw;
+    max-width: 80vw;
     overflow-x: auto;
   }
 }

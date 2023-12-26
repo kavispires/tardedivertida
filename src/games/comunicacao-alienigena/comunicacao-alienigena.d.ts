@@ -26,6 +26,8 @@ type SubmitOfferingPayload = {
   offeringId: CardId;
 };
 
+type SignKey = string;
+
 interface Item {
   id: string;
   type: string;
@@ -35,7 +37,7 @@ interface Item {
 }
 
 interface Sign {
-  key: string;
+  key: SignKey;
   signId: string;
   attribute: DualLanguageValue;
 }
@@ -49,7 +51,9 @@ interface InquiryHistoryEntry {
   objectIds: CardId[];
   answer: string;
   playerId: PlayerId;
-  intention?: string;
+  intention?: SignKey;
+  assumption?: SignKey;
+  confidence?: number;
 }
 
 interface Offer {
