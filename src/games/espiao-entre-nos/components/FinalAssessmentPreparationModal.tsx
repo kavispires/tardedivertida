@@ -17,11 +17,11 @@ export function FinalAssessmentPreparationModal({
   onSendLastQuestioner,
   players,
 }: FinalAssessmentModalProps) {
-  const isVIP = useHost();
+  const isHost = useHost();
 
   return (
     <Modal
-      open={isVIP}
+      open={isHost}
       title={<Translate pt="O Tempo Acabou!" en="Time's up" />}
       footer={null}
       closable={false}

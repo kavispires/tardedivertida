@@ -31,7 +31,7 @@ export function AnswerGroup({
   remainingGroupsCount,
 }: AnswerGroupProps) {
   const { translate } = useLanguage();
-  const isVIP = useHost();
+  const isHost = useHost();
 
   return (
     <Step className="m-step">
@@ -82,7 +82,7 @@ export function AnswerGroup({
                     {player.answers[entry.id].answer}
                   </span>
                 )}
-                {!isLocked && isVIP && (
+                {!isLocked && isHost && (
                   <div className="m-answer-group__allow-add">
                     <Checkbox
                       data-allowanswer={entry.id}

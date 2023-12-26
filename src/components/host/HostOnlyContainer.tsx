@@ -24,9 +24,9 @@ interface VIPOnlyContainerProps extends SpaceProps {
 }
 
 export const HostOnlyContainer = ({ children, label, className = '', ...rest }: VIPOnlyContainerProps) => {
-  const isVIP = useHost();
+  const isHost = useHost();
 
-  if (!isVIP) return <></>;
+  if (!isHost) return <></>;
 
   return (
     <fieldset className={clsx('host-only-container', className)}>

@@ -51,7 +51,7 @@ type VIPNextPhaseButtonProps = {
  * It may be paused
  */
 export function HostNextPhaseButton({ round, autoTriggerTime = 30, children }: VIPNextPhaseButtonProps) {
-  const isVIP = useHost();
+  const isHost = useHost();
   const { translate } = useLanguage();
   const { loaders } = useLoading();
   const isLoading = loaders['go-to-next-phase'];
@@ -74,7 +74,7 @@ export function HostNextPhaseButton({ round, autoTriggerTime = 30, children }: V
     autoStart: autoTriggerTime > 0,
     duration: autoTriggerTime,
     onExpire: handleClick,
-    disabled: !isVIP ?? !hasTimer,
+    disabled: !isHost ?? !hasTimer,
   });
 
   useEffect(() => {

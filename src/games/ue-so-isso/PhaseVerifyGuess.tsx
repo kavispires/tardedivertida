@@ -19,13 +19,13 @@ import { ViewOr } from 'components/views';
 export function PhaseVerifyGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, setStep } = useStep(0);
-  const isVIP = useHost();
+  const isHost = useHost();
   const [guesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
   const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
 
-  const isActionable = !['CONTINUE', 'WIN'].includes(state.group.outcome) && (isUserTheController || isVIP);
+  const isActionable = !['CONTINUE', 'WIN'].includes(state.group.outcome) && (isUserTheController || isHost);
 
   const announcement = (
     <PhaseAnnouncement

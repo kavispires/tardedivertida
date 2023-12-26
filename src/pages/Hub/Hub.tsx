@@ -21,7 +21,7 @@ import { Filters } from './components/Filters';
 import { LogoutButton } from 'components/auth/LogoutButton';
 
 // Players migration
-const migrationBlocked = ['espiao-entre-nos', 'sonhos-pesadelos', 'ta-na-cara', 'vendaval-de-palpite'];
+const migrationBlocked = ['espiao-entre-nos', 'sonhos-pesadelos', 'ta-na-cara'];
 
 function Hub() {
   useTitle('Hub - Tarde Divertida');
