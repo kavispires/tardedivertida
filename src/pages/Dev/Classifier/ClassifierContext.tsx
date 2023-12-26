@@ -121,6 +121,9 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
         if (!item.attributes.holdable) {
           item.attributes.holdable = 0;
         }
+        if (!item.attributes.toy) {
+          item.attributes.toy = 0;
+        }
 
         delete item.attributes.singular;
         delete item.attributes.hard;

@@ -1,5 +1,7 @@
 import { Card, Space } from 'antd';
 import { Loading } from 'components/loaders';
+import { useQueryParams } from 'hooks/useQueryParams';
+import { isEmpty, orderBy } from 'lodash';
 import { useEffect } from 'react';
 
 import { AttributeLevelRadioGroup } from './AttributeLevelRadioGroup';
@@ -13,23 +15,20 @@ import { Search } from './Search';
 import { Verifier } from './Verifier';
 
 import type { Attribute, Weight } from './types';
-import { useQueryParams } from 'hooks/useQueryParams';
-import { orderBy } from 'lodash';
-
 const attributeList = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 
 export function ClassifyingCard() {
-  const { data, save, isSaving, itemUtils, isDirty } = useClassifier();
+  const { data, save, isSaving, itemUtils, isDirty, isSuccess } = useClassifier();
   const { itemId, previousItem, nextItem, itemNumber, goTo, setItemId } = useItem(itemUtils.latestId);
   const qp = useQueryParams();
 
   const current = data[itemId];
 
   useEffect(() => {
-    if (!current) {
+    if (isSuccess && !isEmpty(data) && !current) {
       itemUtils.create(itemId);
     }
-  }, [current]); // eslint-disable-line
+  }, [current, isSuccess]); // eslint-disable-line
 
   useEffect(() => {
     if (qp.queryParams.item) {

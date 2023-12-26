@@ -28,7 +28,7 @@ export function LanguageButtons() {
   );
 }
 
-function BrazilFlag(props: React.SVGProps<SVGSVGElement>) {
+export function BrazilFlag(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 335.4" {...props}>
       <path
@@ -48,7 +48,7 @@ function BrazilFlag(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function UnitedStatesFlag(props: React.SVGProps<SVGSVGElement>) {
+export function UnitedStatesFlag(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 335.45" {...props}>
       <path
