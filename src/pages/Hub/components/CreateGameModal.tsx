@@ -75,7 +75,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
   const [, setUserName] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [options, setOptions] = useState({});
-  const previousGameId = latestGameBeforeNewOne(getLocalStorage(LATEST_GAME_IDS));
+  const previousGameId = latestGameBeforeNewOne(getLocalStorage(LATEST_GAME_IDS, {}));
 
   const { startRedirect, isSettingRedirect, wasRedirectSuccessful } = useRedirectToNewGame();
 
