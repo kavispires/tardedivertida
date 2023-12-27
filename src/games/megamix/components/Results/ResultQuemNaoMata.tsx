@@ -2,11 +2,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 
-export function ResultQuemNaoMata({
-  winningValues,
-
-  players,
-}: ResultComponentProps) {
+export function ResultQuemNaoMata({ winningValues, players }: ResultComponentProps) {
   return (
     <>
       <Instruction>

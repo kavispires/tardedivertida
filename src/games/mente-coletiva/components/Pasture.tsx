@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import clsx from 'clsx';
-// Hooks
-import { useDimensions } from 'hooks/useDimensions';
+import { useWindowSize } from 'react-use';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
@@ -15,7 +14,7 @@ type PastureProps = {
 };
 
 export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
-  const [width] = useDimensions();
+  const { width } = useWindowSize();
   const isShortPasture = pastureSize === 3;
 
   const pastureBase = Math.min(width, 1360) - 36;

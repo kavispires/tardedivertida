@@ -3,7 +3,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { cloneDeep, merge } from 'lodash';
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from 'react-query';
+import { QueryKey, UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { firestore } from 'services/firebase';
 
 import {
@@ -120,6 +120,9 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
         }
         if (!item.attributes.holdable) {
           item.attributes.holdable = 0;
+        }
+        if (!item.attributes.toy) {
+          item.attributes.toy = 0;
         }
 
         delete item.attributes.singular;

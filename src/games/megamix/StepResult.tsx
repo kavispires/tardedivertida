@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { LegacyRef, useMemo } from 'react';
 import { memoize } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
@@ -8,7 +8,6 @@ import { sortPlayers } from 'utils/helpers';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import { useCountdown } from 'hooks/useCountdown';
-import { useDimensions } from 'hooks/useDimensions';
 import { useColorizeBackground } from './utils/useColorizeBackground';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
@@ -24,6 +23,7 @@ import { IconAvatar } from 'components/avatars';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TrackTitle } from './components/TrackTitle';
 import { VotesDelegator } from './components/VotesDelegator';
+import { useMeasure } from 'react-use';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -50,7 +50,7 @@ export function StepResult({
   scoringType,
 }: StepResultProps) {
   useTemporarilyHidePlayersBar();
-  const [width] = useDimensions('results');
+  const [resultRef, { width }] = useMeasure();
 
   const time = useCountdown({ duration: 20 });
 
@@ -64,6 +64,8 @@ export function StepResult({
   // Counts to aid the animation positioning. It doesn't trigger re-renders because it's handled by css
   let winningCount = 0;
   let losingCount = 0;
+
+  const [ref, { width: resultsValueWidth }] = useMeasure();
 
   return (
     <Step announcement={announcement}>
@@ -98,7 +100,7 @@ export function StepResult({
         )}
       </RuleInstruction>
 
-      <div className="results" id="results">
+      <div className="results" ref={resultRef as LegacyRef<HTMLDivElement>}>
         <div className="results__vip" id="area-w">
           <span className="results__icon">
             <IconAvatar icon={<VIPLineIcon />} size="large" />
@@ -107,13 +109,14 @@ export function StepResult({
             <Translate pt="Área VIP" en="VIP Lounge" />
           </span>
         </div>
-        <div className="results__values" id="results-values">
+        <div className="results__values" ref={ref as LegacyRef<HTMLDivElement>}>
           <ResultValueDelegator
             track={track}
             winningValues={winningValues}
             players={players}
             winningTeam={winningTeam}
             playersList={playersList}
+            containerWidth={resultsValueWidth}
           />
         </div>
         <div className="results__gutter" id="area-l">
@@ -125,7 +128,7 @@ export function StepResult({
           </span>
         </div>
 
-        {playersList.map((player, index) => {
+        {playersList.map((player) => {
           const isWinningArea = player.team[currentIndex] === 'W';
           winningCount = isWinningArea ? winningCount + 1 : winningCount;
           losingCount = !isWinningArea ? losingCount + 1 : losingCount;

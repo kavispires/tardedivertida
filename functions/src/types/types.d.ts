@@ -57,6 +57,7 @@ type CallablePayload<TPayload> = TPayload & { action: string };
 interface CreateGamePayload {
   gameName: string;
   language: string;
+  version: string;
   options?: BooleanDictionary;
 }
 
@@ -95,6 +96,7 @@ interface Meta {
   isLocked: boolean;
   isComplete: boolean;
   language: string;
+  version?: string;
   replay: number;
   options?: BooleanDictionary;
 }
@@ -166,6 +168,10 @@ interface InitialStateArgs {
    * The default store value
    */
   store: PlainObject;
+  /**
+   * The version of the game
+   */
+  version: string;
   /**
    * Game options
    */

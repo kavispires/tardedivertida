@@ -1,0 +1,31 @@
+@use 'styles/sass' as *;
+
+.host-only-container {
+  max-width: 100%;
+  background-color: get-color('orange', 5, 0.5);
+  padding: get-unit(2);
+  margin: get-unit(2 0);
+  display: flex;
+  justify-content: center;
+  border-radius: $border-radius;
+
+  &--float {
+    position: fixed;
+    left: get-unit(16);
+    bottom: 0;
+    z-index: 160;
+    background-color: get-color('orange', 4, 0.85);
+    padding: get-unit(2);
+    margin-bottom: 0;
+    border-radius: $border-radius $border-radius 0 0;
+    box-shadow: 3px 2px 15px 0px rgba($color: #000, $alpha: 0.35);
+  }
+
+  &__legend {
+    background-color: get-color('orange');
+    padding: get-unit(2);
+    font-size: 0.8rem;
+    color: get-color('white');
+    border-radius: $border-radius;
+  }
+}

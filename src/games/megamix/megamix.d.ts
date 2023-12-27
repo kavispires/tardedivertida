@@ -163,4 +163,4 @@ type VoteComponentProps = {
   playersList: GamePlayer[];
 };
 
-type ResultComponentProps = VoteComponentProps;
+type ResultComponentProps = VoteComponentProps & { containerWidth: number };

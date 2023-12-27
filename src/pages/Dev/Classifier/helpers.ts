@@ -228,7 +228,7 @@ export const parseFirebaseAlienItemDict = (data: FirebaseAlienItemDict): AlienIt
     newData[item.id] = {
       id: item.id,
       name: item.name,
-      attributes: JSON.parse(item.attributesStr),
+      attributes: JSON.parse(item.attributesStr ?? '{}'),
       nsfw: item.nsfw,
       categories: item.categories,
     };

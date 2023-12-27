@@ -49,7 +49,8 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
         </Instruction>
 
         <Card header={translate('Tarefa', 'Homework')} color="purple">
-          {seed.card}
+          {/* TODO: Verify */}
+          {String(seed.card)}
         </Card>
 
         <Input

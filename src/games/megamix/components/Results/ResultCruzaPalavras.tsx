@@ -2,12 +2,7 @@
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 
-export function ResultCruzaPalavras({
-  track,
-  winningValues,
-  winningTeam,
-  playersList,
-}: ResultComponentProps) {
+export function ResultCruzaPalavras({ track, winningValues }: ResultComponentProps) {
   const cheatSheet: PlainObject = {
     0: [track.data.cards[0].text, track.data.cards[2].text],
     1: [track.data.cards[0].text, track.data.cards[3].text],

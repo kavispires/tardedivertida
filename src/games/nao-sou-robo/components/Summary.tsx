@@ -1,8 +1,8 @@
-import { Translate } from 'components/language';
-
-import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
-
+// Ant Design Resources
 import { Divider, Tooltip } from 'antd';
+// Components
+import { Translate } from 'components/language';
+import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type SummaryProps = {
   user: GamePlayer;

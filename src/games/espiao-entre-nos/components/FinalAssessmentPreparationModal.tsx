@@ -2,7 +2,7 @@
 import { Button, Modal, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Components
 import { Translate } from 'components/language';
 
@@ -17,11 +17,11 @@ export function FinalAssessmentPreparationModal({
   onSendLastQuestioner,
   players,
 }: FinalAssessmentModalProps) {
-  const isVIP = useVIP();
+  const isHost = useHost();
 
   return (
     <Modal
-      open={isVIP}
+      open={isHost}
       title={<Translate pt="O Tempo Acabou!" en="Time's up" />}
       footer={null}
       closable={false}

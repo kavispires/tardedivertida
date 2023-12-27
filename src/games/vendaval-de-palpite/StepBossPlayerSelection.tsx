@@ -2,14 +2,14 @@
 import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { AvatarCard, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 
 type StepBossPlayerSelectionProps = {
@@ -19,7 +19,7 @@ type StepBossPlayerSelectionProps = {
 
 export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBossPlayerSelectionProps) {
   const { isLoading } = useLoading();
-  const isVIP = useVIP();
+  const isHost = useHost();
 
   return (
     <Step key={1}>
@@ -32,7 +32,7 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
       <Instruction contained>
         <Space>
           {Object.values(players).map((player) => {
-            if (isVIP) {
+            if (isHost) {
               return (
                 <TransparentButton
                   key={`p-bt-${player.id}`}
@@ -49,10 +49,9 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
         </Space>
       </Instruction>
 
-      <Instruction>
-        (
-        <Translate pt="O administrator selecionará o chefe" en="The Admin will select the boss" />)
-      </Instruction>
+      <RuleInstruction type="wait">
+        <Translate pt="O anfitrião selecionará o chefe" en="The host will select the boss" />)
+      </RuleInstruction>
     </Step>
   );
 }

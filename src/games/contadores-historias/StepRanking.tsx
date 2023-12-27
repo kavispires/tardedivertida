@@ -2,12 +2,12 @@ import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { ScoringRules } from './components/RulesBlobs';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
@@ -56,7 +56,7 @@ export function StepRanking({
       ranking={ranking}
       gainedPointsDescriptions={[getGainedPointsText(outcome, translate), 'Pontos por votos em sua carta']}
       subtitle={
-        <Instruction contained>
+        <RuleInstruction type={outcome === 'NORMAL' ? 'event' : 'alert'}>
           {outcome === 'EVERYBODY_GOT' && (
             <Translate
               pt={
@@ -76,7 +76,7 @@ export function StepRanking({
             <Translate
               pt={
                 <>
-                  Ninguém acertou! <AvatarName player={storyteller} />, da próxima vez seja menos obscuro.
+                  Ninguém acertou! <AvatarName player={storyteller} />, da próxima vez, seja menos obscuro.
                 </>
               }
               en={
@@ -103,7 +103,7 @@ export function StepRanking({
               }
             />
           )}
-        </Instruction>
+        </RuleInstruction>
       }
     >
       <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
@@ -112,7 +112,7 @@ export function StepRanking({
         <Button onClick={goToPreviousStep}>{translate('Voltar para Solução', 'Back to Solution')}</Button>
       </Space>
 
-      <VIPNextPhaseButton round={round} />
+      <HostNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
@@ -52,7 +52,7 @@ export function useGameMeta(): GameMeta {
   });
 
   useEffect(() => {
-    if (!query.isError) {
+    if (!query.isError && query.isSuccess) {
       setError('meta', '');
     }
   }, [query.isError]); // eslint-disable-line

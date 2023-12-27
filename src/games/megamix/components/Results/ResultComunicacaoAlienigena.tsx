@@ -3,11 +3,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ItemCard } from 'components/cards/ItemCard';
 
-export function ResultComunicacaoAlienigena({
-  winningTeam,
-  winningValues,
-  playersList,
-}: ResultComponentProps) {
+export function ResultComunicacaoAlienigena({ winningValues }: ResultComponentProps) {
   return (
     <>
       <Instruction>

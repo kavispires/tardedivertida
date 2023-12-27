@@ -7,7 +7,7 @@ type DrawingCarouselProps = {
 };
 
 export function DrawingCarousel({ drawings }: DrawingCarouselProps) {
-  const width = useCardWidth(1, { margin: 64, maxWidth: 250, minWidth: 150, containerId: 'root' });
+  const width = useCardWidth(1, { margin: 64, maxWidth: 250, minWidth: 150 });
 
   return (
     <Carousel autoplay className="carousel" autoplaySpeed={4000}>

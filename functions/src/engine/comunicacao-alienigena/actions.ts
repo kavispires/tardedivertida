@@ -44,7 +44,7 @@ export const handleSubmitSeeds = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  seeds: Collection<CardId[]>
+  seeds: Collection<number>
 ) => {
   return await utils.firebase.updatePlayer({
     gameName,

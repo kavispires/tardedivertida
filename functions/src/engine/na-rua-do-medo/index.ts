@@ -33,6 +33,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: NoRuaDoMedoOptions
 ): NoRuaDoMedoInitialState => {
   return utils.helpers.getDefaultInitialState<NoRuaDoMedoInitialState>({
@@ -40,6 +41,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.NA_RUA_DO_MEDO,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: NA_RUA_DO_MEDO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

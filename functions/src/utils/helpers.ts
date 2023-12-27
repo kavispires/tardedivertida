@@ -65,6 +65,7 @@ export function getDefaultInitialState<T = InitialState>({
   gameName,
   uid,
   language,
+  version,
   playerCounts,
   initialPhase,
   totalRounds,
@@ -87,6 +88,7 @@ export function getDefaultInitialState<T = InitialState>({
       language,
       replay: 0,
       options,
+      version,
       ...(preSetupResult?.meta ?? {}),
     },
     store: {

@@ -31,6 +31,7 @@ type StepHumansOfferProps = {
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
   startingAttributes: Sign[];
+  debugMode: boolean;
 } & AnnouncementProps;
 
 export function StepHumansOffer({
@@ -47,6 +48,7 @@ export function StepHumansOffer({
   inquiryHistory,
   isAlienBot,
   startingAttributes,
+  debugMode,
 }: StepHumansOfferProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
@@ -66,12 +68,16 @@ export function StepHumansOffer({
               <>
                 O(A) alienígena <AvatarName player={alien} /> fez esse pedido. Você consegue decifrar qual
                 objeto ele(a) quer?
+                <br />
+                Um símbolo sublinhado significa "muito" e um símbolo sobrelinhado significa "não".
               </>
             }
             en={
               <>
                 The alien <AvatarName player={alien} /> made this request. Can you decipher what object they
                 want?
+                <br />
+                An underlined symbol means "very" and an overscore symbol means "not".
               </>
             }
           />
@@ -117,6 +123,7 @@ export function StepHumansOffer({
         isAlienBot={isAlienBot}
         signs={signs}
         showIntention={isDebugEnabled}
+        debugMode={debugMode}
       />
 
       <DebugOnly>

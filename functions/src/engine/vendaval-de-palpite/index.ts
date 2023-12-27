@@ -45,13 +45,15 @@ import { getData } from './data';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  version: string
 ): VendavalDePalpiteInitialState => {
   return utils.helpers.getDefaultInitialState<VendavalDePalpiteInitialState>({
     gameId,
     gameName: GAME_NAMES.VENDAVAL_DE_PALPITE,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: VENDAVAL_DE_PALPITE_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

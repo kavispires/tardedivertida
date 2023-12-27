@@ -5,40 +5,36 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 export function VotingRules(): JSX.Element {
   return (
-    <Instruction>
-      <Translate
-        pt={
-          <>
-            Hora de selecionar a carta correta!
-            <br />
-            Se todos acertarem ou todos errarem, cada jogador ganha <PointsHighlight>2</PointsHighlight>{' '}
-            pontos, menos o contador de histórias.
-            <br />
-            Se somente alguns acertarem, cada acertador e contador de histórias recebe{' '}
-            <PointsHighlight>3</PointsHighlight> pontos.
-            <br />
-            Sua carta (se você não for o contador de histórias) ganha <PointsHighlight>
-              1
-            </PointsHighlight>{' '}
-            ponto se alguém selecionar.
-          </>
-        }
-        en={
-          <>
-            Time to select the correct card!
-            <br />
-            If every player gets it correct or wrong, each player but the storyteller gets{' '}
-            <PointsHighlight>2</PointsHighlight> points.
-            <br />
-            If only some get it correct, those players (and the storyteller) get{' '}
-            <PointsHighlight>3</PointsHighlight>3 points.
-            <br />
-            You get <PointsHighlight>1</PointsHighlight> point for every vote your card gets (if you are not
-            the storyteller).
-          </>
-        }
-      />
-    </Instruction>
+    <Translate
+      pt={
+        <>
+          Hora de selecionar a carta correta!
+          <br />
+          Se todos acertarem ou todos errarem, cada jogador ganha <PointsHighlight>2</PointsHighlight> pontos,
+          menos o contador de histórias.
+          <br />
+          Se somente alguns acertarem, cada acertador e contador de histórias recebe{' '}
+          <PointsHighlight>3</PointsHighlight> pontos.
+          <br />
+          Sua carta (se você não for o contador de histórias) ganha <PointsHighlight>1</PointsHighlight> ponto
+          se alguém selecionar.
+        </>
+      }
+      en={
+        <>
+          Time to select the correct card!
+          <br />
+          If every player gets it correct or wrong, each player but the storyteller gets{' '}
+          <PointsHighlight>2</PointsHighlight> points.
+          <br />
+          If only some get it correct, those players (and the storyteller) get{' '}
+          <PointsHighlight>3</PointsHighlight>3 points.
+          <br />
+          You get <PointsHighlight>1</PointsHighlight> point for every vote your card gets (if you are not the
+          storyteller).
+        </>
+      }
+    />
   );
 }
 

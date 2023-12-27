@@ -44,6 +44,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: string,
+  version: string,
   options: UeSoIssoGameOptions
 ): UeSoIssoInitialState => {
   return utils.helpers.getDefaultInitialState<UeSoIssoInitialState>({
@@ -51,6 +52,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.UE_SO_ISSO,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: UE_SO_ISSO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, App, Switch, Space, ButtonProps } from 'antd';
 // API
@@ -45,12 +45,10 @@ export function SignIn({ onSuccess }: SignInProps) {
 }
 
 export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & ButtonProps) {
-  const { isLoading, mutate, isError } = useMutation<UserCredential, Error, void, unknown>(
-    async () => await signInWithGoogle(),
-    {
-      onSuccess: () => onSuccess(),
-    }
-  );
+  const { isLoading, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
+    mutationFn: async () => await signInWithGoogle(),
+    onSuccess,
+  });
 
   const onFinish = () => {
     mutate();
@@ -95,14 +93,10 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
   const { translate } = useLanguage();
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const { isLoading, mutate, isError } = useMutation<UserCredential, Error, void, unknown>(
-    async () => await signIn(form.getFieldValue('username'), form.getFieldValue('password')),
-    {
-      onSuccess: () => {
-        onSuccess();
-      },
-    }
-  );
+  const { isLoading, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
+    mutationFn: async () => await signIn(form.getFieldValue('username'), form.getFieldValue('password')),
+    onSuccess,
+  });
 
   const onFinish = () => {
     mutate();
@@ -192,20 +186,18 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
   const [form] = Form.useForm();
   const { translate } = useLanguage();
 
-  const { isLoading, mutate, isError } = useMutation(
-    async () => await resetPassword(form.getFieldValue('username')),
-    {
-      onSuccess: () => {
-        onSuccess();
-        message.success(
-          translate(
-            'Verifique seu e-mail enviado para redefinir a sua senha',
-            'Verify your email to reset your password'
-          )
-        );
-      },
-    }
-  );
+  const { isLoading, mutate, isError } = useMutation({
+    mutationFn: async () => await resetPassword(form.getFieldValue('username')),
+    onSuccess: () => {
+      onSuccess();
+      message.success(
+        translate(
+          'Verifique seu e-mail enviado para redefinir a sua senha',
+          'Verify your email to reset your password'
+        )
+      );
+    },
+  });
 
   const onFinish = () => {
     mutate();

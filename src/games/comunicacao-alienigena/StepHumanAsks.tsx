@@ -35,6 +35,7 @@ type StepHumanAsksProps = {
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
   startingAttributes: Sign[];
+  debugMode: boolean;
 } & AnnouncementProps;
 
 export function StepHumanAsks({
@@ -53,6 +54,7 @@ export function StepHumanAsks({
   status,
   isAlienBot,
   startingAttributes,
+  debugMode,
 }: StepHumanAsksProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
@@ -144,6 +146,7 @@ export function StepHumanAsks({
         isAlienBot={isAlienBot}
         signs={signs}
         showIntention={isDebugEnabled}
+        debugMode={debugMode}
       />
 
       <DebugOnly>

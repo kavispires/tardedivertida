@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, FormInstance } from 'antd';
 // API
@@ -17,17 +17,16 @@ type SignUpProps = {
 export function SignUp({ onSuccess }: SignUpProps) {
   const [form] = Form.useForm();
 
-  const { isLoading, refetch, isError } = useQuery({
-    queryKey: ['sign-up'],
-    queryFn: async () => await signUp(form.getFieldValue('username'), form.getFieldValue('password')),
-    enabled: false,
+  const { isLoading, mutate, isError } = useMutation({
+    mutationKey: ['sign-up'],
+    mutationFn: async () => await signUp(form.getFieldValue('username'), form.getFieldValue('password')),
     onSuccess: () => {
       onSuccess();
     },
   });
 
   const onFinish = () => {
-    refetch();
+    mutate();
   };
 
   return (

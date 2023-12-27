@@ -10,7 +10,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { RowSwapInstruction } from './components/RulesBlobs';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
@@ -51,7 +51,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
         >
           <RowSwapInstruction round={state.round} />
           <RoundsLeftInstruction round={state.round} />
-          <VIPNextPhaseButton round={state.round} />
+          <HostNextPhaseButton round={state.round} />
         </StepRankingWrapper>
       </StepSwitcher>
     </PhaseContainer>

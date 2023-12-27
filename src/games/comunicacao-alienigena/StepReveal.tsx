@@ -11,7 +11,7 @@ import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
@@ -41,6 +41,7 @@ type StepRevealProps = {
   round: GameRound;
   isAlienBot: boolean;
   startingAttributes: Sign[];
+  debugMode: boolean;
 } & AnnouncementProps;
 
 export function StepReveal({
@@ -56,6 +57,7 @@ export function StepReveal({
   inquiryHistory,
   isAlienBot,
   startingAttributes,
+  debugMode,
 }: StepRevealProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   const latestRequest = requestHistory?.[0] ?? {};
@@ -134,13 +136,14 @@ export function StepReveal({
         isAlienBot={isAlienBot}
         signs={signs}
         showIntention={isDebugEnabled}
+        debugMode={debugMode}
       />
 
       <DebugOnly>
         <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
       </DebugOnly>
 
-      <VIPNextPhaseButton round={round} />
+      <HostNextPhaseButton round={round} />
     </Step>
   );
 }

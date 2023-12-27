@@ -3,6 +3,8 @@ import { Input, Space } from 'antd';
 // Utils
 import { achievementsReference } from './utils/achievements';
 import { Icons, chatGPTMoviePrompt } from './utils/helpers';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
@@ -15,9 +17,7 @@ import { Title } from 'components/text';
 import { RoleBoard } from './components/RoleBoard';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
-import { VIPOnlyContainer } from 'components/vip';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMemo } from 'react';
+import { HostOnlyContainer } from 'components/host';
 import { MovieStats } from './components/MovieStats';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
@@ -66,7 +66,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
         </Space>
       </Container>
 
-      <VIPOnlyContainer>
+      <HostOnlyContainer>
         <Container title="Chat GPT Prompt">
           <Input.TextArea
             readOnly
@@ -76,7 +76,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
             className="chat-gpt"
           />
         </Container>
-      </VIPOnlyContainer>
+      </HostOnlyContainer>
     </GameOverWrapper>
   );
 }

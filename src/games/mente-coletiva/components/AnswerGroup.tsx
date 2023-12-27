@@ -6,7 +6,7 @@ import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
 import { getAnimationClass } from 'utils/helpers';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Components
 import { SheepAvatar } from './SheepAvatar';
 import { Step } from 'components/steps';
@@ -31,7 +31,7 @@ export function AnswerGroup({
   remainingGroupsCount,
 }: AnswerGroupProps) {
   const { translate } = useLanguage();
-  const isVIP = useVIP();
+  const isHost = useHost();
 
   return (
     <Step className="m-step">
@@ -82,7 +82,7 @@ export function AnswerGroup({
                     {player.answers[entry.id].answer}
                   </span>
                 )}
-                {!isLocked && isVIP && (
+                {!isLocked && isHost && (
                   <div className="m-answer-group__allow-add">
                     <Checkbox
                       data-allowanswer={entry.id}

@@ -3,7 +3,7 @@ import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -13,19 +13,19 @@ import { Step, StepSwitcher } from 'components/steps';
 import { StepGuessVerification } from './StepGuessVerification';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { ViewOr } from 'components/views';
 
 export function PhaseVerifyGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, setStep } = useStep(0);
-  const isVIP = useVIP();
+  const isHost = useHost();
   const [guesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
   const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
 
-  const isActionable = !['CONTINUE', 'WIN'].includes(state.group.outcome) && (isUserTheController || isVIP);
+  const isActionable = !['CONTINUE', 'WIN'].includes(state.group.outcome) && (isUserTheController || isHost);
 
   const announcement = (
     <PhaseAnnouncement
@@ -44,7 +44,7 @@ export function PhaseVerifyGuess({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <ViewOr condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>
           <Step announcement={announcement}>
-            <VIPNextPhaseButton autoTriggerTime={2} />
+            <HostNextPhaseButton autoTriggerTime={2} />
           </Step>
 
           <ViewOr condition={isActionable}>

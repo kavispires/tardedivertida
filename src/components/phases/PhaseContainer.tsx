@@ -1,7 +1,6 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 import clsx from 'clsx';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { LoadingPage } from 'components/loaders';
@@ -39,15 +38,6 @@ export function PhaseContainer({
 }: PhaseContainerProps) {
   const { translate } = useLanguage();
   const screenRef = useRef<HTMLScriptElement>(null);
-  const [, setScreenSize] = useGlobalState('screenSize');
-
-  useEffect(() => {
-    if (screenRef.current) {
-      let height = screenRef.current.offsetHeight;
-      let width = screenRef.current.offsetWidth;
-      setScreenSize([width, height]);
-    }
-  }, [screenRef.current?.offsetHeight, screenRef.current?.offsetWidth, setScreenSize]);
 
   if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;

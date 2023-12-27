@@ -7,7 +7,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { PAGE_DURATION } from './utils/constants';
 // Components
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
@@ -111,7 +111,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
           Next Album
         </Button>
       </Space>
-      <VIPNextPhaseButton autoTriggerTime={0} />
+      <HostNextPhaseButton autoTriggerTime={0} />
     </Step>
   );
 }

@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: ArteRuimGameOptions
 ): ArteRuimInitialState => {
   return utils.helpers.getDefaultInitialState<ArteRuimInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.ARTE_RUIM,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: ARTE_RUIM_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

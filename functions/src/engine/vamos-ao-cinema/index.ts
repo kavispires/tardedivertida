@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: VamosAoCinemaOptions
 ): VamosAoCinemaInitialState => {
   return utils.helpers.getDefaultInitialState<VamosAoCinemaInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: VAMOS_AO_CINEMA_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

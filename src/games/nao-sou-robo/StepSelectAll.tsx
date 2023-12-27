@@ -1,25 +1,28 @@
+import { useMemo } from 'react';
+import clsx from 'clsx';
+// Ant Design Resources
+import { Button, Flex, Image } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+import { useCardWidth } from 'hooks/useCardWidth';
+// Utils
+import { mockGuess } from './utils/mock';
+import { getAnimationClass, shuffle } from 'utils/helpers';
+// Icons
+import { RobotIcon } from 'icons/RobotIcon';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { CaptchaTopic } from './components/CaptchaTopic';
-import { Button, Flex, Image } from 'antd';
-import { useMemo } from 'react';
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { getAnimationClass, shuffle } from 'utils/helpers';
 import { CardHighlight } from 'components/metrics/CardHighlight';
-import { useCardWidth } from 'hooks/useCardWidth';
-import clsx from 'clsx';
-import { CloseCircleOutlined } from '@ant-design/icons';
 import { IconAvatar } from 'components/avatars';
-import { RobotIcon } from 'icons/RobotIcon';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { useMock } from 'hooks/useMock';
-import { mockGuess } from './utils/mock';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';
 
