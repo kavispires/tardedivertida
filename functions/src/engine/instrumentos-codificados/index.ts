@@ -32,13 +32,15 @@ import { handleSubmitCode, handleSubmitConclusions, handleSubmitHint } from './a
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  version: string
 ): InstrumentosCodificadosInitialState => {
   return utils.helpers.getDefaultInitialState<InstrumentosCodificadosInitialState>({
     gameId,
     gameName: GAME_NAMES.INSTRUMENTOS_CODIFICADOS,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: INSTRUMENTOS_CODIFICADOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

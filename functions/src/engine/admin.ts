@@ -21,7 +21,7 @@ const createGame = async (data: CreateGamePayload, context: FirebaseContext) => 
   utils.firebase.verifyAuth(context, actionText);
 
   // Get collection name by game code on request
-  const { gameName, language, options } = data;
+  const { gameName, language, version, options } = data;
 
   if (!gameName) {
     return utils.firebase.throwException('a gameName is required', actionText);
@@ -66,7 +66,7 @@ const createGame = async (data: CreateGamePayload, context: FirebaseContext) => 
     const { getInitialState } = delegatorUtils.getEngine(gameName);
 
     const uid = context?.auth?.uid ?? 'admin?';
-    const { meta, state, store } = getInitialState(gameId, uid, language ?? 'pt', options);
+    const { meta, state, store } = getInitialState(gameId, uid, language ?? 'pt', version, options);
 
     await sessionRef.doc('state').set(state);
     await sessionRef.doc('store').set(store);

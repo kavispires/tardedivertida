@@ -1,5 +1,5 @@
 import { App } from 'antd';
-import { useQuery } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 // Services
 import localStorage from 'services/localStorage';
 import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
@@ -19,9 +19,9 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
   const { language, translate } = useLanguage();
   const { notification } = App.useApp();
 
-  const query = useQuery({
-    queryKey: 'add-player',
-    queryFn: async () =>
+  const query = useMutation({
+    mutationKey: ['add-player'],
+    mutationFn: async () =>
       await GAME_API.run({
         action: GAME_API_ACTIONS.ADD_PLAYER,
         gameId,
@@ -30,7 +30,6 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
         playerAvatarId: avatarId,
         isGuest,
       }),
-    enabled: false,
     onSuccess: (response) => {
       const data = response.data as PlainObject;
       setUserId(data.id);

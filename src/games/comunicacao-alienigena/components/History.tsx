@@ -13,6 +13,7 @@ type HistoryProps = {
   isAlienBot: boolean;
   showIntention?: boolean;
   signs: Sign[];
+  debugMode: boolean;
 };
 
 export function History({
@@ -23,6 +24,7 @@ export function History({
   isAlienBot,
   showIntention = false,
   signs,
+  debugMode,
 }: HistoryProps) {
   const panels: CollapseProps['items'] = [
     {
@@ -36,6 +38,7 @@ export function History({
             isAlienBot={isAlienBot}
             signs={signs}
             showIntention={showIntention}
+            debugMode={debugMode}
           />
           {inquiryHistory.length === 0 && <Translate pt="Nenhuma pergunta ainda." en="No questions yet." />}
         </>
@@ -51,7 +54,7 @@ export function History({
             players={players}
             items={items}
             isAlienBot={isAlienBot}
-            showIntention={showIntention}
+            showIntention={showIntention || debugMode}
           />
           {requestHistory.length === 0 && <Translate pt="Nenhum pedido ainda." en="No requests yet." />}
         </>

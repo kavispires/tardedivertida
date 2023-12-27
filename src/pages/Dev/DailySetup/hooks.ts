@@ -1,7 +1,14 @@
 import { useMemo, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
-import { QueryKey, useMutation, useQuery, useQueryClient, useQueries, UseQueryOptions } from 'react-query';
+import {
+  QueryKey,
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useQueries,
+  UseQueryOptions,
+} from '@tanstack/react-query';
 import { App } from 'antd';
 import { DailyEntry, DailyHistory, DataDrawing, DataSuffixCounts } from './types';
 import { sampleSize, shuffle } from 'lodash';
@@ -185,7 +192,7 @@ function useLoadDrawings(enabled: boolean, libraryCount: number) {
     });
   }, [libraryCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return useQueries(queries);
+  return useQueries({ queries });
 }
 
 export function useSaveDailySetup() {

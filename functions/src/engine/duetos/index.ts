@@ -28,6 +28,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: DuetosOptions
 ): DuetosInitialState => {
   return utils.helpers.getDefaultInitialState<DuetosInitialState>({
@@ -35,6 +36,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.DUETOS,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: DUETOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

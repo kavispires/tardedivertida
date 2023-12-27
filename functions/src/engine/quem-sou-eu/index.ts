@@ -35,6 +35,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: QuemSouEuOptions
 ): QuemSouEuInitialState => {
   return utils.helpers.getDefaultInitialState<QuemSouEuInitialState>({
@@ -42,6 +43,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.QUEM_SOU_EU,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: QUEM_SOU_EU_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

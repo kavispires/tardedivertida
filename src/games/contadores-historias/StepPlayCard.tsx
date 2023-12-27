@@ -5,7 +5,7 @@ import { useMock } from 'hooks/useMock';
 import { TableFaceDown } from './components/TableFaceDown';
 import { mockPlayCard } from './utils/mock';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Card } from 'components/cards';
 import { ViewOr } from 'components/views';
 import { Translate } from 'components/language';
@@ -53,7 +53,7 @@ export function StepPlayCard({
         </Card>
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type={isUserTheStoryTeller ? 'wait' : 'action'}>
         <ViewOr condition={isUserTheStoryTeller}>
           <Translate
             pt="Agora, cada jogador escolherá uma carta em mão que mais combine com a história que você escreveu."
@@ -61,11 +61,24 @@ export function StepPlayCard({
           />
 
           <Translate
-            pt="Agora, escolha uma carta que mais combine com a história da rodada. Você está tentando convencer os outros jogadores a escolherem sua carta ao invés da carta correta."
-            en="Now you select a card that matches the story the best. You are trying to convince other players that your card is the correct one."
+            pt={
+              <>
+                Agora, escolha uma carta que mais combine com a história da rodada.
+                <br />
+                Você está tentando convencer os outros jogadores a escolherem sua carta ao invés da carta
+                correta.
+              </>
+            }
+            en={
+              <>
+                Now you select a card that matches the story the best.
+                <br />
+                You are trying to convince other players that your card is the correct one.
+              </>
+            }
           />
         </ViewOr>
-      </Instruction>
+      </RuleInstruction>
 
       <TableFaceDown players={players} user={user} />
 

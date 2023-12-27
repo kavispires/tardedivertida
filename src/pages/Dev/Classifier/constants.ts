@@ -39,6 +39,7 @@ export const ATTRIBUTES = {
   personal: { id: 'personal', name: { en: 'Personal', pt: 'Pessoal' } }, // Newest
   multiple: { id: 'multiple', name: { en: 'Multiple', pt: 'Múltiplo' } }, // Newest
   fragile: { id: 'fragile', name: { en: 'Fragile', pt: 'Frágil' } }, // Newest
+  toy: { id: 'toy', name: { en: 'Toy', pt: 'Brinquedo' } }, // Newest
 };
 
 export const FIRST_ID = '1';

@@ -3,12 +3,6 @@ import { useTitle } from 'react-use';
 import { Layout, Space } from 'antd';
 // Components
 import { DevHeader } from './DevHeader';
-// import { RestructureUI } from './Resources/RestructureUI';
-// import { TransferGlobal } from './Resources/TransferGlobal';
-// import { useQuery } from 'react-query';
-// import { RestructureJson } from './Resources/RestructureJson';
-// import { SaveGames } from './Resources/SaveGames';
-// import { SaveResources } from './Resources/SaveResources';
 import { Link } from 'react-router-dom';
 
 function ResourcesPage() {
@@ -21,9 +15,10 @@ function ResourcesPage() {
         {/* <RestructureJson /> */}
         {/* <SaveGames /> */}
         {/* <SaveResources /> */}
-        <Space className="space-container" direction="vertical">
+        <Space className="space-container contained" direction="vertical">
+          <Link to="/dev/classifier">Items Classifier</Link>
           <Link to="/dev/imagecardscategorizer">Image Cards Categorizer</Link>
-          <Link to="/dev/imagecardsrelationships">Image Cards Relationsips</Link>
+          <Link to="/dev/imagecardsrelationships">Image Cards Relationships</Link>
         </Space>
       </Layout.Content>
     </Layout>

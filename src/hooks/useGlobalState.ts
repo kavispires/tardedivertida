@@ -2,7 +2,6 @@ import { createGlobalState } from 'react-hooks-global-state';
 
 type InitialState = {
   appStartedAt: number;
-  screenSize: number[];
   showPlayersBar: boolean;
   // Language
   language: Language;
@@ -30,7 +29,6 @@ type InitialState = {
 
 const initialState: InitialState = {
   appStartedAt: Date.now(),
-  screenSize: [],
   showPlayersBar: true,
   // Language
   language: 'en',

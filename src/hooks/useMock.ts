@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Hooks
 import { useCountdown } from './useCountdown';
 import { useGlobalState } from './useGlobalState';
-import { useVIP } from './useVIP';
+import { useHost } from './useHost';
 // Utils
 import { VIEWER_ID } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
@@ -16,7 +16,7 @@ import { USE_MOCKS } from 'dev-configs';
  * @returns
  */
 export function useMock(whatToDo: GenericFunction, requirements: any[] = [], delay?: number) {
-  const isVIP = useVIP();
+  const isHost = useHost();
   const [userId] = useGlobalState('userId');
   const [runOnce, setRunOnce] = useState(false);
   const duration = delay ?? getRandomItem([3, 4, 4, 5, 6]);
@@ -28,7 +28,7 @@ export function useMock(whatToDo: GenericFunction, requirements: any[] = [], del
         !runOnce &&
         isDevEnv &&
         USE_MOCKS &&
-        !isVIP &&
+        !isHost &&
         userId !== VIEWER_ID &&
         requirements.every(Boolean)
       ) {

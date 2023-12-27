@@ -1,9 +1,12 @@
 import clsx from 'clsx';
 // Components
-import Highlighter from 'react-highlight-words';
+import HighlighterImport from 'react-highlight-words';
 import { Translate } from 'components/language';
 // Sass
 import './MovieReviewCard.scss';
+
+// TODO: Verify
+const Highlighter = HighlighterImport as any;
 
 type MovieReviewCardProps = {
   /**

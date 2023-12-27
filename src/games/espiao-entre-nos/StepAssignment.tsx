@@ -1,7 +1,7 @@
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -26,9 +26,9 @@ export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignment
 
       <Card location={user.location} role={user.role} />
 
-      <VIPNextPhaseButton>
+      <HostNextPhaseButton>
         <Translate pt="Começar cronômetro" en="Start Timer" />
-      </VIPNextPhaseButton>
+      </HostNextPhaseButton>
 
       <Instruction className="e-phase-instruction">
         {isUserTheSpy ? (

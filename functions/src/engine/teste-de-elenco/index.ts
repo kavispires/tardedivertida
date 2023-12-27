@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: string,
+  version: string,
   options: TesteDeElencoOptions
 ): TesteDeElencoInitialState => {
   return utils.helpers.getDefaultInitialState<TesteDeElencoInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.TESTE_DE_ELENCO,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: TESTE_DE_ELENCO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

@@ -13,7 +13,6 @@ export function useAppSetup() {
     minWidth: 250,
     maxWidth: 500,
     margin: 16,
-    containerId: 'app',
   });
 
   useEffectOnce(() => {

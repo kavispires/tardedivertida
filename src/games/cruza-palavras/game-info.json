@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "5.1.5",
+  "version": "5.1.8",
   "title": {
     "pt": "Cruza Palavras",
     "en": "Mixed Clues"
@@ -48,7 +48,7 @@
     "base": 10,
     "perPlayer": 5
   },
-  "tags": ["competitive", "same-time", "writing", "pairing", "brain-burner", "audience-mode", "achievements"],
+  "tags": ["competitive", "same-time", "writing", "pairing", "brain-burner", "achievements"],
   "available": {
     "pt": true,
     "en": true

@@ -41,6 +41,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: SuperCampeonatoOptions
 ): SuperCampeonatoInitialState => {
   return utils.helpers.getDefaultInitialState<SuperCampeonatoInitialState>({
@@ -48,6 +49,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.SUPER_CAMPEONATO,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: SUPER_CAMPEONATO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

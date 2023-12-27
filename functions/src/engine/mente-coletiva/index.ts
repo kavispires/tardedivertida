@@ -41,6 +41,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: MenteColetivaOptions
 ): MenteColetivaInitialState => {
   return utils.helpers.getDefaultInitialState<MenteColetivaInitialState>({
@@ -48,6 +49,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.MENTE_COLETIVA,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: MENTE_COLETIVA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

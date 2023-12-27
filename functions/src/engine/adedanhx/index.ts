@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: AdedanhxOptions
 ): AdedanhxInitialState => {
   return utils.helpers.getDefaultInitialState<AdedanhxInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.ADEDANHX,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: ADEDANHX_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,

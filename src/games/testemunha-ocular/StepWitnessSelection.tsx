@@ -3,7 +3,7 @@ import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
-import { useVIP } from 'hooks/useVIP';
+import { useHost } from 'hooks/useHost';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Icons
@@ -28,7 +28,7 @@ export function StepWitnessSelection({
 }: StepWitnessSelectionProps) {
   useTemporarilyHidePlayersBar();
   const { isLoading } = useLoading();
-  const isVIP = useVIP();
+  const isHost = useHost();
 
   return (
     <Step announcement={announcement}>
@@ -43,7 +43,7 @@ export function StepWitnessSelection({
       <Instruction contained>
         <Space>
           {sortPlayers(players).map((player) => {
-            if (isVIP) {
+            if (isHost) {
               return (
                 <TransparentButton
                   key={`p-bt-${player.id}`}

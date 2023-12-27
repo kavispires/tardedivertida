@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, Button, Divider, Modal } from 'antd';
@@ -19,10 +19,9 @@ type StepJoinProps = {
 export function StepJoin({ info, setStep }: StepJoinProps) {
   const { isAuthenticated } = useCurrentUserContext();
 
-  const { isLoading, refetch, isError, error } = useQuery({
-    queryKey: ['sign-in-anon'],
-    queryFn: async () => signInAsGuest,
-    enabled: false,
+  const { isLoading, mutate, isError, error } = useMutation({
+    mutationKey: ['sign-in-anon'],
+    mutationFn: async () => signInAsGuest,
     onSuccess: () => setStep(1),
   });
 
@@ -52,13 +51,7 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
         <Translate pt="ou" en="or" />
       </Divider>
 
-      <Button
-        type="primary"
-        block
-        disabled={isAuthenticated || isLoading}
-        onClick={() => refetch()}
-        loading={isLoading}
-      >
+      <Button type="primary" block disabled={isAuthenticated} onClick={() => mutate()} loading={isLoading}>
         <Translate pt="Entrar como visitante" en="Join as a Guest" />
       </Button>
     </>

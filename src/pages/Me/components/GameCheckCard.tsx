@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
+import { useWindowSize } from 'react-use';
 // Ant Design Resources
 import { Badge, Col, Modal, Row } from 'antd';
 // Hooks
-import { useDimensions } from 'hooks/useDimensions';
 import { useQueryParams } from 'hooks/useQueryParams';
 // Utils
 import ACHIEVEMENTS_DICT from 'utils/achievements';
@@ -25,7 +25,7 @@ type GameUserStatisticsProps = {
 export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
   const [open, setOpen] = useState(false);
   const [activeGameName, setActiveGame] = useState<GameName | null>(null);
-  const [rootWidth] = useDimensions('root');
+  const { width } = useWindowSize();
 
   const qp = useQueryParams();
 
@@ -59,7 +59,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
       }}
       centered
       className="me-modal"
-      width={rootWidth}
+      width={width}
     >
       {activeGame && activeGameName ? (
         <GameStatistics

@@ -10,9 +10,10 @@ import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { VotingRules } from './components/RulesBlobs';
 import { ImageCard, ImageCardButton } from 'components/image-cards';
+import { Space } from 'antd';
 
 type StepVotingProps = {
   players: GamePlayers;
@@ -61,7 +62,11 @@ export function StepVoting({
       </Title>
       <PopoverRule content={<VotingRules />} />
 
-      <div className="c-game-table">
+      <RuleInstruction type="action">
+        <VotingRules />
+      </RuleInstruction>
+
+      <Space className="c-game-table" wrap>
         {table.map((cardEntry) => {
           const isUserCard = cardEntry.playerId === user.id;
           const isUserVote = cardEntry.cardId === user.vote;
@@ -84,7 +89,7 @@ export function StepVoting({
             </div>
           );
         })}
-      </div>
+      </Space>
     </Step>
   );
 }

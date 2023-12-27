@@ -15,7 +15,7 @@ import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { ViewIf } from 'components/views';
-import { VIPOnlyContainer } from 'components/vip';
+import { HostOnlyContainer } from 'components/host';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepGuessVerificationProps = {
@@ -99,16 +99,16 @@ export function StepGuessVerification({
       </ViewIf>
 
       {!isUserTheController && (
-        <VIPOnlyContainer
+        <HostOnlyContainer
           label={
             <Translate
-              pt="VIP Controls (use somente se o jogador controlador não controlar)"
-              en="VIP Controls (only use if the assign player doesn't)"
+              pt="Host Controls (use somente se o jogador controlador não controlar)"
+              en="Host Controls (only use if the assign player doesn't)"
             />
           }
         >
           <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
-        </VIPOnlyContainer>
+        </HostOnlyContainer>
       )}
     </Step>
   );

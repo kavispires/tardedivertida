@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: LabirintoSecretoGameOptions
 ): LabirintoSecretoInitialState => {
   return utils.helpers.getDefaultInitialState<LabirintoSecretoInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.LABIRINTO_SECRETO,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: LABIRINTO_SECRETO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { UseQueryResult, useQuery } from 'react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
 

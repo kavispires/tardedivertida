@@ -105,6 +105,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
         gameName: gameInfo.gameName,
         language,
         options,
+        version: gameInfo.version,
       });
       if (response.data.gameId) {
         setGameId(response.data.gameId);

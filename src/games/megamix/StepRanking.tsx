@@ -5,7 +5,7 @@ import { BouncerIcon } from 'icons/BouncerIcon';
 // Hooks
 import { useColorizeBackground } from './utils/useColorizeBackground';
 // Components
-import { VIPNextPhaseButton } from 'components/vip';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
@@ -41,7 +41,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <VIPNextPhaseButton round={round} />
+      <HostNextPhaseButton round={round} />
     </>
   );
 

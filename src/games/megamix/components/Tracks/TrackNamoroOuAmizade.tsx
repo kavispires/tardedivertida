@@ -46,7 +46,7 @@ export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: Tra
       <div className="noa-candidates">
         {track.data.heads.map((head: DatingCandidateImageCard, index: number) => {
           return (
-            <Space className="space-container" direction="vertical">
+            <Space className="space-container" direction="vertical" key={head.id}>
               <Candidate
                 head={head}
                 body={track.data.bodies[index]}

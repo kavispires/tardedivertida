@@ -2,10 +2,10 @@
 import { EventIcon } from 'icons/EventIcon';
 import { CaptchaIcon } from 'icons/CaptchaIcon';
 import { RobotIcon } from 'icons/RobotIcon';
-// Components
-import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 import { EnergyIcon } from 'icons/EnergyIcon';
 import { ThiefIcon } from 'icons/ThiefIcon';
+// Components
+import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function EventHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<EventIcon />}>{children}</MetricHighlight>;

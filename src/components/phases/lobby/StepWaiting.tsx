@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { App, Space, Typography } from 'antd';
 // API & Hooks
@@ -16,7 +16,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
 // Components
 import { Translate } from 'components/language';
-import { VIPButton, VIPOnlyContainer } from 'components/vip';
+import { HostButton, HostOnlyContainer } from 'components/host';
 
 type StepWaitingProps = {
   players: GamePlayers;
@@ -33,9 +33,9 @@ export function StepWaiting({ players }: StepWaitingProps) {
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
 
-  const { refetch, isLoading: isLocking } = useQuery({
-    queryKey: ['lock-game'],
-    queryFn: async () => {
+  const { mutate, isLoading: isLocking } = useMutation({
+    mutationKey: ['lock-game'],
+    mutationFn: async () => {
       setLoader('lock-game', true);
       return await ADMIN_API.run({
         action: ADMIN_API_ACTIONS.LOCK_GAME,
@@ -43,7 +43,6 @@ export function StepWaiting({ players }: StepWaitingProps) {
         gameName,
       });
     },
-    enabled: false,
     onSuccess: (response) => {
       const data = response.data as PlainObject;
 
@@ -94,19 +93,19 @@ export function StepWaiting({ players }: StepWaitingProps) {
       <h3 className="lobby-heading">
         <Translate pt="Aguarde os outros jogadores entrarem." en="Please, wait while other players join..." />
       </h3>
-      <VIPOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
+      <HostOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
         <Typography.Text className="center padding">
           <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
         </Typography.Text>
-        <VIPButton
-          onClick={() => refetch()}
+        <HostButton
+          onClick={() => mutate()}
           disabled={isLoading || numPlayers < gameMeta.min}
           loading={isLoading}
           block
         >
           <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
-        </VIPButton>
-      </VIPOnlyContainer>
+        </HostButton>
+      </HostOnlyContainer>
     </>
   );
 }

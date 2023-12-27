@@ -6,7 +6,7 @@ import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
 import { useLoading } from 'hooks/useLoading';
 import { useDevFeatures } from 'hooks/useDevFeatures';
 // Components
-import { VIPOnlyContainer } from 'components/vip';
+import { HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
@@ -64,7 +64,7 @@ export function AdminAnswerControl({
   }, [answerGroup.entries.length, isDevEnv, playerCount, remainingGroupsCount]);
 
   return (
-    <VIPOnlyContainer className="m-admin" direction="vertical" align="center">
+    <HostOnlyContainer className="m-admin" direction="vertical" align="center">
       <TimedButton
         onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
         disabled={disableButton || isLoading}
@@ -101,6 +101,6 @@ export function AdminAnswerControl({
           );
         })}
       </Space>
-    </VIPOnlyContainer>
+    </HostOnlyContainer>
   );
 }

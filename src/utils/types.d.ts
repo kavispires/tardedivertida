@@ -21,6 +21,13 @@ type ObjectDictionary = {
   [key: string]: PlainObject;
 };
 
+/**
+ * Generic HttpsCallable function with payload
+ */
+type FirebaseResponse<TData = any> = {
+  data: TData;
+};
+
 type DateMilliseconds = number;
 type GameCode = string;
 type GameId = string;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Form, Image, Modal, Space } from 'antd';
 // API
@@ -22,18 +22,17 @@ type ConvertGuestToAccountProps = {
 export function ConvertGuestToAccount({ onSuccess }: ConvertGuestToAccountProps) {
   const [form] = Form.useForm();
 
-  const { isLoading, refetch, isError } = useQuery({
-    queryKey: ['convert-guest'],
-    queryFn: async () =>
+  const { isLoading, mutate, isError } = useMutation({
+    mutationKey: ['convert-guest'],
+    mutationFn: async () =>
       await convertGuestoToUser(form.getFieldValue('username'), form.getFieldValue('password')),
-    enabled: false,
     onSuccess: () => {
       onSuccess();
     },
   });
 
   const onFinish = () => {
-    refetch();
+    mutate();
   };
 
   return (

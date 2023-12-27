@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { App, Button, ButtonProps, Popconfirm } from 'antd';
@@ -12,7 +12,7 @@ export function LogoutButton(props: ButtonProps) {
   const { message } = App.useApp();
 
   const { isLoading, mutate } = useMutation({
-    // mutationKey: ['sign-out'],
+    mutationKey: ['sign-out'],
     mutationFn: async () => await signOut(),
     onSuccess: () => {
       navigate('/');

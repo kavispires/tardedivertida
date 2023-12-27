@@ -36,7 +36,7 @@ export function Grouping({ query }: GroupingProps) {
   const cardQuantity = useMemo(() => {
     return Math.min(Math.ceil(containerWidth / (cardSize + 16)), sampleSize);
   }, [containerWidth, sampleSize, cardSize]);
-  const cardWidth = useCardWidth(cardQuantity + 1, { containerId: 'root', minWidth: 100 });
+  const cardWidth = useCardWidth(cardQuantity + 1, { minWidth: 100 });
 
   const { data, isDirty, setDirty, isSuccess, isSaving, save, stats } = query;
 
@@ -212,6 +212,7 @@ const Actions = ({ isSaving, isDirty, selection, relate, deselectAll, onNextSet 
 
   return (
     // <FloatButton.Group shape="square" style={{ right: 24 }}>
+    // </FloatButton.Group>
     <>
       {isDirty && (
         <FloatButton icon={<WarningOutlined />} type="primary" style={{ right: 24 + 70 + 70 + 70 }} />
@@ -237,6 +238,5 @@ const Actions = ({ isSaving, isDirty, selection, relate, deselectAll, onNextSet 
         onClick={onNextSet}
       />
     </>
-    // </FloatButton.Group>
   );
 };

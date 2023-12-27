@@ -15,7 +15,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 function ImageCardsCategorizerPage() {
   useTitle('Image Cards Categorizer | Dev | Tarde Divertida');
 
-  const cardWidth = useCardWidth(2, { containerId: 'root' });
+  const cardWidth = useCardWidth(2);
 
   const { data, isLoading, isDirty, setDirty, isSuccess, isSaving, save } = useImageCardsData();
   // Selects a random deck, but gives option select for a specific deck (1-10)

@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useState } from 'react';
 import { auth } from './firebase';
 import type { User } from 'firebase/auth';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useEffectOnce } from 'react-use';
 import { App } from 'antd';
 import { USER_API, USER_API_ACTIONS } from './adapters';

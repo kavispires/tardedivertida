@@ -34,6 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
+  version: string,
   options: NaoSouRoboOptions
 ): NaoSouRoboInitialState => {
   return utils.helpers.getDefaultInitialState<NaoSouRoboInitialState>({
@@ -41,6 +42,7 @@ export const getInitialState = (
     gameName: GAME_NAMES.NAO_SOU_ROBO,
     uid,
     language,
+    version,
     playerCounts: PLAYER_COUNTS,
     initialPhase: NAO_SOU_ROBO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,

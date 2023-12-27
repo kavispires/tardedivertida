@@ -5,12 +5,12 @@ import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 
-export function ResultArteRuim({ track, winningValues, winningTeam, playersList }: ResultComponentProps) {
+export function ResultArteRuim({ track, winningValues, containerWidth }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {
     gap: 9,
     minWidth: 80,
     maxWidth: 200,
-    containerId: 'results-values',
+    containerWidth,
   });
 
   if (track.variant === 'drawings') {
