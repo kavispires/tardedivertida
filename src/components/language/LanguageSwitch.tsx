@@ -1,10 +1,14 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { Switch } from 'antd';
 import { IconAvatar } from 'components/avatars';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLocalStorage } from 'hooks/useLocalStorage';
+// Components
 import { BrazilFlag, UnitedStatesFlag } from './LanguageButtons';
+// Sass
+import './LanguageSwitch.scss';
 
 export function LanguageSwitch() {
   const [language, setLanguage] = useGlobalState('language');
@@ -18,10 +22,11 @@ export function LanguageSwitch() {
 
   return (
     <Switch
-      checkedChildren={<IconAvatar icon={<BrazilFlag />} size="small" />}
-      unCheckedChildren={<IconAvatar icon={<UnitedStatesFlag />} size="small" />}
+      checkedChildren={<IconAvatar icon={<BrazilFlag />} size="small" alt="Português-BR" />}
+      unCheckedChildren={<IconAvatar icon={<UnitedStatesFlag />} size="small" alt="English-US" />}
       checked={language === 'pt'}
       onClick={onSwitchClick}
+      className={clsx(language === 'pt' ? 'language-switch-pt' : 'language-switch-en')}
     />
   );
 }
