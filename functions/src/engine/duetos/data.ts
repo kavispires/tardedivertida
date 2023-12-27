@@ -23,7 +23,7 @@ export const getResourceData = async (language: Language, options: DuetosOptions
   }
   if (options.withAvatars) {
     specialDeckTypes.push(
-      utils.game.getRandomItem(['super-heroes', 'clubbers', 'super-heroes', 'clubbers', 'costumes'])
+      utils.game.getRandomItem(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes'])
     );
   }
   if (options.withSprites) {
@@ -63,7 +63,7 @@ export const getResourceData = async (language: Language, options: DuetosOptions
   }
 
   let superHeroes: number[] = [];
-  if (specialDeckTypes.includes('super-heroes')) {
+  if (specialDeckTypes.includes('superHeroes')) {
     superHeroes = utils.game.getRandomItems(
       utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES),
       quantityNeeded

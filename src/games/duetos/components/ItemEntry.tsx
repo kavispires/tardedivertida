@@ -86,7 +86,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
     );
   }
 
-  if (itemEntry.type === 'super-heroes') {
+  if (itemEntry.type === 'superHeroes') {
     return (
       <SuperHeroAvatar
         id={itemEntry.value}
