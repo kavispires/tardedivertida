@@ -3,8 +3,10 @@ import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
+import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
+import { getTitleName } from 'pages/Daily/utils';
 import { useEffect } from 'react';
 import { useCopyToClipboard } from 'react-use';
 
@@ -24,14 +26,20 @@ export function ResultsModalContent({
   correctLetters,
 }: ResultsModalContentProps) {
   const { message } = App.useApp();
+  const { translate, language } = useLanguage();
   const [state, copyToClipboard] = useCopyToClipboard();
-  const result = writeResult(challenge, hearts, correctLetters);
+  const result = writeResult(challenge, hearts, correctLetters, language);
 
   useEffect(() => {
     if (state.value) {
-      message.info(`Copied to clipboard: ${state.value}`);
+      message.info(
+        translate(
+          `Copiado para a área de transferência: ${state.value}`,
+          `Copied to clipboard: ${state.value}`
+        )
+      );
     }
-  }, [state, message]);
+  }, [state, message, translate]);
 
   return (
     <Space direction="vertical" className="space-container">
@@ -72,19 +80,36 @@ export function ResultsModalContent({
   );
 }
 
-function writeResult(challenge: number, hearts: number = 0, correctLetters: BooleanDictionary = {}) {
+function writeResult(
+  challenge: number,
+  hearts: number = 0,
+  correctLetters: BooleanDictionary = {},
+  language: Language
+) {
   let result = '';
   const totalLetters = Object.keys(correctLetters).length;
   const guessedLetters = Object.values(correctLetters).filter(Boolean).length;
+  const heartsValue = Math.max(0, hearts);
 
-  result += '💻 TD Diário #' + challenge + '\n';
-  result +=
-    Array(hearts).fill('❤️').join('') +
-    Array(3 - hearts)
-      .fill('🩶')
-      .join('');
-  result += ` (${Math.round((guessedLetters / totalLetters) * 100)}%)`;
-  result += '\nhttps://www.kavispires.com/tardedivertida/#/daily';
+  if (language === 'pt') {
+    result += '💻 ' + getTitleName(language) + ' #' + challenge + '\n';
+    result +=
+      Array(heartsValue).fill('❤️').join('') +
+      Array(3 - heartsValue)
+        .fill('🩶')
+        .join('');
+    result += ` (${Math.round((guessedLetters / totalLetters) * 100)}%)`;
+    result += '\nhttps://www.kavispires.com/tardedivertida/#/diario';
+  } else {
+    result += '💻 ' + getTitleName(language) + ' #' + challenge + '\n';
+    result +=
+      Array(heartsValue).fill('❤️').join('') +
+      Array(3 - heartsValue)
+        .fill('🩶')
+        .join('');
+    result += ` (${Math.round((guessedLetters / totalLetters) * 100)}%)`;
+    result += '\nhttps://www.kavispires.com/tardedivertida/#/daily';
+  }
 
   return result;
 }
