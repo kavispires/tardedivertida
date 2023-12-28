@@ -96,7 +96,7 @@ const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => 
 
       // Add daily
       newUser.daily = { [id]: { id, number, victory, hearts, letters } };
-      return utils.user.serializeUser(newUser);
+      return utils.user.serializeUser(newUser, id);
     }
   }
 

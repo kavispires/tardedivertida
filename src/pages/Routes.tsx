@@ -109,6 +109,11 @@ const LazyDaily = () => (
     <Daily />
   </Suspense>
 );
+const LazyDiario = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <Daily />
+  </Suspense>
+);
 const LazyImageCardsCategorizer = () => (
   <Suspense fallback={<LoadingPage />}>
     <ImageCardsCategorizer />
@@ -139,16 +144,8 @@ export const routes = (
     <Route path="/login" element={<Login />} />
     <Route path="/me" element={<LazyMe />} />
     <Route path="/eu" element={<LazyMe />} />
+    <Route path="/diario" element={<LazyDiario />} />
     <Route path="/daily" element={<LazyDaily />} />
-
-    <Route
-      path="/users"
-      element={
-        <AdminProtectedRoute>
-          <LazyUsers />
-        </AdminProtectedRoute>
-      }
-    />
 
     <Route
       path="/hub"
@@ -227,6 +224,15 @@ export const routes = (
       element={
         <AdminProtectedRoute>
           <LazyImageCardsRelationships />
+        </AdminProtectedRoute>
+      }
+    />
+
+    <Route
+      path="/dev/users"
+      element={
+        <AdminProtectedRoute>
+          <LazyUsers />
         </AdminProtectedRoute>
       }
     />

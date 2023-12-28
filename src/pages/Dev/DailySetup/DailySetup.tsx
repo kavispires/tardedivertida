@@ -1,12 +1,13 @@
 import { useTitle } from 'react-use';
 // Ant Design Resources
-import { Layout, TableColumnsType, Table, Button } from 'antd';
+import { Layout, TableColumnsType, Table, Button, Select } from 'antd';
 // Components
 
 import { DevHeader } from '../DevHeader';
 import { useLoadDailySetup, useSaveDailySetup } from './hooks';
 import { CanvasSVG } from 'components/canvas';
 import { DailyEntry } from './types';
+import { useState } from 'react';
 
 function DailySetupPage() {
   useTitle('Daily Setup | Dev | Tarde Divertida');
@@ -30,7 +31,8 @@ function DailySetupPage() {
 }
 
 function DataPopulation() {
-  const dataLoad = useLoadDailySetup();
+  const [queryLanguage, setQueryLanguage] = useState<'pt' | 'en' | undefined>();
+  const dataLoad = useLoadDailySetup(Boolean(queryLanguage), queryLanguage);
 
   const columns: TableColumnsType<DailyEntry> = [
     {
@@ -76,10 +78,21 @@ function DataPopulation() {
     },
   ];
 
-  const { save, isLoading: isMutating } = useSaveDailySetup();
+  const { save, isLoading: isMutating } = useSaveDailySetup(queryLanguage ?? 'pt');
 
   return (
     <div>
+      <Select
+        onChange={(value) => setQueryLanguage(value)}
+        defaultValue={queryLanguage}
+        style={{ minWidth: '20ch' }}
+      >
+        <Select.Option value={''} disabled>
+          Select a query language
+        </Select.Option>
+        <Select.Option value="pt">Português</Select.Option>
+        <Select.Option value="en">English</Select.Option>
+      </Select>
       {dataLoad.isLoading && <div>Loading...</div>}
       <h1>Total: {dataLoad.entries.length}</h1>
       <Table columns={columns} dataSource={dataLoad.entries ?? []} />

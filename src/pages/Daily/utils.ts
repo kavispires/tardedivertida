@@ -31,3 +31,11 @@ export function cleanupLetter(char: string): string {
 export function isLetter(char: string): boolean {
   return cleanupLetter(char).match(/[a-zA-Z]/) !== null;
 }
+
+export function getSourceName(language: Language) {
+  return language === 'pt' ? 'diario' : 'daily';
+}
+
+export function getTitleName(language: Language) {
+  return language === 'pt' ? 'TD Diário' : 'TD Daily';
+}

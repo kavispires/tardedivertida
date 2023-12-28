@@ -46,7 +46,6 @@ export const addAlienItems = (pool: AlienItem[], quantity: number, receiver: any
 };
 
 export const addSpecial = (pool: any[], quantity: number, receiver: any[], type: string) => {
-  console.log(type, pool);
   for (let i = 0; i < quantity; i++) {
     const element = pool.pop();
     if (element) {

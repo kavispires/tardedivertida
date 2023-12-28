@@ -2,7 +2,7 @@ import { Avatar, Space } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 import { useMemo } from 'react';
-import { cleanupLetter, isLetter } from '../utils';
+import { cleanupLetter, isLetter } from '../../utils';
 
 type PromptProps = {
   text: string;
