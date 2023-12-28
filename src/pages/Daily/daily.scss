@@ -110,3 +110,10 @@
   font-size: 1.25rem;
   color: get-color('blue', 6);
 }
+
+.results-container {
+  width: 100%;
+  margin: get-unit(6 0 15 0);
+  justify-content: center;
+  gap: get-unit(4);
+}

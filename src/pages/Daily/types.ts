@@ -1,9 +1,9 @@
 export type DateKey = string; // Format YYYY-MM-DD
 
-export type DailyEntry = {
+export type DailyArteRuimEntry = {
   id: DateKey;
   number: number;
-  type: string;
+  type: 'arte-ruim';
   language: Language;
   cardId: CardId;
   text: string;
@@ -12,5 +12,13 @@ export type DailyEntry = {
 };
 
 export type DailyResponse = {
-  data: DailyEntry;
+  data: DailyArteRuimEntry;
+};
+
+export type ArteRuimLocalToday = {
+  id: string;
+  number: number;
+  victory: boolean;
+  hearts: number;
+  letters: string[];
 };

@@ -23,14 +23,25 @@ function getDocQueryFunction<T>(path: string, docId: string) {
   };
 }
 
-export function useLoadDailySetup() {
+const LANGUAGE_PREFIX = {
+  SUFFIX_DATA: {
+    pt: 'drawingsPT',
+    en: 'drawingsEN',
+  },
+  DAILY: {
+    pt: 'diario',
+    en: 'daily',
+  },
+};
+
+export function useLoadDailySetup(enabled: boolean, queryLanguage?: Language) {
   const { notification } = App.useApp();
 
   // Step 1: Load suffix counts
   const suffixCountsQuery = useQuery<any, Error, DataSuffixCounts, QueryKey>({
     queryKey: ['data', 'suffixCounts'],
     queryFn: getDocQueryFunction<DataSuffixCounts>('data', 'suffixCounts'),
-    enabled: true,
+    enabled,
     onSuccess: () => {
       notification.info({
         message: 'Data Suffix Counts loaded',
@@ -47,19 +58,24 @@ export function useLoadDailySetup() {
 
   console.log(suffixCountsQuery.data);
 
+  const suffixData = LANGUAGE_PREFIX.SUFFIX_DATA[queryLanguage ?? 'pt'];
+
   // Step 2: Load drawings
   const drawingsQuery = useLoadDrawings(
-    Boolean(suffixCountsQuery.data?.drawingsPT),
-    suffixCountsQuery.data?.drawingsPT ?? 0
+    enabled && Boolean(suffixCountsQuery.data?.[suffixData]),
+    suffixCountsQuery.data?.[suffixData] ?? 0,
+    queryLanguage ?? 'pt'
   );
   const areDrawingsLoading = drawingsQuery.some((q) => q.isLoading);
 
   console.log(drawingsQuery?.[0]?.data);
 
+  const source = LANGUAGE_PREFIX.DAILY[queryLanguage ?? 'pt'];
+
   // Step 3: Load daily history
   const historyQuery = useQuery<any, Error, DailyHistory, QueryKey>({
-    queryKey: ['daily', 'history'],
-    queryFn: getDocQueryFunction<DataSuffixCounts>('daily', 'history'),
+    queryKey: [source, 'history'],
+    queryFn: getDocQueryFunction<DataSuffixCounts>(source, 'history'),
     enabled: true,
     onSuccess: () => {
       notification.info({
@@ -92,7 +108,7 @@ export function useLoadDailySetup() {
           acc[dataDrawing.cardId] = {
             id: dataDrawing.cardId,
             type: 'arte-ruim',
-            language: 'pt',
+            language: queryLanguage ?? 'pt',
             cardId: dataDrawing.cardId,
             text: dataDrawing.text,
             drawings: [dataDrawing.drawing],
@@ -132,7 +148,7 @@ export function useLoadDailySetup() {
         number: index + 1,
       };
     });
-  }, [drawingsQuery, usedCards, latestDate]);
+  }, [drawingsQuery, usedCards, latestDate, queryLanguage]);
 
   const round5sample = useMemo(() => {
     const drawings = (drawingsQuery ?? []).reduce((acc: Record<CardId, DailyEntry>, drawingEntry) => {
@@ -146,7 +162,7 @@ export function useLoadDailySetup() {
           acc[dataDrawing.cardId] = {
             id: dataDrawing.cardId,
             type: 'arte-ruim',
-            language: 'pt',
+            language: queryLanguage ?? 'pt',
             cardId: dataDrawing.cardId,
             text: dataDrawing.text,
             drawings: [dataDrawing.drawing],
@@ -163,7 +179,7 @@ export function useLoadDailySetup() {
     }, {});
 
     return Object.values(drawings).filter((e) => e.cardId?.includes('--'));
-  }, [drawingsQuery]);
+  }, [drawingsQuery, queryLanguage]);
 
   return {
     isLoading: suffixCountsQuery.isLoading || areDrawingsLoading || historyQuery.isLoading,
@@ -173,18 +189,18 @@ export function useLoadDailySetup() {
   };
 }
 
-function useLoadDrawings(enabled: boolean, libraryCount: number) {
+function useLoadDrawings(enabled: boolean, libraryCount: number, queryLanguage: Language) {
   const { notification } = App.useApp();
-
+  const docPrefix = `drawings${queryLanguage === 'pt' ? 'PT' : 'EN'}`;
   const queries: UseQueryOptions[] = useMemo(() => {
     return new Array(libraryCount).fill(0).map((_, index) => {
       return {
-        queryKey: ['data', `drawingsPT${index + 1}`],
-        queryFn: getDocQueryFunction('data', `drawingsPT${index + 1}`),
+        queryKey: ['data', `${docPrefix}${index + 1}`],
+        queryFn: getDocQueryFunction('data', `${docPrefix}${index + 1}`),
         enabled,
         onSuccess: () => {
           notification.info({
-            message: `Data Drawings PT${index + 1} loaded`,
+            message: `Data Drawings ${docPrefix}${index + 1} loaded`,
             placement: 'bottomLeft',
           });
         },
@@ -195,20 +211,22 @@ function useLoadDrawings(enabled: boolean, libraryCount: number) {
   return useQueries({ queries });
 }
 
-export function useSaveDailySetup() {
+export function useSaveDailySetup(queryLanguage: Language) {
   const { notification } = App.useApp();
   const queryClient = useQueryClient();
+
+  const source = LANGUAGE_PREFIX.DAILY[queryLanguage ?? 'pt'];
 
   const [isDirty, setIsDirty] = useState(false);
 
   const query = useMutation<any, Error, DailyEntry[], QueryKey>(
     async (data) => {
       const saves = data.map((entry) => {
-        const docRef = doc(firestore, `daily/${entry.id}`);
+        const docRef = doc(firestore, `${source}/${entry.id}`);
         return setDoc(docRef, entry);
       });
 
-      const docRec = doc(firestore, `daily/history`);
+      const docRec = doc(firestore, `${source}/history`);
       const history: DailyHistory = {
         latestDate: data[data.length - 1].id,
         used: data.map((e) => e.cardId),
@@ -223,7 +241,7 @@ export function useSaveDailySetup() {
           message: 'Data saved',
           placement: 'bottomLeft',
         });
-        queryClient.invalidateQueries(['daily', 'history']);
+        queryClient.invalidateQueries([source, 'history']);
         setIsDirty(false);
       },
       onError: () => {
