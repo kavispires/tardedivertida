@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.22100b02.css",
-    "main.js": "/tardedivertida/static/js/main.5bf15385.js",
+    "main.css": "/tardedivertida/static/css/main.f8368e47.css",
+    "main.js": "/tardedivertida/static/js/main.d2b81b3e.js",
     "page-me.css": "/tardedivertida/static/css/page-me.2c1ee51e.chunk.css",
     "page-me.js": "/tardedivertida/static/js/page-me.c3a41a77.chunk.js",
     "page-users.css": "/tardedivertida/static/css/page-users.d503247f.chunk.css",
@@ -53,7 +53,7 @@
     "espiao-entre-nos.js": "/tardedivertida/static/js/espiao-entre-nos.8b024caf.chunk.js",
     "fileira-de-fatos.css": "/tardedivertida/static/css/fileira-de-fatos.e04f70d4.chunk.css",
     "fileira-de-fatos.js": "/tardedivertida/static/js/fileira-de-fatos.e4782574.chunk.js",
-    "galeria-de-sonhos.css": "/tardedivertida/static/css/galeria-de-sonhos.33a805ba.chunk.css",
+    "galeria-de-sonhos.css": "/tardedivertida/static/css/galeria-de-sonhos.74beec7b.chunk.css",
     "galeria-de-sonhos.js": "/tardedivertida/static/js/galeria-de-sonhos.cbe86711.chunk.js",
     "porta-dos-desesperados.css": "/tardedivertida/static/css/porta-dos-desesperados.65f26fe7.chunk.css",
     "porta-dos-desesperados.js": "/tardedivertida/static/js/porta-dos-desesperados.cc3428aa.chunk.js",
@@ -209,8 +209,8 @@
     "static/media/round-title-pt.svg": "/tardedivertida/static/media/round-title-pt.2e3f9c1deb85d58d118aa6e3dfa7af23.svg",
     "index.html": "/tardedivertida/index.html",
     "static/media/alien-items-640.svg": "/tardedivertida/static/media/alien-items-640.ea18c5d65008555c2d288062df918e4e.svg",
-    "main.22100b02.css.map": "/tardedivertida/static/css/main.22100b02.css.map",
-    "main.5bf15385.js.map": "/tardedivertida/static/js/main.5bf15385.js.map",
+    "main.f8368e47.css.map": "/tardedivertida/static/css/main.f8368e47.css.map",
+    "main.d2b81b3e.js.map": "/tardedivertida/static/js/main.d2b81b3e.js.map",
     "page-me.2c1ee51e.chunk.css.map": "/tardedivertida/static/css/page-me.2c1ee51e.chunk.css.map",
     "page-me.c3a41a77.chunk.js.map": "/tardedivertida/static/js/page-me.c3a41a77.chunk.js.map",
     "page-users.d503247f.chunk.css.map": "/tardedivertida/static/css/page-users.d503247f.chunk.css.map",
@@ -262,7 +262,7 @@
     "espiao-entre-nos.8b024caf.chunk.js.map": "/tardedivertida/static/js/espiao-entre-nos.8b024caf.chunk.js.map",
     "fileira-de-fatos.e04f70d4.chunk.css.map": "/tardedivertida/static/css/fileira-de-fatos.e04f70d4.chunk.css.map",
     "fileira-de-fatos.e4782574.chunk.js.map": "/tardedivertida/static/js/fileira-de-fatos.e4782574.chunk.js.map",
-    "galeria-de-sonhos.33a805ba.chunk.css.map": "/tardedivertida/static/css/galeria-de-sonhos.33a805ba.chunk.css.map",
+    "galeria-de-sonhos.74beec7b.chunk.css.map": "/tardedivertida/static/css/galeria-de-sonhos.74beec7b.chunk.css.map",
     "galeria-de-sonhos.cbe86711.chunk.js.map": "/tardedivertida/static/js/galeria-de-sonhos.cbe86711.chunk.js.map",
     "porta-dos-desesperados.65f26fe7.chunk.css.map": "/tardedivertida/static/css/porta-dos-desesperados.65f26fe7.chunk.css.map",
     "porta-dos-desesperados.cc3428aa.chunk.js.map": "/tardedivertida/static/js/porta-dos-desesperados.cc3428aa.chunk.js.map",
@@ -395,7 +395,7 @@
     "8031.45f423eb.chunk.js.map": "/tardedivertida/static/js/8031.45f423eb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.22100b02.css",
-    "static/js/main.5bf15385.js"
+    "static/css/main.f8368e47.css",
+    "static/js/main.d2b81b3e.js"
   ]
 }
