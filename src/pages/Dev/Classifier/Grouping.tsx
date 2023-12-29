@@ -126,6 +126,7 @@ export function Grouping() {
                 <span className="classifier__grouping-name">
                   {typeof item?.name?.en === 'string' ? item?.name?.en : '?'}
                 </span>
+                <Tag>{item.id}</Tag>
               </TransparentButton>
             );
           })}
