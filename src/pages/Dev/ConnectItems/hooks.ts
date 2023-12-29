@@ -15,6 +15,8 @@ const emojiColors: StringDictionary = {
 };
 
 export function useConnectTrioGame() {
+  const [failToCreate, setFailToCreate] = useState(false);
+
   const query = useQuery<Collection<ConnectionGroup>>({
     queryKey: ['connect-items'],
     queryFn: async () => {
@@ -61,11 +63,9 @@ export function useConnectTrioGame() {
       let tries = 0;
       while (result.length < 2 && tries < 200) {
         tries++;
-        console.count('try');
         const selection = sample(itemCount);
         if (selection && selection.total > 1) {
           const selectedGroups = getTwoGroups(selection.itemId, selection.groups);
-          console.log(selectedGroups);
           if (selectedGroups.length === 2) {
             result.push(...selectedGroups);
           }
@@ -132,6 +132,11 @@ export function useConnectTrioGame() {
 
       newGame.items = shuffle(newGame.items);
 
+      if (newGame.items.length !== 12) {
+        setFailToCreate(true);
+        return;
+      }
+
       setGame(newGame);
     }
   }, [itemCount]);
@@ -146,6 +151,7 @@ export function useConnectTrioGame() {
 
   return {
     game,
+    failToCreate,
     ...query,
   };
 }

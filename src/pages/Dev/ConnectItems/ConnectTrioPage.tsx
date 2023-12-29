@@ -153,7 +153,7 @@ function ConnectTrioGame({ game }: ConnectTrioGameProps) {
 function ConnectTrioDataWrapper() {
   const { translate } = useLanguage();
 
-  const { isLoading, isError, game } = useConnectTrioGame();
+  const { isLoading, isError, game, failToCreate } = useConnectTrioGame();
 
   if (isLoading) {
     return (
@@ -165,7 +165,7 @@ function ConnectTrioDataWrapper() {
     );
   }
 
-  if (isError || !game) {
+  if (isError || !game || failToCreate) {
     return (
       <ConnectTrioChrome>
         <PageError />
