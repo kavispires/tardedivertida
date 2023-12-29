@@ -85,17 +85,31 @@ export function useConnectTrioGame() {
     tries = 0;
     while (result.length < 3 && tries < 200) {
       tries++;
+      console.count('tries');
 
-      const selection = sample(itemCount);
-      if (selection) {
-        const group = sample(selection.groups)!;
-        const trio = getTrio('0', group.items, false);
-        if (trio.length === 3 && trio.every((item) => !dict[item])) {
-          const copy = cloneDeep(group);
-          copy.items = trio;
-          result.push(copy);
+      // Related third group
+      const thirdItem = sample(Object.keys(dict));
+      if (thirdItem) {
+        const selection = itemCount.find((item) => item.itemId === thirdItem);
+        if (selection && selection.total > 1) {
+          const selectedGroups = getTwoGroups(selection.itemId, selection.groups, dict);
+          if (selectedGroups.length === 2) {
+            result.push(selectedGroups[1]);
+          }
         }
       }
+
+      // Random third group
+      // const selection = sample(itemCount);
+      // if (selection) {
+      //   const group = sample(selection.groups)!;
+      //   const trio = getTrio('0', group.items, false);
+      //   if (trio.length === 3 && trio.every((item) => !dict[item])) {
+      //     const copy = cloneDeep(group);
+      //     copy.items = trio;
+      //     result.push(copy);
+      //   }
+      // }
     }
 
     const newGame: ConnectionGame = {
@@ -166,18 +180,24 @@ export function useConnectTrioGame() {
   };
 }
 
-function getTwoGroups(itemId: string, groupSummaries: GroupSummary[]) {
+function getTwoGroups(itemId: string, groupSummaries: GroupSummary[], dict: BooleanDictionary = {}) {
   const mainGroup = cloneDeep(sample(groupSummaries)!);
-  mainGroup.items = getTrio(itemId, mainGroup.items, true);
+  mainGroup.items = getTrio(
+    itemId,
+    mainGroup.items.filter((i) => !dict[i]),
+    true
+  );
 
-  const dict: BooleanDictionary = mainGroup.items.reduce((acc, item) => ({ ...acc, [item]: true }), {});
+  const itemsDict: BooleanDictionary = mainGroup.items.reduce((acc, item) => ({ ...acc, [item]: true }), {
+    ...dict,
+  });
 
   const leftOverGroups = shuffle(groupSummaries.filter((group) => group.groupId !== mainGroup.groupId));
 
   for (let i = 0; i < leftOverGroups.length; i++) {
     const group = leftOverGroups[i];
     const trio = getTrio(itemId, group.items, false);
-    if (trio.length === 3 && trio.every((item) => !dict[item])) {
+    if (trio.length === 3 && trio.every((item) => !itemsDict[item])) {
       const copy = cloneDeep(group);
       copy.items = trio;
       return [mainGroup, copy];
