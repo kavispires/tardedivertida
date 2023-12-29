@@ -26,9 +26,10 @@ const { Header, Content } = Layout;
 
 type ConnectTrioGameProps = {
   game: ConnectionGame;
+  createNewGame: () => void;
 };
 
-function ConnectTrioGame({ game }: ConnectTrioGameProps) {
+function ConnectTrioGame({ game, createNewGame }: ConnectTrioGameProps) {
   const {
     hearts,
     items,
@@ -128,6 +129,9 @@ function ConnectTrioGame({ game }: ConnectTrioGameProps) {
             <Button onClick={() => setShowResultModal(true)} type="primary">
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
+            <Button onClick={createNewGame}>
+              <Translate pt="Gerar Novo Desafio" en="GenerateNew Challenge" />
+            </Button>
           </Space>
         )}
         <Modal
@@ -153,7 +157,7 @@ function ConnectTrioGame({ game }: ConnectTrioGameProps) {
 function ConnectTrioDataWrapper() {
   const { translate } = useLanguage();
 
-  const { isLoading, isError, game, failToCreate } = useConnectTrioGame();
+  const { isLoading, isError, game, failToCreate, createNewGame } = useConnectTrioGame();
 
   if (isLoading) {
     return (
@@ -175,7 +179,7 @@ function ConnectTrioDataWrapper() {
 
   return (
     <ConnectTrioChrome>
-      <ConnectTrioGame game={game} />
+      <ConnectTrioGame game={game} createNewGame={createNewGame} />
     </ConnectTrioChrome>
   );
 }
