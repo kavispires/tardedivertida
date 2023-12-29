@@ -162,6 +162,7 @@ export const routes = (
     <Route path="/eu" element={<LazyMe />} />
     <Route path="/diario" element={<LazyDiario />} />
     <Route path="/daily" element={<LazyDaily />} />
+    <Route path="/trio" element={<LazyConnectTrio />} />
 
     <Route
       path="/hub"
@@ -258,15 +259,6 @@ export const routes = (
       element={
         <AdminProtectedRoute>
           <LazyConnectItems />
-        </AdminProtectedRoute>
-      }
-    />
-
-    <Route
-      path="/trio"
-      element={
-        <AdminProtectedRoute>
-          <LazyConnectTrio />
         </AdminProtectedRoute>
       }
     />
