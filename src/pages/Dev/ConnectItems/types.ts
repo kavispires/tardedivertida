@@ -18,22 +18,19 @@ export type ItemGroup = {
   total: number;
 };
 
+export type ItemDictEntry = {
+  groupId: string;
+  itemId: string;
+  color: string;
+};
+
+export type GroupDictEntry = {
+  color: string;
+} & GroupSummary;
+
 export type ConnectionGame = {
   id: string;
-  itemsDict: Record<
-    string,
-    {
-      groupId: string;
-      itemId: string;
-      color: string;
-    }
-  >;
-  groupsDict: Record<
-    string,
-    {
-      name: string;
-      color: string;
-    }
-  >;
+  itemsDict: Record<string, ItemDictEntry>;
+  groupsDict: Record<string, GroupDictEntry>;
   items: string[];
 };
