@@ -19,7 +19,7 @@
   },
   "c-4-br": {
     "id": "c-4-br",
-    "name": "Coisas quentes",
+    "name": "Coisas que queimam",
     "items": [284, 95, 39, 227],
     "difficulty": 0
   },
@@ -110,7 +110,7 @@
   "c-19-br": {
     "id": "c-19-br",
     "name": "Lareira",
-    "items": [94],
+    "items": [94, 39],
     "difficulty": 0
   },
   "c-20-br": {
@@ -326,7 +326,7 @@
   "c-55-br": {
     "id": "c-55-br",
     "name": "Festa Junina",
-    "items": [441, 31, 76],
+    "items": [411, 31, 76],
     "difficulty": 0
   },
   "c-56-br": {
@@ -806,8 +806,8 @@
   },
   "c-135-br": {
     "id": "c-135-br",
-    "name": "Bilhinhos",
-    "items": [417, 447, 139],
+    "name": "Brilhinhos",
+    "items": [246, 447, 139, 419],
     "difficulty": 0
   },
   "c-136-br": {
