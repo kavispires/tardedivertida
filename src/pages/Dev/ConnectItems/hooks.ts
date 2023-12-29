@@ -16,6 +16,8 @@ const emojiColors: StringDictionary = {
 
 export function useConnectTrioGame() {
   const [failToCreate, setFailToCreate] = useState(false);
+  const [creatingGame, setCreatingGame] = useState(true);
+  const [game, setGame] = useState<ConnectionGame | null>(null);
 
   const query = useQuery<Collection<ConnectionGroup>>({
     queryKey: ['connect-items'],
@@ -53,93 +55,99 @@ export function useConnectTrioGame() {
     );
   }, [query.data]);
 
-  const [game, setGame] = useState<ConnectionGame | null>(null);
+  const createNewGame = async () => {
+    setCreatingGame(true);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const result: GroupSummary[] = [];
+
+    // Get the first 2 groups
+    let tries = 0;
+    while (result.length < 2 && tries < 200) {
+      tries++;
+      const selection = sample(itemCount);
+      if (selection && selection.total > 1) {
+        const selectedGroups = getTwoGroups(selection.itemId, selection.groups);
+        if (selectedGroups.length === 2) {
+          result.push(...selectedGroups);
+        }
+      }
+    }
+
+    // Get 3rd group
+    const dict = result.reduce((acc: BooleanDictionary, group) => {
+      group.items.forEach((item) => {
+        acc[item] = true;
+      });
+      return acc;
+    }, {});
+
+    tries = 0;
+    while (result.length < 3 && tries < 200) {
+      tries++;
+
+      const selection = sample(itemCount);
+      if (selection) {
+        const group = sample(selection.groups)!;
+        const trio = getTrio('0', group.items, false);
+        if (trio.length === 3 && trio.every((item) => !dict[item])) {
+          const copy = cloneDeep(group);
+          copy.items = trio;
+          result.push(copy);
+        }
+      }
+    }
+
+    const newGame: ConnectionGame = {
+      id: '',
+      itemsDict: {},
+      groupsDict: {},
+      items: [],
+    };
+
+    const colors: StringDictionary = {
+      0: 'teal',
+      1: 'orange',
+      2: 'purple',
+    };
+
+    result.forEach((group, index) => {
+      newGame.id += '-' + group.groupId.split('-')[1];
+      newGame.groupsDict[group.groupId] = {
+        groupId: group.groupId,
+        name: group.name,
+        color: colors[index],
+        items: group.items,
+        count: group.items.length,
+      };
+
+      group.items.forEach((item) => {
+        newGame.items.push(item);
+
+        newGame.itemsDict[item] = {
+          groupId: group.groupId,
+          itemId: item,
+          color: colors[index],
+        };
+      });
+    });
+
+    newGame.items = shuffle(newGame.items);
+
+    if (newGame.items.length !== 9) {
+      setFailToCreate(true);
+      return;
+    }
+
+    setGame(newGame);
+    setCreatingGame(false);
+  };
 
   useEffect(() => {
     if (itemCount.length) {
-      const result: GroupSummary[] = [];
-
-      // Get the first 2 groups
-      let tries = 0;
-      while (result.length < 2 && tries < 200) {
-        tries++;
-        const selection = sample(itemCount);
-        if (selection && selection.total > 1) {
-          const selectedGroups = getTwoGroups(selection.itemId, selection.groups);
-          if (selectedGroups.length === 2) {
-            result.push(...selectedGroups);
-          }
-        }
-      }
-
-      // Get 3rd group
-      const dict = result.reduce((acc: BooleanDictionary, group) => {
-        group.items.forEach((item) => {
-          acc[item] = true;
-        });
-        return acc;
-      }, {});
-
-      tries = 0;
-      while (result.length < 3 && tries < 200) {
-        tries++;
-
-        const selection = sample(itemCount);
-        if (selection) {
-          const group = sample(selection.groups)!;
-          const trio = getTrio('0', group.items, false);
-          if (trio.length === 3 && trio.every((item) => !dict[item])) {
-            const copy = cloneDeep(group);
-            copy.items = trio;
-            result.push(copy);
-          }
-        }
-      }
-
-      const newGame: ConnectionGame = {
-        id: '',
-        itemsDict: {},
-        groupsDict: {},
-        items: [],
-      };
-
-      const colors: StringDictionary = {
-        0: 'teal',
-        1: 'orange',
-        2: 'purple',
-      };
-
-      result.forEach((group, index) => {
-        newGame.id += '-' + group.groupId.split('-')[1];
-        newGame.groupsDict[group.groupId] = {
-          groupId: group.groupId,
-          name: group.name,
-          color: colors[index],
-          items: group.items,
-          count: group.items.length,
-        };
-
-        group.items.forEach((item) => {
-          newGame.items.push(item);
-
-          newGame.itemsDict[item] = {
-            groupId: group.groupId,
-            itemId: item,
-            color: colors[index],
-          };
-        });
-      });
-
-      newGame.items = shuffle(newGame.items);
-
-      if (newGame.items.length !== 12) {
-        setFailToCreate(true);
-        return;
-      }
-
-      setGame(newGame);
+      createNewGame();
     }
-  }, [itemCount]);
+  }, [itemCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /***
    * Create a new game
@@ -152,7 +160,9 @@ export function useConnectTrioGame() {
   return {
     game,
     failToCreate,
+    createNewGame,
     ...query,
+    isLoading: query.isLoading || creatingGame,
   };
 }
 
