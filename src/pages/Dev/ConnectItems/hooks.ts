@@ -6,7 +6,7 @@ import { PUBLIC_URL } from 'utils/constants';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { ConnectionGame, ConnectionGroup, GroupSummary, ItemGroup } from './types';
+import { ConnectionGame, ConnectionGroup, GroupDictEntry, GroupSummary, ItemGroup } from './types';
 
 const emojiColors: StringDictionary = {
   teal: '🟩',
@@ -112,8 +112,11 @@ export function useConnectTrioGame() {
       result.forEach((group, index) => {
         newGame.id += '-' + group.groupId.split('-')[1];
         newGame.groupsDict[group.groupId] = {
+          groupId: group.groupId,
           name: group.name,
           color: colors[index],
+          items: group.items,
+          count: group.items.length,
         };
 
         group.items.forEach((item) => {
@@ -190,8 +193,9 @@ export function useConnectTrioEngine(game: ConnectionGame) {
   const [resultPrint, setResultPrint] = useState<string>('');
   const [outcome, setOutcome] = useState<string>('CONTINUE');
   const [history, setHistory] = useState<string[]>([]);
-  const [correctGroups, setCorrectGroups] = useState<GroupSummary[]>([]);
+  const [correctGroups, setCorrectGroups] = useState<GroupDictEntry[]>([]);
   const [showResultModal, setShowResultModal] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
 
   const onShuffle = () => {
     setItems(shuffle(items.filter((item) => !frozenItems.includes(item))));
@@ -243,6 +247,7 @@ export function useConnectTrioEngine(game: ConnectionGame) {
       setItems(items.filter((item) => !selection.includes(item)));
       if (correctGroups.length === 2) {
         setShowResultModal(true);
+        setIsComplete(true);
         setOutcome('WIN');
       } else {
         setOutcome('CORRECT');
@@ -254,6 +259,7 @@ export function useConnectTrioEngine(game: ConnectionGame) {
           name: activeGroup.name,
           items: selection,
           count: 3,
+          color: color,
         },
       ]);
       setPreviousSelection([]);
@@ -264,6 +270,20 @@ export function useConnectTrioEngine(game: ConnectionGame) {
       if (hearts === 1) {
         setShowResultModal(true);
         setOutcome('LOSE');
+        const otherGroups = Object.values(game.groupsDict).filter(
+          (group) => !correctGroups.find((g) => g.name === group.name)
+        );
+
+        setCorrectGroups((s) => [
+          ...s,
+          ...otherGroups.map((group) => ({
+            groupId: group.name,
+            name: group.name,
+            items: group.items,
+            count: 3,
+            color: group.color,
+          })),
+        ]);
       } else {
         setOutcome('WRONG');
       }
@@ -273,7 +293,6 @@ export function useConnectTrioEngine(game: ConnectionGame) {
     onDeselectAll();
   };
 
-  const isComplete = correctGroups.length === 3;
   const disabled = hearts === 0 || isComplete;
 
   return {

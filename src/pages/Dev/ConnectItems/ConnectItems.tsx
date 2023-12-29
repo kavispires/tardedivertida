@@ -101,7 +101,10 @@ function GroupTable({ dataSource }: GroupTableProps) {
       render: (items: number[], row) => (
         <Space wrap>
           {items.map((item) => (
-            <ItemCard key={`${row.id}-${item}`} id={String(item)} />
+            <Space key={`${row.id}-${item}`} wrap direction="vertical" align="center">
+              <ItemCard id={String(item)} />
+              <Tag>{item}</Tag>
+            </Space>
           ))}
         </Space>
       ),

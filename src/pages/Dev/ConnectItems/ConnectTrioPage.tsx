@@ -79,29 +79,31 @@ function ConnectTrioGame({ game }: ConnectTrioGameProps) {
               </div>
             </div>
           ))}
-          <div className="connect-trio-item-container">
-            {items.map((item) => {
-              const isActive = selection.includes(item);
-              return (
-                <TransparentButton
-                  key={item}
-                  onClick={() => onSelect(item)}
-                  active={isActive}
-                  activeClass="item-button-active-override"
-                  disabled={disabled}
-                >
-                  <ItemCard
-                    id={item}
-                    width={cardWidth}
-                    className={clsx(
-                      isActive && 'item--active',
-                      outcome === 'WRONG' && previousSelection.includes(item) && getAnimationClass('shakeX')
-                    )}
-                  />
-                </TransparentButton>
-              );
-            })}
-          </div>
+          {!disabled && (
+            <div className="connect-trio-item-container">
+              {items.map((item) => {
+                const isActive = selection.includes(item);
+                return (
+                  <TransparentButton
+                    key={item}
+                    onClick={() => onSelect(item)}
+                    active={isActive}
+                    activeClass="item-button-active-override"
+                    disabled={disabled}
+                  >
+                    <ItemCard
+                      id={item}
+                      width={cardWidth}
+                      className={clsx(
+                        isActive && 'item--active',
+                        outcome === 'WRONG' && previousSelection.includes(item) && getAnimationClass('shakeX')
+                      )}
+                    />
+                  </TransparentButton>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         <Space className="space-container">
