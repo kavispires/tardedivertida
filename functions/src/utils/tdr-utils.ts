@@ -11,10 +11,35 @@ import { buildIdDictionary } from './helpers';
  * Get alien items for given quantity and NSFW allowance otherwise it resets the used items and use all available
  * @param quantity
  * @param allowNSFW
+ * @param mustHaveData - indicates that item must have attribute data (for alien bot for example)
  * @returns
  */
-export const getAlienItems = async (quantity: number, allowNSFW: boolean): Promise<AlienItem[]> => {
+export const getAlienItems = async (
+  quantity: number,
+  allowNSFW: boolean,
+  mustHaveData: boolean
+): Promise<AlienItem[]> => {
   const allAlienItemsObj: Collection<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
+
+  // Deletes in place items that have less than 75% of attributes with weights
+  function verifyItems(items: Collection<AlienItem>) {
+    Object.values(items).forEach((item) => {
+      const totalAttributes = Object.keys(item.attributes).length;
+      let attributesWithWeights = 0;
+      Object.values(item.attributes).forEach((attribute) => {
+        if (attribute !== 0) {
+          attributesWithWeights++;
+        }
+      });
+      if (totalAttributes * 0.75 <= attributesWithWeights) {
+        delete items[item.id];
+      }
+    });
+  }
+
+  if (mustHaveData) {
+    verifyItems(allAlienItemsObj);
+  }
 
   // Get used items deck
   const usedItems: BooleanDictionary = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, {});
