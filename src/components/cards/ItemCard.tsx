@@ -10,6 +10,7 @@ const AliemItemSprite384 = lazy(() => import('./AlienItemSprites/AlienItemSprite
 const AliemItemSprite512 = lazy(() => import('./AlienItemSprites/AlienItemSprite512'));
 const AliemItemSprite640 = lazy(() => import('./AlienItemSprites/AlienItemSprite640'));
 const AliemItemSprite768 = lazy(() => import('./AlienItemSprites/AlienItemSprite768'));
+const AliemItemSprite896 = lazy(() => import('./AlienItemSprites/AlienItemSprite896'));
 
 export type ItemCardProps = {
   /**
@@ -73,6 +74,12 @@ const Lazy768 = (props: ItemCardProps) => (
   </Suspense>
 );
 
+const Lazy896 = (props: ItemCardProps) => (
+  <Suspense fallback={<LoadingItem {...props} />}>
+    <AliemItemSprite896 {...props} />
+  </Suspense>
+);
+
 export function ItemCard(props: ItemCardProps) {
   const numId = Number(props.id);
 
@@ -98,6 +105,10 @@ export function ItemCard(props: ItemCardProps) {
 
   if (numId <= 768) {
     return <Lazy768 {...props} />;
+  }
+
+  if (numId <= 896) {
+    return <Lazy896 {...props} />;
   }
 
   return (

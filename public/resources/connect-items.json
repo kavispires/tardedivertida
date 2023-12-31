@@ -19,7 +19,7 @@
   },
   "c-4-br": {
     "id": "c-4-br",
-    "name": "Coisas quentes",
+    "name": "Coisas que queimam",
     "items": [284, 95, 39, 227],
     "difficulty": 0
   },
@@ -38,13 +38,13 @@
   "c-7-br": {
     "id": "c-7-br",
     "name": "Coisas que você entra",
-    "items": [440, 10, 105],
+    "items": [440, 10, 105, 107],
     "difficulty": 0
   },
   "c-8-br": {
     "id": "c-8-br",
     "name": "Contém água",
-    "items": [475, 367, 371, 361, 457],
+    "items": [475, 367, 371, 457],
     "difficulty": 0
   },
   "c-9-br": {
@@ -92,7 +92,7 @@
   "c-16-br": {
     "id": "c-16-br",
     "name": "Papel",
-    "items": [415, 382, 220, 379, 263],
+    "items": [415, 382, 220, 379, 263, 124],
     "difficulty": 0
   },
   "c-17-br": {
@@ -104,13 +104,13 @@
   "c-18-br": {
     "id": "c-18-br",
     "name": "Que frio!",
-    "items": [327, 226, 348, 339],
+    "items": [327, 226, 348, 339, 132],
     "difficulty": 0
   },
   "c-19-br": {
     "id": "c-19-br",
     "name": "Lareira",
-    "items": [94],
+    "items": [94, 39],
     "difficulty": 0
   },
   "c-20-br": {
@@ -128,7 +128,7 @@
   "c-22-br": {
     "id": "c-22-br",
     "name": "Valioso",
-    "items": [13, 118, 120],
+    "items": [13, 118, 120, 141],
     "difficulty": 0
   },
   "c-23-br": {
@@ -169,8 +169,8 @@
   },
   "c-29-br": {
     "id": "c-29-br",
-    "name": "Escritório",
-    "items": [319, 315, 489],
+    "name": "Vamos trabalhar",
+    "items": [319, 315, 489, 65],
     "difficulty": 0
   },
   "c-30-br": {
@@ -181,14 +181,14 @@
   },
   "c-31-br": {
     "id": "c-31-br",
-    "name": "Coisas que batem",
-    "items": [],
+    "name": "Pra lá e pra cá",
+    "items": [498, 280, 145],
     "difficulty": 0
   },
   "c-32-br": {
     "id": "c-32-br",
     "name": "Difícil de segurar",
-    "items": [125],
+    "items": [125, 356, 348],
     "difficulty": 0
   },
   "c-33-br": {
@@ -200,7 +200,7 @@
   "c-34-br": {
     "id": "c-34-br",
     "name": "Refrescante",
-    "items": [128, 134],
+    "items": [128, 134, 226, 367],
     "difficulty": 0
   },
   "c-35-br": {
@@ -218,7 +218,7 @@
   "c-37-br": {
     "id": "c-37-br",
     "name": "Polícia",
-    "items": [376, 176, 282],
+    "items": [376, 176, 282, 147],
     "difficulty": 0
   },
   "c-38-br": {
@@ -242,19 +242,19 @@
   "c-41-br": {
     "id": "c-41-br",
     "name": "Esportes",
-    "items": [64, 328, 303],
+    "items": [64, 328, 303, 189],
     "difficulty": 0
   },
   "c-42-br": {
     "id": "c-42-br",
     "name": "Apimentar a relação",
-    "items": [176, 22, 14],
+    "items": [176, 22, 14, 222],
     "difficulty": 0
   },
   "c-43-br": {
     "id": "c-43-br",
     "name": "Super longo",
-    "items": [298, 295, 221],
+    "items": [298, 295, 221, 31],
     "difficulty": 0
   },
   "c-44-br": {
@@ -326,7 +326,7 @@
   "c-55-br": {
     "id": "c-55-br",
     "name": "Festa Junina",
-    "items": [441, 31, 76],
+    "items": [411, 31, 76],
     "difficulty": 0
   },
   "c-56-br": {
@@ -344,7 +344,7 @@
   "c-58-br": {
     "id": "c-58-br",
     "name": "Energia",
-    "items": [441, 453],
+    "items": [441, 453, 306],
     "difficulty": 0
   },
   "c-59-br": {
@@ -363,7 +363,7 @@
   "c-61-br": {
     "id": "c-61-br",
     "name": "Música",
-    "items": [205, 414, 337, 231],
+    "items": [205, 414, 377, 231],
     "difficulty": 0
   },
   "c-62-br": {
@@ -435,7 +435,7 @@
   "c-73-br": {
     "id": "c-73-br",
     "name": "Fofinho",
-    "items": [102, 150, 30],
+    "items": [102, 150, 30, 410],
     "difficulty": 0
   },
   "c-74-br": {
@@ -513,7 +513,7 @@
   "c-86-br": {
     "id": "c-86-br",
     "name": "Cozinheiro",
-    "items": [465, 281, 290],
+    "items": [465, 281, 290, 291],
     "difficulty": 0
   },
   "c-87-br": {
@@ -555,7 +555,7 @@
   "c-93-br": {
     "id": "c-93-br",
     "name": "Comunicação",
-    "items": [421, 83, 466],
+    "items": [421, 83, 466, 499],
     "difficulty": 0
   },
   "c-94-br": {
@@ -591,7 +591,7 @@
   "c-99-br": {
     "id": "c-99-br",
     "name": "Luz",
-    "items": [293, 73, 158],
+    "items": [293, 73, 158, 396],
     "difficulty": 0
   },
   "c-100-br": {
@@ -603,7 +603,7 @@
   "c-101-br": {
     "id": "c-101-br",
     "name": "Proteção para a cabeça",
-    "items": [316],
+    "items": [316, 324],
     "difficulty": 0
   },
   "c-102-br": {
@@ -627,7 +627,7 @@
   "c-105-br": {
     "id": "c-105-br",
     "name": "Radiante!",
-    "items": [67, 144, 152],
+    "items": [67, 144, 152, 512],
     "difficulty": 0
   },
   "c-106-br": {
@@ -668,8 +668,8 @@
   },
   "c-112-br": {
     "id": "c-112-br",
-    "name": "Safari",
-    "items": [223, 97, 81],
+    "name": "Zoológico",
+    "items": [233, 97, 81, 116],
     "difficulty": 0
   },
   "c-113-br": {
@@ -693,7 +693,7 @@
   "c-116-br": {
     "id": "c-116-br",
     "name": "Plantação",
-    "items": [198, 211],
+    "items": [198, 211, 511],
     "difficulty": 0
   },
   "c-117-br": {
@@ -704,8 +704,8 @@
   },
   "c-118-br": {
     "id": "c-118-br",
-    "name": "Armas dos pais",
-    "items": [109],
+    "name": "Educar os filhos",
+    "items": [109, 291],
     "difficulty": 0
   },
   "c-119-br": {
@@ -741,7 +741,7 @@
   "c-124-br": {
     "id": "c-124-br",
     "name": "Veículos aquáticos",
-    "items": [91, 168],
+    "items": [91, 168, 460],
     "difficulty": 0
   },
   "c-125-br": {
@@ -759,13 +759,13 @@
   "c-127-br": {
     "id": "c-127-br",
     "name": "Teclas",
-    "items": [344, 23],
+    "items": [344, 23, 392],
     "difficulty": 0
   },
   "c-128-br": {
     "id": "c-128-br",
     "name": "Botões",
-    "items": [177, 200, 232],
+    "items": [177, 200, 232, 346],
     "difficulty": 0
   },
   "c-129-br": {
@@ -795,7 +795,7 @@
   "c-133-br": {
     "id": "c-133-br",
     "name": "Vendedor",
-    "items": [183, 418],
+    "items": [183, 418, 141],
     "difficulty": 0
   },
   "c-134-br": {
@@ -806,8 +806,8 @@
   },
   "c-135-br": {
     "id": "c-135-br",
-    "name": "Bilhinhos",
-    "items": [417, 447, 139],
+    "name": "Brilhinhos",
+    "items": [246, 447, 139, 419],
     "difficulty": 0
   },
   "c-136-br": {
@@ -855,7 +855,7 @@
   "c-143-br": {
     "id": "c-143-br",
     "name": "Formato de U",
-    "items": [33, 34],
+    "items": [33, 34, 164],
     "difficulty": 0
   },
   "c-144-br": {
@@ -902,8 +902,8 @@
   },
   "c-151-br": {
     "id": "c-151-br",
-    "name": "Não pode encostar",
-    "items": [101, 403, 39],
+    "name": "Não se deve encostar",
+    "items": [101, 403, 39, 356],
     "difficulty": 0
   },
   "c-152-br": {
@@ -915,7 +915,7 @@
   "c-153-br": {
     "id": "c-153-br",
     "name": "Palavras com 4 letras",
-    "items": [506, 457, 39],
+    "items": [506, 457, 39, 343],
     "difficulty": 0
   },
   "c-154-br": {
@@ -933,7 +933,7 @@
   "c-156-br": {
     "id": "c-156-br",
     "name": "Tem asa para segurar",
-    "items": [391, 461, 367],
+    "items": [391, 461, 367, 128],
     "difficulty": 0
   },
   "c-157-br": {
@@ -957,7 +957,7 @@
   "c-160-br": {
     "id": "c-160-br",
     "name": "Coisas para chamar atenção",
-    "items": [303, 313],
+    "items": [303, 313, 322, 431],
     "difficulty": 0
   },
   "c-161-br": {
@@ -1004,74 +1004,74 @@
   },
   "c-168-br": {
     "id": "c-168-br",
-    "name": "",
-    "items": [],
+    "name": "Duas rodas",
+    "items": [167, 179, 27],
     "difficulty": 0
   },
   "c-169-br": {
     "id": "c-169-br",
-    "name": "",
-    "items": [],
+    "name": "Coisas de enfiar",
+    "items": [25, 383],
     "difficulty": 0
   },
   "c-170-br": {
     "id": "c-170-br",
-    "name": "",
-    "items": [],
+    "name": "Madeira",
+    "items": [74, 75, 98],
     "difficulty": 0
   },
   "c-171-br": {
     "id": "c-171-br",
-    "name": "",
-    "items": [],
+    "name": "Armazenamento de dados",
+    "items": [184, 25],
     "difficulty": 0
   },
   "c-172-br": {
     "id": "c-172-br",
-    "name": "",
-    "items": [],
+    "name": "Comer frio",
+    "items": [491, 79, 236],
     "difficulty": 0
   },
   "c-173-br": {
     "id": "c-173-br",
-    "name": "",
-    "items": [],
+    "name": "Na cabeça",
+    "items": [57, 141, 157, 218, 237, 260, 281, 324, 411, 507],
     "difficulty": 0
   },
   "c-174-br": {
     "id": "c-174-br",
-    "name": "",
-    "items": [],
+    "name": "Dois lados",
+    "items": [496, 493, 463, 280],
     "difficulty": 0
   },
   "c-175-br": {
     "id": "c-175-br",
-    "name": "",
-    "items": [],
+    "name": "Descer o cacete",
+    "items": [320, 291, 376, 217],
     "difficulty": 0
   },
   "c-176-br": {
     "id": "c-176-br",
-    "name": "",
-    "items": [],
+    "name": "Seco",
+    "items": [434, 265, 363, 364],
     "difficulty": 0
   },
   "c-177-br": {
     "id": "c-177-br",
-    "name": "",
-    "items": [],
+    "name": "Jogando pedra-papel-tesoura",
+    "items": [115, 478],
     "difficulty": 0
   },
   "c-178-br": {
     "id": "c-178-br",
-    "name": "",
-    "items": [],
+    "name": "Portas",
+    "items": [152, 154, 510, 107, 475, 509],
     "difficulty": 0
   },
   "c-179-br": {
     "id": "c-179-br",
-    "name": "",
-    "items": [],
+    "name": "Equino",
+    "items": [35, 34, 36, 312],
     "difficulty": 0
   },
   "c-180-br": {
