@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FIRST_ID } from './constants';
+import { FIRST_ID, LAST_ID } from './constants';
 
 export function useItem(initialItem = FIRST_ID) {
   const [itemId, setItemId] = useState(initialItem);
@@ -23,12 +23,14 @@ export function useItem(initialItem = FIRST_ID) {
       }
 
       if (target === 'last') {
-        return initialItem;
+        return LAST_ID;
       }
 
       const curNum = Number(cur);
       const result = target + curNum;
-      if (result > 0 && result <= Number(initialItem) + 1) {
+
+      if (result > 0 && result <= Number(LAST_ID) + 1) {
+        console.log('result', result);
         return String(Number(cur) + target);
       }
 
