@@ -88,7 +88,7 @@ const options: Record<string, SpriteOption> = {
     key: 'items',
     label: 'Items',
     prefix: 'item',
-    quantity: 640,
+    quantity: 768,
     startAt: 1,
   },
   trees: {
