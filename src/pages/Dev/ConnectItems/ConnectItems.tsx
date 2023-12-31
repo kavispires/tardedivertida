@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { DevHeader } from '../DevHeader';
 import { ConnectionGroup, GroupSummary, ItemGroup } from './types';
+import { LAST_ID } from '../Classifier/constants';
 
 /**
  * Item Connections game
@@ -41,7 +42,7 @@ function ConnectItemsContent({ data }: ConnectItemsContentProps) {
     const items: Record<string, GroupSummary[]> = {};
     sortedData.forEach((group) => {
       group.items.forEach((item) => {
-        if (group.items.length >= 3) {
+        if (group.items.length >= 0) {
           if (!items[item]) {
             items[item] = [];
           }
@@ -54,14 +55,26 @@ function ConnectItemsContent({ data }: ConnectItemsContentProps) {
         }
       });
     });
+
+    const allItems = new Array(Number(LAST_ID))
+      .fill(0)
+      .map((_, i) => String(i + 1))
+      .reduce((acc: Record<string, GroupSummary[]>, id) => {
+        if (items[id]) {
+          acc[id] = items[id];
+        } else {
+          acc[id] = [];
+        }
+        return acc;
+      }, {});
     return orderBy(
-      Object.entries(items).map(([itemId, groups]) => ({
+      Object.entries(allItems).map(([itemId, groups]) => ({
         itemId,
         groups,
         total: groups.length,
       })),
       ['total'],
-      ['desc']
+      ['asc']
     );
   }, [sortedData]);
 
