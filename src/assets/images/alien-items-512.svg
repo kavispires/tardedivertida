@@ -1756,7 +1756,7 @@
       <circle cx="123.8" cy="435" r="7.5" />
       <circle cx="96" cy="418.3" r="7.5" />
       <circle cx="96" cy="454.1" r="7.5" />
-      <path fill="none" d="M0 0h512v512H0z" />
+
     </symbol>
     <symbol id="item-500">
       <title>telemarketer</title>
