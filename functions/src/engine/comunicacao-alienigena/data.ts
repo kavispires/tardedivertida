@@ -26,7 +26,7 @@ export const getResourceData = async (
   let botAlienItemKnowledge: Collection<AlienItem> = {};
 
   // Get the 25 needed items randomly
-  const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, allowNSFW);
+  const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, allowNSFW, isBotAlien);
 
   const items: Item[] = getItems(playerCount).map((itemType, index) => ({
     id: selectedAlienItems[index].id,
