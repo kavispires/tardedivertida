@@ -4,7 +4,7 @@ import { Space } from 'antd';
 // Hooks
 // Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
+import { NOOP, PLACEHOLDER_PLAYER } from 'utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 // Components
@@ -100,7 +100,7 @@ export function StepWaitDoorSelection({
           onDisableButtons={NOOP}
           onSubmitDoor={NOOP}
           onMakeReady={NOOP}
-          user={{ doorId: 'ABC', ready: true }}
+          user={{ ...PLACEHOLDER_PLAYER, doorId: 'ABC', ready: true }}
         />
       </RuleInstruction>
 

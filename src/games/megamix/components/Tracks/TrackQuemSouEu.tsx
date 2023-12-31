@@ -25,7 +25,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
     });
   });
 
-  const botPlayer = useMemo(() => {
+  const botPlayer: GamePlayer = useMemo(() => {
     const selectedGlyphs: BooleanDictionary = {};
     track.data.positive.forEach((glyph: number) => {
       selectedGlyphs[glyph] = true;
@@ -33,7 +33,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
     track.data.negative.forEach((glyph: number) => {
       selectedGlyphs[glyph] = false;
     });
-    return { id: 'A', avatarId: 'A', name: 'Bob', selectedGlyphs };
+    return { id: 'A', avatarId: 'A', name: 'Bob', selectedGlyphs, ready: false, updatedAt: 0 };
   }, [track.data]);
 
   return (

@@ -9,7 +9,7 @@ import { Instruction } from 'components/text';
 import { TimedTimerBar } from 'components/timers';
 
 type StopAnnouncementProps = {
-  stopper: Player;
+  stopper: GamePlayer;
   onSubmit: () => void;
 };
 

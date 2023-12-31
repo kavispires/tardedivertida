@@ -184,16 +184,18 @@ interface Me {
   };
 }
 
-interface Player {
+type GamePlayer<TPlayer = PlainObject> = {
   id: PlayerId;
   name: PlayerName;
   avatarId: PlayerAvatarId;
   updatedAt: DateMilliseconds;
   ready: boolean;
   [key: string]: any;
-}
+} & TPlayer;
 
-type GamePlayer = Player | PlainObject;
+interface GamePlayers<TPlayer = any> {
+  [key: string]: GamePlayer<TPlayer>;
+}
 
 interface Redirect {
   redirectAt: DateMilliseconds;
@@ -283,10 +285,6 @@ type GameRound = {
   total: number;
   forceLastRound: boolean;
 };
-
-interface GamePlayers {
-  [key: string]: Player;
-}
 
 type CanvasLine = number[];
 type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;

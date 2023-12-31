@@ -73,7 +73,7 @@ export function mockPlayers(
 
   const neededQuantity = quantity - Object.keys(players).length;
 
-  const mockedPlayers: Player[] = Array(neededQuantity)
+  const mockedPlayers: GamePlayer[] = Array(neededQuantity)
     .fill(0)
     .map((e, i) => {
       const name = mockPlayerName(Object.keys(usedNames));

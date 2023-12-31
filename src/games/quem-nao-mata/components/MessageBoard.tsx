@@ -2,6 +2,7 @@ import { Button, Form, Popover, Select } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { useLanguage } from 'hooks/useLanguage';
+import { PLACEHOLDER_PLAYER } from 'utils/constants';
 
 type MessageBoardProps = {
   messages: Record<PlayerId, QMessage>;
@@ -70,7 +71,14 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
       <Form.Item label={<Translate pt="Enviar para" en="Send to" />} name="recipientId" required>
         <Select placeholder={<Translate pt="Selecione alguém" en="Select someone" />}>
           <Select.Option value="ALL">
-            <AvatarName player={{ id: 'unknown', avatarId: 'N', name: translate('TODOS', 'EVERYBODY') }} />
+            <AvatarName
+              player={{
+                ...PLACEHOLDER_PLAYER,
+                id: 'unknown',
+                avatarId: 'N',
+                name: translate('TODOS', 'EVERYBODY'),
+              }}
+            />
           </Select.Option>
           {Object.values(players).map((player) => {
             return (

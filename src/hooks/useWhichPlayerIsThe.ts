@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useGlobalState } from './useGlobalState';
+import { PLACEHOLDER_PLAYER } from 'utils/constants';
 
 /**
  * Gets player that is assigned to a property in the state
@@ -14,7 +15,7 @@ export function useWhichPlayerIsThe(
   players: GamePlayers = {}
 ): [GamePlayer, boolean] {
   const [userId] = useGlobalState('userId');
-  const [activePlayer, setActivePlayer] = useState<GamePlayer>({});
+  const [activePlayer, setActivePlayer] = useState<GamePlayer>(PLACEHOLDER_PLAYER);
   const [isUser, setIsUser] = useState(false);
 
   // Determine if user is active as the guesser, the clue giver, the psychic, the storyteller, etc
