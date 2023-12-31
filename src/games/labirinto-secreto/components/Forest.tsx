@@ -4,6 +4,7 @@ import { findLast } from 'lodash';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getDirection } from '../utils/helpers';
+import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
@@ -41,7 +42,7 @@ export function Forest({
   players,
   size = 'large',
   hidePassedTreeNames = false,
-  user = {},
+  user = PLACEHOLDER_PLAYER,
   forestBorderColor = 'transparent',
   playerMapping,
 }: ForestProps) {

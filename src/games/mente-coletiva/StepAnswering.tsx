@@ -94,7 +94,7 @@ export function StepAnswering({
             .map((i, index) => {
               const num = i + index;
               const key = `answer-${index}`;
-              const id = getEntryId(['answer', index, user.id]);
+              const id = getEntryId(['answer', String(index), user.id]);
               return (
                 <li className="m-answers__item" key={key}>
                   <Input

@@ -18,10 +18,10 @@ type StepResultsProps = {
   currentMonster: Monster;
   goToNextStep: GenericFunction;
   sketches: Sketch[];
-  user: Player | PlainObject;
+  user: GamePlayer;
   players: GamePlayers;
   witnessVote: PlayerId;
-  witness: Player | PlainObject;
+  witness: GamePlayer;
   mostVotes: PlayerId[];
   mostVoted: PlayerId;
   votes: Record<PlayerId, PlayerId[]>;

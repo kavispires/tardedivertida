@@ -19,7 +19,7 @@ type StepVoteProps = {
   currentMonster: Monster;
   onSubmitVote: GenericFunction;
   sketches: Sketch[];
-  user: Player | PlainObject;
+  user: GamePlayer;
   players: GamePlayers;
 } & AnnouncementProps;
 
