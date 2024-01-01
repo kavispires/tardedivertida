@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
 import './MonsterCard.scss';
 
 interface MonsterCardProps extends SpaceProps {
-  currentMonster: Monster;
+  currentMonster: MonsterCard;
   showControls?: boolean;
   cardWidth?: number;
 }

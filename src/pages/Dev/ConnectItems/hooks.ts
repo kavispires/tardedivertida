@@ -19,7 +19,7 @@ export function useConnectTrioGame() {
   const [creatingGame, setCreatingGame] = useState(true);
   const [game, setGame] = useState<ConnectionGame | null>(null);
 
-  const query = useQuery<Collection<ConnectionGroup>>({
+  const query = useQuery<Dictionary<ConnectionGroup>>({
     queryKey: ['connect-items'],
     queryFn: async () => {
       const response = await fetch(`${PUBLIC_URL.RESOURCES}/connect-items.json`);
