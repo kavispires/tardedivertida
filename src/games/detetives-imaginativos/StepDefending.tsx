@@ -1,3 +1,5 @@
+// Types
+import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -10,7 +12,7 @@ type StepDefendingProps = {
   clue: string;
   currentPlayer: GamePlayer;
   isUserTheCurrentPlayer: boolean;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
   onFinishDefenseClick: GenericFunction;
   isLoading: boolean;
   isUserTheImpostor: boolean;

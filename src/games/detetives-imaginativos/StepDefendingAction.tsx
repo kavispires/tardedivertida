@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App, Space } from 'antd';
+// Types
+import type { CardEntry } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -18,7 +20,7 @@ import { messageContent } from 'components/pop-up';
 type StepDefendingActionProps = {
   clue: string;
   currentPlayer: GamePlayer;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
   onFinishDefenseClick: GenericFunction;
   isLoading: boolean;
   isUserTheImpostor: boolean;

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
+// Types
+import type { CardEntry } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -24,7 +26,7 @@ type StepPlayCardActionProps = {
   isUserTheImpostor: boolean;
   clue: string;
   currentPlayer: GamePlayer;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
   players: GamePlayers;
   user: GamePlayer;
   onPlayCard: GenericFunction;

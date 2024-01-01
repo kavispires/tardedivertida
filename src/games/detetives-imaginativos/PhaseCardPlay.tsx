@@ -16,7 +16,7 @@ import { Translate } from 'components/language';
 import { StepPlayCard } from './StepPlayCard';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 
-function PhaseCardPlay({ state, players, info }: PhaseProps) {
+export function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const user = useUser(players, state);
@@ -81,5 +81,3 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCardPlay;

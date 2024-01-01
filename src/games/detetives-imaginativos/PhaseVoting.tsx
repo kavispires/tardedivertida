@@ -16,7 +16,7 @@ import { StepVoting } from './StepVoting';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 
-function PhaseVoting({ state, players, info }: PhaseProps) {
+export function PhaseVoting({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const user = useUser(players, state);
@@ -75,5 +75,3 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseVoting;
