@@ -28,7 +28,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
   if (itemEntry.type === 'images') {
     return (
       <ImageCard
-        imageId={itemEntry.value}
+        id={itemEntry.value}
         cardWidth={(looseItem ? 1.5 : 1) * 100 * sizeMultiplier}
         className={className}
         preview={false}

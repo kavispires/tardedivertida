@@ -14,7 +14,7 @@ type ImageCardButtonProps = {
   /**
    * The id of the image
    */
-  imageId: string;
+  id: string;
   /**
    * The content, usually a ImageCard component
    */
@@ -54,7 +54,7 @@ type ImageCardButtonProps = {
 };
 
 export function ImageCardButton({
-  imageId,
+  id,
   children,
   className = '',
   buttonPosition = 'top',
@@ -82,7 +82,7 @@ export function ImageCardButton({
         over && `image-card-button__button--over-${buttonPosition}`,
         buttonClassName
       )}
-      onClick={() => onClick(imageId)}
+      onClick={() => onClick(id)}
       disabled={disabled}
       {...restButtonProps}
     >
@@ -96,8 +96,8 @@ export function ImageCardButton({
 
   return (
     <div className={clsx('image-card-button', className)}>
-      <ImageBlurButtonContainer cardId={imageId} position={buttonPosition === 'bottom' ? 'top' : 'bottom'}>
-        <DebugOnly>{imageId}</DebugOnly>
+      <ImageBlurButtonContainer cardId={id} position={buttonPosition === 'bottom' ? 'top' : 'bottom'}>
+        <DebugOnly>{id}</DebugOnly>
         <div className="image-card-button__container">
           {isTop && button}
           {children}

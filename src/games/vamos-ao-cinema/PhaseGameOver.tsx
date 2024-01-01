@@ -28,7 +28,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
           <Space className="space-container" wrap>
             {state.finalMovies.map((movie: PlainObject) => (
               <Space direction="vertical" key={movie.id} className="space-container">
-                <ImageCard imageId={movie.posterId} cardWidth={posterWidth} preview={false} />
+                <ImageCard id={movie.posterId} cardWidth={posterWidth} preview={false} />
                 <TextHighlight>{movie.title}</TextHighlight>
               </Space>
             ))}

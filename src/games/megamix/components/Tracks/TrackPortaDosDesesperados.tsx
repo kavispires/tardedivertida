@@ -59,7 +59,7 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
               <Space className="space-container" direction="vertical" key={cardId}>
                 <ImageBlurButtonContainer cardId={cardId}>
                   <DoorFrame width={doorWidth}>
-                    <ImageCard imageId={cardId} cardWidth={150} />
+                    <ImageCard id={cardId} cardWidth={150} />
                   </DoorFrame>
                 </ImageBlurButtonContainer>
                 <Button
@@ -81,10 +81,10 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
         <Image.PreviewGroup>
           <Book>
             <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard imageId={track.data.book[0]} cardWidth={140} />
+              <ImageCard id={track.data.book[0]} cardWidth={140} />
             </ImageBlurButtonContainer>
             <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard imageId={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
+              <ImageCard id={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
             </ImageBlurButtonContainer>
           </Book>
         </Image.PreviewGroup>

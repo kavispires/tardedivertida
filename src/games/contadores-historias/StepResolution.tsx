@@ -52,7 +52,7 @@ export function StepResolution({
             <div className="c-story-book__selected-card">
               {solution && (
                 <>
-                  <ImageCard imageId={solution.cardId} cardWidth={160} />
+                  <ImageCard id={solution.cardId} cardWidth={160} />
                   <ImageBlurButton cardId={solution.cardId} />
                 </>
               )}
@@ -101,7 +101,7 @@ export function StepResolution({
                 )}
               </div>
 
-              <ImageCard imageId={cardEntry.cardId} cardWidth={cardWidth} className={'c-other-cards__card'} />
+              <ImageCard id={cardEntry.cardId} cardWidth={cardWidth} className={'c-other-cards__card'} />
               <ImageBlurButton cardId={cardEntry.cardId} />
 
               <div className="c-other-cards__votes">

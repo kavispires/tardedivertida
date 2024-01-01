@@ -51,7 +51,7 @@ export function StepResult({
         {outcome === 'CAST' ? (
           <SuspectCard suspect={activeRole.candidates[activeRole.actor!]} width={120} />
         ) : (
-          <ImageCard imageId="us-unknown" cardWidth={120} preview={false} />
+          <ImageCard id="us-unknown" cardWidth={120} preview={false} />
         )}
       </RoleBoard>
 

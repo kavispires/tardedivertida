@@ -123,7 +123,7 @@ export function StepSelectAll({
                   style={{ width: `${cardWidth + 8}px` }}
                 >
                   <ImageCardButton
-                    imageId={cardId}
+                    id={cardId}
                     onClick={() => toggleCard(cardId)}
                     buttonPosition="bottom"
                     icon={isSelected ? <CloseCircleOutlined /> : undefined}
@@ -136,7 +136,7 @@ export function StepSelectAll({
                     }
                   >
                     <ImageCard
-                      imageId={cardId}
+                      id={cardId}
                       cardWidth={cardWidth - 6} // 6 is the border total size
                       square
                       className={clsx('n-table-image', isSelected && 'n-table-image--selected')}
