@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
 import { StepRanking } from './StepRanking';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
-function PhaseReact({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   const announcement = (
@@ -73,5 +73,3 @@ function PhaseReact({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseReact;
