@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Avatar as AntAvatar, Flex, Space } from 'antd';
 // Types
 import type { Robot, RobotGalleryEntry } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
@@ -24,7 +25,7 @@ type StepResultProps = {
   user: GamePlayer;
   players: GamePlayers;
   result: RobotGalleryEntry;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
   robot: Robot;
 } & AnnouncementProps;
 

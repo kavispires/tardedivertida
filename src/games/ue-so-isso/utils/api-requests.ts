@@ -6,6 +6,7 @@ import type {
   SubmitVotesPayload,
   ValidateSuggestionPayload,
 } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -13,7 +14,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'ueSoIssoSubmitAction');
 
-export function useOnSubmitVotesAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -36,7 +37,7 @@ export function useOnSubmitVotesAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitSuggestionsAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -59,7 +60,7 @@ export function useOnSubmitSuggestionsAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitValidationsAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitValidationsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -103,7 +104,7 @@ export function useOnValidateSuggestionAPIRequest() {
   };
 }
 
-export function useOnSubmitOutcomeAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

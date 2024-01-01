@@ -2,6 +2,7 @@
 import { Space } from 'antd';
 // Types
 import type { Sketch } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -18,7 +19,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepResultsProps = {
   currentMonster: MonsterCard;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
   sketches: Sketch[];
   user: GamePlayer;
   players: GamePlayers;

@@ -4,6 +4,7 @@ import type {
   SubmitChallengePayload,
   SubmitContendersPayload,
 } from './type';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -12,7 +13,7 @@ import { ACTIONS } from './constants';
 
 const submitAction = httpsCallable(functions, 'superCampeonatoSubmitAction');
 
-export function useOnSubmitChallengeAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitChallengeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -35,7 +36,7 @@ export function useOnSubmitChallengeAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitContenderAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitContenderAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -58,7 +59,7 @@ export function useOnSubmitContenderAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitBetsAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitBetsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -81,7 +82,7 @@ export function useOnSubmitBetsAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitVotesAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

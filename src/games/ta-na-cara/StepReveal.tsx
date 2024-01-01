@@ -2,6 +2,7 @@
 import { Space } from 'antd';
 // Types
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
@@ -28,7 +29,7 @@ type StepRevealProps = {
   activePlayerId: PlayerId;
   points: number;
   correct: PlayerId[];
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
   result: GamePlayer | null;
 } & AnnouncementProps;
 

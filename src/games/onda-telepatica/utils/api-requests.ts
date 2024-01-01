@@ -1,8 +1,9 @@
+import type { SubmitCategoryPayload, SubmitCluePayload, SubmitGuessPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import { SubmitCategoryPayload, SubmitCluePayload, SubmitGuessPayload } from './types';
 
 const submitAction = httpsCallable(functions, 'ondaTelepaticaSubmitAction');
 
@@ -48,7 +49,7 @@ export function useOnSubmitClueAPIRequest() {
   };
 }
 
-export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

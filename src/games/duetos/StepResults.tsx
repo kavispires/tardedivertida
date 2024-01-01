@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { Avatar as AntAvatar, Space } from 'antd';
 // Types
 import type { DuetosGalleryEntry, Item, LefOutEntry } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
@@ -17,7 +18,7 @@ type StepResultProps = {
   gallery: DuetosGalleryEntry[];
   leftOut: LefOutEntry[];
   pool: Item[];
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
 } & AnnouncementProps;
 
 export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut, players }: StepResultProps) {

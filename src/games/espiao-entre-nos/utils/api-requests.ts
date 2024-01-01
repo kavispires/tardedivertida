@@ -5,6 +5,7 @@ import type {
   SendLastQuestionerPayload,
   SubmitVotePayload,
 } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { ADMIN_API } from 'services/adapters';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
@@ -14,7 +15,7 @@ import { ADMIN_ACTIONS } from 'utils/constants';
 
 const submitAction = httpsCallable(functions, 'espiaoEntreNosSubmitAction');
 
-export function useOnGuessLocationAPIRequest(setStep: GenericFunction) {
+export function useOnGuessLocationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -37,7 +38,7 @@ export function useOnGuessLocationAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnMakeAccusationAPIRequest(setStep: GenericFunction) {
+export function useOnMakeAccusationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -60,7 +61,7 @@ export function useOnMakeAccusationAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -82,7 +83,7 @@ export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSendLastQuestionerAPIRequest(setStep: GenericFunction) {
+export function useOnSendLastQuestionerAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -107,7 +108,7 @@ export function useOnSendLastQuestionerAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnProgressGameAPIRequest(setStep: GenericFunction) {
+export function useOnProgressGameAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

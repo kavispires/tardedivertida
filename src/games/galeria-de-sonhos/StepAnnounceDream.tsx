@@ -7,6 +7,7 @@ import type { LatestInfo } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import type { UseStep } from 'hooks/useStep';
 // Constants
 import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
 // Helpers
@@ -32,7 +33,7 @@ type StepAnnounceDreamProps = {
   lastActivePlayer: GamePlayer;
   activePlayer: GamePlayer;
   playerInNightmare?: GamePlayer;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
   players: GamePlayers;
   gameOrder: TurnOrder;
 };

@@ -1,12 +1,13 @@
+import type { SubmitActionPayload } from './types';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import type { SubmitActionPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 
 const submitAction = httpsCallable(functions, 'templateSubmitAction');
 
-export function useOnSubmitVotingAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitVotingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

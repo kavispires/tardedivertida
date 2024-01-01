@@ -1,12 +1,13 @@
+import type { SubmitReactionPayload, SubmitTweetPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import { SubmitReactionPayload, SubmitTweetPayload } from './types';
 
 const submitAction = httpsCallable(functions, 'polemicaDaVezSubmitAction');
 
-export function useOnSubmitTweetAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitTweetAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -29,7 +30,7 @@ export function useOnSubmitTweetAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitReactionAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitReactionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

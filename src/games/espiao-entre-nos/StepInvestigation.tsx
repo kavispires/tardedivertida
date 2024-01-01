@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import type { UseStep } from 'hooks/useStep';
 // Ant Design Resources
 import { App, Space } from 'antd';
 // Types
@@ -28,7 +29,7 @@ type StepInvestigationProps = {
   onMakeAccusation: GenericFunction;
   onSendLastQuestioner: GenericFunction;
   outcome?: Outcome;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
 };
 
 export function StepInvestigation({

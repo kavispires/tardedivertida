@@ -1,12 +1,13 @@
+import type { PlayCardPayload, SubmitCardsPayload, SubmitWordPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import { PlayCardPayload, SubmitCardsPayload, SubmitWordPayload } from './types';
 
 const submitAction = httpsCallable(functions, 'galeriaDeSonhosSubmitAction');
 
-export function useOnSubmitWordAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -29,7 +30,7 @@ export function useOnSubmitWordAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitCardsAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -52,7 +53,7 @@ export function useOnSubmitCardsAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnPlayCardAPIRequest(setStep: GenericFunction) {
+export function useOnPlayCardAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

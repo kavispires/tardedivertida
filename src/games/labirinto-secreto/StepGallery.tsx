@@ -1,5 +1,6 @@
 // Types
 import type { Tree } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Utils
 import { PAGE_DURATION } from './utils/constants';
 import { getAvatarColorById } from 'utils/helpers';
@@ -19,7 +20,7 @@ type StepGalleryProps = {
   forest: Tree[];
   activeIndex: number;
   setActiveIndex: GenericFunction;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
   isFirstGalleryRunThrough: boolean;
   user: GamePlayer;
   gallery: GamePlayer[];

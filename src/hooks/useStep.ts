@@ -1,15 +1,17 @@
 import { useState } from 'react';
 
+export type UseStep = {
+  step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  goToNextStep: () => void;
+  goToPreviousStep: () => void;
+};
+
 /**
  * Controls steps
  * @param startingStep
  */
-export function useStep(startingStep = 0): {
-  step: number;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-  goToNextStep: GenericFunction;
-  goToPreviousStep: GenericFunction;
-} {
+export function useStep(startingStep = 0): UseStep {
   const [step, setStep] = useState<number>(startingStep);
 
   const goToNextStep = () => setStep((s) => s + 1);

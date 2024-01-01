@@ -3,6 +3,7 @@ import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { Bet, Bracket } from './utils/type';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -18,7 +19,7 @@ type StepWinnerProps = {
   challenge: TextCard;
   brackets: Bracket[];
   bets: Bet;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
   selectedContenderId: CardId;
 } & AnnouncementProps;
 

@@ -6,6 +6,7 @@ import type {
   SubmitOutcomePayload,
   SubmitHelpPayload,
 } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -13,7 +14,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'vendavalDePalpiteSubmitAction');
 
-export function useOnSubmitBossPlayerAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitBossPlayerAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -36,7 +37,7 @@ export function useOnSubmitBossPlayerAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitSecretWordAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitSecretWordAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -59,7 +60,7 @@ export function useOnSubmitSecretWordAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitPlayerCluesAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitPlayerCluesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -82,7 +83,7 @@ export function useOnSubmitPlayerCluesAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitEvaluationAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -105,7 +106,7 @@ export function useOnSubmitEvaluationAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitOutcomeAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -128,7 +129,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitHelpAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitHelpAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

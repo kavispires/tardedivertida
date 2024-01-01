@@ -5,6 +5,7 @@ import { Space, Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { Clue, Grid, GridType } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -183,7 +184,7 @@ type StepRevealProps = {
   gridType: GridType;
   user: GamePlayer;
   clues: Clue[];
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
   whoGotNoPoints: PlayerId[];
 } & AnnouncementProps;
 

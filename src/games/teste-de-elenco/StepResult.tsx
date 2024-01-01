@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { Space } from 'antd';
 // Types
 import type { ActingRole } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
@@ -20,7 +21,7 @@ type StepResultProps = {
   activeRole: ActingRole;
   outcome: string;
   players: GamePlayers;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
 } & AnnouncementProps;
 
 export function StepResult({
