@@ -1,5 +1,7 @@
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Types
+import type { Location } from './utils/types';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -12,7 +14,7 @@ import { Notes } from './components/Notes';
 type StepAssignmentProps = {
   user: GamePlayer;
   isUserTheSpy: boolean;
-  locations: ELocation[];
+  locations: Location[];
 };
 
 export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignmentProps) {

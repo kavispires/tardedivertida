@@ -1,3 +1,10 @@
+import type {
+  GameProgressPayload,
+  GuessLocationPayload,
+  MakeAccusationPayload,
+  SendLastQuestionerPayload,
+  SubmitVotePayload,
+} from './types';
 import { ADMIN_API } from 'services/adapters';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';

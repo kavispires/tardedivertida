@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+// Types
+import type { Location } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -9,7 +11,7 @@ import { useLoading } from 'hooks/useLoading';
 import { Translate } from 'components/language';
 
 type LocationSelectProps = {
-  locations: ELocation[];
+  locations: Location[];
   onSend: GenericFunction;
 };
 

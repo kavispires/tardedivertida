@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App, Space } from 'antd';
+// Types
+import type { Location, Outcome, TimerType } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -19,13 +21,13 @@ import { Timer } from './components/Timer';
 type StepInvestigationProps = {
   user: GamePlayer;
   isUserTheSpy: boolean;
-  locations: ELocation[];
+  locations: Location[];
   players: GamePlayers;
-  timer: Timer;
+  timer: TimerType;
   onGuessLocation: GenericFunction;
   onMakeAccusation: GenericFunction;
   onSendLastQuestioner: GenericFunction;
-  outcome?: EOutcome;
+  outcome?: Outcome;
   setStep: GenericFunction;
 };
 
