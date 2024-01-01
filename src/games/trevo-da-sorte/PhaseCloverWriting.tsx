@@ -13,7 +13,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepWriteClues } from './StepWriteClues';
 
-function PhaseCloverWriting({ players, state, info }: PhaseProps) {
+export function PhaseCloverWriting({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep(0);
 
@@ -41,5 +41,3 @@ function PhaseCloverWriting({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCloverWriting;

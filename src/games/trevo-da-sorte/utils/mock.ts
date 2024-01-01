@@ -1,4 +1,6 @@
 import { sampleSize } from 'lodash';
+// Types
+import type { CloverObject, Guesses, Leaves } from './types';
 // Utils
 import { getRandomItem, shuffle } from 'utils/helpers';
 import { ROTATIONS, WORST_TO_REMOVE } from './constants';
@@ -15,7 +17,7 @@ const glue2Words = (word1: string, word2: string) => {
   )}`;
 };
 
-export const mockClues = (clover: Clover, leaves: Leaves, rotations: NumberDictionary): string[] => {
+export const mockClues = (clover: CloverObject, leaves: Leaves, rotations: NumberDictionary): string[] => {
   return [
     glue2Words(
       getWord(clover, leaves, rotations, 'A', 'top'),
@@ -38,7 +40,7 @@ export const mockClues = (clover: Clover, leaves: Leaves, rotations: NumberDicti
 
 const mockedScore = [3, 1, 1, 1, 0, 0];
 
-export const mockGuesses = (leaves: Leaves): YGuesses => {
+export const mockGuesses = (leaves: Leaves): Guesses => {
   const selected = sampleSize(Object.keys(leaves), 4);
 
   return {

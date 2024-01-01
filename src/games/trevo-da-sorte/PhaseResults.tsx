@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepRanking } from './StepRanking';
 
-function PhaseResults({ players, state, info }: PhaseProps) {
+export function PhaseResults({ players, state, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (
@@ -43,5 +43,3 @@ function PhaseResults({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseResults;

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Tabs } from 'antd';
+// Types
+import type { CloverObject, Leaves } from '../utils/types';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
@@ -10,7 +12,7 @@ import { Clover } from './Clover';
 
 type PlayersGuessesProps = {
   players: GamePlayers;
-  clover: Clover;
+  clover: CloverObject;
   leaves: Leaves;
   rotation: number;
   onRotate: GenericFunction;

@@ -16,7 +16,7 @@ import { ViewOr } from 'components/views';
 import { TurnOrder } from 'components/players';
 import { StepWaitClover } from './StepWaitClover';
 
-function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
+export function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [activeCloverPlayer, isUserTheCloverPlayer] = useWhichPlayerIsThe('activeCloverId', state, players);
 
@@ -63,5 +63,3 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCloverGuessing;
