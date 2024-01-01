@@ -10,9 +10,9 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseMovieSelection } from './PhaseMovieSelection';
 import { PhaseMovieElimination } from './PhaseMovieElimination';
 import { PhaseReveal } from './PhaseReveal';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './vamos-ao-cinema.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
