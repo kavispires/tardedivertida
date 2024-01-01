@@ -3,6 +3,7 @@ import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 import { ACTIONS } from './constants';
+import { SubmitBadWordsPayload, SubmitCloverGuessesPayload, SubmitCluesPayload } from './types';
 
 const submitAction = httpsCallable(functions, 'trevoDaSorteSubmitAction');
 

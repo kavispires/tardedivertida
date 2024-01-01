@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Button, Popconfirm, Space } from 'antd';
+// Types
+import type { CloverObject, Leaves } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -18,7 +20,7 @@ import { PopoverRule } from 'components/rules';
 import { ConfirmClues } from './components/ConfirmClues';
 
 type StepWriteCluesProps = {
-  clover: Clover;
+  clover: CloverObject;
   leaves: Leaves;
   onSubmitClues: GenericFunction;
 };

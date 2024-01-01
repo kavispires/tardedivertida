@@ -1,3 +1,5 @@
+// Types
+import type { Leaves, CloverObject } from '../utils/types';
 // Utils
 import { parseRotation } from '../utils/helpers';
 // Components
@@ -5,7 +7,7 @@ import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
 
 type ConfirmCluesProps = {
-  clover: Clover;
+  clover: CloverObject;
   leaves: Leaves;
   clues: string[];
   rotations: NumberDictionary;
@@ -33,7 +35,7 @@ export function ConfirmClues({ clover, leaves, clues, rotations }: ConfirmCluesP
   );
 }
 
-const getWords = (clover: Clover, leaves: Leaves, rotations: NumberDictionary) => {
+const getWords = (clover: CloverObject, leaves: Leaves, rotations: NumberDictionary) => {
   const leafA = leaves[clover.leaves.A.leafId];
   const leafARotation = parseRotation(rotations[leafA.id]);
   const leafB = leaves[clover.leaves.B.leafId];

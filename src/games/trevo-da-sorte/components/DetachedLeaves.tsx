@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { orderBy } from 'lodash';
 // And Design Resources
 import { Space } from 'antd';
+// Types
+import type { Leaves, LeafId, LeafEvent } from '../utils/types';
 // Components
 import { Instruction } from 'components/text';
 import { Leaf } from './Leaf';

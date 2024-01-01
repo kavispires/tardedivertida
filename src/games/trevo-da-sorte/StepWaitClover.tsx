@@ -1,3 +1,5 @@
+// Types
+import type { CloverObject, Leaves } from './utils/types';
 // Hooks
 import { useCloverState } from './utils/useCloverState';
 // Components
@@ -10,7 +12,7 @@ import { DetachedLeaves } from './components/DetachedLeaves';
 
 type StepWaitCloverProps = {
   activeCloverPlayer: GamePlayer;
-  clover: Clover;
+  clover: CloverObject;
   leaves: Leaves;
 };
 
