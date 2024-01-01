@@ -1,5 +1,9 @@
 import clsx from 'clsx';
 import { findLast } from 'lodash';
+// Ant Design Resources
+import { Space } from 'antd';
+// Types
+import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -10,7 +14,6 @@ import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { ForestTree } from './ForestTree';
-import { Space } from 'antd';
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { AvatarGroup } from 'components/avatars/AvatarGroup';
 import { ViewIf } from 'components/views';

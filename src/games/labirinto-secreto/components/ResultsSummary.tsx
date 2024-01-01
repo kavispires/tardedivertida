@@ -1,13 +1,15 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 import { Avatar, IconAvatar } from 'components/avatars';
-import { TreeCard } from 'components/cards/TreeCard';
+// Types
+import type { MapSegment, Tree } from '../utils/types';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
+import { TreeCard } from 'components/cards/TreeCard';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 

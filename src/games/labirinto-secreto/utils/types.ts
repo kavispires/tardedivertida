@@ -1,26 +1,26 @@
-type SubmitMapPayload = {
-  newMap: (CardText | null)[];
+export type SubmitMapPayload = {
+  newMap: (TextCard | null)[];
 };
 
-type OnSubmitMapFunction = (payload: SubmitMapPayload) => void;
+export type OnSubmitMapFunction = (payload: SubmitMapPayload) => void;
 
-type SubmitPathGuessPayload = {
+export type SubmitPathGuessPayload = {
   pathId: PlayerId;
   guess: TreeId[];
   choseRandomly: boolean;
 };
 
-type OnSubmitPathGuessFunction = (payload: SubmitPathGuessPayload) => void;
+export type OnSubmitPathGuessFunction = (payload: SubmitPathGuessPayload) => void;
 
-type TreeId = number;
+export type TreeId = number;
 
-type Point = [number, number];
+export type Point = [number, number];
 
-type ExtendedTextCard = {
+export type ExtendedTextCard = {
   negate?: boolean;
 } & TextCard;
 
-interface Tree {
+export interface Tree {
   /**
    * Forest segment id/index
    */
@@ -35,9 +35,9 @@ interface Tree {
   card: TextCard;
 }
 
-type Direction = 'UP' | 'RIGHT' | 'DOWN' | 'LEFT';
+export type Direction = 'UP' | 'RIGHT' | 'DOWN' | 'LEFT';
 
-interface MapSegment {
+export interface MapSegment {
   /**
    * Player map index
    */
@@ -84,4 +84,4 @@ interface MapSegment {
   playersIds: PlayerId[];
 }
 
-type PlayerMapping = Record<TreeId, PlayerId[]>;
+export type PlayerMapping = Record<TreeId, PlayerId[]>;

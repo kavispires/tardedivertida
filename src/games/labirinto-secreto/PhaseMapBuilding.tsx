@@ -1,3 +1,5 @@
+// Types
+import type { MapSegment } from './utils/types';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
