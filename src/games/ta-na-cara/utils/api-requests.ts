@@ -1,3 +1,9 @@
+import type {
+  SubmitAnswerPayload,
+  SubmitGuessPayload,
+  SubmitPromptPayload,
+  SubmitTargetPayload,
+} from './types';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -84,7 +90,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
     ),
   });
 
-  return (payload: SubmitAnswerPayload) => {
+  return (payload: SubmitGuessPayload) => {
     request({
       action: 'SUBMIT_GUESS',
       ...payload,

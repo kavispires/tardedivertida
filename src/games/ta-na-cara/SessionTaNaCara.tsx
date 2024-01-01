@@ -9,11 +9,11 @@ import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 import { PhasePrompt } from './PhasePrompt';
 import { PhaseAnswer } from './PhaseAnswering';
-// Sass
-import './ta-na-cara.scss';
 import { PhaseGuessing } from './PhaseGuessing';
 import { PhaseReveal } from './PhaseReveal';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseGameOver } from './PhaseGameOver';
+// Sass
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

@@ -1,13 +1,15 @@
+// Types
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { CharactersBoard } from './components/CharactersBoard';
 import { AvatarName, IconAvatar } from 'components/avatars';
+import { CharactersBoard } from './components/CharactersBoard';
 import { PlayersBoards } from './components/PlayersBoards';
 import { UserQuestions } from './components/UserQuestions';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { TurnOrder } from 'components/players';
 
 type StepWaitingForPromptProps = {
