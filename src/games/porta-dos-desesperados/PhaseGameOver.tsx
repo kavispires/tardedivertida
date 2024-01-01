@@ -19,7 +19,7 @@ import { DoorFrame } from '../../components/game/DoorFrame';
 import { ImageCard } from 'components/image-cards';
 import { CaretRightOutlined } from '@ant-design/icons';
 
-function PhaseGameOver({ players, state, info }: PhaseProps) {
+export function PhaseGameOver({ players, state, info }: PhaseProps) {
   const isVictory = state.winCondition === 'WIN';
   const doorWidth = useCardWidth(10, {
     gap: 8,
@@ -91,5 +91,3 @@ function PhaseGameOver({ players, state, info }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

@@ -19,7 +19,7 @@ import { StepWaitDoorSelection } from './StepWaitDoorSelection';
 import { Translate } from 'components/language';
 import { ImageCardPreloadHand } from 'components/image-cards';
 
-function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
+export function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
@@ -92,5 +92,3 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseDoorChoice;

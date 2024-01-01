@@ -3,6 +3,7 @@ import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
+import { SubmitDoorPayload, SubmitPagesPayload } from './types';
 
 const submitAction = httpsCallable(functions, 'portaDosDesesperadosSubmitAction');
 
