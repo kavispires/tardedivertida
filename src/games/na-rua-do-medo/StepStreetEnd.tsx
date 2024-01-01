@@ -1,3 +1,5 @@
+// Types
+import type { CandySidewalk, StreetCard } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -12,8 +14,8 @@ import { HostNextPhaseButton } from 'components/host';
 import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepStreetEndProps = {
-  street: NStreet;
-  currentCard: NCard;
+  street: StreetCard[];
+  currentCard: StreetCard;
   candySidewalk: CandySidewalk;
   user: GamePlayer;
   isDoubleHorror: boolean;

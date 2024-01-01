@@ -13,7 +13,7 @@ import { Instruction } from 'components/text';
 import { StepStreetEnd } from './StepStreetEnd';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseStreetEnd({ state, players, info }: PhaseProps) {
+export function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);
   const user = useUser(players, state);
 
@@ -57,5 +57,3 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseStreetEnd;

@@ -16,13 +16,13 @@ import { StepMakeDecision } from './StepMakeDecision';
 import { PlayerStats } from './components/PlayerStats';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
+export function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
 
   const isNewStreet = state.street.length === 0;
-  const { step, goToNextStep, setStep } = useStep(isNewStreet ? 0 : 2);
+  const { step, goToNextStep } = useStep(isNewStreet ? 0 : 2);
 
-  const onSubmitDecision = useOnSubmitDecisionAPIRequest(setStep);
+  const onSubmitDecision = useOnSubmitDecisionAPIRequest();
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.TRICK_OR_TREAT}>
@@ -91,5 +91,3 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseTrickOrTreat;
