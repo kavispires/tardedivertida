@@ -11,7 +11,7 @@ import { PhaseOrdering } from './PhaseOrdering';
 import { PhaseResults } from './PhaseResults';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './fileira-de-fatos.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
