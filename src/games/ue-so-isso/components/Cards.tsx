@@ -1,13 +1,17 @@
+// Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { Suggestion } from '../utils/types';
+// Components
 import { SuggestionCard } from './SuggestionCard';
 
 type CardsProps = {
-  suggestions: UseSoIssoSuggestion[];
+  suggestions: Suggestion[];
   readOnly: boolean;
   players: GamePlayers;
   onSetValidation: Function;
   isLoading: boolean;
-  myRecommendation: UseSoIssoSuggestion[];
+  myRecommendation: Suggestion[];
 };
 
 export function Cards({

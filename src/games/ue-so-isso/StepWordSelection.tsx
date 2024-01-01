@@ -12,7 +12,7 @@ import { TurnOrder } from 'components/players';
 type StepWordSelectionProps = {
   guesser: GamePlayer;
   onSendSelectedWords: GenericFunction;
-  words: UeSoIssoCard[];
+  words: TextCard[];
   players: GamePlayers;
   turnOrder: TurnOrder;
 } & AnnouncementProps;
