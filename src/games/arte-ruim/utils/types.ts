@@ -1,11 +1,11 @@
-type ArteRuimCard = {
+export type ArteRuimCard = {
   id: string;
   text: string;
   level: number;
   playerId?: PlayerId;
 };
 
-type ArteRuimDrawing = {
+export type ArteRuimDrawing = {
   id: string;
   drawing: string;
   playerId: PlayerId;
@@ -14,11 +14,11 @@ type ArteRuimDrawing = {
   level: number;
 };
 
-type PlayersSay = {
+export type PlayersSay = {
   [key: string]: PlayerId[];
 };
 
-type ArteRuimWindow = {
+export type ArteRuimWindow = {
   artistId: PlayerId;
   correctAnswer: string;
   drawing: string;
@@ -29,12 +29,12 @@ type ArteRuimWindow = {
   text: string;
 };
 
-type SubmitDrawingPayload = {
+export type SubmitDrawingPayload = {
   drawing: string;
   cardId: string;
 };
 
-type SubmitVotingPayload = {
+export type SubmitVotingPayload = {
   votes: PlainObject;
   choseRandomly: boolean;
 };

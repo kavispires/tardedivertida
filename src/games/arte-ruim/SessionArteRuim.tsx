@@ -12,7 +12,7 @@ import PhaseEvaluation from './PhaseEvaluation';
 import PhaseGallery from './PhaseGallery';
 import PhaseGameOver from './PhaseGameOver';
 // Sass
-import './arte-ruim.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
