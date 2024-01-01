@@ -19,7 +19,7 @@ import { DoorFrame } from '../../components/game/DoorFrame';
 import { ImageCard } from 'components/image-cards';
 import { CaretRightOutlined } from '@ant-design/icons';
 
-function PhaseGameOver({ players, state, info }: PhaseProps) {
+export function PhaseGameOver({ players, state, info }: PhaseProps) {
   const isVictory = state.winCondition === 'WIN';
   const doorWidth = useCardWidth(10, {
     gap: 8,
@@ -80,7 +80,7 @@ function PhaseGameOver({ players, state, info }: PhaseProps) {
             {doors.map((doorId: ImageCardId, index, arr) => (
               <Fragment key={doorId || index}>
                 <DoorFrame width={doorWidth}>
-                  <ImageCard imageId={doorId || 'back-lockedDoor'} cardWidth={150} />
+                  <ImageCard id={doorId || 'back-lockedDoor'} cardWidth={150} />
                 </DoorFrame>
                 {index < arr.length - 1 && <CaretRightOutlined />}
               </Fragment>
@@ -91,5 +91,3 @@ function PhaseGameOver({ players, state, info }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

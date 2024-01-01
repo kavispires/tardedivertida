@@ -1,5 +1,8 @@
 // AntDesign Resources
 import { Button, Space } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
+import type { FightingContender } from 'games/super-campeonato/utils/type';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -44,7 +47,7 @@ export const TrackSuperCampeonato = ({ track, round, onSubmitAnswer, user, playe
       </Space>
 
       <Space className="space-container center">
-        {track.data.contenders.map((contender: WContender, index: number) => {
+        {track.data.contenders.map((contender: FightingContender, index: number) => {
           return (
             <Space direction="vertical" key={contender.id}>
               <ImageBlurButtonContainer cardId={contender.id}>

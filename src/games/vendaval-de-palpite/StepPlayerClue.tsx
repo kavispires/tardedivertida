@@ -2,6 +2,8 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Alert } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
+// Types
+import type { Clues, BoardObject } from './utils/types';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useMock } from 'hooks/useMock';
@@ -24,8 +26,8 @@ type StepPlayerClueProps = {
   secretWord: string;
   categories: string[];
   onSubmitClues: GenericFunction;
-  board: VBoard;
-  clues: VClues;
+  board: BoardObject;
+  clues: Clues;
   boss: GamePlayer;
   finalAnswersLeft: number;
   cluesPerPlayer: number;

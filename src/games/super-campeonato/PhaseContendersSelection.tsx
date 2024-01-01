@@ -14,7 +14,7 @@ import { Translate } from 'components/language';
 import { StepSelectContenders } from './StepSelectContenders';
 import { ContendersHand } from './components/ContendersHand';
 
-function PhaseContenderSelection({ state, players, info }: PhaseProps) {
+export function PhaseContenderSelection({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -56,5 +56,3 @@ function PhaseContenderSelection({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseContenderSelection;

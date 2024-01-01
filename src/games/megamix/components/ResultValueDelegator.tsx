@@ -1,3 +1,5 @@
+// Type
+import type { ResultComponentProps } from '../utils/types';
 // Components
 import { WinningCount } from './WinningCount';
 import { FallbackComponent } from './FallbackComponent';

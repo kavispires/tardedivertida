@@ -295,4 +295,12 @@ export const THEME_COLORS = {
   DARK_BLUE: '#0f4364f2',
 };
 
+export const PLACEHOLDER_PLAYER: GamePlayer = {
+  id: '',
+  name: '',
+  avatarId: 'unknown',
+  updatedAt: 0,
+  ready: false,
+};
+
 export const VIEWER_ID = '$viewer$';

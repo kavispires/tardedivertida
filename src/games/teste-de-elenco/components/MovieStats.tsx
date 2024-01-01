@@ -1,12 +1,18 @@
 import { useMemo } from 'react';
-import { getMovieSummary } from '../utils/helpers';
+// Ant Design Resources
 import { Divider, Tooltip } from 'antd';
-import { Translate } from 'components/language';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
+// Types
+import type { FeatureFilm } from '../utils/types';
+// Utils
+import { getMovieSummary } from '../utils/helpers';
+// Icons
 import { GenderIcon } from 'icons/GenderIcon';
 import { AgeIcon } from 'icons/AgeIcon';
 import { CulturesIcon } from 'icons/CulturesIcon';
 import { RainbowIcon } from 'icons/RainbowIcon';
+// Components
+import { Translate } from 'components/language';
+import { MetricHighlight } from 'components/metrics/MetricHighlight';
 
 type MovieStatsProps = {
   movie: FeatureFilm;

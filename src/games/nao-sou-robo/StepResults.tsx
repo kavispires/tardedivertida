@@ -1,6 +1,9 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar as AntAvatar, Flex, Space } from 'antd';
+// Types
+import type { Robot, RobotGalleryEntry } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
@@ -22,8 +25,7 @@ type StepResultProps = {
   user: GamePlayer;
   players: GamePlayers;
   result: RobotGalleryEntry;
-  goToNextStep: GenericFunction;
-
+  goToNextStep: UseStep['goToNextStep'];
   robot: Robot;
 } & AnnouncementProps;
 
@@ -64,7 +66,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
               </Flex>
 
               <ImageBlurButtonContainer cardId={option.id}>
-                <ImageCard imageId={option.id} cardWidth={cardWidth} />
+                <ImageCard id={option.id} cardWidth={cardWidth} />
               </ImageBlurButtonContainer>
 
               <AntAvatar.Group maxCount={7}>

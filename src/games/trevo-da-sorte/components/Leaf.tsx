@@ -3,6 +3,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button } from 'antd';
 import { DeleteOutlined, RedoOutlined } from '@ant-design/icons';
+// Types
+import type { LeafEntry, LeafPosition } from '../utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -12,7 +14,7 @@ import { LockIcon } from 'icons/LockIcon';
 import { IconAvatar } from 'components/avatars';
 
 type LeafProps = {
-  leaf: Leaf;
+  leaf: LeafEntry;
   rotation?: number;
   onLeafGrab?: GenericFunction;
   onLeafRemove?: GenericFunction;

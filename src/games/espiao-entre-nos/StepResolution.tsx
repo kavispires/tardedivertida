@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { ResolutionStatus } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';

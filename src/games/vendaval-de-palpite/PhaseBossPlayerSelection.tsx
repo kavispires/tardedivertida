@@ -12,7 +12,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepBossPlayerSelection } from './StepBossPlayerSelection';
 
-function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
+export function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
 
   const onBossPlayerClick = useOnSubmitBossPlayerAPIRequest(setStep);
@@ -53,5 +53,3 @@ function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseBossPlayerSelection;

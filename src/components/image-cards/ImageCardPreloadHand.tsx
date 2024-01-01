@@ -11,7 +11,7 @@ export function ImageCardPreloadHand({ hand }: ImageCardPreloadHandProps) {
   return (
     <div className="image-card-preload-hand">
       {hand.map((cardId) => (
-        <ImageCard imageId={cardId} cardWidth={1} key={`pre-load-${cardId}`} preview={false} />
+        <ImageCard id={cardId} cardWidth={1} key={`pre-load-${cardId}`} preview={false} />
       ))}
     </div>
   );

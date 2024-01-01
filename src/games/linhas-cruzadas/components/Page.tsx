@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
+// Types
+import type { Slide } from '../utils/types';
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Utils
@@ -11,7 +13,7 @@ import { Avatar, AvatarName } from 'components/avatars';
 // Componentes
 
 type PageProps = {
-  slide: LSlide;
+  slide: Slide;
   players: GamePlayers;
   albumColor: string;
   currentPage: number;

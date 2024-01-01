@@ -1,13 +1,15 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Collapse, Space } from 'antd';
+// Types
+import type { Crime, GroupedItems, ItemsDict, SceneTilePayload, ScenesDict } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Crime } from './components/Crime';
+import { CrimeSummary } from './components/CrimeSummary';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
 import { SceneTile } from 'components/game/SceneTile';
 
@@ -16,7 +18,7 @@ type StepNewSceneProps = {
   items: ItemsDict;
   groupedItems: GroupedItems;
   onSubmitMark: GenericFunction;
-  sceneTile: SceneTile;
+  sceneTile: CrimeTile;
   crimes: Crime[];
   scenes: ScenesDict;
   scenesOrder: string[];
@@ -79,7 +81,7 @@ export function StepNewScene({
       />
 
       <div className="">
-        <Crime
+        <CrimeSummary
           key={`crime-by-${crime!.playerId}`}
           crime={crime!}
           scenes={scenes}

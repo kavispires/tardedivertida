@@ -18,7 +18,7 @@ import { StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
 import { Translate } from 'components/language';
 
-function PhaseResolution({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
@@ -95,5 +95,3 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseResolution;

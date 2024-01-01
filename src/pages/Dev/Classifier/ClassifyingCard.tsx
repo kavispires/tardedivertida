@@ -19,7 +19,7 @@ const attributeList = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 
 export function ClassifyingCard() {
   const { data, save, isSaving, itemUtils, isDirty, isSuccess } = useClassifier();
-  const { itemId, previousItem, nextItem, itemNumber, goTo, setItemId } = useItem(itemUtils.latestId);
+  const { itemId, previousItem, nextItem, itemNumber, goTo, setItemId } = useItem(itemUtils.incompleteId);
   const qp = useQueryParams();
 
   const current = data[itemId];

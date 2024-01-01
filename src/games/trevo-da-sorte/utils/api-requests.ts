@@ -1,3 +1,5 @@
+import type { SubmitBadWordsPayload, SubmitCloverGuessesPayload, SubmitCluesPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -6,7 +8,7 @@ import { ACTIONS } from './constants';
 
 const submitAction = httpsCallable(functions, 'trevoDaSorteSubmitAction');
 
-export function useOnSubmitBadWordsAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitBadWordsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -29,7 +31,7 @@ export function useOnSubmitBadWordsAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitCluesAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitCluesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -52,7 +54,7 @@ export function useOnSubmitCluesAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

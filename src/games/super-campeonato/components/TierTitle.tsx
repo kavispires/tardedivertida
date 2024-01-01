@@ -1,8 +1,10 @@
+// Types
+import type { BracketTier } from '../utils/type';
 // Components
 import { Translate } from 'components/language';
 
 type TierTitleProps = {
-  tier: WBracketTier;
+  tier: BracketTier;
 };
 
 export function TierTitle({ tier }: TierTitleProps) {

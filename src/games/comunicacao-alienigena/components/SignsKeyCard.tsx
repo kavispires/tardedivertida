@@ -3,6 +3,8 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Button, Popconfirm, Popover, Space } from 'antd';
 import { CheckCircleFilled, InfoCircleOutlined } from '@ant-design/icons';
+// Types
+import type { Sign } from '../utils/types';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';

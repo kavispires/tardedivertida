@@ -13,7 +13,7 @@ import { AnsweringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 
-function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps) {
+export function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -49,5 +49,3 @@ function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseEverybodyWrites;

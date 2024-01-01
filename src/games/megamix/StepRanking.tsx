@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { UseStep } from 'hooks/useStep';
 // Icons
 import { BouncerIcon } from 'icons/BouncerIcon';
 // Hooks
@@ -15,7 +17,7 @@ type StepRankingProps = {
   user: GamePlayer;
   players: GamePlayers;
   ranking: GameRanking;
-  goToPreviousStep: GenericFunction;
+  goToPreviousStep: UseStep['goToPreviousStep'];
   round: GameRound;
 };
 

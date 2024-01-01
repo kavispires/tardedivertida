@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+// Types
+import type { Suggestion } from './utils/types';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Guess } from './components/Guess';
@@ -15,7 +17,7 @@ type StepGuessingProps = {
   guesser: GamePlayer;
   onSendGuess: GenericFunction;
   onSubmitOutcome: GenericFunction;
-  validSuggestions: UseSoIssoSuggestion[];
+  validSuggestions: Suggestion[];
 } & AnnouncementProps;
 
 export function StepGuessing({

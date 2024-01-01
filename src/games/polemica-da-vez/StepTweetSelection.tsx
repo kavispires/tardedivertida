@@ -10,8 +10,8 @@ import { Translate } from 'components/language';
 import { ScoringRules } from './components/RulesBlobs';
 
 type StepTweetSelectionProps = {
-  currentTweets: Tweet[];
-  currentCustomTweet: Tweet;
+  currentTweets: TextCard[];
+  currentCustomTweet: TextCard;
   onSubmitTweet: GenericFunction;
   round: GameRound;
   isFixedRounds: boolean;

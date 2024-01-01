@@ -1,3 +1,5 @@
+import type { SubmitMovieActorPayload, SubmitMovieGenrePayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -5,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'testeDeElencoSubmitAction');
 
-export function useOnSubmitMovieGenreAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -28,7 +30,7 @@ export function useOnSubmitMovieGenreAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitMovieActorAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitMovieActorAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

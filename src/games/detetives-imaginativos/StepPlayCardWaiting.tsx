@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { QuestionCircleFilled } from '@ant-design/icons';
+// Types
+import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Icons
@@ -17,7 +19,7 @@ type StepPlayCardWaitingProps = {
   isUserTheImpostor: boolean;
   clue: string;
   currentPlayer: GamePlayer;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
   players: GamePlayers;
   user: GamePlayer;
   isLoading: boolean;

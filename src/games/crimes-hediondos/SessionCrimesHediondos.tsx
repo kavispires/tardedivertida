@@ -7,13 +7,13 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseCrimeSelection from './PhaseCrimeSelection';
-import PhaseSceneMarking from './PhaseSceneMarking';
-import PhaseGuessing from './PhaseGuessing';
-import PhaseReveal from './PhaseReveal';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseCrimeSelection } from './PhaseCrimeSelection';
+import { PhaseSceneMarking } from './PhaseSceneMarking';
+import { PhaseGuessing } from './PhaseGuessing';
+import { PhaseReveal } from './PhaseReveal';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './crimes-hediondos.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

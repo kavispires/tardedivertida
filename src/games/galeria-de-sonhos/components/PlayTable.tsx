@@ -2,6 +2,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Image } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
+// Types
+import type { ImageCardObj } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -15,7 +17,7 @@ import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-card
 import { Translate } from 'components/language';
 
 type PlayTableProps = {
-  table: GImageCard[];
+  table: ImageCardObj[];
   onPlayCard: GenericFunction;
   userCards: PlainObject;
   isPlayAvailable: boolean;
@@ -68,7 +70,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                   <ImageBlurButton cardId={card.id} />
                 </div>
                 <ImageCard
-                  imageId={card.id}
+                  id={card.id}
                   cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
                   className={clsx(
                     'g-table-image',

@@ -1,6 +1,8 @@
 //Design Resources
 import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
+// Types
+import type { Clue, GridCell } from '../utils/types';
 // Utils
 import { getClueFromKey } from '../utils/helpers';
 // Components
@@ -10,10 +12,10 @@ import { PreviousClue } from './PreviousClue';
 type SelectableCellProps = {
   onSelectCell: GenericFunction;
   onClearCell: GenericFunction;
-  cell: CruzaPalavrasGridCell;
+  cell: GridCell;
   active: any;
   guesses: any;
-  clues: CruzaPalavrasClue[];
+  clues: Clue[];
   user: GamePlayer;
 };
 

@@ -1,3 +1,5 @@
+// Types
+import type { AdedanhxGalleryEntry } from './utils/types';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components

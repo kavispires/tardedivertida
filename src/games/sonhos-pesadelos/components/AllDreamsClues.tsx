@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { Dream } from '../utils/types';
 // Constants
 import { LETTERS } from 'utils/constants';
 // Utils
@@ -10,7 +12,7 @@ import { Card } from 'components/cards';
 import { TransparentButton } from 'components/buttons';
 
 type AllDreamsCluesProps = {
-  dreams: SDream[];
+  dreams: Dream[];
   activeItem: string;
   onActivateItem: GenericFunction;
   votes: StringDictionary;

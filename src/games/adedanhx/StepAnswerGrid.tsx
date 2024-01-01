@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { AdedanhxGrid, Answer, SubmitGridAnswersPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useCountdown } from 'hooks/useCountdown';

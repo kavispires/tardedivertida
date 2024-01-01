@@ -15,7 +15,7 @@ import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDefending } from './StepDefending';
 
-function PhaseDefense({ state, players, info }: PhaseProps) {
+export function PhaseDefense({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
@@ -71,5 +71,3 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseDefense;

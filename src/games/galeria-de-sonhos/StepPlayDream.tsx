@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
+// Types
+import type { ImageCardObj } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -23,8 +25,8 @@ import { RobotOutlined } from '@ant-design/icons';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepDreamsSelectionProps = {
-  table: GImageCard[];
-  word: GWord;
+  table: ImageCardObj[];
+  word: TextCard;
   onPlayCard: GenericFunction;
   user: GamePlayer;
   activePlayer: GamePlayer;

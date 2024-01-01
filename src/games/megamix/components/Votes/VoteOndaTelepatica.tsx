@@ -1,3 +1,5 @@
+// Types
+import type { VoteComponentProps } from '../../utils/types';
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';

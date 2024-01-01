@@ -1,3 +1,5 @@
+import { BracketTier } from './type';
+
 export const ACTIONS = {
   SUBMIT_CHALLENGE: 'SUBMIT_CHALLENGE',
   SUBMIT_CONTENDERS: 'SUBMIT_CONTENDERS',
@@ -22,7 +24,7 @@ export const voteTarget: Record<number, number> = {
   13: 14,
 };
 
-export const targetByTier: Record<WBracketTier, number> = {
+export const targetByTier: Record<BracketTier, number> = {
   quarter: 4,
   semi: 2,
   final: 1,
@@ -31,7 +33,7 @@ export const targetByTier: Record<WBracketTier, number> = {
 
 export const DEFAULT_BETS = { quarter: '', semi: '', final: '' };
 
-export const TIER_BY_STEP: Record<number, WBracketTier> = {
+export const TIER_BY_STEP: Record<number, BracketTier> = {
   0: 'final',
   1: 'semi',
   2: 'quarter',

@@ -1,4 +1,7 @@
 import { sampleSize, union } from 'lodash';
+// Types
+import type { ExtendedTextCard, MapSegment, TreeId } from './types';
+// Utils
 import { getAvailableSegments } from './helpers';
 import { getRandomItem } from 'utils/helpers';
 

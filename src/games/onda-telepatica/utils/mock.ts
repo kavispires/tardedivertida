@@ -12,7 +12,7 @@ export const mockGuess = (target: number): number => {
   ]);
 };
 
-export const mockHint = (card: OCategoryCard, target: number): string => {
+export const mockHint = (card: OpposingIdeaCard, target: number): string => {
   if (target < 0) {
     return `${card.left}:${Math.abs(target)}`;
   }

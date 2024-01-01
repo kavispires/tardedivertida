@@ -2,6 +2,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Tooltip } from 'antd';
 import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
+// Types
+import type { Location } from '../utils/types';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
@@ -9,7 +11,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { Translate } from 'components/language';
 
 type LocationsListProps = {
-  locations: ELocation[];
+  locations: Location[];
 };
 
 export function LocationsList({ locations }: LocationsListProps) {

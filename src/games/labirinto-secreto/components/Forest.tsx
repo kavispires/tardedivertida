@@ -1,15 +1,19 @@
 import clsx from 'clsx';
 import { findLast } from 'lodash';
+// Ant Design Resources
+import { Space } from 'antd';
+// Types
+import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getDirection } from '../utils/helpers';
+import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { ForestTree } from './ForestTree';
-import { Space } from 'antd';
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { AvatarGroup } from 'components/avatars/AvatarGroup';
 import { ViewIf } from 'components/views';
@@ -41,7 +45,7 @@ export function Forest({
   players,
   size = 'large',
   hidePassedTreeNames = false,
-  user = {},
+  user = PLACEHOLDER_PLAYER,
   forestBorderColor = 'transparent',
   playerMapping,
 }: ForestProps) {

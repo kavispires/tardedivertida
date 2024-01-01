@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Slider, Space } from 'antd';
+// Types
+import type { CurrentCategory } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -13,7 +15,7 @@ import { Instruction, Title } from 'components/text';
 import { Dial } from './components/Dial';
 
 type PromptProps = {
-  currentCategory: OCurrentCategory;
+  currentCategory: CurrentCategory;
 };
 
 function Prompt({ currentCategory }: PromptProps) {
@@ -36,7 +38,7 @@ function Prompt({ currentCategory }: PromptProps) {
 }
 
 type StepGuessProps = {
-  currentCategory: OCurrentCategory;
+  currentCategory: CurrentCategory;
   onSendGuess: GenericFunction;
 } & AnnouncementProps;
 

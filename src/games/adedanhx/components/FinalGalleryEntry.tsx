@@ -1,7 +1,12 @@
-import { NOOP } from 'utils/constants';
-import { CategoryCell, LetterCell } from './Grid';
-import { PlusOutlined } from '@ant-design/icons';
+// Ant Design Resources
 import { Tooltip } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+// Types
+import type { AdedanhxGalleryEntry } from '../utils/types';
+// Utils
+import { NOOP } from 'utils/constants';
+// Components
+import { CategoryCell, LetterCell } from './Grid';
 
 type FinalGalleryEntryProps = {
   entry: AdedanhxGalleryEntry;

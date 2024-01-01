@@ -7,16 +7,16 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseChallengeSelection from './PhaseChallengeSelection';
-import PhaseContenderSelection from './PhaseContendersSelection';
-import PhaseBets from './PhaseBets';
-import PhaseBattle from './PhaseBattle';
-import PhaseResults from './PhaseResults';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseChallengeSelection } from './PhaseChallengeSelection';
+import { PhaseContenderSelection } from './PhaseContendersSelection';
+import { PhaseBets } from './PhaseBets';
+import { PhaseBattle } from './PhaseBattle';
+import { PhaseResults } from './PhaseResults';
+import { PhaseGameOver } from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/bangers.scss';
 // Sass
-import './super-campeonato.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

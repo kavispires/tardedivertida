@@ -1,5 +1,7 @@
 // Ant Design resources
 import { Divider, Space } from 'antd';
+// Types
+import type { PastBattles } from './utils/type';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
@@ -12,7 +14,7 @@ import { Achievements } from 'components/general/Achievements';
 import { achievementsReference } from './utils/achievements';
 import { CharacterCard } from 'components/cards/CharacterCard';
 
-function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const pastBattles: PastBattles = state.pastBattles;
   const { translate } = useLanguage();
 
@@ -59,5 +61,3 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

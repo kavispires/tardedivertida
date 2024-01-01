@@ -1,7 +1,12 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockAnswer } from './utils/mock';
 // Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
@@ -15,8 +20,6 @@ import { TurnOrder } from 'components/players';
 import { TransparentButton } from 'components/buttons';
 import { IconAvatar } from 'components/avatars';
 import { ViewIf } from 'components/views';
-import { useMock } from 'hooks/useMock';
-import { mockAnswer } from './utils/mock';
 
 type StepAnswerTheQuestionProps = {
   players: GamePlayers;

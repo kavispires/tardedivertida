@@ -1,3 +1,5 @@
+import type { SubmitCharactersPayload, SubmitGlyphsPayload, SubmitGuessesPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -5,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'quemSouEuSubmitAction');
 
-export function useOnSubmitCharactersAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitCharactersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -28,7 +30,7 @@ export function useOnSubmitCharactersAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitGlyphsAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitGlyphsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -51,7 +53,7 @@ export function useOnSubmitGlyphsAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitGuessesAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

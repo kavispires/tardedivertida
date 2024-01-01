@@ -14,7 +14,7 @@ import { StepSwitcher } from 'components/steps';
 import { StepNameDrawing } from './StepNameDrawing';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseNaming({ players, state, info }: PhaseProps) {
+export function PhaseNaming({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -56,5 +56,3 @@ function PhaseNaming({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseNaming;

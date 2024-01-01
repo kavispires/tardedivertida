@@ -1,10 +1,13 @@
 import clsx from 'clsx';
+// Types
+import type { CandySidewalk, StreetCard } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { mockPlayerDecision } from './utils/mock';
+import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { WalkIcon } from 'icons/WalkIcon';
 import { HouseIcon } from 'icons/HouseIcon';
@@ -20,15 +23,14 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { TransparentButton } from 'components/buttons';
 import { CandyHighlight, TitleIPadHighlight } from './components/Highlights';
-import { getAnimationClass } from 'utils/helpers';
 import { PlayersDecisionState } from './components/PlayersDecisionState';
 import { NewHouseCard } from './components/NewHouseCard';
 
 type StepMakeDecisionProps = {
   players: GamePlayers;
   user: GamePlayer;
-  street: NStreet;
-  currentCard: NCard;
+  street: StreetCard[];
+  currentCard: StreetCard;
   onSubmitDecision: GenericFunction;
   continuingPlayerIds: PlayerId[];
   alreadyAtHomePlayerIds: PlayerId[];

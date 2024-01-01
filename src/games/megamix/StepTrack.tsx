@@ -1,3 +1,5 @@
+// Types
+import type { Track } from './utils/types';
 // Components
 import { Step } from 'components/steps';
 import { ClubLine } from './components/ClubLine';

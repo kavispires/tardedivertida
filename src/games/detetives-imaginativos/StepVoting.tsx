@@ -1,3 +1,5 @@
+// Types
+import type { CardEntry } from './utils/types';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
@@ -18,7 +20,7 @@ type StepVotingProps = {
   user: GamePlayer;
   players: GamePlayers;
   onVote: GenericFunction;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
 } & AnnouncementProps;
 
 export function StepVoting({

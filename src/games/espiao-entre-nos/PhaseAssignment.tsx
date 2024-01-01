@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { StepAssignment } from './StepAssignment';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 
-function PhaseAssignment({ state, players, info }: PhaseProps) {
+export function PhaseAssignment({ state, players, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -163,5 +163,3 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseAssignment;

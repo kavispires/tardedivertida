@@ -1,18 +1,20 @@
 import clsx from 'clsx';
+// Types
+import type { CardEntry } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { AVATARS } from 'utils/avatars';
+import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
-import { getAnimationClass } from 'utils/helpers';
 
 type TableFocusProps = {
   currentPlayer: GamePlayer;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
 };
 
 export function TableFocus({ table, currentPlayer }: TableFocusProps) {
@@ -40,7 +42,7 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
                 className="d-table__card"
                 key={`table-focus-${cardId}`}
               >
-                <ImageCard key={`table-focus-${cardId}`} imageId={cardId} cardWidth={cardWidth} />
+                <ImageCard key={`table-focus-${cardId}`} id={cardId} cardWidth={cardWidth} />
               </ImageBlurButtonContainer>
             );
           })}

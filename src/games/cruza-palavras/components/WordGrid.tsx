@@ -1,10 +1,12 @@
 import clsx from 'clsx';
+// Types
+import type { Grid, GridType } from '../utils/types';
 // Components
 import { WordGridHeader } from './WordGridHeader';
 
 type WordGridProps = {
-  grid: CruzaPalavrasGrid;
-  gridType: CruzaPalavrasGridType;
+  grid: Grid;
+  gridType: GridType;
   user: GamePlayer;
   CellComponent: any;
   cellComponentProps: any;

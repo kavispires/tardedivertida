@@ -20,7 +20,7 @@ import { TurnOrder } from 'components/players';
 import { ImageCardPreloadHand } from 'components/image-cards';
 import { ViewOr } from 'components/views';
 
-function PhaseStory({ state, players, info }: PhaseProps) {
+export function PhaseStory({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -81,5 +81,3 @@ function PhaseStory({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseStory;

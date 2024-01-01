@@ -1,3 +1,5 @@
+// Types
+import type { ResultComponentProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -28,7 +30,7 @@ export function ResultImage({ winningValues, containerWidth }: ResultComponentPr
         {winningValues.map((cardId) => (
           <ImageBlurButtonContainer cardId={cardId} key={cardId}>
             <DoorFrame width={width}>
-              <ImageCard imageId={cardId} cardWidth={150} />
+              <ImageCard id={cardId} cardWidth={150} />
             </DoorFrame>
           </ImageBlurButtonContainer>
         ))}

@@ -1,4 +1,6 @@
 import { orderBy } from 'lodash';
+// Types
+import type { PlayersSay } from '../utils/types';
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';

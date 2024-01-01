@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Sketch } from './utils/types';
 // Utils
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -16,10 +18,10 @@ import { Step } from 'components/steps';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
-  currentMonster: Monster;
+  currentMonster: MonsterCard;
   onSubmitVote: GenericFunction;
   sketches: Sketch[];
-  user: Player | PlainObject;
+  user: GamePlayer;
   players: GamePlayers;
 } & AnnouncementProps;
 

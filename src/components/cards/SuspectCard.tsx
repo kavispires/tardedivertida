@@ -8,7 +8,7 @@ type SuspectCardProps = {
   /**
    * Suspect object
    */
-  suspect: Suspect;
+  suspect: SuspectCard;
   /**
    * Card width
    */
@@ -22,7 +22,7 @@ type SuspectCardProps = {
 export function SuspectCard({ suspect, width, hideName }: SuspectCardProps) {
   return (
     <div className="suspect-card" style={{ width: `${width}px` }}>
-      <ImageCard imageId={suspect.id} className="suspect-card__image" cardWidth={width} preview={false} />
+      <ImageCard id={suspect.id} className="suspect-card__image" cardWidth={width} preview={false} />
       {!hideName && (
         <div className="suspect-card__name">
           <DualTranslate>{suspect.name}</DualTranslate>

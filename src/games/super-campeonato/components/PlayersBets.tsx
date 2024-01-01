@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
+// Types
+import type { Bracket, ContenderByTier } from '../utils/type';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 import { findBetContenders, getContenderIdsByTier } from '../utils/helpers';
@@ -10,7 +12,7 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 
 type PlayersBetsProps = {
   players: GamePlayers;
-  brackets: WBracket[];
+  brackets: Bracket[];
 };
 
 export function PlayersBets({ players, brackets }: PlayersBetsProps) {
@@ -49,8 +51,8 @@ export function PlayersBets({ players, brackets }: PlayersBetsProps) {
 }
 type PlayersBetEntryProps = {
   player: GamePlayer;
-  brackets: WBracket[];
-  contendersByTiers: WContenderByTier;
+  brackets: Bracket[];
+  contendersByTiers: ContenderByTier;
 };
 
 function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntryProps) {

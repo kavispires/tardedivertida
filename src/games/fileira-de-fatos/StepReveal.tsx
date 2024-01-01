@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { UseStep } from 'hooks/useStep';
 // Utils
 import { getReference } from './utils/helpers';
 // Components
@@ -16,7 +18,7 @@ import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 type StepRevealProps = {
   activePlayer: GamePlayer;
   players: GamePlayers;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
   scenarios: TextCard[];
   roundType: string;
 } & AnnouncementProps;

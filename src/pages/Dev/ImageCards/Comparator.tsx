@@ -35,11 +35,11 @@ export function Comparator({ query }: ComparatorProps) {
             <div className="image-card-card">
               <Image.PreviewGroup>
                 <div className="image-card-card__image">
-                  <ImageCard imageId={cardAId} cardWidth={cardWidth} />
+                  <ImageCard id={cardAId} cardWidth={cardWidth} />
                   <RelationshipCountTag card={cardA} />
                 </div>
                 <div className="image-card-card__image">
-                  <ImageCard imageId={cardBId} cardWidth={cardWidth} />
+                  <ImageCard id={cardBId} cardWidth={cardWidth} />
                   <RelationshipCountTag card={cardB} />
                 </div>
               </Image.PreviewGroup>

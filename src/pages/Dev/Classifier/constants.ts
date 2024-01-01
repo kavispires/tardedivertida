@@ -1,5 +1,6 @@
 import { orderBy } from 'lodash';
 import { Attribute, SignKey } from './types';
+import { Sign } from 'games/comunicacao-alienigena/utils/types';
 
 export const ATTRIBUTES = {
   alive: { id: 'alive', name: { en: 'Alive', pt: 'Vivo' } },
@@ -43,7 +44,7 @@ export const ATTRIBUTES = {
 };
 
 export const FIRST_ID = '1';
-export const LAST_ID = '512';
+export const LAST_ID = '768';
 
 export const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 

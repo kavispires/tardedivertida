@@ -1,4 +1,5 @@
-// Ant Design Resources
+// Types
+import type { FightingContender } from './utils/type';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -13,7 +14,7 @@ import { Challenge } from './components/Challenge';
 type StepSelectContendersProps = {
   onSubmitContender: GenericFunction;
   challenge: TextCard;
-  userContenders: WContender[];
+  userContenders: FightingContender[];
 } & AnnouncementProps;
 
 export function StepSelectContenders({

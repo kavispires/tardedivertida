@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
+// Hooks
+import { UseStep } from 'hooks/useStep';
 // Components
 import { SlideShowControls } from './SlideShowControls';
 
@@ -9,7 +11,7 @@ type SlideShowProps = {
   length: number;
   activeIndex: number;
   setActiveIndex: GenericFunction;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
   disableControls: boolean;
   barColor: string;
   windowDuration: number;

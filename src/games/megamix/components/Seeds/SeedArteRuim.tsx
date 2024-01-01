@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 // AntDesign Resources
 import { Button, Space } from 'antd';
+// Types
+import type { SeedEntryArteRuim } from '../../utils/types';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';

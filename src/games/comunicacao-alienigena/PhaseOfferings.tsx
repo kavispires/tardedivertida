@@ -28,7 +28,7 @@ export function PhaseOfferings({ players, state, info }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
-    ></PhaseAnnouncement>
+    />
   );
 
   return (

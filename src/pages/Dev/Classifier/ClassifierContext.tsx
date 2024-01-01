@@ -26,6 +26,7 @@ export type ClassifierContextType = {
   reload: () => void;
   itemUtils: {
     latestId: string;
+    incompleteId: string;
     create: (itemId: string) => void;
     updateNameEN: (itemId: string, name: string) => void;
     updateNamePT: (itemId: string, name: string) => void;
@@ -45,6 +46,7 @@ export const ClassifierContext = createContext<ClassifierContextType>({
   reload: () => {},
   itemUtils: {
     latestId: '',
+    incompleteId: '',
     create: () => {},
     updateNameEN: () => {},
     updateNamePT: () => {},
@@ -169,7 +171,8 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
     },
   });
 
-  const latestId = String(findFirstIncomplete(data));
+  const incompleteId = String(findFirstIncomplete(data));
+  const latestId = String(Object.keys(data).length + 1);
 
   const createNewItem = (itemId: string) => {
     setIsDirty(true);
@@ -253,6 +256,7 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
         isDirty,
         reload: fetchItems,
         itemUtils: {
+          incompleteId,
           latestId,
           create: createNewItem,
           updateNameEN: updateItemNameEN,

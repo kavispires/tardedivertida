@@ -1,3 +1,5 @@
+import type { SubmitPairsPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -5,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'duetosSubmitAction');
 
-export function useOnSubmitPairsAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitPairsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

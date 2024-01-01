@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
 import './MonsterCard.scss';
 
 interface MonsterCardProps extends SpaceProps {
-  currentMonster: Monster;
+  currentMonster: MonsterCard;
   showControls?: boolean;
   cardWidth?: number;
 }
@@ -37,7 +37,7 @@ export function MonsterCard({ currentMonster, showControls = true, cardWidth, ..
   return (
     <Space direction="vertical" align="center" {...props}>
       <ImageCard
-        imageId={currentMonster.id}
+        id={currentMonster.id}
         cardWidth={cardWidth || defaultCardWidth}
         className={clsx(
           baseClass,

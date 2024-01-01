@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Image, Popconfirm } from 'antd';
+// Types
+import type { CharactersDictionary } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -57,7 +59,7 @@ export function CharactersBoard({
                 disabled={unavailable || revealed || ownCharacter || isLoading}
               >
                 <ImageCard
-                  imageId={revealed ? 'us-00' : character.id}
+                  id={revealed ? 'us-00' : character.id}
                   className={clsx(
                     'characters-table__character-image',
                     userCharacterId === character.id && 'characters-table__character-image--active',
@@ -83,7 +85,7 @@ export function CharactersBoard({
           return (
             <div className="characters-table__character" key={character.id}>
               <ImageCard
-                imageId={character?.revealed ? 'us-00' : character.id}
+                id={character?.revealed ? 'us-00' : character.id}
                 previewImageId={character.id}
                 className={clsx(
                   'characters-table__character-image',

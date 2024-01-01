@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { VIEWER_ID } from 'utils/constants';
+import { PLACEHOLDER_PLAYER, VIEWER_ID } from 'utils/constants';
 import { useGlobalState } from './useGlobalState';
 
 const THREE_MINUTES = 3 * 60 * 1000;
@@ -17,6 +17,7 @@ export function useUser(players: GamePlayers, state?: GameState): GamePlayer {
   useEffect(() => {
     if (userId === VIEWER_ID) {
       setUser({
+        ...PLACEHOLDER_PLAYER,
         id: VIEWER_ID,
         ready: true,
       });

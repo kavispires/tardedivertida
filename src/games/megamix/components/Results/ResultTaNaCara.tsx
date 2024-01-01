@@ -1,7 +1,11 @@
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
+// Types
+import type { ResultComponentProps } from '../../utils/types';
+// Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
+// Components
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
 
 export function ResultTaNaCara({ winningValues }: ResultComponentProps) {

@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { StreetCard } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useCountdown } from 'hooks/useCountdown';
@@ -12,7 +14,7 @@ type NewHouseCardProps = {
   /**
    * The candy, monster, jackpot card
    */
-  card: NCard;
+  card: StreetCard;
 };
 
 export function NewHouseCard({ card }: NewHouseCardProps) {
@@ -34,7 +36,7 @@ export function NewHouseCard({ card }: NewHouseCardProps) {
       )}
     >
       <div className={clsx(`${baseClass}--container`, `${baseClass}--${card.type}`)}>
-        <ImageCard imageId={card.key} cardWidth={200} className={clsx(cardBaseClass)} />
+        <ImageCard id={card.key} cardWidth={200} className={clsx(cardBaseClass)} />
 
         <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
       </div>

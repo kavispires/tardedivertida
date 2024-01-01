@@ -1,3 +1,5 @@
+// Types
+import type { Item } from '../utils/types';
 // Utils
 import { ITEM_TYPES } from '../utils/constants';
 // Icons

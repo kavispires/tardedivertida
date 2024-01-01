@@ -1,6 +1,9 @@
 import { Fragment } from 'react';
 // AntDesign Resources
 import { Space } from 'antd';
+import { RightSquareOutlined } from '@ant-design/icons';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -16,7 +19,6 @@ import { TreeOneIcon } from 'icons/TreeOneIcon';
 import { TreeTwoIcon } from 'icons/TreeTwoIcon';
 import { TreeThreeIcon } from 'icons/TreeThreeIcon';
 import { MapIcon } from 'icons/MapIcon';
-import { RightSquareOutlined } from '@ant-design/icons';
 
 export const TrackLabirintoSecreto = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

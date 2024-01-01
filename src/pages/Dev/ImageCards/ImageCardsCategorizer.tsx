@@ -62,7 +62,7 @@ function ImageCardsCategorizerPage() {
             >
               <div className="image-card-card">
                 <div className="image-card-card__image">
-                  <ImageCard imageId={cardId} cardWidth={cardWidth} />
+                  <ImageCard id={cardId} cardWidth={cardWidth} />
                 </div>
                 <div className="image-card-card__data">
                   <div className="image-card-card__item">

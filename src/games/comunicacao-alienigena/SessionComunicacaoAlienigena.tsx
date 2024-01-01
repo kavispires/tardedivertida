@@ -17,9 +17,9 @@ import { PhaseAlienRequest } from './PhaseAlienRequest';
 import { PhaseOfferings } from './PhaseOfferings';
 import { PhaseReveal } from './PhaseReveal';
 import { PhaseGameOver } from './PhaseGameOver';
-// Sass
-import './comunicacao-alienigena.scss';
 import { PhaseAlienSeeding } from './PhaseAlienSeeding';
+// Sass
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

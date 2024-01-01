@@ -1,6 +1,9 @@
 import { useMemo } from 'react';
 // AntDesign Resources
 import { Button, Space } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
+import type { FightingContender } from 'games/super-campeonato/utils/type';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -25,7 +28,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
     });
   });
 
-  const botPlayer = useMemo(() => {
+  const botPlayer: GamePlayer = useMemo(() => {
     const selectedGlyphs: BooleanDictionary = {};
     track.data.positive.forEach((glyph: number) => {
       selectedGlyphs[glyph] = true;
@@ -33,7 +36,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
     track.data.negative.forEach((glyph: number) => {
       selectedGlyphs[glyph] = false;
     });
-    return { id: 'A', avatarId: 'A', name: 'Bob', selectedGlyphs };
+    return { id: 'A', avatarId: 'A', name: 'Bob', selectedGlyphs, ready: false, updatedAt: 0 };
   }, [track.data]);
 
   return (
@@ -51,7 +54,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
       </Space>
 
       <Space className="space-container center">
-        {track.data.contenders.map((contender: WContender) => {
+        {track.data.contenders.map((contender: FightingContender) => {
           return (
             <Space direction="vertical" key={contender.id}>
               <CharacterCard size={cardWidth} character={contender} />

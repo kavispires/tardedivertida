@@ -1,10 +1,12 @@
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
+// Types
+import type { Bracket } from '../utils/type';
 // Components
 import { Avatar } from 'components/avatars';
 
 type BracketContenderVotesProps = {
-  bracket: WBracket;
+  bracket: Bracket;
   players: GamePlayers;
 };
 

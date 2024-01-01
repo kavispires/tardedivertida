@@ -3,6 +3,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, App, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+// Types
+import type { Suggestion } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -24,9 +26,9 @@ type StepGuessVerificationProps = {
   isLoading: boolean;
   isUserTheController: boolean;
   controller: GamePlayer;
-  secretWord: UeSoIssoCard;
+  secretWord: TextCard;
   onSubmitOutcome: GenericFunction;
-  validSuggestions: UseSoIssoSuggestion[];
+  validSuggestions: Suggestion[];
 } & AnnouncementProps;
 
 export function StepGuessVerification({

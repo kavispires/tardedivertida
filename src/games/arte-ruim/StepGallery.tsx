@@ -1,6 +1,9 @@
+// Types
+import type { ArteRuimWindow } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import type { UseStep } from 'hooks/useStep';
 // Utils
 import { WINDOW_DURATION } from './utils/constants';
 import { getAvatarColorById } from 'utils/helpers';
@@ -22,7 +25,7 @@ type StepGalleryProps = {
   cards: ArteRuimCard[];
   activeIndex: number;
   setActiveIndex: GenericFunction;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
   isFirstGalleryRunThrough: boolean;
 };
 

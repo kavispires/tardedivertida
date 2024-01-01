@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { Captcha } from '../utils/types';
 // Components
 import { Card } from 'components/cards';
 import { EmojiCard } from 'components/cards/EmojiCard';

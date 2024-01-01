@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // AntDesign Resources
 import { Button, Input, Space } from 'antd';
+// Types
+import type { SeedEntryOndaTelepatica } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components

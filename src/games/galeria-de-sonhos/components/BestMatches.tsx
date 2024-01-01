@@ -1,6 +1,8 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Avatar, Divider } from 'antd';
+// Types
+import type { ImageCardMatch } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -10,7 +12,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 
 type BestMatchesProps = {
-  bestMatches: GImageCardMatch[];
+  bestMatches: ImageCardMatch[];
 };
 
 export function BestMatches({ bestMatches }: BestMatchesProps) {
@@ -32,7 +34,7 @@ export function BestMatches({ bestMatches }: BestMatchesProps) {
                 <span>{entry.text}</span>
               </div>
               <ImageCard
-                imageId={entry.id}
+                id={entry.id}
                 cardWidth={cardWidth - 6} // 6 is the border total size
               />
             </div>

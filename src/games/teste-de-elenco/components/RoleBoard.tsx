@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space, Avatar as AntAvatar } from 'antd';
+// Types
+import type { ActingRole, FeatureFilm } from '../utils/types';
 // Utils
 import { pluralize } from 'utils/helpers';
 import { Icons } from '../utils/helpers';

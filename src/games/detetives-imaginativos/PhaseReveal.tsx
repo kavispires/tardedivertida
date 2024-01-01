@@ -13,7 +13,7 @@ import { Instruction } from 'components/text';
 import { StepReveal } from './StepReveal';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
-function PhaseReveal({ state, players, info }: PhaseProps) {
+export function PhaseReveal({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);
   const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
 
@@ -74,5 +74,3 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseReveal;

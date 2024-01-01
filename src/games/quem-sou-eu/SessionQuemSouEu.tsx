@@ -11,9 +11,9 @@ import { PhaseCharacterFiltering } from './PhaseCharacterFiltering';
 import { PhaseCharacterDescription } from './PhaseCharacterDescription';
 import { PhaseGuessing } from './PhaseGuessing';
 import { PhaseResults } from './PhaseResults';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './quem-sou-eu.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

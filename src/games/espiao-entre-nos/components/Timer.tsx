@@ -1,11 +1,14 @@
 import { useTimer } from 'react-timer-hook';
+// Types
+import type { TimerType } from '../utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Utils
 import { inNTime } from 'utils/helpers';
 
 type TimerProps = {
-  timer: Timer;
+  timer: TimerType;
   hideAccusationSelect: GenericFunction;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
 };
 
 export function Timer({ timer, hideAccusationSelect, setStep }: TimerProps) {

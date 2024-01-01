@@ -1,3 +1,5 @@
+// Types
+import type { Bet, Bracket } from './utils/type';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -12,9 +14,9 @@ type StepRankingProps = {
   ranking: GameRanking;
   isGameOver: boolean;
   round: GameRound;
-  brackets: WBracket[];
+  brackets: Bracket[];
   selectedContenderId: CardId;
-  bets: WBets;
+  bets: Bet;
 };
 
 export function StepRanking({

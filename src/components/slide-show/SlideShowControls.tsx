@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
+import { UseStep } from 'hooks/useStep';
 // Components
 import { Translate } from 'components/language';
 
@@ -17,7 +18,7 @@ type SlideShowControlsProps = {
   length: number;
   activeIndex: number;
   setActiveIndex: GenericFunction;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
   disableControls: boolean;
   barColor: string;
   windowDuration: number;

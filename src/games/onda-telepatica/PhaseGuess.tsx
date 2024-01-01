@@ -15,7 +15,7 @@ import { ViewOr } from 'components/views';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
 
-function PhaseGuess({ players, state, info }: PhaseProps) {
+export function PhaseGuess({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -56,5 +56,3 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseGuess;

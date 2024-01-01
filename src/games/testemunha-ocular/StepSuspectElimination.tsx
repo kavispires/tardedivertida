@@ -15,10 +15,10 @@ import { Translate } from 'components/language';
 import { Card } from 'components/cards';
 
 type StepSuspectEliminationProps = {
-  suspects: Suspect[];
+  suspects: SuspectCard[];
   previouslyEliminatedSuspects: string[];
   eliminatedSuspects: string[];
-  perpetrator: Suspect;
+  perpetrator: SuspectCard;
   isUserTheWitness: boolean;
   isUserTheQuestioner: boolean;
   witness: GamePlayer;

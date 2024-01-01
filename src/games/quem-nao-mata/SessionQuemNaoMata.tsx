@@ -7,12 +7,12 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseTargeting from './PhaseTargeting';
-import PhaseStandoff from './PhaseStandoff';
-import PhaseDuel from './PhaseDuel';
-import PhaseResolution from './PhaseResolution';
+import { PhaseTargeting } from './PhaseTargeting';
+import { PhaseStandoff } from './PhaseStandoff';
+import { PhaseDuel } from './PhaseDuel';
+import { PhaseResolution } from './PhaseResolution';
 // Sass
-import './quem-nao-mata.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

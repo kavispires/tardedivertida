@@ -1,5 +1,7 @@
 // AntDesign Resources
 import { Button, Image, Space } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -60,7 +62,7 @@ export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: Tra
             return (
               <Space className="space-container" direction="vertical">
                 <ImageBlurButtonContainer cardId={cardId}>
-                  <ImageCard imageId={cardId} cardWidth={cardWidth} />
+                  <ImageCard id={cardId} cardWidth={cardWidth} />
                 </ImageBlurButtonContainer>
                 <Button
                   shape="round"

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "1.3.30",
+  "version": "1.3.33",
   "title": {
     "pt": "Vamos Ao Cinema",
     "en": "Movie Night"

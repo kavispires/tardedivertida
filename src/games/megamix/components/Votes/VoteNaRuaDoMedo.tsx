@@ -1,3 +1,5 @@
+// Types
+import type { VoteComponentProps } from '../../utils/types';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components

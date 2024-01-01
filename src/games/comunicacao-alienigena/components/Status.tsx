@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Badge } from 'antd';
+// Types
+import type { OfferingsStatus } from '../utils/types';
 // Icons
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
 // Components

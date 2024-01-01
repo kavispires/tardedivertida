@@ -2,9 +2,12 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Alert, Divider, Space } from 'antd';
 import { useMemo } from 'react';
+// Types
+import type { LatestInfo } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import type { UseStep } from 'hooks/useStep';
 // Constants
 import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
 // Helpers
@@ -30,7 +33,7 @@ type StepAnnounceDreamProps = {
   lastActivePlayer: GamePlayer;
   activePlayer: GamePlayer;
   playerInNightmare?: GamePlayer;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
   players: GamePlayers;
   gameOrder: TurnOrder;
 };
@@ -79,7 +82,7 @@ export function StepAnnounceDream({
           <Translate pt="escolheu visitar o sonho" en="chose to visit the dream" />:
         </header>
         <div className="g-dream-result__card">
-          <ImageCard imageId={latest.cardId} cardWidth={cardWidth} />
+          <ImageCard id={latest.cardId} cardWidth={cardWidth} />
         </div>
         <div className="g-dream-result__match-result">
           <MatchCount

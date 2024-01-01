@@ -1,4 +1,5 @@
 import { createGlobalState } from 'react-hooks-global-state';
+import { PLACEHOLDER_PLAYER } from 'utils/constants';
 
 type InitialState = {
   appStartedAt: number;
@@ -36,7 +37,7 @@ const initialState: InitialState = {
   userId: null,
   username: '',
   userAvatarId: '',
-  user: {},
+  user: PLACEHOLDER_PLAYER,
   isAdminEnabled: true,
   isDebugEnabled: false,
   blurredCards: {},

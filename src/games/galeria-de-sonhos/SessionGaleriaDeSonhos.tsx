@@ -7,13 +7,13 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseWordSelection from './PhaseWordSelection';
-import PhaseDreamsSelection from './PhaseDreamsSelections';
-import PhaseCardPlay from './PhaseCardPlay';
-import PhaseResolution from './PhaseResolution';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseWordSelection } from './PhaseWordSelection';
+import { PhaseDreamsSelections } from './PhaseDreamsSelections';
+import { PhaseCardPlay } from './PhaseCardPlay';
+import { PhaseResolution } from './PhaseResolution';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './galeria-de-sonhos.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -29,7 +29,7 @@ function getActiveComponent(state: GameState) {
     case PHASES.GALERIA_DE_SONHOS.WORD_SELECTION:
       return PhaseWordSelection;
     case PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION:
-      return PhaseDreamsSelection;
+      return PhaseDreamsSelections;
     case PHASES.GALERIA_DE_SONHOS.CARD_PLAY:
       return PhaseCardPlay;
     case PHASES.GALERIA_DE_SONHOS.RESOLUTION:

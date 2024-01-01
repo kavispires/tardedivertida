@@ -1,4 +1,5 @@
 import { sample, sampleSize } from 'lodash';
+import { Character } from './types';
 
 export const mockSelectCharacters = (characters: Character[]) => {
   return sampleSize(characters, 6).map((c) => c.id);

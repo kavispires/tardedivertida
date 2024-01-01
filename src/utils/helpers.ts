@@ -180,7 +180,7 @@ export const getPlayersFromIds = (
   playerIds: PlayerId[],
   players: GamePlayers,
   justNames = false
-): (Player | PlayerName)[] => {
+): (GamePlayer | PlayerName)[] => {
   return playerIds.map((playerId) => {
     const player = players[playerId];
     if (justNames) return player.name;

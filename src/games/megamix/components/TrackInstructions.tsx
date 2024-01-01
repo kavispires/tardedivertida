@@ -1,3 +1,5 @@
+// Type
+import type { Track } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

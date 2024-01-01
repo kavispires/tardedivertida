@@ -1,3 +1,5 @@
+// Types
+import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -11,7 +13,7 @@ type StepPlayCardProps = {
   isUserTheCurrentPlayer: boolean;
   clue: string;
   currentPlayer: GamePlayer;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
   players: GamePlayers;
   user: GamePlayer;
   onPlayCard: GenericFunction;

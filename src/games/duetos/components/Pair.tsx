@@ -1,15 +1,17 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { Item } from '../utils/types';
 // Components
 import { ItemEntry } from './ItemEntry';
 
 type PairProps = {
   index: number;
-  firstItem?: ItemEntry;
-  secondItem?: ItemEntry;
+  firstItem?: Item;
+  secondItem?: Item;
   // Usually pool[0]
-  placeholder: ItemEntry;
+  placeholder: Item;
   size?: 'small';
 };
 

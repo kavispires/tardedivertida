@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space, Switch, Tooltip } from 'antd';
 import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
+// Types
+import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils

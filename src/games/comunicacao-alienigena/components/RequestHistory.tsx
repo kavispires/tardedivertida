@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+// Types
+import type { Item, Offer, RequestHistoryEntry } from '../utils/types';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';

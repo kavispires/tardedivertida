@@ -1,3 +1,5 @@
+// Types
+import type { VoteComponentProps } from '../../utils/types';
 // Components
 import { Avatar, AvatarCard } from 'components/avatars';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';

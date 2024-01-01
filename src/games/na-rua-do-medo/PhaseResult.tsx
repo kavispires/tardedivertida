@@ -6,7 +6,7 @@ import { PHASES } from 'utils/phases';
 import { StepResult } from './StepResult';
 import { PhaseContainer } from 'components/phases';
 
-function PhaseResult({ state, players, info }: PhaseProps) {
+export function PhaseResult({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
 
   return (
@@ -27,5 +27,3 @@ function PhaseResult({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseResult;

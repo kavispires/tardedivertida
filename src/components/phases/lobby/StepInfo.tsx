@@ -5,6 +5,7 @@ import { Alert, AutoComplete, Button } from 'antd';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useAddPlayer } from 'hooks/useAddPlayer';
 import { useLocalStorage } from 'hooks/useLocalStorage';
+import { UseStep } from 'hooks/useStep';
 // Utils
 import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
@@ -20,7 +21,7 @@ const randomName = isDevEnv ? mockPlayerName() : undefined;
 type StepInfoProps = {
   info: GameInfo;
   players: GamePlayers;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
 };
 
 export function StepInfo({ info, players, setStep }: StepInfoProps) {

@@ -1,3 +1,5 @@
+// Types
+import type { VoteComponentProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -20,7 +22,7 @@ export function VoteImagesTrack({ playersList }: VoteComponentProps) {
           <Avatar id={player.avatarId} />
           <div className="player-vote__name">{player.name}</div>
           <ImageBlurButtonContainer cardId={player.data.value}>
-            <ImageCard imageId={player.data.value} cardWidth={width} className="d-table__image-card" />
+            <ImageCard id={player.data.value} cardWidth={width} className="d-table__image-card" />
           </ImageBlurButtonContainer>
         </div>
       ))}

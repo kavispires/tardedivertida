@@ -12,7 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { StepAlbum } from './StepAlbum';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhasePresentation({ players, state, info }: PhaseProps) {
+export function PhasePresentation({ players, state, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (
@@ -40,5 +40,3 @@ function PhasePresentation({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhasePresentation;

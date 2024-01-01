@@ -2,6 +2,8 @@ import { useState, useCallback } from 'react';
 import { useEffectOnce } from 'react-use';
 //Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Clue, Grid, GridType } from './utils/types';
 // Utils
 import { shuffle } from 'utils/helpers';
 import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
@@ -14,10 +16,10 @@ import { SelectableCell } from './components/SelectableCell';
 import { Clues } from './components/Clues';
 
 type StepGuessingProps = {
-  grid: CruzaPalavrasGrid;
-  gridType: CruzaPalavrasGridType;
+  grid: Grid;
+  gridType: GridType;
   user: GamePlayer;
-  clues: CruzaPalavrasClue[];
+  clues: Clue[];
   onSubmitGuesses: GenericFunction;
 } & AnnouncementProps;
 

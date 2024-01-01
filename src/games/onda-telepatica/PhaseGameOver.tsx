@@ -11,7 +11,7 @@ import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 
-function PhaseGameOver({ state, players, info }: PhaseProps) {
+export function PhaseGameOver({ state, players, info }: PhaseProps) {
   return (
     <GameOverWrapper
       info={info}
@@ -59,5 +59,3 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

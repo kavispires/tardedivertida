@@ -1,11 +1,7 @@
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import {
-  useOnSubmitEvaluationAPIRequest,
-  useOnSubmitHelpAPIRequest,
-  useOnSubmitOutcomeAPIRequest,
-} from './utils/api-requests';
+import { useOnSubmitEvaluationAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -19,13 +15,12 @@ import { ViewOr } from 'components/views';
 import { StepBossEvaluation } from './StepBossEvaluation';
 import { StepPlayersWaitEvaluation } from './StepPlayersWaitEvaluation';
 
-function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
+export function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
   const onSubmitEvaluation = useOnSubmitEvaluationAPIRequest(setStep);
   const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
-  const onSubmitHelp = useOnSubmitHelpAPIRequest(setStep);
 
   return (
     <PhaseContainer
@@ -60,7 +55,6 @@ function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
             categories={state.categories}
             onSubmitEvaluation={onSubmitEvaluation}
             onSubmitOutcome={onSubmitOutcome}
-            onSubmitHelp={onSubmitHelp}
             finalAnswersLeft={state.finalAnswersLeft}
             players={players}
             round={state.round}
@@ -80,5 +74,3 @@ function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseClueEvaluations;

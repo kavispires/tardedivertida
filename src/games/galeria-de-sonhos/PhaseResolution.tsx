@@ -13,7 +13,7 @@ import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { HostNextPhaseButton } from 'components/host';
 import { RowSwapInstruction } from './components/RulesBlobs';
 
-function PhaseResolution({ players, state, info }: PhaseProps) {
+export function PhaseResolution({ players, state, info }: PhaseProps) {
   const { step, goToNextStep } = useStep();
 
   return (
@@ -57,5 +57,3 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseResolution;

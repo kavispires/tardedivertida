@@ -14,7 +14,7 @@ import { Instruction } from 'components/text';
 import { StepFinalAssessment } from './StepFinalAssessment';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
+export function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const user = useUser(players, state);
@@ -75,5 +75,3 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseFinalAssessment;
