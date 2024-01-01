@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+// Types
+import type { FinalCharacterEntry } from '../utils/types';
 // Utils
 import { parseSelectedGlyphs } from '../utils/helpers';
 // Icons
@@ -11,7 +13,7 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 
 type FinalCharacterProps = {
   players: GamePlayers;
-  character: FinalCharacter;
+  character: FinalCharacterEntry;
   glyphWidth: number;
 };
 

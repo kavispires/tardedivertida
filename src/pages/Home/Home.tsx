@@ -65,7 +65,7 @@ function Home() {
                 <Button ghost onClick={() => navigate(language === 'pt' ? '/eu' : '/me')}>
                   <Translate pt="Página de Usuário" en="User page" />
                 </Button>
-                <Button ghost onClick={() => navigate('/daily')}>
+                <Button ghost onClick={() => navigate(language === 'pt' ? '/diario' : '/daily')}>
                   <Translate pt="Desafio Diário" en="Daily Challenge" />
                 </Button>
               </>

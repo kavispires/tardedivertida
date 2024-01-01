@@ -22,7 +22,7 @@ export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
       title={<Translate pt="Quem quer ser o alienígena?" en="Who will be the Alien?" />}
       currentRound={state?.round?.current}
       type="overlay"
-    ></PhaseAnnouncement>
+    />
   );
 
   return (

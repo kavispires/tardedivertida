@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { FightingContender } from './utils/type';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -17,7 +19,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 type StepSelectChallengeProps = {
   onSubmitChallenge: GenericFunction;
   challenges: TextCard[];
-  userContenders: WContender[];
+  userContenders: FightingContender[];
   round: GameRound;
 } & AnnouncementProps;
 

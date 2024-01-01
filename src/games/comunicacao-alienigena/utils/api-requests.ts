@@ -1,3 +1,12 @@
+import type {
+  SubmitAlienPayload,
+  SubmitAlienRequestPayload,
+  SubmitAlienResponsePayload,
+  SubmitHumanInquiryPayload,
+  SubmitOfferingPayload,
+  SubmitSeedingPayload,
+} from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -6,7 +15,7 @@ import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
 
 const submitAction = httpsCallable(functions, 'comunicacaoAlienigenaSubmitAction');
 
-export function useOnSubmitAlienAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitAlienAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -29,7 +38,7 @@ export function useOnSubmitAlienAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitSeedingAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitSeedingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -52,7 +61,7 @@ export function useOnSubmitSeedingAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitHumanInquiryAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitHumanInquiryAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -100,7 +109,7 @@ export function useOnMakeReady() {
   return useOnMakeMeReady({});
 }
 
-export function useOnSubmitAlienRequestAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitAlienRequestAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -123,7 +132,7 @@ export function useOnSubmitAlienRequestAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitOfferingAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitOfferingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

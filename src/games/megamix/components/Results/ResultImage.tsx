@@ -1,3 +1,5 @@
+// Types
+import type { ResultComponentProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -26,7 +28,7 @@ export function ResultImage({ winningValues, containerWidth }: ResultComponentPr
       <div className="track-result-values__cards">
         {winningValues.map((cardId) => (
           <ImageBlurButtonContainer cardId={cardId} key={`table-focus-${cardId}`} className="margin">
-            <ImageCard imageId={cardId} cardWidth={width} className="d-table__image-card" />
+            <ImageCard id={cardId} cardWidth={width} className="d-table__image-card" />
           </ImageBlurButtonContainer>
         ))}
       </div>

@@ -1,6 +1,8 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Table, Tooltip } from 'antd';
+// Types
+import type { Results } from '../utils/types';
 // Icons
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
@@ -12,7 +14,7 @@ import { CrimeGuessStatus } from './CrimeGuessStatus';
 
 type ResultsTableProps = {
   players: GamePlayers;
-  results: HResults;
+  results: Results;
 };
 
 export function ResultsTable({ players, results }: ResultsTableProps) {

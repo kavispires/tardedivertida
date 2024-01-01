@@ -1,9 +1,12 @@
+import { useState } from 'react';
+// Ant Design Resources
 import { Button, Input, InputNumber, Select, Space } from 'antd';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useState } from 'react';
+// Components
+import { Translate } from 'components/language';
+import { Title } from 'components/text';
 
 type CustomQuestionProps = {
   onSubmit: GenericFunction;

@@ -13,7 +13,7 @@ import { GuessMessage } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 import { Translate } from 'components/language';
 
-function PhaseGuessing({ players, state, info }: PhaseProps) {
+export function PhaseGuessing({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -49,5 +49,3 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseGuessing;

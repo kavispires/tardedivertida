@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Bracket, FightingContender } from '../utils/type';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -21,14 +23,14 @@ import { ResetBetsButton } from './ResetBetsButton';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type BetsFormProps = {
-  brackets: WBracket[];
+  brackets: Bracket[];
   onSubmitBets: GenericFunction;
 };
 
 export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
   const { language } = useLanguage();
   const [step, setStep] = useState(0);
-  const [contenders, setContenders] = useState<WContender[]>([]);
+  const [contenders, setContenders] = useState<FightingContender[]>([]);
 
   const [bets, setBets] = useState(DEFAULT_BETS);
 

@@ -3,6 +3,9 @@ import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useMock } from 'hooks/useMock';
+// Types
+import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from './utils/types';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
@@ -23,7 +26,7 @@ import { AlienViewBoard } from './components/AlienViewBoard';
 import { ItemCard } from 'components/cards/ItemCard';
 import { BotPopupRule } from './components/BotPopupRules';
 import { DebugOnly } from 'components/debug';
-import { useMock } from 'hooks/useMock';
+import { OfferingsStatus } from './utils/types';
 
 type StepAlienAnswersProps = {
   players: GamePlayers;

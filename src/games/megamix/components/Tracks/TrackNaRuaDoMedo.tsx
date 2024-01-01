@@ -1,5 +1,7 @@
 // AntDesign Resources
 import { Avatar, Button, Space } from 'antd';
+// Types
+import type { StreetCard, TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -28,7 +30,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
     onSelect(
       track.variant === 'kids'
         ? mockSelection(['0', '1'])
-        : mockSelection(track.data.options.map((h: NCard) => h.id))
+        : mockSelection(track.data.options.map((h: StreetCard) => h.id))
     );
   });
 
@@ -66,7 +68,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
               <IconAvatar icon={<StreetIcon />} size="large" />
             </Space>
             <div className="n-street__houses">
-              {track.data.options['0'].map((house: NCard) => (
+              {track.data.options['0'].map((house: StreetCard) => (
                 <HouseCard key={`A-${house.id}`} card={house} candyLeftover={0} preview={false} />
               ))}
             </div>
@@ -81,7 +83,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
               <IconAvatar icon={<StreetIcon />} size="large" />
             </Space>
             <div className="n-street__houses">
-              {track.data.options['1'].map((house: NCard) => (
+              {track.data.options['1'].map((house: StreetCard) => (
                 <HouseCard key={`B-${house.id}`} card={house} candyLeftover={0} preview={false} />
               ))}
             </div>
@@ -113,7 +115,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
       </Instruction>
 
       <Space className="space-container">
-        {track.data.options.map((house: NCard) => (
+        {track.data.options.map((house: StreetCard) => (
           <Space direction="vertical" key={house.id} className="space-container n-street-house">
             <HouseCard card={house} candyLeftover={0} preview={false} />
             <Button

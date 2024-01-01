@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Image } from 'antd';
+// Types
+import type { ImageCardObj } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Helpers
@@ -9,7 +11,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { ImageBlurButton, ImageCard } from 'components/image-cards';
 
 type TableProps = {
-  table: GImageCard[];
+  table: ImageCardObj[];
 };
 
 export function GameOverTable({ table }: TableProps) {
@@ -22,7 +24,7 @@ export function GameOverTable({ table }: TableProps) {
             <li key={`g-table-${card.id}`} className="g-table-item" style={{ width: `${cardWidth + 8}px` }}>
               <ImageBlurButton cardId={card.id} />
               <ImageCard
-                imageId={card.id}
+                id={card.id}
                 cardWidth={cardWidth - 6} // 6 is the border total size
                 className={clsx('g-table-image', getAnimationClass('zoomIn'))}
               />

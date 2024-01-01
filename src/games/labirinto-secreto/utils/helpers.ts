@@ -1,3 +1,6 @@
+// Types
+import type { Direction, MapSegment, PlayerMapping, Point, TreeId } from './types';
+// Utils
 import { DIRECTIONS, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 
 /**
@@ -100,9 +103,7 @@ export const getAvailableSegments = (origin: TreeId, usedIndexes: TreeId[]): Tre
 export const getPossibleTreeIds = (fullMap: MapSegment[], currentSegment?: MapSegment): TreeId[] => {
   if (!currentSegment) return [];
 
-  const usedTrees = fullMap
-    .filter((segment: MapSegment) => segment.passed)
-    .map((segment: MapSegment) => segment.treeId);
+  const usedTrees = fullMap.filter((segment) => segment.passed).map((segment) => segment.treeId);
 
   return getAvailableSegments(currentSegment.previousTree ?? currentSegment.treeId, usedTrees).filter(
     (treeId) => treeId !== currentSegment.treeId

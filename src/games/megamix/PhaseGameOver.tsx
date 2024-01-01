@@ -1,6 +1,7 @@
 import { isEqual } from 'lodash';
 // Utils
 import { AVATARS } from 'utils/avatars';
+import { achievementsReference } from './utils/achievements';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
@@ -10,7 +11,6 @@ import { DualTranslate, Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { Container } from 'components/general/Container';
 import { Achievements } from 'components/general/Achievements';
-import { achievementsReference } from './utils/achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (

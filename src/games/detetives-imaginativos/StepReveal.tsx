@@ -1,3 +1,5 @@
+// Types
+import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -18,7 +20,7 @@ type StepRevealProps = {
   leaderId: PlayerId;
   round: GameRound;
   ranking: GameRanking;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
 } & AnnouncementProps;
 
 export function StepReveal({

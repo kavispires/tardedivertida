@@ -1,4 +1,6 @@
 import { orderBy } from 'lodash';
+// Types
+import type { Bet, Bracket, BracketTier, ContenderByTier, FightingContender } from './type';
 
 /**
  * Finds the contender for each of the players bets and selected contender
@@ -7,7 +9,7 @@ import { orderBy } from 'lodash';
  * @param selectedContenderId
  * @returns
  */
-export const findBetContenders = (brackets: WBracket[], bets: WBets, selectedContenderId: CardId) => {
+export const findBetContenders = (brackets: Bracket[], bets: Bet, selectedContenderId: CardId) => {
   return {
     quarterCard: brackets.find((bracket) => bracket.id === bets?.quarter),
     semiCard: brackets.find((bracket) => bracket.id === bets?.semi),
@@ -21,8 +23,8 @@ export const findBetContenders = (brackets: WBracket[], bets: WBets, selectedCon
  * @param brackets
  * @returns
  */
-export const getContenderIdsByTier = (brackets: WBracket[]) =>
-  brackets.reduce((acc: WContenderByTier, bracket) => {
+export const getContenderIdsByTier = (brackets: Bracket[]) =>
+  brackets.reduce((acc: ContenderByTier, bracket) => {
     if (acc[bracket.tier] === undefined) {
       acc[bracket.tier] = {};
     }
@@ -39,11 +41,11 @@ export const getContenderIdsByTier = (brackets: WBracket[]) =>
  * @returns list of contenders
  */
 export const getSmartBetContenderOptions = (
-  brackets: WBracket[],
-  tier: WBracketTier,
-  bets: WBets,
+  brackets: Bracket[],
+  tier: BracketTier,
+  bets: Bet,
   language: Language
-): WContender[] => {
+): FightingContender[] => {
   const allContenders = orderBy(
     brackets.filter((entry) => entry.tier === 'quarter'),
     `name.${language}`

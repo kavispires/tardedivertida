@@ -15,7 +15,7 @@ import { StepPlayCard } from './StepPlayCard';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
-function PhaseCardPlay({ state, players, info }: PhaseProps) {
+export function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -67,5 +67,3 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCardPlay;

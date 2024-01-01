@@ -1,3 +1,5 @@
+// Types
+import type { ResultComponentProps } from '../../utils/types';
 // Utils
 import { getMovieTitles } from '../../utils/helpers';
 // Components

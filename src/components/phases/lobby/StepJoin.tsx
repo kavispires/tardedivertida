@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Alert, Button, Divider, Modal } from 'antd';
 // API & Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { UseStep } from 'hooks/useStep';
 // Services
 import { signInAsGuest } from 'services/firebase';
 // Components
@@ -13,7 +14,7 @@ import { SignUp } from 'components/auth/SignUp';
 
 type StepJoinProps = {
   info: GameInfo;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
 };
 
 export function StepJoin({ info, setStep }: StepJoinProps) {
@@ -60,7 +61,7 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
 
 type LoginButtonProps = {
   disabled: boolean;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
 };
 
 export function LoginButton({ disabled, setStep }: LoginButtonProps) {
@@ -88,7 +89,7 @@ export function LoginButton({ disabled, setStep }: LoginButtonProps) {
 
 type SignUpButtonProps = {
   disabled: boolean;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
 };
 
 export function SignUpButton({ disabled, setStep }: SignUpButtonProps) {

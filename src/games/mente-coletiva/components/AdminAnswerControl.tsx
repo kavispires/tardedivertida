@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
+// Types
+import type { AllowedList, Answer, AnswerGroupObject } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useDevFeatures } from 'hooks/useDevFeatures';
@@ -12,9 +14,9 @@ import { Avatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 
 type AdminAnswerControlProps = {
-  allAnswers: MAnswer[];
+  allAnswers: Answer[];
   allowedList: AllowedList;
-  answerGroup: AnswerGroup;
+  answerGroup: AnswerGroupObject;
   onAddAnswer: GenericFunction;
   onNextAnswer: GenericFunction;
   players: GamePlayers;
@@ -40,8 +42,8 @@ export function AdminAnswerControl({
       allAnswers.filter((answer) => {
         if (answer.isLocked) return false;
 
-        const included = answerGroup.entries.map((a: MAnswer) => a.id);
-        const playerIds = answerGroup.entries.map((a: MAnswer) => a.playerId);
+        const included = answerGroup.entries.map((a: Answer) => a.id);
+        const playerIds = answerGroup.entries.map((a: Answer) => a.playerId);
 
         return !included.includes(answer.id) && !playerIds.includes(answer.playerId);
       }),

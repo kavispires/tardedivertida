@@ -38,6 +38,12 @@ const ImageCardsRelationships = lazy(
   () =>
     import('pages/Dev/ImageCards/ImageCardsPage' /* webpackChunkName: "page-dev-image-cards-relationships" */)
 );
+const ConnectItems = lazy(
+  () => import('pages/Dev/ConnectItems/ConnectItems' /* webpackChunkName: "page-dev-connect-items" */)
+);
+const ConnectTrio = lazy(
+  () => import('pages/Dev/ConnectItems/ConnectTrioPage' /* webpackChunkName: "page-td-connect-trio" */)
+);
 
 const LazyMe = () => (
   <Suspense fallback={<LoadingPage />}>
@@ -124,6 +130,16 @@ const LazyImageCardsRelationships = () => (
     <ImageCardsRelationships />
   </Suspense>
 );
+const LazyConnectItems = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <ConnectItems />
+  </Suspense>
+);
+const LazyConnectTrio = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <ConnectTrio />
+  </Suspense>
+);
 
 /**
  * Wraps admin components that are exclusive to Administrators
@@ -146,6 +162,7 @@ export const routes = (
     <Route path="/eu" element={<LazyMe />} />
     <Route path="/diario" element={<LazyDiario />} />
     <Route path="/daily" element={<LazyDaily />} />
+    <Route path="/trio" element={<LazyConnectTrio />} />
 
     <Route
       path="/hub"
@@ -233,6 +250,15 @@ export const routes = (
       element={
         <AdminProtectedRoute>
           <LazyUsers />
+        </AdminProtectedRoute>
+      }
+    />
+
+    <Route
+      path="/dev/connectitems"
+      element={
+        <AdminProtectedRoute>
+          <LazyConnectItems />
         </AdminProtectedRoute>
       }
     />

@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -54,5 +54,3 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseReveal;

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // Ant Design Resources
 import { Button, App, Space } from 'antd';
 // Hooks
@@ -7,7 +8,6 @@ import { TransparentButton } from 'components/buttons';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { useState } from 'react';
 import { Card } from 'components/cards';
 import { CheckCircleFilled } from '@ant-design/icons';
 

@@ -14,7 +14,7 @@ type ViewWitnessingProps = {
   remainingWitnessingTime: number;
   lines: CanvasLine[];
   setLines: CanvasSetLine;
-  currentMonster: Monster;
+  currentMonster: MonsterCard;
   witness: GamePlayer;
 };
 

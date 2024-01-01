@@ -1,29 +1,29 @@
+import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Image, Space } from 'antd';
 import { RadarChartOutlined } from '@ant-design/icons';
 // Hooks
+import { useDancingDoors } from './utils/useTrapHooks';
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { PHASES } from 'utils/phases';
 import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
+import { mockDoorSelection } from './utils/mock';
+import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
-import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
 import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
-import { useMock } from 'hooks/useMock';
-import { mockDoorSelection } from './utils/mock';
-import clsx from 'clsx';
-import { useDancingDoors } from './utils/useTrapHooks';
 
 type StepSelectPagesProps = {
   doors: CardId[];
@@ -88,7 +88,7 @@ export function StepSelectDoor({
   /**
    * When there are less crystals than doors, disabled additional voting doors
    */
-  const shouldRestrainDoorConfirmation = magic && magic < doors.length && selectedDoors > magic;
+  const shouldRestrainDoorConfirmation = !!magic && magic < doors.length && selectedDoors > magic;
 
   return (
     <Step fullWidth>
@@ -214,7 +214,7 @@ export function StepSelectDoor({
             {Boolean(pages[0]) && (
               <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
                 <ImageCard
-                  imageId={pages[0]}
+                  id={pages[0]}
                   cardWidth={140}
                   className={bookCardClass}
                   preview={trap !== TRAPS.NO_PREVIEW}
@@ -224,7 +224,7 @@ export function StepSelectDoor({
             {Boolean(pages[1]) && (
               <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
                 <ImageCard
-                  imageId={pages[1]}
+                  id={pages[1]}
                   cardWidth={140}
                   className={bookCardClass}
                   preview={trap !== TRAPS.NO_PREVIEW}
@@ -234,7 +234,7 @@ export function StepSelectDoor({
             {Boolean(pages[2]) && (
               <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
                 <ImageCard
-                  imageId={pages[2]}
+                  id={pages[2]}
                   cardWidth={140}
                   className={bookCardClass}
                   preview={trap !== TRAPS.NO_PREVIEW}

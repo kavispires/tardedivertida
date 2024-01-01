@@ -1,6 +1,8 @@
 import { Fragment } from 'react';
 // AntDesign Resources
 import { RightSquareOutlined } from '@ant-design/icons';
+// Types
+import type { ResultComponentProps } from '../../utils/types';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components

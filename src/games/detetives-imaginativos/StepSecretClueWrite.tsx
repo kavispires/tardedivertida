@@ -1,15 +1,15 @@
 import { useState } from 'react';
+// Ant Design Resources
+import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-// Ant Design Resources
-import { Button, Input, Space } from 'antd';
+// Components
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCardHand } from 'components/image-cards';
 import { CardHighlight } from 'components/metrics/CardHighlight';
-// Components
 
 type SecretClueWriteProps = {
   onSubmitClue: GenericFunction;

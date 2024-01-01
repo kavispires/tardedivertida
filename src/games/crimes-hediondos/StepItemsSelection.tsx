@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { GroupedItems, ItemsDict } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -36,7 +38,7 @@ export function StepItemsSelection({
 
   const userItems = groupedItems[user.itemGroupIndex];
 
-  const onSelectItem = (item: HCard) => {
+  const onSelectItem = (item: CrimesHediondosCard) => {
     if (item.type === 'weapon') {
       setWeaponId(item.id);
     } else {

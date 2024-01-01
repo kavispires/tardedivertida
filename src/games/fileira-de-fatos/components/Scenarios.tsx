@@ -1,6 +1,8 @@
-// Ant Design Resources
 import clsx from 'clsx';
+// Ant Design Resources
 import { Avatar, Space } from 'antd';
+// Types
+import type { ScaleEntry } from '../utils/types';
 // Hook
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components

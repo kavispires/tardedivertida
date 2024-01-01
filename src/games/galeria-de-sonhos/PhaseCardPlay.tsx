@@ -27,7 +27,7 @@ import { StepAnnounceDream } from './StepAnnounceDream';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 
-function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
+export function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, goToNextStep, setStep } = useStep();
   const user = useUser(players, state);
@@ -161,5 +161,3 @@ function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCardPlay;

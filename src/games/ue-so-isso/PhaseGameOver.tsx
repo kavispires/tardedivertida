@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Col, Row } from 'antd';
+// Types
+import type { GalleryEntry } from './utils/types';
 // Utils
 import achievementsReference from './utils/achievements';
 // Icons
@@ -26,7 +28,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
       </Title>
 
       <Row gutter={[16, 16]} className="u-gallery" justify="center">
-        {state.gallery.map((entry: UseSoIssoGalleryEntry, index: number) => {
+        {state.gallery.map((entry: GalleryEntry) => {
           return (
             <Col xs={4} key={entry.id}>
               <div className="u-gallery-entry">

@@ -11,7 +11,7 @@ type SceneTileProps = {
   /**
    * Scene tile
    */
-  tile: SceneTile;
+  tile: CrimeTile;
   /**
    * The optional answer index
    */

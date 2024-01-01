@@ -5,7 +5,7 @@ import { getBracketClass } from '../utils/helpers';
 import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type DialProps = {
-  card: OCategoryCard;
+  card: OpposingIdeaCard;
   needle?: number;
   showNeedle?: boolean;
   target?: number;

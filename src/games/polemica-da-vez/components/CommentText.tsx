@@ -1,10 +1,10 @@
 import clsx from 'clsx';
+// Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
-// Components
 
 type CommentTextProps = {
   reaction: boolean;

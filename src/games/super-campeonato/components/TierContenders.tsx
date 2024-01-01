@@ -1,10 +1,12 @@
+// Types
+import type { Bracket } from '../utils/type';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 
 type TierContendersProps = {
-  contenders: WBracket[][];
+  contenders: Bracket[][];
 };
 
 export function TierContenders({ contenders }: TierContendersProps) {

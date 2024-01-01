@@ -208,7 +208,7 @@ export function StepReveal({
                     })
                   }
                 >
-                  <ImageCard imageId={posterId} cardWidth={posterWidth} preview={false} />
+                  <ImageCard id={posterId} cardWidth={posterWidth} preview={false} />
                 </TransparentButton>
               ))}
             </Space>

@@ -15,7 +15,7 @@ export type ImageCardProps = {
   /**
    * The id of the image
    */
-  imageId: string;
+  id: string;
   /**
    * The width of the card (Default: 200px)
    */
@@ -46,7 +46,7 @@ export type ImageCardProps = {
  * Renders an Image Card on tdi
  */
 export const ImageCard = ({
-  imageId,
+  id,
   cardWidth = 200,
   className = '',
   preview = true,
@@ -59,11 +59,11 @@ export const ImageCard = ({
 
   const baseClass = 'image-card';
 
-  const fallbackName = `placeholder-${imageId[imageId.length - 1]}`;
+  const fallbackName = `placeholder-${id[id.length - 1]}`;
 
-  const imageURL = imageId.replace(/-/g, '/');
+  const imageURL = id.replace(/-/g, '/');
 
-  const isBlurred = shouldBeBlurred(imageId);
+  const isBlurred = shouldBeBlurred(id);
 
   const previewConfig = typeof preview === 'boolean' ? {} : preview;
 

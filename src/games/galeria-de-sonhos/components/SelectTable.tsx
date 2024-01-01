@@ -1,18 +1,20 @@
 import clsx from 'clsx';
 // Design Resources
 import { Image } from 'antd';
+// Types
+import type { ImageCardObj } from '../utils/types';
+import { CloseCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { BORDER_TOTAL_SIZE } from '../utils/constants';
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { CloseCircleOutlined } from '@ant-design/icons';
-import { getAnimationClass } from 'utils/helpers';
 
 type SelectTableProps = {
-  table: GImageCard[];
+  table: ImageCardObj[];
   onSelectCard: GenericFunction;
   selectedCards: BooleanDictionary;
 };
@@ -38,7 +40,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                 style={{ width: `${cardWidth + 8}px` }}
               >
                 <ImageCardButton
-                  imageId={card.id}
+                  id={card.id}
                   onClick={() => onSelectCard(card.id)}
                   over
                   buttonPosition="bottom"
@@ -52,7 +54,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                   }
                 >
                   <ImageCard
-                    imageId={card.id}
+                    id={card.id}
                     cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
                     className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
                   />

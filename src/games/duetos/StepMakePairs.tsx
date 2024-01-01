@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Item, SubmitPairsPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -19,7 +21,7 @@ import { getAnimationClass } from 'utils/helpers';
 type StepTemplateProps = {
   players: GamePlayers;
   user: GamePlayer;
-  pool: ItemEntry[];
+  pool: Item[];
   onSubmitPairs: (payload: SubmitPairsPayload) => void;
 } & AnnouncementProps;
 

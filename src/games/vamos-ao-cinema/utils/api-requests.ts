@@ -1,3 +1,5 @@
+import type { SubmitMovieSelectionPayload, SubmitMovieEliminationPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -5,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'vamosAoCinemaSubmitAction');
 
-export function useOnSubmitMovieSelectionAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitMovieSelectionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -29,7 +31,7 @@ export function useOnSubmitMovieSelectionAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitMovieEliminationAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitMovieEliminationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -58,7 +60,7 @@ export function useOnSubmitMovieEliminationAPIRequest(setStep: GenericFunction) 
   };
 }
 
-export function useOnSubmitMoviePosterAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitMoviePosterAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

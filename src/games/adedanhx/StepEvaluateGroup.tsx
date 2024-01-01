@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
+import { RocketFilled } from '@ant-design/icons';
+// Types
+import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { RocketFilled } from '@ant-design/icons';
 // Utils
 import { isDevEnv, pluralize } from 'utils/helpers';
 // Components

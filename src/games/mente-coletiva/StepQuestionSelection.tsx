@@ -1,6 +1,8 @@
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
+// Types
+import type { Question } from './utils/types';
 // Utils
 import { mockSelectQuestion } from './utils/mock';
 // Components
@@ -16,7 +18,7 @@ import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type StepQuestionSelectionProps = {
   activePlayer: GamePlayer;
-  currentQuestions: MQuestion[];
+  currentQuestions: Question[];
   onSubmitQuestion: GenericFunction;
   onSubmitCustomQuestion: GenericFunction;
   players: GamePlayers;

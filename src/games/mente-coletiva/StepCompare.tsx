@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Divider } from 'antd';
+// Types
+import type { AllowedList, Answer, AnswerGroupObject, Question } from './utils/types';
 // Hook
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -11,11 +13,11 @@ import { Translate } from 'components/language';
 import { HostNextPhaseButton } from 'components/host';
 
 type StepCompareProps = {
-  currentQuestion: MQuestion;
-  answerGroup: AnswerGroup;
+  currentQuestion: Question;
+  answerGroup: AnswerGroupObject;
   players: GamePlayers;
   user: GamePlayer;
-  allAnswers: MAnswer[];
+  allAnswers: Answer[];
   onAddAnswer: GenericFunction;
   onNextAnswer: GenericFunction;
   remainingGroupsCount: number;

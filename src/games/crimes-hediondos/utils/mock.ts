@@ -1,7 +1,10 @@
+// Types
+import type { GroupedItems, GuessHistoryEntry, SubmitCrimePayload } from '../utils/types';
+// Utils
 import { SEPARATOR } from 'utils/constants';
 import { getLastItem, getRandomItem, shuffle } from 'utils/helpers';
 
-export const mockCrime = (itemsGroup: string[], locationTiles: SceneTile[]): SubmitCrimePayload => {
+export const mockCrime = (itemsGroup: string[], locationTiles: CrimeTile[]): SubmitCrimePayload => {
   const shuffledItems = shuffle(itemsGroup);
   const weapon = shuffledItems.find((e) => e?.includes('wp'));
   const evidence = shuffledItems.find((e) => e?.includes('ev'));

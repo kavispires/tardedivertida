@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
+// Types
+import type { Question } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
@@ -20,7 +22,7 @@ import { TimedTimerClock } from 'components/timers';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type StepAnsweringProps = {
-  currentQuestion: MQuestion;
+  currentQuestion: Question;
   onSubmitAnswers: GenericFunction;
   players: GamePlayers;
   roundType: number;
@@ -94,7 +96,7 @@ export function StepAnswering({
             .map((i, index) => {
               const num = i + index;
               const key = `answer-${index}`;
-              const id = getEntryId(['answer', index, user.id]);
+              const id = getEntryId(['answer', String(index), user.id]);
               return (
                 <li className="m-answers__item" key={key}>
                   <Input

@@ -1,23 +1,25 @@
 import clsx from 'clsx';
+// Types
+import type { Bracket, BracketTier } from '../utils/type';
 // Components
 import { Translate } from 'components/language';
 import { BracketContenderVotes } from './BracketContenderVotes';
 import { CharacterCard } from 'components/cards/CharacterCard';
 
 type BracketsProps = {
-  brackets: WBracket[];
-  activeTier: WBracketTier;
+  brackets: Bracket[];
+  activeTier: BracketTier;
   players: GamePlayers;
 };
 
 type BracketTiers = {
-  quarter: WBracket[];
-  semi: WBracket[];
-  final: WBracket[];
-  winner: WBracket[];
+  quarter: Bracket[];
+  semi: Bracket[];
+  final: Bracket[];
+  winner: Bracket[];
 };
 
-const getContenderColor = (index: number, activeTier: WBracketTier) => {
+const getContenderColor = (index: number, activeTier: BracketTier) => {
   if (activeTier === 'semi') {
     return index % 2 === 0 ? 'orange' : 'green';
   }

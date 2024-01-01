@@ -11,7 +11,7 @@ import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 import { IconAvatar } from 'components/avatars';
 
 type StepCategorySelectionProps = {
-  currentCategories: OCategoryCard[];
+  currentCategories: OpposingIdeaCard[];
   onSendChosenSide: GenericFunction;
 } & AnnouncementProps;
 

@@ -1,3 +1,5 @@
+// Types
+import type { ArteRuimDrawing } from '../utils/types';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';

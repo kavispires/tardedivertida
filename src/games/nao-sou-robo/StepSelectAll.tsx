@@ -3,6 +3,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Flex, Image } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
+// Types
+import type { Captcha, CaptchaCard, Robot, SubmitRobotGuessPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -31,7 +33,7 @@ type StepSelectAllProps = {
   user: GamePlayer;
   onSubmitCaptcha: (payload: SubmitRobotGuessPayload) => void;
   captcha: Captcha;
-  options: Collection<CaptchaCard>;
+  options: Dictionary<CaptchaCard>;
   robot: Robot;
 } & AnnouncementProps;
 
@@ -121,7 +123,7 @@ export function StepSelectAll({
                   style={{ width: `${cardWidth + 8}px` }}
                 >
                   <ImageCardButton
-                    imageId={cardId}
+                    id={cardId}
                     onClick={() => toggleCard(cardId)}
                     buttonPosition="bottom"
                     icon={isSelected ? <CloseCircleOutlined /> : undefined}
@@ -134,7 +136,7 @@ export function StepSelectAll({
                     }
                   >
                     <ImageCard
-                      imageId={cardId}
+                      id={cardId}
                       cardWidth={cardWidth - 6} // 6 is the border total size
                       square
                       className={clsx('n-table-image', isSelected && 'n-table-image--selected')}

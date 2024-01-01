@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Icons

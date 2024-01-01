@@ -1,3 +1,5 @@
+import type { PlayCardPayload, SubmitStoryPayload, SubmitVotePayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -5,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'contadoresHistoriasSubmitAction');
 
-export function useOnSubmitStoryAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitStoryAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -28,7 +30,7 @@ export function useOnSubmitStoryAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnPlayCardAPIRequest(setStep: GenericFunction) {
+export function useOnPlayCardAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -50,7 +52,7 @@ export function useOnPlayCardAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

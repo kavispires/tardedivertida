@@ -17,7 +17,7 @@ import { PhaseVerifyGuess } from './PhaseVerifyGuess';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
 // Session
-import './ue-so-isso.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

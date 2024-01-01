@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Tooltip } from 'antd';
+// Types
+import type { StreetCard } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -14,7 +16,7 @@ type HouseCardProps = {
   /**
    * The candy, monster, jackpot card
    */
-  card: NCard;
+  card: StreetCard;
   /**
    * The quantity of candy left in the sidewalk
    */
@@ -70,7 +72,7 @@ export function HouseCard({
           </Tooltip>
         )}
       </div>
-      <ImageCard imageId={card.key} cardWidth={80} className={clsx(cardBaseClass)} preview={preview} />
+      <ImageCard id={card.key} cardWidth={80} className={clsx(cardBaseClass)} preview={preview} />
 
       <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
 

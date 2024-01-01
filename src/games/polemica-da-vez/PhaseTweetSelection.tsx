@@ -19,7 +19,7 @@ import { ViewOr } from 'components/views';
 import { TurnOrder, WaitingRoom } from 'components/players';
 import { ScoringRules } from './components/RulesBlobs';
 
-function PhaseTweetSelection({ state, players, info, meta }: PhaseProps) {
+export function PhaseTweetSelection({ state, players, info, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -108,5 +108,3 @@ function PhaseTweetSelection({ state, players, info, meta }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseTweetSelection;

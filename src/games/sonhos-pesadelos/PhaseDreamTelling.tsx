@@ -16,7 +16,7 @@ import { StepTellDream } from './StepTellDream';
 import { DreamTellingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseDreamTelling({ state, players, info }: PhaseProps) {
+export function PhaseDreamTelling({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -61,5 +61,3 @@ function PhaseDreamTelling({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseDreamTelling;

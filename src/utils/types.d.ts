@@ -47,7 +47,7 @@ type DualLanguageValue = {
 };
 type CardId = string;
 type ImageCardId = string;
-type Collection<T> = Record<CardId, T>;
+type Dictionary<T> = Record<CardId, T>;
 type Color =
   | 'red'
   | 'blue'
@@ -184,16 +184,18 @@ interface Me {
   };
 }
 
-interface Player {
+type GamePlayer<TPlayer = PlainObject> = {
   id: PlayerId;
   name: PlayerName;
   avatarId: PlayerAvatarId;
   updatedAt: DateMilliseconds;
   ready: boolean;
   [key: string]: any;
-}
+} & TPlayer;
 
-type GamePlayer = Player | PlainObject;
+interface GamePlayers<TPlayer = any> {
+  [key: string]: GamePlayer<TPlayer>;
+}
 
 interface Redirect {
   redirectAt: DateMilliseconds;
@@ -201,11 +203,11 @@ interface Redirect {
   gameName: GameName;
 }
 
-interface GameState {
+interface GameState<TState = PlainObject, TPlayer = PlainObject> extends TState {
   phase: string;
   updatedAt?: DateMilliseconds;
   round: GameRound;
-  players: GamePlayers;
+  players: GamePlayers<TPlayer>;
   redirect?: Redirect;
   [key: string]: any;
 }
@@ -284,10 +286,6 @@ type GameRound = {
   forceLastRound: boolean;
 };
 
-interface GamePlayers {
-  [key: string]: Player;
-}
-
 type CanvasLine = number[];
 type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
 type GenericComponent = (...args: any) => any;
@@ -295,25 +293,15 @@ type GenericFunction = (...args: any) => void;
 type BooleanFunction = (...args: any) => boolean;
 type ButtonEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
-type PhaseProps = {
-  players: GamePlayers;
-  state: GameState;
+type PhaseProps<TState = PlainObject, TPlayer = PlainObject> = {
+  state: GameState<TState, TPlayer>;
+  players: GamePlayers<TPlayer>;
   info: GameInfo;
   meta: GameMeta;
 };
 
 type AnnouncementProps = {
   announcement: JSX.Element;
-};
-
-type GameTeam = {
-  name?: string;
-  score: number;
-  members: PlayerId[];
-};
-
-type GameTeams = {
-  [key: string]: GameTeam;
 };
 
 type GameRanking = {
@@ -427,11 +415,6 @@ type AnimationType =
   | 'zoomOutRight'
   | 'zoomOutUp';
 
-type TextCard = {
-  id: CardId;
-  text: string;
-};
-
 interface Achievement {
   type: string;
   playerId: PlayerId;
@@ -446,134 +429,6 @@ interface AchievementInfo {
 
 type AchievementReference = Record<string, AchievementInfo>;
 
-type ArteRuimCard = {
-  id: CardId;
-  text: string;
-  level: number;
-};
-
-type ArteRuimGroup = {
-  id: string;
-  theme: string;
-  cards: Record<CardId, string>;
-};
-
-type ArteRuimPair = {
-  id: string;
-  values: [string, string];
-};
-
-type ContenderCard = {
-  id: CardId;
-  name: DualLanguageValue;
-  exclusivity?: Language;
-};
-
-type CrimeTile = {
-  id: string;
-  title: DualLanguageValue;
-  description: DualLanguageValue;
-  values: DualLanguageValue[];
-  type: string;
-  specific?: string | null;
-  tags?: Record<number | string, string[]>;
-};
-
-type CrimesHediondosCard = {
-  id: CardId;
-  type: string;
-  name: DualLanguageValue;
-  tags?: string[];
-};
-
-type GroupQuestionCard = {
-  id: CardId;
-  prefix: string;
-  number: number;
-  suffix: string;
-};
-
-type NamingPromptCard = {
-  id: CardId;
-  text: string;
-  set: string;
-  level: number;
-};
-
-type OpposingIdeaCard = {
-  id: CardId;
-  left: string;
-  right: string;
-};
-
-type SpyLocation = {
-  id: CardId;
-  name: string;
-  roles: string[];
-};
-
-type TestimonyQuestionCard = {
-  id: CardId;
-  question: string;
-};
-
-type ThemeCard = {
-  id: CardId;
-  text: string;
-  description?: string;
-};
-
-type TopicCard = {
-  id: CardId;
-  label: string;
-  category: string;
-  level: number;
-};
-
-type Tweet = {
-  id: CardId;
-  text: string;
-  custom?: boolean;
-};
-
-type DatingCandidateCard = {
-  id: CardId;
-  text: string;
-  type: 'fun-fact' | 'interest' | 'need';
-};
-
-type DatingCandidateImageCard = {
-  id: CardId;
-  name: DualLanguageValue;
-  type: 'head' | 'body';
-};
-
-type DilemmaCard = {
-  id: CardId;
-  prompt: string;
-  left: string;
-  right: string;
-  nsfw?: boolean;
-};
-
-type QuantitativeQuestionCard = {
-  id: CardId;
-  question: string;
-  scale?: boolean;
-};
-
-type MovieCard = {
-  id: CardId;
-  prefix: string;
-  suffix: string;
-};
-
-type MovieReview = {
-  id: CardId;
-  text: string;
-  type: 'good' | 'bad';
-};
-
 interface GroupProgress {
   correct: number;
   mistakes: number;
@@ -582,11 +437,3 @@ interface GroupProgress {
   score: number;
   goal: number;
 }
-
-type Suspect = {
-  id: string;
-  name: DualLanguageValue;
-  gender: string;
-  ethnicity: string;
-  age: string;
-};

@@ -1,3 +1,5 @@
+import type { SubmitRobotCardPayload, SubmitRobotGuessPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -5,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'naoSouRoboSubmitAction');
 
-export function useOnSubmitCardAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -28,7 +30,7 @@ export function useOnSubmitCardAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

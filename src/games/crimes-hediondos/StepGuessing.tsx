@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, ScenesDict } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -10,7 +12,7 @@ import { autoSelectCorrectGuesses, getHistory } from './utils/helpers';
 // Icons
 import { InvestigationIcon } from 'icons/InvestigationIcon';
 // Components
-import { Crime } from './components/Crime';
+import { CrimeSummary } from './components/CrimeSummary';
 import { PlayersCards } from './components/PlayersCards';
 import { SelectableGroupedItemsBoard } from './components/SelectableGroupedItemsBoard';
 import { Step } from 'components/steps';
@@ -176,7 +178,7 @@ export function StepGuessing({
 
       {activeCrime && (
         <FloatingHand title="Crime" icon={<InvestigationIcon />}>
-          <Crime
+          <CrimeSummary
             key={`crime-by-${activeCrime.playerId}`}
             crime={activeCrime}
             scenes={scenes}

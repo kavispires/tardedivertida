@@ -11,7 +11,7 @@ import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 type StepClueWaitingProps = {
   players: GamePlayers;
   psychic: GamePlayer;
-  currentCategories: OCategoryCard[];
+  currentCategories: OpposingIdeaCard[];
   currentCategoryId: string;
 } & AnnouncementProps;
 

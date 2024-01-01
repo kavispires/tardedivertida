@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Alert } from 'antd';
+// Types
+import type { Clues, BoardObject } from './utils/types';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -10,8 +12,8 @@ import { Avatar, AvatarName } from 'components/avatars';
 
 type StepPlayersWaitEvaluationProps = {
   categories: string[];
-  board: VBoard;
-  clues: VClues;
+  board: BoardObject;
+  clues: Clues;
   finalAnswersLeft: number;
   players: GamePlayers;
   boss: GamePlayer;

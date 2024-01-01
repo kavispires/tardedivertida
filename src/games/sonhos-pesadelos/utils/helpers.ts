@@ -1,3 +1,4 @@
+import type { Dream } from './types';
 import { LETTERS, SEPARATOR } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
 
@@ -18,7 +19,7 @@ export const cleanupVotes = (votes: StringDictionary, user: GamePlayer): StringD
   }, {});
 };
 
-export const selectOwnVote = (dreams: SDream[], user: GamePlayer) =>
+export const selectOwnVote = (dreams: Dream[], user: GamePlayer) =>
   dreams.reduce((acc: StringDictionary, entry, index) => {
     if (entry.id === user.id) {
       const clueEntryId = getEntryId(['dream', entry.id, LETTERS[index]]);
@@ -28,7 +29,7 @@ export const selectOwnVote = (dreams: SDream[], user: GamePlayer) =>
     return acc;
   }, {});
 
-export const voteRandomly = (votes: StringDictionary, dreams: SDream[], table: ImageCard[]) => {
+export const voteRandomly = (votes: StringDictionary, dreams: Dream[], table: ImageCard[]) => {
   const randomVotes = dreams.reduce((acc: StringDictionary, entry, index) => {
     const randomTable = shuffle(table);
     const clueEntryId = getEntryId(['dream', entry.id, LETTERS[index]]);

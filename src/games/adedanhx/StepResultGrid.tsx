@@ -1,6 +1,9 @@
 // Ant Design Resources
 import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+// Types
+import type { AdedanhxGrid, AnswerGridEntry } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
@@ -14,7 +17,7 @@ type StepResultGridProps = {
   user: GamePlayer;
   grid: AdedanhxGrid;
   answersGrid: Record<string, AnswerGridEntry>;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
 } & AnnouncementProps;
 
 export function StepResultGrid({

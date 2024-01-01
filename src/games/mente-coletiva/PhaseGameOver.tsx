@@ -1,3 +1,7 @@
+// Ant Design Resources
+import { Space } from 'antd';
+// Types
+import type { GalleryEntry } from './utils/types';
 // Utils
 import { achievementsReference } from './utils/achievements';
 // Icons
@@ -8,9 +12,8 @@ import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { SheepAvatar } from './components/SheepAvatar';
-import { Space } from 'antd';
 
-function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
     <GameOverWrapper
       info={info}
@@ -41,7 +44,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
             <Translate pt="Melhores Respostas" en="Best Answers" />
           </Title>
           <Space className="space-container gallery" wrap>
-            {state.gallery.map(({ question, answers }: MGalleryEntry) => {
+            {state.gallery.map(({ question, answers }: GalleryEntry) => {
               return (
                 <div className="gallery-entry" key={question.id}>
                   <h4 className="gallery-entry__question">
@@ -66,5 +69,3 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

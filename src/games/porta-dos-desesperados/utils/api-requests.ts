@@ -1,3 +1,5 @@
+import type { SubmitDoorPayload, SubmitPagesPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -6,7 +8,7 @@ import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
 
 const submitAction = httpsCallable(functions, 'portaDosDesesperadosSubmitAction');
 
-export function useOnSubmitPagesAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitPagesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -50,7 +52,7 @@ export function useOnSubmitDoorAPIRequest() {
   };
 }
 
-export function useOnMakeReady(setStep: GenericFunction) {
+export function useOnMakeReady(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   return useOnMakeMeReady({

@@ -1,4 +1,5 @@
 import { getRandomItem } from 'utils/helpers';
+import { CharactersDictionary } from './types';
 
 export function mockPromptDecision(
   user: GamePlayer,

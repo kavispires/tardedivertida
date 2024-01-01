@@ -12,13 +12,11 @@ function ResourcesPage() {
     <Layout className="dev-layout">
       <DevHeader title="Resources" />
       <Layout.Content className="dev-content">
-        {/* <RestructureJson /> */}
-        {/* <SaveGames /> */}
-        {/* <SaveResources /> */}
         <Space className="space-container contained" direction="vertical">
           <Link to="/dev/classifier">Items Classifier</Link>
           <Link to="/dev/imagecardscategorizer">Image Cards Categorizer</Link>
           <Link to="/dev/imagecardsrelationships">Image Cards Relationships</Link>
+          <Link to="/dev/connectitems">Items Connections</Link>
         </Space>
       </Layout.Content>
     </Layout>

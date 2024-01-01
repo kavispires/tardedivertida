@@ -14,7 +14,7 @@ import { Instruction } from 'components/text';
 import { StepLiking } from './StepLiking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseReact({ state, players, info }: PhaseProps) {
+export function PhaseReact({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
 
   const onSubmitReaction = useOnSubmitReactionAPIRequest(setStep);
@@ -66,5 +66,3 @@ function PhaseReact({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseReact;

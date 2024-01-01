@@ -1,3 +1,5 @@
+// Types
+import type { CloverObject, Leaves } from './utils/types';
 // Hooks
 import { useCloverState } from './utils/useCloverState';
 // Components
@@ -11,7 +13,7 @@ type StepRankingProps = {
   players: GamePlayers;
   ranking: GameRanking;
   round: GameRound;
-  clover: Clover;
+  clover: CloverObject;
   leaves: Leaves;
   activeCloverId: PlayerId;
 };

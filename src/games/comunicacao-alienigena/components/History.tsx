@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Collapse, CollapseProps } from 'antd';
+// Types
+import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { InquiryHistory } from './InquiryHistory';

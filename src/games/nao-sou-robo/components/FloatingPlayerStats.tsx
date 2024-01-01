@@ -1,3 +1,5 @@
+// Types
+import type { Robot } from '../utils/types';
 // Icons
 import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components

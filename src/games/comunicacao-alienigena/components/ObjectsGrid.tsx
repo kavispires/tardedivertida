@@ -2,6 +2,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Badge, Space } from 'antd';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
+// Types
+import type { Item } from '../utils/types';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';

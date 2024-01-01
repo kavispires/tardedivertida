@@ -25,7 +25,7 @@ import { StepWaitPageSelection } from './StepWaitPageSelection';
 import { BookHighlight } from './components/Highlights';
 import { TurnOrder } from 'components/players';
 
-function PhaseBookPossession({ players, state, info }: PhaseProps) {
+export function PhaseBookPossession({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
   const [, setCache] = useGlobalState('cache');
@@ -131,5 +131,3 @@ function PhaseBookPossession({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseBookPossession;

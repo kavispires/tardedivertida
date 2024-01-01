@@ -14,7 +14,7 @@ import { Translate } from 'components/language';
 import { StepRanking } from './StepRanking';
 import { StepWinner } from './StepWinner';
 
-function PhaseResults({ state, players, info }: PhaseProps) {
+export function PhaseResults({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
   const user = useUser(players, state);
@@ -67,5 +67,3 @@ function PhaseResults({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseResults;

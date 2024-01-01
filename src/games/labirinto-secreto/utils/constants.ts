@@ -1,3 +1,5 @@
+import { Direction } from './types';
+
 export const FOREST_WIDTH = 7;
 export const FOREST_HEIGHT = 5;
 

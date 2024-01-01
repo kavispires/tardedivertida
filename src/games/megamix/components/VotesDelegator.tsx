@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 import { orderBy } from 'lodash';
+// Type
+import type { VoteComponentProps } from '../utils/types';
 // Components
 import { FallbackComponent } from './FallbackComponent';
 import { VoteArteRuim } from './Votes/VoteArteRuim';

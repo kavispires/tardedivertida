@@ -1,6 +1,17 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
+// Types
+import type {
+  CloverObject,
+  CloverMode,
+  Guesses,
+  LeafId,
+  LeafIndex,
+  LeafLocks,
+  LeafPosition,
+  Leaves,
+} from './types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Helpers
@@ -16,7 +27,12 @@ import { getRandomItem } from 'utils/helpers';
  * @param onSubmit
  * @returns
  */
-export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves, onSubmit?: GenericFunction) {
+export function useCloverState(
+  mode: CloverMode,
+  clover: CloverObject,
+  leaves: Leaves,
+  onSubmit?: GenericFunction
+) {
   const { notification } = App.useApp();
   const { translate } = useLanguage();
   const [attempts, setAttempts] = useState(0);
@@ -24,7 +40,7 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
   const [rotation, setRotation] = useState<number>(0);
   const [activeLeafId, setActiveLeafId] = useState<string | null>(null);
   const [activeSlotId, setActiveSlotId] = useState<LeafPosition | null>(null);
-  const [guesses, setGuesses] = useState<YGuesses>({ A: null, B: null, C: null, D: null });
+  const [guesses, setGuesses] = useState<Guesses>({ A: null, B: null, C: null, D: null });
   const [locks, setLocks] = useState<LeafLocks>({ A: false, B: false, C: false, D: false });
   const [rotations, setRotations] = useState<NumberDictionary>(
     Object.keys(leaves).reduce((acc: NumberDictionary, leafId) => {

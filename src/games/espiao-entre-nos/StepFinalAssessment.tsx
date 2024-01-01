@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
+// Types
+import type { FinalAssessment, Location, Outcome } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -19,9 +21,9 @@ type StepFinalAssessmentProps = {
   onMakeAccusation: GenericFunction;
   players: GamePlayers;
   user: GamePlayer;
-  locations: ELocation[];
+  locations: Location[];
   isUserTheAccuser: boolean;
-  outcome?: EOutcome;
+  outcome?: Outcome;
   finalAssessment: FinalAssessment;
 };
 

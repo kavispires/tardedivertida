@@ -1,10 +1,13 @@
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar as AntAvatar, Space } from 'antd';
+// Types
+import type { ActingRole } from '../utils/types';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Components
 import { Avatar } from 'components/avatars';
 import { SuspectCard } from 'components/cards/SuspectCard';
-
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useMemo } from 'react';
 
 type ReleasedActorsProps = {
   actors: ActingRole['candidates'];

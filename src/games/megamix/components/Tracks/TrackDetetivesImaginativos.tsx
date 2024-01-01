@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // AntDesign Resources
 import { Button, Image, Space } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -64,7 +66,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                   >
                     <ImageCard
                       key={`table-focus-${cardId}`}
-                      imageId={cardId}
+                      id={cardId}
                       cardWidth={cardWidth * 0.6}
                       className="d-table__image-card"
                     />
@@ -107,7 +109,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                   >
                     <ImageCard
                       key={`table-focus-${cardId}`}
-                      imageId={cardId}
+                      id={cardId}
                       cardWidth={cardWidth * 0.75}
                       className="d-table__image-card"
                     />
@@ -171,7 +173,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                 >
                   <ImageCard
                     key={`table-focus-${cardId}`}
-                    imageId={cardId}
+                    id={cardId}
                     cardWidth={cardWidth}
                     className="d-table__image-card"
                   />

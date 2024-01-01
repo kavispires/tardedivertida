@@ -18,9 +18,9 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
   const player: GamePlayer = {
     id: '1',
     name: 'Player 1',
-    avatarId: random(0, 50),
+    avatarId: String(random(0, 50)),
     updatedAt: Date.now(),
-    read: true,
+    ready: true,
   };
 
   return (

@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { QuestionsDictionary } from '../utils/types';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter } from 'utils/helpers';

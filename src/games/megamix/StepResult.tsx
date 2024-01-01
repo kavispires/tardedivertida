@@ -1,8 +1,11 @@
 import { LegacyRef, useMemo } from 'react';
+import { useMeasure } from 'react-use';
 import { memoize } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+// Types
+import type { Track } from './utils/types';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Hooks
@@ -23,7 +26,6 @@ import { IconAvatar } from 'components/avatars';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TrackTitle } from './components/TrackTitle';
 import { VotesDelegator } from './components/VotesDelegator';
-import { useMeasure } from 'react-use';
 
 type StepResultProps = {
   user: GamePlayer;

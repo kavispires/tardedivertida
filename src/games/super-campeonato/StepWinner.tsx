@@ -1,6 +1,9 @@
 // Ant Design resources
 import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+// Types
+import type { Bet, Bracket } from './utils/type';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -14,9 +17,9 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 
 type StepWinnerProps = {
   challenge: TextCard;
-  brackets: WBracket[];
-  bets: WBets;
-  goToNextStep: GenericFunction;
+  brackets: Bracket[];
+  bets: Bet;
+  goToNextStep: UseStep['goToNextStep'];
   selectedContenderId: CardId;
 } & AnnouncementProps;
 

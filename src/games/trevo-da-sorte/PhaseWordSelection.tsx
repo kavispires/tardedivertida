@@ -15,7 +15,7 @@ import { RoundAnnouncement } from 'components/round';
 import { Translate } from 'components/language';
 import { StepSelectWords } from './StepSelectWords';
 
-function PhaseWordSelection({ players, state, info }: PhaseProps) {
+export function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep(0);
 
@@ -54,5 +54,3 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseWordSelection;

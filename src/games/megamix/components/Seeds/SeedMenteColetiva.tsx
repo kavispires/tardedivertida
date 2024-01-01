@@ -2,6 +2,8 @@ import { useState } from 'react';
 // AntDesign Resources
 import { Button, Input, Space } from 'antd';
 import { FlagFilled, HeartFilled, MessageFilled } from '@ant-design/icons';
+// Types
+import type { SeedEntryMenteColetiva } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
@@ -14,7 +16,7 @@ import { SVGPhone } from '../SVGPhone';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type SeedMenteColetivaProps = {
-  seed: SeedMenteColetiva;
+  seed: SeedEntryMenteColetiva;
   updateData: GenericComponent;
 };
 

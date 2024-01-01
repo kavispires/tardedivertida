@@ -62,12 +62,7 @@ export function CrimeItemCard({
             <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
           </Tag>
         </Popover>
-        <ImageCard
-          imageId={item.id}
-          cardWidth={cardWidth}
-          className="crime-item-card__image"
-          preview={preview}
-        />
+        <ImageCard id={item.id} cardWidth={cardWidth} className="crime-item-card__image" preview={preview} />
       </div>
     </ImageBlurButtonContainer>
   );

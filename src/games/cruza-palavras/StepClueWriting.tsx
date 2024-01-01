@@ -1,5 +1,7 @@
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+// Types
+import type { Grid, GridType } from './utils/types';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
@@ -10,8 +12,8 @@ import { WritingCell } from './components/WritingCell';
 import { WritingCluesRule } from './components/RulesBlobs';
 
 type StepClueWritingProps = {
-  grid: CruzaPalavrasGrid;
-  gridType: CruzaPalavrasGridType;
+  grid: Grid;
+  gridType: GridType;
   user: GamePlayer;
   onSubmitClue: GenericFunction;
   players: GamePlayers;

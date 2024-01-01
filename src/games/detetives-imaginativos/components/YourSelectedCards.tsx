@@ -1,9 +1,12 @@
+// Types
+import type { CardEntry } from '../utils/types';
+// Components
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 
 type YourSelectedCardsProps = {
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
 
   user: GamePlayer;
 };

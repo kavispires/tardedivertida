@@ -1,10 +1,12 @@
+import { Location, Resolution, ResolutionStatus } from './types';
+
 export const determineView = (
-  resolution: EResolution,
+  resolution: Resolution,
   isUserTheSpy: boolean,
   timeRemaining: number,
-  locations: ELocation[]
+  locations: Location[]
 ): ResolutionStatus => {
-  const guess = locations.find((location: ELocation) => location.id === resolution?.guess) ?? {};
+  const guess = locations.find((location: Location) => location.id === resolution?.guess) ?? {};
 
   return {
     isPlayerVictory: resolution.isSpyWin === isUserTheSpy,

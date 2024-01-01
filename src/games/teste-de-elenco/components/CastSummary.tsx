@@ -1,5 +1,9 @@
-import { DualTranslate } from 'components/language';
+// Ant Design Resources
 import { Tooltip } from 'antd';
+import { CheckOutlined, QuestionOutlined } from '@ant-design/icons';
+// Types
+import type { FeatureFilm } from '../utils/types';
+// Icons
 import { StarIcon } from 'icons/StarIcon';
 import { FireIcon } from 'icons/FireIcon';
 import { MovieStarIcon } from 'icons/MovieStarIcon';
@@ -11,8 +15,9 @@ import { ComedyIcon } from 'icons/ComedyIcon';
 import { SpeakerIcon } from 'icons/SpeakerIcon';
 import { BrainIcon } from 'icons/BrainIcon';
 import { KnifeIcon } from 'icons/KnifeIcon';
+// Components
+import { DualTranslate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
-import { CheckOutlined, QuestionOutlined } from '@ant-design/icons';
 
 type CastSummaryProps = {
   movie: FeatureFilm;

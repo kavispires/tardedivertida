@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { Suggestion } from './utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -17,9 +19,9 @@ import { SuggestionEasel } from 'components/game/SuggestionEasel';
 type StepResultProps = {
   guess: string;
   guesser: GamePlayer;
-  secretWord: UeSoIssoCard;
-  validSuggestions: UseSoIssoSuggestion[];
-  suggestions: UseSoIssoSuggestion[];
+  secretWord: TextCard;
+  validSuggestions: Suggestion[];
+  suggestions: Suggestion[];
   group: GroupProgress;
 } & AnnouncementProps;
 

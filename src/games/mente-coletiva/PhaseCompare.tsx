@@ -14,7 +14,7 @@ import { ComparingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 
-function PhaseCompare({ state, players, info }: PhaseProps) {
+export function PhaseCompare({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);
   const user = useUser(players, state);
   const [allowedList, setAllowedList] = useState({});
@@ -58,5 +58,3 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCompare;

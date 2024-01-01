@@ -1,17 +1,19 @@
-import { deepCopy, getRandomItem } from 'utils/helpers';
+// Types
+import type { Bet, Bracket, FightingContender } from './type';
 import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
+import { deepCopy, getRandomItem } from 'utils/helpers';
 import { getSmartBetContenderOptions } from './helpers';
 
 export function mockSelectChallenge(challenges: TextCard[]): CardId {
   return getRandomItem(challenges).id;
 }
 
-export function mockSelectContender(contenders: WContender[]): CardId {
+export function mockSelectContender(contenders: FightingContender[]): CardId {
   return getRandomItem(contenders).id;
 }
 
-export function mockBets(brackets: WBracket[]) {
-  const bets: WBets = deepCopy(DEFAULT_BETS);
+export function mockBets(brackets: Bracket[]) {
+  const bets: Bet = deepCopy(DEFAULT_BETS);
 
   for (let i = 0; i <= 2; i++) {
     const tier = TIER_BY_STEP[i];
@@ -24,7 +26,7 @@ export function mockBets(brackets: WBracket[]) {
   return bets;
 }
 
-export function mockVotes(bracketedContenders: WBracket[][], bets: WBets) {
+export function mockVotes(bracketedContenders: Bracket[][], bets: Bet) {
   const betsList = Object.values(bets);
   return bracketedContenders.reduce((acc: NumberDictionary, pair) => {
     let vote = pair.find((entry) => betsList.includes(entry.id));

@@ -1,4 +1,8 @@
+// Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Outcome } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -14,14 +18,14 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 type StepRankingProps = {
   players: GamePlayers;
   storyteller: GamePlayer;
-  outcome: COutcome;
+  outcome: Outcome;
   ranking: GameRanking;
   round: GameRound;
-  goToPreviousStep: GenericFunction;
+  goToPreviousStep: UseStep['goToPreviousStep'];
 };
 
 const getGainedPointsText = (
-  outcome: COutcome,
+  outcome: Outcome,
   translate: (pt: string, en: string, custom?: string | undefined) => string
 ) => {
   switch (outcome) {

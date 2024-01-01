@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { ImageBlurButton, ImageCard } from 'components/image-cards';
 // Components
+import { ImageBlurButton, ImageCard } from 'components/image-cards';
 
 type DreamCardProps = {
   cardId: string;
@@ -23,7 +23,7 @@ export function DreamCard({
   return (
     <>
       <ImageCard
-        imageId={cardId}
+        id={cardId}
         cardWidth={cardWidth}
         className={clsx(
           baseClass,

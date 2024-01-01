@@ -1,3 +1,5 @@
+import type { SubmitDecisionPayload, SubmitMessagePayload, SubmitTargetPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -47,7 +49,7 @@ export function useOnSubmitMessageAPIRequest() {
   };
 }
 
-export function useOnSubmitDecisionAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitDecisionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

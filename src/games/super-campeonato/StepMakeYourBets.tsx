@@ -1,3 +1,5 @@
+// Types
+import type { Bracket } from './utils/type';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -13,7 +15,7 @@ import { Challenge } from './components/Challenge';
 type StepMakeYourBetsProps = {
   onSubmitBets: GenericFunction;
   challenge: TextCard;
-  brackets: WBracket[];
+  brackets: Bracket[];
   players: GamePlayers;
 } & AnnouncementProps;
 

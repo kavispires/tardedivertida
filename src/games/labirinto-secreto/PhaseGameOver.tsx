@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { MapSegment, Tree } from './utils/types';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Icons

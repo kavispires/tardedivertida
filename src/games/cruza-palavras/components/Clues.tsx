@@ -1,10 +1,12 @@
+// Types
+import type { Clue } from '../utils/types';
 // Helpers
 import { getClueKey } from '../utils/helpers';
 // Components
 import { ClueCard } from './ClueCard';
 
 type CluesProps = {
-  clues: CruzaPalavrasClue[];
+  clues: Clue[];
   onSelectClue: GenericFunction;
   active: any;
   guesses: PlainObject;

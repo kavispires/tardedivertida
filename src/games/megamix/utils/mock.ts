@@ -1,3 +1,6 @@
+// Types
+import type { SeedEntry } from './types';
+// Utils
 import { mockClue } from 'mock/clues';
 import { mockDrawing } from 'mock/drawing';
 import { getRandomItem } from 'utils/helpers';

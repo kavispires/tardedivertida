@@ -1,6 +1,7 @@
 import { random } from 'lodash';
 import { mockClue } from 'mock/clues';
 import { ANSWERING_TIME } from './constants';
+import { Answer, LetterEntry } from './types';
 
 const mockAnswer = (id: string, topic: TopicCard, letter: LetterEntry, correct?: boolean): Answer => {
   // 50% chance of answering

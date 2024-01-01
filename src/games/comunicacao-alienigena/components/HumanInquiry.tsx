@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Badge, Button, Select, Space } from 'antd';
+// Types
+import type { Item, Sign } from '../utils/types';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';

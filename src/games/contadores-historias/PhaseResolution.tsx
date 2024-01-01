@@ -13,7 +13,7 @@ import { ScoringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 
-function PhaseResolution({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
 
@@ -54,5 +54,3 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseResolution;

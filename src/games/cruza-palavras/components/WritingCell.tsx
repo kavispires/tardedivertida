@@ -1,6 +1,8 @@
 //Design Resources
 import { Button, Popover } from 'antd';
 import { FormOutlined } from '@ant-design/icons';
+// Types
+import type { GridCell } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { PreviousClue } from './PreviousClue';
@@ -8,7 +10,7 @@ import { WordForm } from './WordForm';
 
 type WritingCellProps = {
   onSubmitClue: GenericFunction;
-  cell: CruzaPalavrasGridCell;
+  cell: GridCell;
   disabled?: boolean;
   user: GamePlayer;
 };

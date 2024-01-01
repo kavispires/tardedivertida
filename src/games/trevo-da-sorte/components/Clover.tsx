@@ -1,6 +1,18 @@
 import clsx from 'clsx';
 import { useRef } from 'react';
 import { useKeyPressEvent } from 'react-use';
+// Types
+import type {
+  CloverMode,
+  Leaves,
+  LeafIndex,
+  LeafId,
+  LeafPosition,
+  LeafLocks,
+  CloverLeaf,
+  Guesses,
+  CloverObject,
+} from '../utils/types';
 // Ant Design Resources
 import { Button, Input, Tooltip } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
@@ -18,7 +30,7 @@ import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
   mode: CloverMode;
-  clover: Clover;
+  clover: CloverObject;
   leaves: Leaves;
   guesses?: any;
   rotation: number;
@@ -134,7 +146,7 @@ const getLeaf = (
   leaves: Leaves,
   position: LeafPosition,
   cloverLeaf: CloverLeaf,
-  guesses: YGuesses,
+  guesses: Guesses,
   rotations: NumberDictionary
 ) => {
   let leafId = '';

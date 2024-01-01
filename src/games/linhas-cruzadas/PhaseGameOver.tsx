@@ -1,3 +1,5 @@
+// Types
+import type { AlbumEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -10,7 +12,7 @@ import { CanvasSVG } from 'components/canvas';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 
-function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const slideCount = Math.min(state.album[0]?.slides.length ?? 5, 8);
   const cardWidth = useCardWidth(slideCount, { minWidth: 100 });
 
@@ -19,7 +21,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <ul className="l-album-strips">
-        {state.album.map((albumEntry: LAlbumEntry) => (
+        {state.album.map((albumEntry: AlbumEntry) => (
           <li key={`album-strip-${albumEntry.id}`} className="l-album-strip-entry">
             <div className="l-album-strip-entry__author">
               <AvatarName player={players[albumEntry.id]} />
@@ -55,5 +57,3 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

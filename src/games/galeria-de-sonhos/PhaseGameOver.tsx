@@ -8,7 +8,7 @@ import { Achievements } from 'components/general/Achievements';
 import { BestMatches } from './components/BestMatches';
 import { GameOverTable } from './components/GameOverTable';
 
-function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<LadderIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
@@ -17,5 +17,3 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

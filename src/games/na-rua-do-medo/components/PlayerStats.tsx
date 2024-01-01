@@ -1,3 +1,5 @@
+// Types
+import type { Decision, StreetCard } from '../utils/types';
 // Icons
 import { HouseIcon } from 'icons/HouseIcon';
 import { QuestionIcon } from 'icons/QuestionIcon';
@@ -47,10 +49,10 @@ export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
           </span>
           {user.jackpots?.length > 0 ? (
             <ul className="n-player-stats__jackpots">
-              {user.jackpots.map((jackpot: NCard) => (
+              {user.jackpots.map((jackpot: StreetCard) => (
                 <ImageCard
                   key={jackpot.id}
-                  imageId={jackpot.key}
+                  id={jackpot.key}
                   cardWidth={60}
                   className="n-player-stats__jackpot"
                 />
@@ -71,7 +73,7 @@ export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
 }
 
 type DecisionIconProps = {
-  decision: NDecision;
+  decision: Decision;
   omitDecision: boolean;
 };
 

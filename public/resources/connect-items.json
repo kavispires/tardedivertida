@@ -1,0 +1,1515 @@
+{
+  "c-1-br": {
+    "id": "c-1-br",
+    "name": "Coisas que seguram coisas",
+    "items": [62, 109, 149, 422, 285],
+    "difficulty": 0
+  },
+  "c-2-br": {
+    "id": "c-2-br",
+    "name": "Coisas transparentes",
+    "items": [350, 84, 178, 175, 341],
+    "difficulty": 0
+  },
+  "c-3-br": {
+    "id": "c-3-br",
+    "name": "Coisas que se abrem",
+    "items": [84, 56, 262, 416],
+    "difficulty": 0
+  },
+  "c-4-br": {
+    "id": "c-4-br",
+    "name": "Coisas que queimam",
+    "items": [284, 95, 39, 227],
+    "difficulty": 0
+  },
+  "c-5-br": {
+    "id": "c-5-br",
+    "name": "Coisas para contar",
+    "items": [317, 377, 232, 530],
+    "difficulty": 0
+  },
+  "c-6-br": {
+    "id": "c-6-br",
+    "name": "Ferramenta",
+    "items": [66, 156, 170, 490],
+    "difficulty": 0
+  },
+  "c-7-br": {
+    "id": "c-7-br",
+    "name": "Coisas que você entra",
+    "items": [440, 10, 105, 107],
+    "difficulty": 0
+  },
+  "c-8-br": {
+    "id": "c-8-br",
+    "name": "Contém água",
+    "items": [475, 367, 371, 457, 733],
+    "difficulty": 0
+  },
+  "c-9-br": {
+    "id": "c-9-br",
+    "name": "Os elementos",
+    "items": [115, 39, 248, 271],
+    "difficulty": 0
+  },
+  "c-10-br": {
+    "id": "c-10-br",
+    "name": "Muitos",
+    "items": [385, 378, 270, 350, 570],
+    "difficulty": 0
+  },
+  "c-11-br": {
+    "id": "c-11-br",
+    "name": "Coisas com cabos",
+    "items": [342, 643, 642, 604, 544, 537, 261, 737, 704, 731],
+    "difficulty": 0
+  },
+  "c-12-br": {
+    "id": "c-12-br",
+    "name": "Gastar",
+    "items": [397, 337, 112, 392, 599, 538],
+    "difficulty": 0
+  },
+  "c-13-br": {
+    "id": "c-13-br",
+    "name": "Coisas que precisam de ar",
+    "items": [416, 194, 471],
+    "difficulty": 0
+  },
+  "c-14-br": {
+    "id": "c-14-br",
+    "name": "Colocar dentro",
+    "items": [408, 395, 407],
+    "difficulty": 0
+  },
+  "c-15-br": {
+    "id": "c-15-br",
+    "name": "Ficar bonita",
+    "items": [369, 254, 430, 305, 235],
+    "difficulty": 0
+  },
+  "c-16-br": {
+    "id": "c-16-br",
+    "name": "Papel",
+    "items": [415, 382, 220, 379, 263, 124, 581, 599, 618],
+    "difficulty": 0
+  },
+  "c-17-br": {
+    "id": "c-17-br",
+    "name": "Incêndio",
+    "items": [431, 253, 39, 40],
+    "difficulty": 0
+  },
+  "c-18-br": {
+    "id": "c-18-br",
+    "name": "Que frio!",
+    "items": [327, 226, 348, 339, 132],
+    "difficulty": 0
+  },
+  "c-19-br": {
+    "id": "c-19-br",
+    "name": "Fogueira",
+    "items": [94, 39, 534],
+    "difficulty": 0
+  },
+  "c-20-br": {
+    "id": "c-20-br",
+    "name": "Morri",
+    "items": [351, 352, 105, 434],
+    "difficulty": 0
+  },
+  "c-21-br": {
+    "id": "c-21-br",
+    "name": "Quantas horas são?",
+    "items": [49, 131, 661, 83, 335, 322, 595],
+    "difficulty": 0
+  },
+  "c-22-br": {
+    "id": "c-22-br",
+    "name": "Valioso",
+    "items": [13, 118, 120, 141, 696, 80],
+    "difficulty": 0
+  },
+  "c-23-br": {
+    "id": "c-23-br",
+    "name": "Monumentos",
+    "items": [404, 405, 127, 645],
+    "difficulty": 0
+  },
+  "c-24-br": {
+    "id": "c-24-br",
+    "name": "Rodas",
+    "items": [437, 438, 736, 724, 710, 550],
+    "difficulty": 0
+  },
+  "c-25-br": {
+    "id": "c-25-br",
+    "name": "Gugu dada",
+    "items": [438, 58, 60, 61],
+    "difficulty": 0
+  },
+  "c-26-br": {
+    "id": "c-26-br",
+    "name": "Machuquei",
+    "items": [330, 272, 208, 501],
+    "difficulty": 0
+  },
+  "c-27-br": {
+    "id": "c-27-br",
+    "name": "Abra!",
+    "items": [288, 510, 199, 688],
+    "difficulty": 0
+  },
+  "c-28-br": {
+    "id": "c-28-br",
+    "name": "Vai na boca",
+    "items": [9, 58, 508, 764, 640],
+    "difficulty": 0
+  },
+  "c-29-br": {
+    "id": "c-29-br",
+    "name": "Vamos trabalhar",
+    "items": [319, 315, 489, 65],
+    "difficulty": 0
+  },
+  "c-30-br": {
+    "id": "c-30-br",
+    "name": "Gira",
+    "items": [51, 138, 286, 492],
+    "difficulty": 0
+  },
+  "c-31-br": {
+    "id": "c-31-br",
+    "name": "Pra lá e pra cá",
+    "items": [498, 280, 145, 615],
+    "difficulty": 0
+  },
+  "c-32-br": {
+    "id": "c-32-br",
+    "name": "Difícil de segurar",
+    "items": [125, 356, 348],
+    "difficulty": 0
+  },
+  "c-33-br": {
+    "id": "c-33-br",
+    "name": "Animais perigosos",
+    "items": [81, 151, 757, 667, 88],
+    "difficulty": 0
+  },
+  "c-34-br": {
+    "id": "c-34-br",
+    "name": "Refrescante",
+    "items": [128, 134, 226, 367],
+    "difficulty": 0
+  },
+  "c-35-br": {
+    "id": "c-35-br",
+    "name": "Sopro",
+    "items": [314, 365, 206, 303],
+    "difficulty": 0
+  },
+  "c-36-br": {
+    "id": "c-36-br",
+    "name": "Pares",
+    "items": [204, 15, 327, 254],
+    "difficulty": 0
+  },
+  "c-37-br": {
+    "id": "c-37-br",
+    "name": "Polícia",
+    "items": [376, 176, 282, 147],
+    "difficulty": 0
+  },
+  "c-38-br": {
+    "id": "c-38-br",
+    "name": "Viagem",
+    "items": [245, 485, 219, 477, 681],
+    "difficulty": 0
+  },
+  "c-39-br": {
+    "id": "c-39-br",
+    "name": "Contos de fadas",
+    "items": [440, 11, 560],
+    "difficulty": 0
+  },
+  "c-40-br": {
+    "id": "c-40-br",
+    "name": "Anos 90",
+    "items": [184, 205, 414, 263, 721],
+    "difficulty": 0
+  },
+  "c-41-br": {
+    "id": "c-41-br",
+    "name": "Esportes",
+    "items": [64, 328, 303, 189, 536, 592],
+    "difficulty": 0
+  },
+  "c-42-br": {
+    "id": "c-42-br",
+    "name": "Apimentar a relação",
+    "items": [176, 22, 14, 222, 682, 751, 583],
+    "difficulty": 0
+  },
+  "c-43-br": {
+    "id": "c-43-br",
+    "name": "Super longo",
+    "items": [298, 295, 221, 31],
+    "difficulty": 0
+  },
+  "c-44-br": {
+    "id": "c-44-br",
+    "name": "No carro",
+    "items": [252, 251],
+    "difficulty": 0
+  },
+  "c-45-br": {
+    "id": "c-45-br",
+    "name": "Vamos caçar",
+    "items": [273, 186, 444],
+    "difficulty": 0
+  },
+  "c-46-br": {
+    "id": "c-46-br",
+    "name": "Eu que mando!",
+    "items": [237, 281, 141, 591],
+    "difficulty": 0
+  },
+  "c-47-br": {
+    "id": "c-47-br",
+    "name": "Neve",
+    "items": [348, 349, 294],
+    "difficulty": 0
+  },
+  "c-48-br": {
+    "id": "c-48-br",
+    "name": "Dor de barriga",
+    "items": [275, 249, 244, 241],
+    "difficulty": 0
+  },
+  "c-49-br": {
+    "id": "c-49-br",
+    "name": "Privacidade",
+    "items": [274, 756, 510],
+    "difficulty": 0
+  },
+  "c-50-br": {
+    "id": "c-50-br",
+    "name": "Picada",
+    "items": [209, 267, 181],
+    "difficulty": 0
+  },
+  "c-51-br": {
+    "id": "c-51-br",
+    "name": "Lenhador",
+    "items": [329, 89, 94],
+    "difficulty": 0
+  },
+  "c-52-br": {
+    "id": "c-52-br",
+    "name": "Escrevendo e desenhando",
+    "items": [427, 50, 581],
+    "difficulty": 0
+  },
+  "c-53-br": {
+    "id": "c-53-br",
+    "name": "Oração",
+    "items": [372, 279, 69, 264, 547],
+    "difficulty": 0
+  },
+  "c-54-br": {
+    "id": "c-54-br",
+    "name": "Sistema imunológico",
+    "items": [68, 209, 208],
+    "difficulty": 0
+  },
+  "c-55-br": {
+    "id": "c-55-br",
+    "name": "Festa Junina",
+    "items": [411, 31, 76, 631],
+    "difficulty": 0
+  },
+  "c-56-br": {
+    "id": "c-56-br",
+    "name": "Halloween",
+    "items": [423, 157, 153, 300, 608, 276],
+    "difficulty": 0
+  },
+  "c-57-br": {
+    "id": "c-57-br",
+    "name": "Natal",
+    "items": [20, 180, 507, 185, 579],
+    "difficulty": 1
+  },
+  "c-58-br": {
+    "id": "c-58-br",
+    "name": "Energia",
+    "items": [441, 453, 306, 596],
+    "difficulty": 0
+  },
+  "c-59-br": {
+    "id": "c-59-br",
+    "name": "Uso para comer",
+    "items": [448, 464, 642, 643],
+    "difficulty": 0
+  },
+
+  "c-60-br": {
+    "id": "c-60-br",
+    "name": "Hora de dormir",
+    "items": [442, 443, 360, 525],
+    "difficulty": 0
+  },
+  "c-61-br": {
+    "id": "c-61-br",
+    "name": "Música",
+    "items": [205, 414, 377, 231, 703],
+    "difficulty": 0
+  },
+  "c-62-br": {
+    "id": "c-62-br",
+    "name": "Video Game",
+    "items": [200, 190, 347, 483],
+    "difficulty": 0
+  },
+  "c-63-br": {
+    "id": "c-63-br",
+    "name": "Armas",
+    "items": [227, 4, 147, 589],
+    "difficulty": 0
+  },
+  "c-64-br": {
+    "id": "c-64-br",
+    "name": "Olha a faca!",
+    "items": [3, 54, 53, 93],
+    "difficulty": 0
+  },
+  "c-65-br": {
+    "id": "c-65-br",
+    "name": "Coisas que você monta em cima",
+    "items": [114, 36, 312, 286],
+    "difficulty": 0
+  },
+  "c-66-br": {
+    "id": "c-66-br",
+    "name": "Senta lá, Cláudia!",
+    "items": [104, 174, 463, 435, 591],
+    "difficulty": 0
+  },
+  "c-67-br": {
+    "id": "c-67-br",
+    "name": "Esfera",
+    "items": [138, 139, 189],
+    "difficulty": 0
+  },
+  "c-68-br": {
+    "id": "c-68-br",
+    "name": "Peças",
+    "items": [165, 270, 400],
+    "difficulty": 0
+  },
+  "c-69-br": {
+    "id": "c-69-br",
+    "name": "Aniversário de Criança",
+    "items": [159, 155, 71, 318],
+    "difficulty": 0
+  },
+  "c-70-br": {
+    "id": "c-70-br",
+    "name": "Pular",
+    "items": [159, 277, 44],
+    "difficulty": 0
+  },
+  "c-71-br": {
+    "id": "c-71-br",
+    "name": "Leitura",
+    "items": [78, 11, 681],
+    "difficulty": 0
+  },
+  "c-72-br": {
+    "id": "c-72-br",
+    "name": "Vôo",
+    "items": [87, 230, 219, 267, 389, 429, 474],
+    "difficulty": 0
+  },
+  "c-73-br": {
+    "id": "c-73-br",
+    "name": "Fofinho",
+    "items": [102, 150, 30, 410, 360],
+    "difficulty": 0
+  },
+  "c-74-br": {
+    "id": "c-74-br",
+    "name": "Visão",
+    "items": [85, 55, 258, 357],
+    "difficulty": 0
+  },
+  "c-75-br": {
+    "id": "c-75-br",
+    "name": "Moradia",
+    "items": [122, 107, 278, 432, 35, 759, 459],
+    "difficulty": 0
+  },
+  "c-76-br": {
+    "id": "c-76-br",
+    "name": "Casamento",
+    "items": [76, 82, 118, 372],
+    "difficulty": 0
+  },
+  "c-77-br": {
+    "id": "c-77-br",
+    "name": "Vamos cozinhar!",
+    "items": [291, 393, 398, 54],
+    "difficulty": 0
+  },
+  "c-78-br": {
+    "id": "c-78-br",
+    "name": "Frágil",
+    "items": [178, 620, 403],
+    "difficulty": 0
+  },
+  "c-79-br": {
+    "id": "c-79-br",
+    "name": "Piriguete",
+    "items": [751, 554, 222, 384, 675],
+    "difficulty": 0
+  },
+  "c-80-br": {
+    "id": "c-80-br",
+    "name": "Aves",
+    "items": [472, 484, 458, 230, 665],
+    "difficulty": 1
+  },
+  "c-81-br": {
+    "id": "c-81-br",
+    "name": "Quadrado amarelo",
+    "items": [77, 78, 392, 297, 83],
+    "difficulty": 75
+  },
+  "c-82-br": {
+    "id": "c-82-br",
+    "name": "Círculo amarelo",
+    "items": [42, 56, 103, 128],
+    "difficulty": 75
+  },
+  "c-83-br": {
+    "id": "c-83-br",
+    "name": "Material Escolar",
+    "items": [299, 320, 478],
+    "difficulty": 0
+  },
+  "c-84-br": {
+    "id": "c-84-br",
+    "name": "Quem avisa amigo é",
+    "items": [394, 396, 503, 504],
+    "difficulty": 0
+  },
+  "c-85-br": {
+    "id": "c-85-br",
+    "name": "Cuidando da casa",
+    "items": [480, 240, 37, 537],
+    "difficulty": 0
+  },
+  "c-86-br": {
+    "id": "c-86-br",
+    "name": "Cozinheiro",
+    "items": [465, 281, 290, 291],
+    "difficulty": 0
+  },
+  "c-87-br": {
+    "id": "c-87-br",
+    "name": "Na mesa do escritório",
+    "items": [380, 50, 130, 358, 65, 706, 638],
+    "difficulty": 0
+  },
+  "c-88-br": {
+    "id": "c-88-br",
+    "name": "Venenoso",
+    "items": [412, 151, 153, 43],
+    "difficulty": 0
+  },
+  "c-89-br": {
+    "id": "c-89-br",
+    "name": "Gostosuras",
+    "items": [212, 48, 24, 71],
+    "difficulty": 0
+  },
+  "c-90-br": {
+    "id": "c-90-br",
+    "name": "Frutas",
+    "items": [14, 106, 90, 125, 621, 570],
+    "difficulty": 0
+  },
+  "c-91-br": {
+    "id": "c-91-br",
+    "name": "Cinema",
+    "items": [201, 196, 336, 768],
+    "difficulty": 0
+  },
+  "c-92-br": {
+    "id": "c-92-br",
+    "name": "Com buraco no meio",
+    "items": [48, 118, 309],
+    "difficulty": 0
+  },
+  "c-93-br": {
+    "id": "c-93-br",
+    "name": "Comunicação",
+    "items": [421, 83, 466, 499],
+    "difficulty": 0
+  },
+  "c-94-br": {
+    "id": "c-94-br",
+    "name": "Devagar",
+    "items": [110, 500, 51],
+    "difficulty": 0
+  },
+  "c-95-br": {
+    "id": "c-95-br",
+    "name": "Lactose",
+    "items": [46, 79, 108, 212, 487],
+    "difficulty": 0
+  },
+  "c-96-br": {
+    "id": "c-96-br",
+    "name": "Na cozinha",
+    "items": [395, 154, 152, 326],
+    "difficulty": 0
+  },
+  "c-97-br": {
+    "id": "c-97-br",
+    "name": "Hospital",
+    "items": [247, 224, 745, 174, 544, 573],
+    "difficulty": 0
+  },
+  "c-98-br": {
+    "id": "c-98-br",
+    "name": "Profissões",
+    "items": [224, 500, 82, 582, 535, 528],
+    "difficulty": 0
+  },
+  "c-99-br": {
+    "id": "c-99-br",
+    "name": "Luz",
+    "items": [293, 73, 158, 396, 738, 637],
+    "difficulty": 0
+  },
+  "c-100-br": {
+    "id": "c-100-br",
+    "name": "Nojento",
+    "items": [135, 249, 506, 61],
+    "difficulty": 0
+  },
+  "c-101-br": {
+    "id": "c-101-br",
+    "name": "Proteção para a cabeça",
+    "items": [316, 324, 626],
+    "difficulty": 0
+  },
+  "c-102-br": {
+    "id": "c-102-br",
+    "name": "Construção",
+    "items": [316, 502, 494, 21, 38, 629, 269],
+    "difficulty": 0
+  },
+  "c-103-br": {
+    "id": "c-103-br",
+    "name": "Artes marciais",
+    "items": [505, 488, 146, 216],
+    "difficulty": 0
+  },
+  "c-104-br": {
+    "id": "c-104-br",
+    "name": "Circo",
+    "items": [193, 318, 81, 476, 722, 45, 723, 521],
+    "difficulty": 0
+  },
+  "c-105-br": {
+    "id": "c-105-br",
+    "name": "Radiante!",
+    "items": [67, 144, 152, 512],
+    "difficulty": 0
+  },
+  "c-106-br": {
+    "id": "c-106-br",
+    "name": "No parquinho",
+    "items": [353, 388, 280, 277],
+    "difficulty": 0
+  },
+  "c-107-br": {
+    "id": "c-107-br",
+    "name": "Causando o mal",
+    "items": [163, 43],
+    "difficulty": 0
+  },
+  "c-108-br": {
+    "id": "c-108-br",
+    "name": "Disco",
+    "items": [414, 424, 588],
+    "difficulty": 0
+  },
+  "c-109-br": {
+    "id": "c-109-br",
+    "name": "Precisa de 2",
+    "items": [280],
+    "difficulty": 0
+  },
+  "c-110-br": {
+    "id": "c-110-br",
+    "name": "Guerra",
+    "items": [368, 4, 103, 531, 545],
+    "difficulty": 0
+  },
+  "c-111-br": {
+    "id": "c-111-br",
+    "name": "Alto mar",
+    "items": [243, 460, 91, 354],
+    "difficulty": 0
+  },
+  "c-112-br": {
+    "id": "c-112-br",
+    "name": "Zoológico",
+    "items": [233, 97, 81, 116],
+    "difficulty": 0
+  },
+  "c-113-br": {
+    "id": "c-113-br",
+    "name": "Oceano",
+    "items": [361, 362, 110, 210],
+    "difficulty": 0
+  },
+  "c-114-br": {
+    "id": "c-114-br",
+    "name": "Na praia",
+    "items": [364, 2, 554, 197, 753],
+    "difficulty": 0
+  },
+  "c-115-br": {
+    "id": "c-115-br",
+    "name": "Moradia da realeza",
+    "items": [364, 159, 182],
+    "difficulty": 0
+  },
+  "c-116-br": {
+    "id": "c-116-br",
+    "name": "Plantação",
+    "items": [198, 211, 511],
+    "difficulty": 0
+  },
+  "c-117-br": {
+    "id": "c-117-br",
+    "name": "Comendo porcaria",
+    "items": [338, 79, 47, 519, 518, 654, 655],
+    "difficulty": 0
+  },
+  "c-118-br": {
+    "id": "c-118-br",
+    "name": "Educar os filhos",
+    "items": [109, 291, 600, 530],
+    "difficulty": 0
+  },
+  "c-119-br": {
+    "id": "c-119-br",
+    "name": "Roupa de mulher",
+    "items": [123, 76, 202, 22],
+    "difficulty": 0
+  },
+  "c-120-br": {
+    "id": "c-120-br",
+    "name": "Gelado",
+    "items": [452, 79, 226],
+    "difficulty": 0
+  },
+  "c-121-br": {
+    "id": "c-121-br",
+    "name": "Canine",
+    "items": [96, 148, 278, 338],
+    "difficulty": 0
+  },
+  "c-122-br": {
+    "id": "c-122-br",
+    "name": "Bebidas",
+    "items": [355, 367, 134, 172, 307],
+    "difficulty": 0
+  },
+  "c-123-br": {
+    "id": "c-123-br",
+    "name": "Veículos",
+    "items": [166, 10, 179, 195, 509],
+    "difficulty": 0
+  },
+  "c-124-br": {
+    "id": "c-124-br",
+    "name": "Veículos aquáticos",
+    "items": [91, 168, 460, 572, 762],
+    "difficulty": 0
+  },
+  "c-125-br": {
+    "id": "c-125-br",
+    "name": "Veículos não motorizados",
+    "items": [167, 27, 26, 174, 473],
+    "difficulty": 0
+  },
+  "c-126-br": {
+    "id": "c-126-br",
+    "name": "Com rodinhas mas não são transportes",
+    "items": [17, 133, 103, 12],
+    "difficulty": 0
+  },
+  "c-127-br": {
+    "id": "c-127-br",
+    "name": "Teclas",
+    "items": [344, 23, 392, 766],
+    "difficulty": 0
+  },
+  "c-128-br": {
+    "id": "c-128-br",
+    "name": "Botões",
+    "items": [177, 200, 232, 346, 741, 702],
+    "difficulty": 0
+  },
+  "c-129-br": {
+    "id": "c-129-br",
+    "name": "No pé",
+    "items": [213, 214, 215, 417, 540],
+    "difficulty": 0
+  },
+  "c-130-br": {
+    "id": "c-130-br",
+    "name": "Plantas",
+    "items": [308, 255, 511, 72, 532, 622],
+    "difficulty": 0
+  },
+  "c-131-br": {
+    "id": "c-131-br",
+    "name": "Proteja-se dos raios UVB",
+    "items": [57, 218, 197, 225],
+    "difficulty": 0
+  },
+  "c-132-br": {
+    "id": "c-132-br",
+    "name": "Parabéns pra você",
+    "items": [8, 185, 242, 71],
+    "difficulty": 0
+  },
+  "c-133-br": {
+    "id": "c-133-br",
+    "name": "Vencedor",
+    "items": [183, 418, 141, 634, 749, 748],
+    "difficulty": 0
+  },
+  "c-134-br": {
+    "id": "c-134-br",
+    "name": "Alergias",
+    "items": [495, 210, 445, 385],
+    "difficulty": 0
+  },
+  "c-135-br": {
+    "id": "c-135-br",
+    "name": "Brilhinhos",
+    "items": [246, 447, 139, 419],
+    "difficulty": 0
+  },
+  "c-136-br": {
+    "id": "c-136-br",
+    "name": "Soprando...",
+    "items": [409, 470, 620],
+    "difficulty": 0
+  },
+  "c-137-br": {
+    "id": "c-137-br",
+    "name": "No banheiro",
+    "items": [160, 171, 275, 241, 373, 758, 650, 561, 563, 602, 601],
+    "difficulty": 0
+  },
+  "c-138-br": {
+    "id": "c-138-br",
+    "name": "Parte do corpo",
+    "items": [203, 85, 86, 402],
+    "difficulty": 0
+  },
+  "c-139-br": {
+    "id": "c-139-br",
+    "name": "Idosos",
+    "items": [169, 9, 613, 605, 174, 223],
+    "difficulty": 0
+  },
+  "c-140-br": {
+    "id": "c-140-br",
+    "name": "Ciclo da vida",
+    "items": [506, 162, 148],
+    "difficulty": 0
+  },
+  "c-141-br": {
+    "id": "c-141-br",
+    "name": "Posto de gasolina",
+    "items": [253, 10, 614],
+    "difficulty": 0
+  },
+  "c-142-br": {
+    "id": "c-142-br",
+    "name": "Transmissão",
+    "items": [137, 161],
+    "difficulty": 0
+  },
+  "c-143-br": {
+    "id": "c-143-br",
+    "name": "Formato de U",
+    "items": [33, 34, 164],
+    "difficulty": 0
+  },
+  "c-144-br": {
+    "id": "c-144-br",
+    "name": "Cercado",
+    "items": [107, 456, 482],
+    "difficulty": 0
+  },
+  "c-145-br": {
+    "id": "c-145-br",
+    "name": "Bichos de estimação",
+    "items": [742, 162, 148],
+    "difficulty": 0
+  },
+  "c-146-br": {
+    "id": "c-146-br",
+    "name": "Coisas que podem voar",
+    "items": [439, 131],
+    "difficulty": 0
+  },
+  "c-147-br": {
+    "id": "c-147-br",
+    "name": "Trancado",
+    "items": [56, 266, 482],
+    "difficulty": 0
+  },
+  "c-148-br": {
+    "id": "c-148-br",
+    "name": "Acesso restrito",
+    "items": [482, 182, 636, 571],
+    "difficulty": 0
+  },
+  "c-149-br": {
+    "id": "c-149-br",
+    "name": "Tem senha",
+    "items": [83],
+    "difficulty": 0
+  },
+  "c-150-br": {
+    "id": "c-150-br",
+    "name": "Cabe muita gente",
+    "items": [509, 482, 219, 489],
+    "difficulty": 0
+  },
+  "c-151-br": {
+    "id": "c-151-br",
+    "name": "Não se deve encostar",
+    "items": [101, 403, 39, 356, 623, 446],
+    "difficulty": 0
+  },
+  "c-152-br": {
+    "id": "c-152-br",
+    "name": "Coisas que espetam",
+    "items": [375, 356, 273, 381, 310, 163, 624],
+    "difficulty": 0
+  },
+  "c-153-br": {
+    "id": "c-153-br",
+    "name": "Palavras com 4 letras",
+    "items": [506, 457, 39, 343],
+    "difficulty": 0
+  },
+  "c-154-br": {
+    "id": "c-154-br",
+    "name": "Coisas que tem alça",
+    "items": [7, 231, 407, 245],
+    "difficulty": 0
+  },
+  "c-155-br": {
+    "id": "c-155-br",
+    "name": "Bandeiras",
+    "items": [413, 32, 31, 261],
+    "difficulty": 0
+  },
+  "c-156-br": {
+    "id": "c-156-br",
+    "name": "Tem asa para segurar",
+    "items": [391, 461, 367, 128],
+    "difficulty": 0
+  },
+  "c-157-br": {
+    "id": "c-157-br",
+    "name": "Coisas de empurrar",
+    "items": [438, 473, 17, 174],
+    "difficulty": 0
+  },
+  "c-158-br": {
+    "id": "c-158-br",
+    "name": "Almoço",
+    "items": [187, 236, 428],
+    "difficulty": 0
+  },
+  "c-159-br": {
+    "id": "c-159-br",
+    "name": "Brinquedos",
+    "items": [257, 114, 263, 297, 301, 760, 759, 734, 615],
+    "difficulty": 0
+  },
+  "c-160-br": {
+    "id": "c-160-br",
+    "name": "Coisas para chamar atenção",
+    "items": [303, 313, 322, 431],
+    "difficulty": 0
+  },
+  "c-161-br": {
+    "id": "c-161-br",
+    "name": "Instrumentos de metal",
+    "items": [191, 424, 425, 467],
+    "difficulty": 0
+  },
+  "c-162-br": {
+    "id": "c-162-br",
+    "name": "Por um fio",
+    "items": [426, 454, 390, 186],
+    "difficulty": 0
+  },
+  "c-163-br": {
+    "id": "c-163-br",
+    "name": "Insetos",
+    "items": [135, 267, 181, 668, 651, 526, 728],
+    "difficulty": 0
+  },
+  "c-164-br": {
+    "id": "c-164-br",
+    "name": "Vamos salvar vidas",
+    "items": [354, 282, 224, 69],
+    "difficulty": 0
+  },
+  "c-165-br": {
+    "id": "c-165-br",
+    "name": "Assustador",
+    "items": [276, 234, 198, 658],
+    "difficulty": 0
+  },
+  "c-166-br": {
+    "id": "c-166-br",
+    "name": "Vestimenta",
+    "items": [132, 121, 202],
+    "difficulty": 0
+  },
+  "c-167-br": {
+    "id": "c-167-br",
+    "name": "Na fazenda",
+    "items": [36, 5, 41, 198],
+    "difficulty": 0
+  },
+  "c-168-br": {
+    "id": "c-168-br",
+    "name": "Duas rodas",
+    "items": [167, 179, 27, 711, 710, 712, 550, 580],
+    "difficulty": 0
+  },
+  "c-169-br": {
+    "id": "c-169-br",
+    "name": "Coisas de enfiar",
+    "items": [25, 383],
+    "difficulty": 0
+  },
+  "c-170-br": {
+    "id": "c-170-br",
+    "name": "Madeira",
+    "items": [74, 75, 98, 574, 533, 613],
+    "difficulty": 0
+  },
+  "c-171-br": {
+    "id": "c-171-br",
+    "name": "Armazenamento de dados",
+    "items": [184, 25],
+    "difficulty": 0
+  },
+  "c-172-br": {
+    "id": "c-172-br",
+    "name": "Comer frio",
+    "items": [491, 79, 236],
+    "difficulty": 0
+  },
+  "c-173-br": {
+    "id": "c-173-br",
+    "name": "Na cabeça",
+    "items": [57, 141, 157, 218, 237, 260, 281, 324, 411, 507],
+    "difficulty": 0
+  },
+  "c-174-br": {
+    "id": "c-174-br",
+    "name": "Dois lados",
+    "items": [496, 493, 463, 280],
+    "difficulty": 0
+  },
+  "c-175-br": {
+    "id": "c-175-br",
+    "name": "Descer o cacete",
+    "items": [320, 291, 376, 217],
+    "difficulty": 0
+  },
+  "c-176-br": {
+    "id": "c-176-br",
+    "name": "Seco",
+    "items": [434, 265, 363, 364],
+    "difficulty": 0
+  },
+  "c-177-br": {
+    "id": "c-177-br",
+    "name": "Jogando pedra-papel-tesoura",
+    "items": [115, 478, 618],
+    "difficulty": 0
+  },
+  "c-178-br": {
+    "id": "c-178-br",
+    "name": "Portas",
+    "items": [152, 154, 510, 107, 475, 509],
+    "difficulty": 0
+  },
+  "c-179-br": {
+    "id": "c-179-br",
+    "name": "Equino",
+    "items": [35, 34, 36, 312],
+    "difficulty": 0
+  },
+  "c-180-br": {
+    "id": "c-180-br",
+    "name": "Vegetais",
+    "items": [543, 607, 693],
+    "difficulty": 0
+  },
+  "c-181-br": {
+    "id": "c-181-br",
+    "name": "Bebidas alcoólicas",
+    "items": [679, 680, 748, 178, 355],
+    "difficulty": 0
+  },
+  "c-182-br": {
+    "id": "c-182-br",
+    "name": "Mágico",
+    "items": [559, 560, 30],
+    "difficulty": 0
+  },
+  "c-183-br": {
+    "id": "c-183-br",
+    "name": "Símbolos fálicos",
+    "items": [704, 687, 693, 217, 376],
+    "difficulty": 0
+  },
+  "c-184-br": {
+    "id": "c-184-br",
+    "name": "Malhação",
+    "items": [529, 627, 28, 625],
+    "difficulty": 0
+  },
+  "c-185-br": {
+    "id": "c-185-br",
+    "name": "Aves que não voam",
+    "items": [568, 41, 386, 458],
+    "difficulty": 0
+  },
+  "c-186-br": {
+    "id": "c-186-br",
+    "name": "Cabelo",
+    "items": [19, 704, 527, 562],
+    "difficulty": 0
+  },
+  "c-187-br": {
+    "id": "c-187-br",
+    "name": "Homem",
+    "items": [63, 520, 126],
+    "difficulty": 0
+  },
+  "c-188-br": {
+    "id": "c-188-br",
+    "name": "No fundo do mar",
+    "items": [80, 16, 210, 243, 361, 362, 663, 572, 659, 652, 670],
+    "difficulty": 0
+  },
+  "c-189-br": {
+    "id": "c-189-br",
+    "name": "Costureira",
+    "items": [310, 169, 478, 202, 631],
+    "difficulty": 0
+  },
+  "c-190-br": {
+    "id": "c-190-br",
+    "name": "Vaqueiro",
+    "items": [100, 36, 46, 641],
+    "difficulty": 0
+  },
+  "c-191-br": {
+    "id": "c-191-br",
+    "name": "Café da manhã",
+    "items": [172, 761, 42, 111, 633, 569, 366],
+    "difficulty": 0
+  },
+  "c-192-br": {
+    "id": "c-192-br",
+    "name": "Churrascão",
+    "items": [113, 709, 687, 597, 566],
+    "difficulty": 0
+  },
+  "c-193-br": {
+    "id": "c-193-br",
+    "name": "Pássaros",
+    "items": [117, 578, 484, 458, 386, 230],
+    "difficulty": 0
+  },
+  "c-194-br": {
+    "id": "c-194-br",
+    "name": "Vasilhas",
+    "items": [119, 619],
+    "difficulty": 0
+  },
+  "c-195-br": {
+    "id": "c-195-br",
+    "name": "Decoração",
+    "items": [136, 31, 101, 180, 139, 296, 409],
+    "difficulty": 0
+  },
+  "c-196-br": {
+    "id": "c-196-br",
+    "name": "México",
+    "items": [57, 173, 588, 690, 718, 553],
+    "difficulty": 0
+  },
+  "c-197-br": {
+    "id": "c-197-br",
+    "name": "Pó pô pó",
+    "items": [385, 494, 557, 549, 666],
+    "difficulty": 0
+  },
+  "c-198-br": {
+    "id": "c-198-br",
+    "name": "Fala que eu te escuto",
+    "items": [143, 647, 661, 313, 466, 421, 83],
+    "difficulty": 0
+  },
+  "c-199-br": {
+    "id": "c-199-br",
+    "name": "Robô",
+    "items": [674, 673, 661, 12],
+    "difficulty": 0
+  },
+  "c-200-br": {
+    "id": "c-200-br",
+    "name": "Instrumentos musicais",
+    "items": [192, 766, 676, 314, 23, 426, 425],
+    "difficulty": 0
+  },
+  "c-201-br": {
+    "id": "c-201-br",
+    "name": "Romântico",
+    "items": [192, 212, 583, 716, 118],
+    "difficulty": 0
+  },
+  "c-202-br": {
+    "id": "c-202-br",
+    "name": "Brasil",
+    "items": [426, 675, 678, 384, 645],
+    "difficulty": 0
+  },
+  "c-203-br": {
+    "id": "c-203-br",
+    "name": "Lanchonete",
+    "items": [228, 678, 518, 338, 134, 666, 323],
+    "difficulty": 0
+  },
+  "c-204-br": {
+    "id": "c-204-br",
+    "name": "Lixo",
+    "items": [229, 724],
+    "difficulty": 0
+  },
+  "c-205-br": {
+    "id": "c-205-br",
+    "name": "Relaxar",
+    "items": [744, 707, 442, 1, 603],
+    "difficulty": 0
+  },
+  "c-206-br": {
+    "id": "c-206-br",
+    "name": "Vícios",
+    "items": [212, 95, 331, 420, 171, 698],
+    "difficulty": 0
+  },
+  "c-207-br": {
+    "id": "c-207-br",
+    "name": "Na pracinha",
+    "items": [52, 225, 142, 639, 223, 445, 622],
+    "difficulty": 0
+  },
+  "c-208-br": {
+    "id": "c-208-br",
+    "name": "Utensílios esportivos",
+    "items": [259, 217, 656],
+    "difficulty": 0
+  },
+  "c-209-br": {
+    "id": "c-209-br",
+    "name": "No pescoço",
+    "items": [264, 339, 207, 520, 696],
+    "difficulty": 0
+  },
+  "c-210-br": {
+    "id": "c-210-br",
+    "name": "Onde fica o que",
+    "items": [283, 382, 415, 714, 468],
+    "difficulty": 0
+  },
+  "c-211-br": {
+    "id": "c-211-br",
+    "name": "Animais super-heróis",
+    "items": [300, 153, 162, 526],
+    "difficulty": 0
+  },
+  "c-212-br": {
+    "id": "c-212-br",
+    "name": "Animais da Disney",
+    "items": [506, 114, 635, 117],
+    "difficulty": 0
+  },
+  "c-213-br": {
+    "id": "c-213-br",
+    "name": "Harry Potter",
+    "items": [151, 560, 446],
+    "difficulty": 0
+  },
+  "c-214-br": {
+    "id": "c-214-br",
+    "name": "Cheiro forte",
+    "items": [302, 249, 5],
+    "difficulty": 0
+  },
+  "c-215-br": {
+    "id": "c-215-br",
+    "name": "Explosão",
+    "items": [304, 67, 593],
+    "difficulty": 0
+  },
+  "c-216-br": {
+    "id": "c-216-br",
+    "name": "Eletrodomésticos",
+    "items": [307, 152, 154, 606],
+    "difficulty": 0
+  },
+  "c-217-br": {
+    "id": "c-217-br",
+    "name": "Crime",
+    "items": [234, 611, 658, 54],
+    "difficulty": 0
+  },
+  "c-218-br": {
+    "id": "c-218-br",
+    "name": "Mensagem",
+    "items": [6, 681, 83, 695],
+    "difficulty": 0
+  },
+  "c-219-br": {
+    "id": "c-219-br",
+    "name": "Corta",
+    "items": [594, 612, 100, 457],
+    "difficulty": 0
+  },
+  "c-220-br": {
+    "id": "c-220-br",
+    "name": "Aladdin",
+    "items": [70, 439, 667, 552, 3],
+    "difficulty": 0
+  },
+  "c-221-br": {
+    "id": "c-221-br",
+    "name": "Leve",
+    "items": [238],
+    "difficulty": 0
+  },
+  "c-222-br": {
+    "id": "c-222-br",
+    "name": "Frutos do mar",
+    "items": [325, 16, 491],
+    "difficulty": 0
+  },
+  "c-223-br": {
+    "id": "c-223-br",
+    "name": "Casino",
+    "items": [311, 541, 542, 188],
+    "difficulty": 0
+  },
+  "c-224-br": {
+    "id": "c-224-br",
+    "name": "Cuidado, isso corta",
+    "items": [374, 54, 93, 478, 755],
+    "difficulty": 0
+  },
+  "c-225-br": {
+    "id": "c-225-br",
+    "name": "Lugares",
+    "items": [450, 513, 538],
+    "difficulty": 0
+  },
+  "c-226-br": {
+    "id": "c-226-br",
+    "name": "Alto",
+    "items": [459, 489, 161, 405, 404, 73, 97],
+    "difficulty": 0
+  },
+  "c-227-br": {
+    "id": "c-227-br",
+    "name": "Arte",
+    "items": [469, 694, 38, 403, 575],
+    "difficulty": 0
+  },
+  "c-228-br": {
+    "id": "c-228-br",
+    "name": "Metal",
+    "items": [334, 356, 381, 380, 398, 425, 444, 498],
+    "difficulty": 0
+  },
+  "c-229-br": {
+    "id": "c-229-br",
+    "name": "Ingredientes para pizza",
+    "items": [436, 487, 125, 363, 548],
+    "difficulty": 0
+  },
+  "c-230-br": {
+    "id": "c-230-br",
+    "name": "Parque de diversões",
+    "items": [486, 286, 51, 571],
+    "difficulty": 0
+  },
+  "c-231-br": {
+    "id": "c-231-br",
+    "name": "Bolas",
+    "items": [524, 155, 189, 419, 567],
+    "difficulty": 0
+  },
+  "c-232-br": {
+    "id": "c-232-br",
+    "name": "Tipos de casacos",
+    "items": [555, 536, 132],
+    "difficulty": 0
+  },
+  "c-233-br": {
+    "id": "c-233-br",
+    "name": "Higiene pessoal",
+    "items": [585, 508, 672, 697],
+    "difficulty": 0
+  },
+  "c-234-br": {
+    "id": "c-234-br",
+    "name": "Dentário",
+    "items": [508, 672, 574, 86, 9],
+    "difficulty": 0
+  },
+  "c-235-br": {
+    "id": "c-235-br",
+    "name": "Máscaras",
+    "items": [586, 68, 430, 525, 587, 648, 658, 682],
+    "difficulty": 0
+  },
+  "c-236-br": {
+    "id": "c-236-br",
+    "name": "Identificação",
+    "items": [726, 699],
+    "difficulty": 0
+  },
+  "c-237-br": {
+    "id": "c-237-br",
+    "name": "Chaves",
+    "items": [686, 729, 74],
+    "difficulty": 0
+  },
+  "c-238-br": {
+    "id": "c-238-br",
+    "name": "Natural",
+    "items": [340, 449, 450, 532],
+    "difficulty": 0
+  },
+  "c-239-br": {
+    "id": "c-239-br",
+    "name": "Formato de Pirâmide",
+    "items": [479, 497, 127],
+    "difficulty": 0
+  },
+  "c-240-br": {
+    "id": "c-240-br",
+    "name": "Triângulos",
+    "items": [127, 122, 182, 285, 371, 425],
+    "difficulty": 0
+  },
+  "c-241-br": {
+    "id": "c-241-br",
+    "name": "Acessórios da moda",
+    "items": [422, 109, 767, 520, 339],
+    "difficulty": 0
+  },
+  "c-242-br": {
+    "id": "c-242-br",
+    "name": "Na piscina",
+    "items": [740, 734, 733, 248],
+    "difficulty": 0
+  },
+  "c-243-br": {
+    "id": "c-243-br",
+    "name": "Chupa que é de uva",
+    "items": [689, 698, 423, 640, 621, 58],
+    "difficulty": 0
+  },
+  "c-244-br": {
+    "id": "c-244-br",
+    "name": "Poste",
+    "items": [637, 751, 714, 441],
+    "difficulty": 0
+  },
+  "c-245-br": {
+    "id": "c-245-br",
+    "name": "Velho rico e refinado",
+    "items": [559, 558, 613],
+    "difficulty": 0
+  },
+  "c-246-br": {
+    "id": "c-246-br",
+    "name": "Caixa",
+    "items": [7, 577, 523, 289],
+    "difficulty": 0
+  },
+  "c-247-br": {
+    "id": "c-247-br",
+    "name": "Dieta",
+    "items": [628, 236, 627],
+    "difficulty": 0
+  },
+  "c-248-br": {
+    "id": "c-248-br",
+    "name": "Felinos",
+    "items": [667, 81, 162],
+    "difficulty": 0
+  },
+  "c-249-br": {
+    "id": "c-249-br",
+    "name": "Símbolos do zodíaco",
+    "items": [81, 325, 412, 16, 742],
+    "difficulty": 0
+  },
+  "c-250-br": {
+    "id": "c-250-br",
+    "name": "Zodíaco Chinês",
+    "items": [36, 41, 506, 30, 5, 36, 148, 667, 552, 102],
+    "difficulty": 0
+  },
+  "c-251-br": {
+    "id": "c-251-br",
+    "name": "Transporte público",
+    "items": [550, 551, 509],
+    "difficulty": 0
+  },
+  "c-252-br": {
+    "id": "c-252-br",
+    "name": "",
+    "items": [],
+    "difficulty": 0
+  }
+}

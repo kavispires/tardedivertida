@@ -19,7 +19,7 @@ import { AvatarName } from 'components/avatars';
 import { TurnOrder } from 'components/players';
 import { ViewOr } from 'components/views';
 
-function PhaseDialClue({ players, state, info }: PhaseProps) {
+export function PhaseDialClue({ players, state, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -92,5 +92,3 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseDialClue;
