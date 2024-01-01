@@ -15,7 +15,7 @@ import { StepVoting } from './StepVoting';
 import { VotingRules } from './components/RulesBlobs';
 import { Translate } from 'components/language';
 
-function PhaseVoting({ state, players, info }: PhaseProps) {
+export function PhaseVoting({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -57,5 +57,3 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseVoting;
