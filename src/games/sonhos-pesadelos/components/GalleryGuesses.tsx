@@ -1,11 +1,16 @@
+// Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
+// Types
+import type { GalleryEntry } from '../utils/types';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Components
 import { Avatar } from 'components/avatars';
 import { StarPoints } from 'components/points';
-import { useCardWidth } from 'hooks/useCardWidth';
 import { DreamCard } from './DreamCard';
 
 type GalleryGuessesProps = {
-  entry: SGalleryEntry;
+  entry: GalleryEntry;
   players: GamePlayers;
   correctGuessPoints: number;
 };

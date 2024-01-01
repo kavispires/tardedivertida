@@ -14,7 +14,7 @@ import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
-function PhaseResolution({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
 
   const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
@@ -72,5 +72,3 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseResolution;

@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Dream } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -22,7 +24,7 @@ type StepMatchDreamsProps = {
   players: GamePlayers;
   table: ImageCard[];
   user: GamePlayer;
-  dreams: SDream[];
+  dreams: Dream[];
 };
 
 export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }: StepMatchDreamsProps) {
