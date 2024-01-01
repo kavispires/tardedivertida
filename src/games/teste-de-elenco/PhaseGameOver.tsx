@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Input, Space } from 'antd';
+// Types
+import type { FeatureFilm } from './utils/types';
 // Utils
 import { achievementsReference } from './utils/achievements';
 import { Icons, chatGPTMoviePrompt } from './utils/helpers';
@@ -48,10 +50,11 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
               {movie.rolesOrder.reverse().map((roleId) => {
                 const role = movie.roles[roleId];
 
-                if (role.cast) {
+                if (role.cast && role.actor) {
+                  const actor = role.candidates[role.actor];
                   return (
                     <RoleBoard activeRole={role} instruction="CAST" key={roleId}>
-                      <SuspectCard suspect={role.candidates[role.actor]} width={100} />
+                      <SuspectCard suspect={actor} width={100} />
                     </RoleBoard>
                   );
                 }

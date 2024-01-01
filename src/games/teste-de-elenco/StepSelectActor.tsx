@@ -1,3 +1,5 @@
+// Types
+import type { ActingRole, FeatureFilm, SubmitMovieActorPayload } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils

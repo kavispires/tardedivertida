@@ -1,16 +1,16 @@
-type SubmitMovieGenrePayload = {
+export type SubmitMovieGenrePayload = {
   genre: string;
 };
-type SubmitMovieActorPayload = {
+export type SubmitMovieActorPayload = {
   actorId: string;
 };
 
-type MovieGenreOption = {
+export type MovieGenreOption = {
   title: DualLanguageValue;
   key: string;
 };
 
-type MovieRole = {
+export type MovieRole = {
   id: string;
   title: DualLanguageValue;
   description: DualLanguageValue;
@@ -18,12 +18,14 @@ type MovieRole = {
   pool: number;
 };
 
-type ActingRole = {
+export type ActorId = string;
+
+export type ActingRole = {
   id: string;
   title: DualLanguageValue;
   description: DualLanguageValue;
   traits: string[];
-  candidates: Collection<SuspectCard>;
+  candidates: Dictionary<SuspectCard>;
   selection: ActorId[];
   actor?: ActorId;
   cast: boolean;
@@ -32,9 +34,9 @@ type ActingRole = {
   type: string;
 };
 
-type FeatureFilm = {
+export type FeatureFilm = {
   id: string;
   title: DualLanguageValue;
-  roles: Collection<ActingRole>;
+  roles: Dictionary<ActingRole>;
   rolesOrder: string[];
 };
