@@ -1,21 +1,21 @@
-type SubmitPairsPayload = {
+export type SubmitPairsPayload = {
   pairs: string[];
 };
 
-type ItemEntry = {
+export type Item = {
   id: string;
   type: string;
   value: any;
 };
 
-type DuetosGalleryEntry = {
+export type DuetosGalleryEntry = {
   pairId: string;
   players: PlayerId[];
-  pair: ItemEntry[];
+  pair: Item[];
 };
 
-type LefOutEntry = {
+export type LefOutEntry = {
   id: string;
-  item: ItemEntry;
+  item: Item;
   players: PlayerId[];
 };

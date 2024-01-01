@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { Item } from '../utils/types';
 // Components
 import { Card } from 'components/cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
@@ -12,7 +14,7 @@ import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { GlyphCard } from 'components/cards/GlyphCard';
 
 type ItemEntryProps = {
-  itemEntry: ItemEntry;
+  itemEntry: Item;
   className?: string;
   size?: 'small';
   looseItem?: boolean;
