@@ -1,3 +1,5 @@
+import { ScaleEntry } from './types';
+
 export const POSITIVE_SCALE: ScaleEntry[] = [
   {
     id: '1',

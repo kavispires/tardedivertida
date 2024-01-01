@@ -3,6 +3,8 @@ import { findLastIndex } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { RiseOutlined, UndoOutlined } from '@ant-design/icons';
+// Types
+import type { OnSubmitOrder } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useCardWidth } from 'hooks/useCardWidth';
