@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Divider, Tooltip } from 'antd';
+// Types
+import type { Robot } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';

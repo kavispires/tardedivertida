@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar as AntAvatar, Flex, Space } from 'antd';
+// Types
+import type { Robot, RobotGalleryEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
@@ -23,7 +25,6 @@ type StepResultProps = {
   players: GamePlayers;
   result: RobotGalleryEntry;
   goToNextStep: GenericFunction;
-
   robot: Robot;
 } & AnnouncementProps;
 

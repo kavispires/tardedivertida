@@ -12,7 +12,7 @@ import { PhaseAreYouARobot } from './PhaseAreYouARobot';
 import { PhaseResults } from './PhaseResults';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './nao-sou-robo.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

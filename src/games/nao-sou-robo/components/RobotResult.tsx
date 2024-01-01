@@ -1,3 +1,5 @@
+// Types
+import type { Robot, RobotGalleryEntry } from '../utils/types';
 // Utils
 import { BEAT_THRESHOLD, OUTCOME } from '../utils/constants';
 // Icons

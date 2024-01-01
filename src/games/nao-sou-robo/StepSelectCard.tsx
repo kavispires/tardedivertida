@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Flex, InputNumber, Space, Typography } from 'antd';
+// Types
+import type { Captcha, Robot, SubmitRobotCardPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';

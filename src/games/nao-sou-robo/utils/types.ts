@@ -1,35 +1,35 @@
-type SubmitRobotCardPayload = {
+export type SubmitRobotCardPayload = {
   cardId: CardId;
 };
 
-type SubmitRobotGuessPayload = {
+export type SubmitRobotGuessPayload = {
   guess: CardId[];
 };
 
-interface Robot {
+export type Robot = {
   points: number;
   goal: number;
   state: number;
   beat: number;
-}
+};
 
-interface Captcha {
+export type Captcha = {
   round: number;
   roundType: string;
   values: TextCard | number | number[];
-}
+};
 
-interface CaptchaCard {
+export type CaptchaCard = {
   id: CardId;
   players: PlayerId[];
   bot: boolean;
   playerId?: PlayerId;
-}
+};
 
-interface RobotGalleryEntry extends Captcha {
+export type RobotGalleryEntry = {
   options: CaptchaCard[];
   outcome: string;
   beaters: PlayerId[];
   score: number;
   suspicion: number;
-}
+} & Captcha;
