@@ -1,3 +1,6 @@
+// Types
+import type { ResultComponentProps } from '../../utils/types';
+// Components
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarCard } from 'components/avatars';

@@ -2,6 +2,8 @@ import { capitalize } from 'lodash';
 // AntDesign Resources
 import { Button, Space } from 'antd';
 import { HeartOutlined, MessageOutlined, SendOutlined } from '@ant-design/icons';
+// Types
+import type { SeedEntryLabirintoSecreto } from '../../utils/types';
 // Components
 import { BikiniModelIcon } from 'icons/BikiniModelIcon';
 import { Translate } from 'components/language';

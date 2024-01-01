@@ -1,45 +1,36 @@
-interface Track {
+export type Track = {
   game: string;
   variant?: string;
   condition: string;
   data: Record<string, any>;
-}
+};
 
-interface TrackProps {
+export type TrackProps = {
   track: Track;
   round: GameRound;
   players: GamePlayers;
   user: GamePlayer;
   onSubmitAnswer: GenericFunction;
-}
+};
 
-type SubmitAnswerPayload = {
+export type SubmitAnswerPayload = {
   data: any;
 };
 
-type SceneTile = {
-  id: string;
-  type: string;
-  title: DualLanguageValue;
-  description: DualLanguageValue;
-  values: DualLanguageValue[];
-  specific?: string | null;
-  tags?: Record<number | string, string[]>;
-};
-
-type AlienSign = {
+export type AlienSign = {
   id: string;
   name: DualLanguageValue;
 };
 
-type HCard = {
+export type StreetCard = {
   id: string;
-  type: string;
+  key: string;
   name: DualLanguageValue;
-  tags?: string[];
+  type: 'horror' | 'candy' | 'jackpot';
+  value: number;
 };
 
-type Seed = {
+export type Seed = {
   card: never;
   cards: never;
   outfits: never;
@@ -47,7 +38,7 @@ type Seed = {
   prompts: never;
 };
 
-type SeedEntryArteRuim = {
+export type SeedEntryArteRuim = {
   type: 'arte-ruim';
   card: TextCard;
   cards: never;
@@ -56,7 +47,7 @@ type SeedEntryArteRuim = {
   prompts: never;
 };
 
-type SeedEntryContadoresHistorias = {
+export type SeedEntryContadoresHistorias = {
   type: 'contadores-historias';
   cards: TextCard[];
   tree: TextCard;
@@ -65,7 +56,7 @@ type SeedEntryContadoresHistorias = {
   prompts: TextCard[];
 };
 
-type SeedEntryLabirintoSecreto = {
+export type SeedEntryLabirintoSecreto = {
   type: 'labirinto-secreto';
   cards: TextCard[];
   tree: TextCard;
@@ -74,7 +65,7 @@ type SeedEntryLabirintoSecreto = {
   prompts: never;
 };
 
-type SeedMenteColetiva = {
+export type SeedEntryMenteColetiva = {
   type: 'mente-coletiva';
   card: GroupQuestionCard;
   cards: never;
@@ -83,7 +74,7 @@ type SeedMenteColetiva = {
   prompts: never;
 };
 
-type SeedEntryOndaTelepatica = {
+export type SeedEntryOndaTelepatica = {
   type: 'onda-telepatica';
   card: OpposingIdeaCard;
   cards: never;
@@ -92,16 +83,16 @@ type SeedEntryOndaTelepatica = {
   prompts: never;
 };
 
-type SeedEntryPolemicaDaVez = {
+export type SeedEntryPolemicaDaVez = {
   type: 'polemica-da-vez';
-  card: TweetCard;
+  card: TextCard;
   cards: never;
   outfits: never;
   tree: never;
   prompts: never;
 };
 
-type SeedEntryRetratoFalado = {
+export type SeedEntryRetratoFalado = {
   type: 'retrato-falado';
   card: {
     id: string;
@@ -113,7 +104,7 @@ type SeedEntryRetratoFalado = {
   prompts: never;
 };
 
-type SeedEntryUeSoIsso = {
+export type SeedEntryUeSoIsso = {
   type: 'ue-so-isso';
   card: TextCard;
   cards: never;
@@ -122,7 +113,7 @@ type SeedEntryUeSoIsso = {
   prompts: never;
 };
 
-type SeedEntryParty = {
+export type SeedEntryParty = {
   type: 'party';
   card: never;
   cards: {
@@ -134,7 +125,7 @@ type SeedEntryParty = {
   prompts: never;
 };
 
-type SeedEntryClubberOutfit = {
+export type SeedEntryClubberOutfit = {
   type: 'clubber';
   outfits: string[];
   card: never;
@@ -143,11 +134,11 @@ type SeedEntryClubberOutfit = {
   prompts: never;
 };
 
-type SeedEntry =
+export type SeedEntry =
   | SeedEntryArteRuim
   | SeedEntryContadoresHistorias
   | SeedEntryLabirintoSecreto
-  | SeedMenteColetiva
+  | SeedEntryMenteColetiva
   | SeedEntryOndaTelepatica
   | SeedEntryPolemicaDaVez
   | SeedEntryRetratoFalado
@@ -155,7 +146,7 @@ type SeedEntry =
   | SeedEntryParty
   | SeedEntryClubberOutfit;
 
-type VoteComponentProps = {
+export type VoteComponentProps = {
   track: Track;
   winningValues: string[];
   winningTeam: PlayerId[];
@@ -163,4 +154,4 @@ type VoteComponentProps = {
   playersList: GamePlayer[];
 };
 
-type ResultComponentProps = VoteComponentProps & { containerWidth: number };
+export type ResultComponentProps = VoteComponentProps & { containerWidth: number };

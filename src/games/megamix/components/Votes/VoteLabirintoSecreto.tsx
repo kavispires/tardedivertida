@@ -1,3 +1,5 @@
+// Types
+import type { VoteComponentProps } from '../../utils/types';
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Components

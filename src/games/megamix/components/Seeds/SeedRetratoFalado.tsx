@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useAudio } from 'react-use';
 // AntDesign Resources
 import { Button, Space } from 'antd';
+// Types
+import type { SeedEntryRetratoFalado } from '../../utils/types';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useCountdown } from 'hooks/useCountdown';

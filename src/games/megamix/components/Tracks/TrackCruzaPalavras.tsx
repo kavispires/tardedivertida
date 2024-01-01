@@ -1,6 +1,8 @@
 // AntDesign Resources
 import { Button, ButtonProps, Space } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';

@@ -1,3 +1,5 @@
+// Type
+import type { Track } from '../utils/types';
 // Components
 import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
 import { AnonymousIcon } from 'icons/AnonymousIcon';

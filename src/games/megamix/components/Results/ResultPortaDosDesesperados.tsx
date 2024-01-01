@@ -1,3 +1,5 @@
+// Types
+import type { ResultComponentProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components

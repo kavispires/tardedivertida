@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // AntDesign Resources
 import { Steps } from 'antd';
+// Types
+import type { SeedEntry } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
@@ -8,7 +10,6 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { buildSeedingSteps } from './utils/helpers';
 import { mockSeeding } from './utils/mock';
-
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
