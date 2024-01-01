@@ -4,6 +4,8 @@ import { Space } from 'antd';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
+// Utils
+import achievementsReference from './utils/achievements';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { ViewIf } from 'components/views';
@@ -12,7 +14,6 @@ import { HumanSignBoard } from './components/HumanSignBoard';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { Achievements } from 'components/general/Achievements';
-import achievementsReference from './utils/achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const [, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);

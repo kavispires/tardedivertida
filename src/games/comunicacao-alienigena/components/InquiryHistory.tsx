@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+// Types
+import type { InquiryHistoryEntry, Sign } from '../utils/types';
 // Components
 import { AvatarName } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';

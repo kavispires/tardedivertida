@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { OfferingsStatus } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useHost } from 'hooks/useHost';

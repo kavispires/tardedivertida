@@ -1,34 +1,34 @@
-type SubmitActionPayload2 = {};
+export type SubmitActionPayload2 = {};
 
-type SubmitAlienPayload = {
+export type SubmitAlienPayload = {
   alienId: PlayerId;
 };
 
-type SubmitSeedingPayload = {
+export type SubmitSeedingPayload = {
   seeds: NumberDictionary;
 };
 
-type SubmitHumanInquiryPayload = {
+export type SubmitHumanInquiryPayload = {
   objectsIds: CardId[];
   intention: string;
 };
 
-type SubmitAlienResponsePayload = {
+export type SubmitAlienResponsePayload = {
   alienResponse: string;
 };
 
-type SubmitAlienRequestPayload = {
+export type SubmitAlienRequestPayload = {
   alienRequest: string;
   intention: string;
 };
 
-type SubmitOfferingPayload = {
+export type SubmitOfferingPayload = {
   offeringId: CardId;
 };
 
-type SignKey = string;
+export type SignKey = string;
 
-interface Item {
+export interface Item {
   id: string;
   type: string;
   offerings: PlayerId[];
@@ -36,18 +36,18 @@ interface Item {
   inquired?: number;
 }
 
-interface Sign {
+export interface Sign {
   key: SignKey;
   signId: string;
   attribute: DualLanguageValue;
 }
 
-type Seed = {
+export type Seed = {
   attribute: Sign;
   items: Item[];
 };
 
-interface InquiryHistoryEntry {
+export interface InquiryHistoryEntry {
   objectIds: CardId[];
   answer: string;
   playerId: PlayerId;
@@ -56,18 +56,18 @@ interface InquiryHistoryEntry {
   confidence?: number;
 }
 
-interface Offer {
+export interface Offer {
   objectId: CardId;
   playerId: PlayerId;
 }
 
-interface RequestHistoryEntry {
+export interface RequestHistoryEntry {
   request: string;
   offers: Offer[];
   intention?: CardId | null;
 }
 
-interface OfferingsStatus {
+export interface OfferingsStatus {
   timeLeft: number;
   needed: number;
   total: number;
