@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { StreetCard } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useCountdown } from 'hooks/useCountdown';
@@ -12,7 +14,7 @@ type NewHouseCardProps = {
   /**
    * The candy, monster, jackpot card
    */
-  card: NCard;
+  card: StreetCard;
 };
 
 export function NewHouseCard({ card }: NewHouseCardProps) {

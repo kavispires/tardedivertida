@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { CandySidewalk, StreetCard } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -16,8 +18,8 @@ import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepResultProps = {
   players: GamePlayers;
-  street: NStreet;
-  currentCard: NCard;
+  street: StreetCard[];
+  currentCard: StreetCard;
   candySidewalk: CandySidewalk;
   cashedInCandy: number;
   user: GamePlayer;

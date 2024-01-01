@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Tooltip } from 'antd';
+// Types
+import type { StreetCard } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -14,7 +16,7 @@ type HouseCardProps = {
   /**
    * The candy, monster, jackpot card
    */
-  card: NCard;
+  card: StreetCard;
   /**
    * The quantity of candy left in the sidewalk
    */

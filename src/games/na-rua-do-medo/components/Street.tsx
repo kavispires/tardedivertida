@@ -1,14 +1,16 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
-import { PUBLIC_URL } from 'utils/constants';
+// Types
+import type { CandySidewalk, StreetCard } from '../utils/types';
 // Helpers
+import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { HouseCard } from './HouseCard';
 
 type StreetProps = {
-  street: NStreet;
-  currentCard?: NCard;
+  street: StreetCard[];
+  currentCard?: StreetCard;
   candySidewalk: CandySidewalk;
 };
 

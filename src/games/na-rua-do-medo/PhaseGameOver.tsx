@@ -5,6 +5,7 @@ import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
 import { achievementsReference } from './utils/achievements';
+import { GRID_REPEAT } from './utils/constants';
 // Icons
 import { PoopIcon } from 'icons/PoopIcon';
 // Components
@@ -16,18 +17,7 @@ import { Translate } from 'components/language';
 import { Achievements } from 'components/general/Achievements';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 
-const GRID_REPEAT: NumberDictionary = {
-  3: 3,
-  4: 4,
-  5: 5,
-  6: 3,
-  7: 4,
-  8: 4,
-  9: 5,
-  10: 5,
-};
-
-function PhaseGameOver({ state, players, info }: PhaseProps) {
+export function PhaseGameOver({ state, players, info }: PhaseProps) {
   const { language } = useLanguage();
   const user = useUser(players, state);
 
@@ -100,5 +90,3 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;
