@@ -1,5 +1,6 @@
 import { shuffle } from 'lodash';
 import { getEntryId, getRandomItem } from 'utils/helpers';
+import { Question } from './types';
 
 export const mockAnswers = (userId: PlayerId, numAnswers: number) => {
   const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar', 'pêssego'];
@@ -16,4 +17,4 @@ export const mockAnswers = (userId: PlayerId, numAnswers: number) => {
     }, {});
 };
 
-export const mockSelectQuestion = (questions: MQuestion[]) => getRandomItem(questions).id;
+export const mockSelectQuestion = (questions: Question[]) => getRandomItem(questions).id;

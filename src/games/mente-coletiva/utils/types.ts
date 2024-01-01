@@ -1,11 +1,11 @@
-type MQuestion = {
+export type Question = {
   id: string;
   number: number;
   prefix: string;
   suffix: string;
 };
 
-type MAnswer = {
+export type Answer = {
   id: string;
   isLocked: boolean;
   playerId: PlayerId;
@@ -13,36 +13,36 @@ type MAnswer = {
   parsedAnswer: string;
 };
 
-type AllowedList = PlainObject;
+export type AllowedList = PlainObject;
 
-type AnswerGroup = {
+export type AnswerGroupObject = {
   answer: string;
-  entries: MAnswer[];
+  entries: Answer[];
   parsedAnswer: string;
 };
 
-type SubmitQuestionPayload = {
+export type SubmitQuestionPayload = {
   questionId: string;
 };
 
-type SubmitCustomQuestionPayload = {
-  question: MQuestion;
+export type SubmitCustomQuestionPayload = {
+  question: Question;
 };
 
-type SubmitAnswersPayload = {
+export type SubmitAnswersPayload = {
   answers: string[];
   allowedList: PlainObject;
 };
 
-type AddAnswerPayload = {
-  answer: MAnswer;
+export type AddAnswerPayload = {
+  answer: Answer;
 };
 
-type NextAnswersPayload = {
+export type NextAnswersPayload = {
   allowedList: string[];
 };
 
-type MGalleryEntry = {
+export type GalleryEntry = {
   question: GroupQuestionCard;
   answers: {
     playerIds: PlayerId[];

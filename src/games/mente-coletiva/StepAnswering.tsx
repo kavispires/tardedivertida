@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
+// Types
+import type { Question } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
@@ -20,7 +22,7 @@ import { TimedTimerClock } from 'components/timers';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type StepAnsweringProps = {
-  currentQuestion: MQuestion;
+  currentQuestion: Question;
   onSubmitAnswers: GenericFunction;
   players: GamePlayers;
   roundType: number;

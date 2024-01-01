@@ -2,6 +2,13 @@ import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+import {
+  AddAnswerPayload,
+  NextAnswersPayload,
+  SubmitAnswersPayload,
+  SubmitCustomQuestionPayload,
+  SubmitQuestionPayload,
+} from './types';
 
 const submitAction = httpsCallable(functions, 'menteColetivaSubmitAction');
 
