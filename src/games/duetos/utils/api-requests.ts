@@ -2,6 +2,7 @@ import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
+import { SubmitPairsPayload } from './types';
 
 const submitAction = httpsCallable(functions, 'duetosSubmitAction');
 
