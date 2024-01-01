@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Avatar as AntAvatar, Space } from 'antd';
+// Types
+import type { TableEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';

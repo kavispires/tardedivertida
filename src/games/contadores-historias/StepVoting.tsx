@@ -1,4 +1,8 @@
 import clsx from 'clsx';
+// Ant Design Resources
+import { Space } from 'antd';
+// Types
+import type { TableEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -13,7 +17,6 @@ import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { VotingRules } from './components/RulesBlobs';
 import { ImageCard, ImageCardButton } from 'components/image-cards';
-import { Space } from 'antd';
 
 type StepVotingProps = {
   players: GamePlayers;
