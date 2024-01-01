@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Modal, Space } from 'antd';
+// Types
+import type { FinalAssessment } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { PlayerSelect } from './PlayerSelect';

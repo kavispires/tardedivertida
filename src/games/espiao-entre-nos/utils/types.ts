@@ -1,30 +1,30 @@
-type ELocation = {
+export type Location = {
   id: string;
   name: string;
 };
 
-type GuessLocationPayload = {
+export type GuessLocationPayload = {
   locationId: string;
 };
 
-type MakeAccusationPayload = {
+export type MakeAccusationPayload = {
   targetId: PlayerId;
 };
 
-type SubmitVotePayload = {
+export type SubmitVotePayload = {
   vote: boolean;
 };
 
-type SendLastQuestionerPayload = {
+export type SendLastQuestionerPayload = {
   lastPlayerId: PlayerId;
 };
 
-type GameProgressPayload = {
+export type GameProgressPayload = {
   end?: boolean;
   continue?: boolean;
 };
 
-type ResolutionStatus = {
+export type ResolutionStatus = {
   isPlayerVictory: boolean;
   isUserTheSpy: boolean;
   wasABadVoting: boolean;
@@ -32,31 +32,31 @@ type ResolutionStatus = {
   didSpyGuess: boolean;
   didTheSpyWin: boolean;
   phaseIcon: 'nuclear-explosion' | 'handcuffs';
-  guess: ELocation | PlainObject;
-  currentLocation?: ELocation;
+  guess: Location | PlainObject;
+  currentLocation?: Location;
 };
 
-type Timer = {
+export type TimerType = {
   status: string;
   timeRemaining: number;
   updatedAt: number;
 };
 
-type EOutcome = {
+export type Outcome = {
   type: string;
   votedYes?: string;
   isFinalAssessment: boolean;
 };
 
-type EResolution = {
+export type Resolution = {
   type: string;
   isSpyWin: boolean;
   isSpyGuess: boolean;
   guess?: string;
-  currentLocation?: ELocation;
+  currentLocation?: Location;
 };
 
-type FinalAssessment = {
+export type FinalAssessment = {
   playerOrder: PlayerId[];
   playerOrderIndex: number;
 };

@@ -25,7 +25,7 @@ import { StepInvestigation } from './StepInvestigation';
 import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseInvestigation({ state, players, info }: PhaseProps) {
+export function PhaseInvestigation({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
@@ -123,5 +123,3 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseInvestigation;
