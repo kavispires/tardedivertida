@@ -1,9 +1,12 @@
 import { orderBy } from 'lodash';
+// Types
+import type { GuessHistoryEntry, History, ItemsDict } from '../utils/types';
+// Utils
 import { getLastItem } from 'utils/helpers';
 
 type SplitWeaponsAndEvidence = {
-  weapons: HCard[];
-  evidences: HCard[];
+  weapons: CrimesHediondosCard[];
+  evidences: CrimesHediondosCard[];
 };
 export const splitWeaponsAndEvidence = (items: ItemsDict, language: Language): SplitWeaponsAndEvidence => {
   const { weapons, evidences } = Object.values(items).reduce(
@@ -30,11 +33,11 @@ export const splitWeaponsAndEvidence = (items: ItemsDict, language: Language): S
   };
 };
 
-export const getHistory = (playerHistory: HHistory, activePlayerId: PlayerId) => {
+export const getHistory = (playerHistory: History, activePlayerId: PlayerId) => {
   return playerHistory?.[activePlayerId] ?? [];
 };
 
-export const isHistoryLocked = (history: HHistory, activePlayerId: PlayerId): boolean => {
+export const isHistoryLocked = (history: History, activePlayerId: PlayerId): boolean => {
   const lastGuessHistory = getLastItem(getHistory(history, activePlayerId));
   return Boolean(['CORRECT', 'LOCKED'].includes(lastGuessHistory?.status));
 };
@@ -43,7 +46,7 @@ export const isEntryLocked = (historyEntry: GuessHistoryEntry): boolean => {
   return Boolean(['CORRECT', 'LOCKED'].includes(historyEntry?.status));
 };
 
-export const autoSelectCorrectGuesses = (history: HHistory) => {
+export const autoSelectCorrectGuesses = (history: History) => {
   const guesses: PlainObject = {};
   Object.entries(history).forEach(([key, historyEntryArray]: any) => {
     const historyEntry: GuessHistoryEntry = getLastItem(historyEntryArray);

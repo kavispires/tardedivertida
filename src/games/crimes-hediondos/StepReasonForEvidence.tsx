@@ -1,4 +1,6 @@
 import { useState } from 'react';
+// Types
+import type { ItemsDict, SceneTilePayload } from './utils/types';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -14,7 +16,7 @@ type StepReasonForEvidenceProps = {
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
-  reasonForEvidenceTile: SceneTile;
+  reasonForEvidenceTile: CrimeTile;
   goToStep: GenericFunction;
 } & AnnouncementProps;
 

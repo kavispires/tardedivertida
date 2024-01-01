@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
+// Types
+import type { ItemsDict } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -15,9 +17,9 @@ type StepReviewCrimeProps = {
   items: ItemsDict;
   selections: PlainObject;
   onSubmitCrime: GenericFunction;
-  locationTiles: SceneTile[];
-  causeOfDeathTile: SceneTile;
-  reasonForEvidenceTile: SceneTile;
+  locationTiles: CrimeTile[];
+  causeOfDeathTile: CrimeTile;
+  reasonForEvidenceTile: CrimeTile;
   updateSelection: GenericFunction;
   players: GamePlayers;
 } & AnnouncementProps;

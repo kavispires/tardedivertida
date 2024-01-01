@@ -1,3 +1,5 @@
+// Types
+import type { History } from '../utils/types';
 // Helpers
 import { isHistoryLocked } from '../utils/helpers';
 import { sortPlayers } from 'utils/helpers';
@@ -14,7 +16,7 @@ type PlayersCardsProps = {
   guesses: PlainObject;
   players: GamePlayers;
   user: GamePlayer;
-  history: HHistory;
+  history: History;
 };
 
 export function PlayersCards({

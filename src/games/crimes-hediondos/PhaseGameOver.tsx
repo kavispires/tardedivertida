@@ -1,4 +1,5 @@
 import { orderBy } from 'lodash';
+import type { Crime } from './utils/types';
 // Hooks
 import { useUser } from 'hooks/useUser';
 // Utils
@@ -7,10 +8,10 @@ import achievementsReference from './utils/achievements';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { Crime } from './components/Crime';
+import { CrimeSummary } from './components/CrimeSummary';
 import { Achievements } from 'components/general/Achievements';
 
-function PhaseGameOver({ state, players, info }: PhaseProps) {
+export function PhaseGameOver({ state, players, info }: PhaseProps) {
   const crimes: Crime[] = state.crimes;
   const user = useUser(players, state);
 
@@ -20,7 +21,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
 
       <ul>
         {orderBy(crimes, ['playerId']).map((crime) => (
-          <Crime
+          <CrimeSummary
             key={`crime-by-${crime.playerId}`}
             crime={crime}
             items={state.items}
@@ -36,5 +37,3 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

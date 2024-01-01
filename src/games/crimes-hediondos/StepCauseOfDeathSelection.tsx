@@ -1,5 +1,8 @@
 import { useState } from 'react';
+// Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { ItemsDict, SceneTilePayload } from './utils/types';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -14,7 +17,7 @@ type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
-  causeOfDeathTile: SceneTile;
+  causeOfDeathTile: CrimeTile;
   goToStep: GenericFunction;
 } & AnnouncementProps;
 

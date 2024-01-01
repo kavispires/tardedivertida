@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Space } from 'antd';
+// Types
+import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -16,7 +18,7 @@ type StepLocationSelectionProps = {
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
-  locationTiles: SceneTile[];
+  locationTiles: CrimeTile[];
   groupedItems: GroupedItems;
   goToStep: GenericFunction;
 } & AnnouncementProps;
