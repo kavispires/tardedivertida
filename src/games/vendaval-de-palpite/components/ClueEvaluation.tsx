@@ -1,11 +1,15 @@
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { useState } from 'react';
+// Ant Design Resources
 import { Button, Space, Switch } from 'antd';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+// Types
+import type { Clues, BoardEntry } from '../utils/types';
+// Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useState } from 'react';
 
 type ClueEvaluationProps = {
-  clues: VClues;
+  clues: Clues;
   latestBoardEntry: BoardEntry;
   onSubmitEvaluation: Function;
 };

@@ -7,15 +7,15 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseBossPlayerSelection from './PhaseBossPlayerSelection';
-import PhaseSecretWordSelection from './PhaseSecretWordSelection';
-import PhasePlayersClues from './PhasePlayersClues';
-import PhaseClueEvaluations from './PhaseClueEvaluations';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseBossPlayerSelection } from './PhaseBossPlayerSelection';
+import { PhaseSecretWordSelection } from './PhaseSecretWordSelection';
+import { PhasePlayersClues } from './PhasePlayersClues';
+import { PhaseClueEvaluations } from './PhaseClueEvaluations';
+import { PhaseGameOver } from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
 // Sass
-import './vendaval-de-palpite.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

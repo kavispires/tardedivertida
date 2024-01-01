@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar, Tooltip } from 'antd';
+// Types
+import type { BoardObject, Clue, Clues } from '../utils/types';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
@@ -8,8 +10,8 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type BoardProps = {
-  board: VBoard;
-  clues: VClues;
+  board: BoardObject;
+  clues: Clues;
   players: GamePlayers;
 };
 
@@ -28,7 +30,7 @@ export function Board({ board, clues, players }: BoardProps) {
           >
             <ul className="v-board__clues">
               {boardEntry.clues.map((clueId) => (
-                <Clue clue={clues[clueId]} key={clueId} players={players} />
+                <ClueEntry clue={clues[clueId]} key={clueId} players={players} />
               ))}
             </ul>
             <div className="v-board__evaluation">
@@ -50,11 +52,11 @@ export function Board({ board, clues, players }: BoardProps) {
 }
 
 type ClueProps = {
-  clue: VClue;
+  clue: Clue;
   players: GamePlayers;
 };
 
-function Clue({ clue, players }: ClueProps) {
+function ClueEntry({ clue, players }: ClueProps) {
   return (
     <li className="v-clue">
       <div className={clsx('v-clue__text', clue.isGuess && 'v-clue__text--guess')}>

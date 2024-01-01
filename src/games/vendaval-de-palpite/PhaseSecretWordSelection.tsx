@@ -16,7 +16,7 @@ import { ViewOr } from 'components/views';
 import { StepSecretWordSelection } from './StepSecretWordSelection';
 import { StepWaiting } from './StepWaiting';
 
-function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
+export function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
@@ -84,5 +84,3 @@ function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseSecretWordSelection;

@@ -1,33 +1,33 @@
-type VClueId = string;
+type ClueId = string;
 
-type SubmitBossPlayerPayload = {
+export type SubmitBossPlayerPayload = {
   bossId: PlayerId;
 };
 
-type SubmitSecretWordPayload = {
+export type SubmitSecretWordPayload = {
   secretWord: string;
   categories: string[];
 };
 
-type SubmitPlayerCluesPayload = {
+export type SubmitPlayerCluesPayload = {
   clues: string[];
   guesses?: string[];
 };
 
-type SubmitEvaluationPayload = {
+export type SubmitEvaluationPayload = {
   evaluation: Record<ClueId, boolean>;
 };
 
-type SubmitOutcomePayload = {
+export type SubmitOutcomePayload = {
   outcome: string;
 };
 
-type SubmitHelpPayload = {
+export type SubmitHelpPayload = {
   clueId: ClueId;
 };
 
-type VClue = {
-  id: VClueId;
+export type Clue = {
+  id: ClueId;
   playerId: PlayerId;
   clue: string;
   /**
@@ -44,13 +44,13 @@ type VClue = {
   isResolved?: boolean;
 };
 
-type VClues = Record<VClueId, VClue>;
+export type Clues = Dictionary<Clue>;
 
-type BoardKey = string;
+export type BoardKey = string;
 
-type BoardEntry = {
-  clues: VClueId[];
+export type BoardEntry = {
+  clues: ClueId[];
   evaluation?: number;
 };
 
-type VBoard = Record<BoardKey, BoardEntry>;
+export type BoardObject = Record<BoardKey, BoardEntry>;

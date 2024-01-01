@@ -17,7 +17,7 @@ import { ViewOr } from 'components/views';
 import { StepBossWaiting } from './StepBossWaiting';
 import { Board } from './components/Board';
 
-function PhasePlayersClues({ state, players, info }: PhaseProps) {
+export function PhasePlayersClues({ state, players, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
@@ -91,5 +91,3 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhasePlayersClues;

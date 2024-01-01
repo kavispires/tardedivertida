@@ -1,3 +1,5 @@
+// Types
+import type { Clues, BoardObject } from './utils/types';
 // Components
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
@@ -12,9 +14,8 @@ type StepBossEvaluationProps = {
   categories: string[];
   onSubmitEvaluation: Function;
   onSubmitOutcome: Function;
-  onSubmitHelp: Function;
-  board: VBoard;
-  clues: VClues;
+  board: BoardObject;
+  clues: Clues;
   finalAnswersLeft: number;
   players: GamePlayers;
   round: GameRound;
@@ -26,7 +27,7 @@ export function StepBossEvaluation({
   categories,
   onSubmitEvaluation,
   onSubmitOutcome,
-  onSubmitHelp,
+
   board,
   clues,
   finalAnswersLeft,

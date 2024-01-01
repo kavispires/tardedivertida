@@ -11,7 +11,7 @@ import { IconAvatar } from 'components/avatars';
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
 
-function PhaseGameOver({ state, players, info }: PhaseProps) {
+export function PhaseGameOver({ state, players, info }: PhaseProps) {
   return (
     <GameOverWrapper
       info={info}
@@ -38,5 +38,3 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;
