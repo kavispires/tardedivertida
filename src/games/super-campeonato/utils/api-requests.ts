@@ -1,3 +1,9 @@
+import type {
+  SubmitBattleVotesPayload,
+  SubmitBetsPayload,
+  SubmitChallengePayload,
+  SubmitContendersPayload,
+} from './type';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';

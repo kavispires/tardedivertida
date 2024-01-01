@@ -14,7 +14,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepBattle } from './StepBattle';
 
-function PhaseBattle({ state, players, info }: PhaseProps) {
+export function PhaseBattle({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
   const user = useUser(players, state);
@@ -63,5 +63,3 @@ function PhaseBattle({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseBattle;

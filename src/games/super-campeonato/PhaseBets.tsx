@@ -14,7 +14,7 @@ import { StepMakeYourBets } from './StepMakeYourBets';
 import { useUser } from 'hooks/useUser';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 
-function PhaseBets({ state, players, info }: PhaseProps) {
+export function PhaseBets({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -64,5 +64,3 @@ function PhaseBets({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseBets;

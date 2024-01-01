@@ -1,3 +1,5 @@
+// Types
+import type { Bet, Bracket, BracketTier } from './utils/type';
 // Components
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
@@ -11,9 +13,9 @@ import { ReadyPlayersBar } from 'components/players';
 type StepBattleProps = {
   onSubmitVotes: GenericFunction;
   challenge: TextCard;
-  brackets: WBracket[];
-  tier: WBracketTier;
-  bets: WBets;
+  brackets: Bracket[];
+  tier: BracketTier;
+  bets: Bet;
   selectedContenderId: CardId;
   players: GamePlayers;
 } & AnnouncementProps;

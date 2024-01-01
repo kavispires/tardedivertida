@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import clsx from 'clsx';
 // Ant Design resources
 import { Button, Space } from 'antd';
+// Types
+import type { Bet, Bracket, BracketTier } from '../utils/type';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useMock } from 'hooks/useMock';
@@ -19,11 +21,11 @@ import { CharacterCard, OverlayColor } from 'components/cards/CharacterCard';
 import { TierContenders } from './TierContenders';
 
 type VotingProps = {
-  brackets: WBracket[];
-  tier: WBracketTier;
+  brackets: Bracket[];
+  tier: BracketTier;
   onSubmitVotes: GenericFunction;
   players: GamePlayers;
-  bets: WBets;
+  bets: Bet;
 };
 
 export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingProps) {
@@ -35,7 +37,7 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
     onExpire: goToNextStep,
   });
 
-  const bracketedContenders: WBracket[][] = useMemo(
+  const bracketedContenders: Bracket[][] = useMemo(
     () =>
       brackets
         .filter((entry) => entry.tier === tier)
@@ -101,8 +103,8 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
 }
 
 type VotingOptionsProps = {
-  left: WBracket;
-  right: WBracket;
+  left: Bracket;
+  right: Bracket;
   onClick: GenericFunction;
   colorLeft: OverlayColor;
   colorRight: OverlayColor;
@@ -133,7 +135,7 @@ function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiv
   );
 }
 
-const getContenderColor = (tier: WBracketTier): { left: OverlayColor; right: OverlayColor } => {
+const getContenderColor = (tier: BracketTier): { left: OverlayColor; right: OverlayColor } => {
   switch (tier) {
     case 'quarter':
       return {

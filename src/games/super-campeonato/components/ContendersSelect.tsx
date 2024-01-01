@@ -1,13 +1,15 @@
 // Ant Design resources
 import { Select } from 'antd';
+// Types
+import type { BracketTier, FightingContender } from '../utils/type';
 // Components
 import { Translate } from 'components/language';
 
 type ContendersSelectProps = {
-  contenders: WContender[];
+  contenders: FightingContender[];
   updateBet: GenericFunction;
   language: Language;
-  betTier: WBracketTier;
+  betTier: BracketTier;
 };
 
 export function ContendersSelect({ contenders, updateBet, language, betTier }: ContendersSelectProps) {
