@@ -70,7 +70,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                   <ImageBlurButton cardId={card.id} />
                 </div>
                 <ImageCard
-                  imageId={card.id}
+                  id={card.id}
                   cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
                   className={clsx(
                     'g-table-image',

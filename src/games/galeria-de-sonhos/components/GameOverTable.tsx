@@ -24,7 +24,7 @@ export function GameOverTable({ table }: TableProps) {
             <li key={`g-table-${card.id}`} className="g-table-item" style={{ width: `${cardWidth + 8}px` }}>
               <ImageBlurButton cardId={card.id} />
               <ImageCard
-                imageId={card.id}
+                id={card.id}
                 cardWidth={cardWidth - 6} // 6 is the border total size
                 className={clsx('g-table-image', getAnimationClass('zoomIn'))}
               />

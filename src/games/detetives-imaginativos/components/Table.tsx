@@ -54,7 +54,7 @@ export function Table({ table, players }: TableProps) {
                     cardId={cardId}
                     className={clsx('d-table__card', getAnimationClass('flipInY'))}
                   >
-                    <ImageCard imageId={cardId} cardWidth={cardWidth} />
+                    <ImageCard id={cardId} cardWidth={cardWidth} />
                   </ImageBlurButtonContainer>
                 );
               })}

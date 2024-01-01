@@ -24,7 +24,7 @@ export function GalleryDreamDisplay({ entry, activePlayer }: GalleryDreamDisplay
       </div>
       <div className="s-gallery-dream-display__dream-image-container">
         <ImageCard
-          imageId={entry.dreamId}
+          id={entry.dreamId}
           cardWidth={cardWidth}
           className="s-gallery-dream-display__dream-image"
         />

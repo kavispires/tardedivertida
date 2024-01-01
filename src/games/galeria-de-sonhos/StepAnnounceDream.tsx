@@ -81,7 +81,7 @@ export function StepAnnounceDream({
           <Translate pt="escolheu visitar o sonho" en="chose to visit the dream" />:
         </header>
         <div className="g-dream-result__card">
-          <ImageCard imageId={latest.cardId} cardWidth={cardWidth} />
+          <ImageCard id={latest.cardId} cardWidth={cardWidth} />
         </div>
         <div className="g-dream-result__match-result">
           <MatchCount

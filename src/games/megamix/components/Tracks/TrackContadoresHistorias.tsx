@@ -45,7 +45,7 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
           className="c-book-pages"
           leftPage={
             <Space className="space-container" direction="vertical" align="center">
-              <ImageCard imageId="back-question" cardWidth={100} />
+              <ImageCard id="back-question" cardWidth={100} />
             </Space>
           }
           rightPage={<div className="c-book-content">{track.data?.prompt ?? track.data?.options ?? '?'}</div>}
@@ -57,7 +57,7 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
               return (
                 <Space className="space-container" direction="vertical">
                   <ImageBlurButtonContainer cardId={cardId}>
-                    <ImageCard imageId={cardId} cardWidth={cardWidth} />
+                    <ImageCard id={cardId} cardWidth={cardWidth} />
                   </ImageBlurButtonContainer>
                   <Button
                     shape="round"

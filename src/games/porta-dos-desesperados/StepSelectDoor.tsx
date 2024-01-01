@@ -214,7 +214,7 @@ export function StepSelectDoor({
             {Boolean(pages[0]) && (
               <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
                 <ImageCard
-                  imageId={pages[0]}
+                  id={pages[0]}
                   cardWidth={140}
                   className={bookCardClass}
                   preview={trap !== TRAPS.NO_PREVIEW}
@@ -224,7 +224,7 @@ export function StepSelectDoor({
             {Boolean(pages[1]) && (
               <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
                 <ImageCard
-                  imageId={pages[1]}
+                  id={pages[1]}
                   cardWidth={140}
                   className={bookCardClass}
                   preview={trap !== TRAPS.NO_PREVIEW}
@@ -234,7 +234,7 @@ export function StepSelectDoor({
             {Boolean(pages[2]) && (
               <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
                 <ImageCard
-                  imageId={pages[2]}
+                  id={pages[2]}
                   cardWidth={140}
                   className={bookCardClass}
                   preview={trap !== TRAPS.NO_PREVIEW}

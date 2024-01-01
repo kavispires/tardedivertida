@@ -107,14 +107,14 @@ export function ImageCardHand({
             >
               <ImageCardButton
                 onClick={onSelectCard}
-                imageId={cardId}
+                id={cardId}
                 buttonProps={{ className: selectButtonClass }}
                 icon={selectButtonIcon}
                 buttonText={selectButtonText}
                 disabled={disabledSelectButton}
               >
                 <ImageCard
-                  imageId={cardId}
+                  id={cardId}
                   cardWidth={cardSize || cardWidth}
                   className={clsx(selectedCards[cardId] && 'image-card-hand__selected', cardClassName)}
                   preview={preview}

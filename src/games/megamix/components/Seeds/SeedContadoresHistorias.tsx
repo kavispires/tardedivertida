@@ -47,7 +47,7 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
                 <Translate pt="Recebido" en="Received" /> {now}
               </div>
               <div className="ff-phone__message">
-                <ImageCard imageId={seed.card} cardWidth={100} />
+                <ImageCard id={seed.card} cardWidth={100} />
               </div>
             </div>
           </div>

@@ -110,17 +110,17 @@ export function StepWaitDoorSelection({
         <Book>
           {Boolean(pages[0]) && (
             <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
-              <ImageCard imageId={pages[0]} cardWidth={120} />
+              <ImageCard id={pages[0]} cardWidth={120} />
             </ImageBlurButtonContainer>
           )}
           {Boolean(pages[1]) && (
             <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
-              <ImageCard imageId={pages[1]} cardWidth={120} />
+              <ImageCard id={pages[1]} cardWidth={120} />
             </ImageBlurButtonContainer>
           )}
           {Boolean(pages[2]) && (
             <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
-              <ImageCard imageId={pages[2]} cardWidth={120} />
+              <ImageCard id={pages[2]} cardWidth={120} />
             </ImageBlurButtonContainer>
           )}
         </Book>

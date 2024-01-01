@@ -23,7 +23,7 @@ export function DreamCard({
   return (
     <>
       <ImageCard
-        imageId={cardId}
+        id={cardId}
         cardWidth={cardWidth}
         className={clsx(
           baseClass,

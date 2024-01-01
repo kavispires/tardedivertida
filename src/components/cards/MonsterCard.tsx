@@ -37,7 +37,7 @@ export function MonsterCard({ currentMonster, showControls = true, cardWidth, ..
   return (
     <Space direction="vertical" align="center" {...props}>
       <ImageCard
-        imageId={currentMonster.id}
+        id={currentMonster.id}
         cardWidth={cardWidth || defaultCardWidth}
         className={clsx(
           baseClass,

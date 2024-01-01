@@ -76,7 +76,7 @@ export function StepVoting({
           return (
             <div key={`hand-${cardEntry.cardId}`} className="c-game-table__card-container">
               <ImageCardButton
-                imageId={cardEntry.cardId}
+                id={cardEntry.cardId}
                 onClick={!hasPlayedCardAlready ? onSelectCard : undefined}
                 disabled={isLoading || isUserCard}
                 buttonText={
@@ -84,7 +84,7 @@ export function StepVoting({
                 }
               >
                 <ImageCard
-                  imageId={cardEntry.cardId}
+                  id={cardEntry.cardId}
                   cardWidth={cardWidth}
                   className={clsx(isUserVote && 'c-game-table--vote')}
                 />

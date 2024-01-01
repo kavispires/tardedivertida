@@ -159,7 +159,7 @@ export function Grouping({ query }: GroupingProps) {
                         className="image-cards-group__button"
                         activeClass="image-cards-group__button--active"
                       >
-                        <ImageCard imageId={cardId} cardWidth={cardWidth} preview={false} />
+                        <ImageCard id={cardId} cardWidth={cardWidth} preview={false} />
                         <div>
                           {showIds && <Tag>{cardId}</Tag>}
                           {/* <Button size="small">{isSelected ? 'Deselect' : 'Select'}</Button> */}

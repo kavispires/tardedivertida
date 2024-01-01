@@ -34,7 +34,7 @@ export function BestMatches({ bestMatches }: BestMatchesProps) {
                 <span>{entry.text}</span>
               </div>
               <ImageCard
-                imageId={entry.id}
+                id={entry.id}
                 cardWidth={cardWidth - 6} // 6 is the border total size
               />
             </div>

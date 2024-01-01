@@ -94,9 +94,9 @@ export function StepResults({
 
       <Space className="i-book-container">
         <Book>
-          {Boolean(pages[0]) && <ImageCard imageId={pages[0]} cardWidth={140} />}
-          {Boolean(pages[1]) && <ImageCard imageId={pages[1]} cardWidth={140} />}
-          {Boolean(pages[2]) && <ImageCard imageId={pages[2]} cardWidth={140} />}
+          {Boolean(pages[0]) && <ImageCard id={pages[0]} cardWidth={140} />}
+          {Boolean(pages[1]) && <ImageCard id={pages[1]} cardWidth={140} />}
+          {Boolean(pages[2]) && <ImageCard id={pages[2]} cardWidth={140} />}
         </Book>
       </Space>
 
