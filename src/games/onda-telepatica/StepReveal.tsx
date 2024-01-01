@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
+// Types
+import type { CurrentCategory } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -18,7 +20,7 @@ import { Instruction, Title } from 'components/text';
 import { ScoringRules } from './components/RulesBlobs';
 
 type SentenceProps = {
-  currentCategory: OCurrentCategory;
+  currentCategory: CurrentCategory;
 };
 
 function Sentence({ currentCategory }: SentenceProps) {
@@ -36,7 +38,7 @@ function Sentence({ currentCategory }: SentenceProps) {
 }
 
 type StepRevealProps = {
-  currentCategory: OCurrentCategory;
+  currentCategory: CurrentCategory;
   players: GamePlayers;
   psychic: GamePlayer;
   goToNextStep: GenericFunction;

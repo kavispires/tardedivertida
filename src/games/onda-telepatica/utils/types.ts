@@ -1,10 +1,10 @@
-type OCategoryCard = {
+export type OpposingIdeaCard = {
   id: string;
   left: string;
   right: string;
 };
 
-type OCurrentCategory = {
+export type CurrentCategory = {
   id: string;
   left: string;
   right: string;
@@ -12,14 +12,14 @@ type OCurrentCategory = {
   target?: number;
 };
 
-type SubmitCategoryPayload = {
+export type SubmitCategoryPayload = {
   categoryId: string;
 };
 
-type SubmitCluePayload = {
+export type SubmitCluePayload = {
   clue: string;
 };
 
-type SubmitGuessPayload = {
+export type SubmitGuessPayload = {
   guess: string;
 };
