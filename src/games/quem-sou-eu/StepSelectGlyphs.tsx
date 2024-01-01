@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Button, Popover, Space, Tooltip } from 'antd';
+// Types
+import type { Characters } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';

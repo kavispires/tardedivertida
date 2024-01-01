@@ -4,6 +4,8 @@ import { useEffectOnce } from 'react-use';
 import { useCallback, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Characters } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useCardWidth } from 'hooks/useCardWidth';

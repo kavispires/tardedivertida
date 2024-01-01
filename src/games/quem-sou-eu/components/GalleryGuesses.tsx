@@ -2,6 +2,8 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Avatar as AntAvatar, Space, Typography } from 'antd';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
+// Types
+import type { Characters } from '../utils/types';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
 // Icons
