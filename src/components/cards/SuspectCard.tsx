@@ -8,7 +8,7 @@ type SuspectCardProps = {
   /**
    * Suspect object
    */
-  suspect: Suspect;
+  suspect: SuspectCard;
   /**
    * Card width
    */

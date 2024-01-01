@@ -21,7 +21,7 @@ import { LAST_ID } from '../Classifier/constants';
  */
 
 type ConnectItemsContentProps = {
-  data: Collection<ConnectionGroup>;
+  data: Dictionary<ConnectionGroup>;
 };
 
 function ConnectItemsContent({ data }: ConnectItemsContentProps) {
@@ -171,7 +171,7 @@ function ItemsTable({ dataSource }: ItemsTableProps) {
 function ConnectItemsPage() {
   useTitle('Items Connections | Dev | Tarde Divertida');
 
-  const { data, isLoading, isSuccess } = useQuery<Collection<ConnectionGroup>>({
+  const { data, isLoading, isSuccess } = useQuery<Dictionary<ConnectionGroup>>({
     queryKey: ['connect-items'],
     queryFn: async () => {
       const response = await fetch(`${PUBLIC_URL.RESOURCES}/connect-items.json`);

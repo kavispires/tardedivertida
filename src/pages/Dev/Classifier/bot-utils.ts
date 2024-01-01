@@ -1,5 +1,6 @@
 import { removeDuplicates, shuffle } from 'utils/helpers';
 import { AlienItem, AlienItemDict, AlienSignKnowledge, Attribute, ItemId, SignKey } from './types';
+import { Item, Sign } from 'games/comunicacao-alienigena/utils/types';
 
 /**
  * Generates the Alien response when a player asks about a set of items

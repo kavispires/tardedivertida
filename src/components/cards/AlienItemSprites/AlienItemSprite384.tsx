@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Images
 import items from 'assets/images/alien-items-384.svg';
 // Types
-import { ItemCardProps } from '../ItemCard';
+import type { ItemCardProps } from '../ItemCard';
 
 function AliemItemSprite384({ id, width = 75, className = '' }: ItemCardProps) {
   return (
