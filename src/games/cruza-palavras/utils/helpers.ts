@@ -1,3 +1,4 @@
+import { Clue } from './types';
 import { SEPARATOR } from 'utils/constants';
 
 /**
@@ -12,8 +13,7 @@ export const isClue = (instance?: any) => Boolean(instance?.clue);
  * @param clueObj
  * @returns
  */
-export const getClueKey = (clueObj?: CruzaPalavrasClue): string =>
-  `${clueObj?.clue}${SEPARATOR}${clueObj?.playerId}`;
+export const getClueKey = (clueObj?: Clue): string => `${clueObj?.clue}${SEPARATOR}${clueObj?.playerId}`;
 
 /**
  *

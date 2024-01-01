@@ -10,10 +10,10 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseClueWriting } from './PhaseClueWriting';
 import { PhaseGuessing } from './PhaseGuessing';
 import { PhaseReveal } from './PhaseReveal';
+import { PhaseWordsSelection } from './PhaseWordsSelection';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './cruza-palavras.scss';
-import { PhaseWordsSelection } from './PhaseWordsSelection';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

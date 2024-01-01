@@ -1,12 +1,14 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { GridCell } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';
 
 type PlayerRecentClueProps = {
   user: GamePlayer;
-  grid: CruzaPalavrasGridCell[];
+  grid: GridCell[];
 };
 
 export function PlayerRecentClue({ user, grid }: PlayerRecentClueProps) {

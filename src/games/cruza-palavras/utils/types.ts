@@ -1,10 +1,10 @@
-type CruzaPalavrasClue = {
+export type Clue = {
   coordinate: number;
   clue: string;
   playerId?: PlayerId;
 };
 
-type CruzaPalavrasGridCell = {
+export type GridCell = {
   id?: string;
   index: number;
   kind: string;
@@ -18,19 +18,19 @@ type CruzaPalavrasGridCell = {
   y?: number;
 };
 
-type CruzaPalavrasGrid = CruzaPalavrasGridCell[];
-type CruzaPalavrasGridType = 'words' | 'contenders' | 'images';
+export type Grid = GridCell[];
+export type GridType = 'words' | 'contenders' | 'images';
 
-type SubmitWordsPayload = {
+export type SubmitWordsPayload = {
   words: string[];
 };
 
-type SubmitCluePayload = {
+export type SubmitCluePayload = {
   clue: string;
   currentClueCoordinate: number;
 };
 
-type SubmitGuessesPayload = {
+export type SubmitGuessesPayload = {
   guesses: PlainObject;
   choseRandomly: boolean;
 };

@@ -1,17 +1,20 @@
 import clsx from 'clsx';
 // Design Resources
 import { Image, Tooltip } from 'antd';
+// Types
+import type { GridCell, GridType } from '../utils/types';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
+// Components
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 
 type WordGridHeaderProps = {
-  cell: CruzaPalavrasGridCell;
-  gridType: CruzaPalavrasGridType;
+  cell: GridCell;
+  gridType: GridType;
 };
 
 export function WordGridHeader({ cell, gridType }: WordGridHeaderProps) {
