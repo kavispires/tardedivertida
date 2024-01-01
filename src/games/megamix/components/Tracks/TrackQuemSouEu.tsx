@@ -1,6 +1,9 @@
 import { useMemo } from 'react';
 // AntDesign Resources
 import { Button, Space } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
+import type { FightingContender } from 'games/super-campeonato/utils/type';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -51,7 +54,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
       </Space>
 
       <Space className="space-container center">
-        {track.data.contenders.map((contender: WContender) => {
+        {track.data.contenders.map((contender: FightingContender) => {
           return (
             <Space direction="vertical" key={contender.id}>
               <CharacterCard size={cardWidth} character={contender} />

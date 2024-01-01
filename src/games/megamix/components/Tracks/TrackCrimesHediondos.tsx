@@ -1,5 +1,7 @@
 // AntDesign Resources
 import { Button } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -79,7 +81,7 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
       </ul>
 
       <ul className="h-cards">
-        {track.data.cards.map((card: HCard) => {
+        {track.data.cards.map((card: CrimesHediondosCard) => {
           return (
             <li key={card.id} className="margin">
               <CrimeItemCard item={card} cardWidth={cardWidth} isSelected={user?.data?.value === card.id} />

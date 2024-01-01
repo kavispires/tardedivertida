@@ -1,3 +1,5 @@
+// Types
+import type { ResultComponentProps, StreetCard } from '../../utils/types';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
@@ -7,7 +9,7 @@ import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
 
 export function ResultNaRuaDoMedo({ track, winningValues, winningTeam, playersList }: ResultComponentProps) {
   if (track.variant === 'house') {
-    const winningCards: NCard[] = track.data.options.filter((option: PlainObject) => {
+    const winningCards: StreetCard[] = track.data.options.filter((option: PlainObject) => {
       return winningValues.includes(option.id);
     });
 

@@ -1,3 +1,5 @@
+// Types
+import type { SeedEntryPolemicaDaVez } from '../../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';

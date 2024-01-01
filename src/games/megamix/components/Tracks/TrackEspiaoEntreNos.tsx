@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // AntDesign Resources
 import { Button, Input, Space } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';

@@ -1,5 +1,7 @@
 // AntDesign Resources
 import { Space } from 'antd';
+// Types
+import type { AlienSign, TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';

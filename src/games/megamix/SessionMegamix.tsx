@@ -12,7 +12,7 @@ import { PhaseSeeding } from './PhaseSeeding';
 import { PhaseResult } from './PhaseResult';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './megamix.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

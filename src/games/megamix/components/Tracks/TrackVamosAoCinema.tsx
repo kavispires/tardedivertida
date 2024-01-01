@@ -1,5 +1,7 @@
 // AntDesign Resources
 import { Button, Space } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';

@@ -1,6 +1,8 @@
 import moment from 'moment';
 // AntDesign Resources
 import { Button, Space } from 'antd';
+// Types
+import type { SeedEntryContadoresHistorias } from '../../utils/types';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';

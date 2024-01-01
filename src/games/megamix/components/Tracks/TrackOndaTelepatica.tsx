@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import clsx from 'clsx';
-// AntDesign Resources
+// Ant Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';

@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // AntDesign Resources
 import { Button, Image, Space } from 'antd';
+// Types
+import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';

@@ -1,3 +1,5 @@
+// Type
+import type { Track } from '../utils/types';
 // Utils
 import { TITLES } from '../utils/constants';
 // Components

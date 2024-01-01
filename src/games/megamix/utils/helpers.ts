@@ -1,4 +1,6 @@
 import { StepProps } from 'antd';
+import { SeedEntry } from './types';
+// Types
 
 export const buildSeedingSteps = (
   seeds: SeedEntry[],

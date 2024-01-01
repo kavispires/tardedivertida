@@ -3,6 +3,8 @@ import { useState } from 'react';
 import clsx from 'clsx';
 // AntDesign Resources
 import { Button, Input, Space } from 'antd';
+// Types
+import type { SeedEntryUeSoIsso } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
