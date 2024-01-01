@@ -1,8 +1,11 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
@@ -18,7 +21,6 @@ import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { SelectableObjectsGrid } from './components/SelectableObjectsGrid';
 import { DebugOnly } from 'components/debug';
-import { useGlobalState } from 'hooks/useGlobalState';
 
 type StepAlienRequestsProps = {
   players: GamePlayers;

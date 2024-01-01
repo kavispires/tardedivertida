@@ -24,7 +24,7 @@ export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {
       title={<Translate pt="Análise de Objetos" en="Objects analyses" />}
       currentRound={state?.round?.current}
       type="overlay"
-    ></PhaseAnnouncement>
+    />
   );
 
   return (

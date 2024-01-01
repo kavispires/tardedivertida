@@ -1,4 +1,5 @@
-// Ant Design Resources
+// Types
+import type { Item } from './utils/types';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
