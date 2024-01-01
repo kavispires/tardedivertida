@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Avatar, Space } from 'antd';
+// Types
+import type { QuestionsDictionary } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils

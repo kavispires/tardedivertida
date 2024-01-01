@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { QuestionsDictionary } from '../utils/types';
 // Hook
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils

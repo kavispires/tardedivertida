@@ -1,5 +1,9 @@
 // Ant Design Resources
-// Hooks
+import { Space } from 'antd';
+// Types
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
+// Utils
+import { pluralize } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -7,10 +11,8 @@ import { Translate } from 'components/language';
 import { CharactersBoard } from './components/CharactersBoard';
 import { PlayerBoard } from './components/PlayersBoards';
 import { TurnOrder } from 'components/players';
-import { Space } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { pluralize } from 'utils/helpers';
 import { ViewOr } from 'components/views';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { TimedButton } from 'components/buttons';

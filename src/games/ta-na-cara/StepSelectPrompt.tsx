@@ -1,5 +1,7 @@
 // Hooks
 import { useMock } from 'hooks/useMock';
+// Types
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Mocks
 import { mockPromptDecision } from './utils/mock';
 // Components

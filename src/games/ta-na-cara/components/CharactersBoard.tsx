@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Image, Popconfirm } from 'antd';
+// Types
+import type { CharactersDictionary } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useCardWidth } from 'hooks/useCardWidth';
