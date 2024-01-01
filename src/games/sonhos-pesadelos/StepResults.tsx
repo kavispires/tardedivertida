@@ -1,3 +1,5 @@
+// Types
+import type { GalleryEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -12,7 +14,7 @@ import { Translate } from 'components/language';
 
 type StepResultsProps = {
   players: GamePlayers;
-  gallery: SGalleryEntry[];
+  gallery: GalleryEntry[];
   activeIndex: number;
   setActiveIndex: GenericFunction;
   setStep: GenericFunction;

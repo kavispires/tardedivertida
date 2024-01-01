@@ -7,14 +7,14 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseGameOver from './PhaseGameOver';
-import PhaseDreamTelling from './PhaseDreamTelling';
-import PhaseMatching from './PhaseMatching';
-import PhaseResolution from './PhaseResolution';
+import { PhaseGameOver } from './PhaseGameOver';
+import { PhaseDreamTelling } from './PhaseDreamTelling';
+import { PhaseMatching } from './PhaseMatching';
+import { PhaseResolution } from './PhaseResolution';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
 // Sass
-import './sonhos-pesadelos.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

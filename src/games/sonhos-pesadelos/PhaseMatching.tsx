@@ -13,7 +13,7 @@ import { Instruction } from 'components/text';
 import { StepMatchDreams } from './StepMatchDreams';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseMatching({ state, players, info }: PhaseProps) {
+export function PhaseMatching({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -62,5 +62,3 @@ function PhaseMatching({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseMatching;
