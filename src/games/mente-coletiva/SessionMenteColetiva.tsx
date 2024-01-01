@@ -7,14 +7,15 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseQuestionSelection from './PhaseQuestionSelection';
-import PhaseEverybodyWrites from './PhaseEverybodyWrites';
-import PhaseCompare from './PhaseCompare';
-import PhaseResolution from './PhaseResolution';
-import PhaseGameOver from './PhaseGameOver';
-// Sass
+import { PhaseQuestionSelection } from './PhaseQuestionSelection';
+import { PhaseEverybodyWrites } from './PhaseEverybodyWrites';
+import { PhaseCompare } from './PhaseCompare';
+import { PhaseResolution } from './PhaseResolution';
+import { PhaseGameOver } from './PhaseGameOver';
+// Fonts
 import 'assets/fonts/architects-daughter.scss';
-import './mente-coletiva.scss';
+// Sass
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

@@ -2,6 +2,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Checkbox } from 'antd';
 import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
+// Types
+import type { AnswerGroupObject, Question } from '../utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Hooks
@@ -16,8 +18,8 @@ import { Card } from 'components/cards';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type AnswerGroupProps = {
-  currentQuestion: MQuestion;
-  answerGroup: AnswerGroup;
+  currentQuestion: Question;
+  answerGroup: AnswerGroupObject;
   players: GamePlayers;
   remainingGroupsCount: number;
   allowUserAnswer: GenericFunction;

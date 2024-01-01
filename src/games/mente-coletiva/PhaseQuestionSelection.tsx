@@ -18,7 +18,7 @@ import { ViewOr } from 'components/views';
 import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 
-function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
+export function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -82,5 +82,3 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseQuestionSelection;
