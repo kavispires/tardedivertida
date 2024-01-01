@@ -203,11 +203,11 @@ interface Redirect {
   gameName: GameName;
 }
 
-interface GameState {
+interface GameState<TState = PlainObject, TPlayer = PlainObject> extends TState {
   phase: string;
   updatedAt?: DateMilliseconds;
   round: GameRound;
-  players: GamePlayers;
+  players: GamePlayers<TPlayer>;
   redirect?: Redirect;
   [key: string]: any;
 }
@@ -293,25 +293,15 @@ type GenericFunction = (...args: any) => void;
 type BooleanFunction = (...args: any) => boolean;
 type ButtonEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
-type PhaseProps = {
-  players: GamePlayers;
-  state: GameState;
+type PhaseProps<TState = PlainObject, TPlayer = PlainObject> = {
+  state: GameState<TState, TPlayer>;
+  players: GamePlayers<TPlayer>;
   info: GameInfo;
   meta: GameMeta;
 };
 
 type AnnouncementProps = {
   announcement: JSX.Element;
-};
-
-type GameTeam = {
-  name?: string;
-  score: number;
-  members: PlayerId[];
-};
-
-type GameTeams = {
-  [key: string]: GameTeam;
 };
 
 type GameRanking = {
