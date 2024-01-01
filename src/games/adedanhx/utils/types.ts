@@ -1,30 +1,30 @@
-type SubmitGridAnswersPayload = {
+export type SubmitGridAnswersPayload = {
   answers: StringDictionary;
   stop?: PlayerId;
 };
 
-type SubmitRejectedAnswers = {
+export type SubmitRejectedAnswers = {
   evaluations: string[];
 };
 
-type LetterEntry = {
+export type LetterEntry = {
   type: 'starts-with' | 'ends-with' | 'includes';
   letters: string;
   level: number;
 };
 
-type AdedanhxGrid = {
+export type AdedanhxGrid = {
   xHeaders: TopicCard[];
   yHeaders: LetterEntry[];
 };
 
-type Answer = {
+export type Answer = {
   id: string; // x-y
   answer: string;
   timestamp: number;
 };
 
-type AnswerEvaluationEntry = {
+export type AnswerEvaluationEntry = {
   id: string;
   playerId: string;
   answer: string;
@@ -34,7 +34,7 @@ type AnswerEvaluationEntry = {
   accepted: false;
 };
 
-type GroupAnswerEvaluationEntry = {
+export type GroupAnswerEvaluationEntry = {
   id: string;
   topic: TopicCard;
   letter: LetterEntry;
@@ -42,7 +42,7 @@ type GroupAnswerEvaluationEntry = {
   points: number;
 };
 
-type AnswerGridEntry = {
+export type AnswerGridEntry = {
   id: string;
   main: {
     playerId: PlayerId;
@@ -53,7 +53,7 @@ type AnswerGridEntry = {
   score: number;
 };
 
-type AdedanhxGalleryEntry = {
+export type AdedanhxGalleryEntry = {
   id: string;
   topic: TopicCard;
   letter: LetterEntry;
