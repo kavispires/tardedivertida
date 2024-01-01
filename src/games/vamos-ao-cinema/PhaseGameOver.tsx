@@ -10,7 +10,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';
 
-function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
@@ -38,5 +38,3 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

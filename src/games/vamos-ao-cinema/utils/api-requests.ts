@@ -1,3 +1,4 @@
+import type { SubmitMovieSelectionPayload, SubmitMovieEliminationPayload } from './types';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
