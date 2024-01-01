@@ -1,5 +1,7 @@
+import type { CardEntry } from './types';
+
 export function isEarliestPlayerWithFewestCards(
-  table: DetetivesImaginativosCardEntry[],
+  table: CardEntry[],
   userId: PlayerId,
   turnOrder: PlayerId[]
 ): boolean {

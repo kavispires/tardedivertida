@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { CardEntry } from './utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -13,7 +15,7 @@ import { YourSelectedCards } from './components/YourSelectedCards';
 type StepDefendingWaitingProps = {
   clue: string;
   currentPlayer: GamePlayer;
-  table: DetetivesImaginativosCardEntry[];
+  table: CardEntry[];
   isUserTheImpostor: boolean;
   user: GamePlayer;
   players: GamePlayers;

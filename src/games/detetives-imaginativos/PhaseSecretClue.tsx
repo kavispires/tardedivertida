@@ -19,7 +19,7 @@ import { ViewOr } from 'components/views';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 
-function PhaseSecretClue({ state, players, info }: PhaseProps) {
+export function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -85,5 +85,3 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseSecretClue;
