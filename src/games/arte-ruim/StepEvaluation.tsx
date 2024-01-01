@@ -3,6 +3,8 @@ import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
+// Types
+import type { ArteRuimCard, ArteRuimDrawing } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
