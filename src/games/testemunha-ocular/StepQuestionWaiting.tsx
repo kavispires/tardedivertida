@@ -9,9 +9,9 @@ import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
 
 type StepQuestionWaitingProps = {
-  suspects: Suspect[];
+  suspects: SuspectCard[];
   previouslyEliminatedSuspects: string[];
-  perpetrator: Suspect;
+  perpetrator: SuspectCard;
   questioner: GamePlayer;
   isUserTheWitness: boolean;
   history: THistoryEntry[];

@@ -16,9 +16,9 @@ import { Card } from 'components/cards';
 import { ViewIf } from 'components/views';
 
 type StepQuestioningProps = {
-  suspects: Suspect[];
+  suspects: SuspectCard[];
   previouslyEliminatedSuspects: string[];
-  perpetrator: Suspect;
+  perpetrator: SuspectCard;
   isUserTheWitness: boolean;
   witness: GamePlayer;
   isLoading: boolean;
