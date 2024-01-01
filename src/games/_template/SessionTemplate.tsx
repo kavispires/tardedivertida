@@ -8,7 +8,7 @@ import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 // Sass
-import './game-name.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
