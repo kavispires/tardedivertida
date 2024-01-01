@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { Sketch } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -15,7 +17,7 @@ import { TimedButton } from 'components/buttons';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepResultsProps = {
-  currentMonster: Monster;
+  currentMonster: MonsterCard;
   goToNextStep: GenericFunction;
   sketches: Sketch[];
   user: GamePlayer;

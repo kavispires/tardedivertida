@@ -15,7 +15,7 @@ import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -64,5 +64,3 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseReveal;
