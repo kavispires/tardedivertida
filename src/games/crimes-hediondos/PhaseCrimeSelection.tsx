@@ -1,5 +1,6 @@
 import { useState } from 'react';
-// Ant Design Resources
+// Types
+import type { SubmitCrimePayload } from './utils/types';
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -28,7 +29,7 @@ import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
 import { DevButton } from 'components/debug';
 
-function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
+export function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -192,5 +193,3 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCrimeSelection;

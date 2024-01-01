@@ -1,31 +1,21 @@
-type GroupedItems = {
+export type GroupedItems = {
   [key: string]: string[];
 };
 
-type ItemsDict = {
-  [key: string]: HCard;
+export type ItemsDict = {
+  [key: string]: CrimesHediondosCard;
 };
 
-type SceneTile = {
-  id: string;
-  type: string;
-  title: DualLanguageValue;
-  description: DualLanguageValue;
-  values: DualLanguageValue[];
-  specific?: string | null;
-  tags?: Record<number | string, string[]>;
+export type ScenesDict = {
+  [key: string]: CrimeTile;
 };
 
-type ScenesDict = {
-  [key: string]: SceneTile;
-};
-
-type SceneTilePayload = {
+export type SceneTilePayload = {
   tileId: string;
   value: number;
 };
 
-type Crime = {
+export type Crime = {
   playerId: PlayerId;
   weaponId: string;
   evidenceId: string;
@@ -34,7 +24,7 @@ type Crime = {
   };
 };
 
-type SubmitCrimePayload = {
+export type SubmitCrimePayload = {
   weaponId?: string;
   evidenceId?: string;
   causeOfDeath?: number;
@@ -43,30 +33,30 @@ type SubmitCrimePayload = {
   locationIndex?: number;
 };
 
-type SubmitMarkPayload = {
+export type SubmitMarkPayload = {
   sceneIndex: number;
 };
 
-type SubmitGuessesPayload = {
+export type SubmitGuessesPayload = {
   guesses: PlainObject;
 };
 
-type HGuess = {
+export type Guess = {
   weaponId: string;
   evidenceId: string;
 };
 
-type GuessHistoryEntry = {
+export type GuessHistoryEntry = {
   weaponId: string;
   evidenceId: string;
   status: string;
   groupIndex: number;
 };
 
-type HHistory = {
+export type History = {
   [key: string]: GuessHistoryEntry[];
 };
 
-type HResults = {
+export type Results = {
   [key: string]: StringDictionary;
 };

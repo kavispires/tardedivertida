@@ -11,6 +11,8 @@ import {
   LockFilled,
   SafetyOutlined,
 } from '@ant-design/icons';
+// Types
+import type { Crime, GuessHistoryEntry, ItemsDict, ScenesDict } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -24,7 +26,7 @@ import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 const CARD_WIDTH = 100;
 
-type CrimeProps = {
+type CrimeSummaryProps = {
   history?: GuessHistoryEntry[];
   crime: Crime;
   items: ItemsDict;
@@ -36,7 +38,7 @@ type CrimeProps = {
   isLocked?: boolean;
 };
 
-export function Crime({
+export function CrimeSummary({
   crime,
   player,
   scenesOrder,
@@ -46,7 +48,7 @@ export function Crime({
   history,
   items,
   isLocked,
-}: CrimeProps) {
+}: CrimeSummaryProps) {
   const [historyEntryIndex, setHistoryEntryIndex] = useState(-1);
   const isComplete = Boolean(selectedWeaponId && selectedWeaponId);
 
@@ -147,7 +149,7 @@ export function Crime({
 }
 
 type CrimeSceneProps = {
-  scene: SceneTile;
+  scene: CrimeTile;
   playerIndex: number;
 };
 

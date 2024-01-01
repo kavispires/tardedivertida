@@ -1,3 +1,4 @@
+import { SubmitCrimePayload, SubmitGuessesPayload, SubmitMarkPayload } from './types';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';

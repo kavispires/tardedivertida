@@ -16,7 +16,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
 import { StepNewScene } from './StepNewScene';
 
-function PhaseSceneMarking({ players, state, info }: PhaseProps) {
+export function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep(0);
 
@@ -74,5 +74,3 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseSceneMarking;

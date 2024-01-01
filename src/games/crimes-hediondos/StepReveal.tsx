@@ -2,13 +2,15 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Collapse, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+// Types
+import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, Results, ScenesDict } from './utils/types';
 // Utils
 import { getAnimationClass, getLastItem } from 'utils/helpers';
 import { isEntryLocked } from './utils/helpers';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { Crime } from './components/Crime';
+import { CrimeSummary } from './components/CrimeSummary';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
 import { ScoringMessage } from './components/RulesBlobs';
 import { PlayersCards } from './components/PlayersCards';
@@ -31,7 +33,7 @@ type StepRevealProps = {
   crimes: Crime[];
   onSeeRanking: GenericFunction;
   round: GameRound;
-  results: HResults;
+  results: Results;
   isFirstRunThrough: boolean;
 } & AnnouncementProps;
 
@@ -153,7 +155,7 @@ export function StepReveal({
           className={getAnimationClass('slideInUp', { speed: 'fast' })}
           key={`crime-by-${activeCrime.playerId}`}
         >
-          <Crime
+          <CrimeSummary
             crime={activeCrime}
             scenes={scenes}
             scenesOrder={scenesOrder}

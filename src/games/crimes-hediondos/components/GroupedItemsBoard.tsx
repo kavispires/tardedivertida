@@ -1,3 +1,5 @@
+// Types
+import type { GroupedItems, ItemsDict } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
