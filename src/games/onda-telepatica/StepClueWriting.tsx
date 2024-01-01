@@ -16,7 +16,7 @@ import { ClueWritingRules } from './components/RulesBlobs';
 import { TargetSideHighlight, WavelengthHighlight } from './components/Highlights';
 
 type StepClueWritingProps = {
-  currentCategories: OCategoryCard[];
+  currentCategories: OpposingIdeaCard[];
   currentCategoryId: string;
   target: number;
   onSendClue: GenericFunction;

@@ -7,12 +7,12 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseDialClue from './PhaseDialClue';
-import PhaseGuess from './PhaseGuess';
-import PhaseReveal from './PhaseReveal';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseDialClue } from './PhaseDialClue';
+import { PhaseGuess } from './PhaseGuess';
+import { PhaseReveal } from './PhaseReveal';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './onda-telepatica.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

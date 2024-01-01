@@ -17,7 +17,7 @@ export function WavelengthHighlight({ children, type, iconSize, className }: Hig
 
 type TargetSideHighlightProps = {
   target: number;
-  card?: OCategoryCard;
+  card?: OpposingIdeaCard;
 };
 
 export function TargetSideHighlight({ target, card }: TargetSideHighlightProps) {

@@ -3,7 +3,7 @@ import { Instruction, Title } from 'components/text';
 import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type CardSelectionProps = {
-  cards: OCategoryCard[];
+  cards: OpposingIdeaCard[];
   onSendChosenSide: GenericFunction;
 };
 
