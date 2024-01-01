@@ -1,3 +1,11 @@
+import type {
+  SubmitBossPlayerPayload,
+  SubmitSecretWordPayload,
+  SubmitPlayerCluesPayload,
+  SubmitEvaluationPayload,
+  SubmitOutcomePayload,
+  SubmitHelpPayload,
+} from './types';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';

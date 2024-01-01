@@ -1,3 +1,5 @@
+// Types
+import type { Clues, BoardObject } from './utils/types';
 // Components
 import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
@@ -7,8 +9,8 @@ import { CategoryWordGroup } from './components/CategoryWordGroup';
 
 type StepBossWaitingProps = {
   players: GamePlayers;
-  board: VBoard;
-  clues: VClues;
+  board: BoardObject;
+  clues: Clues;
   secretWord: string;
   categories: string[];
 };
