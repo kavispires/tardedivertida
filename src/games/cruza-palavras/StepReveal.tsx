@@ -3,6 +3,8 @@ import { orderBy } from 'lodash';
 //Design Resources
 import { Space, Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined } from '@ant-design/icons';
+// Types
+import type { Clue, Grid, GridType } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -52,7 +54,7 @@ function PlayersInCell({ cellPlayers, players }: PlayersInCellProps) {
 
 type ResultCellProps = {
   cell: any;
-  clues: CruzaPalavrasClue[];
+  clues: Clue[];
   players: GamePlayers;
   playerPerVotedCell: any;
   colorCodedCluesPerPlayer: any;
@@ -89,7 +91,7 @@ function ResultCell({ cell, clues, players, playerPerVotedCell, colorCodedCluesP
 
 type AnswersListProps = {
   players: GamePlayers;
-  grid: CruzaPalavrasGrid;
+  grid: Grid;
   correctCoordinatesPerPlayer: any;
 };
 
@@ -177,10 +179,10 @@ function BadCluesPlayersList({ badCluesPlayersList }: BadCluesPlayersListProps) 
 
 type StepRevealProps = {
   players: GamePlayers;
-  grid: CruzaPalavrasGrid;
-  gridType: CruzaPalavrasGridType;
+  grid: Grid;
+  gridType: GridType;
   user: GamePlayer;
-  clues: CruzaPalavrasClue[];
+  clues: Clue[];
   goToNextStep: GenericFunction;
   whoGotNoPoints: PlayerId[];
 } & AnnouncementProps;
