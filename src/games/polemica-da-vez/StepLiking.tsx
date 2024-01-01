@@ -18,7 +18,7 @@ import { TransparentButton } from 'components/buttons';
 import { IconAvatar } from 'components/avatars';
 
 type StepLikingProps = {
-  currentTweet: Tweet;
+  currentTweet: TextCard;
   customTweet: string;
   onSubmitReaction: GenericFunction;
   players: GamePlayers;

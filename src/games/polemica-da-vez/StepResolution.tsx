@@ -17,7 +17,7 @@ type StepResolutionProps = {
   players: GamePlayers;
   totalLikes: number;
   customTweet: string;
-  currentTweet: Tweet;
+  currentTweet: TextCard;
   goToNextStep: GenericFunction;
 } & AnnouncementProps;
 

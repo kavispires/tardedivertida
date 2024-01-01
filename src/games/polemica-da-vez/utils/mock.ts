@@ -1,6 +1,6 @@
 import { getRandomItem } from 'utils/helpers';
 
-export function mockTweetSelection(currentTweets: Tweet[]) {
+export function mockTweetSelection(currentTweets: TextCard[]) {
   return {
     tweetId: getRandomItem(currentTweets).id,
   };
