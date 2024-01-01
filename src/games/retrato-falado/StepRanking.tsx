@@ -1,4 +1,6 @@
+// Ant Design Resources
 import { Button, Space } from 'antd';
+// Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';

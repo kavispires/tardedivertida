@@ -13,7 +13,7 @@ import { ViewWitnessing } from './components/ViewWitnessing';
 
 type StepTestimonialProps = {
   isUserTheWitness: boolean;
-  currentMonster: Monster;
+  currentMonster: MonsterCard;
   onSubmitSketch: GenericFunction;
   onSubmitOrientation: GenericFunction;
   witness: GamePlayer;

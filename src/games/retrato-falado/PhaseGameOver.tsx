@@ -10,7 +10,7 @@ import { MonsterSketches } from './components/MonsterSketches';
 import { Achievements } from 'components/general/Achievements';
 import { achievementsReference } from './utils/achievements';
 
-function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const canvasWidth = useCardWidth(6, {
     gap: 16,
     minWidth: 150,
@@ -36,5 +36,3 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

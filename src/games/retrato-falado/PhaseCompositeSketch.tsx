@@ -17,7 +17,7 @@ import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
-function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
+export function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -139,5 +139,3 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCompositeSketch;
