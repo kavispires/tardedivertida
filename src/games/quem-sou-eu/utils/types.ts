@@ -1,23 +1,23 @@
-type SubmitCharactersPayload = {
+export type SubmitCharactersPayload = {
   characters: CardId[];
 };
 
-type SubmitGlyphsPayload = {
+export type SubmitGlyphsPayload = {
   glyphs: BooleanDictionary;
 };
 
-type SubmitGuessesPayload = {
+export type SubmitGuessesPayload = {
   guesses: StringDictionary;
   choseRandomly: boolean;
 };
 
-type Character = ContenderCard & {
+export type Character = ContenderCard & {
   playerId?: PlayerId;
 };
 
-type Characters = Record<CardId, Character>;
+export type Characters = Dictionary<Character>;
 
-type GalleryEntry = {
+export type GalleryEntry = {
   playerId: PlayerId;
   characterId: CardId;
   glyphs: BooleanDictionary;
@@ -25,7 +25,7 @@ type GalleryEntry = {
   playersPoints: Record<PlayerId, number>;
 };
 
-type FinalCharacter = {
+export type FinalCharacterEntry = {
   id: CardId;
   name: DualLanguageValue;
   glyphs: BooleanDictionary;
