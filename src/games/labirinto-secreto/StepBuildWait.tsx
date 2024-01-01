@@ -1,3 +1,5 @@
+// Types
+import type { Tree } from './utils/types';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';

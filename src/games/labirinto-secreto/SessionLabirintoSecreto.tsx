@@ -8,12 +8,12 @@ import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 import { PhaseMapBuilding } from './PhaseMapBuilding';
-// Sass
-import './labirinto-secreto.scss';
 import { PhasePathFollowing } from './PhasePathFollowing';
 import { PhaseWait } from 'components/phases/PhaseWait';
 import { PhaseResults } from './PhaseResults';
 import { PhaseGameOver } from './PhaseGameOver';
+// Sass
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

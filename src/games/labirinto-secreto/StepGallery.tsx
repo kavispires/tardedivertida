@@ -1,3 +1,5 @@
+// Types
+import type { Tree } from './utils/types';
 // Utils
 import { PAGE_DURATION } from './utils/constants';
 import { getAvatarColorById } from 'utils/helpers';

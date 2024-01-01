@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { MapSegment, Tree, TreeId } from '../utils/types';
 // Utils
 import { getOriginDirection } from '../utils/helpers';
 import { getAnimationClass } from 'utils/helpers';

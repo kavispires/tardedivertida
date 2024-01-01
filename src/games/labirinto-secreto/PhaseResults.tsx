@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+// Types
+import type { MapSegment } from './utils/types';
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useSlideShow } from 'hooks/useSlideShow';

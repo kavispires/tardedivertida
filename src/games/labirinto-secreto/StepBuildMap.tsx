@@ -1,3 +1,5 @@
+// Types
+import type { OnSubmitMapFunction, Tree } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils

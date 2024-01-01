@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { MapSegment, Tree } from '../utils/types';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { MapIcon } from 'icons/MapIcon';
