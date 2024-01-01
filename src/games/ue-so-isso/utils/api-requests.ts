@@ -1,3 +1,11 @@
+import type {
+  SendGuessPayload,
+  SubmitOutcomePayload,
+  SubmitSuggestionsPayload,
+  SubmitValidationsPayload,
+  SubmitVotesPayload,
+  ValidateSuggestionPayload,
+} from './types';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';

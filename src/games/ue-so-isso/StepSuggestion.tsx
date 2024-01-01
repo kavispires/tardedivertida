@@ -20,7 +20,7 @@ type StepSuggestionProps = {
   guesser: GamePlayer;
   isUserTheGuesser: boolean;
   onSendSuggestions: GenericFunction;
-  secretWord: UeSoIssoCard;
+  secretWord: TextCard;
   suggestionsNumber?: number;
 } & AnnouncementProps;
 

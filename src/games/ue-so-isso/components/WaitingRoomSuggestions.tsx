@@ -1,4 +1,6 @@
+// Ant Design Resources
 import { Space } from 'antd';
+// Components
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type WaitingRoomSuggestionsProps = {

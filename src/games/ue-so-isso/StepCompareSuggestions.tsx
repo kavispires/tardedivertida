@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, App, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
+// Types
+import type { Suggestion } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -26,8 +28,8 @@ type StepCompareSuggestionsProps = {
   onValidateSuggestions: GenericFunction;
   onUpdateSuggestions: GenericFunction;
   players: GamePlayers;
-  secretWord: UeSoIssoCard;
-  suggestions: UseSoIssoSuggestion[];
+  secretWord: TextCard;
+  suggestions: Suggestion[];
 } & AnnouncementProps;
 
 export function StepCompareSuggestions({
@@ -43,11 +45,11 @@ export function StepCompareSuggestions({
   const { message } = App.useApp();
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
+  const [myRecommendation, setMyRecommendation] = useState<Suggestion[]>(deepCopy(suggestions));
   const isHost = useHost();
   const [wasMessageShown, setWasMessageShown] = useState(false);
 
-  const onSetValidation = (index: number, suggestionEntry: UseSoIssoSuggestion, notAllowed?: boolean) => {
+  const onSetValidation = (index: number, suggestionEntry: Suggestion, notAllowed?: boolean) => {
     if (notAllowed) return;
 
     const newRecommendation = [...myRecommendation];
