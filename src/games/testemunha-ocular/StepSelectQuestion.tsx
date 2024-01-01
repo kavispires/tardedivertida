@@ -11,10 +11,10 @@ import { Translate } from 'components/language';
 import { Card } from 'components/cards';
 
 type StepSelectQuestionProps = {
-  questions: TQuestion[];
+  questions: Question[];
   onSelectQuestion: GenericFunction;
   isLoading: boolean;
-  suspects: Suspect[];
+  suspects: SuspectCard[];
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];
 } & AnnouncementProps;

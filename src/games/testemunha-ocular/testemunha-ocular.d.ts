@@ -15,7 +15,7 @@ type EliminatePayload = {
   pass: boolean;
 };
 
-type TQuestion = {
+type Question = {
   id: string;
   question: string;
 };

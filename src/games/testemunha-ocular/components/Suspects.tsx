@@ -10,8 +10,8 @@ import { ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 
 type SuspectsProps = {
-  suspects: Suspect[];
-  perpetrator?: Suspect;
+  suspects: SuspectCard[];
+  perpetrator?: SuspectCard;
   onCardClick?: GenericFunction;
   eliminatedSuspects?: string[];
 };
