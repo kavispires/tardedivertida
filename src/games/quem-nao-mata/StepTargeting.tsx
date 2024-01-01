@@ -13,13 +13,14 @@ import { MessageBoard } from './components/MessageBoard';
 import { PlayerStatus } from './components/PlayerStatus';
 import { PlayerTargetCardButton } from './components/PlayerTargetCardButton';
 import { GeneralRules } from './components/RulesBlobs';
+import type { Message } from './utils/types';
 
 type StepTargetingProps = {
   user: GamePlayer;
   players: GamePlayers;
   onSubmitTarget: GenericFunction;
   onSubmitMessage: GenericComponent;
-  messages: Record<PlayerId, QMessage>;
+  messages: Record<PlayerId, Message>;
 };
 
 export function StepTargeting({

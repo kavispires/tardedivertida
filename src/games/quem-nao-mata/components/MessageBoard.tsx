@@ -3,9 +3,10 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { useLanguage } from 'hooks/useLanguage';
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
+import { Message } from '../utils/types';
 
 type MessageBoardProps = {
-  messages: Record<PlayerId, QMessage>;
+  messages: Record<PlayerId, Message>;
   onSubmitMessage: GenericFunction;
   disabled: boolean;
   players: GamePlayers;

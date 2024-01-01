@@ -11,7 +11,7 @@ import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 
-function PhaseResolution({ players, state, info }: PhaseProps) {
+export function PhaseResolution({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep } = useStep(0);
 
@@ -35,5 +35,3 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseResolution;
