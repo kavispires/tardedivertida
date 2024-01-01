@@ -7,14 +7,14 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import PhaseBookPossession from './PhaseBookPossession';
-import PhaseDoorChoice from './PhaseDoorChoice';
-import PhaseResolution from './PhaseResolution';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseBookPossession } from './PhaseBookPossession';
+import { PhaseDoorChoice } from './PhaseDoorChoice';
+import { PhaseResolution } from './PhaseResolution';
+import { PhaseGameOver } from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/dancing-script.scss';
 // Sass
-import './porta-dos-desesperados.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
