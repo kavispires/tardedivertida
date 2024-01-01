@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
 import { StepTargeting } from './StepTargeting';
 import { useOnSubmitMessageAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
 
-function PhaseTargeting({ players, state, info }: PhaseProps) {
+export function PhaseTargeting({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep } = useStep(0);
 
@@ -51,5 +51,3 @@ function PhaseTargeting({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseTargeting;
