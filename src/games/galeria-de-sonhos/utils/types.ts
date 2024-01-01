@@ -1,26 +1,21 @@
-type GWord = {
-  id: string;
-  text: string;
-};
-
-type GImageCard = {
+export type ImageCardObj = {
   id: string;
   used: boolean;
 };
 
-type SubmitWordPayload = {
+export type SubmitWordPayload = {
   wordId: string;
 };
 
-type SubmitCardsPayload = {
+export type SubmitCardsPayload = {
   cards: string[];
 };
 
-type PlayCardPayload = {
+export type PlayCardPayload = {
   cardId: string;
 };
 
-type LatestInfo = {
+export type LatestInfo = {
   cardId: string;
   completedPlayers: PlayerId[];
   matchCount: number;
@@ -29,14 +24,14 @@ type LatestInfo = {
   isPhaseOver?: boolean;
 };
 
-type GCardInHand = {
+export type CardInHand = {
   used: boolean;
   score: number;
   matchedPlayers: PlayerId[];
   cardId: CardId;
 };
 
-type GImageCardMatch = {
+export type ImageCardMatch = {
   id: CardId;
   used: boolean;
   text: string;

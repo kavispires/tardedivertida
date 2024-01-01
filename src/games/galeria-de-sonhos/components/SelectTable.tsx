@@ -1,18 +1,20 @@
 import clsx from 'clsx';
 // Design Resources
 import { Image } from 'antd';
+// Types
+import type { ImageCardObj } from '../utils/types';
+import { CloseCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { BORDER_TOTAL_SIZE } from '../utils/constants';
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { CloseCircleOutlined } from '@ant-design/icons';
-import { getAnimationClass } from 'utils/helpers';
 
 type SelectTableProps = {
-  table: GImageCard[];
+  table: ImageCardObj[];
   onSelectCard: GenericFunction;
   selectedCards: BooleanDictionary;
 };

@@ -1,5 +1,8 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+import { RobotOutlined } from '@ant-design/icons';
+// Types
+import type { ImageCardObj } from './utils/types';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useMock } from 'hooks/useMock';
@@ -12,7 +15,6 @@ import { Step } from 'components/steps';
 import { TextHighlight, Title } from 'components/text';
 import { BotsRules, DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
 import { SelectTable } from './components/SelectTable';
-import { RobotOutlined } from '@ant-design/icons';
 import { FixedMenuButton } from 'components/buttons';
 
 const validateSelectedCards = (v: BooleanDictionary) => {
@@ -20,8 +22,8 @@ const validateSelectedCards = (v: BooleanDictionary) => {
 };
 
 type StepDreamsSelectionProps = {
-  table: GImageCard[];
-  word: GWord;
+  table: ImageCardObj[];
+  word: TextCard;
   onSubmitCards: GenericFunction;
   botEnabled: boolean;
   hardModeEnabled: boolean;

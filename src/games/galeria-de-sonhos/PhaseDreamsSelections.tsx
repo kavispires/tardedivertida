@@ -1,3 +1,5 @@
+// Types
+import type { ImageCardObj } from './utils/types';
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
@@ -15,7 +17,7 @@ import { StepDreamsSelection } from './StepDreamsSelection';
 import { Translate } from 'components/language';
 import { SelectedDreams } from './components/SelectedDreams';
 
-function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
+export function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -29,7 +31,7 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
       type="overlay"
     >
       <DreamSelectionRules hardModeEnabled={Boolean(meta.options?.hardMode)} />
-      <ImageCardPreloadHand hand={state.table.map((entry: GImageCard) => entry.id)} />
+      <ImageCardPreloadHand hand={state.table.map((entry: ImageCardObj) => entry.id)} />
     </PhaseAnnouncement>
   );
 
@@ -49,5 +51,3 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseDreamsSelections;

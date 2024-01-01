@@ -18,7 +18,7 @@ import { WaitingRoom } from 'components/players';
 import { AvatarName } from 'components/avatars';
 import { StepWordSelection } from './StepWordSelection';
 
-function PhaseWordSelection({ players, state, info }: PhaseProps) {
+export function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
 
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);
@@ -84,5 +84,3 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseWordSelection;
