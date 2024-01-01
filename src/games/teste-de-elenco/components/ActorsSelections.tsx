@@ -1,9 +1,12 @@
 // Ant Design Resources
 import { Avatar as AntAvatar, Space } from 'antd';
+// Types
+import type { ActingRole } from '../utils/types';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Components
 import { Avatar } from 'components/avatars';
 import { SuspectCard } from 'components/cards/SuspectCard';
-
-import { useCardWidth } from 'hooks/useCardWidth';
 
 type ActorsSelectionsProps = {
   actors: ActingRole['candidates'];

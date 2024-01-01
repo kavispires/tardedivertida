@@ -1,11 +1,14 @@
 // Ant Design Resources
 import { Popconfirm, Space } from 'antd';
-import { TransparentButton } from 'components/buttons';
-import { SuspectCard } from 'components/cards/SuspectCard';
-
+// Types
+import type { ActingRole, SubmitMovieActorPayload } from '../utils/types';
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+// Components
+import { TransparentButton } from 'components/buttons';
+import { SuspectCard } from 'components/cards/SuspectCard';
 
 type ActorsBoardProps = {
   actors: ActingRole['candidates'];

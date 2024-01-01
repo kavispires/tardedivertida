@@ -1,5 +1,8 @@
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { ActingRole } from './utils/types';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
@@ -11,7 +14,6 @@ import { ImageCard } from 'components/image-cards';
 import { ActorsSelections } from './components/ActorsSelections';
 import { ReleasedActors } from './components/ReleasedActors';
 import { Container } from 'components/general/Container';
-import { useMemo } from 'react';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -47,7 +49,7 @@ export function StepResult({
 
       <RoleBoard activeRole={activeRole} instruction="RESULT" outcome={outcome}>
         {outcome === 'CAST' ? (
-          <SuspectCard suspect={activeRole.candidates[activeRole.actor]} width={120} />
+          <SuspectCard suspect={activeRole.candidates[activeRole.actor!]} width={120} />
         ) : (
           <ImageCard imageId="us-unknown" cardWidth={120} preview={false} />
         )}
@@ -65,7 +67,7 @@ export function StepResult({
             pt={
               <>
                 <TextHighlight>
-                  <DualTranslate>{activeRole.candidates[activeRole.actor].name}</DualTranslate>
+                  <DualTranslate>{activeRole.candidates[activeRole.actor!].name}</DualTranslate>
                 </TextHighlight>{' '}
                 foi escolhido(a) para o papel!
               </>
@@ -73,7 +75,7 @@ export function StepResult({
             en={
               <>
                 <TextHighlight>
-                  <DualTranslate>{activeRole.candidates[activeRole.actor].name}</DualTranslate>
+                  <DualTranslate>{activeRole.candidates[activeRole.actor!].name}</DualTranslate>
                 </TextHighlight>{' '}
                 was chosen for the role!
               </>

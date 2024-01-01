@@ -12,7 +12,7 @@ import { PhaseActorSelection } from './PhaseActorSelection';
 import { PhaseResult } from './PhaseResult';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import './teste-de-elenco.scss';
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
