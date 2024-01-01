@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { Prompt } from './utils/types';
 // Utils
 import { AVATARS } from 'utils/avatars';
 import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
