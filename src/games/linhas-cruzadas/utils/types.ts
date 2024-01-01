@@ -1,10 +1,10 @@
-type PromptCard = {
+export type PromptCard = {
   id: string;
   text: string;
   level?: number;
 };
 
-type Prompt = {
+export type Prompt = {
   id: PlayerId; // the album entry id
   author: PlayerId; // the player who created the prompt
   content: string;
@@ -12,25 +12,25 @@ type Prompt = {
   wordCount?: number;
 };
 
-type SubmitPromptPayload = {
+export type SubmitPromptPayload = {
   promptId: string;
   randomSelection?: boolean;
 };
 
-type SubmitDrawingPayload = {
+export type SubmitDrawingPayload = {
   drawing: string;
 };
-type SubmitGuessPayload = {
+export type SubmitGuessPayload = {
   guess: string;
 };
 
-type LSlide = {
+export type Slide = {
   author: PlayerId;
   content: string;
   type: 'title' | 'drawing' | 'cover';
 };
 
-type LAlbumEntry = {
+export type AlbumEntry = {
   id: PlayerId;
   text: string;
   cardId: string;

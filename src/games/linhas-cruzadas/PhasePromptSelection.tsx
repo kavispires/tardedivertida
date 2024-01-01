@@ -13,7 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepSelectPrompt } from './StepSelectPrompt';
 
-function PhasePromptSelection({ players, state, info }: PhaseProps) {
+export function PhasePromptSelection({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -63,5 +63,3 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhasePromptSelection;

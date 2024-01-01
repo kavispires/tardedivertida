@@ -16,7 +16,7 @@ import { StepSwitcher } from 'components/steps';
 import { StepTimedDrawing } from './StepTimedDrawing';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
-function PhaseDrawing({ players, state, info }: PhaseProps) {
+export function PhaseDrawing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -76,5 +76,3 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseDrawing;
