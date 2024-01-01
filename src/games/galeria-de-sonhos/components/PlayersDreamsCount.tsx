@@ -1,12 +1,14 @@
 import clsx from 'clsx';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
+// Types
+import type { CardInHand } from '../utils/types';
 // Helpers
 import { getAnimationClass, getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { useMemo } from 'react';
 
 type PlayersDreamsCountProps = {
   players: GamePlayers;
@@ -23,7 +25,7 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
       </header>
       <ul className="g-players-dreams-count__players">
         {sortedPlayers.map((player) => {
-          const cards: GCardInHand[] = Object.values(player.cards);
+          const cards: CardInHand[] = Object.values(player.cards);
           const cardsLeft = cards.filter((card) => !card.used);
           const isPlayerInNightmare = player.id === playerInNightmareId;
           const showTooltip = isPlayerInNightmare && !player.fallen;

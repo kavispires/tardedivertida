@@ -11,7 +11,7 @@ import { Card } from 'components/cards';
 
 type StepWordSelectionProps = {
   onSubmitWord: GenericFunction;
-  words: GWord[];
+  words: TextCard[];
 };
 
 export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProps) {

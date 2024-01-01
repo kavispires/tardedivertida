@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Image } from 'antd';
+// Types
+import type { ImageCardObj } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Helpers
@@ -9,7 +11,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { ImageBlurButton, ImageCard } from 'components/image-cards';
 
 type TableProps = {
-  table: GImageCard[];
+  table: ImageCardObj[];
 };
 
 export function GameOverTable({ table }: TableProps) {

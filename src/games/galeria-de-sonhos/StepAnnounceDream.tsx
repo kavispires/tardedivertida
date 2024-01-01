@@ -2,6 +2,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Alert, Divider, Space } from 'antd';
 import { useMemo } from 'react';
+// Types
+import type { LatestInfo } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
