@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+// Types
+import type { AdedanhxGrid, AnswerGridEntry } from './utils/types';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';

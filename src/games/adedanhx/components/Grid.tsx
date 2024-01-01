@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider, Input, Switch } from 'antd';
 import { LockFilled, UnlockFilled } from '@ant-design/icons';
+// Types
+import type { AdedanhxGrid, Answer, AnswerGridEntry, LetterEntry } from '../utils/types';
 // Utils
 import { NOOP } from 'utils/constants';
 // Icons
