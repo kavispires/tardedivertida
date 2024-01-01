@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
+// Types
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -18,7 +20,7 @@ type StepResolutionProps = {
   totalLikes: number;
   customTweet: string;
   currentTweet: TextCard;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
 } & AnnouncementProps;
 
 export function StepResolution({

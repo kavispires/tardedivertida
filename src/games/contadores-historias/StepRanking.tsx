@@ -2,6 +2,7 @@
 import { Button, Space } from 'antd';
 // Types
 import type { Outcome } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -20,7 +21,7 @@ type StepRankingProps = {
   outcome: Outcome;
   ranking: GameRanking;
   round: GameRound;
-  goToPreviousStep: GenericFunction;
+  goToPreviousStep: UseStep['goToPreviousStep'];
 };
 
 const getGainedPointsText = (

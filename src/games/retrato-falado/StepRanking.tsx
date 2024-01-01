@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { UseStep } from 'hooks/useStep';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -9,7 +11,7 @@ type StepRankingProps = {
   ranking: any;
   players: GamePlayers;
   round: GameRound;
-  goToPreviousStep: GenericFunction;
+  goToPreviousStep: UseStep['goToPreviousStep'];
 };
 
 export function StepRanking({ ranking, players, round, goToPreviousStep }: StepRankingProps) {

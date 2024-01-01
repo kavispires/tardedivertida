@@ -1,4 +1,5 @@
 import { SubmitCrimePayload, SubmitGuessesPayload, SubmitMarkPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -6,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'crimesHediondosSubmitAction');
 
-export function useOnSubmitCrimeAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitCrimeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -29,7 +30,7 @@ export function useOnSubmitCrimeAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitMarkAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitMarkAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -55,7 +56,7 @@ export function useOnSubmitMarkAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitGuessesAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

@@ -1,4 +1,5 @@
 import type { SubmitAnswerPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -6,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'megamixSubmitAction');
 
-export function useOnSubmitSeedAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -28,7 +29,7 @@ export function useOnSubmitSeedAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitTrackAnswerAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitTrackAnswerAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

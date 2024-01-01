@@ -1,18 +1,19 @@
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
-import { useLanguage } from 'hooks/useLanguage';
-import {
+import type {
   AddAnswerPayload,
   NextAnswersPayload,
   SubmitAnswersPayload,
   SubmitCustomQuestionPayload,
   SubmitQuestionPayload,
 } from './types';
+import type { UseStep } from 'hooks/useStep';
+import { functions } from 'services/firebase';
+import { httpsCallable } from 'firebase/functions';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'menteColetivaSubmitAction');
 
-export function useOnSubmitQuestionAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitQuestionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -35,7 +36,7 @@ export function useOnSubmitQuestionAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitCustomQuestionAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitCustomQuestionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -58,7 +59,7 @@ export function useOnSubmitCustomQuestionAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

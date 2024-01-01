@@ -1,3 +1,5 @@
+// Types
+import type { UseStep } from 'hooks/useStep';
 // Utils
 import { getTrapDetails } from '../utils/helpers';
 // Components
@@ -7,7 +9,7 @@ import { Instruction } from 'components/text';
 
 type TrapAnnouncementProps = {
   trap: string;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
 };
 
 export function TrapAnnouncement({ trap, goToNextStep }: TrapAnnouncementProps) {

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 // Types
 import type { CurrentCategory } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -41,7 +42,7 @@ type StepRevealProps = {
   currentCategory: CurrentCategory;
   players: GamePlayers;
   psychic: GamePlayer;
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
 } & AnnouncementProps;
 
 export function StepReveal({

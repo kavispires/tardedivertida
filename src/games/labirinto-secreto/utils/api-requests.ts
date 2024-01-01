@@ -1,12 +1,13 @@
+import type { SubmitMapPayload, SubmitPathGuessPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import { SubmitMapPayload, SubmitPathGuessPayload } from './types';
 
 const submitAction = httpsCallable(functions, 'labirintoSecretoSubmitAction');
 
-export function useOnSubmitMapAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitMapAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -29,7 +30,7 @@ export function useOnSubmitMapAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitPathAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitPathAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

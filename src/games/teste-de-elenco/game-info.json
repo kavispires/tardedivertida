@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "title": {
     "pt": "Teste De Elenco",
     "en": "Re-Casting Call"

@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { UseStep } from 'hooks/useStep';
 // Components
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
@@ -10,7 +12,7 @@ type StepRankingProps = {
   players: GamePlayers;
   round: GameRound;
   ranking: GameRanking;
-  goToPreviousStep: GenericFunction;
+  goToPreviousStep: UseStep['goToPreviousStep'];
 };
 
 export function StepRanking({ players, ranking, goToPreviousStep, round }: StepRankingProps) {

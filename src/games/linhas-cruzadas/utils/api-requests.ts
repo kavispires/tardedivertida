@@ -1,12 +1,13 @@
+import type { SubmitDrawingPayload, SubmitGuessPayload, SubmitPromptPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import { SubmitDrawingPayload, SubmitGuessPayload, SubmitPromptPayload } from './types';
 
 const submitAction = httpsCallable(functions, 'linhasCruzadasSubmitAction');
 
-export function useOnSubmitPromptAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -29,7 +30,7 @@ export function useOnSubmitPromptAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitDrawingAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitDrawingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
@@ -55,7 +56,7 @@ export function useOnSubmitDrawingAPIRequest(setStep: GenericFunction) {
   };
 }
 
-export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

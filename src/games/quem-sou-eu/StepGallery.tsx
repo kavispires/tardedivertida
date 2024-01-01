@@ -2,6 +2,7 @@
 import { Space } from 'antd';
 // Types
 import type { Characters, GalleryEntry } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -26,7 +27,7 @@ type StepGalleryProps = {
   gallery: GalleryEntry[];
   activeIndex: number;
   setActiveIndex: GenericFunction;
-  setStep: GenericFunction;
+  setStep: UseStep['setStep'];
   isFirstGalleryRunThrough: boolean;
   round: GameRound;
 };

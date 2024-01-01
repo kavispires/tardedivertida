@@ -1,4 +1,5 @@
 import type { SubmitScenarioOrderPayload } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -6,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'fileiraDeFatosSubmitAction');
 
-export function useOnSubmitOrderingAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitOrderingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

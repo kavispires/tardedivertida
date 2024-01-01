@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
+// Types
+import type { UseStep } from 'hooks/useStep';
 // Components
 import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { StepRankingWrapper } from 'components/ranking';
@@ -15,7 +17,7 @@ type StepRankingProps = {
   ranking: GameRanking;
   isGameOver: boolean;
   round: GameRound;
-  goToPreviousStep: GenericFunction;
+  goToPreviousStep: UseStep['goToPreviousStep'];
   setActiveIndex: GenericFunction;
   threshold: number;
 };

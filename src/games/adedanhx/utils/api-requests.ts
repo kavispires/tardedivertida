@@ -1,4 +1,5 @@
 import type { SubmitGridAnswersPayload, SubmitRejectedAnswers } from './types';
+import type { UseStep } from 'hooks/useStep';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
@@ -6,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 
 const submitAction = httpsCallable(functions, 'adedanhxSubmitAction');
 
-export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useAPICall({

@@ -2,6 +2,7 @@
 import { Avatar as AntAvatar, Space } from 'antd';
 // Types
 import type { TableEntry } from './utils/types';
+import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -21,7 +22,7 @@ type StepResolutionProps = {
   story: string;
   storyteller: GamePlayer;
   table: TableEntry[];
-  goToNextStep: GenericFunction;
+  goToNextStep: UseStep['goToNextStep'];
 } & AnnouncementProps;
 
 export function StepResolution({
