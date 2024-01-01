@@ -1,10 +1,13 @@
 import { useState } from 'react';
+// Types
+import type { Bracket, BracketTier } from './type';
+// Utils
 import { targetByTier, voteTarget } from './constants';
 
-export function useBracketVoting(tier: WBracketTier) {
+export function useBracketVoting(tier: BracketTier) {
   const [votes, setVotes] = useState<NumberDictionary>({});
 
-  function updateVote(vote: WBracket) {
+  function updateVote(vote: Bracket) {
     setVotes((v) => ({ ...v, [voteTarget[vote.position]]: vote.position }));
   }
 

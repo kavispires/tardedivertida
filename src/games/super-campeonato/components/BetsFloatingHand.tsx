@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+// Types
+import type { Bet, Bracket } from '../utils/type';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -12,8 +14,8 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 import { FloatingHand } from 'components/general/FloatingHand';
 
 type BetsFloatingHandProps = {
-  bets: WBets;
-  brackets: WBracket[];
+  bets: Bet;
+  brackets: Bracket[];
   selectedContenderId?: CardId;
 };
 
