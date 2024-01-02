@@ -17,7 +17,7 @@ import { buildIdDictionary } from './helpers';
 export const getAlienItems = async (
   quantity: number,
   allowNSFW: boolean,
-  mustHaveData: boolean
+  mustHaveData?: boolean
 ): Promise<AlienItem[]> => {
   const allAlienItemsObj: Collection<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
 
