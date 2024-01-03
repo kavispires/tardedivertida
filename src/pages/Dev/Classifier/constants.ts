@@ -45,7 +45,6 @@ export const ATTRIBUTES = {
 };
 
 export const FIRST_ID = '1';
-export const LAST_ID = '896';
 
 export const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 

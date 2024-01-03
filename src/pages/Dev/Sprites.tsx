@@ -23,6 +23,7 @@ import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { orderBy } from 'lodash';
 import { SignCard } from 'components/cards/SignCard';
+import { TOTAL_ALIEN_ITEMS } from 'utils/constants';
 
 type SpriteOption = {
   key: string;
@@ -88,7 +89,7 @@ const options: Record<string, SpriteOption> = {
     key: 'items',
     label: 'Items',
     prefix: 'item',
-    quantity: 896,
+    quantity: Number(TOTAL_ALIEN_ITEMS),
     startAt: 1,
   },
   trees: {

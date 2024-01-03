@@ -1,10 +1,11 @@
 import { Button, Divider, Space } from 'antd';
 
-import { FIRST_ID, LAST_ID } from './constants';
+import { FIRST_ID } from './constants';
 
 import type { AlienItemDict } from './types';
 import { downloadObjectAsFile } from './helpers';
 import { ClassifierContextType } from './ClassifierContext';
+import { TOTAL_ALIEN_ITEMS } from 'utils/constants';
 
 type ControlsProps = {
   itemId: string;
@@ -49,10 +50,10 @@ export function Controls({
           Previous
         </Button>
         <Divider type="vertical" />
-        <Button onClick={nextItem} disabled={itemId === LAST_ID}>
+        <Button onClick={nextItem} disabled={itemId === TOTAL_ALIEN_ITEMS}>
           Next
         </Button>
-        <Button onClick={() => goTo(10)} disabled={itemNumber >= Number(LAST_ID) - 10}>
+        <Button onClick={() => goTo(10)} disabled={itemNumber >= Number(TOTAL_ALIEN_ITEMS) - 10}>
           Next 10
         </Button>
         <Button onClick={() => goTo('last')} disabled={itemNumber >= Number(latestId) - 1}>
