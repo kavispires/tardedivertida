@@ -1,8 +1,9 @@
 import { Suspense, lazy } from 'react';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Spin } from 'antd';
 // Sass
 import './ItemCard.scss';
-import { Spin } from 'antd';
 // Lazy Items Components
 const AliemItemSprite128 = lazy(() => import('./AlienItemSprites/AlienItemSprite128'));
 const AliemItemSprite256 = lazy(() => import('./AlienItemSprites/AlienItemSprite256'));
@@ -11,6 +12,7 @@ const AliemItemSprite512 = lazy(() => import('./AlienItemSprites/AlienItemSprite
 const AliemItemSprite640 = lazy(() => import('./AlienItemSprites/AlienItemSprite640'));
 const AliemItemSprite768 = lazy(() => import('./AlienItemSprites/AlienItemSprite768'));
 const AliemItemSprite896 = lazy(() => import('./AlienItemSprites/AlienItemSprite896'));
+const AliemItemSprite1024 = lazy(() => import('./AlienItemSprites/AlienItemSprite1024'));
 
 export type ItemCardProps = {
   /**
@@ -80,6 +82,12 @@ const Lazy896 = (props: ItemCardProps) => (
   </Suspense>
 );
 
+const Lazy1024 = (props: ItemCardProps) => (
+  <Suspense fallback={<LoadingItem {...props} />}>
+    <AliemItemSprite1024 {...props} />
+  </Suspense>
+);
+
 export function ItemCard(props: ItemCardProps) {
   const numId = Number(props.id);
 
@@ -109,6 +117,10 @@ export function ItemCard(props: ItemCardProps) {
 
   if (numId <= 896) {
     return <Lazy896 {...props} />;
+  }
+
+  if (numId <= 1024) {
+    return <Lazy1024 {...props} />;
   }
 
   return (
