@@ -140,6 +140,7 @@ const PRIORITY_ORDER = [
   'multiple',
   'flat',
   'soft',
+  'inside',
   'holdable',
   'personal',
   'heavy',

@@ -140,6 +140,7 @@ export const determineAttributePriorityResponse = (
     'multiple',
     'flat',
     'soft',
+    'inside',
     'holdable',
     'personal',
     'heavy',
