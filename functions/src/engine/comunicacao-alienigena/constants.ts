@@ -123,6 +123,7 @@ export const ATTRIBUTES = {
   multiple: { id: 'multiple', name: { en: 'Multiple', pt: 'Múltiplo' } }, // Newest
   fragile: { id: 'fragile', name: { en: 'Fragile', pt: 'Frágil' } }, // Newest
   toy: { id: 'toy', name: { en: 'Toy', pt: 'Brinquedo' } }, // Newest
+  inside: { id: 'inside', name: { en: 'Inside', pt: 'Dentro' } }, // Newest
 };
 
 export const ITEM_TYPES = {

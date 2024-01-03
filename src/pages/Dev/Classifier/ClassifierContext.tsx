@@ -14,6 +14,7 @@ import {
 } from './helpers';
 
 import type { AlienItemDict, FirebaseAlienItemDict } from './types';
+import { ATTRIBUTES } from './constants';
 
 export type ClassifierContextType = {
   isLoading: boolean;
@@ -102,33 +103,24 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
         placement: 'bottomLeft',
       });
       const merged = merge({}, trData, response) as any;
+      const attributeKeys = Object.keys(ATTRIBUTES);
+
       // Remove hard
       Object.values(merged).forEach((item: any) => {
-        if (!item.attributes.soft) {
-          const softVal = (item.attributes.hard ?? 0) * -1;
-          item.attributes.soft = softVal;
-        }
-        if (!item.attributes.solid) {
-          item.attributes.solid = 1;
-        }
-        if (!item.attributes.multiple) {
-          item.attributes.multiple = 0;
-        }
-        if (!item.attributes.fragile) {
-          item.attributes.fragile = 0;
-        }
-        if (!item.attributes.personal) {
-          item.attributes.personal = 0;
-        }
-        if (!item.attributes.holdable) {
-          item.attributes.holdable = 0;
-        }
-        if (!item.attributes.toy) {
-          item.attributes.toy = 0;
-        }
+        // Add missing attributes
+        attributeKeys.forEach((attributeKey) => {
+          if (item.attributes[attributeKey] === undefined) {
+            item.attributes[attributeKey] = 0;
+          }
+        });
 
-        delete item.attributes.singular;
-        delete item.attributes.hard;
+        // Delete any unapproved attributes
+        Object.keys(item.attributes).forEach((attributeKey) => {
+          if (!attributeKeys.includes(attributeKey)) {
+            delete item.attributes[attributeKey];
+          }
+        });
+
         setData(merged);
         if (typeof item.name === 'string') {
           item.name = {
