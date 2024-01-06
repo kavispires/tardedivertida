@@ -60,8 +60,9 @@ export function useConnectTrioGame() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const result: GroupSummary[] = [];
+    const usedGroupIds = [];
 
-    // Get the first 2 groups
+    // Get the first 2 groups. They must have at least
     let tries = 0;
     while (result.length < 2 && tries < 200) {
       tries++;
@@ -69,6 +70,7 @@ export function useConnectTrioGame() {
       if (selection && selection.total > 1) {
         const selectedGroups = getTwoGroups(selection.itemId, selection.groups);
         if (selectedGroups.length === 2) {
+          usedGroupIds.push(...selectedGroups.map((group) => group.groupId));
           result.push(...selectedGroups);
         }
       }
@@ -90,9 +92,10 @@ export function useConnectTrioGame() {
       // Related third group
       const thirdItem = sample(Object.keys(dict));
       if (thirdItem) {
-        const selection = itemCount.find((item) => item.itemId === thirdItem);
+        const selection = itemCount.find((item) => item.itemId === thirdItem && item);
+
         if (selection && selection.total > 1) {
-          const selectedGroups = getTwoGroups(selection.itemId, selection.groups, dict);
+          const selectedGroups = getTwoGroups(selection.itemId, selection.groups, dict, usedGroupIds);
           if (selectedGroups.length === 2) {
             result.push(selectedGroups[1]);
           }
@@ -180,7 +183,12 @@ export function useConnectTrioGame() {
   };
 }
 
-function getTwoGroups(itemId: string, groupSummaries: GroupSummary[], dict: BooleanDictionary = {}) {
+function getTwoGroups(
+  itemId: string,
+  groupSummaries: GroupSummary[],
+  dict: BooleanDictionary = {},
+  usedGroupIds: string[] = []
+) {
   const mainGroup = cloneDeep(sample(groupSummaries)!);
   mainGroup.items = getTrio(
     itemId,
@@ -196,6 +204,9 @@ function getTwoGroups(itemId: string, groupSummaries: GroupSummary[], dict: Bool
 
   for (let i = 0; i < leftOverGroups.length; i++) {
     const group = leftOverGroups[i];
+    if (usedGroupIds.includes(group.groupId)) {
+      continue;
+    }
     const trio = getTrio(itemId, group.items, false);
     if (trio.length === 3 && trio.every((item) => !itemsDict[item])) {
       const copy = cloneDeep(group);
@@ -255,7 +266,7 @@ export function useConnectTrioEngine(game: ConnectionGame) {
     setSelection([]);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const attemptStr = selection.sort().join('-');
     if (history.includes(attemptStr)) {
       message.info(translate('Você já tentou esse trio', 'You already tried this trio'));
@@ -281,13 +292,6 @@ export function useConnectTrioEngine(game: ConnectionGame) {
       message.success(translate('Você acertou um trio!', 'You got the trio right!'));
       setFrozenItems([...frozenItems, ...selection]);
       setItems(items.filter((item) => !selection.includes(item)));
-      if (correctGroups.length === 2) {
-        setShowResultModal(true);
-        setIsComplete(true);
-        setOutcome('WIN');
-      } else {
-        setOutcome('CORRECT');
-      }
       setCorrectGroups((s) => [
         ...s,
         {
@@ -299,12 +303,19 @@ export function useConnectTrioEngine(game: ConnectionGame) {
         },
       ]);
       setPreviousSelection([]);
+      if (correctGroups.length === 2) {
+        setIsComplete(true);
+        setOutcome('WIN');
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setShowResultModal(true);
+      } else {
+        setOutcome('CORRECT');
+      }
     } else {
       setPreviousSelection([...selection]);
       setHistory((h) => [...h, attemptStr]);
       message.error(translate('Você errou o trio!', 'You got the trio wrong!'));
       if (hearts === 1) {
-        setShowResultModal(true);
         setOutcome('LOSE');
         const otherGroups = Object.values(game.groupsDict).filter(
           (group) => !correctGroups.find((g) => g.name === group.name)
@@ -320,6 +331,8 @@ export function useConnectTrioEngine(game: ConnectionGame) {
             color: group.color,
           })),
         ]);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setShowResultModal(true);
       } else {
         setOutcome('WRONG');
       }
