@@ -4,13 +4,12 @@ import { LoadingPage } from 'components/loaders';
 import { orderBy } from 'lodash';
 import { useMemo, useState } from 'react';
 import { useTitle } from 'react-use';
-import { PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL, TOTAL_ALIEN_ITEMS } from 'utils/constants';
 
 import { useQuery } from '@tanstack/react-query';
 
 import { DevHeader } from '../DevHeader';
 import { ConnectionGroup, GroupSummary, ItemGroup } from './types';
-import { LAST_ID } from '../Classifier/constants';
 
 /**
  * Item Connections game
@@ -26,7 +25,6 @@ type ConnectItemsContentProps = {
 
 function ConnectItemsContent({ data }: ConnectItemsContentProps) {
   const [view, setView] = useState('groups');
-  console.log({ data });
 
   const sortedData = useMemo(
     () =>
@@ -56,7 +54,7 @@ function ConnectItemsContent({ data }: ConnectItemsContentProps) {
       });
     });
 
-    const allItems = new Array(Number(LAST_ID))
+    const allItems = new Array(Number(TOTAL_ALIEN_ITEMS))
       .fill(0)
       .map((_, i) => String(i + 1))
       .reduce((acc: Record<string, GroupSummary[]>, id) => {
@@ -77,8 +75,6 @@ function ConnectItemsContent({ data }: ConnectItemsContentProps) {
       ['asc']
     );
   }, [sortedData]);
-
-  console.log({ itemCount });
 
   return (
     <Space className="container classifier full-width" direction="vertical">
