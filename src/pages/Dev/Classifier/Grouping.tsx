@@ -145,7 +145,6 @@ export function Grouping() {
               <ItemCard id={activeItem.id} width={100} />
               <div>
                 <Typography.Title level={4}>
-                  <TextHighlight>{activeAttribute}</TextHighlight>{' '}
                   <Button
                     shape="round"
                     onClick={() => {
@@ -155,8 +154,8 @@ export function Grouping() {
                   >
                     {activeItem.id}
                   </Button>
-                  - {activeItem.name.en || '?'} | {activeItem.name.pt || '?'}{' '}
-                  {activeItem.nsfw && <Tag color="magenta">NSFW</Tag>}
+                  <TextHighlight>{activeAttribute}</TextHighlight> {activeItem.name.en || '?'} |{' '}
+                  {activeItem.name.pt || '?'} {activeItem.nsfw && <Tag color="magenta">NSFW</Tag>}
                 </Typography.Title>
                 <AttributeLevelRadioGroup
                   value={activeItem.attributes[activeAttribute as Attribute]}
