@@ -70,7 +70,7 @@ export const buildMovie = (players: Players, store: FirebaseStoreData): Movie =>
   };
 
   genre.roles.forEach((role) => {
-    const candidates = utils.helpers.buildObjectFromList(
+    const candidates = utils.helpers.buildDictionaryFromList(
       new Array(role.pool).fill(0).map(() => store.actors.pop())
     );
     movie.roles[role.id] = {

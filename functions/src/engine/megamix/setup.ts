@@ -185,7 +185,7 @@ export const prepareGameOverPhase = async (
     .getListOfPlayers(players)
     .filter((player) => state.winningTeam.includes(player.id));
 
-  const winners = utils.players.determineWinners(utils.helpers.buildObjectFromList(winningPlayers));
+  const winners = utils.players.determineWinners(utils.helpers.buildDictionaryFromList(winningPlayers));
   const fairWinners = utils.players.determineWinners(players);
 
   calculateAllAchievements(players, store);

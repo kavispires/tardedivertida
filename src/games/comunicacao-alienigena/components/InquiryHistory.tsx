@@ -63,6 +63,7 @@ export function InquiryHistory({
       key: 'confidence',
       title: <Translate pt="Confiança" en="Confidence" />,
       dataIndex: 'confidence',
+      render: (value) => <span>{value}%</span>,
     });
   }
   if (debugMode) {
@@ -70,7 +71,6 @@ export function InquiryHistory({
       key: 'assumption',
       title: <Translate pt="Suposição" en="Assumption" />,
       dataIndex: 'assumption',
-      // render: (debug) => <Translate pt={debug} en={debug} />,
     });
   }
 

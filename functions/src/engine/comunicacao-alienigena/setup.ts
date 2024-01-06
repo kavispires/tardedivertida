@@ -275,7 +275,7 @@ export const prepareAlienAnswerPhase = async (
 
   // Add player question to the state
   const currentInquiry = [...(players[state.humanId].objectsIds ?? [])];
-  const currentIntention = players[state.humanId].intention ?? '';
+  const currentIntention = players[state.humanId].intention ?? 'solid';
 
   // Achievement: Single Inquiry
   if (currentInquiry.length === 1) {
@@ -285,7 +285,12 @@ export const prepareAlienAnswerPhase = async (
   utils.achievements.increase(store, state.humanId, 'objectInquiries', currentInquiry.length);
 
   const alienResponse = hasBot
-    ? determineAlienResponse(currentInquiry, store as ComunicacaoAlienigenaStore, state.signs)
+    ? determineAlienResponse(
+        currentInquiry,
+        store as ComunicacaoAlienigenaStore,
+        state.signs,
+        currentIntention
+      )
     : utils.firebase.deleteValue();
 
   // Cleanup players

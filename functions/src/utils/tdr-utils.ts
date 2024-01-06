@@ -6,37 +6,79 @@ import * as gameUtils from './game-utils';
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
 import { buildIdDictionary } from './helpers';
+import utils from '.';
 
 /**
  * Get alien items for given quantity and NSFW allowance otherwise it resets the used items and use all available
  * @param quantity
  * @param allowNSFW
  * @param mustHaveData - indicates that item must have attribute data (for alien bot for example)
+ * @param balanceAttributes - indicates that item must have balanced attributes (for alien bot for example)
  * @returns
  */
 export const getAlienItems = async (
   quantity: number,
   allowNSFW: boolean,
-  mustHaveData?: boolean
+  mustHaveData?: boolean,
+  balanceAttributes?: boolean
 ): Promise<AlienItem[]> => {
   const allAlienItemsObj: Collection<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
 
-  // Deletes in place items that have less than 75% of attributes with weights
+  /**
+   * Deletes in place items that have less than 75% of attributes with weights
+   * @param items
+   */
   function verifyItems(items: Collection<AlienItem>) {
     Object.values(items).forEach((item) => {
       const totalAttributes = Object.keys(item.attributes).length;
+
       let attributesWithWeights = 0;
       Object.values(item.attributes).forEach((attribute) => {
         if (attribute !== 0) {
           attributesWithWeights++;
         }
       });
-      if (totalAttributes * 0.75 <= attributesWithWeights) {
+
+      if (totalAttributes * 0.75 > attributesWithWeights) {
         delete items[item.id];
       }
     });
   }
 
+  function getWellWeightedItems(items: Collection<AlienItem>) {
+    const attributeKeysWith5: Set<string> = new Set();
+    const selectedItems: AlienItem[] = [];
+    const leftOverItems: AlienItem[] = [];
+    const shuffledItems = gameUtils.shuffle(Object.values(items));
+
+    for (const item of shuffledItems) {
+      const attributeKeyWith5 = gameUtils
+        .shuffle(Object.keys(item.attributes))
+        .find((key) => item.attributes[key] === 5);
+
+      if (attributeKeyWith5 && !attributeKeysWith5.has(attributeKeyWith5)) {
+        selectedItems.push(item);
+        attributeKeysWith5.add(attributeKeyWith5);
+        console.log({ attributeKeyWith5 });
+      } else {
+        leftOverItems.push(item);
+      }
+
+      if (selectedItems.length === quantity) {
+        break;
+      }
+    }
+
+    console.log({ attributeKeysWith5 });
+
+    if (selectedItems.length < quantity) {
+      return selectedItems.concat(leftOverItems.slice(0, quantity - selectedItems.length));
+    }
+
+    return selectedItems;
+  }
+
+  // If must have data, verify items
   if (mustHaveData) {
     verifyItems(allAlienItemsObj);
   }
@@ -55,20 +97,27 @@ export const getAlienItems = async (
 
   // If NSFW is allowed, just return the random items
   if (allowNSFW) {
-    return gameUtils.getRandomItems(Object.values(availableAlienItems), quantity);
+    // Get variety of items
+    return balanceAttributes
+      ? getWellWeightedItems(availableAlienItems)
+      : gameUtils.getRandomItems(Object.values(availableAlienItems), quantity);
   }
 
   const safeItems = Object.values(availableAlienItems).filter((item) => !item.nsfw);
 
   // If there are enough safe items, return them
   if (safeItems.length >= quantity) {
-    return gameUtils.getRandomItems(safeItems, quantity);
+    return balanceAttributes
+      ? getWellWeightedItems(utils.helpers.buildDictionaryFromList(safeItems))
+      : gameUtils.getRandomItems(safeItems, quantity);
   }
 
   // If not the minimum items needed, reset and use all safe
   await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
   const allSafeItems = Object.values(allAlienItemsObj).filter((item) => !item.nsfw);
-  return gameUtils.getRandomItems(allSafeItems, quantity);
+  return balanceAttributes
+    ? getWellWeightedItems(utils.helpers.buildDictionaryFromList(allSafeItems))
+    : gameUtils.getRandomItems(allSafeItems, quantity);
 };
 
 /**

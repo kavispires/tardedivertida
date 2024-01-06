@@ -26,7 +26,7 @@ export const getResourceData = async (
   let botAlienItemKnowledge: Collection<AlienItem> = {};
 
   // Get the 25 needed items randomly
-  const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, allowNSFW, isBotAlien);
+  const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, allowNSFW, isBotAlien, isBotAlien);
 
   const items: Item[] = getItems(playerCount).map((itemType, index) => ({
     id: selectedAlienItems[index].id,
@@ -43,7 +43,7 @@ export const getResourceData = async (
         delete item.attributes[attribute];
       });
     });
-    botAlienItemKnowledge = utils.helpers.buildObjectFromList(selectedAlienItems, 'id');
+    botAlienItemKnowledge = utils.helpers.buildDictionaryFromList(selectedAlienItems, 'id');
   }
 
   const signIds = utils.game.getRandomItems(utils.game.makeArray(AVAILABLE_SIGNS), TOTAL_SIGNS);
