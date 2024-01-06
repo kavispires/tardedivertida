@@ -1,13 +1,12 @@
 import { Button, Layout, Modal, Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { useLocalStorage } from 'hooks/useLocalStorage';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { useEffect, useState } from 'react';
 import { removeDuplicates } from 'utils/helpers';
 
 import { ArteRuimLocalToday, DailyArteRuimEntry } from '../../types';
-import { useDailyChallengeMutation } from '../../useDaily';
+import { useDailyChallengeMutation, useDailyLocalStorage } from '../../useDaily';
 import { getLettersInWord, getSourceName } from '../../utils';
 import { DrawingCarousel } from './DrawingCarousel';
 import { Keyboard } from './Keyboard';
@@ -24,7 +23,7 @@ type DailyGameProps = {
 };
 
 export function DailyArteRuimGame({ data, currentUser, language }: DailyGameProps) {
-  const [getLocalProperty, setLocalProperty] = useLocalStorage();
+  const source = getSourceName(language);
 
   // Build game: word, letters, lives
   const [hearts, setHearts] = useState<number>(3);
@@ -33,16 +32,11 @@ export function DailyArteRuimGame({ data, currentUser, language }: DailyGameProp
   const [showResultModal, setShowResultModal] = useState(false);
 
   const isComplete = Object.values(correctLetters).every(Boolean);
-  const source = getSourceName(language);
 
-  const localToday = getLocalProperty(source);
+  const { localToday, updateLocalStorage } = useDailyLocalStorage(source, data);
   const latestToday: ArteRuimLocalToday | null = localToday && localToday.id === data.id ? localToday : null;
 
   const dailyMutation = useDailyChallengeMutation();
-
-  const updateLocalStorage = (value: any) => {
-    setLocalProperty({ [source]: value });
-  };
 
   const guessLetter = (letter: string) => {
     // Ignore previously guessed letters
