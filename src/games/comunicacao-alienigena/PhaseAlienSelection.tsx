@@ -1,5 +1,6 @@
 // State & Hooks
 import { useStep } from 'hooks/useStep';
+import { useCache } from 'hooks/useCache';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
@@ -13,6 +14,9 @@ import { StepSelectAlien } from './StepSelectAlien';
 
 export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep();
+
+  // Clear cache from previous games
+  useCache({ clearCache: true });
 
   const onSubmitAlien = useOnSubmitAlienAPIRequest(setStep);
 

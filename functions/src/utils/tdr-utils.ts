@@ -59,7 +59,6 @@ export const getAlienItems = async (
       if (attributeKeyWith5 && !attributeKeysWith5.has(attributeKeyWith5)) {
         selectedItems.push(item);
         attributeKeysWith5.add(attributeKeyWith5);
-        console.log({ attributeKeyWith5 });
       } else {
         leftOverItems.push(item);
       }
@@ -68,8 +67,6 @@ export const getAlienItems = async (
         break;
       }
     }
-
-    console.log({ attributeKeysWith5 });
 
     if (selectedItems.length < quantity) {
       return selectedItems.concat(leftOverItems.slice(0, quantity - selectedItems.length));

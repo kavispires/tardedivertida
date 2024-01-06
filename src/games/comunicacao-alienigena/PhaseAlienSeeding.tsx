@@ -1,6 +1,7 @@
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
+import { useCache } from 'hooks/useCache';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { useOnSubmitSeedingAPIRequest } from './utils/api-requests';
@@ -17,6 +18,9 @@ export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitSeeds = useOnSubmitSeedingAPIRequest(setStep);
+
+  // Clear cache from previous games
+  useCache({ clearCache: true });
 
   const announcement = (
     <PhaseAnnouncement
