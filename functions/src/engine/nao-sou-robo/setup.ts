@@ -149,7 +149,7 @@ export const prepareAreYouARobotPhase = async (
     });
   });
 
-  const options = utils.helpers.buildObjectFromList([...playerCards, ...botCards]);
+  const options = utils.helpers.buildDictionaryFromList([...playerCards, ...botCards]);
 
   return {
     update: {

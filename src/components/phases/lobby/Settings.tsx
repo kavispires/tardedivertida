@@ -17,8 +17,8 @@ export function Settings({ hasImages }: SettingsProps) {
   const [getLocalStorage, setLocalStorage] = useLocalStorage();
 
   useEffectOnce(() => {
-    setBlurEnabled(getLocalStorage('blurEnabled'));
-    setVolume(getLocalStorage('volume'));
+    setBlurEnabled(getLocalStorage('blurEnabled', false));
+    setVolume(getLocalStorage('volume', 0.5));
   });
 
   const onBlurSwitchClick = (value: boolean) => {

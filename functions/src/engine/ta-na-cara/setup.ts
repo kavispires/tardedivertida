@@ -37,14 +37,14 @@ export const prepareSetupPhase = async (
       revealed: false,
     }));
 
-  const charactersDict = utils.helpers.buildObjectFromList(selectedCharacters, 'id');
+  const charactersDict = utils.helpers.buildDictionaryFromList(selectedCharacters, 'id');
 
   const gameQuestions = utils.game.getRandomItems(
     additionalData.allCards,
     playerCount * QUESTIONS_PER_PLAYER
   );
 
-  const questionsDict = utils.helpers.buildObjectFromList(gameQuestions, 'id');
+  const questionsDict = utils.helpers.buildDictionaryFromList(gameQuestions, 'id');
 
   // Deal questions to players
   utils.game.dealList(Object.keys(questionsDict), players, QUESTIONS_PER_PLAYER, 'questions');

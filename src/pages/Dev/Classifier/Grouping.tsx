@@ -14,10 +14,12 @@ import { useItem } from './hooks';
 import { AttributeLevelRadioGroup } from './AttributeLevelRadioGroup';
 import { TextHighlight } from 'components/text';
 import { SaveFilled, SaveOutlined } from '@ant-design/icons';
+import { useQueryParams } from 'hooks/useQueryParams';
 
 const SORTED_ATTRIBUTES = orderBy(Object.values(ATTRIBUTES), ['name.en'], ['asc']);
 
 export function Grouping() {
+  const qp = useQueryParams();
   const { data, isDirty, isSaving, save, itemUtils } = useClassifier();
   const { itemId, setItemId } = useItem('');
   const [activeAttribute, setActiveAttribute] = useState(SORTED_ATTRIBUTES[0]?.id ?? 'alive');
@@ -143,8 +145,18 @@ export function Grouping() {
               <ItemCard id={activeItem.id} width={100} />
               <div>
                 <Typography.Title level={4}>
-                  <TextHighlight>{activeAttribute}</TextHighlight>- {activeItem.name.en || '?'} |{' '}
-                  {activeItem.name.pt || '?'} {activeItem.nsfw && <Tag color="magenta">NSFW</Tag>}
+                  <TextHighlight>{activeAttribute}</TextHighlight>{' '}
+                  <Button
+                    shape="round"
+                    onClick={() => {
+                      qp.add('item', activeItem.id);
+                      qp.add('view', 'default');
+                    }}
+                  >
+                    {activeItem.id}
+                  </Button>
+                  - {activeItem.name.en || '?'} | {activeItem.name.pt || '?'}{' '}
+                  {activeItem.nsfw && <Tag color="magenta">NSFW</Tag>}
                 </Typography.Title>
                 <AttributeLevelRadioGroup
                   value={activeItem.attributes[activeAttribute as Attribute]}

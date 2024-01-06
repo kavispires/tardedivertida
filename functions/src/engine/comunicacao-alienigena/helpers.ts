@@ -158,20 +158,21 @@ const PRIORITY_ORDER = [
 export const determineAlienResponse = (
   currentInquiry: string[],
   store: ComunicacaoAlienigenaStore,
-  signs: Sign[]
+  signs: Sign[],
+  intention: string
 ) => {
   // Step 1: Calculate total weight of attributes in the current inquiry
   const totalWeights = calculateTotalWeights(currentInquiry, store.botAlienItemKnowledge);
 
   // Get the best match
-  let bestMatch = getBestMatch(currentInquiry, store, signs, totalWeights, 1, false);
+  let bestMatch = getBestMatch(currentInquiry, store, signs, totalWeights, 1, false, intention);
 
   if (bestMatch) {
     return bestMatch;
   }
 
   // Retry without carrying about uniqueness
-  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeights, 2, true);
+  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeights, 2, true, intention);
 
   if (bestMatch) {
     return bestMatch;
@@ -181,21 +182,25 @@ export const determineAlienResponse = (
   const totalWeightsAny = calculateTotalWeights(currentInquiry, store.botAlienItemKnowledge, true);
 
   // Retry without carrying only about positive values
-  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeightsAny, 3, false);
+  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeightsAny, 3, false, intention);
 
   if (bestMatch) {
     return bestMatch;
   }
 
   // Retry without caring about anything
-  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeightsAny, 4, true);
+  bestMatch = getBestMatch(currentInquiry, store, signs, totalWeightsAny, 4, true, intention);
 
   if (bestMatch) {
     return bestMatch;
   }
 
   store.confidence = 0;
-  return signs.find((sign) => sign.key === 'solid')?.signId ?? signs[0].signId;
+  return (
+    signs.find((sign) => sign.key === intention)?.signId ??
+    signs.find((sign) => sign.key === 'solid')?.signId ??
+    signs[0].signId
+  );
 };
 
 /**
@@ -213,7 +218,8 @@ const getBestMatch = (
   signs: Sign[],
   totalWeights: NumberDictionary,
   attempt: number,
-  unique: boolean
+  unique: boolean,
+  intention: string
 ) => {
   // Step 2: Sort attributes by total weight and priority order
   const sortedAttributes = Object.entries(totalWeights)
@@ -266,13 +272,18 @@ const getBestMatch = (
   // Step 7: If a positive match is found, update assumptions and return the result
   if (result) {
     store.assumption = signs.find((sign) => sign.signId === result)?.key ?? '?';
-    // Determine the base points for the match (minimum 3 points per item)
+    // Determine the base points for the match (minimum 5 points per item)
     const matchBasePoints = currentInquiry.length * 5;
     store.confidence = Math.round((100 * totalWeights[bestMatch]) / matchBasePoints);
     if (wasAttributePresentedBefore) {
       store.confidence = store.confidence / 1.25;
     }
     store.confidence = Math.round(store.confidence / attempt);
+
+    // If it is different than the intention, reduce confidence
+    if (result !== intention) {
+      store.confidence = store.confidence / 2;
+    }
 
     return result;
   }
