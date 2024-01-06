@@ -62,7 +62,7 @@
   "c-11-br": {
     "id": "c-11-br",
     "name": "Coisas com cabos",
-    "items": [342, 643, 642, 604, 544, 537, 261, 737, 704, 731],
+    "items": [342, 643, 642, 604, 544, 537, 261, 737, 704, 731, 892, 886],
     "difficulty": 0
   },
   "c-12-br": {
@@ -122,7 +122,7 @@
   "c-21-br": {
     "id": "c-21-br",
     "name": "Quantas horas são?",
-    "items": [49, 131, 661, 83, 335, 322, 595],
+    "items": [49, 131, 661, 83, 335, 322, 595, 802],
     "difficulty": 0
   },
   "c-22-br": {
@@ -134,7 +134,7 @@
   "c-23-br": {
     "id": "c-23-br",
     "name": "Monumentos",
-    "items": [404, 405, 127, 645],
+    "items": [404, 405, 127, 645, 934, 814],
     "difficulty": 0
   },
   "c-24-br": {
@@ -146,7 +146,7 @@
   "c-25-br": {
     "id": "c-25-br",
     "name": "Gugu dada",
-    "items": [438, 58, 60, 61],
+    "items": [438, 58, 60, 61, 915, 916, 841],
     "difficulty": 0
   },
   "c-26-br": {
@@ -176,7 +176,7 @@
   "c-30-br": {
     "id": "c-30-br",
     "name": "Gira",
-    "items": [51, 138, 286, 492],
+    "items": [51, 138, 286, 492, 475],
     "difficulty": 0
   },
   "c-31-br": {
@@ -218,7 +218,7 @@
   "c-37-br": {
     "id": "c-37-br",
     "name": "Polícia",
-    "items": [376, 176, 282, 147],
+    "items": [376, 176, 282, 147, 831],
     "difficulty": 0
   },
   "c-38-br": {
@@ -260,7 +260,7 @@
   "c-44-br": {
     "id": "c-44-br",
     "name": "No carro",
-    "items": [252, 251],
+    "items": [252, 251, 492, 806],
     "difficulty": 0
   },
   "c-45-br": {
@@ -290,7 +290,7 @@
   "c-49-br": {
     "id": "c-49-br",
     "name": "Privacidade",
-    "items": [274, 756, 510],
+    "items": [274, 756, 510, 875],
     "difficulty": 0
   },
   "c-50-br": {
@@ -363,7 +363,7 @@
   "c-61-br": {
     "id": "c-61-br",
     "name": "Música",
-    "items": [205, 414, 377, 231, 703],
+    "items": [205, 414, 377, 231, 703, 597, 528, 789],
     "difficulty": 0
   },
   "c-62-br": {
@@ -393,7 +393,7 @@
   "c-66-br": {
     "id": "c-66-br",
     "name": "Senta lá, Cláudia!",
-    "items": [104, 174, 463, 435, 591],
+    "items": [104, 174, 463, 435, 591, 910, 911, 890, 891],
     "difficulty": 0
   },
   "c-67-br": {
@@ -405,7 +405,7 @@
   "c-68-br": {
     "id": "c-68-br",
     "name": "Peças",
-    "items": [165, 270, 400],
+    "items": [165, 270, 400, 880],
     "difficulty": 0
   },
   "c-69-br": {
@@ -483,19 +483,19 @@
   "c-81-br": {
     "id": "c-81-br",
     "name": "Quadrado amarelo",
-    "items": [77, 78, 392, 297, 83],
-    "difficulty": 75
+    "items": [77, 78, 392, 297, 83, 827],
+    "difficulty": 4
   },
   "c-82-br": {
     "id": "c-82-br",
     "name": "Círculo amarelo",
-    "items": [42, 56, 103, 128],
-    "difficulty": 75
+    "items": [42, 56, 103, 128, 155, 875, 900, 832, 790, 161, 163, 148],
+    "difficulty": 4
   },
   "c-83-br": {
     "id": "c-83-br",
     "name": "Material Escolar",
-    "items": [299, 320, 478],
+    "items": [299, 320, 478, 888, 869],
     "difficulty": 0
   },
   "c-84-br": {
@@ -543,7 +543,7 @@
   "c-91-br": {
     "id": "c-91-br",
     "name": "Cinema",
-    "items": [201, 196, 336, 768],
+    "items": [201, 196, 336, 768, 819],
     "difficulty": 0
   },
   "c-92-br": {
@@ -674,14 +674,14 @@
   },
   "c-113-br": {
     "id": "c-113-br",
-    "name": "Oceano",
-    "items": [361, 362, 110, 210],
+    "name": "Elenco do Bob Esponja",
+    "items": [859, 361, 659, 325, 937],
     "difficulty": 0
   },
   "c-114-br": {
     "id": "c-114-br",
     "name": "Na praia",
-    "items": [364, 2, 554, 197, 753],
+    "items": [364, 2, 554, 197, 753, 826],
     "difficulty": 0
   },
   "c-115-br": {
@@ -759,7 +759,7 @@
   "c-127-br": {
     "id": "c-127-br",
     "name": "Teclas",
-    "items": [344, 23, 392, 766],
+    "items": [344, 23, 392, 766, 581],
     "difficulty": 0
   },
   "c-128-br": {
@@ -783,7 +783,7 @@
   "c-131-br": {
     "id": "c-131-br",
     "name": "Proteja-se dos raios UVB",
-    "items": [57, 218, 197, 225],
+    "items": [57, 218, 197, 225, 826],
     "difficulty": 0
   },
   "c-132-br": {
@@ -807,7 +807,7 @@
   "c-135-br": {
     "id": "c-135-br",
     "name": "Brilhinhos",
-    "items": [246, 447, 139, 419],
+    "items": [246, 447, 139, 419, 774, 772],
     "difficulty": 0
   },
   "c-136-br": {
@@ -849,13 +849,13 @@
   "c-142-br": {
     "id": "c-142-br",
     "name": "Transmissão",
-    "items": [137, 161],
+    "items": [137, 161, 177, 605],
     "difficulty": 0
   },
   "c-143-br": {
     "id": "c-143-br",
     "name": "Formato de U",
-    "items": [33, 34, 164],
+    "items": [33, 34, 164, 814],
     "difficulty": 0
   },
   "c-144-br": {
@@ -927,7 +927,7 @@
   "c-155-br": {
     "id": "c-155-br",
     "name": "Bandeiras",
-    "items": [413, 32, 31, 261],
+    "items": [413, 32, 31, 261, 798],
     "difficulty": 0
   },
   "c-156-br": {
@@ -1023,7 +1023,7 @@
   "c-171-br": {
     "id": "c-171-br",
     "name": "Armazenamento de dados",
-    "items": [184, 25],
+    "items": [184, 25, 807],
     "difficulty": 0
   },
   "c-172-br": {
@@ -1143,7 +1143,7 @@
   "c-191-br": {
     "id": "c-191-br",
     "name": "Café da manhã",
-    "items": [172, 761, 42, 111, 633, 569, 366],
+    "items": [172, 761, 42, 111, 633, 569, 366, 828],
     "difficulty": 0
   },
   "c-192-br": {
@@ -1221,7 +1221,7 @@
   "c-204-br": {
     "id": "c-204-br",
     "name": "Lixo",
-    "items": [229, 724],
+    "items": [229, 724, 810],
     "difficulty": 0
   },
   "c-205-br": {
@@ -1269,13 +1269,13 @@
   "c-212-br": {
     "id": "c-212-br",
     "name": "Animais da Disney",
-    "items": [506, 114, 635, 117],
+    "items": [506, 114, 635, 117, 46, 148],
     "difficulty": 0
   },
   "c-213-br": {
     "id": "c-213-br",
     "name": "Harry Potter",
-    "items": [151, 560, 446],
+    "items": [151, 560, 446, 920, 793],
     "difficulty": 0
   },
   "c-214-br": {
@@ -1293,7 +1293,7 @@
   "c-216-br": {
     "id": "c-216-br",
     "name": "Eletrodomésticos",
-    "items": [307, 152, 154, 606],
+    "items": [307, 152, 154, 606, 918, 395],
     "difficulty": 0
   },
   "c-217-br": {
@@ -1323,7 +1323,7 @@
   "c-221-br": {
     "id": "c-221-br",
     "name": "Leve",
-    "items": [238],
+    "items": [238, 812, 789, 601, 236],
     "difficulty": 0
   },
   "c-222-br": {
@@ -1377,7 +1377,7 @@
   "c-230-br": {
     "id": "c-230-br",
     "name": "Parque de diversões",
-    "items": [486, 286, 51, 571],
+    "items": [486, 286, 51, 571, 887],
     "difficulty": 0
   },
   "c-231-br": {
@@ -1389,7 +1389,7 @@
   "c-232-br": {
     "id": "c-232-br",
     "name": "Tipos de casacos",
-    "items": [555, 536, 132],
+    "items": [555, 563, 132],
     "difficulty": 0
   },
   "c-233-br": {
@@ -1413,13 +1413,13 @@
   "c-236-br": {
     "id": "c-236-br",
     "name": "Identificação",
-    "items": [726, 699],
+    "items": [726, 699, 811],
     "difficulty": 0
   },
   "c-237-br": {
     "id": "c-237-br",
     "name": "Chaves",
-    "items": [686, 729, 74],
+    "items": [686, 729, 74, 646],
     "difficulty": 0
   },
   "c-238-br": {
@@ -1467,19 +1467,19 @@
   "c-245-br": {
     "id": "c-245-br",
     "name": "Velho rico e refinado",
-    "items": [559, 558, 613],
+    "items": [559, 558, 613, 112],
     "difficulty": 0
   },
   "c-246-br": {
     "id": "c-246-br",
-    "name": "Caixa",
-    "items": [7, 577, 523, 289],
+    "name": "Caixas",
+    "items": [7, 577, 523, 289, 906],
     "difficulty": 0
   },
   "c-247-br": {
     "id": "c-247-br",
-    "name": "Dieta",
-    "items": [628, 236, 627],
+    "name": "Regime",
+    "items": [628, 236, 627, 842],
     "difficulty": 0
   },
   "c-248-br": {
@@ -1508,6 +1508,174 @@
   },
   "c-252-br": {
     "id": "c-252-br",
+    "name": "Mesas",
+    "items": [878, 879, 858, 98, 877],
+    "difficulty": 0
+  },
+  "c-253-br": {
+    "id": "c-253-br",
+    "name": "Sem sair do lugar",
+    "items": [842, 885, 627],
+    "difficulty": 0
+  },
+  "c-254-br": {
+    "id": "c-254-br",
+    "name": "Lugares para fazer cocô",
+    "items": [945, 275, 622, 785],
+    "difficulty": 0
+  },
+  "c-255-br": {
+    "id": "c-255-br",
+    "name": "Lugares para dormir",
+    "items": [823, 442, 463, 912, 915],
+    "difficulty": 0
+  },
+  "c-256-br": {
+    "id": "c-256-br",
+    "name": "Com furinhos",
+    "items": [781, 17, 398],
+    "difficulty": 0
+  },
+  "c-257-br": {
+    "id": "c-257-br",
+    "name": "Rede",
+    "items": [328, 630, 914],
+    "difficulty": 0
+  },
+  "c-258-br": {
+    "id": "c-258-br",
+    "name": "Corrente",
+    "items": [488, 588, 726],
+    "difficulty": 0
+  },
+  "c-259-br": {
+    "id": "c-259-br",
+    "name": "Guarde aqui!",
+    "items": [873, 815, 839, 719, 523, 408],
+    "difficulty": 0
+  },
+  "c-260-br": {
+    "id": "c-260-br",
+    "name": "Medieval",
+    "items": [75, 591, 590, 805],
+    "difficulty": 0
+  },
+  "c-261-br": {
+    "id": "c-261-br",
+    "name": "Asiático",
+    "items": [900, 899, 901, 902, 216],
+    "difficulty": 0
+  },
+  "c-262-br": {
+    "id": "c-262-br",
+    "name": "Já",
+    "items": [303, 819, 147],
+    "difficulty": 0
+  },
+  "c-263-br": {
+    "id": "c-263-br",
+    "name": "Passado",
+    "items": [499, 522, 588],
+    "difficulty": 0
+  },
+  "c-264-br": {
+    "id": "c-264-br",
+    "name": "Vem num pote",
+    "items": [922, 826, 816, 817, 672],
+    "difficulty": 0
+  },
+  "c-265-br": {
+    "id": "c-265-br",
+    "name": "Comemoração",
+    "items": [748, 764, 378, 246],
+    "difficulty": 0
+  },
+  "c-266-br": {
+    "id": "c-266-br",
+    "name": "Coisas usadas para medir",
+    "items": [399, 298, 320, 530],
+    "difficulty": 0
+  },
+  "c-267-br": {
+    "id": "c-267-br",
+    "name": "Mãos",
+    "items": [530, 747, 774, 257],
+    "difficulty": 0
+  },
+  "c-268-br": {
+    "id": "c-268-br",
+    "name": "Tem estrela",
+    "items": [916, 859, 854, 831, 777, 938, 723, 615, 418, 378, 294, 246, 139, 20],
+    "difficulty": 3
+  },
+  "c-269-br": {
+    "id": "c-269-br",
+    "name": "Tem coração",
+    "items": [841, 583, 539],
+    "difficulty": 3
+  },
+  "c-270-br": {
+    "id": "c-270-br",
+    "name": "Sol",
+    "items": [739, 826, 596, 588],
+    "difficulty": 0
+  },
+  "c-271-br": {
+    "id": "c-271-br",
+    "name": "Símbolo de raio",
+    "items": [710, 446, 787],
+    "difficulty": 0
+  },
+  "c-272-br": {
+    "id": "c-272-br",
+    "name": "Contém números",
+    "items": [263, 232, 277, 539],
+    "difficulty": 0
+  },
+  "c-273-br": {
+    "id": "c-273-br",
+    "name": "Com cruz",
+    "items": [928, 372, 264, 279, 105, 547, 557],
+    "difficulty": 0
+  },
+  "c-274-br": {
+    "id": "c-274-br",
+    "name": "",
+    "items": [],
+    "difficulty": 0
+  },
+  "c-275-br": {
+    "id": "c-275-br",
+    "name": "",
+    "items": [],
+    "difficulty": 0
+  },
+  "c-276-br": {
+    "id": "c-276-br",
+    "name": "",
+    "items": [],
+    "difficulty": 0
+  },
+  "c-277-br": {
+    "id": "c-277-br",
+    "name": "",
+    "items": [],
+    "difficulty": 0
+  },
+  "c-278-br": {
+    "id": "c-278-br",
+    "name": "",
+    "items": [],
+    "difficulty": 0
+  },
+  "c-279-br": {
+    "id": "c-279-br",
+    "name": "",
+    "items": [],
+    "difficulty": 0
+  },
+  "c-280-br": {
+    "id": "c-280-br",
     "name": "",
     "items": [],
     "difficulty": 0
