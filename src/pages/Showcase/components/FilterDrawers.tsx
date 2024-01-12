@@ -1,6 +1,8 @@
 import { useWindowSize } from 'react-use';
 // Ant Design Resources
 import { Button, Divider, Drawer, Space } from 'antd';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { CustomFilterOptions } from './CustomFilterOptions';

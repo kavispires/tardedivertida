@@ -3,7 +3,8 @@ import { useEffectOnce, useTitle } from 'react-use';
 // Ant Design Resources
 import { Typography, Layout, Divider, Row, Col } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
-
+// Types
+import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';

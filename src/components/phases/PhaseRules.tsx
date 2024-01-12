@@ -3,6 +3,8 @@ import { useQueryClient } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Layout, Space } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Utils
 import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
 import {

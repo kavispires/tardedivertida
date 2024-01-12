@@ -5,6 +5,8 @@ import { useCopyToClipboard } from 'react-use';
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Image, Modal, Button, Divider, Typography, Switch, Space, Alert, App } from 'antd';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Adapters
 import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
 // Hooks

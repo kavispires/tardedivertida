@@ -6,6 +6,8 @@ import { useEffectOnce, useTitle, useWindowSize } from 'react-use';
 // Ant Design Resources
 import { Avatar, Image, Layout, Modal, Space } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';

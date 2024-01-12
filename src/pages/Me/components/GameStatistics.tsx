@@ -2,7 +2,8 @@
 import { Col, Divider, Rate, Row } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
 // Types
-import { GameUserStatistics } from 'types/user';
+import type { GameInfo } from 'types/game-info';
+import type { GameUserStatistics } from 'types/user';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

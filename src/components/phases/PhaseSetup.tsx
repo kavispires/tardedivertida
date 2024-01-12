@@ -1,3 +1,5 @@
+// Types
+import type { GameInfo } from 'types/game-info';
 // Constants
 import { PHASES } from 'utils/phases';
 // Icons

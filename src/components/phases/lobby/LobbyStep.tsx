@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 // Ant Design Resources
 import { Alert } from 'antd';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Components
 import { GameBanner } from 'components/general/GameBanner';
 import { Translate } from 'components/language';

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, AutoComplete, Button } from 'antd';
+// Types
+import type { GameInfo } from 'types/game-info';
 // API & Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useAddPlayer } from 'hooks/useAddPlayer';
