@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.16",
+  "version": "2.3.17",
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"
@@ -50,10 +50,7 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "betting", "discussion", "voting", "achievements"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "key": "nsfw",

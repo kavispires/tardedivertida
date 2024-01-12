@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.13",
+  "version": "0.9.14",
   "title": {
     "pt": "Vendaval de Palpite",
     "en": "Brainy Storm"
@@ -34,8 +34,5 @@
     "perPlayer": 0
   },
   "tags": ["cooperative", "same-time", "writing", "guessing", "brain-burner"],
-  "available": {
-    "pt": true,
-    "en": true
-  }
+  "available": true
 }

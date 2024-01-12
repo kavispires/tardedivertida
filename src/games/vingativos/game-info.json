@@ -35,8 +35,5 @@
     "perPlayer": 0
   },
   "tags": ["cooperative", "images", "pairing", "discussion", "voting"],
-  "available": {
-    "pt": false,
-    "en": false
-  }
+  "available": false
 }

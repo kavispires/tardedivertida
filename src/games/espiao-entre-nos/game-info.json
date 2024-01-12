@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.26",
+  "version": "0.10.27",
   "title": {
     "pt": "Espião Entre Nós",
     "en": "Spy the Spies"
@@ -43,8 +43,5 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "same-time", "traitor", "discussion", "timed", "voting"],
-  "available": {
-    "pt": true,
-    "en": true
-  }
+  "available": false
 }

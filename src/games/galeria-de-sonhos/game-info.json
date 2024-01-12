@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.1.35",
+  "version": "4.1.36",
   "title": {
     "pt": "Galeria de sonhos",
     "en": "Dream Gallery"
@@ -47,10 +47,7 @@
     "max": 10
   },
   "tags": ["competitive", "turn-based", "images", "achievements", "bots"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "duration": {
     "base": 0,
     "perPlayer": 0

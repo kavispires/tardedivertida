@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "5.2.26",
+  "version": "5.2.27",
   "title": {
     "pt": "Mente Coletiva",
     "en": "Herd Mind"
@@ -50,10 +50,7 @@
     "perPlayer": 6
   },
   "tags": ["competitive", "same-time", "writing", "mobile-friendly", "achievements"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     { "label": "Length", "key": "shortPasture", "off": "5 Pastures", "on": "3 Pastures" },
     {

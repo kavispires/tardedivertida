@@ -1,14 +1,9 @@
-export const filterGames = (
-  list: GameInfo[],
-  filters: PlainObject,
-  language: Language,
-  setLanguage: GenericFunction
-) => {
+export const filterGames = (list: GameInfo[], filters: PlainObject) => {
   return list.filter((game) => {
     let result: boolean[] = [];
     // Availability
     if (doesExist(filters.availability)) {
-      const res = game.available[language] && !game.version.endsWith('alpha');
+      const res = game.available && !game.version.endsWith('alpha');
       result.push(filters.availability === 'on' ? res : !res);
     }
 

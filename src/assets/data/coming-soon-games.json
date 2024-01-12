@@ -31,46 +31,6 @@
       "max": 10
     },
     "tags": ["competitive", "turn-based", "drawing", "guessing", "timed"],
-    "available": {
-      "pt": false,
-      "en": false
-    }
-  },
-  "ta-na-cara": {
-    "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "T",
-    "gameName": "ta-na-cara",
-    "version": "planned",
-    "title": {
-      "pt": "Tá Na Cara",
-      "en": "Guess Who What?"
-    },
-    "popularName": {
-      "pt": "do preconceito competitivo",
-      "en": ""
-    },
-    "basedOn": "ohW sseuG",
-    "appearance": {
-      "clouds": "cloud",
-      "color": ""
-    },
-    "summary": {
-      "pt": "Você consegue descobrir quem é quem só com perguntas subjetivas?",
-      "en": "Can you guess who is who based on subjective questions?"
-    },
-    "rules": {
-      "pt": ["TBD"],
-      "en": ["TBD"]
-    },
-    "playerCount": {
-      "recommended": [4, 5, 6],
-      "min": 4,
-      "max": 10
-    },
-    "tags": ["competitive", "turn-based", "guessing"],
-    "available": {
-      "pt": false,
-      "en": false
-    }
+    "available": false
   }
 }

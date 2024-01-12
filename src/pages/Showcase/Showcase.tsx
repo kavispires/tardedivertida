@@ -58,7 +58,7 @@ function Showcase() {
   });
 
   useEffect(() => {
-    setList(filterGames(GAME_LIST, filters, language, setLanguage));
+    setList(filterGames(GAME_LIST, filters));
     const queryString = Object.keys(filters)
       .filter((key) => filters[key] !== 'any')
       .map((key) => `${key}=${filters[key]}`);

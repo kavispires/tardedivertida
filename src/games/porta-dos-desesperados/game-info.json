@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.10",
+  "version": "4.0.11",
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
@@ -47,10 +47,7 @@
     "perPlayer": 3
   },
   "tags": ["cooperative", "guessing", "images", "turn-based", "discussion", "bots", "achievements"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "label": "New Traps",

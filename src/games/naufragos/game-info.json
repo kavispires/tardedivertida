@@ -35,8 +35,5 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "voting"],
-  "available": {
-    "pt": false,
-    "en": false
-  }
+  "available": false
 }

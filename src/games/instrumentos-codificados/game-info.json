@@ -34,8 +34,5 @@
     "perPlayer": 0
   },
   "tags": ["cooperative", "competitive", "guessing", "images"],
-  "available": {
-    "pt": false,
-    "en": false
-  }
+  "available": false
 }

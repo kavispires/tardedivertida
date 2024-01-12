@@ -145,16 +145,8 @@
       }
     },
     "available": {
-      "type": "object",
-      "properties": {
-        "pt": {
-          "type": "boolean"
-        },
-        "en": {
-          "type": "boolean"
-        }
-      },
-      "required": ["pt", "en"]
+      "type": "boolean",
+      "default": false
     },
     "options": {
       "type": "array",

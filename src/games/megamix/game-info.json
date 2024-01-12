@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.14",
+  "version": "4.0.15",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -56,10 +56,7 @@
     "voting",
     "achievements"
   ],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "key": "nsfw",

@@ -34,8 +34,5 @@
     "perPlayer": 0
   },
   "tags": ["cooperative", "same-time", "pairing"],
-  "available": {
-    "pt": false,
-    "en": false
-  }
+  "available": false
 }

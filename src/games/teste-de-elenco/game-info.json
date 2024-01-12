@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "title": {
     "pt": "Teste De Elenco",
     "en": "Re-Casting Call"
@@ -43,10 +43,7 @@
     "max": 10
   },
   "tags": ["competitive", "voting", "achievements", "same-time"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "key": "nsfw",

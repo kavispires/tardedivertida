@@ -20,9 +20,6 @@ import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters } from './components/Filters';
 import { LogoutButton } from 'components/auth/LogoutButton';
 
-// Players migration
-const migrationBlocked = ['espiao-entre-nos', 'sonhos-pesadelos', 'ta-na-cara'];
-
 function Hub() {
   useTitle('Hub - Tarde Divertida');
 
@@ -96,7 +93,7 @@ function Hub() {
 
     return sortedGameList.reduce(
       (acc: any, game) => {
-        if (game.available[language]) {
+        if (game.available) {
           if (['alpha', 'dev'].includes(game.version) || game.version.startsWith('beta')) {
             acc.devGames.push(game);
           } else {
@@ -189,7 +186,7 @@ function RowOfGames({ games }: RowOfGamesProps) {
     <Row gutter={[8, 16]}>
       {games.map((game: GameInfo) => (
         <Col key={game.gameName} xs={24} sm={12} md={8} lg={8} xl={6} xxl={4}>
-          <GameCard game={game} isAdmin={!migrationBlocked.includes(game.gameName)} />
+          <GameCard game={game} isAdmin={game.available} />
         </Col>
       ))}
     </Row>

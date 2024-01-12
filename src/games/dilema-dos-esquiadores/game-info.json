@@ -35,8 +35,5 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "same-time", "betting", "voting"],
-  "available": {
-    "pt": false,
-    "en": false
-  }
+  "available": false
 }
