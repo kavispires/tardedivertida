@@ -1,5 +1,7 @@
 import { ReactNode, useRef } from 'react';
 import clsx from 'clsx';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components

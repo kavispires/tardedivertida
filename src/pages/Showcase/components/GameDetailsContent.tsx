@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Card, Image, Space } from 'antd';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

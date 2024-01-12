@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Avatar as AntAvatar, Badge, Button, Divider, Drawer, Space } from 'antd';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';

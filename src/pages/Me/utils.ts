@@ -1,3 +1,6 @@
+// Types
+import type { GameInfo } from 'types/game-info';
+// Utils
 import GAME_LIST from 'utils/info';
 
 /**

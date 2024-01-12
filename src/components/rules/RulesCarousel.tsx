@@ -2,6 +2,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Typography, Image, Carousel, Button, Space } from 'antd';
 import { CarouselRef } from 'antd/es/carousel';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Constants

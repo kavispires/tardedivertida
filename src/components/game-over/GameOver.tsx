@@ -2,6 +2,8 @@ import { ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Button, Image, Progress, Space } from 'antd';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Images
 import gameOverTitle from 'assets/images/game-over-title.svg';
 // Utils

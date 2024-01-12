@@ -2,6 +2,8 @@ import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, Button, Divider, Modal } from 'antd';
+// Types
+import type { GameInfo } from 'types/game-info';
 // API & Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { UseStep } from 'hooks/useStep';

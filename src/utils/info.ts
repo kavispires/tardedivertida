@@ -1,3 +1,6 @@
+// Types
+import type { GameInfo } from 'types/game-info';
+// Games
 import ADEDANHX from 'games/adedanhx/game-info.json';
 import ARTE_RUIM from 'games/arte-ruim/game-info.json';
 import BOMBA_RELOGIO from 'games/bomba-relogio/game-info.json';

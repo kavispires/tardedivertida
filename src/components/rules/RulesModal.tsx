@@ -2,6 +2,8 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, ButtonProps, Modal } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
+// Types
+import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components

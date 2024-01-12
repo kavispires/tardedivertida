@@ -1,3 +1,6 @@
+// Types
+import type { GameInfo } from 'types/game-info';
+
 export const filterGames = (list: GameInfo[], filters: PlainObject) => {
   return list.filter((game) => {
     let result: boolean[] = [];
