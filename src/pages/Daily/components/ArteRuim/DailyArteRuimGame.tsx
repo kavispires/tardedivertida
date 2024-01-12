@@ -13,6 +13,7 @@ import { Keyboard } from './Keyboard';
 import { Menu } from './Menu';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
+import { Me } from 'types/user';
 
 const { Header, Content } = Layout;
 

@@ -5,13 +5,14 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffectOnce } from 'react-use';
 import { App } from 'antd';
 import { USER_API, USER_API_ACTIONS } from './adapters';
+import type { Me } from 'types/user';
 // Utils
 import { print } from 'utils/helpers';
+import { getToday } from 'pages/Daily/utils';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useLanguage } from 'hooks/useLanguage';
 import { useGlobalState } from 'hooks/useGlobalState';
-import { getToday } from 'pages/Daily/utils';
 
 const PLACEHOLDER_GAME_USER_ENTRY = {
   gameId: '',

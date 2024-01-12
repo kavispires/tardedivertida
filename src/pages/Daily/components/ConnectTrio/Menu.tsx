@@ -2,6 +2,7 @@ import { FireFilled, HeartFilled, HeartOutlined, QuestionCircleFilled } from '@a
 import { Button, Popover, Space, Typography } from 'antd';
 import { LanguageSwitch, Translate } from 'components/language';
 import { useState } from 'react';
+import { Me } from 'types/user';
 
 type MenuProps = {
   userDaily: Me['daily'];

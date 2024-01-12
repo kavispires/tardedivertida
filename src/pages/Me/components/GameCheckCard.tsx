@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useWindowSize } from 'react-use';
 // Ant Design Resources
 import { Badge, Col, Modal, Row } from 'antd';
+// Types
+import { GameUserStatistics } from 'types/user';
 // Hooks
 import { useQueryParams } from 'hooks/useQueryParams';
 // Utils
