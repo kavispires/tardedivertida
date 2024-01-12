@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   SOLITARY_VIP: 'SOLITARY_VIP',
   SOLITARY_LOSER: 'SOLITARY_LOSER',

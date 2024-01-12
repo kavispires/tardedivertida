@@ -1,10 +1,12 @@
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { TableFaceDown } from './components/TableFaceDown';
 import { mockPlayCard } from './utils/mock';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Card } from 'components/cards';
 import { ViewOr } from 'components/views';
@@ -19,7 +21,7 @@ type StepPlayCardProps = {
   onPlayCard: GenericFunction;
   storyteller: GamePlayer;
   isUserTheStoryTeller: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepPlayCard({
   players,

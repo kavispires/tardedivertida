@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   MOST_QUESTIONED_OBJECTS: 'MOST_QUESTIONED_OBJECTS',
   FEWEST_QUESTIONED_OBJECTS: 'FEWEST_QUESTIONED_OBJECTS',

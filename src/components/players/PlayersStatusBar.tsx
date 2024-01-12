@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Badge, Tooltip } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Utils

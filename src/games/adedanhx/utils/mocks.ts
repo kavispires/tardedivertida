@@ -1,3 +1,4 @@
+import type { TopicCard } from 'types/tdr';
 import { random } from 'lodash';
 import { mockClue } from 'mock/clues';
 import { ANSWERING_TIME } from './constants';

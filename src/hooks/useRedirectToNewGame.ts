@@ -1,10 +1,13 @@
 import { App } from 'antd';
 import { useState } from 'react';
-import { ADMIN_API, GAME_API, GAME_API_ACTIONS } from 'services/adapters';
-import { ADMIN_ACTIONS } from 'utils/constants';
-
 import { useMutation, useQuery } from '@tanstack/react-query';
-
+// Types
+import type { GameMeta } from 'types/game';
+// Services
+import { ADMIN_API, GAME_API, GAME_API_ACTIONS } from 'services/adapters';
+// Utils
+import { ADMIN_ACTIONS } from 'utils/constants';
+// Hooks
 import { useCurrentUserContext } from './useCurrentUserContext';
 
 type GameMetaResponse = {

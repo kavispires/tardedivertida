@@ -1,0 +1,51 @@
+import { GameInfo } from './game-info';
+import { GamePlayers } from './player';
+
+export type GameState<TState = PlainObject, TPlayer = PlainObject> = {
+  phase: string;
+  updatedAt?: DateMilliseconds;
+  round: GameRound;
+  players: GamePlayers<TPlayer>;
+  redirect?: Redirect;
+  [key: string]: any;
+} & TState;
+
+export type SessionProps = {
+  gameId: GameId;
+};
+
+export type GameMeta = {
+  createdAt: DateMilliseconds;
+  createdBy: string;
+  gameId: GameId;
+  gameName: GameName;
+  isComplete: boolean;
+  isLocked: boolean;
+  language: GameLanguage;
+  max: number;
+  min: number;
+  options?: BooleanDictionary;
+  replay: number;
+  version: string;
+};
+
+export type GameRound = {
+  current: number;
+  total: number;
+  forceLastRound: boolean;
+};
+
+export type PhaseProps<TState = PlainObject, TPlayer = PlainObject> = {
+  state: GameState<TState, TPlayer>;
+  players: GamePlayers<TPlayer>;
+  info: GameInfo;
+  meta: GameMeta;
+};
+
+export type GameRanking = {
+  playerId: string;
+  previousScore: number;
+  gainedPoints: number | number[];
+  newScore: number;
+  [key: string]: any;
+}[];

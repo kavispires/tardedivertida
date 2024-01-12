@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { MovieGenreOption, SubmitMovieGenrePayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -11,7 +12,7 @@ import { Icons } from './utils/helpers';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { DualTranslate, Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
@@ -21,7 +22,7 @@ type StepSelectGenreProps = {
   user: GamePlayer;
   genres: MovieGenreOption[];
   onSubmitGenre: (payload: SubmitMovieGenrePayload) => void;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectGenre({ user, announcement, genres, onSubmitGenre }: StepSelectGenreProps) {
   const { isLoading } = useLoading();

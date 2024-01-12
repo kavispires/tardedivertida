@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "title": {
     "pt": "Adedanhx",
     "en": "Stop-ish!"

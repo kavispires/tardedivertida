@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Badge, Tag } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useUser } from 'hooks/useUser';

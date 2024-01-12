@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 // AntDesign Resources
 import { Tooltip } from 'antd';
-// Hooks
+// Types
+import type { GamePlayers } from 'types/player';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components

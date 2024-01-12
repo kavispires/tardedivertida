@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { CardEntry } from './utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';

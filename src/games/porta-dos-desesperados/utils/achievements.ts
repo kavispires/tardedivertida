@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   MOST_POSSESSED: 'MOST_POSSESSED',
   LEAST_POSSESSED: 'LEAST_POSSESSED',

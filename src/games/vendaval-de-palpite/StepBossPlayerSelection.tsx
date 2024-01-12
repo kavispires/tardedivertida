@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useHost } from 'hooks/useHost';

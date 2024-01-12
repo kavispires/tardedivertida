@@ -1,12 +1,13 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import type { UseStep } from 'hooks/useStep';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { CharactersBoard } from './components/CharactersBoard';
@@ -31,7 +32,7 @@ type StepRevealProps = {
   correct: PlayerId[];
   goToNextStep: UseStep['goToNextStep'];
   result: GamePlayer | null;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   players,

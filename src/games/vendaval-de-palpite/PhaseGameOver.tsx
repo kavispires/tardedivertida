@@ -1,4 +1,6 @@
 import { Space } from 'antd';
+// Types
+import type { PhaseProps } from 'types/game';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 import { QualitySealIcon } from 'icons/QualitySealIcon';

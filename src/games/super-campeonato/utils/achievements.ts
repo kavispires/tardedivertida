@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   BEST_QUARTER_BETS: 'BEST_QUARTER_BETS',
   BEST_SEMI_BETS: 'BEST_SEMI_BETS',

@@ -2,6 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar, Tooltip } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { BoardObject, Clue, Clues } from '../utils/types';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';

@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Button, App, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { Suggestion } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -13,7 +15,7 @@ import { deepCopy } from 'utils/helpers';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './components/RulesBlobs';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
@@ -30,7 +32,7 @@ type StepCompareSuggestionsProps = {
   players: GamePlayers;
   secretWord: TextCard;
   suggestions: Suggestion[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepCompareSuggestions({
   isUserTheController,

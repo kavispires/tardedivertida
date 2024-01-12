@@ -1,6 +1,7 @@
 // AntDesign Resources
 import { Button, Image, Space } from 'antd';
 // Types
+import type { SuspectCard as SuspectCardType } from 'types/tdi';
 import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
@@ -78,7 +79,7 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
 
         <Image.PreviewGroup>
           <Space className="space-container">
-            {track.data.suspects.map((suspect: SuspectCard) => {
+            {track.data.suspects.map((suspect: SuspectCardType) => {
               return (
                 <Space className="space-container" direction="vertical" key={suspect.id}>
                   <SuspectCard suspect={suspect} width={cardWidth} />

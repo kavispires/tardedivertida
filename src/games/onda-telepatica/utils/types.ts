@@ -1,9 +1,3 @@
-export type OpposingIdeaCard = {
-  id: string;
-  left: string;
-  right: string;
-};
-
 export type CurrentCategory = {
   id: string;
   left: string;

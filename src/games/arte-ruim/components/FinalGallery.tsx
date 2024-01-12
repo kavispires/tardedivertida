@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayers } from 'types/player';
 import type { ArteRuimDrawing } from '../utils/types';
 // Components
 import { CanvasSVG } from 'components/canvas';

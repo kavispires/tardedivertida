@@ -1,3 +1,5 @@
+import { SuspectCard } from 'types/tdi';
+
 export type SubmitPromptPayload = {
   questionId: CardId;
 };

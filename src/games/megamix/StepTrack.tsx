@@ -1,7 +1,9 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { Track } from './utils/types';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { ClubLine } from './components/ClubLine';
 import { FallbackComponent } from './components/FallbackComponent';
 import { TrackArteRuim } from './components/Tracks/TrackArteRuim';
@@ -40,7 +42,7 @@ type StepTrackProps = {
   players: GamePlayers;
   user: GamePlayer;
   onSubmitAnswer: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
   const TrackComponent =

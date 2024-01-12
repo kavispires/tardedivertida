@@ -2,6 +2,7 @@
 import { Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 // Types
+import { GamePlayers } from 'types/player';
 import type { InquiryHistoryEntry, Sign } from '../utils/types';
 // Components
 import { AvatarName } from 'components/avatars';

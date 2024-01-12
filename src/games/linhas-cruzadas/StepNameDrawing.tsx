@@ -2,6 +2,8 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { Prompt } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

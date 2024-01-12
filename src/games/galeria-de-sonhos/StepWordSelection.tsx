@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { TextCard } from 'types/tdr';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components

@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { App, Space, Typography } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
 // API & Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useGameMeta } from 'hooks/useGameMeta';

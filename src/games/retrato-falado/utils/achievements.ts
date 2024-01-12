@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   BEST_SKETCHES: 'BEST_SKETCHES',
   WORST_SKETCHES: 'WORST_SKETCHES',

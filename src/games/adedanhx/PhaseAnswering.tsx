@@ -1,3 +1,6 @@
+// Types
+import type { PhaseProps } from 'types/game';
+import type { TopicCard } from 'types/tdr';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';

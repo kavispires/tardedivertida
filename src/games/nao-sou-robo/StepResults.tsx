@@ -2,6 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar as AntAvatar, Flex, Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Robot, RobotGalleryEntry } from './utils/types';
 import type { UseStep } from 'hooks/useStep';
 // Hooks
@@ -9,7 +10,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
@@ -27,7 +28,7 @@ type StepResultProps = {
   result: RobotGalleryEntry;
   goToNextStep: UseStep['goToNextStep'];
   robot: Robot;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResult({ user, announcement, goToNextStep, players, result, robot }: StepResultProps) {
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
@@ -40,7 +41,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
 
       <FloatingPlayerStats user={user} robot={robot} />
 
-      <RobotResult players={players} result={result} robot={robot} />
+      <RobotResult result={result} robot={robot} />
 
       <Space wrap className="result-container">
         {result.options.map((option) => {

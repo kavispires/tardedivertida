@@ -2,6 +2,7 @@
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { PlayersSay } from '../utils/types';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';

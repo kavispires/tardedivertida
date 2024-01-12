@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Tabs } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { CloverObject, Leaves } from '../utils/types';
 // Utils
 import { sortPlayers } from 'utils/helpers';

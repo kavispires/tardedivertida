@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 // Ant Design Resources
 import { FireFilled } from '@ant-design/icons';
+// Types
+import type { GameRound } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';

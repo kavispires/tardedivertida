@@ -1,6 +1,7 @@
 // Types
-import type { GalleryEntry } from './utils/types';
+import type { GamePlayers } from 'types/player';
 import type { UseStep } from 'hooks/useStep';
+import type { GalleryEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils

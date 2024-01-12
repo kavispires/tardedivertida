@@ -1,3 +1,6 @@
+// Types
+import type { AchievementReference } from 'types/achievements';
+// Data
 import ADEDANHX from 'games/adedanhx/utils/achievements';
 import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';

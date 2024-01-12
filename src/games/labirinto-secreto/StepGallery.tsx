@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Tree } from './utils/types';
 import type { UseStep } from 'hooks/useStep';
 // Utils

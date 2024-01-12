@@ -14,12 +14,11 @@ import { CardHighlight } from 'components/metrics/CardHighlight';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type RobotResultProps = {
-  players: GamePlayers;
   result: RobotGalleryEntry;
   robot: Robot;
 };
 
-export function RobotResult({ players, result, robot }: RobotResultProps) {
+export function RobotResult({ result, robot }: RobotResultProps) {
   const { outcome, beaters } = result;
   const someoneBeat = beaters.length > 0;
   const robotGotPoints = robot.state > 0;

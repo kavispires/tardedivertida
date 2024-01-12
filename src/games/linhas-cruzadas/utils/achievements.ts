@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   SLOWEST_DRAWER: 'SLOWEST_DRAWER',
   QUICKEST_DRAWER: 'QUICKEST_DRAWER',

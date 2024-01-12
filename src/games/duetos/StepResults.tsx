@@ -2,10 +2,11 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar as AntAvatar, Space } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { DuetosGalleryEntry, Item, LefOutEntry } from './utils/types';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
@@ -19,7 +20,7 @@ type StepResultProps = {
   leftOut: LefOutEntry[];
   pool: Item[];
   goToNextStep: UseStep['goToNextStep'];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut, players }: StepResultProps) {
   const galleryMatches = useMemo(() => gallery.filter((entry) => entry.players.length > 1), [gallery]);

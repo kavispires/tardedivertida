@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 export const ACHIEVEMENTS = {
   MOST_WRONG_GROUPS: 'MOST_WRONG_GROUPS',
   MOST_WRONG_GUESSES: 'MOST_WRONG_GUESSES',

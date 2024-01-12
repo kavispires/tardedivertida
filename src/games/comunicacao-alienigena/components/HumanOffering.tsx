@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Item, OfferingsStatus, Sign } from '../utils/types';
 // Components
 import { Translate } from 'components/language';

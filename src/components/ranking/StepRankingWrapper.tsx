@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
 // Ant Design Resources
 import { CaretUpOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
+import type { GameRanking } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components

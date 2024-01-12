@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   MOST_ELIMINATED_CLUES: 'MOST_ELIMINATED_CLUES',
   FEWEST_ELIMINATED_CLUES: 'FEWEST_ELIMINATED_CLUES',

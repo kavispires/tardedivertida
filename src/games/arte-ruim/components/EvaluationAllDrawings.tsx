@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { ArteRuimDrawing } from '../utils/types';
 // Utils
 import { getEntryId } from 'utils/helpers';

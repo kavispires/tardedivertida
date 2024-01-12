@@ -8,7 +8,7 @@ import { useHost } from 'hooks/useHost';
 // Sass
 import './HostOnlyContainer.scss';
 
-interface VIPOnlyContainerProps extends SpaceProps {
+interface HostOnlyContainerProps extends SpaceProps {
   /**
    * The content of the component
    */
@@ -23,7 +23,7 @@ interface VIPOnlyContainerProps extends SpaceProps {
   className?: string;
 }
 
-export const HostOnlyContainer = ({ children, label, className = '', ...rest }: VIPOnlyContainerProps) => {
+export const HostOnlyContainer = ({ children, label, className = '', ...rest }: HostOnlyContainerProps) => {
   const isHost = useHost();
 
   if (!isHost) return <></>;

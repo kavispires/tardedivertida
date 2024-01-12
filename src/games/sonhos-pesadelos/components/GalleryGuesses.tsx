@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { GalleryEntry } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

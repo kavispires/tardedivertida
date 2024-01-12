@@ -1,3 +1,5 @@
+// Types
+import type { GameRound } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';

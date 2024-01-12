@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayer } from 'types/player';
 import type { CardEntry } from '../utils/types';
 // Components
 import { FloatingHand } from 'components/general/FloatingHand';
@@ -7,7 +8,6 @@ import { Translate } from 'components/language';
 
 type YourSelectedCardsProps = {
   table: CardEntry[];
-
   user: GamePlayer;
 };
 

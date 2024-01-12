@@ -1,12 +1,14 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { Suggestion } from './utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -23,7 +25,7 @@ type StepResultProps = {
   validSuggestions: Suggestion[];
   suggestions: Suggestion[];
   group: GroupProgress;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResult({
   guess,

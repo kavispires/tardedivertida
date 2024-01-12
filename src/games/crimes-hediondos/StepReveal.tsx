@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Button, Collapse, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
+import { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, Results, ScenesDict } from './utils/types';
 // Utils
 import { getAnimationClass, getLastItem } from 'utils/helpers';
@@ -16,7 +18,7 @@ import { ScoringMessage } from './components/RulesBlobs';
 import { PlayersCards } from './components/PlayersCards';
 import { CrimeGuessStatus } from './components/CrimeGuessStatus';
 import { ResultsTable } from './components/ResultsTable';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
@@ -35,7 +37,7 @@ type StepRevealProps = {
   round: GameRound;
   results: Results;
   isFirstRunThrough: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   user,

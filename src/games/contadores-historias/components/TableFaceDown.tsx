@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import { GamePlayer, GamePlayers } from 'types/player';
 // Components
 import { ImageCardBack } from 'components/image-cards';
 

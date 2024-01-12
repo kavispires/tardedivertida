@@ -1,3 +1,5 @@
+// Types
+import type { PhaseProps } from 'types/game';
 // Ant Design Resources
 import { Space } from 'antd';
 // Utils

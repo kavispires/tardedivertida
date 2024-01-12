@@ -20,7 +20,6 @@ type PhaseAnnouncementBasicProps = {
    * The title of the game phase
    */
   title: ReactNode;
-
   /**
    * The icon displayed to illustrate the phase (default: MultitaskIcon)
    */

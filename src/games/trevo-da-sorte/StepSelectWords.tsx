@@ -3,6 +3,8 @@ import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';

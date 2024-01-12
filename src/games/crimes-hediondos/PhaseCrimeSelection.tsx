@@ -1,3 +1,5 @@
+// Types
+import type { PhaseProps } from 'types/game';
 import { useState } from 'react';
 // Types
 import type { SubmitCrimePayload } from './utils/types';

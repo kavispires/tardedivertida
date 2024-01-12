@@ -2,6 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { Dream } from '../utils/types';
 // Constants
 import { LETTERS } from 'utils/constants';

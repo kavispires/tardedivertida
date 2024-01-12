@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { DeleteOutlined, RedoOutlined } from '@ant-design/icons';
 // Types
+import type { TextCard } from 'types/tdr';
 import type { LeafEntry, LeafPosition } from '../utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';

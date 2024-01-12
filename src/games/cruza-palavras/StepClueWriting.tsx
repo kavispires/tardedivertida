@@ -1,9 +1,10 @@
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Grid, GridType } from './utils/types';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
@@ -17,7 +18,7 @@ type StepClueWritingProps = {
   user: GamePlayer;
   onSubmitClue: GenericFunction;
   players: GamePlayers;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepClueWriting({
   grid,

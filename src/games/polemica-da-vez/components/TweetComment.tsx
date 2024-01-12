@@ -1,4 +1,6 @@
 import moment from 'moment';
+// Types
+import type { GamePlayer } from 'types/player';
 // Components
 import { Avatar } from 'components/avatars';
 import { CommentText } from './CommentText';

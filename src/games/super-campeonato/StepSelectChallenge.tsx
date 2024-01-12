@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { TextCard } from 'types/tdr';
+import type { GameRound } from 'types/game';
 import type { FightingContender } from './utils/type';
 // Hooks
 import { useMock } from 'hooks/useMock';
@@ -8,7 +10,7 @@ import { useMock } from 'hooks/useMock';
 import { LETTERS } from 'utils/constants';
 import { mockSelectChallenge } from './utils/mock';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
@@ -21,7 +23,7 @@ type StepSelectChallengeProps = {
   challenges: TextCard[];
   userContenders: FightingContender[];
   round: GameRound;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectChallenge({
   onSubmitChallenge,

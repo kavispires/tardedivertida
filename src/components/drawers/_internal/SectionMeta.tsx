@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
+// Types
+import type { GameRound } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 

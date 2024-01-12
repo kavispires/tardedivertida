@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { PhaseProps } from 'types/game';
+import type { GamePlayer } from 'types/player';
 import type { GalleryEntry } from './utils/types';
 // Utils
 import { achievementsReference } from './utils/achievements';

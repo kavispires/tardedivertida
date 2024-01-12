@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Avatar, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { ScaleEntry } from '../utils/types';
 // Hook
 import { useCardWidth } from 'hooks/useCardWidth';

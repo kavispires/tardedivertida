@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import { GamePlayer, GamePlayers } from 'types/player';
 import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, ScenesDict } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
@@ -15,7 +16,7 @@ import { InvestigationIcon } from 'icons/InvestigationIcon';
 import { CrimeSummary } from './components/CrimeSummary';
 import { PlayersCards } from './components/PlayersCards';
 import { SelectableGroupedItemsBoard } from './components/SelectableGroupedItemsBoard';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { DebugOnly } from 'components/debug';
@@ -30,7 +31,7 @@ type StepGuessingProps = {
   scenesOrder: string[];
   crimes: Crime[];
   onSubmitGuesses: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
   user,

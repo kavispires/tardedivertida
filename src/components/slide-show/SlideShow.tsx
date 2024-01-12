@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
+// Types
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { UseStep } from 'hooks/useStep';
 // Components

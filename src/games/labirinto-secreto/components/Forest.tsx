@@ -3,6 +3,7 @@ import { findLast } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

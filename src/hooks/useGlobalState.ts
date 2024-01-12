@@ -1,4 +1,7 @@
 import { createGlobalState } from 'react-hooks-global-state';
+// Types
+import type { GamePlayer } from 'types/player';
+// Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 
 type InitialState = {

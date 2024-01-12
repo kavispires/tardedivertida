@@ -2,6 +2,7 @@
 import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
+import type { TextCard } from 'types/tdr';
 import type { Bet, Bracket } from './utils/type';
 import type { UseStep } from 'hooks/useStep';
 // Hooks
@@ -9,7 +10,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { Challenge } from './components/Challenge';
@@ -21,7 +22,7 @@ type StepWinnerProps = {
   bets: Bet;
   goToNextStep: UseStep['goToNextStep'];
   selectedContenderId: CardId;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepWinner({
   challenge,

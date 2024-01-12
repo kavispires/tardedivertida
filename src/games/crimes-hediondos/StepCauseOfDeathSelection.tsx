@@ -2,10 +2,11 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { CrimeTile } from 'types/tdr';
 import type { ItemsDict, SceneTilePayload } from './utils/types';
 // Components
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { SceneTile } from '../../components/game/SceneTile';
 import { SelectedItems } from './components/SelectedItems';
@@ -19,7 +20,7 @@ type StepCauseOfDeathSelectionProps = {
   updateSelections: GenericFunction;
   causeOfDeathTile: CrimeTile;
   goToStep: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepCauseOfDeathSelection({
   announcement,

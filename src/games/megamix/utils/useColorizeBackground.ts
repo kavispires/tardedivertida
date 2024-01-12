@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+// Types
+import type { GamePlayer } from 'types/player';
 
 export function useColorizeBackground(user: GamePlayer, currentRound: number = 0) {
   const team = user?.team?.[currentRound - 1];

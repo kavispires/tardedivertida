@@ -1,3 +1,5 @@
+// Types
+import type { DatingCandidateCard, DatingCandidateImageCard } from 'types/tdr';
 // Components
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';

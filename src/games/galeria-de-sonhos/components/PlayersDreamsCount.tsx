@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { CardInHand } from '../utils/types';
 // Helpers
 import { getAnimationClass, getAvatarColorById, sortPlayers } from 'utils/helpers';

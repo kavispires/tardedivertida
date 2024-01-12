@@ -1,10 +1,12 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { Suggestion } from './utils/types';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -15,7 +17,7 @@ type StepWaitingForGuessProps = {
   guesser: GamePlayer;
   secretWord: TextCard;
   validSuggestions: Suggestion[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepWaitingForGuess({
   guesser,

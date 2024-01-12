@@ -1,9 +1,10 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { ViewOr } from 'components/views';
 import { StepDefendingAction } from './StepDefendingAction';
 import { StepDefendingWaiting } from './StepDefendingWaiting';
@@ -19,7 +20,7 @@ type StepDefendingProps = {
   user: GamePlayer;
   players: GamePlayers;
   turnOrder: TurnOrder;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepDefending({
   clue,

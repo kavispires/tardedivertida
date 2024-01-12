@@ -1,3 +1,5 @@
+import { GroupQuestionCard } from 'types/tdr';
+
 export type Question = {
   id: string;
   number: number;

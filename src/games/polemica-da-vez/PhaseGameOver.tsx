@@ -2,6 +2,8 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 // Types
+import type { PhaseProps } from 'types/game';
+// Types
 import type { PastTweet } from './utils/types';
 // Icons
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';

@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayer } from 'types/player';
 import type { CloverObject, Leaves } from './utils/types';
 // Hooks
 import { useCloverState } from './utils/useCloverState';

@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Space, Avatar as AntAvatar } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { Sketch } from '../utils/types';
 // Components
 import { Avatar } from 'components/avatars';

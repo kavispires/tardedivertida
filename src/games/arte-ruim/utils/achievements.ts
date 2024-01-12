@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   SOLITARY_LOSER: 'SOLITARY_LOSER',
   SOLITARY_WINNER: 'SOLITARY_WINNER',

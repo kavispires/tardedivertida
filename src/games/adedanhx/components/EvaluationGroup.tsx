@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Button, Space, Switch, Tooltip } from 'antd';
 import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Button, Image, Progress, Space } from 'antd';
 // Types
+import type { GameState } from 'types/game';
+import type { GamePlayer } from 'types/player';
+// Types
 import type { GameInfo } from 'types/game-info';
 // Images
 import gameOverTitle from 'assets/images/game-over-title.svg';
@@ -18,7 +21,7 @@ import { RateGameWidget } from './RateGameWidget';
 import { useCountdown } from 'hooks/useCountdown';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { ConvertGuestToAccountModal } from 'components/auth/ConvertGuestToAccount';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
@@ -44,7 +47,7 @@ type GameOverProps = {
    * Custom rate widget text
    */
   rateWidgetCustomText?: any;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function GameOver({
   state,

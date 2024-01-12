@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   MOST_FIRST_POSITIONS: 'MOST_FIRST_POSITIONS',
   FEWEST_FIRST_POSITIONS: 'FEWEST_FIRST_POSITIONS',

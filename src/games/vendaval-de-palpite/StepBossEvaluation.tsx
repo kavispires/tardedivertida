@@ -1,4 +1,6 @@
 // Types
+import type { GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { Clues, BoardObject } from './utils/types';
 // Components
 import { Step } from 'components/steps';

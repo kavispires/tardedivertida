@@ -1,11 +1,13 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { MovieReviewCard as MovieReviewCardType } from 'types/tdr';
 // Components
 import { MovieReviewCard } from 'components/cards/MovieReviewCard';
 
 type ReviewsProps = {
-  goodReview: MovieReviewCard;
-  badReview: MovieReviewCard;
+  goodReview: MovieReviewCardType;
+  badReview: MovieReviewCardType;
 };
 
 export function Reviews({ goodReview, badReview }: ReviewsProps) {

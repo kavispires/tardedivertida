@@ -2,6 +2,9 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
+import type { Achievement, AchievementReference } from 'types/achievements';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components

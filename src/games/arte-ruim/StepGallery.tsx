@@ -1,4 +1,6 @@
 // Types
+import type { GamePlayers } from 'types/player';
+import type { ArteRuimCard } from './utils/types';
 import type { ArteRuimWindow } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

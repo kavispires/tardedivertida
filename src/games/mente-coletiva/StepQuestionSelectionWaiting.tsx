@@ -1,9 +1,11 @@
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Pasture } from './components/Pasture';
 
@@ -12,7 +14,7 @@ type StepQuestionSelectionWaitingProps = {
   players: GamePlayers;
   roundType: number;
   pastureSize: number;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepQuestionSelectionWaiting({
   announcement,

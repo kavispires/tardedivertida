@@ -1,11 +1,12 @@
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Mocks
 import { mockPromptDecision } from './utils/mock';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { CharactersBoard } from './components/CharactersBoard';
@@ -23,7 +24,7 @@ type StepSelectPromptProps = {
   onSubmitPrompt: GenericFunction;
   onSubmitTarget: GenericFunction;
   activePlayerId: PlayerId;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectPrompt({
   players,

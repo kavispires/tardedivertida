@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Progress } from 'antd';
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

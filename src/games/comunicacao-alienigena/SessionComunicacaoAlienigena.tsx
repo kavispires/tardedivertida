@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { ConfigProvider } from 'antd';
+// Types
+import type { GameState } from 'types/game';
 // Constants
 import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';

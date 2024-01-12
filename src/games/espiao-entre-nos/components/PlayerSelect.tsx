@@ -2,6 +2,8 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
@@ -47,9 +49,9 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
                 'Você só pode acusar uma vez durante o jogo!',
                 'You may only make one accusation during the game!'
               )
-        } ${translate('Tem certeza que quer acusar', 'Are you sure you want to accuse')} ${
-          players[selectedPlayerId!]?.name
-        }?`}
+        } ${translate('Tem certeza que quer acusar', 'Are you sure you want to accuse')} ${players[
+          selectedPlayerId!
+        ]?.name}?`}
         onConfirm={() => onSend({ targetId: selectedPlayerId })}
         okText={translate('Sim', 'Yes')}
         cancelText={translate('Não', 'No')}

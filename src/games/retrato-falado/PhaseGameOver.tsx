@@ -1,3 +1,5 @@
+// Types
+import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Icons

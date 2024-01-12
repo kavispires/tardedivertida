@@ -1,4 +1,7 @@
 import clsx from 'clsx';
+// Types
+import type { GamePlayer } from 'types/player';
+// Utils
 import { LETTERS } from 'utils/constants';
 
 export const getColorModifier = (letter: string) => {

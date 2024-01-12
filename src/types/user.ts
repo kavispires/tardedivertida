@@ -1,3 +1,5 @@
+import type { AchievementKey } from './achievements';
+
 interface GameUserEntry {
   gameId: GameId;
   startedAt: number;

@@ -10,7 +10,7 @@ import { useMock } from 'hooks/useMock';
 import { mockGuess } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Dial } from './components/Dial';
 
@@ -40,7 +40,7 @@ function Prompt({ currentCategory }: PromptProps) {
 type StepGuessProps = {
   currentCategory: CurrentCategory;
   onSendGuess: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGuessProps) {
   const { isLoading } = useLoading();

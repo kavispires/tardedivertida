@@ -4,6 +4,7 @@ import { findLastIndex } from 'lodash';
 import { Button, Space } from 'antd';
 import { RiseOutlined, UndoOutlined } from '@ant-design/icons';
 // Types
+import type { TextCard } from 'types/tdr';
 import type { OnSubmitOrder } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space, Tooltip } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

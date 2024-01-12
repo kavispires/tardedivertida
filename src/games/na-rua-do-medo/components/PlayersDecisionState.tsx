@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
+// Types
+import type { GamePlayers } from 'types/player';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons

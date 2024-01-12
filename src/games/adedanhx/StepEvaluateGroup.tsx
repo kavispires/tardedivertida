@@ -2,13 +2,14 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { RocketFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { isDevEnv, pluralize } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { HostOnlyContainer } from 'components/host';
@@ -23,7 +24,7 @@ type StepEvaluateGroupProps = {
   answerGroupIndex: number;
   onNextGroup: () => void;
   onSubmitRejections: (payload: SubmitRejectedAnswers) => void;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepEvaluateGroup({
   players,

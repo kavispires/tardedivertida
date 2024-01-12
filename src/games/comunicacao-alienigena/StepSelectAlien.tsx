@@ -1,24 +1,25 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import { GamePlayers } from 'types/player';
 import type { OfferingsStatus } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useHost } from 'hooks/useHost';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { AvatarCard } from 'components/avatars';
-import { CurseItemHighlight, HieroglyphHighlight, ItemsHighlight } from './components/Highlights';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { CurseItemHighlight, HieroglyphHighlight, ItemsHighlight } from './components/Highlights';
 
 type StepSelectAlienProps = {
   players: GamePlayers;
   onSubmitAlien: GenericFunction;
   status: OfferingsStatus;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectAlien({ players, announcement, onSubmitAlien, status }: StepSelectAlienProps) {
   const { isLoading } = useLoading();

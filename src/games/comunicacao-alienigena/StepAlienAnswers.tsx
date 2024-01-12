@@ -1,15 +1,16 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useMock } from 'hooks/useMock';
-// Types
-import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from './utils/types';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -46,7 +47,7 @@ type StepAlienAnswersProps = {
   isAlienBot: boolean;
   startingAttributes: Sign[];
   debugMode: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepAlienAnswers({
   players,

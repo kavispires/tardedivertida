@@ -2,6 +2,7 @@
 import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Clue, GridCell } from '../utils/types';
 // Utils
 import { getClueFromKey } from '../utils/helpers';

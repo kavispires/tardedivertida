@@ -1,3 +1,6 @@
+// Types
+import type { GamePlayer } from 'types/player';
+// Components
 import { PlayerRibbon } from './PlayerRibbon';
 import { Ribbon } from './Ribbon';
 

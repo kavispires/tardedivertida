@@ -1,3 +1,6 @@
+// Types
+import type { TextCard } from 'types/tdr';
+// Utils
 import { getRandomItem } from 'utils/helpers';
 
 export function mockTweetSelection(currentTweets: TextCard[]) {

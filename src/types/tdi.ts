@@ -1,16 +1,16 @@
-type CrimesHediondosCard = {
+export type CrimesHediondosCard = {
   id: CardId;
   type: string;
   name: DualLanguageValue;
   tags?: string[];
 };
 
-type MonsterCard = {
+export type MonsterCard = {
   id: string;
   orientation: string;
 };
 
-type SuspectCard = {
+export type SuspectCard = {
   id: CardId;
   name: DualLanguageValue;
   gender: string;

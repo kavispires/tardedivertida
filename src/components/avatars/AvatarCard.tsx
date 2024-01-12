@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import clsx from 'clsx';
-// Resources
+// Types
+import type { GamePlayer } from 'types/player';
+// Utils
 import { AVATARS } from 'utils/avatars';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';

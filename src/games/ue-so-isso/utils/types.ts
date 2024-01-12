@@ -1,3 +1,5 @@
+import { TextCard } from 'types/tdr';
+
 export type Suggestion = {
   suggestion: string;
   invalid: boolean;

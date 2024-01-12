@@ -1,4 +1,5 @@
 // Types
+import type { PhaseProps } from 'types/game';
 import type { MapSegment } from './utils/types';
 // State & Hooks
 import { useUser } from 'hooks/useUser';

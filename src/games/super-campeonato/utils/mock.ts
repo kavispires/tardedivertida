@@ -1,5 +1,7 @@
 // Types
 import type { Bet, Bracket, FightingContender } from './type';
+import { TextCard } from 'types/tdr';
+// Utils
 import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
 import { deepCopy, getRandomItem } from 'utils/helpers';
 import { getSmartBetContenderOptions } from './helpers';

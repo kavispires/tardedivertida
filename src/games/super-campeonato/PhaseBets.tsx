@@ -1,3 +1,5 @@
+// Types
+import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitBetsAPIRequest } from './utils/api-requests';

@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
+// Types
+import type { GameState } from 'types/game';
 // Hooks
 import { useFirestoreDocument } from './useFirestoreDocument';
 // Utils

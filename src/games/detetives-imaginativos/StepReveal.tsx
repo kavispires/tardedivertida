@@ -1,4 +1,6 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRanking, GameRound } from 'types/game';
 import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -11,7 +13,7 @@ import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { TableFocus } from './components/TableFocus';
 import { VotingOptions } from './components/VotingOptions';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 
 type StepRevealProps = {
   impostor: GamePlayer;
@@ -21,7 +23,7 @@ type StepRevealProps = {
   round: GameRound;
   ranking: GameRanking;
   table: CardEntry[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   impostor,

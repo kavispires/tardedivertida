@@ -1,5 +1,6 @@
+// Types
+import type { PhaseProps } from 'types/game';
 // State & Hooks
-
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';

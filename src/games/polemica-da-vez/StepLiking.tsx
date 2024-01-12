@@ -2,6 +2,9 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 //Design Resources
 import { Button } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
@@ -11,7 +14,7 @@ import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 // Components
 import { Tweet } from './components/Tweet';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
@@ -22,7 +25,7 @@ type StepLikingProps = {
   customTweet: string;
   onSubmitReaction: GenericFunction;
   players: GamePlayers;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepLiking({
   currentTweet,

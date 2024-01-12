@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Button, Modal, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
 // Hooks and API
 import { useHost } from 'hooks/useHost';
 // Components

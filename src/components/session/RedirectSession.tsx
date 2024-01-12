@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Image, Modal } from 'antd';
+// Types
+import type { GameState } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

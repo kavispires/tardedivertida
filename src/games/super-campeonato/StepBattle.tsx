@@ -1,7 +1,9 @@
 // Types
+import type { GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { Bet, Bracket, BracketTier } from './utils/type';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { Brackets } from './components/Brackets';
 import { TierTitle } from './components/TierTitle';
@@ -18,7 +20,7 @@ type StepBattleProps = {
   bets: Bet;
   selectedContenderId: CardId;
   players: GamePlayers;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepBattle({
   onSubmitVotes,

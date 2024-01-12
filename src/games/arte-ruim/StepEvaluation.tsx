@@ -4,6 +4,7 @@ import { useEffectOnce } from 'react-use';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { ArteRuimCard, ArteRuimDrawing } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -16,7 +17,7 @@ import { LETTERS } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
 import { prepareVotes } from './utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { PopoverRule } from 'components/rules';
 import { CanvasResizer } from 'components/canvas';
 import { RuleInstruction, Title } from 'components/text';
@@ -32,7 +33,7 @@ type StepEvaluationProps = {
   onSubmitVoting: GenericFunction;
   levelType: string;
   user: GamePlayer;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepEvaluation({
   drawings,

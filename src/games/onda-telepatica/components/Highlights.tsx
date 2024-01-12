@@ -1,3 +1,5 @@
+// Types
+import type { OpposingIdeaCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons

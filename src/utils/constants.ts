@@ -1,3 +1,5 @@
+import { GamePlayer } from 'types/player';
+
 /**
  * List of urls residing in the public folder
  */

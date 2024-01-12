@@ -1,3 +1,5 @@
+// Type
+import { SuspectCard as SuspectCardType } from 'types/tdi';
 // Components
 import { DualTranslate } from 'components/language';
 import { ImageCard } from 'components/image-cards';
@@ -8,7 +10,7 @@ type SuspectCardProps = {
   /**
    * Suspect object
    */
-  suspect: SuspectCard;
+  suspect: SuspectCardType;
   /**
    * Card width
    */

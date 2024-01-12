@@ -2,6 +2,9 @@ import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
+import type { GameRanking, GameRound } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -10,7 +13,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Pasture } from './components/Pasture';
 import { RoundType } from './components/RoundType';
-import { Step, StepSwitcher } from 'components/steps';
+import { Step, type StepProps, StepSwitcher } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
@@ -24,7 +27,7 @@ type StepResolutionProps = {
   round: GameRound;
   announceSave: boolean;
   pastureSize: number;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResolution({
   announcement,

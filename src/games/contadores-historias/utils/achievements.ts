@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 export const achievementsReference: AchievementReference = {
   MOST_DECEIVING: {
     icon: 'light-bulb',

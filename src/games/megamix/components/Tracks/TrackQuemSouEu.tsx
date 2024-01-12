@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 // AntDesign Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { TrackProps } from '../../utils/types';
 import type { FightingContender } from 'games/super-campeonato/utils/type';
 // Hooks

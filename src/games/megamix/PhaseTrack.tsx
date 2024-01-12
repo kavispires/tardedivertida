@@ -1,3 +1,7 @@
+// Ant Design Resources
+import { Avatar } from 'antd';
+// Types
+import type { PhaseProps, GameRound } from 'types/game';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
@@ -19,7 +23,6 @@ import { TrackTitle } from './components/TrackTitle';
 import { DJInstructions } from './components/RulesBlobs';
 import { Translate } from 'components/language';
 import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
-import { Avatar } from 'antd';
 
 export function PhaseTrack({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

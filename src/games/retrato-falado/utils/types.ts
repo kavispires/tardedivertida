@@ -1,3 +1,5 @@
+import { MonsterCard } from 'types/tdi';
+
 export type Sketch = {
   sketch: string;
   playerId: PlayerId;

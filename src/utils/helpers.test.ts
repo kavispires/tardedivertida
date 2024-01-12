@@ -1,3 +1,4 @@
+import { GamePlayers } from 'types/player';
 import * as utils from './helpers';
 
 describe('/utils', function () {

@@ -1,3 +1,4 @@
+import { OpposingIdeaCard } from 'types/tdr';
 import { getRandomItem } from 'utils/helpers';
 
 export const mockGuess = (target: number): number => {

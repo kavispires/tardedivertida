@@ -1,3 +1,5 @@
+// Types
+import { PhaseProps } from 'types/game';
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';

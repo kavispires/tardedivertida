@@ -1,11 +1,12 @@
 // Types
+import type { TextCard } from 'types/tdr';
 import type { FightingContender } from './utils/type';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSelectContender } from './utils/mock';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ContendersHand } from './components/ContendersHand';
@@ -15,7 +16,7 @@ type StepSelectContendersProps = {
   onSubmitContender: GenericFunction;
   challenge: TextCard;
   userContenders: FightingContender[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectContenders({
   onSubmitContender,

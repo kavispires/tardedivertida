@@ -4,15 +4,17 @@ import { orderBy } from 'lodash';
 import { Space, Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Clue, Grid, GridType } from './utils/types';
 import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { AVATARS as avatars } from 'utils/avatars';
-import { useLanguage } from 'hooks/useLanguage';
+import { getMeanDuration } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
@@ -22,7 +24,6 @@ import { PreviousClue } from './components/PreviousClue';
 import { ScoringRule } from './components/RulesBlobs';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
-import { getMeanDuration } from 'utils/helpers';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 const AVATARS: PlainObject = avatars;
@@ -186,7 +187,7 @@ type StepRevealProps = {
   clues: Clue[];
   goToNextStep: UseStep['goToNextStep'];
   whoGotNoPoints: PlayerId[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   grid,

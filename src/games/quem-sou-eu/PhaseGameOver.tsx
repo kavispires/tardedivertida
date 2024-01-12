@@ -2,6 +2,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { PhaseProps } from 'types/game';
 import type { FinalCharacterEntry } from './utils/types';
 // Utils
 import { achievementsReference } from './utils/achievements';

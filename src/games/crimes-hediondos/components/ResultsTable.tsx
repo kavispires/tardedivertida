@@ -2,6 +2,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Table, Tooltip } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { Results } from '../utils/types';
 // Icons
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';

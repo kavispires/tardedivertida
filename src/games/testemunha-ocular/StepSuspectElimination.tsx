@@ -2,13 +2,16 @@
 import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Types
+import type { GamePlayer } from 'types/player';
+import type { SuspectCard } from 'types/tdi';
 // Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -28,7 +31,7 @@ type StepSuspectEliminationProps = {
   question: GamePlayer;
   testimony: boolean;
   history: THistoryEntry[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSuspectElimination({
   suspects,

@@ -2,10 +2,11 @@
 import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { AdedanhxGrid, AnswerGridEntry } from './utils/types';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AnswersGrid } from './components/Grid';
@@ -18,7 +19,7 @@ type StepResultGridProps = {
   grid: AdedanhxGrid;
   answersGrid: Record<string, AnswerGridEntry>;
   goToNextStep: UseStep['goToNextStep'];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResultGrid({
   grid,

@@ -3,6 +3,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Col, Row } from 'antd';
 // Types
+import { PhaseProps } from 'types/game';
 import type { GalleryEntry } from './utils/types';
 // Utils
 import achievementsReference from './utils/achievements';

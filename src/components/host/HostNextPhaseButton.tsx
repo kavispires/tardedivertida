@@ -3,6 +3,8 @@ import { ReactNode, useEffect } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 import { PauseOutlined, PlayCircleOutlined } from '@ant-design/icons';
+// Types
+import type { GameRound } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -26,7 +28,7 @@ function ButtonLabel({ round }: { round?: GameRound }) {
   return <Translate pt="Próxima rodada" en="Next Round" />;
 }
 
-type VIPNextPhaseButtonProps = {
+type HostNextPhaseButtonProps = {
   /**
    * The button content, if not present "Next Round is used instead"
    */
@@ -50,7 +52,7 @@ type VIPNextPhaseButtonProps = {
  * It will be auto-triggered after 60 seconds unless value is overridden with a 0
  * It may be paused
  */
-export function HostNextPhaseButton({ round, autoTriggerTime = 30, children }: VIPNextPhaseButtonProps) {
+export function HostNextPhaseButton({ round, autoTriggerTime = 30, children }: HostNextPhaseButtonProps) {
   const isHost = useHost();
   const { translate } = useLanguage();
   const { loaders } = useLoading();

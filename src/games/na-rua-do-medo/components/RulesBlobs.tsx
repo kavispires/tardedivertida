@@ -1,3 +1,5 @@
+// Types
+import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { RulesList } from 'components/rules';

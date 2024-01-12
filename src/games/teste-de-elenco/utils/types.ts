@@ -1,3 +1,5 @@
+import { SuspectCard } from 'types/tdi';
+
 export type SubmitMovieGenrePayload = {
   genre: string;
 };

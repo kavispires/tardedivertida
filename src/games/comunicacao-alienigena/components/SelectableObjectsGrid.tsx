@@ -2,6 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Badge, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Item } from '../utils/types';
 // Hook
 import { useLoading } from 'hooks/useLoading';

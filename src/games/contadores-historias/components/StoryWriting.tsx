@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
+// Types
+import { GamePlayer } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -9,7 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { mockStory } from '../utils/mock';
 // Components
 import { BookPages } from '../../../components/game/BookPages';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCard, ImageCardHand } from 'components/image-cards';
@@ -17,7 +19,7 @@ import { ImageCard, ImageCardHand } from 'components/image-cards';
 type StoryWritingProps = {
   user: GamePlayer;
   onSubmitStory: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StoryWriting({ user, onSubmitStory, announcement }: StoryWritingProps) {
   const { translate } = useLanguage();

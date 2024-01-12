@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import { GamePlayer, GamePlayers } from 'types/player';
+import { GameRound } from 'types/game';
 import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -8,7 +10,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 import { ClockIcon } from 'icons/ClockIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -44,7 +46,7 @@ type StepRevealProps = {
   isAlienBot: boolean;
   startingAttributes: Sign[];
   debugMode: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   players,

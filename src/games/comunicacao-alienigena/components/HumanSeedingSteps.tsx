@@ -3,6 +3,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Flex, Space, Steps, Switch } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Seed } from '../utils/types';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';

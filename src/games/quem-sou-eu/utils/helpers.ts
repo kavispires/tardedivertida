@@ -1,3 +1,6 @@
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Utils
 import { SEPARATOR } from 'utils/constants';
 
 /**

@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+// Types
+import type { PhaseProps } from 'types/game';
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';

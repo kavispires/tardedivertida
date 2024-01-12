@@ -1,6 +1,8 @@
 import { ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { PHASES } from 'utils/phases';
 import { getAnimationClass } from 'utils/helpers';

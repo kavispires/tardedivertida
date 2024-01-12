@@ -5,6 +5,9 @@ import { useEffectOnce, useMeasure } from 'react-use';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
+import type { GameRanking } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Helpers

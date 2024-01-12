@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { Bracket, BracketTier } from '../utils/type';
 // Components
 import { Translate } from 'components/language';

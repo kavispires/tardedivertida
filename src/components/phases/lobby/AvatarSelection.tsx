@@ -2,6 +2,8 @@ import { useCallback, useMemo } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Utils

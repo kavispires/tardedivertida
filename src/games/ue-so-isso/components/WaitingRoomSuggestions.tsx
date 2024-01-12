@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { GamePlayer } from 'types/player';
 // Components
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
