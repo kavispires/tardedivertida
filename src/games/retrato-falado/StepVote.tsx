@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { MonsterCard as MonsterCardType } from 'types/tdi';
 import type { Sketch } from './utils/types';
 // Utils
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -14,16 +16,16 @@ import { ViewOr } from 'components/views';
 import { CanvasResizer, CanvasSVG } from 'components/canvas';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { CheckSquareOutlined } from '@ant-design/icons';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
-  currentMonster: MonsterCard;
+  currentMonster: MonsterCardType;
   onSubmitVote: GenericFunction;
   sketches: Sketch[];
   user: GamePlayer;
   players: GamePlayers;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepVote({
   isUserTheWitness,

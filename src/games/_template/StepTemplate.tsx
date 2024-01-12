@@ -1,14 +1,16 @@
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 
 type StepTemplateProps = {
   players: GamePlayers;
   user: GamePlayer;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepTemplate({ players, user, announcement }: StepTemplateProps) {
   const { isLoading } = useLoading();

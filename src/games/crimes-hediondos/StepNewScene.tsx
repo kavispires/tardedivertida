@@ -2,12 +2,14 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Collapse, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
+import type { CrimeTile } from 'types/tdr';
 import type { Crime, GroupedItems, ItemsDict, SceneTilePayload, ScenesDict } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { CrimeSummary } from './components/CrimeSummary';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
@@ -22,7 +24,7 @@ type StepNewSceneProps = {
   crimes: Crime[];
   scenes: ScenesDict;
   scenesOrder: string[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepNewScene({
   user,

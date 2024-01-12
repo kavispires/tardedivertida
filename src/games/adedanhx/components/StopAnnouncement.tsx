@@ -1,3 +1,5 @@
+// Types
+import type { GamePlayer } from 'types/player';
 // Icons
 import { StopIcon } from 'icons/StopIcon';
 // Components

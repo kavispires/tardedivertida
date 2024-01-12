@@ -1,6 +1,7 @@
 import { camelCase, memoize, orderBy, startCase } from 'lodash';
 // Types
 import type { GameInfo } from 'types/game-info';
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Utils
 import { AVATARS } from 'utils/avatars';
 import { SEPARATOR } from './constants';

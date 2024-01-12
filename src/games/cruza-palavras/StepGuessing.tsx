@@ -3,12 +3,13 @@ import { useEffectOnce } from 'react-use';
 //Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Clue, Grid, GridType } from './utils/types';
 // Utils
 import { shuffle } from 'utils/helpers';
 import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { WordGrid } from './components/WordGrid';
@@ -21,7 +22,7 @@ type StepGuessingProps = {
   user: GamePlayer;
   clues: Clue[];
   onSubmitGuesses: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
   grid,

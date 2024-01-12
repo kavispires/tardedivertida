@@ -1,14 +1,15 @@
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { Question } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
-// Types
-import type { Question } from './utils/types';
 // Utils
 import { mockSelectQuestion } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { Pasture } from './components/Pasture';
 import { GamePremiseRules } from './components/RulesBlobs';
@@ -25,7 +26,7 @@ type StepQuestionSelectionProps = {
   roundType: number;
   pastureSize: number;
   user: GamePlayer;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepQuestionSelection({
   announcement,

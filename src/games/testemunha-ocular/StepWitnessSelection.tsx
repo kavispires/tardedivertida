@@ -1,5 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Type
+// Types
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -11,7 +14,7 @@ import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { AvatarCard, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { WitnessRules } from './components/TextBlobs';
@@ -19,7 +22,7 @@ import { WitnessRules } from './components/TextBlobs';
 type StepWitnessSelectionProps = {
   players: GamePlayers;
   onWitnessButtonClick: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepWitnessSelection({
   players,

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { AlbumEntry } from './utils/types';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';

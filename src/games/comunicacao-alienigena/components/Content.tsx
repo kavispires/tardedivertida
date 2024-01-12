@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+// Types
+import { GamePlayer } from 'types/player';
 
 type ContainerProps = {
   user: GamePlayer;

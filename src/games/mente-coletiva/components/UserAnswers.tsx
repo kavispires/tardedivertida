@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
+// Types
+import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components

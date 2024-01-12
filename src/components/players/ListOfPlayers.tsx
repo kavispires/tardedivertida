@@ -1,4 +1,6 @@
 import { Fragment } from 'react';
+// Types
+import type { GamePlayers } from 'types/player';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';

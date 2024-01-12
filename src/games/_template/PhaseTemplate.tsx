@@ -1,3 +1,5 @@
+// Types
+import type { PhaseProps } from 'types/game';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
@@ -12,7 +14,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepTemplate } from './StepTemplate';
 // Sass
-import 'game-name.scss';
+import 'utils/styles.scss';
 
 export function PhaseTemplate({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

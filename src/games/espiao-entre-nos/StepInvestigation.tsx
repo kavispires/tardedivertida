@@ -3,6 +3,7 @@ import type { UseStep } from 'hooks/useStep';
 // Ant Design Resources
 import { App, Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Location, Outcome, TimerType } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

@@ -1,6 +1,7 @@
 // AntDesign Resources
 import { Button, Space } from 'antd';
 // Types
+import type { TextCard } from 'types/tdr';
 import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

@@ -1,11 +1,12 @@
 // Types
+import type { GamePlayer } from 'types/player';
 import type { ActingRole, FeatureFilm, SubmitMovieActorPayload } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getRandomItem } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ActorsBoard } from './components/ActorsBoard';
@@ -18,7 +19,7 @@ type StepSelectActorProps = {
   activeRole: ActingRole;
   onSubmitActor: (payload: SubmitMovieActorPayload) => void;
   movie: FeatureFilm;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectActor({
   user,

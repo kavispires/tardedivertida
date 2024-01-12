@@ -1,7 +1,8 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { OnSubmitPathGuessFunction, Tree } from './utils/types';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ClickableForest } from './components/ClickableForest';
@@ -16,7 +17,7 @@ type StepFollowPathProps = {
   onSubmitPath: OnSubmitPathGuessFunction;
   activePlayer: GamePlayer;
   isTheActivePlayer: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepFollowPath({
   players,

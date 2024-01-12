@@ -2,6 +2,7 @@
 import { Button, Space } from 'antd';
 import { RobotOutlined } from '@ant-design/icons';
 // Types
+import type { TextCard } from 'types/tdr';
 import type { ImageCardObj } from './utils/types';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
@@ -11,7 +12,7 @@ import { mockDreamSelection } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { TextHighlight, Title } from 'components/text';
 import { BotsRules, DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
 import { SelectTable } from './components/SelectTable';
@@ -27,7 +28,7 @@ type StepDreamsSelectionProps = {
   onSubmitCards: GenericFunction;
   botEnabled: boolean;
   hardModeEnabled: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepDreamsSelection({
   table,

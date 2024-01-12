@@ -1,3 +1,5 @@
+// Types
+import type { MovieCard } from 'types/tdr';
 // Utils
 import { getMovieTitle } from '../utils/helpers';
 // Icons

@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 export const achievementsReference: AchievementReference = {
   MOST_ACCURATE: {
     icon: 'arrow-up',

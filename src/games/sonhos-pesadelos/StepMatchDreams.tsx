@@ -3,6 +3,7 @@ import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { Dream } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

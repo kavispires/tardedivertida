@@ -1,3 +1,5 @@
+// Types
+import type { GamePlayers } from 'types/player';
 import { Step } from 'components/steps';
 
 type StepStandoffProps = {

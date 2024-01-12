@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { OpposingIdeaCard } from 'types/tdr';
 // Utils
 import { getBracketClass } from '../utils/helpers';
 // Components

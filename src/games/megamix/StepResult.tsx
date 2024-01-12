@@ -5,6 +5,8 @@ import { memoize } from 'lodash';
 import { Button, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { Track } from './utils/types';
 // Utils
 import { sortPlayers } from 'utils/helpers';
@@ -17,7 +19,7 @@ import { DJIcon } from 'icons/DJIcon';
 import { GarbageIcon } from 'icons/GarbageIcon';
 import { VIPLineIcon } from 'icons/VIPLineIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
@@ -37,7 +39,7 @@ type StepResultProps = {
   winningValues: string[];
   winningTeam: PlayerId[];
   scoringType: string;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResult({
   user,

@@ -2,6 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import { GamePlayer, GamePlayers } from 'types/player';
 import type { TableEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -13,7 +14,7 @@ import { mockVote } from './utils/mock';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { VotingRules } from './components/RulesBlobs';
 import { ImageCard, ImageCardButton } from 'components/image-cards';
@@ -26,7 +27,7 @@ type StepVotingProps = {
   storyteller: GamePlayer;
   table: TableEntry[];
   isUserTheStoryTeller: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepVoting({
   players,

@@ -1,21 +1,23 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
+import { random, sample } from 'lodash';
 // Ant Design Resources
 import { Avatar as AntAvatar, Button, Image } from 'antd';
 import { RadarChartOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 import { TRAPS } from '../utils/constants';
 // Components
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { DoorFrame } from '../../../components/game/DoorFrame';
 import { Avatar } from 'components/avatars';
-import { random, sample } from 'lodash';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { DoorFrame } from 'components/game/DoorFrame';
 
 type CorridorProps = {
   doors: CardId[];

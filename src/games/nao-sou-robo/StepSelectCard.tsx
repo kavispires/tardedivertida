@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Flex, InputNumber, Space, Typography } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Captcha, Robot, SubmitRobotCardPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -10,7 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { mockCardPick } from './utils/mock';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCardHand } from 'components/image-cards';
@@ -32,7 +33,7 @@ type StepSelectCardProps = {
   onSubmitCard: (payload: SubmitRobotCardPayload) => void;
   captcha: Captcha;
   robot: Robot;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectCard({
   user,

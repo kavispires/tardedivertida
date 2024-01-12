@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
+// Types
+import type { GamePlayer } from 'types/player';
 // Utils
 import { getColorFromIndex } from 'utils/helpers';
 // Components

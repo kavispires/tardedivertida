@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayers } from 'types/player';
 import type { AlbumEntry } from '../utils/types';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';

@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
-import { PLACEHOLDER_PLAYER, VIEWER_ID } from 'utils/constants';
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameState } from 'types/game';
+// Hooks
 import { useGlobalState } from './useGlobalState';
+// Utils
+import { PLACEHOLDER_PLAYER, VIEWER_ID } from 'utils/constants';
 
 const THREE_MINUTES = 3 * 60 * 1000;
 

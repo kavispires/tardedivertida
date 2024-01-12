@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { OnSubmitMapFunction, Tree } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
@@ -9,7 +10,7 @@ import { mockNewMap } from './utils/mocks';
 import { NoIcon } from 'icons/NoIcon';
 import { TreeIcon } from 'icons/TreeIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Forest } from './components/Forest';
@@ -24,7 +25,7 @@ type StepBuildMapProps = {
   forest: Tree[];
   currentRound: number;
   onSubmitMap: OnSubmitMapFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepBuildMap({
   players,

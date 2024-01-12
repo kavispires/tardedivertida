@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { CandySidewalk, StreetCard } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

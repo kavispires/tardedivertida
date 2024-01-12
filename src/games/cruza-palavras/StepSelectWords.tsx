@@ -1,11 +1,14 @@
 import { sampleSize } from 'lodash';
 // Ant Design Resources
 import { Badge, Button, Space } from 'antd';
+// Types
+import type { GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Card } from 'components/cards';
@@ -16,7 +19,7 @@ type StepSelectWordsProps = {
   user: GamePlayer;
   deck: TextCard[];
   onSubmitWords: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectWords({ deck, onSubmitWords, user, announcement }: StepSelectWordsProps) {
   const { isLoading } = useLoading();

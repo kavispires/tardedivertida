@@ -1,13 +1,14 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { CurrentCategory } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Dial } from './components/Dial';
 
@@ -15,7 +16,7 @@ type StepPsychicGuessProps = {
   currentCategory: CurrentCategory;
   onSendGuess: GenericFunction;
   players: GamePlayers;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepPsychicGuess({
   currentCategory,

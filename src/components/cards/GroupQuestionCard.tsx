@@ -1,3 +1,5 @@
+// Type
+import type { GroupQuestionCard as GroupQuestionCardType } from 'types/tdr';
 // Sass
 import './GroupQuestionCard.scss';
 
@@ -5,7 +7,7 @@ type GroupQuestionCardProps = {
   /**
    * The question to be displayed
    */
-  question: GroupQuestionCard;
+  question: GroupQuestionCardType;
   /**
    * The number to be displayed. If not provided, the question's number will be used.
    */

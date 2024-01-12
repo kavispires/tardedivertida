@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { CardEntry } from './utils/types';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
@@ -6,7 +7,7 @@ import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { Translate } from 'components/language';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { ReadyPlayersBar } from 'components/players';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 import { Table } from './components/Table';
@@ -21,7 +22,7 @@ type StepVotingProps = {
   players: GamePlayers;
   onVote: GenericFunction;
   table: CardEntry[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepVoting({
   isLoading,

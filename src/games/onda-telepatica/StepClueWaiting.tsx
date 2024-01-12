@@ -1,10 +1,13 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import { OpposingIdeaCard } from 'types/tdr';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 
@@ -13,7 +16,7 @@ type StepClueWaitingProps = {
   psychic: GamePlayer;
   currentCategories: OpposingIdeaCard[];
   currentCategoryId: string;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepClueWaiting({
   players,

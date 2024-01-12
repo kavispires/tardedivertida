@@ -1,3 +1,6 @@
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Utils
 import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { getRandomItem } from 'utils/helpers';
 

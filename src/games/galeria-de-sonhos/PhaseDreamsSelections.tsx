@@ -1,4 +1,5 @@
 // Types
+import type { PhaseProps } from 'types/game';
 import type { ImageCardObj } from './utils/types';
 // State & Hooks
 import { useStep } from 'hooks/useStep';

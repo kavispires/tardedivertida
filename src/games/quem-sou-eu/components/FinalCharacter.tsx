@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { FinalCharacterEntry } from '../utils/types';
 // Utils
 import { parseSelectedGlyphs } from '../utils/helpers';

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 // Types
+import type { PhaseProps } from 'types/game';
 import type { MapSegment } from './utils/types';
 // State & Hooks
 import { useStep } from 'hooks/useStep';

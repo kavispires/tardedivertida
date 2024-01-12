@@ -1,5 +1,8 @@
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Reviews } from './components/Reviews';
@@ -12,7 +15,7 @@ type StepSelectMovieProps = {
   badReview: MovieReviewCard;
   movies: MovieCard[];
   onSelectMovie: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectMovie({
   players,

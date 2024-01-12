@@ -3,6 +3,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Badge, Button, Select, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Item, Sign } from '../utils/types';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';

@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   MOST_ROBOT: 'MOST_ROBOT',
   LEAST_ROBOT: 'LEAST_ROBOT',

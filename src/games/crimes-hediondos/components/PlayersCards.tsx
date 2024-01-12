@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { History } from '../utils/types';
 // Helpers
 import { isHistoryLocked } from '../utils/helpers';

@@ -2,6 +2,7 @@
 import { Button, Popover } from 'antd';
 import { FormOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { GridCell } from '../utils/types';
 // Components
 import { Translate } from 'components/language';

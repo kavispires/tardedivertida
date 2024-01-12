@@ -1,6 +1,9 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Space, Avatar as AntAvatar, Tooltip } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils

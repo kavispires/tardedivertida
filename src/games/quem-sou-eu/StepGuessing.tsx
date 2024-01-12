@@ -5,6 +5,8 @@ import { useCallback, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { Characters } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -15,7 +17,7 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 import { getEntryId, sortPlayers } from 'utils/helpers';
 import { getRibbons, prepareGuesses } from './utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
@@ -31,7 +33,7 @@ type StepGuessingProps = {
   characters: Characters;
   tableOrder: CardId[];
   round: GameRound;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
   user,

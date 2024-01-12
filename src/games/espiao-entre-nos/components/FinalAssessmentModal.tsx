@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Modal, Space } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { FinalAssessment } from '../utils/types';
 // Components
 import { Translate } from 'components/language';

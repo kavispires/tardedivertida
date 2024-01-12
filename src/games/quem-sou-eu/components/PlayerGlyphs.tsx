@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+// Types
+import type { GamePlayer } from 'types/player';
 // Utils
 import { parseSelectedGlyphs } from '../utils/helpers';
 // Icons

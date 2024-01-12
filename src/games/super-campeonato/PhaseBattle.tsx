@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+// Types
+import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';

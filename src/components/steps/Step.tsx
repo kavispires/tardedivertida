@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
-type StepProps = {
+export type StepProps = {
   /**
    * Overlay PhaseAnnouncement
    */

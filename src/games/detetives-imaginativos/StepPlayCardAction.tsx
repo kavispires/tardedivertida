@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { App } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { CardEntry } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

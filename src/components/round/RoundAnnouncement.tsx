@@ -1,6 +1,9 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Button } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 // Assets
 import roundTitleEn from 'assets/images/round-title-en.svg';
 import roundTitlePt from 'assets/images/round-title-pt.svg';

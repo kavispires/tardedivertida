@@ -1,11 +1,11 @@
+import type { SuspectCard } from 'types/tdi';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Space } from 'antd';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Card } from 'components/cards';
@@ -17,7 +17,7 @@ type StepSelectQuestionProps = {
   suspects: SuspectCard[];
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectQuestion({
   questions,

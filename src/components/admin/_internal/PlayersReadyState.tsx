@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { CheckCircleFilled, MinusCircleFilled } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
 // Sass
 import './PlayersReadyState.scss';
 

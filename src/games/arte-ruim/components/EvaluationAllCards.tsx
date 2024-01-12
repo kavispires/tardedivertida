@@ -1,4 +1,7 @@
 import clsx from 'clsx';
+// Types
+import type { ArteRuimCard } from '../utils/types';
+// Hooks
 import { useDevFeatures } from 'hooks/useDevFeatures';
 // Utils
 import { LETTERS } from 'utils/constants';

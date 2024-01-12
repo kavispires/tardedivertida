@@ -1,6 +1,8 @@
 import { StepProps } from 'antd';
-import { SeedEntry } from './types';
 // Types
+import { GameRound } from 'types/game';
+import { MovieCard } from 'types/tdr';
+import { SeedEntry } from './types';
 
 export const buildSeedingSteps = (
   seeds: SeedEntry[],

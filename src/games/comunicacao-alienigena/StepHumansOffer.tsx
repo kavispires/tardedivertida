@@ -1,11 +1,12 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import { GamePlayer, GamePlayers } from 'types/player';
 import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -34,7 +35,7 @@ type StepHumansOfferProps = {
   isAlienBot: boolean;
   startingAttributes: Sign[];
   debugMode: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepHumansOffer({
   players,

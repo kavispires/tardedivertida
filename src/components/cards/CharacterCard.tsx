@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design resources
 import { Image } from 'antd';
+// Types
+import type { ContenderCard } from 'types/tdr';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useLanguage } from 'hooks/useLanguage';

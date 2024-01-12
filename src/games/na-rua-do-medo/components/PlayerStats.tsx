@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Decision, StreetCard } from '../utils/types';
 // Icons
 import { HouseIcon } from 'icons/HouseIcon';

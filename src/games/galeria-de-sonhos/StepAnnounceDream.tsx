@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Alert, Divider, Space } from 'antd';
 import { useMemo } from 'react';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { LatestInfo } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

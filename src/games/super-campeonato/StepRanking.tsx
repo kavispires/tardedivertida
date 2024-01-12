@@ -1,4 +1,6 @@
 // Types
+import type { GamePlayers } from 'types/player';
+import type { GameRound, GameRanking } from 'types/game';
 import type { Bet, Bracket } from './utils/type';
 // Components
 import { HostNextPhaseButton } from 'components/host';

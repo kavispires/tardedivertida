@@ -1,8 +1,9 @@
 // Ant Design Resources
 import { Avatar as AntAvatar, Space } from 'antd';
 // Types
-import type { TableEntry } from './utils/types';
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { UseStep } from 'hooks/useStep';
+import type { TableEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -12,7 +13,7 @@ import { TimedButton } from 'components/buttons';
 import { ImageBlurButton, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { BookPages } from '../../components/game/BookPages';
 import { ScoringRules } from './components/RulesBlobs';
@@ -23,7 +24,7 @@ type StepResolutionProps = {
   storyteller: GamePlayer;
   table: TableEntry[];
   goToNextStep: UseStep['goToNextStep'];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResolution({
   players,

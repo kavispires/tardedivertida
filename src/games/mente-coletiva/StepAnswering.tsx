@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Question } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -13,7 +14,7 @@ import { mockAnswers } from './utils/mock';
 // Components
 import { Pasture } from './components/Pasture';
 import { AnsweringRules } from './components/RulesBlobs';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
@@ -29,7 +30,7 @@ type StepAnsweringProps = {
   user: GamePlayer;
   pastureSize: number;
   timedAnswers?: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepAnswering({
   user,

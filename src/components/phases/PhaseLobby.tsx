@@ -1,6 +1,8 @@
 import { orderBy } from 'lodash';
 // Types
 import type { GameInfo } from 'types/game-info';
+import type { GameMeta } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Constants
 import { PHASES } from 'utils/phases';
 // Hooks

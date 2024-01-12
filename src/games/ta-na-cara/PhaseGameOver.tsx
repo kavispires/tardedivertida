@@ -1,5 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { PhaseProps } from 'types/game';
+import type { GamePlayer } from 'types/player';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components

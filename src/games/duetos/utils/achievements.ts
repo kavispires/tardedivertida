@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   MOST_ALONE: 'MOST_ALONE',
   MOST_DUOS: 'MOST_DUOS',

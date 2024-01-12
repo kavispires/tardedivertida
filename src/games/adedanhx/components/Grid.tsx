@@ -4,6 +4,8 @@ import { useMemo } from 'react';
 import { Divider, Input, Switch } from 'antd';
 import { LockFilled, UnlockFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayers } from 'types/player';
+import type { TopicCard } from 'types/tdr';
 import type { AdedanhxGrid, Answer, AnswerGridEntry, LetterEntry } from '../utils/types';
 // Utils
 import { NOOP } from 'utils/constants';

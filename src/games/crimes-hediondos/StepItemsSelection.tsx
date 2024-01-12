@@ -2,13 +2,15 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
+import type { CrimesHediondosCard } from 'types/tdi';
 import type { GroupedItems, ItemsDict } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
@@ -22,7 +24,7 @@ type StepItemsSelectionProps = {
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepItemsSelection({
   announcement,

@@ -1,3 +1,5 @@
+// Types
+import type { PhaseProps } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';

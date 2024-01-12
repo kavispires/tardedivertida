@@ -1,7 +1,8 @@
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Tree } from './utils/types';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Forest } from './components/Forest';
@@ -13,7 +14,7 @@ type StepPathWaitingProps = {
   players: GamePlayers;
   forest: Tree[];
   activePlayer: GamePlayer;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepPathWaiting({ players, announcement, forest, activePlayer }: StepPathWaitingProps) {
   const playerCount = Object.keys(players).length;

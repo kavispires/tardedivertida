@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { AdedanhxGrid, Answer, SubmitGridAnswersPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

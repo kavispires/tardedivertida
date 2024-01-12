@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Image, Space } from 'antd';
 import { RadarChartOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useDancingDoors } from './utils/useTrapHooks';
 import { useLoading } from 'hooks/useLoading';

@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   BIGGEST_HATER: 'BIGGEST_HATER',
   MOST_LIKER: 'MOST_LIKER',

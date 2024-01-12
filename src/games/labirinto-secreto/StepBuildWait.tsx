@@ -1,7 +1,8 @@
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Tree } from './utils/types';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Forest } from './components/Forest';
@@ -9,7 +10,7 @@ import { Forest } from './components/Forest';
 type StepBuildWaitProps = {
   user: GamePlayer;
   forest: Tree[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepBuildWait({ user, announcement, forest }: StepBuildWaitProps) {
   return (

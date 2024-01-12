@@ -1,4 +1,5 @@
 // Types
+import type { PhaseProps } from 'types/game';
 import type { AdedanhxGalleryEntry } from './utils/types';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';

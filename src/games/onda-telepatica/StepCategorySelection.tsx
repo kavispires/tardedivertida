@@ -1,11 +1,13 @@
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+// Types
+import type { OpposingIdeaCard } from 'types/tdr';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 import { IconAvatar } from 'components/avatars';
@@ -13,7 +15,7 @@ import { IconAvatar } from 'components/avatars';
 type StepCategorySelectionProps = {
   currentCategories: OpposingIdeaCard[];
   onSendChosenSide: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepCategorySelection({
   currentCategories,

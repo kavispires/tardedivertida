@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+// Types
+import type { GamePlayers } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';

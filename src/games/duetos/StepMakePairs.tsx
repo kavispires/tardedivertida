@@ -3,6 +3,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Item, SubmitPairsPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -10,7 +11,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { mockPairs } from './utils/mock';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ItemEntry } from './components/ItemEntry';
@@ -23,7 +24,7 @@ type StepTemplateProps = {
   user: GamePlayer;
   pool: Item[];
   onSubmitPairs: (payload: SubmitPairsPayload) => void;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepMakePairs({ players, user, announcement, pool, onSubmitPairs }: StepTemplateProps) {
   const { isLoading } = useLoading();

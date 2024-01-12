@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   MOST_STOPS: 'MOST_STOPS',
   NEVER_STOPPED: 'NEVER_STOPPED',

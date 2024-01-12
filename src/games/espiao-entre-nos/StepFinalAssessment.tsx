@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { FinalAssessment, Location, Outcome } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

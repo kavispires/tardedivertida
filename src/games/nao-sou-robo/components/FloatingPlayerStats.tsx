@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Robot } from '../utils/types';
 // Icons
 import { UserStatsIcon } from 'icons/UserStatsIcon';

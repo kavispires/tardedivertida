@@ -1,7 +1,8 @@
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Item } from './utils/types';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { BotPopupRule } from './components/BotPopupRules';
@@ -11,7 +12,7 @@ type StepSeedAlienProps = {
   onSubmitSeeds: GenericFunction;
   user: GamePlayer;
   items: Item[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSeedAlien({ user, announcement, onSubmitSeeds, items }: StepSeedAlienProps) {
   return (

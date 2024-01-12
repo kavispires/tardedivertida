@@ -72,39 +72,11 @@ type Color =
   | 'white'
   | 'grey';
 
-type GamePlayer<TPlayer = PlainObject> = {
-  id: PlayerId;
-  name: PlayerName;
-  avatarId: PlayerAvatarId;
-  updatedAt: DateMilliseconds;
-  ready: boolean;
-  [key: string]: any;
-} & TPlayer;
-
-interface GamePlayers<TPlayer = any> {
-  [key: string]: GamePlayer<TPlayer>;
-}
-
-type AchievementKey = string;
-
 interface Redirect {
   redirectAt: DateMilliseconds;
   gameId: GameId;
   gameName: GameName;
 }
-
-interface GameState<TState = PlainObject, TPlayer = PlainObject> extends TState {
-  phase: string;
-  updatedAt?: DateMilliseconds;
-  round: GameRound;
-  players: GamePlayers<TPlayer>;
-  redirect?: Redirect;
-  [key: string]: any;
-}
-
-type SessionProps = {
-  gameId: GameId;
-};
 
 type GameTag = {
   label: DualLanguageValue;
@@ -113,51 +85,12 @@ type GameTag = {
   group: 'dynamics' | 'turns' | 'skills' | 'actions' | 'emotions' | 'features' | 'other';
 };
 
-type GameMeta = {
-  createdAt: DateMilliseconds;
-  createdBy: string;
-  gameId: GameId;
-  gameName: GameName;
-  isComplete: boolean;
-  isLocked: boolean;
-  language: GameLanguage;
-  max: number;
-  min: number;
-  options?: BooleanDictionary;
-  replay: number;
-};
-
-type GameRound = {
-  current: number;
-  total: number;
-  forceLastRound: boolean;
-};
-
 type CanvasLine = number[];
 type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
 type GenericComponent = (...args: any) => any;
 type GenericFunction = (...args: any) => void;
 type BooleanFunction = (...args: any) => boolean;
 type ButtonEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
-
-type PhaseProps<TState = PlainObject, TPlayer = PlainObject> = {
-  state: GameState<TState, TPlayer>;
-  players: GamePlayers<TPlayer>;
-  info: GameInfo;
-  meta: GameMeta;
-};
-
-type AnnouncementProps = {
-  announcement: JSX.Element;
-};
-
-type GameRanking = {
-  playerId: string;
-  previousScore: number;
-  gainedPoints: number | number[];
-  newScore: number;
-  [key: string]: any;
-}[];
 
 /**
  * Animation types
@@ -261,20 +194,6 @@ type AnimationType =
   | 'zoomOutLeft'
   | 'zoomOutRight'
   | 'zoomOutUp';
-
-interface Achievement {
-  type: string;
-  playerId: PlayerId;
-  value: Primitive;
-}
-
-interface AchievementInfo {
-  icon: string;
-  title: DualLanguageValue;
-  description?: DualLanguageValue;
-}
-
-type AchievementReference = Record<string, AchievementInfo>;
 
 interface GroupProgress {
   correct: number;

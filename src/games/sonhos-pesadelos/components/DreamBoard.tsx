@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { GamePlayer } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components

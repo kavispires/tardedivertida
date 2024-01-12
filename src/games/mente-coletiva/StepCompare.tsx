@@ -1,11 +1,13 @@
 // Ant Design Resources
 import { Divider } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { AllowedList, Answer, AnswerGroupObject, Question } from './utils/types';
 // Hook
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { AdminAnswerControl } from './components/AdminAnswerControl';
 import { AnswerGroup } from './components/AnswerGroup';
 import { UserAnswers } from './components/UserAnswers';
@@ -24,7 +26,7 @@ type StepCompareProps = {
   allowedList: AllowedList;
   setAllowedList: GenericFunction;
   round: GameRound;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepCompare({
   announcement,

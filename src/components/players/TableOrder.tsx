@@ -2,6 +2,8 @@ import { Fragment, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
 import { BackwardFilled } from '@ant-design/icons';
+// Types
+import type { GamePlayers } from 'types/player';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
 import { reorder } from './reorder';

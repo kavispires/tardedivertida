@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { Bracket, ContenderByTier } from '../utils/type';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';

@@ -1,3 +1,5 @@
+import { AchievementReference } from 'types/achievements';
+
 const ACHIEVEMENTS = {
   MOST_GLYPHS: 'MOST_GLYPHS',
   LEAST_GLYPHS: 'LEAST_GLYPHS',

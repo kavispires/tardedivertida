@@ -1,9 +1,12 @@
+// Types
+import type { GamePlayer } from 'types/player';
+import type { SuspectCard } from 'types/tdi';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
@@ -15,7 +18,7 @@ type StepQuestionWaitingProps = {
   questioner: GamePlayer;
   isUserTheWitness: boolean;
   history: THistoryEntry[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepQuestionWaiting({
   suspects,

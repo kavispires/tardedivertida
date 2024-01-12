@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
+import type { CrimeTile } from 'types/tdr';
 import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { SceneTile } from 'components/game/SceneTile';
 import { ContinueButton } from './components/ContinueButton';
@@ -21,7 +23,7 @@ type StepLocationSelectionProps = {
   locationTiles: CrimeTile[];
   groupedItems: GroupedItems;
   goToStep: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepLocationSelection({
   announcement,

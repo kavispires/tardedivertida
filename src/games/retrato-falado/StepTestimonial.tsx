@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+// Types
+import type { GamePlayer } from 'types/player';
+import type { MonsterCard as MonsterCardType } from 'types/tdi';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -13,7 +16,7 @@ import { ViewWitnessing } from './components/ViewWitnessing';
 
 type StepTestimonialProps = {
   isUserTheWitness: boolean;
-  currentMonster: MonsterCard;
+  currentMonster: MonsterCardType;
   onSubmitSketch: GenericFunction;
   onSubmitOrientation: GenericFunction;
   witness: GamePlayer;

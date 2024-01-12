@@ -2,6 +2,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Popover } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
+// Types
+import type { CrimeTile } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Sass

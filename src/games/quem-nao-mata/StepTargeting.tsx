@@ -1,3 +1,5 @@
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import { ReadOutlined } from '@ant-design/icons';
 import { Button, App } from 'antd';
 import { Translate } from 'components/language';

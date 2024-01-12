@@ -1,5 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 // Utils
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 // Components

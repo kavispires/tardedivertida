@@ -1,3 +1,5 @@
+import { MovieCard } from 'types/tdr';
+
 export const getMovieTitle = (movies: MovieCard[], letter: string) => {
   return {
     A: `${movies[0].prefix} ${movies[1].suffix}`,

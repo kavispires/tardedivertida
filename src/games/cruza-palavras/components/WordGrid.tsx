@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Grid, GridType } from '../utils/types';
 // Components
 import { WordGridHeader } from './WordGridHeader';

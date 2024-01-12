@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { ArteRuimCard, ArteRuimDrawing } from '../utils/types';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { ImageCardObj } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

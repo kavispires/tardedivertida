@@ -1,4 +1,7 @@
 import { isEqual } from 'lodash';
+// Types
+import type { PhaseProps } from 'types/game';
+import type { GamePlayer } from 'types/player';
 // Utils
 import { AVATARS } from 'utils/avatars';
 import { achievementsReference } from './utils/achievements';

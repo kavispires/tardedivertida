@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 // Ant Design Resources
 import { App } from 'antd';
+// Types
+import type { GameMeta } from 'types/game';
 // Hooks
 import { useLocalStorage } from './useLocalStorage';
 import { useLoading } from './useLoading';

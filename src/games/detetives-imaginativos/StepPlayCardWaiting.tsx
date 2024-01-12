@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';

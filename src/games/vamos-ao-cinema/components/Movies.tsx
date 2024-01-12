@@ -1,5 +1,8 @@
 import { Avatar as AntAvatar, Button, Space, Spin } from 'antd';
 import clsx from 'clsx';
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { MovieCard as MovieCardType } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Icons
@@ -12,7 +15,7 @@ import { Avatar, IconAvatar } from 'components/avatars';
 import { getAnimationClass } from 'utils/helpers';
 
 type MoviesProps = {
-  movies: MovieCard[];
+  movies: MovieCardType[];
   user: GamePlayer;
   onSelect?: GenericFunction;
   eliminatedMovies?: CardId[];

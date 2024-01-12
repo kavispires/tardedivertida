@@ -1,9 +1,11 @@
 import clsx from 'clsx';
+// Types
+import type { MovieCard as MovieCardType } from 'types/tdr';
 // Sass
 import './MovieCard.scss';
 
 type MovieCardProps = {
-  movie: MovieCard;
+  movie: MovieCardType;
   disableSuffix?: boolean;
   suffixColor?: string;
   disablePrefix?: boolean;

@@ -1,4 +1,6 @@
 // Types
+import type { GamePlayers } from 'types/player';
+import type { GameRanking, GameRound } from 'types/game';
 import type { CloverObject, Leaves } from './utils/types';
 // Hooks
 import { useCloverState } from './utils/useCloverState';

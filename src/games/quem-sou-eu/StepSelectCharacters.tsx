@@ -1,5 +1,8 @@
 // Ant Design Resources
 import { Badge, Button, Space } from 'antd';
+// Types
+import { ContenderCard } from 'types/tdr';
+import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -8,7 +11,7 @@ import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 // Utils
 import { mockSelectCharacters } from './utils/mock';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
@@ -18,7 +21,7 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 type StepSelectCharactersProps = {
   user: GamePlayer;
   onSelectCharacters: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectCharacters({ user, announcement, onSelectCharacters }: StepSelectCharactersProps) {
   const { isLoading } = useLoading();

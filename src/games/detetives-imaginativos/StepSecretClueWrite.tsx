@@ -1,11 +1,13 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
+// Types
+import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCardHand } from 'components/image-cards';
@@ -14,7 +16,7 @@ import { CardHighlight } from 'components/metrics/CardHighlight';
 type SecretClueWriteProps = {
   onSubmitClue: GenericFunction;
   user: GamePlayer;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSecretClueWrite({ user, onSubmitClue, announcement }: SecretClueWriteProps) {
   const { translate } = useLanguage();

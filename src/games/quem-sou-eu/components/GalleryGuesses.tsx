@@ -3,6 +3,8 @@ import { orderBy } from 'lodash';
 import { Avatar as AntAvatar, Space, Typography } from 'antd';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { Characters } from '../utils/types';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';

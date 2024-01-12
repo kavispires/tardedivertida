@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
+// Types
 import type { Suggestion } from '../utils/types';
 // Components
 import { SuggestionCard } from './SuggestionCard';

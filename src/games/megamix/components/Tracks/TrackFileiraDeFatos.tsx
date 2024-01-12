@@ -1,6 +1,7 @@
 // AntDesign Resources
 import { Avatar, Space } from 'antd';
 // Types
+import type { TextCard } from 'types/tdr';
 import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

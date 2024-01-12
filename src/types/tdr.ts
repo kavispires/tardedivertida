@@ -2,29 +2,29 @@
  * Generic text card
  * Games that use: linhas-cruzadas, single-word
  */
-type TextCard = {
+export type TextCard = {
   id: CardId;
   text: string;
 };
 
-type ArteRuimCard = {
+export type ArteRuimCard = {
   id: CardId;
   text: string;
   level: number;
 };
 
-type ArteRuimGroup = {
+export type ArteRuimGroup = {
   id: string;
   theme: string;
   cards: Record<CardId, string>;
 };
 
-type ArteRuimPair = {
+export type ArteRuimPair = {
   id: string;
   values: [string, string];
 };
 
-type ContenderCard = {
+export type ContenderCard = {
   id: CardId;
   name: DualLanguageValue;
   exclusivity?: Language;
@@ -32,7 +32,7 @@ type ContenderCard = {
   nsfw?: boolean;
 };
 
-type CrimeTile = {
+export type CrimeTile = {
   id: string;
   title: DualLanguageValue;
   description: DualLanguageValue;
@@ -42,71 +42,71 @@ type CrimeTile = {
   tags?: Record<number | string, string[]>;
 };
 
-type GroupQuestionCard = {
+export type GroupQuestionCard = {
   id: CardId;
   prefix: string;
   number: number;
   suffix: string;
 };
 
-type NamingPromptCard = {
+export type NamingPromptCard = {
   id: CardId;
   text: string;
   set: string;
   level: number;
 };
 
-type OpposingIdeaCard = {
+export type OpposingIdeaCard = {
   id: CardId;
   left: string;
   right: string;
 };
 
-type SpyLocation = {
+export type SpyLocation = {
   id: CardId;
   name: string;
   roles: string[];
 };
 
-type TestimonyQuestionCard = {
+export type TestimonyQuestionCard = {
   id: CardId;
   question: string;
   answer: string;
   nsfw?: boolean;
 };
 
-type ThemeCard = {
+export type ThemeCard = {
   id: CardId;
   text: string;
   description?: string;
 };
 
-type Tweet = {
+export type Tweet = {
   id: CardId;
   text: string;
   custom?: boolean;
 };
 
-type TopicCard = {
+export type TopicCard = {
   id: CardId;
   label: string;
   category: string;
   level: number;
 };
 
-type DatingCandidateCard = {
+export type DatingCandidateCard = {
   id: CardId;
   text: string;
   type: 'fun-fact' | 'interest' | 'need';
 };
 
-type DatingCandidateImageCard = {
+export type DatingCandidateImageCard = {
   id: CardId;
   name: DualLanguageValue;
   type: 'head' | 'body';
 };
 
-type DilemmaCard = {
+export type DilemmaCard = {
   id: CardId;
   prompt: string;
   left: string;
@@ -114,26 +114,26 @@ type DilemmaCard = {
   nsfw?: boolean;
 };
 
-type QuantitativeQuestionCard = {
+export type QuantitativeQuestionCard = {
   id: CardId;
   question: string;
   scale?: boolean;
 };
 
-type MovieCard = {
+export type MovieCard = {
   id: CardId;
   prefix: string;
   suffix: string;
 };
 
-type MovieReviewCard = {
+export type MovieReviewCard = {
   id: CardId;
   text: string;
   type: 'good' | 'bad';
   highlights?: string[];
 };
 
-type AlienItem = {
+export type AlienItem = {
   id: string;
   name: DualLanguageValue;
   attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;

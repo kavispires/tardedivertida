@@ -1,3 +1,6 @@
+import type { CrimesHediondosCard } from 'types/tdi';
+import type { CrimeTile } from 'types/tdr';
+
 export type GroupedItems = {
   [key: string]: string[];
 };

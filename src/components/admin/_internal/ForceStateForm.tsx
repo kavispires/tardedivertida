@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { AutoComplete, Button, Form, Select, App } from 'antd';
+// Types
+import type { GameState } from 'types/game';
 // Utils
 import { ADMIN_ACTIONS } from 'utils/constants';
 // Components

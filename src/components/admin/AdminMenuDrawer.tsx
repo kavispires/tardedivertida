@@ -2,6 +2,9 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Drawer, Popconfirm } from 'antd';
 import { FireFilled } from '@ant-design/icons';
+// Types
+import type { GameState } from 'types/game';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useAPICall } from 'hooks/useAPICall';
 import { useGlobalState } from 'hooks/useGlobalState';

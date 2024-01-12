@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Input, Space } from 'antd';
 // Types
+import { PhaseProps } from 'types/game';
+// Types
 import type { FeatureFilm } from './utils/types';
 // Utils
 import { achievementsReference } from './utils/achievements';

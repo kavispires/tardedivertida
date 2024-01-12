@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { Slide } from '../utils/types';
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';

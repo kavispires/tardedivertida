@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Types
+import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { Avatar } from './Avatar';

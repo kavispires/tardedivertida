@@ -1,4 +1,6 @@
 // Types
+import type { CrimeTile } from 'types/tdr';
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { GroupedItems, GuessHistoryEntry, SubmitCrimePayload } from '../utils/types';
 // Utils
 import { SEPARATOR } from 'utils/constants';

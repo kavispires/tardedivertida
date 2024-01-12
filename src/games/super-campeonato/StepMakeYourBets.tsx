@@ -1,11 +1,13 @@
 // Types
+import type { GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { Bracket } from './utils/type';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
 import { mockBets } from './utils/mock';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Brackets } from './components/Brackets';
@@ -17,7 +19,7 @@ type StepMakeYourBetsProps = {
   challenge: TextCard;
   brackets: Bracket[];
   players: GamePlayers;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepMakeYourBets({
   onSubmitBets,

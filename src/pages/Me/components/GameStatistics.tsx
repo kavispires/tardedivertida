@@ -4,6 +4,7 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 // Types
 import type { GameInfo } from 'types/game-info';
 import type { GameUserStatistics } from 'types/user';
+import type { AchievementReference } from 'types/achievements';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -26,7 +27,6 @@ import { IconAvatar } from 'components/avatars';
 import { InfoCard } from './InfoCard';
 import { StatisticCard } from './StatisticCard';
 import { UserAchievements } from './UserAchievements';
-
 import { Title } from 'components/text';
 
 type GameUserStatisticsProps = {

@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Resources
 import { AVATARS } from 'utils/avatars';
+// Types
+import type { GamePlayer } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';

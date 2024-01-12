@@ -1,5 +1,6 @@
 // Types
 import type { GameInfo } from 'types/game-info';
+import type { GameState } from 'types/game';
 // Components
 import { PhaseContainer } from './index';
 

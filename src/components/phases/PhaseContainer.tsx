@@ -9,8 +9,17 @@ import { LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';
 
 type PhaseContainerProps = {
+  /**
+   * The game info
+   */
   info?: GameInfo;
+  /**
+   * The current phase that must match the allowed phase
+   */
   phase?: string;
+  /**
+   * The allowed phase
+   */
   allowedPhase?: string;
   /**
    * The content of the component
@@ -20,7 +29,13 @@ type PhaseContainerProps = {
    * Optional custom class name
    */
   className?: string;
+  /**
+   * If the container should take the full screen
+   */
   fullScreen?: boolean;
+  /**
+   * If the container should be white
+   */
   white?: boolean;
 };
 

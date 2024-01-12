@@ -1,3 +1,5 @@
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
@@ -6,7 +8,7 @@ import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 
 type StepSecretClueWaitingProps = {
@@ -14,7 +16,7 @@ type StepSecretClueWaitingProps = {
   user: GamePlayer;
   players: GamePlayers;
   turnOrder: PlayerId[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSecretClueWaiting({
   leader,

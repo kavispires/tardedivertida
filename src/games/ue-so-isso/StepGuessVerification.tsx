@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { Button, App, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { Suggestion } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -12,7 +14,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { messageContent } from 'components/pop-up';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -29,7 +31,7 @@ type StepGuessVerificationProps = {
   secretWord: TextCard;
   onSubmitOutcome: GenericFunction;
   validSuggestions: Suggestion[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepGuessVerification({
   guess,

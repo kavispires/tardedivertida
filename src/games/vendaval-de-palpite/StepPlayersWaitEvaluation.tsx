@@ -1,6 +1,8 @@
 // Ant Design Resources
 import { Alert } from 'antd';
 // Types
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { Clues, BoardObject } from './utils/types';
 // Components
 import { Step } from 'components/steps';

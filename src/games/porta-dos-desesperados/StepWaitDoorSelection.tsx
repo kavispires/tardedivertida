@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
-// Hooks
+// Types
+import type { GamePlayers } from 'types/player';
 // Utils
 import { PHASES } from 'utils/phases';
 import { NOOP, PLACEHOLDER_PLAYER } from 'utils/constants';

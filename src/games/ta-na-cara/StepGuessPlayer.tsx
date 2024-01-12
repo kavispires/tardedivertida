@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
@@ -8,7 +9,7 @@ import { useMock } from 'hooks/useMock';
 import { mockGuess } from './utils/mock';
 import { pluralize } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { CharactersBoard } from './components/CharactersBoard';
@@ -28,7 +29,7 @@ type StepGuessPlayerProps = {
   targetedPlayer: GamePlayer;
   activePlayerId: PlayerId;
   points: number;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepGuessPlayer({
   players,

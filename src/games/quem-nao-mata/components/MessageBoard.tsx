@@ -1,9 +1,15 @@
+// Ant Design Resources
 import { Button, Form, Popover, Select } from 'antd';
-import { AvatarName } from 'components/avatars';
-import { Translate } from 'components/language';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 import { Message } from '../utils/types';
+// Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type MessageBoardProps = {
   messages: Record<PlayerId, Message>;

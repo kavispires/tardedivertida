@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { Prompt } from './utils/types';
 // Utils
 import { AVATARS } from 'utils/avatars';

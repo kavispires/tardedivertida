@@ -1,3 +1,5 @@
+// Types
+import type { GamePlayer } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Icons

@@ -1,9 +1,12 @@
+import { ReactNode } from 'react';
+// Types
+import type { GamePlayers } from 'types/player';
+// Utils
+import { print } from 'utils/helpers';
 // Components
 import { WaitingRoom } from 'components/players';
 import { Loading } from 'components/loaders';
 import { Translate } from 'components/language';
-import { print } from 'utils/helpers';
-import { ReactNode } from 'react';
 
 const getWaitingRoomInstruction = (kind: string) => {
   switch (kind) {

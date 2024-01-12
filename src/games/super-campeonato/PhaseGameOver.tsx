@@ -1,6 +1,8 @@
 // Ant Design resources
 import { Divider, Space } from 'antd';
 // Types
+import { PhaseProps } from 'types/game';
+// Types
 import type { PastBattles } from './utils/type';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Checkbox } from 'antd';
 import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { AnswerGroupObject, Question } from '../utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';

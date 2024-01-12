@@ -1,10 +1,13 @@
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Reviews } from './components/Reviews';
@@ -25,7 +28,7 @@ type StepEliminateMovieProps = {
   eliminatedMovies: string[];
   turnOrder: PlayerId[];
   mistakes: CardId[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepEliminateMovie({
   players,

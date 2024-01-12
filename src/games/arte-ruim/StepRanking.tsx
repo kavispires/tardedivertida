@@ -2,6 +2,8 @@
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayers } from 'types/player';
+import type { GameRanking, GameRound } from 'types/game';
 import type { UseStep } from 'hooks/useStep';
 // Components
 import { Instruction, RoundsLeftInstruction } from 'components/text';

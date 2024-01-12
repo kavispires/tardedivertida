@@ -2,6 +2,7 @@
 import { Tooltip } from 'antd';
 import { Avatar, IconAvatar } from 'components/avatars';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { MapSegment, Tree } from '../utils/types';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';

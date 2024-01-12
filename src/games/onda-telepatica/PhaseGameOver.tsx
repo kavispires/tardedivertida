@@ -1,4 +1,6 @@
 import { Divider, Space } from 'antd';
+// Types
+import type { PhaseProps } from 'types/game';
 // Utils
 import { achievementsReference } from './utils/achievements';
 // Icons

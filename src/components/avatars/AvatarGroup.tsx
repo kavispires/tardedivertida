@@ -1,8 +1,10 @@
+import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Avatar as AntAvatar, AvatarProps, Tooltip } from 'antd';
+// Types
+import type { GamePlayer } from 'types/player';
 // Components
 import { Avatar } from './Avatar';
-import { orderBy } from 'lodash';
 
 type AvatarGroupProps = {
   list: GamePlayer[];

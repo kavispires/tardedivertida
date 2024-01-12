@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+// Types
+import type { ArteRuimCard } from './utils/types';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useDevFeatures } from 'hooks/useDevFeatures';
@@ -9,7 +11,7 @@ import { mockDrawing } from 'mock/drawing';
 // Icons
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Card } from 'components/cards';
 import { DrawingCanvas } from 'components/canvas';
 import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
@@ -19,7 +21,7 @@ type StepDrawProps = {
   secretCard: ArteRuimCard | PlainObject;
   onSubmitDrawing: GenericFunction;
   startDrawingTimer: boolean;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, announcement }: StepDrawProps) {
   const { translate } = useLanguage();
@@ -63,7 +65,9 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
       <Card
         size="large"
         header={translate('Desenhe', 'Draw', isDebugEnabled ? secretCard?.id : undefined)}
-        footer={Array(secretCard?.level).fill('•').join('')}
+        footer={Array(secretCard?.level)
+          .fill('•')
+          .join('')}
         className="a-draw-step__card"
         color="yellow"
       >

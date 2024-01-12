@@ -1,3 +1,6 @@
+// Types
+import type { TextCard } from 'types/tdr';
+
 export type SubmitMapPayload = {
   newMap: (TextCard | null)[];
 };

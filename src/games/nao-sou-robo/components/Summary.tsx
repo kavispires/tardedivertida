@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Divider, Tooltip } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Robot } from '../utils/types';
 // Components
 import { Translate } from 'components/language';

@@ -1,6 +1,7 @@
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Location } from './utils/types';
 // Components
 import { HostNextPhaseButton } from 'components/host';

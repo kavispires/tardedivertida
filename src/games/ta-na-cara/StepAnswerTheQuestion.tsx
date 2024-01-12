@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -11,7 +12,7 @@ import { mockAnswer } from './utils/mock';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { CharactersBoard } from './components/CharactersBoard';
@@ -31,7 +32,7 @@ type StepAnswerTheQuestionProps = {
   questionsDict: QuestionsDictionary;
   onSubmitAnswer: GenericFunction;
   activePlayerId: PlayerId;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepAnswerTheQuestion({
   players,

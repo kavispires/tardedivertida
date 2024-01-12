@@ -1,8 +1,10 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { Sketch } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { MonsterCard as MonsterCardType } from 'types/tdi';
 import type { UseStep } from 'hooks/useStep';
+import type { Sketch } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -12,13 +14,13 @@ import { MonsterCard } from '../../components/cards/MonsterCard';
 import { MonsterSketches } from './components/MonsterSketches';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepResultsProps = {
-  currentMonster: MonsterCard;
+  currentMonster: MonsterCardType;
   goToNextStep: UseStep['goToNextStep'];
   sketches: Sketch[];
   user: GamePlayer;
@@ -28,7 +30,7 @@ type StepResultsProps = {
   mostVotes: PlayerId[];
   mostVoted: PlayerId;
   votes: Record<PlayerId, PlayerId[]>;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 type Sketches = {
   mostVotedSketches: Sketch[];

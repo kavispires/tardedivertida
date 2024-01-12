@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
 import { Avatar, AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';

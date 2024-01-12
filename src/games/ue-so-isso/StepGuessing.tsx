@@ -2,11 +2,12 @@
 import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Suggestion } from './utils/types';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Guess } from './components/Guess';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -18,7 +19,7 @@ type StepGuessingProps = {
   onSendGuess: GenericFunction;
   onSubmitOutcome: GenericFunction;
   validSuggestions: Suggestion[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
   guesser,

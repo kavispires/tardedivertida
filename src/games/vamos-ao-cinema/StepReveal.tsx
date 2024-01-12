@@ -1,12 +1,16 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound } from 'types/game';
+import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Reviews } from './components/Reviews';
@@ -41,7 +45,7 @@ type StepRevealProps = {
   score: number;
   onSubmitPoster: GenericFunction;
   posters: string[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   players,

@@ -1,4 +1,6 @@
 import { shuffle } from 'utils/helpers';
+// Types
+import type { TextCard } from 'types/tdr';
 
 export const mockOrder = (scenarios: TextCard[]) => {
   const firstHalf = shuffle([scenarios[0], scenarios[1], scenarios[2]]);

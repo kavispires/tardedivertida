@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayers } from 'types/player';
 import type { Clues, BoardObject } from './utils/types';
 // Components
 import { Translate } from 'components/language';

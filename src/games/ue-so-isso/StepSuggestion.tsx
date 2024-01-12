@@ -1,5 +1,8 @@
 // Ant Design Resources
 import { CloudUploadOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -7,7 +10,7 @@ import { mockSuggestions } from './utils/mock';
 // Components
 import { WritingRules } from './components/RulesBlobs';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -22,7 +25,7 @@ type StepSuggestionProps = {
   onSendSuggestions: GenericFunction;
   secretWord: TextCard;
   suggestionsNumber?: number;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSuggestion({
   guesser,

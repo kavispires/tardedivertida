@@ -2,6 +2,8 @@
 import { Space } from 'antd';
 import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -11,7 +13,7 @@ import { sortPlayers } from 'utils/helpers';
 import { Tweet } from './components/Tweet';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { TweetComment } from './components/TweetComment';
 
@@ -21,7 +23,7 @@ type StepResolutionProps = {
   customTweet: string;
   currentTweet: TextCard;
   goToNextStep: UseStep['goToNextStep'];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResolution({
   players,

@@ -1,5 +1,8 @@
 // Ant Design Resources
 import { Avatar, Button, Flex, Space } from 'antd';
+// Types
+import type { GamePlayer } from 'types/player';
+import type { SuspectCard } from 'types/tdi';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
@@ -8,7 +11,7 @@ import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -25,7 +28,7 @@ type StepQuestioningProps = {
   onAnswer: GenericFunction;
   question: GamePlayer;
   history: THistoryEntry[];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepQuestioning({
   suspects,

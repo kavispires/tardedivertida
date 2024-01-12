@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { CloverObject, Leaves } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Button, Popover, Space, Tooltip } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { Characters } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -15,7 +16,7 @@ import { mockGlyphs } from './utils/mock';
 import { YesIcon } from 'icons/YesIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
@@ -30,7 +31,7 @@ type StepSelectGlyphsProps = {
   characters: Characters;
   tableOrder: CardId[];
   roundType: 'SHOW' | 'HIDE';
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 const SELECTIONS_PLACEHOLDER = [0, 1, 2];
 

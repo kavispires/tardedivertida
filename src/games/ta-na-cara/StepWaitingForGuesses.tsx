@@ -1,9 +1,10 @@
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { CharactersBoard } from './components/CharactersBoard';
@@ -20,7 +21,7 @@ type StepWaitingForGuessesProps = {
   charactersDict: CharactersDictionary;
   questionsDict: QuestionsDictionary;
   activePlayerId: PlayerId;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepWaitingForGuesses({
   players,

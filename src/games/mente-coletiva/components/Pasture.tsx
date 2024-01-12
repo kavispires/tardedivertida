@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import clsx from 'clsx';
 import { useWindowSize } from 'react-use';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components

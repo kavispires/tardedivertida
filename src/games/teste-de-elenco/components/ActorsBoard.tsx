@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Popconfirm, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { ActingRole, SubmitMovieActorPayload } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

@@ -1,6 +1,7 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Location } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

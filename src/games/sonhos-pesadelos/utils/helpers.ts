@@ -1,4 +1,7 @@
+// Types
+import type { GamePlayer } from 'types/player';
 import type { Dream } from './types';
+// Utils
 import { LETTERS, SEPARATOR } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
 

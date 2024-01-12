@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Alert } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound } from 'types/game';
 import type { Clues, BoardObject } from './utils/types';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';

@@ -1,5 +1,6 @@
 import { orderBy } from 'lodash';
 // Types
+import { CrimesHediondosCard } from 'types/tdi';
 import type { GuessHistoryEntry, History, ItemsDict } from '../utils/types';
 // Utils
 import { getLastItem } from 'utils/helpers';

@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { Button, Flex, Image } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Captcha, CaptchaCard, Robot, SubmitRobotGuessPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -16,7 +17,7 @@ import { getAnimationClass, shuffle } from 'utils/helpers';
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCard, ImageCardButton } from 'components/image-cards';
@@ -35,7 +36,7 @@ type StepSelectAllProps = {
   captcha: Captcha;
   options: Dictionary<CaptchaCard>;
   robot: Robot;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectAll({
   players,

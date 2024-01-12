@@ -1,8 +1,11 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
+// Types
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -15,7 +18,7 @@ type StepWordSelectionProps = {
   words: TextCard[];
   players: GamePlayers;
   turnOrder: TurnOrder;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepWordSelection({
   guesser,

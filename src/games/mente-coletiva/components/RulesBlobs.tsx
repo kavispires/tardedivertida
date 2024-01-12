@@ -1,3 +1,6 @@
+// Types
+import type { GamePlayer } from 'types/player';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';

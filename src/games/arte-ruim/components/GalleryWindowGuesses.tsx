@@ -1,5 +1,7 @@
 import { orderBy } from 'lodash';
 // Types
+import type { GamePlayers } from 'types/player';
+import type { ArteRuimCard } from '../utils/types';
 import type { PlayersSay } from '../utils/types';
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';

@@ -2,10 +2,11 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { ActingRole } from './utils/types';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { DualTranslate, Translate } from 'components/language';
 import { RoleBoard } from './components/RoleBoard';
@@ -22,7 +23,7 @@ type StepResultProps = {
   outcome: string;
   players: GamePlayers;
   goToNextStep: UseStep['goToNextStep'];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepResult({
   user,

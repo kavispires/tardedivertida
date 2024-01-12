@@ -2,6 +2,7 @@ import { useState } from 'react';
 // AntDesign Resources
 import { Steps } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { SeedEntry } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
@@ -12,7 +13,7 @@ import { buildSeedingSteps } from './utils/helpers';
 import { mockSeeding } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 import { SeedArteRuim } from './components/Seeds/SeedArteRuim';
 import { SeedLabirintoSecreto } from './components/Seeds/SeedLabirintoSecreto';
@@ -29,7 +30,7 @@ type StepSeedingProps = {
   players: GamePlayers;
   user: GamePlayer;
   onSubmitData: GenericFunction;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingProps) => {
   const { step: currentStep, goToNextStep } = useStep(0);

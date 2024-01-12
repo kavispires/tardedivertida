@@ -3,6 +3,7 @@ import clsx from 'clsx';
 // Ant Design resources
 import { Button, Space } from 'antd';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { Bet, Bracket, BracketTier } from '../utils/type';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';

@@ -1,6 +1,8 @@
 import { random } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';

@@ -1,3 +1,5 @@
+// Types
+import type { GamePlayer } from 'types/player';
 // Components
 import { ImageCardHand } from 'components/image-cards';
 

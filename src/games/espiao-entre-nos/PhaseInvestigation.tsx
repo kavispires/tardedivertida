@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
+// Types
+import type { PhaseProps } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';

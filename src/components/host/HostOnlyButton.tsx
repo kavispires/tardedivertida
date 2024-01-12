@@ -4,7 +4,7 @@ import { ButtonProps } from 'antd';
 // Components
 import { HostButton, HostOnlyContainer } from './index';
 
-type VIPOnlyButtonProps = {
+type HostOnlyButtonProps = {
   /**
    * The click action
    */
@@ -15,7 +15,7 @@ type VIPOnlyButtonProps = {
   children: ReactNode;
 } & ButtonProps;
 
-export function HostOnlyButton({ onClick, children, ...buttonProps }: VIPOnlyButtonProps) {
+export function HostOnlyButton({ onClick, children, ...buttonProps }: HostOnlyButtonProps) {
   return (
     <HostOnlyContainer>
       <HostButton onClick={onClick} {...buttonProps}>

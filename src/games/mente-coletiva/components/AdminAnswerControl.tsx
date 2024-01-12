@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { Button, Space } from 'antd';
 import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
 // Types
+import type { GamePlayers } from 'types/player';
 import type { AllowedList, Answer, AnswerGroupObject } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

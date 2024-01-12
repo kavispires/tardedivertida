@@ -1,8 +1,10 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import type { Outcome } from './utils/types';
+import { GamePlayer, GamePlayers } from 'types/player';
+import { GameRanking, GameRound } from 'types/game';
 import type { UseStep } from 'hooks/useStep';
+import type { Outcome } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components

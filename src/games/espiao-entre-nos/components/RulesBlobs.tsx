@@ -1,4 +1,5 @@
 // Types
+import type { GamePlayers } from 'types/player';
 import type { FinalAssessment } from '../utils/types';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';

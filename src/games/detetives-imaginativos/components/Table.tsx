@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Types
 import type { CardEntry } from '../utils/types';
+// Types
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils

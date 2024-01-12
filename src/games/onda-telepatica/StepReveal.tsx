@@ -2,8 +2,9 @@ import { useMemo } from 'react';
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
 // Types
-import type { CurrentCategory } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 import type { UseStep } from 'hooks/useStep';
+import type { CurrentCategory } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -15,7 +16,7 @@ import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
 import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Dial } from './components/Dial';
 import { Instruction, Title } from 'components/text';
 import { ScoringRules } from './components/RulesBlobs';
@@ -43,7 +44,7 @@ type StepRevealProps = {
   players: GamePlayers;
   psychic: GamePlayer;
   goToNextStep: UseStep['goToNextStep'];
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   goToNextStep,

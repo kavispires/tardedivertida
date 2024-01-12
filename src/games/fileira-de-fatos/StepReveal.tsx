@@ -2,13 +2,15 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 import type { UseStep } from 'hooks/useStep';
 // Utils
 import { getReference } from './utils/helpers';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Scenarios } from './components/Scenarios';
 import { AvatarName } from 'components/avatars';
@@ -21,7 +23,7 @@ type StepRevealProps = {
   goToNextStep: UseStep['goToNextStep'];
   scenarios: TextCard[];
   roundType: string;
-} & AnnouncementProps;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   announcement,

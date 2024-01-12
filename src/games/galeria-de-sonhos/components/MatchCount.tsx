@@ -1,4 +1,5 @@
-// Ant Design
+// Types
+import type { GamePlayer } from 'types/player';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components

@@ -1,5 +1,7 @@
 import { Tooltip } from 'antd';
 import clsx from 'clsx';
+// Types
+import type { GamePlayer } from 'types/player';
 // Utils
 import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 // Components

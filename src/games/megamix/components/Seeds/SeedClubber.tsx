@@ -2,6 +2,7 @@ import { useEffectOnce } from 'react-use';
 // AntDesign Resources
 import { Button, Segmented, Space } from 'antd';
 // Types
+import type { GamePlayer } from 'types/player';
 import type { SeedEntryClubberOutfit } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
