@@ -1,7 +1,13 @@
 // Ant Design Resources
 import { Col, Divider, Rate, Row } from 'antd';
+import { ClockCircleOutlined } from '@ant-design/icons';
+// Types
+import { GameUserStatistics } from 'types/user';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { durationToHours, timestampToDate } from '../utils';
+import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
 // Icons
 import { PlayersIcon } from 'icons/PlayersIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
@@ -10,19 +16,17 @@ import { ClockIcon } from 'icons/ClockIcon';
 import { DiceIcon } from 'icons/DiceIcon';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
+import { MultitaskIcon } from 'icons/MultitaskIcon';
 // Components
 import { GameBanner } from 'components/general/GameBanner';
 import { DualTranslate, Translate } from 'components/language';
+import { RulesModal } from 'components/rules';
+import { IconAvatar } from 'components/avatars';
 import { InfoCard } from './InfoCard';
 import { StatisticCard } from './StatisticCard';
 import { UserAchievements } from './UserAchievements';
-import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
-import { useLanguage } from 'hooks/useLanguage';
-import { RulesModal } from 'components/rules';
-import { IconAvatar } from 'components/avatars';
-import { MultitaskIcon } from 'icons/MultitaskIcon';
+
 import { Title } from 'components/text';
-import { ClockCircleOutlined } from '@ant-design/icons';
 
 type GameUserStatisticsProps = {
   info: GameInfo;

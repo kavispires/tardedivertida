@@ -2,6 +2,8 @@ import { orderBy } from 'lodash';
 import { ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Layout, Row, Divider, Space, Switch } from 'antd';
+// Types
+import { Me } from 'types/user';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
