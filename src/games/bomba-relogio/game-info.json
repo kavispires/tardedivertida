@@ -41,8 +41,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "available": {
-    "pt": false,
-    "en": false
-  }
+  "available": false
 }

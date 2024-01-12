@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "0.9.19",
+  "version": "0.9.20",
   "title": {
     "pt": "Labirinto Secreto",
     "en": "Secret Labyrinth"
@@ -49,8 +49,5 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "guessing", "same-time", "pairing"],
-  "available": {
-    "pt": true,
-    "en": true
-  }
+  "available": true
 }

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.34",
+  "version": "4.0.35",
   "title": {
     "pt": "Onda Telepática",
     "en": "Telepathic Waves"
@@ -52,10 +52,7 @@
     "perPlayer": 2
   },
   "tags": ["competitive", "turn-based", "writing", "guessing", "brain-burner", "achievements"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "label": "End Game",

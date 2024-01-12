@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -42,10 +42,7 @@
     "max": 10
   },
   "tags": ["competitive", "pairing", "same-time", "achievements"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "key": "nsfw",

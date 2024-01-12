@@ -244,10 +244,7 @@ type GameInfo = {
     perPlayer: number;
   };
   tags: string[];
-  available: {
-    pt: boolean;
-    en: boolean;
-  };
+  available: boolean;
   options?: {
     label: string;
     key: string;

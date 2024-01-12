@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.37",
+  "version": "3.1.38",
   "title": {
     "pt": "Na Rua do Medo",
     "en": "Fear Street"
@@ -49,9 +49,6 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "same-time", "push-your-luck", "mobile-friendly", "achievements"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [{ "label": "Game Length", "key": "shortGame", "off": "5 streets", "on": "3 streets" }]
 }

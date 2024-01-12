@@ -49,9 +49,6 @@
   },
   "tags": ["cooperative", "guessing", "writing", "brain-burner"],
   "cooperative": true,
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [{ "label": "Difficulty", "key": "hardGame", "off": "Normal", "on": "Hard" }]
 }

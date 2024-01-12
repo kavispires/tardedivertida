@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "title": {
     "pt": "Polêmica da Vez",
     "en": "That's Polemic"
@@ -46,10 +46,7 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "voting", "guessing", "achievements"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "label": "End Game",

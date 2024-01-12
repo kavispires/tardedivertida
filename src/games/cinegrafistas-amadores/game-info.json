@@ -35,8 +35,5 @@
     "perPlayer": 0
   },
   "tags": ["same-time", "voting"],
-  "available": {
-    "pt": false,
-    "en": false
-  }
+  "available": false
 }

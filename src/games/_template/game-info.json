@@ -31,8 +31,5 @@
     "max": 10
   },
   "tags": [""],
-  "available": {
-    "pt": false,
-    "en": false
-  }
+  "available": false
 }

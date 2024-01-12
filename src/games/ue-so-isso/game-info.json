@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.1.24",
+  "version": "3.1.25",
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -52,10 +52,7 @@
   },
   "tags": ["cooperative", "guessing", "writing", "mobile-friendly", "achievements"],
   "cooperative": true,
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "label": "Word Pool",

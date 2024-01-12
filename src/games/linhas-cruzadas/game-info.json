@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.34",
+  "version": "1.2.35",
   "title": {
     "pt": "Linhas Cruzadas",
     "en": "Mis...communication"
@@ -38,10 +38,7 @@
     "perPlayer": 0
   },
   "tags": ["cooperative", "drawing", "guessing", "writing", "achievements", "mobile-friendly"],
-  "available": {
-    "pt": true,
-    "en": true
-  },
+  "available": true,
   "options": [
     {
       "label": "Cards Type",

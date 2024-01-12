@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "0.9.13",
+  "version": "0.9.14",
   "title": {
     "pt": "Fileira De Fatos",
     "en": "Facts Lineup"
@@ -48,8 +48,5 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "same-time", "guessing", "achievements"],
-  "available": {
-    "pt": true,
-    "en": true
-  }
+  "available": true
 }
