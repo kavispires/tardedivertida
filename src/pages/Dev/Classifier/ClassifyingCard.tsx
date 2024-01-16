@@ -52,6 +52,10 @@ export function ClassifyingCard() {
     itemUtils.updateNSFW(itemId, value);
   };
 
+  const updateCategory = (value: string[]) => {
+    itemUtils.updateCategory(itemId, value);
+  };
+
   if (!current) {
     return (
       <Space className="space-container">
@@ -69,6 +73,7 @@ export function ClassifyingCard() {
       updateNameEN={updateNameEN}
       updateNamePT={updateNamePT}
       updateNSFW={updateNSFW}
+      updateCategory={updateCategory}
     />
   );
 
@@ -94,7 +99,8 @@ export function ClassifyingCard() {
       <Card
         title={
           <>
-            Classifying {itemId} - {current.name.en} - ({countNonZeroAttributes(current)}/30)
+            Classifying {itemId} - {current.name.en.toUpperCase()} - ({countNonZeroAttributes(current)}/
+            {attributeList.length})
           </>
         }
         extra={<Search setItemId={setItemId} data={data} />}

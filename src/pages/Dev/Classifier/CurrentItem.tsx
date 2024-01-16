@@ -1,4 +1,4 @@
-import { Divider, Input, Space, Switch, Typography } from 'antd';
+import { Divider, Input, Select, Space, Switch, Typography } from 'antd';
 import { ItemCard } from 'components/cards/ItemCard';
 import { useMemo } from 'react';
 
@@ -13,6 +13,7 @@ type CurrentItemsProps = {
   updateNamePT: (e: React.ChangeEvent<HTMLInputElement>) => void;
   activeItem: AlienItem;
   updateNSFW: any;
+  updateCategory: any;
 };
 
 export function CurrentItem({
@@ -21,13 +22,15 @@ export function CurrentItem({
   updateNamePT,
   activeItem,
   updateNSFW,
+  updateCategory,
 }: CurrentItemsProps) {
   const attributePriority = useMemo(
     () => determineAttributePriorityResponse([itemId], { [itemId]: activeItem }),
     [itemId, activeItem]
   );
+
   return (
-    <Space className="classifier__item" direction="vertical">
+    <Space className="classifier__item" direction="vertical" styles={{ item: { width: '100%' } }}>
       <Input placeholder="Type name" onChange={updateNameEN} value={activeItem.name.en} />
       <Input placeholder="Type nome" onChange={updateNamePT} value={activeItem.name.pt} />
       <ItemCard id={itemId} width={100} />
@@ -37,6 +40,17 @@ export function CurrentItem({
         onChange={updateNSFW}
         checked={activeItem?.nsfw}
       />
+
+      <Select
+        mode="multiple"
+        allowClear
+        style={{ width: '100%' }}
+        placeholder="Categories"
+        value={activeItem?.categories ?? []}
+        onChange={updateCategory}
+        options={[{ label: 'mesmice', value: 'mesmice' }]}
+      />
+
       <Divider />
 
       <Typography.Paragraph strong className="center">

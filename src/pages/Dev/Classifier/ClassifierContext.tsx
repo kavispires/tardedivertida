@@ -33,6 +33,7 @@ export type ClassifierContextType = {
     updateNamePT: (itemId: string, name: string) => void;
     updateAttributeValue: (itemId: string, attributeId: string, value: number) => void;
     updateNSFW: (itemId: string, value: boolean) => void;
+    updateCategory: (itemId: string, value: string[]) => void;
   };
 };
 
@@ -53,6 +54,7 @@ export const ClassifierContext = createContext<ClassifierContextType>({
     updateNamePT: () => {},
     updateAttributeValue: () => {},
     updateNSFW: () => {},
+    updateCategory: () => {},
   },
 });
 
@@ -236,6 +238,15 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
     });
   };
 
+  const updateCategory = (itemId: string, categories: string[]) => {
+    setIsDirty(true);
+    setData((prevData) => {
+      const copy = cloneDeep(prevData);
+      copy[itemId].categories = categories;
+      return copy;
+    });
+  };
+
   return (
     <ClassifierContext.Provider
       value={{
@@ -255,6 +266,7 @@ export const ClassifierProvider = ({ children }: ClassifierProviderProps) => {
           updateNamePT: updateItemNamePT,
           updateAttributeValue: updateItemAttributeValue,
           updateNSFW,
+          updateCategory,
         },
       }}
     >
