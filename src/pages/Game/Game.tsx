@@ -116,6 +116,7 @@ const SessionTaNaCara = lazy(
 const SessionTesteDeElenco = lazy(
   () => import('games/teste-de-elenco/SessionTesteDeElenco' /* webpackChunkName: "teste-de-elenco" */)
 );
+const SessionMesmice = lazy(() => import('games/mesmice/SessionMesmice' /* webpackChunkName: "mesmice" */));
 
 function Game() {
   const { translate } = useLanguage();
@@ -238,6 +239,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionMenteColetiva />
+          </Suspense>
+        );
+      case GAME_COLLECTION.MESMICE:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionMesmice />
           </Suspense>
         );
       case GAME_COLLECTION.NA_RUA_DO_MEDO:

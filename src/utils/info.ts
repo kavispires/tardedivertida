@@ -20,6 +20,7 @@ import LABIRINTO_SECRETO from 'games/labirinto-secreto/game-info.json';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/game-info.json';
 import MEGAMIX from 'games/megamix/game-info.json';
 import MENTE_COLETIVA from 'games/mente-coletiva/game-info.json';
+import MESMICE from 'games/mesmice/game-info.json';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/game-info.json';
 import NAO_SOU_ROBO from 'games/nao-sou-robo/game-info.json';
 import NAUFRAGOS from 'games/naufragos/game-info.json';
@@ -65,6 +66,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'linhas-cruzadas': LINHAS_CRUZADAS,
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
+  mesmice: MESMICE,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
   'nao-sou-robo': NAO_SOU_ROBO,
   naufragos: NAUFRAGOS,

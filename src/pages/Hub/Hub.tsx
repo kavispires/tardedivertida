@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useEffectOnce, useTitle } from 'react-use';
+import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Typography, Layout, Divider, Row, Col } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
@@ -90,7 +91,7 @@ function Hub() {
   );
 
   const { availableGames, comingSoonGames, devGames } = useMemo(() => {
-    const sortedGameList = gameList.sort((a, b) => (a.title[language] > b.title[language] ? 1 : -1));
+    const sortedGameList = orderBy(gameList, [`title.[${language}]`], ['asc']);
 
     return sortedGameList.reduce(
       (acc: any, game) => {
