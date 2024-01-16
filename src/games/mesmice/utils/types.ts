@@ -1,0 +1,27 @@
+import { AlienItem, ObjectFeatureCard } from 'types/tdr';
+
+export enum Phase {
+  CLUE_WRITING = 'CLUE_WRITING',
+  OBJECT_FEATURE_ELIMINATION = 'OBJECT_FEATURE_ELIMINATION',
+  RESULT = 'RESULT',
+}
+
+export type SubmitObjectPayload = {
+  itemId: string;
+  clue: string;
+};
+
+export type SubmitFeaturePayload = {
+  featureId: string;
+};
+
+export type ObjectCardObj = Pick<AlienItem, 'id' | 'name'>;
+
+export type ExtendedObjectFeatureCard = ObjectFeatureCard & { eliminated?: boolean };
+
+export type HistoryEntry = {
+  featureId: CardId;
+  pass: boolean;
+  votes: PlayerId[];
+  score: number;
+};

@@ -257,6 +257,7 @@ export const GAME_COLLECTION = {
   LINHAS_CRUZADAS: 'linhas-cruzadas',
   MEGAMIX: 'megamix',
   MENTE_COLETIVA: 'mente-coletiva',
+  MESMICE: 'mesmice',
   NA_RUA_DO_MEDO: 'na-rua-do-medo',
   NAO_SOU_ROBO: 'nao-sou-robo',
   NAUFRAGOS: 'naufragos',

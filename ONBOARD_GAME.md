@@ -44,7 +44,7 @@ All file paths here are relative to `/src`.
 - Create a folder with the game name under `/games/`. You may duplicate the folder `_template` there
 - Create a session file `Session<game-name>.tsx` with basic placeholder stuff.
 - Create a api file `utils/api-requests.ts` for api calls for the game.
-- Create a `<game-name>.d.ts` for game specific types.
+- Create a `utils/types.ts` for game specific types.
 - Create a `game-info.json` for game info object.
 - Update `pages/Game.tsx` to include the new Game Session.
 

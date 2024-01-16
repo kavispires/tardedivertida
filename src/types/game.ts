@@ -49,3 +49,26 @@ export type GameRanking = {
   newScore: number;
   [key: string]: any;
 }[];
+
+export type MostVotesResult = {
+  /**
+   * The property that signals the vote (usually `vote`)
+   */
+  property: string;
+  /**
+   * The value of the property that signals the vote
+   */
+  value: string;
+  /**
+   * The players who voted for this result
+   */
+  votes: PlayerId[];
+  /**
+   * How many players voted for this result
+   */
+  count: number;
+  /**
+   * In case of a tie in most votes (count)
+   */
+  tie?: boolean;
+};
