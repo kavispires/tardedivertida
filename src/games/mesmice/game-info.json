@@ -1,0 +1,58 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "J",
+  "gameName": "mesmice",
+  "version": "dev",
+  "title": {
+    "pt": "Jogo da Mesmice",
+    "en": "Same But Different"
+  },
+  "popularName": {
+    "pt": "De eliminar as características",
+    "en": "The one with the object features"
+  },
+  "basedOn": "emaG emaS ehT",
+  "summary": {
+    "pt": "Elimine as características que não se aplicam aos objetos da vez",
+    "en": "Eliminate the features that do not apply to the objects of the round"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["cooperative", "discussion", "writing"],
+  "available": true,
+  "options": [
+    {
+      "key": "nsfw",
+      "label": "NSFW",
+      "off": "No",
+      "on": "Yes",
+      "description": "Allow NSFW content"
+    },
+    {
+      "key": "complexMode",
+      "label": "Complexity",
+      "off": "Regular",
+      "on": "Complex",
+      "description": "Use more complex features"
+    },
+    {
+      "key": "hardMode",
+      "label": "Difficulty",
+      "off": "Normal",
+      "on": "Hard",
+      "description": "Uses 8 features instead of 6"
+    }
+  ]
+}

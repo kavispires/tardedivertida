@@ -496,7 +496,28 @@ export const cleanup = (players: Players, keepKeys: string[]) => {
   return players;
 };
 
-type MostVotesResult = { property: string; value: string; votes: PlayerId[]; count: number; tie?: boolean };
+export type MostVotesResult = {
+  /**
+   * The property that signals the vote (usually `vote`)
+   */
+  property: string;
+  /**
+   * The value of the property that signals the vote
+   */
+  value: string;
+  /**
+   * The players who voted for this result
+   */
+  votes: PlayerId[];
+  /**
+   * How many players voted for this result
+   */
+  count: number;
+  /**
+   * In case of a tie in most votes (count)
+   */
+  tie?: boolean;
+};
 
 /**
  * Ranks the votes of Players objects based on a given property.
@@ -508,19 +529,21 @@ export const getRankedVotes = (players: Players, property: string, winnerOnly = 
 
   // Calculate the counts for each property value
   getListOfPlayers(players, true).forEach((player) => {
-    const playerProperty = String(player[property]);
+    if (player[property] !== undefined) {
+      const playerProperty = String(player[property]);
 
-    if (!propertyCounts[playerProperty]) {
-      propertyCounts[playerProperty] = {
-        property,
-        value: playerProperty,
-        votes: [],
-        count: 0,
-      };
+      if (!propertyCounts[playerProperty]) {
+        propertyCounts[playerProperty] = {
+          property,
+          value: playerProperty,
+          votes: [],
+          count: 0,
+        };
+      }
+
+      propertyCounts[playerProperty].votes.push(player.id);
+      propertyCounts[playerProperty].count++;
     }
-
-    propertyCounts[playerProperty].votes.push(player.id);
-    propertyCounts[playerProperty].count++;
   });
 
   // Find the most repeating property values
@@ -540,4 +563,43 @@ export const getRankedVotes = (players: Players, property: string, winnerOnly = 
   }
 
   return resultArray;
+};
+
+export const getWinningRankedVote = (
+  rankedVotes: MostVotesResult[],
+  turnOrder: PlayerId[],
+  activePlayerId: PlayerId
+): MostVotesResult => {
+  // If there is only one entry in rankedVotes, that's the winner
+  if (rankedVotes.length === 1) {
+    return rankedVotes[0];
+  }
+
+  // If the first entry in rankedVotes does not have the 'tie' prop, it is the winner
+  if (!rankedVotes[0].tie) {
+    return rankedVotes[0];
+  }
+
+  const tiedResults = rankedVotes.filter((result) => result.tie);
+
+  // Find the tied result that has the activePlayerId in the votes prop
+  const tiedWithActivePlayer = tiedResults.find((result) => result.votes.includes(activePlayerId));
+
+  // If the activePlayerId is among the tied entries, return that result
+  if (tiedWithActivePlayer) {
+    return tiedWithActivePlayer;
+  }
+
+  // Check the next player in turnOrder until a result is found
+  const extendedTurnOrder = [...turnOrder, ...turnOrder];
+  for (const playerId of extendedTurnOrder) {
+    const tiedWithNextPlayer = tiedResults.find((result) => result.votes.includes(playerId));
+
+    if (tiedWithNextPlayer) {
+      return tiedWithNextPlayer;
+    }
+  }
+
+  // If no winner is found, return the first entry
+  return rankedVotes[0];
 };

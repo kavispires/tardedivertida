@@ -91,6 +91,11 @@ const GAMES = [
     key: 'MENTE_COLETIVA',
   },
   {
+    name: 'mesmice',
+    code: 'J',
+    key: 'MESMICE',
+  },
+  {
     name: 'na-rua-do-medo',
     code: 'N',
     key: 'NA_RUA_DO_MEDO',
@@ -259,6 +264,7 @@ export const TDR_RESOURCES = {
   MOVIES: 'movies',
   MOVIE_REVIEWS: 'movie-reviews',
   NAMING_PROMPTS: 'naming-prompts',
+  OBJECT_FEATURES: 'object-features', // dual language
   OPPOSING_IDEAS: 'opposing-ideas',
   QUANTITATIVE_QUESTIONS: 'quantitative-questions',
   SCENARIOS: 'scenarios',

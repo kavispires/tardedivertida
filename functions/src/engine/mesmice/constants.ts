@@ -1,0 +1,86 @@
+export const MESMICE_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  SETUP: 'SETUP',
+  CLUE_WRITING: 'CLUE_WRITING',
+  OBJECT_FEATURE_ELIMINATION: 'OBJECT_FEATURE_ELIMINATION',
+  RESULT: 'RESULT',
+  GAME_OVER: 'GAME_OVER',
+};
+
+export const MESMICE_ACTIONS = {
+  SUBMIT_OBJECT: 'SUBMIT_OBJECT',
+  SUBMIT_OBJECT_FEATURE: 'SUBMIT_OBJECT_FEATURE',
+};
+
+export const MESMICE_ACHIEVEMENTS = {
+  MOST_SAFE_VOTES: 'MOST_SAFE_VOTES',
+  MOST_GROUP_VOTES: 'MOST_GROUP_VOTES',
+  MOST_LONELY_VOTES: 'MOST_LONELY_VOTES',
+  MOST_TARGET_VOTES: 'MOST_TARGET_VOTES',
+  FEWEST_TARGET_VOTES: 'FEWEST_TARGET_VOTES',
+};
+
+export const PLAYER_COUNTS = {
+  MIN: 2,
+  MAX: 10,
+};
+
+export const TOTAL_ROUNDS = 10;
+
+export const GAME_COMPLEXITY = {
+  NORMAL: 'NORMAL',
+  MORE: 'MORE',
+};
+
+export const GAME_DIFFICULTY = {
+  EASY: 'EASY',
+  HARD: 'HARD',
+};
+
+export const FEATURES_COUNTS = {
+  [GAME_COMPLEXITY.NORMAL]: {
+    [GAME_DIFFICULTY.EASY]: {
+      1: 4,
+      2: 2,
+      3: 0,
+      4: 0,
+    },
+    [GAME_DIFFICULTY.HARD]: {
+      1: 2,
+      2: 1,
+      3: 2,
+      4: 1,
+    },
+  },
+  [GAME_COMPLEXITY.MORE]: {
+    [GAME_DIFFICULTY.EASY]: {
+      1: 5,
+      2: 2,
+      3: 1,
+      4: 0,
+    },
+    [GAME_DIFFICULTY.HARD]: {
+      1: 3,
+      2: 2,
+      3: 2,
+      4: 1,
+    },
+  },
+};
+
+export const ITEMS_PER_PLAYER = 5;
+
+export const DOUBLE_ROUNDS_THRESHOLD = 5;
+
+export const OUTCOME = {
+  NEW: 'NEW',
+  CONTINUE: 'CONTINUE',
+  WIN: 'WIN',
+  LOSE: 'LOSE',
+};
+
+export const SCORING = {
+  [GAME_DIFFICULTY.EASY]: [0, 0, 0, 1, 3],
+  [GAME_DIFFICULTY.HARD]: [0, 0, 0, 0, 1, 1, 2],
+};
