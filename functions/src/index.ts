@@ -21,6 +21,7 @@ import * as labirintoSecretoEngine from './engine/labirinto-secreto';
 import * as linhasCruzadasEngine from './engine/linhas-cruzadas';
 import * as megamixEngine from './engine/megamix';
 import * as menteColetivaEngine from './engine/mente-coletiva';
+import * as mesmiceEngine from './engine/mesmice';
 import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
 import * as naoSouRoboEngine from './engine/nao-sou-robo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
@@ -110,6 +111,8 @@ exports.linhasCruzadasSubmitAction = functions.https.onCall(linhasCruzadasEngine
 exports.megamixSubmitAction = functions.https.onCall(megamixEngine.submitAction);
 
 exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
+
+exports.mesmiceSubmitAction = functions.https.onCall(mesmiceEngine.submitAction);
 
 exports.naRuaDoMedoSubmitAction = functions.https.onCall(naRuaDoMedoEngine.submitAction);
 

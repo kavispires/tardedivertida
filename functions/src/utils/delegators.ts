@@ -15,6 +15,7 @@ import * as labirintoSecretoEngine from '../engine/labirinto-secreto';
 import * as linhasCruzadasEngine from '../engine/linhas-cruzadas';
 import * as megamixEngine from '../engine/megamix';
 import * as menteColetivaEngine from '../engine/mente-coletiva';
+import * as mesmiceEngine from '../engine/mesmice';
 import * as naRuaDoMedoEngine from '../engine/na-rua-do-medo';
 import * as naoSouRoboEngine from '../engine/nao-sou-robo';
 import * as ondaTelepaticaEngine from '../engine/onda-telepatica';
@@ -48,6 +49,7 @@ const engines = {
   [GAME_NAMES.LINHAS_CRUZADAS]: linhasCruzadasEngine,
   [GAME_NAMES.MEGAMIX]: megamixEngine,
   [GAME_NAMES.MENTE_COLETIVA]: menteColetivaEngine,
+  [GAME_NAMES.MESMICE]: mesmiceEngine,
   [GAME_NAMES.NA_RUA_DO_MEDO]: naRuaDoMedoEngine,
   [GAME_NAMES.NAO_SOU_ROBO]: naoSouRoboEngine,
   [GAME_NAMES.ONDA_TELEPATICA]: ondaTelepaticaEngine,

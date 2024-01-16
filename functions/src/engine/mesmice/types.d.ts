@@ -1,0 +1,53 @@
+import { MESMICE_ACHIEVEMENTS, MESMICE_ACTIONS, OUTCOME } from './constants';
+
+export type MesmiceOptions = {
+  /**
+   * Allow NSFW items
+   */
+  nsfw: boolean;
+  /**
+   * Uses more complex features
+   */
+  complexMode: boolean;
+  /**
+   * Uses 8 features instead of 6
+   */
+  hardMode: boolean;
+};
+
+export type ResourceData = {
+  features: {
+    1: ObjectFeatureCard[];
+    2: ObjectFeatureCard[];
+  };
+  items: {
+    1: Partial<AlienItem>[];
+    2: Partial<AlienItem>[];
+  };
+};
+
+export type Outcome = keyof typeof OUTCOME;
+
+export type ExtendedObjectFeatureCard = ObjectFeatureCard & { eliminated?: boolean };
+
+export type MesmiceAchievements = keyof typeof MESMICE_ACHIEVEMENTS;
+
+export interface MesmiceStore extends DefaultStore {
+  [key: string]: any;
+}
+
+export interface MesmiceState extends DefaultState {
+  [key: string]: any;
+}
+
+export interface MesmiceInitialState extends InitialState {
+  store: MesmiceStore;
+  state: MesmiceState;
+}
+
+export interface MesmiceSubmitAction extends Payload {
+  action: keyof typeof MESMICE_ACTIONS;
+}
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | MesmiceState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | MesmiceStore;

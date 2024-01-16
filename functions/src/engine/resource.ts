@@ -7,7 +7,7 @@ import utils from '../utils';
  * @param resourceName
  * @returns
  */
-export const fetchResource = async <T>(resourceName: string): Promise<T | any> => {
+export const fetchResource = async <T = any>(resourceName: string): Promise<T | any> => {
   try {
     const response = await fetch(`${utils.firebase.config().td_url.resources}${resourceName}.json`);
     return response.json();
@@ -21,7 +21,7 @@ export const fetchResource = async <T>(resourceName: string): Promise<T | any> =
  * @param path
  * @returns
  */
-export const fetchTDIData = async <T>(dataFileName: string): Promise<T | any> => {
+export const fetchTDIData = async <T = any>(dataFileName: string): Promise<T | any> => {
   try {
     const response = await fetch(`${utils.firebase.config().td_url.data}${dataFileName}.json`);
     return response.json();

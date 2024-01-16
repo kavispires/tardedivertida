@@ -233,6 +233,9 @@ export async function getSessionDoc(
  * @param action
  */
 export function throwException(error: unknown, action = 'function') {
+  if (process.env.FIRESTORE_EMULATOR_HOST) {
+    console.error(`Failed to ${action}`, error);
+  }
   throw new functions.https.HttpsError('internal', `Failed to ${action}`, error);
 }
 
@@ -423,6 +426,7 @@ export const updatePlayer = async ({
   try {
     await sessionRef.doc('state').update({ ...playerChange });
   } catch (error) {
+    // TODO: log error
     return throwException(error, actionText);
   }
   if (shouldReady && nextPhaseFunction) {

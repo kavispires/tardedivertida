@@ -134,3 +134,10 @@ type AlienItem = {
   nsfw?: boolean;
   categories?: string[];
 };
+
+type ObjectFeatureCard = {
+  id: CardId;
+  title: DualLanguageValue;
+  description: DualLanguageValue;
+  level: number;
+};
