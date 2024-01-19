@@ -3,6 +3,8 @@ import type { PhaseProps } from 'types/game';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useOnSubmitFeatureAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -12,13 +14,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { useOnSubmitFeatureAPIRequest } from './utils/api-requests';
 import { RoundAnnouncement } from 'components/round';
 import { TurnOrder } from 'components/players';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { AvatarName } from 'components/avatars';
-import { StepSelectFeature } from './StepSelectFeature';
 import { WaitingRoomFeature } from './components/WaitingRoomFeature';
+import { StepSelectFeature } from './StepSelectFeature';
 
 export function PhaseObjectFeatureElimination({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
@@ -105,6 +105,7 @@ export function PhaseObjectFeatureElimination({ players, state, info }: PhasePro
           isUserTheActivePlayer={isUserTheActivePlayer}
           history={state.history}
           announcement={announcement}
+          groupScore={state.groupScore}
         />
       </StepSwitcher>
     </PhaseContainer>

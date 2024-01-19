@@ -18,7 +18,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
 
       <Container
         title={<Translate pt="Respostas Mais Rápidas" en="Fastest Answers" />}
-        childrenContainerProps={{ className: 'final-gallery' }}
+        contentProps={{ className: 'final-gallery' }}
       >
         {state.topAnswers.map((entry: AdedanhxGalleryEntry) => {
           return <FinalGalleryEntry entry={entry} key={entry.id} />;
@@ -27,7 +27,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
 
       <Container
         title={<Translate pt="Sem Respostas" en="No Answers" />}
-        childrenContainerProps={{ className: 'final-gallery' }}
+        contentProps={{ className: 'final-gallery' }}
       >
         {state.noAnswers.map((entry: AdedanhxGalleryEntry) => {
           return <FinalGalleryEntry entry={entry} key={entry.id} />;

@@ -1,15 +1,16 @@
 // Type
 import type { GamePlayer } from 'types/player';
+import { ObjectCardObj } from './utils/types';
 // Hooks
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockObjectIdSelection } from './utils/mock';
 // Components
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { ObjectCardObj } from './utils/types';
 import { ObjectCard } from './components/ObjectCard';
-import { mockObjectIdSelection } from './utils/mock';
-import { useMock } from 'hooks/useMock';
 
 type StepSelectObjectProps = {
   user: GamePlayer;

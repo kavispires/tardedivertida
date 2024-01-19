@@ -12,8 +12,8 @@ type ContainerProps = {
   children: ReactNode;
   contained?: boolean;
   className?: string;
-  titleProps?: TitleProps;
-  childrenContainerProps?: SpaceProps;
+  titleProps?: Omit<TitleProps, 'children'>;
+  contentProps?: SpaceProps;
 } & Omit<SpaceProps, 'title' | 'children'>;
 
 /**
@@ -25,7 +25,7 @@ export function Container({
   className,
   contained,
   titleProps,
-  childrenContainerProps,
+  contentProps,
   ...spaceProps
 }: ContainerProps) {
   const { level = 4, size = 'xx-small', ...restTitleProps } = titleProps ?? {};
@@ -35,7 +35,7 @@ export function Container({
     wrap = true,
     direction: childrenDirection = 'horizontal',
     ...restChildrenContainerProps
-  } = childrenContainerProps ?? {};
+  } = contentProps ?? {};
 
   return (
     <Space direction="vertical" className={clsx('container-wrapper', className)} {...spaceProps}>

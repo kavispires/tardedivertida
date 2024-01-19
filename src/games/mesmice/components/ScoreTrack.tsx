@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Tooltip } from 'antd';
 // Types
 import type { ExtendedObjectFeatureCard, HistoryEntry } from '../utils/types';
 // Images
@@ -11,6 +9,8 @@ import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { RuleInstruction } from 'components/text';
+import { Container } from 'components/general/Container';
 
 type ScoreTrackProps = {
   history: HistoryEntry[];
@@ -19,27 +19,10 @@ type ScoreTrackProps = {
 
 export function ScoreTrack({ history, features }: ScoreTrackProps) {
   return (
-    <Tooltip
-      title={
-        <Translate
-          en={
-            <>
-              From left to write, this is how many features we have to eliminate and how many points we get
-              for each one.
-              <br />
-              As you can see, we must eliminate some before we even get any points.
-            </>
-          }
-          pt={
-            <>
-              Da esquerda para a direita, este é o número de características que temos que eliminar e quantos
-              pontos ganhamos para cada uma delas.
-              <br />
-              Como você pode ver, temos que eliminar algumas antes mesmo de ganhar pontos.
-            </>
-          }
-        />
-      }
+    <Container
+      titleProps={{ size: 'xx-small' }}
+      title={<Translate en="Progress" pt="Progresso" />}
+      contentProps={{ direction: 'vertical' }}
     >
       <div className="score-track" style={{ gridTemplateColumns: `repeat(${history.length}, 1fr)` }}>
         {history.map((entry, index) => (
@@ -70,6 +53,23 @@ export function ScoreTrack({ history, features }: ScoreTrackProps) {
           </div>
         ))}
       </div>
-    </Tooltip>
+      <RuleInstruction type="tip">
+        <Translate
+          en={
+            <>
+              From left to write, this is how many features we have to eliminate and how many points we get
+              for each one. As you can see, we must eliminate some before we even get any points.
+            </>
+          }
+          pt={
+            <>
+              Da esquerda para a direita, este é o número de características que temos que eliminar e quantos
+              pontos ganhamos para cada uma delas. Como você pode ver, temos que eliminar algumas antes mesmo
+              de ganhar pontos.
+            </>
+          }
+        />
+      </RuleInstruction>
+    </Container>
   );
 }

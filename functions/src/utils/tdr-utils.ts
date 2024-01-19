@@ -11,16 +11,18 @@ import utils from '.';
 /**
  * Get alien items for given quantity and NSFW allowance otherwise it resets the used items and use all available
  * @param quantity
- * @param allowNSFW
+ * @param allowNSFW - indicates that NSFW items are allowed
  * @param mustHaveData - indicates that item must have attribute data (for alien bot for example)
  * @param balanceAttributes - indicates that item must have balanced attributes (for alien bot for example)
+ * @param filter - filter function to filter out items
  * @returns
  */
 export const getAlienItems = async (
   quantity: number,
   allowNSFW: boolean,
-  mustHaveData?: boolean,
-  balanceAttributes?: boolean
+  mustHaveAttributeData?: boolean,
+  balanceAttributes?: boolean,
+  filter?: (item: AlienItem) => boolean
 ): Promise<AlienItem[]> => {
   const allAlienItemsObj: Collection<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
 
@@ -76,8 +78,19 @@ export const getAlienItems = async (
   }
 
   // If must have data, verify items
-  if (mustHaveData) {
+  if (mustHaveAttributeData) {
     verifyItems(allAlienItemsObj);
+  }
+
+  /**
+   * If filter is provided, filter out items that don't match the filter
+   */
+  if (filter) {
+    Object.values(allAlienItemsObj).forEach((item) => {
+      if (!filter(item)) {
+        delete allAlienItemsObj[item.id];
+      }
+    });
   }
 
   // Get used items deck
