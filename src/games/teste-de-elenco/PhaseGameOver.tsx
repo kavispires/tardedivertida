@@ -37,7 +37,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
 
       <Container
         title={<Translate pt="O Filme" en="The Movie" />}
-        childrenContainerProps={{ className: 'final-gallery' }}
+        contentProps={{ className: 'final-gallery' }}
       >
         <Space className="role" direction="vertical" align="center">
           {movie && (

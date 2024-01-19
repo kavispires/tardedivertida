@@ -25,3 +25,10 @@ export type HistoryEntry = {
   votes: PlayerId[];
   score: number;
 };
+
+export type MesmiceGalleryEntry = {
+  playerId: PlayerId;
+  item: ObjectCardObj;
+  clue: string;
+  featureId: CardId;
+};

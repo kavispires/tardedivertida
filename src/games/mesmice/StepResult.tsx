@@ -1,23 +1,29 @@
+import clsx from 'clsx';
+import { useMemo } from 'react';
+// Ant Design Resources
+import { Divider } from 'antd';
 // Type
 import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, MostVotesResult } from 'types/game';
+import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './utils/types';
 // Hooks
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { XIcon } from 'icons/XIcon';
 // Components
 import { Step, StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './utils/types';
-import { ObjectFeature } from './components/ObjectFeature';
-import { Divider } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { ViewIf } from 'components/views';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { ObjectFeature } from './components/ObjectFeature';
 import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
-import { XIcon } from 'icons/XIcon';
 import { ScoreTrack } from './components/ScoreTrack';
-import clsx from 'clsx';
-import { getAnimationClass } from 'utils/helpers';
 import { Votes } from './components/Votes';
-import { GameRound, MostVotesResult } from 'types/game';
 import { HostNextPhaseButton } from 'components/host';
+import { GroupScore } from './components/GroupScore';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -31,6 +37,7 @@ type StepResultProps = {
   votes: MostVotesResult[];
   outcome: string;
   round: GameRound;
+  groupScore: number;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepResult({
@@ -46,8 +53,20 @@ export function StepResult({
   votes,
   round,
   announcement,
+  groupScore,
 }: StepResultProps) {
   const listOfFeatures = Object.values(features);
+
+  const roundScore = useMemo(
+    () =>
+      history.reduce((acc, entry) => {
+        if (entry.pass) {
+          acc += entry.score;
+        }
+        return acc;
+      }, 0),
+    [history]
+  );
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -55,11 +74,25 @@ export function StepResult({
         <Translate pt="Resultado" en="Result" />
       </Title>
 
+      <GroupScore groupScore={groupScore} playerScore={user.score} />
+
       <ViewIf condition={outcome === 'WIN'}>
         <RuleInstruction type="scoring">
           <Translate
-            pt="Parabéns!!! Vocês eliminaram todas as características!!!"
-            en="Congratulations!!! You eliminated all features!!!"
+            pt={
+              <>
+                Parabéns!!! Vocês eliminaram todas as características!!!
+                <br />
+                Pontos da Rodada: <PointsHighlight>{roundScore}</PointsHighlight>
+              </>
+            }
+            en={
+              <>
+                Congratulations!!! You eliminated all features!!!
+                <br />
+                Round's Score: <PointsHighlight>{roundScore}</PointsHighlight>
+              </>
+            }
           />
         </RuleInstruction>
       </ViewIf>
@@ -76,8 +109,20 @@ export function StepResult({
       <ViewIf condition={outcome === 'LOSE'}>
         <RuleInstruction type="alert">
           <Translate
-            pt="Oh não! Vocês eliminaram a característica-alvo!!!"
-            en="Oh no! You eliminated the target feature!!!"
+            pt={
+              <>
+                Oh não! Vocês eliminaram a característica-alvo!!!
+                <br />
+                Pontos da Rodada: <PointsHighlight>{roundScore}</PointsHighlight>
+              </>
+            }
+            en={
+              <>
+                Oh no! You eliminated the target feature!!!
+                <br />
+                Round's Score: <PointsHighlight>{roundScore}</PointsHighlight>
+              </>
+            }
           />
         </RuleInstruction>
       </ViewIf>

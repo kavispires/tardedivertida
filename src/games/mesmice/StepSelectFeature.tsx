@@ -1,7 +1,15 @@
+import clsx from 'clsx';
+// Ant Design Resources
+import { Divider, Popconfirm } from 'antd';
 // Type
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockFeatureSelection } from './utils/mock';
+// Icons
+import { XIcon } from 'icons/XIcon';
 // Components
 import { Step, StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
@@ -12,17 +20,13 @@ import type {
   ObjectCardObj,
   SubmitFeaturePayload,
 } from './utils/types';
-import { ObjectFeature } from './components/ObjectFeature';
-import { Divider, Popconfirm } from 'antd';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { ViewOr } from 'components/views';
 import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
-import { XIcon } from 'icons/XIcon';
 import { ScoreTrack } from './components/ScoreTrack';
-import clsx from 'clsx';
-import { useMock } from 'hooks/useMock';
-import { mockFeatureSelection } from './utils/mock';
+import { GroupScore } from './components/GroupScore';
+import { ObjectFeature } from './components/ObjectFeature';
 
 type StepSelectFeatureProps = {
   user: GamePlayer;
@@ -33,6 +37,7 @@ type StepSelectFeatureProps = {
   clue: string;
   history: HistoryEntry[];
   onEliminate: (payload: SubmitFeaturePayload) => void;
+  groupScore: number;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectFeature({
@@ -44,6 +49,7 @@ export function StepSelectFeature({
   isUserTheActivePlayer,
   onEliminate,
   history,
+  groupScore,
 }: StepSelectFeatureProps) {
   const { isLoading } = useLoading();
   const listOfFeatures = Object.values(features);
@@ -62,6 +68,8 @@ export function StepSelectFeature({
           en={<>Which feature least connects the two objects?</>}
         />
       </Title>
+
+      <GroupScore groupScore={groupScore} playerScore={user.score} />
 
       <ViewOr condition={isUserTheActivePlayer}>
         <RuleInstruction type="wait">

@@ -33,7 +33,11 @@ export const getData = async (
   // Get items per player
   const selectedItems = await utils.tdr.getAlienItems(
     playerCount * ITEMS_PER_PLAYER * (shouldBuildTwoDecks ? 2 : 1),
-    allowNSFW
+    allowNSFW,
+    false,
+    false,
+    (item: AlienItem) =>
+      Boolean(item.name[language].trim()) && Boolean((item.categories ?? []).includes('mesmice'))
   );
 
   // Get full deck of features

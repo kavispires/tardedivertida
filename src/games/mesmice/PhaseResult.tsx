@@ -1,21 +1,21 @@
+import { ReactNode } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
+import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+import { ApplauseIcon } from 'icons/ApplauseIcon';
+import { SkullIcon } from 'icons/SkullIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { ReactNode } from 'react';
 import { StepResult } from './StepResult';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
-import { ApplauseIcon } from 'icons/ApplauseIcon';
-import { SkullIcon } from 'icons/SkullIcon';
 
 export function PhaseResult({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
@@ -57,6 +57,7 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
           votes={state.votes}
           round={state.round}
           announcement={announcement}
+          groupScore={state.groupScore}
         />
       </StepSwitcher>
     </PhaseContainer>

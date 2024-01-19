@@ -32,6 +32,7 @@ export const prepareSetupPhase = async (
     groupVotes: 0,
     lonelyVotes: 0,
     targetVotes: 0,
+    communityVotes: 0,
   });
 
   // Build turn order
@@ -92,6 +93,7 @@ export const prepareClueWritingPhase = async (
     update: {
       store: {
         run,
+        gallery: [],
       },
       state: {
         phase: MESMICE_PHASES.CLUE_WRITING,
@@ -100,6 +102,7 @@ export const prepareClueWritingPhase = async (
         ),
         players,
         outcome: OUTCOME.NEW,
+        groupScore: 0,
       },
     },
   };
@@ -119,7 +122,10 @@ export const prepareObjectFeatureEliminationPhase = async (
     item: state.item,
     clue: state.clue,
   };
+  const storeUpdate: PlainObject = {};
+
   if (state.outcome !== OUTCOME.CONTINUE) {
+    // Save gallery
     round = utils.helpers.increaseRound(state.round);
     const activePlayerId = utils.players.getActivePlayer(store.gameOrder, round.current);
     const activePlayer = players[activePlayerId];
@@ -144,6 +150,16 @@ export const prepareObjectFeatureEliminationPhase = async (
     });
     stateUpdate.features = features;
     stateUpdate.outcome = OUTCOME.NEW;
+    // Gallery update
+    storeUpdate.gallery = [
+      ...store.gallery,
+      {
+        playerId: activePlayerId,
+        item: stateUpdate.item,
+        clue: stateUpdate.clue,
+        featureId: stateUpdate.target,
+      },
+    ];
   }
 
   utils.players.unReadyPlayers(players, stateUpdate.activePlayerId);
@@ -151,6 +167,9 @@ export const prepareObjectFeatureEliminationPhase = async (
   // Save
   return {
     update: {
+      store: {
+        ...storeUpdate,
+      },
       state: {
         phase: MESMICE_PHASES.OBJECT_FEATURE_ELIMINATION,
         players,
@@ -166,6 +185,8 @@ export const prepareResultPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  let groupScore: number = state.groupScore ?? 0;
+
   // Determine most voted feature, awarding achievements
   const rankedVotes = utils.players.getRankedVotes(players, 'selectedFeatureId');
 
@@ -190,9 +211,11 @@ export const prepareResultPhase = async (
       });
     }
 
-    // Group or lonely votes
     entry.votes.forEach((playerId) => {
+      // Group or lonely votes
       utils.achievements.increase(store, playerId, entry.votes.length > 0 ? 'groupVotes' : 'lonelyVotes', 1);
+      // Community Vote
+      utils.achievements.increase(store, playerId, 'communityVotes', entry.votes.length);
     });
   });
 
@@ -219,6 +242,8 @@ export const prepareResultPhase = async (
       utils.players.getListOfPlayers(players).forEach((player) => {
         player.score += history[i].score;
       });
+
+      groupScore += history[i].score;
     }
   }
 
@@ -235,6 +260,7 @@ export const prepareResultPhase = async (
         outcome,
         votes: rankedVotes,
         history,
+        groupScore,
       },
     },
   };
@@ -246,10 +272,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // TODO: Adjust scores to reduce 1 por every time the target was selected by a player (use achievement counts for it)
+  // Adjust scores to reduce 1 por every time the target was selected by a player
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    player.score -= store.achievements[player.id].targetVotes;
+  });
+
   const winners = utils.players.determineWinners(players);
 
-  // TODO: Update achievements
   const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
@@ -263,8 +292,6 @@ export const prepareGameOverPhase = async (
     achievements,
     language: store.language,
   });
-
-  // TODO: Add gallery
 
   // Save data
   // await saveData(store.language, store.pastClues, store.options.imageGrid);
@@ -283,6 +310,8 @@ export const prepareGameOverPhase = async (
         winners,
         players,
         achievements,
+        gallery: store.gallery,
+        features: state.features,
       },
     },
   };
