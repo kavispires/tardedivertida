@@ -209,7 +209,10 @@ export const prepareFirebaseAlienItemDict = (data: AlienItemDict): FirebaseAlien
   Object.values(data).forEach((item) => {
     newData[item.id] = {
       id: item.id,
-      name: item.name,
+      name: {
+        pt: (item.name.pt ?? '').trim(),
+        en: (item.name.en ?? '').trim(),
+      },
       attributesStr: JSON.stringify(item.attributes),
     };
     if (item.nsfw) {
@@ -227,7 +230,10 @@ export const parseFirebaseAlienItemDict = (data: FirebaseAlienItemDict): AlienIt
   Object.values(data).forEach((item) => {
     newData[item.id] = {
       id: item.id,
-      name: item.name,
+      name: {
+        pt: (item.name.pt ?? '').trim(),
+        en: (item.name.en ?? '').trim(),
+      },
       attributes: JSON.parse(item.attributesStr ?? '{}'),
       nsfw: item.nsfw,
       categories: item.categories,

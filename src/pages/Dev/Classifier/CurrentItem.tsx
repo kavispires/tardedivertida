@@ -6,6 +6,7 @@ import { determineAttributePriorityResponse } from './bot-utils';
 
 import type { ItemId, AlienItem } from './types';
 import { Sign } from './Sign';
+import { CATEGORIES } from './constants';
 
 type CurrentItemsProps = {
   itemId: ItemId;
@@ -48,7 +49,7 @@ export function CurrentItem({
         placeholder="Categories"
         value={activeItem?.categories ?? []}
         onChange={updateCategory}
-        options={[{ label: 'mesmice', value: 'mesmice' }]}
+        options={CATEGORIES}
       />
 
       <Divider />
