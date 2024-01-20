@@ -69,3 +69,5 @@ export const SIGNS: Sign[] = SORTED_ATTRIBUTES.map((attribute, index) => ({
   attribute: attribute.name,
   signId: String(index),
 }));
+
+export const CATEGORIES = ['mesmice', 'weapon', 'evidence', 'no-alien'].map((e) => ({ label: e, value: e }));
