@@ -11,7 +11,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { SceneTile } from 'components/game/SceneTile';
 import { SelectedItems } from './components/SelectedItems';
 
@@ -46,9 +46,10 @@ export function StepReviewCrime({
       <Title>
         <Translate pt="Seu crime tá bom?" en="Is your crime alright?" />
       </Title>
-      <Instruction contained>
+
+      <RuleInstruction type="rule">
         <Translate pt={<>Revise seu crime.</>} en={<>Recap your crime.</>} />
-      </Instruction>
+      </RuleInstruction>
 
       <SelectedItems items={items} weaponId={selections.weaponId} evidenceId={selections.evidenceId} />
 

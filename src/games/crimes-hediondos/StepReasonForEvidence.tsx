@@ -5,7 +5,7 @@ import type { ItemsDict, SceneTilePayload } from './utils/types';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { SceneTile } from 'components/game/SceneTile';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
@@ -40,7 +40,7 @@ export function StepReasonForEvidence({
       <Title>
         <Translate pt="O que tinha no seu último crime?" en="What was in your last crime?" />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -55,7 +55,7 @@ export function StepReasonForEvidence({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container" align="center">
         <SelectedItems

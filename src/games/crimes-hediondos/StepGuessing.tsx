@@ -17,7 +17,7 @@ import { CrimeSummary } from './components/CrimeSummary';
 import { PlayersCards } from './components/PlayersCards';
 import { SelectableGroupedItemsBoard } from './components/SelectableGroupedItemsBoard';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { DebugOnly } from 'components/debug';
 import { FloatingHand } from 'components/general/FloatingHand';
@@ -110,7 +110,8 @@ export function StepGuessing({
       <Title>
         <Translate pt="Quais foram os crimes?" en="What were the crimes?" />
       </Title>
-      <Instruction contained>
+
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -134,7 +135,7 @@ export function StepGuessing({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <DebugOnly dev>
         <Space className="space-container" align="center">

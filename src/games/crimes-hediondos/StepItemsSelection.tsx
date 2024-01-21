@@ -11,7 +11,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { shuffle } from 'utils/helpers';
 // Components
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { ContinueButton } from './components/ContinueButton';
@@ -67,7 +67,7 @@ export function StepItemsSelection({
       <Title>
         <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -91,7 +91,7 @@ export function StepItemsSelection({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <ul className="h-items-selection">
         {userItems.map((itemId) => (
