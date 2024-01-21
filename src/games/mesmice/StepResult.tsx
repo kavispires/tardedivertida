@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider } from 'antd';
@@ -7,6 +8,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound, MostVotesResult } from 'types/game';
 import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './utils/types';
 // Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -55,7 +57,11 @@ export function StepResult({
   announcement,
   groupScore,
 }: StepResultProps) {
-  const listOfFeatures = Object.values(features);
+  const { language } = useLanguage();
+  const listOfFeatures = useMemo(
+    () => orderBy(Object.values(features), [`title.${language}`, 'level']),
+    [features, language]
+  );
 
   const roundScore = useMemo(
     () =>
@@ -145,7 +151,7 @@ export function StepResult({
                 <ObjectFeature
                   feature={feature}
                   highlight={
-                    feature.id === user.target &&
+                    feature.id === activePlayer.target &&
                     (isUserTheActivePlayer || outcome === 'LOSE' || outcome === 'WIN')
                   }
                   className={clsx(feature.eliminated && 'features-container__eliminated-object')}

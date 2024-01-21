@@ -48,18 +48,18 @@ export const FEATURES_COUNTS = {
       4: 0,
     },
     [GAME_DIFFICULTY.HARD]: {
-      1: 2,
-      2: 1,
-      3: 2,
-      4: 1,
-    },
-  },
-  [GAME_COMPLEXITY.MORE]: {
-    [GAME_DIFFICULTY.EASY]: {
       1: 5,
       2: 2,
       3: 1,
       4: 0,
+    },
+  },
+  [GAME_COMPLEXITY.MORE]: {
+    [GAME_DIFFICULTY.EASY]: {
+      1: 2,
+      2: 1,
+      3: 2,
+      4: 1,
     },
     [GAME_DIFFICULTY.HARD]: {
       1: 3,

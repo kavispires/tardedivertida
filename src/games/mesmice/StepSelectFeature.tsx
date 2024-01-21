@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider, Popconfirm } from 'antd';
 // Type
@@ -6,6 +8,7 @@ import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { mockFeatureSelection } from './utils/mock';
 // Icons
@@ -52,7 +55,12 @@ export function StepSelectFeature({
   groupScore,
 }: StepSelectFeatureProps) {
   const { isLoading } = useLoading();
-  const listOfFeatures = Object.values(features);
+  const { language } = useLanguage();
+
+  const listOfFeatures = useMemo(
+    () => orderBy(Object.values(features), [`title.${language}`, 'level']),
+    [features, language]
+  );
 
   useMock(() => {
     if (!isUserTheActivePlayer) {
