@@ -5,6 +5,7 @@ import { Item, Sign, ResourceData, ComunicacaoAlienigenaOptions } from './types'
 // Helpers
 import utils from '../../utils';
 import { calculateAttributeUsage, getItems } from './helpers';
+import { alienItemUtils } from '../../utils/tdr-utils';
 
 /**
  * Get characters based on the game's language
@@ -26,7 +27,11 @@ export const getResourceData = async (
   let botAlienItemKnowledge: Collection<AlienItem> = {};
 
   // Get the 25 needed items randomly
-  const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, allowNSFW, isBotAlien, isBotAlien);
+  const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, {
+    allowNSFW,
+    filters: [alienItemUtils.notWithinCategories(['no-alien']), alienItemUtils.onlyWithAttributes],
+    balanceAttributes: isBotAlien,
+  });
 
   const items: Item[] = getItems(playerCount).map((itemType, index) => ({
     id: selectedAlienItems[index].id,

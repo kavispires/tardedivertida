@@ -45,7 +45,7 @@ export const getResourceData = async (language: Language, options: DuetosOptions
 
   const itemsNeeded = Math.max(TOTAL_ROUNDS - customRounds, 1) * quantityNeeded;
 
-  const items = await utils.tdr.getAlienItems(itemsNeeded, allowNSFW);
+  const items = await utils.tdr.getAlienItems(itemsNeeded, { allowNSFW });
 
   let images: CardId[] = [];
   if (specialDeckTypes.includes('images')) {

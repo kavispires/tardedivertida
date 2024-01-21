@@ -3,6 +3,7 @@ export type CrimesHediondosCard = {
   type: string;
   name: DualLanguageValue;
   tags?: string[];
+  itemId?: string;
 };
 
 export type MonsterCard = {

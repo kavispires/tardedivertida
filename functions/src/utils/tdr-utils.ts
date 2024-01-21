@@ -7,45 +7,32 @@ import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/glo
 import { fetchResource } from '../engine/resource';
 import { buildIdDictionary } from './helpers';
 import utils from '.';
+import { every, some } from 'lodash';
 
 /**
  * Get alien items for given quantity and NSFW allowance otherwise it resets the used items and use all available
  * @param quantity
  * @param allowNSFW - indicates that NSFW items are allowed
- * @param mustHaveData - indicates that item must have attribute data (for alien bot for example)
+ * @param categories - list of categories that items must be within
+ * @param filters - list of filter functions to filter out items
  * @param balanceAttributes - indicates that item must have balanced attributes (for alien bot for example)
- * @param filter - filter function to filter out items
  * @returns
  */
 export const getAlienItems = async (
   quantity: number,
-  allowNSFW: boolean,
-  mustHaveAttributeData?: boolean,
-  balanceAttributes?: boolean,
-  filter?: (item: AlienItem) => boolean
+  options: {
+    allowNSFW: boolean;
+    categories?: string[];
+    filters?: ((item: AlienItem) => boolean)[];
+    balanceAttributes?: boolean;
+  } = {
+    allowNSFW: false,
+    categories: [],
+    filters: [],
+    balanceAttributes: false,
+  }
 ): Promise<AlienItem[]> => {
   const allAlienItemsObj: Collection<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
-
-  /**
-   * Deletes in place items that have less than 75% of attributes with weights
-   * @param items
-   */
-  function verifyItems(items: Collection<AlienItem>) {
-    Object.values(items).forEach((item) => {
-      const totalAttributes = Object.keys(item.attributes).length;
-
-      let attributesWithWeights = 0;
-      Object.values(item.attributes).forEach((attribute) => {
-        if (attribute !== 0) {
-          attributesWithWeights++;
-        }
-      });
-
-      if (totalAttributes * 0.75 > attributesWithWeights) {
-        delete items[item.id];
-      }
-    });
-  }
 
   function getWellWeightedItems(items: Collection<AlienItem>) {
     const attributeKeysWith5: Set<string> = new Set();
@@ -77,21 +64,30 @@ export const getAlienItems = async (
     return selectedItems;
   }
 
-  // If must have data, verify items
-  if (mustHaveAttributeData) {
-    verifyItems(allAlienItemsObj);
-  }
+  // Filter out items that don't match the options
+  Object.values(allAlienItemsObj).forEach((item) => {
+    // Handle NSFW
+    if (!options.allowNSFW && item.nsfw) {
+      delete allAlienItemsObj[item.id];
+      return;
+    }
 
-  /**
-   * If filter is provided, filter out items that don't match the filter
-   */
-  if (filter) {
-    Object.values(allAlienItemsObj).forEach((item) => {
-      if (!filter(item)) {
+    // Handle categories
+    if (options.categories && options.categories.length) {
+      if (!alienItemUtils.onlyItemsWithinCategories(options?.categories ?? [])(item)) {
         delete allAlienItemsObj[item.id];
+        return;
       }
-    });
-  }
+    }
+
+    // If filter is provided, filter out items that don't match the filter
+    if (options.filters) {
+      if (!every(options.filters, (filter) => filter(item))) {
+        delete allAlienItemsObj[item.id];
+        return;
+      }
+    }
+  });
 
   // Get used items deck
   const usedItems: BooleanDictionary = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, {});
@@ -105,29 +101,64 @@ export const getAlienItems = async (
     availableAlienItems = allAlienItemsObj;
   }
 
-  // If NSFW is allowed, just return the random items
-  if (allowNSFW) {
-    // Get variety of items
-    return balanceAttributes
-      ? getWellWeightedItems(availableAlienItems)
-      : gameUtils.getRandomItems(Object.values(availableAlienItems), quantity);
-  }
-
-  const safeItems = Object.values(availableAlienItems).filter((item) => !item.nsfw);
+  let list = Object.values(availableAlienItems);
 
   // If there are enough safe items, return them
-  if (safeItems.length >= quantity) {
-    return balanceAttributes
-      ? getWellWeightedItems(utils.helpers.buildDictionaryFromList(safeItems))
-      : gameUtils.getRandomItems(safeItems, quantity);
+  if (list.length >= quantity) {
+    return options.balanceAttributes
+      ? getWellWeightedItems(utils.helpers.buildDictionaryFromList(list))
+      : gameUtils.getRandomItems(list, quantity);
   }
 
   // If not the minimum items needed, reset and use all safe
   await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
-  const allSafeItems = Object.values(allAlienItemsObj).filter((item) => !item.nsfw);
-  return balanceAttributes
-    ? getWellWeightedItems(utils.helpers.buildDictionaryFromList(allSafeItems))
-    : gameUtils.getRandomItems(allSafeItems, quantity);
+
+  list = Object.values(allAlienItemsObj);
+  return options.balanceAttributes
+    ? getWellWeightedItems(utils.helpers.buildDictionaryFromList(list))
+    : gameUtils.getRandomItems(list, quantity);
+};
+
+export const alienItemUtils = {
+  /**
+   * Filter alien only if safe for work
+   */
+  onlySafeForWork: (item: AlienItem) => !item.nsfw,
+  /**
+   * Filter alien items by category/tag
+   * @param category
+   * @returns boolean
+   */
+  onlyItemsWithinCategories: (categories: string[]) => (item: AlienItem) => {
+    return every(categories, (category) => (item.categories ?? []).includes(category));
+  },
+  /**
+   * Filter alien items by category/tag
+   */
+  notWithinCategories: (categories: string[]) => (item: AlienItem) => {
+    return !some(categories, (category) => (item.categories ?? []).includes(category));
+  },
+  onlyWithName: (language: Language) => (item: AlienItem) => Boolean(item.name[language].trim()),
+  /**
+   * Filter item only if it has at least 75% of attribute data
+   * @param item
+   * @returns
+   */
+  onlyWithAttributes: (item: AlienItem) => {
+    const totalAttributes = Object.keys(item.attributes).length;
+
+    let attributesWithWeights = 0;
+    Object.values(item.attributes).forEach((attribute) => {
+      if (attribute !== 0) {
+        attributesWithWeights++;
+      }
+    });
+
+    if (totalAttributes * 0.75 > attributesWithWeights) {
+      return false;
+    }
+    return true;
+  },
 };
 
 /**
