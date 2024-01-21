@@ -3,6 +3,7 @@ type CrimesHediondosCard = {
   type: string;
   name: DualLanguageValue;
   tags?: string[];
+  itemId?: string;
 };
 
 type MonsterCard = {

@@ -12,6 +12,7 @@ import {
   GAME_DIFFICULTY,
   ITEMS_PER_PLAYER,
 } from './constants';
+import { alienItemUtils } from '../../utils/tdr-utils';
 
 /**
  * Get object features and items
@@ -33,11 +34,11 @@ export const getData = async (
   // Get items per player
   const selectedItems = await utils.tdr.getAlienItems(
     playerCount * ITEMS_PER_PLAYER * (shouldBuildTwoDecks ? 2 : 1),
-    allowNSFW,
-    false,
-    false,
-    (item: AlienItem) =>
-      Boolean(item.name[language].trim()) && Boolean((item.categories ?? []).includes('mesmice'))
+    {
+      allowNSFW,
+      categories: ['mesmice'],
+      filters: [alienItemUtils.onlyWithName(language as Language)],
+    }
   );
 
   // Get full deck of features
