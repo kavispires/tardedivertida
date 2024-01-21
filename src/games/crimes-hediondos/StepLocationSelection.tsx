@@ -9,7 +9,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { SceneTile } from 'components/game/SceneTile';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
@@ -49,7 +49,7 @@ export function StepLocationSelection({
       <Title>
         <Translate pt="Onde foi o crime?" en="Where was the crime?" />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -67,7 +67,7 @@ export function StepLocationSelection({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <ul className="h-items-selection">
         {userItems.map((itemId) => (

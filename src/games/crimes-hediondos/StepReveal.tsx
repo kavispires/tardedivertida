@@ -19,7 +19,7 @@ import { PlayersCards } from './components/PlayersCards';
 import { CrimeGuessStatus } from './components/CrimeGuessStatus';
 import { ResultsTable } from './components/ResultsTable';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { TimedButton } from 'components/buttons';
@@ -72,7 +72,7 @@ export function StepReveal({
       </Title>
 
       <PopoverRule content={<ScoringMessage round={round} />} />
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -89,7 +89,9 @@ export function StepReveal({
             </>
           }
         />
+      </RuleInstruction>
 
+      <Instruction contained>
         <ResultsTable players={players} results={results} />
 
         <Translate

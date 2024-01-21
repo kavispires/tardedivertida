@@ -10,7 +10,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { CrimeSummary } from './components/CrimeSummary';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
 import { SceneTile } from 'components/game/SceneTile';
@@ -49,7 +49,7 @@ export function StepNewScene({
   return (
     <Step announcement={announcement}>
       <Title size="medium">{sceneTile.description[language]}</Title>
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -58,7 +58,7 @@ export function StepNewScene({
           }
           en={<>Based on your cards, select an option in the new Scene card below.</>}
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Collapse
         items={[
