@@ -1,20 +1,23 @@
+import { useMemo, useState } from 'react';
+import { orderBy } from 'lodash';
+// Ant Design Resources
+import { Button, Input, Space } from 'antd';
 // Type
 import type { GamePlayer } from 'types/player';
+import { type UseStep } from 'hooks/useStep';
+import type { ExtendedObjectFeatureCard, ObjectCardObj, SubmitObjectPayload } from './utils/types';
 // Hooks
+import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
+// Utils
+import { mockClue } from 'mock/clues';
 // Components
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { type UseStep } from 'hooks/useStep';
-import type { ExtendedObjectFeatureCard, ObjectCardObj, SubmitObjectPayload } from './utils/types';
 import { ObjectFeature } from './components/ObjectFeature';
-import { useMemo, useState } from 'react';
-import { Button, Input, Space } from 'antd';
 import { ObjectCard } from './components/ObjectCard';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
-import { mockClue } from 'mock/clues';
 
 type StepWriteClueProps = {
   user: GamePlayer;
@@ -32,7 +35,7 @@ export function StepWriteClue({
   selectedObjectId,
 }: StepWriteClueProps) {
   const [clue, setClue] = useState<string>('');
-  const { translate } = useLanguage();
+  const { translate, language } = useLanguage();
   const { isLoading } = useLoading();
 
   // Dev Only
@@ -47,7 +50,10 @@ export function StepWriteClue({
     onSubmitClue({ clue: clue.trim(), itemId: selectedObjectId });
   };
 
-  const listOfFeatures = Object.values(features);
+  const listOfFeatures = useMemo(
+    () => orderBy(Object.values(features), [`title.${language}`, 'level']),
+    [features, language]
+  );
 
   return (
     <Step fullWidth>
