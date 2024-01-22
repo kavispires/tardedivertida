@@ -16,14 +16,8 @@ export type MesmiceOptions = {
 };
 
 export type ResourceData = {
-  features: {
-    1: ObjectFeatureCard[];
-    2: ObjectFeatureCard[];
-  };
-  items: {
-    1: Partial<AlienItem>[];
-    2: Partial<AlienItem>[];
-  };
+  features: ObjectFeatureCard[];
+  items: Partial<AlienItem>[];
 };
 
 export type Outcome = keyof typeof OUTCOME;

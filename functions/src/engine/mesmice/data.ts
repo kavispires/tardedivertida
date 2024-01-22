@@ -5,13 +5,7 @@ import type { MesmiceOptions, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
-import {
-  DOUBLE_ROUNDS_THRESHOLD,
-  FEATURES_COUNTS,
-  GAME_COMPLEXITY,
-  GAME_DIFFICULTY,
-  ITEMS_PER_PLAYER,
-} from './constants';
+import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } from './constants';
 import { alienItemUtils } from '../../utils/tdr-utils';
 
 /**
@@ -29,17 +23,12 @@ export const getData = async (
   const difficulty = options.hardMode ? GAME_DIFFICULTY.HARD : GAME_DIFFICULTY.EASY;
   const counts = FEATURES_COUNTS[complexity][difficulty];
 
-  const shouldBuildTwoDecks = playerCount <= DOUBLE_ROUNDS_THRESHOLD;
-
   // Get items per player
-  const selectedItems = await utils.tdr.getAlienItems(
-    playerCount * ITEMS_PER_PLAYER * (shouldBuildTwoDecks ? 2 : 1),
-    {
-      allowNSFW,
-      categories: ['mesmice'],
-      filters: [alienItemUtils.onlyWithName(language as Language)],
-    }
-  );
+  const selectedItems = await utils.tdr.getAlienItems(playerCount * ITEMS_PER_PLAYER, {
+    allowNSFW,
+    categories: ['mesmice'],
+    filters: [alienItemUtils.onlyWithName(language as Language)],
+  });
 
   // Get full deck of features
   const allObjectFeatures: Collection<ObjectFeatureCard> = await resourceUtils.fetchResource(
@@ -77,16 +66,8 @@ export const getData = async (
     return features;
   }
 
-  const [items1, items2 = []] = utils.game.sliceInParts(selectedItems, shouldBuildTwoDecks ? 2 : 1);
-
   return {
-    features: {
-      1: getObjectFeatures(),
-      2: shouldBuildTwoDecks ? getObjectFeatures() : [],
-    },
-    items: {
-      1: items1.map((item) => ({ id: item.id, name: item.name })),
-      2: items2.map((item) => ({ id: item.id, name: item.name })),
-    },
+    features: getObjectFeatures(),
+    items: selectedItems.map((item) => ({ id: item.id, name: item.name })),
   };
 };
