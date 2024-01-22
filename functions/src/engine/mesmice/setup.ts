@@ -1,12 +1,5 @@
 // Constants
-import {
-  DOUBLE_ROUNDS_THRESHOLD,
-  GAME_DIFFICULTY,
-  ITEMS_PER_PLAYER,
-  MESMICE_PHASES,
-  OUTCOME,
-  SCORING,
-} from './constants';
+import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
@@ -36,16 +29,7 @@ export const prepareSetupPhase = async (
   });
 
   // Build turn order
-  const { gameOrder, playerIds: turnOrder } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
-
-  // Store update
-  const storeUpdate = {};
-  if (resourceData.features[2].length) {
-    storeUpdate['features'] = resourceData.features[2];
-  }
-  if (resourceData.items[2].length) {
-    storeUpdate['items'] = resourceData.items[2];
-  }
+  const { gameOrder, playerIds: turnOrder } = utils.players.buildGameOrder(players);
 
   // Save
   return {
@@ -53,7 +37,6 @@ export const prepareSetupPhase = async (
       store: {
         achievements,
         ...resourceData,
-        run: 1,
         gameOrder,
       },
       state: {
@@ -74,14 +57,12 @@ export const prepareClueWritingPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const run = state.round.current > 1 ? 2 : 1;
-
   utils.players.removePropertiesFromPlayers(players, ['selectedItemId', 'selectedItem', 'clue', 'items']);
 
   // Distribute items
-  utils.players.dealItemsToPlayers(players, store.items[run], ITEMS_PER_PLAYER, 'items');
+  utils.players.dealItemsToPlayers(players, store.items, ITEMS_PER_PLAYER, 'items');
   // Distribute target to each player
-  const features = store.features[run];
+  const features = store.features;
   utils.players.getListOfPlayers(players).forEach((player) => {
     player.target = utils.game.getRandomItem<ExtendedObjectFeatureCard>(features).id;
   });
@@ -92,7 +73,6 @@ export const prepareClueWritingPhase = async (
   return {
     update: {
       store: {
-        run,
         gallery: [],
       },
       state: {

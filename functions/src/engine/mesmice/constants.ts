@@ -72,8 +72,6 @@ export const FEATURES_COUNTS = {
 
 export const ITEMS_PER_PLAYER = 3;
 
-export const DOUBLE_ROUNDS_THRESHOLD = 5;
-
 export const OUTCOME = {
   NEW: 'NEW',
   CONTINUE: 'CONTINUE',
