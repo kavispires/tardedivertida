@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Types
 import type { Item } from '../utils/types';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Card } from 'components/cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
@@ -21,10 +23,21 @@ type ItemEntryProps = {
 };
 
 export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryProps) {
+  const { dualTranslate } = useLanguage();
+
   const sizeMultiplier = size === 'small' ? 0.75 : 1;
+
   if (itemEntry.type === 'alien-item') {
-    return <ItemCard id={itemEntry.value.id} width={75 * sizeMultiplier} className={className} />;
+    return (
+      <ItemCard
+        id={itemEntry.value.id}
+        width={75 * sizeMultiplier}
+        className={className}
+        title={dualTranslate(itemEntry.value.name)}
+      />
+    );
   }
+
   if (itemEntry.type === 'images') {
     return (
       <ImageCard
@@ -35,6 +48,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
       />
     );
   }
+
   if (itemEntry.type === 'words') {
     return (
       <Card hideHeader className={className} size={size}>
@@ -42,6 +56,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
       </Card>
     );
   }
+
   if (itemEntry.type === 'suspects') {
     return (
       <div className={className}>
@@ -49,6 +64,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
       </div>
     );
   }
+
   if (itemEntry.type === 'contenders') {
     return (
       <CharacterCard

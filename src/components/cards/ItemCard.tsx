@@ -39,6 +39,10 @@ export type ItemCardProps = {
    * Optional class name
    */
   className?: string;
+  /**
+   * Replacement title, usually the name of the item
+   */
+  title?: string;
 };
 
 const LoadingItem = (props: ItemCardProps) => (
