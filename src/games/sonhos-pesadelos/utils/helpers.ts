@@ -32,7 +32,7 @@ export const selectOwnVote = (dreams: Dream[], user: GamePlayer) =>
     return acc;
   }, {});
 
-export const voteRandomly = (votes: StringDictionary, dreams: Dream[], table: ImageCard[]) => {
+export const voteRandomly = (votes: StringDictionary, dreams: Dream[], table: ImageCardId[]) => {
   const randomVotes = dreams.reduce((acc: StringDictionary, entry, index) => {
     const randomTable = shuffle(table);
     const clueEntryId = getEntryId(['dream', entry.id, LETTERS[index]]);

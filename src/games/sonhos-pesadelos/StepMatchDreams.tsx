@@ -23,7 +23,7 @@ import { DreamBoardVote } from './components/DreamBoardVote';
 type StepMatchDreamsProps = {
   onSubmitVotes: GenericFunction;
   players: GamePlayers;
-  table: ImageCard[];
+  table: ImageCardId[];
   user: GamePlayer;
   dreams: Dream[];
 };

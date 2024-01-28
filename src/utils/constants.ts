@@ -17,7 +17,15 @@ export const PUBLIC_URL = {
 /**
  * List of tags translation and color
  */
-export const TAG_DICT: Record<string, GameTag> = {
+export const TAG_DICT: Record<
+  string,
+  {
+    label: DualLanguageValue;
+    color: string;
+    index: number;
+    group: 'dynamics' | 'turns' | 'skills' | 'actions' | 'emotions' | 'features' | 'other';
+  }
+> = {
   // About Dynamics
   competitive: {
     label: {

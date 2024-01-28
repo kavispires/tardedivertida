@@ -24,7 +24,7 @@ const mockedDreamClues = [
 
 export const mockDream = (): string => shuffle(mockedDreamClues)[0];
 
-export const mockVotes = (dreams: Dream[], table: ImageCard[], user: GamePlayer): StringDictionary => {
+export const mockVotes = (dreams: Dream[], table: ImageCardId[], user: GamePlayer): StringDictionary => {
   const playersIds = shuffle(dreams.map((dream) => dream.id).filter((playerId) => playerId !== user.id));
   const shuffledTable = shuffle(table);
 
