@@ -6,7 +6,7 @@ import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 import { PhaseClueWriting } from './PhaseClueWriting';
