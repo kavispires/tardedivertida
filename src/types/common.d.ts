@@ -6,8 +6,6 @@ type DateMilliseconds = number;
 type GameCode = string;
 type GameId = string;
 type GameName = string;
-// type ImageCard = string;
-type PlayerAvatarId = string;
 type PlayerId = string;
 type PlayerName = string;
 
