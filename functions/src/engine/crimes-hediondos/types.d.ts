@@ -1,6 +1,13 @@
 import { CRIMES_HEDIONDOS_ACHIEVEMENTS, CRIMES_HEDIONDOS_ACTIONS } from './constants';
 
 export type CrimesHediondosOptions = {
+  /**
+   * Uses the original images instead of the TD items sprites
+   */
+  originalImages?: boolean;
+  /**
+   * Adds bots with 2 crimes
+   */
   withBots?: boolean;
 };
 
@@ -9,7 +16,9 @@ export type CrimesHediondosAchievement = keyof typeof CRIMES_HEDIONDOS_ACHIEVEME
 export interface Crime {
   playerId: PlayerId;
   weaponId: string;
+  // weaponItemId: string | null;
   evidenceId: string;
+  // evidenceItemId: string | null;
   scenes: {
     [key: string]: number;
   };
@@ -43,8 +52,8 @@ export type WrongGroups = {
 };
 
 export interface ResourceData {
-  allWeapons: CrimesHediondosCard[];
-  allEvidence: CrimesHediondosCard[];
+  weapons: CrimesHediondosCard[];
+  evidence: CrimesHediondosCard[];
   allScenes: CrimeTile[];
 }
 

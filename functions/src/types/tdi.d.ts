@@ -4,6 +4,7 @@ type CrimesHediondosCard = {
   name: DualLanguageValue;
   tags?: string[];
   itemId?: string;
+  itemExclusive?: boolean;
 };
 
 type MonsterCard = {
