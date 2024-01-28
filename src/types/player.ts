@@ -1,7 +1,7 @@
 export type GamePlayer<TPlayer = PlainObject> = {
   id: PlayerId;
   name: PlayerName;
-  avatarId: PlayerAvatarId;
+  avatarId: AvatarId;
   updatedAt: DateMilliseconds;
   ready: boolean;
   [key: string]: any;
