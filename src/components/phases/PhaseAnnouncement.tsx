@@ -7,7 +7,7 @@ import { Button } from 'antd';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import { useCountdown } from 'hooks/useCountdown';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { type AnimationType, getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';

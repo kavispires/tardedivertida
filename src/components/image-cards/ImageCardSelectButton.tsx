@@ -6,7 +6,7 @@ import { Translate } from 'components/language';
 
 type ImageCardSelectButtonProps = {
   isSelected?: boolean;
-  cardId: ImageCard;
+  cardId: ImageCardId;
   onClick: GenericFunction;
   /**
    * Optional custom class name

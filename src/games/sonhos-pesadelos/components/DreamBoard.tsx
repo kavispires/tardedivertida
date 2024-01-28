@@ -8,7 +8,7 @@ import { Translate } from 'components/language';
 import { DreamCard } from './DreamCard';
 
 type DreamBoardProps = {
-  table: ImageCard[];
+  table: ImageCardId[];
   user: GamePlayer;
   /**
    * Optional custom class name

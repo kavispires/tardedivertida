@@ -13,7 +13,7 @@ import { RibbonGroup } from 'components/ribbons';
 import { ImageBlurButton, ImageCardSelectButton } from 'components/image-cards';
 
 type DreamBoardVoteProps = {
-  table: ImageCard[];
+  table: ImageCardId[];
   user: GamePlayer;
   activeItem: string;
   onActivateItem: GenericFunction;

@@ -18,7 +18,7 @@ import { Translate } from 'components/language';
 
 type StepTellDreamProps = {
   players: GamePlayers;
-  table: ImageCard[];
+  table: ImageCardId[];
   user: GamePlayer;
   onSubmitDream: GenericFunction;
 };
