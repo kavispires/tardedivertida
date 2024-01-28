@@ -37,8 +37,8 @@ function App() {
   const [getLocalStorage] = useLocalStorage();
 
   useEffectOnce(() => {
-    setBlurEnabled(getLocalStorage('blurEnabled') || false);
-    setVolume(getLocalStorage('volume') ?? 0.5);
+    setBlurEnabled(getLocalStorage('blurEnabled', false));
+    setVolume(getLocalStorage('volume', 0.4));
     setUsername(getLocalStorage('username'));
     setUserAvatarId(getLocalStorage('avatarId'));
   });
