@@ -1,5 +1,5 @@
 // Constants
-import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
+import { CRIMES_HEDIONDOS_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
@@ -33,10 +33,6 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
-  // Build weapon and evidence decks
-  const weapons = utils.game.getRandomItems(resourceData.allWeapons, CARDS_PER_GAME);
-  const evidence = utils.game.getRandomItems(resourceData.allEvidence, CARDS_PER_GAME);
-
   // Build scene decks
   const { causeOfDeathTile, reasonForEvidenceTile, locationTiles, sceneTiles } = parseTiles(
     resourceData.allScenes
@@ -56,8 +52,8 @@ export const prepareSetupPhase = async (
     update: {
       store: {
         scenes: sceneTiles,
-        weapons,
-        evidence,
+        weapons: resourceData.weapons,
+        evidence: resourceData.evidence,
         achievements,
       },
       state: {
@@ -282,6 +278,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        achievements,
         scenes: state.scenes,
         scenesOrder: state.scenesOrder,
         items: state.items,

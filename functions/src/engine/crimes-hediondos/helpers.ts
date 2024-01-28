@@ -116,7 +116,7 @@ export const groupItems = (weapons: CrimesHediondosCard[], evidence: CrimesHedio
 };
 
 export const dealItemGroups = (players: Players) => {
-  utils.players.getListOfPlayersIds(players).forEach((playerId) => {
+  utils.players.getListOfPlayersIds(players, true).forEach((playerId) => {
     players[playerId].itemGroupIndex = Math.round(Math.random() * 100) % ITEMS_GROUP_COUNT;
   });
 };
@@ -126,7 +126,7 @@ export const buildCrimes = (
   causeOfDeathTile: CrimeTile,
   reasonForEvidenceTile: CrimeTile
 ): Crime[] => {
-  return utils.players.getListOfPlayers(players).map((player) => {
+  return utils.players.getListOfPlayers(players, true).map((player) => {
     return {
       playerId: player.id,
       weaponId: player.weaponId,
@@ -154,7 +154,9 @@ export const buildScenes = (
   locationTiles: CrimeTile[],
   players: Players
 ): BuiltScenes => {
-  const locationsUsedByPlayers = utils.players.getListOfPlayers(players).map((player) => player.locationTile);
+  const locationsUsedByPlayers = utils.players
+    .getListOfPlayers(players, true)
+    .map((player) => player.locationTile);
   const locations = locationTiles.filter((locationTile) => locationsUsedByPlayers.includes(locationTile.id));
 
   const order = [causeOfDeathTile.id, reasonForEvidenceTile.id, ...locations.map((location) => location.id)];
@@ -185,7 +187,7 @@ export const updateOrCreateGuessHistory = (
 ): PlainObject => {
   const results: PlainObject = {};
   // Each history entry shows the
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  utils.players.getListOfPlayers(players, true).forEach((player) => {
     const history: GuessHistory = { ...player.history } ?? {};
     const wrongGroups: WrongGroups = { ...player.wrongGroups } ?? {};
     const result: StringDictionary = {};
@@ -322,7 +324,7 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
   // Points granted in reverse round order 1:7, 2:6, 3:4, 4:3, 5:6, 7:1
   const pointMultiplier = TOTAL_ROUNDS + 1 - currentRound;
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = utils.players.getPlayerCount(players, true);
 
   const playersArray = utils.players.getListOfPlayers(players);
 

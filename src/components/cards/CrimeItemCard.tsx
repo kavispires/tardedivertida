@@ -9,6 +9,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
+import { ItemCard } from './ItemCard';
 // Sass
 import './CrimeItemCard.scss';
 
@@ -49,6 +50,36 @@ export function CrimeItemCard({
 }: CrimeItemCardProps) {
   const { dualTranslate } = useLanguage();
   const { isDebugEnabled } = useDevFeatures();
+
+  if (item.itemId) {
+    return (
+      <ImageBlurButtonContainer cardId={item.id}>
+        <div
+          className={clsx('crime-item-card', isSelected && 'crime-item-card--selected', className)}
+          style={activeColor && isSelected ? { borderColor: 'black', backgroundColor: activeColor } : {}}
+        >
+          <Popover content={dualTranslate(item.name).toUpperCase()}>
+            <Tag
+              className="crime-item-card__name"
+              color={item.type === 'weapon' ? 'geekblue' : 'volcano'}
+              style={{ maxWidth: `${cardWidth}px` }}
+            >
+              <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
+            </Tag>
+          </Popover>
+          <div
+            className={clsx(
+              'crime-item-card__item-container',
+              `crime-item-card__item-container--${item.type}`
+            )}
+          >
+            <ItemCard id={item.itemId} width={cardWidth * 0.85} className="crime-item-card__item" />
+          </div>
+        </div>
+      </ImageBlurButtonContainer>
+    );
+  }
+
   return (
     <ImageBlurButtonContainer cardId={item.id}>
       <div

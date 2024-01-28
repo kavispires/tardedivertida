@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { orderBy } from 'lodash';
 // Types
 import type { PhaseProps } from 'types/game';
@@ -14,7 +15,7 @@ import { CrimeSummary } from './components/CrimeSummary';
 import { Achievements } from 'components/general/Achievements';
 
 export function PhaseGameOver({ state, players, info }: PhaseProps) {
-  const crimes: Crime[] = state.crimes;
+  const crimes: Crime[] = useMemo(() => orderBy(state.crimes ?? [], ['playerId']), [state.crimes]);
   const user = useUser(players, state);
 
   return (
@@ -22,7 +23,7 @@ export function PhaseGameOver({ state, players, info }: PhaseProps) {
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <ul>
-        {orderBy(crimes, ['playerId']).map((crime) => (
+        {crimes.map((crime) => (
           <CrimeSummary
             key={`crime-by-${crime.playerId}`}
             crime={crime}
