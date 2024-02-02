@@ -322,7 +322,7 @@ export const getData = async (
   // DRAWING_TRACKS: RETRATO_FALADO
   const retratoFaladoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.RETRATO_FALADO);
   if (retratoFaladoTrack) {
-    const monsters = Object.values(await resourceUtils.fetchTDIData('md/cards'));
+    const monsters = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.MONSTER_ORIENTATION));
 
     customTracks.push({
       game: GAME_NAMES.RETRATO_FALADO,
@@ -381,7 +381,7 @@ export const getData = async (
     const testimonyQuestions = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`)
     );
-    const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchTDIData('us/info'));
+    const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
     const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
     customTracks.push({
       game: GAME_NAMES.TESTEMUNHA_OCULAR,
@@ -402,7 +402,7 @@ export const getData = async (
     const testimonyQuestions = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`)
     );
-    const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchTDIData('us/info'));
+    const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
     const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
     const suspect = utils.game.getRandomItem(suspects);
     customTracks.push({
@@ -419,8 +419,8 @@ export const getData = async (
   // JUDGING_TRACKS: NAMORO_OU_AMIZADE
   const namoroOuAmizadeTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.NAMORO_OU_AMIZADE);
   if (namoroOuAmizadeTrack) {
-    const heads = Object.values(await resourceUtils.fetchTDIData('dates/heads'));
-    const bodies = Object.values(await resourceUtils.fetchTDIData('dates/bodies'));
+    const heads = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.DATING_CANDIDATE_HEADS));
+    const bodies = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.DATING_CANDIDATE_BODIES));
     const candidatePersonalities: DatingCandidateCard[] = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.DATING_CANDIDATE}-${language}`)
     );
@@ -531,8 +531,8 @@ export const getData = async (
   // UNPOPULAR_TRACKS: CRIMES_HEDIONDOS
   const crimesHediondosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CRIMES_HEDIONDOS);
   if (crimesHediondosTrack) {
-    const allWeapons = await resourceUtils.fetchTDIData('dmhk/wp');
-    const allEvidence = await resourceUtils.fetchTDIData('dmhk/ev');
+    const allWeapons = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_WEAPONS);
+    const allEvidence = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_EVIDENCE);
     const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_TILES);
     const crimes = parseCrimeTiles(allScenes);
 

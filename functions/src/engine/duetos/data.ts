@@ -1,12 +1,12 @@
 // Constants
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
+import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Type
 import { AlienItem, ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
 import { DuetosOptions, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
-import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../utils/constants';
 
 /**
  * Get characters based on the game's language
@@ -94,7 +94,7 @@ export const getResourceData = async (language: Language, options: DuetosOptions
 
   let suspects: SuspectCard[] = [];
   if (specialDeckTypes.includes('suspects')) {
-    const allSuspects = await resourceUtils.fetchTDIData('us/info');
+    const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
     suspects = utils.game.getRandomItems(
       utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects), {}),
       quantityNeeded

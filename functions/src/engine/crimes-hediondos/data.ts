@@ -13,10 +13,14 @@ import { CARDS_PER_GAME } from './constants';
  */
 export const getData = async (options: CrimesHediondosOptions): Promise<ResourceData> => {
   // Get weapon cards
-  const allWeapons: Collection<CrimesHediondosCard> = await resourceUtils.fetchTDIData('dmhk/wp');
+  const allWeapons: Collection<CrimesHediondosCard> = await resourceUtils.fetchResource(
+    TDR_RESOURCES.CRIME_WEAPONS
+  );
 
   // Get evidence cards
-  const allEvidence: Collection<CrimesHediondosCard> = await resourceUtils.fetchTDIData('dmhk/ev');
+  const allEvidence: Collection<CrimesHediondosCard> = await resourceUtils.fetchResource(
+    TDR_RESOURCES.CRIME_EVIDENCE
+  );
 
   // Get scene tiles
   const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_TILES);

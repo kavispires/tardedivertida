@@ -25,7 +25,7 @@ export const getQuestionsAndSuspects = async (
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
-  const allSuspects = await resourceUtils.fetchTDIData('us/info');
+  const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
 
   // Filter out used cards
   // Filter out used cards
