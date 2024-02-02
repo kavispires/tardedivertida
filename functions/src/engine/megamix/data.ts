@@ -442,7 +442,7 @@ export const getData = async (
   const ondaTelepaticaTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.ONDA_TELEPATICA);
   if (ondaTelepaticaTrack) {
     const opposingIdeas = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.OPPOSING_IDEAS}-${language}`)
+      await resourceUtils.fetchResource(`${TDR_RESOURCES.SPECTRUMS}-${language}`)
     );
 
     customTracks.push({

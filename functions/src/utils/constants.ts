@@ -265,10 +265,10 @@ export const TDR_RESOURCES = {
   MOVIE_REVIEWS: 'movie-reviews',
   NAMING_PROMPTS: 'naming-prompts',
   OBJECT_FEATURES: 'object-features', // dual language
-  OPPOSING_IDEAS: 'opposing-ideas',
   QUANTITATIVE_QUESTIONS: 'quantitative-questions',
   SCENARIOS: 'scenarios',
   SINGLE_WORDS: 'single-words',
+  SPECTRUMS: 'spectrums',
   SPY_LOCATIONS: 'spy-locations',
   SPY_QUESTIONS: 'spy-questions',
   TESTIMONY_QUESTIONS: 'testimony-questions',
