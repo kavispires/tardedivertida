@@ -1,5 +1,5 @@
 // Constants
-import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
 import { MonsterImage } from '../../types/tdr';
@@ -16,7 +16,7 @@ import * as dataUtils from '../collections';
  */
 export const getMonsterCards = async (): Promise<ResourceData> => {
   // Get images info
-  const allMonsters = await resourceUtils.fetchTDIData('md/cards');
+  const allMonsters = await resourceUtils.fetchResource(TDR_RESOURCES.MONSTER_ORIENTATION);
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MONSTERS, {});
 

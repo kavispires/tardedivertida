@@ -17,7 +17,7 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
   // Get full deck
   const allCards: Collection<TestimonyQuestionCard> = await resourceUtils.fetchResource(resourceName);
   // Get images info
-  const allSuspects = await resourceUtils.fetchTDIData('us/info');
+  const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
 
   // Filter out used cards
   const availableCards = Object.values(allCards).filter((card) => (options.nsfw ? card : !card.nsfw));

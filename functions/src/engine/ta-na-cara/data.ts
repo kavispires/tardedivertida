@@ -21,7 +21,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
-  const allSuspects = await resourceUtils.fetchTDIData('us/info');
+  const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
 
   // Filter out used cards
   const availableCards = Object.values(utils.game.filterOutByIds(allCards, usedCards)).filter((card) =>
