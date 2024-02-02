@@ -2,6 +2,7 @@
 import { TDR_RESOURCES } from '../../utils/constants';
 import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 // Types
+import { TextCard } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';

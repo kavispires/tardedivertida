@@ -2,6 +2,7 @@
 import { DECK_PER_PLAYER, MAX_ROUNDS, MIN_ROUND_CARDS } from './constants';
 import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES } from '../../utils/constants';
 // Type
+import { TextCard } from '../../types/tdr';
 import { GalleryEntry, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';

@@ -1,4 +1,5 @@
 // Types
+import { TextCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import {

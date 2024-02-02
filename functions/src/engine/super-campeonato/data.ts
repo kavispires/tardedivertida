@@ -1,6 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Type
+import { TextCard } from '../../types/tdr';
 import { PastBattles, ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';

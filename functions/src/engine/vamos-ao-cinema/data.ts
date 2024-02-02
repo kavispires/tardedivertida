@@ -2,6 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MOVIES_PER_ROUND, TOTAL_REVIEW_CARDS, TOTAL_ROUNDS } from './constants';
 // Types
+import { MovieCard, MovieReviewCard } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';

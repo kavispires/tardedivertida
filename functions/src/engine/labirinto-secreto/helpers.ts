@@ -14,6 +14,7 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
+import { TextCard } from '../../types/tdr';
 
 export const determineGameOver = (players: Players) => {
   // After 5 rounds or all paths are completed

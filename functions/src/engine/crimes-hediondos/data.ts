@@ -1,6 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
+import { CrimesHediondosCard } from '../../types/tdr';
 import type { CrimesHediondosOptions, ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';

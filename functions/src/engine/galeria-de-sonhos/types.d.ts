@@ -1,3 +1,4 @@
+import { TextCard } from '../../types/tdr';
 import { GALERIA_DE_SONHOS_ACHIEVEMENTS, GALERIA_DE_SONHOS_ACTIONS } from './constants';
 
 export type GaleriaDeSonhosOptions = {

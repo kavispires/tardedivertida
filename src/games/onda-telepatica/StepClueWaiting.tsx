@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import { OpposingIdeaCard } from 'types/tdr';
+import { SpectrumCard } from 'types/tdr';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -14,7 +14,7 @@ import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 type StepClueWaitingProps = {
   players: GamePlayers;
   psychic: GamePlayer;
-  currentCategories: OpposingIdeaCard[];
+  currentCategories: SpectrumCard[];
   currentCategoryId: string;
 } & Pick<StepProps, 'announcement'>;
 

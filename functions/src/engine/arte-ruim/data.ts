@@ -1,6 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Types
+import { ArteRuimCard, ArteRuimGroup, ArteRuimPair, TextCard } from '../../types/tdr';
 import type { ResourceData, ArteRuimDrawing, ArteRuimGameOptions, Level5Type } from './types';
 // Helpers
 import * as globalUtils from '../global';

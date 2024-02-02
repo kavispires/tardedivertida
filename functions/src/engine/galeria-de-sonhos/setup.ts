@@ -2,6 +2,7 @@
 import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
+import { TextCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';

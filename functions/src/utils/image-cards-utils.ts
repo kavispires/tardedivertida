@@ -2,6 +2,7 @@ import fetch from 'cross-fetch';
 // Helpers
 import { config, throwException } from './firebase';
 import { shuffle } from './game-utils';
+import { SuspectCard } from '../types/tdr';
 
 const deckCache = {};
 

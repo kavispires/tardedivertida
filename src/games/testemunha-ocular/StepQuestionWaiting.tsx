@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { SuspectCard } from 'types/tdi';
+import type { SuspectCard } from 'types/tdr';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components

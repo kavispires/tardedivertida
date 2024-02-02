@@ -1,4 +1,5 @@
 // Types
+import { GroupQuestionCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import {

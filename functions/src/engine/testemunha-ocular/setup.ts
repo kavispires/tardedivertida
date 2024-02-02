@@ -1,4 +1,5 @@
 // Types
+import { TestimonyQuestionCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcularEntry } from './types';
 // Constants
 import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';

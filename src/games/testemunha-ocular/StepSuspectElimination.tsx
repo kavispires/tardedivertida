@@ -4,7 +4,7 @@ import { Button, Space } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { SuspectCard } from 'types/tdi';
+import type { SuspectCard } from 'types/tdr';
 // Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';

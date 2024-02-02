@@ -1,7 +1,7 @@
 // AntDesign Resources
 import { Button, Image, Space } from 'antd';
 // Types
-import type { SuspectCard as SuspectCardType } from 'types/tdi';
+import type { SuspectCard as SuspectCardType } from 'types/tdr';
 import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';

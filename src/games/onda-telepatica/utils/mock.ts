@@ -1,4 +1,4 @@
-import { OpposingIdeaCard } from 'types/tdr';
+import { SpectrumCard } from 'types/tdr';
 import { getRandomItem } from 'utils/helpers';
 
 export const mockGuess = (target: number): number => {
@@ -13,7 +13,7 @@ export const mockGuess = (target: number): number => {
   ]);
 };
 
-export const mockHint = (card: OpposingIdeaCard, target: number): string => {
+export const mockHint = (card: SpectrumCard, target: number): string => {
   if (target < 0) {
     return `${card.left}:${Math.abs(target)}`;
   }

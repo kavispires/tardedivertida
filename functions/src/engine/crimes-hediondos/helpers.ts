@@ -8,6 +8,7 @@ import {
   SCENE_TILES_COUNT,
   TOTAL_ROUNDS,
 } from './constants';
+// Types
 import {
   Crime,
   CrimesHediondosAchievement,
@@ -19,6 +20,7 @@ import {
   GuessHistoryEntry,
   WrongGroups,
 } from './types';
+import { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 
@@ -53,15 +55,15 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 };
 
 type ParsedTiles = {
-  causeOfDeathTile: CrimeTile;
-  reasonForEvidenceTile: CrimeTile;
-  locationTiles: CrimeTile[];
-  sceneTiles: CrimeTile[];
+  causeOfDeathTile: CrimeSceneTile;
+  reasonForEvidenceTile: CrimeSceneTile;
+  locationTiles: CrimeSceneTile[];
+  sceneTiles: CrimeSceneTile[];
 };
 
-export const parseTiles = (sceneTiles: CrimeTile[]): ParsedTiles => {
+export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
   const result = sceneTiles.reduce(
-    (acc: any, tile: CrimeTile) => {
+    (acc: any, tile: CrimeSceneTile) => {
       if (tile.type === 'cause') {
         acc.causeOfDeathTile = tile;
       } else if (tile.type === 'evidence') {
@@ -123,8 +125,8 @@ export const dealItemGroups = (players: Players) => {
 
 export const buildCrimes = (
   players: Players,
-  causeOfDeathTile: CrimeTile,
-  reasonForEvidenceTile: CrimeTile
+  causeOfDeathTile: CrimeSceneTile,
+  reasonForEvidenceTile: CrimeSceneTile
 ): Crime[] => {
   return utils.players.getListOfPlayers(players, true).map((player) => {
     return {
@@ -143,15 +145,15 @@ export const buildCrimes = (
 
 type BuiltScenes = {
   scenes: {
-    [key: string]: CrimeTile;
+    [key: string]: CrimeSceneTile;
   };
   order: string[];
 };
 
 export const buildScenes = (
-  causeOfDeathTile: CrimeTile,
-  reasonForEvidenceTile: CrimeTile,
-  locationTiles: CrimeTile[],
+  causeOfDeathTile: CrimeSceneTile,
+  reasonForEvidenceTile: CrimeSceneTile,
+  locationTiles: CrimeSceneTile[],
   players: Players
 ): BuiltScenes => {
   const locationsUsedByPlayers = utils.players
@@ -171,7 +173,7 @@ export const buildScenes = (
   return { scenes, order };
 };
 
-export const updateCrime = (crimes: Crime[], players: Players, currentScene: CrimeTile): Crime[] => {
+export const updateCrime = (crimes: Crime[], players: Players, currentScene: CrimeSceneTile): Crime[] => {
   return crimes.map((crime) => {
     crime.scenes[currentScene.id] = players[crime.playerId].sceneIndex;
     return crime;
@@ -389,9 +391,9 @@ export const mockCrimeForBots = (
   players: Players,
   groupedItems: GroupedItems,
   items: Record<string, CrimesHediondosCard>,
-  causeOfDeathTile: CrimeTile,
-  reasonForEvidenceTile: CrimeTile,
-  locationTiles: CrimeTile[]
+  causeOfDeathTile: CrimeSceneTile,
+  reasonForEvidenceTile: CrimeSceneTile,
+  locationTiles: CrimeSceneTile[]
 ) => {
   // TODO: Use tags logic for location
 
@@ -433,7 +435,7 @@ export const mockGuessingForBots = (players: Players) => {
 
 export const mockSceneMarkForBots = (
   players: Players,
-  scene: CrimeTile,
+  scene: CrimeSceneTile,
   items: Record<string, CrimesHediondosCard>
 ) => {
   utils.players.getListOfBots(players).forEach((bot) => {
@@ -442,7 +444,7 @@ export const mockSceneMarkForBots = (
 };
 
 const botSmartSceneMarking = (
-  scene: CrimeTile,
+  scene: CrimeSceneTile,
   weapon: CrimesHediondosCard,
   evidence: CrimesHediondosCard
 ): number => {

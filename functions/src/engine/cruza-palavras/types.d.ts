@@ -1,3 +1,4 @@
+import { TextCard } from '../../types/tdr';
 import { CRUZA_PALAVRAS_ACHIEVEMENTS, CRUZA_PALAVRAS_ACTIONS } from './constants';
 
 export type CruzaPalavrasOptions = {

@@ -1,3 +1,4 @@
+import { ContenderCard } from '../../types/tdr';
 import { QUEM_SOU_EU_ACHIEVEMENTS, QUEM_SOU_EU_ACTIONS } from './constants';
 
 export type QuemSouEuOptions = {

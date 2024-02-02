@@ -1,6 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
+import { ObjectFeatureCard } from '../../types/tdr';
 import type { MesmiceOptions, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';

@@ -6,7 +6,7 @@ import {
   SUPER_CAMPEONATO_PHASES,
   TOTAL_ROUNDS,
 } from './constants';
-
+import { ContenderCard, TextCard } from '../../types/tdr';
 import type {
   Bracket,
   BracketTier,

@@ -1,5 +1,6 @@
 // Types
 import type { ResourceData, FirebaseStateData, FirebaseStoreData, ArteRuimGameOptions } from './types';
+import { ArteRuimCard } from '../../types/tdr';
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD } from './constants';

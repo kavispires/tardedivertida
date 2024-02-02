@@ -1,3 +1,4 @@
+import { GroupQuestionCard } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 // Internal

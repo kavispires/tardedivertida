@@ -1,4 +1,4 @@
-import type { SuspectCard } from 'types/tdi';
+import type { SuspectCard } from 'types/tdr';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components

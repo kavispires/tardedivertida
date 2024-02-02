@@ -1,4 +1,5 @@
 // Types
+import { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../types/tdr';
 import type {
   ArteRuimDrawing,
   FirebaseStoreData,

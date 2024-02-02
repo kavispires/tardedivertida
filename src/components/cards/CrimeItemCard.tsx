@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Popover, Tag } from 'antd';
 // Types
-import type { CrimesHediondosCard } from 'types/tdi';
+import type { CrimesHediondosCard } from 'types/tdr';
 // Hooks
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useLanguage } from 'hooks/useLanguage';

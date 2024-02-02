@@ -1,4 +1,4 @@
-import { SuspectCard } from 'types/tdi';
+import { SuspectCard } from 'types/tdr';
 
 export type SubmitMovieGenrePayload = {
   genre: string;

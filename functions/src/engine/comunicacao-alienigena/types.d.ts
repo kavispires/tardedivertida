@@ -1,3 +1,4 @@
+import { AlienItem } from '../../types/tdr';
 import { COMUNICACAO_ALIENIGENA_ACHIEVEMENTS, COMUNICACAO_ALIENIGENA_ACTIONS, ITEM_TYPES } from './constants';
 
 export interface ComunicacaoAlienigenaOptions {

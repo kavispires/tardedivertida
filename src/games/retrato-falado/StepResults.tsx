@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { MonsterCard as MonsterCardType } from 'types/tdi';
+import { type MonsterImage } from 'types/tdr';
 import type { UseStep } from 'hooks/useStep';
 import type { Sketch } from './utils/types';
 // Hooks
@@ -20,7 +20,7 @@ import { TimedButton } from 'components/buttons';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepResultsProps = {
-  currentMonster: MonsterCardType;
+  currentMonster: MonsterImage;
   goToNextStep: UseStep['goToNextStep'];
   sketches: Sketch[];
   user: GamePlayer;

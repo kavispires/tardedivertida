@@ -2,6 +2,7 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
 // Types
+import { AlienItem } from '../../types/tdr';
 import type {
   ComunicacaoAlienigenaStore,
   FirebaseStateData,

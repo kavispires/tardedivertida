@@ -1,4 +1,5 @@
 import stringSimilarity from 'string-similarity';
+import { cloneDeep, orderBy } from 'lodash';
 import utils from '../../utils';
 import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import { buildDecks } from '../na-rua-do-medo/helpers';
@@ -20,7 +21,7 @@ import {
   Track,
   TrackCandidate,
 } from './types';
-import { cloneDeep, orderBy } from 'lodash';
+import { CrimeSceneTile, DatingCandidateCard, MovieReviewCard, TextCard } from '../../types/tdr';
 
 /**
  * Get the next phase based on the current one
@@ -353,9 +354,9 @@ export const handleSeedingData = (
   return tracks;
 };
 
-export const parseCrimeTiles = (sceneTiles: CrimeTile[]) => {
+export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
   const result = sceneTiles.reduce(
-    (acc: any, tile: CrimeTile) => {
+    (acc: PlainObject, tile) => {
       if (tile.type === 'cause') {
         acc.causeOfDeathTile = tile;
       } else if (tile.type === 'evidence') {

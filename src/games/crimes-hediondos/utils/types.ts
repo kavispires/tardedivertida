@@ -1,5 +1,4 @@
-import type { CrimesHediondosCard } from 'types/tdi';
-import type { CrimeTile } from 'types/tdr';
+import type { CrimesHediondosCard, CrimeSceneTile } from 'types/tdr';
 
 export type GroupedItems = {
   [key: string]: string[];
@@ -10,7 +9,7 @@ export type ItemsDict = {
 };
 
 export type ScenesDict = {
-  [key: string]: CrimeTile;
+  [key: string]: CrimeSceneTile;
 };
 
 export type SceneTilePayload = {

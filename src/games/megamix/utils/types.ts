@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import { GroupQuestionCard, OpposingIdeaCard, TextCard } from 'types/tdr';
+import { GroupQuestionCard, SpectrumCard, TextCard } from 'types/tdr';
 
 export type Track = {
   game: string;
@@ -81,7 +81,7 @@ export type SeedEntryMenteColetiva = {
 
 export type SeedEntryOndaTelepatica = {
   type: 'onda-telepatica';
-  card: OpposingIdeaCard;
+  card: SpectrumCard;
   cards: never;
   outfits: never;
   tree: never;

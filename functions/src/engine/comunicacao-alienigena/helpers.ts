@@ -7,6 +7,7 @@ import {
   ITEM_TYPES,
   TOTAL_ITEMS,
 } from './constants';
+import { AlienItem } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 import {

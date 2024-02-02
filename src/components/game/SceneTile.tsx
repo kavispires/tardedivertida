@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Button, Popover } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
 // Types
-import type { CrimeTile } from 'types/tdr';
+import type { CrimeSceneTile } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Sass
@@ -13,7 +13,7 @@ type SceneTileProps = {
   /**
    * Scene tile
    */
-  tile: CrimeTile;
+  tile: CrimeSceneTile;
   /**
    * The optional answer index
    */

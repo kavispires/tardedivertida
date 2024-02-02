@@ -2,6 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { TABLE_DECK_TOTAL } from './constants';
 // Types
+import { TextCard } from '../../types/tdr';
 import type { ImageCardMatch, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';

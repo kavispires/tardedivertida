@@ -1,3 +1,4 @@
+import { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 import { CRIMES_HEDIONDOS_ACHIEVEMENTS, CRIMES_HEDIONDOS_ACTIONS } from './constants';
 
 export type CrimesHediondosOptions = {
@@ -54,17 +55,17 @@ export type WrongGroups = {
 export interface ResourceData {
   weapons: CrimesHediondosCard[];
   evidence: CrimesHediondosCard[];
-  allScenes: CrimeTile[];
+  allScenes: CrimeSceneTile[];
 }
 
 export interface CrimesHediondosStore extends DefaultStore {
-  scenes: CrimeTile[];
+  scenes: CrimeSceneTile[];
   [key: string]: any;
 }
 
 export interface CrimesHediondosState extends DefaultState {
   scenes?: {
-    [key: string]: CrimeTile;
+    [key: string]: CrimeSceneTile;
   };
   [key: string]: any;
 }

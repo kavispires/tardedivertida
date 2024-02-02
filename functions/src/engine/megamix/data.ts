@@ -1,6 +1,16 @@
 // Constants
 import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Types
+import {
+  AlienItem,
+  ArteRuimCard,
+  ArteRuimGroup,
+  DatingCandidateCard,
+  DilemmaCard,
+  MovieReviewCard,
+  SuspectCard,
+  TextCard,
+} from '../../types/tdr';
 import type { MegamixGameOptions, ResourceData, Track, TrackCandidate } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
@@ -215,9 +225,10 @@ export const getData = async (
   // OPINIONS_TRACKS: POLEMICA_DA_VEZ
   const polemicaDaVezTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.POLEMICA_DA_VEZ);
   if (polemicaDaVezTrack) {
+    type CustomTweet = TextCard & { custom?: boolean };
     const tweets = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.TWEETS}-${language}`)
-    ).filter((tweet) => !(tweet as Tweet).custom);
+    ).filter((tweet) => !(tweet as CustomTweet).custom);
 
     customTracks.push({
       game: GAME_NAMES.POLEMICA_DA_VEZ,

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { CrimesHediondosCard } from 'types/tdi';
+import type { CrimesHediondosCard } from 'types/tdr';
 import type { GroupedItems, ItemsDict } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

@@ -1,4 +1,5 @@
 // Types
+import { TextCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { CARDS_PER_PLAYER, TREVO_DA_SORTE_PHASES } from './constants';
