@@ -11,6 +11,7 @@ import type {
 import { LINHAS_CRUZADAS_ACHIEVEMENTS, LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
+import { ArteRuimCard, TextCard } from '../../types/tdr';
 
 /**
  * Determine the next phase based on the current one

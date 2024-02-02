@@ -2,6 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
 // Types
+import { GroupQuestionCard } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Helpers
 import * as globalUtils from '../global';

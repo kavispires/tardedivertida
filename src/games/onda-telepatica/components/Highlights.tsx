@@ -1,5 +1,5 @@
 // Types
-import type { OpposingIdeaCard } from 'types/tdr';
+import type { SpectrumCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
@@ -19,7 +19,7 @@ export function WavelengthHighlight({ children, type, iconSize, className }: Hig
 
 type TargetSideHighlightProps = {
   target: number;
-  card?: OpposingIdeaCard;
+  card?: SpectrumCard;
 };
 
 export function TargetSideHighlight({ target, card }: TargetSideHighlightProps) {

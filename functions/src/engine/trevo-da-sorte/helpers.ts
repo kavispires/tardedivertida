@@ -1,8 +1,9 @@
+import { TextCard } from '../../types/tdr';
+import { Clover, Guess, Guesses, Leaf, LeafGuess, LeafId, Leaves } from './types';
 // Constants
 import { LEAF_SIZE, ROTATIONS, TREVO_DA_SORTE_PHASES } from './constants';
 // Helpers
 import utils from '../../utils';
-import { Clover, Guess, Guesses, Leaf, LeafGuess, LeafId, Leaves } from './types';
 import { getRandomItems } from '../../utils/game-utils';
 
 /**

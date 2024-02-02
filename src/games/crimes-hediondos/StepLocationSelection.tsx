@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { CrimeTile } from 'types/tdr';
+import type { CrimeSceneTile } from 'types/tdr';
 import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -20,7 +20,7 @@ type StepLocationSelectionProps = {
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
-  locationTiles: CrimeTile[];
+  locationTiles: CrimeSceneTile[];
   groupedItems: GroupedItems;
   goToStep: GenericFunction;
 } & Pick<StepProps, 'announcement'>;

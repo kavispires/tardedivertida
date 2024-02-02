@@ -1,3 +1,4 @@
+import { TextCard } from '../../types/tdr';
 import { NAO_SOU_ROBO_ACHIEVEMENTS, NAO_SOU_ROBO_ACTIONS } from './constants';
 
 export interface NaoSouRoboOptions {

@@ -8,6 +8,7 @@ import {
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
+import { SpyLocation } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
 // Utils
 import utils from '../../utils';

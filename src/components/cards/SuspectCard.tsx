@@ -1,5 +1,5 @@
 // Type
-import { SuspectCard as SuspectCardType } from 'types/tdi';
+import { SuspectCard as SuspectCardType } from 'types/tdr';
 // Components
 import { DualTranslate } from 'components/language';
 import { ImageCard } from 'components/image-cards';

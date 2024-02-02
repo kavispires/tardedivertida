@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image, Popconfirm } from 'antd';
 // Types
-import type { SuspectCard } from 'types/tdi';
+import type { SuspectCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';

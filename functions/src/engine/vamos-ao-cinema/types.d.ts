@@ -1,3 +1,4 @@
+import { MovieCard, MovieReviewCard } from '../../types/tdr';
 import { VAMOS_AO_CINEMA_ACTIONS } from './constants';
 
 export type VamosAoCinemaOptions = {

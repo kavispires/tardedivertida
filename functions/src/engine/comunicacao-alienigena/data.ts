@@ -1,6 +1,7 @@
 // Constants
 import { ATTRIBUTES, AVAILABLE_SIGNS, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
 // Type
+import { AlienItem } from '../../types/tdr';
 import { Item, Sign, ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Helpers
 import utils from '../../utils';

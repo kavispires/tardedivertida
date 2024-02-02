@@ -4,7 +4,7 @@ import { useEffectOnce } from 'react-use';
 import { Button, Space, SpaceProps } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 // Types
-import { type MonsterCard as MonsterCardType } from 'types/tdi';
+import { type MonsterImage } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -15,7 +15,7 @@ import { Translate } from 'components/language';
 import './MonsterCard.scss';
 
 interface MonsterCardProps extends SpaceProps {
-  currentMonster: MonsterCardType;
+  currentMonster: MonsterImage;
   showControls?: boolean;
   cardWidth?: number;
 }

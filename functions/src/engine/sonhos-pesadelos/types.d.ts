@@ -1,3 +1,4 @@
+import { NamingPromptCard } from '../../types/tdr';
 import { SONHOS_PESADELOS_ACTIONS } from './constants';
 
 export interface SonhosPesadelosOptions {

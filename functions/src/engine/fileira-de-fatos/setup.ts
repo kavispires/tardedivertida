@@ -6,6 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 import { buildRanking, getAchievements } from './helpers';
+import { TextCard } from '../../types/tdr';
 // Internal
 
 /**

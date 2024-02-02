@@ -1,3 +1,4 @@
+import { MovieCard } from '../../types/tdr';
 import {
   MAX_MISTAKES,
   MOVIE_POSTERS_COUNT,

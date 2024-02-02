@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 // Types
-import type { OpposingIdeaCard } from 'types/tdr';
+import type { SpectrumCard } from 'types/tdr';
 // Utils
 import { getBracketClass } from '../utils/helpers';
 // Components
 import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type DialProps = {
-  card: OpposingIdeaCard;
+  card: SpectrumCard;
   needle?: number;
   showNeedle?: boolean;
   target?: number;

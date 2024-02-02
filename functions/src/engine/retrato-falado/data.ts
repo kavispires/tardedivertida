@@ -2,6 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
+import { MonsterImage } from '../../types/tdr';
 import type { MonsterSketch, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
@@ -20,7 +21,7 @@ export const getMonsterCards = async (): Promise<ResourceData> => {
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MONSTERS, {});
 
   // Filter out used cards
-  const availableMonsters: Collection<MonsterCard> = utils.game.filterOutByIds(allMonsters, usedCards);
+  const availableMonsters: Collection<MonsterImage> = utils.game.filterOutByIds(allMonsters, usedCards);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableMonsters).length < PLAYER_COUNTS.MAX) {

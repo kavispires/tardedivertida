@@ -1,3 +1,4 @@
+import { TextCard } from '../../types/tdr';
 import utils from '../../utils';
 
 /**

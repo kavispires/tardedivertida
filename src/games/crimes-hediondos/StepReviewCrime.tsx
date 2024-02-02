@@ -3,7 +3,7 @@ import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { CrimeTile } from 'types/tdr';
+import type { CrimeSceneTile } from 'types/tdr';
 import type { ItemsDict } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -19,9 +19,9 @@ type StepReviewCrimeProps = {
   items: ItemsDict;
   selections: PlainObject;
   onSubmitCrime: GenericFunction;
-  locationTiles: CrimeTile[];
-  causeOfDeathTile: CrimeTile;
-  reasonForEvidenceTile: CrimeTile;
+  locationTiles: CrimeSceneTile[];
+  causeOfDeathTile: CrimeSceneTile;
+  reasonForEvidenceTile: CrimeSceneTile;
   updateSelection: GenericFunction;
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;

@@ -1,3 +1,4 @@
+import { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
 export type TestemunhaOcularOptions = {

@@ -1,3 +1,4 @@
+import { AlienItem, ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
 import { DUETOS_ACHIEVEMENTS, DUETOS_ACTIONS } from './constants';
 
 export interface DuetosOptions {

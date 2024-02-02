@@ -1,3 +1,4 @@
+import { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 import { TA_NA_CARA_ACTIONS } from './constants';
 
 export type TaNaCaraOptions = {

@@ -1,4 +1,5 @@
 // Types
+import { TextCard } from '../../types/tdr';
 import type { AllWords, FirebaseStoreData, GaleriaDeSonhosAchievement, ImageCard, PlayerCard } from './types';
 // Constants
 import { GALERIA_DE_SONHOS_ACHIEVEMENTS, GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';

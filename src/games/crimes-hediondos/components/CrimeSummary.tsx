@@ -13,7 +13,7 @@ import {
 } from '@ant-design/icons';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { CrimeTile } from 'types/tdr';
+import type { CrimeSceneTile } from 'types/tdr';
 import type { Crime, GuessHistoryEntry, ItemsDict, ScenesDict } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -151,7 +151,7 @@ export function CrimeSummary({
 }
 
 type CrimeSceneProps = {
-  scene: CrimeTile;
+  scene: CrimeSceneTile;
   playerIndex: number;
 };
 

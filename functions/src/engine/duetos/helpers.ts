@@ -1,3 +1,5 @@
+// Types
+import { AlienItem } from '../../types/tdr';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { DUETOS_ACHIEVEMENTS, DUETOS_PHASES } from './constants';

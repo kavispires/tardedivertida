@@ -2,6 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
+import { SpectrumCard } from '../../types/tdr';
 import type { PastCategories, ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';
@@ -17,12 +18,12 @@ import utils from '../../utils';
 export const getCategories = async (language: string): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.OPPOSING_IDEAS}-${language}`;
   // Get full deck
-  const allCategories: Collection<OpposingIdeaCard> = await resourceUtils.fetchResource(resourceName);
+  const allCategories: Collection<SpectrumCard> = await resourceUtils.fetchResource(resourceName);
   // Get used deck
   const usedCategories = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 
   // Filter out used cards
-  const availableCategories: Record<string, OpposingIdeaCard> = utils.game.filterOutByIds(
+  const availableCategories: Record<string, SpectrumCard> = utils.game.filterOutByIds(
     allCategories,
     usedCategories
   );

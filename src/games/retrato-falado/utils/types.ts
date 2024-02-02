@@ -1,9 +1,9 @@
-import { MonsterCard } from 'types/tdi';
+import type { MonsterImage } from 'types/tdr';
 
 export type Sketch = {
   sketch: string;
   playerId: PlayerId;
-} & MonsterCard;
+} & MonsterImage;
 
 export type SubmitOrientationPayload = {
   orientation: string;

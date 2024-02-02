@@ -2,6 +2,7 @@
 import { MOVIES_PER_ROUND, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
+import { MovieReviewCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';

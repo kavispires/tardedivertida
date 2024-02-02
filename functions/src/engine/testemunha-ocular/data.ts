@@ -1,4 +1,5 @@
 // Types
+import { TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularEntry, TestemunhaOcularOptions } from './types';
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';

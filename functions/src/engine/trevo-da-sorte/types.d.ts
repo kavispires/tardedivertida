@@ -1,3 +1,4 @@
+import { TextCard } from '../../types/tdr';
 import { TREVO_DA_SORTE_ACTIONS } from './constants';
 
 export type TrevoDaSorteOptions = {

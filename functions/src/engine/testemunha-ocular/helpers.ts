@@ -1,3 +1,4 @@
+import { TestimonyQuestionCard } from '../../types/tdr';
 // Constants
 import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Utils

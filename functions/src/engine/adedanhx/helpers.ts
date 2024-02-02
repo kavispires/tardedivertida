@@ -1,12 +1,5 @@
 // Types
-// Constants
-import {
-  ADEDANHX_ACHIEVEMENTS,
-  ADEDANHX_PHASES,
-  LETTERS_PER_ROUND,
-  TOPICS_PER_ROUND,
-  TOTAL_ROUNDS,
-} from './constants';
+import { TopicCard } from '../../types/tdr';
 import {
   AdedanhxAchievement,
   AnswerEvaluationEntry,
@@ -15,9 +8,17 @@ import {
   GroupAnswerEvaluationEntry,
   LetterEntry,
 } from './types';
+// Constants
+import {
+  ADEDANHX_ACHIEVEMENTS,
+  ADEDANHX_PHASES,
+  LETTERS_PER_ROUND,
+  TOPICS_PER_ROUND,
+  TOTAL_ROUNDS,
+} from './constants';
+import { SEPARATOR } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
-import { SEPARATOR } from '../../utils/constants';
 
 /**
  * Determine the next phase based on the current one

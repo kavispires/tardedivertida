@@ -1,3 +1,4 @@
+import { AlienItem, ObjectFeatureCard } from '../../types/tdr';
 import { MESMICE_ACHIEVEMENTS, MESMICE_ACTIONS, OUTCOME } from './constants';
 
 export type MesmiceOptions = {

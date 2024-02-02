@@ -1,10 +1,11 @@
+import { SpectrumCard } from '../../types/tdr';
 import { ONDA_TELEPATICA_ACHIEVEMENTS, ONDA_TELEPATICA_ACTIONS } from './constants';
 
 export type OndaTelepaticaOptions = {
   fixedRounds: boolean;
 };
 
-export interface CategoryCard extends OpposingIdeaCard {
+export interface CategoryCard extends SpectrumCard {
   target?: number;
   clue?: string;
   psychicId?: string;
@@ -12,7 +13,7 @@ export interface CategoryCard extends OpposingIdeaCard {
 
 export interface ResourceData {
   allCategories: {
-    [key: string]: OpposingIdeaCard;
+    [key: string]: SpectrumCard;
   };
 }
 

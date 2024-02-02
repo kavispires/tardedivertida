@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { MonsterCard as MonsterCardType } from 'types/tdi';
+import type { MonsterImage } from 'types/tdr';
 import type { Sketch } from './utils/types';
 // Utils
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -20,7 +20,7 @@ import { Step, type StepProps } from 'components/steps';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
-  currentMonster: MonsterCardType;
+  currentMonster: MonsterImage;
   onSubmitVote: GenericFunction;
   sketches: Sketch[];
   user: GamePlayer;

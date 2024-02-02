@@ -1,3 +1,4 @@
+import { ContenderCard, TextCard } from '../../types/tdr';
 import { SUPER_CAMPEONATO_ACHIEVEMENTS, SUPER_CAMPEONATO_ACTIONS } from './constants';
 
 export type SuperCampeonatoOptions = {

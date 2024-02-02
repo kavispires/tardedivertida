@@ -8,6 +8,7 @@ import {
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Types
+import { GroupQuestionCard } from '../../types/tdr';
 import type {
   AllQuestions,
   AnswerEntry,

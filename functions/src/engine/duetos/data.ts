@@ -1,6 +1,7 @@
 // Constants
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 // Type
+import { AlienItem, ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
 import { DuetosOptions, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';

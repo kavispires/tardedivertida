@@ -1,6 +1,7 @@
 // Constants
 import { RETRATO_FALADO_ACHIEVEMENTS, RETRATO_FALADO_PHASES } from './constants';
 // Types
+import { MonsterImage } from '../../types/tdr';
 import type { AllMonsters, FirebaseStoreData, MonsterSketch, RetratoFaladoAchievement } from './types';
 // Helpers
 import utils from '../../utils';
@@ -48,7 +49,7 @@ export const buildDeck = (allMonsters: AllMonsters, playerCount: number) => {
  */
 export const gatherSketches = (
   players: Players,
-  currentMonster: MonsterCard,
+  currentMonster: MonsterImage,
   witnessId: PlayerId
 ): MonsterSketch[] => {
   const gathering = utils.players.getListOfPlayers(players).reduce((acc: MonsterSketch[], player: Player) => {

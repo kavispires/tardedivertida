@@ -1,4 +1,5 @@
 // Types
+import { NamingPromptCard } from '../../types/tdr';
 import type { SonhosPesadelosCards, ThemeDeck } from './types';
 // Constants
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, THEMES_PER_ROUND } from './constants';

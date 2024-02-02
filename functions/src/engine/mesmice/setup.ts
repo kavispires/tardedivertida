@@ -2,6 +2,7 @@
 import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
+import { AlienItem, ObjectFeatureCard } from '../../types/tdr';
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';

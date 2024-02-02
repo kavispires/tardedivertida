@@ -1,13 +1,13 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
-// Helpers
-import * as firebaseUtils from './firebase';
-import * as gameUtils from './game-utils';
+import { every, some } from 'lodash';
+
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
+import { AlienItem, ContenderCard, TextCard } from '../types/tdr';
+import utils from './';
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
+import * as firebaseUtils from './firebase';
+import * as gameUtils from './game-utils';
 import { buildIdDictionary } from './helpers';
-import utils from '.';
-import { every, some } from 'lodash';
 
 /**
  * Get alien items for given quantity and NSFW allowance otherwise it resets the used items and use all available

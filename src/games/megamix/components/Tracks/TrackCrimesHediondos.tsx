@@ -1,7 +1,7 @@
 // AntDesign Resources
 import { Button } from 'antd';
 // Types
-import type { CrimesHediondosCard } from 'types/tdi';
+import type { CrimesHediondosCard } from 'types/tdr';
 import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

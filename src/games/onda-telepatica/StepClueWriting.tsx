@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 // Types
-import { OpposingIdeaCard } from 'types/tdr';
+import { SpectrumCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -18,7 +18,7 @@ import { ClueWritingRules } from './components/RulesBlobs';
 import { TargetSideHighlight, WavelengthHighlight } from './components/Highlights';
 
 type StepClueWritingProps = {
-  currentCategories: OpposingIdeaCard[];
+  currentCategories: SpectrumCard[];
   currentCategoryId: string;
   target: number;
   onSendClue: GenericFunction;

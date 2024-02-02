@@ -1,4 +1,5 @@
 // Types
+import { TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
