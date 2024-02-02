@@ -248,7 +248,7 @@ export const DATA_DOCUMENTS = {
 
 export const TDR_RESOURCES = {
   ADJECTIVES: 'adjectives',
-  ALIEN_ITEMS: 'alien-items',
+  ALIEN_ITEMS: 'alien-items', // dual-language
   ARTE_RUIM_CARDS: 'arte-ruim-cards',
   ARTE_RUIM_GROUPS: 'arte-ruim-groups',
   ARTE_RUIM_PAIRS: 'arte-ruim-pairs',
@@ -256,28 +256,35 @@ export const TDR_RESOURCES = {
   CHALLENGES: 'challenges',
   CHARACTERS: 'characters',
   CHOICES: 'choices',
-  CONTENDERS: 'contenders', // dual language
-  CRIME_TILES: 'crime-tiles', // dual language
+  CONTENDERS: 'contenders', // dual-language
+  CRIME_EVIDENCE: 'crime-evidence', // dual-language
+  CRIME_TILES: 'crime-tiles', // dual-language
+  CRIME_WEAPONS: 'crime-weapons', // dual-language
   DATING_CANDIDATE: 'dating-candidate',
+  DATING_CANDIDATE_BODIES: 'dating-candidate-bodies', // dual-language
+  DATING_CANDIDATE_HEADS: 'dating-candidate-heads', // dual-language
   DILEMMAS: 'dilemmas',
+  DRAWING_WORDS: 'drawing-words',
   GROUP_QUESTIONS: 'group-questions',
-  MOVIES: 'movies',
+  MONSTER_ORIENTATION: 'monster-orientation',
   MOVIE_REVIEWS: 'movie-reviews',
+  MOVIES: 'movies',
   NAMING_PROMPTS: 'naming-prompts',
-  OBJECT_FEATURES: 'object-features', // dual language
+  OBJECT_FEATURES: 'object-features', // dual-language
   QUANTITATIVE_QUESTIONS: 'quantitative-questions',
   SCENARIOS: 'scenarios',
-  SINGLE_WORDS: 'single-words',
   SPECTRUMS: 'spectrums',
+  SINGLE_WORDS: 'single-words',
   SPY_LOCATIONS: 'spy-locations',
   SPY_QUESTIONS: 'spy-questions',
+  SUSPECTS: 'suspects', // dual-language
   TESTIMONY_QUESTIONS: 'testimony-questions',
-  THEMES: 'themes',
+  THEME_WORDS: 'theme-words',
+  THING_PROMPTS: 'thing-prompts',
+  THINGS_QUALITIES: 'things-qualities',
   TOPICS: 'topics',
+  TREE_WORDS: 'tree-words',
   TWEETS: 'tweets',
-  WORDS_THEME: 'galeria-de-sonhos',
-  WORDS_DRAWING: 'linhas-cruzadas',
-  WORDS_TREES: 'labirinto-secreto',
 };
 
 export const SEPARATOR = ';;';
