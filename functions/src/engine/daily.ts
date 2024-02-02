@@ -3,6 +3,7 @@ import { feedEmulatorDaily } from '../utils/mocks/emulator';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD
+  document: string;
 };
 
 /**
@@ -28,7 +29,7 @@ const getDaily = async (data: DailyGetterPayload, context: FirebaseContext) => {
     return utils.firebase.throwException('Date not provided', actionText);
   }
 
-  const dailyRef = utils.firebase.getDailyRef();
+  const dailyRef = utils.firebase.getDailyRef(data.document);
   const dailyDoc = await dailyRef.doc(date).get();
 
   if (!dailyDoc.exists) {
