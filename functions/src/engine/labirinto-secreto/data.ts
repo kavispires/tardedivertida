@@ -16,7 +16,7 @@ import utils from '../../utils';
  */
 export const getData = async (language: Language, playerCount: number): Promise<ResourceData> => {
   // Get cards
-  const resourceName = `${TDR_RESOURCES.WORDS_TREES}-${language}`;
+  const resourceName = `${TDR_RESOURCES.TREE_WORDS}-${language}`;
   const allWords: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
 
   // Get Adjectives

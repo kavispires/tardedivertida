@@ -9,6 +9,6 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getThemes = async (language: string) => {
-  const resourceName = `${TDR_RESOURCES.THEMES}-${language}`;
+  const resourceName = `${TDR_RESOURCES.THING_PROMPTS}-${language}`;
   return await resourceUtils.fetchResource(resourceName);
 };

@@ -123,7 +123,7 @@ export const getData = async (
   if (galeriaDeSonhosTrack) {
     const imageCardsDeck = await utils.imageCards.getImageCards(10, false);
     const themes = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_THEME}-${language}`)
+      await resourceUtils.fetchResource(`${TDR_RESOURCES.THEME_WORDS}-${language}`)
     );
     customTracks.push({
       game: GAME_NAMES.GALERIA_DE_SONHOS,
@@ -361,9 +361,7 @@ export const getData = async (
   // WORDS_TRACKS: LABIRINTO_SECRETO
   const labirintoSecretoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.LABIRINTO_SECRETO);
   if (labirintoSecretoTrack) {
-    const trees = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.WORDS_TREES}-${language}`)
-    );
+    const trees = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.TREE_WORDS}-${language}`));
     const adjectives = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.ADJECTIVES}-${language}`)
     );

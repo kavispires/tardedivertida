@@ -17,7 +17,7 @@ import utils from '../../utils';
  * @returns
  */
 export const getWords = async (language: Language, allImageDecks: boolean): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.WORDS_THEME}-${language}`;
+  const resourceName = `${TDR_RESOURCES.THEME_WORDS}-${language}`;
   // Get full deck
   const allWords: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
 
