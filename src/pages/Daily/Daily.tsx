@@ -37,11 +37,13 @@ function DailyPage() {
 function DailyContent() {
   const { currentUser } = useCurrentUserContext();
   const today = isDevEnv ? '2023-10-31' : getToday();
+  // const today = getToday();
   const { language, translate } = useLanguage();
   useTitle(`${getTitleName(language)} - Tarde Divertida`);
+  const { pathname } = useLocation();
 
   // Load challenge
-  const challengeQuery = useDailyChallenge(`${today}`);
+  const challengeQuery = useDailyChallenge(`${today}`, pathname.substring(1));
 
   if (challengeQuery.isLoading) {
     return (

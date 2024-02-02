@@ -144,10 +144,13 @@ export function getUserRef(): FirebaseFirestore.CollectionReference<FirebaseFire
 
 /**
  * Get Firebase session for the daily collection
+ * @param documentName = daily or diario
  * @returns firebase public reference
  */
-export function getDailyRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return getFirestore().collection('daily');
+export function getDailyRef(
+  documentName: string
+): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return getFirestore().collection(documentName);
 }
 
 /**

@@ -6,19 +6,23 @@ import { useLocalStorage } from 'hooks/useLocalStorage';
 import { useEffect, useState } from 'react';
 import { ArteRuimLocalToday, DailyArteRuimEntry } from './types';
 
-export function useDailyChallenge(today: string) {
+export function useDailyChallenge(today: string, collectionName: string) {
   const { notification } = App.useApp();
   // Load challenge
   return useQuery<any>({
-    queryKey: ['daily'],
+    queryKey: [collectionName],
     queryFn: async () => {
-      console.count('Fetching user...');
-      return await DAILY_API.run({ action: DAILY_API_ACTIONS.GET_DAILY, date: today });
+      console.count(`Fetching ${collectionName}...`);
+      return await DAILY_API.run({
+        action: DAILY_API_ACTIONS.GET_DAILY,
+        date: today,
+        document: collectionName,
+      });
     },
     retry: false,
     onSuccess: (response) => {
       const data = response.data;
-      print({ daily: data }, 'table');
+      print({ [collectionName]: data }, 'table');
     },
     onError: (e: any) => {
       notification.error({
