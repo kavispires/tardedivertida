@@ -18,7 +18,7 @@ import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
 // Constants
 import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
 // Components
-import { Translate } from 'components/language';
+import { LanguageSwitch, Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { Loading } from 'components/loaders';
 
@@ -167,6 +167,13 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
               fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
               className="round-corners"
             />
+
+            {!gameId && (
+              <Instruction>
+                <Translate pt="Você está criando um jogo em:" en="You are creating a game in:" />{' '}
+                <LanguageSwitch />
+              </Instruction>
+            )}
 
             <Options
               options={gameInfo.options}
