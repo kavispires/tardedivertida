@@ -117,3 +117,9 @@
   justify-content: center;
   gap: get-unit(4);
 }
+
+.daily-loading {
+  display: grid;
+  place-items: center;
+  min-height: 50svh;
+}

@@ -48,9 +48,11 @@ function DailyContent() {
   if (challengeQuery.isLoading) {
     return (
       <DailyChrome>
-        <Space className="space-container">
-          <Loading message={translate('Carregando desafio', 'Loading challenge')} margin />
-        </Space>
+        <div className="daily-loading">
+          <Space className="space-container">
+            <Loading message={translate('Carregando desafio...', 'Loading challenge...')} margin />
+          </Space>
+        </div>
       </DailyChrome>
     );
   }
