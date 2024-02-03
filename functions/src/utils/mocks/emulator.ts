@@ -35,6 +35,7 @@ export const feedEmulatorDB = async () => {
 
   // DAILY
   await utils.firebase.getPublicRef().doc('daily').set({ '2023-10-31': true });
+  await utils.firebase.getPublicRef().doc('diario').set({ '2023-10-31': true });
 
   const usedEntries = Object.values(GLOBAL_USED_DOCUMENTS).map((usedEntryName) =>
     utils.firebase.getGlobalRef().doc(usedEntryName).set(sample)
@@ -80,5 +81,5 @@ export const feedEmulatorDaily = async () => {
 
   await utils.firebase.getDailyRef('daily').doc('2023-10-31').set(dailyMock);
 
-  await utils.firebase.getDailyRef('diario').doc('2023-10-30').set(dailyMock);
+  await utils.firebase.getDailyRef('diario').doc('2023-10-31').set(dailyMock);
 };

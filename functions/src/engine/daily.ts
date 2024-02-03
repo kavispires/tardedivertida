@@ -14,7 +14,7 @@ type DailyGetterPayload = {
  */
 const getDaily = async (data: DailyGetterPayload, context: FirebaseContext) => {
   if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
-    feedEmulatorDaily();
+    await feedEmulatorDaily();
   }
 
   const actionText = 'get daily';
