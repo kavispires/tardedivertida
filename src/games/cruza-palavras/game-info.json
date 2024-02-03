@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "5.1.15",
+  "version": "5.1.16",
   "title": {
     "pt": "Cruza Palavras",
     "en": "Mixed Clues"
@@ -59,18 +59,25 @@
       "description": "The word grid will have one more column and row making it more difficult"
     },
     {
+      "label": "Properties Grid",
+      "key": "propertiesGrid",
+      "off": "No",
+      "on": "Yes",
+      "description": "The first grid uses Property of Things like big, wet, edible, etc."
+    },
+    {
       "label": "Characters Grid",
       "key": "contenderGrid",
       "off": "No",
       "on": "Yes",
-      "description": "The first grid uses Characters/Celebrities then uses player's clues as usual"
+      "description": "The first grid uses Characters/Celebrities then uses player's clues as usual (this overrides previous grids)"
     },
     {
       "label": "Image Cards Grid",
       "key": "imageGrid",
       "off": "No",
       "on": "Yes",
-      "description": "The first grid uses Image cards then uses player's clues as usual (this overrides Characters Grid)"
+      "description": "The first grid uses Image cards then uses player's clues as usual (this overrides previous grids)"
     }
   ]
 }

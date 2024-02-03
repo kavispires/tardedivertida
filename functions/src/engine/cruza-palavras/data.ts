@@ -3,6 +3,10 @@ import type { CruzaPalavrasOptions, PastClues, ResourceData } from './types';
 // Utils
 import * as dataUtils from '../collections';
 import utils from '../../utils';
+import * as resourceUtils from '../resource';
+
+import { TDR_RESOURCES } from '../../utils/constants';
+import { TextCard } from '../../types/tdr';
 
 /**
  * Get words resource based on the game's language
@@ -10,14 +14,20 @@ import utils from '../../utils';
  * @returns
  */
 export const getWords = async (language: Language, options: CruzaPalavrasOptions): Promise<ResourceData> => {
+  const isPropertiesGrid = !!options?.propertiesGrid;
   const isContenderGrid = !!options?.contenderGrid;
   const isImageGrid = !!options?.imageGrid;
   const allowNSFW = !!options?.nsfw;
   const quantityNeeded = isImageGrid ? 15 : 30;
 
+  if (isPropertiesGrid) {
+    const resourceName = `${TDR_RESOURCES.THINGS_QUALITIES}-${language}`;
+    const allCards: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
+    return { deck: utils.game.getRandomItems(Object.values(allCards), quantityNeeded) };
+  }
+
   if (isImageGrid) {
     const deck = await utils.imageCards.getImageCards(quantityNeeded);
-
     return { deck: deck.map((entry) => ({ id: entry, text: entry })) };
   }
 
