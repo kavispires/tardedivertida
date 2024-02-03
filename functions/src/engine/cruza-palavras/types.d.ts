@@ -7,6 +7,10 @@ export type CruzaPalavrasOptions = {
    */
   largerGrid: boolean;
   /**
+   * Uses things-properties data instead of words
+   */
+  propertiesGrid?: boolean;
+  /**
    * Uses contenders instead of words
    */
   contenderGrid?: boolean;
