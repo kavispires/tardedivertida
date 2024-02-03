@@ -24,6 +24,8 @@ export function MadePairs({ pool, pairs, size }: MadePairsProps) {
         const firstItem = pool.find((item) => item.id === firstItemId);
         const secondItem = pool.find((item) => item.id === secondItemId);
 
+        if (!firstItem || !secondItem) return <></>;
+
         return (
           <Pair
             key={`${firstItemId}${secondItemId}`}
