@@ -52,7 +52,6 @@ export function PhasePairing({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <StepMakePairs
           user={user}
-          players={players}
           announcement={announcement}
           pool={state.pool}
           onSubmitPairs={onSubmitPairs}
