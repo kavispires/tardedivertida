@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-// Images
-import emojis from 'assets/images/emojis.svg';
+// Components
+import { Sprite } from 'components/sprites';
 // Sass
 import './EmojiCard.scss';
 
@@ -19,12 +19,15 @@ type EmojiCardProps = {
   className?: string;
 };
 
-export function EmojiCard({ id, width = 75, className = '' }: EmojiCardProps) {
+/**
+ * An emoji card component.
+ */
+export function EmojiCard({ id, width, className }: EmojiCardProps): JSX.Element {
+  const emojiId = id.startsWith('emoji') ? id : `emoji-${id}`;
+
   return (
     <div className={clsx('emoji-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
-      <svg viewBox="0 0 512 512" style={{ width: `${width - 12}px`, height: `${width - 12}px` }}>
-        <use href={emojis + `#emoji-${id}`}></use>
-      </svg>
+      <Sprite source="emojis" id={emojiId} width={width} />
     </div>
   );
 }

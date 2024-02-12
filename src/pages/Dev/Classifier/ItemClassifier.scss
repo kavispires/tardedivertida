@@ -110,3 +110,9 @@
   display: grid;
   place-items: center;
 }
+
+.category-container {
+  border: 1px solid get-color('gray', 1, 0.5);
+  border-radius: get-unit(1);
+  padding: get-unit(1);
+}

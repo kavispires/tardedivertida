@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-// Images
-import signs from 'assets/images/alien-signs.svg';
+// Components
+import { Sprite } from 'components/sprites';
 // Sass
 import './SignCard.scss';
 
 type SignCardProps = {
   /**
-   * The id of the sign
+   * The id of the sign (do not prefix with sign)
    */
   id: string | number;
   /**
@@ -19,11 +19,14 @@ type SignCardProps = {
   className?: string;
 };
 
+/**
+ * An alien sign card component.
+ */
 export function SignCard({ id, width = 50, className = '' }: SignCardProps) {
   return (
     <div className={clsx('sign-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
       <svg viewBox="0 0 512 512" style={{ width: `${width - 12}px`, height: `${width - 12}px` }}>
-        <use href={signs + `#sign-${id}`}></use>
+        <Sprite source="alien-signs" id={`sign-${id}`} width={width} />
       </svg>
     </div>
   );

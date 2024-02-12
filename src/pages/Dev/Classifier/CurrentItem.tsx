@@ -1,4 +1,4 @@
-import { Divider, Input, Select, Space, Switch, Typography } from 'antd';
+import { Checkbox, Divider, Input, Space, Switch, Typography } from 'antd';
 import { ItemCard } from 'components/cards/ItemCard';
 import { useMemo } from 'react';
 
@@ -42,7 +42,7 @@ export function CurrentItem({
         checked={activeItem?.nsfw}
       />
 
-      <Select
+      {/* <Select
         mode="multiple"
         allowClear
         style={{ width: '100%' }}
@@ -50,7 +50,9 @@ export function CurrentItem({
         value={activeItem?.categories ?? []}
         onChange={updateCategory}
         options={CATEGORIES}
-      />
+      /> */}
+
+      <CategoryBoxes updateCategory={updateCategory} activeItem={activeItem} />
 
       <Divider />
 
@@ -62,5 +64,37 @@ export function CurrentItem({
         return <Sign attribute={attribute} key={attribute} very={value === 5} not={value === -5} />;
       })}
     </Space>
+  );
+}
+
+type CategoryBoxesProps = {
+  updateCategory: any;
+  activeItem: AlienItem;
+};
+
+function CategoryBoxes({ updateCategory, activeItem }: CategoryBoxesProps) {
+  const handleUpdateCategory = (checked: boolean, category: string) => {
+    if (checked) {
+      updateCategory([...(activeItem.categories ?? []), category]);
+    } else {
+      updateCategory((activeItem.categories ?? []).filter((c: string) => c !== category));
+    }
+  };
+
+  return (
+    <ul className="category-container">
+      {CATEGORIES.map((category) => {
+        return (
+          <li key={category.value}>
+            <Checkbox
+              onChange={(event) => handleUpdateCategory(event.target.checked, category.value)}
+              checked={activeItem?.categories?.includes(category.value)}
+            >
+              {category.label}
+            </Checkbox>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
