@@ -48,8 +48,9 @@ export const functions: Functions = getFunctions(firebaseApp);
 
 // const localHost = process.env.REACT_APP_LOCAL_IP || 'localhost';
 const localHost = 'localhost';
+const runEmulators = true;
 
-if (window.location.hostname.includes(localHost)) {
+if (runEmulators && window.location.hostname.includes(localHost)) {
   if (USE_FIRESTORE_EMULATOR) {
     console.log(`%cEmulating firestore to ${localHost}`, 'color:dodgerblue');
     notification.warning({ message: `Emulating firestore to ${localHost}`, placement: 'bottomLeft' });
