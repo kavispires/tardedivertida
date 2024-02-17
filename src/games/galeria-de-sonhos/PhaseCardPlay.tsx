@@ -87,7 +87,7 @@ export function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
               }
               en={
                 <>
-                  <AvatarName player={playerInNightmare} size="large" addressUser /> is in nightmare!
+                  <AvatarName player={playerInNightmare} size="large" addressUser /> is in a nightmare!
                 </>
               }
             />
