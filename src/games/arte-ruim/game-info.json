@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "arte-ruim",
-  "version": "5.0.27",
+  "version": "6.0.0",
   "title": {
     "pt": "Arte Ruim Pra Dedéu",
     "en": "Questionable Art"
@@ -60,14 +60,21 @@
       "description": "Use only cards that haven't been used before in any game"
     },
     {
-      "label": "Duration",
+      "label": "Level Type",
+      "key": "basicLevelsOnly",
+      "off": "Full Experience",
+      "on": "Basic",
+      "description": "Full experience includes levels 4 and 5"
+    },
+    {
+      "label": "Goal",
       "key": "forPoints",
-      "off": "5 Rounds",
-      "on": "For Points",
+      "off": "Fixed Rounds",
+      "on": "Points Goal",
       "description": "Point threshold is determined by the number of players (30-100)"
     },
     {
-      "label": "Difficulty",
+      "label": "Experience",
       "key": "randomize",
       "off": "Incremental",
       "on": "Randomized",

@@ -14,6 +14,7 @@ import {
   ARTE_RUIM_PHASES,
   GAME_OVER_SCORE_THRESHOLD,
   DEFAULT_LEVELS,
+  BASIC_LEVELS,
 } from './constants';
 // Helpers
 import utils from '../../utils';
@@ -66,7 +67,8 @@ export const determineGameOver = (players: Players, round: Round): boolean => {
  * @returns
  */
 export const getGameSettings = (options: ArteRuimGameOptions) => {
-  const levels = options.forPoints ? [...DEFAULT_LEVELS, ...DEFAULT_LEVELS] : DEFAULT_LEVELS;
+  const levelsReference = options.basicLevelsOnly ? BASIC_LEVELS : DEFAULT_LEVELS;
+  const levels = options.forPoints ? [...levelsReference, ...levelsReference] : levelsReference;
 
   return {
     MAX_ROUNDS: levels.length,
@@ -235,7 +237,7 @@ export const buildDeck = (
         }
       }
       // Only two similar cards
-      else if (level === 5) {
+      else if (level === 5 && specialLevels) {
         const card = specialLevels.cards.pop();
         if (card) {
           return card;

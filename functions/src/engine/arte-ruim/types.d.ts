@@ -7,6 +7,10 @@ export type ArteRuimGameOptions = {
    */
   useAllCards: boolean;
   /**
+   * Use only basic levels (1-2-3)
+   */
+  basicLevelsOnly: boolean;
+  /**
    * Make game with variant number of levels by having a score goal (max 10 rounds)
    */
   forPoints: boolean;
@@ -31,7 +35,7 @@ export type ResourceData = {
   specialLevels: {
     cards: ArteRuimCard[];
     types: Level5Type[];
-  };
+  } | null;
 };
 
 export interface ArteRuimDrawing extends ArteRuimCard {

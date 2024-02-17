@@ -32,6 +32,7 @@ describe('arte-ruim/helpers', () => {
           forPoints: false,
           randomize: false,
           specialLevels: false,
+          basicLevelsOnly: false,
         },
         [0, 1, 1]
       );
