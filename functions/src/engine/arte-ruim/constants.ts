@@ -31,9 +31,9 @@ export const PLAYER_COUNTS = {
 
 export const MAX_ROUNDS = 10;
 
-export const SHORT_GAME_LEVELS = [1, 2, 3, 4, 5];
-
 export const DEFAULT_LEVELS = [1, 2, 3, 4, 5];
+
+export const BASIC_LEVELS = [1, 2, 3, 1, 2, 3];
 
 export const GAME_OVER_SCORE_THRESHOLD = [20, 20, 20, 30, 30, 50, 50, 75, 75, 100];
 

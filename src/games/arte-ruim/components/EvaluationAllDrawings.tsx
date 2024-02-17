@@ -7,6 +7,7 @@ import { getEntryId } from 'utils/helpers';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Ribbon } from 'components/ribbons';
+import { AvatarName } from 'components/avatars';
 
 type EvaluationAllDrawingsProps = {
   drawings: ArteRuimDrawing[];
@@ -46,7 +47,10 @@ export function EvaluationAllDrawings({
               className="a-evaluation-all-drawings__drawing"
               width={canvasSize}
             />
-            <span className="a-evaluation-all-drawings__artist">{players[drawingEntry.playerId].name}</span>
+
+            <span className="a-evaluation-all-drawings__artist">
+              <AvatarName player={players[drawingEntry.playerId]} />
+            </span>
           </li>
         );
       })}

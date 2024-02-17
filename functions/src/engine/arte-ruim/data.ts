@@ -87,16 +87,35 @@ export const getCards = async (
   // Get regular cards
   const allCardsResponse = await resourceUtils.fetchResource(`${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`);
   const allCards: ArteRuimCard[] = Object.values(allCardsResponse);
+
+  if (options.useAllCards) {
+    // Check daily history
+    const dailyRef = utils.firebase.getDailyRef(language === 'pt' ? 'diario' : 'daily');
+    const historyDoc = await dailyRef.doc('history').get();
+    const history = historyDoc.data() || { used: [] };
+    const usedCards: string[] = history.used;
+
+    // Remove any used cards in daily history
+    usedCards.forEach((usedCardId) => {
+      delete allCardsResponse[usedCardId];
+    });
+  }
+
   const cardsByLevel = distributeCardsByLevel(allCards);
 
-  // Get level 4 cards
-  const allCardsGroupResponse = await resourceUtils.fetchResource<Collection<ArteRuimGroup>>(
-    `${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`
-  );
+  const needsLevel4 = !options.basicLevelsOnly;
+  const needsLevel5 = !options.basicLevelsOnly;
+
+  // Get level 4 cards (if not basic levels only)
+  const allCardsGroupResponse = needsLevel4
+    ? await resourceUtils.fetchResource<Collection<ArteRuimGroup>>(
+        `${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`
+      )
+    : {};
   const cardsGroups: ArteRuimGroup[] = Object.values(allCardsGroupResponse);
 
   // Determine level 5 options.specialLevels (adjectives, contenders, movies)
-  const specialLevels = await getFinalLevel(language, playerCount, options);
+  const specialLevels = needsLevel5 ? await getFinalLevel(language, playerCount, options) : null;
 
   // If no need for used cards check
   if (options.useAllCards) {

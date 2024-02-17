@@ -82,4 +82,12 @@ export const feedEmulatorDaily = async () => {
   await utils.firebase.getDailyRef('daily').doc('2023-10-31').set(dailyMock);
 
   await utils.firebase.getDailyRef('diario').doc('2023-10-31').set(dailyMock);
+
+  const history = {
+    latestDate: '2023-10-31',
+    latestNumber: 0,
+    used: [],
+  };
+  await utils.firebase.getDailyRef('daily').doc('history').set(history);
+  await utils.firebase.getDailyRef('diario').doc('history').set(history);
 };

@@ -116,7 +116,7 @@
 
     &:hover {
       transform: scale(0.95);
-      background-color: get-color('red');
+      background-color: get-color('red', 7);
     }
 
     &--active {
@@ -156,7 +156,7 @@
 
     &:hover {
       transform: scale(0.95);
-      background-color: get-color('red');
+      background-color: get-color('red', 7);
     }
 
     &--active {
@@ -180,10 +180,11 @@
 
   &__artist {
     background-color: get-color('white');
-    padding: get-unit(0 1);
+    padding: get-unit(1 2);
     position: absolute;
     top: get-unit(-3);
     font-size: 0.9rem;
+    border-radius: $border-radius;
     transform: perspective(30px);
     @include box-shadow;
   }

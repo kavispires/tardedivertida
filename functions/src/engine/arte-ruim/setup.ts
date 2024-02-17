@@ -68,7 +68,7 @@ export const prepareSetupPhase = async (
         currentCards: [],
         achievements,
         levels: LEVELS,
-        specialLevels: resourceData.specialLevels.types,
+        specialLevels: resourceData.specialLevels?.types ?? [],
       },
     },
   };
