@@ -90,7 +90,7 @@ const options: Record<string, SpriteOption> = {
     label: 'Items',
     prefix: 'item',
     quantity: Number(TOTAL_ALIEN_ITEMS),
-    startAt: 1,
+    startAt: 0,
   },
   trees: {
     key: 'trees',
