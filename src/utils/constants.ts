@@ -316,4 +316,4 @@ export const PLACEHOLDER_PLAYER: GamePlayer = {
 
 export const VIEWER_ID = '$viewer$';
 
-export const TOTAL_ALIEN_ITEMS = '1384';
+export const TOTAL_ALIEN_ITEMS = '1418';
