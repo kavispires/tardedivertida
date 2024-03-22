@@ -33,6 +33,7 @@ import * as retratoFaladoEngine from './engine/retrato-falado';
 import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from './engine/super-campeonato';
 import * as taNaCaraEngine from './engine/ta-na-cara';
+import * as teoriaDeConjuntos from './engine/teoria-de-conjuntos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as testeDeElencoEngine from './engine/teste-de-elenco';
 import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
@@ -135,6 +136,8 @@ exports.sonhosPesadelosSubmitAction = functions.https.onCall(sonhosPesadelosEngi
 exports.superCampeonatoSubmitAction = functions.https.onCall(superCampeonatoEngine.submitAction);
 
 exports.taNaCaraSubmitAction = functions.https.onCall(taNaCaraEngine.submitAction);
+
+exports.teoriaDeConjuntosSubmitAction = functions.https.onCall(teoriaDeConjuntos.submitAction);
 
 exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
 
