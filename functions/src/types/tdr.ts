@@ -253,7 +253,11 @@ export type DatingCandidateImageCard = {
   type: 'head' | 'body';
 };
 
-export type DiagramTopics = {
+/**
+ * Diagram Topic Card
+ * Used for: diagram-topics
+ */
+export type DiagramTopic = {
   /**
    * Unique identifier for the card
    */
@@ -598,7 +602,7 @@ export type Item = {
   /**
    * The groups the item can be used in
    */
-  groups: string[];
+  groups?: string[];
   /**
    * Flag indicating if it's nsfw
    */

@@ -161,6 +161,11 @@ const GAMES = [
     key: 'TA_NA_CARA',
   },
   {
+    name: 'teoria-de-conjuntos',
+    code: 'Q',
+    key: 'TEORIA_DE_CONJUNTOS',
+  },
+  {
     name: 'testemunha-ocular',
     code: 'T',
     key: 'TESTEMUNHA_OCULAR',
@@ -264,6 +269,7 @@ export const TDR_RESOURCES = {
   DATING_CANDIDATE: 'dating-candidate',
   DATING_CANDIDATE_BODIES: 'dating-candidate-bodies', // dual-language
   DATING_CANDIDATE_HEADS: 'dating-candidate-heads', // dual-language
+  DIAGRAM_TOPICS: 'diagram-topics',
   DILEMMAS: 'dilemmas',
   DRAWING_WORDS: 'drawing-words',
   GROUP_QUESTIONS: 'group-questions',

@@ -34,6 +34,7 @@ import RETRATO_FALADO from 'games/retrato-falado/game-info.json';
 import SONHOS_PESADELOS from 'games/sonhos-pesadelos/game-info.json';
 import SUPER_CAMPEONATO from 'games/super-campeonato/game-info.json';
 import TA_NA_CARA from 'games/ta-na-cara/game-info.json';
+import TEORIA_DE_CONJUNTOS from 'games/teoria-de-conjuntos/game-info.json';
 import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/game-info.json';
 import TESTE_DE_ELENCO from 'games/teste-de-elenco/game-info.json';
 import TREVO_DA_SORTE from 'games/trevo-da-sorte/game-info.json';
@@ -80,6 +81,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'sonhos-pesadelos': SONHOS_PESADELOS,
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': TA_NA_CARA,
+  'teoria-de-conjuntos': TEORIA_DE_CONJUNTOS,
   'testemunha-ocular': TESTEMUNHA_OCULAR,
   'teste-de-elenco': TESTE_DE_ELENCO,
   'trevo-da-sorte': TREVO_DA_SORTE,

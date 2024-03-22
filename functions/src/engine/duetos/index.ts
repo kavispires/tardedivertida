@@ -42,15 +42,6 @@ export const getInitialState = (
     totalRounds: TOTAL_ROUNDS,
     store: {},
     options,
-    onCreate: () => {
-      const players: Players = {};
-      if (options.withBots) {
-        utils.players.addBots(players, 3);
-      }
-      return {
-        players,
-      };
-    },
   });
 };
 
