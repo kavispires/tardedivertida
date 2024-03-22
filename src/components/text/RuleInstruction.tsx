@@ -18,7 +18,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Sass
 import './RuleInstruction.scss';
 
-type RuleInstructionsProps = {
+export type RuleInstructionProps = {
   /**
    * The content of the rule instruction
    */
@@ -59,7 +59,7 @@ export const RuleInstruction = ({
   fullWidth,
   type = 'rule',
   sfx,
-}: RuleInstructionsProps) => {
+}: RuleInstructionProps) => {
   const baseClass = 'rule-instruction';
 
   const icon = {

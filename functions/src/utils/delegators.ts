@@ -26,6 +26,7 @@ import * as quemSouEuEngine from '../engine/quem-sou-eu';
 import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from '../engine/super-campeonato';
 import * as taNaCaraEngine from '../engine/ta-na-cara';
+import * as teoriaDeConjuntos from '../engine/teoria-de-conjuntos';
 import * as testemunhaOcularEngine from '../engine/testemunha-ocular';
 import * as testeDeElencoEngine from '../engine/teste-de-elenco';
 import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
@@ -61,6 +62,7 @@ const engines = {
   [GAME_NAMES.SONHOS_PESADELOS]: sonhosPesadelosEngine,
   [GAME_NAMES.SUPER_CAMPEONATO]: superCampeonatoEngine,
   [GAME_NAMES.TA_NA_CARA]: taNaCaraEngine,
+  [GAME_NAMES.TEORIA_DE_CONJUNTOS]: teoriaDeConjuntos,
   [GAME_NAMES.TESTEMUNHA_OCULAR]: testemunhaOcularEngine,
   [GAME_NAMES.TESTE_DE_ELENCO]: testeDeElencoEngine,
   [GAME_NAMES.TREVO_DA_SORTE]: trevoDaSorteEngine,
