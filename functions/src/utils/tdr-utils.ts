@@ -2,12 +2,120 @@ import { every, some } from 'lodash';
 
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
-import { AlienItem, ContenderCard, TextCard } from '../types/tdr';
+import { AlienItem, ContenderCard, Item, TextCard } from '../types/tdr';
 import utils from './';
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firebaseUtils from './firebase';
 import * as gameUtils from './game-utils';
 import { buildIdDictionary } from './helpers';
+
+export const getItems = async (
+  quantity: number,
+  options: {
+    allowNSFW: boolean;
+    categories?: string[];
+    filters?: ((item: Item) => boolean)[];
+    cleanUp?: (item: Item) => Item;
+  } = {
+    allowNSFW: false,
+    categories: [],
+    filters: [],
+  }
+): Promise<Item[]> => {
+  const itemsObj: Collection<Item> = await fetchResource(TDR_RESOURCES.ITEMS);
+
+  // Filter out items that don't match the options
+  Object.values(itemsObj).forEach((item) => {
+    // Handle NSFW
+    if (!options.allowNSFW && item.nsfw) {
+      delete itemsObj[item.id];
+      return;
+    }
+
+    // Handle categories
+    if (options.categories && options.categories.length) {
+      if (!itemUtils.onlyItemsWithinGroups(options?.categories ?? [])(item)) {
+        delete itemsObj[item.id];
+        return;
+      }
+    }
+
+    // If filter is provided, filter out items that don't match the filter
+    if (options.filters) {
+      if (!every(options.filters, (filter) => filter(item))) {
+        delete itemsObj[item.id];
+        return;
+      }
+    }
+  });
+
+  // Get used items deck
+  const usedItems: BooleanDictionary = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ITEMS, {});
+
+  // Filter out used items
+  let availableAlienItems = gameUtils.filterOutByIds(itemsObj, usedItems);
+
+  // If not the minimum items needed, reset and use all
+  if (Object.keys(availableAlienItems).length < quantity) {
+    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+    availableAlienItems = itemsObj;
+  }
+
+  let list = Object.values(availableAlienItems);
+
+  // If there are enough safe items, return them
+  if (list.length >= quantity) {
+    return gameUtils.getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
+  }
+
+  // If not the minimum items needed, reset and use all safe
+  await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+
+  list = Object.values(itemsObj);
+  return gameUtils.getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
+};
+
+export const itemUtils = {
+  /**
+   * Filter alien only if safe for work
+   */
+  onlySafeForWork: (item: Item) => !item.nsfw,
+  /**
+   * Filter alien items by group
+   * @param group
+   * @returns boolean
+   */
+  onlyItemsWithinGroups: (groups: string[]) => (item: Item) => {
+    return every(groups, (group) => (item.groups ?? []).includes(group));
+  },
+  /**
+   * Filter alien items by group
+   */
+  notWithinCategories: (groups: string[]) => (item: Item) => {
+    return !some(groups, (group) => (item.groups ?? []).includes(group));
+  },
+  /**
+   * Filter item only if it has a name in the given language
+   */
+  onlyWithName: (language: Language) => (item: Item) => Boolean(item.name[language].trim()),
+  /**
+   * Removes the prop groups from the item
+   */
+  cleanupGroups: (item: Item): Item => {
+    delete item.groups;
+    return item;
+  },
+};
+
+/**
+ * Saves list of used items ids into the global used document
+ * @param items
+ * @returns
+ */
+export const saveUsedItems = async (items: Item[]) => {
+  const itemsIdsDict = buildIdDictionary(items);
+  return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ITEMS, itemsIdsDict);
+};
 
 /**
  * Get alien items for given quantity and NSFW allowance otherwise it resets the used items and use all available

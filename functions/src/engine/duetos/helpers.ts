@@ -1,5 +1,5 @@
 // Types
-import { AlienItem } from '../../types/tdr';
+import { Item } from '../../types/tdr';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { DUETOS_ACHIEVEMENTS, DUETOS_PHASES } from './constants';
@@ -31,7 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return PAIRING;
 };
 
-export const addAlienItems = (pool: AlienItem[], quantity: number, receiver: any[]) => {
+export const addItems = (pool: Item[], quantity: number, receiver: any[]) => {
   for (let i = 0; i < quantity; i++) {
     const item = pool.pop();
     if (item) {

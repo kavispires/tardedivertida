@@ -1,7 +1,7 @@
 /**
  * Generic text card
  * Used for: adjectives, categories, challenges, characters, galeria-de-sonhos, labirinto-secreto,
- * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities, tweets
+ * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities
  */
 export type TextCard = {
   /**
@@ -225,13 +225,13 @@ export type DatingCandidateCard = {
    */
   id: CardId;
   /**
-   * the text of the card
+   * The text of the card
    */
   text: string;
   /**
    * The type of the card
    */
-  type: 'fun-fact' | 'interest' | 'need' | string;
+  type: 'fun-fact' | 'interest' | 'need';
 };
 
 /**
@@ -250,7 +250,22 @@ export type DatingCandidateImageCard = {
   /**
    * The type of the card
    */
-  type: 'head' | 'body' | string;
+  type: 'head' | 'body';
+};
+
+export type DiagramTopics = {
+  /**
+   * Unique identifier for the card
+   */
+  id: CardId;
+  /**
+   * The text of the card
+   */
+  text: string;
+  /**
+   * The type of the card
+   */
+  type: 'attribute' | 'word' | 'context';
 };
 
 export type DilemmaCard = {
@@ -351,7 +366,7 @@ export type MovieReviewCard = {
   /**
    * The type of review
    */
-  type: 'good' | 'bad' | string;
+  type: 'good' | 'bad';
   /**
    * The parts of the text that should be highlighted
    */
@@ -550,4 +565,56 @@ export type TopicCard = {
    * The level of difficulty
    */
   level: number;
+};
+
+/**
+ * Tweet Card
+ * Used for: tweets
+ */
+export type Tweet = {
+  /**
+   * Unique identifier for the card
+   */
+  id: CardId;
+  /**
+   * the text of the card
+   */
+  text: string;
+};
+
+/**
+ * Item Card
+ * Used for: items
+ */
+export type Item = {
+  /**
+   * Unique identifier for the item
+   */
+  id: string;
+  /**
+   * The name of the item
+   */
+  name: DualLanguageValue;
+  /**
+   * The groups the item can be used in
+   */
+  groups: string[];
+  /**
+   * Flag indicating if it's nsfw
+   */
+  nsfw?: boolean;
+};
+
+/**
+ * Item Atributes
+ */
+export type ItemAtributes = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The dictionary of attribute keys and their values
+   */
+  attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;
 };

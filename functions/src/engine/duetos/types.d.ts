@@ -1,4 +1,4 @@
-import { AlienItem, ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
+import { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
 import { DUETOS_ACHIEVEMENTS, DUETOS_ACTIONS } from './constants';
 
 export interface DuetosOptions {
@@ -43,7 +43,7 @@ export type ItemEntry = {
 };
 
 export interface ResourceData {
-  items: AlienItem[];
+  items: Item[];
   images: CardId[];
   emojis: number[];
   glyphs: number[];

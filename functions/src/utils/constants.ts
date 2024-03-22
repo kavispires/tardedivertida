@@ -222,6 +222,7 @@ export const GLOBAL_USED_DOCUMENTS = {
   CONTENDERS: 'usedContenders',
   GROUP_QUESTIONS: 'usedGroupQuestions',
   IMAGE_CARDS: 'usedImageCards',
+  ITEMS: 'usedItems',
   MONSTERS: 'usedMonsters',
   MOVIES: 'usedMoviesAndReviews',
   MURDER_OBJECTS: 'usedMurderObjects',
@@ -266,6 +267,7 @@ export const TDR_RESOURCES = {
   DILEMMAS: 'dilemmas',
   DRAWING_WORDS: 'drawing-words',
   GROUP_QUESTIONS: 'group-questions',
+  ITEMS: 'items', // dual-language
   MONSTER_ORIENTATION: 'monster-orientation',
   MOVIE_REVIEWS: 'movie-reviews',
   MOVIES: 'movies',

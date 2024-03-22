@@ -7,7 +7,6 @@ import type { MesmiceOptions, ResourceData } from './types';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
 import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } from './constants';
-import { alienItemUtils } from '../../utils/tdr-utils';
 
 /**
  * Get object features and items
@@ -25,10 +24,11 @@ export const getData = async (
   const counts = FEATURES_COUNTS[complexity][difficulty];
 
   // Get items per player
-  const selectedItems = await utils.tdr.getAlienItems(playerCount * ITEMS_PER_PLAYER, {
+  const selectedItems = await utils.tdr.getItems(playerCount * ITEMS_PER_PLAYER, {
     allowNSFW,
     categories: ['mesmice'],
-    filters: [alienItemUtils.onlyWithName(language as Language)],
+    filters: [utils.tdr.itemUtils.onlyWithName(language as Language)],
+    cleanUp: utils.tdr.itemUtils.cleanupGroups,
   });
 
   // Get full deck of features

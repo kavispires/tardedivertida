@@ -2,7 +2,6 @@
 import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Types
 import {
-  AlienItem,
   ArteRuimCard,
   ArteRuimGroup,
   DatingCandidateCard,
@@ -492,16 +491,10 @@ export const getData = async (
     };
     const selectedAttributes = utils.game.getRandomItems(Object.values(attributes), 2);
 
-    const allAlienItemsObj: Collection<AlienItem> = await resourceUtils.fetchResource(
-      TDR_RESOURCES.ALIEN_ITEMS
-    );
-
-    const selectedAlienItems: AlienItem[] = utils.game.getRandomItems(
-      allowNSFW
-        ? Object.values(allAlienItemsObj)
-        : Object.values(allAlienItemsObj).filter((item) => !item.nsfw),
-      5
-    );
+    const selectedAlienItems = await utils.tdr.getItems(5, {
+      allowNSFW,
+      cleanUp: utils.tdr.itemUtils.cleanupGroups,
+    });
 
     customTracks.push({
       game: GAME_NAMES.COMUNICACAO_ALIENIGENA,
