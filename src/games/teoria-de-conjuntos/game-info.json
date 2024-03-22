@@ -1,0 +1,35 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "Q",
+  "gameName": "teoria-de-conjuntos",
+  "version": "planned",
+  "title": {
+    "pt": "Teoria de Conjuntos",
+    "en": "Venn Diagrams"
+  },
+  "popularName": {
+    "pt": "Dos círculos",
+    "en": "The circles one"
+  },
+  "basedOn": "sgniR ni sgnihT",
+  "summary": {
+    "pt": "Desfaça-se de seus itens colocando-os nos círculos corretos.",
+    "en": "Get rid of your items by placing them in the correct circles."
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["competitive", "turn-based", "guessing", "brain-burner"],
+  "available": false
+}

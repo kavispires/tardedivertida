@@ -13,12 +13,12 @@ export const getItems = async (
   quantity: number,
   options: {
     allowNSFW: boolean;
-    categories?: string[];
+    groups?: string[];
     filters?: ((item: Item) => boolean)[];
     cleanUp?: (item: Item) => Item;
   } = {
     allowNSFW: false,
-    categories: [],
+    groups: [],
     filters: [],
   }
 ): Promise<Item[]> => {
@@ -32,9 +32,9 @@ export const getItems = async (
       return;
     }
 
-    // Handle categories
-    if (options.categories && options.categories.length) {
-      if (!itemUtils.onlyItemsWithinGroups(options?.categories ?? [])(item)) {
+    // Handle groups
+    if (options.groups && options.groups.length) {
+      if (!itemUtils.onlyItemsWithinGroups(options?.groups ?? [])(item)) {
         delete itemsObj[item.id];
         return;
       }

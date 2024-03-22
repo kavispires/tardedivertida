@@ -279,6 +279,7 @@ export const GAME_COLLECTION = {
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   SUPER_CAMPEONATO: 'super-campeonato',
   TA_NA_CARA: 'ta-na-cara',
+  TEORIA_DE_CONJUNTOS: 'teoria-de-conjuntos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   TESTE_DE_ELENCO: 'teste-de-elenco',
   TREVO_DA_SORTE: 'trevo-da-sorte',

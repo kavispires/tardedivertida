@@ -186,7 +186,7 @@ interface InitialStateArgs {
 interface Round {
   current: number;
   total: number;
-  forceLastRound: boolean;
+  forceLastRound?: boolean;
 }
 
 interface Player {
