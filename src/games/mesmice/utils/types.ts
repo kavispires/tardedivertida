@@ -1,4 +1,4 @@
-import { AlienItem, ObjectFeatureCard } from 'types/tdr';
+import { Item, ObjectFeatureCard } from 'types/tdr';
 
 export enum Phase {
   CLUE_WRITING = 'CLUE_WRITING',
@@ -15,7 +15,7 @@ export type SubmitFeaturePayload = {
   featureId: string;
 };
 
-export type ObjectCardObj = Pick<AlienItem, 'id' | 'name'>;
+export type ObjectCardObj = Pick<Item, 'id' | 'name'>;
 
 export type ExtendedObjectFeatureCard = ObjectFeatureCard & { eliminated?: boolean };
 

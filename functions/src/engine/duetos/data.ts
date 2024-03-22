@@ -2,7 +2,7 @@
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { AlienItem, ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
+import { Item, ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
 import { DuetosOptions, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
@@ -46,7 +46,10 @@ export const getResourceData = async (language: Language, options: DuetosOptions
 
   const itemsNeeded = Math.max(TOTAL_ROUNDS - customRounds, 1) * quantityNeeded;
 
-  const items = await utils.tdr.getAlienItems(itemsNeeded, { allowNSFW });
+  const items = await utils.tdr.getItems(itemsNeeded, {
+    allowNSFW,
+    cleanUp: utils.tdr.itemUtils.cleanupGroups,
+  });
 
   let images: CardId[] = [];
   if (specialDeckTypes.includes('images')) {
@@ -126,6 +129,6 @@ export const getResourceData = async (language: Language, options: DuetosOptions
  * @param items
  * @returns
  */
-export const saveUsedItems = async (items: AlienItem[]): Promise<boolean> => {
-  return await utils.tdr.saveUsedAlienItems(items);
+export const saveUsedItems = async (items: Item[]): Promise<boolean> => {
+  return await utils.tdr.saveUsedItems(items);
 };
