@@ -1,5 +1,10 @@
 // Constants
-import { MAX_ROUNDS, OUTCOME, TEORIA_DE_CONJUNTOS_PHASES } from './constants';
+import {
+  MAX_ROUNDS,
+  OUTCOME,
+  STARTING_ITEMS_PER_PLAYER_COUNT,
+  TEORIA_DE_CONJUNTOS_PHASES,
+} from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Guess, ResourceData } from './types';
 // Utils
@@ -30,9 +35,15 @@ export const prepareSetupPhase = async (
 
   const items: Collection<Item> = {};
 
+  const playerCount = utils.players.getPlayerCount(players);
+
   // Assign items to players
   utils.players.getListOfPlayers(players).forEach((player) => {
-    player.hand = [deckIds.pop(), deckIds.pop(), deckIds.pop()].filter(Boolean);
+    player.hand = Array(STARTING_ITEMS_PER_PLAYER_COUNT[playerCount])
+      .fill('')
+      .map(() => deckIds.pop())
+
+      .filter(Boolean);
 
     player.hand.forEach((cardId: CardId) => {
       items[cardId] = deck[cardId];
@@ -49,7 +60,7 @@ export const prepareSetupPhase = async (
     update: {
       store: {
         deck,
-        deckIds: [],
+        deckIds,
       },
       state: {
         phase: TEORIA_DE_CONJUNTOS_PHASES.SETUP,
@@ -95,17 +106,18 @@ export const prepareJudgeSelectionPhase = async (
   };
 };
 
-export const prepareDiagramPlacementPhase = async (
+export const prepareItemPlacementPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
   currentGuess: Partial<Guess>
 ): Promise<SaveGamePayload> => {
-  const items = state.items;
+  const { items, diagrams, judgeId } = state;
+  const { deck, deckIds } = store;
 
   // Determine or get player order
   const turnOrder =
-    state.turnOver || utils.players.buildGameOrder(players, undefined, false, [state.judgeId]).gameOrder;
+    state.turnOrder || utils.players.buildGameOrder(players, undefined, false, [judgeId]).gameOrder;
 
   const isNewRound = currentGuess.outcome !== OUTCOME.CONTINUE;
 
@@ -114,31 +126,42 @@ export const prepareDiagramPlacementPhase = async (
 
   // Place item on diagram (and remove it from player)
   if (currentGuess.outcome !== OUTCOME.PENDING) {
-    const player = players[state.activePlayerId];
-    const itemId = player.hand.pop();
-    if (itemId && currentGuess.correctArea && state.diagrams[currentGuess.correctArea]) {
-      const diagram = state.diagrams[currentGuess.correctArea];
-      diagram.itemsIds.push(itemId);
+    const hand: CardId[] = players[state.activePlayerId].hand;
+
+    const itemIndex = hand.indexOf(currentGuess.itemId ?? '-');
+    const itemId = hand.splice(itemIndex, 1)[0];
+
+    if (itemId && currentGuess.correctArea && diagrams[currentGuess.correctArea]) {
+      diagrams[currentGuess.correctArea].itemsIds.push(itemId);
     }
   }
 
   // If they got it wrong (WRONG), give them a new item.
   if (currentGuess.outcome === OUTCOME.WRONG && state.activePlayerId) {
     const player = players[state.activePlayerId];
-    const newItemId = store.deckIds.pop();
-    const newItem = store.deck[newItemId];
+    const newItemId = deckIds.pop();
+    const newItem = deck[newItemId];
     items[newItemId] = newItem;
     player.hand.push(newItemId);
   }
+
+  // Score
+  if (currentGuess.outcome === OUTCOME.CONTINUE) {
+    const player = players[state.activePlayerId];
+    player.score += 1;
+  }
+
+  const previousActivePlayerId = state.activePlayerId ?? null;
 
   // If player got it right (CONTINUE), just continue with the same player.
   const activePlayerId = isNewRound
     ? utils.players.getActivePlayer(turnOrder, round.current)
     : state.activePlayerId;
 
-  utils.players.unReadyPlayer(players, activePlayerId);
+  utils.players.readyPlayers(players, activePlayerId);
 
-  const previousGuess = cloneDeep(currentGuess);
+  const previousGuess = previousActivePlayerId ? cloneDeep(currentGuess) : null;
+
   const newCurrentGuess = {
     itemId: '',
     playerId: activePlayerId,
@@ -149,15 +172,21 @@ export const prepareDiagramPlacementPhase = async (
 
   return {
     update: {
+      store: {
+        deck,
+        deckIds,
+      },
       state: {
-        phase: TEORIA_DE_CONJUNTOS_PHASES.DIAGRAM_PLACEMENT,
+        phase: TEORIA_DE_CONJUNTOS_PHASES.ITEM_PLACEMENT,
         players,
         turnOrder,
         round,
+        items,
+        diagrams,
         activePlayerId,
         currentGuess: newCurrentGuess,
         previousGuess,
-        items,
+        previousActivePlayerId,
       },
     },
   };
@@ -168,6 +197,8 @@ export const prepareEvaluationPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  utils.players.readyPlayers(players, state.judgeId);
+
   return {
     update: {
       state: {
@@ -182,8 +213,39 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
+  currentGuess: Partial<Guess>
 ): Promise<SaveGamePayload> => {
+  // Cleanup resolution first
+  const { items, diagrams } = state;
+  const { deck, deckIds } = store;
+
+  // Place item on diagram (and remove it from player)
+  if (currentGuess.outcome !== OUTCOME.PENDING) {
+    const hand: CardId[] = players[state.activePlayerId].hand;
+
+    const itemIndex = hand.indexOf(currentGuess.itemId ?? '-');
+    const itemId = hand.splice(itemIndex, 1)[0];
+
+    if (itemId && currentGuess.correctArea && diagrams[currentGuess.correctArea]) {
+      diagrams[currentGuess.correctArea].itemsIds.push(itemId);
+    }
+  }
+
+  // If they got it wrong (WRONG), give them a new item.
+  if (currentGuess.outcome === OUTCOME.WRONG && state.activePlayerId) {
+    const player = players[state.activePlayerId];
+    const newItemId = deckIds.pop();
+    const newItem = deck[newItemId];
+    items[newItemId] = newItem;
+    player.hand.push(newItemId);
+  }
+
+  if (currentGuess.outcome === OUTCOME.WIN) {
+    const player = players[state.activePlayerId];
+    player.score += 1;
+  }
+
   const winners = utils.players.determineWinners(players);
 
   const achievements = [];
@@ -200,8 +262,6 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  const gallery = store.gallery;
-
   utils.players.cleanup(players, []);
 
   return {
@@ -216,7 +276,10 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         achievements,
-        gallery,
+        items: items,
+        diagrams: diagrams,
+        solutions: state.solutions,
+        judgeId: state.judgeId,
       },
     },
   };

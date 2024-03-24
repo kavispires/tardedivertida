@@ -12,9 +12,8 @@ export const determineNextPhase = (
   round: Round,
   currentGuess: Partial<Guess>
 ): string => {
-  const { RULES, SETUP, JUDGE_SELECTION, DIAGRAM_PLACEMENT, EVALUATION, GAME_OVER } =
-    TEORIA_DE_CONJUNTOS_PHASES;
-  const order = [RULES, SETUP, JUDGE_SELECTION, DIAGRAM_PLACEMENT, EVALUATION, GAME_OVER];
+  const { RULES, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER } = TEORIA_DE_CONJUNTOS_PHASES;
+  const order = [RULES, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER];
 
   if (currentPhase === EVALUATION) {
     // TODO: round count check is wrong
@@ -22,7 +21,7 @@ export const determineNextPhase = (
       round.forceLastRound ||
       (round.current > 0 && round.current === round.total)
       ? GAME_OVER
-      : DIAGRAM_PLACEMENT;
+      : ITEM_PLACEMENT;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -31,7 +30,7 @@ export const determineNextPhase = (
     return order[currentPhaseIndex + 1];
   }
   console.warn('Missing phase check');
-  return DIAGRAM_PLACEMENT;
+  return ITEM_PLACEMENT;
 };
 
 export const createVennDiagram = (hasContextArea: boolean): Collection<DiagramArea> => {
@@ -45,6 +44,8 @@ export const createVennDiagram = (hasContextArea: boolean): Collection<DiagramAr
   // Always include 'A' and 'W'
   areas['A'] = { ...area, key: 'A' };
   areas['W'] = { ...area, key: 'W' };
+  // Intersection
+  areas['AW'] = { ...area, key: 'AW' };
 
   // Include 'C' if hasContextArea is true
   if (hasContextArea) {
@@ -54,10 +55,8 @@ export const createVennDiagram = (hasContextArea: boolean): Collection<DiagramAr
     areas['AC'] = { ...area, key: 'AC' };
     areas['WC'] = { ...area, key: 'WC' };
     areas['AWC'] = { ...area, key: 'AWC' };
-  } else {
-    // Intersection
-    areas['AW'] = { ...area, key: 'AW' };
   }
+
   // Outside area
   areas['O'] = { ...area, key: 'O' };
 

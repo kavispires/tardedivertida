@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Sprite } from 'components/sprites';
 // Sass
 import './ItemCard.scss';
+import { DualTranslate } from 'components/language';
 
 export type ItemCardProps = {
   /**
@@ -21,6 +22,10 @@ export type ItemCardProps = {
    * Replacement title, usually the name of the item
    */
   title?: string;
+  /**
+   * Optional text to display
+   */
+  text?: DualLanguageValue;
 };
 
 const BASE = 64;
@@ -43,15 +48,19 @@ const getSource = (str: string) => {
 /**
  * An item card component.
  */
-export function ItemCard({ id, width, className, title }: ItemCardProps) {
+export function ItemCard({ id, width = 75, className, title, text }: ItemCardProps) {
   const [source, itemId] = getSource(id);
 
+  const height = text ? 'auto' : `${width}px`;
+
   return (
-    <div
-      className={clsx('item-card', className)}
-      style={{ width: `${width ?? 75}px`, height: `${width ?? 75}px` }}
-    >
+    <div className={clsx('item-card', className)} style={{ width: `${width}px`, height }}>
       <Sprite source={source} id={itemId} width={width} title={title} />
+      {Boolean(text) && (
+        <span className="item-card__text">
+          <DualTranslate>{text!}</DualTranslate>
+        </span>
+      )}
     </div>
   );
 }

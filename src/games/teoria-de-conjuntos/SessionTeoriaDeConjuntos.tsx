@@ -6,9 +6,13 @@ import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { PhaseJudgeSelection } from './PhaseJudgeSelection';
+import { PhaseItemPlacement } from './PhaseItemPlacement';
+import { PhaseEvaluation } from './PhaseEvaluation';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
 
@@ -23,10 +27,14 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TEMPLATE.UNKNOWN:
-      return PhasePlaceholder;
+    case PHASES.TEORIA_DE_CONJUNTOS.JUDGE_SELECTION:
+      return PhaseJudgeSelection;
+    case PHASES.TEORIA_DE_CONJUNTOS.ITEM_PLACEMENT:
+      return PhaseItemPlacement;
+    case PHASES.TEORIA_DE_CONJUNTOS.EVALUATION:
+      return PhaseEvaluation;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PageError;
   }
