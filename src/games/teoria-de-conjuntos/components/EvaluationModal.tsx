@@ -49,9 +49,11 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
 
       <Divider />
 
-      <Button type="primary" onClick={() => onSubmitEvaluation(evaluation)}>
-        <Translate en="Submit" pt="Enviar" />
-      </Button>
+      <Flex justify="center">
+        <Button type="primary" onClick={() => onSubmitEvaluation(evaluation)}>
+          <Translate en="Submit" pt="Enviar" />
+        </Button>
+      </Flex>
     </Modal>
   );
 }

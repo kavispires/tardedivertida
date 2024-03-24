@@ -15,15 +15,25 @@ import { Item } from 'types/tdr';
 import { OUTCOME } from '../utils/constants';
 import { Guess } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
+import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 
 type AnnouncementProps = {
   activePlayer: GamePlayer;
+  previousActivePlayer: GamePlayer;
+  isTheActivePlayer: boolean;
   previousGuess: Guess | null;
   currentRound: number;
   items: Dictionary<Item>;
 };
 
-export function Announcement({ activePlayer, previousGuess, currentRound, items }: AnnouncementProps) {
+export function Announcement({
+  activePlayer,
+  previousActivePlayer,
+  previousGuess,
+  currentRound,
+  items,
+  isTheActivePlayer,
+}: AnnouncementProps) {
   if (!previousGuess) {
     return (
       <PhaseAnnouncement
@@ -37,26 +47,27 @@ export function Announcement({ activePlayer, previousGuess, currentRound, items 
           <Translate
             en={
               <>
-                Every turn a player will be placing one of their items in correct area of the Venn diagram.
+                Every turn a player will be placing one of their things in the correct area of the Venn
+                diagram.
                 <br />
-                If you get it right, you may place another item.
+                If you get it right, you may place another thing.
                 <br />
-                If you get it wrong, you will receive a new item, and it's the next player's turn.
+                If you get it wrong, you will receive a new thing, and it's the next player's turn.
                 <br />
-                The themes of each area are secret!
+                The themes of each area are secret and it's up to you to figure out the logic!
                 <br />
                 Let's start with <AvatarName player={activePlayer} addressUser />.
               </>
             }
             pt={
               <>
-                A cada rodada um jogador irá colocar um de seus itens na área correta do diagrama de Venn.
+                A cada rodada um jogador irá colocar uma das suas coisas na área correta do diagrama.
                 <br />
-                Se você acertar, poderá colocar outro item.
+                Se você acertar, poderá colocar outra outra.
                 <br />
-                Se você errar, receberá um novo item, e será a vez do próximo jogador.
+                Se você errar, receberá uma coisa nova, e será a vez do próximo jogador.
                 <br />
-                Os temas de cada área são secretos!
+                Os temas de cada área são secretos e cabe a você descobrir a lógica!
                 <br />
                 Vamos começar com <AvatarName player={activePlayer} addressUser />.
               </>
@@ -90,12 +101,14 @@ export function Announcement({ activePlayer, previousGuess, currentRound, items 
           <Translate
             en={
               <>
-                <AvatarName player={activePlayer} addressUser /> got it right! You may place another item.
+                <AvatarName player={activePlayer} addressUser /> got it right!{' '}
+                {isTheActivePlayer ? 'You' : 'They'} may place another item.
               </>
             }
             pt={
               <>
-                <AvatarName player={activePlayer} addressUser /> acertou! Você pode colocar outro item.
+                <AvatarName player={activePlayer} addressUser /> acertou!{' '}
+                {isTheActivePlayer ? 'Você' : 'Ele(a)'} pode colocar outro item.
               </>
             }
           />
@@ -116,13 +129,28 @@ export function Announcement({ activePlayer, previousGuess, currentRound, items 
             <IconAvatar icon={<SkullIcon />} size={50} />
           </Flex>
           <Flex gap={6} justify="center" align="center" style={{ height: '100%', marginTop: 16 }}>
-            <IconAvatar icon={<ApplauseIcon />} size={50} />
-            <IconAvatar icon={<BoxEqualIcon />} size="small" />
+            <ItemCard id={item.id} text={item.name} width={75} />{' '}
+            <IconAvatar icon={<ArrowIcon />} size="small" />{' '}
             <SelectedAreasCircles selectedArea={previousGuess.correctArea} size={50} />
+            <IconAvatar icon={<BoxEqualIcon />} size="small" />
+            <IconAvatar icon={<CheckMarkIcon />} size={50} />
           </Flex>
         </>
       }
-      title={<Translate pt="Próximo jogador!" en="Next player!" />}
+      title={
+        <Translate
+          pt={
+            <>
+              <AvatarName player={previousActivePlayer} /> errou... Próximo jogador!
+            </>
+          }
+          en={
+            <>
+              <AvatarName player={previousActivePlayer} /> got it wrong... Next player!
+            </>
+          }
+        />
+      }
       currentRound={currentRound}
       type="overlay"
       duration={7}

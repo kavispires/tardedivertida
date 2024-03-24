@@ -22,6 +22,7 @@ export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const [, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
+  const [previousActivePlayer] = useWhichPlayerIsThe('previousActivePlayerId', state, players);
 
   const onSubmitItemPlacement = useOnSubmitItemPlacementAPIRequest(setStep);
 
@@ -33,6 +34,8 @@ export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
       previousGuess={previousGuess}
       currentRound={state.round.current}
       items={state.items}
+      isTheActivePlayer={isTheActivePlayer}
+      previousActivePlayer={previousActivePlayer}
     />
   );
 

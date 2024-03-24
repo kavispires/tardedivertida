@@ -35,6 +35,7 @@ export * from './CandyIcon';
 export * from './CaptchaIcon';
 export * from './CatalogIcon';
 export * from './ChatIcon';
+export * from './CheckMarkIcon';
 export * from './ClockIcon';
 export * from './CloverIcon';
 export * from './ClipboardIcon';

@@ -2,7 +2,7 @@
 import { STARTING_ITEMS_PER_PLAYER_COUNT, MAX_ROUNDS } from './constants';
 import { TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { DiagramTopic } from '../../types/tdr';
+import { DiagramTopic, Item } from '../../types/tdr';
 import { TeoriaDeConjuntosOptions, ResourceData, TopicsByDiagramType } from './types';
 // Helpers
 import utils from '../../utils';
@@ -28,7 +28,20 @@ export const getResourceData = async (
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
-    groups: ['thing'],
+    groups: ['thing', 'mesmice', 'dream'],
+    filters: [
+      (item: Item) => {
+        if (item.groups?.includes('thing')) {
+          return true;
+        }
+        if (item.groups?.includes('mesmice') || item.groups?.includes('dream')) {
+          // Only use single word items
+          return item.name[language].split(' ').length === 1;
+        }
+
+        return false;
+      },
+    ],
     cleanUp: utils.tdr.itemUtils.cleanupGroups,
   });
 
