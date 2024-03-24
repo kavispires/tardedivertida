@@ -34,6 +34,7 @@ export function DiagramSection({ width, onSelectArea, diagrams, items, currentIt
   const selectedAreaItems = hasAnAreaSelected ? diagrams[selectedArea].itemsIds : [];
 
   const floatingItemSizes = calculateProportionalValues(width, 410, 360);
+  const containerSizes = calculateProportionalValues(width, 0, 0);
 
   return (
     <div className="diagram-section">
@@ -49,7 +50,13 @@ export function DiagramSection({ width, onSelectArea, diagrams, items, currentIt
               <br />
               <SelectedAreasCircles selectedArea={selectedArea} />
             </Title>
-            <Flex justify="center" align="center" gap={6} wrap="wrap">
+            <Flex
+              justify="center"
+              align="center"
+              gap={6}
+              wrap="wrap"
+              style={{ maxHeight: containerSizes.height, overflowY: 'scroll' }}
+            >
               {selectedAreaItems.map((itemId) => (
                 <ItemCard key={itemId} id={itemId} width={100} text={items[itemId].name} />
               ))}
@@ -58,6 +65,16 @@ export function DiagramSection({ width, onSelectArea, diagrams, items, currentIt
         )}
       </Instruction>
       <Instruction contained className="diagram-section__world">
+        <TripleDiagram width={width} />
+        {Object.values(diagrams).map((diagramArea) => (
+          <AreaPlacedItems
+            key={diagramArea.key}
+            areaKey={diagramArea.key}
+            diagramArea={diagramArea}
+            containerWidth={width}
+          />
+        ))}
+        <TripleDiagramClickableAreas width={width} onClick={onAreaClick} />
         {!!currentItem && (
           <div
             className="floating-item"
@@ -71,16 +88,6 @@ export function DiagramSection({ width, onSelectArea, diagrams, items, currentIt
             />
           </div>
         )}
-        <TripleDiagram width={width} />
-        {Object.values(diagrams).map((diagramArea) => (
-          <AreaPlacedItems
-            key={diagramArea.key}
-            areaKey={diagramArea.key}
-            diagramArea={diagramArea}
-            containerWidth={width}
-          />
-        ))}
-        <TripleDiagramClickableAreas width={width} onClick={onAreaClick} />
       </Instruction>
     </div>
   );
