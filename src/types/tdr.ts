@@ -253,7 +253,7 @@ export type DatingCandidateImageCard = {
   type: 'head' | 'body';
 };
 
-export type DiagramTopics = {
+export type DiagramTopic = {
   /**
    * Unique identifier for the card
    */

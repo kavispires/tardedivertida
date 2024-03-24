@@ -19,7 +19,13 @@ import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase, determineOutcome } from './helpers';
 import { handleSubmitEvaluation, handleSubmitItemDiagram, handleSubmitJudge } from './actions';
-import { prepareSetupPhase, prepareGameOverPhase, prepareJudgeSelectionPhase } from './setup';
+import {
+  prepareSetupPhase,
+  prepareGameOverPhase,
+  prepareJudgeSelectionPhase,
+  prepareItemPlacementPhase,
+  prepareEvaluationPhase,
+} from './setup';
 import { getResourceData } from './data';
 
 /**
@@ -94,20 +100,20 @@ export const getNextPhase = async (
   }
 
   // * -> DIAGRAM_PLACEMENT
-  if (nextPhase === TEORIA_DE_CONJUNTOS_PHASES.DIAGRAM_PLACEMENT) {
-    const newPhase = await prepareJudgeSelectionPhase(store, state, players);
+  if (nextPhase === TEORIA_DE_CONJUNTOS_PHASES.ITEM_PLACEMENT) {
+    const newPhase = await prepareItemPlacementPhase(store, state, players, currentGuess);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // DIAGRAM_PLACEMENT -> EVALUATION
   if (nextPhase === TEORIA_DE_CONJUNTOS_PHASES.EVALUATION) {
-    const newPhase = await prepareJudgeSelectionPhase(store, state, players);
+    const newPhase = await prepareEvaluationPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // EVALUATION --> GAME_OVER
   if (nextPhase === TEORIA_DE_CONJUNTOS_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players, currentGuess);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -128,13 +134,9 @@ export const submitAction = async (data: TeoriaDeConjuntosSubmitAction) => {
     case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_JUDGE:
       utils.firebase.validateSubmitActionProperties(data, ['judgeId'], 'submit pairs');
       return handleSubmitJudge(gameName, gameId, playerId, data.judgeId);
-    case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_ITEM_DIAGRAM:
-      utils.firebase.validateSubmitActionProperties(
-        data,
-        ['itemId', 'diagramPosition'],
-        'submit item diagram'
-      );
-      return handleSubmitItemDiagram(gameName, gameId, playerId, data.itemId, data.diagramPosition);
+    case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_ITEM_PLACEMENT:
+      utils.firebase.validateSubmitActionProperties(data, ['itemId', 'position'], 'submit item diagram');
+      return handleSubmitItemDiagram(gameName, gameId, playerId, data.itemId, data.position);
     case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_EVALUATION:
       utils.firebase.validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.evaluation);

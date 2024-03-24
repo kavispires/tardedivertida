@@ -28,7 +28,7 @@ export const getResourceData = async (
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
-    groups: ['mesmice'],
+    groups: ['thing'],
     cleanUp: utils.tdr.itemUtils.cleanupGroups,
   });
 

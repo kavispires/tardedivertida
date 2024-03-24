@@ -110,6 +110,11 @@ const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpa
 const SessionQuemSouEu = lazy(
   () => import('games/quem-sou-eu/SessionQuemSouEu' /* webpackChunkName: "quem-sou-eu" */)
 );
+const SessionTeoriaDeConjuntos = lazy(
+  () =>
+    import('games/teoria-de-conjuntos/SessionTeoriaDeConjuntos' /* webpackChunkName: "teoria-de-conjuntos" */)
+);
+
 const SessionTaNaCara = lazy(
   () => import('games/ta-na-cara/SessionTaNaCara' /* webpackChunkName: "ta-na-cara" */)
 );
@@ -305,6 +310,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionTaNaCara />
+          </Suspense>
+        );
+      case GAME_COLLECTION.TEORIA_DE_CONJUNTOS:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionTeoriaDeConjuntos />
           </Suspense>
         );
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
