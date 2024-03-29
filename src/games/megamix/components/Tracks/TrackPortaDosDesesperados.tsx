@@ -52,6 +52,19 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
           }
         />
       </Instruction>
+
+      <Space className="i-book-container">
+        <Image.PreviewGroup>
+          <Book>
+            <ImageBlurButtonContainer cardId={track.data.book}>
+              <ImageCard id={track.data.book[0]} cardWidth={140} />
+            </ImageBlurButtonContainer>
+            <ImageBlurButtonContainer cardId={track.data.book}>
+              <ImageCard id={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
+            </ImageBlurButtonContainer>
+          </Book>
+        </Image.PreviewGroup>
+      </Space>
       <Image.PreviewGroup>
         <Space className="space-container">
           {track.data.doors.map((cardId: ImageCardId) => {
@@ -76,19 +89,6 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
           })}
         </Space>
       </Image.PreviewGroup>
-
-      <Space className="i-book-container">
-        <Image.PreviewGroup>
-          <Book>
-            <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard id={track.data.book[0]} cardWidth={140} />
-            </ImageBlurButtonContainer>
-            <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard id={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
-            </ImageBlurButtonContainer>
-          </Book>
-        </Image.PreviewGroup>
-      </Space>
     </>
   );
 };

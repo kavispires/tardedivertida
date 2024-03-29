@@ -32,7 +32,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
       <RuleInstruction type="alert">
         <Translate
           pt="Somente jogadores na área VIP são ranqueados, porque você não pode ganhar se não estiver lá!"
-          en="Only players in the VIP area can be ranked since you can't win if you're not there"
+          en="Only players in the VIP area can be ranked since you can't win if you're not there. We are elitist!"
         />
       </RuleInstruction>
     </>
