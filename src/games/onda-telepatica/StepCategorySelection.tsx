@@ -8,7 +8,7 @@ import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 import { IconAvatar } from 'components/avatars';
 
@@ -30,13 +30,13 @@ export function StepCategorySelection({
 
   return (
     <Step className="o-card-selection" announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate
           pt="Medium, selecione uma das duas categorias"
           en="Psychic, select one of the two categories"
         />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt="Como medium, seu objetivo é ajudar as pessoas escolherem a posição correta do medidor de ondas telepáticas. Primeiro, escolha uma das duas cartas que você acredita ser capaz de criar uma boa dica."
           en="As the Psychic, your goal is to help the other players to find the correct position of the needle in the wavelength measuring device. But first, choose one of these cards that you believe you will be able to write a good clue."
@@ -46,7 +46,7 @@ export function StepCategorySelection({
             <IconAvatar icon={<AnimatedLoaderIcon />} size="small" />
           </div>
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <div className="o-card-selection__container">
         {currentCategories.map((card) => (

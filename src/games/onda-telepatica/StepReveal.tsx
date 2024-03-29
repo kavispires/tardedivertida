@@ -28,7 +28,7 @@ type SentenceProps = {
 function Sentence({ currentCategory }: SentenceProps) {
   return (
     <>
-      <Translate pt="O resultado para" en="The answer for" />
+      <Translate pt="O resultado para" en="The answer for" />{' '}
       <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
       <Translate pt="na escala" en="on the scale" />{' '}
       <strong>
@@ -65,7 +65,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title level={2} className="o-step-reveal-title" size="small">
+      <Title white level={2} className="o-step-reveal-title" size="small">
         <Sentence currentCategory={currentCategory} />
       </Title>
 

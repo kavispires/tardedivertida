@@ -103,7 +103,7 @@ export const prepareGuessPhase = async (
 
   // Modify player
   utils.players.addPropertiesToPlayers(players, {
-    needle: 0,
+    guess: 0,
   });
 
   const selectedCategory = store.deck.find(

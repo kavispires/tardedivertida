@@ -16,9 +16,12 @@ import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
+import { NeedleChoice } from './components/NeedleChoice';
+import { useUser } from 'hooks/useUser';
 
 export function PhaseGuess({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
+  const user = useUser(players, state);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   const onSendGuess = useOnSubmitGuessAPIRequest(setStep);
@@ -39,7 +42,15 @@ export function PhaseGuess({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}>
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{
+          content: (
+            <NeedleChoice currentCategory={state.currentCategory} user={user} isPsychic={isUserThePsychic} />
+          ),
+        }}
+      >
         {/* Step 0 */}
         <ViewOr condition={isUserThePsychic}>
           <StepPsychicGuess
