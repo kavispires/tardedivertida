@@ -31,4 +31,5 @@ export type MesmiceGalleryEntry = {
   item: ObjectCardObj;
   clue: string;
   featureId: CardId;
+  history: HistoryEntry[];
 };

@@ -1,5 +1,5 @@
 // Types
-import type { ExtendedObjectFeatureCard, HistoryEntry } from '../utils/types';
+import type { HistoryEntry } from '../utils/types';
 // Images
 import featuresIcons from './feature-icons.svg';
 // Icons
@@ -11,13 +11,14 @@ import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
 import { Container } from 'components/general/Container';
+import { BoxXIcon } from 'icons/BoxXIcon';
 
 type ScoreTrackProps = {
   history: HistoryEntry[];
-  features: Dictionary<ExtendedObjectFeatureCard>;
+  hideInstructions?: boolean;
 };
 
-export function ScoreTrack({ history, features }: ScoreTrackProps) {
+export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProps) {
   return (
     <Container
       titleProps={{ size: 'xx-small' }}
@@ -40,12 +41,13 @@ export function ScoreTrack({ history, features }: ScoreTrackProps) {
               ) : (
                 <IconAvatar icon={<BoxQuestionMarkIcon />} size="small" />
               )}
-              <div className="score-track__item-score">
-                {entry.score}
-                {/* <PointsHighlight>{entry.score}</PointsHighlight> */}
-              </div>
+              <div className="score-track__item-score">{entry.score}</div>
               {entry.featureId ? (
-                <IconAvatar icon={<BoxCheckMarkIcon />} size="small" />
+                entry.pass ? (
+                  <IconAvatar icon={<BoxCheckMarkIcon />} size="small" />
+                ) : (
+                  <IconAvatar icon={<BoxXIcon />} size="small" />
+                )
               ) : (
                 <IconAvatar icon={<BoxBlankIcon />} size="small" className="invisible" />
               )}
@@ -53,23 +55,25 @@ export function ScoreTrack({ history, features }: ScoreTrackProps) {
           </div>
         ))}
       </div>
-      <RuleInstruction type="tip">
-        <Translate
-          en={
-            <>
-              From left to write, this is how many features we have to eliminate and how many points we get
-              for each one. As you can see, we must eliminate some before we even get any points.
-            </>
-          }
-          pt={
-            <>
-              Da esquerda para a direita, este é o número de características que temos que eliminar e quantos
-              pontos ganhamos para cada uma delas. Como você pode ver, temos que eliminar algumas antes mesmo
-              de ganhar pontos.
-            </>
-          }
-        />
-      </RuleInstruction>
+      {!hideInstructions && (
+        <RuleInstruction type="tip">
+          <Translate
+            en={
+              <>
+                From left to write, this is how many features we have to eliminate and how many points we get
+                for each one. As you can see, we must eliminate some before we even get any points.
+              </>
+            }
+            pt={
+              <>
+                Da esquerda para a direita, este é o número de características que temos que eliminar e
+                quantos pontos ganhamos para cada uma delas. Como você pode ver, temos que eliminar algumas
+                antes mesmo de ganhar pontos.
+              </>
+            }
+          />
+        </RuleInstruction>
+      )}
     </Container>
   );
 }

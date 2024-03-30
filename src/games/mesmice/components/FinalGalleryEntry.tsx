@@ -9,6 +9,7 @@ import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { ObjectCard } from './ObjectCard';
 import { ObjectFeature } from './ObjectFeature';
+import { ScoreTrack } from './ScoreTrack';
 
 type FinalGalleryEntryProps = {
   entry: MesmiceGalleryEntry;
@@ -32,6 +33,7 @@ export function FinalGalleryEntry({ entry, features, players }: FinalGalleryEntr
           <IconAvatar icon={<BoxEqualIcon />} size="small" />
         </div>
         <ObjectFeature feature={features[entry.featureId]} width={48} />
+        <ScoreTrack history={entry.history} hideInstructions />
       </div>
     </div>
   );

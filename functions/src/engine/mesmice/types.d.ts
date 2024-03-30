@@ -21,6 +21,23 @@ export type ResourceData = {
   items: Partial<Item>[];
 };
 
+export type ObjectCardObj = Pick<Item, 'id' | 'name'>;
+
+export type HistoryEntry = {
+  featureId: CardId;
+  pass: boolean;
+  votes: PlayerId[];
+  score: number;
+};
+
+export type MesmiceGalleryEntry = {
+  playerId: PlayerId;
+  item: ObjectCardObj;
+  clue: string;
+  featureId: CardId;
+  history: HistoryEntry[];
+};
+
 export type Outcome = keyof typeof OUTCOME;
 
 export type ExtendedObjectFeatureCard = ObjectFeatureCard & { eliminated?: boolean };

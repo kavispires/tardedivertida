@@ -43,7 +43,7 @@ export function StepSelectObject({ user, announcement, onSelectObject }: StepSel
           }
           en={
             <>
-              In this game, you will write a clue that best connects your object with the drawn
+              In this game, you will write a clue that best connects your object with the assigned
               characteristic.
               <br />
               First, <strong>select</strong> one of the objects below that you are most familiar with.
