@@ -7,7 +7,7 @@ import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, R
 // Utils
 import utils from '../../utils';
 // Internal
-import { determineOutcome, getAchievements } from './helpers';
+import { calculateFinalGroupScore, determineOutcome, getAchievements } from './helpers';
 
 /**
  * Setup
@@ -27,6 +27,7 @@ export const prepareSetupPhase = async (
     lonelyVotes: 0,
     targetVotes: 0,
     communityVotes: 0,
+    score: 0,
   });
 
   // Build turn order
@@ -228,11 +229,16 @@ export const prepareResultPhase = async (
     }
   }
 
+  const gallery = store.gallery;
+  const lastEntry = gallery[gallery.length - 1];
+  lastEntry.history = history;
+
   // Save
   return {
     update: {
       store: {
         achievements: store.achievements,
+        gallery,
       },
       state: {
         phase: MESMICE_PHASES.RESULT,
@@ -256,9 +262,12 @@ export const prepareGameOverPhase = async (
   // Adjust scores to reduce 1 por every time the target was selected by a player
   utils.players.getListOfPlayers(players).forEach((player) => {
     player.score -= store.achievements[player.id].targetVotes;
+    utils.achievements.increase(store, player.id, 'score', player.score);
   });
 
-  const winners = utils.players.determineWinners(players);
+  const group = calculateFinalGroupScore(store.gallery, state.groupScore);
+
+  const winners = group.outcome === 'WIN' ? utils.players.getListOfPlayers(players) : [];
 
   const achievements = getAchievements(store);
 
@@ -288,11 +297,11 @@ export const prepareGameOverPhase = async (
         phase: MESMICE_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
-        winners,
         players,
         achievements,
         gallery: store.gallery,
         features: state.features,
+        group,
       },
     },
   };

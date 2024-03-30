@@ -11,6 +11,7 @@ import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './u
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+import { OUTCOME } from './utils/constants';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
@@ -82,7 +83,7 @@ export function StepResult({
 
       <GroupScore groupScore={groupScore} playerScore={user.score} />
 
-      <ViewIf condition={outcome === 'WIN'}>
+      <ViewIf condition={outcome === OUTCOME.WIN}>
         <RuleInstruction type="scoring">
           <Translate
             pt={
@@ -103,7 +104,7 @@ export function StepResult({
         </RuleInstruction>
       </ViewIf>
 
-      <ViewIf condition={outcome === 'CONTINUE'}>
+      <ViewIf condition={outcome === OUTCOME.CONTINUE}>
         <RuleInstruction type="scoring">
           <Translate
             pt="Vocês eliminaram uma característica correta!"
@@ -112,7 +113,7 @@ export function StepResult({
         </RuleInstruction>
       </ViewIf>
 
-      <ViewIf condition={outcome === 'LOSE'}>
+      <ViewIf condition={outcome === OUTCOME.LOSE}>
         <RuleInstruction type="alert">
           <Translate
             pt={
@@ -152,7 +153,7 @@ export function StepResult({
                   feature={feature}
                   highlight={
                     feature.id === activePlayer.target &&
-                    (isUserTheActivePlayer || outcome === 'LOSE' || outcome === 'WIN')
+                    (isUserTheActivePlayer || outcome === OUTCOME.LOSE || outcome === OUTCOME.WIN)
                   }
                   className={clsx(feature.eliminated && 'features-container__eliminated-object')}
                 />
@@ -167,13 +168,15 @@ export function StepResult({
 
       <Divider />
 
-      <ScoreTrack history={history} features={features} />
+      <ScoreTrack history={history} />
 
-      <Divider />
+      <HostNextPhaseButton
+        round={round}
+        autoTriggerTime={outcome === OUTCOME.CONTINUE ? 7 : 15}
+        withWaitingTimeBar
+      />
 
       <Votes votes={votes} features={features} players={players} />
-
-      <HostNextPhaseButton round={round} autoTriggerTime={13} />
     </Step>
   );
 }

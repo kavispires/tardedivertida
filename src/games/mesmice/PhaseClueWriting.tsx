@@ -46,7 +46,7 @@ export function PhaseClueWriting({ players, state, info }: PhaseProps) {
           }
           en={
             <>
-              In this game, you will write a clue that best connects your object with the drawn
+              In this game, you will write a clue that best connects your object with the assigned
               characteristic.
             </>
           }

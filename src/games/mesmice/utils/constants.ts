@@ -7,3 +7,10 @@ export const MESMICE_PHASES = {
   RESULT: 'RESULT',
   GAME_OVER: 'GAME_OVER',
 };
+
+export const OUTCOME = {
+  NEW: 'NEW',
+  CONTINUE: 'CONTINUE',
+  WIN: 'WIN',
+  LOSE: 'LOSE',
+};

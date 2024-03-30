@@ -73,7 +73,7 @@ export function StepWriteClue({
           en={
             <>
               With the selected object, <strong>write</strong> a clue that best connects your object with the
-              drawn characteristic for you (highlighted in pink below).
+              assigned characteristic for you (highlighted in pink below).
               <br />
               The game consists of eliminating the remaining characteristics until only yours remains.
             </>
@@ -110,7 +110,7 @@ export function StepWriteClue({
           }
           en={
             <>
-              The clue object you write must be an man-made object you can touch.
+              The clue object you write must be a man-made object you can touch.
               <br />
               You cannot use numbers and no additional words apart from the object.
               <br />

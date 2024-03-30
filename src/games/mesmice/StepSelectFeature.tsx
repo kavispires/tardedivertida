@@ -30,6 +30,7 @@ import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
 import { ScoreTrack } from './components/ScoreTrack';
 import { GroupScore } from './components/GroupScore';
 import { ObjectFeature } from './components/ObjectFeature';
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 
 type StepSelectFeatureProps = {
   user: GamePlayer;
@@ -71,6 +72,7 @@ export function StepSelectFeature({
   return (
     <Step fullWidth>
       <Title>
+        {isUserTheActivePlayer && <IconAvatar icon={<AnimatedClockIcon />} size="large" />}
         <Translate
           pt={<>Qual característica menos combina os dois objetos?</>}
           en={<>Which feature least connects the two objects?</>}
@@ -170,7 +172,7 @@ export function StepSelectFeature({
 
       <Divider />
 
-      <ScoreTrack history={history} features={features} />
+      <ScoreTrack history={history} />
     </Step>
   );
 }

@@ -1,5 +1,11 @@
 import { MESMICE_ACHIEVEMENTS, MESMICE_PHASES, OUTCOME } from './constants';
-import { ExtendedObjectFeatureCard, FirebaseStoreData, MesmiceAchievements, Outcome } from './types';
+import {
+  ExtendedObjectFeatureCard,
+  FirebaseStoreData,
+  MesmiceAchievements,
+  MesmiceGalleryEntry,
+  Outcome,
+} from './types';
 import utils from '../../utils';
 
 /**
@@ -18,7 +24,10 @@ export const determineNextPhase = (
   const order = [RULES, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
-    if (round.forceLastRound || (round.current > 0 && round.current === round.total)) {
+    if (
+      outcome !== OUTCOME.CONTINUE &&
+      (round.forceLastRound || (round.current > 0 && round.current === round.total))
+    ) {
       return GAME_OVER;
     }
 
@@ -141,5 +150,33 @@ export const getAchievements = (store: FirebaseStoreData) => {
     });
   }
 
+  // Most Individual Points
+  const { most: mostIndividualPoints } = utils.achievements.getMostAndLeastOf(store, 'score');
+
+  if (mostIndividualPoints) {
+    achievements.push({
+      type: MESMICE_ACHIEVEMENTS.MOST_INDIVIDUAL_POINTS,
+      playerId: mostIndividualPoints.playerId,
+      value: mostIndividualPoints.value,
+    });
+  }
+
   return achievements;
+};
+
+export const calculateFinalGroupScore = (gallery: MesmiceGalleryEntry[], groupScore: number) => {
+  const goal = gallery.reduce((acc, entry) => {
+    let count = 0;
+    entry.history.forEach((result) => (count += result.score));
+
+    return acc + count;
+  }, 0);
+
+  const percentage = (groupScore / goal) * 100;
+
+  return {
+    goal,
+    score: groupScore,
+    outcome: percentage >= 70 ? 'WIN' : 'LOSE',
+  };
 };
