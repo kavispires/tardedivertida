@@ -19,6 +19,7 @@ import { Translate } from 'components/language';
 import { HostOnlyContainer } from './HostOnlyContainer';
 import { HostButton } from './HostButton';
 import { useHost } from 'hooks/useHost';
+import { WaitingTime } from 'components/timers';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
   if (!round || round.current === round.total || round.forceLastRound) {
@@ -45,6 +46,10 @@ type HostNextPhaseButtonProps = {
    * Time to auto trigger the button in seconds (default: 45 seconds)
    */
   autoTriggerTime?: number;
+  /**
+   *
+   */
+  withWaitingTimeBar?: boolean;
 };
 
 /**
@@ -52,7 +57,12 @@ type HostNextPhaseButtonProps = {
  * It will be auto-triggered after 60 seconds unless value is overridden with a 0
  * It may be paused
  */
-export function HostNextPhaseButton({ round, autoTriggerTime = 30, children }: HostNextPhaseButtonProps) {
+export function HostNextPhaseButton({
+  round,
+  autoTriggerTime = 30,
+  children,
+  withWaitingTimeBar,
+}: HostNextPhaseButtonProps) {
   const isHost = useHost();
   const { translate } = useLanguage();
   const { loaders } = useLoading();
@@ -87,39 +97,43 @@ export function HostNextPhaseButton({ round, autoTriggerTime = 30, children }: H
   }, [isLoading]); // eslint-disable-line
 
   return (
-    <HostOnlyContainer
-      label="Host Action"
-      className={clsx('host-only-container--float', getAnimationClass('slideInUp'))}
-    >
-      <Tooltip title="Pause">
-        <HostButton
-          icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
-          onClick={isRunning ? pause : resume}
-          disabled={isLoading}
-        />
-      </Tooltip>
-      <HostButton
-        disabled={isLoading}
-        onClick={handleClick}
-        icon={
-          hasTimer && (
-            <span
-              className={clsx(
-                'host-button-timer',
-                !isRunning &&
-                  getAnimationClass('flash', {
-                    speed: 'slow',
-                    infinite: true,
-                  })
-              )}
-            >
-              {timeLeft}
-            </span>
-          )
-        }
+    <>
+      {withWaitingTimeBar && <WaitingTime duration={autoTriggerTime} timeLeft={timeLeft} />}
+
+      <HostOnlyContainer
+        label="Host Action"
+        className={clsx('host-only-container--float', getAnimationClass('slideInUp'))}
       >
-        {children ?? <ButtonLabel round={round} />}
-      </HostButton>
-    </HostOnlyContainer>
+        <Tooltip title="Pause">
+          <HostButton
+            icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
+            onClick={isRunning ? pause : resume}
+            disabled={isLoading}
+          />
+        </Tooltip>
+        <HostButton
+          disabled={isLoading}
+          onClick={handleClick}
+          icon={
+            hasTimer && (
+              <span
+                className={clsx(
+                  'host-button-timer',
+                  !isRunning &&
+                    getAnimationClass('flash', {
+                      speed: 'slow',
+                      infinite: true,
+                    })
+                )}
+              >
+                {timeLeft}
+              </span>
+            )
+          }
+        >
+          {children ?? <ButtonLabel round={round} />}
+        </HostButton>
+      </HostOnlyContainer>
+    </>
   );
 }
