@@ -2,12 +2,12 @@
 import type { PhaseProps } from 'types/game';
 // import type { MesmiceGalleryEntry } from './utils/types';
 // Utils
-// import { achievementsReference } from './utils/achievements';
+import { achievementsReference } from './utils/achievements';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-// import { Achievements } from 'components/general/Achievements';
+import { Achievements } from 'components/general/Achievements';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -25,7 +25,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<CrownIcon />}>
       <div ref={ref} style={{ width: '100%' }} />
-      {/* <Achievements players={players} achievements={state.achievements} reference={achievementsReference} /> */}
+      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <DiagramSection width={width} diagrams={state.diagrams} items={state.items} />
 

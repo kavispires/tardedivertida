@@ -74,7 +74,13 @@ export const getNextPhase = async (
   const currentGuess = determineOutcome(state.currentGuess, players?.[state?.activePlayerId]);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state.phase, state.round, currentGuess);
+  const nextPhase = determineNextPhase(
+    state.phase,
+    state.round,
+    currentGuess,
+    state.turnOrder,
+    state.activePlayerId
+  );
 
   // RULES -> SETUP
   if (nextPhase === TEORIA_DE_CONJUNTOS_PHASES.SETUP) {

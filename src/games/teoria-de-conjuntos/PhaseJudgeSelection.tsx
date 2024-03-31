@@ -24,6 +24,7 @@ export function PhaseJudgeSelection({ players, state, info }: PhaseProps) {
       title={<Translate pt="Quem quer ser o juiz?" en="Who will be the Judge?" />}
       currentRound={state?.round?.current}
       type="overlay"
+      duration={4}
     />
   );
 

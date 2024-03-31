@@ -21,6 +21,8 @@ import { SelectedAreasCircles } from './components/SelectedAreasCircles';
 import { TurnOrder } from 'components/players';
 import { Container } from 'components/general/Container';
 import { DiagramSection } from './components/DiagramSection';
+import { useMock } from 'hooks/useMock';
+import { mockDiagramSelection } from './utils/mock';
 
 type StepPlaceItemProps = {
   players: GamePlayers;
@@ -51,6 +53,10 @@ export function StepPlaceItem({
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
 
   const selectedItem = items[selectedItemId ?? ''] ?? { name: { en: '', pt: '' } };
+
+  useMock(() => {
+    onSubmitItemPlacement(mockDiagramSelection(user.hand ?? [], diagrams));
+  });
 
   return (
     <Step fullWidth announcement={announcement}>
