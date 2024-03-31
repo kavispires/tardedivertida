@@ -7,15 +7,23 @@ import type { Characters } from '../utils/types';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
+import { Card } from './Card';
 
 type TableProps = {
   characters: Characters;
   tableOrder: CardId[];
   playerCharacterId: CardId;
   showAll?: boolean;
+  imageCardMode: boolean;
 };
 
-export function Table({ characters, playerCharacterId, tableOrder, showAll = true }: TableProps) {
+export function Table({
+  characters,
+  playerCharacterId,
+  tableOrder,
+  showAll = true,
+  imageCardMode = false,
+}: TableProps) {
   const width = useCardWidth(8, {
     gap: 16,
     minWidth: 150,
@@ -41,20 +49,22 @@ export function Table({ characters, playerCharacterId, tableOrder, showAll = tru
     <Space className="space-container q-table" wrap>
       <Space className="space-container" wrap>
         {topKeys.map((key) => (
-          <CharacterCard
+          <Card
             character={characters[key]}
             key={key}
-            size={width}
+            width={width}
+            imageCardMode={imageCardMode}
             className={clsx(key === playerCharacterId && 'q-character-player')}
           />
         ))}
       </Space>
       <Space className="space-container" wrap>
         {bottomKeys.map((key) => (
-          <CharacterCard
+          <Card
             character={characters[key]}
             key={key}
-            size={width}
+            width={width}
+            imageCardMode={imageCardMode}
             className={clsx(key === playerCharacterId && 'q-character-player')}
           />
         ))}

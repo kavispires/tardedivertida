@@ -20,8 +20,8 @@ import { SlideShow } from 'components/slide-show';
 import { ScoringRules } from './components/RulesBlobs';
 import { AvatarName } from 'components/avatars';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
-import { CharacterCard } from 'components/cards/CharacterCard';
 import { GalleryGuesses } from './components/GalleryGuesses';
+import { Card } from './components/Card';
 
 type StepGalleryProps = {
   players: GamePlayers;
@@ -32,6 +32,7 @@ type StepGalleryProps = {
   setStep: UseStep['setStep'];
   isFirstGalleryRunThrough: boolean;
   round: GameRound;
+  imageCardMode: boolean;
 };
 
 export function StepGallery({
@@ -43,6 +44,7 @@ export function StepGallery({
   setStep,
   isFirstGalleryRunThrough,
   round,
+  imageCardMode,
 }: StepGalleryProps) {
   useTemporarilyHidePlayersBar();
   const glyphWidth = useCardWidth(20, {
@@ -85,7 +87,7 @@ export function StepGallery({
             <AvatarName player={currentPlayer} size="large" />
           </div>
           <Space className="space-container" direction="vertical">
-            <CharacterCard character={characters[characterId]} size={characterWidth} />
+            <Card character={characters[characterId]} width={characterWidth} imageCardMode={imageCardMode} />
             <PlayerGlyphs player={currentPlayer} glyphWidth={glyphWidth} />
           </Space>
         </div>
@@ -98,6 +100,7 @@ export function StepGallery({
           currentColor={currentColor}
           currentPlayer={currentPlayer}
           round={round}
+          imageCardMode={imageCardMode}
         />
       </SlideShow>
     </Step>

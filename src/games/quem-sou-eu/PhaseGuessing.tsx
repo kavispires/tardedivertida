@@ -49,6 +49,7 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
           players={players}
           announcement={announcement}
           round={state.round}
+          imageCardMode={state.mode === 'imageCards'}
         />
       </StepSwitcher>
     </PhaseContainer>

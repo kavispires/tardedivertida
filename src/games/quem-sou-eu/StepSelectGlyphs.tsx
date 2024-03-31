@@ -31,6 +31,7 @@ type StepSelectGlyphsProps = {
   characters: Characters;
   tableOrder: CardId[];
   roundType: 'SHOW' | 'HIDE';
+  imageCardMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
 const SELECTIONS_PLACEHOLDER = [0, 1, 2];
@@ -42,6 +43,7 @@ export function StepSelectGlyphs({
   characters,
   tableOrder,
   roundType,
+  imageCardMode,
 }: StepSelectGlyphsProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
@@ -135,6 +137,7 @@ export function StepSelectGlyphs({
         playerCharacterId={user.character?.id}
         tableOrder={tableOrder}
         showAll={roundType === 'SHOW'}
+        imageCardMode={imageCardMode}
       />
 
       <Space className="space-container q-selections">

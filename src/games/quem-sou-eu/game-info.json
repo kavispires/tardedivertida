@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "1.4.54",
+  "version": "2.0.0",
   "title": {
     "pt": "Quem Sou Eu?",
     "en": "Who Am I?"
@@ -54,17 +54,25 @@
   "available": true,
   "options": [
     {
-      "label": "Characters",
       "key": "moreCharacters",
+      "label": "Difficulty",
       "off": "Normal",
-      "on": "More (Harder)"
+      "on": "Harder",
+      "description": "Increase the number of options to choose from"
+    },
+    {
+      "key": "imageCardsMode",
+      "label": "Type",
+      "off": "Characters",
+      "on": "Image Cards",
+      "description": "Use image cards instead of characters/celebrities"
     },
     {
       "key": "nsfw",
       "label": "NSFW",
       "off": "No",
       "on": "Yes",
-      "description": "Allow NSFW characters"
+      "description": "Allow NSFW characters (only applicable to Characters, not images)"
     }
   ]
 }

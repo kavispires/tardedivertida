@@ -68,7 +68,7 @@ export const getNextPhase = async (
   >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state.round);
+  const nextPhase = determineNextPhase(state?.phase, state.round, !!store.options?.imageCardsMode);
 
   // RULES -> SETUP
   if (nextPhase === QUEM_SOU_EU_PHASES.SETUP) {
@@ -79,7 +79,7 @@ export const getNextPhase = async (
     const additionalData = await getResourceData(
       store.language,
       utils.players.getPlayerCount(players),
-      !!store.options?.nsfw
+      store.options
     );
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
