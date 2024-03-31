@@ -1,9 +1,11 @@
-import { Divider, Typography } from 'antd';
+import { Divider, Flex, Typography } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 import { Solutions } from '../utils/types';
 import { Translate } from 'components/language';
 import { CircleHighlight } from './Highlights';
 import { YesNoSwitch } from './YesNoSwitch';
+import { Fragment, useMemo } from 'react';
+import { countWordProperties } from '../utils/helper';
 
 type SolutionProps = {
   solutions: Solutions;
@@ -13,6 +15,8 @@ type SolutionProps = {
   setAttribute?: (value: string) => void;
   setWord?: (value: string) => void;
   setContext?: (value: string) => void;
+  showHints?: boolean;
+  itemName?: string;
 };
 
 export function Solution({
@@ -23,6 +27,8 @@ export function Solution({
   setAttribute,
   setWord,
   setContext,
+  showHints,
+  itemName,
 }: SolutionProps) {
   const { isLoading } = useLoading();
 
@@ -50,6 +56,7 @@ export function Solution({
           <Translate en="Word" pt="Palavra" />
         </CircleHighlight>
         {solutions.word.text}
+
         {!!setWord && (
           <>
             {' '}
@@ -61,6 +68,7 @@ export function Solution({
           </>
         )}
       </Typography.Paragraph>
+      {showHints && itemName && <Hints word={itemName} />}
       {solutions.context && (
         <>
           <Divider />
@@ -83,5 +91,54 @@ export function Solution({
         </>
       )}
     </div>
+  );
+}
+
+function Hints({ word }: { word: string }) {
+  const hintsObj = useMemo(() => countWordProperties(word), [word]);
+
+  const getCheckIcon = (value: boolean) => (value ? '✅' : '❌');
+
+  const hints = [
+    <>
+      <Translate en="Letters" pt="Letras" />: {hintsObj.letters}
+    </>,
+
+    <>
+      <Translate en="Vowels" pt="Vogais" />: {hintsObj.vowels}
+    </>,
+    <>
+      <Translate en="Consonants" pt="Consoantes" />: {hintsObj.consonants}
+    </>,
+    <>
+      <Translate en="Number of words" pt="Número de palavras" />: {hintsObj.numberOfWords}
+    </>,
+    <>
+      <Translate en="Repeated vowels" pt="Repetição de vogais" />: {getCheckIcon(hintsObj.hasRepeatedVowels)}
+    </>,
+    <>
+      <Translate en="Repeated consonants" pt="Repetição de consoantes" />:{' '}
+      {getCheckIcon(hintsObj.hasRepeatedConsonants)}
+    </>,
+    <>
+      <Translate en="Consecutive vowels" pt="Vogais consecutivas" />: {hintsObj.consecutiveVowels}
+    </>,
+    <>
+      <Translate en="Consecutive consonants" pt="Consoantes consecutivas" />: {hintsObj.consecutiveConsonants}
+    </>,
+    <>
+      <Translate en="Hyphen" pt="Hífen" />: {getCheckIcon(hintsObj.hasHyphen)}
+    </>,
+    <>
+      <Translate en="Accents" pt="Acentos" />: {getCheckIcon(hintsObj.hasAccents)}
+    </>,
+  ];
+
+  return (
+    <Flex wrap="wrap" gap={8} className="venn-word-hints">
+      {hints.map((hint, index) => (
+        <div key={index}>{hint}</div>
+      ))}
+    </Flex>
   );
 }

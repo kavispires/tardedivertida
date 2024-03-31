@@ -533,3 +533,12 @@ export const formatTime = (seconds: number): string => {
 
   return `${minutes}:${formattedSeconds}`;
 };
+
+/**
+ * Remove accents from a string keeping original letters
+ * @param str
+ * @returns
+ */
+export function stringRemoveAccents(str: string): string {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}

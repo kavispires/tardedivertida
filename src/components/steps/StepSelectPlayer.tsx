@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Space } from 'antd';
+import { Flex } from 'antd';
 // Types
 import { GamePlayers } from 'types/player';
 // Hooks
@@ -38,7 +38,7 @@ export function StepSelectPlayer({
       <RuleInstruction {...ruleInstructionProps} />
 
       <Instruction contained>
-        <Space className="space-container">
+        <Flex className="space-container" gap={8} wrap="wrap">
           {sortPlayers(players).map((player) => {
             if (isHost) {
               return (
@@ -54,7 +54,7 @@ export function StepSelectPlayer({
 
             return <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />;
           })}
-        </Space>
+        </Flex>
       </Instruction>
 
       <RuleInstruction type="event">

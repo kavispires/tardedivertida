@@ -71,3 +71,20 @@
   top: get-unit(2);
   left: get-unit(2);
 }
+
+.venn-word-hints {
+  border: 1px solid get-color('gray', 1, 0.5);
+  padding: get-unit(2);
+  border-radius: $border-radius;
+
+  div {
+    padding: get-unit(0 2);
+    border-radius: $border-radius;
+    background: get-color('gray', 1, 0.2);
+    margin: get-unit(0 1);
+  }
+}
+
+.q-player-guess-bubble.q-player-guess-bubble {
+  font-size: 1rem;
+}

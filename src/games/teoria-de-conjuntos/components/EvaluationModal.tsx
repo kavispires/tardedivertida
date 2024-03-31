@@ -6,6 +6,7 @@ import { Item } from 'types/tdr';
 
 import { Solutions } from '../utils/types';
 import { Solution } from './Solution';
+import { useLanguage } from 'hooks/useLanguage';
 
 type EvaluationModalProps = {
   item: Item;
@@ -17,6 +18,7 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
   const [areaA, setA] = useState('');
   const [areaC, setC] = useState('');
   const [areaW, setW] = useState('');
+  const { dualTranslate } = useLanguage();
 
   const evaluation = [areaA, areaW, areaC].join('') || 'O';
 
@@ -45,6 +47,8 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
         setAttribute={setA}
         setWord={setW}
         setContext={setC}
+        itemName={dualTranslate(item.name)}
+        showHints
       />
 
       <Divider />

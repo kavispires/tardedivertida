@@ -1,6 +1,6 @@
 // Constants
 import {
-  MAX_ROUNDS,
+  MAX_ROUNDS_PER_PLAYER,
   OUTCOME,
   STARTING_ITEMS_PER_PLAYER_COUNT,
   TEORIA_DE_CONJUNTOS_PHASES,
@@ -11,7 +11,7 @@ import type { FirebaseStateData, FirebaseStoreData, Guess, ResourceData } from '
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import { Item } from '../../types/tdr';
-import { createVennDiagram } from './helpers';
+import { createVennDiagram, getAchievements } from './helpers';
 import { cloneDeep } from 'lodash';
 
 /**
@@ -67,7 +67,7 @@ export const prepareSetupPhase = async (
         players,
         round: {
           current: 0,
-          total: MAX_ROUNDS,
+          total: MAX_ROUNDS_PER_PLAYER * (playerCount - 1),
         },
         items,
         diagrams,
@@ -90,6 +90,7 @@ export const prepareJudgeSelectionPhase = async (
     outside: 0,
     intersection: 0,
     judge: 0,
+    wrong: 0,
   });
 
   // Save
@@ -152,6 +153,14 @@ export const prepareItemPlacementPhase = async (
   }
 
   const previousActivePlayerId = state.activePlayerId ?? null;
+  if (previousActivePlayerId) {
+    utils.achievements.increase(
+      store,
+      state.activePlayerId,
+      'wrong',
+      currentGuess.outcome === OUTCOME.CONTINUE ? 0 : 1
+    );
+  }
 
   // If player got it right (CONTINUE), just continue with the same player.
   const activePlayerId = isNewRound
@@ -175,6 +184,7 @@ export const prepareItemPlacementPhase = async (
       store: {
         deck,
         deckIds,
+        achievements: store.achievements,
       },
       state: {
         phase: TEORIA_DE_CONJUNTOS_PHASES.ITEM_PLACEMENT,
@@ -199,8 +209,29 @@ export const prepareEvaluationPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.readyPlayers(players, state.judgeId);
 
+  // Achievements
+  const currentGuess: Guess = state.currentGuess;
+  const achievementKey = {
+    A: 'attributeCircle',
+    W: 'wordCircle',
+    C: 'contextCircle',
+    O: 'outside',
+  };
+  currentGuess.suggestedArea.split('').forEach((area) => {
+    if (achievementKey[area]) {
+      utils.achievements.increase(store, state.activePlayerId, achievementKey[area], 1);
+    }
+  });
+
+  if (currentGuess.suggestedArea.length > 1) {
+    utils.achievements.increase(store, state.currentPlayerId, 'intersection', 1);
+  }
+
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: TEORIA_DE_CONJUNTOS_PHASES.EVALUATION,
         players,
@@ -244,11 +275,21 @@ export const prepareGameOverPhase = async (
   if (currentGuess.outcome === OUTCOME.WIN) {
     const player = players[state.activePlayerId];
     player.score += 1;
+  } else {
+    utils.achievements.increase(
+      store,
+      state.activePlayerId,
+      'wrong',
+      currentGuess.outcome === OUTCOME.CONTINUE || currentGuess.outcome === OUTCOME.WIN ? 0 : 1
+    );
   }
+
+  // Achieve the judge
+  utils.achievements.increase(store, state.judgeId, 'judge', 1);
 
   const winners = utils.players.determineWinners(players);
 
-  const achievements = [];
+  const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
 

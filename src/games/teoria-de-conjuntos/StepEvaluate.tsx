@@ -3,7 +3,7 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 // Components
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { DiagramRules, EvaluationRules } from './components/RulesBlobs';
 import { DiagramArea, DiagramExamples, Guess, Solutions, SubmitEvaluationPayload } from './utils/types';
@@ -15,6 +15,7 @@ import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { MyThings } from './components/MyThings';
 import { EvaluationModal } from './components/EvaluationModal';
 import { DiagramSection } from './components/DiagramSection';
+import { PlayerGuess } from './components/PlayerGuess';
 
 type StepEvaluateProps = {
   players: GamePlayers;
@@ -73,12 +74,14 @@ export function StepEvaluate({
         <DiagramRules examples={examples} />
       </RuleInstruction>
 
-      {isJudge && (
+      {isJudge ? (
         <EvaluationModal
           item={item}
           onSubmitEvaluation={(evaluation) => onSubmitEvaluation({ evaluation })}
           solutions={solutions}
         />
+      ) : (
+        <PlayerGuess item={item} currentGuess={currentGuess} activePlayer={activePlayer} />
       )}
 
       <DiagramSection
@@ -95,12 +98,6 @@ export function StepEvaluate({
       {!isJudge && <MyThings hand={user.hand ?? []} items={items} />}
 
       <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayer.id} />
-
-      <Instruction contained>
-        TODO: selected items
-        <br /> TODO: outside area
-        <br /> TODO: ANIMATE ICON
-      </Instruction>
     </Step>
   );
 }

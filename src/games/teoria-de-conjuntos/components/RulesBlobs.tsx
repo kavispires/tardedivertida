@@ -44,7 +44,7 @@ export function DiagramRules({ examples }: DiagramRulesProps) {
         <>
           The Venn diagram has {hasContext ? 'three' : 'two'} areas and each area has a secret rule.
           <br />
-          The <CircleHighlight color="blue">blue area</CircleHighlight> has a rule related to a{' '}
+          The <CircleHighlight color="blue">blue area</CircleHighlight> has a rule related to an{' '}
           <TextHighlight>Attribute</TextHighlight> of the thing, like its physical properties.{' '}
           <Examples examples={examples.attribute} title="Attribute Examples" />
           <br />
