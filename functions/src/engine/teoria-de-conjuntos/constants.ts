@@ -32,16 +32,16 @@ export const TEORIA_DE_CONJUNTOS_ACHIEVEMENTS = {
 
 export const MAX_ROUNDS = 30;
 
-export const MAX_ROUNDS_PER_PLAYER = 8;
+export const ROUNDS_PER_PLAYER = 5;
 
 export const STARTING_ITEMS_PER_PLAYER_COUNT = {
-  2: 5,
-  3: 5,
+  2: 10,
+  3: 7,
   4: 5,
-  5: 4,
+  5: 5,
   6: 4,
-  7: 3,
-  8: 3,
+  7: 4,
+  8: 4,
   9: 3,
   10: 3,
 };

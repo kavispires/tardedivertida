@@ -14,10 +14,12 @@ export const getItems = async (
   options: {
     allowNSFW: boolean;
     groups?: string[];
+    groupFiltering?: 'OR' | 'AND';
     filters?: ((item: Item) => boolean)[];
     cleanUp?: (item: Item) => Item;
   } = {
     allowNSFW: false,
+    groupFiltering: 'AND',
     groups: [],
     filters: [],
   }
@@ -34,7 +36,12 @@ export const getItems = async (
 
     // Handle groups
     if (options.groups && options.groups.length) {
-      if (!itemUtils.onlyItemsWithinGroups(options?.groups ?? [])(item)) {
+      const selectorFunction =
+        options.groupFiltering === 'AND'
+          ? itemUtils.onlyItemsWithinGroups
+          : itemUtils.onlyItemsWithinEitherGroups;
+
+      if (!selectorFunction(options?.groups ?? [])(item)) {
         delete itemsObj[item.id];
         return;
       }
@@ -87,6 +94,14 @@ export const itemUtils = {
    */
   onlyItemsWithinGroups: (groups: string[]) => (item: Item) => {
     return every(groups, (group) => (item.groups ?? []).includes(group));
+  },
+  /**
+   *
+   * @param groups
+   * @returns
+   */
+  onlyItemsWithinEitherGroups: (groups: string[]) => (item: Item) => {
+    return some(groups, (group) => (item.groups ?? []).includes(group));
   },
   /**
    * Filter alien items by group
