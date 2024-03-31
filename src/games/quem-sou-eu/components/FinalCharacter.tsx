@@ -10,21 +10,22 @@ import { YesIcon } from 'icons/YesIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { GlyphCard } from 'components/cards/GlyphCard';
-import { CharacterCard } from 'components/cards/CharacterCard';
+import { Card } from './Card';
 
 type FinalCharacterProps = {
   players: GamePlayers;
   character: FinalCharacterEntry;
   glyphWidth: number;
+  imageCardsMode: boolean;
 };
 
-export function FinalCharacter({ players, character, glyphWidth }: FinalCharacterProps) {
+export function FinalCharacter({ players, character, glyphWidth, imageCardsMode }: FinalCharacterProps) {
   const [positive, negative] = useMemo(() => parseSelectedGlyphs(character.glyphs ?? {}), [character.glyphs]);
 
   return (
     <div className="q-player-glyphs q-final-character">
       <AvatarStrip player={players[character.playerId]} withName className="q-player-glyphs__strip" />
-      <CharacterCard size={100} character={character} />
+      <Card width={100} character={character} imageCardMode={imageCardsMode} />
 
       {positive.map((id, index) => {
         return (

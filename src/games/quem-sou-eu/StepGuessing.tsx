@@ -21,10 +21,10 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { CharacterCard } from 'components/cards/CharacterCard';
 import { ScoringRules } from './components/RulesBlobs';
 import { RibbonGroup } from 'components/ribbons';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
+import { Card } from './components/Card';
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -33,6 +33,7 @@ type StepGuessingProps = {
   characters: Characters;
   tableOrder: CardId[];
   round: GameRound;
+  imageCardMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
@@ -43,6 +44,7 @@ export function StepGuessing({
   characters,
   tableOrder,
   round,
+  imageCardMode,
 }: StepGuessingProps) {
   const { isLoading } = useLoading();
   const glyphWidth = useCardWidth(20, {
@@ -151,10 +153,11 @@ export function StepGuessing({
                 className="q-voting-characters__button"
               >
                 <RibbonGroup labels={labels} />
-                <CharacterCard
+                <Card
                   character={characters[cardId]}
-                  size={characterWidth}
+                  width={characterWidth}
                   className={clsx(cardId === 'a' && 'q-character-player')}
+                  imageCardMode={imageCardMode}
                 />
               </TransparentButton>
             );

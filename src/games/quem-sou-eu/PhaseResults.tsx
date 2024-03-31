@@ -47,6 +47,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
           setStep={setStep}
           isFirstGalleryRunThrough={isFirstGalleryRunThrough}
           round={state.round}
+          imageCardMode={state.mode === 'imageCards'}
         />
 
         {/* Step 2 */}

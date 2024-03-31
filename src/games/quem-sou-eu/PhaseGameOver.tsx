@@ -20,7 +20,13 @@ export function PhaseGameOver({ state, players, info, meta }: PhaseProps) {
 
       <Space className="space-container" wrap>
         {orderBy(state.gallery, `name.${meta.language}`).map((entry: FinalCharacterEntry) => (
-          <FinalCharacter players={players} character={entry} glyphWidth={30} key={entry.id} />
+          <FinalCharacter
+            players={players}
+            character={entry}
+            glyphWidth={30}
+            key={entry.id}
+            imageCardsMode={!!meta.options?.imageCardsMode}
+          />
         ))}
       </Space>
     </GameOverWrapper>

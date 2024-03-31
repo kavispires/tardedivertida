@@ -14,6 +14,7 @@ import { GarbageIcon } from 'icons/GarbageIcon';
 import { Avatar, IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { StarPoints } from 'components/points';
+import { ImageCard } from 'components/image-cards';
 
 type GalleryGuessesProps = {
   players: GamePlayers;
@@ -23,6 +24,7 @@ type GalleryGuessesProps = {
   currentColor: string;
   currentPlayer: GamePlayer;
   round: GameRound;
+  imageCardMode: boolean;
 };
 
 export function GalleryGuesses({
@@ -33,6 +35,7 @@ export function GalleryGuesses({
   currentColor,
   currentPlayer,
   round,
+  imageCardMode,
 }: GalleryGuessesProps) {
   const entries = orderBy(
     Object.entries(playersSay).map(([cardId, playersIds]) => {
@@ -67,7 +70,11 @@ export function GalleryGuesses({
                 ) : (
                   <MessageFilled className="q-gallery__speech-bubble-icon" />
                 )}
-                <DualTranslate>{entry.character.name}</DualTranslate>
+                {imageCardMode ? (
+                  <ImageCard id={entry.character.id} cardWidth={35} className="inline" />
+                ) : (
+                  <DualTranslate>{entry.character.name}</DualTranslate>
+                )}
               </div>
               <div className="q-gallery__players">
                 <AntAvatar.Group>

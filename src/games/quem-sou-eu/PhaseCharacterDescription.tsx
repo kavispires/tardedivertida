@@ -65,6 +65,7 @@ export function PhaseCharacterDescription({ players, state, info }: PhaseProps) 
           tableOrder={state.tableOrder}
           announcement={announcement}
           roundType={state.roundType}
+          imageCardMode={state.mode === 'imageCards'}
         />
       </StepSwitcher>
     </PhaseContainer>
