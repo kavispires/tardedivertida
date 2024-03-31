@@ -55,11 +55,17 @@ export function DiagramSection({ width, onSelectArea, diagrams, items, currentIt
               align="center"
               gap={6}
               wrap="wrap"
-              style={{ maxHeight: containerSizes.height, overflowY: 'scroll' }}
+              style={{ maxHeight: containerSizes.height, overflowY: 'auto' }}
             >
               {selectedAreaItems.map((itemId) => (
                 <ItemCard key={itemId} id={itemId} width={100} text={items[itemId].name} />
               ))}
+              {selectedAreaItems.length === 0 && (
+                <Translate
+                  pt="Nenhuma coisa foi colocada nessa seção"
+                  en="No thing has been placed in this section"
+                />
+              )}
             </Flex>
           </>
         )}
