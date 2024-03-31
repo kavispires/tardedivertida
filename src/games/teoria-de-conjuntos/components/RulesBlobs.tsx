@@ -69,12 +69,12 @@ export function DiagramRules({ examples }: DiagramRulesProps) {
           <TextHighlight>Atributo</TextHighlight> da coisa, como suas propriedades físicas.{' '}
           <Examples examples={examples.attribute} title="Exemplos de Atributos" />
           <br />A <CircleHighlight color="yellow">área amarela</CircleHighlight> tem uma regra relacionada à{' '}
-          <TextHighlight>palavra</TextHighlight>: o nome da coisa, soletração, gramática ou pronúncia.
+          <TextHighlight>palavra</TextHighlight>: o nome da coisa, grafia, gramática ou pronúncia.
           <Examples examples={examples.word} title="Exemplos de Palavras" />
           {
             <>
-              <br />A <CircleHighlight color="red">área azul</CircleHighlight> tem uma regra relacionada ao{' '}
-              <TextHighlight>contexto</TextHighlight> da coisa, onde você pode encontrá-la ou usá-la.{' '}
+              <br />A <CircleHighlight color="red">área vermelha</CircleHighlight> tem uma regra relacionada
+              ao <TextHighlight>contexto</TextHighlight> da coisa, onde você pode encontrá-la ou usá-la.{' '}
               <Examples examples={examples.context!} title="Exemplos de Contexto" />
             </>
           }

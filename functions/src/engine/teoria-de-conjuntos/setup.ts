@@ -1,7 +1,7 @@
 // Constants
 import {
-  MAX_ROUNDS_PER_PLAYER,
   OUTCOME,
+  ROUNDS_PER_PLAYER,
   STARTING_ITEMS_PER_PLAYER_COUNT,
   TEORIA_DE_CONJUNTOS_PHASES,
 } from './constants';
@@ -67,7 +67,7 @@ export const prepareSetupPhase = async (
         players,
         round: {
           current: 0,
-          total: MAX_ROUNDS_PER_PLAYER * (playerCount - 1),
+          total: STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] + ROUNDS_PER_PLAYER * (playerCount - 1),
         },
         items,
         diagrams,
