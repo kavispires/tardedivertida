@@ -1,15 +1,21 @@
-import { Flex } from 'antd';
+import { Alert, Divider, Flex } from 'antd';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Item } from 'types/tdr';
 
 import { DiagramArea } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
-import { AreaPlacedItems, calculateProportionalValues } from './TripleDiagram/AreaPlacedItems';
+import {
+  AreaPlacedItems,
+  calculateProportionalValues,
+  getCenterPointInArea,
+} from './TripleDiagram/AreaPlacedItems';
 import { TripleDiagram } from './TripleDiagram/TripleDiagram';
 import { TripleDiagramClickableAreas } from './TripleDiagram/TripleDiagramClickableAreas';
+import clsx from 'clsx';
+import { getAnimationClass } from 'utils/helpers';
 
 type DiagramSectionProps = {
   width: number;
@@ -17,9 +23,17 @@ type DiagramSectionProps = {
   items: Dictionary<Item>;
   diagrams: Dictionary<DiagramArea>;
   currentItem?: Item;
+  currentItemPosition?: string;
 };
 
-export function DiagramSection({ width, onSelectArea, diagrams, items, currentItem }: DiagramSectionProps) {
+export function DiagramSection({
+  width,
+  onSelectArea,
+  diagrams,
+  items,
+  currentItem,
+  currentItemPosition,
+}: DiagramSectionProps) {
   const [selectedArea, setSelectedArea] = useState<string>('');
 
   const onAreaClick = (area: string) => {
@@ -31,9 +45,6 @@ export function DiagramSection({ width, onSelectArea, diagrams, items, currentIt
 
   const hasAnAreaSelected = !!selectedArea;
 
-  const selectedAreaItems = hasAnAreaSelected ? diagrams[selectedArea].itemsIds : [];
-
-  const floatingItemSizes = calculateProportionalValues(width, 410, 360);
   const containerSizes = calculateProportionalValues(width, 0, 0);
 
   return (
@@ -45,28 +56,15 @@ export function DiagramSection({ width, onSelectArea, diagrams, items, currentIt
               {selectedArea === 'O' ? (
                 <Translate pt="Fora do Diagrama" en="Outside the Diagram" />
               ) : (
-                <Translate pt="Área Selecionada" en="Selected Area" />
+                <Translate pt="Coisas na área" en="Things in area" />
               )}
-              <br />
-              <SelectedAreasCircles selectedArea={selectedArea} />
             </Title>
-            <Flex
-              justify="center"
-              align="center"
-              gap={6}
-              wrap="wrap"
-              style={{ maxHeight: containerSizes.height, overflowY: 'auto' }}
-            >
-              {selectedAreaItems.map((itemId) => (
-                <ItemCard key={itemId} id={itemId} width={100} text={items[itemId].name} />
-              ))}
-              {selectedAreaItems.length === 0 && (
-                <Translate
-                  pt="Nenhuma coisa foi colocada nessa seção"
-                  en="No thing has been placed in this section"
-                />
-              )}
-            </Flex>
+            <SelectedAreaItemsSection
+              diagrams={diagrams}
+              items={items}
+              selectedArea={selectedArea}
+              maxHeight={containerSizes.height}
+            />
           </>
         )}
       </Instruction>
@@ -82,19 +80,137 @@ export function DiagramSection({ width, onSelectArea, diagrams, items, currentIt
         ))}
         <TripleDiagramClickableAreas width={width} onClick={onAreaClick} />
         {!!currentItem && (
-          <div
-            className="floating-item"
-            style={{ top: floatingItemSizes.y - 50, left: floatingItemSizes.x - 50 }}
-          >
-            <ItemCard
-              id={currentItem.id}
-              width={100}
-              // text={currentItem?.name}
-              className="floating-item__item"
-            />
-          </div>
+          <CurrentItem currentItem={currentItem} currentItemPosition={currentItemPosition} width={width} />
         )}
       </Instruction>
     </div>
+  );
+}
+
+function CurrentItem({
+  currentItem,
+  currentItemPosition,
+  width,
+}: Pick<DiagramSectionProps, 'currentItem' | 'currentItemPosition' | 'width'>) {
+  const floatingItemSizes = calculateProportionalValues(width, 410, 360);
+
+  if (!currentItem) return <></>;
+
+  return (
+    <div
+      className={clsx('floating-item', !currentItemPosition && 'floating-item--animated')}
+      style={
+        currentItemPosition
+          ? getCenterPointInArea(width, currentItemPosition)
+          : { top: floatingItemSizes.y - 50, left: floatingItemSizes.x - 50 }
+      }
+    >
+      <ItemCard
+        id={currentItem.id}
+        width={100}
+        className={clsx(
+          'floating-item__item',
+          currentItemPosition && 'floating-item__item--selection',
+          currentItemPosition && getAnimationClass('pulse', { infinite: true })
+        )}
+      />
+    </div>
+  );
+}
+
+type SelectedAreaItemsSectionProps = {
+  diagrams: Dictionary<DiagramArea>;
+  items: Dictionary<Item>;
+  selectedArea: string;
+  maxHeight: number;
+};
+
+function SelectedAreaItemsSection({
+  selectedArea,
+  items,
+  diagrams,
+  maxHeight,
+}: SelectedAreaItemsSectionProps) {
+  const { areaKeys, areasItems } = useMemo(() => {
+    if (selectedArea.length > 1 || selectedArea === 'O') {
+      return {
+        areaKeys: [selectedArea],
+        areasItems: [diagrams[selectedArea].itemsIds],
+      };
+    }
+
+    const areaKeys: string[] = [selectedArea];
+    const areasItems = [diagrams[selectedArea].itemsIds];
+
+    for (const [key, diagram] of Object.entries(diagrams)) {
+      if (key !== selectedArea && key.includes(selectedArea)) {
+        areaKeys.push(key);
+        areasItems.push(diagram.itemsIds);
+      }
+    }
+
+    return {
+      areaKeys,
+      areasItems,
+    };
+  }, [selectedArea, diagrams]);
+
+  return (
+    <Flex vertical align="center" style={{ maxHeight: maxHeight, overflowY: 'auto' }} gap={6}>
+      {areaKeys.map((areaKey, index) => (
+        <SelectedAreaItems
+          key={areaKey}
+          areaKey={areaKey}
+          itemsIds={areasItems[index]}
+          items={items}
+          displayEmptyMessage={index === 0}
+        />
+      ))}
+    </Flex>
+  );
+}
+
+type SelectedAreaItemsProps = {
+  areaKey: string;
+  itemsIds: string[];
+  items: Dictionary<Item>;
+  displayEmptyMessage: boolean;
+};
+
+function SelectedAreaItems({ areaKey, itemsIds, items, displayEmptyMessage }: SelectedAreaItemsProps) {
+  if (itemsIds.length === 0 && !displayEmptyMessage) return <></>;
+
+  return (
+    <>
+      <div>
+        <SelectedAreasCircles selectedArea={areaKey} />
+      </div>
+
+      <Flex justify="center" align="center" gap={6} wrap="wrap">
+        {itemsIds.map((itemId) => (
+          <ItemCard key={itemId} id={itemId} width={100} text={items[itemId].name} />
+        ))}
+        {itemsIds.length === 0 && displayEmptyMessage && (
+          <Alert
+            type={
+              areaKey.includes('C')
+                ? 'error'
+                : areaKey.includes('A')
+                  ? 'info'
+                  : areaKey.includes('W')
+                    ? 'warning'
+                    : 'success'
+            }
+            message={
+              <Translate
+                pt="Nenhuma coisa foi colocada só nessa seção."
+                en="No thing has been placed exclusively in this section."
+              />
+            }
+          />
+        )}
+      </Flex>
+      <Divider style={{ margin: `6px 0` }} />
+    </>
   );
 }

@@ -16,6 +16,9 @@ import { MyThings } from './components/MyThings';
 import { EvaluationModal } from './components/EvaluationModal';
 import { DiagramSection } from './components/DiagramSection';
 import { PlayerGuess } from './components/PlayerGuess';
+import { getPlayerItemsLeft } from './utils/helper';
+import { GameRound } from 'types/game';
+import { RoundAlert } from './components/RoundAlert';
 
 type StepEvaluateProps = {
   players: GamePlayers;
@@ -30,6 +33,8 @@ type StepEvaluateProps = {
   onSubmitEvaluation: (payload: SubmitEvaluationPayload) => void;
   currentGuess: Guess;
   solutions: Solutions;
+  targetItemCount: number;
+  round: GameRound;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepEvaluate({
@@ -46,6 +51,8 @@ export function StepEvaluate({
   onSubmitEvaluation,
   solutions,
   currentGuess,
+  targetItemCount,
+  round,
 }: StepEvaluateProps) {
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
 
@@ -58,21 +65,21 @@ export function StepEvaluate({
         <Translate
           pt={
             <>
-              <AvatarName player={judge} /> está avaliando a posição do item
+              <AvatarName player={judge} /> está avaliando a posição da coisa
             </>
           }
           en={
             <>
-              <AvatarName player={judge} /> is evaluating the item's position
+              <AvatarName player={judge} /> is evaluating the things' position
             </>
           }
         />{' '}
         <IconAvatar icon={<AnimatedClockIcon />} />
       </Title>
 
-      <RuleInstruction type="rule">
-        <DiagramRules examples={examples} />
-      </RuleInstruction>
+      <RoundAlert round={round} />
+
+      <DiagramRules examples={examples} />
 
       {isJudge ? (
         <EvaluationModal
@@ -95,9 +102,14 @@ export function StepEvaluate({
         <EvaluationRules />
       </RuleInstruction>
 
-      {!isJudge && <MyThings hand={user.hand ?? []} items={items} />}
+      {!isJudge && <MyThings hand={user.hand ?? []} items={items} total={targetItemCount} />}
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayer.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayer.id}
+        additionalInfoParser={getPlayerItemsLeft}
+      />
     </Step>
   );
 }

@@ -1,3 +1,4 @@
+import { GamePlayer } from 'types/player';
 import { stringRemoveAccents } from 'utils/helpers';
 
 export function countWordProperties(word: string): {
@@ -87,3 +88,5 @@ export function countWordProperties(word: string): {
     hasAccents,
   };
 }
+
+export const getPlayerItemsLeft = (player: GamePlayer) => `(${player?.hand?.length ?? 0})`;

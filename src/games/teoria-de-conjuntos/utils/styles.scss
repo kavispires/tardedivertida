@@ -30,13 +30,21 @@
 
 .floating-item {
   position: absolute;
-  animation: figureEight 7s linear infinite;
-  transition: transform 0.2s ease-in-out;
+  transition: position 1s ease-in-out;
+
+  &--animated {
+    animation: figureEight 7s linear infinite;
+    transition: transform 0.2s ease-in-out;
+  }
 
   &__item {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+
+    &--selection {
+      background: get-color('brown', 3);
+    }
   }
 }
 

@@ -54,6 +54,8 @@ export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
             activePlayer={activePlayer}
             onSubmitItemPlacement={onSubmitItemPlacement}
             announcement={announcement}
+            targetItemCount={state.targetItemsCount}
+            round={state.round}
           />
 
           <StepWaitPlaceItem
@@ -67,6 +69,8 @@ export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
             announcement={announcement}
             isJudge={isTheJudge}
             solutions={state.solutions}
+            targetItemCount={state.targetItemsCount}
+            round={state.round}
           />
         </ViewOr>
       </StepSwitcher>

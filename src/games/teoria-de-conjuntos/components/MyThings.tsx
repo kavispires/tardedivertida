@@ -1,4 +1,5 @@
-import { Flex } from 'antd';
+import { AimOutlined } from '@ant-design/icons';
+import { Flex, Tag, Tooltip } from 'antd';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
@@ -8,13 +9,27 @@ import { Item } from 'types/tdr';
 type MyThingsProps = {
   hand: string[];
   items: Dictionary<Item>;
+  total: number;
 };
 
-export function MyThings({ hand, items }: MyThingsProps) {
+export function MyThings({ hand = [], items, total }: MyThingsProps) {
   return (
     <Container
       contained
-      title={<Translate pt="Suas coisas" en="Your items" />}
+      title={
+        <>
+          <Translate pt="Suas coisas" en="Your items" />{' '}
+          <Tooltip
+            title={
+              <Translate en="Items to place and total items" pt="Itens para posicionar e total de itens" />
+            }
+          >
+            <Tag bordered={false} icon={<AimOutlined />}>
+              {hand.length}/{total}
+            </Tag>
+          </Tooltip>
+        </>
+      }
       contentProps={{ direction: 'vertical' }}
     >
       <Translate

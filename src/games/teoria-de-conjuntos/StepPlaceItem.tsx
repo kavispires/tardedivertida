@@ -10,9 +10,9 @@ import { DiagramRules } from './components/RulesBlobs';
 import { DiagramArea, DiagramExamples, SubmitItemPlacementPayload } from './utils/types';
 import { Item } from 'types/tdr';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { Button, Flex, Space } from 'antd';
+import { Button, Flex, Space, Tag, Tooltip } from 'antd';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ItemCard } from 'components/cards/ItemCard';
 import { TransparentButton } from 'components/buttons';
 import { getAnimationClass } from 'utils/helpers';
@@ -23,6 +23,10 @@ import { Container } from 'components/general/Container';
 import { DiagramSection } from './components/DiagramSection';
 import { useMock } from 'hooks/useMock';
 import { mockDiagramSelection } from './utils/mock';
+import { getPlayerItemsLeft } from './utils/helper';
+import { AimOutlined } from '@ant-design/icons';
+import { GameRound } from 'types/game';
+import { RoundAlert } from './components/RoundAlert';
 
 type StepPlaceItemProps = {
   players: GamePlayers;
@@ -33,6 +37,8 @@ type StepPlaceItemProps = {
   turnOrder: GameOrder;
   activePlayer: GamePlayer;
   onSubmitItemPlacement: (payload: SubmitItemPlacementPayload) => void;
+  targetItemCount: number;
+  round: GameRound;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepPlaceItem({
@@ -45,12 +51,23 @@ export function StepPlaceItem({
   turnOrder,
   activePlayer,
   onSubmitItemPlacement,
+  targetItemCount,
+  round,
 }: StepPlaceItemProps) {
   const { isLoading } = useLoading();
+  const scrollToSubmitRef = useRef<HTMLDivElement>(null);
 
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
+  const [previouslySelectedItemId, setPreviouslySelectedItemId] = useState<string | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
+  const onSelectArea = (area: string) => {
+    setPreviouslySelectedItemId(selectedItemId || null);
+    setSelectedArea(area);
+    if (scrollToSubmitRef.current) {
+      scrollToSubmitRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const selectedItem = items[selectedItemId ?? ''] ?? { name: { en: '', pt: '' } };
 
@@ -68,9 +85,9 @@ export function StepPlaceItem({
         />
       </Title>
 
-      <RuleInstruction type="rule">
-        <DiagramRules examples={examples} />
-      </RuleInstruction>
+      <RoundAlert round={round} />
+
+      <DiagramRules examples={examples} />
 
       <Space className="space-container">
         <Button
@@ -79,19 +96,21 @@ export function StepPlaceItem({
           loading={isLoading}
           disabled={!selectedArea || !selectedItemId}
           onClick={() => onSubmitItemPlacement({ position: selectedArea!, itemId: selectedItemId! })}
+          ref={scrollToSubmitRef}
         >
-          <Flex gap={8}>
-            <Translate en="Submit" pt="Enviar" />
-            <span className="selected-item">
-              <DualTranslate>{selectedItem?.name}</DualTranslate>
-            </span>{' '}
-            <span>=</span>
-            <SelectedAreasCircles selectedArea={selectedArea} />
-          </Flex>
+          <Translate en="Submit" pt="Enviar" />
+          <span className="selected-item">
+            <DualTranslate>{selectedItem?.name}</DualTranslate>
+          </span>{' '}
+          <span>=</span>
+          <SelectedAreasCircles selectedArea={selectedArea} />
         </Button>
       </Space>
 
-      <MouseFollowingContent active={Boolean(selectedItemId) && !selectedArea} contained>
+      <MouseFollowingContent
+        active={Boolean(selectedItemId) && (!selectedArea || selectedItemId !== previouslySelectedItemId)}
+        contained
+      >
         <ItemCard
           id={selectedItemId ?? ''}
           width={100}
@@ -100,7 +119,18 @@ export function StepPlaceItem({
         />
       </MouseFollowingContent>
 
-      <DiagramSection width={width} onSelectArea={setSelectedArea} diagrams={diagrams} items={items} />
+      <DiagramSection
+        width={width}
+        onSelectArea={onSelectArea}
+        diagrams={diagrams}
+        items={items}
+        currentItem={
+          selectedItem?.id && selectedArea && selectedItemId === previouslySelectedItemId
+            ? selectedItem
+            : undefined
+        }
+        currentItemPosition={selectedArea ?? undefined}
+      />
 
       <RuleInstruction type="action">
         <Translate
@@ -131,17 +161,45 @@ export function StepPlaceItem({
         />
       </RuleInstruction>
 
-      <Container contained title={<Translate pt="Suas coisas" en="Your items" />}>
+      <Container
+        contained
+        title={
+          <>
+            <Translate pt="Suas coisas" en="Your items" />{' '}
+            <Tooltip
+              title={
+                <Translate en="Items to place and total items" pt="Itens para posicionar e total de itens" />
+              }
+            >
+              <Tag bordered={false} icon={<AimOutlined />}>
+                {(user.hand ?? []).length}/{targetItemCount}
+              </Tag>
+            </Tooltip>
+          </>
+        }
+      >
         <Flex gap={8} justify="center">
           {(user.hand ?? []).map((itemId: string) => (
-            <TransparentButton key={itemId} onClick={() => setSelectedItemId(itemId)}>
+            <TransparentButton
+              key={itemId}
+              onClick={() => {
+                setPreviouslySelectedItemId(selectedItemId || itemId);
+                setSelectedItemId(itemId);
+              }}
+              active={itemId === selectedItem.id}
+            >
               <ItemCard id={itemId} width={100} text={items[itemId]?.name} />
             </TransparentButton>
           ))}
         </Flex>
       </Container>
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayer.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayer.id}
+        additionalInfoParser={getPlayerItemsLeft}
+      />
     </Step>
   );
 }

@@ -37,7 +37,9 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
         <Solution solutions={state.solutions} />
       </Container>
 
-      {!isTheJudge && user.hand && <MyThings hand={user.hand ?? []} items={state.items ?? {}} />}
+      {!isTheJudge && user.hand && (
+        <MyThings hand={user.hand ?? []} items={state.items ?? {}} total={state.targetItemsCount} />
+      )}
     </GameOverWrapper>
   );
 }

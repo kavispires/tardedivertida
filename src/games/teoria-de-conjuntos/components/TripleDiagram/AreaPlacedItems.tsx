@@ -22,6 +22,35 @@ type Point = {
   y: number;
 };
 
+export function getCenterPointInArea(containerWidth: number, areaKey: string) {
+  const values = {
+    A: { x: 145, y: 160 },
+
+    W: { x: 570, y: 160 },
+
+    C: { x: 360, y: 550 },
+
+    AW: { x: 360, y: 140 },
+
+    WC: { x: 490, y: 370 },
+
+    AC: { x: 220, y: 370 },
+
+    AWC: { x: 360, y: 300 },
+
+    O: { x: 670, y: 620 },
+  }[areaKey];
+
+  const points = calculateProportionalValues(containerWidth, values?.x ?? 0, values?.y ?? 0);
+  const left = points.x;
+  const top = points.y;
+
+  return {
+    top,
+    left,
+  };
+}
+
 const BOUNDARIES_BY_AREA: Record<string, Point[]> = {
   A: [
     { x: 191, y: 218 },
@@ -108,24 +137,6 @@ export function AreaPlacedItems({ areaKey, diagramArea, containerWidth }: AreaPl
 
   const itemWidth = containerWidth / 9;
 
-  // const itemsIds = useMemo(
-  //   () => [
-  //     ...diagramArea.itemsIds,
-  //     '4',
-  //     '56',
-  //     '123',
-  //     '456',
-  //     '168',
-  //     '855',
-  //     '0',
-  //     '166',
-  //     '963',
-  //     '1456',
-  //     '777',
-  //     '888',
-  //   ],
-  //   [diagramArea.itemsIds]
-  // );
   const { itemsIds } = diagramArea;
 
   const elements = useMemo(() => {

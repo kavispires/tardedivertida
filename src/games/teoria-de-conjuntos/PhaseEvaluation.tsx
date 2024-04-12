@@ -41,6 +41,8 @@ export function PhaseEvaluation({ players, state, info }: PhaseProps) {
           isJudge={isTheJudge}
           currentGuess={currentGuess}
           solutions={state.solutions}
+          targetItemCount={state.targetItemsCount}
+          round={state.round}
         />
       </StepSwitcher>
     </PhaseContainer>
