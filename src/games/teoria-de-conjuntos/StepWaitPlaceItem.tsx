@@ -7,7 +7,7 @@ import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 // Components
 import { Step, StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { Title } from 'components/text';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { Item } from 'types/tdr';
@@ -17,6 +17,9 @@ import { DiagramArea, DiagramExamples, Solutions } from './utils/types';
 import { MyThings } from './components/MyThings';
 import { Solution } from './components/Solution';
 import { DiagramSection } from './components/DiagramSection';
+import { getPlayerItemsLeft } from './utils/helper';
+import { GameRound } from 'types/game';
+import { RoundAlert } from './components/RoundAlert';
 
 type StepWaitPlaceItemProps = {
   players: GamePlayers;
@@ -28,6 +31,8 @@ type StepWaitPlaceItemProps = {
   activePlayer: GamePlayer;
   isJudge: boolean;
   solutions: Solutions;
+  targetItemCount: number;
+  round: GameRound;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWaitPlaceItem({
@@ -41,6 +46,8 @@ export function StepWaitPlaceItem({
   activePlayer,
   isJudge,
   solutions,
+  targetItemCount,
+  round,
 }: StepWaitPlaceItemProps) {
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
 
@@ -63,13 +70,13 @@ export function StepWaitPlaceItem({
         <IconAvatar icon={<AnimatedClockIcon />} />
       </Title>
 
-      <RuleInstruction type="rule">
-        <DiagramRules examples={examples} />
-      </RuleInstruction>
+      <RoundAlert round={round} />
+
+      <DiagramRules examples={examples} />
 
       <DiagramSection width={width} diagrams={diagrams} items={items} />
 
-      {!isJudge && <MyThings hand={user.hand ?? []} items={items} />}
+      {!isJudge && <MyThings hand={user.hand ?? []} items={items} total={targetItemCount} />}
 
       {isJudge && (
         <Container
@@ -78,7 +85,7 @@ export function StepWaitPlaceItem({
           contentProps={{ direction: 'vertical' }}
         >
           <Translate
-            pt="Essas são aas regras secretas de cada círculo, não fale elas com ninguém."
+            pt="Essas são as regras secretas de cada círculo, não fale elas com ninguém."
             en="These are the secret rules of each circle, don't tell them to anyone."
           />
 
@@ -86,7 +93,12 @@ export function StepWaitPlaceItem({
         </Container>
       )}
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayer.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayer.id}
+        additionalInfoParser={getPlayerItemsLeft}
+      />
     </Step>
   );
 }

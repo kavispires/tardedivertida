@@ -67,10 +67,13 @@ export const prepareSetupPhase = async (
         players,
         round: {
           current: 0,
-          total: STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] + ROUNDS_PER_PLAYER * (playerCount - 1),
+          total:
+            STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] +
+            ROUNDS_PER_PLAYER * (playerCount - (playerCount === 2 ? 0 : 1)),
         },
         items,
         diagrams,
+        targetItemsCount: STARTING_ITEMS_PER_PLAYER_COUNT[playerCount],
         solutions: additionalData.diagrams,
         examples: additionalData.examples,
       },
@@ -168,6 +171,7 @@ export const prepareItemPlacementPhase = async (
     : state.activePlayerId;
 
   utils.players.readyPlayers(players, activePlayerId);
+  // utils.players.removePropertiesFromPlayers(players, ['']);
 
   const previousGuess = previousActivePlayerId ? cloneDeep(currentGuess) : null;
 
@@ -321,6 +325,7 @@ export const prepareGameOverPhase = async (
         diagrams: diagrams,
         solutions: state.solutions,
         judgeId: state.judgeId,
+        targetItemsCount: state.targetItemsCount,
       },
     },
   };
