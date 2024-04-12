@@ -16,6 +16,8 @@ import { OUTCOME } from '../utils/constants';
 import { Guess } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 import { CheckMarkIcon } from 'icons/CheckMarkIcon';
+import { CrownIcon } from 'icons/CrownIcon';
+import { GarbageIcon } from 'icons/GarbageIcon';
 
 type AnnouncementProps = {
   activePlayer: GamePlayer;
@@ -102,13 +104,13 @@ export function Announcement({
             en={
               <>
                 <AvatarName player={activePlayer} addressUser /> got it right!{' '}
-                {isTheActivePlayer ? 'You' : 'They'} may place another item.
+                {isTheActivePlayer ? 'You' : 'They'} may place another thing.
               </>
             }
             pt={
               <>
                 <AvatarName player={activePlayer} addressUser /> acertou!{' '}
-                {isTheActivePlayer ? 'Você' : 'Ele(a)'} pode colocar outro item.
+                {isTheActivePlayer ? 'Você' : 'Ele(a)'} pode colocar outra coisa.
               </>
             }
           />
@@ -161,15 +163,11 @@ export function Announcement({
             <>
               It's <AvatarName player={activePlayer} />
               's turn.
-              <br />
-              The themes of each area are secret!
             </>
           }
           pt={
             <>
               É a vez do(a) <AvatarName player={activePlayer} />.
-              <br />
-              Os temas de cada área são secretos!
             </>
           }
         />
@@ -177,3 +175,21 @@ export function Announcement({
     </PhaseAnnouncement>
   );
 }
+
+type GameOverIconProps = {
+  items: Dictionary<Item>;
+  lastGuess: Guess;
+};
+
+export const GameOverIcon = ({ items, lastGuess }: GameOverIconProps) => {
+  const item = items[lastGuess.itemId];
+  const isWin = lastGuess.outcome === OUTCOME.WIN;
+  return (
+    <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
+      <ItemCard id={item.id} text={item.name} width={100} /> <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
+      <SelectedAreasCircles selectedArea={lastGuess.correctArea} size={75} />
+      <IconAvatar icon={<BoxEqualIcon />} size="large" />
+      <IconAvatar icon={isWin ? <CrownIcon /> : <GarbageIcon />} size={125} />
+    </Flex>
+  );
+};

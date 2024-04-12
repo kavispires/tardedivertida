@@ -64,7 +64,7 @@ export function StepPlaceItem({
   const onSelectArea = (area: string) => {
     setPreviouslySelectedItemId(selectedItemId || null);
     setSelectedArea(area);
-    if (scrollToSubmitRef.current) {
+    if (selectedItemId && scrollToSubmitRef.current) {
       scrollToSubmitRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -97,12 +97,13 @@ export function StepPlaceItem({
           disabled={!selectedArea || !selectedItemId}
           onClick={() => onSubmitItemPlacement({ position: selectedArea!, itemId: selectedItemId! })}
           ref={scrollToSubmitRef}
+          style={{}}
         >
           <Translate en="Submit" pt="Enviar" />
           <span className="selected-item">
             <DualTranslate>{selectedItem?.name}</DualTranslate>
-          </span>{' '}
-          <span>=</span>
+          </span>
+          <span style={{ marginRight: '6px' }}>=</span>
           <SelectedAreasCircles selectedArea={selectedArea} />
         </Button>
       </Space>
