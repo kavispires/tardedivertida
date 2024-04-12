@@ -24,7 +24,7 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
 
   const { isLoading, mutate, isError, error } = useMutation({
     mutationKey: ['sign-in-anon'],
-    mutationFn: async () => signInAsGuest,
+    mutationFn: async () => signInAsGuest(),
     onSuccess: () => setStep(1),
   });
 
