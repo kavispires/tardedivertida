@@ -326,6 +326,8 @@ export const prepareGameOverPhase = async (
         solutions: state.solutions,
         judgeId: state.judgeId,
         targetItemsCount: state.targetItemsCount,
+        lastGuess: currentGuess,
+        lastActivePlayerId: state.activePlayerId,
       },
     },
   };

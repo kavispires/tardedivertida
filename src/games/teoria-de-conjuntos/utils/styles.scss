@@ -4,6 +4,7 @@
   text-transform: uppercase;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+  margin: get-unit(0 2);
 }
 
 @keyframes figureEight {
@@ -33,7 +34,7 @@
   transition: position 1s ease-in-out;
 
   &--animated {
-    animation: figureEight 7s linear infinite;
+    animation: figureEight 15s linear infinite;
     transition: transform 0.2s ease-in-out;
   }
 
@@ -54,7 +55,7 @@
   gap: get-unit(1);
 
   &__selected-scope {
-    padding: get-unit(3);
+    margin: 0;
     max-width: 250px;
   }
 
