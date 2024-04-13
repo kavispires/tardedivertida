@@ -16,7 +16,7 @@
   },
   "main": "lib/src/index.js",
   "dependencies": {
-    "@types/lodash": "^4.14.202",
+    "@types/lodash": "^4.17.0",
     "cross-fetch": "^4.0.0",
     "firebase-admin": "^11.11.1",
     "firebase-functions": "^4.5.0",
