@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "title": {
     "pt": "Jogo da Mesmice",
     "en": "Same But Different"
@@ -17,7 +17,7 @@
     "en": "Eliminate the features that do not apply to the objects of the round"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "analysis-cloud",
     "color": "",
     "backgroundColor": ""
   },
