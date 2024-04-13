@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "0.9.23",
+  "version": "0.9.24",
   "title": {
     "pt": "Labirinto Secreto",
     "en": "Secret Labyrinth"
@@ -13,7 +13,7 @@
   },
   "basedOn": "shtaP citsyM",
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "tree-cloud",
     "color": ""
   },
   "summary": {
