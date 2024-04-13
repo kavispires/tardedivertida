@@ -52,7 +52,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
               className={clsx('result', option.bot && 'result--bot')}
               key={option.id}
             >
-              <Flex vertical justify="center">
+              <Flex vertical justify="center" align="center">
                 {option.bot ? (
                   <>
                     <IconAvatar icon={<RobotIcon />} size="large" />

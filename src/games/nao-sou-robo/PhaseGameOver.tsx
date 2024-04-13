@@ -9,11 +9,14 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+import { FinalOutcome } from './components/FinalOutcome';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
+      <FinalOutcome players={players} outcome={state.outcome} robot={state.robot} />
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+
       <Space className="space-container" wrap>
         {/* Add gallery */}
       </Space>
