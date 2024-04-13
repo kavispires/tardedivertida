@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "title": {
     "pt": "Teoria de Conjuntos",
     "en": "Venn Diagram"
@@ -17,7 +17,7 @@
     "en": "Get rid of your things by placing them in the correct circles."
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "diagram-clouds",
     "color": "",
     "backgroundColor": ""
   },
