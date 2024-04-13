@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "0.9.16",
+  "version": "0.9.17",
   "title": {
     "pt": "Fileira De Fatos",
     "en": "Facts Lineup"
@@ -17,7 +17,7 @@
     "en": "Order the bad scenarios according to your preference and try to guess the others'."
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "line-cloud",
     "color": "",
     "backgroundColor": ""
   },
