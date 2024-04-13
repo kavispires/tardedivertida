@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -17,7 +17,7 @@
     "en": "Pair the cards like the other players"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "socks-clouds",
     "color": "",
     "backgroundColor": ""
   },
