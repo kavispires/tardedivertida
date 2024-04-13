@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "title": {
     "pt": "Teste De Elenco",
     "en": "Re-Casting Call"
@@ -17,7 +17,7 @@
     "en": "Build the perfect cast for the movie"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "acting-cloud",
     "color": "",
     "backgroundColor": ""
   },
