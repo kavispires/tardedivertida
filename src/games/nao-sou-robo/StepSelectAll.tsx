@@ -1,8 +1,7 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Flex, Image } from 'antd';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import { Avatar, Button, Flex, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Captcha, CaptchaCard, Robot, SubmitRobotGuessPayload } from './utils/types';
@@ -20,7 +19,7 @@ import { RobotIcon } from 'icons/RobotIcon';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { ImageCard, ImageCardButton } from 'components/image-cards';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { CaptchaTopic } from './components/CaptchaTopic';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { IconAvatar } from 'components/avatars';
@@ -28,6 +27,7 @@ import { SpeechBubble } from 'components/text/SpeechBubble';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';
+import { TransparentButton } from 'components/buttons';
 
 type StepSelectAllProps = {
   players: GamePlayers;
@@ -47,8 +47,9 @@ export function StepSelectAll({
   options,
   robot,
 }: StepSelectAllProps) {
+  const scrollToSubmitRef = useRef<HTMLDivElement>(null);
   const { isLoading } = useLoading();
-  const { length, dict: selectedCards, updateDict: toggleCard, keys: selection } = useBooleanDictionary({});
+  const { length, dict: selectedCards, updateDict, keys: selection } = useBooleanDictionary({});
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
 
   const onSubmitCards = () => onSubmitCaptcha({ guess: selection });
@@ -60,6 +61,13 @@ export function StepSelectAll({
   const playerCount = Object.keys(players).length;
 
   useMock(() => onSubmitCaptcha({ guess: mockGuess(shuffledOptions, playerCount, user.cardId) }));
+
+  const toggleCard = (cardId: string) => {
+    if (length + 1 === playerCount && scrollToSubmitRef.current) {
+      scrollToSubmitRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    updateDict(cardId);
+  };
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -79,8 +87,8 @@ export function StepSelectAll({
           }
           en={
             <>
-              The system is not letting you buy! You need to prove that you are not an ordinary scalper trying
-              to do a scam!
+              The system is not letting you buy the tickets! You need to prove that you are not an ordinary
+              scalper trying to do a scam!
             </>
           }
         />
@@ -93,12 +101,12 @@ export function StepSelectAll({
             <Translate
               pt={
                 <>
-                  Selecione <strong>todas</strong> as imagens abaixo relacionadas com:{' '}
+                  Selecione <em>todas</em> as imagens abaixo relacionadas com:{' '}
                 </>
               }
               en={
                 <>
-                  Select <strong>all</strong> the images below related to:{' '}
+                  Select <em>all</em> the images below related to:{' '}
                 </>
               }
             />
@@ -117,33 +125,23 @@ export function StepSelectAll({
                   key={`n-table-${cardId}`}
                   className={clsx(
                     'n-table-item',
-                    getAnimationClass('flipInY', {
+                    getAnimationClass('zoomIn', {
                       delay: index,
                     })
                   )}
                   style={{ width: `${cardWidth + 8}px` }}
                 >
-                  <ImageCardButton
-                    id={cardId}
-                    onClick={() => toggleCard(cardId)}
-                    buttonPosition="bottom"
-                    icon={isSelected ? <CloseCircleOutlined /> : undefined}
-                    buttonText={
-                      isSelected ? (
-                        <Translate pt="Desmarcar" en="Deselect" />
-                      ) : (
-                        <Translate pt="Selecionar" en="Select" />
-                      )
-                    }
-                  >
-                    <ImageCard
-                      id={cardId}
-                      cardWidth={cardWidth - 6} // 6 is the border total size
-                      square
-                      className={clsx('n-table-image', isSelected && 'n-table-image--selected')}
-                      preview={false}
-                    />
-                  </ImageCardButton>
+                  <TransparentButton onClick={() => toggleCard(cardId)} hoverType="sepia">
+                    <ImageBlurButtonContainer cardId={cardId}>
+                      <ImageCard
+                        id={cardId}
+                        cardWidth={cardWidth - 6} // 6 is the border total size
+                        square
+                        className={clsx('n-table-image', isSelected && 'n-table-image--selected')}
+                        preview={false}
+                      />
+                    </ImageBlurButtonContainer>
+                  </TransparentButton>
                 </li>
               );
             })}
@@ -181,8 +179,9 @@ export function StepSelectAll({
           loading={isLoading}
           onClick={onSubmitCards}
           disabled={user.ready || length !== playerCount}
+          ref={scrollToSubmitRef}
         >
-          <Translate pt="Enviar Captcha" en="Submit Captcha" />
+          <Translate pt="Enviar Captcha" en="Submit Captcha" /> <Avatar size="small">{length}</Avatar>
         </Button>
       </Flex>
 

@@ -262,6 +262,7 @@ export const TDR_RESOURCES = {
   CHALLENGES: 'challenges',
   CHARACTERS: 'characters',
   CHOICES: 'choices',
+  COLORS: 'colors',
   CONTENDERS: 'contenders', // dual-language
   CRIME_EVIDENCE: 'crime-evidence', // dual-language
   CRIME_TILES: 'crime-tiles', // dual-language
@@ -272,6 +273,7 @@ export const TDR_RESOURCES = {
   DIAGRAM_TOPICS: 'diagram-topics',
   DILEMMAS: 'dilemmas',
   DRAWING_WORDS: 'drawing-words',
+  EMOTIONS: 'emotions',
   GROUP_QUESTIONS: 'group-questions',
   ITEMS: 'items', // dual-language
   MONSTER_ORIENTATION: 'monster-orientation',

@@ -26,12 +26,23 @@ type InstructionsProps = {
    * Custom class name
    */
   className?: string;
+  /**
+   *
+   */
+  noMargin?: boolean;
 };
 
 /**
  * Typography container for instructions
  */
-export const Instruction = ({ children, white, className, contained, fullWidth }: InstructionsProps) => {
+export const Instruction = ({
+  children,
+  white,
+  className,
+  contained,
+  fullWidth,
+  noMargin = false,
+}: InstructionsProps) => {
   const baseClass = 'instruction';
 
   return (
@@ -41,6 +52,7 @@ export const Instruction = ({ children, white, className, contained, fullWidth }
         contained && `${baseClass}--contained`,
         white && `${baseClass}--white`,
         fullWidth && `${baseClass}--full-width`,
+        noMargin && `${baseClass}--no-margin`,
         className
       )}
       data-testid="instruction"

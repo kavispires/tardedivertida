@@ -43,13 +43,13 @@ export function RobotResult({ result, robot }: RobotResultProps) {
           {outcome === OUTCOME.TOO_SUSPICIOUS && (
             <Translate
               pt="Agora tenho certeza que você é um robô com 100% de precisão!"
-              en="Now I'm certain you are a robot with 100% accuracy"
+              en="Now I am certain you are a robot with 100% accuracy"
             />
           )}
           {outcome === OUTCOME.CONTINUE && (
             <Translate
               pt="Ainda não tenho certeza que você não é um robô, tente comprar seu ingresso novamente"
-              en="I'm still not sure if you are a robot, try to buy your ticket again"
+              en="I am still not sure if you are a robot, try to buy your ticket again"
             />
           )}
         </SpeechBubble>
