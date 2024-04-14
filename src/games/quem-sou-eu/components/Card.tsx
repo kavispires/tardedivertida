@@ -15,7 +15,7 @@ export function Card({ character, width, imageCardMode, className }: CardProps) 
   if (imageCardMode) {
     return (
       <ImageBlurButtonContainer cardId={character.id}>
-        <ImageCard id={character.id} cardWidth={width} className={className} />
+        <ImageCard id={character.id} cardWidth={width} className={className} preview={false} />
       </ImageBlurButtonContainer>
     );
   }
