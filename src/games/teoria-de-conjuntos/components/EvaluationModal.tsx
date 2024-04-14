@@ -30,7 +30,10 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
       closable={false}
     >
       <Typography.Paragraph>
-        Para cada uma das áreas do diagrama, avalie se o item se encaixa ou não.
+        <Translate
+          pt="Para cada uma dos círculos do diagrama, avalie se o item se encaixa ou não."
+          en="For each area of the diagram, evaluate if the item fits or not."
+        />
       </Typography.Paragraph>
 
       <Flex justify="center">

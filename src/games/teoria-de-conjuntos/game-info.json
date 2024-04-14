@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "title": {
     "pt": "Teoria de Conjuntos",
     "en": "Venn Diagram"
