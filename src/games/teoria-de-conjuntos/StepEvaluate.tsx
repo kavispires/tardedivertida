@@ -70,7 +70,7 @@ export function StepEvaluate({
           }
           en={
             <>
-              <AvatarName player={judge} /> is evaluating the things' position
+              <AvatarName player={judge} /> is evaluating the thing's position
             </>
           }
         />{' '}
