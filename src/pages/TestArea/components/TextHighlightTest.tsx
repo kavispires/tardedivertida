@@ -35,8 +35,8 @@ export function TextHighlightTest({ onResult, step }: TestStepProps) {
         step={step}
         onClick={onResult}
         prompt={{
-          pt: 'Você consegue ler "O abacate tem três pernas de bambu madeira"?',
-          en: 'Are you able to read "The Avocado has three legs made of bamboo"?',
+          pt: 'Você consegue ler "O abacate tem três pernas de bambu madeira" dentro do quadrado roxo?',
+          en: 'Are you able to read "The Avocado has three legs made of bamboo" inside the purple box?',
         }}
       />
     </Space>

@@ -15,6 +15,8 @@ import { RibbonsTest } from './components/RibbonsTest';
 import { AvatarsTest } from './components/AvatarsTest';
 import { CompleteTest } from './components/CompleteTest';
 import { SoundsTest } from './components/SoundsTest';
+import { IconsTest } from './components/IconsTest';
+import { MouseFollowingContentTest } from './components/FollowerTest';
 
 const steps = [
   {
@@ -61,6 +63,16 @@ const steps = [
     key: 'sounds',
     title: '',
     content: SoundsTest,
+  },
+  {
+    key: 'icons',
+    title: '',
+    content: IconsTest,
+  },
+  {
+    key: 'follower',
+    title: '',
+    content: MouseFollowingContentTest,
   },
   {
     key: 'done',
