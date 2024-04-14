@@ -14,6 +14,13 @@ const getActiveIcon = (value?: boolean, active?: boolean) => {
   return BoxBlankIcon;
 };
 
+const getActiveClass = (value?: boolean, active?: boolean) => {
+  if (value) return { style: { background: 'green' } };
+  if (value === false) return { style: { background: 'red' } };
+  if (active) return { style: { background: 'yellow' } };
+  return { style: { background: 'grey' } };
+};
+
 type ResultsProps = {
   results: boolean[];
   steps: PlainObject[];
@@ -24,7 +31,7 @@ export function Results({ steps, results, activeStep }: ResultsProps) {
     <Space className="space-container full-width" wrap>
       {steps.map((_, index) => {
         const ActiveIcon = getActiveIcon(results[index], activeStep === index);
-        return <IconAvatar icon={<ActiveIcon />} />;
+        return <IconAvatar icon={<ActiveIcon />} {...getActiveClass(results[index], activeStep === index)} />;
       })}
     </Space>
   );
