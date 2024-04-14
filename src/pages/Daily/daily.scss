@@ -81,6 +81,12 @@
   color: get-color('white');
 }
 
+.letter-blank {
+  background: get-color('gray', 2, 0.5);
+  color: get-color('white');
+  border: 1px solid get-color('gray', 2);
+}
+
 .carousel {
   margin: get-unit(6 auto);
 }
