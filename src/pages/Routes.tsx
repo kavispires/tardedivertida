@@ -152,8 +152,8 @@ export const routes = (
     <Route path="/login" element={<Login />} />
     <Route path="/me" element={<LazyMe />} />
     <Route path="/eu" element={<LazyMe />} />
-    <Route path="/diario" element={<LazyDiario />} />
-    <Route path="/daily" element={<LazyDaily />} />
+    <Route path="/diario/*" element={<LazyDiario />} />
+    <Route path="/daily/*" element={<LazyDaily />} />
     <Route path="/trio" element={<LazyConnectTrio />} />
 
     <Route

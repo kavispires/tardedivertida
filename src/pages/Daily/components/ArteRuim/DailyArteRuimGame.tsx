@@ -1,21 +1,22 @@
-import { Button, Layout, Modal, Space, Typography } from 'antd';
-import { IconAvatar } from 'components/avatars';
+import { Button, Layout, Modal, Space } from 'antd';
 import { Translate } from 'components/language';
 import { CalendarIcon } from 'icons/CalendarIcon';
+import { useDailyChallengeMutation } from 'pages/Daily/hooks/useDailyChallengeMutation';
+import { useDailyLocalStorage } from 'pages/Daily/hooks/useDailyLocalStorage';
 import { useEffect, useState } from 'react';
+import { Me } from 'types/user';
 import { removeDuplicates } from 'utils/helpers';
 
-import { ArteRuimLocalToday, DailyArteRuimEntry } from '../../types';
-import { useDailyChallengeMutation, useDailyLocalStorage } from '../../useDaily';
 import { getLettersInWord, getSourceName } from '../../utils';
+import { ArteRuimLocalToday, DailyArteRuimEntry } from '../../utils/types';
+import { Header } from '../Common/Header';
+import { Menu } from '../Common/Menu';
 import { DrawingCarousel } from './DrawingCarousel';
 import { Keyboard } from './Keyboard';
-import { Menu } from './Menu';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
-import { Me } from 'types/user';
-
-const { Header, Content } = Layout;
+import { Rules } from './Rules';
+import { SETTINGS } from './settings';
 
 type DailyGameProps = {
   data: DailyArteRuimEntry;
@@ -23,11 +24,11 @@ type DailyGameProps = {
   language: Language;
 };
 
-export function DailyArteRuimGame({ data, currentUser, language }: DailyGameProps) {
+export function DailyArteRuimGame({ data, language }: DailyGameProps) {
   const source = getSourceName(language);
 
   // Build game: word, letters, lives
-  const [hearts, setHearts] = useState<number>(3);
+  const [hearts, setHearts] = useState<number>(SETTINGS.HEARTS);
   const [guessedLetters, setGuessedLetters] = useState<BooleanDictionary>({});
   const [correctLetters, setCorrectLetters] = useState<BooleanDictionary>(getLettersInWord(data.text));
   const [showResultModal, setShowResultModal] = useState(false);
@@ -101,14 +102,11 @@ export function DailyArteRuimGame({ data, currentUser, language }: DailyGameProp
 
   return (
     <Layout className="app">
-      <Header className="daily-header">
-        <IconAvatar icon={<CalendarIcon />} />
-        <Typography.Title level={1} className="daily-heading">
-          TD <Translate pt="Diário" en="Daily" /> #{data.number}
-        </Typography.Title>
+      <Header icon={<CalendarIcon />}>
+        TD <Translate pt="Diário" en="Daily" /> #{data.number}
       </Header>
-      <Content>
-        <Menu userDaily={currentUser.daily} hearts={hearts} openRules={!latestToday} />
+      <Layout.Content>
+        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={!latestToday} rules={<Rules />} />
 
         <DrawingCarousel drawings={data.drawings} />
 
@@ -146,7 +144,7 @@ export function DailyArteRuimGame({ data, currentUser, language }: DailyGameProp
           onLetterClick={guessLetter}
           disabled={hearts <= 0 || isComplete}
         />
-      </Content>
+      </Layout.Content>
     </Layout>
   );
 }
