@@ -26,7 +26,7 @@ export function Prompt({ text, correctLetters }: PromptProps) {
                     {l}
                   </Avatar>
                 ) : (
-                  <IconAvatar key={key} icon={<BoxBlankIcon />} />
+                  <IconAvatar key={key} icon={<BoxBlankIcon />} className="letter-blank" />
                 );
               }
 
