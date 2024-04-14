@@ -1,4 +1,4 @@
-import './daily.scss';
+import './utils/daily.scss';
 
 import { Space } from 'antd';
 import { PageError } from 'components/errors';
@@ -11,8 +11,9 @@ import { useEffectOnce, useTitle } from 'react-use';
 import { isDevEnv } from 'utils/helpers';
 
 import { DailyArteRuimGame } from './components/ArteRuim/DailyArteRuimGame';
-import { DailyChrome } from './components/DailyChrome';
-import { useDailyChallenge } from './useDaily';
+import { DailyChrome } from './components/Common/DailyChrome';
+import { Hub } from './components/Hub';
+import { useDailyChallenge } from './hooks/useDailyChallenge';
 import { getTitleName, getToday } from './utils';
 
 function DailyPage() {
@@ -20,7 +21,7 @@ function DailyPage() {
   const { pathname } = useLocation();
   const { setLanguage } = useLanguage();
   useEffectOnce(() => {
-    setLanguage(pathname === '/diario' ? 'pt' : 'en');
+    setLanguage(pathname.includes('diario') ? 'pt' : 'en');
   });
 
   if (!isAuthenticated) {
@@ -31,7 +32,15 @@ function DailyPage() {
     );
   }
 
-  return <DailyContent />;
+  const subPath = pathname.split('/')?.[2];
+
+  const Outlet =
+    {
+      '': DailyContent,
+      hub: Hub,
+    }?.[subPath] ?? Hub;
+
+  return <Outlet />;
 }
 
 function DailyContent() {
