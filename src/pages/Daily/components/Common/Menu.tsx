@@ -1,5 +1,5 @@
 import { AppstoreFilled, HeartFilled, HeartOutlined, QuestionCircleFilled } from '@ant-design/icons';
-import { Button, Popover, Space } from 'antd';
+import { Button, Drawer, Space } from 'antd';
 import { LanguageSwitch, Translate } from 'components/language';
 import { useState } from 'react';
 
@@ -49,26 +49,25 @@ function RulesModal({ rules, defaultOpen }: RulesModalProps) {
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <Popover
-      title={<Translate pt="Regras" en="Rules" />}
-      trigger="click"
-      open={open}
-      onOpenChange={(o) => setOpen(o)}
-      content={
+    <>
+      <Button
+        type="text"
+        style={{ color: 'white' }}
+        icon={<QuestionCircleFilled />}
+        onClick={() => setOpen(true)}
+      />
+      <Drawer
+        title={<Translate pt="Regras" en="Rules" />}
+        placement="bottom"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
         <Space direction="vertical" size="small">
           <LanguageSwitch />
           <ul className="list">{rules}</ul>
-          <Space className="space-container">
-            <Button size="small" onClick={() => setOpen(false)}>
-              <Translate pt="Fechar" en="Close" />
-            </Button>
-          </Space>
         </Space>
-      }
-      className="menu-entry"
-    >
-      <QuestionCircleFilled />
-    </Popover>
+      </Drawer>
+    </>
   );
 }
 
