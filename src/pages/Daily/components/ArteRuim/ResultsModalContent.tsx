@@ -1,14 +1,13 @@
-import { App, Input, Space, Typography } from 'antd';
+import { Input, Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 import { getTitleName } from 'pages/Daily/utils';
-import { useEffect } from 'react';
-import { useCopyToClipboard } from 'react-use';
+
+import { CopyToClipboardButton } from '../Common/CopyToClipboardButton';
 
 type ResultsModalContentProps = {
   challenge: number;
@@ -25,21 +24,9 @@ export function ResultsModalContent({
   hearts,
   correctLetters,
 }: ResultsModalContentProps) {
-  const { message } = App.useApp();
-  const { translate, language } = useLanguage();
-  const [state, copyToClipboard] = useCopyToClipboard();
-  const result = writeResult(challenge, hearts, correctLetters, language);
+  const { language } = useLanguage();
 
-  useEffect(() => {
-    if (state.value) {
-      message.info(
-        translate(
-          `Copiado para a área de transferência: ${state.value}`,
-          `Copied to clipboard: ${state.value}`
-        )
-      );
-    }
-  }, [state, message, translate]);
+  const result = writeResult(challenge, hearts, correctLetters, language);
 
   return (
     <Space direction="vertical" className="space-container">
@@ -66,9 +53,9 @@ export function ResultsModalContent({
         {<Typography.Paragraph>{text}</Typography.Paragraph>}
       </TextHighlight>
 
-      <TransparentButton onClick={() => copyToClipboard(result)}>
+      <CopyToClipboardButton content={result}>
         <Input.TextArea value={result} readOnly cols={30} rows={3} />
-      </TransparentButton>
+      </CopyToClipboardButton>
 
       <Typography.Paragraph className="center">
         <Translate
