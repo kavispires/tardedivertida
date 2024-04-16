@@ -1,6 +1,5 @@
-import { App, Flex, Input, Space, Typography } from 'antd';
+import { Flex, Input, Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { useLanguage } from 'hooks/useLanguage';
@@ -9,8 +8,7 @@ import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 import { getTitleName } from 'pages/Daily/utils';
-import { useEffect } from 'react';
-import { useCopyToClipboard } from 'react-use';
+import { CopyToClipboardButton } from '../Common/CopyToClipboardButton';
 
 type ResultsModalContentProps = {
   challengeTitle: string;
@@ -55,21 +53,8 @@ export function ResultsModalContent({
   progress,
   itemsIds,
 }: ResultsModalContentProps) {
-  const { message } = App.useApp();
-  const { translate, language } = useLanguage();
-  const [state, copyToClipboard] = useCopyToClipboard();
+  const { language } = useLanguage();
   const result = writeResult(challengeTitle, hearts, progress, language);
-
-  useEffect(() => {
-    if (state.value) {
-      message.info(
-        translate(
-          `Copiado para a área de transferência: ${state.value}`,
-          `Copied to clipboard: ${state.value}`
-        )
-      );
-    }
-  }, [state, message, translate]);
 
   const title = titles?.[Math.ceil(progress / 5)];
 
@@ -88,9 +73,9 @@ export function ResultsModalContent({
         ))}
       </Flex>
 
-      <TransparentButton onClick={() => copyToClipboard(result)}>
+      <CopyToClipboardButton content={result}>
         <Input.TextArea value={result} readOnly cols={30} rows={4} />
-      </TransparentButton>
+      </CopyToClipboardButton>
 
       <Typography.Paragraph className="center">
         <Translate
