@@ -4,6 +4,11 @@ export function getToday(): string {
   return moment().format('YYYY-MM-DD');
 }
 
+/**
+ * Returns an object with each letter in the word as a key and a boolean value indicating if the letter has been found.
+ * @param text - The word to extract the letters from.
+ * @returns An object with each letter in the word as a key and a boolean value indicating if the letter has been found.
+ */
 export function getLettersInWord(text: string): Record<string, boolean> {
   const cleanedUpText = text
     .normalize('NFD')
@@ -21,6 +26,12 @@ export function getLettersInWord(text: string): Record<string, boolean> {
   return lettersInWord;
 }
 
+/**
+ * Removes diacritical marks from a given character and converts it to lowercase.
+ *
+ * @param char - The character to be cleaned up.
+ * @returns The cleaned up character.
+ */
 export function cleanupLetter(char: string): string {
   return char
     .normalize('NFD')
@@ -28,14 +39,47 @@ export function cleanupLetter(char: string): string {
     .toLowerCase();
 }
 
+/**
+ * Checks if a character is a letter.
+ *
+ * @param char - The character to check.
+ * @returns `true` if the character is a letter, `false` otherwise.
+ */
 export function isLetter(char: string): boolean {
   return cleanupLetter(char).match(/[a-zA-Z]/) !== null;
 }
 
+/**
+ * Returns the source name based on the given language.
+ * @param language The language code ('pt' for Portuguese, 'en' for English).
+ * @returns The source name ('diario' for Portuguese, 'daily' for English).
+ */
 export function getSourceName(language: Language) {
   return language === 'pt' ? 'diario' : 'daily';
 }
 
+/**
+ * Returns the title name based on the given language.
+ * @param language - The language code ('pt' for Portuguese, 'en' for English).
+ * @returns The title name in the corresponding language.
+ */
 export function getTitleName(language: Language) {
   return language === 'pt' ? 'TD Diário' : 'TD Daily';
+}
+
+/**
+ * Writes a heart result string based on the number of remaining hearts and total hearts.
+ *
+ * @param remainHearts - The number of remaining hearts.
+ * @param totalHearts - The total number of hearts.
+ * @returns The heart result string.
+ */
+export function writeHeartResultString(remainHearts: number, totalHearts: number): string {
+  const heartsValue = Math.max(0, remainHearts);
+  return (
+    Array(heartsValue).fill('❤️').join('') +
+    Array(totalHearts - heartsValue)
+      .fill('🩶')
+      .join('')
+  );
 }

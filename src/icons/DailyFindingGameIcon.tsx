@@ -1,7 +1,7 @@
 export function DailyFindingGameIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <g fill-rule="evenodd" clip-rule="evenodd">
+      <g fillRule="evenodd" clipRule="evenodd">
         <path
           fill="#eceff1"
           d="m338.46 300.42 58.52 56.79-33.31 34.33-57.39-55.68.84-.71a181.84 181.84 0 0 0 30.67-33.77z"

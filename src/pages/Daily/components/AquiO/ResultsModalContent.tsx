@@ -7,56 +7,54 @@ import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getTitleName } from 'pages/Daily/utils';
+import { getSourceName, getTitleName, writeHeartResultString } from 'pages/Daily/utils';
 import { CopyToClipboardButton } from '../Common/CopyToClipboardButton';
+import { SETTINGS } from './settings';
+
+const titles = [
+  <>
+    <IconAvatar icon={<SkullIcon />} /> <Translate pt="Você é muito ruim!" en="You are really bad!" />
+  </>,
+  <>
+    <IconAvatar icon={<SealOfApprovalIcon />} /> <Translate pt="Foi bem!" en="Pretty Good!" />
+  </>,
+  <>
+    <IconAvatar icon={<ApplauseIcon />} /> <Translate pt="Muito bom!" en="Very good!" />
+  </>,
+  <>
+    <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+  </>,
+  <>
+    <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Incrível!" en="Incredible!" />
+  </>,
+];
 
 type ResultsModalContentProps = {
   challengeTitle: string;
-  finished: boolean;
   hearts: number;
   progress: number;
   itemsIds: string[];
-};
-
-const titles: any = {
-  5: (
-    <>
-      <IconAvatar icon={<SkullIcon />} /> <Translate pt="Você é muito ruim!" en="You are really bad!" />
-    </>
-  ),
-  10: (
-    <>
-      <IconAvatar icon={<SealOfApprovalIcon />} /> <Translate pt="Foi bem!" en="Pretty Good!" />
-    </>
-  ),
-  15: (
-    <>
-      <IconAvatar icon={<ApplauseIcon />} /> <Translate pt="Muito bom!" en="Very good!" />
-    </>
-  ),
-  20: (
-    <>
-      <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
-    </>
-  ),
-  25: (
-    <>
-      <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Incrível!" en="Incredible!" />
-    </>
-  ),
+  win: boolean;
 };
 
 export function ResultsModalContent({
   challengeTitle,
-  finished,
   hearts,
   progress,
   itemsIds,
+  win,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
-  const result = writeResult(challengeTitle, hearts, progress, language);
+  const result = writeResult({
+    title: challengeTitle,
+    remainingHearts: hearts,
+    totalHearts: SETTINGS.HEARTS,
+    progress,
+    goal: SETTINGS.GOAL,
+    language,
+  });
 
-  const title = titles?.[Math.ceil(progress / 5)];
+  const title = titles?.[Math.ceil(progress / 3)];
 
   return (
     <Space direction="vertical" className="space-container">
@@ -64,7 +62,10 @@ export function ResultsModalContent({
         {title}
       </Typography.Title>
       <Typography.Paragraph className="center">
-        <Translate pt={`Você avançou ${progress} discos`} en={`You advanced ${progress} discs`} />
+        <Translate
+          pt={`Você avançou ${progress} discos de ${SETTINGS.GOAL}`}
+          en={`You advanced ${progress} discs out of ${SETTINGS.GOAL}`}
+        />
       </Typography.Paragraph>
 
       <Flex gap={6}>
@@ -74,7 +75,7 @@ export function ResultsModalContent({
       </Flex>
 
       <CopyToClipboardButton content={result}>
-        <Input.TextArea value={result} readOnly cols={30} rows={4} />
+        <Input.TextArea value={result} readOnly cols={30} rows={5} />
       </CopyToClipboardButton>
 
       <Typography.Paragraph className="center">
@@ -87,30 +88,32 @@ export function ResultsModalContent({
   );
 }
 
-function writeResult(challengeTitle: string, hearts: number = 0, progress: number, language: Language) {
-  let result = '';
+const getAquiOName = (language: Language) => {
+  return language === 'pt' ? 'Aqui Ó' : 'Find This';
+};
 
-  const heartsValue = Math.max(0, hearts);
-
-  if (language === 'pt') {
-    result += '💻 ' + getTitleName(language) + ' Aqui Ó:\n' + challengeTitle + '\n';
-    result +=
-      Array(heartsValue).fill('❤️').join('') +
-      Array(3 - heartsValue)
-        .fill('🩶')
-        .join('');
-    result += `\n1 🔘 cada ~${Math.round(60 / progress)} segundos`;
-    result += '\nhttps://www.kavispires.com/tardedivertida/#/diario/aqui-o';
-  } else {
-    result += '💻 ' + getTitleName(language) + ' Find this:\n' + challengeTitle + '\n';
-    result +=
-      Array(heartsValue).fill('❤️').join('') +
-      Array(3 - heartsValue)
-        .fill('🩶')
-        .join('');
-    result += `\n1 🔘 every ~${Math.round(60 / progress)} seconds)`;
-    result += '\nhttps://www.kavispires.com/tardedivertida/#/daily/aqui-o';
-  }
-
-  return result;
+function writeResult({
+  // challengeNumber,
+  title,
+  remainingHearts,
+  totalHearts,
+  progress,
+  goal,
+  language,
+}: {
+  // challengeNumber,
+  title: string;
+  remainingHearts: number;
+  totalHearts: number;
+  progress: number;
+  goal: number;
+  language: Language;
+}): string {
+  return [
+    `💻 ${getTitleName(language)} ${getAquiOName(language)}:`,
+    `${title}`,
+    writeHeartResultString(remainingHearts, totalHearts),
+    `${progress}/${goal} 🔘`,
+    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/aqui-o`,
+  ].join('\n');
 }
