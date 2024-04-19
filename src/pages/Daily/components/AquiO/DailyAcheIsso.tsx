@@ -1,20 +1,20 @@
 import { Button, Layout, Modal, Space, Typography } from 'antd';
 import { Translate } from 'components/language';
-import { CalendarIcon } from 'icons/CalendarIcon';
-import { useEffect, useMemo, useState } from 'react';
-
-import { Menu } from '../Common/Menu';
-import { Header } from '../Common/Header';
-import { SETTINGS } from './settings';
-import { Card, PreloadItems } from './Card';
-import { DailyAcheIssoEntry } from 'pages/Daily/utils/types';
-import { intersectionBy } from 'lodash';
-import { useMeasure } from 'react-use';
 import { TimerBar } from 'components/timers';
 import { useCountdown } from 'hooks/useCountdown';
-import { inNSeconds } from 'utils/helpers';
+import { CalendarIcon } from 'icons/CalendarIcon';
+import { intersectionBy } from 'lodash';
+import { DailyAcheIssoEntry } from 'pages/Daily/utils/types';
+import { useEffect, useMemo, useState } from 'react';
+import { useMeasure } from 'react-use';
+import { getAnimationClass, inNSeconds } from 'utils/helpers';
+
+import { Header } from '../Common/Header';
+import { Menu } from '../Common/Menu';
+import { Card, PreloadItems } from './Card';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
+import { SETTINGS } from './settings';
 
 type DailyGameProps = {
   data: DailyAcheIssoEntry;
@@ -54,6 +54,8 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
     }
   };
 
+  const win = cardIndex === SETTINGS.GOAL;
+
   const cardA = data.cards[cardIndex];
   const cardB = data.cards[cardIndex + 1];
   const result = useMemo(() => intersectionBy(cardA.items, cardB.items, 'itemId')[0].itemId, [cardA, cardB]);
@@ -67,10 +69,10 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
 
   // Controls auto result modal
   useEffect(() => {
-    if (isComplete || hearts <= 0) {
+    if (win || isComplete || hearts <= 0) {
       setShowResultModal(true);
     }
-  }, [isComplete, hearts]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isComplete, hearts, win]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Layout className="app">
@@ -82,9 +84,10 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
           <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
           <Space className="space-container">
             <Typography.Text strong>
-              {data.title[language]} | Level {cardIndex + 1}
+              {data.title[language]} | <Translate pt="Disco" en="Disc" /> {cardIndex + 1}
             </Typography.Text>
           </Space>
+
           <div className="full-width padding">
             <TimerBar value={timeLeft} total={60} />
           </div>
@@ -99,10 +102,22 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
             </>
           )}
 
-          {isRunning && (
+          {isRunning && !win && (
             <Space className="space-container" direction="vertical">
-              <Card card={cardA} onSelect={onSelect} key={cardA.id} width={cardWidth} />
-              <Card card={cardB} onSelect={onSelect} key={cardB.id} width={cardWidth} />
+              <Card
+                card={cardA}
+                onSelect={onSelect}
+                key={cardA.id}
+                width={cardWidth}
+                className={getAnimationClass('slideInUp', { speed: 'fast' })}
+              />
+              <Card
+                card={cardB}
+                onSelect={onSelect}
+                key={cardB.id}
+                width={cardWidth}
+                className={getAnimationClass('zoomIn', { speed: 'fast' })}
+              />
             </Space>
           )}
 
@@ -115,10 +130,10 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
           >
             <ResultsModalContent
               challengeTitle={data.title[language]}
-              finished={isComplete}
               hearts={hearts}
               progress={cardIndex}
               itemsIds={data.itemIds}
+              win={win}
             />
           </Modal>
         </Space>

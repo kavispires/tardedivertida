@@ -2,20 +2,17 @@ import clsx from 'clsx';
 import { ItemCard } from 'components/cards/ItemCard';
 
 import { AcheIssoCard } from 'pages/Daily/utils/types';
-import { getAnimationClass } from 'utils/helpers';
 
 type CardProps = {
   card: AcheIssoCard;
   onSelect: (itemId: string) => void;
   width: number;
+  className: string;
 };
-export function Card({ card, onSelect, width }: CardProps) {
-  // const [itemWidth, ref] = useCardWidthByContainerRef(6, {
-  //   // maxWidth: 75,
-  // });
+export function Card({ card, onSelect, width, className }: CardProps) {
   return (
     <div
-      className={clsx('ache-isso-card', getAnimationClass('zoomIn'))}
+      className={clsx('ache-isso-card', className)}
       // ref={ref}
       style={{ width: width, height: width }}
     >

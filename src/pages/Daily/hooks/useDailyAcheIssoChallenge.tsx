@@ -1,10 +1,11 @@
 import { App } from 'antd';
-import { useQuery } from '@tanstack/react-query';
-
-import { print } from 'utils/helpers';
-import sets from '../components/AquiO/sets.json';
 import { chain, random, sample, sampleSize, shuffle } from 'lodash';
 import { SEPARATOR } from 'utils/constants';
+import { print, removeDuplicates } from 'utils/helpers';
+
+import { useQuery } from '@tanstack/react-query';
+
+import sets from '../components/AquiO/sets.json';
 import { AcheIssoCard, DailyAcheIssoEntry } from '../utils/types';
 
 type AcheIssoSet = {
@@ -13,15 +14,10 @@ type AcheIssoSet = {
 };
 
 const ALL_SETS: AcheIssoSet[] = sets;
-const SETS = shuffle(ALL_SETS.filter((set) => set.itemsIds.filter(Boolean).length === 22));
+const SETS = shuffle(ALL_SETS.filter((set) => removeDuplicates(set.itemsIds).filter(Boolean).length === 22));
 
 export function useDailyAcheIssoChallenge(today: string, collectionName: string) {
   const { notification } = App.useApp();
-
-  // Preload icons
-  // Get 1 starting icon
-  // Get 15 icons
-  // Filter active icon
 
   // Load challenge
   return useQuery<DailyAcheIssoEntry>({
@@ -51,7 +47,7 @@ const buildGame = (set: AcheIssoSet) => {
 
   const cards: AcheIssoCard[] = [];
 
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 20; i++) {
     const previousCard = cards[i - 1];
     const card = createCards(allItems, previousCard);
     cards.push(card);
@@ -67,7 +63,7 @@ const buildGame = (set: AcheIssoSet) => {
 const POSITIONS = Array(9)
   .fill(0)
   .map((_, i) => i);
-const SIZES = [100, 90, 110, 80, 100, 120, 120, 150];
+const SIZES = [100, 90, 110, 80, 100, 130, 120, 150];
 
 function createCards(list: string[], previousCard?: AcheIssoCard): AcheIssoCard {
   const shuffledList = shuffle(list);
