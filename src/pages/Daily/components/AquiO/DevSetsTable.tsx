@@ -46,9 +46,38 @@ export function DevSetsTable() {
 
 function generateUniqueArrays(N: number): string[][] {
   const result: number[][] = [];
-
+  const previouslyUsedIds: BooleanDictionary = {};
+  ALL_SETS.forEach((set) => set.itemsIds.forEach((id) => (previouslyUsedIds[id] = true)));
+  const nsfwIds = [
+    '239',
+    '331',
+    '256',
+    '383',
+    '420',
+    '433',
+    '584',
+    '683',
+    '769',
+    '1122',
+    '1174',
+    '1188',
+    '1316',
+    '1320',
+    '1388',
+    '1396',
+    '1480',
+    '1549',
+    '1550',
+    '1591',
+    '1677',
+    '1778',
+    '1790',
+    '1792',
+    '1820',
+  ];
+  const range = _.range(1, 1858).filter((n) => !previouslyUsedIds[n] && !nsfwIds.includes(String(n)));
   while (result.length < N) {
-    const randomNumbers = _.sampleSize(_.range(1, 1858), 21);
+    const randomNumbers = _.sampleSize(range, 21);
     if (!result.some((arr) => _.isEqual(arr, randomNumbers))) {
       result.push([0, ...randomNumbers]);
     }

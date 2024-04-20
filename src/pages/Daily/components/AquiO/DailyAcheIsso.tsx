@@ -38,7 +38,7 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
     return Math.max(Math.min(width, height, 450), 150);
   }, [contentMeasure.height, contentMeasure.width, headerMeasure.height]);
 
-  const { timeLeft, resume, isRunning, restart } = useCountdown({
+  const { timeLeft, resume, isRunning, restart, pause } = useCountdown({
     duration: 60,
     autoStart: false,
     onExpire: () => setComplete(true),
@@ -73,6 +73,7 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
   useEffect(() => {
     if (win || isComplete || hearts <= 0) {
       setShowResultModal(true);
+      pause();
     }
   }, [isComplete, hearts, win]); // eslint-disable-line react-hooks/exhaustive-deps
 
