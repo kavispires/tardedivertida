@@ -5,13 +5,16 @@ import { print, removeDuplicates } from 'utils/helpers';
 
 import { useQuery } from '@tanstack/react-query';
 
+import miscSets from '../components/AquiO/misc-sets.json';
 import sets from '../components/AquiO/sets.json';
+import { wait } from '../utils';
 import { AcheIssoCard, AcheIssoSet, DailyAcheIssoEntry } from '../utils/types';
 
 const ALL_SETS: AcheIssoSet[] = sets;
-const SETS = shuffle(ALL_SETS.filter((set) => removeDuplicates(set.itemsIds).filter(Boolean).length === 22));
+const SETS = ALL_SETS.filter((set) => removeDuplicates(set.itemsIds).filter(Boolean).length === 22);
+const MISC_SETS: AcheIssoSet[] = miscSets;
 
-export function useDailyAcheIssoChallenge(today: string, collectionName: string) {
+export function useDailyAcheIssoChallenge(today: string, collectionName: string, isRandomGame: boolean) {
   const { notification } = App.useApp();
 
   // Load challenge
@@ -19,9 +22,11 @@ export function useDailyAcheIssoChallenge(today: string, collectionName: string)
     queryKey: [collectionName, 'ache-isso'],
     queryFn: async () => {
       console.count(`Creating Ache Isso ${collectionName}...`);
-      // Get 22 icons
-      const todaysSet = SETS[0];
-      return buildGame(todaysSet);
+      // Build game getting the set based on today's date
+      const date = new Date(today);
+      const todaysSet = SETS[(SETS.length % date.getDate()) - 1] ?? SETS[0];
+      await wait(1000);
+      return buildGame(isRandomGame ? sample(MISC_SETS) ?? MISC_SETS[0] : todaysSet);
     },
     retry: false,
     onSuccess: (response) => {

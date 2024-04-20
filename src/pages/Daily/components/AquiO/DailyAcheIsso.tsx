@@ -1,4 +1,4 @@
-import { Button, Layout, Modal, Space, Typography } from 'antd';
+import { Button, Divider, Layout, Modal, Space, Typography } from 'antd';
 import { Translate } from 'components/language';
 import { TimerBar } from 'components/timers';
 import { useCountdown } from 'hooks/useCountdown';
@@ -19,9 +19,11 @@ import { SETTINGS } from './settings';
 type DailyGameProps = {
   data: DailyAcheIssoEntry;
   language: Language;
+  onToggleGame: () => void;
+  isRandomGame: boolean;
 };
 
-export function DailyAcheIsso({ data, language }: DailyGameProps) {
+export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: DailyGameProps) {
   // Game state
   const [hearts, setHearts] = useState<number>(SETTINGS.HEARTS);
   const [showResultModal, setShowResultModal] = useState(false);
@@ -60,7 +62,9 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
 
   const cardA = data.cards[cardIndex];
   const cardB = data.cards[cardIndex + 1];
+
   const result = useMemo(() => intersectionBy(cardA.items, cardB.items, 'itemId')[0].itemId, [cardA, cardB]);
+
   const onSelect = (itemId: string) => {
     if (itemId === result) {
       setCardIndex(cardIndex + 1);
@@ -98,11 +102,33 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
         <Space className="space-container" direction="vertical">
           {!isRunning && (
             <>
-              <Button size="large" onClick={onStart} type="primary">
-                <Translate pt="Começar" en="Start" />
+              <Button size="large" onClick={onStart} type="primary" disabled={hearts === 0}>
+                {isRandomGame ? (
+                  <Translate pt="Começar Aleatório" en="Start Random" />
+                ) : (
+                  <Translate pt="Começar Diário" en="Start Daily" />
+                )}
               </Button>
               <PreloadItems items={data.itemIds} />
             </>
+          )}
+
+          {(isComplete || hearts <= 0) && (
+            <Space className="results-container" align="center" direction="vertical">
+              <Button onClick={() => setShowResultModal(true)}>
+                <Translate pt="Ver Resultado" en="Show Results" />
+              </Button>
+
+              <Divider />
+
+              <Button onClick={onToggleGame}>
+                {isRandomGame ? (
+                  <Translate pt="Jogar o Desafio Diário" en="Play the daily challenge" />
+                ) : (
+                  <Translate pt="Jogar com baralho aleatório" en="Play a random deck" />
+                )}
+              </Button>
+            </Space>
           )}
 
           {isRunning && !win && (
