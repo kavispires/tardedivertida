@@ -40,3 +40,8 @@ export type DailyAcheIssoEntry = {
   cards: AcheIssoCard[];
   title: DualLanguageValue;
 };
+
+export type AcheIssoSet = {
+  title: DualLanguageValue;
+  itemsIds: string[];
+};
