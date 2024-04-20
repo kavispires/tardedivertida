@@ -6,12 +6,7 @@ import { print, removeDuplicates } from 'utils/helpers';
 import { useQuery } from '@tanstack/react-query';
 
 import sets from '../components/AquiO/sets.json';
-import { AcheIssoCard, DailyAcheIssoEntry } from '../utils/types';
-
-type AcheIssoSet = {
-  title: DualLanguageValue;
-  itemsIds: string[];
-};
+import { AcheIssoCard, AcheIssoSet, DailyAcheIssoEntry } from '../utils/types';
 
 const ALL_SETS: AcheIssoSet[] = sets;
 const SETS = shuffle(ALL_SETS.filter((set) => removeDuplicates(set.itemsIds).filter(Boolean).length === 22));

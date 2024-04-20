@@ -45,6 +45,8 @@ export function DailyAcheIsso({ data, language }: DailyGameProps) {
   });
 
   const onStart = () => {
+    // Reverses the card at every play
+    data.cards.reverse();
     setCardIndex(0);
     if (isComplete) {
       setComplete(false);
