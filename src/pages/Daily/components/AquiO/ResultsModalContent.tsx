@@ -54,7 +54,7 @@ export function ResultsModalContent({
     language,
   });
 
-  const title = titles?.[Math.ceil(progress / 3)];
+  const title = hearts === 0 ? titles[0] : titles?.[Math.ceil(progress / 3)];
 
   return (
     <Space direction="vertical" className="space-container">
