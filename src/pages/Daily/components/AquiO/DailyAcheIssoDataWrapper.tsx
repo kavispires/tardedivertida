@@ -4,7 +4,7 @@ import { Loading } from 'components/loaders';
 import { useLanguage } from 'hooks/useLanguage';
 import { useDailyAcheIssoChallenge } from 'pages/Daily/hooks/useDailyAcheIssoChallenge';
 import { useLocation } from 'react-router-dom';
-import { useTitle } from 'react-use';
+import { useTitle, useToggle } from 'react-use';
 import { isDevEnv } from 'utils/helpers';
 
 import { getTitleName, getToday } from '../../utils';
@@ -17,11 +17,12 @@ export function DailyAcheIssoDataWrapper() {
   const { language, translate } = useLanguage();
   useTitle(`${getTitleName(language)} - Tarde Divertida`);
   const { pathname } = useLocation();
+  const [isRandomGame, toggleRandomGame] = useToggle(false);
 
   // Load challenge
-  const challengeQuery = useDailyAcheIssoChallenge(`${today}`, pathname.substring(1));
+  const challengeQuery = useDailyAcheIssoChallenge(`${today}`, pathname.substring(1), isRandomGame);
 
-  if (challengeQuery.isLoading) {
+  if (challengeQuery.isLoading || challengeQuery.isRefetching) {
     return (
       <DailyChrome>
         <div className="daily-loading">
@@ -41,7 +42,17 @@ export function DailyAcheIssoDataWrapper() {
     );
   }
 
-  const daily = challengeQuery.data;
+  const onToggleGame = () => {
+    toggleRandomGame();
+    challengeQuery.refetch();
+  };
 
-  return <DailyAcheIsso data={daily} language={language} />;
+  return (
+    <DailyAcheIsso
+      data={challengeQuery.data}
+      language={language}
+      onToggleGame={onToggleGame}
+      isRandomGame={isRandomGame}
+    />
+  );
 }
