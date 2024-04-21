@@ -1,4 +1,4 @@
-import { Flex, Table } from 'antd';
+import { Flex, Space, Switch, Table } from 'antd';
 import { AcheIssoSet } from 'pages/Daily/utils/types';
 import type { TableProps } from 'antd';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { LETTERS } from 'utils/constants';
 import sets from './sets.json';
 import miscSets from './misc-sets.json';
+import { useState } from 'react';
 
 const ALL_SETS: AcheIssoSet[] = sets;
 const MISC_SETS: AcheIssoSet[] = miscSets;
@@ -41,7 +42,21 @@ export function DevSetsTable() {
     },
   ];
 
-  return <Table columns={columns} dataSource={MISC_SETS} />;
+  const [selectedSet, setSelectedSet] = useState('set');
+
+  return (
+    <Space direction="vertical">
+      <Space>
+        <Switch
+          checkedChildren="Set"
+          unCheckedChildren="Misc"
+          defaultChecked
+          onChange={() => setSelectedSet(selectedSet === 'set' ? 'misc' : 'set')}
+        />
+      </Space>
+      <Table columns={columns} dataSource={selectedSet === 'set' ? ALL_SETS : MISC_SETS} />
+    </Space>
+  );
 }
 
 function generateUniqueArrays(N: number): string[][] {
