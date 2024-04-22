@@ -1,5 +1,5 @@
 import { Button, Divider, Layout, Modal, Space, Typography } from 'antd';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { TimerBar } from 'components/timers';
 import { useCountdown } from 'hooks/useCountdown';
 import { CalendarIcon } from 'icons/CalendarIcon';
@@ -11,7 +11,7 @@ import { getAnimationClass, inNSeconds } from 'utils/helpers';
 
 import { Header } from '../Common/Header';
 import { Menu } from '../Common/Menu';
-import { Card, PreloadItems } from './Card';
+import { Disc, PreloadItems } from './Disc';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { SETTINGS } from './settings';
@@ -40,7 +40,7 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
     return Math.max(Math.min(width, height, 450), 150);
   }, [contentMeasure.height, contentMeasure.width, headerMeasure.height]);
 
-  const { timeLeft, resume, isRunning, restart, pause } = useCountdown({
+  const { timeLeft, isRunning, restart, pause } = useCountdown({
     duration: 60,
     autoStart: false,
     onExpire: () => setComplete(true),
@@ -53,9 +53,8 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
     if (isComplete) {
       setComplete(false);
       restart(inNSeconds(60), true);
-    } else {
-      resume();
     }
+    restart(inNSeconds(60), true);
   };
 
   const win = cardIndex === SETTINGS.GOAL;
@@ -91,7 +90,7 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
           <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
           <Space className="space-container">
             <Typography.Text strong>
-              {data.title[language]} | <Translate pt="Disco" en="Disc" /> {cardIndex + 1}
+              {data.title[language]} | <Translate pt="Disco" en="Disc" /> {cardIndex}/{SETTINGS.GOAL}
             </Typography.Text>
           </Space>
 
@@ -103,8 +102,10 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
           {!isRunning && (
             <>
               <Button size="large" onClick={onStart} type="primary" disabled={hearts === 0}>
+                <Translate pt="Começar" en="Start" />
+                &nbsp;
                 {isRandomGame ? (
-                  <Translate pt="Começar Aleatório" en="Start Random" />
+                  <DualTranslate>{data.title}</DualTranslate>
                 ) : (
                   <Translate pt="Começar Diário" en="Start Daily" />
                 )}
@@ -133,15 +134,15 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
 
           {isRunning && !win && (
             <Space className="space-container" direction="vertical">
-              <Card
-                card={cardA}
+              <Disc
+                disc={cardA}
                 onSelect={onSelect}
                 key={cardA.id}
                 width={cardWidth}
                 className={getAnimationClass('slideInUp', { speed: 'fast' })}
               />
-              <Card
-                card={cardB}
+              <Disc
+                disc={cardB}
                 onSelect={onSelect}
                 key={cardB.id}
                 width={cardWidth}

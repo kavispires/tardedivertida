@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import miscSets from '../components/AquiO/misc-sets.json';
 import sets from '../components/AquiO/sets.json';
 import { wait } from '../utils';
-import { AcheIssoCard, AcheIssoSet, DailyAcheIssoEntry } from '../utils/types';
+import { AcheIssoDisc, AcheIssoSet, DailyAcheIssoEntry } from '../utils/types';
 
 const ALL_SETS: AcheIssoSet[] = sets;
 const SETS = ALL_SETS.filter((set) => removeDuplicates(set.itemsIds).filter(Boolean).length === 22);
@@ -25,7 +25,8 @@ export function useDailyAcheIssoChallenge(today: string, collectionName: string,
       // Build game getting the set based on today's date
       const date = new Date(today);
       const todaysSet = SETS[(SETS.length % date.getDate()) - 1] ?? SETS[0];
-      await wait(1000);
+      await wait(250);
+      console.log({ isRandomGame });
       return buildGame(isRandomGame ? sample(MISC_SETS) ?? MISC_SETS[0] : todaysSet);
     },
     retry: false,
@@ -45,7 +46,7 @@ export function useDailyAcheIssoChallenge(today: string, collectionName: string,
 const buildGame = (set: AcheIssoSet) => {
   const allItems = shuffle(set.itemsIds);
 
-  const cards: AcheIssoCard[] = [];
+  const cards: AcheIssoDisc[] = [];
 
   for (let i = 0; i < 20; i++) {
     const previousCard = cards[i - 1];
@@ -65,7 +66,7 @@ const POSITIONS = Array(9)
   .map((_, i) => i);
 const SIZES = [100, 90, 110, 80, 100, 130, 120, 150];
 
-function createCards(list: string[], previousCard?: AcheIssoCard): AcheIssoCard {
+function createCards(list: string[], previousCard?: AcheIssoDisc): AcheIssoDisc {
   const shuffledList = shuffle(list);
   const randomPositions = shuffle(POSITIONS);
   const randomSizes = shuffle(SIZES);

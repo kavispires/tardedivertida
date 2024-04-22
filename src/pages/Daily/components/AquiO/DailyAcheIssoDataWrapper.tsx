@@ -4,12 +4,13 @@ import { Loading } from 'components/loaders';
 import { useLanguage } from 'hooks/useLanguage';
 import { useDailyAcheIssoChallenge } from 'pages/Daily/hooks/useDailyAcheIssoChallenge';
 import { useLocation } from 'react-router-dom';
-import { useTitle, useToggle } from 'react-use';
+import { useTitle } from 'react-use';
 import { isDevEnv } from 'utils/helpers';
 
-import { getTitleName, getToday } from '../../utils';
+import { getTitleName, getToday, wait } from '../../utils';
 import { DailyChrome } from '../Common/DailyChrome';
 import { DailyAcheIsso } from './DailyAcheIsso';
+import { useState } from 'react';
 
 export function DailyAcheIssoDataWrapper() {
   const today = isDevEnv ? '2023-10-31' : getToday();
@@ -17,7 +18,7 @@ export function DailyAcheIssoDataWrapper() {
   const { language, translate } = useLanguage();
   useTitle(`${getTitleName(language)} - Tarde Divertida`);
   const { pathname } = useLocation();
-  const [isRandomGame, toggleRandomGame] = useToggle(false);
+  const [isRandomGame, setRandomGame] = useState(false);
 
   // Load challenge
   const challengeQuery = useDailyAcheIssoChallenge(`${today}`, pathname.substring(1), isRandomGame);
@@ -42,8 +43,9 @@ export function DailyAcheIssoDataWrapper() {
     );
   }
 
-  const onToggleGame = () => {
-    toggleRandomGame();
+  const onToggleGame = async () => {
+    setRandomGame((prev) => !prev);
+    await wait(250);
     challengeQuery.refetch();
   };
 
