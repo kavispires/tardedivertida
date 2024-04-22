@@ -130,7 +130,7 @@
   min-height: 50svh;
 }
 
-.ache-isso-card {
+.ache-isso-disc {
   display: grid;
   border-radius: 50%;
   background: get-color('brown', 1);
@@ -142,7 +142,7 @@
   overflow: hidden;
 }
 
-.ache-isso-card-item {
+.ache-isso-disc-item {
   &--pos-0 {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
@@ -189,9 +189,9 @@
   }
 }
 
-.ache-isso-card-sprite.ache-isso-card-sprite {
+.ache-isso-disc-sprite.ache-isso-disc-sprite {
   border-radius: 50%;
-  background: transparent;
+  background: get-color('brown', 1, 0.25);
 }
 
 .hub {

@@ -30,14 +30,14 @@ export type AcheIssoItem = {
   rotation: number;
 };
 
-export type AcheIssoCard = {
+export type AcheIssoDisc = {
   id: string;
   items: AcheIssoItem[];
 };
 
 export type DailyAcheIssoEntry = {
   itemIds: string[];
-  cards: AcheIssoCard[];
+  cards: AcheIssoDisc[];
   title: DualLanguageValue;
 };
 

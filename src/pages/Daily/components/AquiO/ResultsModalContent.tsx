@@ -10,13 +10,14 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { getSourceName, getTitleName, writeHeartResultString } from 'pages/Daily/utils';
 import { CopyToClipboardButton } from '../Common/CopyToClipboardButton';
 import { SETTINGS } from './settings';
+import { getAnimationClass } from 'utils/helpers';
 
 const titles = [
   <>
     <IconAvatar icon={<SkullIcon />} /> <Translate pt="Você é muito ruim!" en="You are really bad!" />
   </>,
   <>
-    <IconAvatar icon={<SealOfApprovalIcon />} /> <Translate pt="Foi bem!" en="Pretty Good!" />
+    <IconAvatar icon={<SealOfApprovalIcon />} /> <Translate pt="Foi bem mais ou menos!" en="Pretty Weak!" />
   </>,
   <>
     <IconAvatar icon={<ApplauseIcon />} /> <Translate pt="Muito bom!" en="Very good!" />
@@ -54,7 +55,8 @@ export function ResultsModalContent({
     language,
   });
 
-  const title = hearts === 0 ? titles[0] : titles?.[Math.ceil(progress / 3)];
+  const progressLevel = Math.floor(progress / 3);
+  const title = win ? titles[4] : hearts === 0 ? titles[0] : titles?.[progressLevel];
 
   return (
     <Space direction="vertical" className="space-container">
@@ -69,8 +71,13 @@ export function ResultsModalContent({
       </Typography.Paragraph>
 
       <Flex gap={6}>
-        {itemsIds.slice(0, 5).map((id) => (
-          <ItemCard key={id} id={id} width={45} />
+        {itemsIds.slice(0, Math.ceil(progress / 3)).map((id, index) => (
+          <ItemCard
+            key={id}
+            id={id}
+            width={45}
+            className={getAnimationClass('pulse', { speed: 'fast', delay: index * 0.5 })}
+          />
         ))}
       </Flex>
 

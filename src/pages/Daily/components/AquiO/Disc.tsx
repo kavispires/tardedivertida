@@ -1,32 +1,32 @@
 import clsx from 'clsx';
 import { ItemCard } from 'components/cards/ItemCard';
 
-import { AcheIssoCard } from 'pages/Daily/utils/types';
+import { AcheIssoDisc } from 'pages/Daily/utils/types';
 
-type CardProps = {
-  card: AcheIssoCard;
+type DiscProps = {
+  disc: AcheIssoDisc;
   onSelect: (itemId: string) => void;
   width: number;
   className: string;
 };
-export function Card({ card, onSelect, width, className }: CardProps) {
+export function Disc({ disc, onSelect, width, className }: DiscProps) {
   return (
     <div
-      className={clsx('ache-isso-card', className)}
+      className={clsx('ache-isso-disc', className)}
       // ref={ref}
       style={{ width: width, height: width }}
     >
-      {card.items.map((item) => (
+      {disc.items.map((item) => (
         <div
           key={item.itemId}
-          className={clsx('ache-isso-card-item', `ache-isso-card-item--pos-${item.position}`)}
+          className={clsx('ache-isso-disc-item', `ache-isso-disc-item--pos-${item.position}`)}
           style={{
             transform: `rotate(${item.rotation}deg) scale(${item.size / 100})`,
           }}
           role="button"
           onClick={() => onSelect(item.itemId)}
         >
-          <ItemCard id={item.itemId} className="ache-isso-card-sprite" width={width / 4} />
+          <ItemCard id={item.itemId} className="ache-isso-disc-sprite" width={width / 4} />
         </div>
       ))}
     </div>
