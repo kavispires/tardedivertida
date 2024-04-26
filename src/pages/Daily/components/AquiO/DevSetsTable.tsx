@@ -2,14 +2,22 @@ import { Flex, Space, Switch, Table } from 'antd';
 import { AcheIssoSet } from 'pages/Daily/utils/types';
 import type { TableProps } from 'antd';
 import { ItemCard } from 'components/cards/ItemCard';
-import _ from 'lodash';
+import _, { fromPairs, orderBy } from 'lodash';
 import { LETTERS } from 'utils/constants';
 import sets from './sets.json';
 import miscSets from './misc-sets.json';
 import { useState } from 'react';
+import { removeDuplicates } from 'utils/helpers';
 
-const ALL_SETS: AcheIssoSet[] = sets;
-const MISC_SETS: AcheIssoSet[] = miscSets;
+function orderSets(givenSets: AcheIssoSet[]) {
+  return orderBy(givenSets, 'title.pt').map((s) => ({
+    ...s,
+    itemsIds: orderBy(s.itemsIds, (id) => Number(id)),
+  }));
+}
+
+const ALL_SETS: AcheIssoSet[] = orderSets(sets);
+const MISC_SETS: AcheIssoSet[] = orderSets(miscSets);
 
 export function DevSetsTable() {
   const columns: TableProps<AcheIssoSet>['columns'] = [
@@ -38,7 +46,8 @@ export function DevSetsTable() {
       title: 'Complete',
       dataIndex: 'itemsIds',
       key: 'complete',
-      render: (itemsIds: string[]) => (itemsIds.filter(Boolean).length === 22 ? 'Yes' : 'No'),
+      render: (itemsIds: string[]) =>
+        removeDuplicates(itemsIds).filter(Boolean).length === 22 ? 'Yes' : 'No',
     },
   ];
 
@@ -61,8 +70,6 @@ export function DevSetsTable() {
 
 function generateUniqueArrays(N: number): string[][] {
   const result: number[][] = [];
-  const previouslyUsedIds: BooleanDictionary = {};
-  ALL_SETS.forEach((set) => set.itemsIds.forEach((id) => (previouslyUsedIds[id] = true)));
   const nsfwIds = [
     '239',
     '331',
@@ -90,19 +97,26 @@ function generateUniqueArrays(N: number): string[][] {
     '1792',
     '1820',
   ];
-  const range = _.range(1, 1858).filter((n) => !previouslyUsedIds[n] && !nsfwIds.includes(String(n)));
+  let previouslyUsedIds: BooleanDictionary = {
+    ..._.fromPairs(nsfwIds.map((key) => [key, true])),
+  };
+  ALL_SETS.forEach((set) => set.itemsIds.forEach((id) => (previouslyUsedIds[id] = true)));
+
+  let range = _.range(1, 1858).filter((n) => !previouslyUsedIds[n] && !nsfwIds.includes(String(n)));
   while (result.length < N) {
     const randomNumbers = _.sampleSize(range, 21);
     if (!result.some((arr) => _.isEqual(arr, randomNumbers))) {
+      previouslyUsedIds = { ...previouslyUsedIds, ..._.fromPairs(randomNumbers.map((key) => [key, true])) };
+      range = range.filter((n) => !randomNumbers.includes(n));
       result.push([0, ...randomNumbers]);
     }
   }
 
-  return result.map((arr) => arr.map(String));
+  return result.map((arr) => orderBy(arr.map(String), (id) => Number(id)));
 }
 
 export function generateSets() {
-  const sets = generateUniqueArrays(20).map((items, i) => ({
+  const sets = generateUniqueArrays(LETTERS.length).map((items, i) => ({
     title: {
       pt: `Diversos ${LETTERS[i]}`,
       en: `Misc ${LETTERS[i]}`,
