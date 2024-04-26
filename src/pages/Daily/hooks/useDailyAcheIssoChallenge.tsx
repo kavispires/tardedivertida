@@ -26,7 +26,6 @@ export function useDailyAcheIssoChallenge(today: string, collectionName: string,
       const date = new Date(today);
       const todaysSet = SETS[(SETS.length % date.getDate()) - 1] ?? SETS[0];
       await wait(250);
-      console.log({ isRandomGame });
       return buildGame(isRandomGame ? sample(MISC_SETS) ?? MISC_SETS[0] : todaysSet);
     },
     retry: false,

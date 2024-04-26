@@ -18,6 +18,7 @@ import { Translate } from 'components/language';
 import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';
 import { UsualAvatarsSelection } from './UsualAvatarsSelection';
+import { useLanguage } from 'hooks/useLanguage';
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
@@ -29,6 +30,7 @@ type StepInfoProps = {
 
 export function StepInfo({ info, players, setStep }: StepInfoProps) {
   const { currentUser, isGuest } = useCurrentUserContext();
+  const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
     currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)
   );
@@ -88,7 +90,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
         options={nameOptions}
         onChange={(value) => setName(value.trim())}
         onSelect={(value) => setName(value.trim())}
-        placeholder="input here"
+        placeholder={translate('Digite seu nome', 'Type your name')}
         maxLength={10}
         value={name || randomName}
       />
