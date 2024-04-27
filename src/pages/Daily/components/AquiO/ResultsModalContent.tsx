@@ -55,7 +55,7 @@ export function ResultsModalContent({
     language,
   });
 
-  const progressLevel = Math.floor(progress / 3);
+  const progressLevel = Math.floor(progress / 5);
   const title = win ? titles[4] : hearts === 0 ? titles[0] : titles?.[progressLevel];
 
   return (
