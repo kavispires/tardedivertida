@@ -1,7 +1,26 @@
 import moment from 'moment';
 
+/**
+ * Returns the current date in the format 'YYYY-MM-DD'.
+ *
+ * @returns {string} The current date in 'YYYY-MM-DD' format.
+ */
 export function getToday(): string {
   return moment().format('YYYY-MM-DD');
+}
+
+/**
+ * Calculates the day of the year for a given date.
+ *
+ * @param today - The date for which to calculate the day of the year.
+ * @returns The day of the year as a number.
+ */
+export function getDayOfYear(today: string): number {
+  const date = new Date(today);
+  const startOfYear = new Date(date.getFullYear(), 0, 0);
+  const diff = date.getTime() - startOfYear.getTime();
+  const oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor(diff / oneDay);
 }
 
 /**
@@ -84,6 +103,10 @@ export function writeHeartResultString(remainHearts: number, totalHearts: number
   );
 }
 
+/**
+ * Pauses the execution for a specified duration.
+ * @param duration - The duration to wait in milliseconds. Default is 1000ms.
+ */
 export const wait = async (duration = 1000) => {
   await new Promise((resolve) => setTimeout(resolve, duration));
 };
