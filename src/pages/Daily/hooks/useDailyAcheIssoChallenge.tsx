@@ -1,5 +1,5 @@
 import { App } from 'antd';
-import { chain, random, sample, sampleSize, shuffle } from 'lodash';
+import { chain, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
 import { SEPARATOR } from 'utils/constants';
 import { print, removeDuplicates } from 'utils/helpers';
 
@@ -7,11 +7,14 @@ import { useQuery } from '@tanstack/react-query';
 
 import miscSets from '../components/AquiO/misc-sets.json';
 import sets from '../components/AquiO/sets.json';
-import { wait } from '../utils';
+import { getDayOfYear, wait } from '../utils';
 import { AcheIssoDisc, AcheIssoSet, DailyAcheIssoEntry } from '../utils/types';
 
 const ALL_SETS: AcheIssoSet[] = sets;
-const SETS = ALL_SETS.filter((set) => removeDuplicates(set.itemsIds).filter(Boolean).length === 22);
+const SETS = orderBy(
+  ALL_SETS.filter((set) => removeDuplicates(set.itemsIds).filter(Boolean).length === 22),
+  [(s) => s.itemsIds[1]]
+);
 const MISC_SETS: AcheIssoSet[] = miscSets;
 
 export function useDailyAcheIssoChallenge(today: string, collectionName: string, isRandomGame: boolean) {
@@ -23,9 +26,9 @@ export function useDailyAcheIssoChallenge(today: string, collectionName: string,
     queryFn: async () => {
       console.count(`Creating Ache Isso ${collectionName}...`);
       // Build game getting the set based on today's date
-      const date = new Date(today);
-      const todaysSet = SETS[(SETS.length % date.getDate()) - 1] ?? SETS[0];
-      await wait(250);
+      const day = getDayOfYear(today);
+      const todaysSet = SETS[(day - 1) % SETS.length] ?? SETS[0];
+      await wait(150);
       return buildGame(isRandomGame ? sample(MISC_SETS) ?? MISC_SETS[0] : todaysSet);
     },
     retry: false,

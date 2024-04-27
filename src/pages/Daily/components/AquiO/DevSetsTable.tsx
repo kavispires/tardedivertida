@@ -2,7 +2,7 @@ import { Flex, Space, Switch, Table } from 'antd';
 import { AcheIssoSet } from 'pages/Daily/utils/types';
 import type { TableProps } from 'antd';
 import { ItemCard } from 'components/cards/ItemCard';
-import _, { fromPairs, orderBy } from 'lodash';
+import _, { orderBy } from 'lodash';
 import { LETTERS } from 'utils/constants';
 import sets from './sets.json';
 import miscSets from './misc-sets.json';
@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { removeDuplicates } from 'utils/helpers';
 
 function orderSets(givenSets: AcheIssoSet[]) {
-  return orderBy(givenSets, 'title.pt').map((s) => ({
+  return orderBy(givenSets, [(s) => s.itemsIds[1]]).map((s) => ({
     ...s,
     itemsIds: orderBy(s.itemsIds, (id) => Number(id)),
   }));
