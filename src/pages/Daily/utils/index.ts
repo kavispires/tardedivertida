@@ -84,7 +84,7 @@ export function getSourceName(language: Language) {
  * @param language - The language code ('pt' for Portuguese, 'en' for English).
  * @returns The title name in the corresponding language.
  */
-export function getTitleName(language: Language) {
+export function getDailyName(language: Language) {
   return language === 'pt' ? 'TD Diário' : 'TD Daily';
 }
 

@@ -1,6 +1,6 @@
 @use 'styles/sass' as *;
 
-.ache-isso-disc {
+.aqui-o-disc {
   display: grid;
   border-radius: 50%;
   background: get-color('brown', 1);
@@ -9,9 +9,10 @@
   grid-template-rows: 1fr 2fr 2fr 2fr 1fr;
   gap: get-unit(1);
   overflow: hidden;
+  isolation: isolate;
 }
 
-.ache-isso-disc-item {
+.aqui-o-disc-item {
   &--pos-0 {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
@@ -58,7 +59,11 @@
   }
 }
 
-.ache-isso-disc-sprite.ache-isso-disc-sprite {
+.aqui-o-disc-sprite.aqui-o-disc-sprite {
   border-radius: 50%;
   background: get-color('brown', 1, 0.25);
+}
+.raw-item.raw-item {
+  // background: transparent;
+  padding: 0;
 }

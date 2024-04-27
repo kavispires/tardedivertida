@@ -1,13 +1,13 @@
-import { Input, Space, Typography } from 'antd';
+import { Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getTitleName } from 'pages/Daily/utils';
+import { getDailyName } from 'pages/Daily/utils';
 
-import { CopyToClipboardButton } from '../../components/CopyToClipboardButton';
+import { CopyToClipboardResult } from '../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
   challenge: number;
@@ -53,16 +53,7 @@ export function ResultsModalContent({
         {<Typography.Paragraph>{text}</Typography.Paragraph>}
       </TextHighlight>
 
-      <CopyToClipboardButton content={result}>
-        <Input.TextArea value={result} readOnly cols={30} rows={3} />
-      </CopyToClipboardButton>
-
-      <Typography.Paragraph className="center">
-        <Translate
-          pt="Clique no campo acima para copiar e compartilhe com os amigos"
-          en="Click the field above to copy and share it with friends"
-        />
-      </Typography.Paragraph>
+      <CopyToClipboardResult result={result} rows={3} />
     </Space>
   );
 }
@@ -79,7 +70,7 @@ function writeResult(
   const heartsValue = Math.max(0, hearts);
 
   if (language === 'pt') {
-    result += '💻 ' + getTitleName(language) + ' #' + challenge + '\n';
+    result += '💻 ' + getDailyName(language) + ' Arte Ruim #' + challenge + '\n';
     result +=
       Array(heartsValue).fill('❤️').join('') +
       Array(3 - heartsValue)
@@ -88,7 +79,7 @@ function writeResult(
     result += ` (${Math.round((guessedLetters / totalLetters) * 100)}%)`;
     result += '\nhttps://www.kavispires.com/tardedivertida/#/diario';
   } else {
-    result += '💻 ' + getTitleName(language) + ' #' + challenge + '\n';
+    result += '💻 ' + getDailyName(language) + ' Questionable Art #' + challenge + '\n';
     result +=
       Array(heartsValue).fill('❤️').join('') +
       Array(3 - heartsValue)

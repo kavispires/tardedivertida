@@ -5,18 +5,17 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLocation } from 'react-router-dom';
 import { useTitle } from 'react-use';
-import { isDevEnv } from 'utils/helpers';
-import { DailyArteRuimGame } from './DailyArteRuimGame';
+
 import { DailyChrome } from '../../components/DailyChrome';
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
-import { getTitleName, getToday } from '../../utils';
+import { getDailyName, getToday } from '../../utils';
+import { DailyArteRuimGame } from './DailyArteRuimGame';
 
 export function DailyArteRuimDataWrapper() {
   const { currentUser } = useCurrentUserContext();
-  const today = isDevEnv ? '2023-10-31' : getToday();
-  // const today = getToday();
+  const today = getToday();
   const { language, translate } = useLanguage();
-  useTitle(`${getTitleName(language)} - Tarde Divertida`);
+  useTitle(`${getDailyName(language)} - Tarde Divertida`);
   const { pathname } = useLocation();
 
   // Load challenge

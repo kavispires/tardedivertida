@@ -1,4 +1,4 @@
-import { Flex, Input, Space, Typography } from 'antd';
+import { Flex, Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
@@ -7,10 +7,10 @@ import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getSourceName, getTitleName, writeHeartResultString } from 'pages/Daily/utils';
+import { getSourceName, getDailyName, writeHeartResultString } from 'pages/Daily/utils';
 import { getAnimationClass } from 'utils/helpers';
 
-import { CopyToClipboardButton } from '../../../components/CopyToClipboardButton';
+import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
 
 const titles = [
@@ -37,6 +37,7 @@ type ResultsModalContentProps = {
   progress: number;
   itemsIds: string[];
   win: boolean;
+  isRandomGame: boolean;
 };
 
 export function ResultsModalContent({
@@ -45,6 +46,7 @@ export function ResultsModalContent({
   progress,
   itemsIds,
   win,
+  isRandomGame,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
   const result = writeResult({
@@ -56,7 +58,7 @@ export function ResultsModalContent({
     language,
   });
 
-  const progressLevel = Math.floor(progress / 5);
+  const progressLevel = Math.floor(progress / 3);
   const title = win ? titles[4] : hearts === 0 ? titles[0] : titles?.[progressLevel];
 
   return (
@@ -82,26 +84,16 @@ export function ResultsModalContent({
         ))}
       </Flex>
 
-      <CopyToClipboardButton content={result}>
-        <Input.TextArea value={result} readOnly cols={30} rows={5} />
-      </CopyToClipboardButton>
-
-      <Typography.Paragraph className="center">
-        <Translate
-          pt="Clique no campo acima para copiar e compartilhe com os amigos"
-          en="Click the field above to copy and share it with friends"
-        />
-      </Typography.Paragraph>
+      {!isRandomGame && <CopyToClipboardResult result={result} rows={4} />}
     </Space>
   );
 }
 
-const getAquiOName = (language: Language) => {
+export const getAquiOName = (language: Language) => {
   return language === 'pt' ? 'Aqui Ó' : 'Find This';
 };
 
 function writeResult({
-  // challengeNumber,
   title,
   remainingHearts,
   totalHearts,
@@ -118,10 +110,9 @@ function writeResult({
   language: Language;
 }): string {
   return [
-    `💻 ${getTitleName(language)} ${getAquiOName(language)}:`,
+    `🔘 ${getDailyName(language)} ${getAquiOName(language)}:`,
     `${title}`,
-    writeHeartResultString(remainingHearts, totalHearts),
-    `${progress}/${goal} 🔘`,
+    `${writeHeartResultString(remainingHearts, totalHearts)}     ${progress}/${goal} `,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/aqui-o`,
   ].join('\n');
 }

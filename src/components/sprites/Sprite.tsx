@@ -47,7 +47,7 @@ export function Sprite({ id, source, width = 75, padding = 6, title, className }
     enabled: !!id && !!source,
   });
 
-  const paddedWidth = width - 12;
+  const paddedWidth = width - padding * 2;
 
   if (isLoading) {
     return (

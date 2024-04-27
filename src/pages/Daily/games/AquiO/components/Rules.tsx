@@ -18,6 +18,9 @@ export function Rules() {
             <li>
               Cada item errado que você clica, remove-se um coração e você tem apenas 3 <HeartFilled />.
             </li>
+            <li>
+              <strong>Modo difícil:</strong> Itens nunca repetem em sequência.
+            </li>
             <li>Boa sorte e cuidado com dedos gordos!</li>
           </>
         }
@@ -28,6 +31,9 @@ export function Rules() {
             <li>You have 60 seconds to hit the most discs.</li>
             <li>
               Each wrong item you click, a heart is removed and you only have 3 <HeartFilled />.
+            </li>
+            <li>
+              <strong>Hard mode:</strong> Items never repeat in sequence.
             </li>
             <li>Good luck and watch out for fat fingers!</li>
           </>

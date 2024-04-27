@@ -3,11 +3,13 @@ export type AquiOItem = {
   position: number;
   size: number;
   rotation: number;
+  zIndex: number;
 };
 
 export type AquiODisc = {
   id: string;
   items: AquiOItem[];
+  match?: string;
 };
 
 export type AquiOSet = {
