@@ -1,19 +1,20 @@
+import './utils/styles.scss';
+
 import { Space } from 'antd';
 import { PageError } from 'components/errors';
 import { Loading } from 'components/loaders';
 import { useLanguage } from 'hooks/useLanguage';
-import { useDailyAcheIssoChallenge } from 'pages/Daily/hooks/useDailyAcheIssoChallenge';
+import { useDailyAquiOChallenge } from 'pages/Daily/games/AquiO/data/useDailyAquiOChallenge';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTitle } from 'react-use';
-import { isDevEnv } from 'utils/helpers';
 
+import { DailyChrome } from '../../components/DailyChrome';
 import { getTitleName, getToday, wait } from '../../utils';
-import { DailyChrome } from '../Common/DailyChrome';
-import { DailyAcheIsso } from './DailyAcheIsso';
-import { useState } from 'react';
+import { DailyAquiO } from './components/DailyAquiO';
 
-export function DailyAcheIssoDataWrapper() {
-  const today = isDevEnv ? '2023-10-31' : getToday();
+export function DailyAquiOGame() {
+  const today = getToday();
   // const today = getToday();
   const { language, translate } = useLanguage();
   useTitle(`${getTitleName(language)} - Tarde Divertida`);
@@ -21,7 +22,7 @@ export function DailyAcheIssoDataWrapper() {
   const [isRandomGame, setRandomGame] = useState(false);
 
   // Load challenge
-  const challengeQuery = useDailyAcheIssoChallenge(`${today}`, pathname.substring(1), isRandomGame);
+  const challengeQuery = useDailyAquiOChallenge(`${today}`, pathname.substring(1), isRandomGame);
 
   if (challengeQuery.isLoading || challengeQuery.isRefetching) {
     return (
@@ -50,7 +51,7 @@ export function DailyAcheIssoDataWrapper() {
   };
 
   return (
-    <DailyAcheIsso
+    <DailyAquiO
       data={challengeQuery.data}
       language={language}
       onToggleGame={onToggleGame}

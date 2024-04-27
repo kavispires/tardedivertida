@@ -38,3 +38,9 @@ export function useDailyLocalStorage(source: string, game: DailyArteRuimEntry) {
     updateLocalStorage,
   };
 }
+
+// TD_DAILY_ARTE_RUIM
+// TD_DAILY_AQUI_O
+// TD_DAILY_QUARTETO
+// TD_DAILY_PALAVREADO
+export function useNewDailyLocalStorage() {}

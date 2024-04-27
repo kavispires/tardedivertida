@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { ItemCard } from 'components/cards/ItemCard';
 
-import { AcheIssoDisc } from 'pages/Daily/utils/types';
+import { AquiODisc } from '../utils/types';
 
 type DiscProps = {
-  disc: AcheIssoDisc;
+  disc: AquiODisc;
   onSelect: (itemId: string) => void;
   width: number;
   className: string;

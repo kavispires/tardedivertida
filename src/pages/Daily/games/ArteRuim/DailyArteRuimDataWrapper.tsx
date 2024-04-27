@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { useTitle } from 'react-use';
 import { isDevEnv } from 'utils/helpers';
 import { DailyArteRuimGame } from './DailyArteRuimGame';
-import { DailyChrome } from '../Common/DailyChrome';
+import { DailyChrome } from '../../components/DailyChrome';
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 import { getTitleName, getToday } from '../../utils';
 

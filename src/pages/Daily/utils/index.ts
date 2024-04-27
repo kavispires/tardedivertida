@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { isDevEnv } from 'utils/helpers';
 
 /**
  * Returns the current date in the format 'YYYY-MM-DD'.
@@ -6,6 +7,7 @@ import moment from 'moment';
  * @returns {string} The current date in 'YYYY-MM-DD' format.
  */
 export function getToday(): string {
+  if (isDevEnv) return '2023-10-31';
   return moment().format('YYYY-MM-DD');
 }
 
@@ -15,8 +17,8 @@ export function getToday(): string {
  * @param today - The date for which to calculate the day of the year.
  * @returns The day of the year as a number.
  */
-export function getDayOfYear(today: string): number {
-  const date = new Date(today);
+export function getDayOfYear(): number {
+  const date = new Date(getToday());
   const startOfYear = new Date(date.getFullYear(), 0, 0);
   const diff = date.getTime() - startOfYear.getTime();
   const oneDay = 1000 * 60 * 60 * 24;

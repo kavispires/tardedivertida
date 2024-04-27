@@ -1,7 +1,9 @@
-import { HeartFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
 import { Translate } from 'components/language';
-import { BetaBanner } from '../Common/BetaBanner';
+
+import { HeartFilled } from '@ant-design/icons';
+
+import { BetaBanner } from '../../../components/BetaBanner';
 
 export function Rules() {
   return (

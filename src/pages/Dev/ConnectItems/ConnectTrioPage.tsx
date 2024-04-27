@@ -12,7 +12,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
-import { Menu } from 'pages/Daily/components/ConnectTrio/Menu';
+import { Menu } from 'pages/Daily/games/ConnectTrio/Menu';
 import { LoginModal } from 'pages/Me/components/LoginModal';
 import { ReactNode, useEffect } from 'react';
 import { useTitle } from 'react-use';
