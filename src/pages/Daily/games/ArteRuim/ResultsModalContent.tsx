@@ -7,7 +7,7 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 import { getTitleName } from 'pages/Daily/utils';
 
-import { CopyToClipboardButton } from '../Common/CopyToClipboardButton';
+import { CopyToClipboardButton } from '../../components/CopyToClipboardButton';
 
 type ResultsModalContentProps = {
   challenge: number;

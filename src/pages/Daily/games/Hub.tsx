@@ -7,7 +7,7 @@ import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { Link } from 'react-router-dom';
 
-import { DailyChrome } from './Common/DailyChrome';
+import { DailyChrome } from '../components/DailyChrome';
 
 export function Hub() {
   return (

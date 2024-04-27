@@ -1,0 +1,64 @@
+@use 'styles/sass' as *;
+
+.ache-isso-disc {
+  display: grid;
+  border-radius: 50%;
+  background: get-color('brown', 1);
+
+  grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 2fr 1fr;
+  gap: get-unit(1);
+  overflow: hidden;
+}
+
+.ache-isso-disc-item {
+  &--pos-0 {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+
+  &--pos-1 {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+  }
+
+  &--pos-2 {
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
+  }
+
+  &--pos-3 {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+  }
+
+  &--pos-4 {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+  }
+
+  &--pos-5 {
+    grid-column: 4 / 5;
+    grid-row: 3 / 4;
+  }
+
+  &--pos-6 {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+  }
+
+  &--pos-7 {
+    grid-column: 3 / 4;
+    grid-row: 4 / 5;
+  }
+
+  &--pos-8 {
+    grid-column: 4 / 5;
+    grid-row: 4 / 5;
+  }
+}
+
+.ache-isso-disc-sprite.ache-isso-disc-sprite {
+  border-radius: 50%;
+  background: get-color('brown', 1, 0.25);
+}

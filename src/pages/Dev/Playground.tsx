@@ -10,7 +10,7 @@ import { CSSProperties, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { doc, updateDoc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
-import { DevSetsTable } from 'pages/Daily/components/AquiO/DevSetsTable';
+import { DevSetsTable } from 'pages/Daily/games/AquiO/components/DevSetsTable';
 
 function Playground() {
   useTitle('Playground | Dev | Tarde Divertida');

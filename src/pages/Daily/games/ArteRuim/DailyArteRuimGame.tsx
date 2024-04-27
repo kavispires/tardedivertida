@@ -9,8 +9,8 @@ import { removeDuplicates } from 'utils/helpers';
 
 import { getLettersInWord, getSourceName } from '../../utils';
 import { ArteRuimLocalToday, DailyArteRuimEntry } from '../../utils/types';
-import { Header } from '../Common/Header';
-import { Menu } from '../Common/Menu';
+import { Header } from '../../components/Header';
+import { Menu } from '../../components/Menu';
 import { DrawingCarousel } from './DrawingCarousel';
 import { Keyboard } from './Keyboard';
 import { Prompt } from './Prompt';

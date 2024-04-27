@@ -22,26 +22,3 @@ export type ArteRuimLocalToday = {
   hearts: number;
   letters: string[];
 };
-
-export type AcheIssoItem = {
-  itemId: string;
-  position: number;
-  size: number;
-  rotation: number;
-};
-
-export type AcheIssoDisc = {
-  id: string;
-  items: AcheIssoItem[];
-};
-
-export type DailyAcheIssoEntry = {
-  itemIds: string[];
-  cards: AcheIssoDisc[];
-  title: DualLanguageValue;
-};
-
-export type AcheIssoSet = {
-  title: DualLanguageValue;
-  itemsIds: string[];
-};

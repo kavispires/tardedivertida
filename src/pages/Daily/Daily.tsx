@@ -6,10 +6,10 @@ import { LoginModal } from 'pages/Me/components/LoginModal';
 import { useLocation } from 'react-router-dom';
 import { useEffectOnce } from 'react-use';
 
-import { DailyArteRuimDataWrapper } from './components/ArteRuim/DailyArteRuimDataWrapper';
-import { DailyChrome } from './components/Common/DailyChrome';
-import { Hub } from './components/Hub';
-import { DailyAcheIssoDataWrapper } from './components/AquiO/DailyAcheIssoDataWrapper';
+import { DailyArteRuimDataWrapper } from './games/ArteRuim/DailyArteRuimDataWrapper';
+import { DailyChrome } from './components/DailyChrome';
+import { Hub } from './games/Hub';
+import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -32,8 +32,7 @@ function DailyPage() {
   const Outlet =
     {
       '': DailyArteRuimDataWrapper,
-      'aqui-o': DailyAcheIssoDataWrapper,
-      'ache-isso': DailyAcheIssoDataWrapper,
+      'aqui-o': DailyAquiOGame,
       'arte-ruim': DailyArteRuimDataWrapper,
       hub: Hub,
     }?.[subPath] ?? DailyArteRuimDataWrapper;

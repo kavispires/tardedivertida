@@ -8,9 +8,10 @@ import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 import { getSourceName, getTitleName, writeHeartResultString } from 'pages/Daily/utils';
-import { CopyToClipboardButton } from '../Common/CopyToClipboardButton';
-import { SETTINGS } from './settings';
 import { getAnimationClass } from 'utils/helpers';
+
+import { CopyToClipboardButton } from '../../../components/CopyToClipboardButton';
+import { SETTINGS } from '../utils/settings';
 
 const titles = [
   <>

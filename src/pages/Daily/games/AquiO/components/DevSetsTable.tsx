@@ -1,26 +1,27 @@
 import { Flex, Space, Switch, Table } from 'antd';
-import { AcheIssoSet } from 'pages/Daily/utils/types';
-import type { TableProps } from 'antd';
 import { ItemCard } from 'components/cards/ItemCard';
-import _, { orderBy } from 'lodash';
-import { LETTERS } from 'utils/constants';
-import sets from './sets.json';
-import miscSets from './misc-sets.json';
+import { fromPairs, isEqual, orderBy, range, sampleSize } from 'lodash';
 import { useState } from 'react';
+import { LETTERS } from 'utils/constants';
 import { removeDuplicates } from 'utils/helpers';
 
-function orderSets(givenSets: AcheIssoSet[]) {
+import miscSets from '../data/misc-sets.json';
+import sets from '../data/sets.json';
+import { AquiOSet } from '../utils/types';
+
+import type { TableProps } from 'antd';
+function orderSets(givenSets: AquiOSet[]) {
   return orderBy(givenSets, [(s) => s.itemsIds[1]]).map((s) => ({
     ...s,
     itemsIds: orderBy(s.itemsIds, (id) => Number(id)),
   }));
 }
 
-const ALL_SETS: AcheIssoSet[] = orderSets(sets);
-const MISC_SETS: AcheIssoSet[] = orderSets(miscSets);
+const ALL_SETS: AquiOSet[] = orderSets(sets);
+const MISC_SETS: AquiOSet[] = orderSets(miscSets);
 
 export function DevSetsTable() {
-  const columns: TableProps<AcheIssoSet>['columns'] = [
+  const columns: TableProps<AquiOSet>['columns'] = [
     {
       title: 'Title',
       dataIndex: 'title',
@@ -98,16 +99,16 @@ function generateUniqueArrays(N: number): string[][] {
     '1820',
   ];
   let previouslyUsedIds: BooleanDictionary = {
-    ..._.fromPairs(nsfwIds.map((key) => [key, true])),
+    ...fromPairs(nsfwIds.map((key) => [key, true])),
   };
   ALL_SETS.forEach((set) => set.itemsIds.forEach((id) => (previouslyUsedIds[id] = true)));
 
-  let range = _.range(1, 1858).filter((n) => !previouslyUsedIds[n] && !nsfwIds.includes(String(n)));
+  let availableRange = range(1, 1858).filter((n) => !previouslyUsedIds[n] && !nsfwIds.includes(String(n)));
   while (result.length < N) {
-    const randomNumbers = _.sampleSize(range, 21);
-    if (!result.some((arr) => _.isEqual(arr, randomNumbers))) {
-      previouslyUsedIds = { ...previouslyUsedIds, ..._.fromPairs(randomNumbers.map((key) => [key, true])) };
-      range = range.filter((n) => !randomNumbers.includes(n));
+    const randomNumbers = sampleSize(availableRange, 21);
+    if (!result.some((arr) => isEqual(arr, randomNumbers))) {
+      previouslyUsedIds = { ...previouslyUsedIds, ...fromPairs(randomNumbers.map((key) => [key, true])) };
+      availableRange = availableRange.filter((n) => !randomNumbers.includes(n));
       result.push([0, ...randomNumbers]);
     }
   }

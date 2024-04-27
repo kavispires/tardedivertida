@@ -4,27 +4,29 @@ import { TimerBar } from 'components/timers';
 import { useCountdown } from 'hooks/useCountdown';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { intersectionBy } from 'lodash';
-import { DailyAcheIssoEntry } from 'pages/Daily/utils/types';
 import { useEffect, useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 import { getAnimationClass, inNSeconds } from 'utils/helpers';
 
-import { Header } from '../Common/Header';
-import { Menu } from '../Common/Menu';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
+import { getDiscs } from '../utils/helpers';
+import { SETTINGS } from '../utils/settings';
+import { AquiODisc, DailyAquiOEntry } from '../utils/types';
 import { Disc, PreloadItems } from './Disc';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { SETTINGS } from './settings';
 
 type DailyGameProps = {
-  data: DailyAcheIssoEntry;
+  data: DailyAquiOEntry;
   language: Language;
   onToggleGame: () => void;
   isRandomGame: boolean;
 };
 
-export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: DailyGameProps) {
+export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyGameProps) {
   // Game state
+  const [discs, setDiscs] = useState<AquiODisc[]>(getDiscs(data));
   const [hearts, setHearts] = useState<number>(SETTINGS.HEARTS);
   const [showResultModal, setShowResultModal] = useState(false);
   const [isComplete, setComplete] = useState<boolean>(false);
@@ -48,7 +50,7 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
 
   const onStart = () => {
     // Reverses the card at every play
-    data.cards.reverse();
+    setDiscs(getDiscs(data));
     setCardIndex(0);
     if (isComplete) {
       setComplete(false);
@@ -59,10 +61,10 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
 
   const win = cardIndex === SETTINGS.GOAL;
 
-  const cardA = data.cards[cardIndex];
-  const cardB = data.cards[cardIndex + 1];
+  const discA = discs[cardIndex];
+  const discB = discs[cardIndex + 1];
 
-  const result = useMemo(() => intersectionBy(cardA.items, cardB.items, 'itemId')[0].itemId, [cardA, cardB]);
+  const result = useMemo(() => intersectionBy(discA.items, discB.items, 'itemId')[0].itemId, [discA, discB]);
 
   const onSelect = (itemId: string) => {
     if (itemId === result) {
@@ -110,7 +112,7 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
                   <Translate pt="Começar Diário" en="Start Daily" />
                 )}
               </Button>
-              <PreloadItems items={data.itemIds} />
+              <PreloadItems items={data.itemsIds} />
             </>
           )}
 
@@ -135,16 +137,16 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
           {isRunning && !win && (
             <Space className="space-container" direction="vertical">
               <Disc
-                disc={cardA}
+                disc={discA}
                 onSelect={onSelect}
-                key={cardA.id}
+                key={discA.id}
                 width={cardWidth}
                 className={getAnimationClass('slideInUp', { speed: 'fast' })}
               />
               <Disc
-                disc={cardB}
+                disc={discB}
                 onSelect={onSelect}
-                key={cardB.id}
+                key={discB.id}
                 width={cardWidth}
                 className={getAnimationClass('zoomIn', { speed: 'fast' })}
               />
@@ -162,7 +164,7 @@ export function DailyAcheIsso({ data, language, onToggleGame, isRandomGame }: Da
               challengeTitle={data.title[language]}
               hearts={hearts}
               progress={cardIndex}
-              itemsIds={data.itemIds}
+              itemsIds={data.itemsIds}
               win={win}
             />
           </Modal>
