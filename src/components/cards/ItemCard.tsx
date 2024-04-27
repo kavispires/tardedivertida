@@ -26,6 +26,10 @@ export type ItemCardProps = {
    * Optional text to display
    */
   text?: DualLanguageValue;
+  /**
+   * Optional padding
+   */
+  padding?: number;
 };
 
 const BASE = 64;
@@ -48,14 +52,14 @@ const getSource = (str: string) => {
 /**
  * An item card component.
  */
-export function ItemCard({ id, width = 75, className, title, text }: ItemCardProps) {
+export function ItemCard({ id, width = 75, className, title, text, padding }: ItemCardProps) {
   const [source, itemId] = getSource(id);
 
   const height = text ? 'auto' : `${width}px`;
 
   return (
     <div className={clsx('item-card', className)} style={{ width: `${width}px`, height }}>
-      <Sprite source={source} id={itemId} width={width} title={title} />
+      <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
       {Boolean(text) && (
         <span className="item-card__text">
           <DualTranslate>{text!}</DualTranslate>

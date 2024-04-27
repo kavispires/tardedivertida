@@ -10,14 +10,14 @@ import { useLocation } from 'react-router-dom';
 import { useTitle } from 'react-use';
 
 import { DailyChrome } from '../../components/DailyChrome';
-import { getTitleName, getToday, wait } from '../../utils';
+import { getDailyName, getToday, wait } from '../../utils';
 import { DailyAquiO } from './components/DailyAquiO';
 
 export function DailyAquiOGame() {
   const today = getToday();
   // const today = getToday();
   const { language, translate } = useLanguage();
-  useTitle(`${getTitleName(language)} - Tarde Divertida`);
+  useTitle(`${getDailyName(language)} - Tarde Divertida`);
   const { pathname } = useLocation();
   const [isRandomGame, setRandomGame] = useState(false);
 

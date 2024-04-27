@@ -1,4 +1,6 @@
-export function CalendarIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+import Icon from '@ant-design/icons';
+
+function Calendar(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path
@@ -49,3 +51,5 @@ export function CalendarIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element 
     </svg>
   );
 }
+
+export const CalendarIcon = () => <Icon component={Calendar} />;
