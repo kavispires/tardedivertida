@@ -179,9 +179,9 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
               hearts={hearts}
               progress={discIndex}
               itemsIds={data.itemsIds}
-              win={win}
               isRandomGame={isRandomGame}
               hardMode={mode === 'challenge'}
+              lastMatch={result}
             />
           </Modal>
         </Space>
