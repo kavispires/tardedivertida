@@ -5,9 +5,11 @@ import { TextHighlight } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getDailyName } from 'pages/Daily/utils';
+import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 
-import { CopyToClipboardResult } from '../../components/CopyToClipboardResult';
+import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
+import { getArteRuimName } from '../utils/helpers';
+import { SETTINGS } from '../utils/settings';
 
 type ResultsModalContentProps = {
   challenge: number;
@@ -26,7 +28,7 @@ export function ResultsModalContent({
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
-  const result = writeResult(challenge, hearts, correctLetters, language);
+  const result = writeResult({ challenge, remainingHearts: hearts, correctLetters, language });
 
   return (
     <Space direction="vertical" className="space-container">
@@ -58,36 +60,23 @@ export function ResultsModalContent({
   );
 }
 
-function writeResult(
-  challenge: number,
-  hearts: number = 0,
-  correctLetters: BooleanDictionary = {},
-  language: Language
-) {
-  let result = '';
+function writeResult({
+  challenge,
+  remainingHearts,
+  correctLetters,
+  language,
+}: {
+  challenge: number;
+  remainingHearts: number;
+  correctLetters: BooleanDictionary;
+  language: Language;
+}) {
   const totalLetters = Object.keys(correctLetters).length;
   const guessedLetters = Object.values(correctLetters).filter(Boolean).length;
-  const heartsValue = Math.max(0, hearts);
 
-  if (language === 'pt') {
-    result += '💻 ' + getDailyName(language) + ' Arte Ruim #' + challenge + '\n';
-    result +=
-      Array(heartsValue).fill('❤️').join('') +
-      Array(3 - heartsValue)
-        .fill('🩶')
-        .join('');
-    result += ` (${Math.round((guessedLetters / totalLetters) * 100)}%)`;
-    result += '\nhttps://www.kavispires.com/tardedivertida/#/diario';
-  } else {
-    result += '💻 ' + getDailyName(language) + ' Questionable Art #' + challenge + '\n';
-    result +=
-      Array(heartsValue).fill('❤️').join('') +
-      Array(3 - heartsValue)
-        .fill('🩶')
-        .join('');
-    result += ` (${Math.round((guessedLetters / totalLetters) * 100)}%)`;
-    result += '\nhttps://www.kavispires.com/tardedivertida/#/daily';
-  }
-
-  return result;
+  return [
+    `💻 ${getDailyName(language)} ${getArteRuimName(language)} #${challenge}`,
+    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${Math.round((guessedLetters / totalLetters) * 100)}%)`,
+    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/arte-ruim`,
+  ].join('\n');
 }

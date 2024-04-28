@@ -12,6 +12,7 @@ import { getAnimationClass } from 'utils/helpers';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
+import { getAquiOName } from '../utils/helpers';
 
 const titles = [
   <>
@@ -89,10 +90,6 @@ export function ResultsModalContent({
   );
 }
 
-export const getAquiOName = (language: Language) => {
-  return language === 'pt' ? 'Aqui Ó' : 'Find This';
-};
-
 function writeResult({
   title,
   remainingHearts,
@@ -112,7 +109,7 @@ function writeResult({
   return [
     `🔘 ${getDailyName(language)} ${getAquiOName(language)}:`,
     `${title}`,
-    `${writeHeartResultString(remainingHearts, totalHearts)}     ${progress}/${goal} `,
+    `${writeHeartResultString(remainingHearts, totalHearts)}     ${progress}/${goal}`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/aqui-o`,
   ].join('\n');
 }
