@@ -19,14 +19,14 @@ import { PreloadItems } from './PreloadItems';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 
-type DailyGameProps = {
+type DailyAquiOProps = {
   data: DailyAquiOEntry;
   language: Language;
   onToggleGame: () => void;
   isRandomGame: boolean;
 };
 
-export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyGameProps) {
+export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyAquiOProps) {
   // Game state
   const [mode, setMode] = useState<'normal' | 'challenge'>('normal');
   const [discs, setDiscs] = useState<AquiODisc[]>([]);
@@ -181,6 +181,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
               itemsIds={data.itemsIds}
               win={win}
               isRandomGame={isRandomGame}
+              hardMode={mode === 'challenge'}
             />
           </Modal>
         </Space>

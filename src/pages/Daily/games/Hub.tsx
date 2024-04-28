@@ -19,7 +19,7 @@ export function Hub() {
 
         <div className="hub-list">
           <TransparentButton hoverType="sepia">
-            <Link to="/diario" className="hub-item">
+            <Link to="/diario/arte-ruim" className="hub-item">
               <DailyDrawingGameIcon style={{ width: 75 }} />
               <Translate pt="Arte Ruim" en="Questionable Art" />
             </Link>
@@ -39,7 +39,7 @@ export function Hub() {
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
+          <TransparentButton hoverType="sepia" className="hub-item">
             <Link to="/diario/palavreado" className="hub-item">
               <DailyWordGameIcon style={{ width: 75 }} />
               <Translate pt="Palavreado" en="Word Game" />
