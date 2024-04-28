@@ -1,14 +1,12 @@
 import './utils/styles.scss';
 
-import { PageError } from 'components/errors';
-
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { DailyError } from 'pages/Daily/components/DailyError';
+import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 
-import { DailyChrome } from '../../components/DailyChrome';
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 import { getToday } from '../../utils';
 import { DailyPalavreado } from './components/DailyPalavreado';
-import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 import { useWordList } from './data/useWordList';
 
 export function DailyPalavreadoGame() {
@@ -26,11 +24,7 @@ export function DailyPalavreadoGame() {
   const dailyData = challengeQuery?.data?.['palavreado'];
 
   if (challengeQuery.isError || wordListQuery.isError || !dailyData) {
-    return (
-      <DailyChrome>
-        <PageError />
-      </DailyChrome>
-    );
+    return <DailyError />;
   }
 
   return <DailyPalavreado data={dailyData} currentUser={currentUser} wordList={wordListQuery.data ?? []} />;

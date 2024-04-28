@@ -9,8 +9,13 @@ export function useLanguage(): {
   translate: (pt: string, en: string, custom?: string) => string;
   dualTranslate: (dualLanguageObj: DualLanguageValue) => string;
   setLanguage: (u: React.SetStateAction<Language>) => void;
+  toggleLanguage: () => void;
 } {
   const [language, setLanguage] = useGlobalState('language');
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'pt' ? 'en' : 'pt');
+  };
 
   function translate(pt: string, en: string, custom?: string): string {
     if (!language) {
@@ -43,5 +48,6 @@ export function useLanguage(): {
     translate,
     dualTranslate,
     setLanguage,
+    toggleLanguage,
   };
 }
