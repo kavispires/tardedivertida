@@ -1,11 +1,16 @@
 import { Button, Layout, Modal, Space } from 'antd';
 import { Translate } from 'components/language';
+import { useLanguage } from 'hooks/useLanguage';
 import { CalendarIcon } from 'icons/CalendarIcon';
+import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { useDailyChallengeMutation } from 'pages/Daily/hooks/useDailyChallengeMutation';
 import { useDailyLocalStorage } from 'pages/Daily/hooks/useDailyLocalStorage';
-import { useEffect, useState } from 'react';
+import { LettersDictionary } from 'pages/Daily/utils/types';
+import { useEffect, useMemo, useState } from 'react';
 import { Me } from 'types/user';
 import { removeDuplicates } from 'utils/helpers';
+
+import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -14,11 +19,9 @@ import { getLettersInWord } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { ArteRuimLocalToday, DailyArteRuimEntry } from '../utils/types';
 import { DrawingCarousel } from './DrawingCarousel';
-import { Keyboard } from './Keyboard';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { useLanguage } from 'hooks/useLanguage';
 
 type DailyArteRuimProps = {
   data: DailyArteRuimEntry;
@@ -102,6 +105,14 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
     }
   }, [isComplete, hearts, dailyMutation.isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const lettersState = useMemo(() => {
+    const state: LettersDictionary = {};
+    for (const letter in guessedLetters) {
+      state[letter] = correctLetters[letter] ? 'correct' : 'incorrect';
+    }
+    return state;
+  }, [guessedLetters, correctLetters]);
+
   return (
     <Layout className="app">
       <Header icon={<CalendarIcon />}>
@@ -116,11 +127,8 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
 
         {(isComplete || hearts <= 0) && (
           <Space className="results-container" direction="vertical" align="center">
-            <Button onClick={() => setShowResultModal(true)} type="primary">
+            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
-            </Button>
-            <Button disabled>
-              <Translate pt="Quer tentar desenhar?" en="Wanna Try Drawing?" />
             </Button>
           </Space>
         )}
@@ -141,8 +149,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
         </Modal>
 
         <Keyboard
-          guessedLetters={guessedLetters}
-          correctLetters={correctLetters}
+          lettersState={lettersState}
           onLetterClick={guessLetter}
           disabled={hearts <= 0 || isComplete}
         />

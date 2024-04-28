@@ -7,3 +7,6 @@ export type DailyResponse = {
   'arte-ruim': DailyArteRuimEntry;
   palavreado: DailyPalavreadoEntry;
 };
+
+export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'disabled';
+export type LettersDictionary = Dictionary<LetterState>;
