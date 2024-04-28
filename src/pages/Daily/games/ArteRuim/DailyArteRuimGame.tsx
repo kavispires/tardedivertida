@@ -8,6 +8,7 @@ import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 import { getToday } from '../../utils';
 import { DailyArteRuim } from './components/DailyArteRuim';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
+import { DailyError } from 'pages/Daily/components/DailyError';
 
 export function DailyArteRuimGame() {
   const { currentUser } = useCurrentUserContext();
@@ -23,11 +24,7 @@ export function DailyArteRuimGame() {
   const dailyData = challengeQuery?.data?.['arte-ruim'];
 
   if (challengeQuery.isError || !dailyData) {
-    return (
-      <DailyChrome>
-        <PageError />
-      </DailyChrome>
-    );
+    return <DailyError />;
   }
 
   return <DailyArteRuim data={dailyData} currentUser={currentUser} />;

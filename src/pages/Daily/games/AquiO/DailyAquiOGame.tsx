@@ -1,15 +1,14 @@
 import './utils/styles.scss';
 
-import { PageError } from 'components/errors';
 import { useLanguage } from 'hooks/useLanguage';
+import { DailyError } from 'pages/Daily/components/DailyError';
+import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 import { useDailyAquiOChallenge } from 'pages/Daily/games/AquiO/data/useDailyAquiOChallenge';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { DailyChrome } from '../../components/DailyChrome';
 import { getToday, wait } from '../../utils';
 import { DailyAquiO } from './components/DailyAquiO';
-import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 
 export function DailyAquiOGame() {
   const today = getToday();
@@ -25,11 +24,7 @@ export function DailyAquiOGame() {
   }
 
   if (challengeQuery.isError) {
-    return (
-      <DailyChrome>
-        <PageError />
-      </DailyChrome>
-    );
+    return <DailyError />;
   }
 
   const onToggleGame = async () => {
