@@ -13,6 +13,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
 import { getAquiOName } from '../utils/helpers';
+import clsx from 'clsx';
 
 const titles = [
   <>
@@ -32,14 +33,23 @@ const titles = [
   </>,
 ];
 
+const getTitle = (progress: number, remainingHearts: number) => {
+  if (progress <= 3 || remainingHearts === 0) return titles[0];
+  if (progress <= 8) return titles[1];
+  if (progress <= 10) return titles[2];
+  if (progress < 15) return titles[3];
+
+  return titles[4];
+};
+
 type ResultsModalContentProps = {
   challengeTitle: string;
   hearts: number;
   progress: number;
   itemsIds: string[];
-  win: boolean;
   isRandomGame: boolean;
   hardMode: boolean;
+  lastMatch: string;
 };
 
 export function ResultsModalContent({
@@ -47,9 +57,9 @@ export function ResultsModalContent({
   hearts,
   progress,
   itemsIds,
-  win,
   isRandomGame,
   hardMode,
+  lastMatch,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
   const result = writeResult({
@@ -62,8 +72,7 @@ export function ResultsModalContent({
     hardMode,
   });
 
-  const progressLevel = Math.floor(progress / 3);
-  const title = win ? titles[4] : hearts === 0 ? titles[0] : titles?.[progressLevel];
+  const title = getTitle(progress, hearts);
 
   return (
     <Space direction="vertical" className="space-container">
@@ -78,14 +87,24 @@ export function ResultsModalContent({
       </Typography.Paragraph>
 
       <Flex gap={6}>
-        {itemsIds.slice(0, Math.ceil(progress / 3)).map((id, index) => (
+        {!!lastMatch && (
           <ItemCard
-            key={id}
-            id={id}
+            id={lastMatch}
             width={45}
-            className={getAnimationClass('pulse', { speed: 'fast', delay: index * 0.5 })}
+            className={clsx(getAnimationClass('pulse', { speed: 'fast' }), 'item-match-outline')}
           />
-        ))}
+        )}
+        {itemsIds
+          .filter((id) => id !== lastMatch)
+          .slice(0, Math.floor((progress - 1) / 3))
+          .map((id, index) => (
+            <ItemCard
+              key={id}
+              id={id}
+              width={45}
+              className={getAnimationClass('pulse', { speed: 'fast', delay: index * 0.5 })}
+            />
+          ))}
       </Flex>
 
       {!isRandomGame && <CopyToClipboardResult result={result} rows={4} />}
