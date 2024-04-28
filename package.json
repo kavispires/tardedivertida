@@ -1,7 +1,7 @@
 {
   "name": "tardedivertida",
   "homepage": "http://www.kavispires.com/tardedivertida/",
-  "version": "43.6.30",
+  "version": "43.6.31",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
@@ -15,8 +15,8 @@
     "@types/react-highlight-words": "^0.16.7",
     "@types/react-router-dom": "^5.3.3",
     "animate.css": "^4.1.1",
-    "antd": "^5.16.1",
-    "clsx": "^2.1.0",
+    "antd": "^5.16.5",
+    "clsx": "^2.1.1",
     "firebase": "^10.7.2",
     "konva": "^9.3.2",
     "lodash": "^4.17.21",

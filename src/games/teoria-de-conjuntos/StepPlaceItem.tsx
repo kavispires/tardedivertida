@@ -55,7 +55,7 @@ export function StepPlaceItem({
   round,
 }: StepPlaceItemProps) {
   const { isLoading } = useLoading();
-  const scrollToSubmitRef = useRef<HTMLDivElement>(null);
+  const scrollToSubmitRef = useRef<HTMLButtonElement>(null);
 
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
   const [previouslySelectedItemId, setPreviouslySelectedItemId] = useState<string | null>(null);
