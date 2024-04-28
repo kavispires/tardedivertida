@@ -1,6 +1,6 @@
 import { useLocalStorage } from 'hooks/useLocalStorage';
 import { useEffect, useState } from 'react';
-import { ArteRuimLocalToday, DailyArteRuimEntry } from '../utils/types';
+import { ArteRuimLocalToday, DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
 
 /**
  * Keeps local storage updated so that the user can continue where they left off

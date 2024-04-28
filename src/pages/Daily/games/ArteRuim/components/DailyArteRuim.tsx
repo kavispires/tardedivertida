@@ -7,25 +7,26 @@ import { useEffect, useState } from 'react';
 import { Me } from 'types/user';
 import { removeDuplicates } from 'utils/helpers';
 
-import { getSourceName } from '../../../utils';
-import { ArteRuimLocalToday, DailyArteRuimEntry } from '../../../utils/types';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
+import { getSourceName } from '../../../utils';
+import { getLettersInWord } from '../utils/helpers';
+import { SETTINGS } from '../utils/settings';
+import { ArteRuimLocalToday, DailyArteRuimEntry } from '../utils/types';
 import { DrawingCarousel } from './DrawingCarousel';
 import { Keyboard } from './Keyboard';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { SETTINGS } from '../utils/settings';
-import { getLettersInWord } from '../utils/helpers';
+import { useLanguage } from 'hooks/useLanguage';
 
 type DailyArteRuimProps = {
   data: DailyArteRuimEntry;
   currentUser: Me;
-  language: Language;
 };
 
-export function DailyArteRuim({ data, language }: DailyArteRuimProps) {
+export function DailyArteRuim({ data }: DailyArteRuimProps) {
+  const { language } = useLanguage();
   const source = getSourceName(language);
 
   // Build game: word, letters, lives

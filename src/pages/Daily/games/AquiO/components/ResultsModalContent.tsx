@@ -39,6 +39,7 @@ type ResultsModalContentProps = {
   itemsIds: string[];
   win: boolean;
   isRandomGame: boolean;
+  hardMode: boolean;
 };
 
 export function ResultsModalContent({
@@ -48,6 +49,7 @@ export function ResultsModalContent({
   itemsIds,
   win,
   isRandomGame,
+  hardMode,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
   const result = writeResult({
@@ -57,6 +59,7 @@ export function ResultsModalContent({
     progress,
     goal: SETTINGS.GOAL,
     language,
+    hardMode,
   });
 
   const progressLevel = Math.floor(progress / 3);
@@ -97,18 +100,19 @@ function writeResult({
   progress,
   goal,
   language,
+  hardMode,
 }: {
-  // challengeNumber,
   title: string;
   remainingHearts: number;
   totalHearts: number;
   progress: number;
   goal: number;
   language: Language;
+  hardMode: boolean;
 }): string {
   return [
     `🔘 ${getDailyName(language)} ${getAquiOName(language)}:`,
-    `${title}`,
+    `${title}${hardMode ? '*' : ''}`,
     `${writeHeartResultString(remainingHearts, totalHearts)}     ${progress}/${goal}`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/aqui-o`,
   ].join('\n');

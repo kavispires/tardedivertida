@@ -37,7 +37,14 @@ const getDaily = async (data: DailyGetterPayload, context: FirebaseContext) => {
   }
 
   const dailyData = dailyDoc.data();
-  return dailyData;
+
+  if (dailyData?.['arte-ruim']) {
+    return dailyData;
+  }
+
+  return {
+    'arte-ruim': dailyData,
+  };
 };
 
 export type DailySetterPayload = {

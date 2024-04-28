@@ -1,28 +1,31 @@
 import './utils/styles.scss';
 
 import { PageError } from 'components/errors';
+
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 
 import { DailyChrome } from '../../components/DailyChrome';
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 import { getToday } from '../../utils';
-import { DailyArteRuim } from './components/DailyArteRuim';
+import { DailyPalavreado } from './components/DailyPalavreado';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
+import { useWordList } from './data/useWordList';
 
-export function DailyArteRuimGame() {
+export function DailyPalavreadoGame() {
   const { currentUser } = useCurrentUserContext();
   const today = getToday();
 
   // Load challenge
   const challengeQuery = useDailyChallenge(`${today}`);
+  const wordListQuery = useWordList();
 
-  if (challengeQuery.isLoading) {
+  if (wordListQuery.isLoading || challengeQuery.isLoading) {
     return <DailyLoading />;
   }
 
-  const dailyData = challengeQuery?.data?.['arte-ruim'];
+  const dailyData = challengeQuery?.data?.['palavreado'];
 
-  if (challengeQuery.isError || !dailyData) {
+  if (challengeQuery.isError || wordListQuery.isError || !dailyData) {
     return (
       <DailyChrome>
         <PageError />
@@ -30,5 +33,5 @@ export function DailyArteRuimGame() {
     );
   }
 
-  return <DailyArteRuim data={dailyData} currentUser={currentUser} />;
+  return <DailyPalavreado data={dailyData} currentUser={currentUser} wordList={wordListQuery.data ?? []} />;
 }

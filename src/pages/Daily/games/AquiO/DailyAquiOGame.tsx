@@ -1,23 +1,19 @@
 import './utils/styles.scss';
 
-import { Space } from 'antd';
 import { PageError } from 'components/errors';
-import { Loading } from 'components/loaders';
 import { useLanguage } from 'hooks/useLanguage';
 import { useDailyAquiOChallenge } from 'pages/Daily/games/AquiO/data/useDailyAquiOChallenge';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useTitle } from 'react-use';
 
 import { DailyChrome } from '../../components/DailyChrome';
-import { getDailyName, getToday, wait } from '../../utils';
+import { getToday, wait } from '../../utils';
 import { DailyAquiO } from './components/DailyAquiO';
+import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 
 export function DailyAquiOGame() {
   const today = getToday();
-  // const today = getToday();
-  const { language, translate } = useLanguage();
-  useTitle(`${getDailyName(language)} - Tarde Divertida`);
+  const { language } = useLanguage();
   const { pathname } = useLocation();
   const [isRandomGame, setRandomGame] = useState(false);
 
@@ -25,15 +21,7 @@ export function DailyAquiOGame() {
   const challengeQuery = useDailyAquiOChallenge(`${today}`, pathname.substring(1), isRandomGame);
 
   if (challengeQuery.isLoading || challengeQuery.isRefetching) {
-    return (
-      <DailyChrome>
-        <div className="daily-loading">
-          <Space className="space-container">
-            <Loading message={translate('Carregando desafio...', 'Loading challenge...')} margin />
-          </Space>
-        </div>
-      </DailyChrome>
-    );
+    return <DailyLoading />;
   }
 
   if (challengeQuery.isError) {
