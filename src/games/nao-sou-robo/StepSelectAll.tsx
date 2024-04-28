@@ -47,7 +47,7 @@ export function StepSelectAll({
   options,
   robot,
 }: StepSelectAllProps) {
-  const scrollToSubmitRef = useRef<HTMLDivElement>(null);
+  const scrollToSubmitRef = useRef<HTMLButtonElement>(null);
   const { isLoading } = useLoading();
   const { length, dict: selectedCards, updateDict, keys: selection } = useBooleanDictionary({});
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
