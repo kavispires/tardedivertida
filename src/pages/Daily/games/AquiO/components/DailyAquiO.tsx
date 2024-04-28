@@ -3,10 +3,10 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { TimerBar } from 'components/timers';
 import { useCountdown } from 'hooks/useCountdown';
-import { CalendarIcon } from 'icons/CalendarIcon';
+import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 import { intersectionBy } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
-import { useMeasure } from 'react-use';
+import { useLocalStorage, useMeasure } from 'react-use';
 import { getAnimationClass, inNSeconds, isDevEnv } from 'utils/helpers';
 
 import { Header } from '../../../components/Header';
@@ -27,8 +27,8 @@ type DailyAquiOProps = {
 };
 
 export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyAquiOProps) {
+  const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
   // Game state
-  const [mode, setMode] = useState<'normal' | 'challenge'>('normal');
   const [discs, setDiscs] = useState<AquiODisc[]>([]);
   const [hearts, setHearts] = useState<number>(SETTINGS.HEARTS);
   const [showResultModal, setShowResultModal] = useState(false);
@@ -89,7 +89,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
 
   return (
     <Layout className="app">
-      <Header icon={<CalendarIcon />}>
+      <Header icon={<DailyFindingGameIcon />}>
         <Translate pt="Aqui Ó" en="Find This" />
       </Header>
       <Layout.Content ref={contentRef}>
