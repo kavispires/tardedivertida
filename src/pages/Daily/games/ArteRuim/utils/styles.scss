@@ -1,33 +1,5 @@
 @use 'styles/sass' as *;
 
-.keyboard {
-  width: 100%;
-  position: sticky;
-  bottom: get-unit(1);
-}
-
-.daily-keyboard-key {
-  background: get-color('blue', 7);
-  color: get-color('white');
-  border-radius: $border-radius;
-  border: 1px outset get-color('blue', 3);
-  text-transform: uppercase;
-
-  &:disabled {
-    opacity: 0.5;
-  }
-
-  &--guessed {
-    background: get-color('gray', 6);
-    color: get-color('gray', 4);
-  }
-
-  &--correct {
-    background: get-color('green', 5);
-    color: get-color('white');
-  }
-}
-
 .canvas {
   background: get-color('white');
   border-radius: $border-radius;

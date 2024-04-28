@@ -91,3 +91,87 @@
 .hub-item-disabled {
   opacity: 0.5;
 }
+
+.daily-keyboard {
+  width: 100%;
+  max-width: calc(100vw - get-unit(4));
+  position: sticky;
+  bottom: get-unit(1);
+  height: var(--keyboard-height);
+  margin: get-unit(0 2);
+  user-select: none;
+
+  &__row {
+    display: flex;
+    width: 100%;
+    margin: get-unit(0 auto 2);
+    touch-action: manipulation;
+  }
+
+  &__key {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    margin: get-unit(0 2 0 0);
+    height: 48px;
+    border-radius: get-unit(1);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: get-color('blue', 7);
+    color: get-color('white');
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+
+    &:disabled,
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &--correct {
+      background-color: get-color('green', 4);
+    }
+
+    &--used {
+      background-color: get-color('gray', 6);
+    }
+
+    &--incorrect {
+      background-color: get-color('red', 4);
+    }
+
+    &--intermediate {
+      background-color: get-color('yellow', 5);
+    }
+  }
+}
+
+.daily-keyboard-key {
+  background: get-color('blue', 7);
+  color: get-color('white');
+  border-radius: $border-radius;
+  border: 1px outset get-color('blue', 3);
+  text-transform: uppercase;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &--guessed {
+    background: get-color('gray', 6);
+    color: get-color('gray', 4);
+  }
+
+  &--correct {
+    background: get-color('green', 5);
+    color: get-color('white');
+  }
+}

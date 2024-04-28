@@ -15,6 +15,7 @@ import { Rules } from './Rules';
 import { SETTINGS } from '../utils/settings';
 import { DailyPalavreadoEntry } from '../utils/type';
 import { useLanguage } from 'hooks/useLanguage';
+import { Keyboard } from 'pages/Daily/components/Keyboard';
 
 type DailyPalavreadoProps = {
   data: DailyPalavreadoEntry;
@@ -36,6 +37,17 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
       </Header>
       <Layout.Content>
         <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
+        <Keyboard
+          onLetterClick={(l) => console.log('clicou na letra', l)}
+          lettersState={{
+            q: 'disabled',
+            w: 'disabled',
+            a: 'correct',
+            d: 'incorrect',
+            g: 'intermediate',
+            x: 'used',
+          }}
+        />
       </Layout.Content>
     </Layout>
   );
