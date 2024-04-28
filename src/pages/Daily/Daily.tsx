@@ -6,7 +6,7 @@ import { LoginModal } from 'pages/Me/components/LoginModal';
 import { useLocation } from 'react-router-dom';
 import { useEffectOnce } from 'react-use';
 
-import { DailyArteRuimDataWrapper } from './games/ArteRuim/DailyArteRuimDataWrapper';
+import { DailyArteRuimGame } from './games/ArteRuim/DailyArteRuimGame';
 import { DailyChrome } from './components/DailyChrome';
 import { Hub } from './games/Hub';
 import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';
@@ -31,11 +31,11 @@ function DailyPage() {
 
   const Outlet =
     {
-      '': DailyArteRuimDataWrapper,
+      '': DailyArteRuimGame,
       'aqui-o': DailyAquiOGame,
-      'arte-ruim': DailyArteRuimDataWrapper,
+      'arte-ruim': DailyArteRuimGame,
       hub: Hub,
-    }?.[subPath] ?? DailyArteRuimDataWrapper;
+    }?.[subPath] ?? DailyArteRuimGame;
 
   return <Outlet />;
 }

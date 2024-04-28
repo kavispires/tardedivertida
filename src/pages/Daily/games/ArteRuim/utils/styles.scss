@@ -1,0 +1,65 @@
+@use 'styles/sass' as *;
+
+.keyboard {
+  width: 100%;
+  position: sticky;
+  bottom: get-unit(1);
+}
+
+.daily-keyboard-key {
+  background: get-color('blue', 7);
+  color: get-color('white');
+  border-radius: $border-radius;
+  border: 1px outset get-color('blue', 3);
+  text-transform: uppercase;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &--guessed {
+    background: get-color('gray', 6);
+    color: get-color('gray', 4);
+  }
+
+  &--correct {
+    background: get-color('green', 5);
+    color: get-color('white');
+  }
+}
+
+.canvas {
+  background: get-color('white');
+  border-radius: $border-radius;
+  border: 3px solid get-color('blue', 7);
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: get-unit(1);
+  margin: get-unit(6 2);
+  text-transform: uppercase;
+}
+
+.letter-correct {
+  background: get-color('green');
+  color: get-color('white');
+}
+
+.letter-blank {
+  background: get-color('gray', 2, 0.5);
+  color: get-color('white');
+  border: 1px solid get-color('gray', 2);
+}
+
+.carousel {
+  margin: get-unit(6 auto);
+}
+
+.carousel-item {
+  display: grid;
+  place-items: center;
+}
