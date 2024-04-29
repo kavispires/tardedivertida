@@ -5,11 +5,10 @@ import { TextHighlight } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { getDailyName, getSourceName } from 'pages/Daily/utils';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { getArteRuimName } from '../utils/helpers';
-import { SETTINGS } from '../utils/settings';
 import { Letter } from '../utils/type';
 
 type ResultsModalContentProps = {
@@ -88,7 +87,7 @@ function writeResult({
 
   return [
     `💻 ${getDailyName(language)} ${getArteRuimName(language)} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)}`,
+
     cleanUpAttempts
       .map((row) => row.join(' ').trim())
       .filter(Boolean)
