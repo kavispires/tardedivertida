@@ -7,3 +7,8 @@ export type DailyPalavreadoEntry = {
   language: Language;
   text: 'troço';
 };
+
+export type Letter = {
+  letter: string;
+  state: 'idle' | 'correct' | 'incorrect' | 'intermediate' | 'used' | 'disabled';
+};

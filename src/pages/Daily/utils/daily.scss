@@ -16,10 +16,9 @@
 
 .menu {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr auto 1fr;
   width: 100%;
   font-size: 1.25rem;
-  // justify-content: center;
   gap: get-unit(2);
   place-items: center;
   background: get-color('blue', 7);
@@ -115,7 +114,8 @@
     border: 0;
     padding: 0;
     margin: get-unit(0 2 0 0);
-    height: 48px;
+    height: get-unit(16);
+    min-width: 3ch;
     border-radius: get-unit(1);
     cursor: pointer;
     -webkit-user-select: none;
@@ -129,6 +129,16 @@
     align-items: center;
     text-transform: uppercase;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+    flex: 1;
+
+    &--backspace {
+      flex: 3;
+    }
+
+    &--enter {
+      flex: 5;
+      font-size: 0.75em;
+    }
 
     &:disabled,
     &--disabled {

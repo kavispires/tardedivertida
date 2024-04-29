@@ -76,6 +76,17 @@ export function Keyboard({
         ))}
       </Flex>
       <Flex className="daily-keyboard__row">
+        {!!onEnterClick && (
+          <button
+            type="button"
+            style={{ width }}
+            className="daily-keyboard__key daily-keyboard__key--enter"
+            onClick={onEnterClick}
+            disabled={disabled}
+          >
+            Enter
+          </button>
+        )}
         {THIRD_ROW.map((letter) => (
           <Key
             key={letter}
@@ -86,6 +97,17 @@ export function Keyboard({
             disabled={disabled}
           />
         ))}
+        {!!onBackspaceClick && (
+          <button
+            type="button"
+            style={{ width }}
+            className="daily-keyboard__key daily-keyboard__key--backspace"
+            onClick={onBackspaceClick}
+            disabled={disabled}
+          >
+            ⌫
+          </button>
+        )}
       </Flex>
     </Space>
   );
