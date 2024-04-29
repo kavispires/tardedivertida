@@ -2,7 +2,7 @@ import { Button, Layout, Modal, Space } from 'antd';
 import { Translate } from 'components/language';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { useDailyChallengeMutation } from 'pages/Daily/hooks/useDailyChallengeMutation';
-import { useDailyLocalStorage } from 'pages/Daily/hooks/useDailyLocalStorage';
+
 import { useEffect, useState } from 'react';
 import { Me } from 'types/user';
 import { removeDuplicates } from 'utils/helpers';

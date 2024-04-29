@@ -1,10 +1,8 @@
 import { Button, Layout, Modal, Space } from 'antd';
 import { Translate } from 'components/language';
-import { useLanguage } from 'hooks/useLanguage';
+
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { useDailyChallengeMutation } from 'pages/Daily/hooks/useDailyChallengeMutation';
-import { useDailyLocalStorage } from 'pages/Daily/hooks/useDailyLocalStorage';
 import { LettersDictionary } from 'pages/Daily/utils/types';
 import { useEffect, useMemo, useState } from 'react';
 import { Me } from 'types/user';
@@ -14,7 +12,7 @@ import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
-import { getSourceName } from '../../../utils';
+
 import { getLettersInWord } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { ArteRuimLocalToday, DailyArteRuimEntry } from '../utils/types';
@@ -22,29 +20,38 @@ import { DrawingCarousel } from './DrawingCarousel';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 
 type DailyArteRuimProps = {
   data: DailyArteRuimEntry;
   currentUser: Me;
 };
 
-export function DailyArteRuim({ data }: DailyArteRuimProps) {
-  const { language } = useLanguage();
-  const source = getSourceName(language);
+const defaultArteRuimLocalToday: ArteRuimLocalToday = {
+  hearts: SETTINGS.HEARTS,
+  id: '',
+  letters: [],
+  number: 0,
+  victory: false,
+};
 
+export function DailyArteRuim({ data }: DailyArteRuimProps) {
   // Build game: word, letters, lives
   const [hearts, setHearts] = useState<number>(SETTINGS.HEARTS);
   const [guessedLetters, setGuessedLetters] = useState<BooleanDictionary>({});
   const [correctLetters, setCorrectLetters] = useState<BooleanDictionary>(getLettersInWord(data.text));
   const [showResultModal, setShowResultModal] = useState(false);
 
+  // const { localToday, updateLocalStorage } = useDailyLocalStorageLegacy(source, data);
+  const { localToday, updateLocalStorage, stateToApply } = useDailyLocalToday<ArteRuimLocalToday>({
+    key: SETTINGS.TD_DAILY_ARTE_RUIM_LOCAL_TODAY,
+    gameId: data.id,
+    defaultValue: defaultArteRuimLocalToday,
+  });
+
   const isComplete = Object.values(correctLetters).every(Boolean);
 
-  const { localToday, updateLocalStorage } = useDailyLocalStorage(source, data);
-  const latestToday: ArteRuimLocalToday | null = localToday && localToday.id === data.id ? localToday : null;
-
-  const dailyMutation = useDailyChallengeMutation();
-
+  console.log(localToday);
   const guessLetter = (letter: string) => {
     // Ignore previously guessed letters
     if (guessedLetters[letter]) {
@@ -53,12 +60,10 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
     // Add to the guessed letters
     setGuessedLetters((prev) => ({ ...prev, [letter]: true }));
 
-    if (localToday) {
-      updateLocalStorage({
-        ...(localToday ?? {}),
-        letters: removeDuplicates([...(localToday.letters ?? {}), letter]),
-      });
-    }
+    updateLocalStorage({
+      ...(localToday ?? {}),
+      letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
+    });
 
     // If it is a correct letter, make it true
     if (correctLetters[letter] !== undefined) {
@@ -67,43 +72,23 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
       // Otherwise, lose a heart
       setHearts((prev) => prev - 1);
     }
-
-    if (isComplete || hearts <= 0) {
-      // TODO: Save NOT WORKING, race condition
-      // dailyMutation.mutate({
-      //   id: daily.id,
-      //   number: daily.number,
-      //   victory: isComplete,
-      //   hearts,
-      //   letters: Object.keys(guessedLetters),
-      // });
-    }
   };
 
   // If already play, show winning screen
   useEffect(() => {
-    if (latestToday && latestToday.id === data.id) {
-      latestToday!.letters.forEach((letter: string) => {
+    if (stateToApply) {
+      stateToApply!.letters.forEach((letter: string) => {
         guessLetter(letter);
       });
-    } else {
-      // Save to local storage
-      updateLocalStorage({
-        id: data.id,
-        number: data.number,
-        victory: isComplete,
-        hearts,
-        letters: Object.keys(guessedLetters),
-      });
     }
-  }, [latestToday]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [stateToApply]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Controls auto result modal
   useEffect(() => {
     if (isComplete || hearts <= 0) {
       setShowResultModal(true);
     }
-  }, [isComplete, hearts, dailyMutation.isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isComplete, hearts]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const lettersState = useMemo(() => {
     const state: LettersDictionary = {};
@@ -119,7 +104,12 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
         TD <Translate pt="Diário" en="Daily" /> #{data.number}
       </Header>
       <Layout.Content>
-        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={!latestToday} rules={<Rules />} />
+        <Menu
+          hearts={hearts}
+          total={SETTINGS.HEARTS}
+          openRules={!stateToApply?.letters.length}
+          rules={<Rules />}
+        />
 
         <DrawingCarousel drawings={data.drawings} />
 
