@@ -1,7 +1,7 @@
 import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
-import { print } from 'utils/helpers';
+import { print, stringRemoveAccents } from 'utils/helpers';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -9,21 +9,29 @@ export function useWordList() {
   const { language } = useLanguage();
   const { notification } = App.useApp();
   const baseUrl = useTDBaseUrl('tdr');
-  const library = 'five-letter-words';
+  // const library = 'five-letter-words';
+  const library = 'words-5-letters';
 
   // Load challenge
-  return useQuery<string[]>({
+  return useQuery<StringDictionary>({
     queryKey: ['tdr', library, language],
     queryFn: async () => {
       console.count(`Fetching ${library}-${language}...`);
 
       const response = await fetch(`${baseUrl}/${library}-${language}.json`);
-      return await response.json();
+      const jsonResponse = await response.json();
+      return jsonResponse.reduce(
+        (acc: StringDictionary, word: string) => {
+          acc[stringRemoveAccents(word)] = word;
+          return acc;
+        },
+        { troco: 'troço' }
+      );
     },
     retry: false,
     onSuccess: (response) => {
       const data = response;
-      print({ [library]: data }, 'table');
+      print({ [library]: data }, 'log');
     },
     onError: (e: any) => {
       notification.error({

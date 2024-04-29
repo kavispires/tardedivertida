@@ -8,5 +8,5 @@ export type DailyResponse = {
   palavreado: DailyPalavreadoEntry;
 };
 
-export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'disabled';
+export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'disabled' | 'idle';
 export type LettersDictionary = Dictionary<LetterState>;

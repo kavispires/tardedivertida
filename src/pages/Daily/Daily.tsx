@@ -11,7 +11,7 @@ import { DailyChrome } from './components/DailyChrome';
 import { Hub } from './games/Hub';
 import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';
 import { getDailyName } from './utils';
-import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreado';
+import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();

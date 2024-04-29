@@ -51,7 +51,6 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
 
   const isComplete = Object.values(correctLetters).every(Boolean);
 
-  console.log(localToday);
   const guessLetter = (letter: string) => {
     // Ignore previously guessed letters
     if (guessedLetters[letter]) {

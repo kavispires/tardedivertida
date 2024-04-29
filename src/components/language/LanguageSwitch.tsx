@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Switch } from 'antd';
-import Icon from '@ant-design/icons';
 import { IconAvatar } from 'components/avatars';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -23,9 +22,11 @@ export function LanguageSwitch() {
 
   return (
     <Switch
-      checkedChildren={<IconAvatar icon={<Icon component={BrazilFlag} />} size="small" alt="Português-BR" />}
+      checkedChildren={
+        <IconAvatar icon={<BrazilFlag width="1em" height="1em" />} size="small" alt="Português-BR" />
+      }
       unCheckedChildren={
-        <IconAvatar icon={<Icon component={UnitedStatesFlag} />} size="small" alt="English-US" />
+        <IconAvatar icon={<UnitedStatesFlag width="1em" height="1em" />} size="small" alt="English-US" />
       }
       checked={language === 'pt'}
       onClick={onSwitchClick}

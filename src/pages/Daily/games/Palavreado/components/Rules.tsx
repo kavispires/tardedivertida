@@ -1,30 +1,21 @@
-import { HeartFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
 import { Translate } from 'components/language';
+import { BetaBanner } from 'pages/Daily/components/BetaBanner';
 
 export function Rules() {
   return (
     <Typography>
+      <BetaBanner />
       <Translate
         pt={
           <>
-            <li>???</li>
-            <li>
-              Cada letra que você aperta que não está presente na resposta remove um coração e você tem apenas
-              3 <HeartFilled />.
-            </li>
+            <li>Em breve</li>
             <li>Boa sorte!</li>
           </>
         }
         en={
           <>
-            <li>
-              Try to guess the secret expression by observing the drawings and then pressing letter by letter.
-            </li>
-            <li>
-              Each letter you press that is not present in the answer removes a heart and you only have 3{' '}
-              <HeartFilled />.
-            </li>
+            <li>TBD</li>
             <li>Good luck!</li>
           </>
         }
