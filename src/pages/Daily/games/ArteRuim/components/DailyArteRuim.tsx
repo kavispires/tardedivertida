@@ -1,8 +1,8 @@
 import { Button, Layout, Modal, Space } from 'antd';
 import { Translate } from 'components/language';
-
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { LettersDictionary } from 'pages/Daily/utils/types';
 import { useEffect, useMemo, useState } from 'react';
 import { Me } from 'types/user';
@@ -12,7 +12,6 @@ import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
-
 import { getLettersInWord } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { ArteRuimLocalToday, DailyArteRuimEntry } from '../utils/types';
@@ -20,7 +19,6 @@ import { DrawingCarousel } from './DrawingCarousel';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 
 type DailyArteRuimProps = {
   data: DailyArteRuimEntry;
@@ -28,11 +26,9 @@ type DailyArteRuimProps = {
 };
 
 const defaultArteRuimLocalToday: ArteRuimLocalToday = {
-  hearts: SETTINGS.HEARTS,
   id: '',
   letters: [],
   number: 0,
-  victory: false,
 };
 
 export function DailyArteRuim({ data }: DailyArteRuimProps) {
@@ -42,11 +38,27 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
   const [correctLetters, setCorrectLetters] = useState<BooleanDictionary>(getLettersInWord(data.text));
   const [showResultModal, setShowResultModal] = useState(false);
 
-  // const { localToday, updateLocalStorage } = useDailyLocalStorageLegacy(source, data);
-  const { localToday, updateLocalStorage, stateToApply } = useDailyLocalToday<ArteRuimLocalToday>({
+  const { localToday, updateLocalStorage } = useDailyLocalToday<ArteRuimLocalToday>({
     key: SETTINGS.TD_DAILY_ARTE_RUIM_LOCAL_TODAY,
     gameId: data.id,
     defaultValue: defaultArteRuimLocalToday,
+    onApplyLocalState: (value) => {
+      const stateGuessedLetters: BooleanDictionary = value.letters.reduce(
+        (acc, letter) => ({ ...acc, [letter]: true }),
+        {}
+      );
+      const stateCorrectLetters: BooleanDictionary = Object.keys(correctLetters).reduce(
+        (acc, letter) => ({ ...acc, [letter]: stateGuessedLetters[letter] }),
+        {}
+      );
+
+      const correctGuesses = Object.values(stateCorrectLetters).filter(Boolean).length;
+      const heartsLeft = SETTINGS.HEARTS - (value.letters.length - correctGuesses);
+
+      setGuessedLetters(stateGuessedLetters);
+      setCorrectLetters(stateCorrectLetters);
+      setHearts(heartsLeft);
+    },
   });
 
   const isComplete = Object.values(correctLetters).every(Boolean);
@@ -59,31 +71,25 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
     // Add to the guessed letters
     setGuessedLetters((prev) => ({ ...prev, [letter]: true }));
 
+    const isCorrect = correctLetters[letter] !== undefined;
+
     updateLocalStorage({
-      ...(localToday ?? {}),
       letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
     });
 
     // If it is a correct letter, make it true
-    if (correctLetters[letter] !== undefined) {
+    if (isCorrect) {
       setCorrectLetters((prev) => ({ ...prev, [letter]: true }));
     } else {
       // Otherwise, lose a heart
+
       setHearts((prev) => prev - 1);
     }
   };
 
-  // If already play, show winning screen
-  useEffect(() => {
-    if (stateToApply) {
-      stateToApply!.letters.forEach((letter: string) => {
-        guessLetter(letter);
-      });
-    }
-  }, [stateToApply]); // eslint-disable-line react-hooks/exhaustive-deps
-
   // Controls auto result modal
   useEffect(() => {
+    console.log(isComplete, hearts);
     if (isComplete || hearts <= 0) {
       setShowResultModal(true);
     }
@@ -106,7 +112,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
-          openRules={!stateToApply?.letters.length}
+          openRules={!isComplete || hearts === SETTINGS.HEARTS}
           rules={<Rules />}
         />
 

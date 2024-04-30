@@ -7,13 +7,13 @@ export const getArteRuimName = (language: Language) => {
  * @param text - The word to extract the letters from.
  * @returns An object with each letter in the word as a key and a boolean value indicating if the letter has been found.
  */
-export function getLettersInWord(text: string): Record<string, boolean> {
+export function getLettersInWord(text: string): BooleanDictionary {
   const cleanedUpText = text
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase();
   const letters = cleanedUpText.split('');
-  const lettersInWord: Record<string, boolean> = {};
+  const lettersInWord: BooleanDictionary = {};
 
   letters.forEach((letter) => {
     if (letter.match(/[a-zA-Z]/)) {
