@@ -9,7 +9,7 @@ import { getDailyName, getSourceName } from 'pages/Daily/utils';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { getArteRuimName } from '../utils/helpers';
-import { Letter } from '../utils/type';
+import { Letter } from 'pages/Daily/utils/types';
 
 type ResultsModalContentProps = {
   challenge: number;

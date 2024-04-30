@@ -1,5 +1,5 @@
+import { Letter } from 'pages/Daily/utils/types';
 import { SETTINGS } from './settings';
-import { Letter } from './type';
 
 export const getArteRuimName = (language: Language) => {
   return language === 'pt' ? 'Palavreado' : 'Wordling';

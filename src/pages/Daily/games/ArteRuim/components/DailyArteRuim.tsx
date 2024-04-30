@@ -2,19 +2,15 @@ import { Button, Layout, Modal, Space } from 'antd';
 import { Translate } from 'components/language';
 import { CalendarIcon } from 'icons/CalendarIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { LettersDictionary } from 'pages/Daily/utils/types';
-import { useEffect, useMemo, useState } from 'react';
 import { Me } from 'types/user';
-import { removeDuplicates } from 'utils/helpers';
 
 import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
-import { getLettersInWord } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { ArteRuimLocalToday, DailyArteRuimEntry } from '../utils/types';
+import { DailyArteRuimEntry } from '../utils/types';
+import { useArteRuimEngine } from '../utils/useArteRuimEngine';
 import { DrawingCarousel } from './DrawingCarousel';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
@@ -25,83 +21,9 @@ type DailyArteRuimProps = {
   currentUser: Me;
 };
 
-const defaultArteRuimLocalToday: ArteRuimLocalToday = {
-  id: '',
-  letters: [],
-  number: 0,
-};
-
 export function DailyArteRuim({ data }: DailyArteRuimProps) {
-  // Build game: word, letters, lives
-  const [hearts, setHearts] = useState<number>(SETTINGS.HEARTS);
-  const [guessedLetters, setGuessedLetters] = useState<BooleanDictionary>({});
-  const [correctLetters, setCorrectLetters] = useState<BooleanDictionary>(getLettersInWord(data.text));
-  const [showResultModal, setShowResultModal] = useState(false);
-
-  const { localToday, updateLocalStorage } = useDailyLocalToday<ArteRuimLocalToday>({
-    key: SETTINGS.TD_DAILY_ARTE_RUIM_LOCAL_TODAY,
-    gameId: data.id,
-    defaultValue: defaultArteRuimLocalToday,
-    onApplyLocalState: (value) => {
-      const stateGuessedLetters: BooleanDictionary = value.letters.reduce(
-        (acc, letter) => ({ ...acc, [letter]: true }),
-        {}
-      );
-      const stateCorrectLetters: BooleanDictionary = Object.keys(correctLetters).reduce(
-        (acc, letter) => ({ ...acc, [letter]: stateGuessedLetters[letter] }),
-        {}
-      );
-
-      const correctGuesses = Object.values(stateCorrectLetters).filter(Boolean).length;
-      const heartsLeft = SETTINGS.HEARTS - (value.letters.length - correctGuesses);
-
-      setGuessedLetters(stateGuessedLetters);
-      setCorrectLetters(stateCorrectLetters);
-      setHearts(heartsLeft);
-    },
-  });
-
-  const isComplete = Object.values(correctLetters).every(Boolean);
-
-  const guessLetter = (letter: string) => {
-    // Ignore previously guessed letters
-    if (guessedLetters[letter]) {
-      return;
-    }
-    // Add to the guessed letters
-    setGuessedLetters((prev) => ({ ...prev, [letter]: true }));
-
-    const isCorrect = correctLetters[letter] !== undefined;
-
-    updateLocalStorage({
-      letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
-    });
-
-    // If it is a correct letter, make it true
-    if (isCorrect) {
-      setCorrectLetters((prev) => ({ ...prev, [letter]: true }));
-    } else {
-      // Otherwise, lose a heart
-
-      setHearts((prev) => prev - 1);
-    }
-  };
-
-  // Controls auto result modal
-  useEffect(() => {
-    console.log(isComplete, hearts);
-    if (isComplete || hearts <= 0) {
-      setShowResultModal(true);
-    }
-  }, [isComplete, hearts]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const lettersState = useMemo(() => {
-    const state: LettersDictionary = {};
-    for (const letter in guessedLetters) {
-      state[letter] = correctLetters[letter] ? 'correct' : 'incorrect';
-    }
-    return state;
-  }, [guessedLetters, correctLetters]);
+  const { hearts, guesses, showResultModal, setShowResultModal, isWin, isComplete, guessLetter, solution } =
+    useArteRuimEngine(data);
 
   return (
     <Layout className="app">
@@ -118,9 +40,9 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
 
         <DrawingCarousel drawings={data.drawings} />
 
-        <Prompt text={data.text} correctLetters={correctLetters} />
+        <Prompt text={data.text} guesses={guesses} />
 
-        {(isComplete || hearts <= 0) && (
+        {isComplete && (
           <Space className="results-container" direction="vertical" align="center">
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
@@ -136,18 +58,14 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
         >
           <ResultsModalContent
             challenge={data.number}
-            win={isComplete}
+            win={isWin}
             hearts={hearts}
             text={data.text}
-            correctLetters={correctLetters}
+            solution={solution}
           />
         </Modal>
 
-        <Keyboard
-          lettersState={lettersState}
-          onLetterClick={guessLetter}
-          disabled={hearts <= 0 || isComplete}
-        />
+        <Keyboard lettersState={guesses} onLetterClick={guessLetter} disabled={isComplete} />
       </Layout.Content>
     </Layout>
   );

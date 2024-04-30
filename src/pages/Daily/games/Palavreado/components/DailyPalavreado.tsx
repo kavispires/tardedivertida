@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Translate } from 'components/language';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { LettersDictionary } from 'pages/Daily/utils/types';
+import { Letter, LettersDictionary } from 'pages/Daily/utils/types';
 import { useEffect, useState } from 'react';
 import { Me } from 'types/user';
 import { getAnimationClass, stringRemoveAccents } from 'utils/helpers';
@@ -14,7 +14,7 @@ import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
 import { generateGrid } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { DailyPalavreadoEntry, Letter } from '../utils/type';
+import { DailyPalavreadoEntry } from '../utils/type';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 
@@ -91,7 +91,10 @@ export function DailyPalavreado({ data, wordDictionary }: DailyPalavreadoProps) 
         currentRow[i] = { ...entry, state: 'correct' };
       }
 
-      updatedLettersState[entry.letter] = currentRow[i].state;
+      updatedLettersState[entry.letter] = {
+        letter: entry.letter,
+        state: currentRow[i].state,
+      };
     });
 
     const isComplete = currentRow.every((entry) => entry.state === 'correct');

@@ -38,7 +38,7 @@ export function Keyboard({
       if (
         !disabled &&
         (FIRST_ROW.includes(key) || SECOND_ROW.includes(key) || THIRD_ROW.includes(key)) &&
-        lettersState?.[key] !== 'disabled'
+        lettersState?.[key].disabled
       ) {
         return onLetterClick(key);
       }
@@ -57,9 +57,9 @@ export function Keyboard({
             key={letter}
             width={width}
             letter={letter}
-            state={lettersState?.[letter]}
+            state={lettersState?.[letter]?.state}
             onLetterClick={onLetterClick}
-            disabled={disabled}
+            disabled={disabled || lettersState?.[letter]?.disabled}
           />
         ))}
       </Flex>
@@ -69,9 +69,9 @@ export function Keyboard({
             key={letter}
             width={width}
             letter={letter}
-            state={lettersState?.[letter]}
+            state={lettersState?.[letter]?.state}
             onLetterClick={onLetterClick}
-            disabled={disabled}
+            disabled={disabled || lettersState?.[letter]?.disabled}
           />
         ))}
       </Flex>
@@ -92,9 +92,9 @@ export function Keyboard({
             key={letter}
             width={width}
             letter={letter}
-            state={lettersState?.[letter]}
+            state={lettersState?.[letter]?.state}
             onLetterClick={onLetterClick}
-            disabled={disabled}
+            disabled={disabled || lettersState?.[letter]?.disabled}
           />
         ))}
         {!!onBackspaceClick && (
