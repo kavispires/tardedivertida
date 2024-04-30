@@ -14,7 +14,5 @@ export type DailyArteRuimEntry = {
 export type ArteRuimLocalToday = {
   id: string;
   number: number;
-  victory: boolean;
-  hearts: number;
   letters: string[];
 };

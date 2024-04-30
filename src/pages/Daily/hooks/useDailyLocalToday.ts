@@ -1,21 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 
 type UseDailyLocalTodayProps<TLocal> = {
   key: string;
   gameId: string;
   defaultValue: TLocal;
+  onApplyLocalState?: (value: TLocal) => void;
 };
 
 export function useDailyLocalToday<TLocal = { id: string }>({
   key,
   gameId,
   defaultValue,
+  onApplyLocalState,
 }: UseDailyLocalTodayProps<TLocal>) {
   const [localToday, setLocalToday] = useLocalStorage<TLocal & { id: string }>(key, {
     ...defaultValue,
     id: gameId,
   });
+  const [hasAppliedLocalToday, setHasAppliedLocalToday] = useState<boolean>(false);
 
   useEffect(() => {
     // If stored id is different than the current game id, reset the local storage
@@ -32,9 +35,16 @@ export function useDailyLocalToday<TLocal = { id: string }>({
     setLocalToday((prev) => ({ id: gameId, ...(prev ?? defaultValue), ...value }));
   };
 
+  useEffect(() => {
+    if (!hasAppliedLocalToday && stateToApply && onApplyLocalState) {
+      setHasAppliedLocalToday(true);
+      console.count('APPLYING STATE');
+      onApplyLocalState(stateToApply);
+    }
+  }, [stateToApply]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return {
     localToday,
     updateLocalStorage,
-    stateToApply,
   };
 }
