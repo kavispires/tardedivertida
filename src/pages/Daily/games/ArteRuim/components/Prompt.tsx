@@ -1,15 +1,17 @@
 import { Avatar, Space } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
+import { LettersDictionary } from 'pages/Daily/utils/types';
 import { useMemo } from 'react';
+
 import { cleanupLetter, isLetter } from '../utils/helpers';
 
 type PromptProps = {
   text: string;
-  correctLetters: BooleanDictionary;
+  guesses: LettersDictionary;
 };
 
-export function Prompt({ text, correctLetters }: PromptProps) {
+export function Prompt({ text, guesses }: PromptProps) {
   const prompt = useMemo(() => text.split(' ').map((word) => word.split('')), [text]);
   return (
     <Space className="prompt" wrap align="center">
@@ -18,7 +20,7 @@ export function Prompt({ text, correctLetters }: PromptProps) {
           <Space key={`word-${i}`} className="prompt-word" wrap align="center">
             {word.map((l, j) => {
               const letter = cleanupLetter(l);
-              const isCorrect = correctLetters[letter];
+              const isCorrect = guesses?.[letter]?.state === 'correct';
               const key = `${j}-${l}-${i}`;
               if (isLetter(letter)) {
                 return isCorrect ? (

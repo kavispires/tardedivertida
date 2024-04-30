@@ -38,7 +38,6 @@ export function useDailyLocalToday<TLocal = { id: string }>({
   useEffect(() => {
     if (!hasAppliedLocalToday && stateToApply && onApplyLocalState) {
       setHasAppliedLocalToday(true);
-      console.count('APPLYING STATE');
       onApplyLocalState(stateToApply);
     }
   }, [stateToApply]); // eslint-disable-line react-hooks/exhaustive-deps

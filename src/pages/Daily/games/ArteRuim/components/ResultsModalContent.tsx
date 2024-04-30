@@ -16,19 +16,13 @@ type ResultsModalContentProps = {
   text: string;
   win: boolean;
   hearts: number;
-  correctLetters: BooleanDictionary;
+  solution: BooleanDictionary;
 };
 
-export function ResultsModalContent({
-  text,
-  challenge,
-  win,
-  hearts,
-  correctLetters,
-}: ResultsModalContentProps) {
+export function ResultsModalContent({ text, challenge, win, hearts, solution }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
-  const result = writeResult({ challenge, remainingHearts: hearts, correctLetters, language });
+  const result = writeResult({ challenge, remainingHearts: hearts, solution, language });
 
   return (
     <Space direction="vertical" className="space-container">
@@ -63,16 +57,16 @@ export function ResultsModalContent({
 function writeResult({
   challenge,
   remainingHearts,
-  correctLetters,
+  solution,
   language,
 }: {
   challenge: number;
   remainingHearts: number;
-  correctLetters: BooleanDictionary;
+  solution: BooleanDictionary;
   language: Language;
 }) {
-  const totalLetters = Object.keys(correctLetters).length;
-  const guessedLetters = Object.values(correctLetters).filter(Boolean).length;
+  const totalLetters = Object.keys(solution).length;
+  const guessedLetters = Object.values(solution).filter(Boolean).length;
 
   return [
     `💻 ${getDailyName(language)} ${getArteRuimName(language)} #${challenge}`,
