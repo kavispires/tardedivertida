@@ -28,7 +28,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
   return (
     <Layout className="app">
       <Header icon={<DailyArtGameIcon />}>
-        TD <Translate pt="Diário" en="Daily" /> #{data.number}
+        TD <Translate pt="Arte Ruim" en="Questionable Art" /> #{data.number}
       </Header>
       <Layout.Content>
         <Menu

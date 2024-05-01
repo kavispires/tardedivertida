@@ -1,5 +1,6 @@
 import utils from '../utils';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
+import * as dataUtils from './collections';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD
@@ -111,9 +112,28 @@ const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => 
   return true;
 };
 
+type DailySaveDrawingPayload = {
+  drawings: any;
+  language: Language;
+};
+
+const saveDrawing = async (data: DailySaveDrawingPayload, context: FirebaseContext) => {
+  const actionText = 'save drawings';
+  const uid = context?.auth?.uid;
+
+  if (!uid) {
+    return utils.firebase.throwException('User not authenticated', actionText);
+  }
+
+  await dataUtils.updateDataCollectionRecursively('drawings', data.language, data.drawings);
+
+  return true;
+};
+
 const DAILY_API_ACTIONS = {
   GET_DAILY: getDaily,
   SAVE_DAILY: saveDaily,
+  SAVE_DRAWING: saveDrawing,
 };
 
 export const dailyApi = utils.firebase.apiDelegator('daily api', DAILY_API_ACTIONS);

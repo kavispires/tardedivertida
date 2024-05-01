@@ -39,22 +39,22 @@ export function Hub() {
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario/palavreado" className="hub-item">
+          <TransparentButton hoverType="sepia" className="hub-item">
+            <Link to="/diario/artista" className="hub-item">
               <DailyDrawingGameIcon style={{ width: 75 }} />
-              <Translate pt="Desenhe!" en="Draw!" />
+              <Translate pt="Picaço!" en="Big Artist!" />
             </Link>
           </TransparentButton>
 
           <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario/palavreado" className="hub-item">
+            <Link to="/diario" className="hub-item">
               <DailyWordGameIcon style={{ width: 75 }} />
-              <Translate pt="Palavreado" en="Word Game" />
+              <Translate pt="Palavreado" en="Rewording" />
             </Link>
           </TransparentButton>
 
           <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario/quarteto" className="hub-item">
+            <Link to="/diario" className="hub-item">
               <DailyGroupingGameIcon style={{ width: 75 }} />
               <Translate pt="Quarteto" en="Connect Four" />
             </Link>

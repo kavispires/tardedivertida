@@ -147,4 +147,10 @@ export const feedEmulatorDaily = async () => {
   };
   await utils.firebase.getDailyRef('daily').doc('history').set(history);
   await utils.firebase.getDailyRef('diario').doc('history').set(history);
+
+  // Suffix counts
+  await utils.firebase.getDailyRef('data').doc('suffixCounts').set({
+    drawingsPT: 2,
+    drawingsEN: 3,
+  });
 };
