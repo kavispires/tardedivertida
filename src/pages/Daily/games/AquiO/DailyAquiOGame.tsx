@@ -3,27 +3,30 @@ import './utils/styles.scss';
 import { useLanguage } from 'hooks/useLanguage';
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
-import { useDailyAquiOChallenge } from 'pages/Daily/games/AquiO/data/useDailyAquiOChallenge';
+import { useRandomAquiOChallenge } from 'pages/Daily/games/AquiO/data/useRandomAquiOChallenge';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { getToday, wait } from '../../utils';
 import { DailyAquiO } from './components/DailyAquiO';
+import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
 
 export function DailyAquiOGame() {
   const today = getToday();
   const { language } = useLanguage();
-  const { pathname } = useLocation();
   const [isRandomGame, setRandomGame] = useState(false);
 
   // Load challenge
-  const challengeQuery = useDailyAquiOChallenge(`${today}`, pathname.substring(1), isRandomGame);
+  const challengeQuery = useDailyChallenge(`${today}`);
+  const randomGameQuery = useRandomAquiOChallenge(`${today}`);
 
-  if (challengeQuery.isLoading || challengeQuery.isRefetching) {
+  if (challengeQuery.isLoading || challengeQuery.isRefetching || randomGameQuery.isLoading) {
     return <DailyLoading />;
   }
 
-  if (challengeQuery.isError) {
+  const dailyData = challengeQuery?.data?.['aqui-o'];
+  const data = isRandomGame ? randomGameQuery?.data : dailyData;
+
+  if (challengeQuery.isError || !data) {
     return <DailyError />;
   }
 
@@ -34,11 +37,6 @@ export function DailyAquiOGame() {
   };
 
   return (
-    <DailyAquiO
-      data={challengeQuery.data}
-      language={language}
-      onToggleGame={onToggleGame}
-      isRandomGame={isRandomGame}
-    />
+    <DailyAquiO data={data} language={language} onToggleGame={onToggleGame} isRandomGame={isRandomGame} />
   );
 }

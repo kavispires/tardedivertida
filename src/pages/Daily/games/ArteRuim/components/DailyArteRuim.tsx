@@ -1,6 +1,6 @@
 import { Button, Layout, Modal, Space } from 'antd';
 import { Translate } from 'components/language';
-import { CalendarIcon } from 'icons/CalendarIcon';
+import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { Me } from 'types/user';
 
@@ -27,7 +27,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<CalendarIcon />}>
+      <Header icon={<DailyArtGameIcon />}>
         TD <Translate pt="Diário" en="Daily" /> #{data.number}
       </Header>
       <Layout.Content>

@@ -36,12 +36,12 @@ function DailyPage() {
 
   const Outlet =
     {
-      '': DailyArteRuimGame,
+      '': Hub,
       'aqui-o': DailyAquiOGame,
       'arte-ruim': DailyArteRuimGame,
       hub: Hub,
       palavreado: DailyPalavreadoGame,
-    }?.[subPath] ?? DailyArteRuimGame;
+    }?.[subPath] ?? Hub;
 
   return <Outlet />;
 }

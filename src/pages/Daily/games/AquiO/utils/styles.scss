@@ -13,6 +13,7 @@
 }
 
 .aqui-o-disc-item {
+  cursor: pointer;
   &--pos-0 {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
