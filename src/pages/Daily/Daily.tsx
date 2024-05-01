@@ -12,6 +12,7 @@ import { Hub } from './games/Hub';
 import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';
 import { getDailyName } from './utils';
 import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
+import { DailyArtistaGame } from './games/Artista/DailyArtistaGame';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -41,6 +42,7 @@ function DailyPage() {
       'arte-ruim': DailyArteRuimGame,
       hub: Hub,
       palavreado: DailyPalavreadoGame,
+      artista: DailyArtistaGame,
     }?.[subPath] ?? Hub;
 
   return <Outlet />;

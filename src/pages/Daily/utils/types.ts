@@ -1,13 +1,15 @@
 import { DailyAquiOEntry } from '../games/AquiO/utils/types';
 import { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
+import { DailyArtistaEntry } from '../games/Artista/utils/types';
 import { DailyPalavreadoEntry } from '../games/Palavreado/utils/type';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
 export type DailyResponse = {
-  'arte-ruim': DailyArteRuimEntry;
-  palavreado: DailyPalavreadoEntry;
   'aqui-o': DailyAquiOEntry;
+  'arte-ruim': DailyArteRuimEntry;
+  artista: DailyArtistaEntry;
+  palavreado: DailyPalavreadoEntry;
 };
 
 export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'idle';
@@ -26,11 +28,4 @@ export type LettersDictionary = Dictionary<Letter>;
 //   type: 'palavreado';
 //   words: string[];
 //   letters: string[];
-// };
-
-// export type DailyArtistaEntry = {
-//   id: DateKey;
-//   number: number;
-//   type: 'artista';
-//   cards: ArteRuimCard[];
 // };

@@ -43,6 +43,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
     result,
     isPlaying,
     attempts,
+    localToday,
   } = useAquiOEngine(data, isRandomGame);
 
   // UI state
@@ -159,12 +160,14 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
           >
             <ResultsModalContent
               challengeTitle={data.title[language]}
+              challengeNumber={data.number}
               hearts={hearts}
               progress={discIndex}
               itemsIds={data.itemsIds}
               isRandomGame={isRandomGame}
               hardMode={mode === 'challenge'}
               lastMatch={result}
+              localToday={localToday}
             />
           </Modal>
         </Space>

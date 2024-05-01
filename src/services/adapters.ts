@@ -26,6 +26,7 @@ export const USER_API = {
 export const DAILY_API_ACTIONS = {
   GET_DAILY: 'GET_DAILY',
   SAVE_DAILY: 'SAVE_DAILY',
+  SAVE_DRAWING: 'SAVE_DRAWING',
 };
 
 export const DAILY_API = {

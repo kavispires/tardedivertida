@@ -14,6 +14,7 @@ import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult
 import { SETTINGS } from '../utils/settings';
 import { getAquiOName } from '../utils/helpers';
 import clsx from 'clsx';
+import { AquiOLocalToday } from '../utils/types';
 
 const titles = [
   <>
@@ -44,22 +45,26 @@ const getTitle = (progress: number, remainingHearts: number) => {
 
 type ResultsModalContentProps = {
   challengeTitle: string;
+  challengeNumber: number;
   hearts: number;
   progress: number;
   itemsIds: string[];
   isRandomGame: boolean;
   hardMode: boolean;
   lastMatch: string;
+  localToday?: AquiOLocalToday;
 };
 
 export function ResultsModalContent({
   challengeTitle,
+  challengeNumber,
   hearts,
   progress,
   itemsIds,
   isRandomGame,
   hardMode,
   lastMatch,
+  localToday,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
   const result = writeResult({
@@ -70,9 +75,11 @@ export function ResultsModalContent({
     goal: SETTINGS.GOAL,
     language,
     hardMode,
+    challengeNumber,
   });
 
   const title = getTitle(progress, hearts);
+  const better = (localToday?.discs ?? 0) > progress;
 
   return (
     <Space direction="vertical" className="space-container">
@@ -81,10 +88,28 @@ export function ResultsModalContent({
       </Typography.Title>
       <Typography.Paragraph className="center">
         <Translate
-          pt={`Você avançou ${progress} discos de ${SETTINGS.GOAL}`}
-          en={`You advanced ${progress} discs out of ${SETTINGS.GOAL}`}
+          pt={`Você avançou ${progress} discos de ${SETTINGS.GOAL}.`}
+          en={`You advanced ${progress} discs out of ${SETTINGS.GOAL}.`}
         />
+        <br />
       </Typography.Paragraph>
+      {!isRandomGame && (
+        <Typography.Paragraph className="center">
+          <Translate
+            pt="Você pode tentar novamente até conseguir 15 ou até não ter mais corações."
+            en="You can try again until you reach 15 or until you run out of hearts."
+          />
+          {better && (
+            <>
+              <br />
+              <Translate
+                pt={`Seu melhor hoje foi de ${progress} discos. Tente novamente!`}
+                en={`Your best today was ${progress} discs. Try again!`}
+              />
+            </>
+          )}
+        </Typography.Paragraph>
+      )}
 
       <Flex gap={6}>
         {!!lastMatch && (
@@ -114,6 +139,7 @@ export function ResultsModalContent({
 
 function writeResult({
   title,
+  challengeNumber,
   remainingHearts,
   totalHearts,
   progress,
@@ -122,6 +148,7 @@ function writeResult({
   hardMode,
 }: {
   title: string;
+  challengeNumber: number;
   remainingHearts: number;
   totalHearts: number;
   progress: number;
@@ -130,9 +157,8 @@ function writeResult({
   hardMode: boolean;
 }): string {
   return [
-    `🔘 ${getDailyName(language)} ${getAquiOName(language)}:`,
-    `${title}${hardMode ? '*' : ''}`,
-    `${writeHeartResultString(remainingHearts, totalHearts)}     ${progress}/${goal}`,
+    `🔘 ${getDailyName(language)} ${getAquiOName(language)} #${challengeNumber}`,
+    `${title}${hardMode ? '*' : ''}: ${progress}/${goal} ${writeHeartResultString(remainingHearts, totalHearts)}`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/aqui-o`,
   ].join('\n');
 }

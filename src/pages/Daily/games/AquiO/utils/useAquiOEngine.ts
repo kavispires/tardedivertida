@@ -134,5 +134,6 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
     discB,
     result,
     isPlaying: isRunning,
+    localToday,
   };
 }
