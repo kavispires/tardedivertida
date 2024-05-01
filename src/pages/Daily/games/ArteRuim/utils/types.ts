@@ -12,7 +12,7 @@ export type DailyArteRuimEntry = {
 };
 
 export type ArteRuimLocalToday = {
-  id: string;
+  id: DateKey;
   number: number;
   letters: string[];
 };

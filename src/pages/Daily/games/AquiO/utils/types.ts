@@ -1,3 +1,14 @@
+import { DateKey } from 'pages/Daily/utils/types';
+
+export type AquiOLocalToday = {
+  id: DateKey;
+  number: number;
+  discs: number;
+  attempts: number;
+  hardMode: boolean;
+  hearts: number;
+};
+
 export type AquiOItem = {
   itemId: string;
   position: number;
@@ -18,8 +29,10 @@ export type AquiOSet = {
 };
 
 export type DailyAquiOEntry = {
-  id: string;
+  id: DateKey;
+  number: number;
   type: 'aqui-o';
+  setId: string;
   title: DualLanguageValue;
   itemsIds: string[];
 };

@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { LettersDictionary } from 'pages/Daily/utils/types';
+import { removeDuplicates } from 'utils/helpers';
+
+import { getLettersInWord } from './helpers';
 import { SETTINGS } from './settings';
 import { ArteRuimLocalToday, DailyArteRuimEntry } from './types';
-import { LettersDictionary } from 'pages/Daily/utils/types';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { removeDuplicates } from 'utils/helpers';
-import { getLettersInWord } from './helpers';
 
 type GameState = {
   hearts: number;
@@ -19,7 +21,7 @@ const defaultArteRuimLocalToday: ArteRuimLocalToday = {
 };
 
 export function useArteRuimEngine(data: DailyArteRuimEntry) {
-  const [state, setState] = useState<GameState>({
+  const { state, setState, updateState } = useDailyGameState<GameState>({
     solution: getLettersInWord(data.text),
     hearts: SETTINGS.HEARTS,
     guesses: {},
@@ -28,6 +30,7 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
   const { localToday, updateLocalStorage } = useDailyLocalToday<ArteRuimLocalToday>({
     key: SETTINGS.TD_DAILY_ARTE_RUIM_LOCAL_TODAY,
     gameId: data.id,
+    challengeNumber: data.number ?? 0,
     defaultValue: defaultArteRuimLocalToday,
     onApplyLocalState: (value) => {
       let hearts = SETTINGS.HEARTS;
@@ -46,17 +49,15 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
         return acc;
       }, {});
 
-      setState((prev) => ({
-        ...prev,
+      updateState({
         guesses,
         hearts,
         solution,
-      }));
+      });
     },
   });
 
-  const [showResultModal, setShowResultModal] = useState(false);
-
+  // ACTIONS
   const guessLetter = (letter: string) => {
     // Ignore previously guessed letters
     if (state.guesses[letter]) {
@@ -87,16 +88,13 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
     }));
   };
 
+  // CONDITIONS
   const isWin = Object.values(state.solution).every(Boolean);
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
 
-  // Controls auto result modal
-  useEffect(() => {
-    if (isComplete) {
-      setShowResultModal(true);
-    }
-  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
+  // RESULTS MODAL
+  const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
 
   return {
     hearts: state.hearts,

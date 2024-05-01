@@ -11,7 +11,10 @@ import { AquiOSet } from '../utils/types';
 
 import type { TableProps } from 'antd';
 function orderSets(givenSets: AquiOSet[]) {
-  return orderBy(givenSets, [(s) => s.itemsIds[1]]).map((s) => ({
+  return orderBy(givenSets, [
+    (s) => removeDuplicates(s.itemsIds).filter(Boolean).length === 22,
+    (s) => s.title.pt,
+  ]).map((s) => ({
     ...s,
     itemsIds: orderBy(s.itemsIds, (id) => Number(id)),
   }));

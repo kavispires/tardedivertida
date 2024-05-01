@@ -4,15 +4,19 @@ import { useLocalStorage } from 'react-use';
 type UseDailyLocalTodayProps<TLocal> = {
   key: string;
   gameId: string;
+  challengeNumber: number;
   defaultValue: TLocal;
   onApplyLocalState?: (value: TLocal) => void;
+  disabled?: boolean;
 };
 
 export function useDailyLocalToday<TLocal = { id: string }>({
   key,
   gameId,
+  challengeNumber,
   defaultValue,
   onApplyLocalState,
+  disabled,
 }: UseDailyLocalTodayProps<TLocal>) {
   const [localToday, setLocalToday] = useLocalStorage<TLocal & { id: string }>(key, {
     ...defaultValue,
@@ -22,21 +26,21 @@ export function useDailyLocalToday<TLocal = { id: string }>({
 
   useEffect(() => {
     // If stored id is different than the current game id, reset the local storage
-    if (localToday && localToday.id !== gameId) {
-      setLocalToday({ ...defaultValue, id: gameId });
+    if (localToday && localToday.id !== gameId && !disabled) {
+      setLocalToday({ ...defaultValue, id: gameId, number: challengeNumber });
       return;
     }
-  }, [localToday, gameId, setLocalToday, defaultValue]);
+  }, [localToday, gameId, setLocalToday, defaultValue, challengeNumber, disabled]);
 
   // Applied the stored local storage to the game
   const stateToApply = localToday && localToday.id === gameId ? localToday : null;
 
   const updateLocalStorage = (value: Partial<TLocal>) => {
-    setLocalToday((prev) => ({ id: gameId, ...(prev ?? defaultValue), ...value }));
+    setLocalToday((prev) => ({ id: gameId, number: challengeNumber, ...(prev ?? defaultValue), ...value }));
   };
 
   useEffect(() => {
-    if (!hasAppliedLocalToday && stateToApply && onApplyLocalState) {
+    if (!hasAppliedLocalToday && stateToApply && onApplyLocalState && !disabled) {
       setHasAppliedLocalToday(true);
       onApplyLocalState(stateToApply);
     }

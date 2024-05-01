@@ -2,18 +2,16 @@ import { Button, Divider, FloatButton, Layout, Modal, Space, Switch, Typography 
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { TimerBar } from 'components/timers';
-import { useCountdown } from 'hooks/useCountdown';
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
-import { intersectionBy } from 'lodash';
-import { useEffect, useMemo, useState } from 'react';
-import { useLocalStorage, useMeasure } from 'react-use';
-import { getAnimationClass, inNSeconds, isDevEnv } from 'utils/helpers';
+import { useMemo } from 'react';
+import { useMeasure } from 'react-use';
+import { getAnimationClass, isDevEnv } from 'utils/helpers';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
-import { getDiscs } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { AquiODisc, DailyAquiOEntry } from '../utils/types';
+import { DailyAquiOEntry } from '../utils/types';
+import { useAquiOEngine } from '../utils/useAquiOEngine';
 import { Disc } from './Disc';
 import { PreloadItems } from './PreloadItems';
 import { ResultsModalContent } from './ResultsModalContent';
@@ -27,65 +25,34 @@ type DailyAquiOProps = {
 };
 
 export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyAquiOProps) {
-  const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
-  // Game state
-  const [discs, setDiscs] = useState<AquiODisc[]>([]);
-  const [hearts, setHearts] = useState<number>(SETTINGS.HEARTS);
-  const [showResultModal, setShowResultModal] = useState(false);
-  const [isComplete, setComplete] = useState<boolean>(false);
+  const {
+    hearts,
+    showResultModal,
+    setShowResultModal,
+    discIndex,
+    isWin,
+    isLose,
+    isComplete,
+    onStart,
+    onSelect,
+    timeLeft,
+    mode,
+    setMode,
+    discA,
+    discB,
+    result,
+    isPlaying,
+    attempts,
+  } = useAquiOEngine(data, isRandomGame);
 
   // UI state
-  const [discIndex, setCardIndex] = useState<number>(0);
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
   const [headerRef, headerMeasure] = useMeasure<HTMLDivElement>();
   const discWidth = useMemo(() => {
     const width = contentMeasure.width - 24;
     const height = (contentMeasure.height - headerMeasure.height) / 2 - 24;
-
     return Math.max(Math.min(width, height, 450), 150);
   }, [contentMeasure.height, contentMeasure.width, headerMeasure.height]);
-
-  const { timeLeft, isRunning, restart, pause } = useCountdown({
-    duration: 60,
-    autoStart: false,
-    onExpire: () => setComplete(true),
-  });
-
-  const onStart = () => {
-    setDiscs(getDiscs(data, mode === 'challenge'));
-    setCardIndex(0);
-    if (isComplete) {
-      setComplete(false);
-      restart(inNSeconds(60), true);
-    }
-    restart(inNSeconds(60), true);
-  };
-
-  const win = discIndex === SETTINGS.GOAL;
-
-  const discA = discs[discIndex];
-  const discB = discs[discIndex + 1];
-
-  const result = useMemo(
-    () => intersectionBy(discA?.items ?? [], discB?.items ?? [], 'itemId')?.[0]?.itemId,
-    [discA, discB]
-  );
-
-  const onSelect = (itemId: string) => {
-    if (itemId === result) {
-      setCardIndex(discIndex + 1);
-    } else {
-      setHearts((prev) => prev - 1);
-    }
-  };
-
-  // Controls auto result modal
-  useEffect(() => {
-    if (win || isComplete || hearts <= 0) {
-      setShowResultModal(true);
-      pause();
-    }
-  }, [isComplete, hearts, win]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Layout className="app">
@@ -98,6 +65,12 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
           <Space className="space-container">
             <Typography.Text strong>
               {data.title[language]} | <Translate pt="Disco" en="Disc" /> {discIndex}/{SETTINGS.GOAL}
+              {!isRandomGame && (
+                <>
+                  {' '}
+                  | <Translate pt="Tentativa" en="Attempt" /> {attempts + (isPlaying ? 1 : 0)}{' '}
+                </>
+              )}
             </Typography.Text>
           </Space>
 
@@ -107,9 +80,15 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
         </div>
 
         <Space className="space-container" direction="vertical">
-          {!isRunning && (
+          {!isPlaying && (
             <>
-              <Button size="large" onClick={onStart} type="primary" disabled={hearts === 0} icon="🔘">
+              <Button
+                size="large"
+                onClick={onStart}
+                type="primary"
+                disabled={isRandomGame ? false : isWin || isLose}
+                icon="🔘"
+              >
                 <Translate pt="Começar" en="Start" />
                 &nbsp;
                 {isRandomGame ? (
@@ -129,12 +108,16 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
             </>
           )}
 
-          {(isComplete || hearts <= 0 || win) && (
+          {isComplete && (
             <Space className="results-container" align="center" direction="vertical">
               <Button onClick={() => setShowResultModal(true)}>
                 <Translate pt="Ver Resultado" en="Show Results" />
               </Button>
+            </Space>
+          )}
 
+          {(isRandomGame || isComplete) && (
+            <Space className="results-container" align="center" direction="vertical">
               <Divider />
 
               <Button onClick={onToggleGame}>
@@ -147,7 +130,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
             </Space>
           )}
 
-          {isRunning && !win && (
+          {isPlaying && (
             <Space className="space-container" direction="vertical">
               <Disc
                 disc={discA}
