@@ -12,17 +12,13 @@ import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
-import { useDailyChallenge } from '../hooks/useDailyChallenge';
-import { getToday } from '../utils';
 
 export function Hub() {
   // Pre-load challenges
-  const challengeQuery = useDailyChallenge(getToday());
 
   return (
     <DailyChrome>
       <div className="hub">
-        {challengeQuery.isLoading ? <div className="loading-bar"></div> : <></>}
         <Typography.Title level={5}>
           <Translate pt="Escolha um jogo" en="Choose a game" />
         </Typography.Title>

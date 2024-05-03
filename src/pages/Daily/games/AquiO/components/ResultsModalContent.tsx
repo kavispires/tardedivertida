@@ -168,6 +168,6 @@ function writeResult({
   return [
     `🔘 ${getDailyName(language)} ${getAquiOName(language)} #${challengeNumber}`,
     `${title}${hardMode ? '*' : ''}: ${progress}/${goal} ${writeHeartResultString(remainingHearts, totalHearts)}`,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/aqui-o`,
+    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');
 }
