@@ -4,8 +4,10 @@ import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
+import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { Link } from 'react-router-dom';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { getArteRuimName } from '../utils/helpers';
@@ -46,10 +48,17 @@ export function ResultsModalContent({ text, challenge, win, hearts, solution }: 
       </Typography.Paragraph>
 
       <TextHighlight className="result-answer">
-        {<Typography.Paragraph>{text}</Typography.Paragraph>}
+        <Typography.Paragraph>{text}</Typography.Paragraph>
       </TextHighlight>
 
       <CopyToClipboardResult result={result} rows={3} />
+
+      <Typography.Paragraph className="center" strong>
+        Já desenhou hoje? Novas frases todos os dias!
+        <br />
+        <IconAvatar icon={<DailyDrawingGameIcon />} />
+        <Link to="/diario/artista">Picaço!</Link>
+      </Typography.Paragraph>
     </Space>
   );
 }
@@ -71,6 +80,6 @@ function writeResult({
   return [
     `💻 ${getDailyName(language)} ${getArteRuimName(language)} #${challenge}`,
     `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${Math.round((guessedLetters / totalLetters) * 100)}%)`,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/arte-ruim`,
+    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');
 }
