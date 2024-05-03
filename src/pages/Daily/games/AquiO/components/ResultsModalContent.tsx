@@ -132,7 +132,16 @@ export function ResultsModalContent({
           ))}
       </Flex>
 
-      {!isRandomGame && <CopyToClipboardResult result={result} rows={4} />}
+      {!isRandomGame ? (
+        <CopyToClipboardResult result={result} rows={4} />
+      ) : (
+        <Typography.Paragraph className="center">
+          <Translate
+            pt="Baralhos aleatórios não são compartilháveis, mas você pode jogar mais."
+            en="Random decks are not shareable, but you can play more."
+          />
+        </Typography.Paragraph>
+      )}
     </Space>
   );
 }
