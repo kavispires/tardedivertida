@@ -117,7 +117,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
             </Space>
           )}
 
-          {(isRandomGame || isComplete) && (
+          {(isRandomGame || isComplete) && !isPlaying && (
             <Space className="results-container" align="center" direction="vertical">
               <Divider />
 
