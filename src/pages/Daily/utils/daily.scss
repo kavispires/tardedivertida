@@ -49,7 +49,16 @@
 
 .result-answer .ant-typography {
   font-size: 1.25rem;
+  font-weight: bold;
   color: get-color('blue', 6);
+}
+
+.result-answer__text .ant-typography {
+  margin: get-unit(0 1);
+
+  span {
+    text-decoration: underline;
+  }
 }
 
 .results-container {

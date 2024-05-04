@@ -50,13 +50,13 @@ export function getDailyName(language: Language) {
  * @param totalHearts - The total number of hearts.
  * @returns The heart result string.
  */
-export function writeHeartResultString(remainHearts: number, totalHearts: number): string {
+export function writeHeartResultString(remainHearts: number, totalHearts: number, separator = ''): string {
   const heartsValue = Math.max(0, remainHearts);
   return (
-    Array(heartsValue).fill('❤️').join('') +
+    Array(heartsValue).fill('❤️').join(separator) +
     Array(totalHearts - heartsValue)
       .fill('🩶')
-      .join('')
+      .join(separator)
   );
 }
 

@@ -48,8 +48,8 @@ export function Hub() {
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario" className="hub-item">
+          <TransparentButton hoverType="sepia" className="hub-item">
+            <Link to="/diario/palavreado" className="hub-item">
               <DailyWordGameIcon style={{ width: 75 }} />
               <Translate pt="Palavreado" en="Rewording" />
             </Link>

@@ -23,6 +23,7 @@ export function useDailyChallenge(today: string) {
       });
       return response.data as DailyResponse;
     },
+    enabled: language === 'pt',
     retry: false,
     onSuccess: (response) => {
       const data = response;
