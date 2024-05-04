@@ -10,7 +10,6 @@ import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily
 import { Link } from 'react-router-dom';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
-import { getArteRuimName } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 
 type ResultsModalContentProps = {
@@ -22,9 +21,15 @@ type ResultsModalContentProps = {
 };
 
 export function ResultsModalContent({ text, challenge, win, hearts, solution }: ResultsModalContentProps) {
-  const { language } = useLanguage();
+  const { language, dualTranslate } = useLanguage();
 
-  const result = writeResult({ challenge, remainingHearts: hearts, solution, language });
+  const result = writeResult({
+    game: dualTranslate(SETTINGS.NAME),
+    challenge,
+    remainingHearts: hearts,
+    solution,
+    language,
+  });
 
   return (
     <Space direction="vertical" className="space-container">
@@ -64,11 +69,13 @@ export function ResultsModalContent({ text, challenge, win, hearts, solution }: 
 }
 
 function writeResult({
+  game,
   challenge,
   remainingHearts,
   solution,
   language,
 }: {
+  game: string;
   challenge: number;
   remainingHearts: number;
   solution: BooleanDictionary;
@@ -78,7 +85,7 @@ function writeResult({
   const guessedLetters = Object.values(solution).filter(Boolean).length;
 
   return [
-    `💻 ${getDailyName(language)} ${getArteRuimName(language)} #${challenge}`,
+    `💻 ${getDailyName(language)} ${game} #${challenge}`,
     `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${Math.round((guessedLetters / totalLetters) * 100)}%)`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');

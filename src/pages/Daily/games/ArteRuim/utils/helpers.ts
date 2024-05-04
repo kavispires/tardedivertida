@@ -1,7 +1,3 @@
-export const getArteRuimName = (language: Language) => {
-  return language === 'pt' ? 'Arte Ruim' : 'Questionable Art';
-};
-
 /**
  * Returns an object with each letter in the word as a key and a boolean value indicating if the letter has been found.
  * @param text - The word to extract the letters from.

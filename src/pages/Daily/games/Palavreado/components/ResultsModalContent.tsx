@@ -7,7 +7,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { getDailyName, getSourceName } from 'pages/Daily/utils';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
-import { getPalavreadoName } from '../utils/helpers';
+import { SETTINGS } from '../utils/settings';
 import { PalavreadoLetter } from '../utils/type';
 
 type ResultsModalContentProps = {
@@ -27,9 +27,15 @@ export function ResultsModalContent({
   hearts,
   guesses,
 }: ResultsModalContentProps) {
-  const { language } = useLanguage();
+  const { language, dualTranslate } = useLanguage();
 
-  const result = writeResult({ challenge, remainingHearts: hearts, guesses, language });
+  const result = writeResult({
+    game: dualTranslate(SETTINGS.NAME),
+    challenge,
+    remainingHearts: hearts,
+    guesses,
+    language,
+  });
 
   return (
     <Space direction="vertical" className="space-container">
@@ -64,11 +70,13 @@ export function ResultsModalContent({
 }
 
 function writeResult({
+  game,
   challenge,
   remainingHearts,
   guesses,
   language,
 }: {
+  game: string;
   challenge: number;
   remainingHearts: number;
   guesses: PalavreadoLetter[][];
@@ -92,7 +100,7 @@ function writeResult({
   );
 
   return [
-    `📒 ${getDailyName(language)} ${getPalavreadoName(language)} #${challenge}`,
+    `📒 ${getDailyName(language)} ${game} #${challenge}`,
     cleanUpAttempts
       .map((row) => row.join(' ').trim())
       .filter(Boolean)

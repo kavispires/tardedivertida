@@ -1,16 +1,18 @@
 import { useGlobalState } from './useGlobalState';
 
-/**
- * Translate text
- * @returns
- */
-export function useLanguage(): {
+export type UseLanguageResult = {
   language: Language;
   translate: (pt: string, en: string, custom?: string) => string;
   dualTranslate: (dualLanguageObj: DualLanguageValue) => string;
   setLanguage: (u: React.SetStateAction<Language>) => void;
   toggleLanguage: () => void;
-} {
+};
+
+/**
+ * Translate text
+ * @returns
+ */
+export function useLanguage(): UseLanguageResult {
   const [language, setLanguage] = useGlobalState('language');
 
   const toggleLanguage = () => {

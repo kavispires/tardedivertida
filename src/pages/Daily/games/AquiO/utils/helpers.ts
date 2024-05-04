@@ -3,10 +3,6 @@ import { SEPARATOR } from 'utils/constants';
 
 import { AquiODisc, DailyAquiOEntry } from './types';
 
-export const getAquiOName = (language: Language) => {
-  return language === 'pt' ? 'Aqui Ó' : 'Find This';
-};
-
 export const getDiscs = (entry: DailyAquiOEntry, challengingGame?: boolean): AquiODisc[] => {
   const allItems = shuffle(entry.itemsIds);
 

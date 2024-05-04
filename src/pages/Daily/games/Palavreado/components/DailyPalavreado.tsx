@@ -1,5 +1,5 @@
 import { Button, Layout, Modal, Space } from 'antd';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { Me } from 'types/user';
 
@@ -39,7 +39,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
   return (
     <Layout className="app">
       <Header icon={<DailyWordGameIcon />}>
-        TD <Translate pt="Diário" en="Daily" /> #{data.number}
+        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>
         <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
