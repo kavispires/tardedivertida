@@ -1,20 +1,37 @@
-import { Letter } from 'pages/Daily/utils/types';
-import { SETTINGS } from './settings';
+import { PalavreadoLetter } from './type';
 
-export const getArteRuimName = (language: Language) => {
+export const getPalavreadoName = (language: Language) => {
   return language === 'pt' ? 'Palavreado' : 'Wordling';
 };
 
-export const generateGrid = () => {
-  const grid: Letter[][] = [];
-  for (let i = 0; i < SETTINGS.HEARTS; i++) {
-    grid[i] = [];
-    for (let j = 0; j < SETTINGS.WORD_LENGTH; j++) {
-      grid[i][j] = {
-        letter: ' ',
-        state: 'idle',
-      };
+export const parseLetters = (letters: string[]): PalavreadoLetter[] => {
+  return letters.map((letter, index) => ({
+    letter,
+    index,
+    state: 'idle',
+    locked: false,
+  }));
+};
+
+export const orderLettersByWord = (letters: PalavreadoLetter[], word: string): PalavreadoLetter[] => {
+  const orderedLetters: PalavreadoLetter[] = [];
+  const usedIndexes: number[] = [];
+  word.split('').forEach((wordLetter) => {
+    const foundLetter = letters.find((cl) => !usedIndexes.includes(cl.index) && cl.letter === wordLetter);
+    if (foundLetter) {
+      usedIndexes.push(foundLetter?.index);
+      orderedLetters.push(foundLetter);
     }
-  }
-  return grid;
+  });
+  return orderedLetters;
+};
+
+export const calculateGuessValue = (word: string, guess: string): number => {
+  let value = 0;
+  word.split('').forEach((letter, index) => {
+    if (letter === guess[index]) {
+      value += 1;
+    }
+  });
+  return value;
 };

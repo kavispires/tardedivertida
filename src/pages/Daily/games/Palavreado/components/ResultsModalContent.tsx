@@ -1,33 +1,40 @@
-import { Space, Typography } from 'antd';
+import { Divider, Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { TextHighlight } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 import { getDailyName, getSourceName } from 'pages/Daily/utils';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
-import { getArteRuimName } from '../utils/helpers';
-import { Letter } from 'pages/Daily/utils/types';
+import { getPalavreadoName } from '../utils/helpers';
+import { PalavreadoLetter } from '../utils/type';
 
 type ResultsModalContentProps = {
   challenge: number;
-  text: string;
-  win: boolean;
+  words: string[];
+  isWin: boolean;
+  isLose: boolean;
   hearts: number;
-  attempts: Letter[][];
+  guesses: PalavreadoLetter[][];
 };
 
-export function ResultsModalContent({ text, challenge, win, hearts, attempts }: ResultsModalContentProps) {
+export function ResultsModalContent({
+  challenge,
+  words,
+  isWin,
+  isLose,
+  hearts,
+  guesses,
+}: ResultsModalContentProps) {
   const { language } = useLanguage();
 
-  const result = writeResult({ challenge, remainingHearts: hearts, attempts, language });
+  const result = writeResult({ challenge, remainingHearts: hearts, guesses, language });
 
   return (
     <Space direction="vertical" className="space-container">
       <Typography.Title level={2} className="center">
-        {win ? (
+        {isWin ? (
           <>
             <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
           </>
@@ -38,18 +45,20 @@ export function ResultsModalContent({ text, challenge, win, hearts, attempts }: 
         )}
       </Typography.Title>
       <Typography.Paragraph className="center">
-        {win ? (
-          <Translate pt="Você acertou a palavra!" en="You guessed the word!" />
+        {isWin ? (
+          <Translate pt="Você acertou as palavras!" en="You guessed the words!" />
         ) : (
-          <Translate pt="Você errou a palavra!" en="You missed the word!" />
+          <Translate pt="Você não acertou todas as palavras!" en="You missed the words!" />
         )}
       </Typography.Paragraph>
 
-      <TextHighlight className="result-answer">
-        {<Typography.Paragraph>{text}</Typography.Paragraph>}
-      </TextHighlight>
+      <Space className="result-answer" split={<Divider type="vertical" />}>
+        {words.map((word) => (
+          <Typography.Text key={word}>{word}</Typography.Text>
+        ))}
+      </Space>
 
-      <CopyToClipboardResult result={result} rows={6} />
+      <CopyToClipboardResult result={result} rows={guesses.length + 1} />
     </Space>
   );
 }
@@ -57,41 +66,37 @@ export function ResultsModalContent({ text, challenge, win, hearts, attempts }: 
 function writeResult({
   challenge,
   remainingHearts,
-  attempts,
+  guesses,
   language,
 }: {
   challenge: number;
   remainingHearts: number;
-  attempts: Letter[][];
+  guesses: PalavreadoLetter[][];
   language: Language;
 }) {
-  const cleanUpAttempts = attempts.map((row) =>
+  const cleanUpAttempts = guesses.map((row) =>
     row.map((letter) => {
-      if (letter.state === 'correct') {
-        return '🟩';
+      switch (letter.state) {
+        case '0':
+          return '🟩';
+        case '1':
+          return '🟦';
+        case '2':
+          return '🟪';
+        case '3':
+          return '🟫';
+        default:
+          return '⬜️';
       }
-      if (letter.state === 'incorrect') {
-        return '🟥';
-      }
-      if (letter.state === 'intermediate') {
-        return '🟨';
-      }
-
-      if (letter.state === 'used') {
-        return '⬛️';
-      }
-
-      return '';
     })
   );
 
   return [
-    `💻 ${getDailyName(language)} ${getArteRuimName(language)} #${challenge}`,
-
+    `📒 ${getDailyName(language)} ${getPalavreadoName(language)} #${challenge}`,
     cleanUpAttempts
       .map((row) => row.join(' ').trim())
       .filter(Boolean)
       .join('\n'),
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/palavreado`,
+    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');
 }

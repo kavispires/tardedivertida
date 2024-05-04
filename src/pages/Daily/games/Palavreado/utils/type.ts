@@ -5,5 +5,19 @@ export type DailyPalavreadoEntry = {
   number: number;
   type: 'palavreado';
   language: Language;
-  text: 'troço';
+  letters: string[];
+  words: string[];
+};
+
+export type PalavreadoLocalToday = {
+  id: string;
+  letters: string[];
+  number: number;
+};
+
+export type PalavreadoLetter = {
+  letter: string;
+  index: number;
+  state: 'idle' | '0' | '1' | '2' | '3';
+  locked: boolean;
 };

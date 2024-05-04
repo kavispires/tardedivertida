@@ -119,7 +119,7 @@ export const feedEmulatorDaily = async () => {
       type: 'palavreado',
       language: 'pt',
       number: 0,
-      letters: ['d', 'o', 'c', 'á', 'g', 'u', 'a', 'l', 'b', 'e', 'u', 'c', 'a', 'c', 'd', 'o', 'e'],
+      letters: ['d', 'o', 'á', 'g', 'u', 'a', 'l', 'b', 'e', 'u', 'c', 'a', 'c', 'd', 'o', 'e'],
       words: ['água', 'belo', 'cuca', 'dedo'],
     },
     artista: {

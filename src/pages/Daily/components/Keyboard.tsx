@@ -29,6 +29,8 @@ export function Keyboard({
   useEffect(() => {
     const handleKeyUp = (event: KeyboardEvent) => {
       const key = event.key;
+      if (disabled) return;
+
       if (key === 'Enter' && onEnterClick) {
         return onEnterClick();
       }
