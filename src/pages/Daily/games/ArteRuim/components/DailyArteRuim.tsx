@@ -1,5 +1,5 @@
 import { Button, Layout, Modal, Space } from 'antd';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { Me } from 'types/user';
@@ -28,7 +28,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
   return (
     <Layout className="app">
       <Header icon={<DailyArtGameIcon />}>
-        TD <Translate pt="Arte Ruim" en="Questionable Art" /> #{data.number}
+        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>
         <Menu

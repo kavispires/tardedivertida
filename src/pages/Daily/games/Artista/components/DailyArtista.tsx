@@ -1,25 +1,24 @@
-import { Alert, Button, Divider, Layout, Space, Typography } from 'antd';
-import { Translate } from 'components/language';
+import { Button, Divider, Layout, Space } from 'antd';
+import { IconAvatar } from 'components/avatars';
+import { Card } from 'components/cards';
+import { DualTranslate, Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
+import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
+import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { useMeasure } from 'react-use';
 import { Me } from 'types/user';
+import { getAnimationClass } from 'utils/helpers';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
 import { SETTINGS } from '../utils/settings';
 import { DailyArtistaEntry } from '../utils/types';
 import { useArtistaEngine } from '../utils/useArtistaEngine';
-
-import { Rules } from './Rules';
-import { useMeasure } from 'react-use';
-import { useMemo } from 'react';
 import { Canvas } from './Canvas';
-import { Card } from 'components/cards';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
-import { getAnimationClass } from 'utils/helpers';
-import { Instruction } from 'components/text';
-import { IconAvatar } from 'components/avatars';
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
-import { Link } from 'react-router-dom';
+import { Rules } from './Rules';
 
 type DailyArtistaProps = {
   data: DailyArtistaEntry;
@@ -42,7 +41,7 @@ export function DailyArtista({ data, currentUser }: DailyArtistaProps) {
   return (
     <Layout className="app">
       <Header icon={<DailyDrawingGameIcon />}>
-        TD <Translate pt="Picaço" en="Big Artist" /> #{data.number}
+        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
         <div ref={headerRef}>

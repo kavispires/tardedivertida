@@ -21,11 +21,3 @@ export type Letter = {
 };
 
 export type LettersDictionary = Dictionary<Letter>;
-
-// export type DailyPalavreadoEntry = {
-//   id: DateKey;
-//   number: number;
-//   type: 'palavreado';
-//   words: string[];
-//   letters: string[];
-// };

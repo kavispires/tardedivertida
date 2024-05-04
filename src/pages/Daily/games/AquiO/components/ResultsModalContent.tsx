@@ -1,4 +1,5 @@
 import { Flex, Space, Typography } from 'antd';
+import clsx from 'clsx';
 import { IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
@@ -7,13 +8,11 @@ import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getSourceName, getDailyName, writeHeartResultString } from 'pages/Daily/utils';
+import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 import { getAnimationClass } from 'utils/helpers';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
-import { getAquiOName } from '../utils/helpers';
-import clsx from 'clsx';
 import { AquiOLocalToday } from '../utils/types';
 
 const titles = [
@@ -66,8 +65,9 @@ export function ResultsModalContent({
   lastMatch,
   localToday,
 }: ResultsModalContentProps) {
-  const { language } = useLanguage();
+  const { language, dualTranslate } = useLanguage();
   const result = writeResult({
+    game: dualTranslate(SETTINGS.NAME),
     title: challengeTitle,
     remainingHearts: hearts,
     totalHearts: SETTINGS.HEARTS,
@@ -147,6 +147,7 @@ export function ResultsModalContent({
 }
 
 function writeResult({
+  game,
   title,
   challengeNumber,
   remainingHearts,
@@ -156,6 +157,7 @@ function writeResult({
   language,
   hardMode,
 }: {
+  game: string;
   title: string;
   challengeNumber: number;
   remainingHearts: number;
@@ -166,7 +168,7 @@ function writeResult({
   hardMode: boolean;
 }): string {
   return [
-    `🔘 ${getDailyName(language)} ${getAquiOName(language)} #${challengeNumber}`,
+    `🔘 ${getDailyName(language)} ${game} #${challengeNumber}`,
     `${title}${hardMode ? '*' : ''}: ${progress}/${goal} ${writeHeartResultString(remainingHearts, totalHearts)}`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');

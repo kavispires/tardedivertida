@@ -1,9 +1,5 @@
 import { PalavreadoLetter } from './type';
 
-export const getPalavreadoName = (language: Language) => {
-  return language === 'pt' ? 'Palavreado' : 'Wordling';
-};
-
 export const parseLetters = (letters: string[]): PalavreadoLetter[] => {
   return letters.map((letter, index) => ({
     letter,
