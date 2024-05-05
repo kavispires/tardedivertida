@@ -39,6 +39,7 @@ export function Solution({
           <Translate en="Attribute" pt="Atributo" />
         </CircleHighlight>
         {solutions.attribute.text}
+
         {!!setAttribute && (
           <>
             {' '}
@@ -50,6 +51,7 @@ export function Solution({
           </>
         )}
       </Typography.Paragraph>
+      {showHints && <AttributeHints />}
       <Divider />
       <Typography.Paragraph>
         <CircleHighlight color="gold">
@@ -68,7 +70,8 @@ export function Solution({
           </>
         )}
       </Typography.Paragraph>
-      {showHints && itemName && <Hints word={itemName} />}
+      {showHints && itemName && <WordHints word={itemName} />}
+
       {solutions.context && (
         <>
           <Divider />
@@ -88,13 +91,25 @@ export function Solution({
               </>
             )}
           </Typography.Paragraph>
+          {showHints && <ContextHints />}
         </>
       )}
     </div>
   );
 }
 
-function Hints({ word }: { word: string }) {
+function AttributeHints() {
+  return (
+    <Flex wrap="wrap" gap={8} className="venn-word-hints">
+      <Translate
+        en="When describing this thing, would you use this in your top 10 things about it?"
+        pt="Ao descrever essa coisa, você usaria esse atributo dentre os 10 principais pontos sobre ela?"
+      />
+    </Flex>
+  );
+}
+
+function WordHints({ word }: { word: string }) {
   const hintsObj = useMemo(() => countWordProperties(word), [word]);
 
   const getCheckIcon = (value: boolean) => (value ? '✅' : '❌');
@@ -139,6 +154,17 @@ function Hints({ word }: { word: string }) {
       {hints.map((hint, index) => (
         <div key={index}>{hint}</div>
       ))}
+    </Flex>
+  );
+}
+
+function ContextHints() {
+  return (
+    <Flex wrap="wrap" gap={8} className="venn-word-hints">
+      <Translate
+        en="Always think generally. In a common situation would people say it fits? No technicalities."
+        pt="Pense sempre de forma geral. Em uma situação comum, as pessoas diriam que se encaixa? Sem tecnicalidades."
+      />
     </Flex>
   );
 }
