@@ -206,11 +206,18 @@
   &__canvas {
     background: get-color('white', 5, 0.1);
   }
+
+  &__mini-description {
+    text-transform: capitalize;
+    color: get-color('black', 5, 0.5);
+    font-style: italic;
+  }
 }
 
 .alien-canvas {
   background: get-color('white', 5, 0.85);
   border-radius: $border-radius;
+  margin-bottom: get-unit(2);
 
   &--small {
     transform: scale(0.85);

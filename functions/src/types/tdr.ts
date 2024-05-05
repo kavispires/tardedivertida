@@ -616,7 +616,28 @@ export type ItemAtributesValues = {
   /**
    * The dictionary of attribute keys and their values
    */
-  attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;
+  attributes: Record<string, -10 | -3 | -1 | 5 | 10 | number>;
+  /**
+   * Indicates if all attributes have been assigned numbers
+   */
+  complete?: boolean;
+  /**
+   * The timestamp of the last update
+   */
+  updatedAt?: number;
+  /**
+   * The alien message using prefixes and attribute keys
+   * (^) -10, (!) -3, (~) -1, () 5, (+) 10
+   */
+  message?: string[];
+  /**
+   * The percentage of non-unclear attribute values
+   */
+  reliability?: number;
+  /***
+   * The value of the absolute extreme opposite and all positive values in attributes
+   */
+  score?: number;
 };
 
 /**
@@ -643,4 +664,16 @@ export type ItemAttributes = {
    * Present on the original game
    */
   default: boolean;
+  /**
+   * Priority value when sorting ties
+   */
+  priority: number;
+  /**
+   *
+   */
+  spriteId: string;
+  /**
+   * Use for attributes that only accept yes/no (unclear) values (-3, -1, 5)
+   */
+  limited?: boolean;
 };

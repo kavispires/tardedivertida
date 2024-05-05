@@ -37,6 +37,7 @@ export interface Item {
   offerings: PlayerId[];
   offered?: boolean;
   inquired?: number;
+  name?: DualLanguageValue;
 }
 
 export interface Offer {
@@ -57,6 +58,10 @@ export interface Sign {
    * Attribute name
    */
   attribute: DualLanguageValue;
+  /**
+   * Attribute description
+   */
+  description?: DualLanguageValue;
 }
 
 export interface InquiryHistoryEntry {

@@ -12,6 +12,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { ObjectsKey } from './ObjectsKey';
+import { useLanguage } from 'hooks/useLanguage';
 
 type SelectableObjectsGridProps = {
   user: GamePlayer;
@@ -35,7 +36,7 @@ export function SelectableObjectsGrid({
   isAlienRequest = false,
 }: SelectableObjectsGridProps) {
   const { isLoading } = useLoading();
-
+  const { dualTranslate } = useLanguage();
   return (
     <Space direction="vertical">
       <Title level={3} size="xx-small" white>
@@ -49,7 +50,11 @@ export function SelectableObjectsGrid({
               key={`selectable-${item.id}`}
             >
               <Badge size="small" count={item.inquired} color="orange">
-                <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+                <ItemCard
+                  id={`${item.id}`}
+                  className={clsx(item.offered && 'objects-grid__item-offered')}
+                  title={item.name ? dualTranslate(item.name) : undefined}
+                />
               </Badge>
             </div>
           ) : (
@@ -67,7 +72,11 @@ export function SelectableObjectsGrid({
               onClick={() => selectObject(item.id)}
             >
               <Badge size="small" count={item.inquired} color="orange">
-                <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+                <ItemCard
+                  id={`${item.id}`}
+                  className={clsx(item.offered && 'objects-grid__item-offered')}
+                  title={item.name ? dualTranslate(item.name) : undefined}
+                />
               </Badge>
             </TransparentButton>
           )

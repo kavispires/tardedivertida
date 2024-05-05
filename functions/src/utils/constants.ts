@@ -276,6 +276,8 @@ export const TDR_RESOURCES = {
   EMOTIONS: 'emotions',
   GROUP_QUESTIONS: 'group-questions',
   ITEMS: 'items', // dual-language
+  ITEMS_ATTRIBUTES: 'items-attributes', // dual-language
+  ITEMS_ATTRIBUTE_VALUES: 'items-attribute-values', // dual-language
   MONSTER_ORIENTATION: 'monster-orientation',
   MOVIE_REVIEWS: 'movie-reviews',
   MOVIES: 'movies',

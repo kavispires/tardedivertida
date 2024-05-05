@@ -34,12 +34,14 @@ export interface Item {
   offerings: PlayerId[];
   offered?: boolean;
   inquired?: number;
+  name?: DualLanguageValue;
 }
 
 export interface Sign {
   key: SignKey;
   signId: string;
   attribute: DualLanguageValue;
+  description?: DualLanguageValue;
 }
 
 export type Seed = {

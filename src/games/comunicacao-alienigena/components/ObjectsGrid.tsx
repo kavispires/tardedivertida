@@ -9,6 +9,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { ObjectsKey } from './ObjectsKey';
+import { useLanguage } from 'hooks/useLanguage';
 
 type ObjectsGridProps = {
   items: Item[];
@@ -18,6 +19,7 @@ type ObjectsGridProps = {
 };
 
 export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }: ObjectsGridProps) {
+  const { dualTranslate } = useLanguage();
   return (
     <Space direction="vertical">
       <Title level={3} size="xx-small" white>
@@ -34,7 +36,11 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
             )}
           >
             <Badge size="small" count={item.inquired} color="orange">
-              <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              <ItemCard
+                id={`${item.id}`}
+                className={clsx(item.offered && 'objects-grid__item-offered')}
+                title={item.name ? dualTranslate(item.name) : undefined}
+              />
             </Badge>
 
             {showAll && Boolean(item.offered) && item.type === 'ITEM' && (
