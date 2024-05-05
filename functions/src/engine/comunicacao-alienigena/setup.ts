@@ -227,7 +227,7 @@ export const prepareHumanAskPhase = async (
       objectIds: state.currentInquiry,
       playerId: state.humanId,
       intention: state.currentIntention ?? '',
-      assumption: store.assumption,
+      assumption: store.assumption ?? '?',
       confidence: store.confidence ?? 0,
     });
   }

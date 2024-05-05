@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Button, Popconfirm, Popover, Space } from 'antd';
+import { Button, Popconfirm, Popover, Space, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Types
 import type { Sign } from '../utils/types';
@@ -21,7 +21,7 @@ type HumanSignBoardProps = {
 
 export function HumanSignBoard({ signs, startingAttributes = [] }: HumanSignBoardProps) {
   const { cache, setCache } = useCache();
-  const { language } = useLanguage();
+  const { language, dualTranslate } = useLanguage();
 
   const updateCache = (signId: number | string, content: CanvasLine[]) => {
     setCache((prev) => {
@@ -54,7 +54,12 @@ export function HumanSignBoard({ signs, startingAttributes = [] }: HumanSignBoar
             if (startingAttributes.find((attr) => attr.signId === sign.signId)) {
               return (
                 <div className="signs-grid__item" key={sign.signId}>
-                  <DualTranslate>{sign.attribute}</DualTranslate>
+                  <Tooltip
+                    title={`${dualTranslate(sign.description ? sign.description : sign.attribute)} (${dualTranslate({ pt: 'Item inicial', en: 'Starting item' })})`}
+                    placement="bottom"
+                  >
+                    <DualTranslate>{sign.attribute}</DualTranslate>*
+                  </Tooltip>
                   <SignCard id={`${sign.signId}`} className="transparent" />
                 </div>
               );
@@ -68,9 +73,14 @@ export function HumanSignBoard({ signs, startingAttributes = [] }: HumanSignBoar
                   okText={<Translate pt="Sim" en="Yes" />}
                   cancelText={<Translate pt="Não" en="No" />}
                 >
-                  <TransparentButton>
-                    <DualTranslate>{sign.attribute}</DualTranslate>
-                  </TransparentButton>
+                  <Tooltip
+                    title={dualTranslate(sign.description ? sign.description : sign.attribute)}
+                    placement="bottom"
+                  >
+                    <TransparentButton>
+                      <DualTranslate>{sign.attribute}</DualTranslate>
+                    </TransparentButton>
+                  </Tooltip>
                 </Popconfirm>
                 <DrawingCanvas
                   lines={cache?.[sign.signId] ?? []}

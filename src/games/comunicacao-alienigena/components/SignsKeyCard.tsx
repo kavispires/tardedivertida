@@ -63,6 +63,13 @@ export function SignsKeyCard({ signs, startingAttributes = [] }: SignsKeyCardPro
           >
             <Popconfirm
               title={<Translate pt="Usado" en="Used" />}
+              description={
+                sign.description ? (
+                  <span className="signs-grid__mini-description">
+                    <DualTranslate>{sign.description}</DualTranslate>
+                  </span>
+                ) : undefined
+              }
               onConfirm={() => updateCache(sign.signId, true)}
               onCancel={() => updateCache(sign.signId, false)}
               okText={<Translate pt="Sim" en="Yes" />}

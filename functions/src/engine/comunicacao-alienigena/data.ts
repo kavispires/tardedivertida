@@ -1,12 +1,14 @@
 // Constants
 import { ATTRIBUTES, AVAILABLE_SIGNS, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
 // Type
-import { AlienItem } from '../../types/tdr';
+import { AlienItem, ItemAttributes } from '../../types/tdr';
 import { Item, Sign, ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Helpers
 import utils from '../../utils';
 import { calculateAttributeUsage, getItems } from './helpers';
 import { alienItemUtils } from '../../utils/tdr-utils';
+import * as resourceUtils from '../resource';
+import { TDR_RESOURCES } from '../../utils/constants';
 
 /**
  * Get characters based on the game's language
@@ -24,8 +26,68 @@ export const getResourceData = async (
   const isBotAlien = !!options.botAlien;
   const allowNSFW = !!options.nsfw;
   const isEasyGame = !!options.easyMode;
-
   let botAlienItemKnowledge: Collection<AlienItem> = {};
+
+  // If not bot alien, use new libraries
+  if (!isBotAlien) {
+    const itemAttributesResponse: Collection<ItemAttributes> = await resourceUtils.fetchResource(
+      TDR_RESOURCES.ITEMS_ATTRIBUTES
+    );
+    const itemAttributes = utils.game.getRandomItems(
+      Object.values(itemAttributesResponse).filter((attribute) => attribute.default),
+      TOTAL_ITEMS
+    );
+
+    const fakeAttributesForAliemItemKnowledge = itemAttributes.reduce((acc: PlainObject, attribute) => {
+      acc[attribute.id] = 3;
+      return acc;
+    }, {});
+
+    const itemsSample = await utils.tdr.getItems(TOTAL_ITEMS, {
+      allowNSFW,
+      groups: ['alien'],
+      cleanUp: utils.tdr.itemUtils.cleanupGroups,
+    });
+
+    const selectedAlienItems: AlienItem[] = itemsSample.map((item) => ({
+      id: item.id,
+      name: item.name,
+      attributes: fakeAttributesForAliemItemKnowledge,
+    }));
+
+    const items: Item[] = getItems(playerCount).map((itemType, index) => ({
+      id: selectedAlienItems[index].id,
+      name: selectedAlienItems[index].name,
+      type: itemType,
+      offerings: [],
+    }));
+
+    const signIds = utils.game.getRandomItems(
+      utils.game.makeArray(Object.values(itemAttributesResponse).length),
+      TOTAL_SIGNS
+    );
+
+    // Get random list of attributes and signs, then alphabetically order them
+    const signs: Sign[] = utils.helpers.orderBy(
+      itemAttributes.map((attributeObj, index) => ({
+        attribute: itemAttributesResponse[attributeObj.id].name,
+        key: itemAttributesResponse[attributeObj.id].id,
+        signId: String(signIds[index]),
+        description: itemAttributesResponse[attributeObj.id].description,
+      })),
+      `attribute.${language}`,
+      'asc'
+    );
+
+    const startingAttributes = utils.game.getRandomItems(signs, isEasyGame ? 3 : 1);
+
+    return {
+      items,
+      signs,
+      botAlienItemKnowledge,
+      startingAttributes,
+    };
+  }
 
   // Get the 25 needed items randomly
   const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, {

@@ -271,6 +271,7 @@ const getBestMatch = (
   const result = matchingSign?.signId ?? '';
 
   // Step 7: If a positive match is found, update assumptions and return the result
+  store.assumption = '?';
   if (result) {
     store.assumption = signs.find((sign) => sign.signId === result)?.key ?? '?';
     // Determine the base points for the match (minimum 5 points per item)
