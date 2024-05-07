@@ -22,6 +22,7 @@ export function useDailyLocalToday<TLocal = { id: string }>({
     ...defaultValue,
     id: gameId,
   });
+
   const [hasAppliedLocalToday, setHasAppliedLocalToday] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export function useDailyLocalToday<TLocal = { id: string }>({
   const stateToApply = localToday && localToday.id === gameId ? localToday : null;
 
   const updateLocalStorage = (value: Partial<TLocal>) => {
-    setLocalToday((prev) => ({ id: gameId, number: challengeNumber, ...(prev ?? defaultValue), ...value }));
+    setLocalToday((prev) => ({ ...(prev ?? defaultValue), id: gameId, number: challengeNumber, ...value }));
   };
 
   useEffect(() => {
