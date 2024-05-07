@@ -1,22 +1,21 @@
 import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
-import { cloneDeep } from 'lodash';
+import { chunk, cloneDeep } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 
-import { calculateGuessValue, orderLettersByWord, parseLetters } from './helpers';
+import { parseLetters } from './helpers';
 import { SETTINGS } from './settings';
-import { DailyPalavreadoEntry, PalavreadoLetter, PalavreadoLocalToday } from './type';
+import { DailyPalavreadoEntry, PalavreadoLetter, PalavreadoLocalToday } from './types';
 
 type GameState = {
   hearts: number;
-  selection: number[]; // indexes of letters
+  selection: number | null; // indexes of letters
+  swap: number[]; // indexes of letters
   letters: PalavreadoLetter[];
-  guesses: PalavreadoLetter[][];
+  guesses: string[][]; // words guesses per heart
   state: string;
-  latestWord: string;
-  previousWords: string[];
 };
 
 const defaultArteRuimLocalToday: PalavreadoLocalToday = {
@@ -29,13 +28,12 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
   const { state, setState, updateState } = useDailyGameState<GameState>({
-    selection: [],
+    selection: null,
+    swap: [],
     letters: parseLetters(data.letters),
     guesses: [],
     hearts: SETTINGS.HEARTS,
     state: '',
-    latestWord: '',
-    previousWords: [],
   });
 
   const { localToday, updateLocalStorage } = useDailyLocalToday<PalavreadoLocalToday>({
@@ -48,149 +46,77 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
 
   // ACTIONS
   const selectLetter = (index: number) => {
-    if (state.selection.includes(index)) {
-      return setState((prev) => ({
-        ...prev,
-        selection: prev.selection.filter((i) => i !== index),
-        state: '',
-      }));
-    }
-
-    if (state.selection.length >= SETTINGS.WORD_LENGTH) {
-      message.info(
-        translate(
-          `Você já selecionou ${SETTINGS.WORD_LENGTH} letras`,
-          `You have already selected ${SETTINGS.WORD_LENGTH} letters`
-        )
-      );
+    if (state.selection === index) {
+      updateState({
+        selection: null,
+        swap: [],
+      });
       return;
     }
 
-    setState((prev) => ({
-      ...prev,
-      selection: [...prev.selection, index],
-      state: '',
-    }));
+    if (state.selection === null) {
+      updateState({
+        selection: index,
+        swap: [],
+      });
+      return;
+    }
 
-    // // Ignore previously guessed letters
-    // if (state.guesses[letter]) {
-    //   return;
-    // }
-    // const isCorrect = state.solution[letter] !== undefined;
-    // // updateLocalStorage({
-    // //   letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
-    // // });
-    // setState((prev) => ({
-    //   ...prev,
-    //   guesses: {
-    //     ...prev.guesses,
-    //     [letter]: {
-    //       letter: letter,
-    //       state: isCorrect ? 'correct' : 'incorrect',
-    //       disabled: true,
-    //     },
-    //   },
-    //   solution: {
-    //     ...prev.solution,
-    //     [letter]: isCorrect,
-    //   },
-    //   hearts: isCorrect ? prev.hearts : prev.hearts - 1,
-    // }));
+    setState((prev) => {
+      const copyLetters = cloneDeep(state.letters);
+      const temp = copyLetters[prev.selection!];
+      copyLetters[prev.selection!] = copyLetters[index];
+      copyLetters[index] = temp;
+
+      return {
+        ...prev,
+        letters: copyLetters,
+        selection: null,
+        swap: [prev.selection!, index],
+      };
+    });
   };
 
-  const submitWord = () => {
-    if (state.selection.length !== SETTINGS.WORD_LENGTH) {
-      message.info(
-        translate(
-          `Selecione ${SETTINGS.WORD_LENGTH} letras para formar uma palavra`,
-          `Select ${SETTINGS.WORD_LENGTH} letters to form a word`
-        )
-      );
-      return;
-    }
-    const selectedWord = state.selection.map((index) => state.letters[index].letter).join('');
+  const submitGrid = () => {
+    const answer = data.words.join('');
 
-    if (state.previousWords.includes(selectedWord)) {
-      message.info(translate('Você já tentou essa palavra', 'You have already tried this word'));
-      updateState({
-        selection: [],
+    setState((prev) => {
+      // Evaluate letters and mark any correct letter as correct and locked
+      const copyLetters = cloneDeep(state.letters);
+      copyLetters.map((letter, index) => {
+        if (letter.state === 'idle' && letter.letter === answer[index]) {
+          letter.state = String(Math.floor(index / 4)) as PalavreadoLetter['state'];
+          letter.locked = true;
+        }
+        return letter;
       });
-      return;
-    }
 
-    const wordIndex = data.words.indexOf(selectedWord);
-    const lettersCopy = [...state.letters];
+      // Generate the guessed words from the letter
+      const generatedWords = chunk(copyLetters, 4).map((lg) => lg.map((l) => l.letter).join(''));
 
-    // CORRECT
-    if (wordIndex !== -1) {
-      // Sanitize letters
-      const previouslyCorrectLetters = lettersCopy.filter((letter) => letter.locked);
-      const correctLetters = lettersCopy
-        .filter((letter) => !letter.locked && state.selection.includes(letter.index))
-        .map((letter) => ({
-          ...letter,
-          state: String(wordIndex) as PalavreadoLetter['state'],
-          locked: true,
-        }));
-
-      const correctlyOrderedCorrectLetters = orderLettersByWord(correctLetters, data.words[wordIndex]);
-      const guess = cloneDeep(correctlyOrderedCorrectLetters);
-
-      const otherLetters = lettersCopy
-        .filter((letter) => !letter.locked && !state.selection.includes(letter.index))
-        .map((letter) => ({
-          ...letter,
-          state: letter.state === String(wordIndex) ? 'idle' : letter.state,
-        }));
-      const newLetters = [
-        ...previouslyCorrectLetters,
-        ...correctlyOrderedCorrectLetters,
-        ...otherLetters,
-      ].map((letter, index) => ({
-        ...letter,
-        index,
-      }));
-      updateState({
-        letters: newLetters,
-        guesses: [...state.guesses, guess],
-        selection: [],
-        state: 'correct',
-        latestWord: selectedWord,
-        previousWords: [...state.previousWords, selectedWord],
+      // Evaluate if any of the words match the words in the data
+      generatedWords.forEach((word, index) => {
+        if (data.words.includes(word)) {
+          word.split('').forEach((_, i) => {
+            copyLetters[index * 4 + i].state = String(index) as PalavreadoLetter['state'];
+            copyLetters[index * 4 + i].locked = true;
+          });
+        }
       });
-      message.success(translate('Palavra correta!', 'Correct word!'));
-      return;
-    }
 
-    // INCOMPLETE
+      const isAllCorrect = copyLetters.every((letter) => letter.locked);
 
-    // Evaluate the word with the most guesses
-    const guessValues = data.words.map((word) => calculateGuessValue(word, selectedWord));
+      const guesses = generatedWords;
 
-    const maxGuessValue = Math.max(...guessValues);
-    const maxGuessIndex = guessValues.indexOf(maxGuessValue);
-    const bestGuess = data.words[maxGuessIndex];
-
-    const guess: PalavreadoLetter[] = [];
-    bestGuess.split('').forEach((letter, index) => {
-      if (letter === selectedWord[index]) {
-        lettersCopy[state.selection[index]].state = String(maxGuessIndex) as PalavreadoLetter['state'];
-        guess.push(cloneDeep(lettersCopy[state.selection[index]]));
-      } else {
-        guess.push(cloneDeep(lettersCopy[state.selection[index]]));
-      }
+      return {
+        ...prev,
+        guesses: [...prev.guesses, guesses],
+        letters: copyLetters,
+        selection: null,
+        swap: [],
+        hearts: isAllCorrect ? prev.hearts : prev.hearts - 1,
+      };
     });
-
-    updateState({
-      letters: lettersCopy,
-      guesses: [...state.guesses, guess],
-      selection: [],
-      state: 'wrong',
-      hearts: state.hearts - 1,
-      latestWord: selectedWord,
-      previousWords: [...state.previousWords, selectedWord],
-    });
-    message.error(translate('Palavra incorreta', 'Incorrect word'));
   };
 
   // CONDITIONS
@@ -206,13 +132,13 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
     guesses: state.guesses,
     letters: state.letters,
     selection: state.selection,
-    latestWord: state.latestWord,
+    swap: state.swap,
     showResultModal,
     setShowResultModal,
     isWin,
     isLose,
     isComplete,
     selectLetter,
-    submitWord,
+    submitGrid,
   };
 }

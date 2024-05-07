@@ -14,13 +14,15 @@ export function Rules() {
         pt={
           <>
             <li>
-              Existem {SETTINGS.HEARTS} palavras de {SETTINGS.WORD_LENGTH} letras completamente embaralhadas.
+              Junto à palavra-chave de {SETTINGS.WORD_LENGTH} letras diagonal na grade existem{' '}
+              {SETTINGS.HEARTS} palavras embaralhadas.
             </li>
-            <li>Selecione as letras que você acha que formam uma das palavras e aperte Enviar.</li>
-            <li>Se você acertou, as letras são posicionadas no topo da grade.</li>
+            <li>Você precisa ordenar as letras para formar as {SETTINGS.HEARTS} palavras.</li>
+            <li>Selecione uma letra e depois uma outra para que elas troquem de lugar.</li>
+            <li>Quando você acha que a grade está certa, aperte "Enviar".</li>
             <li>
-              Se você errou, você perde uma <HeartFilled />, mas as letras corretas se tornarão da cor da
-              palavra que você acertou mais letras na posição correta.
+              Todas as letras colocadas na posição corretas serão coloridas da corta da linha. Mas se você não
+              acertas todas, você perde um <HeartFilled />.
             </li>
             <li>
               Você tem {SETTINGS.HEARTS} <HeartFilled /> chances. Boa sorte!
@@ -30,13 +32,15 @@ export function Rules() {
         en={
           <>
             <li>
-              There are {SETTINGS.HEARTS} {SETTINGS.WORD_LENGTH}-letter words completely scrambled.
+              Next to the {SETTINGS.WORD_LENGTH}-letter keyword diagonally in the grid are {SETTINGS.HEARTS}{' '}
+              shuffled words.
             </li>
-            <li>Select the letters you think form one of the words and press submit</li>
-            <li>If you guessed right, the letters are placed at the top of the grid.</li>
+            <li>You need to order the letters to form the {SETTINGS.HEARTS} words.</li>
+            <li>Select a letter and then another so they swap places.</li>
+            <li>When you think the grid is correct, press "Submit".</li>
             <li>
-              If you guessed wrong, you lose a <HeartFilled />, but the correct letters will turn the color of
-              the word you guessed more letters in the correct position.
+              All letters placed in the correct position will be colored in the line color. But if you don't
+              get them all, you lose a <HeartFilled />.
             </li>
             <li>
               You have {SETTINGS.HEARTS} <HeartFilled /> chances. Good luck!

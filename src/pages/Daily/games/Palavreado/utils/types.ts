@@ -5,6 +5,7 @@ export type DailyPalavreadoEntry = {
   number: number;
   type: 'palavreado';
   language: Language;
+  keyword: string;
   letters: string[];
   words: string[];
 };
@@ -17,7 +18,7 @@ export type PalavreadoLocalToday = {
 
 export type PalavreadoLetter = {
   letter: string;
-  index: number;
-  state: 'idle' | '0' | '1' | '2' | '3';
+  // index: number;
+  state: 'idle' | 'correct' | '0' | '1' | '2' | '3';
   locked: boolean;
 };

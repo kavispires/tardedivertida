@@ -4,11 +4,12 @@ import { Translate } from 'components/language';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getDailyName, getSourceName } from 'pages/Daily/utils';
+import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
-import { PalavreadoLetter } from '../utils/type';
+import { PalavreadoLetter } from '../utils/types';
+import { chunk } from 'lodash';
 
 type ResultsModalContentProps = {
   challenge: number;
@@ -16,7 +17,7 @@ type ResultsModalContentProps = {
   isWin: boolean;
   isLose: boolean;
   hearts: number;
-  guesses: PalavreadoLetter[][];
+  letters: PalavreadoLetter[];
 };
 
 export function ResultsModalContent({
@@ -25,7 +26,7 @@ export function ResultsModalContent({
   isWin,
   isLose,
   hearts,
-  guesses,
+  letters,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
@@ -33,7 +34,7 @@ export function ResultsModalContent({
     game: dualTranslate(SETTINGS.NAME),
     challenge,
     remainingHearts: hearts,
-    guesses,
+    letters,
     language,
   });
 
@@ -64,7 +65,7 @@ export function ResultsModalContent({
         ))}
       </Space>
 
-      <CopyToClipboardResult result={result} rows={guesses.length + 1} />
+      <CopyToClipboardResult result={result} rows={6} />
     </Space>
   );
 }
@@ -73,20 +74,20 @@ function writeResult({
   game,
   challenge,
   remainingHearts,
-  guesses,
+  letters,
   language,
 }: {
   game: string;
   challenge: number;
   remainingHearts: number;
-  guesses: PalavreadoLetter[][];
+  letters: PalavreadoLetter[];
   language: Language;
 }) {
-  const cleanUpAttempts = guesses.map((row) =>
+  const cleanUpAttempts = chunk(letters, 4).map((row) =>
     row.map((letter) => {
       switch (letter.state) {
         case '0':
-          return '🟩';
+          return '🟥';
         case '1':
           return '🟦';
         case '2':
@@ -101,6 +102,7 @@ function writeResult({
 
   return [
     `📒 ${getDailyName(language)} ${game} #${challenge}`,
+    writeHeartResultString(remainingHearts, SETTINGS.HEARTS),
     cleanUpAttempts
       .map((row) => row.join(' ').trim())
       .filter(Boolean)

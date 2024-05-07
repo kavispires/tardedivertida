@@ -1,23 +1,26 @@
 import clsx from 'clsx';
 
-import { PalavreadoLetter } from '../utils/type';
+import { PalavreadoLetter } from '../utils/types';
+import { getAnimationClass } from 'utils/helpers';
 
 type BoardProps = {
   letters: PalavreadoLetter[];
-  selection: number[];
+  selection: number | null;
+  swap: number[];
   onLetterSelection: (index: number) => void;
 };
 
-export function Board({ letters, onLetterSelection, selection }: BoardProps) {
+export function Board({ letters, onLetterSelection, selection, swap }: BoardProps) {
   return (
     <div className="palavreado-board">
-      {letters.map(({ letter, index, locked, state }) => (
+      {letters.map(({ letter, locked, state }, index) => (
         <button
           key={`${letter}-${index}`}
           className={clsx(
             'palavreado-board__tile',
-            !locked && !selection.includes(index) && 'palavreado-board__tile--button',
-            selection.includes(index) && 'palavreado-board__tile--selected',
+            swap.includes(index) && getAnimationClass('zoomIn', { speed: 'faster' }),
+            !locked && selection !== index && 'palavreado-board__tile--button',
+            selection === index && 'palavreado-board__tile--selected',
             `palavreado-board__tile--${state}`
           )}
           onClick={() => (!locked ? onLetterSelection(index) : null)}
