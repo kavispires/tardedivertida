@@ -94,7 +94,7 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
   const isComplete = isWin || isLose;
 
   // RESULTS MODAL
-  const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
+  const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);
 
   return {
     hearts: state.hearts,
