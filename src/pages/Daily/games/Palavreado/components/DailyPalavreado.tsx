@@ -1,4 +1,4 @@
-import { Button, Layout, Modal, Space } from 'antd';
+import { Button, Divider, Layout, Modal, Space, Typography } from 'antd';
 import { DualTranslate, Translate } from 'components/language';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { Me } from 'types/user';
@@ -8,12 +8,11 @@ import { BarChartOutlined } from '@ant-design/icons';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
 import { SETTINGS } from '../utils/settings';
-import { DailyPalavreadoEntry } from '../utils/type';
+import { DailyPalavreadoEntry } from '../utils/types';
 import { usePalavreadoEngine } from '../utils/usePalavreadoEngine';
 import { Board } from './Board';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { Word } from './Word';
 
 type DailyPalavreadoProps = {
   data: DailyPalavreadoEntry;
@@ -32,8 +31,8 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     isLose,
     isComplete,
     selectLetter,
-    submitWord,
-    latestWord,
+    submitGrid,
+    swap,
   } = usePalavreadoEngine(data);
 
   return (
@@ -45,24 +44,35 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
         <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
 
         <Space className="space-container" direction="vertical" align="center">
-          <Board letters={letters} onLetterSelection={selectLetter} selection={selection} />
-
-          <Word
-            letters={letters}
-            onLetterSelection={selectLetter}
-            selection={selection}
-            onSubmitWord={submitWord}
-            latestWord={latestWord}
-          />
+          <Typography.Text strong className="palavreado-word">
+            {data.keyword}
+          </Typography.Text>
+          <Board letters={letters} onLetterSelection={selectLetter} selection={selection} swap={swap} />
         </Space>
 
-        {isComplete && (
-          <Space className="results-container" direction="vertical" align="center">
+        <Space className="space-container" direction="vertical" align="center">
+          {isComplete ? (
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
-          </Space>
-        )}
+          ) : (
+            <Button type="primary" onClick={submitGrid} disabled={isComplete} block>
+              <Translate pt="Enviar" en="Submit" />
+            </Button>
+          )}
+        </Space>
+
+        <Space className="space-container palavreado-guesses" align="center" wrap>
+          {guesses.map((attempt, index) => (
+            <Space key={`${attempt}-${index}`} split={<Divider type="vertical" />}>
+              {attempt.map((word, i) => (
+                <span className="palavreado-word" key={`${attempt}-${index}-${word}-${i}`}>
+                  {word}
+                </span>
+              ))}
+            </Space>
+          ))}
+        </Space>
         <Modal
           title={<Translate pt="Resultado" en="Results" />}
           open={showResultModal}
@@ -76,7 +86,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             isLose={isLose}
             hearts={hearts}
             words={data.words}
-            guesses={guesses}
+            letters={letters}
           />
         </Modal>
       </Layout.Content>

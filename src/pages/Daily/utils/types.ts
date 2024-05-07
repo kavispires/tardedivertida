@@ -1,7 +1,7 @@
 import { DailyAquiOEntry } from '../games/AquiO/utils/types';
 import { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
 import { DailyArtistaEntry } from '../games/Artista/utils/types';
-import { DailyPalavreadoEntry } from '../games/Palavreado/utils/type';
+import { DailyPalavreadoEntry } from '../games/Palavreado/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
