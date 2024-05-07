@@ -17,7 +17,7 @@ export function Rules() {
               Junto à palavra-chave de {SETTINGS.WORD_LENGTH} letras diagonal na grade existem{' '}
               {SETTINGS.HEARTS} palavras embaralhadas.
             </li>
-            <li>Você precisa ordenar as letras para formar as {SETTINGS.HEARTS} palavras.</li>
+            <li>Você precisa ordenar as letras para formar as {SETTINGS.HEARTS} palavras horizontais.</li>
             <li>Selecione uma letra e depois uma outra para que elas troquem de lugar.</li>
             <li>Quando você acha que a grade está certa, aperte "Enviar".</li>
             <li>
@@ -35,7 +35,7 @@ export function Rules() {
               Next to the {SETTINGS.WORD_LENGTH}-letter keyword diagonally in the grid are {SETTINGS.HEARTS}{' '}
               shuffled words.
             </li>
-            <li>You need to order the letters to form the {SETTINGS.HEARTS} words.</li>
+            <li>You need to order the letters to form the {SETTINGS.HEARTS} words in the rows.</li>
             <li>Select a letter and then another so they swap places.</li>
             <li>When you think the grid is correct, press "Submit".</li>
             <li>
