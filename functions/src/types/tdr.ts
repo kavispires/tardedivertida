@@ -596,9 +596,9 @@ export type Item = {
    */
   name: DualLanguageValue;
   /**
-   * The groups the item can be used in
+   * The categories the item can be used in
    */
-  groups?: string[];
+  categories?: string[];
   /**
    * Flag indicating if it's nsfw
    */

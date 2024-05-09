@@ -13,14 +13,14 @@ export const getItems = async (
   quantity: number,
   options: {
     allowNSFW: boolean;
-    groups?: string[];
-    groupFiltering?: 'OR' | 'AND';
+    categories?: string[];
+    categoryFiltering?: 'OR' | 'AND';
     filters?: ((item: Item) => boolean)[];
     cleanUp?: (item: Item) => Item;
   } = {
     allowNSFW: false,
-    groupFiltering: 'AND',
-    groups: [],
+    categoryFiltering: 'AND',
+    categories: [],
     filters: [],
   }
 ): Promise<Item[]> => {
@@ -34,14 +34,14 @@ export const getItems = async (
       return;
     }
 
-    // Handle groups
-    if (options.groups && options.groups.length) {
+    // Handle categories
+    if (options.categories && options.categories.length) {
       const selectorFunction =
-        options.groupFiltering === 'AND'
-          ? itemUtils.onlyItemsWithinGroups
-          : itemUtils.onlyItemsWithinEitherGroups;
+        options.categoryFiltering === 'AND'
+          ? itemUtils.onlyItemsWithinCategories
+          : itemUtils.onlyItemsWithinEitherCategories;
 
-      if (!selectorFunction(options?.groups ?? [])(item)) {
+      if (!selectorFunction(options?.categories ?? [])(item)) {
         delete itemsObj[item.id];
         return;
       }
@@ -88,36 +88,36 @@ export const itemUtils = {
    */
   onlySafeForWork: (item: Item) => !item.nsfw,
   /**
-   * Filter alien items by group
-   * @param group
+   * Filter alien items by category
+   * @param category
    * @returns boolean
    */
-  onlyItemsWithinGroups: (groups: string[]) => (item: Item) => {
-    return every(groups, (group) => (item.groups ?? []).includes(group));
+  onlyItemsWithinCategories: (categories: string[]) => (item: Item) => {
+    return every(categories, (category) => (item.categories ?? []).includes(category));
   },
   /**
    *
-   * @param groups
+   * @param categories
    * @returns
    */
-  onlyItemsWithinEitherGroups: (groups: string[]) => (item: Item) => {
-    return some(groups, (group) => (item.groups ?? []).includes(group));
+  onlyItemsWithinEitherCategories: (categories: string[]) => (item: Item) => {
+    return some(categories, (category) => (item.categories ?? []).includes(category));
   },
   /**
-   * Filter alien items by group
+   * Filter alien items by category
    */
-  notWithinCategories: (groups: string[]) => (item: Item) => {
-    return !some(groups, (group) => (item.groups ?? []).includes(group));
+  notWithinCategories: (categories: string[]) => (item: Item) => {
+    return !some(categories, (category) => (item.categories ?? []).includes(category));
   },
   /**
    * Filter item only if it has a name in the given language
    */
   onlyWithName: (language: Language) => (item: Item) => Boolean(item.name[language].trim()),
   /**
-   * Removes the prop groups from the item
+   * Removes the prop categories from the item
    */
-  cleanupGroups: (item: Item): Item => {
-    delete item.groups;
+  cleanupCategories: (item: Item): Item => {
+    delete item.categories;
     return item;
   },
 };
