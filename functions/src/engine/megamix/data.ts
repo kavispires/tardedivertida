@@ -493,7 +493,7 @@ export const getData = async (
 
     const selectedAlienItems = await utils.tdr.getItems(5, {
       allowNSFW,
-      cleanUp: utils.tdr.itemUtils.cleanupGroups,
+      cleanUp: utils.tdr.itemUtils.cleanupCategories,
     });
 
     customTracks.push({

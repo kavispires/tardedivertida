@@ -28,14 +28,14 @@ export const getResourceData = async (
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
-    groups: ['thing', 'mesmice', 'dream'],
-    groupFiltering: 'OR',
+    categories: ['thing', 'mesmice', 'dream'],
+    categoryFiltering: 'OR',
     filters: [
       (item: Item) => {
-        if (item.groups?.includes('thing')) {
+        if (item.categories?.includes('thing')) {
           return true;
         }
-        if (item.groups?.includes('mesmice') || item.groups?.includes('dream')) {
+        if (item.categories?.includes('mesmice') || item.categories?.includes('dream')) {
           // Only use single word items
           return item.name[language].split(' ').length === 1;
         }
@@ -43,7 +43,7 @@ export const getResourceData = async (
         return false;
       },
     ],
-    cleanUp: utils.tdr.itemUtils.cleanupGroups,
+    cleanUp: utils.tdr.itemUtils.cleanupCategories,
   });
 
   const resourceName = `${TDR_RESOURCES.DIAGRAM_TOPICS}-${language}`;

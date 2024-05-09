@@ -45,8 +45,8 @@ export const getResourceData = async (
 
     const itemsSample = await utils.tdr.getItems(TOTAL_ITEMS, {
       allowNSFW,
-      groups: ['alien'],
-      cleanUp: utils.tdr.itemUtils.cleanupGroups,
+      categories: ['alien'],
+      cleanUp: utils.tdr.itemUtils.cleanupCategories,
     });
 
     const selectedAlienItems: AlienItem[] = itemsSample.map((item) => ({

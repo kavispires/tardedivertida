@@ -26,9 +26,9 @@ export const getData = async (
   // Get items per player
   const selectedItems = await utils.tdr.getItems(playerCount * ITEMS_PER_PLAYER, {
     allowNSFW,
-    groups: ['mesmice'],
+    categories: ['mesmice'],
     filters: [utils.tdr.itemUtils.onlyWithName(language as Language)],
-    cleanUp: utils.tdr.itemUtils.cleanupGroups,
+    cleanUp: utils.tdr.itemUtils.cleanupCategories,
   });
 
   // Get full deck of features
