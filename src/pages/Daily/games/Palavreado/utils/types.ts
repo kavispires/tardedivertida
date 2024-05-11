@@ -12,7 +12,7 @@ export type DailyPalavreadoEntry = {
 
 export type PalavreadoLocalToday = {
   id: string;
-  letters: string[];
+  guesses: string[][];
   number: number;
 };
 

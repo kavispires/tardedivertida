@@ -1,7 +1,7 @@
 import { DailyPalavreadoEntry } from './types';
 
 const defaultValue: Pick<DailyPalavreadoEntry, 'id' | 'number' | 'language' | 'type'> = {
-  id: '',
+  id: '2023/10/31',
   number: 0,
   type: 'palavreado',
   language: 'pt',

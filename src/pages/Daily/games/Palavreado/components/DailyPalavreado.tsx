@@ -62,7 +62,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           )}
         </Space>
 
-        <Space className="space-container palavreado-guesses" align="center" wrap>
+        <Space className="space-container palavreado-guesses" align="center" direction="vertical">
           {guesses.map((attempt, index) => (
             <Space key={`${attempt}-${index}`} split={<Divider type="vertical" />}>
               {attempt.map((word, i) => (
