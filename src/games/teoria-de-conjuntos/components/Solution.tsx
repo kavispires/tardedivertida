@@ -162,8 +162,8 @@ function ContextHints() {
   return (
     <Flex wrap="wrap" gap={8} className="venn-word-hints">
       <Translate
-        en="Always think generally. In a common situation would people say it fits? No technicalities."
-        pt="Pense sempre de forma geral. Em uma situação comum, as pessoas diriam que se encaixa? Sem tecnicalidades."
+        en="Always think in a general consensus. In a common situation would people say it fits? No technicalities."
+        pt="Pense sempre em senso comum. Em uma situação geral, as pessoas diriam que se encaixa? Sem tecnicalidades."
       />
     </Flex>
   );
