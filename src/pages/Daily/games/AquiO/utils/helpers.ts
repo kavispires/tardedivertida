@@ -8,7 +8,7 @@ export const getDiscs = (entry: DailyAquiOEntry, challengingGame?: boolean): Aqu
 
   const discs: AquiODisc[] = [];
 
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < 17; i++) {
     const previousCard = discs[i - 1];
 
     const card = createCards(allItems, previousCard, challengingGame ? discs[i - 1]?.match : undefined);
