@@ -1,5 +1,3 @@
-import { App } from 'antd';
-import { useLanguage } from 'hooks/useLanguage';
 import { chunk, cloneDeep } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
@@ -20,13 +18,11 @@ type GameState = {
 
 const defaultArteRuimLocalToday: PalavreadoLocalToday = {
   id: '',
-  letters: [],
+  guesses: [],
   number: 0,
 };
 
 export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
-  const { message } = App.useApp();
-  const { translate } = useLanguage();
   const { state, setState, updateState } = useDailyGameState<GameState>({
     selection: null,
     swap: [],
@@ -36,12 +32,38 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
     state: '',
   });
 
-  const { localToday, updateLocalStorage } = useDailyLocalToday<PalavreadoLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<PalavreadoLocalToday>({
     key: SETTINGS.TD_DAILY_PALAVREADO_LOCAL_TODAY,
     gameId: data.id,
     challengeNumber: data.number ?? 0,
     defaultValue: defaultArteRuimLocalToday,
-    onApplyLocalState: (value) => {},
+    onApplyLocalState: (value) => {
+      const hearts = SETTINGS.HEARTS - value.guesses.length;
+
+      // Apply state if there are any guesses
+      const latestGuess = value.guesses[value.guesses.length - 1];
+      const copyLetters = cloneDeep(state.letters);
+      const answer = data.words.join('');
+      if (latestGuess) {
+        const guessedLetters = latestGuess.map((w) => w.split('')).flat();
+        copyLetters.forEach((letter, index) => {
+          letter.letter = guessedLetters[index];
+
+          if (letter.state === 'idle' && letter.letter === answer[index]) {
+            letter.state = String(Math.floor(index / 4)) as PalavreadoLetter['state'];
+            letter.locked = true;
+          }
+
+          return letter;
+        });
+      }
+
+      updateState({
+        hearts,
+        guesses: value.guesses,
+        letters: copyLetters,
+      });
+    },
   });
 
   // ACTIONS
@@ -107,6 +129,10 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
       const isAllCorrect = copyLetters.every((letter) => letter.locked);
 
       const guesses = generatedWords;
+
+      updateLocalStorage({
+        guesses: [...state.guesses, guesses],
+      });
 
       return {
         ...prev,
