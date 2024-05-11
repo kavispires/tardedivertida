@@ -82,14 +82,16 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
       },
       solution: {
         ...prev.solution,
-        [letter]: isCorrect,
+        [letter]: isCorrect ?? undefined,
       },
       hearts: isCorrect ? prev.hearts : prev.hearts - 1,
     }));
   };
 
   // CONDITIONS
-  const isWin = Object.values(state.solution).every(Boolean);
+  const isWin = Object.values(state.solution)
+    .filter((value) => value !== undefined)
+    .every(Boolean);
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
 
