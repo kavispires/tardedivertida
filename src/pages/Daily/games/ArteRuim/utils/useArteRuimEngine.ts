@@ -70,6 +70,11 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
       letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
     });
 
+    const solution = { ...state.solution };
+    if (isCorrect) {
+      solution[letter] = true;
+    }
+
     setState((prev) => ({
       ...prev,
       guesses: {
@@ -80,10 +85,7 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
           disabled: true,
         },
       },
-      solution: {
-        ...prev.solution,
-        [letter]: isCorrect ?? undefined,
-      },
+      solution,
       hearts: isCorrect ? prev.hearts : prev.hearts - 1,
     }));
   };
