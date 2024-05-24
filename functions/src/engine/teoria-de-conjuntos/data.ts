@@ -28,14 +28,14 @@ export const getResourceData = async (
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
-    categories: ['thing', 'mesmice', 'dream'],
+    categories: ['thing', 'mesmice', 'alien'],
     categoryFiltering: 'OR',
     filters: [
       (item: Item) => {
         if (item.categories?.includes('thing')) {
           return true;
         }
-        if (item.categories?.includes('mesmice') || item.categories?.includes('dream')) {
+        if (item.categories?.includes('mesmice') || item.categories?.includes('alien')) {
           // Only use single word items
           return item.name[language].split(' ').length === 1;
         }

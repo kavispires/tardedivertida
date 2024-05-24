@@ -48,6 +48,7 @@ export const getResourceData = async (language: Language, options: DuetosOptions
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
+    categories: ['alien', 'dream', 'mesmice'],
     cleanUp: utils.tdr.itemUtils.cleanupCategories,
   });
 
