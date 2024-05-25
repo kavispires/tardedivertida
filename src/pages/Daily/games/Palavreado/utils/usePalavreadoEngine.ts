@@ -14,12 +14,14 @@ type GameState = {
   letters: PalavreadoLetter[];
   guesses: string[][]; // words guesses per heart
   state: string;
+  swaps: number;
 };
 
 const defaultArteRuimLocalToday: PalavreadoLocalToday = {
   id: '',
   guesses: [],
   number: 0,
+  swaps: 0,
 };
 
 export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
@@ -30,6 +32,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
     guesses: [],
     hearts: SETTINGS.HEARTS,
     state: '',
+    swaps: 0,
   });
 
   const { updateLocalStorage } = useDailyLocalToday<PalavreadoLocalToday>({
@@ -62,6 +65,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
         hearts,
         guesses: value.guesses,
         letters: copyLetters,
+        swaps: value.swaps ?? 0,
       });
     },
   });
@@ -90,11 +94,16 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
       copyLetters[prev.selection!] = copyLetters[index];
       copyLetters[index] = temp;
 
+      updateLocalStorage({
+        swaps: prev.swaps + 1,
+      });
+
       return {
         ...prev,
         letters: copyLetters,
         selection: null,
         swap: [prev.selection!, index],
+        swaps: prev.swaps + 1,
       };
     });
   };
@@ -129,9 +138,9 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
       const isAllCorrect = copyLetters.every((letter) => letter.locked);
 
       const guesses = generatedWords;
-
       updateLocalStorage({
         guesses: [...state.guesses, guesses],
+        swaps: prev.swaps,
       });
 
       return {
@@ -159,6 +168,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
     letters: state.letters,
     selection: state.selection,
     swap: state.swap,
+    swaps: state.swaps,
     showResultModal,
     setShowResultModal,
     isWin,

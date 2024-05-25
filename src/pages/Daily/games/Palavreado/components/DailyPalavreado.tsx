@@ -33,6 +33,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     selectLetter,
     submitGrid,
     swap,
+    swaps,
   } = usePalavreadoEngine(data);
 
   return (
@@ -45,7 +46,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
         <Space className="space-container" direction="vertical" align="center">
           <Typography.Text strong className="palavreado-word">
-            {data.keyword}
+            {data.keyword} {swaps > 0 && ` ↔️ ${swaps}`}
           </Typography.Text>
           <Board letters={letters} onLetterSelection={selectLetter} selection={selection} swap={swap} />
         </Space>
@@ -87,6 +88,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             hearts={hearts}
             words={data.words}
             letters={letters}
+            swaps={swaps}
           />
         </Modal>
       </Layout.Content>

@@ -18,6 +18,7 @@ type ResultsModalContentProps = {
   isLose: boolean;
   hearts: number;
   letters: PalavreadoLetter[];
+  swaps: number;
 };
 
 export function ResultsModalContent({
@@ -27,6 +28,7 @@ export function ResultsModalContent({
   isLose,
   hearts,
   letters,
+  swaps,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
@@ -36,6 +38,7 @@ export function ResultsModalContent({
     remainingHearts: hearts,
     letters,
     language,
+    swaps,
   });
 
   return (
@@ -76,12 +79,14 @@ function writeResult({
   remainingHearts,
   letters,
   language,
+  swaps,
 }: {
   game: string;
   challenge: number;
   remainingHearts: number;
   letters: PalavreadoLetter[];
   language: Language;
+  swaps: number;
 }) {
   const cleanUpAttempts = chunk(letters, 4).map((row) =>
     row.map((letter) => {
@@ -102,7 +107,7 @@ function writeResult({
 
   return [
     `📒 ${getDailyName(language)} ${game} #${challenge}`,
-    writeHeartResultString(remainingHearts, SETTINGS.HEARTS),
+    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')} (${swaps} trocas)`,
     cleanUpAttempts
       .map((row) => row.join(' ').trim())
       .filter(Boolean)
