@@ -140,7 +140,8 @@
           "achievements",
           "bots",
           "mobile-friendly",
-          "audience-mode"
+          "audience-mode",
+          "puzzle"
         ]
       }
     },

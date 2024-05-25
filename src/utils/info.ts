@@ -12,6 +12,7 @@ import CRUZA_PALAVRAS from 'games/cruza-palavras/game-info.json';
 import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/game-info.json';
 import DILEMA_DOS_ESQUIADORES from 'games/dilema-dos-esquiadores/game-info.json';
 import DUETOS from 'games/duetos/game-info.json';
+import ESCAPE_ROOM from 'games/escape-room/game-info.json';
 import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/game-info.json';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/game-info.json';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/game-info.json';
@@ -41,6 +42,7 @@ import TREVO_DA_SORTE from 'games/trevo-da-sorte/game-info.json';
 import UE_SO_ISSO from 'games/ue-so-isso/game-info.json';
 import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/game-info.json';
 import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/game-info.json';
+import VICE_CAMPEAO from 'games/vice-campeao/game-info.json';
 import VINGATIVOS from 'games/vingativos/game-info.json';
 import comingSoonGames from 'assets/data/coming-soon-games.json';
 
@@ -59,6 +61,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'detetives-imaginativos': DETETIVES_IMAGINATIVOS,
   'dilema-dos-esquiadores': DILEMA_DOS_ESQUIADORES,
   duetos: DUETOS,
+  'escape-room': ESCAPE_ROOM,
   'espiao-entre-nos': ESPIAO_ENTRE_NOS,
   'fileira-de-fatos': FILEIRA_DE_FATOS,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
@@ -88,6 +91,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'ue-so-isso': UE_SO_ISSO,
   'vamos-ao-cinema': VAMOS_AO_CINEMA,
   'vendaval-de-palpite': VENDAVAL_DE_PALPITE,
+  'vice-campeao': VICE_CAMPEAO,
   vingativos: VINGATIVOS,
 };
 
