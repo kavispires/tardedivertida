@@ -53,7 +53,7 @@ export function ResultsModalContent({ text, challenge, win, hearts, solution }: 
       </Typography.Paragraph>
 
       <TextHighlight className="result-answer">
-        <Typography.Paragraph>{text}</Typography.Paragraph>
+        <Typography.Paragraph className="text-center">{text}</Typography.Paragraph>
       </TextHighlight>
 
       <CopyToClipboardResult result={result} rows={3} />
