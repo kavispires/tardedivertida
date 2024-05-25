@@ -116,11 +116,12 @@ export const feedEmulatorDaily = async () => {
     },
     palavreado: {
       id: '2023-10-31',
+      number: 0,
       type: 'palavreado',
       language: 'pt',
-      number: 0,
-      letters: ['d', 'o', 'á', 'g', 'u', 'a', 'l', 'b', 'e', 'u', 'c', 'a', 'c', 'd', 'o', 'e'],
-      words: ['água', 'belo', 'cuca', 'dedo'],
+      keyword: 'cuba',
+      letters: ['c', 'i', 'b', 'm', 'l', 'u', 'e', 'a', 'h', 'r', 'b', 'l', 'ê', 'o', 'o', 'a'],
+      words: ['calo', 'muro', 'bebê', 'ilha'],
     },
     artista: {
       id: '2023-10-31',
