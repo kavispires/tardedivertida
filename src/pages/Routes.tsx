@@ -17,24 +17,11 @@ const TestArea = lazy(() => import('pages/TestArea/TestArea' /* webpackChunkName
 const DevIcons = lazy(() => import('pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
 const DevColors = lazy(() => import('pages/Dev/Colors' /* webpackChunkName: "page-dev-colors" */));
 const DevSprites = lazy(() => import('pages/Dev/Sprites' /* webpackChunkName: "page-dev-sprites" */));
-const DevResources = lazy(() => import('pages/Dev/Resources' /* webpackChunkName: "page-dev-resources" */));
 const DevPlayground = lazy(
   () => import('pages/Dev/Playground' /* webpackChunkName: "page-dev-playground" */)
 );
-const DevClassifier = lazy(
-  () => import('pages/Dev/Classifier/ItemClassifier' /* webpackChunkName: "page-dev-classifier" */)
-);
+
 const Daily = lazy(() => import('pages/Daily/Daily' /* webpackChunkName: "page-td-daily" */));
-const ImageCardsCategorizer = lazy(
-  () =>
-    import(
-      'pages/Dev/ImageCards/ImageCardsCategorizer' /* webpackChunkName: "page-dev-image-cards-categorizer" */
-    )
-);
-const ImageCardsRelationships = lazy(
-  () =>
-    import('pages/Dev/ImageCards/ImageCardsPage' /* webpackChunkName: "page-dev-image-cards-relationships" */)
-);
 const ConnectItems = lazy(
   () => import('pages/Dev/ConnectItems/ConnectItems' /* webpackChunkName: "page-dev-connect-items" */)
 );
@@ -87,19 +74,9 @@ const LazyDevSprites = () => (
     <DevSprites />
   </Suspense>
 );
-const LazyDevResources = () => (
-  <Suspense fallback={<LoadingPage />}>
-    <DevResources />
-  </Suspense>
-);
 const LazyDevPlayground = () => (
   <Suspense fallback={<LoadingPage />}>
     <DevPlayground />
-  </Suspense>
-);
-const LazyDevClassifier = () => (
-  <Suspense fallback={<LoadingPage />}>
-    <DevClassifier />
   </Suspense>
 );
 const LazyDaily = () => (
@@ -110,16 +87,6 @@ const LazyDaily = () => (
 const LazyDiario = () => (
   <Suspense fallback={<LoadingPage />}>
     <Daily />
-  </Suspense>
-);
-const LazyImageCardsCategorizer = () => (
-  <Suspense fallback={<LoadingPage />}>
-    <ImageCardsCategorizer />
-  </Suspense>
-);
-const LazyImageCardsRelationships = () => (
-  <Suspense fallback={<LoadingPage />}>
-    <ImageCardsRelationships />
   </Suspense>
 );
 const LazyConnectItems = () => (
@@ -189,42 +156,10 @@ export const routes = (
       }
     />
     <Route
-      path="/dev/resources"
-      element={
-        <AdminProtectedRoute>
-          <LazyDevResources />
-        </AdminProtectedRoute>
-      }
-    />
-    <Route
       path="/dev/playground"
       element={
         <AdminProtectedRoute>
           <LazyDevPlayground />
-        </AdminProtectedRoute>
-      }
-    />
-    <Route
-      path="/dev/classifier"
-      element={
-        <AdminProtectedRoute>
-          <LazyDevClassifier />
-        </AdminProtectedRoute>
-      }
-    />
-    <Route
-      path="/dev/imagecardscategorizer"
-      element={
-        <AdminProtectedRoute>
-          <LazyImageCardsCategorizer />
-        </AdminProtectedRoute>
-      }
-    />
-    <Route
-      path="/dev/imagecardsrelationships"
-      element={
-        <AdminProtectedRoute>
-          <LazyImageCardsRelationships />
         </AdminProtectedRoute>
       }
     />
