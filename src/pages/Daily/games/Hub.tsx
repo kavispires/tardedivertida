@@ -55,6 +55,13 @@ export function Hub() {
             </Link>
           </TransparentButton>
 
+          <TransparentButton hoverType="sepia" className="hub-item">
+            <Link to="/diario/filmaco" className="hub-item">
+              <DailyMovieGameIcon style={{ width: 75 }} />
+              <Translate pt="Filmaço" en="Movicon" />
+            </Link>
+          </TransparentButton>
+
           <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
             <Link to="/diario" className="hub-item">
               <DailyGroupingGameIcon style={{ width: 75 }} />
@@ -73,13 +80,6 @@ export function Hub() {
             <Link to="/diario" className="hub-item">
               <DailyImagesGameIcon style={{ width: 75 }} />
               <Translate pt="Imagine" en="Imagine" />
-            </Link>
-          </TransparentButton>
-
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario" className="hub-item">
-              <DailyMovieGameIcon style={{ width: 75 }} />
-              <Translate pt="Filmaço" en="Movicon" />
             </Link>
           </TransparentButton>
         </div>

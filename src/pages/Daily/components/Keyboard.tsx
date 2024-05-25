@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 import { LettersDictionary } from '../utils/types';
 
+const NUMBERS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 const FIRST_ROW = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
 const SECOND_ROW = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
 const THIRD_ROW = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
@@ -15,6 +16,7 @@ type KeyboardProps = {
   disabled?: boolean;
   onEnterClick?: GenericFunction;
   onBackspaceClick?: GenericFunction;
+  withNumbers?: boolean;
 };
 
 export function Keyboard({
@@ -23,6 +25,7 @@ export function Keyboard({
   disabled,
   onBackspaceClick,
   onEnterClick,
+  withNumbers,
 }: KeyboardProps) {
   const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30 });
 
@@ -53,6 +56,20 @@ export function Keyboard({
 
   return (
     <Space direction="vertical" align="center" className="daily-keyboard" size="small">
+      {withNumbers && (
+        <Flex className="daily-keyboard__row">
+          {NUMBERS.map((letter) => (
+            <Key
+              key={letter}
+              width={width}
+              letter={letter}
+              state={lettersState?.[letter]?.state}
+              onLetterClick={onLetterClick}
+              disabled={disabled || lettersState?.[letter]?.disabled}
+            />
+          ))}
+        </Flex>
+      )}
       <Flex className="daily-keyboard__row">
         {FIRST_ROW.map((letter) => (
           <Key
