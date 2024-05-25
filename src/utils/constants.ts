@@ -120,6 +120,15 @@ export const TAG_DICT: Record<
     index: 7,
     group: 'actions',
   },
+  puzzle: {
+    label: {
+      en: 'puzzle',
+      pt: 'quebra-cabeça',
+    },
+    color: 'geekblue',
+    index: 8,
+    group: 'actions',
+  },
   // About Feeling inducing
   'push-your-luck': {
     label: {
