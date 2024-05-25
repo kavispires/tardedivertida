@@ -14,6 +14,7 @@ export type PalavreadoLocalToday = {
   id: string;
   guesses: string[][];
   number: number;
+  swaps: number;
 };
 
 export type PalavreadoLetter = {
