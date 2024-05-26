@@ -12,8 +12,16 @@ type TextHighlightProps = {
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Use reverse colors
+   */
+  negative?: boolean;
 };
 
-export function TextHighlight({ children, className }: TextHighlightProps) {
-  return <span className={clsx('text-highlight', className)}>{children}</span>;
+export function TextHighlight({ children, className, negative }: TextHighlightProps) {
+  return (
+    <span className={clsx('text-highlight', negative && 'text-highlight--negative', className)}>
+      {children}
+    </span>
+  );
 }

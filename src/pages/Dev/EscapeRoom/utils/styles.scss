@@ -1,0 +1,39 @@
+@use 'styles/sass' as *;
+
+.escape-room-container {
+  padding: get-unit(4);
+}
+
+.escape-room-options {
+  padding: get-unit(4);
+  background: get-color('white');
+}
+
+.escape-room-episode {
+  padding: get-unit(4);
+  background: get-color('white');
+}
+
+.escape-room-card {
+  width: 200px;
+
+  &__icon {
+    background: transparent !important;
+  }
+
+  &__body {
+    height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    gap: get-unit(2);
+    padding: get-unit(1);
+  }
+
+  &__list {
+    margin: 0;
+    padding-inline-start: 0;
+  }
+}

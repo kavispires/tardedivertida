@@ -28,6 +28,9 @@ const ConnectItems = lazy(
 const ConnectTrio = lazy(
   () => import('pages/Dev/ConnectItems/ConnectTrioPage' /* webpackChunkName: "page-td-connect-trio" */)
 );
+const EscapeRoomPage = lazy(
+  () => import('pages/Dev/EscapeRoom/EscapeRoomPage' /* webpackChunkName: "page-td-escape-room" */)
+);
 
 const LazyMe = () => (
   <Suspense fallback={<LoadingPage />}>
@@ -97,6 +100,11 @@ const LazyConnectItems = () => (
 const LazyConnectTrio = () => (
   <Suspense fallback={<LoadingPage />}>
     <ConnectTrio />
+  </Suspense>
+);
+const LazyEscapeRoom = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <EscapeRoomPage />
   </Suspense>
 );
 
@@ -178,6 +186,14 @@ export const routes = (
       element={
         <AdminProtectedRoute>
           <LazyConnectItems />
+        </AdminProtectedRoute>
+      }
+    />
+    <Route
+      path="/dev/escaperoom"
+      element={
+        <AdminProtectedRoute>
+          <LazyEscapeRoom />
         </AdminProtectedRoute>
       }
     />
