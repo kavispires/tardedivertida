@@ -19,6 +19,7 @@ import { DailyArtistaEntry } from '../utils/types';
 import { useArtistaEngine } from '../utils/useArtistaEngine';
 import { Canvas } from './Canvas';
 import { Rules } from './Rules';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 type DailyArtistaProps = {
   data: DailyArtistaEntry;
@@ -99,14 +100,21 @@ export function DailyArtista({ data, currentUser }: DailyArtistaProps) {
                 <Translate
                   pt={
                     <>
-                      Você tem {SETTINGS.DURATION / SETTINGS.DRAWINGS} segundos para fazer cada um dos{' '}
-                      {SETTINGS.DRAWINGS} desenhos. O tempo começa assim que você aperta "Começar".
+                      Você tem <TimeHighlight>{SETTINGS.DURATION / SETTINGS.DRAWINGS}</TimeHighlight> segundos
+                      para fazer cada um dos {SETTINGS.DRAWINGS} desenhos.
+                      <br />
+                      Você <strong>NÃO</strong> pode usar letras ou números.
+                      <br />O tempo começa assim que você aperta "Começar".
                     </>
                   }
                   en={
                     <>
-                      You have {SETTINGS.DURATION / SETTINGS.DRAWINGS} seconds to make each of the{' '}
-                      {SETTINGS.DRAWINGS} drawings. The time starts as soon as you press "Start".
+                      You have <TimeHighlight>{SETTINGS.DURATION / SETTINGS.DRAWINGS}</TimeHighlight> seconds
+                      to draw each of the {SETTINGS.DRAWINGS} drawings.
+                      <br />
+                      You <strong>CANNOT</strong> use letters or numbers.
+                      <br />
+                      The time starts as soon as you press "Start".
                     </>
                   }
                 />
