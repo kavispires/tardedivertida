@@ -5,9 +5,8 @@ import { ReactNode, useState } from 'react';
 
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
 import { getToday } from '../utils';
-import { Header } from './Header';
-import { isDevEnv } from 'utils/helpers';
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
+import { Header } from './Header';
 
 const { Content, Footer } = Layout;
 
@@ -28,7 +27,7 @@ export function DailyChrome({ children }: DailyChromeProps) {
       </Header>
       {challengeQuery.isLoading ? <div className="loading-bar"></div> : <></>}
       <Content>{children}</Content>
-      {(isDevEnv || count >= 5) && (
+      {count >= 5 && (
         <Footer>
           <DevResetLocalStorageButton />
         </Footer>

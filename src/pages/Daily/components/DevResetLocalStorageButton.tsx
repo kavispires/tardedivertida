@@ -9,14 +9,13 @@ import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { isDevEnv } from 'utils/helpers';
 import { Translate } from 'components/language';
 
+const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA];
+
 export function DevResetLocalStorageButton() {
   const { message } = App.useApp();
 
   const onReset = () => {
-    localStorage.removeItem(ARTE_RUIM.TD_DAILY_ARTE_RUIM_LOCAL_TODAY);
-    localStorage.removeItem(AQUI_O.TD_DAILY_AQUI_O_LOCAL_TODAY);
-    localStorage.removeItem(PALAVREADO.TD_DAILY_PALAVREADO_LOCAL_TODAY);
-    localStorage.removeItem(ARTISTA.TD_DAILY_ARTISTA_LOCAL_TODAY);
+    keys.forEach((key) => localStorage.removeItem(key.LOCAL_TODAY_KEY));
     message.success(<Translate pt="LS resetado corretamente" en="LS reset successfully" />);
   };
 
@@ -25,10 +24,7 @@ export function DevResetLocalStorageButton() {
       id: '2023-10-30',
       number: -1,
     });
-    localStorage.setItem(ARTE_RUIM.TD_DAILY_ARTE_RUIM_LOCAL_TODAY, yesterday);
-    localStorage.setItem(AQUI_O.TD_DAILY_AQUI_O_LOCAL_TODAY, yesterday);
-    localStorage.setItem(PALAVREADO.TD_DAILY_PALAVREADO_LOCAL_TODAY, yesterday);
-    localStorage.setItem(ARTISTA.TD_DAILY_ARTISTA_LOCAL_TODAY, yesterday);
+    keys.forEach((key) => localStorage.setItem(key.LOCAL_TODAY_KEY, yesterday));
   };
 
   return (
