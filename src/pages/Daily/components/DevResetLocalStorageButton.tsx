@@ -6,10 +6,11 @@ import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
 import { SETTINGS as ARTISTA } from '../games/Artista/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
+import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { isDevEnv } from 'utils/helpers';
 import { Translate } from 'components/language';
 
-const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA];
+const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA, FILMACO];
 
 export function DevResetLocalStorageButton() {
   const { message } = App.useApp();

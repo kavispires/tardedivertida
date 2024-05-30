@@ -8,7 +8,6 @@ import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 import { getToday } from '../../utils';
 import { DailyFilmaco } from './components/DailyFilmaco';
 import { useMemo } from 'react';
-import { sample } from 'lodash';
 import { DEMO_DATA } from './data/demo';
 import { DailyFilmacoEntry } from './utils/types';
 
@@ -19,8 +18,10 @@ export function DailyFilmacoGame() {
   // Load challenge
   const challengeQuery = useDailyChallenge(`${today}`);
 
-  const dailyData: DailyFilmacoEntry = useMemo(() => {
-    const entry = sample(DEMO_DATA);
+  const dailyDataFR = challengeQuery?.data?.['filmaco'];
+
+  const fallbackDailyData: DailyFilmacoEntry = useMemo(() => {
+    const entry = DEMO_DATA[3];
     return {
       id: today,
       number: 0,
@@ -35,6 +36,8 @@ export function DailyFilmacoGame() {
   if (challengeQuery.isLoading) {
     return <DailyLoading />;
   }
+
+  const dailyData = dailyDataFR || fallbackDailyData;
 
   if (challengeQuery.isError || !dailyData) {
     return <DailyError />;
