@@ -135,6 +135,15 @@ export const feedEmulatorDaily = async () => {
           text: `Texto ${i}`,
         })),
     },
+    filmaco: {
+      id: '2023-10-31',
+      number: 0,
+      type: 'filmaco',
+      setId: 'dms-5-pt',
+      title: '007 - O Espião que me pra cacete',
+      itemsIds: ['763', '1971', '1988'],
+      year: 1977,
+    },
   };
 
   await utils.firebase.getDailyRef('daily').doc('2023-10-31').set(dailyMock);

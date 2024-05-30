@@ -22,7 +22,6 @@ export function getLettersInWord(text: string, allowNumbers?: boolean): BooleanD
       }
     }
   });
-  console.log(lettersInWord);
   return lettersInWord;
 }
 

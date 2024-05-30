@@ -27,35 +27,35 @@ export function useFilmacoEngine(data: DailyFilmacoEntry) {
     guesses: {},
   });
 
-  // const { localToday, updateLocalStorage } = useDailyLocalToday<FilmacoLocalToday>({
-  //   key: SETTINGS.TD_DAILY_FILMACO_LOCAL_TODAY,
-  //   gameId: data.id,
-  //   challengeNumber: data.number ?? 0,
-  //   defaultValue: defaultFilmacoLocalToday,
-  //   onApplyLocalState: (value) => {
-  //     let hearts = SETTINGS.HEARTS;
-  //     let solution = { ...state.solution };
-  //     const guesses = value.letters.reduce((acc: LettersDictionary, letter) => {
-  //       const isCorrect = state.solution[letter] !== undefined;
-  //       if (state.solution[letter] !== undefined) {
-  //         solution = { ...solution, [letter]: true };
-  //       }
-  //       acc[letter] = {
-  //         letter: letter,
-  //         state: isCorrect ? 'correct' : 'incorrect',
-  //         disabled: true,
-  //       };
-  //       hearts = isCorrect ? hearts : hearts - 1;
-  //       return acc;
-  //     }, {});
+  const { localToday, updateLocalStorage } = useDailyLocalToday<FilmacoLocalToday>({
+    key: SETTINGS.LOCAL_TODAY_KEY,
+    gameId: data.id,
+    challengeNumber: data.number ?? 0,
+    defaultValue: defaultFilmacoLocalToday,
+    onApplyLocalState: (value) => {
+      let hearts = SETTINGS.HEARTS;
+      let solution = { ...state.solution };
+      const guesses = value.letters.reduce((acc: LettersDictionary, letter) => {
+        const isCorrect = state.solution[letter] !== undefined;
+        if (state.solution[letter] !== undefined) {
+          solution = { ...solution, [letter]: true };
+        }
+        acc[letter] = {
+          letter: letter,
+          state: isCorrect ? 'correct' : 'incorrect',
+          disabled: true,
+        };
+        hearts = isCorrect ? hearts : hearts - 1;
+        return acc;
+      }, {});
 
-  //     updateState({
-  //       guesses,
-  //       hearts,
-  //       solution,
-  //     });
-  //   },
-  // });
+      updateState({
+        guesses,
+        hearts,
+        solution,
+      });
+    },
+  });
 
   // ACTIONS
   const guessLetter = (letter: string) => {
@@ -66,9 +66,9 @@ export function useFilmacoEngine(data: DailyFilmacoEntry) {
 
     const isCorrect = state.solution[letter] !== undefined;
 
-    // updateLocalStorage({
-    //   letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
-    // });
+    updateLocalStorage({
+      letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
+    });
 
     const solution = { ...state.solution };
     if (isCorrect) {
