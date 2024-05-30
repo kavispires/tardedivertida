@@ -7,6 +7,16 @@
   gap: get-unit(2);
 }
 
+.invisible-secret-button {
+  cursor: auto;
+  background: none;
+  border: none;
+
+  &:hover {
+    scale: 1;
+  }
+}
+
 .daily-heading.daily-heading {
   color: get-color('white') !important;
   font-size: 1.5em;
