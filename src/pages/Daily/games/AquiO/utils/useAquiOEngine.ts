@@ -41,7 +41,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
   });
 
   const { localToday, updateLocalStorage } = useDailyLocalToday<AquiOLocalToday>({
-    key: SETTINGS.TD_DAILY_AQUI_O_LOCAL_TODAY,
+    key: SETTINGS.LOCAL_TODAY_KEY,
     gameId: data.id,
     challengeNumber: data.number,
     defaultValue: defaultAquiOLocalToday,

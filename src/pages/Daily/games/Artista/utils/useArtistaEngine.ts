@@ -1,14 +1,15 @@
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { ArtistaLocalToday, DailyArtistaEntry, DrawingToSave } from './types';
 import { sampleSize } from 'lodash';
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySaveDrawings';
+import { wait } from 'pages/Daily/utils';
 import { ArteRuimCard } from 'types/tdr';
 import { Me } from 'types/user';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { SETTINGS } from './settings';
-import { wait } from 'pages/Daily/utils';
 import { SEPARATOR } from 'utils/constants';
-import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySaveDrawings';
 import { removeDuplicates } from 'utils/helpers';
+
+import { SETTINGS } from './settings';
+import { ArtistaLocalToday, DailyArtistaEntry, DrawingToSave } from './types';
 
 type GameState = {
   cards: ArteRuimCard[];
@@ -34,7 +35,7 @@ export function useArtistaEngine(data: DailyArtistaEntry, currentUser: Me) {
   });
 
   const { updateLocalStorage } = useDailyLocalToday<ArtistaLocalToday>({
-    key: SETTINGS.TD_DAILY_ARTISTA_LOCAL_TODAY,
+    key: SETTINGS.LOCAL_TODAY_KEY,
     gameId: data.id,
     challengeNumber: data.number ?? 0,
     defaultValue: defaultLocalToday,

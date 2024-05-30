@@ -28,7 +28,7 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
   });
 
   const { localToday, updateLocalStorage } = useDailyLocalToday<ArteRuimLocalToday>({
-    key: SETTINGS.TD_DAILY_ARTE_RUIM_LOCAL_TODAY,
+    key: SETTINGS.LOCAL_TODAY_KEY,
     gameId: data.id,
     challengeNumber: data.number ?? 0,
     defaultValue: defaultArteRuimLocalToday,

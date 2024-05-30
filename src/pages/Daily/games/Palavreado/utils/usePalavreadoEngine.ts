@@ -36,7 +36,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
   });
 
   const { updateLocalStorage } = useDailyLocalToday<PalavreadoLocalToday>({
-    key: SETTINGS.TD_DAILY_PALAVREADO_LOCAL_TODAY,
+    key: SETTINGS.LOCAL_TODAY_KEY,
     gameId: data.id,
     challengeNumber: data.number ?? 0,
     defaultValue: defaultArteRuimLocalToday,
