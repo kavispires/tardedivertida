@@ -8,6 +8,10 @@ export const DIRECTIONS: Record<string, Direction> = {
   RIGHT: 'RIGHT',
   DOWN: 'DOWN',
   LEFT: 'LEFT',
+  UP_LEFT: 'UP_LEFT',
+  UP_RIGHT: 'UP_RIGHT',
+  DOWN_LEFT: 'DOWN_LEFT',
+  DOWN_RIGHT: 'DOWN_RIGHT',
 };
 
 export const PAGE_DURATION = 15;

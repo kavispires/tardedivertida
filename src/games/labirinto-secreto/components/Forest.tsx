@@ -1,9 +1,7 @@
 import clsx from 'clsx';
 import { findLast } from 'lodash';
 import { Fragment } from 'react/jsx-runtime';
-import { useMeasure } from 'react-use';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
-import { LegacyRef } from 'react';
 import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 // Ant Design Resources
 import { Button, Flex, Space } from 'antd';
@@ -12,6 +10,8 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useScreenWidth } from 'hooks/useScreenWidth';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getDirection } from '../utils/helpers';
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
@@ -25,6 +25,7 @@ import { AvatarGroup } from 'components/avatars/AvatarGroup';
 import { ViewIf } from 'components/views';
 
 type ForestProps = {
+  appWidth?: number;
   forest: Tree[];
   map?: MapSegment[];
   showPath?: boolean;
@@ -55,19 +56,15 @@ export function Forest({
   forestBorderColor = 'transparent',
   playerMapping,
 }: ForestProps) {
+  const screenWidth = useScreenWidth();
   const treeWidth = useCardWidth(7, { gap: 16, minWidth: 60, maxWidth: 100 });
 
-  const [areaRef, { width: areaWidth }] = useMeasure();
-
-  if (!forest || !map || map.length === 0) {
+  if (!forest || !map || map.length === 0 || !screenWidth) {
     return (
       <Space direction="vertical" className="space-container">
         <IconAvatar icon={<AnimatedProcessingIcon />} size="large" />
       </Space>
     );
-  }
-  if (!areaWidth) {
-    return <div ref={areaRef as LegacyRef<HTMLDivElement>} className="forest-container-temp" />;
   }
 
   const startingTeeId = map?.[0]?.treeId;
@@ -78,32 +75,34 @@ export function Forest({
   const currentTreeId = findLast(map, (segment) => segment.passed)?.treeId ?? startingTeeId;
   const finalTreeId = map[map.length - 1]?.treeId;
 
-  const initialScale = areaWidth / (150 * 7);
+  const forestFullWidth = 150 * 7 + 72;
+  const isSmall = size === 'small';
+  const proportion = isSmall ? 0.5 : 0.9;
+  const initialScale = Math.min(forestFullWidth, screenWidth * proportion) / forestFullWidth;
 
   return (
-    <div ref={areaRef as LegacyRef<HTMLDivElement>} className="forest-container-area">
+    <div className="forest-container-area">
       <TransformWrapper
-        initialScale={Math.min(initialScale, 0.8)}
+        initialScale={initialScale}
         minScale={0.5}
         maxScale={4}
-        wheel={{ step: 0.05 }}
+        wheel={{ step: 0.05, disabled: true }}
         centerOnInit
       >
-        {({ zoomIn, zoomOut, resetTransform, setTransform }) => (
+        {({ zoomIn, zoomOut, resetTransform }) => (
           <Fragment>
-            <Flex className="forest-container-controls" justify="center">
-              <Flex>
-                <Button onClick={() => zoomIn(0.1)} size="small">
-                  <ZoomInOutlined />
-                </Button>
-                <Button onClick={() => zoomOut(0.1)} size="small">
-                  <ZoomOutOutlined />
-                </Button>
-                <Button onClick={() => resetTransform()} size="small">
-                  <FullscreenExitOutlined />
-                </Button>
-              </Flex>
-            </Flex>
+            <ForestControls
+              position="top"
+              zoomIn={zoomIn}
+              zoomOut={zoomOut}
+              resetTransform={resetTransform}
+            />
+            <ForestControls
+              position="bottom"
+              zoomIn={zoomIn}
+              zoomOut={zoomOut}
+              resetTransform={resetTransform}
+            />
 
             <TransformComponent
               wrapperClass={clsx('forest-container', size === 'small' && 'forest-container--small')}
@@ -231,6 +230,41 @@ type PlayerPositionsProps = {
 };
 
 function PlayerPositions({ players, playerIds, user }: PlayerPositionsProps) {
+  const { translate } = useLanguage();
   const list = playerIds.map((playerId) => players[playerId]);
-  return <AvatarGroup list={list} user={user} />;
+  return (
+    <AvatarGroup
+      list={list}
+      user={user}
+      tooltipPrefix={translate('Último lugar visitado por: ', 'Last visited place by: ')}
+    />
+  );
+}
+
+type ForestControlsProps = {
+  position: 'top' | 'bottom';
+  zoomIn: (step: number) => void;
+  zoomOut: (step: number) => void;
+  resetTransform: () => void;
+};
+
+function ForestControls({ zoomIn, zoomOut, resetTransform, position }: ForestControlsProps) {
+  return (
+    <Flex
+      className={clsx('forest-container-controls', `forest-container-controls--${position}`)}
+      justify="center"
+    >
+      <Flex>
+        <Button onClick={() => zoomIn(0.1)} size="small">
+          <ZoomInOutlined />
+        </Button>
+        <Button onClick={() => zoomOut(0.1)} size="small">
+          <ZoomOutOutlined />
+        </Button>
+        <Button onClick={() => resetTransform()} size="small">
+          <FullscreenExitOutlined />
+        </Button>
+      </Flex>
+    </Flex>
+  );
 }
