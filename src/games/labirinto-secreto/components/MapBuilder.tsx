@@ -34,6 +34,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
   const previousSelections = map.map((segment) => segment.clues);
   const [selections, setSelections] = useState<(ExtendedTextCard | null)[]>(map.map((_) => null));
   const [currentIndex, setIndex] = useState(0);
+  const [skippedIndexes, setSkippedIndexes] = useState<number[]>([]);
 
   const onSetCard = (card: ExtendedTextCard) => {
     setSelections((prev) => {
@@ -44,12 +45,13 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
     setIndex((prev) => prev + 1);
   };
 
-  const onSkipTree = () => {
+  const onSkipTree = (index: number) => {
     setSelections((prev) => {
       const copy = [...prev];
       copy[currentIndex] = null;
       return copy;
     });
+    setSkippedIndexes((prev) => [...prev, index]);
     setIndex((prev) => prev + 1);
   };
 
@@ -62,6 +64,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       });
       return copy;
     });
+    setSkippedIndexes((prev) => prev.filter((v) => v !== index));
     setIndex(index);
   };
 
@@ -138,7 +141,10 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 );
               })}
 
-              <TransparentButton onClick={() => onUnsetCard(index)} disabled={!selections?.[index]}>
+              <TransparentButton
+                onClick={() => onUnsetCard(index)}
+                disabled={!(selections?.[index] || skippedIndexes.includes(index))}
+              >
                 <TreeCard id={String(tree.treeType)} text={tree.card.text} />
               </TransparentButton>
             </div>
@@ -177,7 +183,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         <Button
           size="large"
           type="default"
-          onClick={() => onSkipTree()}
+          onClick={() => onSkipTree(currentIndex)}
           disabled={!previousSelections?.[currentIndex]?.length}
         >
           <Translate pt="Pular árvore" en="Skip tree" />
