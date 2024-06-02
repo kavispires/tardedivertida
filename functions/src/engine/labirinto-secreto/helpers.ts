@@ -1,5 +1,5 @@
 // Types
-import { Direction, MapSegment, Point, Tree } from './types';
+import { Direction, FirebaseStoreData, LabirintoSecretoAchievement, MapSegment, Point, Tree } from './types';
 // Constants
 import {
   CARDS_PER_PLAYER,
@@ -7,6 +7,7 @@ import {
   DIRECTIONS,
   FOREST_HEIGHT,
   FOREST_WIDTH,
+  LABIRINTO_SECRETO_ACHIEVEMENTS,
   LABIRINTO_SECRETO_PHASES,
   PATH_DISTANCE,
   STARTING_CARDS,
@@ -275,6 +276,11 @@ const determineDirection = (currentTree: number, nextTree?: number | null): Dire
   return null;
 };
 
+const determineDirectionAchievement = (currentTree: number, nextTree: number) => {
+  const direction = determineDirection(currentTree, nextTree);
+  return direction?.toLowerCase();
+};
+
 export const distributeCards = (store: PlainObject, players: Players, cards: TextCard[]) => {
   // Builds a 18 card deck per player
   utils.deck.setup(store, players, cards, CARDS_PER_PLAYER);
@@ -282,7 +288,7 @@ export const distributeCards = (store: PlainObject, players: Players, cards: Tex
   utils.deck.deal(store, players, STARTING_CARDS);
 };
 
-export const getRankingAndProcessScoring = (players: Players) => {
+export const getRankingAndProcessScoring = (players: Players, store: FirebaseStoreData) => {
   // Gained points index: [Correct guesses, from other players]
   const scores = new utils.players.Scores(players, [0, 0]);
   const listOfPlayers = utils.players.getListOfPlayers(players);
@@ -302,8 +308,18 @@ export const getRankingAndProcessScoring = (players: Players) => {
         if (player.id !== activePlayer.id) {
           const guesses: number[] = player.guesses[activePlayer.id];
 
+          // Achievement: Distance
+          utils.achievements.increase(store, player.id, 'distance', guesses.length);
+
           for (let i = 0; i < guesses.length; i++) {
             const guess = guesses[i];
+
+            // Achievement: determine direction
+            const achievementDirection = determineDirectionAchievement(guesses[i - 1], guess);
+            if (achievementDirection) {
+              utils.achievements.increase(store, player.id, achievementDirection, 1);
+            }
+
             // Add to history
             if (player.history[activePlayer.id] === undefined) {
               player.history[activePlayer.id] = {};
@@ -316,11 +332,16 @@ export const getRankingAndProcessScoring = (players: Players) => {
               currentMap[i].playersIds.push(player.id);
 
               player.history[activePlayer.id][segment.index] = [guess];
+
+              // Achievement: guider
+              utils.achievements.increase(store, player.id, 'guided', 1);
+              utils.achievements.increase(store, activePlayer.id, 'guide', 1);
             } else {
               player.history[activePlayer.id][segment.index] = [
                 ...(player.history[activePlayer.id][segment.index] ?? []),
                 guess,
               ];
+
               break;
             }
           }
@@ -397,4 +418,114 @@ export const getPlayersWhoHaveNotCompletedTheirMaps = (players: Players): Player
 
 export const getIsPlayerMapComplete = (player: Player): boolean => {
   return player.map.every((segment: MapSegment) => segment.passed);
+};
+
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<LabirintoSecretoAchievement>[] = [];
+
+  // Most and Fewest adjectives
+  const { most: mostAdjectives, least: leastAdjectives } = utils.achievements.getMostAndLeastOf(
+    store,
+    'adjectives'
+  );
+  if (mostAdjectives) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.MOST_CARDS,
+      playerId: mostAdjectives.playerId,
+      value: mostAdjectives.value,
+    });
+  }
+  if (leastAdjectives) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.FEWEST_CARDS,
+      playerId: leastAdjectives.playerId,
+      value: leastAdjectives.value,
+    });
+  }
+
+  // Most and Fewest negative adjectives
+  const { most: mostNegativeAdjectives, least: leastNegativeAdjectives } =
+    utils.achievements.getMostAndLeastOf(store, 'negatives');
+  if (mostNegativeAdjectives) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.MOST_NEGATIVE_CARDS,
+      playerId: mostNegativeAdjectives.playerId,
+      value: mostNegativeAdjectives.value,
+    });
+  }
+  if (leastNegativeAdjectives) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.FEWEST_NEGATIVE_CARDS,
+      playerId: leastNegativeAdjectives.playerId,
+      value: leastNegativeAdjectives.value,
+    });
+  }
+
+  // Most and Fewest trees
+  const { most: mostTrees, least: leastTrees } = utils.achievements.getMostAndLeastOf(store, 'distance');
+  if (mostTrees) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.MOST_TREES,
+      playerId: mostTrees.playerId,
+      value: mostTrees.value,
+    });
+  }
+  if (leastTrees) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.FEWEST_TREES,
+      playerId: leastTrees.playerId,
+      value: leastTrees.value,
+    });
+  }
+
+  // Best and Worst map
+  const { most: bestMap, least: worstMap } = utils.achievements.getMostAndLeastOf(store, 'guided');
+  if (bestMap) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.BEST_MAP,
+      playerId: bestMap.playerId,
+      value: bestMap.value,
+    });
+  }
+  if (worstMap) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.WORST_MAP,
+      playerId: worstMap.playerId,
+      value: worstMap.value,
+    });
+  }
+
+  // Best and Worst scout
+  const { most: bestScout, least: worstScout } = utils.achievements.getMostAndLeastOf(store, 'guide');
+  if (bestScout) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.BEST_SCOUT,
+      playerId: bestScout.playerId,
+      value: bestScout.value,
+    });
+  }
+  if (worstScout) {
+    achievements.push({
+      type: LABIRINTO_SECRETO_ACHIEVEMENTS.WORST_SCOUT,
+      playerId: worstScout.playerId,
+      value: worstScout.value,
+    });
+  }
+
+  // Most directions
+  const directions = ['up', 'right', 'down', 'left', 'up_left', 'up_right', 'down_left', 'down_right'];
+  directions.forEach((direction) => {
+    const { most: mostDirection } = utils.achievements.getMostAndLeastOf(store, direction);
+    if (mostDirection) {
+      achievements.push({
+        type: LABIRINTO_SECRETO_ACHIEVEMENTS[
+          `MOST_${direction.toUpperCase()}` as LabirintoSecretoAchievement
+        ],
+        playerId: mostDirection.playerId,
+        value: mostDirection.value,
+      });
+    }
+  });
+
+  return achievements;
 };
