@@ -11,6 +11,12 @@ type PlayerMapProps = {
   fullMap?: boolean;
 };
 
+const GOAL_TREE: Tree = {
+  id: 0,
+  treeType: 0,
+  card: { id: '', text: '' },
+};
+
 export function PlayerMap({ map = [], selectedTrees = [], fullMap = false }: PlayerMapProps) {
   const currentMap = fullMap ? map : map.filter((segment) => segment.active);
 
@@ -22,11 +28,12 @@ export function PlayerMap({ map = [], selectedTrees = [], fullMap = false }: Pla
     >
       {currentMap.map((segment, index, arr) => {
         const selectedTree = selectedTrees[index + 1];
+        console.log({ selectedTree });
         return (
           <MapEntry
             className="player-map__segment"
             key={`map-${segment.index}`}
-            tree={selectedTree}
+            tree={arr.length - 1 !== index ? selectedTree : GOAL_TREE}
             segment={segment}
             showArrow={arr.length - 1 !== index}
           />
