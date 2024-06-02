@@ -1,7 +1,12 @@
 import clsx from 'clsx';
 import { findLast } from 'lodash';
+import { Fragment } from 'react/jsx-runtime';
+import { useMeasure } from 'react-use';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import { LegacyRef } from 'react';
+import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 // Ant Design Resources
-import { Space } from 'antd';
+import { Button, Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
@@ -52,12 +57,17 @@ export function Forest({
 }: ForestProps) {
   const treeWidth = useCardWidth(7, { gap: 16, minWidth: 60, maxWidth: 100 });
 
+  const [areaRef, { width: areaWidth }] = useMeasure();
+
   if (!forest || !map || map.length === 0) {
     return (
       <Space direction="vertical" className="space-container">
         <IconAvatar icon={<AnimatedProcessingIcon />} size="large" />
       </Space>
     );
+  }
+  if (!areaWidth) {
+    return <div ref={areaRef as LegacyRef<HTMLDivElement>} className="forest-container-temp" />;
   }
 
   const startingTeeId = map?.[0]?.treeId;
@@ -68,116 +78,148 @@ export function Forest({
   const currentTreeId = findLast(map, (segment) => segment.passed)?.treeId ?? startingTeeId;
   const finalTreeId = map[map.length - 1]?.treeId;
 
+  const initialScale = areaWidth / (150 * 7);
+
   return (
-    <div className={clsx('forest-container', size === 'small' && 'forest-container--small')}>
-      <div className="forest" style={{ borderColor: forestBorderColor }}>
-        {forest.map((tree) => {
-          const segment = treeMap?.[tree.id];
+    <div ref={areaRef as LegacyRef<HTMLDivElement>} className="forest-container-area">
+      <TransformWrapper
+        initialScale={Math.min(initialScale, 0.8)}
+        minScale={0.5}
+        maxScale={4}
+        wheel={{ step: 0.05 }}
+        centerOnInit
+      >
+        {({ zoomIn, zoomOut, resetTransform, setTransform }) => (
+          <Fragment>
+            <Flex className="forest-container-controls" justify="center">
+              <Flex>
+                <Button onClick={() => zoomIn(0.1)} size="small">
+                  <ZoomInOutlined />
+                </Button>
+                <Button onClick={() => zoomOut(0.1)} size="small">
+                  <ZoomOutOutlined />
+                </Button>
+                <Button onClick={() => resetTransform()} size="small">
+                  <FullscreenExitOutlined />
+                </Button>
+              </Flex>
+            </Flex>
 
-          if (actions) {
-            const { selection = [], clickableTrees, onSelectTree, activeTree, disabled } = actions;
-            const isPathForward = clickableTrees.includes(tree.id);
-            const isClickable = isPathForward || selection.includes(tree.id);
+            <TransformComponent
+              wrapperClass={clsx('forest-container', size === 'small' && 'forest-container--small')}
+            >
+              <div className="forest" style={{ borderColor: forestBorderColor }}>
+                {forest.map((tree) => {
+                  const segment = treeMap?.[tree.id];
 
-            if (isClickable) {
-              const isSelected = selection.includes(tree.id);
-              const isActive = activeTree === tree.id;
-              const selectionIndex = selection.indexOf(tree.id);
+                  if (actions) {
+                    const { selection = [], clickableTrees, onSelectTree, activeTree, disabled } = actions;
+                    const isPathForward = clickableTrees.includes(tree.id);
+                    const isClickable = isPathForward || selection.includes(tree.id);
 
-              return (
-                <div
-                  key={`tree-${tree.id}`}
-                  className={clsx(
-                    'forest__tree-container forest__tree-button',
-                    isPathForward && disabled && 'forest__tree-button--disabled'
-                  )}
-                  onClick={() => {
-                    if ((isClickable && !disabled) || (isClickable && disabled && !isPathForward)) {
-                      onSelectTree(tree.id);
+                    if (isClickable) {
+                      const isSelected = selection.includes(tree.id);
+                      const isActive = activeTree === tree.id;
+                      const selectionIndex = selection.indexOf(tree.id);
+
+                      return (
+                        <div
+                          key={`tree-${tree.id}`}
+                          className={clsx(
+                            'forest__tree-container forest__tree-button',
+                            isPathForward && disabled && 'forest__tree-button--disabled'
+                          )}
+                          onClick={() => {
+                            if ((isClickable && !disabled) || (isClickable && disabled && !isPathForward)) {
+                              onSelectTree(tree.id);
+                            }
+                          }}
+                          role="button"
+                        >
+                          <ForestTree
+                            segment={segment}
+                            tree={tree}
+                            startingTeeId={startingTeeId}
+                            finalTreeId={finalTreeId}
+                            currentTreeId={currentTreeId}
+                            showPath={showPath}
+                            className={clsx(
+                              isPathForward && !disabled && 'forest__tree--clickable',
+                              isSelected && 'forest__tree--selected',
+                              isActive && 'forest__tree--active'
+                            )}
+                            width={treeWidth}
+                          />
+                          {isSelected && currentTreeId !== tree.id && (
+                            <IconAvatar
+                              icon={<ArrowIcon />}
+                              size="large"
+                              className={clsx(
+                                `forest__arrow-to forest__arrow-to--${getDirection(
+                                  selection[selectionIndex - 1],
+                                  tree.id
+                                )}`
+                              )}
+                            />
+                          )}
+
+                          {isPathForward && !disabled && (
+                            <IconAvatar
+                              icon={<ArrowIcon />}
+                              size="large"
+                              className={clsx(
+                                `forest__arrow-to forest__arrow-to--${getDirection(
+                                  selection[selection.length - 1] ?? activeTree,
+                                  tree.id
+                                )}`
+                              )}
+                            />
+                          )}
+
+                          <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
+                            <div className="forest__players">
+                              <PlayerPositions
+                                players={players!}
+                                playerIds={playerMapping?.[tree.id] ?? []}
+                                user={user}
+                              />
+                            </div>
+                          </ViewIf>
+                        </div>
+                      );
                     }
-                  }}
-                  role="button"
-                >
-                  <ForestTree
-                    segment={segment}
-                    tree={tree}
-                    startingTeeId={startingTeeId}
-                    finalTreeId={finalTreeId}
-                    currentTreeId={currentTreeId}
-                    showPath={showPath}
-                    className={clsx(
-                      isPathForward && !disabled && 'forest__tree--clickable',
-                      isSelected && 'forest__tree--selected',
-                      isActive && 'forest__tree--active'
-                    )}
-                    width={treeWidth}
-                  />
-                  {isSelected && currentTreeId !== tree.id && (
-                    <IconAvatar
-                      icon={<ArrowIcon />}
-                      size="large"
-                      className={clsx(
-                        `forest__arrow-to forest__arrow-to--${getDirection(
-                          selection[selectionIndex - 1],
-                          tree.id
-                        )}`
-                      )}
-                    />
-                  )}
+                  }
 
-                  {isPathForward && !disabled && (
-                    <IconAvatar
-                      icon={<ArrowIcon />}
-                      size="large"
-                      className={clsx(
-                        `forest__arrow-to forest__arrow-to--${getDirection(
-                          selection[selection.length - 1] ?? activeTree,
-                          tree.id
-                        )}`
-                      )}
-                    />
-                  )}
-
-                  <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
-                    <div className="forest__players">
-                      <PlayerPositions
-                        players={players!}
-                        playerIds={playerMapping?.[tree.id] ?? []}
-                        user={user}
+                  return (
+                    <div key={`tree-${tree.id}`} className="forest__tree-container">
+                      <ForestTree
+                        segment={segment}
+                        tree={tree}
+                        startingTeeId={startingTeeId}
+                        finalTreeId={finalTreeId}
+                        currentTreeId={currentTreeId}
+                        showPath={showPath}
+                        hidePassedTreeNames={hidePassedTreeNames}
+                        width={treeWidth}
                       />
+
+                      <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
+                        <div className="forest__players">
+                          <PlayerPositions
+                            players={players!}
+                            playerIds={playerMapping?.[tree.id] ?? []}
+                            user={user}
+                          />
+                        </div>
+                      </ViewIf>
                     </div>
-                  </ViewIf>
-                </div>
-              );
-            }
-          }
-
-          return (
-            <div key={`tree-${tree.id}`} className="forest__tree-container">
-              <ForestTree
-                segment={segment}
-                tree={tree}
-                startingTeeId={startingTeeId}
-                finalTreeId={finalTreeId}
-                currentTreeId={currentTreeId}
-                showPath={showPath}
-                hidePassedTreeNames={hidePassedTreeNames}
-                width={treeWidth}
-              />
-
-              <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
-                <div className="forest__players">
-                  <PlayerPositions
-                    players={players!}
-                    playerIds={playerMapping?.[tree.id] ?? []}
-                    user={user}
-                  />
-                </div>
-              </ViewIf>
-            </div>
-          );
-        })}
-      </div>
+                  );
+                })}
+              </div>
+            </TransformComponent>
+          </Fragment>
+        )}
+      </TransformWrapper>
     </div>
   );
 }

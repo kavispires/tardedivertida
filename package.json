@@ -31,6 +31,7 @@
     "react-scripts": "5.0.1",
     "react-timer-hook": "^3.0.7",
     "react-use": "^17.5.0",
+    "react-zoom-pan-pinch": "^3.4.4",
     "sass": "^1.75.0",
     "typescript": "^4.7.3",
     "web-vitals": "^3.5.2"
@@ -43,7 +44,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "prepare": "husky install",
-    "update-commit": "bash scripts/update_commit.sh"
+    "update-commit": "bash scripts/update_commit.sh",
+    "clean": "rm -rf node_modules"
   },
   "eslintConfig": {
     "extends": [

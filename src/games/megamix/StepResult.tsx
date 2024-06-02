@@ -55,6 +55,7 @@ export function StepResult({
 }: StepResultProps) {
   useTemporarilyHidePlayersBar();
   const [resultRef, { width }] = useMeasure();
+  const [ref, { width: resultsValueWidth }] = useMeasure();
 
   const time = useCountdown({ duration: 20 });
 
@@ -68,8 +69,6 @@ export function StepResult({
   // Counts to aid the animation positioning. It doesn't trigger re-renders because it's handled by css
   let winningCount = 0;
   let losingCount = 0;
-
-  const [ref, { width: resultsValueWidth }] = useMeasure();
 
   return (
     <Step announcement={announcement}>
