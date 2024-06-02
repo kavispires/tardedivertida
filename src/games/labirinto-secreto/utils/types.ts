@@ -38,7 +38,15 @@ export interface Tree {
   card: TextCard;
 }
 
-export type Direction = 'UP' | 'RIGHT' | 'DOWN' | 'LEFT';
+export type Direction =
+  | 'UP'
+  | 'RIGHT'
+  | 'DOWN'
+  | 'LEFT'
+  | 'UP_LEFT'
+  | 'UP_RIGHT'
+  | 'DOWN_LEFT'
+  | 'DOWN_RIGHT';
 
 export interface MapSegment {
   /**

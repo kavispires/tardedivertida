@@ -51,12 +51,16 @@ export const getOriginDirection = (index: TreeId): Direction | null => {
 export const getDirection = (from: TreeId, to: TreeId): Direction => {
   const [fromX, fromY] = getPoint(from);
   const [toX, toY] = getPoint(to);
-  if (fromX === toX) {
-    if (fromY < toY) return DIRECTIONS.DOWN;
-    return DIRECTIONS.UP;
-  }
-  if (fromX < toX) return DIRECTIONS.RIGHT;
-  return DIRECTIONS.LEFT;
+  const result = toX - fromX + (toY - fromY) * FOREST_WIDTH;
+  if (result === 1) return DIRECTIONS.RIGHT;
+  if (result === -1) return DIRECTIONS.LEFT;
+  if (result === FOREST_WIDTH) return DIRECTIONS.DOWN;
+  if (result === -FOREST_WIDTH) return DIRECTIONS.UP;
+  if (result === FOREST_WIDTH + 1) return DIRECTIONS.DOWN_RIGHT;
+  if (result === FOREST_WIDTH - 1) return DIRECTIONS.DOWN_LEFT;
+  if (result === -FOREST_WIDTH + 1) return DIRECTIONS.UP_RIGHT;
+  if (result === -FOREST_WIDTH - 1) return DIRECTIONS.UP_LEFT;
+  return DIRECTIONS.UP;
 };
 
 /**
@@ -92,7 +96,30 @@ export const getAvailableSegments = (origin: TreeId, usedIndexes: TreeId[]): Tre
   if (left[0] >= 0 && !usedIndexes.includes(leftIndex)) {
     available.push(left);
   }
-
+  // Top-Left
+  const topLeft: Point = [x - 1, y - 1];
+  const topLeftIndex = getIndex(topLeft);
+  if (topLeft[0] >= 0 && topLeft[1] >= 0 && !usedIndexes.includes(topLeftIndex)) {
+    available.push(topLeft);
+  }
+  // Top-Right
+  const topRight: Point = [x + 1, y - 1];
+  const topRightIndex = getIndex(topRight);
+  if (topRight[0] < FOREST_WIDTH && topRight[1] >= 0 && !usedIndexes.includes(topRightIndex)) {
+    available.push(topRight);
+  }
+  // Down-Left
+  const downLeft: Point = [x - 1, y + 1];
+  const downLeftIndex = getIndex(downLeft);
+  if (downLeft[0] >= 0 && downLeft[1] < FOREST_HEIGHT && !usedIndexes.includes(downLeftIndex)) {
+    available.push(downLeft);
+  }
+  // Down-Right
+  const downRight: Point = [x + 1, y + 1];
+  const downRightIndex = getIndex(downRight);
+  if (downRight[0] < FOREST_WIDTH && downRight[1] < FOREST_HEIGHT && !usedIndexes.includes(downRightIndex)) {
+    available.push(downRight);
+  }
   return available.map((point) => getIndex(point));
 };
 

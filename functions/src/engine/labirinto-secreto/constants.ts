@@ -77,6 +77,10 @@ export const DIRECTIONS = {
   RIGHT: 'RIGHT',
   DOWN: 'DOWN',
   LEFT: 'LEFT',
+  UP_LEFT: 'UP_LEFT',
+  UP_RIGHT: 'UP_RIGHT',
+  DOWN_LEFT: 'DOWN_LEFT',
+  DOWN_RIGHT: 'DOWN_RIGHT',
 };
 
 export const CARDS_PER_PLAYER = 25;

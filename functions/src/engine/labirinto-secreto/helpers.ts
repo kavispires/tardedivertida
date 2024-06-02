@@ -142,10 +142,35 @@ const getAvailableNextStep = (point: Point, usedIndexes: number[]): Point => {
   if (left[0] >= 0 && !usedIndexes.includes(leftIndex)) {
     available.push(left);
   }
+  // Top-Left
+  const topLeft: Point = [x - 1, y - 1];
+  const topLeftIndex = getIndex(topLeft);
+  if (topLeft[0] >= 0 && topLeft[1] >= 0 && !usedIndexes.includes(topLeftIndex)) {
+    available.push(topLeft);
+  }
+  // Top-Right
+  const topRight: Point = [x + 1, y - 1];
+  const topRightIndex = getIndex(topRight);
+  if (topRight[0] < FOREST_WIDTH && topRight[1] >= 0 && !usedIndexes.includes(topRightIndex)) {
+    available.push(topRight);
+  }
+  // Down-Left
+  const downLeft: Point = [x - 1, y + 1];
+  const downLeftIndex = getIndex(downLeft);
+  if (downLeft[0] >= 0 && downLeft[1] < FOREST_HEIGHT && !usedIndexes.includes(downLeftIndex)) {
+    available.push(downLeft);
+  }
+  // Down-Right
+  const downRight: Point = [x + 1, y + 1];
+  const downRightIndex = getIndex(downRight);
+  if (downRight[0] < FOREST_WIDTH && downRight[1] < FOREST_HEIGHT && !usedIndexes.includes(downRightIndex)) {
+    available.push(downRight);
+  }
+
   return utils.game.getRandomItem(available);
 };
 
-const WHILE_THRESHOLD = 100;
+const WHILE_THRESHOLD = 150;
 
 /**
  * Build a path through the forest. The path never loops back on itself.
@@ -240,9 +265,13 @@ export const buildPaths = (players: Players) => {
 const determineDirection = (currentTree: number, nextTree?: number | null): Direction | null => {
   if (nextTree === null || nextTree === undefined) return null;
   if (nextTree - currentTree === 1) return DIRECTIONS.RIGHT as Direction;
-  if (nextTree - currentTree > 1) return DIRECTIONS.DOWN as Direction;
   if (nextTree - currentTree === -1) return DIRECTIONS.LEFT as Direction;
-  if (nextTree - currentTree < -1) return DIRECTIONS.UP as Direction;
+  if (nextTree - currentTree === 7) return DIRECTIONS.DOWN as Direction;
+  if (nextTree - currentTree === -7) return DIRECTIONS.UP as Direction;
+  if (nextTree - currentTree === -6) return DIRECTIONS.UP_LEFT as Direction;
+  if (nextTree - currentTree === -8) return DIRECTIONS.UP_RIGHT as Direction;
+  if (nextTree - currentTree === 6) return DIRECTIONS.DOWN_LEFT as Direction;
+  if (nextTree - currentTree === 8) return DIRECTIONS.DOWN_RIGHT as Direction;
   return null;
 };
 

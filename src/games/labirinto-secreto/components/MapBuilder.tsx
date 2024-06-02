@@ -147,12 +147,9 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       </Space>
 
       {possibleTreeIds.length > 0 && (
-        <Space className="contained">
+        <Space className="contained" wrap>
           <strong>
-            <Translate
-              pt="Outros possíveis caminhos para a árvore atual"
-              en="Other possible paths for the current tree"
-            />
+            <Translate pt="Caminhos possíveis para a árvore atual" en="Possible paths for the current tree" />
             :
           </strong>
           {possibleTreeIds.map((treeId, index) => (
