@@ -2,8 +2,7 @@
 
 .forest-container {
   max-width: 90vw;
-  overflow-x: auto;
-  overflow-y: hidden;
+  // max-height: 80vh;
   background: get-color('green', 8, 0.85);
   border-radius: 75px;
 
@@ -11,6 +10,22 @@
     transform: scale(0.7);
     transform-origin: top center;
   }
+}
+
+.forest-container-temp {
+  width: 90vw;
+  height: 10px;
+}
+
+.forest-container-area {
+  position: relative;
+}
+
+.forest-container-controls {
+  position: absolute;
+  z-index: 10;
+  top: get-unit(1);
+  width: 100%;
 }
 
 .forest {

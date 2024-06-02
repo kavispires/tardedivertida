@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "0.9.24",
+  "version": "1.0.0",
   "title": {
     "pt": "Labirinto Secreto",
     "en": "Secret Labyrinth"
