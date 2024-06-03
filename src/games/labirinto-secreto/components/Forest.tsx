@@ -150,29 +150,43 @@ export function Forest({
                             width={treeWidth}
                           />
                           {isSelected && currentTreeId !== tree.id && (
-                            <IconAvatar
-                              icon={<ArrowIcon />}
-                              size="large"
-                              className={clsx(
-                                `forest__arrow-to forest__arrow-to--${getDirection(
-                                  selection[selectionIndex - 1],
-                                  tree.id
-                                )}`
-                              )}
-                            />
+                            <>
+                              <span
+                                className={clsx(
+                                  `forest__arrow-from-line forest__arrow-from-line--${getDirection(
+                                    selection[selectionIndex - 1],
+                                    tree.id
+                                  )}`,
+                                  isSelected && 'forest__tree--selected',
+                                  isActive && 'forest__tree--active'
+                                )}
+                              />
+                              <IconAvatar
+                                icon={<ArrowIcon />}
+                                size="large"
+                                className={clsx(
+                                  `forest__arrow-to forest__arrow-to--${getDirection(
+                                    selection[selectionIndex - 1],
+                                    tree.id
+                                  )}`
+                                )}
+                              />
+                            </>
                           )}
 
                           {isPathForward && !disabled && (
-                            <IconAvatar
-                              icon={<ArrowIcon />}
-                              size="large"
-                              className={clsx(
-                                `forest__arrow-to forest__arrow-to--${getDirection(
-                                  selection[selection.length - 1] ?? activeTree,
-                                  tree.id
-                                )}`
-                              )}
-                            />
+                            <>
+                              <IconAvatar
+                                icon={<ArrowIcon />}
+                                size="large"
+                                className={clsx(
+                                  `forest__arrow-to forest__arrow-to--${getDirection(
+                                    selection[selection.length - 1] ?? activeTree,
+                                    tree.id
+                                  )}`
+                                )}
+                              />
+                            </>
                           )}
 
                           <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>

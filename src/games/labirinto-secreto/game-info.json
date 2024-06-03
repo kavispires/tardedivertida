@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "title": {
     "pt": "Labirinto Secreto",
     "en": "Secret Labyrinth"
@@ -48,6 +48,30 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "guessing", "same-time", "pairing"],
+  "tags": ["competitive", "guessing", "same-time", "pairing", "achievements"],
+  "options": [
+    {
+      "key": "shortPath",
+      "label": "Distance",
+      "off": "Normal",
+      "on": "Short",
+      "description": "Each players path may be shorter (5 trees) or longer (10 trees)",
+      "disabled": true
+    },
+    {
+      "key": "itemTreeType",
+      "label": "Type",
+      "off": "Trees (Words)",
+      "on": "Items (Icons)",
+      "description": "Icons make the game with more variety but more simplistic"
+    },
+    {
+      "key": "nsfw",
+      "label": "NSFW",
+      "off": "No",
+      "on": "Yes",
+      "description": "Allow NSFW content"
+    }
+  ],
   "available": true
 }

@@ -7,7 +7,7 @@ import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { TreeCard } from 'components/cards/TreeCard';
+import { TreeImage } from './TreeImage';
 
 type MapEntryProps = {
   segment: MapSegment;
@@ -19,7 +19,7 @@ type MapEntryProps = {
 export function MapEntry({ segment, tree, showArrow, className }: MapEntryProps) {
   return (
     <div className={clsx('map-entry', className)} key={`map-${segment.index}`}>
-      {tree && <TreeCard id={String(tree.treeType)} className="map-entry__tree" text={tree.card.text} />}
+      {tree && <TreeImage id={tree.treeType} text={tree.card.text} className="map-entry__tree" />}
 
       <IconAvatar icon={<MapIcon />} size="large" className="map-entry__icon" />
       {segment.clues.map((clue) => {

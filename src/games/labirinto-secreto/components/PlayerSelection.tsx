@@ -6,7 +6,8 @@ import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { TreeCard } from 'components/cards/TreeCard';
+
+import { TreeImage } from './TreeImage';
 
 type PlayerSelectionMapProps = {
   forest: Tree[];
@@ -47,7 +48,7 @@ export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapPr
               );
             })}
 
-            <TreeCard id={String(tree.treeType)} text={passed ? '' : tree.card.text} />
+            <TreeImage id={tree.treeType} text={passed ? '' : tree.card.text} />
           </div>
         );
       })}

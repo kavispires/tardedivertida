@@ -28,12 +28,13 @@ export function PlayerMap({ map = [], selectedTrees = [], fullMap = false }: Pla
     >
       {currentMap.map((segment, index, arr) => {
         const selectedTree = selectedTrees[index + 1];
-        console.log({ selectedTree });
+        const flagPole = fullMap && arr.length - 1 === index ? GOAL_TREE : undefined;
+
         return (
           <MapEntry
             className="player-map__segment"
             key={`map-${segment.index}`}
-            tree={arr.length - 1 !== index ? selectedTree : GOAL_TREE}
+            tree={flagPole ?? selectedTree}
             segment={segment}
             showArrow={arr.length - 1 !== index}
           />

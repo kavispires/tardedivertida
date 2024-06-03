@@ -13,6 +13,7 @@ import { FlagIcon } from 'icons/FlagIcon';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TreeImage } from './TreeImage';
 
 type PlayerMapResultsSummaryProps = {
   players: GamePlayers;
@@ -41,12 +42,7 @@ export function PlayerMapResultsSummary({
           <div className="player-map__segment" key={`map-${segment.index}`}>
             <div className="player-map__top">
               {tree ? (
-                <TreeCard
-                  id={String(tree.treeType)}
-                  className="player-map__tree"
-                  text={tree.card.text}
-                  width={75}
-                />
+                <TreeImage id={tree.treeType} text={tree.card.text} className="player-map__tree" width={75} />
               ) : (
                 <TreeCard id="1" className="player-map__tree-invisible" text="" width={75} />
               )}
