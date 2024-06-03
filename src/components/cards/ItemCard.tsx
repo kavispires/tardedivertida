@@ -40,7 +40,7 @@ const BASE = 64;
  * @param str - The input string.
  * @returns An array containing the source and item ID.
  */
-const getSource = (str: string) => {
+export const getSource = (str: string) => {
   const match = str.match(/\d+/);
   const numId = match ? parseInt(match[0], 10) : 0;
   const itemId = `item-${numId}`;

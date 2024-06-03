@@ -15,11 +15,11 @@ import { LocationIcon } from 'icons/LocationIcon';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
-import { TreeCard } from 'components/cards/TreeCard';
 import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
 import { Container } from 'components/general/Container';
 import { TextHighlight } from 'components/text';
+import { TreeImage } from './TreeImage';
 
 type MapBuilderProps = {
   forest: Tree[];
@@ -145,7 +145,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 onClick={() => onUnsetCard(index)}
                 disabled={!(selections?.[index] || skippedIndexes.includes(index))}
               >
-                <TreeCard id={String(tree.treeType)} text={tree.card.text} />
+                <TreeImage id={tree.treeType} text={tree.card.text} />
               </TransparentButton>
             </div>
           );

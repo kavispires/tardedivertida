@@ -90,7 +90,7 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const data = await getData(store.language, utils.players.getPlayerCount(players));
+    const data = await getData(store.language, utils.players.getPlayerCount(players), store?.options ?? {});
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);

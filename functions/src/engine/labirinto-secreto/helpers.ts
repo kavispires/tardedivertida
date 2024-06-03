@@ -212,7 +212,7 @@ const buildPath = (startingPoint: Point, length = PATH_DISTANCE): Point[] => {
  * @param cards
  * @returns
  */
-export const buildForest = (cards: TextCard[]): Tree[] => {
+export const buildForest = (cards: TextCard[], isItemsForest: boolean): Tree[] => {
   const trees = Array(5)
     .fill(0)
     .map(() => utils.game.getRandomNumber(1, 15));
@@ -220,7 +220,7 @@ export const buildForest = (cards: TextCard[]): Tree[] => {
   return utils.game.makeArray(FOREST_WIDTH * FOREST_HEIGHT, 0).map((el: number, index) => {
     return {
       id: el,
-      treeType: trees[TREE_TYPE_BY_ID[index]],
+      treeType: isItemsForest ? cards[index].id : trees[TREE_TYPE_BY_ID[index]],
       card: cards[index],
       point: getPoint(index),
     };

@@ -29,9 +29,9 @@ export interface Tree {
    */
   id: TreeId;
   /**
-   * The tree picture
+   * The tree picture (a string means an itemId)
    */
-  treeType: number;
+  treeType: number | string;
   /**
    * Text card
    */

@@ -37,7 +37,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Build forest
-  const forest = buildForest(resourceData.forestCards);
+  const forest = buildForest(resourceData.forestCards, !!store?.options?.itemTreeType);
 
   // Build player paths
   buildPaths(players);
