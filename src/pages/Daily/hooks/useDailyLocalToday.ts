@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
+import { wait } from '../utils';
 
 type UseDailyLocalTodayProps<TLocal> = {
   key: string;
@@ -43,7 +44,12 @@ export function useDailyLocalToday<TLocal = { id: string }>({
   useEffect(() => {
     if (!hasAppliedLocalToday && stateToApply && onApplyLocalState && !disabled) {
       setHasAppliedLocalToday(true);
-      onApplyLocalState(stateToApply);
+      // Prevents the onApplyLocalState to be called before the useEffect to check if the id is different happens
+      (async () => {
+        await wait(250);
+
+        onApplyLocalState(stateToApply);
+      })();
     }
   }, [stateToApply]); // eslint-disable-line react-hooks/exhaustive-deps
 
