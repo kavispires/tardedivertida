@@ -48,7 +48,13 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           <Typography.Text strong className="palavreado-word">
             {data.keyword} {swaps > 0 && ` ↔️ ${swaps}`}
           </Typography.Text>
-          <Board letters={letters} onLetterSelection={selectLetter} selection={selection} swap={swap} />
+          <Board
+            letters={letters}
+            onLetterSelection={selectLetter}
+            selection={selection}
+            swap={swap}
+            guesses={guesses}
+          />
         </Space>
 
         <Space className="space-container" direction="vertical" align="center">
@@ -74,6 +80,34 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             </Space>
           ))}
         </Space>
+
+        {guesses.length > 0 && (
+          <Space className="space-container" align="center" style={{ margin: 6, width: 'calc(100% - 12px)' }}>
+            <div className="palavreado-board__tile palavreado-board__tile--place-guessed palavreado-board__tile--sample">
+              ?
+            </div>
+            <Typography.Text>
+              <Translate
+                pt={
+                  <>
+                    Posições que já foram testas com a letra específica aparecem assim (borda amarela
+                    pontilhada).
+                    <br />
+                    Evite enviar com letras assim, elas continuarão erradas.
+                  </>
+                }
+                en={
+                  <>
+                    Positions that have already been tested with a specific letter appear like this (dotted
+                    yellow border).
+                    <br />
+                    Avoid submitting with letters like this, they will remain wrong.
+                  </>
+                }
+              />
+            </Typography.Text>
+          </Space>
+        )}
         <Modal
           title={<Translate pt="Resultado" en="Results" />}
           open={showResultModal}
