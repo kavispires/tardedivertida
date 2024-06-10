@@ -45,8 +45,8 @@ export const getResourceData = async (
 
     const itemsSample = await utils.tdr.getItems(TOTAL_ITEMS, {
       allowNSFW,
-      categories: ['alien'],
-      cleanUp: utils.tdr.itemUtils.cleanupCategories,
+      decks: ['alien'],
+      cleanUp: utils.tdr.itemUtils.cleanupDecks,
     });
 
     const selectedAlienItems: AlienItem[] = itemsSample.map((item) => ({
@@ -92,7 +92,7 @@ export const getResourceData = async (
   // Get the 25 needed items randomly
   const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, {
     allowNSFW,
-    filters: [alienItemUtils.notWithinCategories(['no-alien']), alienItemUtils.onlyWithAttributes],
+    filters: [alienItemUtils.notWithinDecks(['no-alien']), alienItemUtils.onlyWithAttributes],
     balanceAttributes: isBotAlien,
   });
 

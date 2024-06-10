@@ -28,14 +28,14 @@ export const getResourceData = async (
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
-    categories: ['thing', 'mesmice', 'alien'],
-    categoryFiltering: 'OR',
+    decks: ['thing', 'manufactured', 'alien'],
+    deckFiltering: 'OR',
     filters: [
       (item: Item) => {
-        if (item.categories?.includes('thing')) {
+        if (item.decks?.includes('thing')) {
           return true;
         }
-        if (item.categories?.includes('mesmice') || item.categories?.includes('alien')) {
+        if (item.decks?.includes('manufactured') || item.decks?.includes('alien')) {
           // Only use single word items
           return item.name[language].split(' ').length === 1;
         }
@@ -43,7 +43,7 @@ export const getResourceData = async (
         return false;
       },
     ],
-    cleanUp: utils.tdr.itemUtils.cleanupCategories,
+    cleanUp: utils.tdr.itemUtils.cleanupDecks,
   });
 
   const resourceName = `${TDR_RESOURCES.DIAGRAM_TOPICS}-${language}`;

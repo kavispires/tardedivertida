@@ -493,8 +493,8 @@ export const getData = async (
 
     const selectedAlienItems = await utils.tdr.getItems(5, {
       allowNSFW,
-      categories: ['alien'],
-      cleanUp: utils.tdr.itemUtils.cleanupCategories,
+      decks: ['alien'],
+      cleanUp: utils.tdr.itemUtils.cleanupDecks,
     });
 
     customTracks.push({

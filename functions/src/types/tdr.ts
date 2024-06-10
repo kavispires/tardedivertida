@@ -40,9 +40,9 @@ export type AlienItem = {
    */
   nsfw?: boolean;
   /**
-   * Any categories the item belongs to
+   * Any decks the item belongs to
    */
-  categories?: string[];
+  decks?: string[];
 };
 
 /**
@@ -596,9 +596,9 @@ export type Item = {
    */
   name: DualLanguageValue;
   /**
-   * The categories the item can be used in
+   * The decks the item can be used in
    */
-  categories?: string[];
+  decks?: string[];
   /**
    * Flag indicating if it's nsfw
    */

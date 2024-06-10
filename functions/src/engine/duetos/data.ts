@@ -48,8 +48,8 @@ export const getResourceData = async (language: Language, options: DuetosOptions
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
-    categories: ['alien', 'dream', 'mesmice'],
-    cleanUp: utils.tdr.itemUtils.cleanupCategories,
+    decks: ['alien', 'dream', 'manufactured'],
+    cleanUp: utils.tdr.itemUtils.cleanupDecks,
   });
 
   let images: CardId[] = [];
