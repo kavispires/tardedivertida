@@ -13,14 +13,14 @@ export const getItems = async (
   quantity: number,
   options: {
     allowNSFW: boolean;
-    categories?: string[];
-    categoryFiltering?: 'OR' | 'AND';
+    decks?: string[];
+    deckFiltering?: 'OR' | 'AND';
     filters?: ((item: Item) => boolean)[];
     cleanUp?: (item: Item) => Item;
   } = {
     allowNSFW: false,
-    categoryFiltering: 'AND',
-    categories: [],
+    deckFiltering: 'AND',
+    decks: [],
     filters: [],
   }
 ): Promise<Item[]> => {
@@ -34,14 +34,14 @@ export const getItems = async (
       return;
     }
 
-    // Handle categories
-    if (options.categories && options.categories.length) {
+    // Handle decks
+    if (options.decks && options.decks.length) {
       const selectorFunction =
-        options.categoryFiltering === 'AND'
-          ? itemUtils.onlyItemsWithinCategories
-          : itemUtils.onlyItemsWithinEitherCategories;
+        options.deckFiltering === 'AND'
+          ? itemUtils.onlyItemsWithinDecks
+          : itemUtils.onlyItemsWithinEitherDecks;
 
-      if (!selectorFunction(options?.categories ?? [])(item)) {
+      if (!selectorFunction(options?.decks ?? [])(item)) {
         delete itemsObj[item.id];
         return;
       }
@@ -88,36 +88,36 @@ export const itemUtils = {
    */
   onlySafeForWork: (item: Item) => !item.nsfw,
   /**
-   * Filter alien items by category
-   * @param category
+   * Filter alien items by deck
+   * @param deck
    * @returns boolean
    */
-  onlyItemsWithinCategories: (categories: string[]) => (item: Item) => {
-    return every(categories, (category) => (item.categories ?? []).includes(category));
+  onlyItemsWithinDecks: (decks: string[]) => (item: Item) => {
+    return every(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   /**
    *
-   * @param categories
+   * @param decks
    * @returns
    */
-  onlyItemsWithinEitherCategories: (categories: string[]) => (item: Item) => {
-    return some(categories, (category) => (item.categories ?? []).includes(category));
+  onlyItemsWithinEitherDecks: (decks: string[]) => (item: Item) => {
+    return some(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   /**
-   * Filter alien items by category
+   * Filter alien items by deck
    */
-  notWithinCategories: (categories: string[]) => (item: Item) => {
-    return !some(categories, (category) => (item.categories ?? []).includes(category));
+  notWithinDecks: (decks: string[]) => (item: Item) => {
+    return !some(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   /**
    * Filter item only if it has a name in the given language
    */
   onlyWithName: (language: Language) => (item: Item) => Boolean(item.name[language].trim()),
   /**
-   * Removes the prop categories from the item
+   * Removes the prop decks from the item
    */
-  cleanupCategories: (item: Item): Item => {
-    delete item.categories;
+  cleanupDecks: (item: Item): Item => {
+    delete item.decks;
     return item;
   },
 };
@@ -136,7 +136,7 @@ export const saveUsedItems = async (items: Item[]) => {
  * Get alien items for given quantity and NSFW allowance otherwise it resets the used items and use all available
  * @param quantity
  * @param allowNSFW - indicates that NSFW items are allowed
- * @param categories - list of categories that items must be within
+ * @param decks - list of decks that items must be within
  * @param filters - list of filter functions to filter out items
  * @param balanceAttributes - indicates that item must have balanced attributes (for alien bot for example)
  * @returns
@@ -145,12 +145,12 @@ export const getAlienItems = async (
   quantity: number,
   options: {
     allowNSFW: boolean;
-    categories?: string[];
+    decks?: string[];
     filters?: ((item: AlienItem) => boolean)[];
     balanceAttributes?: boolean;
   } = {
     allowNSFW: false,
-    categories: [],
+    decks: [],
     filters: [],
     balanceAttributes: false,
   }
@@ -195,9 +195,9 @@ export const getAlienItems = async (
       return;
     }
 
-    // Handle categories
-    if (options.categories && options.categories.length) {
-      if (!alienItemUtils.onlyItemsWithinCategories(options?.categories ?? [])(item)) {
+    // Handle decks
+    if (options.decks && options.decks.length) {
+      if (!alienItemUtils.onlyItemsWithinDecks(options?.decks ?? [])(item)) {
         delete allAlienItemsObj[item.id];
         return;
       }
@@ -248,18 +248,18 @@ export const alienItemUtils = {
    */
   onlySafeForWork: (item: AlienItem) => !item.nsfw,
   /**
-   * Filter alien items by category/tag
-   * @param category
+   * Filter alien items by deck/tag
+   * @param deck
    * @returns boolean
    */
-  onlyItemsWithinCategories: (categories: string[]) => (item: AlienItem) => {
-    return every(categories, (category) => (item.categories ?? []).includes(category));
+  onlyItemsWithinDecks: (decks: string[]) => (item: AlienItem) => {
+    return every(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   /**
-   * Filter alien items by category/tag
+   * Filter alien items by deck/tag
    */
-  notWithinCategories: (categories: string[]) => (item: AlienItem) => {
-    return !some(categories, (category) => (item.categories ?? []).includes(category));
+  notWithinDecks: (decks: string[]) => (item: AlienItem) => {
+    return !some(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   onlyWithName: (language: Language) => (item: AlienItem) => Boolean(item.name[language].trim()),
   /**
