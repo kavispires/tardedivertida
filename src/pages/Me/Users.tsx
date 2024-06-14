@@ -90,7 +90,9 @@ function Users() {
     },
     onSuccess: () => {
       message.success('User updated');
-      queryClient.invalidateQueries(['users']);
+      queryClient.invalidateQueries({
+        queryKey: ['users'],
+      });
     },
     onError: (error: any) => {
       notification.error({
@@ -182,7 +184,7 @@ function Users() {
         <Button
           type="primary"
           size="large"
-          loading={usersMutation.isLoading}
+          loading={usersMutation.isPending}
           onClick={() => usersMutation.mutate(mergedUser)}
           disabled={!mergedUser?.id}
         >

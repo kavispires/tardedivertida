@@ -37,7 +37,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
   } = usePalavreadoEngine(data);
 
   return (
-    <Layout className="app">
+    (<Layout className="app">
       <Header icon={<DailyWordGameIcon />}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
@@ -83,7 +83,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
         {guesses.length > 0 && (
           // <Instruction contained>
-          <Space className="palavreado-used-position-instruction" align="center">
+          (<Space className="palavreado-used-position-instruction" align="center">
             <Flex className="contained" gap={12} align="center">
               <div className="palavreado-board__tile palavreado-board__tile--place-guessed palavreado-board__tile--sample">
                 ?
@@ -109,7 +109,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
                 />
               </Typography.Text>
             </Flex>
-          </Space>
+          </Space>)
           // </Instruction>
         )}
         <Modal
@@ -130,6 +130,6 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           />
         </Modal>
       </Layout.Content>
-    </Layout>
+    </Layout>)
   );
 }

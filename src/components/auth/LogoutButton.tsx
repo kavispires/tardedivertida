@@ -11,7 +11,7 @@ export function LogoutButton(props: ButtonProps) {
   const navigate = useNavigate();
   const { message } = App.useApp();
 
-  const { isLoading, mutate } = useMutation({
+  const { isPending, mutate } = useMutation({
     mutationKey: ['sign-out'],
     mutationFn: async () => await signOut(),
     onSuccess: () => {
@@ -28,7 +28,7 @@ export function LogoutButton(props: ButtonProps) {
       onConfirm={() => mutate()}
       key="logout-button"
     >
-      <Button danger ghost {...props} loading={isLoading}>
+      <Button danger ghost {...props} loading={isPending}>
         Logout
       </Button>
     </Popconfirm>

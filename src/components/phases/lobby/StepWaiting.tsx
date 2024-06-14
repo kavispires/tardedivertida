@@ -35,7 +35,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
 
-  const { mutate, isLoading: isLocking } = useMutation({
+  const { mutate, isPending: isLocking } = useMutation({
     mutationKey: ['lock-game'],
     mutationFn: async () => {
       setLoader('lock-game', true);

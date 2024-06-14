@@ -18,7 +18,9 @@ export function useDailyChallengeMutation() {
       return await DAILY_API.run({ action: DAILY_API_ACTIONS.SAVE_DAILY, ...data });
     },
     onSuccess: () => {
-      queryClient.refetchQueries(['user']);
+      queryClient.refetchQueries({
+        queryKey: ['user']
+      });
     },
     onError: (e: any) => {},
   });
