@@ -1,4 +1,3 @@
-import { App } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
 import { print } from 'utils/helpers';
@@ -7,7 +6,6 @@ import { useLanguage } from 'hooks/useLanguage';
 import { getSourceName } from '../utils';
 
 export function useDailyChallenge(today: string) {
-  const { notification } = App.useApp();
   const { language } = useLanguage();
   const collectionName = getSourceName(language);
 
@@ -21,19 +19,11 @@ export function useDailyChallenge(today: string) {
         date: today,
         document: collectionName,
       });
-      return response.data as DailyResponse;
+      const responseData = response.data as DailyResponse;
+      print({ [collectionName]: responseData }, 'table');
+      return responseData;
     },
     enabled: language === 'pt',
     retry: false,
-    onSuccess: (response) => {
-      const data = response;
-      print({ [collectionName]: data }, 'table');
-    },
-    onError: (e: any) => {
-      notification.error({
-        message: 'Failed to load user',
-        description: JSON.stringify(e.message),
-      });
-    },
   });
 }

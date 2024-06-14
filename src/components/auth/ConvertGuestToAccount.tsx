@@ -22,7 +22,7 @@ type ConvertGuestToAccountProps = {
 export function ConvertGuestToAccount({ onSuccess }: ConvertGuestToAccountProps) {
   const [form] = Form.useForm();
 
-  const { isLoading, mutate, isError } = useMutation({
+  const { isPending, mutate, isError } = useMutation({
     mutationKey: ['convert-guest'],
     mutationFn: async () =>
       await convertGuestoToUser(form.getFieldValue('username'), form.getFieldValue('password')),
@@ -41,7 +41,7 @@ export function ConvertGuestToAccount({ onSuccess }: ConvertGuestToAccountProps)
         <Image src={logo} preview={false} />
       </div>
 
-      <SignUpForm form={form} onFinish={onFinish} isError={isError} isLoading={isLoading} />
+      <SignUpForm form={form} onFinish={onFinish} isError={isError} isLoading={isPending} />
     </div>
   );
 }
