@@ -1,4 +1,4 @@
-import { Button, Divider, Layout, Modal, Space, Typography } from 'antd';
+import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
 import { DualTranslate, Translate } from 'components/language';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { Me } from 'types/user';
@@ -82,31 +82,35 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
         </Space>
 
         {guesses.length > 0 && (
-          <Space className="space-container" align="center" style={{ margin: 6, width: 'calc(100% - 12px)' }}>
-            <div className="palavreado-board__tile palavreado-board__tile--place-guessed palavreado-board__tile--sample">
-              ?
-            </div>
-            <Typography.Text>
-              <Translate
-                pt={
-                  <>
-                    Posições que já foram testas com a letra específica aparecem assim (borda amarela
-                    pontilhada).
-                    <br />
-                    Evite enviar com letras assim, elas continuarão erradas.
-                  </>
-                }
-                en={
-                  <>
-                    Positions that have already been tested with a specific letter appear like this (dotted
-                    yellow border).
-                    <br />
-                    Avoid submitting with letters like this, they will remain wrong.
-                  </>
-                }
-              />
-            </Typography.Text>
+          // <Instruction contained>
+          <Space className="palavreado-used-position-instruction" align="center">
+            <Flex className="contained" gap={12} align="center">
+              <div className="palavreado-board__tile palavreado-board__tile--place-guessed palavreado-board__tile--sample">
+                ?
+              </div>
+              <Typography.Text>
+                <Translate
+                  pt={
+                    <>
+                      Posições que já foram testadas com a letra específica aparecem assim (borda preta
+                      pontilhada).
+                      <br />
+                      Evite enviar com letras assim, elas continuarão erradas.
+                    </>
+                  }
+                  en={
+                    <>
+                      Positions that have already been tested with a specific letter appear like this (dotted
+                      black border).
+                      <br />
+                      Avoid submitting with letters like this, they will remain wrong.
+                    </>
+                  }
+                />
+              </Typography.Text>
+            </Flex>
           </Space>
+          // </Instruction>
         )}
         <Modal
           title={<Translate pt="Resultado" en="Results" />}
