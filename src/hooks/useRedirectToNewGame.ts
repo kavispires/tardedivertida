@@ -1,5 +1,5 @@
 import { App } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 // Types
 import type { GameMeta } from 'types/game';
@@ -34,14 +34,17 @@ export function useRedirectToNewGame() {
       })) as GameMetaResponse;
     },
     enabled: Boolean(previousGameId),
-    onError: (e: any) => {
-      console.error(e);
+  });
+
+  useEffect(() => {
+    if (metaQuery.isError) {
+      console.error(metaQuery.error);
       notification.error({
         message: 'Failed to load previous game to trigger the redirect',
-        description: JSON.stringify(e.message),
+        description: JSON.stringify(metaQuery.error.message),
       });
-    },
-  });
+    }
+  }, [metaQuery.isError]); // eslint-disable-line
 
   const mutation = useMutation({
     mutationKey: ['oldState', newGame.gameId],
@@ -93,7 +96,7 @@ export function useRedirectToNewGame() {
   };
 
   return {
-    isSettingRedirect: metaQuery.isLoading && mutation.isLoading,
+    isSettingRedirect: metaQuery.isLoading && mutation.isPending,
     startRedirect,
     wasRedirectSuccessful: mutation.isSuccess,
   };

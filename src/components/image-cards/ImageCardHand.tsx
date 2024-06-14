@@ -1,7 +1,7 @@
 import { LegacyRef, ReactNode } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
-import { Image, ImageProps } from 'antd';
+import { GetProps, Image } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Utils
@@ -67,7 +67,7 @@ type ImageCardHandProps = {
   /**
    * The Image group preview object
    */
-  imageGroupPreview?: ImageProps['preview'];
+  imageGroupPreview?: GetProps<typeof Image.PreviewGroup>['preview'];
 };
 
 export function ImageCardHand({

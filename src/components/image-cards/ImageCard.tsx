@@ -68,7 +68,7 @@ export const ImageCard = ({
   const previewConfig = typeof preview === 'boolean' ? {} : preview;
 
   return (
-    <div
+    (<div
       className={clsx(
         baseClass,
         isBlurred && `${baseClass}--blur`,
@@ -94,6 +94,6 @@ export const ImageCard = ({
               }
         }
       />
-    </div>
+    </div>)
   );
 };

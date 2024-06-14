@@ -8,7 +8,7 @@ export function ScoringRule() {
       pt={
         <>
           Cada resposta válida ganha <PointsHighlight>pontos</PointsHighlight> de acordo com as estrelas sua
-          letra (row).
+          letra (linha).
           <br />O primeiro jogador a responder em cada célula, também ganha{' '}
           <PointsHighlight type="positive">pontos bônus</PointsHighlight> igual as estrelas da categoria
           (coluna).

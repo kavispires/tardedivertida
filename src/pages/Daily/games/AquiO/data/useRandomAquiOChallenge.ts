@@ -1,4 +1,3 @@
-import { App } from 'antd';
 import { sample } from 'lodash';
 import { print } from 'utils/helpers';
 
@@ -11,8 +10,6 @@ import miscSets from './misc-sets.json';
 const MISC_SETS: AquiOSet[] = miscSets;
 
 export function useRandomAquiOChallenge(collectionName: string) {
-  const { notification } = App.useApp();
-
   // Load challenge
   return useQuery<DailyAquiOEntry>({
     queryKey: [collectionName, 'aqui-o', 'random'],
@@ -22,7 +19,8 @@ export function useRandomAquiOChallenge(collectionName: string) {
       await wait(150);
 
       const chosenSet = sample(MISC_SETS)!;
-      return {
+
+      const gameData: DailyAquiOEntry = {
         id: 'random',
         type: 'aqui-o',
         setId: chosenSet.title.en,
@@ -30,17 +28,10 @@ export function useRandomAquiOChallenge(collectionName: string) {
         itemsIds: chosenSet.itemsIds,
         number: 0,
       };
+
+      print({ [collectionName]: gameData }, 'table');
+      return gameData;
     },
     retry: false,
-    onSuccess: (response) => {
-      const data = response;
-      print({ [collectionName]: data }, 'table');
-    },
-    onError: (e: any) => {
-      notification.error({
-        message: 'Failed to load user',
-        description: JSON.stringify(e.message),
-      });
-    },
   });
 }
