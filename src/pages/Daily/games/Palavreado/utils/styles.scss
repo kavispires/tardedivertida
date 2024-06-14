@@ -30,12 +30,15 @@
     &--sample {
       height: 2rem;
       width: 2rem;
+      min-height: 2rem;
+      min-width: 2rem;
+      aspect-ratio: 1 / 1;
       font-size: 1.25em;
     }
 
     &--place-guessed {
       background: get-color('white', 5, 0.65);
-      border-color: get-color('orange', 3, 1);
+      border-color: get-color('black', 5, 1);
       border-style: dashed;
     }
 
@@ -84,4 +87,11 @@
 
 .palavreado-word {
   text-transform: uppercase;
+}
+
+.palavreado-used-position-instruction {
+  margin: get-unit(2 auto);
+  max-width: calc(100% - get-unit(4));
+  display: flex;
+  justify-content: center;
 }
