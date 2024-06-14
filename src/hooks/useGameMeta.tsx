@@ -29,33 +29,32 @@ export function useGameMeta(): GameMeta {
   const query = useQuery({
     queryKey: ['meta', gameId],
     queryFn: async () => {
+      setLoader('load', true);
       console.count('Fetching game meta...');
-      return await GAME_API.run({ action: GAME_API_ACTIONS.LOAD_GAME, gameId });
+
+      const response = await GAME_API.run({ action: GAME_API_ACTIONS.LOAD_GAME, gameId });
+      const data = response.data as GameMeta;
+
+      print({ meta: data });
+      setLocalStorage({ language: data?.language ?? 'pt' });
+      setLoader('load', false);
+      return response;
     },
     enabled: Boolean(gameId),
     staleTime: 30 * 60 * 1000, // 30 minutes
-    onSuccess: (response) => {
-      setLoader('load', true);
-      const data = response.data as GameMeta;
-      print({ meta: data });
-      setLocalStorage({ language: data?.language ?? 'pt' });
-    },
-    onError: (e: any) => {
-      console.error(e);
-      setError('meta', JSON.stringify(e.message));
-      notification.error({
-        message: 'Failed to load game',
-        description: JSON.stringify(e.message),
-      });
-    },
-    onSettled: () => {
-      setLoader('load', false);
-    },
   });
 
   useEffect(() => {
     if (!query.isError && query.isSuccess) {
       setError('meta', '');
+    }
+    if (query.isError) {
+      console.error(query.error);
+      setError('meta', JSON.stringify(query.error.message));
+      notification.error({
+        message: 'Failed to load game',
+        description: JSON.stringify(query.error.message),
+      });
     }
   }, [query.isError]); // eslint-disable-line
 

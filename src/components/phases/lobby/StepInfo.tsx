@@ -54,7 +54,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
     }
   }, [isGuest]); // eslint-disable-line
 
-  const { isLoading, mutate } = useAddPlayer(name, selectedAvatar, isGuest, () => setStep(2));
+  const { isPending, mutate } = useAddPlayer(name, selectedAvatar, isGuest, () => setStep(2));
 
   const hasPlayedBefore = Boolean(currentUser.games?.[info.gameName]);
 
@@ -99,7 +99,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
 
       <Button
         block
-        loading={isLoading}
+        loading={isPending}
         disabled={!name || !selectedAvatar}
         type="primary"
         onClick={() => mutate()}

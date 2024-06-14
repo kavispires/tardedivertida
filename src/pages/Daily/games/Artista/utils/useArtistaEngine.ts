@@ -105,7 +105,7 @@ export function useArtistaEngine(data: DailyArtistaEntry, currentUser: Me) {
     card,
     isPlaying: state.screen === 'playing',
     isIdle: state.screen === 'idle',
-    isSaving: state.screen === 'saving' || mutation.isLoading,
+    isSaving: state.screen === 'saving' || mutation.isPending,
     alreadyPlayed: state.played,
     onStart,
     onNextCard,

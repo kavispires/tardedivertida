@@ -22,7 +22,7 @@ type StepJoinProps = {
 export function StepJoin({ info, setStep }: StepJoinProps) {
   const { isAuthenticated } = useCurrentUserContext();
 
-  const { isLoading, mutate, isError, error } = useMutation({
+  const { isPending, mutate, isError, error } = useMutation({
     mutationKey: ['sign-in-anon'],
     mutationFn: async () => signInAsGuest(),
     onSuccess: () => setStep(1),
@@ -54,7 +54,7 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
         <Translate pt="ou" en="or" />
       </Divider>
 
-      <Button type="primary" block disabled={isAuthenticated} onClick={() => mutate()} loading={isLoading}>
+      <Button type="primary" block disabled={isAuthenticated} onClick={() => mutate()} loading={isPending}>
         <Translate pt="Entrar como visitante" en="Join as a Guest" />
       </Button>
     </>
