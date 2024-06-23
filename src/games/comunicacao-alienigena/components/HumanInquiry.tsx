@@ -4,7 +4,7 @@ import { orderBy } from 'lodash';
 import { Badge, Button, Select, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Item, Sign } from '../utils/types';
+import type { Item, OfferingsStatus, Sign } from '../utils/types';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
@@ -20,9 +20,17 @@ type HumanInquiryProps = {
   items: Item[];
   submitInquiry: GenericFunction;
   user: GamePlayer;
+  status: OfferingsStatus;
 };
 
-export function HumanInquiry({ signs, items, submitInquiry, user, startingAttributes }: HumanInquiryProps) {
+export function HumanInquiry({
+  signs,
+  items,
+  submitInquiry,
+  user,
+  startingAttributes,
+  status,
+}: HumanInquiryProps) {
   const { isLoading } = useLoading();
   const { language } = useLanguage();
   const [attribute, setAttribute] = useState<string>('');
@@ -67,6 +75,7 @@ export function HumanInquiry({ signs, items, submitInquiry, user, startingAttrib
           selectedObjects={selected}
           selectObject={updateSelected}
           user={user}
+          status={status}
         />
         <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
       </Space>

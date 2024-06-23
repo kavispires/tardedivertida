@@ -100,7 +100,7 @@ export function StepHumansOffer({
 
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} />
+          <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
           <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>

@@ -140,6 +140,7 @@ export function StepAlienRequests({
             selectedObjects={{ [intention]: true }}
             selectObject={(itemId) => setIntention(itemId)}
             isAlienRequest
+            status={status}
           />
           <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
@@ -147,7 +148,7 @@ export function StepAlienRequests({
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} />
+          <ObjectsGrid items={items} status={status} />
           <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </HumanContent>
