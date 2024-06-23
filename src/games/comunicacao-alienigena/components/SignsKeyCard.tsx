@@ -56,34 +56,48 @@ export function SignsKeyCard({ signs, startingAttributes = [] }: SignsKeyCardPro
         </Popover>
       </Title>
       <div className="signs-grid">
-        {orderBy(signs, `attribute.${language}`).map((sign) => (
-          <div
-            className={clsx('signs-grid__item', Boolean(cache[sign.signId]) && 'signs-grid__item--used')}
-            key={sign.attribute[language]}
-          >
-            <Popconfirm
-              title={<Translate pt="Usado" en="Used" />}
-              description={
-                sign.description ? (
-                  <span className="signs-grid__mini-description">
-                    <DualTranslate>{sign.description}</DualTranslate>
-                  </span>
-                ) : undefined
-              }
-              onConfirm={() => updateCache(sign.signId, true)}
-              onCancel={() => updateCache(sign.signId, false)}
-              okText={<Translate pt="Sim" en="Yes" />}
-              cancelText={<Translate pt="Não" en="No" />}
-              disabled={!!startingAttributes.find((attr) => attr.signId === sign.signId)}
+        {orderBy(signs, `attribute.${language}`).map((sign) => {
+          const isStarting = Boolean(startingAttributes.find((attr) => attr.signId === sign.signId));
+          return (
+            <div
+              className={clsx('signs-grid__item', Boolean(cache[sign.signId]) && 'signs-grid__item--used')}
+              key={sign.attribute[language]}
             >
-              <TransparentButton>
-                <DualTranslate>{sign.attribute}</DualTranslate>
-                {Boolean(cache[sign.signId]) && <CheckCircleFilled />}
-              </TransparentButton>
-            </Popconfirm>
-            <SignCard id={`${sign.signId}`} className="transparent" />
-          </div>
-        ))}
+              <Popconfirm
+                title={
+                  isStarting ? (
+                    <Translate pt="Atributo inicial" en="Starting attribute" />
+                  ) : (
+                    <Translate pt="Usado" en="Used" />
+                  )
+                }
+                description={
+                  sign.description ? (
+                    <span className="signs-grid__mini-description">
+                      <DualTranslate>{sign.description}</DualTranslate>
+                    </span>
+                  ) : undefined
+                }
+                onConfirm={() => updateCache(sign.signId, true)}
+                onCancel={() => updateCache(sign.signId, false)}
+                okText={<Translate pt="Sim" en="Yes" />}
+                cancelText={<Translate pt="Não" en="No" />}
+                okButtonProps={{
+                  disabled: isStarting,
+                }}
+                cancelButtonProps={{
+                  disabled: isStarting,
+                }}
+              >
+                <TransparentButton>
+                  <DualTranslate>{sign.attribute}</DualTranslate>
+                  {Boolean(cache[sign.signId]) && <CheckCircleFilled />}
+                </TransparentButton>
+              </Popconfirm>
+              <SignCard id={`${sign.signId}`} className="transparent" />
+            </div>
+          );
+        })}
       </div>
     </Space>
   );

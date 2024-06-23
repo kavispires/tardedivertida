@@ -83,6 +83,7 @@ export function HumanOffering({
           selectObject={setSelected}
           user={user}
           maxObjects={2}
+          status={status}
         />
         <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
       </Space>

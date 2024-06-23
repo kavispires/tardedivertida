@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Badge, Space } from 'antd';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
 // Types
-import type { Item } from '../utils/types';
+import type { Item, OfferingsStatus } from '../utils/types';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
@@ -16,9 +16,10 @@ type ObjectsGridProps = {
   showTypes?: boolean;
   activeObjects?: CardId[];
   showAll?: boolean;
+  status: OfferingsStatus;
 };
 
-export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }: ObjectsGridProps) {
+export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, status }: ObjectsGridProps) {
   const { dualTranslate } = useLanguage();
   return (
     <Space direction="vertical">
@@ -57,7 +58,7 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
         ))}
       </div>
 
-      <ObjectsKey />
+      <ObjectsKey status={status} />
     </Space>
   );
 }

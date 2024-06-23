@@ -171,14 +171,14 @@ export function StepAlienAnswers({
 
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} />
+          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} status={status} />
           <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} />
+          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} status={status} />
           <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </HumanContent>

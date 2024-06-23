@@ -149,7 +149,9 @@
   flex-direction: column;
 
   &__entry {
-    display: inline-flex;
+    display: grid;
+    gap: get-unit(1);
+    grid-template-columns: auto 1fr 1fr;
   }
 
   &__example {
@@ -162,6 +164,11 @@
       border-color: get-color('green', 6);
       border-style: double;
       background: get-color('green', 3);
+    }
+
+    &--UNKNOWN {
+      border-color: get-color('white');
+      background: get-color('brown', 1);
     }
 
     &--CURSE {

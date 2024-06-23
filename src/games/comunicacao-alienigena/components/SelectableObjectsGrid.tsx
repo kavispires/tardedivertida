@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Badge, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Item } from '../utils/types';
+import type { Item, OfferingsStatus } from '../utils/types';
 // Hook
 import { useLoading } from 'hooks/useLoading';
 // Components
@@ -23,6 +23,7 @@ type SelectableObjectsGridProps = {
   hideKey?: boolean;
   showTypes?: boolean;
   isAlienRequest?: boolean;
+  status: OfferingsStatus;
 };
 
 export function SelectableObjectsGrid({
@@ -34,6 +35,7 @@ export function SelectableObjectsGrid({
   hideKey = false,
   showTypes = false,
   isAlienRequest = false,
+  status,
 }: SelectableObjectsGridProps) {
   const { isLoading } = useLoading();
   const { dualTranslate } = useLanguage();
@@ -83,7 +85,7 @@ export function SelectableObjectsGrid({
         )}
       </div>
 
-      {!hideKey && <ObjectsKey />}
+      {!hideKey && <ObjectsKey status={status} />}
     </Space>
   );
 }

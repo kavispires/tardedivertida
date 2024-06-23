@@ -117,7 +117,7 @@ export function StepHumanAsks({
 
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} />
+          <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
           <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
@@ -130,12 +130,13 @@ export function StepHumanAsks({
             submitInquiry={onSubmitHumanInquiry}
             user={user}
             startingAttributes={startingAttributes}
+            status={status}
           />
         </ViewIf>
 
         <ViewIf condition={!isUserTheCurrentHuman}>
           <Space className="boards-container" wrap>
-            <ObjectsGrid items={items} showTypes={false} />
+            <ObjectsGrid items={items} showTypes={false} status={status} />
             <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
           </Space>
         </ViewIf>

@@ -25,7 +25,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
 
       <ViewIf condition={state.items && state.signs && state.inquiryHistory && state.requestHistory}>
         <Space className="space-container" wrap>
-          <ObjectsGrid items={state.items} showTypes showAll />
+          <ObjectsGrid items={state.items} showTypes showAll status={state.status} />
           <Space className="space-container" wrap direction="vertical">
             <SignsKeyCard signs={state.signs} />
             <ViewIf condition={!isUserAlien}>
