@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "title": {
     "pt": "Teoria de Conjuntos",
     "en": "Venn Diagram"
@@ -42,7 +42,7 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["competitive", "turn-based", "guessing", "brain-burner"],
+  "tags": ["competitive", "turn-based", "guessing", "brain-burner", "achievements"],
   "available": true,
   "options": [
     {

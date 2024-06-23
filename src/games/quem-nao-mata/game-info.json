@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-nao-mata",
-  "version": "dev",
+  "version": "none",
   "title": {
     "pt": "Quem não mata, morre",
     "en": "Mortal Standoff"
@@ -34,5 +34,5 @@
     "perPlayer": 0
   },
   "tags": ["cooperative", "same-time"],
-  "available": true
+  "available": false
 }
