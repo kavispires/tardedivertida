@@ -7,7 +7,7 @@ export function ObjectsKey() {
       <div className="objects-key__entry">
         <span className="objects-key__example objects-key__example--UNKNOWN"></span>
         <span className="objects-key__text">
-          <Translate pt="Irrelevante" en="Irrelevant" />
+          <Translate pt="Desconhecido" en="Unknown" />
         </span>
       </div>
       <div className="objects-key__entry">
