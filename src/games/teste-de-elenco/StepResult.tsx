@@ -107,10 +107,14 @@ export function StepResult({
 
       <Container
         title={
-          <Translate
-            pt="Atores não foram selecionados para a próxima fase"
-            en="Actors who didn't move to the next phase"
-          />
+          outcome === 'CONTINUE' ? (
+            <Translate
+              pt="Atores que não receberam a maioria de votos e estão fora da próxima próxima fase:"
+              en="Actors that did not receive the majority of votes and are out for the next phase:"
+            />
+          ) : (
+            <Translate pt="Atores não escolhidos:" en="Actors that were not chosen:" />
+          )
         }
       >
         <ReleasedActors

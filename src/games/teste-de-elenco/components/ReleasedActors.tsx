@@ -33,8 +33,9 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
       {nonSelectedActors.map((actor) => {
         return (
           <Space key={actor.id} className="actors-board__actor" direction="vertical">
+            <SuspectCard suspect={actor} width={cardWidth} />
             <Space className="space-container">
-              <AntAvatar.Group maxCount={7}>
+              <AntAvatar.Group max={{ count: 5 }}>
                 {(playersSelections[actor.id] ?? []).map((playerId) => (
                   <Avatar
                     id={players[playerId].avatarId}
@@ -43,8 +44,6 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
                 ))}
               </AntAvatar.Group>
             </Space>
-
-            <SuspectCard suspect={actor} width={cardWidth} />
           </Space>
         );
       })}
