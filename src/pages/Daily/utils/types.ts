@@ -3,6 +3,7 @@ import { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
 import { DailyArtistaEntry } from '../games/Artista/utils/types';
 import { DailyFilmacoEntry } from '../games/Filmaco/utils/types';
 import { DailyPalavreadoEntry } from '../games/Palavreado/utils/types';
+import { DailyQuartetoEntry } from '../games/Quarteto/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
@@ -12,6 +13,7 @@ export type DailyResponse = {
   artista: DailyArtistaEntry;
   palavreado: DailyPalavreadoEntry;
   filmaco?: DailyFilmacoEntry;
+  quarteto?: DailyQuartetoEntry;
 };
 
 export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'idle';
