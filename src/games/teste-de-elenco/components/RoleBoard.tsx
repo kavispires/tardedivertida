@@ -35,8 +35,11 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
           <>
             <Icon width={75} />
             <Title size="small" className="role__title">
-              <DualTranslate>{movie.title}</DualTranslate>
+              {movie.movieTitle}
             </Title>
+            <TextHighlight>
+              <DualTranslate>{movie.genre}</DualTranslate>
+            </TextHighlight>
           </>
         )}
         {children}

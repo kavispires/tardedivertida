@@ -37,7 +37,7 @@ export const getResourceData = async (
         }
         if (item.decks?.includes('manufactured') || item.decks?.includes('alien')) {
           // Only use single word items
-          return item.name[language].split(' ').length === 1;
+          return item.name[language].trim().split(' ').length === 1;
         }
 
         return false;

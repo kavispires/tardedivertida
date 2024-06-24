@@ -124,8 +124,8 @@ export const submitAction = async (data: TesteDeElencoSubmitAction) => {
   switch (action) {
     case TESTE_DE_ELENCO_ACTIONS.SELECT_MOVIE_GENRE:
       actionText = 'select genre';
-      utils.firebase.validateSubmitActionProperties(data, ['genre'], actionText);
-      return handleSubmitGenre(gameName, gameId, playerId, data.genre);
+      utils.firebase.validateSubmitActionProperties(data, ['genre', 'movieTitle', 'propsIds'], actionText);
+      return handleSubmitGenre(gameName, gameId, playerId, data.genre, data.movieTitle, data.propsIds);
 
     case TESTE_DE_ELENCO_ACTIONS.SELECT_ACTOR:
       actionText = 'select actor';

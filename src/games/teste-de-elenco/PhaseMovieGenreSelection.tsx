@@ -59,6 +59,8 @@ export function PhaseMovieGenreSelection({ players, state, info }: PhaseProps) {
           user={user}
           onSubmitGenre={onSubmitGenre}
           genres={state.genres}
+          moviesTitles={state.movieTitles}
+          movieProps={state.movieProps}
           announcement={announcement}
         />
       </StepSwitcher>

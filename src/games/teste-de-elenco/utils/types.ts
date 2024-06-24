@@ -1,7 +1,9 @@
-import { SuspectCard } from 'types/tdr';
+import { Item, SuspectCard } from 'types/tdr';
 
 export type SubmitMovieGenrePayload = {
   genre: string;
+  movieTitle: string;
+  propsIds: string[];
 };
 export type SubmitMovieActorPayload = {
   actorId: string;
@@ -38,7 +40,9 @@ export type ActingRole = {
 
 export type FeatureFilm = {
   id: string;
-  title: DualLanguageValue;
+  movieTitle: string;
+  movieProps: Item[];
+  genre: DualLanguageValue;
   roles: Dictionary<ActingRole>;
   rolesOrder: string[];
 };

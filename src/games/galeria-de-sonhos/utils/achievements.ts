@@ -96,7 +96,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Loneliest',
     },
     description: {
-      pt: 'Não deu mete nenhum mais vezes',
+      pt: 'Não deu match nenhum mais vezes',
       en: 'Got zero matches in a round more times',
     },
   },
