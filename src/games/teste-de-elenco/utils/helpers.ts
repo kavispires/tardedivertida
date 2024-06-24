@@ -17,7 +17,7 @@ export const Icons: Record<string, any> = {
 
 export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): string => {
   if (language === 'en') {
-    let prompt = `Write the script for the trailer of a ${movie.title.en} movie that contains the following characters and their traits. Give the characters names and if the story contains a narrator, make him/her also one of the characters related to the protagonist. End the text with an impactful question. Here are the characters:\n`;
+    let prompt = `Write the script for the trailer of a ${movie.genre.en} movie titled "${movie.movieTitle}" movie that contains the following characters and their traits. Give the characters names and if the story contains a narrator, make him/her also one of the characters related to the protagonist. End the text with an impactful question. Here are the characters:\n`;
 
     Object.values(movie.roles).forEach((role) => {
       if (role.cast) {
@@ -43,7 +43,7 @@ export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): stri
     return prompt;
   }
 
-  let prompt = `Escreva o resumo de um filme de ${movie.title.pt} que contenha os personagens e incorpore  as suas características no texto. Dê um nome a cada personagem. Para a idade, escolha um número aleatório dentre a faixa dada, por exemplo 20-30, diga 26 anos. Não use parenteses no texto. Adicione um plot twist inesperado. Aqui vão os personagens: \n`;
+  let prompt = `Escreva o resumo de um filme de ${movie.genre.pt} entitulado "${movie.movieTitle}" que contenha os personagens e incorpore as suas características na trama, seja criativo e também incorpore esses objetos na trama: ${movie.movieProps.map((item) => item.name.pt).join(', ')}. Dê um nome a cada personagem. Para a idade, escolha um número aleatório dentre a faixa dada, por exemplo 20-30, diga 26 anos. Não use parenteses no texto. Adicione um plot twist inesperado. Aqui vão os personagens: \n`;
 
   Object.values(movie.roles).forEach((role) => {
     if (role.cast) {
@@ -75,17 +75,25 @@ export const getMovieSummary = (movie: FeatureFilm) => {
   // Calculate Gender diversity
   const maleCount = roles.filter((role) => role.candidates[role.actor!].gender === 'male').length;
   const femaleCount = totalActors - maleCount;
-  const difference = Math.abs(maleCount - femaleCount + 1);
+  const difference = Math.abs(maleCount - femaleCount);
 
   const genderDiversity = ((totalActors - difference) / totalActors) * 100;
 
   // Calculate Age diversity
   const uniqueAges = new Set(roles.map((role) => role.candidates[role.actor!].age));
-  const ageDiversity = ((uniqueAges.size - 1) / totalActors) * 100;
+  const ageDiversity = (() => {
+    if (uniqueAges.size <= 1) return 0;
+
+    return ((uniqueAges.size - 1) / (totalActors - 1)) * 100;
+  })();
 
   // Calculate Ethnicity diversity
   const uniqueRaces = new Set(roles.map((role) => role.candidates[role.actor!].ethnicity));
-  const ethnicityDiversity = ((uniqueRaces.size - 1) / totalActors) * 100;
+  const ethnicityDiversity = (() => {
+    if (uniqueRaces.size <= 1) return 0;
+
+    return ((uniqueRaces.size - 1) / (totalActors - 1)) * 100;
+  })();
 
   let isLGBTQA = false;
   if (

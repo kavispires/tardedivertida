@@ -1,6 +1,8 @@
 @use 'styles/sass' as *;
 
-.movie-genre-selection {
+.movie-personalization-selection {
+  display: grid;
+
   &__button {
     width: 100%;
     background: get-color('white');
@@ -9,6 +11,12 @@
     place-items: center;
     padding: get-unit(2);
     text-transform: uppercase;
+
+    &--selected {
+      background: get-color('pink', 4);
+      color: get-color('white');
+      border: 6px solid get-color('white', 5, 0.5);
+    }
   }
 }
 

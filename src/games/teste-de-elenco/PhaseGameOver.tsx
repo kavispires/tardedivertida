@@ -17,7 +17,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Container } from 'components/general/Container';
 import { DualTranslate, Translate } from 'components/language';
-import { Title } from 'components/text';
+import { TextHighlight, Title } from 'components/text';
 import { RoleBoard } from './components/RoleBoard';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
@@ -44,8 +44,11 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
             <>
               <Icon width={75} />
               <Title size="small" className="role__title">
-                <DualTranslate>{movie.title}</DualTranslate>
+                {movie.movieTitle}
               </Title>
+              <TextHighlight>
+                <DualTranslate>{movie.genre}</DualTranslate>
+              </TextHighlight>
 
               <MovieStats movie={movie} />
 

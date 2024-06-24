@@ -7,7 +7,9 @@ export const handleSubmitGenre = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  genre: string
+  genre: string,
+  movieTitle: string,
+  propsIds: CardId[]
 ) => {
   return await utils.firebase.updatePlayer({
     gameName,
@@ -17,6 +19,8 @@ export const handleSubmitGenre = async (
     shouldReady: true,
     change: {
       genre,
+      selectedProps: propsIds,
+      movieTitle,
     },
     nextPhaseFunction: getNextPhase,
   });
