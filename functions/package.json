@@ -12,7 +12,7 @@
     "test": "jest --watchAll"
   },
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "main": "lib/src/index.js",
   "dependencies": {
