@@ -126,11 +126,11 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
       const generatedWords = chunk(copyLetters, 4).map((lg) => lg.map((l) => l.letter).join(''));
 
       // Evaluate if any of the words match the words in the data
-      generatedWords.forEach((word, index) => {
-        if (data.words.includes(word)) {
+      generatedWords.forEach((word, wordIndex) => {
+        if (data.words[wordIndex] === word) {
           word.split('').forEach((_, i) => {
-            copyLetters[index * 4 + i].state = String(index) as PalavreadoLetter['state'];
-            copyLetters[index * 4 + i].locked = true;
+            copyLetters[wordIndex * 4 + i].state = String(wordIndex) as PalavreadoLetter['state'];
+            copyLetters[wordIndex * 4 + i].locked = true;
           });
         }
       });
