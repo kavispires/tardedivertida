@@ -1,6 +1,6 @@
 import { App } from 'antd';
-import { useEffect, useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 // Types
 import type { GameMeta } from 'types/game';
 // Services
@@ -18,41 +18,23 @@ export function useRedirectToNewGame() {
   const { notification } = App.useApp();
   const { currentUser } = useCurrentUserContext();
   const [happenedOnce, setHappenedOnce] = useState(false);
-  const [previousGameId, setPreviousGameId] = useState('');
   const [newGame, setNewGame] = useState({
     gameId: '',
     gameName: '',
   });
 
-  const metaQuery = useQuery<GameMetaResponse>({
-    queryKey: ['meta', previousGameId],
-    queryFn: async () => {
-      console.count('Fetching game meta...');
-      return (await GAME_API.run({
-        action: GAME_API_ACTIONS.LOAD_GAME,
-        gameId: previousGameId,
-      })) as GameMetaResponse;
-    },
-    enabled: Boolean(previousGameId),
-  });
-
-  useEffect(() => {
-    if (metaQuery.isError) {
-      console.error(metaQuery.error);
-      notification.error({
-        message: 'Failed to load previous game to trigger the redirect',
-        description: JSON.stringify(metaQuery.error.message),
-      });
-    }
-  }, [metaQuery.isError]); // eslint-disable-line
-
-  const mutation = useMutation({
+  const mutation = useMutation<unknown, Error, PlainObject, unknown>({
     mutationKey: ['oldState', newGame.gameId],
-    mutationFn: async (payload: {}) => {
-      const meta = metaQuery.data?.data as GameMeta;
+    mutationFn: async ({ prevGameId, payload }) => {
+      const metaResponse = (await GAME_API.run({
+        action: GAME_API_ACTIONS.LOAD_GAME,
+        gameId: prevGameId,
+      })) as GameMetaResponse;
+
+      const meta = metaResponse.data;
 
       return await ADMIN_API.performAdminAction({
-        gameId: previousGameId,
+        gameId: prevGameId,
         gameName: meta?.gameName ?? '',
         playerId: currentUser.id,
         action: ADMIN_ACTIONS.FORCE_STATE_PROPERTY,
@@ -73,7 +55,7 @@ export function useRedirectToNewGame() {
     },
   });
 
-  const startRedirect = async (previousGameId: GameId, newGameId: GameId, newGameName: GameName) => {
+  const startRedirect = async (prevGameId: GameId, newGameId: GameId, newGameName: GameName) => {
     if (happenedOnce) {
       notification.error({
         message: 'Redirect has failed to trigger',
@@ -84,19 +66,23 @@ export function useRedirectToNewGame() {
       gameId: newGameId,
       gameName: newGameName,
     });
-    setPreviousGameId(previousGameId);
-    setHappenedOnce(true);
-    mutation.mutate({
-      redirect: {
-        redirectAt: Date.now(),
-        gameId: newGameId,
-        gameName: newGameName,
+
+    await mutation.mutateAsync({
+      prevGameId,
+      gameName: newGameName,
+      payload: {
+        redirect: {
+          redirectAt: Date.now(),
+          gameId: newGameId,
+          gameName: newGameName,
+        },
       },
     });
+    setHappenedOnce(true);
   };
 
   return {
-    isSettingRedirect: metaQuery.isLoading && mutation.isPending,
+    isSettingRedirect: mutation.isPending,
     startRedirect,
     wasRedirectSuccessful: mutation.isSuccess,
   };
