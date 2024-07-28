@@ -11,17 +11,16 @@ import * as globalUtils from '../global';
 /**
  * Get image decks card
  * @param playerCount
- * @param allImageDecks
  * @returns
  */
-export const getData = async (playerCount: number, allImageDecks: boolean): Promise<ResourceData> => {
+export const getData = async (playerCount: number): Promise<ResourceData> => {
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
   // Also add 1 deck (with the double amount of cards) to be used as the table deck
   const minimumNumberOfCards = (playerCount + 2) * CARDS_PER_PLAYER;
 
   // Get image cards
-  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards, allImageDecks);
+  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
 
   return {
     cards: utils.game.shuffle(cards),

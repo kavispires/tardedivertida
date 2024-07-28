@@ -1,11 +1,6 @@
 import { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
-export interface DetetivesImaginativosOptions {
-  /**
-   * Use original image decks only
-   */
-  allImageDecks: boolean;
-}
+export interface DetetivesImaginativosOptions {}
 
 export interface ResourceData {
   cards: ImageCardId[];

@@ -6,11 +6,7 @@ export type PortaDosDesesperadosOptions = {
    */
   withBots?: boolean;
   /**
-   * Use original image decks only
-   */
-  allImageDecks: boolean;
-  /**
-   *
+   * Only use new traps
    */
   newTraps?: boolean;
 };

@@ -7,10 +7,6 @@ export type GaleriaDeSonhosOptions = {
    */
   withBots?: boolean;
   /**
-   * Use original image decks only
-   */
-  allImageDecks: boolean;
-  /**
    * UI will required minimum of 4 cards selected
    */
   hardMode: boolean;
