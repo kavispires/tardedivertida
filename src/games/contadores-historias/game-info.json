@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "3.0.46",
+  "version": "3.0.47",
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -57,13 +57,6 @@
       "key": "fixedRounds",
       "off": "30 points (15 rounds max)",
       "on": "Each player once (6+) or twice (1-5)"
-    },
-    {
-      "label": "Images",
-      "key": "allImageDecks",
-      "off": "Originals",
-      "on": "All",
-      "description": "When off, only original Tarde Divertida decks will be used (preferred)"
     }
   ]
 }

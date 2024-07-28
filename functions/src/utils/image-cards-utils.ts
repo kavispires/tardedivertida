@@ -1,19 +1,11 @@
-import fetch from 'cross-fetch';
+// Helpers for image cards
 // Helpers
-import { config, throwException } from './firebase';
+import { throwException } from './firebase';
 import { shuffle } from './game-utils';
 import { SuspectCard } from '../types/tdr';
+import { fetchResource } from '../engine/resource';
 
 const deckCache = {};
-
-const requestTDIInfo = async (): Promise<any> => {
-  try {
-    const response = await fetch(`${config().td_url.data}info.json`);
-    return response.json();
-  } catch (e) {
-    throwException(`${e}`, 'Failed to get images data');
-  }
-};
 
 const generateDeck = (deckPrefix: string, quantity: number) => {
   return new Array(quantity).fill(1).map((item, index) => {
@@ -28,21 +20,11 @@ const generateDeck = (deckPrefix: string, quantity: number) => {
  * @param quantity the number of cards needed
  * @returns
  */
-export const getImageCards = async (quantity: number, allImageDecks = false): Promise<ImageCardId[]> => {
-  const cardInfo: Record<string, number> = await requestTDIInfo();
+export const getImageCards = async (quantity: number): Promise<ImageCardId[]> => {
+  const cardInfo: Record<string, number> = await fetchResource('images-decks');
 
-  // If only original decks, get decks prefixed with td-
-  const availableInfo = !allImageDecks
-    ? Object.keys(cardInfo).reduce((acc: Record<string, number>, key) => {
-        if (key.startsWith('td-')) {
-          acc[key] = cardInfo[key];
-        }
-        return acc;
-      }, {})
-    : cardInfo;
-
-  const decks = Object.keys(availableInfo);
-  const totalCards = Number(Object.values(availableInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
+  const decks = Object.keys(cardInfo);
+  const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
   if (quantity > totalCards) {
     throwException(`${quantity} image cards were requested but the game only has ${totalCards} available`);
   }
@@ -55,13 +37,13 @@ export const getImageCards = async (quantity: number, allImageDecks = false): Pr
     const currentDeck = shuffledDecks.pop();
     if (currentDeck) {
       selectedDecks.push(currentDeck);
-      selectedCardQuantity += availableInfo[currentDeck];
+      selectedCardQuantity += cardInfo[currentDeck];
     }
   }
 
   const cards = selectedDecks.map((deckPrefix) => {
     if (deckCache[deckPrefix] === undefined) {
-      deckCache[deckPrefix] = generateDeck(deckPrefix, availableInfo[deckPrefix]);
+      deckCache[deckPrefix] = generateDeck(deckPrefix, cardInfo[deckPrefix]);
     }
 
     return deckCache[deckPrefix];
@@ -75,24 +57,11 @@ export const getImageCards = async (quantity: number, allImageDecks = false): Pr
  * @param quantity
  * @returns
  */
-export const getImageCardsDecks = async (
-  quantity: number,
-  allImageDecks: boolean
-): Promise<ImageCardId[][]> => {
-  const cardInfo: any = await requestTDIInfo();
+export const getImageCardsDecks = async (quantity: number): Promise<ImageCardId[][]> => {
+  const cardInfo: any = await fetchResource('images-decks');
 
-  // If only original decks, get decks prefixed with td-
-  const availableInfo = allImageDecks
-    ? Object.keys(cardInfo).reduce((acc: Record<string, number>, key) => {
-        if (key.startsWith('td-')) {
-          acc[key] = cardInfo[key];
-        }
-        return acc;
-      }, {})
-    : cardInfo;
-
-  const decks = Object.keys(availableInfo);
-  const totalCards = Number(Object.values(availableInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
+  const decks = Object.keys(cardInfo);
+  const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
   if (quantity > totalCards) {
     throwException(`${quantity} image cards were requested but the game only has ${totalCards} available`);
   }
@@ -104,7 +73,7 @@ export const getImageCardsDecks = async (
 
   const cards = selectedDecks.map((deckPrefix) => {
     if (deckCache[deckPrefix] === undefined) {
-      deckCache[deckPrefix] = generateDeck(deckPrefix, availableInfo[deckPrefix]);
+      deckCache[deckPrefix] = generateDeck(deckPrefix, cardInfo[deckPrefix]);
     }
 
     return deckCache[deckPrefix];
@@ -117,10 +86,6 @@ export const modifySuspectIdsByOptions = (
   suspects: SuspectCard[],
   options: SuspectCardsOptions
 ): SuspectCard[] => {
-  // If only official is requested
-  if (options.official && !options.models && !options.wacky && !options.realistic) {
-    return suspects;
-  }
   let deckType = 'ct';
 
   if (options.realistic) {

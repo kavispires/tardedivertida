@@ -10,10 +10,9 @@ import * as globalUtils from '../global';
 /**
  * Get image decks card
  * @param playerCount
- * @param allImageDecks
  * @returns
  */
-export const getData = async (players: Players, allImageDecks: boolean): Promise<ResourceData> => {
+export const getData = async (players: Players): Promise<ResourceData> => {
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
   const { gameOrder, playerCount } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
@@ -21,7 +20,7 @@ export const getData = async (players: Players, allImageDecks: boolean): Promise
   const minimumNumberOfCards = playerCount * cardsPerPlayer;
 
   // Get image cards
-  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards, allImageDecks);
+  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
 
   return {
     cards,

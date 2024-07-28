@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "3.0.39",
+  "version": "3.0.40",
   "title": {
     "pt": "Testemunha Ocular",
     "en": "Eye Witness"
@@ -51,13 +51,6 @@
       "off": "No",
       "on": "Yes",
       "description": "Allow NSFW questions"
-    },
-    {
-      "label": "Original Cartoon",
-      "key": "official",
-      "off": "Cartoon",
-      "on": "Official",
-      "description": "Not recommended"
     },
     {
       "label": "Realistic",

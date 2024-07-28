@@ -241,9 +241,9 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
                           />
                           <Button
                             size="large"
-                            onClick={() =>
-                              startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName)
-                            }
+                            onClick={() => {
+                              startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName);
+                            }}
                             disabled={!gameId || !previousGameId}
                             loading={isSettingRedirect}
                           >
