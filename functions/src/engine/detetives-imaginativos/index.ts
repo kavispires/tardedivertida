@@ -4,7 +4,6 @@ import { DETETIVES_IMAGINATIVOS_ACTIONS, DETETIVES_IMAGINATIVOS_PHASES, PLAYER_C
 // Types
 import type {
   DetetivesImaginativosInitialState,
-  DetetivesImaginativosOptions,
   DetetivesImaginativosSubmitAction,
   FirebaseStateData,
   FirebaseStoreData,
@@ -35,8 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
-  version: string,
-  options: DetetivesImaginativosOptions
+  version: string
 ): DetetivesImaginativosInitialState => {
   return utils.helpers.getDefaultInitialState<DetetivesImaginativosInitialState>({
     gameId,
@@ -52,7 +50,6 @@ export const getInitialState = (
       gameOrder: [],
       turnOrder: [],
     },
-    options,
   });
 };
 

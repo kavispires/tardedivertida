@@ -15,7 +15,7 @@ export interface TeoriaDeConjuntosOptions {
 export type TopicsByDiagramType = {
   attribute: DiagramTopic[];
   word: DiagramTopic[];
-  context?: DiagramTopic[];
+  context: DiagramTopic[];
 };
 
 export interface ResourceData {
