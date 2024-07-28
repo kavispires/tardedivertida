@@ -43,7 +43,7 @@ type CharacterCardProps = {
 export function CharacterCard({ size, overlayColor, character, className, hideName }: CharacterCardProps) {
   const { dualTranslate } = useLanguage();
   const { shouldBeBlurred } = useBlurCards();
-  const baseUrl = useTDBaseUrl('tdi');
+  const baseUrl = useTDBaseUrl('images');
 
   const isBlurred = shouldBeBlurred(character.id);
 
@@ -66,7 +66,7 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
           />
         )}
         <Image
-          src={`${baseUrl}${imageURL}.jpg`}
+          src={`${baseUrl}/${imageURL}.jpg`}
           width={size}
           className={clsx('character-card__image', isBlurred && 'character-card__image--blur')}
           fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
