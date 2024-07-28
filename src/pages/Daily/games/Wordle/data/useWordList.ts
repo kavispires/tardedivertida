@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 export function useWordList() {
   const { language } = useLanguage();
 
-  const baseUrl = useTDBaseUrl('tdr');
+  const baseUrl = useTDBaseUrl('resources');
   // const library = 'five-letter-words';
   const library = 'words-5-letters';
 

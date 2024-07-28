@@ -40,6 +40,10 @@ export type ImageCardProps = {
    * Forces height to be the same as the width
    */
   square?: boolean;
+  /**
+   * Use classic image library
+   */
+  classic?: boolean;
 };
 
 /**
@@ -53,9 +57,10 @@ export const ImageCard = ({
   previewImageId = '',
   fileExtension = 'jpg',
   square = false,
+  classic = false,
 }: ImageCardProps) => {
   const { shouldBeBlurred } = useBlurCards();
-  const baseUrl = useTDBaseUrl('tdi');
+  const baseUrl = useTDBaseUrl(classic ? 'classic' : 'images');
 
   const baseClass = 'image-card';
 
@@ -68,7 +73,7 @@ export const ImageCard = ({
   const previewConfig = typeof preview === 'boolean' ? {} : preview;
 
   return (
-    (<div
+    <div
       className={clsx(
         baseClass,
         isBlurred && `${baseClass}--blur`,
@@ -94,6 +99,6 @@ export const ImageCard = ({
               }
         }
       />
-    </div>)
+    </div>
   );
 };

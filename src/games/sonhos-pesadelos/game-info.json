@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhos-pesadelos",
-  "version": "0.11.31",
+  "version": "0.11.32",
   "title": {
     "pt": "Sonhos e Pesadelos",
     "en": "Dreams and Nightmares"
@@ -43,13 +43,5 @@
   },
   "tags": ["competitive", "images", "writing", "pairing", "brain-burner"],
   "available": false,
-  "options": [
-    {
-      "label": "Images",
-      "key": "allImageDecks",
-      "off": "Originals",
-      "on": "All",
-      "description": "When off, only original Tarde Divertida decks will be used (preferred)"
-    }
-  ]
+  "options": []
 }

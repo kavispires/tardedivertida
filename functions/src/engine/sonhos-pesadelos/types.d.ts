@@ -1,12 +1,7 @@
 import { NamingPromptCard } from '../../types/tdr';
 import { SONHOS_PESADELOS_ACTIONS } from './constants';
 
-export interface SonhosPesadelosOptions {
-  /**
-   * Use original image decks only
-   */
-  allImageDecks: boolean;
-}
+export interface SonhosPesadelosOptions {}
 
 export interface ResourceData {
   cards: SonhosPesadelosCards;

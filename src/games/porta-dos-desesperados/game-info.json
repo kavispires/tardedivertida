@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.14",
+  "version": "4.0.15",
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
@@ -62,13 +62,6 @@
       "off": "Only Humans",
       "on": "Add 2 Bots",
       "description": "Only use for 2-3 players"
-    },
-    {
-      "label": "Images",
-      "key": "allImageDecks",
-      "off": "Originals",
-      "on": "All",
-      "description": "When off, only original Tarde Divertida decks will be used (preferred)"
     }
   ]
 }

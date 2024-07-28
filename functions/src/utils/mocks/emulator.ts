@@ -45,25 +45,40 @@ export const feedEmulatorDB = async () => {
 
 export const feedEmulatorUser = async () => {
   if (!process.env.FIRESTORE_EMULATOR_HOST) {
-    console.log('\x1b[33m%s\x1b[0m', 'Skipping Emulator seeding: Not Emulating Firestore');
+    console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }
 
-  console.log('\x1b[33m%s\x1b[0m', 'Seeding Emulator User');
+  console.log('\x1b[33m%s\x1b[0m', '🤡 Seeding Emulator User');
 
   // USERS
   const emulateUid = utils.firebase.config().emulator_admin_uid;
-  const emulateUser = utils.firebase.config().user_sample;
-  await utils.firebase.getUserRef().doc(emulateUid).set(JSON.parse(emulateUser));
+
+  const emulateUser = {
+    avatars: {
+      0: 1,
+    },
+    blurredImages: {},
+    daily: {},
+    games: {},
+    gender: 'unknown',
+    id: emulateUid,
+    names: ['KavDev'],
+    isAdmin: true,
+    preferredLanguage: 'pt',
+    ratings: {},
+  };
+
+  await utils.firebase.getUserRef().doc(emulateUid).set(emulateUser);
 };
 
 export const feedEmulatorDaily = async () => {
   if (!process.env.FIRESTORE_EMULATOR_HOST) {
-    console.log('\x1b[33m%s\x1b[0m', 'Skipping Emulator seeding: Not Emulating Firestore');
+    console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }
 
-  console.log('\x1b[33m%s\x1b[0m', 'Seeding Emulator Daily');
+  console.log('\x1b[33m%s\x1b[0m', '🤡 Seeding Emulator Daily');
 
   // DAILY
   const dailyMock = {

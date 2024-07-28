@@ -13,15 +13,14 @@ import utils from '../../utils';
 /**
  * Get words resource based on the game's language
  * @param language
- * @param allImageDecks
  * @returns
  */
-export const getWords = async (language: Language, allImageDecks: boolean): Promise<ResourceData> => {
+export const getWords = async (language: Language): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.THEME_WORDS}-${language}`;
   // Get full deck
   const allWords: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
 
-  const imageCardIds = await utils.imageCards.getImageCards(TABLE_DECK_TOTAL, allImageDecks);
+  const imageCardIds = await utils.imageCards.getImageCards(TABLE_DECK_TOTAL);
 
   return {
     allWords,

@@ -74,7 +74,7 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getInspirationThemes(store.language, store.options.allImageDecks);
+    const additionalData = await getInspirationThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 

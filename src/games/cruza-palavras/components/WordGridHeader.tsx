@@ -31,7 +31,7 @@ export function WordGridHeader({ cell, gridType }: WordGridHeaderProps) {
 
 function WordGridHeaderContender({ cell }: WordGridHeaderProps) {
   const { shouldBeBlurred } = useBlurCards();
-  const baseUrl = useTDBaseUrl('tdi');
+  const baseUrl = useTDBaseUrl('images');
   const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
 
   const imageURL = cell.id!.replace(/-/g, '/');
