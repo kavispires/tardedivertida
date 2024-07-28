@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "title": {
     "pt": "Teste De Elenco",
     "en": "Re-Casting Call"
@@ -51,13 +51,6 @@
       "off": "No",
       "on": "Yes",
       "description": "Allow NSFW questions"
-    },
-    {
-      "label": "Original Cartoon",
-      "key": "official",
-      "off": "Cartoon",
-      "on": "Official",
-      "description": "Not recommended"
     },
     {
       "label": "Realistic",

@@ -86,10 +86,6 @@ export const modifySuspectIdsByOptions = (
   suspects: SuspectCard[],
   options: SuspectCardsOptions
 ): SuspectCard[] => {
-  // If only official is requested
-  if (options.official && !options.models && !options.wacky && !options.realistic) {
-    return suspects;
-  }
   let deckType = 'ct';
 
   if (options.realistic) {
