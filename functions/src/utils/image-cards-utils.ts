@@ -1,19 +1,11 @@
-import fetch from 'cross-fetch';
+// Helpers for image cards
 // Helpers
-import { config, throwException } from './firebase';
+import { throwException } from './firebase';
 import { shuffle } from './game-utils';
 import { SuspectCard } from '../types/tdr';
+import { fetchResource } from '../engine/resource';
 
 const deckCache = {};
-
-const requestTDIInfo = async (): Promise<any> => {
-  try {
-    const response = await fetch(`${config().td_url.data}info.json`);
-    return response.json();
-  } catch (e) {
-    throwException(`${e}`, 'Failed to get images data');
-  }
-};
 
 const generateDeck = (deckPrefix: string, quantity: number) => {
   return new Array(quantity).fill(1).map((item, index) => {
@@ -29,7 +21,7 @@ const generateDeck = (deckPrefix: string, quantity: number) => {
  * @returns
  */
 export const getImageCards = async (quantity: number, allImageDecks = false): Promise<ImageCardId[]> => {
-  const cardInfo: Record<string, number> = await requestTDIInfo();
+  const cardInfo: Record<string, number> = await fetchResource('images-decks');
 
   // If only original decks, get decks prefixed with td-
   const availableInfo = !allImageDecks
@@ -79,7 +71,7 @@ export const getImageCardsDecks = async (
   quantity: number,
   allImageDecks: boolean
 ): Promise<ImageCardId[][]> => {
-  const cardInfo: any = await requestTDIInfo();
+  const cardInfo: any = await fetchResource('images-decks');
 
   // If only original decks, get decks prefixed with td-
   const availableInfo = allImageDecks
