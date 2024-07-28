@@ -6,7 +6,6 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
   SonhosPesadelosInitialState,
-  SonhosPesadelosOptions,
   SonhosPesadelosSubmitAction,
 } from './types';
 // Utils
@@ -33,8 +32,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
-  version: string,
-  options: SonhosPesadelosOptions
+  version: string
 ): SonhosPesadelosInitialState => {
   return utils.helpers.getDefaultInitialState<SonhosPesadelosInitialState>({
     gameId,
@@ -46,7 +44,6 @@ export const getInitialState = (
     initialPhase: SONHOS_PESADELOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
-    options,
   });
 };
 

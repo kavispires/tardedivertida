@@ -1,7 +1,5 @@
 import { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
-export interface DetetivesImaginativosOptions {}
-
 export interface ResourceData {
   cards: ImageCardId[];
 }
