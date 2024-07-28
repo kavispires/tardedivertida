@@ -10,12 +10,11 @@ import * as globalUtils from '../global';
 
 /**
  * Get image decks card
- * @param allImageDecks
  * @returns
  */
-export const getData = async (allImageDecks: boolean): Promise<ResourceData> => {
+export const getData = async (): Promise<ResourceData> => {
   // Get image cards
-  const cards = await utils.imageCards.getImageCards(TOTAL_IMAGE_CARDS, allImageDecks);
+  const cards = await utils.imageCards.getImageCards(TOTAL_IMAGE_CARDS);
 
   return {
     cards,
