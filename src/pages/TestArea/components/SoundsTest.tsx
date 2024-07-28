@@ -11,12 +11,12 @@ import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
 import { speak } from 'utils/speech';
 import { Speak } from 'components/audio/Speak';
 import { useLanguage } from 'hooks/useLanguage';
-import { useGlobalState } from 'hooks/useGlobalState';
 import { delay } from 'lodash';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 export function SoundsTest({ onResult, step }: TestStepProps) {
   const [showAudio, setShowAudio] = useState<string>('');
-  const [volume, setVolume] = useGlobalState('volume');
+  const [volume, setVolume] = useGlobalLocalStorage('volume');
   const { language } = useLanguage();
 
   useEffect(() => {

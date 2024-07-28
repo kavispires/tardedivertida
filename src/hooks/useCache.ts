@@ -1,8 +1,6 @@
-import { isEmpty } from 'lodash';
-import { useEffect } from 'react';
 import { useEffectOnce } from 'react-use';
-import { useGlobalState } from './useGlobalState';
-import { useLocalStorage } from './useLocalStorage';
+
+import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 
 const LS_KEY = 'cache';
 
@@ -18,28 +16,21 @@ type UseCacheProps = {
  * @param options
  */
 export function useCache(options?: UseCacheProps) {
-  const [cache, setCache] = useGlobalState('cache');
-  const [getLocalStorage, setLocalStorage] = useLocalStorage();
-
-  useEffect(() => {
-    if (!isEmpty(cache)) {
-      setLocalStorage({ [LS_KEY]: JSON.stringify(cache) });
-    }
-  }, [cache, setLocalStorage]);
+  const [cache, setLSCache] = useGlobalLocalStorage(LS_KEY);
 
   const resetCache = () => {
-    setCache({});
-    setLocalStorage({ [LS_KEY]: '{}' });
+    setLSCache({});
   };
 
   useEffectOnce(() => {
-    if (isEmpty(cache)) {
-      setCache(JSON.parse(getLocalStorage(LS_KEY) ?? '{}'));
-    }
     if (options?.clearCache) {
       resetCache();
     }
   });
+
+  const setCache = (newCache: PlainObject | ((prevCache: PlainObject) => PlainObject)) => {
+    setLSCache((prevCache: PlainObject) => (typeof newCache === 'function' ? newCache(prevCache) : newCache));
+  };
 
   return { cache, setCache, resetCache };
 }

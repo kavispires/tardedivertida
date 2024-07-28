@@ -13,14 +13,14 @@ import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useLocalStorage } from 'hooks/useLocalStorage';
 import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
 // Constants
-import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { Loading } from 'components/loaders';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) => {
   const now = Date.now();
@@ -32,10 +32,8 @@ const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) =
     return acc;
   }, {});
   return {
-    [LATEST_GAME_IDS]: {
-      ...cleanedUpIds,
-      [newId]: now,
-    },
+    ...cleanedUpIds,
+    [newId]: now,
   };
 };
 
@@ -69,7 +67,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
 
   const { language, translate } = useLanguage();
   const { setLoader } = useLoading();
-  const [getLocalStorage, setLocalStorage] = useLocalStorage();
+
   const [isVisible, setVisibility] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [gameId, setGameId] = useState(null);
@@ -77,7 +75,8 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
   const [, setUserName] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [options, setOptions] = useState({});
-  const previousGameId = latestGameBeforeNewOne(getLocalStorage(LATEST_GAME_IDS, {}));
+  const [latestGameIds, setLatestGameIds] = useGlobalLocalStorage('latestGameIds');
+  const previousGameId = latestGameBeforeNewOne(latestGameIds);
 
   const { startRedirect, isSettingRedirect, wasRedirectSuccessful } = useRedirectToNewGame();
 
@@ -114,7 +113,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
         setUserId(null);
         setUserName('');
         setUserAvatarId('');
-        setLocalStorage(updateLocal24hGameIds(getLocalStorage(LATEST_GAME_IDS), response.data.gameId));
+        setLatestGameIds(updateLocal24hGameIds(latestGameIds, response.data.gameId));
         const baseUrl = window.location.href.split(pathname)[0];
         copyToClipboard(`${baseUrl}/${response.data.gameId}`);
       }

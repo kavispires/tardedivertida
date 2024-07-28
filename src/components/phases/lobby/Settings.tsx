@@ -1,10 +1,8 @@
-import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Divider, Space, Switch, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { Translate } from 'components/language';
 
@@ -12,23 +10,15 @@ type SettingsProps = {
   hasImages: boolean;
 };
 export function Settings({ hasImages }: SettingsProps) {
-  const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
-  const [volume, setVolume] = useGlobalState('volume');
-  const [getLocalStorage, setLocalStorage] = useLocalStorage();
-
-  useEffectOnce(() => {
-    setBlurEnabled(getLocalStorage('blurEnabled', false));
-    setVolume(getLocalStorage('volume', 0.5));
-  });
+  const [blurEnabled, setBlurEnabled] = useGlobalLocalStorage('blurEnabled');
+  const [volume, setVolume] = useGlobalLocalStorage('volume');
 
   const onBlurSwitchClick = (value: boolean) => {
     setBlurEnabled(value);
-    setLocalStorage({ blurEnabled: value });
   };
 
   const onSoundSwitchClick = (value: boolean) => {
     setVolume(value ? 0.5 : 0);
-    setLocalStorage({ volume: value ? 0.5 : 0 });
   };
 
   return (
@@ -39,8 +29,8 @@ export function Settings({ hasImages }: SettingsProps) {
           <Tooltip
             title={
               <Translate
-                pt="Alguns jogos tocam sons ou falas. Você pode mudar essa configuração depois."
-                en="A few games will play sound effects or speech. You may change this setting later"
+                pt="Alguns jogos tocam sons ou falas. Você pode mudar essa configuração durante o jogo."
+                en="A few games will play sound effects or speech. You may change this setting during the game."
               />
             }
           >
@@ -57,27 +47,30 @@ export function Settings({ hasImages }: SettingsProps) {
       </div>
 
       <div className="lobby-step__settings-entry">
-        <div className="lobby-step__switch-label">
-          <Translate pt="Botão Credo" en="Blur Button" />
-          <Tooltip
-            title={
-              <Translate
-                pt="Adiciona um botão em todas Cartas-imagem para embaça-las caso você tenha alguma fobia. Você pode mudar essa configuração depois"
-                en="Adds a button to every Image Card to blur them in case you have any phobia. You may change this setting later"
-              />
-            }
-          >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
-          </Tooltip>
-        </div>
+        {hasImages && (
+          <>
+            <div className="lobby-step__switch-label">
+              <Translate pt="Botão Credo" en="Blur Button" />
+              <Tooltip
+                title={
+                  <Translate
+                    pt="Adiciona um botão em todas Cartas-imagem para embaça-las caso você tenha alguma fobia. Você pode mudar essa configuração durante o jogo"
+                    en="Adds a button to every Image Card to blur them in case you have any phobia. You may change this setting during the game"
+                  />
+                }
+              >
+                <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+              </Tooltip>
+            </div>
 
-        <Switch
-          checkedChildren="on"
-          unCheckedChildren="off"
-          checked={blurEnabled}
-          onClick={onBlurSwitchClick}
-          disabled={!hasImages}
-        />
+            <Switch
+              checkedChildren="on"
+              unCheckedChildren="off"
+              checked={blurEnabled}
+              onClick={onBlurSwitchClick}
+            />
+          </>
+        )}
       </div>
     </Space>
   );

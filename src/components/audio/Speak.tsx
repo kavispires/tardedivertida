@@ -1,5 +1,5 @@
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useEffect } from 'react';
 import { speak } from 'utils/speech';
 
@@ -8,7 +8,7 @@ type SpeakProps = {
 };
 
 export function Speak({ text }: SpeakProps) {
-  const [volume] = useGlobalState('volume');
+  const [volume] = useGlobalLocalStorage('volume');
   const { language } = useLanguage();
 
   // Updated volume

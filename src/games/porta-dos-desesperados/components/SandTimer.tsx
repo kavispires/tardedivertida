@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useCache } from 'hooks/useCache';
 // Utils
 import { formatTime, getRandomItem } from 'utils/helpers';
 import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
@@ -29,7 +29,7 @@ export function SandTimer({
   onSubmitDoor,
   onMakeReady,
 }: SandTimerProps) {
-  const [, setCache] = useGlobalState('cache');
+  const { setCache } = useCache();
 
   const handleExpire = () => {
     if (!user.doorId) {

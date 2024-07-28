@@ -2,7 +2,7 @@
 import { Slider } from 'antd';
 import { DragOutlined } from '@ant-design/icons';
 // State & Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
  * Fixed Menu Button for resizing canvas
  */
 export const CanvasResizer = () => {
-  const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
+  const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
 
   return (
     <FixedMenuButton

@@ -5,7 +5,7 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { TRAPS } from './utils/constants';
@@ -30,7 +30,7 @@ import { TurnOrder } from 'components/players';
 export function PhaseBookPossession({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
-  const [, setCache] = useGlobalState('cache');
+  const [, setCache] = useGlobalLocalStorage('cache');
 
   const onSubmitPages = useOnSubmitPagesAPIRequest(setStep);
 

@@ -1,11 +1,11 @@
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Sound
 const arteRuimTimer = require('assets/sounds/arte-ruim-timer-remix.mp3');
 
 export function ArteRuimTimerSound() {
-  const [volume] = useGlobalState('volume');
+  const [volume] = useGlobalLocalStorage('volume');
   const [audio, , controls] = useAudio({
     src: arteRuimTimer,
     autoPlay: true,

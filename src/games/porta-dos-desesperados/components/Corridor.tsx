@@ -9,7 +9,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 import { TRAPS } from '../utils/constants';
@@ -49,7 +49,7 @@ export function Corridor({
     margin: 8,
   });
   const { isLoading } = useLoading();
-  const [cache] = useGlobalState('cache');
+  const [cache] = useGlobalLocalStorage('cache');
 
   const voteMap = useMemo(
     () =>
