@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.37",
+  "version": "1.1.38",
   "title": {
     "pt": "Tá Na Cara",
     "en": "Guess Who What?"
@@ -39,13 +39,6 @@
       "off": "No",
       "on": "Yes",
       "description": "Allow NSFW questions"
-    },
-    {
-      "label": "Original Cartoon",
-      "key": "official",
-      "off": "Cartoon",
-      "on": "Official",
-      "description": "Not recommended"
     },
     {
       "label": "Realistic",
