@@ -7,7 +7,7 @@ import type { UseStep } from 'hooks/useStep';
 import type { Sketch } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { MonsterCard } from '../../components/cards/MonsterCard';
@@ -56,7 +56,7 @@ export function StepResults({
     minWidth: 150,
     maxWidth: 300,
   });
-  const [canvasSize] = useGlobalState('canvasSize');
+  const [canvasSize] = useGlobalLocalStorage('canvasSize');
 
   const { mostVotedSketches, otherSketches } = sketches.reduce(
     (acc: Sketches, sketch) => {

@@ -1,16 +1,17 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Hooks
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
 import { CanvasResizer } from 'components/canvas';
 import { ImageCardBack } from 'components/image-cards';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { TestStepProps } from '../TestArea';
 
 export function ResizingTest({ onResult, step }: TestStepProps) {
-  const [canvasSize] = useGlobalState('canvasSize');
+  const [canvasSize] = useGlobalLocalStorage('canvasSize');
 
   return (
     <Space className="space-container full-width" direction="vertical">

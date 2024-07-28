@@ -5,7 +5,7 @@ import { App } from 'antd';
 // Types
 import type { GameMeta } from 'types/game';
 // Hooks
-import { useLocalStorage } from './useLocalStorage';
+import { useLanguage } from './useLanguage';
 import { useLoading } from './useLoading';
 import { useGameId } from './useGameId';
 import { useError } from './useError';
@@ -21,7 +21,7 @@ import { print } from 'utils/helpers';
 export function useGameMeta(): GameMeta {
   const { notification } = App.useApp();
   const gameId = useGameId();
-  const [, setLocalStorage] = useLocalStorage();
+  const { setLanguage } = useLanguage();
   const { setLoader } = useLoading();
   const { setError } = useError();
 
@@ -36,7 +36,7 @@ export function useGameMeta(): GameMeta {
       const data = response.data as GameMeta;
 
       print({ meta: data });
-      setLocalStorage({ language: data?.language ?? 'pt' });
+      setLanguage(data?.language ?? 'pt');
       setLoader('load', false);
       return response;
     },

@@ -5,7 +5,7 @@ import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Types
 import type { Location } from '../utils/types';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
@@ -16,7 +16,7 @@ type LocationsListProps = {
 
 export function LocationsList({ locations }: LocationsListProps) {
   const { translate } = useLanguage();
-  const [cache, setCache] = useGlobalState('cache');
+  const { cache, setCache } = useCache();
 
   const onCross = (locationId: string) => {
     setCache((s) => {

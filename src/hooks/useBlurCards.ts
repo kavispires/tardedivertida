@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-import { useEffectOnce } from 'react-use';
 import { useGlobalState } from './useGlobalState';
-import { useLocalStorage } from './useLocalStorage';
+import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 
 type UseBlueCards = {
   blurredCards: BooleanDictionary;
@@ -16,8 +14,7 @@ type UseBlueCards = {
  */
 export function useBlurCards(): UseBlueCards {
   const [blurredCards, setBlurredCards] = useGlobalState('blurredCards');
-  const [blurEnabled] = useGlobalState('blurEnabled');
-  const [getLocalStorage, setLocalStorage] = useLocalStorage();
+  const [blurEnabled] = useGlobalLocalStorage('blurEnabled');
 
   const blurCard = (cardId: string) => {
     setBlurredCards((s: BooleanDictionary) => ({
@@ -29,16 +26,6 @@ export function useBlurCards(): UseBlueCards {
   const shouldBeBlurred = (cardId?: string) => {
     return Boolean(cardId && blurEnabled && blurredCards?.[cardId]);
   };
-
-  useEffectOnce(() => {
-    setBlurredCards(getLocalStorage('blurredCards') ?? {});
-  });
-
-  useEffect(() => {
-    if (Object.keys(blurredCards ?? {}).length) {
-      setLocalStorage({ blurredCards: blurredCards ?? {} });
-    }
-  }, [blurredCards, setLocalStorage]);
 
   return {
     blurredCards,

@@ -8,7 +8,7 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 import type { ArteRuimCard, ArteRuimDrawing } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import { useVotingMatch } from 'hooks/useVotingMatch';
@@ -47,7 +47,7 @@ export function StepEvaluation({
   const { isLoading } = useLoading();
 
   const canvasWidth = useCardWidth(5, { gap: 16, minWidth: 150, maxWidth: 500 });
-  const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
+  const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
   const { votes, setVotes, activeItem, activateItem, resetVoting, isVotingComplete } = useVotingMatch(
     'drawing',
     true,

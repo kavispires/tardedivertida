@@ -1,5 +1,5 @@
 import { useEffectOnce } from 'react-use';
-import { useGlobalState } from './useGlobalState';
+import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 import { useCardWidth } from './useCardWidth';
 
 /**
@@ -7,7 +7,7 @@ import { useCardWidth } from './useCardWidth';
  * - Set the canvas size to the card width
  */
 export function useAppSetup() {
-  const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
+  const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
   const cardWidth = useCardWidth(5, {
     gap: 16,
     minWidth: 250,
