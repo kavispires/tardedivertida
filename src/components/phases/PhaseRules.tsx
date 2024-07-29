@@ -22,6 +22,7 @@ import { useMock } from 'hooks/useMock';
 import { useUser } from 'hooks/useUser';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useGameId } from 'hooks/useGameId';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
@@ -38,7 +39,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   const { isLoading } = useLoading();
   const { language, translate } = useLanguage();
   const user = useUser(players);
-  const [volume] = useGlobalState('volume');
+  const [volume] = useGlobalLocalStorage('volume');
   const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
 
   useEffect(() => {

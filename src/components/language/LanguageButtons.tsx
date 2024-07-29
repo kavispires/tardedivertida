@@ -1,18 +1,15 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { TransparentButton } from 'components/buttons';
 
 export function LanguageButtons() {
-  const [language, setLanguage] = useGlobalState('language');
-  const [, setLocalStorage] = useLocalStorage();
+  const [language, setLanguage] = useGlobalLocalStorage('language');
 
   const onClick = (value: Language) => {
     setLanguage(value);
-    setLocalStorage({ language: value });
   };
 
   return (

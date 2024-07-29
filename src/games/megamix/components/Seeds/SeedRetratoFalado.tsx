@@ -5,7 +5,7 @@ import { Button, Space } from 'antd';
 // Types
 import type { SeedEntryRetratoFalado } from '../../utils/types';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { NOOP } from 'utils/constants';
@@ -27,7 +27,7 @@ type SeedRetratoFaladoProps = {
 export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) {
   const [lines, setLines] = useState<any>([]);
   const [isTimesUp, setTimesUp] = useState(false);
-  const [volume] = useGlobalState('volume');
+  const [volume] = useGlobalLocalStorage('volume');
   const [audio, , controls] = useAudio({
     src: arteRuimTimer,
   });

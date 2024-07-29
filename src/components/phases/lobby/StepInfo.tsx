@@ -7,7 +7,7 @@ import type { GamePlayers } from 'types/player';
 // API & Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useAddPlayer } from 'hooks/useAddPlayer';
-import { useLocalStorage } from 'hooks/useLocalStorage';
+
 import { UseStep } from 'hooks/useStep';
 // Utils
 import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
@@ -19,6 +19,7 @@ import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';
 import { UsualAvatarsSelection } from './UsualAvatarsSelection';
 import { useLanguage } from 'hooks/useLanguage';
+import { useLocalStorage } from 'react-use';
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
@@ -36,13 +37,11 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
   );
 
   const [name, setName] = useState((currentUser?.names ?? []).at(-1) ?? '');
-  const [getLocalStorage] = useLocalStorage();
+  const [lsAvatarId] = useLocalStorage('username', '');
+  const [lsUsername] = useLocalStorage('avatarId', '');
 
   // Load username and avatar from localStorage if any
   useEffect(() => {
-    const lsAvatarId = getLocalStorage('avatarId');
-    const lsUsername = getLocalStorage('username');
-
     if (isGuest) {
       if (lsAvatarId) {
         setSelectedAvatar(lsAvatarId);
@@ -62,9 +61,9 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
 
   return (
     <>
-      <h1 className="lobby-step__title">
+      <h2 className="lobby-step__title">
         <Translate pt="Adicione seus dados" en="Add your info" />
-      </h1>
+      </h2>
 
       {hasPlayedBefore && (
         <Alert

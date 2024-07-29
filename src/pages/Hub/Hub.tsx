@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useEffectOnce, useTitle } from 'react-use';
+import { useTitle } from 'react-use';
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Typography, Layout, Divider, Row, Col } from 'antd';
@@ -7,9 +7,7 @@ import { DatabaseFilled } from '@ant-design/icons';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
-import { useLocalStorage } from 'hooks/useLocalStorage';
 // Utils
 import GAME_LIST from 'utils/info';
 import { SEPARATOR, TAG_RULES } from 'utils/constants';
@@ -24,20 +22,9 @@ import { LogoutButton } from 'components/auth/LogoutButton';
 
 function Hub() {
   useTitle('Hub - Tarde Divertida');
-
   const { language } = useLanguage();
-  const [getLocalStorage] = useLocalStorage();
-  const [, setLanguage] = useGlobalState('language');
   const [tagFilters, setTagFilters] = useState<string[]>([]);
   const [numberFilters, setNumberFilters] = useState<NumberDictionary>({});
-
-  useEffectOnce(() => {
-    const prevLanguage = getLocalStorage('language');
-
-    if (prevLanguage) {
-      setLanguage(prevLanguage);
-    }
-  });
 
   const gameList = useMemo(
     () =>
