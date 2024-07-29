@@ -32,6 +32,7 @@ import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/game-info.json'
 import QUEM_NAO_MATA from 'games/quem-nao-mata/game-info.json';
 import QUEM_SOU_EU from 'games/quem-sou-eu/game-info.json';
 import RETRATO_FALADO from 'games/retrato-falado/game-info.json';
+import SINAIS_DE_ALERTA from 'games/sinais-de-alerta/game-info.json';
 import SONHOS_PESADELOS from 'games/sonhos-pesadelos/game-info.json';
 import SUPER_CAMPEONATO from 'games/super-campeonato/game-info.json';
 import TA_NA_CARA from 'games/ta-na-cara/game-info.json';
@@ -81,6 +82,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'quem-nao-mata': QUEM_NAO_MATA,
   'quem-sou-eu': QUEM_SOU_EU,
   'retrato-falado': RETRATO_FALADO,
+  'sinais-de-alerta': SINAIS_DE_ALERTA,
   'sonhos-pesadelos': SONHOS_PESADELOS,
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': TA_NA_CARA,

@@ -1,0 +1,35 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "S",
+  "gameName": "sinais-de-alerta",
+  "version": "planned",
+  "title": {
+    "pt": "Sinais de Alerta",
+    "en": "Warning Signs"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "sngiS noituaC",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["competitive", "drawing", "pairing"],
+  "available": false
+}
