@@ -7,7 +7,6 @@ type ObjectsKeyProps = {
 };
 
 export function ObjectsKey({ status }: ObjectsKeyProps) {
-  console.log(status);
   return (
     <div className="objects-key">
       <div className="objects-key__entry">

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Button, Popconfirm, Popover, Space } from 'antd';
-import { CheckCircleFilled, InfoCircleOutlined } from '@ant-design/icons';
+import { CheckCircleFilled, CheckSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
 // Types
 import type { Sign } from '../utils/types';
 // Hooks
@@ -91,7 +91,8 @@ export function SignsKeyCard({ signs, startingAttributes = [] }: SignsKeyCardPro
               >
                 <TransparentButton>
                   <DualTranslate>{sign.attribute}</DualTranslate>
-                  {Boolean(cache[sign.signId]) && <CheckCircleFilled />}
+                  {isStarting && <CheckSquareOutlined />}
+                  {Boolean(cache[sign.signId]) && !isStarting && <CheckCircleFilled />}
                 </TransparentButton>
               </Popconfirm>
               <SignCard id={`${sign.signId}`} className="transparent" />
