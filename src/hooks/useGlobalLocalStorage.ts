@@ -59,7 +59,11 @@ export function useGlobalLocalStorage<K extends keyof LocalStorageState>(propert
     const localStorageKey = getKey(property);
     const localStorageValue = window.localStorage.getItem(localStorageKey);
     const parsedValue = localStorageValue ? JSON.parse(localStorageValue) : null;
-    if (parsedValue && !isEqual(parsedValue, value) && !isEqual(parsedValue, initialState[property])) {
+    if (
+      parsedValue !== undefined &&
+      !isEqual(parsedValue, value) &&
+      !isEqual(parsedValue, initialState[property])
+    ) {
       return updateValue(parsedValue);
     }
   });
