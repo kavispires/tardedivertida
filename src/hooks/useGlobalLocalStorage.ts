@@ -10,6 +10,7 @@ type LocalStorageState = {
   cache: PlainObject;
   canvasSize: number;
   latestGameIds: Record<string, number>;
+  blurredCards: BooleanDictionary;
 };
 
 const initialState: LocalStorageState = {
@@ -19,6 +20,7 @@ const initialState: LocalStorageState = {
   cache: {},
   canvasSize: 50,
   latestGameIds: {},
+  blurredCards: {},
 };
 
 const { useGlobalState, setGlobalState } = createGlobalState(initialState);

@@ -11,7 +11,6 @@ import { PLACEHOLDER_PLAYER } from 'utils/constants';
 type InitialState = {
   appStartedAt: number;
   showPlayersBar: boolean;
-
   // User/Player
   userId: string | null;
   username: string;
@@ -19,8 +18,6 @@ type InitialState = {
   user: GamePlayer;
   isAdminEnabled: boolean;
   isDebugEnabled: boolean;
-  blurredCards: BooleanDictionary;
-
   // Retrato-Falado
   monsterOrientation: 'vertical' | 'horizontal';
   // Dev
@@ -38,7 +35,6 @@ const initialState: InitialState = {
   user: PLACEHOLDER_PLAYER,
   isAdminEnabled: true,
   isDebugEnabled: false,
-  blurredCards: {},
   // Retrato-Falado
   monsterOrientation: 'vertical',
   // Dev

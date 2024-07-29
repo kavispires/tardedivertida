@@ -2,8 +2,6 @@ import { useEffectOnce } from 'react-use';
 
 import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 
-const LS_KEY = 'cache';
-
 type UseCacheProps = {
   /**
    * if true, clears the cache when the hook is loaded
@@ -16,7 +14,7 @@ type UseCacheProps = {
  * @param options
  */
 export function useCache(options?: UseCacheProps) {
-  const [cache, setLSCache] = useGlobalLocalStorage(LS_KEY);
+  const [cache, setLSCache] = useGlobalLocalStorage('cache');
 
   const resetCache = () => {
     setLSCache({});
