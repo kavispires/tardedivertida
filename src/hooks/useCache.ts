@@ -26,8 +26,12 @@ export function useCache(options?: UseCacheProps) {
     }
   });
 
-  const setCache = (newCache: PlainObject | ((prevCache: PlainObject) => PlainObject)) => {
-    setLSCache((prevCache: PlainObject) => (typeof newCache === 'function' ? newCache(prevCache) : newCache));
+  const setCache = (
+    value: Record<string, any> | ((prevCache: Record<string, any>) => Record<string, any>)
+  ) => {
+    const currentCache = cache;
+    const newCache = typeof value === 'function' ? value(currentCache) : value;
+    setLSCache(newCache);
   };
 
   return { cache, setCache, resetCache };

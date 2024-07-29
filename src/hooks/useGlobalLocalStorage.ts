@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import { createGlobalState } from 'react-hooks-global-state';
 import { useEffectOnce } from 'react-use';
 
@@ -47,7 +48,7 @@ export function useGlobalLocalStorage<K extends keyof LocalStorageState>(propert
     const localStorageKey = getKey(property);
     window.localStorage.setItem(localStorageKey, JSON.stringify(newValue));
 
-    if (newValue === null) {
+    if (newValue === null || newValue === undefined) {
       setGlobalState(initialState[property]);
     } else {
       setGlobalState(newValue);
@@ -57,8 +58,10 @@ export function useGlobalLocalStorage<K extends keyof LocalStorageState>(propert
   useEffectOnce(() => {
     const localStorageKey = getKey(property);
     const localStorageValue = window.localStorage.getItem(localStorageKey);
-
-    updateValue(localStorageValue ? JSON.parse(localStorageValue) : initialState[property]);
+    const parsedValue = localStorageValue ? JSON.parse(localStorageValue) : null;
+    if (parsedValue && !isEqual(parsedValue, value) && !isEqual(parsedValue, initialState[property])) {
+      return updateValue(parsedValue);
+    }
   });
 
   const setter = (newValue: LocalStorageState[K] | null) => {
