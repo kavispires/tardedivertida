@@ -6,9 +6,9 @@ import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
 import { useGameMeta } from './useGameMeta';
 import { useGlobalState } from './useGlobalState';
 import { useLanguage } from './useLanguage';
+import { getKey, useGlobalLocalStorage } from './useGlobalLocalStorage';
 // Utils
 import { getRandomWelcomeMessage, speak } from 'utils/speech';
-import { getKey, useGlobalLocalStorage } from './useGlobalLocalStorage';
 
 export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, onSuccess: GenericFunction) {
   const { gameId, gameName } = useGameMeta();
@@ -46,7 +46,7 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
 
       onSuccess();
     },
-    onError: (e: any) => {
+    onError: (e: Error) => {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
