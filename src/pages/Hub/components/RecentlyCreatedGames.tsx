@@ -5,9 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Space, Tooltip } from 'antd';
 import { RedoOutlined } from '@ant-design/icons';
 // Hooks
-import { useLocalStorage } from 'hooks/useLocalStorage';
-// Utils
-import { LATEST_GAME_IDS } from 'utils/constants';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { Translate } from 'components/language';
 
@@ -17,11 +15,12 @@ import { Translate } from 'components/language';
  */
 export function RecentlyCreatedGames(): JSX.Element {
   const navigate = useNavigate();
-  const [getLocalStorage] = useLocalStorage();
+  const [latestGameIds] = useGlobalLocalStorage('latestGameIds');
+
   const [ids, setIds] = useState<string[]>([]);
 
   const refreshIds = () => {
-    setIds(Object.keys(getLocalStorage(LATEST_GAME_IDS) ?? {}).sort());
+    setIds(Object.keys(latestGameIds ?? {}).sort());
   };
 
   const goTo = (gameId: GameId) => {

@@ -1,4 +1,5 @@
 import { orderBy } from 'lodash';
+import { useLocalStorage } from 'react-use';
 // Types
 import type { GameInfo } from 'types/game-info';
 import type { GameMeta } from 'types/game';
@@ -9,7 +10,7 @@ import { PHASES } from 'utils/phases';
 import { useStep } from 'hooks/useStep';
 import { useEffect } from 'react';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useLocalStorage } from 'hooks/useLocalStorage';
+
 import { resetGlobalState, useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { PhaseContainer } from 'components/phases';
@@ -40,7 +41,8 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [getLocalStorage] = useLocalStorage();
+  const [localUsername] = useLocalStorage('username', '');
+  const [localAvatarId] = useLocalStorage('avatarId', '');
 
   const player = players?.[currentUser.id];
 
@@ -55,8 +57,8 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
       resetGlobalState();
     } else {
       setStep(0);
-      setUsername(getLocalStorage('username'));
-      setUserAvatarId(getLocalStorage('avatarId'));
+      setUsername(localUsername ?? '');
+      setUserAvatarId(localAvatarId ?? '');
     }
   }, [
     player,
@@ -66,7 +68,8 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
     setUsername,
     setUserAvatarId,
     isAuthenticated,
-    getLocalStorage,
+    localUsername,
+    localAvatarId,
   ]);
 
   const { left, right } = orderBy(Object.values(players), 'updatedAt').reduce(

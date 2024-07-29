@@ -1,12 +1,12 @@
 import { App } from 'antd';
 import { useMutation } from '@tanstack/react-query';
 // Services
-import localStorage from 'services/localStorage';
 import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
 // Hooks
 import { useGameMeta } from './useGameMeta';
 import { useGlobalState } from './useGlobalState';
 import { useLanguage } from './useLanguage';
+import { getKey, useGlobalLocalStorage } from './useGlobalLocalStorage';
 // Utils
 import { getRandomWelcomeMessage, speak } from 'utils/speech';
 
@@ -15,7 +15,7 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [volume] = useGlobalState('volume');
+  const [volume] = useGlobalLocalStorage('volume');
   const { language, translate } = useLanguage();
   const { notification } = App.useApp();
 
@@ -36,11 +36,9 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
       setUsername(data.name);
       setUserAvatarId(data.avatarId);
 
-      localStorage.set({
-        username: data.name,
-        avatarId: data.avatarId,
-        gameId,
-      });
+      localStorage.setItem(getKey('username'), data.name);
+      localStorage.setItem(getKey('avatarId'), data.avatarId);
+      localStorage.setItem(getKey('gameId'), gameId);
 
       if (volume) {
         speak(getRandomWelcomeMessage(name ?? translate('vei', 'babe')), language, volume);
@@ -48,7 +46,7 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
 
       onSuccess();
     },
-    onError: (e: any) => {
+    onError: (e: Error) => {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',

@@ -4,28 +4,25 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { BlurOptions } from './BlurOptions';
 
 export function SectionSettings() {
-  const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
   const { isAdmin } = useCurrentUserContext();
   const [isAdminEnabled, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
-  const [volume, setVolume] = useGlobalState('volume');
   const { isDebugEnabled, toggleDevFeatures } = useDevFeatures();
-  const [, setLocalStorage] = useLocalStorage();
+  const [blurEnabled, setBlurEnabled] = useGlobalLocalStorage('blurEnabled');
+  const [volume, setVolume] = useGlobalLocalStorage('volume');
 
   const onBlurSwitchClick = (value: boolean) => {
     setBlurEnabled(value);
-    setLocalStorage({ blurEnabled: value });
   };
 
   const onSoundSwitchClick = (value: boolean) => {
     setVolume(value ? 0.5 : 0);
-    setLocalStorage({ volume: value ? 0.5 : 0 });
   };
 
   return (

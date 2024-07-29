@@ -3,21 +3,18 @@ import clsx from 'clsx';
 import { Switch } from 'antd';
 import { IconAvatar } from 'components/avatars';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { BrazilFlag, UnitedStatesFlag } from './LanguageButtons';
 // Sass
 import './LanguageSwitch.scss';
 
 export function LanguageSwitch() {
-  const [language, setLanguage] = useGlobalState('language');
-  const [, setLocalStorage] = useLocalStorage();
+  const [language, setLanguage] = useGlobalLocalStorage('language');
 
   const onSwitchClick = (e: any) => {
     const value = e ? 'pt' : 'en';
     setLanguage(value);
-    setLocalStorage({ language: value });
   };
 
   return (

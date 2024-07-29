@@ -1,6 +1,7 @@
 import { useEffectOnce } from 'react-use';
 import { HashRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useLocalStorage } from 'react-use';
 // Ant Design Resources
 import { ConfigProvider, Layout, App as AntApp } from 'antd';
 // Services
@@ -11,7 +12,6 @@ import { useError } from 'hooks/useError';
 import { useAppSetup } from 'hooks/useAppSetup';
 // State
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLocalStorage } from 'hooks/useLocalStorage';
 // Components
 import { LoadingBar, LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';
@@ -30,17 +30,14 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const [, setBlurEnabled] = useGlobalState('blurEnabled');
-  const [, setVolume] = useGlobalState('volume');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [getLocalStorage] = useLocalStorage();
+  const [localUsername] = useLocalStorage('username', '');
+  const [localAvatarId] = useLocalStorage('avatarId', '');
 
   useEffectOnce(() => {
-    setBlurEnabled(getLocalStorage('blurEnabled', false));
-    setVolume(getLocalStorage('volume', 0.4));
-    setUsername(getLocalStorage('username'));
-    setUserAvatarId(getLocalStorage('avatarId'));
+    setUsername(localUsername ?? '');
+    setUserAvatarId(localAvatarId ?? '');
   });
 
   return (

@@ -7,7 +7,7 @@ import type { MonsterImage } from 'types/tdr';
 import type { Sketch } from './utils/types';
 // Utils
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { MonsterCard } from '../../components/cards/MonsterCard';
 import { Instruction, Title } from 'components/text';
@@ -41,7 +41,7 @@ export function StepVote({
     minWidth: 150,
     maxWidth: 500,
   });
-  const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
+  const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
 
   useEffect(() => {
     if (!canvasSize) {

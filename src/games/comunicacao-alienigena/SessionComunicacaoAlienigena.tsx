@@ -5,8 +5,6 @@ import type { GameState } from 'types/game';
 // Constants
 import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
-// Utils
-import localStorage from 'services/localStorage';
 // Components
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
@@ -22,6 +20,7 @@ import { PhaseGameOver } from './PhaseGameOver';
 import { PhaseAlienSeeding } from './PhaseAlienSeeding';
 // Sass
 import './utils/styles.scss';
+import { setGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -34,7 +33,7 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       // Clear cache
-      localStorage.set({ cache: '{}' });
+      setGlobalLocalStorage('cache', {});
       return PhaseSetup;
     case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION:
       return PhaseAlienSelection;
