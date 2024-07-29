@@ -99,7 +99,8 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
             size="large"
             type="primary"
             onClick={() => onSelectCharacters({ characters: selectedCharacters })}
-            disabled={isLoading || user.ready || count !== 6}
+            loading={isLoading}
+            disabled={user.ready || count !== 6}
           >
             <Translate pt="Enviar cartas" en="Submit cards" />
           </Button>
@@ -107,6 +108,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         <Button
           size="large"
           onClick={() => onSelectCharacters({ characters: mockSelectCharacters(availableCharacters) })}
+          loading={isLoading}
           disabled={isLoading || user.ready}
         >
           <Translate pt={<>Escolha pra mim</>} en={<>Choose for me</>} />

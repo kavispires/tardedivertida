@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "title": {
     "pt": "Quem Sou Eu?",
     "en": "Who Am I?"
@@ -50,7 +50,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "pairing", "same-time", "achievements"],
+  "tags": ["cooperative", "pairing", "same-time", "achievements", "images"],
   "available": true,
   "options": [
     {
