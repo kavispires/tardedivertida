@@ -52,12 +52,7 @@ export function getDailyName(language: Language) {
  */
 export function writeHeartResultString(remainHearts: number, totalHearts: number, separator = ''): string {
   const heartsValue = Math.max(0, remainHearts);
-  return (
-    Array(heartsValue).fill('❤️').join(separator) +
-    Array(totalHearts - heartsValue)
-      .fill('🩶')
-      .join(separator)
-  );
+  return [...Array(heartsValue).fill('❤️'), ...Array(totalHearts - heartsValue).fill('🩶')].join(separator);
 }
 
 /**

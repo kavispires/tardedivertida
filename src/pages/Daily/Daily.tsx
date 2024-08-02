@@ -14,6 +14,7 @@ import { getDailyName } from './utils';
 import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
 import { DailyArtistaGame } from './games/Artista/DailyArtistaGame';
 import { DailyFilmacoGame } from './games/Filmaco/DailyFilmacoGame';
+import { DailyControleDeEstoqueGame } from './games/ControleDeEstoque/DailyControleDeEstoqueGame';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -45,6 +46,7 @@ function DailyPage() {
       palavreado: DailyPalavreadoGame,
       artista: DailyArtistaGame,
       filmaco: DailyFilmacoGame,
+      'controle-de-estoque': DailyControleDeEstoqueGame,
     }?.[subPath] ?? Hub;
 
   return <Outlet />;

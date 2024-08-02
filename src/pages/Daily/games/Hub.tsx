@@ -70,6 +70,13 @@ export function Hub() {
           </TransparentButton>
 
           <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
+            <Link to="/diario/controle-de-estoque" className="hub-item">
+              <DailyCrimeGameIcon style={{ width: 75 }} />
+              <Translate pt="Controle De Estoque" en="Warehouse" />
+            </Link>
+          </TransparentButton>
+
+          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
             <Link to="/diario" className="hub-item">
               <DailyCrimeGameIcon style={{ width: 75 }} />
               <Translate pt="Crime Hediondo" en="Horrible Crimes" />

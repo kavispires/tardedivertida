@@ -1,40 +1,37 @@
 import { Space, Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { TextHighlight } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
-import { Link } from 'react-router-dom';
+import { getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
 
 type ResultsModalContentProps = {
   challenge: number;
-  text: string;
-  win: boolean;
+  title: string;
+  isWin: boolean;
   hearts: number;
-  solution: BooleanDictionary;
+  guesses: boolean[][];
 };
 
-export function ResultsModalContent({ text, challenge, win, hearts, solution }: ResultsModalContentProps) {
+export function ResultsModalContent({ challenge, title, isWin, hearts, guesses }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
   const result = writeResult({
     game: dualTranslate(SETTINGS.NAME),
     challenge,
     remainingHearts: hearts,
-    solution,
     language,
+    guesses,
   });
 
   return (
     <Space direction="vertical" className="space-container">
       <Typography.Title level={2} className="center">
-        {win ? (
+        {isWin ? (
           <>
             <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
           </>
@@ -44,26 +41,23 @@ export function ResultsModalContent({ text, challenge, win, hearts, solution }: 
           </>
         )}
       </Typography.Title>
+
+      <Typography.Text strong className="center">
+        {title}
+      </Typography.Text>
+
       <Typography.Paragraph className="center">
-        {win ? (
-          <Translate pt="Você acertou a palavra!" en="You guessed the word!" />
+        {isWin ? (
+          <Translate pt="Você entregou todos os pedidos!" en="You delivered all orders!" />
         ) : (
-          <Translate pt="Você errou a palavra!" en="You missed the word!" />
+          <Translate
+            pt="Você não conseguiu entregar todos os pedidos."
+            en="You couldn't deliver all orders."
+          />
         )}
       </Typography.Paragraph>
 
-      <TextHighlight className="result-answer">
-        <Typography.Paragraph className="text-center">{text}</Typography.Paragraph>
-      </TextHighlight>
-
-      <CopyToClipboardResult result={result} rows={3} />
-
-      <Typography.Paragraph className="center" strong>
-        Já desenhou hoje? Novas frases todos os dias!
-        <br />
-        <IconAvatar icon={<DailyDrawingGameIcon />} />
-        <Link to="/diario/artista">Picaço!</Link>
-      </Typography.Paragraph>
+      <CopyToClipboardResult result={result} rows={6} />
     </Space>
   );
 }
@@ -72,21 +66,28 @@ function writeResult({
   game,
   challenge,
   remainingHearts,
-  solution,
   language,
+  guesses,
 }: {
   game: string;
   challenge: number;
   remainingHearts: number;
-  solution: BooleanDictionary;
   language: Language;
+  guesses: boolean[][];
 }) {
-  const totalLetters = Object.keys(solution).length;
-  const guessedLetters = Object.values(solution).filter(Boolean).length;
+  const cleanUpAttempts = guesses.map((row) =>
+    row.map((value) => {
+      return value ? '📫' : '🤬';
+    })
+  );
 
   return [
-    `🖼️ ${getDailyName(language)} ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${Math.round((guessedLetters / totalLetters) * 100)}%)`,
+    `📦 TD ${game} #${challenge}`,
+    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')}`,
+    cleanUpAttempts
+      .map((row) => row.join(' ').trim())
+      .filter(Boolean)
+      .join('\n'),
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');
 }

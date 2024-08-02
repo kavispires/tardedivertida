@@ -204,3 +204,11 @@
     color: get-color('white');
   }
 }
+
+.text-region {
+  margin: get-unit(2 auto);
+  width: calc(100% - get-unit(4));
+  max-width: 720px;
+  display: flex;
+  justify-content: center;
+}
