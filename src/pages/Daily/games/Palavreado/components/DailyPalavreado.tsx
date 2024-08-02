@@ -13,6 +13,7 @@ import { usePalavreadoEngine } from '../utils/usePalavreadoEngine';
 import { Board } from './Board';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
+import { Region, TextRegion } from 'pages/Daily/components/Region';
 
 type DailyPalavreadoProps = {
   data: DailyPalavreadoEntry;
@@ -37,14 +38,14 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
   } = usePalavreadoEngine(data);
 
   return (
-    (<Layout className="app">
+    <Layout className="app">
       <Header icon={<DailyWordGameIcon />}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>
         <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
 
-        <Space className="space-container" direction="vertical" align="center">
+        <Region>
           <Typography.Text strong className="palavreado-word">
             {data.keyword} {swaps > 0 && ` ↔️ ${swaps}`}
           </Typography.Text>
@@ -55,9 +56,9 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             swap={swap}
             guesses={guesses}
           />
-        </Space>
+        </Region>
 
-        <Space className="space-container" direction="vertical" align="center">
+        <Region>
           {isComplete ? (
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
@@ -67,9 +68,9 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
               <Translate pt="Enviar" en="Submit" />
             </Button>
           )}
-        </Space>
+        </Region>
 
-        <Space className="space-container palavreado-guesses" align="center" direction="vertical">
+        <TextRegion>
           {guesses.map((attempt, index) => (
             <Space key={`${attempt}-${index}`} split={<Divider type="vertical" />}>
               {attempt.map((word, i) => (
@@ -79,11 +80,10 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
               ))}
             </Space>
           ))}
-        </Space>
+        </TextRegion>
 
         {guesses.length > 0 && (
-          // <Instruction contained>
-          (<Space className="palavreado-used-position-instruction" align="center">
+          <TextRegion>
             <Flex className="contained" gap={12} align="center">
               <div className="palavreado-board__tile palavreado-board__tile--place-guessed palavreado-board__tile--sample">
                 ?
@@ -109,8 +109,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
                 />
               </Typography.Text>
             </Flex>
-          </Space>)
-          // </Instruction>
+          </TextRegion>
         )}
         <Modal
           title={<Translate pt="Resultado" en="Results" />}
@@ -130,6 +129,6 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           />
         </Modal>
       </Layout.Content>
-    </Layout>)
+    </Layout>
   );
 }

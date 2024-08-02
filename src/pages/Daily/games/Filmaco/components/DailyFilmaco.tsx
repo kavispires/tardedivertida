@@ -16,6 +16,7 @@ import { useFilmacoEngine } from '../utils/useFilmacoEngine';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
+import { Region } from 'pages/Daily/components/Region';
 
 type DailyFilmacoProps = {
   data: DailyFilmacoEntry;
@@ -40,11 +41,11 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
           rules={<Rules />}
         />
 
-        <Space className="space-container" direction="vertical" align="center">
+        <Region>
           <Typography.Text strong>
             <Translate pt="Ano de Lançamento" en="Release Year" />: {data.year}
           </Typography.Text>
-        </Space>
+        </Region>
 
         <Space className="space-container" wrap>
           {data.itemsIds.map((itemId, index) => (

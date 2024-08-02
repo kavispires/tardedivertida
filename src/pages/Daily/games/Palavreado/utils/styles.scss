@@ -91,7 +91,8 @@
 
 .palavreado-used-position-instruction {
   margin: get-unit(2 auto);
-  max-width: calc(100% - get-unit(4));
+  width: calc(100% - get-unit(4));
+  max-width: 720px;
   display: flex;
   justify-content: center;
 }
