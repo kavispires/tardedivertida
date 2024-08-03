@@ -7,11 +7,11 @@ import { DualTranslate } from 'components/language';
 
 export type WarehouseGoodCardProps = {
   /**
-   * The id of the item
+   * The id of the warehouse good
    */
   id: string;
   /**
-   * The width of the item
+   * The width of the warehouse good
    */
   width?: number;
   /**
@@ -19,7 +19,7 @@ export type WarehouseGoodCardProps = {
    */
   className?: string;
   /**
-   * Replacement title, usually the name of the item
+   * Replacement title, usually the name of the warehouse good
    */
   title?: string;
   /**
@@ -35,22 +35,22 @@ export type WarehouseGoodCardProps = {
 const BASE = 64;
 
 /**
- * Retrieves the source and item ID based on a given string.
+ * Retrieves the source and warehouse good ID based on a given string.
  *
  * @param str - The input string.
- * @returns An array containing the source and item ID.
+ * @returns An array containing the source and warehouse good ID.
  */
 export const getSource = (str: string) => {
   const match = str.match(/\d+/);
   const numId = match ? parseInt(match[0], 10) : 0;
-  const itemId = `good-${numId}`;
+  const goodId = `good-${numId}`;
   const sourceId = Math.ceil(numId / BASE) * BASE;
   const source = `warehouse-goods-${sourceId}`;
-  return [source, itemId];
+  return [source, goodId];
 };
 
 /**
- * An item card component.
+ * An good card component.
  */
 export function WarehouseGoodCard({
   id,
@@ -60,13 +60,13 @@ export function WarehouseGoodCard({
   text,
   padding,
 }: WarehouseGoodCardProps) {
-  const [source, itemId] = getSource(id);
+  const [source, goodId] = getSource(id);
 
   const height = text ? 'auto' : `${width}px`;
 
   return (
     <div className={clsx('warehouse-good-card', className)} style={{ width: `${width}px`, height, padding }}>
-      <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
+      <Sprite source={source} id={goodId} width={width} title={title} padding={padding} />
       {Boolean(text) && (
         <span className="warehouse-good-card__text">
           <DualTranslate>{text!}</DualTranslate>

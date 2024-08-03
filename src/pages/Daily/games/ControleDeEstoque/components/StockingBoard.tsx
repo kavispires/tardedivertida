@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
-
 import { getAnimationClass } from 'utils/helpers';
+
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 
 type StockingBoardProps = {

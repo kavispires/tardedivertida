@@ -1,21 +1,20 @@
 import { Space, Typography } from 'antd';
 import { TransparentButton } from 'components/buttons';
 import { LanguageSwitch, Translate } from 'components/language';
+import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
+// import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
+// import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
+import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
+import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { Link } from 'react-router-dom';
 
 import { DailyChrome } from '../components/DailyChrome';
-import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
-import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
-import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
-import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 
 export function Hub() {
-  // Pre-load challenges
-
   return (
     <DailyChrome>
       <div className="hub">
@@ -71,24 +70,24 @@ export function Hub() {
 
           <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
             <Link to="/diario/controle-de-estoque" className="hub-item">
-              <DailyCrimeGameIcon style={{ width: 75 }} />
+              <DailyWarehouseGameIcon style={{ width: 75 }} />
               <Translate pt="Controle De Estoque" en="Warehouse" />
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
+          {/* <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
             <Link to="/diario" className="hub-item">
               <DailyCrimeGameIcon style={{ width: 75 }} />
               <Translate pt="Crime Hediondo" en="Horrible Crimes" />
             </Link>
-          </TransparentButton>
+          </TransparentButton> */}
 
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
+          {/* <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
             <Link to="/diario" className="hub-item">
               <DailyImagesGameIcon style={{ width: 75 }} />
               <Translate pt="Imagine" en="Imagine" />
             </Link>
-          </TransparentButton>
+          </TransparentButton> */}
         </div>
       </div>
     </DailyChrome>

@@ -22,7 +22,7 @@ interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   /**
    * Behavior when the mouse hovers the button (default: scale)
    */
-  hoverType?: 'scale' | 'sepia';
+  hoverType?: 'scale' | 'sepia' | 'none';
 }
 
 /**

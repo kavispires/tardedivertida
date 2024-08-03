@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { isDevEnv, print } from 'utils/helpers';
+import { print } from 'utils/helpers';
 
 import { useLanguage } from 'hooks/useLanguage';
 import { getSourceName, wait } from 'pages/Daily/utils';
@@ -10,6 +10,7 @@ type DemoResponse = {
   'controle-de-estoque': DailyControleDeEstoqueEntry;
 };
 
+const TOTAL_GOODS = 192;
 const GOODS_SIZE = 16;
 const ORDER_SIZE = 4;
 const OUT_OF_STOCK_SIZE = 1;
@@ -35,37 +36,19 @@ export function useControleDeEstoqueDemo(today: string) {
         orders: [],
       };
 
-      // Fixed result during dev
-      if (isDevEnv) {
-        entry.goods = Array(GOODS_SIZE)
+      const goods = sampleSize(
+        Array(TOTAL_GOODS)
           .fill('')
-          .map((_, i) => `good-${i + 1}`);
-        entry.orders = Array(ORDER_SIZE)
-          .fill('')
-          .map((_, i) => `good-${i + 1}`);
-        // Add non-available requests
-        entry.orders.push(...sampleSize(['good-17', 'good-18'], OUT_OF_STOCK_SIZE));
-      } else {
-        entry.goods = shuffle(
-          sampleSize(
-            Array(48)
-              .fill('')
-              .map((_, i) => `good-${i + 1}`),
-            GOODS_SIZE
-          )
-        );
-        entry.orders = shuffle(sampleSize(entry.goods, ORDER_SIZE));
-        // Add non-available requests
-        entry.orders.push(
-          ...sampleSize(
-            Array(GOODS_SIZE)
-              .fill('')
-              .map((_, i) => `good-${i + 49}`),
-            OUT_OF_STOCK_SIZE
-          )
-        );
-        entry.orders = shuffle(entry.orders);
-      }
+          .map((_, i) => `good-${i + 1}`),
+        GOODS_SIZE + OUT_OF_STOCK_SIZE
+      );
+      const outOfStockGood = goods.pop();
+
+      entry.goods = goods;
+      entry.orders = sampleSize(entry.goods, ORDER_SIZE);
+      // Add non-available requests
+      entry.orders.push(outOfStockGood!);
+      entry.orders = shuffle(entry.orders);
 
       const responseData = {
         'controle-de-estoque': entry,
