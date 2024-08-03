@@ -1,11 +1,12 @@
-import { Flex, Space, Typography } from 'antd';
-import { Translate } from 'components/language';
-import { StockingBoard } from './StockingBoard';
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
-import { Instruction } from 'components/text';
+import { Typography } from 'antd';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import { getAnimationClass } from 'utils/helpers';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { getAnimationClass } from 'utils/helpers';
+
+import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import { StockingBoard } from './StockingBoard';
 
 type StockingPhaseProps = {
   warehouse: ReturnType<typeof useControleDeEstoqueEngine>['warehouse'];

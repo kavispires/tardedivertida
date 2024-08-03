@@ -1,22 +1,21 @@
 import { Button, Layout, Modal, Popconfirm, Typography } from 'antd';
 import { DualTranslate, Translate } from 'components/language';
+import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
+import { Region } from 'pages/Daily/components/Region';
+import { useMemo } from 'react';
+import { useMeasure } from 'react-use';
 import { Me } from 'types/user';
+import { getAnimationClass } from 'utils/helpers';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
-import { SETTINGS } from '../utils/settings';
+import { PHASES, SETTINGS } from '../utils/settings';
 import { DailyControleDeEstoqueEntry } from '../utils/types';
-
+import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import { FulfillingPhase } from './FulfillingPhase';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
-import { useMeasure } from 'react-use';
-import { useMemo } from 'react';
-import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 import { StockingPhase } from './StockingPhase';
-import { FulfillingPhase } from './FulfillingPhase';
-import { Region } from 'pages/Daily/components/Region';
-import { getAnimationClass } from 'utils/helpers';
 
 type DailyControleDeEstoqueProps = {
   data: DailyControleDeEstoqueEntry;
@@ -28,20 +27,23 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
     hearts,
     warehouse,
     currentGood,
-    currentOrder,
+    activeOrder,
     lastPlacedGoodId,
-    onDeliver,
-    onBack,
+    onPlaceGood,
+    onSelectOrder,
+    onFulfill,
+    onTakeBack,
     onSubmit,
     fulfillments,
     showResultModal,
     setShowResultModal,
     isWin,
     isComplete,
-    onPlaceGood,
     guesses,
     reset,
     latestAttempt,
+    phase,
+    orders,
   } = useControleDeEstoqueEngine(data);
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
 
@@ -67,7 +69,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
             </Typography.Text>
           </Region>
 
-          {currentGood && (
+          {phase === PHASES.STOCKING && currentGood && (
             <StockingPhase
               warehouse={warehouse}
               currentGood={currentGood}
@@ -77,14 +79,17 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
             />
           )}
 
-          {!currentGood && (
+          {phase !== PHASES.STOCKING && (
             <FulfillingPhase
+              phase={phase}
               warehouse={warehouse}
-              currentOrder={currentOrder}
+              orders={orders}
+              activeOrder={activeOrder}
               fulfillments={fulfillments}
               shelfWidth={shelfWidth}
-              onDeliver={onDeliver}
-              onBack={onBack}
+              onSelectOrder={onSelectOrder}
+              onFulfill={onFulfill}
+              onTakeBack={onTakeBack}
               onSubmit={onSubmit}
               isComplete={isComplete}
               setShowResultModal={setShowResultModal}

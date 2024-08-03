@@ -1,19 +1,24 @@
 import { Button } from 'antd';
 import { Translate } from 'components/language';
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 import { Instruction } from 'components/text';
-import { FulfillmentBoard } from './FulfillmentBoard';
-import { BarChartOutlined, RollbackOutlined, UndoOutlined, WarningFilled } from '@ant-design/icons';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
-import { OutOfStockArea } from './OutOfStockArea';
-import { CurrentOrder } from './CurrentOrder';
+
+import { BarChartOutlined, WarningFilled } from '@ant-design/icons';
+
+import { PHASES } from '../utils/settings';
+import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import { FulfillmentBoard } from './FulfillmentBoard';
+import { Orders } from './Orders';
 
 type FulfillingPhaseProps = {
+  phase: ReturnType<typeof useControleDeEstoqueEngine>['phase'];
+  orders: ReturnType<typeof useControleDeEstoqueEngine>['orders'];
   warehouse: ReturnType<typeof useControleDeEstoqueEngine>['warehouse'];
-  onDeliver: ReturnType<typeof useControleDeEstoqueEngine>['onDeliver'];
-  onBack: ReturnType<typeof useControleDeEstoqueEngine>['onBack'];
+  onSelectOrder: ReturnType<typeof useControleDeEstoqueEngine>['onSelectOrder'];
+  onFulfill: ReturnType<typeof useControleDeEstoqueEngine>['onFulfill'];
+  onTakeBack: ReturnType<typeof useControleDeEstoqueEngine>['onTakeBack'];
   onSubmit: ReturnType<typeof useControleDeEstoqueEngine>['onSubmit'];
-  currentOrder: ReturnType<typeof useControleDeEstoqueEngine>['currentOrder'];
+  activeOrder: ReturnType<typeof useControleDeEstoqueEngine>['activeOrder'];
   fulfillments: ReturnType<typeof useControleDeEstoqueEngine>['fulfillments'];
   setShowResultModal: ReturnType<typeof useControleDeEstoqueEngine>['setShowResultModal'];
   isComplete: ReturnType<typeof useControleDeEstoqueEngine>['isComplete'];
@@ -21,24 +26,29 @@ type FulfillingPhaseProps = {
 };
 
 export function FulfillingPhase({
+  phase,
+  orders,
   warehouse,
-  currentOrder,
+  activeOrder,
   fulfillments,
-  onDeliver,
-  onBack,
+  onSelectOrder,
+  onFulfill,
+  onTakeBack,
   onSubmit,
   shelfWidth,
   isComplete,
   setShowResultModal,
 }: FulfillingPhaseProps) {
-  const isPlacing = !!currentOrder;
-  const isSending = !currentOrder && !isComplete;
+  const isFulfilling = phase === PHASES.FULFILLING;
+  const isDelivering = phase === PHASES.DELIVERING;
 
   const board = (
     <Region>
       <FulfillmentBoard
+        activeOrder={activeOrder}
         warehouse={warehouse}
-        onDeliver={isSending ? () => {} : onDeliver}
+        onFulfill={onFulfill}
+        onTakeBack={onTakeBack}
         width={shelfWidth}
         fulfillments={fulfillments}
         reveal={isComplete}
@@ -46,18 +56,7 @@ export function FulfillingPhase({
     </Region>
   );
 
-  const fulfillmentOptions = (
-    <div className="fulfillment-center__options">
-      <Button size="large" onClick={onBack} disabled={fulfillments.length === 0}>
-        <UndoOutlined />
-      </Button>
-      {/* <Button size="large" disabled>
-        <RollbackOutlined />
-      </Button> */}
-    </div>
-  );
-
-  if (isPlacing) {
+  if (isFulfilling) {
     return (
       <>
         {board}
@@ -65,49 +64,82 @@ export function FulfillingPhase({
         <TextRegion>
           <Instruction contained noMargin>
             <Translate
-              pt="Recebemos um pedido para esse produto, onde ele está?"
-              en="We received an order for this product, where is it?"
-            />
-          </Instruction>
-        </TextRegion>
-
-        <div className="fulfillment-center">
-          {fulfillmentOptions}
-          <div className="fulfillment-center__order">
-            <CurrentOrder currentOrder={currentOrder} shelfWidth={shelfWidth} />
-          </div>
-          <OutOfStockArea onDeliver={onDeliver} fulfillments={fulfillments} width={shelfWidth} />
-        </div>
-
-        <TextRegion>
-          <Instruction contained noMargin>
-            <Translate
               pt={
                 <>
-                  Um dos pedidos não está na prateleira, coloque ele na lata de lixo.
+                  Recebemos 5 pedidos e 4 deles estão em estoque!
                   <br />
-                  <strong>Pedido ({fulfillments.length + 1}/5).</strong>
+                  Selecione os pedidos um a um e coloque-nos na prateleira correta.
                   <br />
-                  Você pode apertar voltar para desfazer uma entrega.
+                  <strong>Pedido Posicionados ({fulfillments.length}/4).</strong>
                 </>
               }
               en={
                 <>
-                  One of the orders is not on the shelf, put it in the trash.
+                  We have received 5 orders and 4 of them are in stock!
                   <br />
-                  <strong>Order ({fulfillments.length + 1}/5).</strong>
+                  Select the orders one by one and place them on the correct shelf.
                   <br />
-                  You can press back to undo a delivery.
+                  <strong>Orders Placed ({fulfillments.length}/4).</strong>
                 </>
               }
             />
           </Instruction>
         </TextRegion>
+
+        <Orders
+          orders={orders}
+          activeOrder={activeOrder}
+          onSelectOrder={onSelectOrder}
+          shelfWidth={shelfWidth}
+          fulfillments={fulfillments}
+        />
+
+        {!isComplete && (
+          <TextRegion>
+            <Instruction contained noMargin>
+              <Translate
+                pt={<>Para desfazer um pedido, é só clicar nele na prateleira.</>}
+                en={<>To undo an order, just click on it on the shelf.</>}
+              />
+            </Instruction>
+          </TextRegion>
+        )}
+
+        {fulfillments.length === 4 && !isComplete && (
+          <>
+            <Region>
+              <Button size="large" type="primary" onClick={onSubmit}>
+                <Translate pt="Enviar pacotes" en="Send packages" />
+              </Button>
+            </Region>
+
+            <TextRegion>
+              <Instruction contained noMargin>
+                <Translate
+                  pt={
+                    <>
+                      Se tudo estiver nos confirmes, aperte o botão de enviar.
+                      <br />
+                      Você perde um coração se qualquer um deles estiver errado.
+                    </>
+                  }
+                  en={
+                    <>
+                      If everything is in order, press the delivery button.
+                      <br />
+                      You lose a heart if any of them are wrong
+                    </>
+                  }
+                />
+              </Instruction>
+            </TextRegion>
+          </>
+        )}
       </>
     );
   }
 
-  if (isSending) {
+  if (isDelivering) {
     const isMissingOutOfStock = !fulfillments.some((f) => f.shelfIndex === -1);
 
     return (
@@ -120,15 +152,11 @@ export function FulfillingPhase({
           </Instruction>
         </TextRegion>
 
-        <div className="fulfillment-center">
-          {fulfillmentOptions}
-          <div className="fulfillment-center__order">
-            <Button size="large" type="primary" onClick={onSubmit}>
-              <Translate pt="Enviar pacotes" en="Send packages" />
-            </Button>
-          </div>
-          <OutOfStockArea onDeliver={() => {}} fulfillments={fulfillments} width={shelfWidth} disabled />
-        </div>
+        <Region>
+          <Button size="large" type="primary" onClick={onSubmit}>
+            <Translate pt="Enviar pacotes" en="Send packages" />
+          </Button>
+        </Region>
 
         <TextRegion>
           <Instruction contained noMargin>
@@ -189,7 +217,6 @@ export function FulfillingPhase({
             <Translate pt="Ver Resultado" en="Show Results" />
           </Button>
         </div>
-        <OutOfStockArea onDeliver={onDeliver} fulfillments={fulfillments} width={shelfWidth} disabled />
       </div>
     </>
   );

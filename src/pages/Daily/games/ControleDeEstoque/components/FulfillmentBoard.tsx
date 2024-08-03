@@ -1,23 +1,27 @@
 import clsx from 'clsx';
+import { TransparentButton } from 'components/buttons';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
-
 import { getAnimationClass } from 'utils/helpers';
+
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
-import { TransparentButton } from 'components/buttons';
 
 type FulfillmentBoardProps = {
+  activeOrder: ReturnType<typeof useControleDeEstoqueEngine>['activeOrder'];
   warehouse: ReturnType<typeof useControleDeEstoqueEngine>['warehouse'];
-  onDeliver: ReturnType<typeof useControleDeEstoqueEngine>['onDeliver'];
+  onFulfill: ReturnType<typeof useControleDeEstoqueEngine>['onFulfill'];
+  onTakeBack: ReturnType<typeof useControleDeEstoqueEngine>['onTakeBack'];
   fulfillments: ReturnType<typeof useControleDeEstoqueEngine>['fulfillments'];
   width: number;
   reveal?: boolean;
 };
 
 export function FulfillmentBoard({
+  activeOrder,
   warehouse,
   fulfillments,
-  onDeliver,
+  onFulfill,
+  onTakeBack,
   width,
   reveal = false,
 }: FulfillmentBoardProps) {
@@ -39,12 +43,23 @@ export function FulfillmentBoard({
               className={clsx('shelves-board__shelf', 'shelves-board__shelf-fulfilled')}
               style={size}
             >
-              <WarehouseGoodCard
-                id={isFulfilled.order}
-                padding={1}
-                width={width - 24}
-                className="shelves-board__placed-order"
-              />
+              {reveal ? (
+                <WarehouseGoodCard
+                  id={isFulfilled.order}
+                  padding={1}
+                  width={width - 24}
+                  className="shelves-board__placed-order"
+                />
+              ) : (
+                <TransparentButton onClick={() => onTakeBack(isFulfilled.order)} hoverType="none">
+                  <WarehouseGoodCard
+                    id={isFulfilled.order}
+                    padding={1}
+                    width={width - 24}
+                    className="shelves-board__placed-order"
+                  />
+                </TransparentButton>
+              )}
               {reveal ? (
                 <WarehouseGoodCard id={goodId} padding={1} width={width - 12} />
               ) : (
@@ -59,7 +74,7 @@ export function FulfillmentBoard({
             {reveal ? (
               <WarehouseGoodCard id={goodId} padding={1} width={width - 12} />
             ) : (
-              <TransparentButton onClick={() => onDeliver(index)}>
+              <TransparentButton onClick={activeOrder ? () => onFulfill(index) : undefined}>
                 <ShippingBoxIcon width={width - 12} className={getAnimationClass('bounce')} />
               </TransparentButton>
             )}

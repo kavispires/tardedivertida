@@ -70,7 +70,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           )}
         </Region>
 
-        <TextRegion>
+        <TextRegion direction="vertical">
           {guesses.map((attempt, index) => (
             <Space key={`${attempt}-${index}`} split={<Divider type="vertical" />}>
               {attempt.map((word, i) => (
