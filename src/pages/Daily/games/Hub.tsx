@@ -55,7 +55,7 @@ export function Hub() {
           </TransparentButton>
 
           <TransparentButton hoverType="sepia" className="hub-item">
-            <Link to="/diario/artista" className="hub-item">
+            <Link to="/diario/picaco" className="hub-item">
               <DailyDrawingGameIcon style={{ width: 75 }} />
               <Translate pt="Picaço!" en="Big Artist!" />
             </Link>

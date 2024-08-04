@@ -8,6 +8,7 @@ import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 import { getAnimationClass } from 'utils/helpers';
 
@@ -142,6 +143,8 @@ export function ResultsModalContent({
           />
         </Typography.Paragraph>
       )}
+
+      <NextGameSuggestion />
     </Space>
   );
 }

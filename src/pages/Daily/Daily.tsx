@@ -42,11 +42,11 @@ function DailyPage() {
       '': Hub,
       'aqui-o': DailyAquiOGame,
       'arte-ruim': DailyArteRuimGame,
+      'controle-de-estoque': DailyControleDeEstoqueGame,
+      filmaco: DailyFilmacoGame,
       hub: Hub,
       palavreado: DailyPalavreadoGame,
-      artista: DailyArtistaGame,
-      filmaco: DailyFilmacoGame,
-      'controle-de-estoque': DailyControleDeEstoqueGame,
+      picaco: DailyArtistaGame,
     }?.[subPath] ?? Hub;
 
   return <Outlet />;
