@@ -4,10 +4,9 @@ import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
-import { Link } from 'react-router-dom';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
@@ -58,12 +57,7 @@ export function ResultsModalContent({ text, challenge, win, hearts, solution }: 
 
       <CopyToClipboardResult result={result} rows={3} />
 
-      <Typography.Paragraph className="center" strong>
-        Já desenhou hoje? Novas frases todos os dias!
-        <br />
-        <IconAvatar icon={<DailyDrawingGameIcon />} />
-        <Link to="/diario/artista">Picaço!</Link>
-      </Typography.Paragraph>
+      <NextGameSuggestion />
     </Space>
   );
 }

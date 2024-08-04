@@ -2,12 +2,13 @@ import { Button, Divider, Layout, Space } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { DualTranslate, Translate } from 'components/language';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import { useMeasure } from 'react-use';
 import { Me } from 'types/user';
 import { getAnimationClass } from 'utils/helpers';
@@ -19,7 +20,6 @@ import { DailyArtistaEntry } from '../utils/types';
 import { useArtistaEngine } from '../utils/useArtistaEngine';
 import { Canvas } from './Canvas';
 import { Rules } from './Rules';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 type DailyArtistaProps = {
   data: DailyArtistaEntry;
@@ -53,9 +53,7 @@ export function DailyArtista({ data, currentUser }: DailyArtistaProps) {
               <Translate pt="Você já jogou hoje!" en="You've already played today!" />
               <Translate pt="Volte amanhã para jogar novamente!" en="Come back tomorrow to play again!" />
               <Divider />
-              <Link to="/diario">
-                <Translate pt="Jogar outros jogos" en="Play something else" />
-              </Link>
+              <NextGameSuggestion />
             </Instruction>
           )}
 

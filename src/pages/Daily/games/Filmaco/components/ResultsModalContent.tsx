@@ -9,6 +9,7 @@ import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 
 type ResultsModalContentProps = {
   challenge: number;
@@ -55,6 +56,8 @@ export function ResultsModalContent({ text, challenge, win, hearts, solution }: 
       </TextHighlight>
 
       <CopyToClipboardResult result={result} rows={3} />
+
+      <NextGameSuggestion />
     </Space>
   );
 }

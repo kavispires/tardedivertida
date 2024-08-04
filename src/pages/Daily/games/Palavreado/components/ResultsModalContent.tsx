@@ -10,6 +10,7 @@ import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult
 import { SETTINGS } from '../utils/settings';
 import { PalavreadoLetter } from '../utils/types';
 import { chunk } from 'lodash';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 
 type ResultsModalContentProps = {
   challenge: number;
@@ -69,6 +70,8 @@ export function ResultsModalContent({
       </Space>
 
       <CopyToClipboardResult result={result} rows={6} />
+
+      <NextGameSuggestion />
     </Space>
   );
 }
