@@ -3,17 +3,18 @@ import './utils/styles.scss';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
+import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
+
 import { getToday } from '../../utils';
 import { DailyControleDeEstoque } from './components/DailyControleDeEstoque';
-import { useControleDeEstoqueDemo } from './utils/useControleDeEstoqueDemo';
 
 export function DailyControleDeEstoqueGame() {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const challengeQuery = useControleDeEstoqueDemo(getToday());
+  const challengeQuery = useDailyChallenge(getToday());
 
-  if (challengeQuery.isLoading || challengeQuery.isRefetching) {
+  if (challengeQuery.isLoading) {
     return <DailyLoading />;
   }
   const dailyData = challengeQuery?.data?.['controle-de-estoque'];
