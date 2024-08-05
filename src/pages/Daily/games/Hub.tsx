@@ -4,7 +4,7 @@ import { LanguageSwitch, Translate } from 'components/language';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
-import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
+// import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 // import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 // import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
@@ -41,6 +41,13 @@ export function Hub() {
           </TransparentButton>
 
           <TransparentButton hoverType="sepia" className="hub-item">
+            <Link to="/diario/controle-de-estoque" className="hub-item">
+              <DailyWarehouseGameIcon style={{ width: 75 }} />
+              <Translate pt="Controle De Estoque" en="Warehouse" />
+            </Link>
+          </TransparentButton>
+
+          <TransparentButton hoverType="sepia" className="hub-item">
             <Link to="/diario/filmaco" className="hub-item">
               <DailyMovieGameIcon style={{ width: 75 }} />
               <Translate pt="Filmaço" en="Movicon" />
@@ -61,19 +68,12 @@ export function Hub() {
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
+          {/* <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
             <Link to="/diario" className="hub-item">
               <DailyGroupingGameIcon style={{ width: 75 }} />
               <Translate pt="Quarteto" en="Connect Four" />
             </Link>
-          </TransparentButton>
-
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario/controle-de-estoque" className="hub-item">
-              <DailyWarehouseGameIcon style={{ width: 75 }} />
-              <Translate pt="Controle De Estoque" en="Warehouse" />
-            </Link>
-          </TransparentButton>
+          </TransparentButton> */}
 
           {/* <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
             <Link to="/diario" className="hub-item">

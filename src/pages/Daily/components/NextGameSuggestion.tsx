@@ -17,7 +17,7 @@ import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/util
 import { getToday } from '../utils';
 import { DualTranslate, Translate } from 'components/language';
 
-const PRIORITY_LIST = [ARTE_RUIM, FILMACO, PALAVREADO, AQUI_O, ARTISTA];
+const PRIORITY_LIST = [ARTE_RUIM, CONTROLE_DE_ESTOQUE, FILMACO, PALAVREADO, AQUI_O, ARTISTA];
 
 const checkIsPlayedToday = (key: string): boolean => {
   const session = JSON.parse(localStorage.getItem(key) || '{}');

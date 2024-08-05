@@ -1,16 +1,17 @@
 import { App, Button, Flex } from 'antd';
+import { Translate } from 'components/language';
+import { isDevEnv } from 'utils/helpers';
 
 import { BugOutlined } from '@ant-design/icons';
 
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
 import { SETTINGS as ARTISTA } from '../games/Artista/utils/settings';
-import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
+import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
-import { isDevEnv } from 'utils/helpers';
-import { Translate } from 'components/language';
+import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 
-const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA, FILMACO];
+const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA, FILMACO, CONTROLE_DE_ESTOQUE];
 
 export function DevResetLocalStorageButton() {
   const { message } = App.useApp();
