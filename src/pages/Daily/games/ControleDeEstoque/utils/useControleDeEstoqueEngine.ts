@@ -1,22 +1,28 @@
+import { App } from 'antd';
+import { useLanguage } from 'hooks/useLanguage';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { SEPARATOR } from 'utils/constants';
+import { deepCopy } from 'utils/helpers';
 
 import { PHASES, SETTINGS } from './settings';
-import { DailyControleDeEstoqueEntry, ControleDeEstoqueLocalToday } from './types';
-import { deepCopy } from 'utils/helpers';
-import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry } from './types';
+
+type GoodId = string;
 
 type GameState = {
   hearts: number;
   phase: keyof typeof PHASES;
-  warehouse: (string | null)[];
-  fulfillments: { order: string; shelfIndex: number }[];
-  lastPlacedGoodId: string | null;
-  activeOrder: string | null;
+  warehouse: (GoodId | null)[];
+  fulfillments: { order: GoodId; shelfIndex: number }[];
+  lastPlacedGoodId: GoodId | null;
+  activeOrder: GoodId | null;
   latestAttempt: number | null;
   win: boolean;
-  guesses: boolean[][];
+  guesses: string[];
+  evaluations: boolean[][];
+  extraAttempts: number;
 };
 
 const defaultArteRuimLocalToday: ControleDeEstoqueLocalToday = {
@@ -24,6 +30,7 @@ const defaultArteRuimLocalToday: ControleDeEstoqueLocalToday = {
   number: 0,
   warehouse: [],
   guesses: [],
+  extraAttempts: 0,
 };
 
 const getInitialState = (data: DailyControleDeEstoqueEntry): GameState => {
@@ -36,35 +43,65 @@ const getInitialState = (data: DailyControleDeEstoqueEntry): GameState => {
     latestAttempt: null,
     win: false,
     guesses: [],
+    evaluations: [],
     activeOrder: null,
+    extraAttempts: 0,
   };
 };
 
 export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
+  const { message } = App.useApp();
+  const { translate } = useLanguage();
   const { state, setState, updateState } = useDailyGameState<GameState>(getInitialState(data));
-  const queryClient = useQueryClient();
 
   const currentGood: string | undefined = data.goods[state.warehouse.filter(Boolean).length];
 
-  const onPlaceGood = (shelfIndex: number) => {
-    setState((prev) => {
-      const copy = deepCopy(prev);
-
-      copy.warehouse[shelfIndex] = currentGood;
-      copy.lastPlacedGoodId = currentGood;
-
-      if (copy.warehouse.every(Boolean)) {
-        copy.phase = PHASES.FULFILLING;
+  const { updateLocalStorage } = useDailyLocalToday<ControleDeEstoqueLocalToday>({
+    key: SETTINGS.LOCAL_TODAY_KEY,
+    gameId: data.id,
+    challengeNumber: data.number ?? 0,
+    defaultValue: defaultArteRuimLocalToday,
+    onApplyLocalState: (value) => {
+      console.log(value);
+      if (value.warehouse.length || value.extraAttempts) {
+        updateState(parseLocalStorage(value, data.goods.length));
       }
+    },
+  });
 
-      return copy;
-    });
+  /**
+   * Places a good in the warehouse
+   */
+  const onPlaceGood = (shelfIndex: number) => {
+    if (shelfIndex >= 0 && currentGood) {
+      setState((prev) => {
+        const copy = deepCopy(prev);
+
+        copy.warehouse[shelfIndex] = currentGood;
+        copy.lastPlacedGoodId = currentGood;
+
+        if (copy.warehouse.every(Boolean)) {
+          copy.phase = PHASES.FULFILLING;
+
+          updateLocalStorage({ warehouse: copy.warehouse as string[] });
+        }
+
+        return copy;
+      });
+    }
   };
 
+  /**
+   * Selects an order to fulfill
+   */
   const onSelectOrder = (order: string) => {
     updateState({ activeOrder: order });
   };
 
+  /**
+   * Fulfills an order
+   * (assigns an order to a shelf)
+   */
   const onFulfill = (shelfIndex: number) => {
     setState((prev) => {
       const copy = deepCopy(prev);
@@ -74,6 +111,9 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
     });
   };
 
+  /**
+   * Takes back an order from a shelf
+   */
   const onTakeBack = (orderId: string) => {
     setState((prev) => {
       const copy = deepCopy(prev);
@@ -83,27 +123,46 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
     });
   };
 
+  /**
+   * Attempt to deliver the orders
+   * The order placements must match where the products are in the warehouse
+   */
   const onSubmit = () => {
-    const attemptResult = state.fulfillments.reduce((acc: boolean[], fulfillment) => {
-      // If it's out of stock
-      if (fulfillment.shelfIndex === -1) {
-        const evaluation = !state.warehouse.some((good) => good === fulfillment.order);
-        acc.push(evaluation);
-        return acc;
-      }
+    const newGuessString = getGuessString(state.fulfillments);
 
-      // Any other order, should be placed correctly
-      const evaluation = fulfillment.order === state.warehouse[fulfillment.shelfIndex];
-      acc.push(evaluation);
-      return acc;
-    }, []);
+    if (state.guesses.includes(newGuessString)) {
+      message.warning({
+        content: translate(
+          'Você já tentou essa combinação. Tente outra!',
+          'You already tried this combination. Try another one!'
+        ),
+        duration: 5,
+      });
+
+      return updateState({
+        latestAttempt: Date.now(),
+      });
+    }
+
+    updateLocalStorage({ guesses: [...state.guesses, newGuessString] });
+
+    const attemptResult = validateAttempts(state.warehouse, state.fulfillments);
 
     const isAllCorrect = attemptResult.every(Boolean);
+
+    message.warning({
+      content: translate(
+        'Um ou mais produtos estão fora de lugar. Tente novamente!',
+        'One or more products are out of place. Try again!'
+      ),
+      duration: 3,
+    });
 
     setState((prev) => {
       const copy = deepCopy(prev);
       copy.latestAttempt = Date.now();
-      copy.guesses.push(attemptResult);
+      copy.evaluations.push(attemptResult);
+      copy.guesses.push(newGuessString);
 
       if (isAllCorrect) {
         copy.win = true;
@@ -124,13 +183,25 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
 
   const reset = () => {
-    queryClient.refetchQueries({ queryKey: ['controle-de-estoque-demo'] });
+    updateLocalStorage({
+      warehouse: Array(data.goods.length).fill(null),
+      guesses: [],
+      extraAttempts: state.extraAttempts + 1,
+    });
+    const resetState = getInitialState(data);
+    setState({
+      ...resetState,
+      extraAttempts: state.extraAttempts + 1,
+      hearts: SETTINGS.HEARTS - state.extraAttempts - 1,
+    });
   };
 
   // DEV
   // useEffect(() => {
   //   updateState({ warehouse: [...data.goods], phase: PHASES.FULFILLING });
   // }, [data.goods]);
+
+  console.log({ warehouse: state.warehouse });
 
   return {
     hearts: state.hearts,
@@ -139,6 +210,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
     fulfillments: state.fulfillments,
     lastPlacedGoodId: state.lastPlacedGoodId,
     guesses: state.guesses,
+    evaluations: state.evaluations,
     latestAttempt: state.latestAttempt,
     orders: data.orders,
     currentGood,
@@ -156,3 +228,56 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
     reset,
   };
 }
+
+const validateAttempts = (warehouse: GameState['warehouse'], fulfillments: GameState['fulfillments']) => {
+  return fulfillments.reduce((acc: boolean[], fulfillment) => {
+    // If it's out of stock
+    if (fulfillment.shelfIndex === -1) {
+      const evaluation = !warehouse.some((good) => good === fulfillment.order);
+      acc.push(evaluation);
+      return acc;
+    }
+
+    // Any other order, should be placed correctly
+    const evaluation = fulfillment.order === warehouse[fulfillment.shelfIndex];
+    acc.push(evaluation);
+    return acc;
+  }, []);
+};
+
+const getGuessString = (fulfillments: GameState['fulfillments']) => {
+  return fulfillments.map((f) => `${f.order}${SEPARATOR}${f.shelfIndex}`).join(',');
+};
+
+const parseGuessString = (guessString: string) => {
+  return guessString.split(',').map((g) => {
+    const [order, shelfIndex] = g.split(SEPARATOR);
+    return { order, shelfIndex: Number(shelfIndex) };
+  });
+};
+
+const parseLocalStorage = (value: ControleDeEstoqueLocalToday, goodsQuantity: number) => {
+  console.log({ goodsQuantity });
+  // Update phase
+  const warehouse = value.warehouse.length > 0 ? value.warehouse : Array(goodsQuantity).fill(null);
+  const phase = warehouse.every(Boolean) ? PHASES.FULFILLING : PHASES.STOCKING;
+  const guesses = value.guesses ?? [];
+  const extraAttempts = value.extraAttempts ?? 0;
+  // Activate the last order attempt
+  const fulfillments = guesses.length > 0 ? parseGuessString(guesses[guesses.length - 1]) : [];
+  // Determine win
+  const attempts = validateAttempts(warehouse, fulfillments);
+
+  const win = attempts.length > 0 && attempts.every(Boolean);
+
+  return {
+    phase,
+    warehouse,
+    guesses,
+    evaluations: guesses.map((g) => validateAttempts(warehouse, parseGuessString(g))),
+    hearts: SETTINGS.HEARTS - guesses.length - extraAttempts,
+    extraAttempts,
+    fulfillments,
+    win,
+  };
+};

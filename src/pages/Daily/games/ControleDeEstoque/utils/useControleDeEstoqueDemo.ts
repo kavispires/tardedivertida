@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { print } from 'utils/helpers';
+import { isDevEnv, print } from 'utils/helpers';
 
 import { useLanguage } from 'hooks/useLanguage';
 import { getSourceName, wait } from 'pages/Daily/utils';
@@ -31,10 +31,33 @@ export function useControleDeEstoqueDemo(today: string) {
         number: 0,
         type: 'controle-de-estoque',
         language: 'pt',
-        title: 'Segunda-feira',
+        title: 'Demo',
         goods: [],
         orders: [],
       };
+
+      if (isDevEnv) {
+        const goods = Array(GOODS_SIZE + OUT_OF_STOCK_SIZE)
+          .fill('')
+          .map((_, i) => `good-${i + 1}`);
+
+        const outOfStockGood = goods.pop();
+
+        entry.goods = goods;
+        entry.orders = Array(ORDER_SIZE)
+          .fill('')
+          .map((_, i) => `good-${i + 1}`);
+        // Add non-available requests
+        entry.orders.push(outOfStockGood!);
+        entry.orders = shuffle(entry.orders);
+
+        const responseData = {
+          'controle-de-estoque': entry,
+        };
+
+        print({ demo: responseData }, 'table');
+        return responseData;
+      }
 
       const goods = sampleSize(
         Array(TOTAL_GOODS)
