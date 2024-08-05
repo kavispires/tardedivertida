@@ -14,10 +14,16 @@ type ResultsModalContentProps = {
   title: string;
   isWin: boolean;
   hearts: number;
-  guesses: boolean[][];
+  evaluations: boolean[][];
 };
 
-export function ResultsModalContent({ challenge, title, isWin, hearts, guesses }: ResultsModalContentProps) {
+export function ResultsModalContent({
+  challenge,
+  title,
+  isWin,
+  hearts,
+  evaluations,
+}: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
   const result = writeResult({
@@ -25,7 +31,7 @@ export function ResultsModalContent({ challenge, title, isWin, hearts, guesses }
     challenge,
     remainingHearts: hearts,
     language,
-    guesses,
+    evaluations,
   });
 
   return (
@@ -67,15 +73,15 @@ function writeResult({
   challenge,
   remainingHearts,
   language,
-  guesses,
+  evaluations,
 }: {
   game: string;
   challenge: number;
   remainingHearts: number;
   language: Language;
-  guesses: boolean[][];
+  evaluations: boolean[][];
 }) {
-  const cleanUpAttempts = guesses.map((row) =>
+  const cleanUpAttempts = evaluations.map((row) =>
     row.map((value) => {
       return value ? '📫' : '🤬';
     })

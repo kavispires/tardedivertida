@@ -13,6 +13,7 @@ export type DailyControleDeEstoqueEntry = {
 export type ControleDeEstoqueLocalToday = {
   id: string;
   warehouse: string[];
-  guesses: { order: string; shelfIndex: number }[][];
+  guesses: string[]; // <goodId>::<shelfIndex>[]
   number: number;
+  extraAttempts: number;
 };

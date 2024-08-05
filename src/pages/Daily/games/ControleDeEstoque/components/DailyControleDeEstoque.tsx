@@ -1,7 +1,7 @@
-import { Button, Layout, Modal, Popconfirm, Typography } from 'antd';
+import { Button, Divider, Layout, Modal, Popconfirm, Tooltip, Typography } from 'antd';
 import { DualTranslate, Translate } from 'components/language';
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
-import { Region } from 'pages/Daily/components/Region';
+import { Region, TextRegion } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
 import { useMeasure } from 'react-use';
 import { Me } from 'types/user';
@@ -39,7 +39,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
     setShowResultModal,
     isWin,
     isComplete,
-    guesses,
+    evaluations,
     reset,
     latestAttempt,
     phase,
@@ -97,6 +97,14 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
           )}
         </div>
 
+        <TextRegion direction="horizontal" split={<Divider type="vertical" />}>
+          {evaluations.map((attempt, index) => (
+            <Tooltip key={`${attempt}-${index}`} title={<Translate pt="Acertos" en="Correct" />}>
+              <span>{attempt.filter(Boolean).length} 📫</span>
+            </Tooltip>
+          ))}
+        </TextRegion>
+
         <Modal
           title={<Translate pt="Resultado" en="Results" />}
           open={showResultModal}
@@ -108,7 +116,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
             challenge={data?.number}
             isWin={isWin}
             hearts={hearts}
-            guesses={guesses}
+            evaluations={evaluations}
             title={data.title}
           />
         </Modal>
@@ -117,6 +125,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
       <Region>
         <Popconfirm
           title={<Translate pt="Deseja mesmo recomeçar o jogo?" en="Do you really want to reset the game?" />}
+          description={<Translate pt="Você perderá um coração." en="You will lose a heart." />}
           onConfirm={reset}
         >
           <Button type="primary" danger>
