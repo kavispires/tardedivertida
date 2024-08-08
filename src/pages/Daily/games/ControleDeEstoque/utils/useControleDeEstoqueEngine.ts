@@ -62,7 +62,6 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
     challengeNumber: data.number ?? 0,
     defaultValue: defaultArteRuimLocalToday,
     onApplyLocalState: (value) => {
-      console.log(value);
       if (value.warehouse.length || value.extraAttempts) {
         updateState(parseLocalStorage(value, data.goods.length));
       }
@@ -144,7 +143,10 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
       });
     }
 
-    updateLocalStorage({ guesses: [...state.guesses, newGuessString] });
+    updateLocalStorage({
+      guesses: [...state.guesses, newGuessString],
+      warehouse: state.warehouse as string[],
+    });
 
     const attemptResult = validateAttempts(state.warehouse, state.fulfillments);
 
@@ -201,8 +203,6 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
   //   updateState({ warehouse: [...data.goods], phase: PHASES.FULFILLING });
   // }, [data.goods]);
 
-  console.log({ warehouse: state.warehouse });
-
   return {
     hearts: state.hearts,
     phase: state.phase,
@@ -257,11 +257,10 @@ const parseGuessString = (guessString: string) => {
 };
 
 const parseLocalStorage = (value: ControleDeEstoqueLocalToday, goodsQuantity: number) => {
-  console.log({ goodsQuantity });
   // Update phase
   const warehouse = value.warehouse.length > 0 ? value.warehouse : Array(goodsQuantity).fill(null);
   const phase = warehouse.every(Boolean) ? PHASES.FULFILLING : PHASES.STOCKING;
-  const guesses = value.guesses ?? [];
+  const guesses = value.warehouse.length > 0 ? value.guesses ?? [] : [];
   const extraAttempts = value.extraAttempts ?? 0;
   // Activate the last order attempt
   const fulfillments = guesses.length > 0 ? parseGuessString(guesses[guesses.length - 1]) : [];
