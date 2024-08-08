@@ -15,6 +15,7 @@ import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
 import { DailyArtistaGame } from './games/Artista/DailyArtistaGame';
 import { DailyFilmacoGame } from './games/Filmaco/DailyFilmacoGame';
 import { DailyControleDeEstoqueGame } from './games/ControleDeEstoque/DailyControleDeEstoqueGame';
+import { DebugPage } from './games/Debug';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -47,6 +48,7 @@ function DailyPage() {
       hub: Hub,
       palavreado: DailyPalavreadoGame,
       picaco: DailyArtistaGame,
+      debug: DebugPage,
     }?.[subPath] ?? Hub;
 
   return <Outlet />;
