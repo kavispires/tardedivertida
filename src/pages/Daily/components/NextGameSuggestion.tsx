@@ -40,12 +40,12 @@ export function NextGameSuggestion() {
       return (
         <Typography.Paragraph className="center" strong>
           <Translate
-            pt="Já encontrou o que está faltando? Ele está..."
-            en="Already found what's missing? It's..."
+            pt="Já encontrou a coisa em comum? Ela está..."
+            en="Have you found the matching thing?"
           />
           <br />
 
-          <Link to="/diario/aqui-i">
+          <Link to="/diario/aqui-o">
             <IconAvatar icon={<DailyFindingGameIcon />} /> <DualTranslate>{AQUI_O.NAME}</DualTranslate>!
           </Link>
         </Typography.Paragraph>
@@ -95,7 +95,7 @@ export function NextGameSuggestion() {
       return (
         <Typography.Paragraph className="center" strong>
           <Translate
-            pt="E se o casa palavras estivesse todo embaralhado?"
+            pt="E se o caça palavras estivesse todo embaralhado?"
             en="What if the word search was all scrambled?"
           />
           <br />
@@ -114,7 +114,7 @@ export function NextGameSuggestion() {
             en="Already drawn today? New phrases every day!"
           />
           <br />
-          <Link to="/diario/artista">
+          <Link to="/diario/picaco">
             <IconAvatar icon={<DailyDrawingGameIcon />} /> <DualTranslate>{ARTISTA.NAME}</DualTranslate>!
           </Link>
         </Typography.Paragraph>
