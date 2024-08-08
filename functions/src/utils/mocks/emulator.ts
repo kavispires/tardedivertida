@@ -159,6 +159,32 @@ export const feedEmulatorDaily = async () => {
       itemsIds: ['763', '1971', '1988'],
       year: 1977,
     },
+    'controle-de-estoque': {
+      number: 0,
+      goods: [
+        'good-41',
+        'good-66',
+        'good-15',
+        'good-138',
+        'good-106',
+        'good-48',
+        'good-114',
+        'good-55',
+        'good-118',
+        'good-68',
+        'good-20',
+        'good-147',
+        'good-105',
+        'good-77',
+        'good-60',
+        'good-22',
+      ],
+      language: 'pt',
+      orders: ['good-114', 'good-48', 'good-77', 'good-31', 'good-138'],
+      id: '2024-08-07',
+      type: 'controle-de-estoque',
+      title: 'Demo',
+    },
   };
 
   await utils.firebase.getDailyRef('daily').doc('2023-10-31').set(dailyMock);
