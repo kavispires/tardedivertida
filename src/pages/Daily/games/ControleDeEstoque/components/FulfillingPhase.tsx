@@ -70,7 +70,7 @@ export function FulfillingPhase({
                   <br />
                   Selecione os pedidos um a um e coloque-nos na prateleira correta.
                   <br />
-                  <strong>Pedido Posicionados ({fulfillments.length}/4).</strong>
+                  <strong>Pedidos Posicionados ({fulfillments.length}/4).</strong>
                 </>
               }
               en={
