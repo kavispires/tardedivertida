@@ -20,6 +20,6 @@ export type PalavreadoLocalToday = {
 export type PalavreadoLetter = {
   letter: string;
   // index: number;
-  state: 'idle' | 'correct' | '0' | '1' | '2' | '3';
+  state: 'idle' | 'correct' | '0' | '1' | '2' | '3' | '4';
   locked: boolean;
 };
