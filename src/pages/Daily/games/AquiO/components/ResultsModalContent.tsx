@@ -53,6 +53,7 @@ type ResultsModalContentProps = {
   hardMode: boolean;
   lastMatch: string;
   localToday?: AquiOLocalToday;
+  attempts: number;
 };
 
 export function ResultsModalContent({
@@ -65,6 +66,7 @@ export function ResultsModalContent({
   hardMode,
   lastMatch,
   localToday,
+  attempts,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
   const result = writeResult({
@@ -77,6 +79,7 @@ export function ResultsModalContent({
     language,
     hardMode,
     challengeNumber,
+    attempts,
   });
 
   const title = getTitle(progress, hearts);
@@ -120,21 +123,22 @@ export function ResultsModalContent({
             className={clsx(getAnimationClass('pulse', { speed: 'fast' }), 'item-match-outline')}
           />
         )}
-        {itemsIds
-          .filter((id) => id !== lastMatch)
-          .slice(0, Math.floor((progress - 1) / 3))
-          .map((id, index) => (
-            <ItemCard
-              key={id}
-              id={id}
-              width={45}
-              className={getAnimationClass('pulse', { speed: 'fast', delay: index * 0.5 })}
-            />
-          ))}
+        {progress > 0 &&
+          itemsIds
+            .filter((id) => id !== lastMatch)
+            .slice(0, Math.floor((progress - 1) / 3))
+            .map((id, index) => (
+              <ItemCard
+                key={id}
+                id={id}
+                width={45}
+                className={getAnimationClass('pulse', { speed: 'fast', delay: index * 0.5 })}
+              />
+            ))}
       </Flex>
 
       {!isRandomGame ? (
-        <CopyToClipboardResult result={result} rows={4} />
+        <CopyToClipboardResult result={result} rows={3} />
       ) : (
         <Typography.Paragraph className="center">
           <Translate
@@ -159,6 +163,7 @@ function writeResult({
   goal,
   language,
   hardMode,
+  attempts,
 }: {
   game: string;
   title: string;
@@ -169,10 +174,12 @@ function writeResult({
   goal: number;
   language: Language;
   hardMode: boolean;
+  attempts: number;
 }): string {
   return [
     `🔘 ${getDailyName(language)} ${game} #${challengeNumber}`,
-    `${title}${hardMode ? '*' : ''}: ${progress}/${goal} ${writeHeartResultString(remainingHearts, totalHearts)}`,
+    `${title}${hardMode ? '*' : ''}: ${progress}/${goal}  ${writeHeartResultString(remainingHearts, totalHearts)}`,
+    `Tentativas: ${attempts}`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');
 }
