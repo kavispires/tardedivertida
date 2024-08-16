@@ -69,7 +69,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
               {!isRandomGame && (
                 <>
                   {' '}
-                  | <Translate pt="Tentativa" en="Attempt" /> {attempts + (isPlaying ? 1 : 0)}{' '}
+                  | <Translate pt="Tentativa" en="Attempt" /> {attempts}
                 </>
               )}
             </Typography.Text>
@@ -162,6 +162,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
               challengeTitle={data.title[language]}
               challengeNumber={data.number}
               hearts={hearts}
+              attempts={attempts}
               progress={discIndex}
               itemsIds={data.itemsIds}
               isRandomGame={isRandomGame}

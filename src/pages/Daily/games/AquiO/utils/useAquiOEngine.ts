@@ -9,6 +9,7 @@ import { inNSeconds } from 'utils/helpers';
 import { getDiscs } from './helpers';
 import { SETTINGS } from './settings';
 import { AquiODisc, AquiOLocalToday, DailyAquiOEntry } from './types';
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 
 type GameState = {
   hearts: number;
@@ -32,7 +33,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
 
   const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
 
-  const [state, setState] = useState<GameState>({
+  const { state, setState, updateState } = useDailyGameState<GameState>({
     hearts: SETTINGS.HEARTS,
     goal: SETTINGS.GOAL,
     discs: [],
@@ -47,12 +48,11 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
     defaultValue: defaultAquiOLocalToday,
     disabled: isRandomGame,
     onApplyLocalState: (value) => {
-      setState((prev) => ({
-        ...prev,
+      updateState({
         discIndex: value.discs,
-        attempts: value.attempts,
+        attempts: value.attempts ?? 0,
         hearts: value.hearts,
-      }));
+      });
     },
   });
 
@@ -74,7 +74,6 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
       if (!isRandomGame) {
         updateLocalStorage({
           hardMode: mode === 'challenge',
-          attempts: state.attempts,
           hearts: state.hearts,
           discs: state.discIndex > (localToday?.discs ?? 0) ? state.discIndex : localToday?.discs ?? 0,
         });
@@ -84,12 +83,16 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
 
   // ACTIONS
   const onStart = () => {
+    updateLocalStorage({
+      attempts: state.attempts + 1,
+    });
     setState((prev) => ({
       ...prev,
       discs: getDiscs(data, mode === 'challenge'),
       discIndex: 0,
       attempts: prev.attempts + 1,
     }));
+
     restart(inNSeconds(60), true);
   };
 
