@@ -12,6 +12,7 @@ type GameState = {
   selection: number | null; // indexes of letters
   swap: number[]; // indexes of letters
   letters: PalavreadoLetter[];
+  boardState: string[][];
   guesses: string[][]; // words guesses per heart
   state: string;
   swaps: number;
@@ -19,7 +20,7 @@ type GameState = {
 
 const defaultArteRuimLocalToday: PalavreadoLocalToday = {
   id: '',
-  guesses: [],
+  boardState: [],
   number: 0,
   swaps: 0,
 };
@@ -29,6 +30,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
     selection: null,
     swap: [],
     letters: parseLetters(data.letters),
+    boardState: [],
     guesses: [],
     hearts: SETTINGS.HEARTS,
     state: '',
@@ -41,16 +43,21 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
     challengeNumber: data.number ?? 0,
     defaultValue: defaultArteRuimLocalToday,
     onApplyLocalState: (value) => {
-      const hearts = SETTINGS.HEARTS - value.guesses.length;
+      const hearts = SETTINGS.HEARTS - value.boardState.length;
 
-      // Apply state if there are any guesses
-      const latestGuess = value.guesses[value.guesses.length - 1];
+      // Read state of the board and apply guesses
+      const lsGuesses = (value.boardState ?? []).map((board) => {
+        const guess = chunk(board, 4);
+        return guess.map((g) => g.join(''));
+      });
+
+      // Apply latest board state
+      const latestBoardState = value.boardState[value.boardState.length - 1];
       const copyLetters = cloneDeep(state.letters);
       const answer = data.words.join('');
-      if (latestGuess) {
-        const guessedLetters = latestGuess.map((w) => w.split('')).flat();
+      if (latestBoardState) {
         copyLetters.forEach((letter, index) => {
-          letter.letter = guessedLetters[index];
+          letter.letter = latestBoardState[index];
 
           if (letter.state === 'idle' && letter.letter === answer[index]) {
             letter.state = String(Math.floor(index / 4)) as PalavreadoLetter['state'];
@@ -63,8 +70,9 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
 
       updateState({
         hearts,
-        guesses: value.guesses,
+        guesses: lsGuesses,
         letters: copyLetters,
+        boardState: value.boardState ?? [],
         swaps: value.swaps ?? 0,
       });
     },
@@ -138,14 +146,17 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
       const isAllCorrect = copyLetters.every((letter) => letter.locked);
 
       const guesses = generatedWords;
+      const newBoardState = copyLetters.map((l) => l.letter);
+
       updateLocalStorage({
-        guesses: [...state.guesses, guesses],
+        boardState: [...state.boardState, newBoardState],
         swaps: prev.swaps,
       });
 
       return {
         ...prev,
         guesses: [...prev.guesses, guesses],
+        boardState: [...prev.boardState, newBoardState],
         letters: copyLetters,
         selection: null,
         swap: [],
