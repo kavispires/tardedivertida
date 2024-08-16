@@ -9,14 +9,21 @@ type BoardProps = {
   swap: number[];
   onLetterSelection: (index: number) => void;
   guesses: string[][];
+  size: number;
 };
 
-export function Board({ letters, onLetterSelection, selection, swap, guesses }: BoardProps) {
+export function Board({ letters, onLetterSelection, selection, swap, guesses, size }: BoardProps) {
   return (
-    <div className="palavreado-board">
+    <div
+      className="palavreado-board"
+      style={{
+        gridTemplateColumns: `repeat(${size}, 1fr)`,
+        gridTemplateRows: `repeat(${size}, 1fr)`,
+      }}
+    >
       {letters.map(({ letter, locked, state }, index) => {
-        const row = Math.floor(index / 4);
-        const col = index % 4;
+        const row = Math.floor(index / size);
+        const col = index % size;
         const previousWrongPlacement = guesses.some((attempts) => attempts[row][col] === letter) && !locked;
 
         return (

@@ -29,12 +29,13 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     showResultModal,
     setShowResultModal,
     isWin,
-    isLose,
     isComplete,
     selectLetter,
     submitGrid,
     swap,
     swaps,
+    size,
+    keyword,
   } = usePalavreadoEngine(data);
 
   return (
@@ -43,11 +44,11 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>
-        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
+        <Menu hearts={hearts} total={Math.max(SETTINGS.HEARTS, size)} openRules={true} rules={<Rules />} />
 
         <Region>
           <Typography.Text strong className="palavreado-word">
-            {data.keyword} {swaps > 0 && ` ↔️ ${swaps}`}
+            {keyword} {swaps > 0 && ` ↔️ ${swaps}`}
           </Typography.Text>
           <Board
             letters={letters}
@@ -55,6 +56,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             selection={selection}
             swap={swap}
             guesses={guesses}
+            size={size}
           />
         </Region>
 
@@ -121,11 +123,11 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           <ResultsModalContent
             challenge={data?.number}
             isWin={isWin}
-            isLose={isLose}
             hearts={hearts}
             words={data.words}
             letters={letters}
             swaps={swaps}
+            size={size}
           />
         </Modal>
       </Layout.Content>

@@ -16,20 +16,20 @@ type ResultsModalContentProps = {
   challenge: number;
   words: string[];
   isWin: boolean;
-  isLose: boolean;
   hearts: number;
   letters: PalavreadoLetter[];
   swaps: number;
+  size: number;
 };
 
 export function ResultsModalContent({
   challenge,
   words,
   isWin,
-  isLose,
   hearts,
   letters,
   swaps,
+  size,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
@@ -40,6 +40,7 @@ export function ResultsModalContent({
     letters,
     language,
     swaps,
+    size,
   });
 
   return (
@@ -69,7 +70,7 @@ export function ResultsModalContent({
         ))}
       </Space>
 
-      <CopyToClipboardResult result={result} rows={6} />
+      <CopyToClipboardResult result={result} rows={size + 2} />
 
       <NextGameSuggestion />
     </Space>
@@ -83,6 +84,7 @@ function writeResult({
   letters,
   language,
   swaps,
+  size,
 }: {
   game: string;
   challenge: number;
@@ -90,8 +92,9 @@ function writeResult({
   letters: PalavreadoLetter[];
   language: Language;
   swaps: number;
+  size: number;
 }) {
-  const cleanUpAttempts = chunk(letters, 4).map((row) =>
+  const cleanUpAttempts = chunk(letters, size).map((row) =>
     row.map((letter) => {
       switch (letter.state) {
         case '0':
@@ -102,6 +105,8 @@ function writeResult({
           return '🟪';
         case '3':
           return '🟫';
+        case '4':
+          return '🟧';
         default:
           return '⬜️';
       }
@@ -110,7 +115,7 @@ function writeResult({
 
   return [
     `📒 ${getDailyName(language)} ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')} (${swaps} trocas)`,
+    `${writeHeartResultString(remainingHearts, Math.max(SETTINGS.HEARTS, size), ' ')} (${swaps} trocas)`,
     cleanUpAttempts
       .map((row) => row.join(' ').trim())
       .filter(Boolean)

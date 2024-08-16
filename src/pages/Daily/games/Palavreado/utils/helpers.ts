@@ -1,15 +1,23 @@
 import { PalavreadoLetter } from './types';
 
-export const KEYWORD_INDEXES = [0, 5, 10, 15];
+const KEYWORD_INDEXES: Record<number, number[]> = {
+  4: [0, 5, 10, 15],
+  5: [0, 6, 12, 18, 24],
+};
 
-export const parseLetters = (letters: string[]): PalavreadoLetter[] => {
+const KEYWORD_STATES: Record<number, string[]> = {
+  4: ['0', '1', '2', '3'],
+  5: ['0', '1', '2', '3', '4'],
+};
+
+export const parseLetters = (letters: string[], size: number): PalavreadoLetter[] => {
+  const indexes = KEYWORD_INDEXES[size];
+  const states = KEYWORD_STATES[size];
   return letters.map((letter, index) => ({
     letter,
     index,
-    state: (KEYWORD_INDEXES.includes(index)
-      ? ['0', '1', '2', '3'][KEYWORD_INDEXES.indexOf(index)]
-      : 'idle') as PalavreadoLetter['state'],
-    locked: KEYWORD_INDEXES.includes(index),
+    state: (indexes.includes(index) ? states[indexes.indexOf(index)] : 'idle') as PalavreadoLetter['state'],
+    locked: indexes.includes(index),
   }));
 };
 

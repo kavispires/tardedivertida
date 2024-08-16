@@ -26,13 +26,14 @@ const defaultArteRuimLocalToday: PalavreadoLocalToday = {
 };
 
 export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
+  const size = data.keyword.length;
   const { state, setState, updateState } = useDailyGameState<GameState>({
     selection: null,
     swap: [],
-    letters: parseLetters(data.letters),
+    letters: parseLetters(data.letters, size),
     boardState: [],
     guesses: [],
-    hearts: SETTINGS.HEARTS,
+    hearts: Math.max(SETTINGS.HEARTS, size),
     state: '',
     swaps: 0,
   });
@@ -43,11 +44,11 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
     challengeNumber: data.number ?? 0,
     defaultValue: defaultArteRuimLocalToday,
     onApplyLocalState: (value) => {
-      const hearts = SETTINGS.HEARTS - value.boardState.length;
+      const hearts = Math.max(SETTINGS.HEARTS, size) - value.boardState.length;
 
       // Read state of the board and apply guesses
       const lsGuesses = (value.boardState ?? []).map((board) => {
-        const guess = chunk(board, 4);
+        const guess = chunk(board, size);
         return guess.map((g) => g.join(''));
       });
 
@@ -60,7 +61,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
           letter.letter = latestBoardState[index];
 
           if (letter.state === 'idle' && letter.letter === answer[index]) {
-            letter.state = String(Math.floor(index / 4)) as PalavreadoLetter['state'];
+            letter.state = String(Math.floor(index / size)) as PalavreadoLetter['state'];
             letter.locked = true;
           }
 
@@ -124,21 +125,21 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
       const copyLetters = cloneDeep(state.letters);
       copyLetters.map((letter, index) => {
         if (letter.state === 'idle' && letter.letter === answer[index]) {
-          letter.state = String(Math.floor(index / 4)) as PalavreadoLetter['state'];
+          letter.state = String(Math.floor(index / size)) as PalavreadoLetter['state'];
           letter.locked = true;
         }
         return letter;
       });
 
       // Generate the guessed words from the letter
-      const generatedWords = chunk(copyLetters, 4).map((lg) => lg.map((l) => l.letter).join(''));
+      const generatedWords = chunk(copyLetters, size).map((lg) => lg.map((l) => l.letter).join(''));
 
       // Evaluate if any of the words match the words in the data
       generatedWords.forEach((word, wordIndex) => {
         if (data.words[wordIndex] === word) {
           word.split('').forEach((_, i) => {
-            copyLetters[wordIndex * 4 + i].state = String(wordIndex) as PalavreadoLetter['state'];
-            copyLetters[wordIndex * 4 + i].locked = true;
+            copyLetters[wordIndex * size + i].state = String(wordIndex) as PalavreadoLetter['state'];
+            copyLetters[wordIndex * size + i].locked = true;
           });
         }
       });
@@ -187,5 +188,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
     isComplete,
     selectLetter,
     submitGrid,
+    keyword: data.keyword,
+    size,
   };
 }
