@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import { wait } from '../utils';
+import { isDevEnv } from 'utils/helpers';
 
 type UseDailyLocalTodayProps<TLocal> = {
   key: string;
@@ -52,6 +53,12 @@ export function useDailyLocalToday<TLocal = { id: string }>({
       })();
     }
   }, [stateToApply]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (hasAppliedLocalToday && isDevEnv) {
+      console.table(localToday);
+    }
+  }, [hasAppliedLocalToday]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     localToday,
