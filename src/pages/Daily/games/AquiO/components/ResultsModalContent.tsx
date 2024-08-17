@@ -14,7 +14,6 @@ import { getAnimationClass } from 'utils/helpers';
 
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 import { SETTINGS } from '../utils/settings';
-import { AquiOLocalToday } from '../utils/types';
 
 const titles = [
   <>
@@ -52,7 +51,7 @@ type ResultsModalContentProps = {
   isRandomGame: boolean;
   hardMode: boolean;
   lastMatch: string;
-  localToday?: AquiOLocalToday;
+  maxProgress: number;
   attempts: number;
 };
 
@@ -65,7 +64,7 @@ export function ResultsModalContent({
   isRandomGame,
   hardMode,
   lastMatch,
-  localToday,
+  maxProgress,
   attempts,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
@@ -74,7 +73,7 @@ export function ResultsModalContent({
     title: challengeTitle,
     remainingHearts: hearts,
     totalHearts: SETTINGS.HEARTS,
-    progress,
+    progress: Math.max(progress, maxProgress),
     goal: SETTINGS.GOAL,
     language,
     hardMode,
@@ -83,7 +82,7 @@ export function ResultsModalContent({
   });
 
   const title = getTitle(progress, hearts);
-  const better = (localToday?.discs ?? 0) > progress;
+  const worse = maxProgress > progress;
 
   return (
     <Space direction="vertical" className="space-container">
@@ -103,12 +102,12 @@ export function ResultsModalContent({
             pt="Você pode tentar novamente até conseguir 15 ou até não ter mais corações."
             en="You can try again until you reach 15 or until you run out of hearts."
           />
-          {better && (
+          {worse && (
             <>
               <br />
               <Translate
-                pt={`Seu melhor hoje foi de ${progress} discos. Tente novamente!`}
-                en={`Your best today was ${progress} discs. Try again!`}
+                pt={`Seu melhor hoje foi de ${maxProgress} discos. Tente novamente!`}
+                en={`Your best today was ${maxProgress} discs. Try again!`}
               />
             </>
           )}

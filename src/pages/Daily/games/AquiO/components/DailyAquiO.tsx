@@ -43,7 +43,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
     result,
     isPlaying,
     attempts,
-    localToday,
+    maxProgress,
   } = useAquiOEngine(data, isRandomGame);
 
   // UI state
@@ -168,7 +168,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
               isRandomGame={isRandomGame}
               hardMode={mode === 'challenge'}
               lastMatch={result}
-              localToday={localToday}
+              maxProgress={maxProgress}
             />
           </Modal>
         </Space>
