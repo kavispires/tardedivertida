@@ -3,7 +3,7 @@ import { DateKey } from 'pages/Daily/utils/types';
 export type AquiOLocalToday = {
   id: DateKey;
   number: number;
-  discs: number;
+  maxProgress: number;
   attempts: number;
   hardMode: boolean;
   hearts: number;

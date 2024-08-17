@@ -17,16 +17,19 @@ type GameState = {
   discs: AquiODisc[];
   discIndex: number;
   attempts: number;
+  maxProgress: number;
 };
 
 const defaultAquiOLocalToday: AquiOLocalToday = {
   id: '',
   number: 0,
-  discs: 0,
+  maxProgress: 0,
   hardMode: false,
   attempts: 0,
   hearts: SETTINGS.HEARTS,
 };
+
+const DURATION = 60;
 
 export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
   const [timesUp, setTimesUp] = useState(false);
@@ -39,9 +42,10 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
     discs: [],
     discIndex: 0,
     attempts: 0,
+    maxProgress: 0,
   });
 
-  const { localToday, updateLocalStorage } = useDailyLocalToday<AquiOLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<AquiOLocalToday>({
     key: SETTINGS.LOCAL_TODAY_KEY,
     gameId: data.id,
     challengeNumber: data.number,
@@ -49,7 +53,8 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
     disabled: isRandomGame,
     onApplyLocalState: (value) => {
       updateState({
-        discIndex: value.discs,
+        discIndex: value.maxProgress,
+        maxProgress: value.maxProgress,
         attempts: value.attempts ?? 0,
         hearts: value.hearts,
       });
@@ -67,7 +72,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
 
   // TIMER
   const { timeLeft, isRunning, restart, pause } = useCountdown({
-    duration: 60,
+    duration: DURATION,
     autoStart: false,
     onExpire: () => {
       setTimesUp(true);
@@ -75,7 +80,10 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
         updateLocalStorage({
           hardMode: mode === 'challenge',
           hearts: state.hearts,
-          discs: state.discIndex > (localToday?.discs ?? 0) ? state.discIndex : localToday?.discs ?? 0,
+          maxProgress: Math.max(state.discIndex, state.maxProgress),
+        });
+        updateState({
+          maxProgress: Math.max(state.discIndex, state.maxProgress),
         });
       }
     },
@@ -93,7 +101,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
       attempts: prev.attempts + 1,
     }));
 
-    restart(inNSeconds(60), true);
+    restart(inNSeconds(DURATION), true);
   };
 
   const onSelect = (itemId: string) => {
@@ -113,6 +121,11 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
     if (isWin || isLose) {
       pause();
       setTimesUp(true);
+      if (isWin) {
+        updateLocalStorage({
+          maxProgress: SETTINGS.GOAL,
+        });
+      }
     }
   }, [isWin, isLose]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -123,6 +136,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
     hearts: state.hearts,
     discIndex: state.discIndex,
     attempts: state.attempts,
+    maxProgress: state.maxProgress,
     showResultModal,
     setShowResultModal,
     isWin,
@@ -137,6 +151,5 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
     discB,
     result,
     isPlaying: isRunning,
-    localToday,
   };
 }
