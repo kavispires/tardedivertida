@@ -1,4 +1,4 @@
-export function BoxIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function CardboardBoxIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#e2ae83" d="M256 69.5L71 169.4 9.6 107.5l184.5-100z"></path>
