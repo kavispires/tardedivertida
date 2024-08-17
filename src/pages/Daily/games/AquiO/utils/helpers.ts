@@ -1,4 +1,4 @@
-import { chain, random, sample, sampleSize, shuffle } from 'lodash';
+import { chain, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
 import { SEPARATOR } from 'utils/constants';
 
 import { AquiODisc, DailyAquiOEntry } from './types';
@@ -49,7 +49,7 @@ function createCards(list: string[], previousCard?: AquiODisc, previousMatchId?:
     }));
 
     return {
-      id: items.map((item) => item.itemId).join(SEPARATOR),
+      id: orderBy(items.map((item) => Number(item.itemId))).join(SEPARATOR),
       items,
     };
   }
@@ -69,7 +69,7 @@ function createCards(list: string[], previousCard?: AquiODisc, previousMatchId?:
   }));
 
   return {
-    id: items.map((item) => item.itemId).join(SEPARATOR),
+    id: orderBy(items.map((item) => Number(item.itemId))).join(SEPARATOR),
     items,
     match: matchingItem,
   };
