@@ -117,7 +117,7 @@ export const feedEmulatorDaily = async () => {
         '10',
         '11',
         '12',
-        '13,',
+        '13',
         '14',
         '15',
         '16',
