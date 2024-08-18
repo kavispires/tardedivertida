@@ -39,8 +39,9 @@ export function FulfillingPhase({
   isComplete,
   setShowResultModal,
 }: FulfillingPhaseProps) {
-  const isFulfilling = phase === PHASES.FULFILLING;
+  const isFulfilling = phase === PHASES.FULFILLING && !isComplete;
   const isDelivering = phase === PHASES.DELIVERING;
+  console.log({ phase });
 
   const board = (
     <Region>
@@ -203,21 +204,15 @@ export function FulfillingPhase({
 
       <TextRegion>
         <Instruction contained noMargin>
-          <Translate
-            pt="Parabéns, você completou todos os pedidos!"
-            en="Congratulations, you have completed all orders!"
-          />
+          <Translate pt="Você completou todos os pedidos!" en="You have completed all orders!" />
         </Instruction>
       </TextRegion>
 
-      <div className="fulfillment-center">
-        <div className="fulfillment-center__options"></div>
-        <div className="fulfillment-center__order">
-          <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-            <Translate pt="Ver Resultado" en="Show Results" />
-          </Button>
-        </div>
-      </div>
+      <Region>
+        <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
+          <Translate pt="Ver Resultado" en="Show Results" />
+        </Button>
+      </Region>
     </>
   );
 }
