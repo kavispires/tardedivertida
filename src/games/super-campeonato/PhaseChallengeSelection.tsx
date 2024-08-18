@@ -7,7 +7,7 @@ import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { SelectListIcon } from 'icons/SelectListIcon';
+import { ListIcon } from 'icons/ListIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -24,7 +24,7 @@ export function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<SelectListIcon />}
+      icon={<ListIcon />}
       title={<Translate pt="Desafio" en="Challenge" />}
       currentRound={state?.round?.current}
       duration={5}

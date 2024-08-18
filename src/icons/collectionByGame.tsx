@@ -1,7 +1,16 @@
 import * as icons from 'icons/collection';
 
 export const collectionByCategory: Record<string, string[]> = {
-  interface: ['GoogleIcon', 'VideoGameControllerIcon', 'RotationIcon', 'PlayerIcon', 'PlayersIcon'],
+  interface: [
+    'GoogleIcon',
+    'VideoGameControllerIcon',
+    'RotationIcon',
+    'PlayerIcon',
+    'PlayersIcon',
+    'UserStatsIcon',
+    'UsersStatsIcon',
+    'RatingIcon',
+  ],
   general: [
     'TDIcon',
     'RankIcon',
@@ -9,11 +18,16 @@ export const collectionByCategory: Record<string, string[]> = {
     'WaitingRoomIcon',
     'QuestionIcon',
     'QuestionsIcon',
-    'VerifyListIcon',
     'ImageCardsIcon',
     'StarIcon',
     'LawIcon',
     'GarbageIcon',
+    'ListIcon',
+    'VerifyListIcon',
+    'AnonymousIcon',
+    'ThumbsUpIcon',
+    'LoupeIcon',
+    'PrototypeIcon',
   ],
   inputs: ['EvaluateIcon', 'VoteIcon', 'GuessIcon', 'WritingIcon'],
   symbols: ['CheckMarkIcon', 'XIcon', 'NoIcon', 'YesIcon', 'ArrowIcon'],
@@ -48,6 +62,7 @@ export const collectionByCategory: Record<string, string[]> = {
     'DailyWarehouseGameIcon',
     'DailyWordGameIcon',
   ],
+  testPage: ['EarthIcon', 'HeartIcon'],
 };
 
 export const collectionByGame: Record<string, string[]> = {
@@ -69,10 +84,9 @@ export const collectionByGame: Record<string, string[]> = {
     'LocationIcon',
     'CrimeTapeIcon',
     'KnifeIcon',
-    'LoupeIcon',
     'CardboardBoxIcon',
   ],
-  'cruza-palavras': ['GridIcon', ],
+  'cruza-palavras': ['GridIcon'],
   'detetives-imaginativos': ['HangingPhotographIcon', 'DefenseIcon', 'SecretIcon'],
   duetos: ['SocksIcon', 'PuzzleIcon'],
   'nao-sou-robo': [
@@ -92,9 +106,9 @@ export const collectionByGame: Record<string, string[]> = {
     'StarIcon',
     'StarOutlineIcon',
   ],
-  mesmice: ['ThumbsUpIcon'],
+  // mesmice: [],
   'labirinto-secreto': ['CompassIcon', 'MapIcon', 'DirectionsIcon', 'PathIcon', 'FinishLineIcon', 'TreeIcon'],
-  'linhas-cruzadas': ['ListIcon', 'WriteIdeaIcon', 'PhotoAlbumIcon', 'DrawingIcon'],
+  'linhas-cruzadas': ['WriteIdeaIcon', 'PhotoAlbumIcon', 'DrawingIcon'],
   megamix: [
     'AlienIcon',
     'BikiniModelIcon',
@@ -151,21 +165,8 @@ export const collectionByGame: Record<string, string[]> = {
   ],
   'quem-sou-eu': ['PlayerIconsIcon', 'FilterIcon', 'MirrorIcon'],
   'retrato-falado': ['MonsterIcon', 'ChoiceIcon', 'QualitySealIcon', 'SketchIcon'],
-  'super-campeonato': [
-    'BoxingGlovesIcon',
-    'GamblingChipIcon',
-    'SelectListIcon',
-    'AnonymousIcon',
-    'TournamentIcon',
-    'ThumbsUpIcon',
-  ],
-  'teoria-de-conjuntos': [
-    'ApplauseIcon',
-    'BoxEqualIcon',
-    'DiagramIcon',
-    'SkullIcon',
-    'CircleIcon',
-  ],
+  'super-campeonato': ['BoxingGlovesIcon', 'GamblingChipIcon', 'TournamentIcon'],
+  'teoria-de-conjuntos': ['ApplauseIcon', 'DiagramIcon', 'SkullIcon', 'CircleIcon'],
   'teste-de-elenco': [
     'SofaIcon',
     'MovieGenreIcon',
@@ -205,8 +206,8 @@ export const collectionByGame: Record<string, string[]> = {
     'MovieSciFiIcon',
     'FilmReelIcon',
   ],
-  'vendaval-de-palpites': ['BossIcon', 'LoupeIcon', 'DiscussionIcon', 'KnowledgeIcon'],
-  'sonhinho-bom': ['AlarmClockIcon'],
+  'vendaval-de-palpites': ['BossIcon', 'DiscussionIcon', 'KnowledgeIcon'],
+  'sonhinho-bom': ['AlarmClockIcon', 'DreamCatcherIcon'],
   'espiao-entre-nos': [
     'AlertIcon',
     'SpyNewspaperIcon',
@@ -214,7 +215,6 @@ export const collectionByGame: Record<string, string[]> = {
     'PassportIcon',
     'PeopleAssessmentIcon',
     'OpinionsIcon',
-    'LoupeIcon',
     'TimerIcon',
     'MapLocationIcon',
     'ThiefIcon',
@@ -222,12 +222,11 @@ export const collectionByGame: Record<string, string[]> = {
     'HandcuffsIcon',
   ],
   'bomba-relogio': ['BuildingIcon', 'PliersIcon'],
-  'ta-na-cara': ['ChatIcon', 'AnonymousIcon', 'ChoiceIcon', 'SpotlightIcon'],
+  'ta-na-cara': ['ChatIcon', 'ChoiceIcon', 'SpotlightIcon'],
   'trevo-da-sorte': ['CloverIcon'],
   'dilema-dos-esquiadores': ['SkiingIcon', 'SnowHillIcon'],
   'sonhos-pesadelos': ['CountdownIcon'],
   'controle-de-estoque': ['OnlineOrderIcon', 'ShippingBoxIcon'],
-  testPage: ['EarthIcon', 'HeartIcon'],
 };
 
 const flatGeneralList = Object.values(collectionByCategory).flat();
