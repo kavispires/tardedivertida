@@ -161,3 +161,26 @@ $shade-levels: (
     padding: 0.5rem;
   }
 }
+
+.icons-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.icons-grid__item {
+  border: 1px solid get-color('black');
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.icons-category-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
