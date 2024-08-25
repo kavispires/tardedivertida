@@ -16,6 +16,7 @@ import { DailyArtistaGame } from './games/Artista/DailyArtistaGame';
 import { DailyFilmacoGame } from './games/Filmaco/DailyFilmacoGame';
 import { DailyControleDeEstoqueGame } from './games/ControleDeEstoque/DailyControleDeEstoqueGame';
 import { DebugPage } from './games/Debug';
+import { DailyTeoriaDeConjuntosGame } from './games/TeoriaDeConjuntos/DailyTeoriaDeConjuntosGame';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -48,6 +49,7 @@ function DailyPage() {
       hub: Hub,
       palavreado: DailyPalavreadoGame,
       picaco: DailyArtistaGame,
+      'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
       debug: DebugPage,
     }?.[subPath] ?? Hub;
 

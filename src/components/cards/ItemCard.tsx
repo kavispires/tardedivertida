@@ -56,9 +56,10 @@ export function ItemCard({ id, width = 75, className, title, text, padding }: It
   const [source, itemId] = getSource(id);
 
   const height = text ? 'auto' : `${width}px`;
+  const divPadding = padding === 0 ? { padding: 0 } : {};
 
   return (
-    <div className={clsx('item-card', className)} style={{ width: `${width}px`, height }}>
+    <div className={clsx('item-card', className)} style={{ width: `${width}px`, height, ...divPadding }}>
       <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
       {Boolean(text) && (
         <span className="item-card__text">

@@ -110,6 +110,11 @@ body {
   align-items: center;
 }
 
+.space-center {
+  justify-content: center;
+  align-items: center;
+}
+
 .grid-container {
   margin: get-unit(2 0);
   display: grid;

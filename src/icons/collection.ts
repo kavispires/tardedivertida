@@ -57,6 +57,7 @@ export * from './CulturesIcon';
 export * from './CustomerReviewIcon';
 export * from './DailyArtGameIcon';
 export * from './DailyCrimeGameIcon';
+export * from './DailyDiagramGameIcon';
 export * from './DailyDrawingGameIcon';
 export * from './DailyFindingGameIcon';
 export * from './DailyGroupingGameIcon';
