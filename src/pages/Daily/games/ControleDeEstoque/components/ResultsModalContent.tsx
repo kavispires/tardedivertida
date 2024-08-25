@@ -91,7 +91,7 @@ function writeResult({
   );
 
   return [
-    `📦 TD ${game} #${challenge}`,
+    `${SETTINGS.ICON} TD ${game} #${challenge}`,
     `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')}`,
     cleanUpAttempts
       .map((row) => row.join(' ').trim())

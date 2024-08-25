@@ -79,7 +79,7 @@ function writeResult({
   const guessedLetters = Object.values(solution).filter(Boolean).length;
 
   return [
-    `🎬 ${getDailyName(language)} ${game} #${challenge}`,
+    `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challenge}`,
     `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${Math.round((guessedLetters / totalLetters) * 100)}%)`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');

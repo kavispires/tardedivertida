@@ -176,7 +176,7 @@ function writeResult({
   attempts: number;
 }): string {
   return [
-    `🔘 ${getDailyName(language)} ${game} #${challengeNumber}`,
+    `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challengeNumber}`,
     `${title}${hardMode ? '*' : ''}: ${progress}/${goal}  ${writeHeartResultString(remainingHearts, totalHearts)}`,
     `Tentativas: ${attempts}`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,

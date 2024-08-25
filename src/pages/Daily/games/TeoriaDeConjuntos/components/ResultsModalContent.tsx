@@ -96,7 +96,7 @@ function writeResult({
   });
 
   return [
-    `🎁 TD ${game} #D${challenge}`,
+    `${SETTINGS.ICON} TD ${game} #D${challenge}`,
     `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')}`,
     cleanUpAttempts.join(' '),
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/teoria-de-conjuntos/${challenge}`,
