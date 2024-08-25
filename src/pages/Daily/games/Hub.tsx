@@ -13,6 +13,7 @@ import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { Link } from 'react-router-dom';
 
 import { DailyChrome } from '../components/DailyChrome';
+import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 
 export function Hub() {
   return (
@@ -65,6 +66,13 @@ export function Hub() {
             <Link to="/diario/picaco" className="hub-item">
               <DailyDrawingGameIcon style={{ width: 75 }} />
               <Translate pt="Picaço!" en="Big Artist!" />
+            </Link>
+          </TransparentButton>
+
+          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
+            <Link to="/diario/teoria-de-conjuntos" className="hub-item">
+              <DailyDiagramGameIcon style={{ width: 75 }} />
+              <Translate pt="Teoria de Conjuntos" en="Diagram Theory" />
             </Link>
           </TransparentButton>
 
