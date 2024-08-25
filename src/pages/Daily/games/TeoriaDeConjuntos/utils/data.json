@@ -1,0 +1,1777 @@
+{
+  "2023-01-02": {
+    "id": "2023-01-02",
+    "type": "teoria-de-conjuntos",
+    "number": 1,
+    "title": "Espinha",
+    "level": 5,
+    "rule1": {
+      "id": "ddr-41-pt",
+      "text": "não tem vogais repetidas",
+      "level": 3,
+      "thing": {
+        "id": "911",
+        "name": "banquinho"
+      }
+    },
+    "rule2": {
+      "id": "ddr-42-pt",
+      "text": "não tem consoantes repetidas",
+      "level": 3,
+      "thing": {
+        "id": "396",
+        "name": "outdoor"
+      }
+    },
+    "intersectingThing": {
+      "id": "1812",
+      "name": "espinha"
+    },
+    "things": [
+      {
+        "id": "1916",
+        "name": "mesquita",
+        "rule": 0
+      },
+      {
+        "id": "8",
+        "name": "chapeuzinho",
+        "rule": 1
+      },
+      {
+        "id": "2183",
+        "name": "buggy",
+        "rule": 1
+      },
+      {
+        "id": "103",
+        "name": "canhão",
+        "rule": 2
+      },
+      {
+        "id": "748",
+        "name": "champagne",
+        "rule": 2
+      },
+      {
+        "id": "537",
+        "name": "espanador",
+        "rule": 2
+      },
+      {
+        "id": "2126",
+        "name": "cravos",
+        "rule": 0
+      },
+      {
+        "id": "262",
+        "name": "múmia",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-03": {
+    "id": "2023-01-03",
+    "type": "teoria-de-conjuntos",
+    "number": 2,
+    "title": "Nanobot",
+    "level": 2,
+    "rule1": {
+      "id": "ddr-18-pt",
+      "text": "a primeira letra se repete na palavra (por exemplo, rural, ele)",
+      "level": 2,
+      "thing": {
+        "id": "898",
+        "name": "armadura"
+      }
+    },
+    "rule2": {
+      "id": "ddr-26-pt",
+      "text": "começa com uma consoante",
+      "level": 1,
+      "thing": {
+        "id": "532",
+        "name": "folha"
+      }
+    },
+    "intersectingThing": {
+      "id": "1035",
+      "name": "nanobot"
+    },
+    "things": [
+      {
+        "id": "711",
+        "name": "reboque",
+        "rule": 2
+      },
+      {
+        "id": "1035",
+        "name": "nanobot",
+        "rule": 0
+      },
+      {
+        "id": "2004",
+        "name": "marinheiro",
+        "rule": 2
+      },
+      {
+        "id": "1304",
+        "name": "maca",
+        "rule": 2
+      },
+      {
+        "id": "1309",
+        "name": "abajur",
+        "rule": 1
+      },
+      {
+        "id": "1807",
+        "name": "antena",
+        "rule": 1
+      },
+      {
+        "id": "2335",
+        "name": "sandália",
+        "rule": 2
+      },
+      {
+        "id": "1586",
+        "name": "óvulo",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-04": {
+    "id": "2023-01-04",
+    "type": "teoria-de-conjuntos",
+    "number": 3,
+    "title": "Óleo",
+    "level": 4,
+    "rule1": {
+      "id": "ddr-19-pt",
+      "text": "tem letras repetidas",
+      "level": 2,
+      "thing": {
+        "id": "1022",
+        "name": "fúrcula"
+      }
+    },
+    "rule2": {
+      "id": "ddr-10-pt",
+      "text": "tem 4-6 letras",
+      "level": 3,
+      "thing": {
+        "id": "326",
+        "name": "prato"
+      }
+    },
+    "intersectingThing": {
+      "id": "1622",
+      "name": "óleo"
+    },
+    "things": [
+      {
+        "id": "647",
+        "name": "walkie-talkie",
+        "rule": 1
+      },
+      {
+        "id": "1183",
+        "name": "whey",
+        "rule": 2
+      },
+      {
+        "id": "585",
+        "name": "cotonete",
+        "rule": 1
+      },
+      {
+        "id": "2184",
+        "name": "caminhonete",
+        "rule": 1
+      },
+      {
+        "id": "462",
+        "name": "dados",
+        "rule": 0
+      },
+      {
+        "id": "1823",
+        "name": "café",
+        "rule": 2
+      },
+      {
+        "id": "1205",
+        "name": "pato",
+        "rule": 2
+      },
+      {
+        "id": "803",
+        "name": "cachimbo",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-05": {
+    "id": "2023-01-05",
+    "type": "teoria-de-conjuntos",
+    "number": 4,
+    "title": "Iogurte",
+    "level": 3,
+    "rule1": {
+      "id": "ddr-2-pt",
+      "text": "é um substantivo masculino",
+      "level": 1,
+      "thing": {
+        "id": "1353",
+        "name": "zíper"
+      }
+    },
+    "rule2": {
+      "id": "ddr-7-pt",
+      "text": "as primeiras 2 letras estão em ordem alfabética",
+      "level": 3,
+      "thing": {
+        "id": "898",
+        "name": "armadura"
+      }
+    },
+    "intersectingThing": {
+      "id": "1382",
+      "name": "iogurte"
+    },
+    "things": [
+      {
+        "id": "1836",
+        "name": "macramê",
+        "rule": 1
+      },
+      {
+        "id": "467",
+        "name": "supositório",
+        "rule": 0
+      },
+      {
+        "id": "1529",
+        "name": "fotos",
+        "rule": 2
+      },
+      {
+        "id": "329",
+        "name": "motosserra",
+        "rule": 2
+      },
+      {
+        "id": "479",
+        "name": "escada",
+        "rule": 2
+      },
+      {
+        "id": "1512",
+        "name": "dunas",
+        "rule": 2
+      },
+      {
+        "id": "2179",
+        "name": "canário",
+        "rule": 1
+      },
+      {
+        "id": "2290",
+        "name": "asa delta",
+        "rule": 2
+      }
+    ]
+  },
+  "2023-01-06": {
+    "id": "2023-01-06",
+    "type": "teoria-de-conjuntos",
+    "number": 5,
+    "title": "Cabideiro",
+    "level": 3,
+    "rule1": {
+      "id": "ddr-4-pt",
+      "text": "tem 3 ou mais sílabas",
+      "level": 2,
+      "thing": {
+        "id": "668",
+        "name": "lagarta"
+      }
+    },
+    "rule2": {
+      "id": "ddr-14-pt",
+      "text": "tem 2 ou mais vogais diferentes",
+      "level": 2,
+      "thing": {
+        "id": "2257",
+        "name": "cetro"
+      }
+    },
+    "intersectingThing": {
+      "id": "921",
+      "name": "cabideiro"
+    },
+    "things": [
+      {
+        "id": "628",
+        "name": "balança",
+        "rule": 1
+      },
+      {
+        "id": "1184",
+        "name": "taser",
+        "rule": 2
+      },
+      {
+        "id": "1212",
+        "name": "chapéu",
+        "rule": 2
+      },
+      {
+        "id": "1999",
+        "name": "quartzo",
+        "rule": 2
+      },
+      {
+        "id": "1859",
+        "name": "damasco",
+        "rule": 0
+      },
+      {
+        "id": "82",
+        "name": "padre",
+        "rule": 2
+      },
+      {
+        "id": "1353",
+        "name": "zíper",
+        "rule": 2
+      },
+      {
+        "id": "1627",
+        "name": "salamandra",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-07": {
+    "id": "2023-01-07",
+    "type": "teoria-de-conjuntos",
+    "number": 6,
+    "title": "Café",
+    "level": 4,
+    "rule1": {
+      "id": "ddr-41-pt",
+      "text": "não tem vogais repetidas",
+      "level": 3,
+      "thing": {
+        "id": "1578",
+        "name": "orelha"
+      }
+    },
+    "rule2": {
+      "id": "ddr-23-pt",
+      "text": "começa com uma letra de \"A\"-\"M\"",
+      "level": 2,
+      "thing": {
+        "id": "824",
+        "name": "camiseta"
+      }
+    },
+    "intersectingThing": {
+      "id": "1823",
+      "name": "café"
+    },
+    "things": [
+      {
+        "id": "1682",
+        "name": "top",
+        "rule": 1
+      },
+      {
+        "id": "406",
+        "name": "absorvente",
+        "rule": 2
+      },
+      {
+        "id": "856",
+        "name": "rã",
+        "rule": 1
+      },
+      {
+        "id": "2291",
+        "name": "tirolesa",
+        "rule": 1
+      },
+      {
+        "id": "299",
+        "name": "apontador",
+        "rule": 2
+      },
+      {
+        "id": "377",
+        "name": "metrônomo",
+        "rule": 2
+      },
+      {
+        "id": "188",
+        "name": "trevo",
+        "rule": 1
+      },
+      {
+        "id": "618",
+        "name": "papel",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-08": {
+    "id": "2023-01-08",
+    "type": "teoria-de-conjuntos",
+    "number": 7,
+    "title": "Ventilador",
+    "level": 5,
+    "rule1": {
+      "id": "ddr-38-pt",
+      "text": "não termina com \"A\" ou \"O\"",
+      "level": 3,
+      "thing": {
+        "id": "1898",
+        "name": "conversível"
+      }
+    },
+    "rule2": {
+      "id": "ddr-43-pt",
+      "text": "é oxítona",
+      "level": 3,
+      "thing": {
+        "id": "103",
+        "name": "canhão"
+      }
+    },
+    "intersectingThing": {
+      "id": "2374",
+      "name": "ventilador"
+    },
+    "things": [
+      {
+        "id": "1189",
+        "name": "táxi",
+        "rule": 1
+      },
+      {
+        "id": "1238",
+        "name": "salão",
+        "rule": 2
+      },
+      {
+        "id": "2126",
+        "name": "cravos",
+        "rule": 1
+      },
+      {
+        "id": "820",
+        "name": "limão",
+        "rule": 2
+      },
+      {
+        "id": "2268",
+        "name": "pavilhão",
+        "rule": 2
+      },
+      {
+        "id": "2014",
+        "name": "mulher",
+        "rule": 0
+      },
+      {
+        "id": "1170",
+        "name": "engrenagem",
+        "rule": 1
+      },
+      {
+        "id": "174",
+        "name": "cadeira de rodas",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-09": {
+    "id": "2023-01-09",
+    "type": "teoria-de-conjuntos",
+    "number": 8,
+    "title": "Salada",
+    "level": 5,
+    "rule1": {
+      "id": "ddr-42-pt",
+      "text": "não tem consoantes repetidas",
+      "level": 3,
+      "thing": {
+        "id": "2447",
+        "name": "túnel"
+      }
+    },
+    "rule2": {
+      "id": "ddr-20-pt",
+      "text": "tem vogais repetidas",
+      "level": 3,
+      "thing": {
+        "id": "639",
+        "name": "monumento"
+      }
+    },
+    "intersectingThing": {
+      "id": "236",
+      "name": "salada"
+    },
+    "things": [
+      {
+        "id": "611",
+        "name": "sangue",
+        "rule": 1
+      },
+      {
+        "id": "707",
+        "name": "rede",
+        "rule": 0
+      },
+      {
+        "id": "1646",
+        "name": "macarons",
+        "rule": 0
+      },
+      {
+        "id": "455",
+        "name": "trilho",
+        "rule": 1
+      },
+      {
+        "id": "2388",
+        "name": "creche",
+        "rule": 2
+      },
+      {
+        "id": "446",
+        "name": "eletricidade",
+        "rule": 2
+      },
+      {
+        "id": "2374",
+        "name": "ventilador",
+        "rule": 1
+      },
+      {
+        "id": "1487",
+        "name": "lótus",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-10": {
+    "id": "2023-01-10",
+    "type": "teoria-de-conjuntos",
+    "number": 9,
+    "title": "Prego",
+    "level": 2,
+    "rule1": {
+      "id": "ddr-14-pt",
+      "text": "tem 2 ou mais vogais diferentes",
+      "level": 2,
+      "thing": {
+        "id": "2260",
+        "name": "meia-calça"
+      }
+    },
+    "rule2": {
+      "id": "ddr-9-pt",
+      "text": "tem exatamente 5 letras",
+      "level": 1,
+      "thing": {
+        "id": "2183",
+        "name": "buggy"
+      }
+    },
+    "intersectingThing": {
+      "id": "381",
+      "name": "prego"
+    },
+    "things": [
+      {
+        "id": "1189",
+        "name": "táxi",
+        "rule": 1
+      },
+      {
+        "id": "1674",
+        "name": "casca",
+        "rule": 2
+      },
+      {
+        "id": "888",
+        "name": "compasso",
+        "rule": 1
+      },
+      {
+        "id": "1511",
+        "name": "família",
+        "rule": 1
+      },
+      {
+        "id": "86",
+        "name": "dente",
+        "rule": 2
+      },
+      {
+        "id": "898",
+        "name": "armadura",
+        "rule": 1
+      },
+      {
+        "id": "26",
+        "name": "skate",
+        "rule": 0
+      },
+      {
+        "id": "946",
+        "name": "jacuzzi",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-11": {
+    "id": "2023-01-11",
+    "type": "teoria-de-conjuntos",
+    "number": 10,
+    "title": "Luzinhas",
+    "level": 3,
+    "rule1": {
+      "id": "ddr-38-pt",
+      "text": "não termina com \"A\" ou \"O\"",
+      "level": 3,
+      "thing": {
+        "id": "1639",
+        "name": "interfone"
+      }
+    },
+    "rule2": {
+      "id": "ddr-26-pt",
+      "text": "começa com uma consoante",
+      "level": 1,
+      "thing": {
+        "id": "1506",
+        "name": "cargueiro"
+      }
+    },
+    "intersectingThing": {
+      "id": "1513",
+      "name": "luzinhas"
+    },
+    "things": [
+      {
+        "id": "118",
+        "name": "anel",
+        "rule": 1
+      },
+      {
+        "id": "148",
+        "name": "cachorro",
+        "rule": 2
+      },
+      {
+        "id": "299",
+        "name": "apontador",
+        "rule": 1
+      },
+      {
+        "id": "2126",
+        "name": "cravos",
+        "rule": 0
+      },
+      {
+        "id": "901",
+        "name": "quimono",
+        "rule": 2
+      },
+      {
+        "id": "1170",
+        "name": "engrenagem",
+        "rule": 1
+      },
+      {
+        "id": "2268",
+        "name": "pavilhão",
+        "rule": 2
+      },
+      {
+        "id": "2038",
+        "name": "espremedor",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-12": {
+    "id": "2023-01-12",
+    "type": "teoria-de-conjuntos",
+    "number": 11,
+    "title": "Colete",
+    "level": 5,
+    "rule1": {
+      "id": "ddr-10-pt",
+      "text": "tem 4-6 letras",
+      "level": 3,
+      "thing": {
+        "id": "611",
+        "name": "sangue"
+      }
+    },
+    "rule2": {
+      "id": "ddr-7-pt",
+      "text": "as primeiras 2 letras estão em ordem alfabética",
+      "level": 3,
+      "thing": {
+        "id": "2192",
+        "name": "rua"
+      }
+    },
+    "intersectingThing": {
+      "id": "1087",
+      "name": "colete"
+    },
+    "things": [
+      {
+        "id": "396",
+        "name": "outdoor",
+        "rule": 2
+      },
+      {
+        "id": "2463",
+        "name": "iguana",
+        "rule": 1
+      },
+      {
+        "id": "848",
+        "name": "gaita",
+        "rule": 1
+      },
+      {
+        "id": "118",
+        "name": "anel",
+        "rule": 0
+      },
+      {
+        "id": "203",
+        "name": "perna",
+        "rule": 1
+      },
+      {
+        "id": "1586",
+        "name": "óvulo",
+        "rule": 0
+      },
+      {
+        "id": "1146",
+        "name": "cinzeiro",
+        "rule": 2
+      },
+      {
+        "id": "927",
+        "name": "tripé",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-13": {
+    "id": "2023-01-13",
+    "type": "teoria-de-conjuntos",
+    "number": 12,
+    "title": "Âncora",
+    "level": 3,
+    "rule1": {
+      "id": "ddr-29-pt",
+      "text": "tem \"R\"",
+      "level": 1,
+      "thing": {
+        "id": "846",
+        "name": "britadeira"
+      }
+    },
+    "rule2": {
+      "id": "ddr-42-pt",
+      "text": "não tem consoantes repetidas",
+      "level": 3,
+      "thing": {
+        "id": "1018",
+        "name": "bazuca"
+      }
+    },
+    "intersectingThing": {
+      "id": "243",
+      "name": "âncora"
+    },
+    "things": [
+      {
+        "id": "1871",
+        "name": "torre",
+        "rule": 1
+      },
+      {
+        "id": "1933",
+        "name": "cara",
+        "rule": 0
+      },
+      {
+        "id": "2024",
+        "name": "caranguejo-eremita",
+        "rule": 1
+      },
+      {
+        "id": "1917",
+        "name": "pinça",
+        "rule": 2
+      },
+      {
+        "id": "749",
+        "name": "certificado",
+        "rule": 1
+      },
+      {
+        "id": "843",
+        "name": "estádio",
+        "rule": 2
+      },
+      {
+        "id": "1028",
+        "name": "obelisco",
+        "rule": 2
+      },
+      {
+        "id": "874",
+        "name": "lareira",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-14": {
+    "id": "2023-01-14",
+    "type": "teoria-de-conjuntos",
+    "number": 13,
+    "title": "Chicote",
+    "level": 2,
+    "rule1": {
+      "id": "ddr-32-pt",
+      "text": "tem \"C\" ou \"Ç\"",
+      "level": 1,
+      "thing": {
+        "id": "1193",
+        "name": "colmeia"
+      }
+    },
+    "rule2": {
+      "id": "ddr-19-pt",
+      "text": "tem letras repetidas",
+      "level": 2,
+      "thing": {
+        "id": "1687",
+        "name": "freezer"
+      }
+    },
+    "intersectingThing": {
+      "id": "476",
+      "name": "chicote"
+    },
+    "things": [
+      {
+        "id": "1600",
+        "name": "mochi",
+        "rule": 1
+      },
+      {
+        "id": "196",
+        "name": "câmera",
+        "rule": 0
+      },
+      {
+        "id": "639",
+        "name": "monumento",
+        "rule": 2
+      },
+      {
+        "id": "2257",
+        "name": "cetro",
+        "rule": 1
+      },
+      {
+        "id": "1622",
+        "name": "óleo",
+        "rule": 2
+      },
+      {
+        "id": "618",
+        "name": "papel",
+        "rule": 2
+      },
+      {
+        "id": "1941",
+        "name": "átomo",
+        "rule": 2
+      },
+      {
+        "id": "855",
+        "name": "chaveiro",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-15": {
+    "id": "2023-01-15",
+    "type": "teoria-de-conjuntos",
+    "number": 14,
+    "title": "Concha",
+    "level": 5,
+    "rule1": {
+      "id": "ddr-10-pt",
+      "text": "tem 4-6 letras",
+      "level": 3,
+      "thing": {
+        "id": "1858",
+        "name": "maçã"
+      }
+    },
+    "rule2": {
+      "id": "ddr-7-pt",
+      "text": "as primeiras 2 letras estão em ordem alfabética",
+      "level": 3,
+      "thing": {
+        "id": "362",
+        "name": "tubarão"
+      }
+    },
+    "intersectingThing": {
+      "id": "670",
+      "name": "concha"
+    },
+    "things": [
+      {
+        "id": "1744",
+        "name": "onça",
+        "rule": 1
+      },
+      {
+        "id": "1014",
+        "name": "protesto",
+        "rule": 2
+      },
+      {
+        "id": "98",
+        "name": "mesa",
+        "rule": 1
+      },
+      {
+        "id": "446",
+        "name": "eletricidade",
+        "rule": 2
+      },
+      {
+        "id": "119",
+        "name": "tigela",
+        "rule": 1
+      },
+      {
+        "id": "644",
+        "name": "chefe",
+        "rule": 0
+      },
+      {
+        "id": "1148",
+        "name": "algodão",
+        "rule": 2
+      },
+      {
+        "id": "193",
+        "name": "monociclo",
+        "rule": 2
+      }
+    ]
+  },
+  "2023-01-16": {
+    "id": "2023-01-16",
+    "type": "teoria-de-conjuntos",
+    "number": 15,
+    "title": "Quimono",
+    "level": 4,
+    "rule1": {
+      "id": "ddr-42-pt",
+      "text": "não tem consoantes repetidas",
+      "level": 3,
+      "thing": {
+        "id": "597",
+        "name": "caixa-de-som"
+      }
+    },
+    "rule2": {
+      "id": "ddr-31-pt",
+      "text": "tem \"Q\" ou \"J\"",
+      "level": 2,
+      "thing": {
+        "id": "2024",
+        "name": "caranguejo-eremita"
+      }
+    },
+    "intersectingThing": {
+      "id": "901",
+      "name": "quimono"
+    },
+    "things": [
+      {
+        "id": "911",
+        "name": "banquinho",
+        "rule": 2
+      },
+      {
+        "id": "946",
+        "name": "jacuzzi",
+        "rule": 2
+      },
+      {
+        "id": "1242",
+        "name": "jaula",
+        "rule": 0
+      },
+      {
+        "id": "894",
+        "name": "adaga",
+        "rule": 1
+      },
+      {
+        "id": "1692",
+        "name": "azulejo",
+        "rule": 0
+      },
+      {
+        "id": "180",
+        "name": "guirlanda",
+        "rule": 1
+      },
+      {
+        "id": "2437",
+        "name": "moldura",
+        "rule": 1
+      },
+      {
+        "id": "901",
+        "name": "quimono",
+        "rule": 0
+      }
+    ]
+  },
+  "2023-01-17": {
+    "id": "2023-01-17",
+    "type": "teoria-de-conjuntos",
+    "number": 16,
+    "title": "Água",
+    "level": 3,
+    "rule1": {
+      "id": "ddr-42-pt",
+      "text": "não tem consoantes repetidas",
+      "level": 3,
+      "thing": {
+        "id": "2335",
+        "name": "sandália"
+      }
+    },
+    "rule2": {
+      "id": "ddr-25-pt",
+      "text": "começa com uma vogal",
+      "level": 1,
+      "thing": {
+        "id": "898",
+        "name": "armadura"
+      }
+    },
+    "intersectingThing": {
+      "id": "248",
+      "name": "água"
+    },
+    "things": [
+      {
+        "id": "1023",
+        "name": "estalactites",
+        "rule": 2
+      },
+      {
+        "id": "817",
+        "name": "cola",
+        "rule": 1
+      },
+      {
+        "id": "2469",
+        "name": "arranha-céu",
+        "rule": 2
+      },
+      {
+        "id": "340",
+        "name": "nuvem",
+        "rule": 1
+      },
+      {
+        "id": "2257",
+        "name": "cetro",
+        "rule": 1
+      },
+      {
+        "id": "447",
+        "name": "cristal",
+        "rule": 1
+      },
+      {
+        "id": "537",
+        "name": "espanador",
+        "rule": 0
+      },
+      {
+        "id": "1602",
+        "name": "celeiro",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-18": {
+    "id": "2023-01-18",
+    "type": "teoria-de-conjuntos",
+    "number": 17,
+    "title": "Noz",
+    "level": 4,
+    "rule1": {
+      "id": "ddr-42-pt",
+      "text": "não tem consoantes repetidas",
+      "level": 3,
+      "thing": {
+        "id": "39",
+        "name": "fogo"
+      }
+    },
+    "rule2": {
+      "id": "ddr-16-pt",
+      "text": "tem mais consoantes do que vogais",
+      "level": 2,
+      "thing": {
+        "id": "593",
+        "name": "bomba"
+      }
+    },
+    "intersectingThing": {
+      "id": "2439",
+      "name": "noz"
+    },
+    "things": [
+      {
+        "id": "639",
+        "name": "monumento",
+        "rule": 2
+      },
+      {
+        "id": "2447",
+        "name": "túnel",
+        "rule": 0
+      },
+      {
+        "id": "1653",
+        "name": "boate",
+        "rule": 1
+      },
+      {
+        "id": "659",
+        "name": "baleia",
+        "rule": 1
+      },
+      {
+        "id": "329",
+        "name": "motosserra",
+        "rule": 2
+      },
+      {
+        "id": "1228",
+        "name": "máquina",
+        "rule": 1
+      },
+      {
+        "id": "1350",
+        "name": "velório",
+        "rule": 1
+      },
+      {
+        "id": "675",
+        "name": "sambista",
+        "rule": 2
+      }
+    ]
+  },
+  "2023-01-19": {
+    "id": "2023-01-19",
+    "type": "teoria-de-conjuntos",
+    "number": 18,
+    "title": "Creche",
+    "level": 1,
+    "rule1": {
+      "id": "ddr-29-pt",
+      "text": "tem \"R\"",
+      "level": 1,
+      "thing": {
+        "id": "1703",
+        "name": "radar"
+      }
+    },
+    "rule2": {
+      "id": "ddr-1-pt",
+      "text": "é um substantivo feminino",
+      "level": 1,
+      "thing": {
+        "id": "2034",
+        "name": "seda"
+      }
+    },
+    "intersectingThing": {
+      "id": "2388",
+      "name": "creche"
+    },
+    "things": [
+      {
+        "id": "1030",
+        "name": "tridente",
+        "rule": 1
+      },
+      {
+        "id": "1725",
+        "name": "chapinha",
+        "rule": 2
+      },
+      {
+        "id": "1272",
+        "name": "máscara",
+        "rule": 0
+      },
+      {
+        "id": "2399",
+        "name": "cacatua",
+        "rule": 2
+      },
+      {
+        "id": "1689",
+        "name": "furão",
+        "rule": 1
+      },
+      {
+        "id": "710",
+        "name": "gerador",
+        "rule": 1
+      },
+      {
+        "id": "1968",
+        "name": "nanotecnologia",
+        "rule": 2
+      },
+      {
+        "id": "2372",
+        "name": "presilha",
+        "rule": 0
+      }
+    ]
+  },
+  "2023-01-20": {
+    "id": "2023-01-20",
+    "type": "teoria-de-conjuntos",
+    "number": 19,
+    "title": "Biruta",
+    "level": 2,
+    "rule1": {
+      "id": "ddr-14-pt",
+      "text": "tem 2 ou mais vogais diferentes",
+      "level": 2,
+      "thing": {
+        "id": "340",
+        "name": "nuvem"
+      }
+    },
+    "rule2": {
+      "id": "ddr-28-pt",
+      "text": "tem \"A\"",
+      "level": 1,
+      "thing": {
+        "id": "169",
+        "name": "lã"
+      }
+    },
+    "intersectingThing": {
+      "id": "1204",
+      "name": "biruta"
+    },
+    "things": [
+      {
+        "id": "1927",
+        "name": "mosquito",
+        "rule": 1
+      },
+      {
+        "id": "1153",
+        "name": "fax",
+        "rule": 2
+      },
+      {
+        "id": "664",
+        "name": "ancinho",
+        "rule": 0
+      },
+      {
+        "id": "1193",
+        "name": "colmeia",
+        "rule": 0
+      },
+      {
+        "id": "1146",
+        "name": "cinzeiro",
+        "rule": 1
+      },
+      {
+        "id": "1615",
+        "name": "larva",
+        "rule": 2
+      },
+      {
+        "id": "1984",
+        "name": "glíter",
+        "rule": 1
+      },
+      {
+        "id": "1839",
+        "name": "vômito",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-21": {
+    "id": "2023-01-21",
+    "type": "teoria-de-conjuntos",
+    "number": 20,
+    "title": "Tirolesa",
+    "level": 2,
+    "rule1": {
+      "id": "ddr-26-pt",
+      "text": "começa com uma consoante",
+      "level": 1,
+      "thing": {
+        "id": "1294",
+        "name": "caverna"
+      }
+    },
+    "rule2": {
+      "id": "ddr-12-pt",
+      "text": "tem mais de 7 letras",
+      "level": 2,
+      "thing": {
+        "id": "898",
+        "name": "armadura"
+      }
+    },
+    "intersectingThing": {
+      "id": "2291",
+      "name": "tirolesa"
+    },
+    "things": [
+      {
+        "id": "1092",
+        "name": "miojo",
+        "rule": 1
+      },
+      {
+        "id": "1832",
+        "name": "túnica",
+        "rule": 1
+      },
+      {
+        "id": "1028",
+        "name": "obelisco",
+        "rule": 2
+      },
+      {
+        "id": "2038",
+        "name": "espremedor",
+        "rule": 2
+      },
+      {
+        "id": "1984",
+        "name": "glíter",
+        "rule": 1
+      },
+      {
+        "id": "1534",
+        "name": "kiwi",
+        "rule": 1
+      },
+      {
+        "id": "749",
+        "name": "certificado",
+        "rule": 0
+      },
+      {
+        "id": "1609",
+        "name": "almôndegas",
+        "rule": 2
+      }
+    ]
+  },
+  "2023-01-22": {
+    "id": "2023-01-22",
+    "type": "teoria-de-conjuntos",
+    "number": 21,
+    "title": "Político",
+    "level": 3,
+    "rule1": {
+      "id": "ddr-32-pt",
+      "text": "tem \"C\" ou \"Ç\"",
+      "level": 1,
+      "thing": {
+        "id": "2406",
+        "name": "câncer"
+      }
+    },
+    "rule2": {
+      "id": "ddr-45-pt",
+      "text": "é proparoxítona",
+      "level": 3,
+      "thing": {
+        "id": "737",
+        "name": "espátula"
+      }
+    },
+    "intersectingThing": {
+      "id": "1514",
+      "name": "político"
+    },
+    "things": [
+      {
+        "id": "1674",
+        "name": "casca",
+        "rule": 1
+      },
+      {
+        "id": "2409",
+        "name": "zoológico",
+        "rule": 0
+      },
+      {
+        "id": "1885",
+        "name": "pódio",
+        "rule": 2
+      },
+      {
+        "id": "1350",
+        "name": "velório",
+        "rule": 2
+      },
+      {
+        "id": "196",
+        "name": "câmera",
+        "rule": 0
+      },
+      {
+        "id": "1514",
+        "name": "político",
+        "rule": 0
+      },
+      {
+        "id": "2281",
+        "name": "violoncelo",
+        "rule": 1
+      },
+      {
+        "id": "451",
+        "name": "chifre",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-23": {
+    "id": "2023-01-23",
+    "type": "teoria-de-conjuntos",
+    "number": 22,
+    "title": "Martelo",
+    "level": 3,
+    "rule1": {
+      "id": "ddr-16-pt",
+      "text": "tem mais consoantes do que vogais",
+      "level": 2,
+      "thing": {
+        "id": "1844",
+        "name": "manga"
+      }
+    },
+    "rule2": {
+      "id": "ddr-14-pt",
+      "text": "tem 2 ou mais vogais diferentes",
+      "level": 2,
+      "thing": {
+        "id": "1653",
+        "name": "boate"
+      }
+    },
+    "intersectingThing": {
+      "id": "2191",
+      "name": "martelo"
+    },
+    "things": [
+      {
+        "id": "1920",
+        "name": "escaravelho",
+        "rule": 0
+      },
+      {
+        "id": "1533",
+        "name": "castanhas",
+        "rule": 1
+      },
+      {
+        "id": "597",
+        "name": "caixa-de-som",
+        "rule": 2
+      },
+      {
+        "id": "855",
+        "name": "chaveiro",
+        "rule": 2
+      },
+      {
+        "id": "898",
+        "name": "armadura",
+        "rule": 2
+      },
+      {
+        "id": "1487",
+        "name": "lótus",
+        "rule": 0
+      },
+      {
+        "id": "932",
+        "name": "vuvuzela",
+        "rule": 2
+      },
+      {
+        "id": "326",
+        "name": "prato",
+        "rule": 0
+      }
+    ]
+  },
+  "2023-01-24": {
+    "id": "2023-01-24",
+    "type": "teoria-de-conjuntos",
+    "number": 23,
+    "title": "Jacaré",
+    "level": 2,
+    "rule1": {
+      "id": "ddr-19-pt",
+      "text": "tem letras repetidas",
+      "level": 2,
+      "thing": {
+        "id": "1566",
+        "name": "salsão"
+      }
+    },
+    "rule2": {
+      "id": "ddr-29-pt",
+      "text": "tem \"R\"",
+      "level": 1,
+      "thing": {
+        "id": "274",
+        "name": "cortina"
+      }
+    },
+    "intersectingThing": {
+      "id": "88",
+      "name": "jacaré"
+    },
+    "things": [
+      {
+        "id": "2406",
+        "name": "câncer",
+        "rule": 0
+      },
+      {
+        "id": "2260",
+        "name": "meia-calça",
+        "rule": 1
+      },
+      {
+        "id": "1704",
+        "name": "arara",
+        "rule": 0
+      },
+      {
+        "id": "2126",
+        "name": "cravos",
+        "rule": 2
+      },
+      {
+        "id": "1933",
+        "name": "cara",
+        "rule": 0
+      },
+      {
+        "id": "170",
+        "name": "alicate",
+        "rule": 1
+      },
+      {
+        "id": "1984",
+        "name": "glíter",
+        "rule": 2
+      },
+      {
+        "id": "86",
+        "name": "dente",
+        "rule": 1
+      }
+    ]
+  },
+  "2023-01-25": {
+    "id": "2023-01-25",
+    "type": "teoria-de-conjuntos",
+    "number": 24,
+    "title": "Brincos",
+    "level": 3,
+    "rule1": {
+      "id": "ddr-7-pt",
+      "text": "as primeiras 2 letras estão em ordem alfabética",
+      "level": 3,
+      "thing": {
+        "id": "538",
+        "name": "loja"
+      }
+    },
+    "rule2": {
+      "id": "ddr-29-pt",
+      "text": "tem \"R\"",
+      "level": 1,
+      "thing": {
+        "id": "1842",
+        "name": "nervo"
+      }
+    },
+    "intersectingThing": {
+      "id": "305",
+      "name": "brincos"
+    },
+    "things": [
+      {
+        "id": "1609",
+        "name": "almôndegas",
+        "rule": 1
+      },
+      {
+        "id": "549",
+        "name": "farinha",
+        "rule": 2
+      },
+      {
+        "id": "976",
+        "name": "carretel",
+        "rule": 2
+      },
+      {
+        "id": "2339",
+        "name": "cemitério",
+        "rule": 0
+      },
+      {
+        "id": "426",
+        "name": "berimbau",
+        "rule": 0
+      },
+      {
+        "id": "454",
+        "name": "marionete",
+        "rule": 2
+      },
+      {
+        "id": "1812",
+        "name": "espinha",
+        "rule": 1
+      },
+      {
+        "id": "1070",
+        "name": "hacker",
+        "rule": 2
+      }
+    ]
+  },
+  "2023-01-26": {
+    "id": "2023-01-26",
+    "type": "teoria-de-conjuntos",
+    "number": 25,
+    "title": "Despertador",
+    "level": 2,
+    "rule1": {
+      "id": "ddr-4-pt",
+      "text": "tem 3 ou mais sílabas",
+      "level": 2,
+      "thing": {
+        "id": "135",
+        "name": "barata"
+      }
+    },
+    "rule2": {
+      "id": "ddr-2-pt",
+      "text": "é um substantivo masculino",
+      "level": 1,
+      "thing": {
+        "id": "448",
+        "name": "hashi"
+      }
+    },
+    "intersectingThing": {
+      "id": "131",
+      "name": "despertador"
+    },
+    "things": [
+      {
+        "id": "1018",
+        "name": "bazuca",
+        "rule": 1
+      },
+      {
+        "id": "1842",
+        "name": "nervo",
+        "rule": 2
+      },
+      {
+        "id": "1351",
+        "name": "amplificador",
+        "rule": 0
+      },
+      {
+        "id": "59",
+        "name": "bebê",
+        "rule": 2
+      },
+      {
+        "id": "605",
+        "name": "rádio",
+        "rule": 0
+      },
+      {
+        "id": "455",
+        "name": "trilho",
+        "rule": 2
+      },
+      {
+        "id": "2183",
+        "name": "buggy",
+        "rule": 2
+      },
+      {
+        "id": "2025",
+        "name": "pistola",
+        "rule": 1
+      }
+    ]
+  }
+}
