@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import jsonData from './data.json';
 import { DailyTeoriaDeConjuntosEntry } from './types';
+import { useParams } from 'react-router-dom';
 
 const DATA = jsonData as unknown as DailyTeoriaDeConjuntosEntry[];
 
@@ -17,6 +18,7 @@ type DemoResponse = {
 export function useTeoriaDeConjuntosDemo(today: string) {
   const { language } = useLanguage();
   const collectionName = getSourceName(language);
+  const params = useParams();
 
   // Load challenge
   return useQuery<DemoResponse>({
@@ -25,7 +27,15 @@ export function useTeoriaDeConjuntosDemo(today: string) {
       console.count(`Fetching ${collectionName} demo...`);
       await wait(1000);
 
-      const game = sample(DATA);
+      let specificNumber = 0;
+      if (params['*']?.includes('/')) {
+        const val = Number(params['*'].split('teoria-de-conjuntos/')[1]);
+        specificNumber = typeof val === 'number' && isFinite(val) ? val : 0;
+      }
+
+      const game = specificNumber
+        ? Object.values(DATA).find((e) => e.number === specificNumber)
+        : sample(DATA) ?? sample(DATA);
 
       const entry: DailyTeoriaDeConjuntosEntry = {
         ...game!,
