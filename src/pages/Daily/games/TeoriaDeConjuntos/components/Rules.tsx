@@ -28,6 +28,11 @@ export function Rules() {
               Se você colocar uma coisa na área errada, o jogo vai colocar a coisa na área correta, você perde
               uma vida, e ganha uma coisa para posicionar.
             </li>
+            <li>
+              Dica: o título do jogo é uma pista sobre a regra dos círculos. "Gramática" pode ser sobre o
+              número de sílabas ou sílaba tônica, "Contagem" sobre quantidade de letras. "Inclusão" sobre se
+              tem uma letra específica, etc...
+            </li>
 
             <li>
               Você tem {SETTINGS.HEARTS} <HeartFilled /> chances. Boa sorte!

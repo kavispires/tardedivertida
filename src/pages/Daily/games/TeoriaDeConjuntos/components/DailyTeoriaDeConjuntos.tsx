@@ -1,13 +1,18 @@
 import { Button, Layout, Modal, Rate, Tooltip, Typography } from 'antd';
+import clsx from 'clsx';
 import { TransparentButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { wait } from 'pages/Daily/utils';
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMeasure } from 'react-use';
 import { Me } from 'types/user';
+import { getAnimationClass } from 'utils/helpers';
 
 import { BarChartOutlined, CloudSyncOutlined } from '@ant-design/icons';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -20,9 +25,6 @@ import { PlacementModal } from './PlacementModal';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { Thing } from './Thing';
-import { useQueryClient } from '@tanstack/react-query';
-import clsx from 'clsx';
-import { getAnimationClass } from 'utils/helpers';
 
 type DailyTeoriaDeConjuntosProps = {
   data: DailyTeoriaDeConjuntosEntry;
@@ -49,6 +51,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
   } = useTeoriaDeConjuntosEngine(data);
   const queryClient = useQueryClient();
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
+  const navigate = useNavigate();
 
   const thingWidth = useMemo(() => {
     const totalWidth = contentMeasure.width / 6 - 16;
@@ -113,11 +116,13 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
             </Button>
 
             <Button
-              onClick={() =>
+              onClick={async () => {
+                navigate(`/diario/teoria-de-conjuntos`);
+                await wait(250);
                 queryClient.refetchQueries({
                   queryKey: ['teoria-de-conjuntos-demo'],
-                })
-              }
+                });
+              }}
               icon={<CloudSyncOutlined />}
             >
               <Translate pt="Jogar outro demo" en="Play another demo" />
