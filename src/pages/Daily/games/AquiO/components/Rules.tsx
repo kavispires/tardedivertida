@@ -3,12 +3,9 @@ import { Translate } from 'components/language';
 
 import { HeartFilled } from '@ant-design/icons';
 
-import { BetaBanner } from '../../../components/BetaBanner';
-
 export function Rules() {
   return (
     <Typography>
-      <BetaBanner />
       <Translate
         pt={
           <>
