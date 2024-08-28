@@ -11,7 +11,7 @@ import { useMeasure } from 'react-use';
 import { Me } from 'types/user';
 import { getAnimationClass } from 'utils/helpers';
 
-import { BarChartOutlined, CloudSyncOutlined } from '@ant-design/icons';
+import { BarChartOutlined, CloudSyncOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { Header } from '../../../components/Header';
@@ -25,6 +25,7 @@ import { PlacementModal } from './PlacementModal';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { Thing } from './Thing';
+import { RulesHints } from './RulesHints';
 
 type DailyTeoriaDeConjuntosProps = {
   data: DailyTeoriaDeConjuntosEntry;
@@ -144,6 +145,8 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
             </TransparentButton>
           ))}
         </Region>
+
+        <RulesHints />
 
         {activeThing && activeArea !== null && (
           <PlacementModal
