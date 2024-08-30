@@ -56,6 +56,14 @@ export interface ResourceData {
   decks: string[];
 }
 
+type GalleryItem = {
+  pairId: string;
+  pair: (ItemEntry | undefined)[];
+  players: PlayerId[];
+};
+
+export type Gallery = GalleryItem[];
+
 export type DuetosAchievement = keyof typeof DUETOS_ACHIEVEMENTS;
 
 export interface DuetosStore extends DefaultStore {

@@ -4,7 +4,7 @@ import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/glo
 import { fetchResource } from '../engine/resource';
 import { AlienItem, ContenderCard, Item, TextCard } from '../types/tdr';
 import utils from './';
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
+import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firebaseUtils from './firebase';
 import * as gameUtils from './game-utils';
 import { buildIdDictionary } from './helpers';
@@ -435,4 +435,13 @@ export const getAdjectives = async (language: Language, quantity?: number): Prom
  */
 export const saveUsedAdjectives = async (usedAdjectives: BooleanDictionary) => {
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ADJECTIVES, usedAdjectives);
+};
+
+/**
+ * Saves list of used items ids into the global used document
+ * @param items
+ * @returns
+ */
+export const savePairs = async (pairs: BooleanDictionary) => {
+  return updateGlobalFirebaseDoc(DATA_DOCUMENTS.PAIRS, pairs);
 };

@@ -2,8 +2,8 @@
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { Item, ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
-import { DuetosOptions, ResourceData } from './types';
+import { ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
+import { DuetosOptions, Gallery, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
@@ -130,6 +130,14 @@ export const getResourceData = async (language: Language, options: DuetosOptions
  * @param items
  * @returns
  */
-export const saveUsedItems = async (items: Item[]): Promise<boolean> => {
-  return await utils.tdr.saveUsedItems(items);
+export const savedData = async (gallery: Gallery): Promise<boolean> => {
+  // Save only pairs that were created by more than 2 players
+  const filteredGallery = gallery.filter((item) => item.players.length > 2 && item.pair.every(Boolean));
+
+  const dataDict = filteredGallery.reduce((acc, item) => {
+    acc[item.pairId] = true;
+    return acc;
+  }, {});
+
+  return await utils.tdr.savePairs(dataDict);
 };

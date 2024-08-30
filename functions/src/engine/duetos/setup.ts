@@ -7,6 +7,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 import utils from '../../utils';
 // Internal
 import { addItems, addSpecial, calculateResults, getAchievements } from './helpers';
+import { savedData } from './data';
 
 /**
  * Setup
@@ -170,8 +171,8 @@ export const prepareGameOverPhase = async (
 
   const gallery = store.gallery;
 
-  // Save data (contenderIds, contendersGlyphs)
-  // await saveData(store.contendersGlyphs ?? {});
+  // Save data (pairs)
+  await savedData(store.contendersGlyphs ?? {});
 
   utils.players.cleanup(players, []);
 

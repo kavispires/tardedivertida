@@ -250,6 +250,7 @@ export const DATA_DOCUMENTS = {
   SUSPECT_ANSWERS: 'suspectAnswers',
   DRAWINGS: 'drawings',
   MONSTER_DRAWINGS: 'monsterDrawings',
+  PAIRS: 'pairs',
 };
 
 export const TDR_RESOURCES = {
