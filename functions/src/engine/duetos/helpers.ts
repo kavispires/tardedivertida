@@ -3,7 +3,7 @@ import { Item } from '../../types/tdr';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { DUETOS_ACHIEVEMENTS, DUETOS_PHASES } from './constants';
-import { DuetosAchievement, FirebaseStoreData, ItemEntry } from './types';
+import { DuetosAchievement, FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types';
 // Utils
 import utils from '../../utils';
 
@@ -126,16 +126,18 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
     });
   });
 
-  const gallery = Object.entries(pairsByPlayers)
+  const gallery: Gallery = Object.entries(pairsByPlayers)
     .map(([pair, players]) => {
       const [id1, id2] = pair.split(PAIR_SEPARATOR);
       const item1 = pool.find((item) => item.id === id1);
       const item2 = pool.find((item) => item.id === id2);
-      return {
+
+      const entry: GalleryItem = {
         pairId: pair,
         pair: [item1, item2],
         players,
       };
+      return entry;
     })
     .sort((a, b) => {
       return a.players.length > b.players.length ? -1 : 1;
