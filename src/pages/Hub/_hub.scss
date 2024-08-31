@@ -24,6 +24,7 @@
 
   &__label {
     font-weight: bold;
+    align-self: start;
   }
 
   &__on {
@@ -50,6 +51,8 @@
   &__option-description {
     font-size: 0.85em;
     grid-column: span 4;
+    font-weight: normal;
+    color: get-color('gray', 6);
   }
 }
 .game-card-collection {

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.31",
+  "version": "4.0.32",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -107,131 +107,42 @@
       ]
     },
     {
-      "key": "imagesTrack",
-      "kind": "switch",
-      "label": "Images Track (recommended)",
-      "description": "Adds one track based on Detective Agency, Dream Gallery, Obscure Doors or Story Tellers",
+      "key": "tracks",
+      "kind": "checkbox",
+      "label": "Tracks",
+      "description": "Select the tracks you want to play with",
       "values": [
         {
-          "label": "Yes",
-          "value": false
+          "label": "Images (Detective Agency, Dream Gallery, Obscure Doors, Storytellers)",
+          "value": "images"
         },
         {
-          "label": "No",
-          "value": true
-        }
-      ]
-    },
-    {
-      "key": "charactersTrack",
-      "kind": "switch",
-      "label": "Characters Track (recommended)",
-      "description": "Adds one track based Who Am I or Ultimate Champion",
-      "values": [
-        {
-          "label": "Yes",
-          "value": false
+          "label": "Characters (Who Am I, Ultimate Championship",
+          "value": "characters"
         },
         {
-          "label": "No",
-          "value": true
-        }
-      ]
-    },
-    {
-      "key": "opinionsTrack",
-      "kind": "switch",
-      "label": "Opinions Track (recommended)",
-      "description": "Adds one track based on That's Polemic, Facts Lineup, or The Skier's Dilemma",
-      "values": [
-        {
-          "label": "Yes",
-          "value": false
+          "label": "Opinions (That's Polemic, Facts Lineup, The Skier's Dilemma)",
+          "value": "opinions"
         },
         {
-          "label": "No",
-          "value": true
-        }
-      ]
-    },
-    {
-      "key": "drawingTrack",
-      "kind": "switch",
-      "label": "Drawing Track",
-      "description": "Adds one track based on Questionable Art or Monster Sketch",
-      "values": [
-        {
-          "label": "Yes",
-          "value": false
+          "label": "Drawing (Questionable Art or Monster Sketch",
+          "value": "drawing"
         },
         {
-          "label": "No",
-          "value": true
-        }
-      ]
-    },
-    {
-      "key": "wordsTrack",
-      "kind": "switch",
-      "label": "Words Track",
-      "description": "Adds one track based on That's It, Mixed Clues, or Herd Mind",
-      "values": [
-        {
-          "label": "Yes",
-          "value": false
+          "label": "Words (That's It, Mixed Clues, or Herd Mind)",
+          "value": "words"
         },
         {
-          "label": "No",
-          "value": true
-        }
-      ]
-    },
-
-    {
-      "key": "judgingTrack",
-      "kind": "switch",
-      "label": "Judging Track",
-      "description": "Adds one track based Eye Witness or Guess Who What. (NSFW)",
-      "values": [
-        {
-          "label": "Yes",
-          "value": false
+          "label": "Judging (Eye Witness or Guess Who What. (NSFW))",
+          "value": "judging"
         },
         {
-          "label": "No",
-          "value": true
-        }
-      ]
-    },
-    {
-      "key": "specialTrack",
-      "kind": "switch",
-      "label": "Special Track",
-      "description": "Adds one track based Alien Communication, or Telepathic Waves",
-      "values": [
-        {
-          "label": "Yes",
-          "value": false
+          "label": "Special (Alien Communication, or Telepathic Waves)",
+          "value": "special"
         },
         {
-          "label": "No",
-          "value": true
-        }
-      ]
-    },
-    {
-      "key": "unpopularTrack",
-      "kind": "switch",
-      "label": "Unpopular Track",
-      "description": "Adds one track based Horrific Crimes, Movie Night, or Fear Street",
-      "values": [
-        {
-          "label": "Yes",
-          "value": false
-        },
-        {
-          "label": "No",
-          "value": true
+          "label": "Unpopular (Horrific Crimes, Movie Night, or Fear Street)",
+          "value": "unpopular"
         }
       ]
     }
