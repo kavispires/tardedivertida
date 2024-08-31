@@ -113,7 +113,7 @@ function SwitchOptions({ option, disabled, onChangeOptions, selectedOptions }: O
   );
 }
 
-function RadioOptions({ option, disabled, onChangeOptions, selectedOptions }: OptionProps) {
+function RadioOptions({ option, disabled, onChangeOptions }: OptionProps) {
   return (
     <Radio.Group
       disabled={disabled || option.disabled}
@@ -130,12 +130,11 @@ function RadioOptions({ option, disabled, onChangeOptions, selectedOptions }: Op
   );
 }
 
-function CheckboxOptions({ option, disabled, onChangeOptions, selectedOptions }: OptionProps) {
+function CheckboxOptions({ option, disabled, onChangeOptions }: OptionProps) {
   return (
     <Checkbox.Group
       disabled={disabled || option.disabled}
       onChange={(v) => onChangeOptions(option.key, v)}
-      defaultValue={[option.values[0].value]}
       className="create-game-modal-options__selections"
       options={option.values}
     />
