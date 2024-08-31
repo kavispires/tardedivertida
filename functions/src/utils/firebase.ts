@@ -1,11 +1,48 @@
 import * as functions from 'firebase-functions';
+import * as functionsV2 from 'firebase-functions/v2';
 // eslint-disable-next-line
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '../utils';
 import { isEmpty } from 'lodash';
+import { GenericCallableFunctionV2 } from '../types/reference';
 
 export const config = functions.config;
+
+/**
+ * CLOUD FUNCTIONS V2 MIGRATION
+ */
+
+export const throwExceptionV2 = (error: any, action: string) => {
+  if (process.env.FIRESTORE_EMULATOR_HOST) {
+    console.error(`Failed to ${action}`, error);
+  }
+  throw new functionsV2.https.HttpsError('internal', `Failed to ${action}: ${String(error)}`);
+};
+
+export const apiDelegatorV2 = (
+  request: functionsV2.https.CallableRequest,
+  actions: Record<string, GenericCallableFunctionV2>
+) => {
+  const uid = request.auth?.uid;
+  const action = request.data?.action;
+
+  if (!action) {
+    return utils.firebase.throwExceptionV2('Action not provided', 'perform request');
+  }
+
+  if (!uid) {
+    return utils.firebase.throwExceptionV2('User not authenticated', action.toLowerCase());
+  }
+
+  if (!actions[action]) {
+    return utils.firebase.throwExceptionV2('Invalid action', action.toLowerCase());
+  }
+
+  return actions[action](request.data, request.auth);
+};
+
+// TODO: Move firestore stuff to a firestore file
 
 /**
  * Created a delegating function for API actions
