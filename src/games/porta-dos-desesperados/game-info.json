@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.17",
+  "version": "4.0.18",
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
@@ -50,18 +50,36 @@
   "available": true,
   "options": [
     {
-      "label": "New Traps",
       "key": "newTraps",
-      "off": "All Traps",
-      "on": "Only New",
-      "description": "Only uses the new traps from v4"
+      "kind": "switch",
+      "label": "New Traps",
+      "description": "Only uses the new traps from v4",
+      "values": [
+        {
+          "label": "All Traps",
+          "value": false
+        },
+        {
+          "label": "Only New",
+          "value": true
+        }
+      ]
     },
     {
-      "label": "Additional players",
       "key": "withBots",
-      "off": "Only Humans",
-      "on": "Add 2 Bots",
-      "description": "Only use for 2-3 players"
+      "kind": "switch",
+      "label": "Bot Wizards",
+      "description": "Only use for 2-3 players",
+      "values": [
+        {
+          "label": "Only Humans",
+          "value": false
+        },
+        {
+          "label": "Add 2 Bots",
+          "value": true
+        }
+      ]
     }
   ]
 }

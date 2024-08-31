@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "title": {
     "pt": "Teste De Elenco",
     "en": "Re-Casting Call"
@@ -47,31 +47,43 @@
   "options": [
     {
       "key": "nsfw",
+      "kind": "switch",
       "label": "NSFW questions",
-      "off": "No",
-      "on": "Yes",
-      "description": "Allow NSFW questions"
+      "description": "Allow NSFW questions",
+      "values": [
+        {
+          "label": "No",
+          "value": false
+        },
+        {
+          "label": "Yes",
+          "value": true
+        }
+      ]
     },
     {
-      "label": "Realistic",
-      "key": "realistic",
-      "off": "No",
-      "on": "Yes",
-      "description": "This setting has priority over any other above"
-    },
-    {
-      "label": "Models",
-      "key": "models",
-      "off": "No",
-      "on": "Yes",
-      "description": "This setting has priority over any other above"
-    },
-    {
-      "label": "Wacky",
-      "key": "wacky",
-      "off": "No",
-      "on": "Yes",
-      "description": "This setting has priority over any other above"
+      "key": "deckType",
+      "label": "Deck",
+      "kind": "radio",
+      "description": "Choose the suspect type of deck to play with",
+      "values": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "Realistic",
+          "value": "realistic"
+        },
+        {
+          "label": "Models",
+          "value": "models"
+        },
+        {
+          "label": "Wacky",
+          "value": "wacky"
+        }
+      ]
     }
   ]
 }

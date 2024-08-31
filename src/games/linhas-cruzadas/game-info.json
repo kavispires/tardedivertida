@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.38",
+  "version": "1.2.39",
   "title": {
     "pt": "Linhas Cruzadas",
     "en": "Mis...communication"
@@ -41,11 +41,34 @@
   "available": true,
   "options": [
     {
-      "label": "Cards Type",
       "key": "singleWordOnly",
-      "off": "Words and Expressions",
-      "on": "Only Single Words"
+      "kind": "switch",
+      "label": "Cards Type",
+      "values": [
+        {
+          "label": "Words and Expressions",
+          "value": false
+        },
+        {
+          "label": "Only Single Words",
+          "value": true
+        }
+      ]
     },
-    { "label": "Card Distribution", "key": "evenDistribution", "off": "Random", "on": "Even" }
+    {
+      "key": "evenDistribution",
+      "kind": "switch",
+      "label": "Card Distribution",
+      "values": [
+        {
+          "label": "Random",
+          "value": false
+        },
+        {
+          "label": "Even",
+          "value": true
+        }
+      ]
+    }
   ]
 }

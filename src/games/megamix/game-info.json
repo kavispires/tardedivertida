@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.30",
+  "version": "4.0.31",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -60,81 +60,180 @@
   "options": [
     {
       "key": "nsfw",
+      "kind": "switch",
       "label": "NSFW",
-      "on": "Any content",
-      "off": "Safe content",
-      "description": "Some games might have inappropriate stuff"
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "partyMode",
+      "kind": "switch",
       "label": "Party Mode",
-      "on": "Yes",
-      "off": "No",
-      "description": "Players will populate the game answering personal questions"
+      "description": "Players will populate the game answering personal questions",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "moreTracks",
+      "kind": "switch",
       "label": "TD Based Tracks",
-      "on": "More",
-      "off": "Normal",
-      "description": "3-5 special tracks vs 5-9 special tracks (Select Track types below)"
+      "description": "3-5 special tracks vs 5-9 special tracks (Select Track types below)",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "More",
+          "value": true
+        }
+      ]
     },
     {
       "key": "imagesTrack",
+      "kind": "switch",
       "label": "Images Track (recommended)",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based on Detective Agency, Dream Gallery, Obscure Doors or Story Tellers"
+      "description": "Adds one track based on Detective Agency, Dream Gallery, Obscure Doors or Story Tellers",
+      "values": [
+        {
+          "label": "Yes",
+          "value": false
+        },
+        {
+          "label": "No",
+          "value": true
+        }
+      ]
     },
     {
       "key": "charactersTrack",
+      "kind": "switch",
       "label": "Characters Track (recommended)",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based Who Am I or Ultimate Champion"
+      "description": "Adds one track based Who Am I or Ultimate Champion",
+      "values": [
+        {
+          "label": "Yes",
+          "value": false
+        },
+        {
+          "label": "No",
+          "value": true
+        }
+      ]
     },
     {
       "key": "opinionsTrack",
+      "kind": "switch",
       "label": "Opinions Track (recommended)",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based on That's Polemic, Facts Lineup, or The Skier's Dilemma"
+      "description": "Adds one track based on That's Polemic, Facts Lineup, or The Skier's Dilemma",
+      "values": [
+        {
+          "label": "Yes",
+          "value": false
+        },
+        {
+          "label": "No",
+          "value": true
+        }
+      ]
     },
     {
       "key": "drawingTrack",
+      "kind": "switch",
       "label": "Drawing Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based on Questionable Art or Monster Sketch"
+      "description": "Adds one track based on Questionable Art or Monster Sketch",
+      "values": [
+        {
+          "label": "Yes",
+          "value": false
+        },
+        {
+          "label": "No",
+          "value": true
+        }
+      ]
     },
     {
       "key": "wordsTrack",
+      "kind": "switch",
       "label": "Words Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based on That's It, Mixed Clues, or Herd Mind"
+      "description": "Adds one track based on That's It, Mixed Clues, or Herd Mind",
+      "values": [
+        {
+          "label": "Yes",
+          "value": false
+        },
+        {
+          "label": "No",
+          "value": true
+        }
+      ]
     },
 
     {
       "key": "judgingTrack",
+      "kind": "switch",
       "label": "Judging Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based Eye Witness or Guess Who What. (NSFW)"
+      "description": "Adds one track based Eye Witness or Guess Who What. (NSFW)",
+      "values": [
+        {
+          "label": "Yes",
+          "value": false
+        },
+        {
+          "label": "No",
+          "value": true
+        }
+      ]
     },
     {
       "key": "specialTrack",
+      "kind": "switch",
       "label": "Special Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based Alien Communication, or Telepathic Waves"
+      "description": "Adds one track based Alien Communication, or Telepathic Waves",
+      "values": [
+        {
+          "label": "Yes",
+          "value": false
+        },
+        {
+          "label": "No",
+          "value": true
+        }
+      ]
     },
     {
       "key": "unpopularTrack",
+      "kind": "switch",
       "label": "Unpopular Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based Horrific Crimes, Movie Night, or Fear Street"
+      "description": "Adds one track based Horrific Crimes, Movie Night, or Fear Street",
+      "values": [
+        {
+          "label": "Yes",
+          "value": false
+        },
+        {
+          "label": "No",
+          "value": true
+        }
+      ]
     }
   ]
 }

@@ -36,6 +36,12 @@
     color: get-color('gray', 4);
   }
 
+  &__selections {
+    grid-column: span 3;
+    display: flex;
+    flex-direction: column;
+  }
+
   &--selected {
     font-weight: bolder;
     color: get-color('black');
