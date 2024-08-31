@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.20",
+  "version": "2.3.21",
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"
@@ -54,10 +54,19 @@
   "options": [
     {
       "key": "nsfw",
+      "kind": "switch",
       "label": "NSFW",
-      "off": "No",
-      "on": "Yes",
-      "description": "Allow NSFW contenders"
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     }
   ]
 }

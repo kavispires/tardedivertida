@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "3.0.47",
+  "version": "3.0.48",
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -53,10 +53,20 @@
   "available": true,
   "options": [
     {
-      "label": "Duration",
       "key": "fixedRounds",
-      "off": "30 points (15 rounds max)",
-      "on": "Each player once (6+) or twice (1-5)"
+      "kind": "switch",
+      "label": "Duration",
+      "description": "Choose the number of rounds to play",
+      "values": [
+        {
+          "label": "30 points (15 rounds max)",
+          "value": false
+        },
+        {
+          "label": "Each player once (6+) or twice (1-5)",
+          "value": true
+        }
+      ]
     }
   ]
 }

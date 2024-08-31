@@ -3,7 +3,6 @@ import { sampleSize } from 'lodash';
 import { Badge, Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -14,10 +13,11 @@ import { Translate } from 'components/language';
 import { Card } from 'components/cards';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { TransparentButton } from 'components/buttons';
+import { TextCardWithType } from './utils/types';
 
 type StepSelectWordsProps = {
   user: GamePlayer;
-  deck: TextCard[];
+  deck: TextCardWithType[];
   onSubmitWords: GenericFunction;
 } & Pick<StepProps, 'announcement'>;
 
@@ -32,14 +32,14 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        <Translate pt="Quais cards deveriam estar no jogo?" en="What cards should be in the game?" />
+        <Translate pt="Quais cartas deveriam estar no jogo?" en="What cards should be in the game?" />
       </Title>
 
       <RuleInstruction type="action">
         <Translate
           pt={
             <>
-              <strong>Selecione</strong> pelo 10 cartas para estar no jogo.
+              <strong>Selecione</strong> pelo menos 10 cartas para estar no jogo.
               <br />
               Quanto mais melhor!
             </>

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "5.1.18",
+  "version": "6.0.1",
   "title": {
     "pt": "Cruza Palavras",
     "en": "Mixed Clues"
@@ -52,32 +52,65 @@
   "available": true,
   "options": [
     {
-      "label": "Grid Size",
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW Items",
+      "description": "Allow NSFW items",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    },
+    {
       "key": "largerGrid",
-      "off": "Normal",
-      "on": "Larger",
-      "description": "The word grid will have one more column and row making it more difficult"
+      "kind": "switch",
+      "label": "Grid Size",
+      "description": "The word grid will have one more column and row making it more difficult",
+      "values": [
+        {
+          "label": "Regular",
+          "value": false
+        },
+        {
+          "label": "Large",
+          "value": true
+        }
+      ]
     },
     {
-      "label": "Properties Grid",
-      "key": "propertiesGrid",
-      "off": "No",
-      "on": "Yes",
-      "description": "The first grid uses Property of Things like big, wet, edible, etc."
-    },
-    {
-      "label": "Characters Grid",
-      "key": "contenderGrid",
-      "off": "No",
-      "on": "Yes",
-      "description": "The first grid uses Characters/Celebrities then uses player's clues as usual (this overrides previous grids)"
-    },
-    {
-      "label": "Image Cards Grid",
-      "key": "imageGrid",
-      "off": "No",
-      "on": "Yes",
-      "description": "The first grid uses Image cards then uses player's clues as usual (this overrides previous grids)"
+      "key": "gridType",
+      "label": "Grid Type",
+      "description": "Determines the headers for columns and rows on the first iteration of the grid.",
+      "kind": "radio",
+      "values": [
+        {
+          "label": "Normal",
+          "value": "words",
+          "description": "The first grid uses normal words as headers"
+        },
+        {
+          "label": "Properties",
+          "value": "properties"
+        },
+        {
+          "label": "Characters/Celebrities",
+          "value": "contenders"
+        },
+        {
+          "label": "Image Cards",
+          "value": "imageCards"
+        },
+        {
+          "label": "Items",
+          "value": "items"
+        }
+      ]
     }
   ]
 }

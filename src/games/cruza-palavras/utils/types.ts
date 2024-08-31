@@ -1,3 +1,5 @@
+import { TextCard } from 'types/tdr';
+
 export type Clue = {
   coordinate: number;
   clue: string;
@@ -19,7 +21,7 @@ export type GridCell = {
 };
 
 export type Grid = GridCell[];
-export type GridType = 'words' | 'contenders' | 'images';
+export type GridType = 'words' | 'contenders' | 'images' | 'items';
 
 export type SubmitWordsPayload = {
   words: string[];
@@ -34,3 +36,5 @@ export type SubmitGuessesPayload = {
   guesses: PlainObject;
   choseRandomly: boolean;
 };
+
+export type TextCardWithType = TextCard & { type?: string };

@@ -21,7 +21,7 @@ export interface ResourceData {
   allSuspects: SuspectCard[];
 }
 
-export interface TestemunhaOcularStore extends DefaultStore {
+export interface TestemunhaOcularStore extends DefaultStore<TestemunhaOcularOptions> {
   pastQuestions: TestemunhaOcularEntry[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];

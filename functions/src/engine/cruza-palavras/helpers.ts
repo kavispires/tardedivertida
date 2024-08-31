@@ -25,13 +25,13 @@ import { getListOfPlayers } from '../../utils/players-utils';
 export const determineNextPhase = (
   currentPhase: string,
   round: Round,
-  options: CruzaPalavrasOptions
+  options?: CruzaPalavrasOptions
 ): string => {
   const { RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
   const order = [RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
 
   if (currentPhase === SETUP) {
-    return !options.imageGrid ? WORDS_SELECTION : CLUE_WRITING;
+    return options?.gridType === 'imageCards' ? CLUE_WRITING : WORDS_SELECTION;
   }
 
   if (currentPhase === REVEAL) {

@@ -13,31 +13,47 @@ import { TextCard } from '../../types/tdr';
  * @param language
  * @returns
  */
-export const getWords = async (language: Language, options: CruzaPalavrasOptions): Promise<ResourceData> => {
-  const isPropertiesGrid = !!options?.propertiesGrid;
-  const isContenderGrid = !!options?.contenderGrid;
-  const isImageGrid = !!options?.imageGrid;
+export const getWords = async (language: Language, options?: CruzaPalavrasOptions): Promise<ResourceData> => {
   const allowNSFW = !!options?.nsfw;
-  const quantityNeeded = isImageGrid ? 15 : 30;
+  const quantityNeeded = options?.gridType === 'imageCards' ? 15 : 30;
 
-  if (isPropertiesGrid) {
+  if (options?.gridType === 'properties') {
     const resourceName = `${TDR_RESOURCES.THINGS_QUALITIES}-${language}`;
     const allCards: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
+    // Does not need type because it is just text
     return { deck: utils.game.getRandomItems(Object.values(allCards), quantityNeeded) };
   }
 
-  if (isImageGrid) {
+  if (options?.gridType === 'imageCards') {
     const deck = await utils.imageCards.getImageCards(quantityNeeded);
-    return { deck: deck.map((entry) => ({ id: entry, text: entry })) };
+    return { deck: deck.map((entry) => ({ id: entry, text: entry, type: 'image' })) };
   }
 
-  if (isContenderGrid) {
+  if (options?.gridType === 'contenders') {
     const contenders = await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);
 
     const deck = contenders.map((entry) => {
       return {
         id: entry.id,
         text: entry.name[language],
+        type: 'contender',
+      };
+    });
+
+    return { deck };
+  }
+
+  if (options?.gridType === 'items') {
+    const items = await utils.tdr.getItems(quantityNeeded, {
+      allowNSFW,
+      decks: ['alien', 'dream', 'manufactured', 'thing'],
+    });
+
+    const deck = items.map((entry) => {
+      return {
+        id: entry.id,
+        text: entry.name[language],
+        type: 'item',
       };
     });
 
