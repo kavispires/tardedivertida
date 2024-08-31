@@ -138,7 +138,6 @@ export const feedEmulatorDaily = async () => {
       letters: ['c', 'i', 'b', 'm', 'l', 'u', 'e', 'a', 'h', 'r', 'b', 'l', 'ê', 'o', 'o', 'a'],
       words: ['calo', 'muro', 'bebê', 'ilha'],
     },
-
     // palavreado: {
     //   id: '2023-10-31',
     //   number: 0,
@@ -221,6 +220,9 @@ export const feedEmulatorDaily = async () => {
       type: 'controle-de-estoque',
       title: 'Demo',
     },
+    'teoria-de-conjuntos': JSON.parse(
+      '{"id":"2023-10-31","type":"teoria-de-conjuntos","number":23,"title":"Contagem vs Gramática","level":1,"rule1":{"id":"ddr-46-pt","text":"é monossílaba","level":1,"thing":{"id":"37","name":"spray"}},"rule2":{"id":"ddr-37-pt","text":"tem acento","level":1,"thing":{"id":"812","name":"balão"}},"intersectingThing":{"id":"1381","name":"pó"},"things":[{"id":"2439","name":"noz","rule":1},{"id":"1256","name":"cronômetro","rule":2},{"id":"1897","name":"pé","rule":0},{"id":"550","name":"trem","rule":1},{"id":"1364","name":"chalé","rule":2},{"id":"328","name":"gol","rule":1},{"id":"1153","name":"fax","rule":1},{"id":"234","name":"ladrão","rule":2}]}'
+    ),
   };
 
   await utils.firestore.getDailyRef('daily').doc('2023-10-31').set(dailyMock);
