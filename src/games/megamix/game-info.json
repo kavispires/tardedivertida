@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.32",
+  "version": "4.0.33",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"

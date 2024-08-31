@@ -17,38 +17,6 @@ export type MegamixGameOptions = {
    *
    */
   tracks: 'images' | 'characters' | 'opinions' | 'drawing' | 'words' | 'judging' | 'special' | 'unpopular';
-  // /**
-  //  * Use a track that involves images
-  //  */
-  // imagesTrack: boolean;
-  // /**
-  //  * Use a track that involves characters
-  //  */
-  // charactersTrack: boolean;
-  // /**
-  //  * Use a track that involves opinions
-  //  */
-  // opinionsTrack: boolean;
-  // /**
-  //  * Use a track that involves drawing
-  //  */
-  // drawingTrack: boolean;
-  // /**
-  //  * Use a track that involves words
-  //  */
-  // wordsTrack: boolean;
-  // /**
-  //  * Use a track that involves judging appearances
-  //  */
-  // judgingTrack: boolean;
-  // /**
-  //  * Use a track that are special
-  //  */
-  // specialTrack: boolean;
-  // /**
-  //  * Use a track that involves unpopular games
-  //  */
-  // unpopularTrack: boolean;
 };
 
 export interface TrackCandidate {
