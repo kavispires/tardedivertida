@@ -24,7 +24,6 @@ export const apiDelegatorV2 = (
   request: functionsV2.https.CallableRequest,
   actions: Record<string, GenericCallableFunctionV2>
 ) => {
-  console.log(request);
   const uid = request.auth?.uid;
   const action = request.data?.action;
 
@@ -39,9 +38,6 @@ export const apiDelegatorV2 = (
   if (!actions[action]) {
     return utils.firebase.throwExceptionV2('Invalid action', action.toLowerCase());
   }
-
-  console.log('PASSING AUTH');
-  console.log(request.auth);
 
   return actions[action](request.data, request.auth);
 };
