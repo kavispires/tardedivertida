@@ -1,7 +1,7 @@
 import { DiagramTopic, Item } from '../../types/tdr';
 import { OUTCOME, TEORIA_DE_CONJUNTOS_ACHIEVEMENTS, TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
 
-export interface TeoriaDeConjuntosOptions {
+export type TeoriaDeConjuntosOptions = {
   /**
    * Possibly include nsfw items
    */
@@ -10,7 +10,7 @@ export interface TeoriaDeConjuntosOptions {
    * Use 2 diagrams instead of 3
    */
   easyGame?: boolean;
-}
+};
 
 export type TopicsByDiagramType = {
   attribute: DiagramTopic[];

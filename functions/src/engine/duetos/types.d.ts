@@ -1,7 +1,7 @@
 import { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
 import { DUETOS_ACHIEVEMENTS, DUETOS_ACTIONS } from './constants';
 
-export interface DuetosOptions {
+export type DuetosOptions = {
   /**
    * Possibly include nsfw items
    */
@@ -34,7 +34,7 @@ export interface DuetosOptions {
    * Enables suspects round
    */
   withSuspects?: boolean;
-}
+};
 
 export type ItemEntry = {
   id: string;
