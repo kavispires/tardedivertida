@@ -9,7 +9,7 @@ import { PUBLIC_URL } from 'utils/constants';
 import { calculateGameAverageDuration, isDevEnv, truncateRecommended } from 'utils/helpers';
 // Components
 import { RulesModal } from 'components/rules';
-import { CreateGameModal } from './CreateGameModal';
+import { CreateGameFlow } from './CreateGameModal';
 import { GameTags } from 'components/general/GameTags';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
@@ -148,7 +148,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
 
         {isAdmin && (
           <div style={{ marginTop: '1rem' }}>
-            {Boolean(game.available) && <CreateGameModal gameInfo={game} />}
+            {Boolean(game.available) && <CreateGameFlow gameInfo={game} />}
           </div>
         )}
       </div>

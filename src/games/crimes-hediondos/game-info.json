@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "title": {
     "pt": "Crimes Hediondos",
     "en": "Horrific Crimes"
@@ -39,18 +39,36 @@
   "available": true,
   "options": [
     {
-      "label": "Original Images",
       "key": "originalImages",
-      "off": "Off",
-      "on": "On",
-      "description": "Use original images instead of TD items"
+      "kind": "switch",
+      "label": "Original Images",
+      "description": "Use original images instead of TD items (not recommended)",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
-      "label": "Additional crimes",
       "key": "withBots",
-      "off": "Only Humans",
-      "on": "Add 2 Bots",
-      "description": "Bots will have their own AI crime"
+      "kind": "switch",
+      "label": "Bot Criminals",
+      "description": "Adds 2 bots will have their own AI crime",
+      "values": [
+        {
+          "label": "off",
+          "value": false
+        },
+        {
+          "label": "on",
+          "value": true
+        }
+      ]
     }
   ]
 }

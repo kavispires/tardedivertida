@@ -50,5 +50,21 @@
   "tags": ["cooperative", "guessing", "writing", "brain-burner"],
   "cooperative": true,
   "available": false,
-  "options": [{ "label": "Difficulty", "key": "hardGame", "off": "Normal", "on": "Hard" }]
+  "options": [
+    {
+      "key": "hardGame",
+      "kind": "switch",
+      "label": "Difficulty",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "Hard",
+          "value": true
+        }
+      ]
+    }
+  ]
 }

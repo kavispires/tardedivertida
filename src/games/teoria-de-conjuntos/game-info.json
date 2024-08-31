@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "title": {
     "pt": "Teoria de Conjuntos",
     "en": "Venn Diagram"
@@ -47,18 +47,36 @@
   "options": [
     {
       "key": "nsfw",
+      "kind": "switch",
       "label": "NSFW",
-      "off": "No",
-      "on": "Yes",
-      "description": "Allow NSFW content"
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "easyGame",
+      "kind": "switch",
       "label": "Complexity",
-      "off": "Regular",
-      "on": "Easy",
       "description": "Regular: Triple Venn diagram. Easy: Double Venn diagram.",
-      "disabled": true
+      "disabled": true,
+      "values": [
+        {
+          "label": "Regular",
+          "value": false
+        },
+        {
+          "label": "Easy",
+          "value": true
+        }
+      ]
     }
   ]
 }

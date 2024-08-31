@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "title": {
     "pt": "Labirinto Secreto",
     "en": "Secret Labyrinth"
@@ -51,26 +51,53 @@
   "tags": ["competitive", "guessing", "same-time", "pairing", "achievements"],
   "options": [
     {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    },
+    {
       "key": "shortPath",
+      "kind": "switch",
       "label": "Distance",
-      "off": "Normal",
-      "on": "Short",
       "description": "Each players path may be shorter (5 trees) or longer (10 trees)",
-      "disabled": true
+      "disabled": true,
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "Short",
+          "value": true
+        }
+      ]
     },
     {
       "key": "itemTreeType",
+      "kind": "switch",
       "label": "Type",
-      "off": "Trees (Words)",
-      "on": "Items (Icons)",
-      "description": "Icons make the game with more variety but more simplistic"
-    },
-    {
-      "key": "nsfw",
-      "label": "NSFW",
-      "off": "No",
-      "on": "Yes",
-      "description": "Allow NSFW content"
+      "description": "Icons make the game with more variety but more simplistic",
+      "values": [
+        {
+          "label": "Trees (Words)",
+          "value": false
+        },
+        {
+          "label": "Items (Icons)",
+          "value": true
+        }
+      ]
     }
   ],
   "available": true
