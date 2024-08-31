@@ -21,7 +21,7 @@ export const handleExtraAction = async (
 ) => {
   // Save card to store
   try {
-    const { state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    const { state } = await utils.firestore.getStateReferences<FirebaseStateData>(
       gameName,
       gameId,
       actionText
@@ -29,7 +29,7 @@ export const handleExtraAction = async (
 
     return getNextPhase(gameName, gameId, state, additionalPayload);
   } catch (error) {
-    utils.firebase.throwException(error, `Failed to ${actionText}`);
+    utils.firestore.throwException(error, `Failed to ${actionText}`);
   }
 
   return true;
@@ -50,7 +50,7 @@ export const handleElimination = async (
   actionText: string,
   additionalPayload: any
 ) => {
-  const { sessionRef, state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -74,7 +74,7 @@ export const handleElimination = async (
     } else {
       const eliminatedSuspects = state?.eliminatedSuspects || [];
       eliminatedSuspects.push(suspectId);
-      await utils.firebase.saveGame(sessionRef, {
+      await utils.firestore.saveGame(sessionRef, {
         update: {
           state: {
             eliminatedSuspects,
@@ -95,7 +95,7 @@ export const handleElimination = async (
     try {
       return getNextPhase(gameName, gameId, state, { lose, win });
     } catch (error) {
-      utils.firebase.throwException(error, `Failed to ${actionText}`);
+      utils.firestore.throwException(error, `Failed to ${actionText}`);
     }
   }
 

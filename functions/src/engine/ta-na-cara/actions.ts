@@ -9,7 +9,7 @@ export const handleSubmitPrompt = async (
   playerId: PlayerId,
   questionId: CardId
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -25,7 +25,7 @@ export const handleSubmitTarget = async (
   playerId: PlayerId,
   targetId: PlayerId
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -41,7 +41,7 @@ export const handleSubmitGuess = async (
   playerId: PlayerId,
   characterId: CardId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -60,7 +60,7 @@ export const handleSubmitAnswer = async (
   playerId: PlayerId,
   answer: boolean
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

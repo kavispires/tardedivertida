@@ -22,7 +22,7 @@ export const handleSubmitStory = async (
   cardId: string
 ) => {
   // Get 'players' from given game session
-  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     'submit story'
@@ -30,7 +30,7 @@ export const handleSubmitStory = async (
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  await utils.firebase.updatePlayer({
+  await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -47,7 +47,7 @@ export const handleSubmitStory = async (
   try {
     await sessionRef.doc('store').update({ story, solutionCardId: cardId });
   } catch (error) {
-    utils.firebase.throwException(error, 'Failed to save story to store');
+    utils.firestore.throwException(error, 'Failed to save story to store');
   }
 
   // If all players are ready, trigger next phase
@@ -69,19 +69,19 @@ export const handlePlayCard = async (
   cardId: string
 ) => {
   const actionText = 'play a card';
-  const { state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
   );
 
   if (state.storytellerId === playerId) {
-    utils.firebase.throwException('You are the storyteller!', 'Failed to play card.');
+    utils.firestore.throwException('You are the storyteller!', 'Failed to play card.');
   }
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -110,7 +110,7 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

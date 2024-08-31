@@ -9,7 +9,7 @@ export const handleSubmitDrawing = async (
   playerId: PlayerId,
   drawing: string
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -27,7 +27,7 @@ export const handleSubmitVoting = async (
   votes: StringDictionary,
   choseRandomly: boolean
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

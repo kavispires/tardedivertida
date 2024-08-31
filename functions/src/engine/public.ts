@@ -14,7 +14,7 @@ export const getPublicFirebaseDocData = async (documentName: string, fallback: a
   }
 
   try {
-    response = (await utils.firebase.getPublicRef().doc(documentName)?.get())?.data() ?? fallback;
+    response = (await utils.firestore.getPublicRef().doc(documentName)?.get())?.data() ?? fallback;
   } catch (e) {
     console.error(e);
     response = fallback;
@@ -55,7 +55,7 @@ export const updatePublicFirebaseDoc = async (documentName: string, data: any): 
   }
 
   if (newData) {
-    await utils.firebase.getPublicRef().doc(documentName).update(newData);
+    await utils.firestore.getPublicRef().doc(documentName).update(newData);
   }
 
   return true;

@@ -85,7 +85,7 @@ export const getNextPhase = async (
   gameId: GameId,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -105,38 +105,38 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === PORTA_DOS_DESESPERADOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getData();
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // * -> BOOK_POSSESSION
   if (nextPhase === PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION) {
     const newPhase = await prepareBookPossessionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // BOOK_POSSESSION -> DOOR_CHOICE
   if (nextPhase === PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE) {
     const newPhase = await prepareDoorChoicePhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // DOOR_CHOICE -> RESOLUTION
   if (nextPhase === PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === PORTA_DOS_DESESPERADOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -160,6 +160,6 @@ export const submitAction = async (data: PortaDosDesesperadosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['doorId'], 'submit door');
       return handleSubmitDoor(gameName, gameId, playerId, data.doorId, data.ready);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };

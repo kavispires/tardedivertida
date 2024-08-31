@@ -61,7 +61,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -72,37 +72,37 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === ADEDANHX_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getTopics(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // * -> ANSWERING
   if (nextPhase === ADEDANHX_PHASES.ANSWERING) {
     const newPhase = await prepareAnsweringPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // ANSWERING -> EVALUATION
   if (nextPhase === ADEDANHX_PHASES.EVALUATION) {
     const newPhase = await prepareEvaluationPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // EVALUATION -> RESULTS
   if (nextPhase === ADEDANHX_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESULTS -> GAME_OVER
   if (nextPhase === ADEDANHX_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -127,6 +127,6 @@ export const submitAction = async (data: AdedanhxSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
       return handleSubmitRejectAnswers(gameName, gameId, playerId, data.evaluations);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };

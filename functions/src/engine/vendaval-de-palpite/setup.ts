@@ -171,7 +171,7 @@ export const prepareGameOverPhase = async (
    * - Did not guess within 7 rounds
    */
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.VENDAVAL_DE_PALPITE,

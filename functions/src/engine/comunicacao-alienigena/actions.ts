@@ -19,7 +19,7 @@ export const handleSubmitAlien = async (
   playerId: PlayerId,
   alienId: PlayerId
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -46,7 +46,7 @@ export const handleSubmitSeeds = async (
   playerId: PlayerId,
   seeds: Collection<number>
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -74,7 +74,7 @@ export const handleSubmitHumanInquiry = async (
   objectsIds: CardId[],
   intention: CardId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -91,7 +91,7 @@ export const handleSubmitAlienResponse = async (
   playerId: PlayerId,
   alienResponse: string
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -109,7 +109,7 @@ export const handleSubmitAlienRequest = async (
   alienRequest: string,
   intention: CardId
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -128,7 +128,7 @@ export const handleSubmitOffering = async (
   playerId: PlayerId,
   offeringId: CardId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

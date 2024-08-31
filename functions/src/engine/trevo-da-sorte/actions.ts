@@ -18,7 +18,7 @@ export const handleSubmitBadWords = async (
   playerId: PlayerId,
   cardsIds: CardId[]
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -50,7 +50,7 @@ export const handleSubmitClues = async (
     'clover.leaves.D': clues[3],
   };
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -83,7 +83,7 @@ export const handleSubmitGuess = async (
     score: Object.values(guesses).reduce((acc: number, entry) => acc + entry.score, 0),
   };
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

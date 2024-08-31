@@ -62,7 +62,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -73,43 +73,43 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === TREVO_DA_SORTE_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP/* -> WORD_SELECTION
   if (nextPhase === TREVO_DA_SORTE_PHASES.WORD_SELECTION) {
     const newPhase = await prepareWordSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // WORD_SELECTION -> CLOVER_WRITING
   if (nextPhase === TREVO_DA_SORTE_PHASES.CLOVER_WRITING) {
     const newPhase = await prepareCloverWritingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CLOVER_WRITING -> CLOVER_GUESSING
   if (nextPhase === TREVO_DA_SORTE_PHASES.CLOVER_GUESSING) {
     const newPhase = await prepareCloverGuessingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CLOVER_GUESSING -> RESULTS
   if (nextPhase === TREVO_DA_SORTE_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESULTS -> GAME_OVER
   if (nextPhase === TREVO_DA_SORTE_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -135,6 +135,6 @@ export const submitAction = async (data: TrevoDaSorteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guesses', 'activeCloverId'], 'submit guesses');
       return handleSubmitGuess(gameName, gameId, playerId, data.guesses, data.activeCloverId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };

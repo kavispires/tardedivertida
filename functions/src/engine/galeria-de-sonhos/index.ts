@@ -80,7 +80,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -92,43 +92,43 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // * -> WORD_SELECTION
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.WORD_SELECTION) {
     const newPhase = await prepareWordSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // WORD_SELECTION -> DREAMS_SELECTION
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION) {
     const newPhase = await prepareDreamsSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // DREAMS_SELECTION -> CARD_PLAY
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.CARD_PLAY) {
     const newPhase = await prepareCardPlayPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CARD_PLAY -> RESOLUTION
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -154,6 +154,6 @@ export const submitAction = async (data: GaleriaDeSonhosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(gameName, gameId, playerId, data.cardId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };

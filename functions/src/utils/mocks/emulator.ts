@@ -18,27 +18,27 @@ export const feedEmulatorDB = async () => {
 
   // DATA
   const dataEntries = Object.values(DATA_DOCUMENTS).map((usedEntryName) =>
-    utils.firebase.getDataRef().doc(usedEntryName).set(sample)
+    utils.firestore.getDataRef().doc(usedEntryName).set(sample)
   );
   await Promise.all(dataEntries);
-  await utils.firebase
+  await utils.firestore
     .getDataRef()
     .doc(DATA_DOCUMENTS.SUFFIX_COUNTS)
     .set({ drawings: 0, monsterDrawings: 0 });
-  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.ALIEN_ITEMS).set(aliemItemsMock);
+  await utils.firestore.getDataRef().doc(DATA_DOCUMENTS.ALIEN_ITEMS).set(aliemItemsMock);
 
   // GLOBAL
-  await utils.firebase.getGlobalRef().doc(USED_GAME_IDS).set(sample);
+  await utils.firestore.getGlobalRef().doc(USED_GAME_IDS).set(sample);
 
   // PUBLIC
-  await utils.firebase.getPublicRef().doc('ratings').set(sample);
+  await utils.firestore.getPublicRef().doc('ratings').set(sample);
 
   // DAILY
-  await utils.firebase.getPublicRef().doc('daily').set({ '2023-10-31': true });
-  await utils.firebase.getPublicRef().doc('diario').set({ '2023-10-31': true });
+  await utils.firestore.getPublicRef().doc('daily').set({ '2023-10-31': true });
+  await utils.firestore.getPublicRef().doc('diario').set({ '2023-10-31': true });
 
   const usedEntries = Object.values(GLOBAL_USED_DOCUMENTS).map((usedEntryName) =>
-    utils.firebase.getGlobalRef().doc(usedEntryName).set(sample)
+    utils.firestore.getGlobalRef().doc(usedEntryName).set(sample)
   );
   await Promise.all(usedEntries);
 };
@@ -69,7 +69,7 @@ export const feedEmulatorUser = async () => {
     ratings: {},
   };
 
-  await utils.firebase.getUserRef().doc(emulateUid).set(emulateUser);
+  await utils.firestore.getUserRef().doc(emulateUid).set(emulateUser);
 };
 
 export const feedEmulatorDaily = async () => {
@@ -223,20 +223,20 @@ export const feedEmulatorDaily = async () => {
     },
   };
 
-  await utils.firebase.getDailyRef('daily').doc('2023-10-31').set(dailyMock);
+  await utils.firestore.getDailyRef('daily').doc('2023-10-31').set(dailyMock);
 
-  await utils.firebase.getDailyRef('diario').doc('2023-10-31').set(dailyMock);
+  await utils.firestore.getDailyRef('diario').doc('2023-10-31').set(dailyMock);
 
   const history = {
     latestDate: '2023-10-31',
     latestNumber: 0,
     used: [],
   };
-  await utils.firebase.getDailyRef('daily').doc('history').set(history);
-  await utils.firebase.getDailyRef('diario').doc('history').set(history);
+  await utils.firestore.getDailyRef('daily').doc('history').set(history);
+  await utils.firestore.getDailyRef('diario').doc('history').set(history);
 
   // Suffix counts
-  await utils.firebase.getDailyRef('data').doc('suffixCounts').set({
+  await utils.firestore.getDailyRef('data').doc('suffixCounts').set({
     drawingsPT: 2,
     drawingsEN: 3,
   });

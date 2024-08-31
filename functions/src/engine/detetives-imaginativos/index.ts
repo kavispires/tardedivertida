@@ -63,7 +63,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -74,13 +74,13 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getData(players);
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
 
     return getNextPhase(gameName, gameId);
   }
@@ -88,37 +88,37 @@ export const getNextPhase = async (
   // * -> SECRET_CLUE
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE) {
     const newPhase = await prepareSecretCluePhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // SECRET_CLUE -> CARD_PLAY
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.CARD_PLAY) {
     const newPhase = await prepareCardPlayPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CARD_PLAY -> DEFENSE
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.DEFENSE) {
     const newPhase = await prepareDefensePhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // DEFENSE -> VOTING
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.VOTING) {
     const newPhase = await prepareVotingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // VOTING -> REVEAL
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // REVEAL --> GAME_OVER
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -147,6 +147,6 @@ export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };

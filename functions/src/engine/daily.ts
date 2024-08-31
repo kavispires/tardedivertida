@@ -25,19 +25,19 @@ const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', actionText);
+    return utils.firestore.throwException('User not authenticated', actionText);
   }
 
   const { date } = data;
   if (!date) {
-    return utils.firebase.throwException('Date not provided', actionText);
+    return utils.firestore.throwException('Date not provided', actionText);
   }
 
-  const dailyRef = utils.firebase.getDailyRef(data.document);
+  const dailyRef = utils.firestore.getDailyRef(data.document);
   const dailyDoc = await dailyRef.doc(date).get();
 
   if (!dailyDoc.exists) {
-    utils.firebase.throwException(`Daily ${date} does not exist`, actionText);
+    utils.firestore.throwException(`Daily ${date} does not exist`, actionText);
   }
 
   const dailyData = dailyDoc.data();
@@ -71,14 +71,14 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', actionText);
+    return utils.firestore.throwException('User not authenticated', actionText);
   }
 
   const { id, number, victory, hearts, letters } = data;
   if (!id) {
-    return utils.firebase.throwException('Payload is missing data', actionText);
+    return utils.firestore.throwException('Payload is missing data', actionText);
   }
-  const userRef = utils.firebase.getUserRef();
+  const userRef = utils.firestore.getUserRef();
 
   let isError = false;
 
@@ -104,7 +104,7 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
 
   // Error: possibly because the user does not exist
   if (isError) {
-    const userRef = utils.firebase.getUserRef();
+    const userRef = utils.firestore.getUserRef();
     const user = await userRef.doc(uid).get();
 
     // If the user object doesn't exist, just create one
@@ -138,7 +138,7 @@ const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) =>
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', actionText);
+    return utils.firestore.throwException('User not authenticated', actionText);
   }
 
   await dataUtils.updateDataCollectionRecursively('drawings', data.language, data.drawings);

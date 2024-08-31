@@ -65,7 +65,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -78,38 +78,38 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === ONDA_TELEPATICA_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getCategories(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // DIAL_SIDES -> DIAL_CLUE
   if (nextPhase === ONDA_TELEPATICA_PHASES.DIAL_CLUE) {
     const newPhase = await prepareDialCluePhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // DIAL_CLUE -> GUESS
   if (nextPhase === ONDA_TELEPATICA_PHASES.GUESS) {
     const newPhase = await prepareGuessPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // GUESS -> REVEAL
   if (nextPhase === ONDA_TELEPATICA_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // REVEAL -> GAME_OVER
   if (nextPhase === ONDA_TELEPATICA_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
 
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -135,6 +135,6 @@ export const submitAction = async (data: OndaTelepaticaSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitGuess(gameName, gameId, playerId, data.guess);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };

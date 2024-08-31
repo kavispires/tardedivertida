@@ -22,7 +22,7 @@ const getUser = async ({ date }: OptionalDailyGetterPayload, auth: FirebaseAuth)
     return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
   }
 
-  const userRef = utils.firebase.getUserRef();
+  const userRef = utils.firestore.getUserRef();
   const user = await userRef.doc(uid).get();
 
   // If the user object doesn't exist, just create one
@@ -52,7 +52,7 @@ const getUserById = async (userUid: string, auth: FirebaseAuth) => {
     return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
   }
 
-  const userRef = utils.firebase.getUserRef();
+  const userRef = utils.firestore.getUserRef();
   const user = await userRef.doc(userUid).get();
 
   // If the user object doesn't exist, just create one
@@ -78,7 +78,7 @@ const getUsers = async (_: unknown, auth: FirebaseAuth) => {
     return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
   }
 
-  const usersRef = utils.firebase.getUserRef();
+  const usersRef = utils.firestore.getUserRef();
   return (await usersRef.get()).docs;
 };
 
@@ -100,7 +100,7 @@ const updateUserDB = async (data: FirebaseUserDB, auth: FirebaseAuth) => {
     return utils.firebase.throwExceptionV2('Payload is missing data', 'get user');
   }
 
-  const userRef = utils.firebase.getUserRef();
+  const userRef = utils.firestore.getUserRef();
   await userRef.doc(data.id).update({ ...data });
 
   return true;

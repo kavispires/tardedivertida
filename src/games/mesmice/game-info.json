@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "title": {
     "pt": "Jogo da Mesmice",
     "en": "Same But Different"

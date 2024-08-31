@@ -17,7 +17,7 @@ export const handleSubmitWordSelectionVotes = async (
   playerId: PlayerId,
   votes: PlainObject
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -42,7 +42,7 @@ export const handleSubmitSuggestions = async (
   playerId: PlayerId,
   suggestions: PlainObject
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -67,7 +67,7 @@ export const handleUpdateValidSuggestions = async (
   playerId: PlayerId,
   suggestions: PlainObject
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -92,7 +92,7 @@ export const handleSubmitValidation = async (
   playerId: PlayerId,
   validSuggestions: PlainObject
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -118,7 +118,7 @@ export const handleSendGuess = async (
   playerId: PlayerId,
   guess: string
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -144,7 +144,7 @@ export const handleConfirmGuess = async (
   playerId: PlayerId,
   outcome: string
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,

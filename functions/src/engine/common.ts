@@ -13,11 +13,11 @@ const loadGame = async (data: LoadGamePayload) => {
   const actionText = 'load game';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
 
-  const metaRef = utils.firebase.getMetaRef();
+  const metaRef = utils.firestore.getMetaRef();
   const gameMeta = await metaRef.doc(gameId).get();
 
   if (!gameMeta.exists) {
-    return utils.firebase.throwException(`game ${gameId} does not exist`, actionText);
+    return utils.firestore.throwException(`game ${gameId} does not exist`, actionText);
   }
 
   const gameMetaData = gameMeta.data();
@@ -41,7 +41,7 @@ const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
   utils.firebase.verifyPayload(playerName, 'playerName', actionText);
 
   // Get 'state.players' from given game session
-  const { sessionRef, state } = await utils.firebase.getStateReferences<DefaultState>(
+  const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
     gameId,
     actionText
@@ -64,18 +64,18 @@ const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
   const numPlayers = utils.players.getPlayerCount(players);
 
   if (numPlayers === playerCounts.MAX) {
-    utils.firebase.throwException(
+    utils.firestore.throwException(
       `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${playerCounts.MIN}`,
       actionText
     );
   }
 
   // Verify if game is locked
-  const metaDoc = await utils.firebase.getMetaDoc(gameId, actionText);
+  const metaDoc = await utils.firestore.getMetaDoc(gameId, actionText);
   const meta = metaDoc.data() ?? {};
 
   if (meta?.isLocked) {
-    utils.firebase.throwException(`This game ${gameId} is locked and cannot accept new players`, actionText);
+    utils.firestore.throwException(`This game ${gameId} is locked and cannot accept new players`, actionText);
   }
 
   try {
@@ -92,7 +92,7 @@ const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
     });
     return newPlayer;
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    utils.firestore.throwException(error, actionText);
   }
 };
 
@@ -110,7 +110,7 @@ const makePlayerReady = async (data: Payload) => {
   utils.firebase.verifyPayload(playerId, 'playerId', actionText);
 
   // Get 'state.players' from given game session
-  const { sessionRef, state } = await utils.firebase.getStateReferences<DefaultState>(
+  const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
     gameId,
     actionText
@@ -125,7 +125,7 @@ const makePlayerReady = async (data: Payload) => {
       await sessionRef.doc('state').update({ [path]: true });
       return true;
     } catch (error) {
-      utils.firebase.throwException(error, actionText);
+      utils.firestore.throwException(error, actionText);
     }
   }
 
@@ -135,7 +135,7 @@ const makePlayerReady = async (data: Payload) => {
   try {
     return getNextPhase(gameName, gameId);
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    utils.firestore.throwException(error, actionText);
   }
 };
 
@@ -149,7 +149,7 @@ const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
   if (uid) {
     try {
       const path = `games.${gameName}.[0]`;
-      await utils.firebase
+      await utils.firestore
         .getUserRef()
         .doc(uid)
         .update({
@@ -163,7 +163,7 @@ const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
   }
 
   try {
-    await utils.firebase
+    await utils.firestore
       .getPublicRef()
       .doc('ratings')
       .collection(gameName)
@@ -173,7 +173,7 @@ const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
       });
   } catch (e) {
     try {
-      await utils.firebase
+      await utils.firestore
         .getPublicRef()
         .doc('ratings')
         .collection(gameName)
@@ -182,7 +182,7 @@ const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
           [gameId]: data.ratings,
         });
     } catch (error) {
-      utils.firebase.throwException(error, actionText);
+      utils.firestore.throwException(error, actionText);
     }
   }
   return true;

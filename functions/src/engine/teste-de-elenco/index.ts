@@ -61,7 +61,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -72,38 +72,38 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === TESTE_DE_ELENCO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getData(store.language, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> MOVIE_GENRE_SELECTION
   if (nextPhase === TESTE_DE_ELENCO_PHASES.MOVIE_GENRE_SELECTION) {
     const newPhase = await prepareMovieGenreSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // * -> ACTOR_SELECTION
   if (nextPhase === TESTE_DE_ELENCO_PHASES.ACTOR_SELECTION) {
     const newPhase = await prepareActorSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // ACTOR_SELECTION -> RESULT
   if (nextPhase === TESTE_DE_ELENCO_PHASES.RESULT) {
     const newPhase = await prepareResultPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESULT -> GAME_OVER
   if (nextPhase === TESTE_DE_ELENCO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
 
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -133,6 +133,6 @@ export const submitAction = async (data: TesteDeElencoSubmitAction) => {
       return handleSubmitActor(gameName, gameId, playerId, data.actorId);
 
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };
