@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "3.0.41",
+  "version": "3.0.42",
   "title": {
     "pt": "Testemunha Ocular",
     "en": "Eye Witness"
@@ -68,8 +68,8 @@
       "description": "Choose the suspect type of deck to play with",
       "values": [
         {
-          "label": "Normal",
-          "value": "normal"
+          "label": "Regular (recommended)",
+          "value": "regular"
         },
         {
           "label": "Realistic",

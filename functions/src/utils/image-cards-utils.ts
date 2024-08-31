@@ -84,17 +84,17 @@ export const getImageCardsDecks = async (quantity: number): Promise<ImageCardId[
 
 export const modifySuspectIdsByOptions = (
   suspects: SuspectCard[],
-  options: SuspectCardsOptions
+  options?: SuspectCardsOptions
 ): SuspectCard[] => {
   let deckType = 'ct';
 
-  if (options.realistic) {
+  if (options?.deckType === 'realistic') {
     deckType = 'ai';
   }
-  if (options.models) {
+  if (options?.deckType === 'models') {
     deckType = 'md';
   }
-  if (options.wacky) {
+  if (options?.deckType === 'wacky') {
     deckType = 'wc';
   }
 
