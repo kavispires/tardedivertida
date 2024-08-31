@@ -46,7 +46,13 @@ export function GameCustomizations({
               option.disabled && 'create-game-modal-options__option--disabled'
             )}
           >
-            <span className="create-game-modal-options__label">{option.label}</span>
+            <div className="create-game-modal-options__label">
+              <span>{option.label}</span>
+              {option.kind !== 'switch' && Boolean(option.description) && (
+                <div className="create-game-modal-options__option-description">{option.description}</div>
+              )}
+            </div>
+
             {option.kind === 'switch' && (
               <SwitchOptions
                 option={option}
@@ -72,7 +78,7 @@ export function GameCustomizations({
               />
             )}
 
-            {Boolean(option.description) && (
+            {option.kind === 'switch' && Boolean(option.description) && (
               <span className="create-game-modal-options__option-description">{option.description}</span>
             )}
           </Typography.Paragraph>
