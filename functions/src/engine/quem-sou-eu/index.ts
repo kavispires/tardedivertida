@@ -62,7 +62,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -73,7 +73,7 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === QUEM_SOU_EU_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getResourceData(
@@ -82,38 +82,38 @@ export const getNextPhase = async (
       store.options
     );
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> CHARACTER_FILTERING
   if (nextPhase === QUEM_SOU_EU_PHASES.CHARACTER_FILTERING) {
     const newPhase = await prepareCharacterFilteringPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // * -> CHARACTER_DESCRIPTION
   if (nextPhase === QUEM_SOU_EU_PHASES.CHARACTER_DESCRIPTION) {
     const newPhase = await prepareCharacterDescriptionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CHARACTER_DESCRIPTION -> GUESSING
   if (nextPhase === QUEM_SOU_EU_PHASES.GUESSING) {
     const newPhase = await prepareGuessingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // GUESSING -> RESULTS
   if (nextPhase === QUEM_SOU_EU_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESULTS --> GAME_OVER
   if (nextPhase === QUEM_SOU_EU_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -140,6 +140,6 @@ export const submitAction = async (data: QuemSouEuSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
       return handleSubmitGuesses(gameName, gameId, playerId, data.guesses, data.choseRandomly);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };

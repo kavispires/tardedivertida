@@ -29,7 +29,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableQuestions).length < QUESTIONS_PER_ROUND * MAX_ROUNDS) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS);
+    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS);
     return { allQuestions };
   }
 

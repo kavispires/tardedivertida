@@ -16,7 +16,7 @@ export const getDataFirebaseDocData = async (documentName: string, fallback: any
   }
 
   try {
-    response = (await utils.firebase.getDataRef().doc(documentName)?.get())?.data() ?? fallback;
+    response = (await utils.firestore.getDataRef().doc(documentName)?.get())?.data() ?? fallback;
   } catch (e) {
     console.error(e);
     response = fallback;
@@ -55,7 +55,7 @@ export const updateDataFirebaseDoc = async (documentName: string, data: any): Pr
   }
 
   if (newData) {
-    await utils.firebase.getDataRef().doc(documentName).update(newData);
+    await utils.firestore.getDataRef().doc(documentName).update(newData);
   }
 
   return true;
@@ -77,14 +77,14 @@ export const updateDataCollectionRecursively = async (
     const documentFullName = `${documentPrefix}${suffix}`;
 
     try {
-      const docRef = utils.firebase.getDataRef().doc(documentFullName);
+      const docRef = utils.firestore.getDataRef().doc(documentFullName);
       const doc = await docRef.get();
       if (doc.exists) {
         await docRef.update(data);
       } else {
         await docRef.set(data);
       }
-      await utils.firebase
+      await utils.firestore
         .getDataRef()
         .doc('suffixCounts')
         .update({ [documentPrefix]: suffix });
@@ -106,7 +106,7 @@ export const updateCardDataCollection = async (
   const documentName = `${type}Clues${language.toUpperCase()}`;
 
   // Get currentDoc
-  const docRef = utils.firebase.getDataRef().doc(documentName);
+  const docRef = utils.firestore.getDataRef().doc(documentName);
   const doc = await docRef.get();
   if (doc.exists) {
     const currentData = doc.data() ?? {};
@@ -155,7 +155,7 @@ export const updateOpposingIdeasClues = async (pastCategories: PastCategories) =
     }
   });
 
-  await utils.firebase
+  await utils.firestore
     .getDataRef()
     .doc(DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES)
     .update(previouslySavedCategories);
@@ -178,7 +178,10 @@ export const updateImageCardsRelationships = async (relationships: ImageCardRela
   });
 
   // Save
-  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS).update(parsedRelationships);
+  await utils.firestore
+    .getDataRef()
+    .doc(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS)
+    .update(parsedRelationships);
 };
 
 function transpileRelationships(source: ImageCardRelationship, result: ImageCardRelationship) {

@@ -17,7 +17,7 @@ export const handleSubmitHint = async (
     position,
   };
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -36,7 +36,7 @@ export const handleSubmitConclusions = async (
 ) => {
   const actionText = 'submit conclusions';
 
-  const { players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -47,7 +47,7 @@ export const handleSubmitConclusions = async (
     ...conclusions,
   };
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -66,7 +66,7 @@ export const handleSubmitCode = async (
 ) => {
   const actionText = 'submit conclusions';
 
-  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -79,7 +79,7 @@ export const handleSubmitCode = async (
   try {
     await sessionRef.doc('state').update({ [`players.${playerId}`]: updatedPlayers[playerId] });
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    utils.firestore.throwException(error, actionText);
   }
 
   // If all players are ready, trigger next phase

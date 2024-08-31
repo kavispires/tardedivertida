@@ -35,7 +35,7 @@ export const getQuestionsAndSuspects = async (
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCards).length < QUESTION_COUNT) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
+    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
     return {
       allCards: options.nsfw ? Object.values(allCards) : Object.values(allCards).filter((card) => !card.nsfw),
       allSuspects: Object.values(allSuspects),

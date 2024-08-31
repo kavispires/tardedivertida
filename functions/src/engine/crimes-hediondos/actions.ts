@@ -10,7 +10,7 @@ export const handleSubmitCrime = async (
   playerId: PlayerId,
   data: PlainObject
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -34,7 +34,7 @@ export const handleSubmitMark = async (
   playerId: PlayerId,
   sceneIndex: number
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -51,7 +51,7 @@ export const handleSubmitGuesses = async (
   playerId: PlayerId,
   guesses: Guesses
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

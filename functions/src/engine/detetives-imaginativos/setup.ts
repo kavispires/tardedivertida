@@ -211,7 +211,7 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
   const gallery = utils.helpers.deepCopy(store.usedCards);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.DETETIVES_IMAGINATIVOS,
@@ -230,7 +230,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

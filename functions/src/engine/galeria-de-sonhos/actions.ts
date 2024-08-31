@@ -11,7 +11,7 @@ export const handleSubmitWord = async (
   playerId: PlayerId,
   wordId: string
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -37,7 +37,7 @@ export const handleSubmitCards = async (
     return acc;
   }, {});
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -57,7 +57,7 @@ export const handlePlayCard = async (
   const actionText = 'play a card';
 
   // Get 'players' from given game session
-  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -190,10 +190,10 @@ export const handlePlayCard = async (
   try {
     await sessionRef.doc('state').update({ players });
   } catch (error) {
-    utils.firebase.throwException(error, 'Failed to update players');
+    utils.firestore.throwException(error, 'Failed to update players');
   }
 
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,

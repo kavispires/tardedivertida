@@ -111,7 +111,7 @@ export const prepareChallengeSelectionPhase = async (
   const round = utils.helpers.increaseRound(state.round);
 
   // If round 5, build brackets with store.finalBrackets
-  let brackets: unknown = utils.firebase.deleteValue();
+  let brackets: unknown = utils.firestore.deleteValue();
 
   if (isFinalRound(round)) {
     brackets = makeFinalBrackets(store.finalBrackets);
@@ -286,7 +286,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   const pastBattles = store.pastBattles;
 
@@ -309,7 +309,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

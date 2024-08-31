@@ -11,7 +11,7 @@ export const handleSubmitDecision = async (
   playerId: PlayerId,
   decision: Decisions
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

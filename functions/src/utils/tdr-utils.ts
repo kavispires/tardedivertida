@@ -5,7 +5,7 @@ import { fetchResource } from '../engine/resource';
 import { AlienItem, ContenderCard, Item, TextCard } from '../types/tdr';
 import utils from './';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
-import * as firebaseUtils from './firebase';
+import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
 import { buildIdDictionary } from './helpers';
 
@@ -64,7 +64,7 @@ export const getItems = async (
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableAlienItems).length < quantity) {
-    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
     availableAlienItems = itemsObj;
   }
 
@@ -76,7 +76,7 @@ export const getItems = async (
   }
 
   // If not the minimum items needed, reset and use all safe
-  await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+  await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
 
   list = Object.values(itemsObj);
   return gameUtils.getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
@@ -220,7 +220,7 @@ export const getAlienItems = async (
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableAlienItems).length < quantity) {
-    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
     availableAlienItems = allAlienItemsObj;
   }
 
@@ -234,7 +234,7 @@ export const getAlienItems = async (
   }
 
   // If not the minimum items needed, reset and use all safe
-  await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+  await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
 
   list = Object.values(allAlienItemsObj);
   return options.balanceAttributes
@@ -317,7 +317,7 @@ export const getSingleWords = async (language: Language, quantity?: number): Pro
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableWords).length < quantity) {
-    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS);
+    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS);
     availableWords = allWords;
   }
 
@@ -374,7 +374,7 @@ export const getContenders = async (
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableContenders).length < quantity) {
-    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
     availableContenders = languageContenders;
   }
 
@@ -390,7 +390,7 @@ export const getContenders = async (
   }
 
   // If not the minimum items needed, reset and use all safe
-  await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+  await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
   const allSafeContenders = Object.values(languageContenders).filter((c) => !c.nsfw);
   return gameUtils.getRandomItems(Object.values(allSafeContenders), quantity);
 };
@@ -421,7 +421,7 @@ export const getAdjectives = async (language: Language, quantity?: number): Prom
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableAdjectives).length < quantity) {
-    await firebaseUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ADJECTIVES);
+    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ADJECTIVES);
     availableAdjectives = allAdjectives;
   }
 

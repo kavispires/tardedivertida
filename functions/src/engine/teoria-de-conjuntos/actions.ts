@@ -22,7 +22,7 @@ export const handleSubmitJudge = async (
   playerId: PlayerId,
   judgeId: PlayerId
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -49,7 +49,7 @@ export const handleSubmitItemDiagram = async (
     correctArea: null,
     outcome: OUTCOME.PENDING,
   };
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -67,7 +67,7 @@ export const handleSubmitEvaluation = async (
   playerId: PlayerId,
   evaluation: string
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,

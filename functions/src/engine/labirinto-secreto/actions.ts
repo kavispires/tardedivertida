@@ -11,7 +11,7 @@ export const handleSubmitMap = async (
   playerId: PlayerId,
   newMap: (ExtendedTextCard | null)[]
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -30,7 +30,7 @@ export const handleSubmitPath = async (
   guess: CardId[],
   choseRandomly?: boolean
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

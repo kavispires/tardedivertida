@@ -17,7 +17,7 @@ export const handleSubmitDream = async (
   playerId: PlayerId,
   dream: string
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -42,7 +42,7 @@ export const handleSubmitVoting = async (
   playerId: PlayerId,
   votes: StringDictionary
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

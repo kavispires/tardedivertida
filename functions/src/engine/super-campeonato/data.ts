@@ -35,7 +35,7 @@ export const getResourceData = async (
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableChallenges).length < CHALLENGES_PER_GAME) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CHALLENGES);
+    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CHALLENGES);
     availableChallenges = challengesResponse;
   }
 

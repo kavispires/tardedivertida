@@ -88,7 +88,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -102,7 +102,7 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getResourceData(
@@ -112,56 +112,56 @@ export const getNextPhase = async (
     );
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> ALIEN_SELECTION
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION) {
     const newPhase = await prepareAlienSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // SETUP -> ALIEN_SELECTION
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING) {
     const newPhase = await prepareAlienSeedingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // * -> HUMANS_SASK
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK) {
     const newPhase = await prepareHumanAskPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // HUMANS_SASK -> ALIEN_ANSWER
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER) {
     const newPhase = await prepareAlienAnswerPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // ALIEN_ANSWER -> ALIEN_REQUEST
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST) {
     const newPhase = await prepareAlienRequestPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // ALIEN_REQUEST -> OFFERINGS
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.OFFERINGS) {
     const newPhase = await prepareOfferingsPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // OFFERINGS -> REVEAL
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESULTS --> GAME_OVER
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -201,6 +201,6 @@ export const submitAction = async (data: ComunicacaoAlienigenaSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['offeringId'], 'submit offeringId');
       return handleSubmitOffering(gameName, gameId, playerId, data.offeringId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firestore.throwException(`Given action ${action} is not allowed`);
   }
 };

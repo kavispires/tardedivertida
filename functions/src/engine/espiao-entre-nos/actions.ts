@@ -17,7 +17,7 @@ export const handleLastQuestioner = async (
   playerId: PlayerId,
   lastPlayerId: PlayerId
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -41,7 +41,7 @@ export const handleGuessLocation = async (
   playerId: PlayerId,
   locationId: string
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -65,7 +65,7 @@ export const handleMakeAccusation = async (
   playerId: PlayerId,
   targetId: PlayerId
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -93,7 +93,7 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

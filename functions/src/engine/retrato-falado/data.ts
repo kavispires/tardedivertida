@@ -25,7 +25,7 @@ export const getMonsterCards = async (): Promise<ResourceData> => {
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableMonsters).length < PLAYER_COUNTS.MAX) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MONSTERS);
+    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MONSTERS);
     return { allMonsters };
   }
 

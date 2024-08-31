@@ -17,7 +17,7 @@ export const handleSelectMovie = async (
   playerId: PlayerId,
   movieId: CardId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -42,7 +42,7 @@ export const handleEliminateMovie = async (
   playerId: PlayerId,
   movieId: CardId
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -69,7 +69,7 @@ export const handleVoteForPoster = async (
   movieId: CardId,
   posterId: CardId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
