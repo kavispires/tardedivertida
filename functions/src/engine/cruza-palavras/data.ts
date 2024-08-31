@@ -16,7 +16,6 @@ import { TextCard } from '../../types/tdr';
 export const getWords = async (language: Language, options?: CruzaPalavrasOptions): Promise<ResourceData> => {
   const allowNSFW = !!options?.nsfw;
   const quantityNeeded = options?.gridType === 'imageCards' ? 15 : 30;
-  console.log(options);
 
   if (options?.gridType === 'properties') {
     const resourceName = `${TDR_RESOURCES.THINGS_QUALITIES}-${language}`;

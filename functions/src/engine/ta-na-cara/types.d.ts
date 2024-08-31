@@ -18,7 +18,7 @@ export interface ResourceData {
   allSuspects: SuspectCard[];
 }
 
-export interface TaNaCaraStore extends DefaultStore {
+export interface TaNaCaraStore extends DefaultStore<TaNaCaraOptions> {
   [key: string]: any;
 }
 

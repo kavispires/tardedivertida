@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "title": {
     "pt": "Teste De Elenco",
     "en": "Re-Casting Call"
@@ -68,8 +68,8 @@
       "description": "Choose the suspect type of deck to play with",
       "values": [
         {
-          "label": "Normal",
-          "value": "normal"
+          "label": "Regular (recommended)",
+          "value": "regular"
         },
         {
           "label": "Realistic",
