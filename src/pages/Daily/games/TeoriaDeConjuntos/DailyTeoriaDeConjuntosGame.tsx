@@ -7,12 +7,17 @@ import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 import { getToday } from '../../utils';
 import { DailyTeoriaDeConjuntos } from './components/DailyTeoriaDeConjuntos';
 import { useTeoriaDeConjuntosDemo } from './utils/useTeoriaDeConjuntosDemo';
+import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
 
 export function DailyTeoriaDeConjuntosGame() {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const challengeQuery = useTeoriaDeConjuntosDemo(getToday());
+  // TODO: Remove demo query
+  const today = getToday();
+  const demoQuery = useTeoriaDeConjuntosDemo(today);
+  const realQuery = useDailyChallenge(today);
+  const challengeQuery = today === '2024-08-31' ? demoQuery : realQuery;
 
   if (challengeQuery.isLoading || challengeQuery.isRefetching) {
     return <DailyLoading />;
