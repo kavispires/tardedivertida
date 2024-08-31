@@ -21,6 +21,7 @@ import { VoteComunicacaoAlienigena } from './Votes/VoteComunicacaoAlienigena';
 import { VoteTaNaCara } from './Votes/VoteTaNaCara';
 import { VoteLabirintoSecreto } from './Votes/VoteLabirintoSecreto';
 import { VoteWhoSaidThis } from './Votes/VoteWhoSaidThis';
+import { VoteCrimesHediondos } from './Votes/VoteCrimesHediondos';
 
 export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
   const playersList = useMemo(
@@ -33,7 +34,7 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
       'arte-ruim': VoteArteRuim,
       'comunicacao-alienigena': VoteComunicacaoAlienigena,
       'contadores-historias': VoteImagesTrack,
-      'crimes-hediondos': VoteImagesTrack,
+      'crimes-hediondos': VoteCrimesHediondos,
       'cruza-palavras': VoteCruzaPalavras,
       'detetives-imaginativos': VoteImagesTrack,
       'dilema-dos-esquiadores': VoteValue,

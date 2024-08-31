@@ -51,7 +51,7 @@ export interface ResourceData {
   allActors: SuspectCard[];
 }
 
-export interface TesteDeElencoStore extends DefaultStore {
+export interface TesteDeElencoStore extends DefaultStore<TesteDeElencoOptions> {
   traits: string[];
   actors: SuspectCard[];
   [key: string]: any;

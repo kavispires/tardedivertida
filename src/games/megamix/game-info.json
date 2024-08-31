@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.30",
+  "version": "4.0.33",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -60,81 +60,91 @@
   "options": [
     {
       "key": "nsfw",
+      "kind": "switch",
       "label": "NSFW",
-      "on": "Any content",
-      "off": "Safe content",
-      "description": "Some games might have inappropriate stuff"
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "partyMode",
+      "kind": "switch",
       "label": "Party Mode",
-      "on": "Yes",
-      "off": "No",
-      "description": "Players will populate the game answering personal questions"
+      "description": "Players will populate the game answering personal questions",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "moreTracks",
+      "kind": "switch",
       "label": "TD Based Tracks",
-      "on": "More",
-      "off": "Normal",
-      "description": "3-5 special tracks vs 5-9 special tracks (Select Track types below)"
+      "description": "3-5 special tracks vs 5-9 special tracks (Select Track types below)",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "More",
+          "value": true
+        }
+      ]
     },
     {
-      "key": "imagesTrack",
-      "label": "Images Track (recommended)",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based on Detective Agency, Dream Gallery, Obscure Doors or Story Tellers"
-    },
-    {
-      "key": "charactersTrack",
-      "label": "Characters Track (recommended)",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based Who Am I or Ultimate Champion"
-    },
-    {
-      "key": "opinionsTrack",
-      "label": "Opinions Track (recommended)",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based on That's Polemic, Facts Lineup, or The Skier's Dilemma"
-    },
-    {
-      "key": "drawingTrack",
-      "label": "Drawing Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based on Questionable Art or Monster Sketch"
-    },
-    {
-      "key": "wordsTrack",
-      "label": "Words Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based on That's It, Mixed Clues, or Herd Mind"
-    },
-
-    {
-      "key": "judgingTrack",
-      "label": "Judging Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based Eye Witness or Guess Who What. (NSFW)"
-    },
-    {
-      "key": "specialTrack",
-      "label": "Special Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based Alien Communication, or Telepathic Waves"
-    },
-    {
-      "key": "unpopularTrack",
-      "label": "Unpopular Track",
-      "on": "Yes",
-      "off": "No",
-      "description": "Adds one track based Horrific Crimes, Movie Night, or Fear Street"
+      "key": "tracks",
+      "kind": "checkbox",
+      "label": "Tracks",
+      "description": "Select the tracks you want to play with",
+      "values": [
+        {
+          "label": "Images (Detective Agency, Dream Gallery, Obscure Doors, Storytellers)",
+          "value": "images"
+        },
+        {
+          "label": "Characters (Who Am I, Ultimate Championship",
+          "value": "characters"
+        },
+        {
+          "label": "Opinions (That's Polemic, Facts Lineup, The Skier's Dilemma)",
+          "value": "opinions"
+        },
+        {
+          "label": "Drawing (Questionable Art or Monster Sketch",
+          "value": "drawing"
+        },
+        {
+          "label": "Words (That's It, Mixed Clues, or Herd Mind)",
+          "value": "words"
+        },
+        {
+          "label": "Judging (Eye Witness or Guess Who What. (NSFW))",
+          "value": "judging"
+        },
+        {
+          "label": "Special (Alien Communication, or Telepathic Waves)",
+          "value": "special"
+        },
+        {
+          "label": "Unpopular (Horrific Crimes, Movie Night, or Fear Street)",
+          "value": "unpopular"
+        }
+      ]
     }
   ]
 }

@@ -2,66 +2,40 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "gameCode": {
-      "type": "string"
-    },
-    "gameName": {
-      "type": "string"
-    },
-    "version": {
-      "type": "string"
-    },
+    "gameCode": { "type": "string" },
+    "gameName": { "type": "string" },
+    "version": { "type": "string" },
     "title": {
       "type": "object",
       "properties": {
-        "pt": {
-          "type": "string"
-        },
-        "en": {
-          "type": "string"
-        }
+        "pt": { "type": "string" },
+        "en": { "type": "string" }
       },
       "required": ["pt", "en"]
     },
     "popularName": {
       "type": "object",
       "properties": {
-        "pt": {
-          "type": "string"
-        },
-        "en": {
-          "type": "string"
-        }
+        "pt": { "type": "string" },
+        "en": { "type": "string" }
       },
       "required": ["pt", "en"]
     },
-    "basedOn": {
-      "type": "string"
-    },
+    "basedOn": { "type": "string" },
     "summary": {
       "type": "object",
       "properties": {
-        "pt": {
-          "type": "string"
-        },
-        "en": {
-          "type": "string"
-        }
+        "pt": { "type": "string" },
+        "en": { "type": "string" }
       },
       "required": ["pt", "en"]
     },
     "appearance": {
       "type": "object",
       "properties": {
-        "color": {
-          "type": "string"
-        },
-        "clouds": {
-          "type": "string"
-        },
-        "backgroundColor": {
-          "type": "string"
-        }
+        "color": { "type": "string" },
+        "clouds": { "type": "string" },
+        "backgroundColor": { "type": "string" }
       },
       "required": ["color", "clouds"]
     },
@@ -70,15 +44,11 @@
       "properties": {
         "pt": {
           "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "items": { "type": "string" }
         },
         "en": {
           "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "items": { "type": "string" }
         }
       },
       "required": ["pt", "en"]
@@ -86,33 +56,21 @@
     "playerCount": {
       "type": "object",
       "properties": {
-        "best": {
-          "type": "integer"
-        },
+        "best": { "type": "integer" },
         "recommended": {
           "type": "array",
-          "items": {
-            "type": "integer"
-          }
+          "items": { "type": "integer" }
         },
-        "min": {
-          "type": "integer"
-        },
-        "max": {
-          "type": "integer"
-        }
+        "min": { "type": "integer" },
+        "max": { "type": "integer" }
       },
       "required": ["recommended", "min", "max"]
     },
     "duration": {
       "type": "object",
       "properties": {
-        "base": {
-          "type": "number"
-        },
-        "perPlayer": {
-          "type": "number"
-        }
+        "base": { "type": "number" },
+        "perPlayer": { "type": "number" }
       },
       "required": ["base", "perPlayer"]
     },
@@ -145,35 +103,36 @@
         ]
       }
     },
-    "available": {
-      "type": "boolean",
-      "default": false
-    },
+    "available": { "type": "boolean", "default": false },
     "options": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "label": {
-            "type": "string"
+          "key": { "type": "string" },
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "disabled": { "type": "boolean" },
+          "kind": {
+            "type": "string",
+            "enum": ["switch", "checkbox", "radio"]
           },
-          "key": {
-            "type": "string"
-          },
-          "off": {
-            "type": "string"
-          },
-          "on": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "disabled": {
-            "type": "boolean"
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "value": {
+                  "type": ["string", "boolean"]
+                }
+              },
+              "required": ["label", "value"]
+            },
+            "minItems": 1
           }
         },
-        "required": ["label", "key", "off", "on"]
+        "required": ["key", "label", "kind"]
       }
     }
   },

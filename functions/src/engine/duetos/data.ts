@@ -14,29 +14,29 @@ import * as resourceUtils from '../resource';
  * @param allowNSFW
  * @returns
  */
-export const getResourceData = async (language: Language, options: DuetosOptions): Promise<ResourceData> => {
-  const allowNSFW = !!options.nsfw;
+export const getResourceData = async (language: Language, options?: DuetosOptions): Promise<ResourceData> => {
+  const allowNSFW = !!options?.nsfw;
   const quantityNeeded = PAIRS_PER_ROUND * 2 + EXTRA_ITEMS;
 
   let specialDeckTypes: string[] = [];
-  if (options.withImages) {
+  if (options?.specialRounds.includes('images')) {
     specialDeckTypes.push('images');
   }
-  if (options.withAvatars) {
+  if (options?.specialRounds.includes('avatars')) {
     specialDeckTypes.push(
       utils.game.getRandomItem(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes'])
     );
   }
-  if (options.withSprites) {
+  if (options?.specialRounds.includes('sprites')) {
     specialDeckTypes.push(utils.game.getRandomItem(['emojis', 'glyphs', 'glyphs']));
   }
-  if (options.withWords) {
+  if (options?.specialRounds.includes('words')) {
     specialDeckTypes.push('words');
   }
-  if (options.withSuspects && allowNSFW) {
+  if (options?.specialRounds.includes('suspects')) {
     specialDeckTypes.push('suspects');
   }
-  if (options.withContenders) {
+  if (options?.specialRounds.includes('contenders')) {
     specialDeckTypes.push('contenders');
   }
 
@@ -48,7 +48,7 @@ export const getResourceData = async (language: Language, options: DuetosOptions
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
-    decks: ['alien', 'dream', 'manufactured'],
+    decks: ['alien', 'dream', 'manufactured', 'thing'],
     cleanUp: utils.tdr.itemUtils.cleanupDecks,
   });
 
@@ -100,7 +100,7 @@ export const getResourceData = async (language: Language, options: DuetosOptions
   if (specialDeckTypes.includes('suspects')) {
     const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
     suspects = utils.game.getRandomItems(
-      utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects), {}),
+      utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects)),
       quantityNeeded
     );
   }

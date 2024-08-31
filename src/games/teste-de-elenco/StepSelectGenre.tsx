@@ -105,7 +105,7 @@ export function StepSelectGenre({
       </Container>
 
       <Container
-        title={<Translate en="Select the genre of te movie" pt="Selecione o gênero do filme" />}
+        title={<Translate en="Select the title of te movie" pt="Selecione o título do filme" />}
         contentProps={{
           style: { gridTemplateColumns: `repeat(${moviesTitles.length}, 1fr)` },
           className: 'movie-personalization-selection',

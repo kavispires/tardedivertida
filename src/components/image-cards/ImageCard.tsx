@@ -10,6 +10,7 @@ import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Sass
 import './ImageCard.scss';
+import { useMemo } from 'react';
 
 export type ImageCardProps = {
   /**
@@ -64,9 +65,16 @@ export const ImageCard = ({
 
   const baseClass = 'image-card';
 
-  const fallbackName = `placeholder-${id[id.length - 1]}`;
-
-  const imageURL = id.replace(/-/g, '/');
+  const { imageURL, fallbackName } = useMemo(() => {
+    const imageURL = id.replace(/-/g, '/');
+    const numId = Number(imageURL?.split('/')?.at(-1) ?? id[id.length - 1]) % 12;
+    console.log({ imageURL, numId });
+    const fallbackName = `placeholder-${numId}`;
+    return {
+      imageURL,
+      fallbackName,
+    };
+  }, [id]);
 
   const isBlurred = shouldBeBlurred(id);
 
