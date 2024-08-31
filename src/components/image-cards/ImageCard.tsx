@@ -68,7 +68,7 @@ export const ImageCard = ({
   const { imageURL, fallbackName } = useMemo(() => {
     const imageURL = id.replace(/-/g, '/');
     const numId = Number(imageURL?.split('/')?.at(-1) ?? id[id.length - 1]) % 12;
-    console.log({ imageURL, numId });
+
     const fallbackName = `placeholder-${numId}`;
     return {
       imageURL,
