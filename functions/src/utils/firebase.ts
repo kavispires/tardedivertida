@@ -1,4 +1,6 @@
+// eslint-disable-next-line
 import * as functions from 'firebase-functions/v1';
+// eslint-disable-next-line
 import * as functionsV2 from 'firebase-functions/v2';
 
 import { GenericCallableFunctionV2 } from '../types/reference';
