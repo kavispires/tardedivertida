@@ -14,30 +14,6 @@ export type DuetosOptions = {
    * Special grounds
    */
   specialRounds: 'images' | 'sprites' | 'avatars' | 'words' | 'contenders' | 'suspects';
-  // /**
-  //  * Enables image cards
-  //  */
-  // withImages?: boolean;
-  // /**
-  //  * Enables sprites round
-  //  */
-  // withSprites?: boolean;
-  // /**
-  //  * Enables avatars round
-  //  */
-  // withAvatars?: boolean;
-  // /**
-  //  * Enables words round
-  //  */
-  // withWords?: boolean;
-  // /**
-  //  * Enables contenders round
-  //  */
-  // withContenders?: boolean;
-  // /**
-  //  * Enables suspects round
-  //  */
-  // withSuspects?: boolean;
 };
 
 export type ItemEntry = {
