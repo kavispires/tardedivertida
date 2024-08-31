@@ -1,4 +1,6 @@
+// eslint-disable-next-line
 import * as functions from 'firebase-functions/v1';
+// eslint-disable-next-line
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '../utils';
