@@ -15,6 +15,19 @@ export const USER_API = {
   run: httpsCallable(functions, 'userEngine'),
 };
 
+export const DAILY_API_ACTIONS = {
+  GET_DAILY: 'GET_DAILY',
+  SAVE_DAILY: 'SAVE_DAILY',
+  SAVE_DRAWING: 'SAVE_DRAWING',
+};
+
+/**
+ * Daily API cloud function v2
+ */
+export const DAILY_API = {
+  run: httpsCallable(functions, 'dailyEngine'),
+};
+
 export const GAME_API_ACTIONS = {
   ADD_PLAYER: 'ADD_PLAYER',
   LOAD_GAME: 'LOAD_GAME',
@@ -24,16 +37,6 @@ export const GAME_API_ACTIONS = {
 
 export const GAME_API = {
   run: httpsCallable(functions, 'gameActions'),
-};
-
-export const DAILY_API_ACTIONS = {
-  GET_DAILY: 'GET_DAILY',
-  SAVE_DAILY: 'SAVE_DAILY',
-  SAVE_DRAWING: 'SAVE_DRAWING',
-};
-
-export const DAILY_API = {
-  run: httpsCallable(functions, 'dailyActions'),
 };
 
 export const ADMIN_API_ACTIONS = {
