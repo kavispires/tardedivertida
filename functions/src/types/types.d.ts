@@ -54,11 +54,15 @@ type GenericCallableFunction = (data: any, context: FirebaseContext) => unknown;
  */
 type CallablePayload<TPayload> = TPayload & { action: string };
 
+interface GameOptions {
+  [key: string]: boolean | string;
+}
+
 interface CreateGamePayload {
   gameName: string;
   language: string;
   version: string;
-  options?: BooleanDictionary;
+  options?: GameOptions;
 }
 
 interface LoadGamePayload {
@@ -98,7 +102,7 @@ interface Meta {
   language: string;
   version?: string;
   replay: number;
-  options?: BooleanDictionary;
+  options?: GameOptions;
 }
 
 interface PlayerCounts {
@@ -122,10 +126,10 @@ interface DefaultState {
   [key: string]: any;
 }
 
-interface DefaultStore {
-  language: Language;
-  options?: BooleanDictionary;
+interface DefaultStore<TOptions = GameOptions> {
   createdAt: DateMilliseconds;
+  language: Language;
+  options?: TOptions;
   [key: string]: any;
 }
 
@@ -175,7 +179,7 @@ interface InitialStateArgs {
   /**
    * Game options
    */
-  options?: PlainObject;
+  options?: GameOptions;
   /**
    * Function to generate stuff during game creating, for example adding bots
    * @returns an object with optional meta, store, state, or players values
