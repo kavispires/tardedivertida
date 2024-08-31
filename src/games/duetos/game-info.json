@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.26",
+  "version": "1.1.27",
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -85,27 +85,27 @@
       "values": [
         {
           "label": "Image Cards",
-          "value": "withImages"
+          "value": "images"
         },
         {
           "label": "Word",
-          "value": "withWords"
+          "value": "words"
         },
         {
           "label": "Celebrities",
-          "value": "withContenders"
+          "value": "contenders"
         },
         {
-          "label": "Characters",
-          "value": "withSuspects"
+          "label": "People/Suspects",
+          "value": "suspects"
         },
         {
           "label": "Sprites (Emojis, Glyphs)",
-          "value": "withSprites"
+          "value": "sprites"
         },
         {
           "label": "Avatars (Clubbers, Costumes, Super Heroes)",
-          "value": "withAvatars"
+          "value": "avatars"
         }
       ]
     }
