@@ -1,10 +1,11 @@
 import * as functions from 'firebase-functions';
+import * as functionsV2 from 'firebase-functions/v2';
 // eslint-disable-next-line
 import { initializeApp } from 'firebase-admin/app';
 import * as commonEngine from './engine/common';
 import * as adminEngine from './engine/admin';
 import * as dailyEngine from './engine/daily';
-import * as userEngine from './engine/user';
+import { userEngine } from './engine/user';
 
 import * as adedanhxEngine from './engine/adedanhx';
 import * as arteRuimEngine from './engine/arte-ruim';
@@ -70,11 +71,6 @@ exports.performAdminAction = functions.https.onCall(adminEngine.performAdminActi
  * Common game actions
  */
 exports.gameActions = functions.https.onCall(commonEngine.gameApi);
-
-/**
- * User actions
- */
-exports.userActions = functions.https.onCall(userEngine.userApi);
 
 /**
  * Daily actions
@@ -150,3 +146,12 @@ exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitActio
 exports.vamosAoCinemaSubmitAction = functions.https.onCall(vamosAoCinemaEngine.submitAction);
 
 exports.vendavalDePalpiteSubmitAction = functions.https.onCall(vendavalDePalpiteEngine.submitAction);
+
+/**
+ * CLOUD FUNCTION V2
+ */
+
+/**
+ * All user actions outside a game
+ */
+exports.userEngine = functionsV2.https.onCall(userEngine);

@@ -1,4 +1,5 @@
 // Utils
+import { CallableRequestV2, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import { FirebaseUserDB } from '../utils/user';
 
@@ -7,16 +8,18 @@ type OptionalDailyGetterPayload = {
 };
 
 /**
- * Gets the current user
- * @param _
- * @param context
- * @returns
+ * Retrieves the user data based on the provided parameters.
+ *
+ * @param payload - The optional payload containing the date.
+ * @param auth - The authentication object.
+ * @returns - A promise that resolves to the user data.
+ * @throws - Throws an exception if the user is not authenticated.
  */
-const getUser = async ({ date }: OptionalDailyGetterPayload, context: FirebaseContext) => {
-  const uid = context?.auth?.uid;
+const getUser = async ({ date }: OptionalDailyGetterPayload, auth: FirebaseAuth) => {
+  const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', 'get user');
+    return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
   }
 
   const userRef = utils.firebase.getUserRef();
@@ -24,7 +27,7 @@ const getUser = async ({ date }: OptionalDailyGetterPayload, context: FirebaseCo
 
   // If the user object doesn't exist, just create one
   if (!user.exists) {
-    const newUser = utils.user.generateNewUser(uid, context?.auth?.token?.provider_id === 'anonymous');
+    const newUser = utils.user.generateNewUser(uid, auth?.token?.provider_id === 'anonymous');
     await userRef.doc(uid).set(newUser);
 
     return utils.user.serializeUser(newUser);
@@ -35,16 +38,18 @@ const getUser = async ({ date }: OptionalDailyGetterPayload, context: FirebaseCo
 };
 
 /**
- * Get user by id
- * @param userUid
- * @param context
- * @returns
+ * Retrieves a user by their ID.
+ *
+ * @param userUid - The ID of the user to retrieve.
+ * @param auth - The FirebaseAuth object for authentication.
+ * @returns A Promise that resolves to the serialized user data.
+ * @throws An exception if the user is not authenticated or if the user does not exist.
  */
-const getUserById = async (userUid: string, context: FirebaseContext) => {
-  const uid = context?.auth?.uid;
+const getUserById = async (userUid: string, auth: FirebaseAuth) => {
+  const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('You are not authenticated', 'get user');
+    return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
   }
 
   const userRef = utils.firebase.getUserRef();
@@ -52,7 +57,7 @@ const getUserById = async (userUid: string, context: FirebaseContext) => {
 
   // If the user object doesn't exist, just create one
   if (!user.exists) {
-    return utils.firebase.throwException('User does not exist', 'get user');
+    return utils.firebase.throwExceptionV2('User does not exist', 'get user');
   }
 
   const userData = user.data();
@@ -60,16 +65,17 @@ const getUserById = async (userUid: string, context: FirebaseContext) => {
 };
 
 /**
- * Gets all users
- * @param _
- * @param context
- * @returns
+ * Retrieves the list of users.
+ *
+ * @param _ - Unused parameter.
+ * @param auth - The FirebaseAuth object containing the user's authentication information.
+ * @returns A Promise that resolves to an array of user documents.
  */
-const getUsers = async (_: unknown, context: FirebaseContext) => {
-  const uid = context?.auth?.uid;
+const getUsers = async (_: unknown, auth: FirebaseAuth) => {
+  const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', 'get users');
+    return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
   }
 
   const usersRef = utils.firebase.getUserRef();
@@ -77,20 +83,21 @@ const getUsers = async (_: unknown, context: FirebaseContext) => {
 };
 
 /**
- * Update a user with DB data
- * @param data
- * @param context
- * @returns
+ * Updates the user in the Firebase database.
+ *
+ * @param data - The user data to update.
+ * @param auth - The authentication information.
+ * @returns A boolean indicating whether the update was successful.
  */
-const updateUserDB = async (data: FirebaseUserDB, context: FirebaseContext) => {
-  const uid = context?.auth?.uid;
+const updateUserDB = async (data: FirebaseUserDB, auth: FirebaseAuth) => {
+  const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', 'get user');
+    return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
   }
 
   if (!data.id || !data.preferredLanguage) {
-    return utils.firebase.throwException('Payload is missing data', 'get user');
+    return utils.firebase.throwExceptionV2('Payload is missing data', 'get user');
   }
 
   const userRef = utils.firebase.getUserRef();
@@ -106,4 +113,11 @@ const USER_API_ACTIONS = {
   UPDATE_USER_DB: updateUserDB,
 };
 
-export const userApi = utils.firebase.apiDelegator('user api', USER_API_ACTIONS);
+/**
+ * Executes the user engine function.
+ *
+ * @param request - The callable request object.
+ * @returns The result of the user engine function.
+ */
+export const userEngine = (request: CallableRequestV2) =>
+  utils.firebase.apiDelegatorV2(request, USER_API_ACTIONS);
