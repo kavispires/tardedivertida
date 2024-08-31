@@ -5,35 +5,39 @@ export type DuetosOptions = {
   /**
    * Possibly include nsfw items
    */
-  nsfw?: boolean;
+  nsfw: boolean;
   /**
    * Enables bot selection
    */
-  withBots?: boolean;
+  withBots: boolean;
   /**
-   * Enables image cards
+   * Special grounds
    */
-  withImages?: boolean;
-  /**
-   * Enables sprites round
-   */
-  withSprites?: boolean;
-  /**
-   * Enables avatars round
-   */
-  withAvatars?: boolean;
-  /**
-   * Enables words round
-   */
-  withWords?: boolean;
-  /**
-   * Enables contenders round
-   */
-  withContenders?: boolean;
-  /**
-   * Enables suspects round
-   */
-  withSuspects?: boolean;
+  specialRounds: 'images' | 'sprites' | 'avatars' | 'words' | 'contenders' | 'suspects';
+  // /**
+  //  * Enables image cards
+  //  */
+  // withImages?: boolean;
+  // /**
+  //  * Enables sprites round
+  //  */
+  // withSprites?: boolean;
+  // /**
+  //  * Enables avatars round
+  //  */
+  // withAvatars?: boolean;
+  // /**
+  //  * Enables words round
+  //  */
+  // withWords?: boolean;
+  // /**
+  //  * Enables contenders round
+  //  */
+  // withContenders?: boolean;
+  // /**
+  //  * Enables suspects round
+  //  */
+  // withSuspects?: boolean;
 };
 
 export type ItemEntry = {
@@ -66,7 +70,7 @@ export type Gallery = GalleryItem[];
 
 export type DuetosAchievement = keyof typeof DUETOS_ACHIEVEMENTS;
 
-export interface DuetosStore extends DefaultStore {
+export interface DuetosStore extends DefaultStore<DuetosOptions> {
   [key: string]: any;
 }
 
@@ -83,5 +87,5 @@ export interface DuetosSubmitAction extends Payload {
   action: keyof typeof DUETOS_ACTIONS;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | DuetosState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | DuetosStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & DuetosState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & DuetosStore;
