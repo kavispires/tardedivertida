@@ -42,12 +42,22 @@ export const prepareSetupPhase = async (
     player.hand = Array(STARTING_ITEMS_PER_PLAYER_COUNT[playerCount])
       .fill('')
       .map(() => deckIds.pop())
-
       .filter(Boolean);
 
     player.hand.forEach((cardId: CardId) => {
       items[cardId] = deck[cardId];
     });
+  });
+
+  // Handle judge cards
+  const judgeHand = Array(STARTING_ITEMS_PER_PLAYER_COUNT[playerCount])
+    .fill('')
+    .map(() => deckIds.pop())
+    .filter(Boolean);
+  judgeHand.forEach((cardId: CardId | undefined) => {
+    if (cardId) {
+      items[cardId] = deck[cardId];
+    }
   });
 
   // Determine diagram type
@@ -61,15 +71,14 @@ export const prepareSetupPhase = async (
       store: {
         deck,
         deckIds,
+        judgeHand,
       },
       state: {
         phase: TEORIA_DE_CONJUNTOS_PHASES.SETUP,
         players,
         round: {
           current: 0,
-          total:
-            STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] +
-            ROUNDS_PER_PLAYER * (playerCount - (playerCount === 2 ? 0 : 1)),
+          total: STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] + ROUNDS_PER_PLAYER * playerCount,
         },
         items,
         diagrams,
@@ -119,14 +128,22 @@ export const prepareItemPlacementPhase = async (
   const { items, diagrams, judgeId } = state;
   const { deck, deckIds } = store;
 
+  if (store.judgeHand && judgeId) {
+    players[judgeId].hand.push(...store.judgeHand);
+  }
+
+  // Create player order in a way that the judge is always the first player
+  const getPlayerOrder = () => {
+    const po = utils.players.buildGameOrder(players, undefined, false, [judgeId]);
+    return [judgeId, ...po.gameOrder];
+  };
+
+  const isNotTheJudge = state.activePlayerId !== judgeId;
+
   // Determine or get player order
-  const turnOrder =
-    state.turnOrder || utils.players.buildGameOrder(players, undefined, false, [judgeId]).gameOrder;
+  const turnOrder = state.turnOrder || getPlayerOrder();
 
   const isNewRound = currentGuess.outcome !== OUTCOME.CONTINUE;
-
-  // Determine round if outcome has been wrong or new
-  const round: Round = isNewRound ? utils.helpers.increaseRound(state.round) : state.round;
 
   // Place item on diagram (and remove it from player)
   if (currentGuess.outcome !== OUTCOME.PENDING) {
@@ -141,7 +158,7 @@ export const prepareItemPlacementPhase = async (
   }
 
   // If they got it wrong (WRONG), give them a new item.
-  if (currentGuess.outcome === OUTCOME.WRONG && state.activePlayerId) {
+  if (currentGuess.outcome === OUTCOME.WRONG && state.activePlayerId && isNotTheJudge) {
     const player = players[state.activePlayerId];
     const newItemId = deckIds.pop();
     const newItem = deck[newItemId];
@@ -150,13 +167,13 @@ export const prepareItemPlacementPhase = async (
   }
 
   // Score
-  if (currentGuess.outcome === OUTCOME.CONTINUE) {
+  if (currentGuess.outcome === OUTCOME.CONTINUE && isNotTheJudge) {
     const player = players[state.activePlayerId];
     player.score += 1;
   }
 
   const previousActivePlayerId = state.activePlayerId ?? null;
-  if (previousActivePlayerId) {
+  if (previousActivePlayerId && isNotTheJudge) {
     utils.achievements.increase(
       store,
       state.activePlayerId,
@@ -166,12 +183,14 @@ export const prepareItemPlacementPhase = async (
   }
 
   // If player got it right (CONTINUE), just continue with the same player.
-  const activePlayerId = isNewRound
+  const shouldTriggerNewRound = !isNotTheJudge || isNewRound;
+  // Determine round if outcome has been wrong or new
+  const round: Round = shouldTriggerNewRound ? utils.helpers.increaseRound(state.round) : state.round;
+  const activePlayerId = shouldTriggerNewRound
     ? utils.players.getActivePlayer(turnOrder, round.current)
     : state.activePlayerId;
 
   utils.players.readyPlayers(players, activePlayerId);
-  // utils.players.removePropertiesFromPlayers(players, ['']);
 
   const previousGuess = previousActivePlayerId ? cloneDeep(currentGuess) : null;
 
@@ -202,6 +221,7 @@ export const prepareItemPlacementPhase = async (
         previousGuess,
         previousActivePlayerId,
       },
+      storeCleanup: ['judgeHand'],
     },
   };
 };
@@ -221,13 +241,16 @@ export const prepareEvaluationPhase = async (
     C: 'contextCircle',
     O: 'outside',
   };
+
+  const isNotTheJudge = state.activePlayerId !== state.judgeId;
+
   currentGuess.suggestedArea.split('').forEach((area) => {
-    if (achievementKey[area]) {
+    if (achievementKey[area] && isNotTheJudge) {
       utils.achievements.increase(store, state.activePlayerId, achievementKey[area], 1);
     }
   });
 
-  if (currentGuess.suggestedArea.length > 1) {
+  if (currentGuess.suggestedArea.length > 1 && isNotTheJudge) {
     utils.achievements.increase(store, state.currentPlayerId, 'intersection', 1);
   }
 

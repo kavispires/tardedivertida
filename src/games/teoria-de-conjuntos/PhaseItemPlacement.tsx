@@ -36,6 +36,7 @@ export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
       items={state.items}
       isTheActivePlayer={isTheActivePlayer}
       previousActivePlayer={previousActivePlayer}
+      judgeId={state.judgeId}
     />
   );
 
@@ -56,6 +57,8 @@ export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
             announcement={announcement}
             targetItemCount={state.targetItemsCount}
             round={state.round}
+            isJudge={isTheJudge}
+            solutions={state.solutions}
           />
 
           <StepWaitPlaceItem
