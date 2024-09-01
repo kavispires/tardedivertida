@@ -26,6 +26,7 @@ type AnnouncementProps = {
   previousGuess: Guess | null;
   currentRound: number;
   items: Dictionary<Item>;
+  judgeId: PlayerId;
 };
 
 export function Announcement({
@@ -35,6 +36,7 @@ export function Announcement({
   currentRound,
   items,
   isTheActivePlayer,
+  judgeId,
 }: AnnouncementProps) {
   if (!previousGuess) {
     return (
@@ -81,6 +83,30 @@ export function Announcement({
   }
 
   const item = items[previousGuess.itemId];
+
+  if (judgeId === previousActivePlayer.id) {
+    return (
+      <PhaseAnnouncement
+        icon={
+          <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
+            <ItemCard id={item.id} text={item.name} width={100} />{' '}
+            <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
+            <SelectedAreasCircles selectedArea={previousGuess.correctArea} size={75} />
+          </Flex>
+        }
+        title={
+          <Translate pt="O Juiz colocou esse item para ajudar" en="The Judge placed this item to help" />
+        }
+        currentRound={currentRound}
+        type="overlay"
+        duration={7}
+      >
+        <Instruction>
+          <Translate en={<>So, does it help?</>} pt={<>E ai, ajuda?</>} />
+        </Instruction>
+      </PhaseAnnouncement>
+    );
+  }
 
   if (previousGuess.outcome === OUTCOME.CONTINUE) {
     return (

@@ -22,7 +22,7 @@ export const getResourceData = async (
 ): Promise<ResourceData> => {
   const allowNSFW = !!options.nsfw;
 
-  const startingItemsQuantity = STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] * playerCount;
+  const startingItemsQuantity = STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] * (playerCount + 1);
   const deckQuantity = STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] + ROUNDS_PER_PLAYER * playerCount;
   const itemsNeeded = deckQuantity + startingItemsQuantity;
 

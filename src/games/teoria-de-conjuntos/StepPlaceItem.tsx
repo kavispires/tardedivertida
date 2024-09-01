@@ -7,7 +7,7 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { DualTranslate, Translate } from 'components/language';
 import { DiagramRules } from './components/RulesBlobs';
-import { DiagramArea, DiagramExamples, SubmitItemPlacementPayload } from './utils/types';
+import { DiagramArea, DiagramExamples, Solutions, SubmitItemPlacementPayload } from './utils/types';
 import { Item } from 'types/tdr';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { Button, Flex, Space, Tag, Tooltip } from 'antd';
@@ -27,6 +27,7 @@ import { getPlayerItemsLeft } from './utils/helper';
 import { AimOutlined } from '@ant-design/icons';
 import { GameRound } from 'types/game';
 import { RoundAlert } from './components/RoundAlert';
+import { Solution } from './components/Solution';
 
 type StepPlaceItemProps = {
   players: GamePlayers;
@@ -39,6 +40,8 @@ type StepPlaceItemProps = {
   onSubmitItemPlacement: (payload: SubmitItemPlacementPayload) => void;
   targetItemCount: number;
   round: GameRound;
+  isJudge: boolean;
+  solutions: Solutions;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepPlaceItem({
@@ -53,6 +56,8 @@ export function StepPlaceItem({
   onSubmitItemPlacement,
   targetItemCount,
   round,
+  isJudge,
+  solutions,
 }: StepPlaceItemProps) {
   const { isLoading } = useLoading();
   const scrollToSubmitRef = useRef<HTMLButtonElement>(null);
@@ -79,10 +84,17 @@ export function StepPlaceItem({
     <Step fullWidth announcement={announcement}>
       <div ref={ref} style={{ width: '100%' }} />
       <Title>
-        <Translate
-          pt={<>Selecione um item e uma área do diagrama que você acha que ele pode se encaixar</>}
-          en={<>Select an item and an area of the diagram where you think it could fit</>}
-        />
+        {isJudge ? (
+          <Translate
+            pt={<>Como Juiz, coloque uma coisa no diagrama para ajudar os outros jogadores</>}
+            en={<>As the Judge, place an item on the diagram to help the other players</>}
+          />
+        ) : (
+          <Translate
+            pt={<>Selecione um item e uma área do diagrama que você acha que ele pode se encaixar</>}
+            en={<>Select an item and an area of the diagram where you think it could fit</>}
+          />
+        )}
       </Title>
 
       <RoundAlert round={round} />
@@ -133,34 +145,59 @@ export function StepPlaceItem({
         currentItemPosition={selectedArea ?? undefined}
       />
 
-      <RuleInstruction type="action">
-        <Translate
-          en={
-            <>
-              Select one of your things and place them in one of the areas of the diagram. If there are
-              already things there, you can try to base your placement off of them.
-              <br />
-              The goal is to correctly place your things in the diagram based on the secret rules of each
-              area.
-              <br />
-              If you place it right, you can place another thing. If you place it wrong, you will receive a
-              new thing and it will be the next player's turn.
-            </>
-          }
-          pt={
-            <>
-              Selecione uma de suas coisas e coloque-as em uma das áreas do diagrama. Se já houver coisas lá,
-              você pode tentar basear sua colocação nelas.
-              <br />
-              O objetivo é colocar corretamente suas coisas no diagrama com base nas regras secretas de cada
-              área.
-              <br />
-              Se você colocar certo, poderá colocar outra coisa. Se você colocar errado, receberá uma nova
-              coisa e será a vez do próximo jogador.
-            </>
-          }
-        />
-      </RuleInstruction>
+      {isJudge ? (
+        <RuleInstruction type="action">
+          <Translate
+            en={
+              <>
+                As the judge, place one of your things on the diagram to help the other players.
+                <br />
+                <strong>Simply choose one thing and place in the center of the diagram</strong>
+                <br />
+                You will evaluate it in the next phase.
+              </>
+            }
+            pt={
+              <>
+                Como juiz, coloque uma de suas coisas no diagrama para ajudar os outros jogadores.
+                <br />
+                <strong>Escolha uma coisa e coloque no centro do diagrama</strong>
+                <br />
+                Você avaliará isso na próxima fase.
+              </>
+            }
+          />
+        </RuleInstruction>
+      ) : (
+        <RuleInstruction type="action">
+          <Translate
+            en={
+              <>
+                Select one of your things and place them in one of the areas of the diagram. If there are
+                already things there, you can try to base your placement off of them.
+                <br />
+                The goal is to correctly place your things in the diagram based on the secret rules of each
+                area.
+                <br />
+                If you place it right, you can place another thing. If you place it wrong, you will receive a
+                new thing and it will be the next player's turn.
+              </>
+            }
+            pt={
+              <>
+                Selecione uma de suas coisas e coloque-as em uma das áreas do diagrama. Se já houver coisas
+                lá, você pode tentar basear sua colocação nelas.
+                <br />
+                O objetivo é colocar corretamente suas coisas no diagrama com base nas regras secretas de cada
+                área.
+                <br />
+                Se você colocar certo, poderá colocar outra coisa. Se você colocar errado, receberá uma nova
+                coisa e será a vez do próximo jogador.
+              </>
+            }
+          />
+        </RuleInstruction>
+      )}
 
       <Container
         contained
@@ -194,6 +231,21 @@ export function StepPlaceItem({
           ))}
         </Flex>
       </Container>
+
+      {isJudge && (
+        <Container
+          contained
+          title={<Translate pt="As Regras Secretas" en="The Secret Rules" />}
+          contentProps={{ direction: 'vertical' }}
+        >
+          <Translate
+            pt="Essas são as regras secretas de cada círculo, não fale elas com ninguém."
+            en="These are the secret rules of each circle, don't tell them to anyone."
+          />
+
+          <Solution solutions={solutions} />
+        </Container>
+      )}
 
       <TurnOrder
         players={players}

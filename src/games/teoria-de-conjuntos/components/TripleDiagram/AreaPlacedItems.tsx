@@ -140,7 +140,8 @@ export function AreaPlacedItems({ areaKey, diagramArea, containerWidth }: AreaPl
   const { itemsIds } = diagramArea;
 
   const elements = useMemo(() => {
-    return itemsIds
+    return [...itemsIds]
+      .reverse()
       .map((itemId, index) => {
         // If more than boundaries list, don't render
         if (index >= boundaries.length) return null;
