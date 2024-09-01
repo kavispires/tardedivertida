@@ -7,6 +7,7 @@ import { Item } from 'types/tdr';
 import { Solutions } from '../utils/types';
 import { Solution } from './Solution';
 import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 
 type EvaluationModalProps = {
   item: Item;
@@ -19,6 +20,7 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
   const [areaC, setC] = useState('');
   const [areaW, setW] = useState('');
   const { dualTranslate } = useLanguage();
+  const { isLoading } = useLoading();
 
   const evaluation = [areaA, areaW, areaC].join('') || 'O';
 
@@ -57,7 +59,7 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
       <Divider />
 
       <Flex justify="center">
-        <Button type="primary" onClick={() => onSubmitEvaluation(evaluation)}>
+        <Button type="primary" onClick={() => onSubmitEvaluation(evaluation)} loading={isLoading}>
           <Translate en="Submit" pt="Enviar" />
         </Button>
       </Flex>
