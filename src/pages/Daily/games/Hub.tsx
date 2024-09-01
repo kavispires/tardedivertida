@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 
 import { DailyChrome } from '../components/DailyChrome';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
+import { getAnimationClass } from 'utils/helpers';
 
 export function Hub() {
   return (
@@ -41,35 +42,35 @@ export function Hub() {
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" className="hub-item">
+          <TransparentButton hoverType="sepia">
             <Link to="/diario/controle-de-estoque" className="hub-item">
               <DailyWarehouseGameIcon style={{ width: 75 }} />
               <Translate pt="Controle De Estoque" en="Warehouse" />
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" className="hub-item">
+          <TransparentButton hoverType="sepia">
             <Link to="/diario/filmaco" className="hub-item">
               <DailyMovieGameIcon style={{ width: 75 }} />
               <Translate pt="Filmaço" en="Movicon" />
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" className="hub-item">
+          <TransparentButton hoverType="sepia">
             <Link to="/diario/palavreado" className="hub-item">
               <DailyWordGameIcon style={{ width: 75 }} />
               <Translate pt="Palavreado" en="Rewording" />
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" className="hub-item">
+          <TransparentButton hoverType="sepia">
             <Link to="/diario/picaco" className="hub-item">
               <DailyDrawingGameIcon style={{ width: 75 }} />
               <Translate pt="Picaço!" en="Big Artist!" />
             </Link>
           </TransparentButton>
 
-          <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
+          <TransparentButton hoverType="sepia" className={getAnimationClass('tada', { repeat: 3 })}>
             <Link to="/diario/teoria-de-conjuntos" className="hub-item">
               <DailyDiagramGameIcon style={{ width: 75 }} />
               <Translate pt="Teoria de Conjuntos" en="Diagram Theory" />

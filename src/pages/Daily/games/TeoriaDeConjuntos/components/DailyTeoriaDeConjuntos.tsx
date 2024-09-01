@@ -4,15 +4,12 @@ import { TransparentButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
-import { wait } from 'pages/Daily/utils';
 import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useMeasure } from 'react-use';
 import { Me } from 'types/user';
 import { getAnimationClass } from 'utils/helpers';
 
-import { BarChartOutlined, CloudSyncOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { useQueryClient } from '@tanstack/react-query';
+import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -50,9 +47,8 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
     onConfirmPlacement,
     guesses,
   } = useTeoriaDeConjuntosEngine(data);
-  const queryClient = useQueryClient();
+
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
-  const navigate = useNavigate();
 
   const thingWidth = useMemo(() => {
     const totalWidth = contentMeasure.width / 6 - 16;
@@ -62,7 +58,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
   return (
     <Layout className="app">
       <Header icon={<DailyDiagramGameIcon />}>
-        <DualTranslate>{SETTINGS.NAME}</DualTranslate> #D{data.number}
+        <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
         <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
@@ -114,19 +110,6 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
           <Region>
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
-            </Button>
-
-            <Button
-              onClick={async () => {
-                navigate(`/diario/teoria-de-conjuntos`);
-                await wait(250);
-                queryClient.refetchQueries({
-                  queryKey: ['teoria-de-conjuntos-demo'],
-                });
-              }}
-              icon={<CloudSyncOutlined />}
-            >
-              <Translate pt="Jogar outro demo" en="Play another demo" />
             </Button>
           </Region>
         )}
