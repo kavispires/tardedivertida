@@ -106,21 +106,21 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersList
       dataIndex: 'player',
       key: 'player',
       render: (data: any) => <AvatarName player={data} />,
-      sorter: (a: any, b: any) => (a.name > b.name ? -1 : 1),
+      sorter: (a: any, b: any) => a.playerName.localeCompare(b.playerName),
     },
     {
       title: translate('Achou que', 'Thought that'),
       dataIndex: 'guess',
       key: 'guess',
       render: (guess: string) => guess.toUpperCase(),
-      sorter: (a: any, b: any) => (a > b ? -1 : 1),
+      sorter: (a: any, b: any) => a.guess.localeCompare(b.guess),
     },
     {
       title: translate('Era', 'Was'),
       dataIndex: 'clue',
       key: 'clue',
       render: (clue: string) => clue.toUpperCase(),
-      sorter: (a: any, b: any) => (a > b ? -1 : 1),
+      sorter: (a: any, b: any) => a.clue.localeCompare(b.clue),
     },
     {
       title: translate('Resultado', 'Result'),
@@ -132,7 +132,7 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersList
         ) : (
           <CloseSquareFilled style={{ color: 'red' }} />
         ),
-      sorter: (a: any, b: any) => (a > b ? -1 : 1),
+      sorter: (a: any, b: any) => (a.result === true ? 1 : -1),
     },
   ];
 
