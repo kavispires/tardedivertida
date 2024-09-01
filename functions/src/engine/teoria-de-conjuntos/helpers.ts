@@ -20,14 +20,16 @@ export const determineNextPhase = (
   const order = [RULES, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER];
 
   if (currentPhase === EVALUATION) {
+    // If the player has won, go to GAME_OVER
     if (currentGuess.outcome === OUTCOME.WIN) {
       return GAME_OVER;
     }
 
     const activePlayerIndex = turnOrder.indexOf(activePlayerId);
 
+    // If it's the last player let them finish their turn
     if (activePlayerIndex + 1 === turnOrder.length && currentGuess.outcome !== OUTCOME.CONTINUE) {
-      return round.forceLastRound || (round.current > 0 && round.current === round.total)
+      return round.forceLastRound || (round.current > 0 && round.current >= round.total)
         ? GAME_OVER
         : ITEM_PLACEMENT;
     }

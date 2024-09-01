@@ -35,7 +35,7 @@ export const MAX_ROUNDS = 30;
 export const ROUNDS_PER_PLAYER = 5;
 
 export const STARTING_ITEMS_PER_PLAYER_COUNT = {
-  2: 7,
+  2: 5,
   3: 5,
   4: 5,
   5: 5,
