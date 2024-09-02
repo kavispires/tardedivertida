@@ -17,9 +17,15 @@ export const feedEmulatorDB = async () => {
   console.log('\x1b[33m%s\x1b[0m', 'Seeding Emulator DB');
 
   // DATA
-  const dataEntries = Object.values(DATA_DOCUMENTS).map((usedEntryName) =>
-    utils.firestore.getDataRef().doc(usedEntryName).set(sample)
-  );
+  const dataEntries: Promise<FirebaseFirestore.WriteResult>[] = [];
+
+  Object.values(DATA_DOCUMENTS).forEach((usedEntryName) => {
+    dataEntries.push(utils.firestore.getDataRef().doc(usedEntryName).set(sample));
+
+    dataEntries.push(utils.firestore.getDataRef().doc(`${usedEntryName}PT`).set(sample));
+    dataEntries.push(utils.firestore.getDataRef().doc(`${usedEntryName}EN`).set(sample));
+  });
+
   await Promise.all(dataEntries);
   await utils.firestore
     .getDataRef()
