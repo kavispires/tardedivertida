@@ -33,6 +33,7 @@ import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
 import * as vamosAoCinemaEngine from '../engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
+import * as sinaisDeAlertaEngine from '../engine/sinais-de-alerta';
 
 const engines = {
   [GAME_NAMES.ADEDANHX]: adedanhxEngine,
@@ -59,6 +60,7 @@ const engines = {
   [GAME_NAMES.QUEM_SOU_EU]: quemSouEuEngine,
   [GAME_NAMES.PORTA_DOS_DESESPERADOS]: portadosDesesperadosEngine,
   [GAME_NAMES.RETRATO_FALADO]: retratoFaladoEngine,
+  [GAME_NAMES.SINAIS_DE_ALERTA]: sinaisDeAlertaEngine,
   [GAME_NAMES.SONHOS_PESADELOS]: sonhosPesadelosEngine,
   [GAME_NAMES.SUPER_CAMPEONATO]: superCampeonatoEngine,
   [GAME_NAMES.TA_NA_CARA]: taNaCaraEngine,

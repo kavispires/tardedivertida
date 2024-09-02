@@ -38,6 +38,10 @@ type ObjectDictionary = {
   [key: string]: PlainObject;
 };
 
+type ArrayDictionary<T = string> = {
+  [key: string]: T[];
+};
+
 type FirebaseContext = {
   [key: string]: any;
 };

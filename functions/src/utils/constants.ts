@@ -146,6 +146,11 @@ const GAMES = [
     key: 'RETRATO_FALADO',
   },
   {
+    name: 'sinais-de-alerta',
+    code: 'S',
+    key: 'SINAIS_DE_ALERTA',
+  },
+  {
     name: 'sonhos-pesadelos',
     code: 'S',
     key: 'SONHOS_PESADELOS',
@@ -248,9 +253,10 @@ export const DATA_DOCUMENTS = {
   OPPOSING_IDEAS_CLUES: 'opposingIdeasClues',
   SUFFIX_COUNTS: 'suffixCounts',
   SUSPECT_ANSWERS: 'suspectAnswers',
-  DRAWINGS: 'drawings',
+  DRAWINGS: 'drawings', // requires language suffix
   MONSTER_DRAWINGS: 'monsterDrawings',
   PAIRS: 'pairs',
+  SIGNS: 'signs', // requires language suffix
 };
 
 export const TDR_RESOURCES = {
@@ -298,6 +304,8 @@ export const TDR_RESOURCES = {
   TOPICS: 'topics',
   TREE_WORDS: 'tree-words',
   TWEETS: 'tweets',
+  WARNING_SIGNS_DESCRIPTORS: 'warning-signs-descriptors',
+  WARNING_SIGNS_SUBJECTS: 'warning-signs-subjects',
 };
 
 export const SEPARATOR = ';;';
