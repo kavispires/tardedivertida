@@ -1,4 +1,4 @@
-import { CSSProperties, useRef, useState } from 'react';
+import { CSSProperties, ReactNode, useRef, useState } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
 import clsx from 'clsx';
 // Ant Design Resources
@@ -44,6 +44,11 @@ type DrawingCanvasProps = {
    *
    */
   style?: CSSProperties;
+  /**
+   * A mask to be used under the canvas
+   * Requires changing canvas to be transparent and setting the mask to have an absolute position
+   */
+  mask?: ReactNode;
 };
 
 /**
@@ -60,6 +65,7 @@ export const DrawingCanvas = ({
   height,
   willReadFrequently = false,
   style = {},
+  mask,
 }: DrawingCanvasProps) => {
   const [drawingHistory, setDrawingHistory] = useState<CanvasLine[]>([]);
   const isDrawing = useRef(false);
@@ -213,7 +219,8 @@ export const DrawingCanvas = ({
     }?.[strokeWidth] ?? 5;
 
   return (
-    <Flex vertical align="center">
+    <Flex vertical align="center" className="relative">
+      {mask}
       <Stage
         width={width}
         height={height || width}

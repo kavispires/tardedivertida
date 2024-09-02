@@ -32,6 +32,10 @@ type StringDictionary = Dictionary<string>;
 
 type ObjectDictionary = Dictionary<PlainObject>;
 
+type ArrayDictionary<T = string> = {
+  [key: string]: T[];
+};
+
 // Function compositions
 type GenericComponent = (...args: any) => any;
 type GenericFunction = (...args: any) => void;

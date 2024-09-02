@@ -254,6 +254,7 @@ export * from './VIPLineIcon';
 export * from './VoteIcon';
 export * from './WaitingRoomIcon';
 export * from './WalkIcon';
+export * from './WarningSignIcon';
 export * from './WavelengthDeviceIcon';
 export * from './WorkforceIcon';
 export * from './WriteIdeaIcon';

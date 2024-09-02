@@ -1,1 +1,1 @@
-export { default } from './SessionTemplate';
+export { default } from './SessionSinaisDeAlerta';
