@@ -20,7 +20,6 @@ import { PhaseGameOver } from './PhaseGameOver';
 import { PhaseAlienSeeding } from './PhaseAlienSeeding';
 // Sass
 import './utils/styles.scss';
-import { setGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -32,8 +31,6 @@ function getActiveComponent(state: GameState) {
     case PHASES.DEFAULT.RULES:
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
-      // Clear cache
-      setGlobalLocalStorage('cache', {});
       return PhaseSetup;
     case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION:
       return PhaseAlienSelection;

@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-import { orderBy } from 'lodash';
+import { isEmpty, orderBy } from 'lodash';
 // Ant Design Resources
 import { Button, Popconfirm, Popover, Space } from 'antd';
 import { CheckCircleFilled, CheckSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
 // Types
 import type { Sign } from '../utils/types';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCacheAlternative } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { TransparentButton } from 'components/buttons';
@@ -14,14 +14,16 @@ import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
 import { useEffect } from 'react';
+import { PHASES } from 'utils/phases';
 
 type SignsKeyCardProps = {
   signs: Sign[];
   startingAttributes?: Sign[];
+  phase?: string;
 };
 
-export function SignsKeyCard({ signs, startingAttributes = [] }: SignsKeyCardProps) {
-  const { cache, setCache } = useCache();
+export function SignsKeyCard({ signs, startingAttributes = [], phase }: SignsKeyCardProps) {
+  const { cache, setCache } = useCacheAlternative({ defaultValue: {} });
   const { language } = useLanguage();
 
   const updateCache = (signId: number | string, value: boolean) => {
@@ -33,10 +35,18 @@ export function SignsKeyCard({ signs, startingAttributes = [] }: SignsKeyCardPro
   };
 
   useEffect(() => {
-    startingAttributes.forEach((sign) => {
-      updateCache(sign.signId, true);
-    });
-  }, [startingAttributes]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (phase === PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK && startingAttributes.length && isEmpty(cache)) {
+      setCache((prev) => {
+        const copy = { ...prev };
+        signs.forEach((sign) => {
+          if (startingAttributes.find((attr) => attr.signId === sign.signId)) {
+            copy[sign.signId] = true;
+          }
+        });
+        return copy;
+      });
+    }
+  }, [startingAttributes, phase]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Space direction="vertical">

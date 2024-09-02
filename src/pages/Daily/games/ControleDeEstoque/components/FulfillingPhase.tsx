@@ -41,7 +41,6 @@ export function FulfillingPhase({
 }: FulfillingPhaseProps) {
   const isFulfilling = phase === PHASES.FULFILLING && !isComplete;
   const isDelivering = phase === PHASES.DELIVERING;
-  console.log({ phase });
 
   const board = (
     <Region>
