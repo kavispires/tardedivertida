@@ -7,22 +7,55 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { MultitaskIcon } from 'icons/MultitaskIcon';
+import { AlienHappyIcon } from 'icons/AlienHappyIcon';
+import { AlienAngryIcon } from 'icons/AlienAngryIcon';
+import { AlienNeutralIcon } from 'icons/AlienNeutralIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepReveal } from './StepReveal';
+import { useMemo } from 'react';
+import { Item, RequestHistoryEntry } from './utils/types';
+import { ITEM_TYPES } from './utils/constants';
 
 export function PhaseReveal({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
   const { step } = useStep();
+  const items: Item[] = state.items ?? [];
+  const latestRequest: RequestHistoryEntry | null = state.requestHistory?.[0] ?? null;
+
+  const icon = useMemo(() => {
+    if (latestRequest && latestRequest.offers) {
+      let hasCurse = false;
+      let hasAsk = false;
+
+      latestRequest.offers.forEach((offer) => {
+        if (offer?.objectId) {
+          const item = items.find((i) => i.id === offer?.objectId);
+
+          if (item?.type === ITEM_TYPES.CURSE) {
+            hasCurse = true;
+          } else if (item?.type === ITEM_TYPES.ITEM) {
+            hasAsk = true;
+          }
+        }
+      });
+      if (hasAsk) {
+        return <AlienHappyIcon />;
+      }
+      if (hasCurse) {
+        return <AlienAngryIcon />;
+      }
+      return <AlienNeutralIcon />;
+    }
+  }, [latestRequest]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<MultitaskIcon />}
+      icon={icon}
       title={<Translate pt="E as oferendas foram..." en="And the offerings were..." />}
       currentRound={state?.round?.current}
       type="overlay"

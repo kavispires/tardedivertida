@@ -8,22 +8,6 @@ import { TransparentButton } from 'components/buttons';
 import { useEffect, useState } from 'react';
 import { collectionByCategory, collectionByGame, collectionUnassigned } from 'icons/collectionByGame';
 import { sortBy } from 'lodash';
-// const styles: React.CSSProperties = {
-//   width: '100%',
-//   display: 'flex',
-//   flexWrap: 'wrap',
-//   justifyContent: 'space-between',
-// };
-
-// const stylesLi: React.CSSProperties = {
-//   border: '1px solid black',
-//   margin: '0.5rem',
-//   display: 'flex',
-//   flexDirection: 'column',
-//   alignItems: 'center',
-//   justifyContent: 'space-between',
-//   padding: '0.5rem',
-// };
 
 type IconEntry = [string, (props: React.SVGProps<SVGSVGElement>) => JSX.Element];
 

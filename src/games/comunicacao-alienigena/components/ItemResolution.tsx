@@ -4,7 +4,7 @@ import type { Item } from '../utils/types';
 import { ITEM_TYPES } from '../utils/constants';
 // Icons
 import { BoxOneIcon } from 'icons/BoxOneIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
+import { BoxMinusIcon } from 'icons/BoxMinusIcon';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 // Components
 import { Translate } from 'components/language';
@@ -21,7 +21,7 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
   if (item?.type === ITEM_TYPES.CURSE) {
     return (
       <div>
-        <IconAvatar icon={<BoxXIcon />} size="small" /> <Translate pt="Amaldiçoado" en="Cursed" />
+        <IconAvatar icon={<BoxMinusIcon />} size="small" /> <Translate pt="Amaldiçoado" en="Cursed" />
       </div>
     );
   }
