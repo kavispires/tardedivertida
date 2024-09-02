@@ -285,6 +285,7 @@ export const GAME_COLLECTION = {
   QUEM_NAO_MATA: 'quem-nao-mata',
   QUEM_SOU_EU: 'quem-sou-eu',
   RETRATO_FALADO: 'retrato-falado',
+  SINAIS_DE_ALERTA: 'sinais-de-alerta',
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   SUPER_CAMPEONATO: 'super-campeonato',
   TA_NA_CARA: 'ta-na-cara',

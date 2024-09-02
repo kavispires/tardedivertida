@@ -122,6 +122,9 @@ const SessionTesteDeElenco = lazy(
   () => import('games/teste-de-elenco/SessionTesteDeElenco' /* webpackChunkName: "teste-de-elenco" */)
 );
 const SessionMesmice = lazy(() => import('games/mesmice/SessionMesmice' /* webpackChunkName: "mesmice" */));
+const SessionSinaisDeAlerta = lazy(
+  () => import('games/sinais-de-alerta/SessionSinaisDeAlerta' /* webpackChunkName: "sinais-de-alerta" */)
+);
 
 function Game() {
   const { translate } = useLanguage();
@@ -352,6 +355,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionVendavalDePalpite />
+          </Suspense>
+        );
+      case GAME_COLLECTION.SINAIS_DE_ALERTA:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionSinaisDeAlerta />
           </Suspense>
         );
 

@@ -1,0 +1,74 @@
+// Types
+import type { PhaseProps } from 'types/game';
+// State & Hooks
+import { useUser } from 'hooks/useUser';
+import { useStep } from 'hooks/useStep';
+// Resources & Utils
+import { PHASES } from 'utils/phases';
+// Icons
+import { TDIcon } from 'icons/TDIcon';
+// Components
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { Translate } from 'components/language';
+import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
+import { useState } from 'react';
+import { RoundAnnouncement } from 'components/round';
+import { StepDraw } from './StepDraw';
+import { DrawingIcon } from 'icons/DrawingIcon';
+
+export function PhaseDrawing({ players, state, info, meta }: PhaseProps) {
+  const { step, goToNextStep, setStep } = useStep(0);
+  const user = useUser(players, state);
+  const [startDrawingTimer, setStartDrawingTimer] = useState(false);
+  const timeLimit: number = state.timeLimit;
+
+  const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<DrawingIcon />}
+      title={<Translate pt="Alerte!" en="Warn!" />}
+      currentRound={state?.round?.current}
+      buttonText={<Translate pt="Um dó, lá, si... vamos e... já!" en="Ready! Set! Go!" />}
+      type="overlay"
+      withoutTimer
+      onClose={() => setStartDrawingTimer(true)}
+    >
+      <Instruction>
+        <Translate
+          pt={<>Você tem {timeLimit} segundos para ler e desenhar sua carta</>}
+          en={<>You have {timeLimit} seconds to read and draw your card</>}
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
+  return (
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SINAIS_DE_ALERTA.DRAWING}>
+      <StepSwitcher step={step} players={players}>
+        {/* Step 0 */}
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+          circleColor={info?.appearance?.color}
+          unskippable
+        />
+
+        {/* Step 1 */}
+        <StepDraw
+          gameLanguage={meta.language}
+          user={user}
+          cards={state?.cards}
+          onSubmitDrawing={onSubmitDrawing}
+          announcement={announcement}
+          startDrawingTimer={startDrawingTimer}
+          timeLimit={timeLimit}
+        />
+      </StepSwitcher>
+    </PhaseContainer>
+  );
+}
