@@ -22,6 +22,7 @@ import { Status } from './components/Status';
 import { BotPopupRule } from './components/BotPopupRules';
 import { ItemsHighlight } from './components/Highlights';
 import { DebugOnly } from 'components/debug';
+import { PHASES } from 'utils/phases';
 
 type StepHumanAsksProps = {
   players: GamePlayers;
@@ -118,7 +119,11 @@ export function StepHumanAsks({
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
-          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+          <SignsKeyCard
+            signs={signs}
+            startingAttributes={startingAttributes}
+            phase={PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK}
+          />
         </Space>
       </AlienContent>
 

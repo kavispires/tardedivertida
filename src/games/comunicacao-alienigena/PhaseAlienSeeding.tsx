@@ -3,7 +3,7 @@ import type { PhaseProps } from 'types/game';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useCache } from 'hooks/useCache';
+import { useCache, useCacheAlternative } from 'hooks/useCache';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { useOnSubmitSeedingAPIRequest } from './utils/api-requests';
@@ -23,6 +23,7 @@ export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {
 
   // Clear cache from previous games
   useCache({ clearCache: true });
+  useCacheAlternative({ clearCache: true });
 
   const announcement = (
     <PhaseAnnouncement

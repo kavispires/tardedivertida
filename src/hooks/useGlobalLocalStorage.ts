@@ -9,6 +9,7 @@ type LocalStorageState = {
   language: Language;
   volume: number;
   cache: PlainObject;
+  cacheAlternative: PlainObject;
   canvasSize: number;
   latestGameIds: Record<string, number>;
   blurredCards: BooleanDictionary;
@@ -19,6 +20,7 @@ const initialState: LocalStorageState = {
   language: 'en',
   volume: 0.5,
   cache: {},
+  cacheAlternative: {},
   canvasSize: 50,
   latestGameIds: {},
   blurredCards: {},
