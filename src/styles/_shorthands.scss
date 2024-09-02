@@ -1,0 +1,115 @@
+// Margin and padding shorthands
+@for $i from 0 through 12 {
+  .m-#{$i} {
+    margin: get-unit($i);
+  }
+  .mt-#{$i} {
+    margin-top: get-unit($i);
+  }
+  .mr-#{$i} {
+    margin: get-unit($i);
+  }
+  .mb-#{$i} {
+    margin-bottom: get-unit($i);
+  }
+  .ml-#{$i} {
+    margin-left: get-unit($i);
+  }
+  .mx-#{$i} {
+    margin-left: get-unit($i);
+    margin-right: get-unit($i);
+  }
+  .my-#{$i} {
+    margin-top: get-unit($i);
+    margin-bottom: get-unit($i);
+  }
+
+  .p-#{$i} {
+    padding: get-unit($i);
+  }
+  .pt-#{$i} {
+    padding-top: get-unit($i);
+  }
+  .pr-#{$i} {
+    padding: get-unit($i);
+  }
+  .pb-#{$i} {
+    padding-bottom: get-unit($i);
+  }
+  .pl-#{$i} {
+    padding-left: get-unit($i);
+  }
+  .px-#{$i} {
+    padding-left: get-unit($i);
+    padding-right: get-unit($i);
+  }
+  .py-#{$i} {
+    padding-top: get-unit($i);
+    padding-bottom: get-unit($i);
+  }
+}
+
+// Colors
+$colors: 'brown', 'yellow', 'orange', 'green', 'teal', 'blue', 'purple', 'violet', 'pink', 'red', 'gray',
+  'white', 'black', 'lime', 'slate';
+
+@each $color in $colors {
+  @for $shade from 1 through 9 {
+    .bg-#{$color}-#{$shade} {
+      background-color: get-color($color, $shade);
+    }
+    .color-#{$color}-#{$shade} {
+      color: get-color($color, $shade);
+    }
+  }
+
+  .color-#{$color} {
+    color: get-color($color, 5);
+  }
+
+  .bg-#{$color} {
+    background-color: get-color($color, 5, 1);
+  }
+
+  .bg-#{$color}-25 {
+    background-color: get-color($color, 5, 0.25);
+  }
+
+  .bg-#{$color}-50 {
+    background-color: get-color($color, 5, 0.5);
+  }
+}
+
+// Border radius shorthand
+.rounded {
+  border-radius: $border-radius;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+// Typography
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
