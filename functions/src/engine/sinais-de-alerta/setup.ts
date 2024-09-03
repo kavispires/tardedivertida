@@ -125,9 +125,6 @@ export const prepareEvaluationPhase = async (
 
   return {
     update: {
-      store: {
-        achievements: store.achievements,
-      },
       state: {
         phase: SINAIS_DE_ALERTA_PHASES.EVALUATION,
         players,
@@ -154,6 +151,7 @@ export const prepareGalleryPhase = async (
     update: {
       store: {
         pastDrawings: [...store.pastDrawings, ...pastDrawings],
+        achievements: store.achievements,
       },
       state: {
         phase: SINAIS_DE_ALERTA_PHASES.GALLERY,
