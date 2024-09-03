@@ -25,4 +25,22 @@ export type DailyTeoriaDeConjuntosEntry = {
   things: TThing[];
 };
 
-export type TeoriaDeConjuntosLocalToday = {};
+export type Guess = { thingId: string; sectionId: number; result: number | false };
+
+export type GameState = {
+  hearts: number;
+  win: boolean;
+  hand: TThing[];
+  deck: TThing[];
+  rule1Things: TThing[];
+  rule2Things: TThing[];
+  intersectingThings: TThing[];
+  activeThing: TThing | null;
+  activeArea: null | number;
+  guesses: Guess[];
+};
+
+export type TeoriaDeConjuntosLocalToday = {
+  guesses: Guess[];
+  hearts: number;
+};

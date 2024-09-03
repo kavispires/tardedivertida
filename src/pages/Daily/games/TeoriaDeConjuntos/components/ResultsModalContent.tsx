@@ -92,7 +92,7 @@ function writeResult({
       2: '🔴',
       0: '🟠',
       false: '✖️',
-    }[String(guess)];
+    }[String(guess.result)];
   });
 
   return [

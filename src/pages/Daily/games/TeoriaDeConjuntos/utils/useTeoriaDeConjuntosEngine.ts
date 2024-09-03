@@ -1,26 +1,18 @@
 import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { deepCopy } from 'utils/helpers';
 
+import { parseLocalToday } from './helpers';
 import { SETTINGS } from './settings';
-import { TeoriaDeConjuntosLocalToday, DailyTeoriaDeConjuntosEntry, TThing } from './types';
+import { DailyTeoriaDeConjuntosEntry, GameState, Guess, TeoriaDeConjuntosLocalToday, TThing } from './types';
 
-type GameState = {
-  hearts: number;
-  win: boolean;
-  hand: TThing[];
-  deck: TThing[];
-  rule1Things: TThing[];
-  rule2Things: TThing[];
-  intersectingThings: TThing[];
-  activeThing: TThing | null;
-  activeArea: null | number;
-  guesses: (number | false)[];
+const defaultLocalToday: TeoriaDeConjuntosLocalToday = {
+  guesses: [],
+  hearts: SETTINGS.HEARTS,
 };
-
-const defaultTeoriaDeConjuntosLocalToday: TeoriaDeConjuntosLocalToday = {};
 
 const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState => {
   return {
@@ -67,10 +59,21 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
 
-  // DEV
-  // useEffect(() => {
-  //   updateState({ warehouse: [...data.goods], phase: PHASES.FULFILLING });
-  // }, [data.goods]);
+  const { updateLocalStorage } = useDailyLocalToday<TeoriaDeConjuntosLocalToday>({
+    key: SETTINGS.LOCAL_TODAY_KEY,
+    gameId: data.id,
+    challengeNumber: data.number ?? 0,
+    defaultValue: defaultLocalToday,
+    onApplyLocalState: (value) => {
+      if (value.guesses.length > 0) {
+        setState((prevState) => {
+          const copy = deepCopy(prevState);
+
+          return parseLocalToday(value, data, copy);
+        });
+      }
+    },
+  });
 
   const onSelectThing = (thing: TThing) => {
     updateState({ activeThing: thing });
@@ -98,6 +101,9 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
       });
     }
 
+    let localStateUpdate = state.guesses;
+    let localStateUpdateHearts = state.hearts;
+
     setState((prevState) => {
       const copy = deepCopy(prevState);
 
@@ -105,7 +111,12 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
         // Remove thing from hand
         copy.hand = copy.hand.filter((thing) => thing.id !== state.activeThing?.id);
 
-        let guess = state.activeThing.rule ?? false;
+        let guess: Guess = {
+          thingId: state.activeThing.id,
+          sectionId: state.activeArea!,
+          result: state.activeArea!,
+        };
+
         // Add to the appropriate area
         if (state.activeThing.rule === 1) {
           copy.rule1Things.push(state.activeThing!);
@@ -117,8 +128,9 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
 
         // If incorrect, add from the deck and lose a heart
         if (!isCorrect) {
-          guess = false;
+          guess.result = false;
           copy.hearts -= 1;
+          localStateUpdateHearts -= 1;
           if (copy.deck.length > 0) {
             copy.hand.push(copy.deck.pop()!);
           }
@@ -126,6 +138,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
 
         // Add guess
         copy.guesses.push(guess);
+        localStateUpdate = deepCopy(copy.guesses);
 
         // Remove active things
         copy.activeThing = null;
@@ -138,6 +151,12 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
       }
 
       return copy;
+    });
+
+    // Update local today
+    updateLocalStorage({
+      guesses: localStateUpdate,
+      hearts: localStateUpdateHearts,
     });
   };
 
