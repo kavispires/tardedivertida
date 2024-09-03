@@ -25,7 +25,7 @@ type GameState = {
   extraAttempts: number;
 };
 
-const defaultArteRuimLocalToday: ControleDeEstoqueLocalToday = {
+const defaultLocalToday: ControleDeEstoqueLocalToday = {
   id: '',
   number: 0,
   warehouse: [],
@@ -60,7 +60,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
     key: SETTINGS.LOCAL_TODAY_KEY,
     gameId: data.id,
     challengeNumber: data.number ?? 0,
-    defaultValue: defaultArteRuimLocalToday,
+    defaultValue: defaultLocalToday,
     onApplyLocalState: (value) => {
       if (value.warehouse.length || value.extraAttempts) {
         updateState(parseLocalStorage(value, data.goods.length));
