@@ -1,7 +1,9 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
+import { isIOS } from 'react-device-detect';
 // Sass
 import './TransparentButton.scss';
+
 interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The content of the button
@@ -40,7 +42,7 @@ export const TransparentButton = ({
     <button
       className={clsx(
         'transparent-button',
-        `transparent-button--${hoverType}`,
+        `transparent-button--${isIOS ? 'none' : hoverType}`,
         active && (activeClass || 'transparent-button--active'),
         className
       )}
