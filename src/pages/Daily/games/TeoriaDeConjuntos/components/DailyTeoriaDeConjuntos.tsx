@@ -76,19 +76,31 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
           <Diagram
             width={Math.min(contentMeasure.width - 16, 600)}
             leftCircleChildren={
-              <TransparentButton onClick={() => onSelectArea(1)} disabled={isComplete} hoverType="none">
+              isComplete ? (
                 <InDiagramThings things={rule1Things} width={thingWidth} />
-              </TransparentButton>
+              ) : (
+                <TransparentButton onClick={() => onSelectArea(1)} disabled={isComplete} hoverType="none">
+                  <InDiagramThings things={rule1Things} width={thingWidth} />
+                </TransparentButton>
+              )
             }
             rightCircleChildren={
-              <TransparentButton onClick={() => onSelectArea(2)} disabled={isComplete} hoverType="none">
+              isComplete ? (
                 <InDiagramThings things={rule2Things} width={thingWidth} />
-              </TransparentButton>
+              ) : (
+                <TransparentButton onClick={() => onSelectArea(2)} disabled={isComplete} hoverType="none">
+                  <InDiagramThings things={rule2Things} width={thingWidth} />
+                </TransparentButton>
+              )
             }
             intersectionChildren={
-              <TransparentButton onClick={() => onSelectArea(0)} disabled={isComplete} hoverType="none">
+              isComplete ? (
                 <InDiagramThings things={intersectingThings} width={thingWidth} />
-              </TransparentButton>
+              ) : (
+                <TransparentButton onClick={() => onSelectArea(0)} disabled={isComplete} hoverType="none">
+                  <InDiagramThings things={intersectingThings} width={thingWidth} />
+                </TransparentButton>
+              )
             }
           />
         </Region>
