@@ -1,4 +1,4 @@
-import { App, Button, Flex } from 'antd';
+import { App, Button, Flex, Popconfirm } from 'antd';
 import { Translate } from 'components/language';
 import { isDevEnv } from 'utils/helpers';
 
@@ -10,15 +10,26 @@ import { SETTINGS as ARTISTA } from '../games/Artista/utils/settings';
 import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
+import { useNavigate } from 'react-router-dom';
 
 const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA, FILMACO, CONTROLE_DE_ESTOQUE];
 
-export function DevResetLocalStorageButton() {
+type DevResetLocalStorageButtonProps = {
+  localStorageKey?: string;
+};
+
+export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalStorageButtonProps) {
   const { message } = App.useApp();
+  const navigate = useNavigate();
 
   const onReset = () => {
-    keys.forEach((key) => localStorage.removeItem(key.LOCAL_TODAY_KEY));
+    if (localStorageKey) {
+      localStorage.removeItem(localStorageKey);
+    } else {
+      keys.forEach((key) => localStorage.removeItem(key.LOCAL_TODAY_KEY));
+    }
     message.success(<Translate pt="LS resetado corretamente" en="LS reset successfully" />);
+    navigate('/diario');
   };
 
   const onDayBefore = () => {
@@ -26,16 +37,32 @@ export function DevResetLocalStorageButton() {
       id: '2023-10-30',
       number: -1,
     });
-    keys.forEach((key) => localStorage.setItem(key.LOCAL_TODAY_KEY, yesterday));
+    if (localStorageKey) {
+      localStorage.setItem(localStorageKey, yesterday);
+      return;
+    } else {
+      keys.forEach((key) => localStorage.setItem(key.LOCAL_TODAY_KEY, yesterday));
+    }
+    navigate('/diario');
   };
 
   return (
     <Flex justify="center" gap={12}>
-      <Button size="small" type="dashed" onClick={onReset} icon={<BugOutlined />}>
-        <Translate pt="Resetar LS" en="Reset LS" />
-      </Button>
+      <Popconfirm
+        title={
+          <Translate
+            pt="Tem certeza que quer resetar o jogo?"
+            en="Are you sure you want to reset the game?"
+          />
+        }
+        onConfirm={onReset}
+      >
+        <Button size="large" type="dashed" icon={<BugOutlined />}>
+          <Translate pt="Resetar LS" en="Reset LS" />
+        </Button>
+      </Popconfirm>
       {isDevEnv && (
-        <Button size="small" type="dashed" onClick={onDayBefore} icon={<BugOutlined />}>
+        <Button size="large" type="dashed" onClick={onDayBefore} icon={<BugOutlined />}>
           Yesterday LS
         </Button>
       )}

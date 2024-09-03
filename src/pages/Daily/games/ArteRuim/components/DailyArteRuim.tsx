@@ -27,7 +27,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyArtGameIcon />}>
+      <Header icon={<DailyArtGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>

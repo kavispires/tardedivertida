@@ -40,7 +40,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyWordGameIcon />}>
+      <Header icon={<DailyWordGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>

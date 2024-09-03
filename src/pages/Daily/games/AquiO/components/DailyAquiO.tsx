@@ -57,7 +57,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
 
   return (
     <Layout className="app">
-      <Header icon={<DailyFindingGameIcon />}>
+      <Header icon={<DailyFindingGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
