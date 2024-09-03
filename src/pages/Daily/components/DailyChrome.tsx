@@ -20,7 +20,7 @@ export function DailyChrome({ children }: DailyChromeProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<CalendarIcon />}>
+      <Header icon={<CalendarIcon />} localStorageKey="">
         <button onClick={() => setCount((prev) => prev + 1)} className="invisible-secret-button">
           <Translate pt="TD Diário" en="TD Daily" />
         </button>

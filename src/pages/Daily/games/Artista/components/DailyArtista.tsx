@@ -41,7 +41,7 @@ export function DailyArtista({ data, currentUser }: DailyArtistaProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyDrawingGameIcon />}>
+      <Header icon={<DailyDrawingGameIcon />} localStorageKey="">
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>

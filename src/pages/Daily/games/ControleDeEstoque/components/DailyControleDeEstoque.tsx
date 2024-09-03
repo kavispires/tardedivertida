@@ -56,7 +56,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyWarehouseGameIcon />}>
+      <Header icon={<DailyWarehouseGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
