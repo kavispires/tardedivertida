@@ -17,7 +17,7 @@ import * as crimesHediondosEngine from './engine/crimes-hediondos';
 import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as duetosEngine from './engine/duetos';
-import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
+// import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as fileiraDeFatosEngine from './engine/fileira-de-fatos';
 import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
 import * as labirintoSecretoEngine from './engine/labirinto-secreto';
@@ -35,14 +35,15 @@ import * as portaDosDesesperadosEngine from './engine/porta-dos-desesperados';
 import * as retratoFaladoEngine from './engine/retrato-falado';
 import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from './engine/super-campeonato';
-import * as taNaCaraEngine from './engine/ta-na-cara';
+// import * as taNaCaraEngine from './engine/ta-na-cara';
 import * as teoriaDeConjuntos from './engine/teoria-de-conjuntos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as testeDeElencoEngine from './engine/teste-de-elenco';
 import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
-import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
+// import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
+import * as sinaisDeAlertaEngine from './engine/sinais-de-alerta';
 
 import { feedEmulatorUser } from './utils/mocks/emulator';
 
@@ -92,7 +93,7 @@ exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImag
 
 exports.duetosSubmitAction = functions.https.onCall(duetosEngine.submitAction);
 
-exports.espiaoEntreNosSubmitAction = functions.https.onCall(espiaoEntreNosEngine.submitAction);
+// exports.espiaoEntreNosSubmitAction = functions.https.onCall(espiaoEntreNosEngine.submitAction);
 
 exports.fileiraDeFatosSubmitAction = functions.https.onCall(fileiraDeFatosEngine.submitAction);
 
@@ -128,7 +129,7 @@ exports.sonhosPesadelosSubmitAction = functions.https.onCall(sonhosPesadelosEngi
 
 exports.superCampeonatoSubmitAction = functions.https.onCall(superCampeonatoEngine.submitAction);
 
-exports.taNaCaraSubmitAction = functions.https.onCall(taNaCaraEngine.submitAction);
+// exports.taNaCaraSubmitAction = functions.https.onCall(taNaCaraEngine.submitAction);
 
 exports.teoriaDeConjuntosSubmitAction = functions.https.onCall(teoriaDeConjuntos.submitAction);
 
@@ -142,7 +143,10 @@ exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitActio
 
 exports.vamosAoCinemaSubmitAction = functions.https.onCall(vamosAoCinemaEngine.submitAction);
 
-exports.vendavalDePalpiteSubmitAction = functions.https.onCall(vendavalDePalpiteEngine.submitAction);
+// exports.vendavalDePalpiteSubmitAction = functions.https.onCall(vendavalDePalpiteEngine.submitAction);
+
+// TODO: This will be the main game engine V2 function
+exports.gameEngine = functions.https.onCall(sinaisDeAlertaEngine.submitAction);
 
 /**
  * CLOUD FUNCTION V2

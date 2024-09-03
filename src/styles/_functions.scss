@@ -33,24 +33,6 @@
  * Each color has 9 levels and 5 is the default mid color one
 */
 @function get-color($color-name, $shade: 5, $alpha-value: 1) {
-  // legacy colors
-  // $colors: (
-  //   blue: #598ffd,
-  //   gray: #6f7273,
-  //   green: #49d156,
-  //   orange: #fea245,
-  //   pink: #fb9cf0,
-  //   purple: #9e8ef0,
-  //   violet: #b771f4,
-  //   red: #d14949,
-  //   teal: #34ac9e,
-  //   yellow: #ffd700,
-  //   white: #ffffff,
-  //   black: #222222,
-  //   brown: #875131,
-  //   lime: #1fda1f,
-  // );
-
   $colors: (
     'brown': #6e5135,
     'yellow': #f7cb15,
@@ -66,7 +48,7 @@
     'white': #f8f8f8,
     'black': #1a1b1b,
     'lime': #2dec2d,
-    // slate: #4e576a,
+    'slate': #4e576a,
   );
 
   $colors-light: (
@@ -84,7 +66,7 @@
     'white': #ffffff,
     'black': #464749,
     'lime': #2dec2d,
-    // "slate": #4e576a,
+    'slate': #4e576a,
   );
 
   $colors-dark: (
@@ -102,7 +84,7 @@
     'white': #c1c2c3,
     'black': #000000,
     'lime': #2dec2d,
-    // slate: #4e576a,
+    'slate': #4e576a,
   );
 
   $shade-levels: (
