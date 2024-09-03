@@ -1,11 +1,6 @@
 import { AchievementReference } from 'types/achievements';
 
 const ACHIEVEMENTS = {
-  MOST_ALONE: 'MOST_ALONE',
-  MOST_DUOS: 'MOST_DUOS',
-  MOST_GROUPS: 'MOST_GROUPS',
-  MOST_LEFT_OUT: 'MOST_LEFT_OUT',
-
   MOST_DESCRIPTORS: 'MOST_DESCRIPTORS',
   FEWEST_DESCRIPTORS: 'FEWEST_DESCRIPTORS',
   MOST_SUBJECTS: 'MOST_SUBJECTS',
@@ -19,48 +14,115 @@ const ACHIEVEMENTS = {
 };
 
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_ALONE]: {
+  [ACHIEVEMENTS.MOST_DESCRIPTORS]: {
     icon: 'glasses',
     title: {
-      pt: 'Individualista',
-      en: 'Individualist',
+      pt: 'Mais descritivo',
+      en: 'Most descriptive',
     },
     description: {
-      pt: 'Seus pares não deram match com ninguém mais vezes',
-      en: 'Your pairs did not match with anyone else the most',
+      pt: 'Acertou mais descritores',
+      en: 'Guessed the most descriptors',
     },
   },
-  [ACHIEVEMENTS.MOST_DUOS]: {
-    icon: 'puzzle',
+  [ACHIEVEMENTS.FEWEST_DESCRIPTORS]: {
+    icon: 'face-dead',
     title: {
-      pt: 'Mais Duplas',
-      en: 'Most Duos',
+      pt: 'Menos descritivo',
+      en: 'Least descriptive',
     },
     description: {
-      pt: 'Deu match com apenas um outro jogador mais vezes',
-      en: 'Matched with only one other player the most',
+      pt: 'Acertou menos descritores',
+      en: 'Guessed the least descriptors',
     },
   },
-  [ACHIEVEMENTS.MOST_GROUPS]: {
-    icon: 'intersection',
+
+  [ACHIEVEMENTS.MOST_SUBJECTS]: {
+    icon: 'dialog',
     title: {
-      pt: 'Melhor Adivinhador',
-      en: 'Best Guesser',
+      pt: 'Mais sugestivo',
+      en: 'Most suggestive',
     },
     description: {
-      pt: 'Deu match com várias pessoas mais vezes',
-      en: 'Matched with several people the most',
+      pt: 'Acertou mais sugestões',
+      en: 'Guessed the most suggestions',
     },
   },
-  [ACHIEVEMENTS.MOST_LEFT_OUT]: {
-    icon: 'x',
+  [ACHIEVEMENTS.FEWEST_SUBJECTS]: {
+    icon: 'face-fed-up',
     title: {
-      pt: 'Separatista',
-      en: 'Separatist',
+      pt: 'Menos sugestivo',
+      en: 'Least suggestive',
     },
     description: {
-      pt: 'Acertou o item de sobra mais vezes',
-      en: 'Guessed the leftover item the most',
+      pt: 'Acertou menos sugestões',
+      en: 'Guessed the least suggestions',
+    },
+  },
+  [ACHIEVEMENTS.TABLE_VOTES]: {
+    icon: 'table',
+    title: {
+      pt: 'Voto de mesa',
+      en: 'Table vote',
+    },
+    description: {
+      pt: 'Votou em todas as cartas',
+      en: 'Voted on all cards',
+    },
+  },
+  [ACHIEVEMENTS.CHOOSE_FOR_ME]: {
+    icon: 'dice',
+    title: {
+      pt: 'Chute para mim',
+      en: 'Guess for me',
+    },
+    description: {
+      pt: 'Usou a opção de chutar',
+      en: 'Used the guess for me option',
+    },
+  },
+  [ACHIEVEMENTS.BEST_DESCRIPTOR]: {
+    icon: 'star',
+    title: {
+      pt: 'Melhor descritor',
+      en: 'Best descriptor',
+    },
+    description: {
+      pt: 'Desenhou o melhor descritor',
+      en: 'Drew the best descriptor',
+    },
+  },
+  [ACHIEVEMENTS.WORST_DESCRIPTOR]: {
+    icon: 'face-oops',
+    title: {
+      pt: 'Pior descritor',
+      en: 'Worst descriptor',
+    },
+    description: {
+      pt: 'Desenhou o pior descritor',
+      en: 'Drew the worst descriptor',
+    },
+  },
+  [ACHIEVEMENTS.BEST_SUBJECT]: {
+    icon: 'flower',
+    title: {
+      pt: 'Melhor sujeito',
+      en: 'Best subject',
+    },
+    description: {
+      pt: 'Desenhou o melhor sujeito',
+      en: 'Drew the best subject',
+    },
+  },
+  [ACHIEVEMENTS.WORST_SUBJECT]: {
+    icon: 'face-perplexed',
+    title: {
+      pt: 'Pior sujeito',
+      en: 'Worst subject',
+    },
+    description: {
+      pt: 'Desenhou o pior sujeito',
+      en: 'Drew the worst subject',
     },
   },
 };
