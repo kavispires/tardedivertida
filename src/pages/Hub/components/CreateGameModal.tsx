@@ -133,6 +133,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
     try {
       setLoader('create', true);
       setLoading(true);
+
       const response: PlainObject = await ADMIN_API.run({
         action: ADMIN_API_ACTIONS.CREATE_GAME,
         gameName: gameInfo.gameName,

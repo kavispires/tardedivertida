@@ -251,6 +251,34 @@ export const kebabToPascal = (str: string): string => startCase(camelCase(str)).
  */
 export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.color ?? 'grey';
 
+function hexToRgb(hex: string): [number, number, number] {
+  // Remove the hash at the start if it's there
+  hex = hex.replace(/^#/, '');
+
+  // Parse the r, g, b values
+  let r = parseInt(hex.substring(0, 2), 16);
+  let g = parseInt(hex.substring(2, 4), 16);
+  let b = parseInt(hex.substring(4, 6), 16);
+
+  return [r, g, b];
+}
+
+function luminance(r: number, g: number, b: number): number {
+  const a = [r, g, b].map((v) => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+}
+
+export const getContrastColor = memoize((hexColor: string): 'white' | 'black' => {
+  const [r, g, b] = hexToRgb(hexColor);
+  const lum = luminance(r, g, b);
+
+  // Using a contrast threshold of 0.179 (equivalent to luminance 0.5 for black/white)
+  return lum > 0.045 ? 'white' : 'black';
+});
+
 /**
  * Animation types
  * For examples check: https://animate.style/
