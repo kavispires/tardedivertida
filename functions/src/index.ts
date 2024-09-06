@@ -29,7 +29,7 @@ import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
 import * as naoSouRoboEngine from './engine/nao-sou-robo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
-import * as quemNaoMataEngine from './engine/quem-nao-mata';
+// import * as quemNaoMataEngine from './engine/quem-nao-mata';
 import * as quemSouEuEngine from './engine/quem-sou-eu';
 import * as portaDosDesesperadosEngine from './engine/porta-dos-desesperados';
 import * as retratoFaladoEngine from './engine/retrato-falado';
@@ -39,7 +39,7 @@ import * as superCampeonatoEngine from './engine/super-campeonato';
 import * as teoriaDeConjuntos from './engine/teoria-de-conjuntos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as testeDeElencoEngine from './engine/teste-de-elenco';
-import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
+// import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
 // import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
@@ -119,7 +119,7 @@ exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.s
 
 exports.portaDosDesesperadosSubmitAction = functions.https.onCall(portaDosDesesperadosEngine.submitAction);
 
-exports.quemNaoMataSubmitAction = functions.https.onCall(quemNaoMataEngine.submitAction);
+// exports.quemNaoMataSubmitAction = functions.https.onCall(quemNaoMataEngine.submitAction);
 
 exports.quemSouEuSubmitAction = functions.https.onCall(quemSouEuEngine.submitAction);
 
@@ -137,7 +137,7 @@ exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEn
 
 exports.testeDeElencoSubmitAction = functions.https.onCall(testeDeElencoEngine.submitAction);
 
-exports.trevoDaSorteSubmitAction = functions.https.onCall(trevoDaSorteEngine.submitAction);
+// exports.trevoDaSorteSubmitAction = functions.https.onCall(trevoDaSorteEngine.submitAction);
 
 exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
 
