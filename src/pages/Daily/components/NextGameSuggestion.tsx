@@ -11,13 +11,23 @@ import { Link } from 'react-router-dom';
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
 import { SETTINGS as ARTISTA } from '../games/Artista/utils/settings';
+import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
-import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
+import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { getToday } from '../utils';
 import { DualTranslate, Translate } from 'components/language';
+import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 
-const PRIORITY_LIST = [ARTE_RUIM, CONTROLE_DE_ESTOQUE, FILMACO, PALAVREADO, AQUI_O, ARTISTA];
+const PRIORITY_LIST = [
+  TEORIA_DE_CONJUNTOS,
+  ARTE_RUIM,
+  FILMACO,
+  PALAVREADO,
+  AQUI_O,
+  CONTROLE_DE_ESTOQUE,
+  ARTISTA,
+];
 
 const checkIsPlayedToday = (key: string): boolean => {
   const session = JSON.parse(localStorage.getItem(key) || '{}');
@@ -116,6 +126,18 @@ export function NextGameSuggestion() {
           <br />
           <Link to="/diario/picaco">
             <IconAvatar icon={<DailyDrawingGameIcon />} /> <DualTranslate>{ARTISTA.NAME}</DualTranslate>!
+          </Link>
+        </Typography.Paragraph>
+      );
+
+    case TEORIA_DE_CONJUNTOS.LOCAL_TODAY_KEY:
+      return (
+        <Typography.Paragraph className="center" strong>
+          <Translate pt="Quantas vogais tem em PQP?" en="Can you solve this set challenge?" />
+          <br />
+          <Link to="/diario/teoria-de-conjuntos">
+            <IconAvatar icon={<DailyDiagramGameIcon />} />{' '}
+            <DualTranslate>{TEORIA_DE_CONJUNTOS.NAME}</DualTranslate>!
           </Link>
         </Typography.Paragraph>
       );
