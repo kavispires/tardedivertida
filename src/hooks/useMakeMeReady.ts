@@ -1,9 +1,8 @@
 import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
 import { useLanguage } from './useLanguage';
-import { UseAPICallArgs } from './useAPICall';
-import { useGameActionRequest } from './useGameActionRequest';
+import { useGameActionRequest, UseGameActionRequestArgs } from './useGameActionRequest';
 
-type UseOnMakeMeReady = Omit<UseAPICallArgs, 'apiFunction' | 'actionName'>;
+type UseOnMakeMeReady = Omit<UseGameActionRequestArgs, 'actionName'>;
 
 export function useOnMakeMeReady(args: UseOnMakeMeReady) {
   const { translate } = useLanguage();

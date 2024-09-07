@@ -1,3 +1,8 @@
+export const PORTA_DOS_DESESPERADOS_ACTIONS = {
+  SUBMIT_PAGES: 'SUBMIT_PAGES',
+  SUBMIT_DOOR: 'SUBMIT_DOOR',
+} as const;
+
 export const TOTAL_DOORS = 7;
 
 export const TRAPS = {

@@ -1,3 +1,8 @@
+export const MEGAMIX_ACTIONS = {
+  SUBMIT_SEEDS: 'SUBMIT_SEEDS',
+  SUBMIT_TRACK_ANSWER: 'SUBMIT_TRACK_ANSWER',
+} as const;
+
 export const TITLES: Record<string, DualLanguageValue> = {
   'arte-ruim': {
     pt: 'Arte Ruim Pra Dedéu',

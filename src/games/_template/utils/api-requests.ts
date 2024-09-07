@@ -1,17 +1,12 @@
 import type { SubmitActionPayload } from './types';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
-
-const submitAction = httpsCallable(functions, 'templateSubmitAction');
 
 export function useOnSubmitVotingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
