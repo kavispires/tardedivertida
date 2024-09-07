@@ -5,7 +5,7 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
-import { CallableRequestV2 } from '../types/reference';
+import { CallableRequestV2, FirebaseAuth } from '../types/reference';
 
 export type CreateGamePayload = {
   gameName: string;
@@ -22,7 +22,7 @@ export type CreateGamePayload = {
  * @param context - The Firebase context.
  * @returns The metadata of the created game.
  */
-const createGame = async (data: CreateGamePayload, context: FirebaseContext) => {
+const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
     feedEmulatorDB();
   }
@@ -74,7 +74,7 @@ const createGame = async (data: CreateGamePayload, context: FirebaseContext) => 
     const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
     const { getInitialState } = delegatorUtils.getEngine(gameName);
 
-    const uid = context?.auth?.uid ?? 'admin?';
+    const uid = auth?.uid ?? 'admin?';
     const { meta, state, store } = getInitialState(gameId, uid, language ?? 'pt', version, options);
 
     await sessionRef.doc('state').set(state);
