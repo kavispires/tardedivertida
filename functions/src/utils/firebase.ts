@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions/v1';
 // eslint-disable-next-line
 import * as functionsV2 from 'firebase-functions/v2';
 
-import { GenericCallableFunctionV2 } from '../types/reference';
+import { FirebaseAuth, GenericCallableFunctionV2 } from '../types/reference';
 import utils from '../utils';
 
 export const config = functions.config;
@@ -46,8 +46,8 @@ export const apiDelegatorV2 = (
  * @param actions Dictionary of actions accepted by the API
  * @returns a function that delegates given action to the corresponding function
  */
-export const apiDelegator = (apiName: string, actions: Record<string, GenericCallableFunction>) => {
-  return (payload: CallablePayload<unknown>, context: FirebaseContext) => {
+export const apiDelegator = (apiName: string, actions: Record<string, GenericCallableFunctionV2>) => {
+  return (payload: CallablePayload<unknown>, auth: FirebaseAuth) => {
     const { action, ...data } = payload;
 
     if (!action) {
@@ -58,7 +58,7 @@ export const apiDelegator = (apiName: string, actions: Record<string, GenericCal
       return throwExceptionV2('Invalid action', apiName);
     }
 
-    return actions[action](data, context);
+    return actions[action](data, auth);
   };
 };
 

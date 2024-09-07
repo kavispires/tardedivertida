@@ -21,6 +21,11 @@ export const gameEngine = (request: CallableRequestV2<ActionPayload>) => {
     return utils.firebase.throwExceptionV2('User not authenticated', action);
   }
 
+  // Special case: Load Game cannot require gameName because it only has the ID
+  if (action === 'LOAD_GAME' && COMMON_ACTIONS[action]) {
+    return COMMON_ACTIONS[action](request.data);
+  }
+
   // Verify gameName
   const gameName = request.data?.gameName;
   if (!gameName) {

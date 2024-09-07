@@ -1,6 +1,7 @@
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
+import { FirebaseAuth } from '../types/reference';
 
 type LoadGamePayload = {
   gameId: GameId;
@@ -44,7 +45,7 @@ interface JoinGamePayload {
  * @param data
  * @returns
  */
-const joinGame = async (data: JoinGamePayload, context: FirebaseContext) => {
+const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const { gameId, gameName, playerName, playerAvatarId, isGuest } = data;
 
   const actionText = 'add player';
@@ -65,7 +66,7 @@ const joinGame = async (data: JoinGamePayload, context: FirebaseContext) => {
   const cleanPlayerName = playerName.replace(/[\][(){},.:;!?<>%]/g, '');
 
   // Generate playerId by removing accents and lower casing the name
-  const playerId = context?.auth?.uid ?? utils.players.generatePlayerId(cleanPlayerName);
+  const playerId = auth?.uid ?? utils.players.generatePlayerId(cleanPlayerName);
 
   if (players?.[playerId]) {
     return players[playerId];
@@ -155,11 +156,11 @@ const makeMeReady = async (data: Payload) => {
   }
 };
 
-const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
+const rateGame = async (data: ExtendedPayload, auth: FirebaseAuth) => {
   const { gameId, gameName, playerId } = data;
   const actionText = 'submit ratings';
 
-  const uid = context?.auth?.uid;
+  const uid = auth?.uid;
 
   // If user has an ui, save it to the user profile
   if (uid) {
