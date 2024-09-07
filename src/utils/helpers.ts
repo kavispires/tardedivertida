@@ -79,10 +79,10 @@ export const isDevEnv: boolean = process.env.NODE_ENV === 'development';
 // export const isDevEnv = false;
 
 const methods = {
-  count: console.count,
-  log: console.log,
-  table: console.table,
-  warn: console.warn,
+  count: console.count.bind(console),
+  log: console.log.bind(console),
+  table: console.table.bind(console),
+  warn: console.warn.bind(console),
 };
 
 /**

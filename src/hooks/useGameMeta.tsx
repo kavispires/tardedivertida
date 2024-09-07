@@ -10,7 +10,7 @@ import { useLoading } from './useLoading';
 import { useGameId } from './useGameId';
 import { useError } from './useError';
 // API
-import { GAME_API_V1, GAME_API_ACTIONS_V1 } from 'services/adapters';
+import { GAME_API_COMMON_ACTIONS, GAME_API } from 'services/adapters';
 // Utils
 import { print } from 'utils/helpers';
 
@@ -32,7 +32,7 @@ export function useGameMeta(): GameMeta {
       setLoader('load', true);
       console.count('Fetching game meta...');
 
-      const response = await GAME_API_V1.run({ action: GAME_API_ACTIONS_V1.LOAD_GAME, gameId });
+      const response = await GAME_API.run({ action: GAME_API_COMMON_ACTIONS.LOAD_GAME, gameId });
       const data = response.data as GameMeta;
 
       print({ meta: data });
