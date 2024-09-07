@@ -179,6 +179,6 @@ export const submitAction = async (data: UeSoIssoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'send guess');
       return handleSendGuess(gameName, gameId, playerId, data.guess);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

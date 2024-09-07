@@ -131,6 +131,6 @@ export const submitAction = async (data: PolemicaDaVezSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['reaction', 'likesGuess'], 'submit reaction');
       return handleSubmitReaction(gameName, gameId, playerId, data.reaction, data.likesGuess);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

@@ -12,6 +12,6 @@ export const fetchResource = async <T = any>(resourceName: string): Promise<T | 
     const response = await fetch(`${utils.firebase.config().td.resources}${resourceName}.json`);
     return response.json();
   } catch (e) {
-    return utils.firestore.throwException(`${e}`, `Failed to get resource for ${resourceName}`);
+    return utils.firebase.throwExceptionV2(`${e}`, `Failed to get resource for ${resourceName}`);
   }
 };

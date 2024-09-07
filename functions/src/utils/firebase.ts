@@ -51,11 +51,11 @@ export const apiDelegator = (apiName: string, actions: Record<string, GenericCal
     const { action, ...data } = payload;
 
     if (!action) {
-      return throwException('Missing action', apiName);
+      return throwExceptionV2('Missing action', apiName);
     }
 
     if (!actions[action]) {
-      return throwException('Invalid action', apiName);
+      return throwExceptionV2('Invalid action', apiName);
     }
 
     return actions[action](data, context);
@@ -120,31 +120,4 @@ export function validateSubmitActionPayload(
  */
 export function validateSubmitActionProperties(data: PlainObject, properties: string[], action: string) {
   properties.forEach((propertyName) => verifyPayload(data[propertyName], propertyName, action));
-}
-
-/**
- * Validate if user is authenticated
- * @param context
- * @param action
- * @deprecated
- */
-export function verifyAuth(context: FirebaseContext, action = 'perform function') {
-  // Verify auth
-  const uid = context?.auth?.uid;
-  if (!uid) {
-    throw new functions.https.HttpsError('internal', `Failed to ${action}: you must be logged in`);
-  }
-}
-
-/**
- * Throws an exception. It should be used only inside a catch
- * @param error
- * @param action
- * @deprecated
- */
-export function throwException(error: unknown, action = 'function') {
-  if (process.env.FIRESTORE_EMULATOR_HOST) {
-    console.error(`Failed to ${action}`, error);
-  }
-  throw new functions.https.HttpsError('internal', `Failed to ${action}`, error);
 }

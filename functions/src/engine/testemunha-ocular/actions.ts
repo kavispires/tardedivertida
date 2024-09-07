@@ -29,7 +29,7 @@ export const handleExtraAction = async (
 
     return getNextPhase(gameName, gameId, state, additionalPayload);
   } catch (error) {
-    utils.firestore.throwException(error, `Failed to ${actionText}`);
+    utils.firebase.throwExceptionV2(error, `Failed to ${actionText}`);
   }
 
   return true;
@@ -95,7 +95,7 @@ export const handleElimination = async (
     try {
       return getNextPhase(gameName, gameId, state, { lose, win });
     } catch (error) {
-      utils.firestore.throwException(error, `Failed to ${actionText}`);
+      utils.firebase.throwExceptionV2(error, `Failed to ${actionText}`);
     }
   }
 

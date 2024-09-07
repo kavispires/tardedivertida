@@ -190,7 +190,7 @@ export const handlePlayCard = async (
   try {
     await sessionRef.doc('state').update({ players });
   } catch (error) {
-    utils.firestore.throwException(error, 'Failed to update players');
+    utils.firebase.throwExceptionV2(error, 'Failed to update players');
   }
 
   return await utils.firestore.updateState({

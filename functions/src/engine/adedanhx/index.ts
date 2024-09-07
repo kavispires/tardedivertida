@@ -127,6 +127,6 @@ export const submitAction = async (data: AdedanhxSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
       return handleSubmitRejectAnswers(gameName, gameId, playerId, data.evaluations);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

@@ -135,6 +135,6 @@ export const submitAction = async (data: LinhasCruzadasSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitGuess(gameName, gameId, playerId, data.guess);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

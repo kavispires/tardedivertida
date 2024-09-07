@@ -119,26 +119,26 @@ export const submitAction = async (data: InstrumentosCodificadosSubmitAction) =>
   switch (action) {
     case 'SUBMIT_HINT':
       if (!data.hint) {
-        utils.firestore.throwException('Missing `hint` value', 'submit hint');
+        utils.firebase.throwExceptionV2('Missing `hint` value', 'submit hint');
       }
       if (!data.targetId) {
-        utils.firestore.throwException('Missing `targetId` value', 'submit targetId');
+        utils.firebase.throwExceptionV2('Missing `targetId` value', 'submit targetId');
       }
       if (!data.position) {
-        utils.firestore.throwException('Missing `position` value', 'submit position');
+        utils.firebase.throwExceptionV2('Missing `position` value', 'submit position');
       }
       return handleSubmitHint(gameName, gameId, playerId, data.hint, data.targetId, data.position);
     case 'SUBMIT_CONCLUSIONS':
       if (!data.conclusions) {
-        utils.firestore.throwException('Missing `conclusions` value', 'submit conclusions');
+        utils.firebase.throwExceptionV2('Missing `conclusions` value', 'submit conclusions');
       }
       return handleSubmitConclusions(gameName, gameId, playerId, data.conclusions);
     case 'SUBMIT_CODE':
       if (!data.code) {
-        utils.firestore.throwException('Missing `code` value', 'submit code');
+        utils.firebase.throwExceptionV2('Missing `code` value', 'submit code');
       }
       return handleSubmitCode(gameName, gameId, playerId, data.code);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

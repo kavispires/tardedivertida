@@ -146,6 +146,6 @@ export const submitAction = async (data: LabirintoSecretoSubmitAction) => {
       );
       return handleSubmitPath(gameName, gameId, playerId, data.pathId, data.guess, data.choseRandomly);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

@@ -133,6 +133,6 @@ export const submitAction = async (data: TesteDeElencoSubmitAction) => {
       return handleSubmitActor(gameName, gameId, playerId, data.actorId);
 
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

@@ -123,6 +123,6 @@ export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(gameName, gameId, playerId, data.votes);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };
