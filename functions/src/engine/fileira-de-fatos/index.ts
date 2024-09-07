@@ -117,6 +117,6 @@ export const submitAction = async (data: FileiraDeFatosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['order'], 'submit scenario order');
       return handleSubmitScenarioOrder(gameName, gameId, playerId, data.order);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

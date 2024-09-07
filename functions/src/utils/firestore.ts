@@ -5,6 +5,7 @@ import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '../utils';
 import { isEmpty } from 'lodash';
+import { throwExceptionV2 } from './firebase';
 
 /**
  * Get Firebase session for the data collection (used to save bot/seed data)
@@ -136,18 +137,6 @@ export async function getSessionDoc(
 }
 
 /**
- * Throws an exception. It should be used only inside a catch
- * @param error
- * @param action
- */
-export function throwException(error: unknown, action = 'function') {
-  if (process.env.FIRESTORE_EMULATOR_HOST) {
-    console.error(`Failed to ${action}`, error);
-  }
-  throw new functions.https.HttpsError('internal', `Failed to ${action}`, error);
-}
-
-/**
  * Gather docs and references needed in every nextPhase function
  * @param gameName
  * @param gameId
@@ -231,7 +220,7 @@ export const saveGame = async (
       await sessionRef.doc('state').set({ ...saveContent.set.state, updatedAt: Date.now() } ?? {});
     }
   } catch (error) {
-    throwException(error, 'set game state');
+    throwExceptionV2(error, 'set game state');
   }
   try {
     if (
@@ -247,7 +236,7 @@ export const saveGame = async (
       await sessionRef.doc('store').update({ ...(saveContent.update.store ?? {}), ...cleanup });
     }
   } catch (error) {
-    throwException(error, 'update game store');
+    throwExceptionV2(error, 'update game store');
   }
 
   try {
@@ -267,7 +256,7 @@ export const saveGame = async (
         .update({ ...(saveContent.update.state ?? {}), ...cleanup, updatedAt: Date.now() });
     }
   } catch (error) {
-    throwException(error, 'update game state');
+    throwExceptionV2(error, 'update game state');
   }
 
   return true;
@@ -341,7 +330,7 @@ export const updatePlayer = async ({
     await sessionRef.doc('state').update({ ...playerChange });
   } catch (error) {
     // TODO: log error
-    return throwException(error, actionText);
+    return throwExceptionV2(error, actionText);
   }
   if (shouldReady && nextPhaseFunction) {
     const { state } = await utils.firestore.getStateReferences<DefaultState>(gameName, gameId, actionText);
@@ -377,7 +366,7 @@ export const updateStore = async ({
   try {
     await sessionRef.doc('store').update({ ...change });
   } catch (error) {
-    return throwException(error, actionText);
+    return throwExceptionV2(error, actionText);
   }
 
   if (nextPhaseFunction) {
@@ -409,7 +398,7 @@ export const updateState = async ({
   try {
     await sessionRef.doc('state').update({ ...change });
   } catch (error) {
-    return throwException(error, actionText);
+    return throwExceptionV2(error, actionText);
   }
 
   if (nextPhaseFunction) {

@@ -127,6 +127,6 @@ export const submitAction = async (data: NaoSouRoboSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitCardGuess(gameName, gameId, playerId, data.guess);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

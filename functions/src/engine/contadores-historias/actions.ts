@@ -47,7 +47,7 @@ export const handleSubmitStory = async (
   try {
     await sessionRef.doc('store').update({ story, solutionCardId: cardId });
   } catch (error) {
-    utils.firestore.throwException(error, 'Failed to save story to store');
+    utils.firebase.throwExceptionV2(error, 'Failed to save story to store');
   }
 
   // If all players are ready, trigger next phase
@@ -76,7 +76,7 @@ export const handlePlayCard = async (
   );
 
   if (state.storytellerId === playerId) {
-    utils.firestore.throwException('You are the storyteller!', 'Failed to play card.');
+    utils.firebase.throwExceptionV2('You are the storyteller!', 'Failed to play card.');
   }
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);

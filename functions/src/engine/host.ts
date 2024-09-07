@@ -33,14 +33,14 @@ const createGame = async (data: CreateGamePayload, context: FirebaseContext) => 
   const { gameName, language, version, options } = data;
 
   if (!gameName) {
-    return utils.firestore.throwException('a gameName is required', actionText);
+    return utils.firebase.throwExceptionV2('a gameName is required', actionText);
   }
 
   // Get gameCode
   const gameCode = GAME_CODES[gameName];
 
   if (!gameCode) {
-    return utils.firestore.throwException(`provided gameCode is invalid ${gameName}`, actionText);
+    return utils.firebase.throwExceptionV2(`provided gameCode is invalid ${gameName}`, actionText);
   }
 
   // Get list of used ids
@@ -58,7 +58,7 @@ const createGame = async (data: CreateGamePayload, context: FirebaseContext) => 
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await gameRef.collection(gameId).doc('state').get();
   if (tempGame.exists) {
-    return utils.firestore.throwException(
+    return utils.firebase.throwExceptionV2(
       `the generated game id ${gameId} belongs to an existing session`,
       actionText
     );
@@ -85,7 +85,7 @@ const createGame = async (data: CreateGamePayload, context: FirebaseContext) => 
 
     response = meta;
   } catch (e) {
-    return utils.firestore.throwException(`${e}`, `${actionText} in the firestore database`);
+    return utils.firebase.throwExceptionV2(`${e}`, `${actionText} in the firestore database`);
   }
 
   try {
@@ -135,14 +135,14 @@ const lockGame = async (data: BasicGamePayload) => {
   const playerCounts = getPlayerCounts();
 
   if (numPlayers < playerCounts.MIN) {
-    utils.firestore.throwException(
+    utils.firebase.throwExceptionV2(
       `Game ${gameId} has an insufficient number of players: Minimum ${playerCounts.MIN} players, but has ${numPlayers}`,
       actionText
     );
   }
 
   if (numPlayers > playerCounts.MAX) {
-    utils.firestore.throwException(
+    utils.firebase.throwExceptionV2(
       `Game ${gameId} has more players than it supports: Maximum ${playerCounts.MAX} players, but has ${numPlayers}`,
       actionText
     );
@@ -163,7 +163,7 @@ const lockGame = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firestore.throwException(error, actionText);
+    utils.firebase.throwExceptionV2(error, actionText);
   }
 
   return false;
@@ -200,7 +200,7 @@ const unlockAndResetGame = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firestore.throwException(error, actionText);
+    utils.firebase.throwExceptionV2(error, actionText);
   }
 
   return false;
@@ -242,7 +242,7 @@ const forceStateProperty = async (data: BasicGamePayload) => {
   try {
     await sessionRef.doc('state').update(state);
   } catch (error) {
-    return utils.firestore.throwException(error, actionText);
+    return utils.firebase.throwExceptionV2(error, actionText);
   }
 
   return true;
@@ -267,7 +267,7 @@ const forceLastRound = async (data: BasicGamePayload) => {
   try {
     await sessionRef.doc('state').update({ 'round.forceLastRound': true });
   } catch (error) {
-    return utils.firestore.throwException(error, actionText);
+    return utils.firebase.throwExceptionV2(error, actionText);
   }
 
   return true;
@@ -319,7 +319,7 @@ const playAgain = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firestore.throwException(error, actionText);
+    utils.firebase.throwExceptionV2(error, actionText);
   }
 
   return false;

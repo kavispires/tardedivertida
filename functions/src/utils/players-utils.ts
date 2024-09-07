@@ -1,6 +1,6 @@
 // Constants
 import { AVATAR_IDS } from './constants';
-import { throwException } from './firebase';
+import { throwExceptionV2 } from './firebase';
 // Utils
 import { getRandomUniqueItem, shuffle } from './game-utils';
 import { deepCopy } from './helpers';
@@ -262,7 +262,7 @@ export const dealItemsToPlayers = (
 ) => {
   const playersList = getListOfPlayers(players);
   if (list.length < playersList.length * quantityPerPlayer) {
-    throwException('List has less items the needed', 'deal items to players');
+    throwExceptionV2('List has less items the needed', 'deal items to players');
   }
 
   if (quantityPerPlayer === 1) {

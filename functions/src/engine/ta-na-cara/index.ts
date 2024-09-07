@@ -141,6 +141,6 @@ export const submitAction = async (data: TaNaCaraSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['answer'], 'submit answer');
       return handleSubmitAnswer(gameName, gameId, playerId, data.answer);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

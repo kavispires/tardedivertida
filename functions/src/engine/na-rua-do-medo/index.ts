@@ -132,6 +132,6 @@ export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
       return handleSubmitDecision(gameName, gameId, playerId, data.decision);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

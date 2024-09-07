@@ -21,7 +21,7 @@ const loadGame = async (data: LoadGamePayload) => {
   const gameMeta = await metaRef.doc(gameId).get();
 
   if (!gameMeta.exists) {
-    return utils.firestore.throwException(`game ${gameId} does not exist`, actionText);
+    return utils.firebase.throwExceptionV2(`game ${gameId} does not exist`, actionText);
   }
 
   const gameMetaData = gameMeta.data();
@@ -77,7 +77,7 @@ const joinGame = async (data: JoinGamePayload, context: FirebaseContext) => {
   const numPlayers = utils.players.getPlayerCount(players);
 
   if (numPlayers === playerCounts.MAX) {
-    utils.firestore.throwException(
+    utils.firebase.throwExceptionV2(
       `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${playerCounts.MIN}`,
       actionText
     );
@@ -88,7 +88,10 @@ const joinGame = async (data: JoinGamePayload, context: FirebaseContext) => {
   const meta = metaDoc.data() ?? {};
 
   if (meta?.isLocked) {
-    utils.firestore.throwException(`This game ${gameId} is locked and cannot accept new players`, actionText);
+    utils.firebase.throwExceptionV2(
+      `This game ${gameId} is locked and cannot accept new players`,
+      actionText
+    );
   }
 
   try {
@@ -105,7 +108,7 @@ const joinGame = async (data: JoinGamePayload, context: FirebaseContext) => {
     });
     return newPlayer;
   } catch (error) {
-    utils.firestore.throwException(error, actionText);
+    utils.firebase.throwExceptionV2(error, actionText);
   }
 };
 
@@ -138,7 +141,7 @@ const makeMeReady = async (data: Payload) => {
       await sessionRef.doc('state').update({ [path]: true });
       return true;
     } catch (error) {
-      utils.firestore.throwException(error, actionText);
+      utils.firebase.throwExceptionV2(error, actionText);
     }
   }
 
@@ -148,7 +151,7 @@ const makeMeReady = async (data: Payload) => {
   try {
     return getNextPhase(gameName, gameId);
   } catch (error) {
-    utils.firestore.throwException(error, actionText);
+    utils.firebase.throwExceptionV2(error, actionText);
   }
 };
 
@@ -195,7 +198,7 @@ const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
           [gameId]: data.ratings,
         });
     } catch (error) {
-      utils.firestore.throwException(error, actionText);
+      utils.firebase.throwExceptionV2(error, actionText);
     }
   }
   return true;

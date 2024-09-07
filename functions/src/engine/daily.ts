@@ -25,19 +25,19 @@ const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firestore.throwException('User not authenticated', actionText);
+    return utils.firebase.throwExceptionV2('User not authenticated', actionText);
   }
 
   const { date } = data;
   if (!date) {
-    return utils.firestore.throwException('Date not provided', actionText);
+    return utils.firebase.throwExceptionV2('Date not provided', actionText);
   }
 
   const dailyRef = utils.firestore.getDailyRef(data.document);
   const dailyDoc = await dailyRef.doc(date).get();
 
   if (!dailyDoc.exists) {
-    utils.firestore.throwException(`Daily ${date} does not exist`, actionText);
+    utils.firebase.throwExceptionV2(`Daily ${date} does not exist`, actionText);
   }
 
   const dailyData = dailyDoc.data();
@@ -71,12 +71,12 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firestore.throwException('User not authenticated', actionText);
+    return utils.firebase.throwExceptionV2('User not authenticated', actionText);
   }
 
   const { id, number, victory, hearts, letters } = data;
   if (!id) {
-    return utils.firestore.throwException('Payload is missing data', actionText);
+    return utils.firebase.throwExceptionV2('Payload is missing data', actionText);
   }
   const userRef = utils.firestore.getUserRef();
 
@@ -138,7 +138,7 @@ const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) =>
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firestore.throwException('User not authenticated', actionText);
+    return utils.firebase.throwExceptionV2('User not authenticated', actionText);
   }
 
   await dataUtils.updateDataCollectionRecursively('drawings', data.language, data.drawings);

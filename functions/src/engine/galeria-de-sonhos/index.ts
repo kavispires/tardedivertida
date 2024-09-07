@@ -154,6 +154,6 @@ export const submitAction = async (data: GaleriaDeSonhosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(gameName, gameId, playerId, data.cardId);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

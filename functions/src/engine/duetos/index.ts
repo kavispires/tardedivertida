@@ -112,6 +112,6 @@ export const submitAction = async (data: DuetosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['pairs'], 'submit pairs');
       return handleSubmitPairs(gameName, gameId, playerId, data.pairs);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

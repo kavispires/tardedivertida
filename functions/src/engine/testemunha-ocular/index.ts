@@ -164,6 +164,6 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
       });
 
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };

@@ -162,6 +162,6 @@ export const submitAction = async (data: SuperCampeonatoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit bets');
       return handleSubmitVotes(gameName, gameId, playerId, data.votes);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
   }
 };
