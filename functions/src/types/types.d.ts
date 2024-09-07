@@ -62,13 +62,6 @@ interface GameOptions {
   [key: string]: boolean | string;
 }
 
-interface CreateGamePayload {
-  gameName: string;
-  language: string;
-  version: string;
-  options?: GameOptions;
-}
-
 interface LoadGamePayload {
   gameId: GameId;
   gameName: string;
@@ -96,11 +89,6 @@ interface AddPlayerPayload {
   playerName: PlayerName;
   playerAvatarId: PlayerAvatarId;
   isGuest?: boolean;
-}
-
-interface BasicGamePayload {
-  gameId: GameId;
-  gameName: GameName;
 }
 
 interface Meta {

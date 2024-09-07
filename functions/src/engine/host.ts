@@ -5,12 +5,22 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
+import { CallableRequestV2 } from '../types/reference';
+
+export type CreateGamePayload = {
+  gameName: string;
+  language: string;
+  version: string;
+  options?: GameOptions;
+  action: string;
+};
 
 /**
- * Creates a new game instance
- * @param data
- * @param context a logged in user is required to perform this
- * @returns
+ * Creates a new game.
+ *
+ * @param data - The payload containing game information.
+ * @param context - The Firebase context.
+ * @returns The metadata of the created game.
  */
 const createGame = async (data: CreateGamePayload, context: FirebaseContext) => {
   if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
@@ -18,7 +28,6 @@ const createGame = async (data: CreateGamePayload, context: FirebaseContext) => 
   }
 
   const actionText = 'create new game';
-  utils.firebase.verifyAuth(context, actionText);
 
   // Get collection name by game code on request
   const { gameName, language, version, options } = data;
@@ -91,19 +100,26 @@ const createGame = async (data: CreateGamePayload, context: FirebaseContext) => 
   };
 };
 
+export type BasicGamePayload = {
+  gameId: GameId;
+  gameName: GameName;
+  action: string;
+  [key: string]: any;
+};
+
 /**
- * Lock game so new players cannot join
- * @param data
- * @param context
- * @returns
+ * Locks a game and updates its state and metadata.
+ *
+ * @param data - The payload containing the game ID and game name.
+ * @returns A boolean indicating whether the game was successfully locked.
+ * @throws Throws an exception if the game has an insufficient number of players or if there are more players than the game supports.
  */
-const lockGame = async (data: BasicGamePayload, context: FirebaseContext) => {
+const lockGame = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
 
   const actionText = 'lock game';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
   utils.firebase.verifyPayload(gameName, 'gameName', actionText);
-  utils.firebase.verifyAuth(context, actionText);
 
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
@@ -154,18 +170,17 @@ const lockGame = async (data: BasicGamePayload, context: FirebaseContext) => {
 };
 
 /**
- * Unlocks the game and move everybody to the lobby
- * @param data
- * @param context
- * @returns
+ * Unlocks the game and resets it to the initial state.
+ *
+ * @param data - The payload containing the game ID and game name.
+ * @returns A boolean indicating whether the game was successfully unlocked and reset.
  */
-const unlockAndResetGame = async (data: BasicGamePayload, context: FirebaseContext) => {
+const unlockAndResetGame = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
 
   const actionText = 'reset game';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
   utils.firebase.verifyPayload(gameName, 'gameName', actionText);
-  utils.firebase.verifyAuth(context, actionText);
 
   const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
 
@@ -191,88 +206,84 @@ const unlockAndResetGame = async (data: BasicGamePayload, context: FirebaseConte
   return false;
 };
 
-const ADMIN_ACTIONS = {
-  GO_TO_NEXT_PHASE: 'GO_TO_NEXT_PHASE',
-  FORCE_STATE_PROPERTY: 'FORCE_STATE_PROPERTY',
-  PLAY_AGAIN: 'PLAY_AGAIN',
-  FORCE_END_GAME: 'FORCE_END_GAME',
-  RESET_GAME: 'RESET_GAME',
-};
-
 /**
- * Performs admin action depending on the keys
+ * Goes to the next phase of the game.
  *
- * If data contains key `state`, perform a force state property,
- * @param data
- * @param context
- * @returns
+ * @param data - The payload containing the game ID and game name.
+ * @returns A promise that resolves to the result of the next phase.
  */
-export const performAdminAction = async (data: ExtendedPayload, context: FirebaseContext) => {
-  const { gameId, gameName, action, state } = data;
+const goToNextPhase = async (data: BasicGamePayload) => {
+  const { gameId, gameName } = data;
 
-  utils.firebase.verifyAuth(context, action);
-  utils.firebase.validateActionPayload(gameId, gameName, action, action);
+  const actionText = 'go to next phase';
+  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
+  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
 
-  switch (action) {
-    case ADMIN_ACTIONS.GO_TO_NEXT_PHASE:
-      return await goToNextPhase(gameId, gameName);
-    case ADMIN_ACTIONS.FORCE_STATE_PROPERTY:
-      return await forceStateProperty(gameId, gameName, state);
-    case ADMIN_ACTIONS.PLAY_AGAIN:
-      return await playAgain(gameId, gameName);
-    case ADMIN_ACTIONS.FORCE_END_GAME:
-      return await forceStateProperty(gameId, gameName, { 'round.forceLastRound': true });
-    case ADMIN_ACTIONS.RESET_GAME:
-      return await unlockAndResetGame(data, context);
-    default:
-      return utils.firestore.throwException(
-        'Failed to perform admin action',
-        `Action ${action} is not allowed`
-      );
-  }
-};
-
-/**
- * Goes to next phase of the current game
- * @param gameId
- * @param gameName
- * @returns
- */
-const goToNextPhase = async (gameId: GameId, gameName: GameName) => {
   const { getNextPhase } = delegatorUtils.getEngine(gameName);
 
   return getNextPhase(gameName, gameId);
 };
 
 /**
- * Adds a property to game game state
- * @param gameId
- * @param gameName
- * @param stateUpdate
- * @returns
+ * Forces a state property update for a game.
+ *
+ * @param data - The data object containing the game ID, game name, and state.
+ * @returns A boolean indicating whether the state property update was successful.
  */
-const forceStateProperty = async (gameId: GameId, gameName: GameName, stateUpdate: PlainObject) => {
+const forceStateProperty = async (data: BasicGamePayload) => {
+  const { gameId, gameName, state } = data;
+
   const actionText = 'force state property';
+  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
+  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
 
   const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
 
   try {
-    await sessionRef.doc('state').update(stateUpdate);
+    await sessionRef.doc('state').update(state);
   } catch (error) {
     return utils.firestore.throwException(error, actionText);
   }
 
-  return false;
+  return true;
 };
 
 /**
+ * Forces the last round of the game.
  *
- * @param gameId
- * @param gameName
- * @returns
+ * @param data - The basic game payload.
+ * @returns A boolean indicating whether the last round was successfully forced.
  */
-const playAgain = async (gameId: GameId, gameName: GameName) => {
+const forceLastRound = async (data: BasicGamePayload) => {
+  const { gameId, gameName } = data;
+
+  const actionText = 'force last round';
+
+  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
+  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
+
+  const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
+
+  try {
+    await sessionRef.doc('state').update({ 'round.forceLastRound': true });
+  } catch (error) {
+    return utils.firestore.throwException(error, actionText);
+  }
+
+  return true;
+};
+
+/**
+ * Resets the game state and allows players to play the game again.
+ *
+ * @param data - The payload containing the game ID and game name.
+ * @returns A boolean indicating whether the game was successfully reset.
+ */
+const playAgain = async (data: BasicGamePayload) => {
+  const { gameId, gameName } = data;
   const actionText = 'play game again';
+  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
+  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
 
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
@@ -314,9 +325,43 @@ const playAgain = async (gameId: GameId, gameName: GameName) => {
   return false;
 };
 
-const ADMIN_API_ACTIONS = {
+const HOST_API_ACTIONS = {
   CREATE_GAME: createGame,
   LOCK_GAME: lockGame,
+  GO_TO_NEXT_PHASE: goToNextPhase,
+  FORCE_STATE_PROPERTY: forceStateProperty,
+  PLAY_AGAIN: playAgain,
+  FORCE_END_GAME: forceLastRound,
+  RESET_GAME: unlockAndResetGame,
 };
 
-export const adminApi = utils.firebase.apiDelegator('admin api', ADMIN_API_ACTIONS);
+/**
+ * Executes the user engine function.
+ *
+ * @param request - The callable request object.
+ * @returns The result of the user engine function.
+ */
+/**
+ * Executes the game host engine.
+ *
+ * @param request - The CallableRequestV2 object.
+ */
+export const hostEngine = (request: CallableRequestV2<CreateGamePayload | BasicGamePayload>) => {
+  // Verify action
+  const action = request.data?.action;
+  if (!action) {
+    return utils.firebase.throwExceptionV2('Action not provided', 'perform request');
+  }
+
+  // Verify auth
+  const uid = request.auth?.uid;
+  if (!uid) {
+    return utils.firebase.throwExceptionV2('User not authenticated', action);
+  }
+
+  if (HOST_API_ACTIONS[action]) {
+    return HOST_API_ACTIONS[action](request.data, request.auth);
+  }
+
+  return utils.firebase.throwExceptionV2('Admin action does not exist', action);
+};
