@@ -115,7 +115,8 @@ const lockGame = async (data: BasicGamePayload, context: FirebaseContext) => {
 
   // Verify minimum number of players
   const numPlayers = utils.players.getPlayerCount(players);
-  const { playerCounts } = delegatorUtils.getEngine(gameName);
+  const { getPlayerCounts } = delegatorUtils.getEngine(gameName);
+  const playerCounts = getPlayerCounts();
 
   if (numPlayers < playerCounts.MIN) {
     utils.firestore.throwException(

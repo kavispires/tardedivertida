@@ -2,6 +2,10 @@
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 
+type LoadGamePayload = {
+  gameId: GameId;
+};
+
 /**
  * Loads a new game instance
  * @param data
@@ -27,12 +31,20 @@ const loadGame = async (data: LoadGamePayload) => {
   return gameMetaData;
 };
 
+interface JoinGamePayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  playerAvatarId: PlayerAvatarId;
+  isGuest?: boolean;
+}
+
 /**
  * Add player to a game given gameId
  * @param data
  * @returns
  */
-const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
+const joinGame = async (data: JoinGamePayload, context: FirebaseContext) => {
   const { gameId, gameName, playerName, playerAvatarId, isGuest } = data;
 
   const actionText = 'add player';
@@ -60,7 +72,8 @@ const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
   }
 
   // Verify maximum number of players
-  const { playerCounts } = delegatorUtils.getEngine(gameName);
+  const { getPlayerCounts } = delegatorUtils.getEngine(gameName);
+  const playerCounts = getPlayerCounts();
   const numPlayers = utils.players.getPlayerCount(players);
 
   if (numPlayers === playerCounts.MAX) {
@@ -101,7 +114,7 @@ const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
  * @param data
  * @returns
  */
-const makePlayerReady = async (data: Payload) => {
+const makeMeReady = async (data: Payload) => {
   const { gameId, gameName, playerId } = data;
 
   const actionText = 'make you ready';
@@ -188,11 +201,9 @@ const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
   return true;
 };
 
-const GAME_API_ACTIONS = {
+export const COMMON_ACTIONS = {
   LOAD_GAME: loadGame,
-  ADD_PLAYER: addPlayer,
-  MAKE_PLAYER_READY: makePlayerReady,
+  JOIN_GAME: joinGame,
+  MAKE_ME_READY: makeMeReady,
   RATE_GAME: rateGame,
 };
-
-export const gameApi = utils.firebase.apiDelegator('game api', GAME_API_ACTIONS);

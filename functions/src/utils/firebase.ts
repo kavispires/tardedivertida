@@ -20,7 +20,7 @@ export const throwExceptionV2 = (error: any, action: string) => {
 };
 
 export const apiDelegatorV2 = (
-  request: functionsV2.https.CallableRequest,
+  request: functionsV2.https.CallableRequest<ActionPayload>,
   actions: Record<string, GenericCallableFunctionV2>
 ) => {
   const uid = request.auth?.uid;
