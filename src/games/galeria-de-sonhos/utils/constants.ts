@@ -1,3 +1,9 @@
+export const GALERIA_DE_SONHOS_ACTIONS = {
+  SUBMIT_WORD: 'SUBMIT_WORD',
+  SUBMIT_CARDS: 'SUBMIT_CARDS',
+  PLAY_CARD: 'PLAY_CARD',
+} as const;
+
 export const GO_TO_PLAYER_WITH_NIGHTMARE_STEP = 1;
 export const GO_TO_SEE_CARD_STEP = 3;
 export const GO_TO_CARD_PLAY_STEP = 5;

@@ -1,17 +1,14 @@
 import type { SubmitDecisionPayload, SubmitMessagePayload, SubmitTargetPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'quemNaoMataSubmitAction');
+import { QUEM_NAO_MATA_ACTIONS } from './constants';
 
 export function useOnSubmitTargetAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-target',
     successMessage: translate('Alvo selecionado com sucesso', 'Target set successfully'),
     errorMessage: translate(
@@ -22,7 +19,7 @@ export function useOnSubmitTargetAPIRequest() {
 
   return (payload: SubmitTargetPayload) => {
     request({
-      action: 'SUBMIT_TARGET',
+      action: QUEM_NAO_MATA_ACTIONS.SUBMIT_TARGET,
       ...payload,
     });
   };
@@ -31,8 +28,7 @@ export function useOnSubmitTargetAPIRequest() {
 export function useOnSubmitMessageAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-message',
     successMessage: translate('Mensagem enviada com sucesso!', 'Message sent successfully!'),
     errorMessage: translate(
@@ -43,7 +39,7 @@ export function useOnSubmitMessageAPIRequest() {
 
   return (payload: SubmitMessagePayload) => {
     request({
-      action: 'SUBMIT_MESSAGE',
+      action: QUEM_NAO_MATA_ACTIONS.SUBMIT_MESSAGE,
       ...payload,
     });
   };
@@ -52,8 +48,7 @@ export function useOnSubmitMessageAPIRequest() {
 export function useOnSubmitDecisionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-decision',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -66,7 +61,7 @@ export function useOnSubmitDecisionAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitDecisionPayload) => {
     request({
-      action: 'SUBMIT_DECISION',
+      action: QUEM_NAO_MATA_ACTIONS.SUBMIT_DECISION,
       ...payload,
     });
   };

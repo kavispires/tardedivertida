@@ -1,5 +1,10 @@
 import { Direction } from './types';
 
+export const LABIRINTO_SECRETO_ACTIONS = {
+  SUBMIT_MAP: 'SUBMIT_MAP',
+  SUBMIT_PATH: 'SUBMIT_PATH',
+} as const;
+
 export const FOREST_WIDTH = 7;
 export const FOREST_HEIGHT = 5;
 

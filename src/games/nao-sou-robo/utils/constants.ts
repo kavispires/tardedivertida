@@ -1,9 +1,14 @@
+export const NAO_SOU_ROBO_ACTIONS = {
+  SUBMIT_CARD: 'SUBMIT_CARD',
+  SUBMIT_GUESS: 'SUBMIT_GUESS',
+} as const;
+
 export const OUTCOME = {
   CONTINUE: 'CONTINUE',
   TOO_SUSPICIOUS: 'TOO_SUSPICIOUS',
   ROBOT_WINS: 'ROBOT_WINS',
   HUMANS_WIN: 'HUMANS_WIN',
-};
+} as const;
 
 export const SUSPICION_THRESHOLD = 3;
 

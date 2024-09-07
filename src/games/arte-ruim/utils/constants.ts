@@ -1,6 +1,6 @@
 export const ARTE_RUIM_ACTIONS = {
   SUBMIT_DRAWING: 'SUBMIT_DRAWING',
   SUBMIT_VOTING: 'SUBMIT_VOTING',
-};
+} as const;
 
 export const WINDOW_DURATION = 10;

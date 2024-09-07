@@ -1,17 +1,15 @@
 import type { SubmitCharactersPayload, SubmitGlyphsPayload, SubmitGuessesPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'quemSouEuSubmitAction');
+import { QUEM_SOU_EU_ACTIONS } from './constants';
 
 export function useOnSubmitCharactersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-characters',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -24,7 +22,7 @@ export function useOnSubmitCharactersAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitCharactersPayload) => {
     request({
-      action: 'SUBMIT_CHARACTERS',
+      action: QUEM_SOU_EU_ACTIONS.SUBMIT_CHARACTERS,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitCharactersAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitGlyphsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-glyphs',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -47,7 +44,7 @@ export function useOnSubmitGlyphsAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitGlyphsPayload) => {
     request({
-      action: 'SUBMIT_GLYPHS',
+      action: QUEM_SOU_EU_ACTIONS.SUBMIT_GLYPHS,
       ...payload,
     });
   };
@@ -56,8 +53,7 @@ export function useOnSubmitGlyphsAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-guesses',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -70,7 +66,7 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitGuessesPayload) => {
     request({
-      action: 'SUBMIT_GUESSES',
+      action: QUEM_SOU_EU_ACTIONS.SUBMIT_GUESSES,
       ...payload,
     });
   };

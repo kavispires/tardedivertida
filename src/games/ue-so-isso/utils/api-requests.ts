@@ -7,18 +7,16 @@ import type {
   ValidateSuggestionPayload,
 } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'ueSoIssoSubmitAction');
+import { UE_SO_ISSO_ACTIONS } from './constants';
 
 export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -31,7 +29,7 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitVotesPayload) => {
     request({
-      action: 'SUBMIT_VOTES',
+      action: UE_SO_ISSO_ACTIONS.SUBMIT_VOTES,
       ...payload,
     });
   };
@@ -40,8 +38,7 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-suggestion',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -54,7 +51,7 @@ export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitSuggestionsPayload) => {
     request({
-      action: 'SUBMIT_SUGGESTIONS',
+      action: UE_SO_ISSO_ACTIONS.SUBMIT_SUGGESTIONS,
       ...payload,
     });
   };
@@ -63,8 +60,7 @@ export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitValidationsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-validations',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -77,7 +73,7 @@ export function useOnSubmitValidationsAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitValidationsPayload) => {
     request({
-      action: 'SUBMIT_VALIDATION',
+      action: UE_SO_ISSO_ACTIONS.SUBMIT_VALIDATION,
       ...payload,
     });
   };
@@ -86,8 +82,7 @@ export function useOnSubmitValidationsAPIRequest(setStep: UseStep['setStep']) {
 export function useOnValidateSuggestionAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'validate-suggestion',
     successMessage: translate('Atualizado!', 'Updated!'),
     errorMessage: translate(
@@ -98,7 +93,7 @@ export function useOnValidateSuggestionAPIRequest() {
 
   return (payload: ValidateSuggestionPayload) => {
     request({
-      action: 'VALIDATE_SUGGESTION',
+      action: UE_SO_ISSO_ACTIONS.VALIDATE_SUGGESTION,
       ...payload,
     });
   };
@@ -107,8 +102,7 @@ export function useOnValidateSuggestionAPIRequest() {
 export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-outcome',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -121,7 +115,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitOutcomePayload) => {
     request({
-      action: 'SUBMIT_OUTCOME',
+      action: UE_SO_ISSO_ACTIONS.SUBMIT_OUTCOME,
       ...payload,
     });
   };
@@ -130,8 +124,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSendGuessAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'send-guess',
     successMessage: translate('Chute enviado!', 'Guess sent!'),
     errorMessage: translate(
@@ -142,7 +135,7 @@ export function useOnSendGuessAPIRequest() {
 
   return (payload: SendGuessPayload) => {
     request({
-      action: 'SEND_GUESS',
+      action: UE_SO_ISSO_ACTIONS.SEND_GUESS,
       ...payload,
     });
   };

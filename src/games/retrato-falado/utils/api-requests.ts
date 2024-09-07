@@ -1,22 +1,18 @@
 import type { SubmitOrientationPayload, SubmitSketchPayload, SubmitVotePayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'retratoFaladoSubmitAction');
+import { RETRATO_FALADO_ACTIONS } from './constants';
 
 export function useOnSubmitOrientationAPIRequest(setStep: UseStep['setStep']) {
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-sketch',
     onBeforeCall: () => setStep(3),
   });
 
   return (payload: SubmitOrientationPayload) => {
     request({
-      action: 'SUBMIT_ORIENTATION',
+      action: RETRATO_FALADO_ACTIONS.SUBMIT_ORIENTATION,
       ...payload,
     });
   };
@@ -25,8 +21,7 @@ export function useOnSubmitOrientationAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitSketchAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-sketch',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -42,7 +37,7 @@ export function useOnSubmitSketchAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitSketchPayload) => {
     request({
-      action: 'SUBMIT_SKETCH',
+      action: RETRATO_FALADO_ACTIONS.SUBMIT_SKETCH,
       ...payload,
     });
   };
@@ -51,8 +46,7 @@ export function useOnSubmitSketchAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-vote',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -65,7 +59,7 @@ export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitVotePayload) => {
     request({
-      action: 'SUBMIT_VOTE',
+      action: RETRATO_FALADO_ACTIONS.SUBMIT_VOTE,
       ...payload,
     });
   };

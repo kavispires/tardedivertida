@@ -1,17 +1,14 @@
 import type { SubmitDrawingPayload, SubmitEvaluationPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'gameEngine');
+import { SINAIS_DE_ALERTA_ACTIONS } from './constants';
 
 export function useOnSubmitDrawingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-drawing',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -27,7 +24,7 @@ export function useOnSubmitDrawingAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitDrawingPayload) => {
     request({
-      action: 'SUBMIT_SDA_DRAWING',
+      action: SINAIS_DE_ALERTA_ACTIONS.SUBMIT_DRAWING,
       ...payload,
     });
   };
@@ -36,8 +33,7 @@ export function useOnSubmitDrawingAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-guesses',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -53,7 +49,7 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitEvaluationPayload) => {
     request({
-      action: 'SUBMIT_SDA_EVALUATION',
+      action: SINAIS_DE_ALERTA_ACTIONS.SUBMIT_EVALUATION,
       ...payload,
     });
   };
