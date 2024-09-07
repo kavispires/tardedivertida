@@ -8,18 +8,17 @@ import type { GameRound } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useAPICall } from 'hooks/useAPICall';
+import { useHost } from 'hooks/useHost';
 import { useCountdown } from 'hooks/useCountdown';
 // Utils
-import { ADMIN_API } from 'services/adapters';
-import { ADMIN_ACTIONS } from 'utils/constants';
+import { HOST_API_ACTIONS } from 'services/adapters';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { HostOnlyContainer } from './HostOnlyContainer';
 import { HostButton } from './HostButton';
-import { useHost } from 'hooks/useHost';
 import { WaitingTime } from 'components/timers';
+import { useHostActionRequest } from 'hooks/useHostActionRequest';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
   if (!round || round.current === round.total || round.forceLastRound) {
@@ -68,8 +67,7 @@ export function HostNextPhaseButton({
   const { loaders } = useLoading();
   const isLoading = loaders['go-to-next-phase'];
 
-  const onGoToNextPhase = useAPICall({
-    apiFunction: ADMIN_API.performAdminAction,
+  const onGoToNextPhase = useHostActionRequest({
     actionName: 'go-to-next-phase',
     successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!'),
     errorMessage: translate(
@@ -78,7 +76,7 @@ export function HostNextPhaseButton({
     ),
   });
 
-  const handleClick = () => onGoToNextPhase({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE });
+  const handleClick = () => onGoToNextPhase({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE });
 
   const hasTimer = Boolean(autoTriggerTime);
 

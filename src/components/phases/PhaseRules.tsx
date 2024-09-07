@@ -7,7 +7,7 @@ import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-des
 import type { GameInfo } from 'types/game-info';
 import type { GamePlayers } from 'types/player';
 // Utils
-import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
+import { GAME_API_V1, GAME_API_ACTIONS_V1 } from 'services/adapters';
 import {
   getRandomNegativeReadyMessage,
   getRandomNeutralReadyMessage,
@@ -60,7 +60,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   );
 
   const onBeReady = useAPICall({
-    apiFunction: GAME_API.run,
+    apiFunction: GAME_API_V1.run,
     actionName: 'be-ready',
     successMessage: translate(
       'Pronto! Aguarde os outros jogadores estarem prontos',
@@ -73,7 +73,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   });
 
   const onBeReadyIDK = useAPICall({
-    apiFunction: GAME_API.run,
+    apiFunction: GAME_API_V1.run,
     actionName: 'be-ready',
     successMessage: translate(
       'Pronto! Aguarde os outros jogadores estarem prontos',
@@ -86,7 +86,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   });
 
   const onBeReadyQue = useAPICall({
-    apiFunction: GAME_API.run,
+    apiFunction: GAME_API_V1.run,
     actionName: 'be-ready',
     successMessage: translate(
       'Vixi, se fudeu então, porque o jogo vai começar!',
@@ -99,7 +99,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   });
 
   // DEV: Auto-ready
-  useMock(() => onBeReady({ action: GAME_API_ACTIONS.MAKE_PLAYER_READY }), [], 2);
+  useMock(() => onBeReady({ action: GAME_API_ACTIONS_V1.MAKE_PLAYER_READY }), [], 2);
 
   if (!info?.gameName) {
     return <LoadingPage />;
@@ -123,7 +123,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           type="primary"
           icon={user.isReady ? <CheckCircleFilled /> : <SmileFilled />}
           disabled={isLoading || user.isReady}
-          onClick={() => onBeReady({ action: GAME_API_ACTIONS.MAKE_PLAYER_READY })}
+          onClick={() => onBeReady({ action: GAME_API_ACTIONS_V1.MAKE_PLAYER_READY })}
           loading={isLoading}
         >
           <Translate
@@ -134,7 +134,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
         <Button
           icon={user.isReady ? <CheckCircleFilled /> : <MehFilled />}
           disabled={isLoading || user.isReady}
-          onClick={() => onBeReadyIDK({ action: GAME_API_ACTIONS.MAKE_PLAYER_READY })}
+          onClick={() => onBeReadyIDK({ action: GAME_API_ACTIONS_V1.MAKE_PLAYER_READY })}
           loading={isLoading}
         >
           <Translate pt="Não entendi nada, mas vamos lá!" en="I don't get it but let's go!" />
@@ -144,7 +144,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           danger
           icon={user.isReady ? <CheckCircleFilled /> : <RobotFilled />}
           disabled={isLoading || user.isReady}
-          onClick={() => onBeReadyQue({ action: GAME_API_ACTIONS.MAKE_PLAYER_READY })}
+          onClick={() => onBeReadyQue({ action: GAME_API_ACTIONS_V1.MAKE_PLAYER_READY })}
           loading={isLoading}
         >
           <Translate pt="Quê?" en="What?" />

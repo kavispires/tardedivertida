@@ -4,7 +4,7 @@ import { AutoComplete, Button, Form, Select, App } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { ADMIN_ACTIONS } from 'utils/constants';
+import { HOST_API_ACTIONS } from 'services/adapters';
 // Components
 import { ValueFormItem } from './ValueFormItem';
 
@@ -52,7 +52,7 @@ export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: Force
       };
 
       if (window.confirm(`Tem certeza que quer forçar o estado ${JSON.stringify(payload)}`)) {
-        await onPerformAdminAction({ state: payload, action: ADMIN_ACTIONS.FORCE_STATE_PROPERTY });
+        await onPerformAdminAction({ state: payload, action: HOST_API_ACTIONS.FORCE_STATE_PROPERTY });
 
         form.resetFields();
         setValueType('string');
