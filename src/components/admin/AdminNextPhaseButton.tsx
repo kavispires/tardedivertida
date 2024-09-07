@@ -6,10 +6,10 @@ import type { GameRound } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useAPICall } from 'hooks/useAPICall';
+import { useHostActionRequest } from 'hooks/useHostActionRequest';
 // Utils
-import { ADMIN_API } from 'services/adapters';
-import { ADMIN_ACTIONS } from 'utils/constants';
+import { HOST_API_ACTIONS } from 'services/adapters';
+
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
@@ -57,8 +57,7 @@ export function AdminNextPhaseButton({
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
-  const onGoToNextPhase = useAPICall({
-    apiFunction: ADMIN_API.performAdminAction,
+  const onGoToNextPhase = useHostActionRequest({
     actionName: 'force-next-phase',
     successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!'),
     errorMessage: translate(
@@ -67,7 +66,7 @@ export function AdminNextPhaseButton({
     ),
   });
 
-  const handleClick = () => onGoToNextPhase({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE });
+  const handleClick = () => onGoToNextPhase({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE });
 
   return (
     <AdminOnlyContainer className={className}>

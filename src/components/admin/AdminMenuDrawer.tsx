@@ -6,14 +6,13 @@ import { FireFilled } from '@ant-design/icons';
 import type { GameState } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Hooks
-import { useAPICall } from 'hooks/useAPICall';
+import { useHostActionRequest } from 'hooks/useHostActionRequest';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 import { useGameMeta } from 'hooks/useGameMeta';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Utils
-import { ADMIN_API } from 'services/adapters';
-import { ADMIN_ACTIONS } from 'utils/constants';
+import { HOST_API_ACTIONS } from 'services/adapters';
 import { getFirebaseUrl } from 'services/firebase';
 // Components
 import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
@@ -50,8 +49,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
     setVisible(false);
   };
 
-  const onPerformAdminAction = useAPICall({
-    apiFunction: ADMIN_API.performAdminAction,
+  const onPerformAdminAction = useHostActionRequest({
     actionName: 'perform-admin-action',
     successMessage: 'Admin action performed successfully',
     errorMessage: 'The selected admin action has failed',
@@ -85,7 +83,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               <Popconfirm
                 placement="right"
                 title="Are you sure you want to go to the next phase?"
-                onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE })}
+                onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE })}
               >
                 <AdminPerformActionButton
                   disabled={isLoading || state.phase === 'GAME_OVER'}
@@ -96,7 +94,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               <Popconfirm
                 placement="right"
                 title="Are you sure you want to go to play again?"
-                onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.PLAY_AGAIN })}
+                onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.PLAY_AGAIN })}
               >
                 <AdminPerformActionButton
                   // Not every game is currently working with this feature
@@ -109,7 +107,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               <Popconfirm
                 placement="right"
                 title="Are you sure you want to go to end the game by the end of this round?"
-                onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.FORCE_END_GAME })}
+                onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.FORCE_END_GAME })}
               >
                 <AdminPerformActionButton
                   disabled={
@@ -128,7 +126,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               <Popconfirm
                 placement="right"
                 title="Are you sure you want to go to the lobby and unlock the game?"
-                onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.RESET_GAME })}
+                onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.RESET_GAME })}
               >
                 <AdminPerformActionButton
                   disabled={state?.phase === 'LOBBY'}

@@ -7,7 +7,7 @@ import { Image, Modal, Button, Divider, Space, Alert, App } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Adapters
-import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
+import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
@@ -134,8 +134,8 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
       setLoader('create', true);
       setLoading(true);
 
-      const response: PlainObject = await ADMIN_API.run({
-        action: ADMIN_API_ACTIONS.CREATE_GAME,
+      const response: PlainObject = await HOST_API.run({
+        action: HOST_API_ACTIONS.CREATE_GAME,
         gameName: gameInfo.gameName,
         language,
         options,

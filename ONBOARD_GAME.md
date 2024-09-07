@@ -21,10 +21,6 @@ All file paths here are relative to `functions/src`.
 
 - Add entry to `getEngine`.
 
-### Add submitAction to `functions/src/index.ts`
-
-- Add the action there
-
 ## UI Setup
 
 All file paths here are relative to `/src`.

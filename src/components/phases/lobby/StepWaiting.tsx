@@ -15,7 +15,7 @@ import avatars from 'assets/images/avatars.svg';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Services
-import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
+import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Components
 import { Translate } from 'components/language';
 import { HostButton, HostOnlyContainer } from 'components/host';
@@ -39,8 +39,8 @@ export function StepWaiting({ players }: StepWaitingProps) {
     mutationKey: ['lock-game'],
     mutationFn: async () => {
       setLoader('lock-game', true);
-      return await ADMIN_API.run({
-        action: ADMIN_API_ACTIONS.LOCK_GAME,
+      return await HOST_API.run({
+        action: HOST_API_ACTIONS.LOCK_GAME,
         gameId,
         gameName,
       });

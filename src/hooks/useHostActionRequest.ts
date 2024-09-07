@@ -1,10 +1,10 @@
 import { App } from 'antd';
-import { HttpsCallable } from 'firebase/functions';
 import { useMutation } from '@tanstack/react-query';
 // Hooks
 import { useLoading } from './useLoading';
 import { useGlobalState } from './useGlobalState';
 import { useGameMeta } from './useGameMeta';
+import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 
 const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
   let timer: NodeJS.Timeout;
@@ -16,8 +16,7 @@ const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
   };
 };
 
-export type UseAPICallArgs = {
-  apiFunction: HttpsCallable<unknown, unknown>;
+export type UseHostActionRequestArgs = {
   actionName: string;
   onBeforeCall?: (...args: any) => any;
   onAfterCall?: (...args: any) => any;
@@ -27,36 +26,33 @@ export type UseAPICallArgs = {
   errorMessage?: string;
 };
 
-/**
- * Wrapper around common firebase http call
- * @param data
- * @param data.apiFunction
- * @param [data.onBeforeCall] what to run before the api call
- * @param [data.onAfterCall] what to run after the api call
- * @param [data.onError] what to run if an error occurs
- * @param [data.onSuccess] what to run if success occurs
- * @param [data.actionName] the name used in the loader hook
- * @param [data.successMessage]
- * @param [data.errorMessage]
- * @returns
- */
+interface Payload {
+  action: keyof typeof HOST_API_ACTIONS;
+  [key: string]: any;
+}
 
 /**
- * Wrapper around common firebase http call
- * @param options
- * @returns
- * @deprecated
+ * Custom hook for making a host action request.
+ *
+ * @param options - The options for the host action request.
+ * @param options.actionName - The name of the action.
+ * @param [options.onBeforeCall] - The callback function to be called before making the API call.
+ * @param [options.onAfterCall] - The callback function to be called after making the API call.
+ * @param [options.onError] - The callback function to be called when an error occurs during the API call.
+ * @param [options.onSuccess] - The callback function to be called when the API call is successful.
+ * @param [options.successMessage] - The success message to be displayed.
+ * @param [options.errorMessage] - The error message to be displayed.
+ * @returns The debounced function for making the host action request.
  */
-export function useAPICall({
-  apiFunction,
-  actionName = 'api-action',
+export function useHostActionRequest({
+  actionName,
   onBeforeCall = () => {},
   onAfterCall = () => {},
   onError = () => {},
   onSuccess = () => {},
   successMessage = 'API call was successful',
   errorMessage = 'API call has failed',
-}: UseAPICallArgs): (...args: any[]) => any {
+}: UseHostActionRequestArgs): (...args: any[]) => any {
   const { message, notification } = App.useApp();
   const { setLoader } = useLoading();
   const { gameId, gameName } = useGameMeta();
@@ -64,8 +60,8 @@ export function useAPICall({
 
   const query = useMutation({
     mutationKey: [actionName],
-    mutationFn: (payload: {}) =>
-      apiFunction({
+    mutationFn: (payload: Payload) =>
+      HOST_API.run({
         gameId,
         gameName,
         playerId: userId,

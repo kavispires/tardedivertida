@@ -6,12 +6,12 @@ import type {
   SubmitVotePayload,
 } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { ADMIN_API } from 'services/adapters';
+// import { ADMIN_API } from 'services/adapters';
 import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
-import { ADMIN_ACTIONS } from 'utils/constants';
+// import { ADMIN_ACTIONS } from 'utils/constants';
 
 const submitAction = httpsCallable(functions, 'espiaoEntreNosSubmitAction');
 
@@ -108,23 +108,27 @@ export function useOnSendLastQuestionerAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
+// TODO: Fix this
 export function useOnProgressGameAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: ADMIN_API.performAdminAction,
-    actionName: 'progress-game',
-    onError: () => setStep(1),
-    successMessage: translate('Jogo progredido com sucesso', 'Game progressed successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-      'Oops, the application found an error while trying to continue'
-    ),
-  });
+  // const request = useAPICall({
+  //   apiFunction: ADMIN_API.performAdminAction,
+  //   actionName: 'progress-game',
+  //   onError: () => setStep(1),
+  //   successMessage: translate('Jogo progredido com sucesso', 'Game progressed successfully'),
+  //   errorMessage: translate(
+  //     'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+  //     'Oops, the application found an error while trying to continue'
+  //   ),
+  // });
 
+  // return (payload: GameProgressPayload) => {
+  //   request({
+  //     action: payload.end ? ADMIN_ACTIONS.FORCE_END_GAME : ADMIN_ACTIONS.GO_TO_NEXT_PHASE,
+  //   });
+  // };
   return (payload: GameProgressPayload) => {
-    request({
-      action: payload.end ? ADMIN_ACTIONS.FORCE_END_GAME : ADMIN_ACTIONS.GO_TO_NEXT_PHASE,
-    });
+    console.log(payload);
   };
 }

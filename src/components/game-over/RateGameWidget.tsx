@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Alert, Button, Input, Rate } from 'antd';
 import { StarFilled } from '@ant-design/icons';
 // Adapters
-import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
+import { GAME_API_V1, GAME_API_ACTIONS_V1 } from 'services/adapters';
 // Hooks
 import { useAPICall } from 'hooks/useAPICall';
 import { useCountdown } from 'hooks/useCountdown';
@@ -77,7 +77,7 @@ function RateGameWidgetContent({
   });
 
   const onSendRating = useAPICall({
-    apiFunction: GAME_API.run,
+    apiFunction: GAME_API_V1.run,
     actionName: 'rating',
     successMessage: translate('Obrigado por avaliar o jogo', 'Thanks for rating the game'),
     errorMessage: translate('Envio de avaliação falhou', 'Rating submission has failed'),
@@ -87,7 +87,7 @@ function RateGameWidgetContent({
 
   const onSubmit = () => {
     onSendRating({
-      action: GAME_API_ACTIONS.RATE_GAME,
+      action: GAME_API_ACTIONS_V1.RATE_GAME,
       ratings: {
         comments,
         gameId,
