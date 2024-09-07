@@ -58,20 +58,3 @@ export const GAME_API_COMMON_ACTIONS = {
 export const GAME_API = {
   run: httpsCallable(functions, 'gameEngine'),
 };
-
-/**
- * @deprecated
- */
-export const GAME_API_ACTIONS_V1 = {
-  ADD_PLAYER: 'ADD_PLAYER',
-  LOAD_GAME: 'LOAD_GAME',
-  MAKE_PLAYER_READY: 'MAKE_PLAYER_READY',
-  RATE_GAME: 'RATE_GAME',
-};
-
-/**
- * @deprecated
- */
-export const GAME_API_V1 = {
-  run: httpsCallable(functions, 'gameActions'),
-};
