@@ -74,10 +74,19 @@ interface LoadGamePayload {
   gameName: string;
 }
 
+interface ActionPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerId: PlayerId;
+  action: string;
+  // Anything else in the payload
+  [key: string]: any;
+}
+
 interface Engine {
   getInitialState: any;
   getNextPhase: any;
-  playerCounts: PlayerCounts;
+  getPlayerCounts: () => PlayerCounts;
   submitAction: any;
 }
 

@@ -59,7 +59,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
