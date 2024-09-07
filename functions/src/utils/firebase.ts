@@ -126,6 +126,7 @@ export function validateSubmitActionProperties(data: PlainObject, properties: st
  * Validate if user is authenticated
  * @param context
  * @param action
+ * @deprecated
  */
 export function verifyAuth(context: FirebaseContext, action = 'perform function') {
   // Verify auth
@@ -139,6 +140,7 @@ export function verifyAuth(context: FirebaseContext, action = 'perform function'
  * Throws an exception. It should be used only inside a catch
  * @param error
  * @param action
+ * @deprecated
  */
 export function throwException(error: unknown, action = 'function') {
   if (process.env.FIRESTORE_EMULATOR_HOST) {
