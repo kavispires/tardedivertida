@@ -1,5 +1,3 @@
-// Helpers for image cards
-// Helpers
 import { throwException } from './firebase';
 import { shuffle } from './game-utils';
 import { SuspectCard } from '../types/tdr';
@@ -26,7 +24,10 @@ export const getImageCards = async (quantity: number): Promise<ImageCardId[]> =>
   const decks = Object.keys(cardInfo);
   const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
   if (quantity > totalCards) {
-    throwException(`${quantity} image cards were requested but the game only has ${totalCards} available`);
+    throwException(
+      `${quantity} image cards were requested but the game only has ${totalCards} available`,
+      'get image cards'
+    );
   }
 
   const shuffledDecks = shuffle(decks);
@@ -63,7 +64,10 @@ export const getImageCardsDecks = async (quantity: number): Promise<ImageCardId[
   const decks = Object.keys(cardInfo);
   const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
   if (quantity > totalCards) {
-    throwException(`${quantity} image cards were requested but the game only has ${totalCards} available`);
+    throwException(
+      `${quantity} image cards were requested but the game only has ${totalCards} available`,
+      'get image cards decks'
+    );
   }
 
   const shuffledDecks = shuffle(decks);

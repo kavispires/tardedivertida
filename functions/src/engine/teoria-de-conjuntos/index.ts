@@ -59,7 +59,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
@@ -147,6 +147,6 @@ export const submitAction = async (data: TeoriaDeConjuntosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.evaluation);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

@@ -57,7 +57,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -132,6 +132,6 @@ export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
       return handleSubmitDecision(gameName, gameId, playerId, data.decision);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

@@ -1,16 +1,13 @@
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-import { SubmitDecisionPayload } from './types';
 
-const submitAction = httpsCallable(functions, 'naRuaDoMedoSubmitAction');
+import { NA_RUA_DO_MEDO_ACTIONS } from './constants';
+import { SubmitDecisionPayload } from './types';
 
 export function useOnSubmitDecisionAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-decision',
     onSuccess: () => {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -24,7 +21,7 @@ export function useOnSubmitDecisionAPIRequest() {
 
   return (payload: SubmitDecisionPayload) => {
     request({
-      action: 'SUBMIT_DECISION',
+      action: NA_RUA_DO_MEDO_ACTIONS.SUBMIT_DECISION,
       ...payload,
     });
   };

@@ -1,17 +1,14 @@
 import type { SubmitRobotCardPayload, SubmitRobotGuessPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'naoSouRoboSubmitAction');
+import { NAO_SOU_ROBO_ACTIONS } from './constants';
 
 export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -24,7 +21,7 @@ export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitRobotCardPayload) => {
     request({
-      action: 'SUBMIT_CARD',
+      action: NAO_SOU_ROBO_ACTIONS.SUBMIT_CARD,
       ...payload,
     });
   };
@@ -33,21 +30,20 @@ export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
-    actionName: 'submit-action',
+  const request = useGameActionRequest({
+    actionName: 'submit-guess',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
+    successMessage: translate('Adivinhação submetida com sucesso', 'Guess submitted successfully'),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua adivinhação',
+      'Oops, the application found an error while trying to submit your guess'
     ),
   });
 
   return (payload: SubmitRobotGuessPayload) => {
     request({
-      action: 'SUBMIT_GUESS',
+      action: NAO_SOU_ROBO_ACTIONS.SUBMIT_GUESS,
       ...payload,
     });
   };

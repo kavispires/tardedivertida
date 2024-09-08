@@ -79,7 +79,7 @@ export const handleSubmitCode = async (
   try {
     await sessionRef.doc('state').update({ [`players.${playerId}`]: updatedPlayers[playerId] });
   } catch (error) {
-    utils.firestore.throwException(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   // If all players are ready, trigger next phase

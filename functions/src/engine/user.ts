@@ -1,5 +1,5 @@
 // Utils
-import { CallableRequestV2, FirebaseAuth } from '../types/reference';
+import { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import { FirebaseUserDB } from '../utils/user';
 
@@ -19,7 +19,7 @@ const getUser = async ({ date }: OptionalDailyGetterPayload, auth: FirebaseAuth)
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
+    return utils.firebase.throwException('You are not authenticated', 'get user');
   }
 
   const userRef = utils.firestore.getUserRef();
@@ -49,7 +49,7 @@ const getUserById = async (userUid: string, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
+    return utils.firebase.throwException('You are not authenticated', 'get user');
   }
 
   const userRef = utils.firestore.getUserRef();
@@ -57,7 +57,7 @@ const getUserById = async (userUid: string, auth: FirebaseAuth) => {
 
   // If the user object doesn't exist, just create one
   if (!user.exists) {
-    return utils.firebase.throwExceptionV2('User does not exist', 'get user');
+    return utils.firebase.throwException('User does not exist', 'get user');
   }
 
   const userData = user.data();
@@ -75,7 +75,7 @@ const getUsers = async (_: unknown, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
+    return utils.firebase.throwException('You are not authenticated', 'get user');
   }
 
   const usersRef = utils.firestore.getUserRef();
@@ -93,11 +93,11 @@ const updateUserDB = async (data: FirebaseUserDB, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwExceptionV2('You are not authenticated V2', 'get user');
+    return utils.firebase.throwException('You are not authenticated', 'get user');
   }
 
   if (!data.id || !data.preferredLanguage) {
-    return utils.firebase.throwExceptionV2('Payload is missing data', 'get user');
+    return utils.firebase.throwException('Payload is missing data', 'get user');
   }
 
   const userRef = utils.firestore.getUserRef();
@@ -119,5 +119,5 @@ const USER_API_ACTIONS = {
  * @param request - The callable request object.
  * @returns The result of the user engine function.
  */
-export const userEngine = (request: CallableRequestV2) =>
-  utils.firebase.apiDelegatorV2(request, USER_API_ACTIONS);
+export const userEngine = (request: CallableRequest) =>
+  utils.firebase.apiDelegator(request, USER_API_ACTIONS);

@@ -150,7 +150,7 @@ export const handleNextAnswers = async (
       },
     });
   } catch (error) {
-    utils.firestore.throwException(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return true;
@@ -188,7 +188,7 @@ export const handleAddAnswer = async (
   try {
     await sessionRef.doc('state').update({ answersList });
   } catch (error) {
-    utils.firestore.throwException(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return true;

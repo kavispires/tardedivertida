@@ -1,17 +1,14 @@
 import type { SubmitPairsPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'duetosSubmitAction');
+import { DUETOS_ACTIONS } from './constants';
 
 export function useOnSubmitPairsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-pairs',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -24,7 +21,7 @@ export function useOnSubmitPairsAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitPairsPayload) => {
     request({
-      action: 'SUBMIT_PAIRS',
+      action: DUETOS_ACTIONS.SUBMIT_PAIRS,
       ...payload,
     });
   };

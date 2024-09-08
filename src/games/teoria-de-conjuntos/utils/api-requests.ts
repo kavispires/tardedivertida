@@ -1,17 +1,15 @@
 import type { SubmitEvaluationPayload, SubmitItemPlacementPayload, SubmitJudgePayload } from './types';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
 
-const submitAction = httpsCallable(functions, 'teoriaDeConjuntosSubmitAction');
+import { TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
+
+import type { UseStep } from 'hooks/useStep';
 
 export function useOnSubmitJudgeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-judge',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -24,7 +22,7 @@ export function useOnSubmitJudgeAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitJudgePayload) => {
     request({
-      action: 'SUBMIT_JUDGE',
+      action: TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_JUDGE,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitJudgeAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitItemPlacementAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-item-placement',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -47,7 +44,7 @@ export function useOnSubmitItemPlacementAPIRequest(setStep: UseStep['setStep']) 
 
   return (payload: SubmitItemPlacementPayload) => {
     request({
-      action: 'SUBMIT_ITEM_PLACEMENT',
+      action: TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_ITEM_PLACEMENT,
       ...payload,
     });
   };
@@ -56,8 +53,7 @@ export function useOnSubmitItemPlacementAPIRequest(setStep: UseStep['setStep']) 
 export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-evaluation',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -70,7 +66,7 @@ export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitEvaluationPayload) => {
     request({
-      action: 'SUBMIT_EVALUATION',
+      action: TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_EVALUATION,
       ...payload,
     });
   };

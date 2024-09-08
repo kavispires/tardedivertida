@@ -5,6 +5,7 @@ import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '../utils';
 import { isEmpty } from 'lodash';
+import { throwException } from './firebase';
 
 /**
  * Get Firebase session for the data collection (used to save bot/seed data)
@@ -133,18 +134,6 @@ export async function getSessionDoc(
   }
 
   return gameDoc;
-}
-
-/**
- * Throws an exception. It should be used only inside a catch
- * @param error
- * @param action
- */
-export function throwException(error: unknown, action = 'function') {
-  if (process.env.FIRESTORE_EMULATOR_HOST) {
-    console.error(`Failed to ${action}`, error);
-  }
-  throw new functions.https.HttpsError('internal', `Failed to ${action}`, error);
 }
 
 /**

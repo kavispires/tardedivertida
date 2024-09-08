@@ -9,12 +9,12 @@ import aliemItemsMock from './alien-items.json';
  */
 export const feedEmulatorDB = async () => {
   if (!process.env.FIRESTORE_EMULATOR_HOST) {
-    console.log('\x1b[33m%s\x1b[0m', 'Skipping Emulator seeding: Not Emulating Firestore');
+    console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }
 
   const sample = { 'a-a-a': true };
-  console.log('\x1b[33m%s\x1b[0m', 'Seeding Emulator DB');
+  console.log('\x1b[33m%s\x1b[0m', '🤡 Seeding Emulator DB');
 
   // DATA
   const dataEntries: Promise<FirebaseFirestore.WriteResult>[] = [];

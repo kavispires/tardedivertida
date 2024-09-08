@@ -1,7 +1,7 @@
 import { App } from 'antd';
 import { useMutation } from '@tanstack/react-query';
 // Services
-import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
+import { GAME_API, GAME_API_COMMON_ACTIONS } from 'services/adapters';
 // Hooks
 import { useGameMeta } from './useGameMeta';
 import { useGlobalState } from './useGlobalState';
@@ -23,7 +23,7 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
     mutationKey: ['add-player'],
     mutationFn: async () =>
       await GAME_API.run({
-        action: GAME_API_ACTIONS.ADD_PLAYER,
+        action: GAME_API_COMMON_ACTIONS.JOIN_GAME,
         gameId,
         gameName,
         playerName: name,

@@ -1,19 +1,17 @@
 import type { SubmitDoorPayload, SubmitPagesPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
 
-const submitAction = httpsCallable(functions, 'portaDosDesesperadosSubmitAction');
+import { PORTA_DOS_DESESPERADOS_ACTIONS } from './constants';
 
 export function useOnSubmitPagesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
-    actionName: 'submit-word',
+  const request = useGameActionRequest({
+    actionName: 'submit-pages',
     onBeforeCall: () => setStep(4),
     onError: () => setStep(2),
     successMessage: translate('Cartas enviadas com sucesso', 'Cards submitted successfully'),
@@ -25,7 +23,7 @@ export function useOnSubmitPagesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitPagesPayload) => {
     request({
-      action: 'SUBMIT_PAGES',
+      action: PORTA_DOS_DESESPERADOS_ACTIONS.SUBMIT_PAGES,
       ...payload,
     });
   };
@@ -34,9 +32,8 @@ export function useOnSubmitPagesAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitDoorAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
-    actionName: 'submit-word',
+  const request = useGameActionRequest({
+    actionName: 'submit-door',
     successMessage: translate('Porta enviada com sucesso', 'Door submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua porta',
@@ -46,7 +43,7 @@ export function useOnSubmitDoorAPIRequest() {
 
   return (payload: SubmitDoorPayload) => {
     request({
-      action: 'SUBMIT_DOOR',
+      action: PORTA_DOS_DESESPERADOS_ACTIONS.SUBMIT_DOOR,
       ...payload,
     });
   };

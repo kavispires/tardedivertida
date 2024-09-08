@@ -71,7 +71,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -160,6 +160,6 @@ export const submitAction = async (data: PortaDosDesesperadosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['doorId'], 'submit door');
       return handleSubmitDoor(gameName, gameId, playerId, data.doorId, data.ready);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

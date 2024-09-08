@@ -1,17 +1,15 @@
 import type { SubmitReactionPayload, SubmitTweetPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'polemicaDaVezSubmitAction');
+import { POLEMICA_DA_VEZ_ACTIONS } from './constants';
 
 export function useOnSubmitTweetAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-tweet',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
@@ -24,7 +22,7 @@ export function useOnSubmitTweetAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitTweetPayload) => {
     request({
-      action: 'SUBMIT_TOPIC',
+      action: POLEMICA_DA_VEZ_ACTIONS.SUBMIT_TOPIC,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitTweetAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitReactionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-reaction',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -47,7 +44,7 @@ export function useOnSubmitReactionAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitReactionPayload) => {
     request({
-      action: 'SUBMIT_REACTION',
+      action: POLEMICA_DA_VEZ_ACTIONS.SUBMIT_REACTION,
       ...payload,
     });
   };

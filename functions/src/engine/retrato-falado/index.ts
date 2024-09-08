@@ -54,7 +54,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -136,6 +136,6 @@ export const submitAction = async (data: RetratoFaladoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

@@ -4,9 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 // Types
 import type { GameMeta } from 'types/game';
 // Services
-import { ADMIN_API, GAME_API, GAME_API_ACTIONS } from 'services/adapters';
-// Utils
-import { ADMIN_ACTIONS } from 'utils/constants';
+import { GAME_API, GAME_API_COMMON_ACTIONS, HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Hooks
 import { useCurrentUserContext } from './useCurrentUserContext';
 
@@ -27,17 +25,17 @@ export function useRedirectToNewGame() {
     mutationKey: ['oldState', newGame.gameId],
     mutationFn: async ({ prevGameId, payload }) => {
       const metaResponse = (await GAME_API.run({
-        action: GAME_API_ACTIONS.LOAD_GAME,
+        action: GAME_API_COMMON_ACTIONS.LOAD_GAME,
         gameId: prevGameId,
       })) as GameMetaResponse;
 
       const meta = metaResponse.data;
 
-      return await ADMIN_API.performAdminAction({
+      return await HOST_API.run({
         gameId: prevGameId,
         gameName: meta?.gameName ?? '',
         playerId: currentUser.id,
-        action: ADMIN_ACTIONS.FORCE_STATE_PROPERTY,
+        action: HOST_API_ACTIONS.FORCE_STATE_PROPERTY,
         state: payload,
       });
     },

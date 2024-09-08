@@ -74,9 +74,11 @@ const engines = {
 };
 
 /**
+ * Retrieves the engine for a given game name.
  *
- * @param gameName
- * @returns
+ * @param gameName - The name of the game.
+ * @returns The engine associated with the game name.
+ * @throws Error if the collection for the game name does not exist.
  */
 export const getEngine = (gameName: string): Engine => {
   const engine = engines?.[gameName];
