@@ -58,6 +58,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
     challengeNumber: data.number ?? 0,
     defaultValue: defaultLocalToday,
     onApplyLocalState: (value) => {
+      console.log(value);
       if (value.guesses.length > 0) {
         setState((prevState) => {
           const copy = deepCopy(prevState);
@@ -160,6 +161,11 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
       }
 
       return copy;
+    });
+
+    console.log({
+      guesses: localStateUpdate,
+      hearts: localStateUpdateHearts,
     });
 
     // Update local today
