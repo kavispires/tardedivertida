@@ -1,5 +1,6 @@
 import { App, Button, Flex, Popconfirm } from 'antd';
 import { Translate } from 'components/language';
+import { useNavigate } from 'react-router-dom';
 import { isDevEnv } from 'utils/helpers';
 
 import { BugOutlined } from '@ant-design/icons';
@@ -10,9 +11,9 @@ import { SETTINGS as ARTISTA } from '../games/Artista/utils/settings';
 import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
-import { useNavigate } from 'react-router-dom';
+import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 
-const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA, FILMACO, CONTROLE_DE_ESTOQUE];
+const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA, FILMACO, CONTROLE_DE_ESTOQUE, TEORIA_DE_CONJUNTOS];
 
 type DevResetLocalStorageButtonProps = {
   localStorageKey?: string;

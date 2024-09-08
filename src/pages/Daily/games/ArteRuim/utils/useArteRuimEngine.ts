@@ -2,17 +2,12 @@ import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { LettersDictionary } from 'pages/Daily/utils/types';
+import { useEffect } from 'react';
 import { removeDuplicates } from 'utils/helpers';
 
 import { getLettersInWord } from './helpers';
 import { SETTINGS } from './settings';
-import { ArteRuimLocalToday, DailyArteRuimEntry } from './types';
-
-type GameState = {
-  hearts: number;
-  solution: BooleanDictionary;
-  guesses: LettersDictionary;
-};
+import { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
 
 const defaultArteRuimLocalToday: ArteRuimLocalToday = {
   id: '',
@@ -96,6 +91,14 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
     .every(Boolean);
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
+
+  useEffect(() => {
+    if (isComplete) {
+      updateLocalStorage({
+        status: 'played',
+      });
+    }
+  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);

@@ -1,4 +1,4 @@
-import { DateKey } from 'pages/Daily/utils/types';
+import { DailyGameStatus, DateKey } from 'pages/Daily/utils/types';
 
 export type TThing = {
   id: string;
@@ -43,4 +43,5 @@ export type GameState = {
 export type TeoriaDeConjuntosLocalToday = {
   guesses: Guess[];
   hearts: number;
+  status?: DailyGameStatus;
 };

@@ -212,3 +212,14 @@
   display: flex;
   justify-content: center;
 }
+
+.played-wrapper {
+  position: relative;
+
+  &__played {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-25%, -50%);
+  }
+}

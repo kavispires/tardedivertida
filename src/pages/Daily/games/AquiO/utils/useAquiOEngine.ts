@@ -1,5 +1,6 @@
 import { useCountdown } from 'hooks/useCountdown';
 import { intersectionBy } from 'lodash';
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { useEffect, useMemo, useState } from 'react';
@@ -8,17 +9,7 @@ import { inNSeconds } from 'utils/helpers';
 
 import { getDiscs } from './helpers';
 import { SETTINGS } from './settings';
-import { AquiODisc, AquiOLocalToday, DailyAquiOEntry } from './types';
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-
-type GameState = {
-  hearts: number;
-  goal: number;
-  discs: AquiODisc[];
-  discIndex: number;
-  attempts: number;
-  maxProgress: number;
-};
+import { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
 
 const defaultAquiOLocalToday: AquiOLocalToday = {
   id: '',
@@ -27,6 +18,7 @@ const defaultAquiOLocalToday: AquiOLocalToday = {
   hardMode: false,
   attempts: 0,
   hearts: SETTINGS.HEARTS,
+  status: 'idle',
 };
 
 const DURATION = 60;
@@ -81,6 +73,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
           hardMode: mode === 'challenge',
           hearts: state.hearts,
           maxProgress: Math.max(state.discIndex, state.maxProgress),
+          status: 'played',
         });
         updateState({
           maxProgress: Math.max(state.discIndex, state.maxProgress),
@@ -124,6 +117,11 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
       if (isWin) {
         updateLocalStorage({
           maxProgress: SETTINGS.GOAL,
+          status: 'played',
+        });
+      } else {
+        updateLocalStorage({
+          status: 'played',
         });
       }
     }

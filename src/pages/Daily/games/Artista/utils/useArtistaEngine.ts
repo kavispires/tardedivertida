@@ -3,21 +3,13 @@ import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySaveDrawings';
 import { wait } from 'pages/Daily/utils';
-import { ArteRuimCard } from 'types/tdr';
+
 import { Me } from 'types/user';
 import { SEPARATOR } from 'utils/constants';
 import { removeDuplicates } from 'utils/helpers';
 
 import { SETTINGS } from './settings';
-import { ArtistaLocalToday, DailyArtistaEntry, DrawingToSave } from './types';
-
-type GameState = {
-  cards: ArteRuimCard[];
-  drawings: string[];
-  cardIndex: number;
-  played: boolean;
-  screen: 'idle' | 'playing' | 'saving';
-};
+import { ArtistaLocalToday, DailyArtistaEntry, DrawingToSave, GameState } from './types';
 
 const defaultLocalToday: ArtistaLocalToday = {
   id: '',
@@ -76,7 +68,7 @@ export function useArtistaEngine(data: DailyArtistaEntry, currentUser: Me) {
   };
 
   const mutation = useDailySaveDrawings(() => {
-    updateLocalStorage({ played: true });
+    updateLocalStorage({ played: true, status: 'played' });
     updateState({ played: true, screen: 'idle' });
   });
 

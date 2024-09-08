@@ -2,17 +2,12 @@ import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { LettersDictionary } from 'pages/Daily/utils/types';
+import { useEffect } from 'react';
 import { removeDuplicates } from 'utils/helpers';
 
 import { getLettersInWord } from './helpers';
 import { SETTINGS } from './settings';
-import { FilmacoLocalToday, DailyFilmacoEntry } from './types';
-
-type GameState = {
-  hearts: number;
-  solution: BooleanDictionary;
-  guesses: LettersDictionary;
-};
+import { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
 
 const defaultFilmacoLocalToday: FilmacoLocalToday = {
   id: '',
@@ -96,6 +91,14 @@ export function useFilmacoEngine(data: DailyFilmacoEntry) {
     .every(Boolean);
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
+
+  useEffect(() => {
+    if (isComplete) {
+      updateLocalStorage({
+        status: 'played',
+      });
+    }
+  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);
