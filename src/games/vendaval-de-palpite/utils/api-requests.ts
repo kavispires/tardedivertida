@@ -7,18 +7,16 @@ import type {
   SubmitHelpPayload,
 } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'vendavalDePalpiteSubmitAction');
+import { VENDAVAL_DE_PALPITE_ACTIONS } from './constants';
 
 export function useOnSubmitBossPlayerAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-boss',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -31,7 +29,7 @@ export function useOnSubmitBossPlayerAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitBossPlayerPayload) => {
     request({
-      action: 'SUBMIT_BOSS',
+      action: VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_BOSS,
       ...payload,
     });
   };
@@ -40,8 +38,7 @@ export function useOnSubmitBossPlayerAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitSecretWordAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-secret-word',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -54,7 +51,7 @@ export function useOnSubmitSecretWordAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitSecretWordPayload) => {
     request({
-      action: 'SUBMIT_SECRET_WORD',
+      action: VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_SECRET_WORD,
       ...payload,
     });
   };
@@ -63,8 +60,7 @@ export function useOnSubmitSecretWordAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitPlayerCluesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-player-clues',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -77,7 +73,7 @@ export function useOnSubmitPlayerCluesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitPlayerCluesPayload) => {
     request({
-      action: 'SUBMIT_CLUES',
+      action: VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_CLUES,
       ...payload,
     });
   };
@@ -86,8 +82,7 @@ export function useOnSubmitPlayerCluesAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-evaluation',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -100,7 +95,7 @@ export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitEvaluationPayload) => {
     request({
-      action: 'SUBMIT_EVALUATION',
+      action: VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_EVALUATION,
       ...payload,
     });
   };
@@ -109,8 +104,7 @@ export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-outcome',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -123,7 +117,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitOutcomePayload) => {
     request({
-      action: 'SUBMIT_OUTCOME',
+      action: VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_OUTCOME,
       ...payload,
     });
   };
@@ -132,8 +126,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitHelpAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-help',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -146,7 +139,7 @@ export function useOnSubmitHelpAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitHelpPayload) => {
     request({
-      action: 'SUBMIT_HELP',
+      action: VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_HELP,
       ...payload,
     });
   };

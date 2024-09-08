@@ -1,4 +1,4 @@
-import { CallableRequestV2, FirebaseAuth } from '../types/reference';
+import { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';
@@ -25,19 +25,19 @@ const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firestore.throwException('User not authenticated', actionText);
+    return utils.firebase.throwException('User not authenticated', actionText);
   }
 
   const { date } = data;
   if (!date) {
-    return utils.firestore.throwException('Date not provided', actionText);
+    return utils.firebase.throwException('Date not provided', actionText);
   }
 
   const dailyRef = utils.firestore.getDailyRef(data.document);
   const dailyDoc = await dailyRef.doc(date).get();
 
   if (!dailyDoc.exists) {
-    utils.firestore.throwException(`Daily ${date} does not exist`, actionText);
+    utils.firebase.throwException(`Daily ${date} does not exist`, actionText);
   }
 
   const dailyData = dailyDoc.data();
@@ -71,12 +71,12 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firestore.throwException('User not authenticated', actionText);
+    return utils.firebase.throwException('User not authenticated', actionText);
   }
 
   const { id, number, victory, hearts, letters } = data;
   if (!id) {
-    return utils.firestore.throwException('Payload is missing data', actionText);
+    return utils.firebase.throwException('Payload is missing data', actionText);
   }
   const userRef = utils.firestore.getUserRef();
 
@@ -138,7 +138,7 @@ const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) =>
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firestore.throwException('User not authenticated', actionText);
+    return utils.firebase.throwException('User not authenticated', actionText);
   }
 
   await dataUtils.updateDataCollectionRecursively('drawings', data.language, data.drawings);
@@ -155,7 +155,7 @@ const DAILY_API_ACTIONS = {
 /**
  * Executes the daily engine.
  *
- * @param request - The CallableRequestV2 object.
+ * @param request - The CallableRequest object.
  */
-export const dailyEngine = (request: CallableRequestV2) =>
-  utils.firebase.apiDelegatorV2(request, DAILY_API_ACTIONS);
+export const dailyEngine = (request: CallableRequest) =>
+  utils.firebase.apiDelegator(request, DAILY_API_ACTIONS);

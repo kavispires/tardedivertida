@@ -28,7 +28,7 @@ export const handlePlayCard = async (
   );
 
   if (state.currentPlayerId !== playerId) {
-    utils.firestore.throwException('You are not the current player!', 'Failed to play card.');
+    utils.firebase.throwException('You are not the current player!', 'Failed to play card.');
   }
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
@@ -73,7 +73,7 @@ export const handlePlayCard = async (
       });
     }
   } catch (error) {
-    utils.firestore.throwException(error, 'Failed to update table with new card');
+    utils.firebase.throwException(error, 'Failed to update table with new card');
   }
 
   return true;
@@ -96,7 +96,7 @@ export const handleDefend = async (gameName: GameName, gameId: GameId, playerId:
   );
 
   if (state.currentPlayerId !== playerId) {
-    utils.firestore.throwException('You are not the current player!', 'Failed to play card.');
+    utils.firebase.throwException('You are not the current player!', 'Failed to play card.');
   }
 
   // Add card to table
@@ -112,7 +112,7 @@ export const handleDefend = async (gameName: GameName, gameId: GameId, playerId:
       });
     }
   } catch (error) {
-    utils.firestore.throwException(error, 'Failed to conclude your defense');
+    utils.firebase.throwException(error, 'Failed to conclude your defense');
   }
 
   return true;

@@ -1,17 +1,14 @@
 import type { SubmitCluePayload, SubmitGuessesPayload, SubmitWordsPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'cruzaPalavrasSubmitAction');
+import { CRUZA_PALAVRAS_ACTIONS } from './constants';
 
 export function useOnSubmitWordsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-words',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
@@ -24,7 +21,7 @@ export function useOnSubmitWordsAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitWordsPayload) => {
     request({
-      action: 'SUBMIT_WORDS',
+      action: CRUZA_PALAVRAS_ACTIONS.SUBMIT_WORDS,
       ...payload,
     });
   };
@@ -33,8 +30,7 @@ export function useOnSubmitWordsAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitClueAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-clue',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -47,7 +43,7 @@ export function useOnSubmitClueAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitCluePayload) => {
     request({
-      action: 'SUBMIT_CLUE',
+      action: CRUZA_PALAVRAS_ACTIONS.SUBMIT_CLUE,
       ...payload,
     });
   };
@@ -56,8 +52,7 @@ export function useOnSubmitClueAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-guesses',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -70,7 +65,7 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitGuessesPayload) => {
     request({
-      action: 'SUBMIT_GUESSES',
+      action: CRUZA_PALAVRAS_ACTIONS.SUBMIT_GUESSES,
       ...payload,
     });
   };

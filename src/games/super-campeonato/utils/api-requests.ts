@@ -5,19 +5,15 @@ import type {
   SubmitContendersPayload,
 } from './type';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-import { ACTIONS } from './constants';
 
-const submitAction = httpsCallable(functions, 'superCampeonatoSubmitAction');
+import { SUPER_CAMPEONATO_ACTIONS } from './constants';
 
 export function useOnSubmitChallengeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-challenge',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -30,7 +26,7 @@ export function useOnSubmitChallengeAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitChallengePayload) => {
     request({
-      action: ACTIONS.SUBMIT_CHALLENGE,
+      action: SUPER_CAMPEONATO_ACTIONS.SUBMIT_CHALLENGE,
       ...payload,
     });
   };
@@ -39,8 +35,7 @@ export function useOnSubmitChallengeAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitContenderAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-contender',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -53,7 +48,7 @@ export function useOnSubmitContenderAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitContendersPayload) => {
     request({
-      action: ACTIONS.SUBMIT_CONTENDERS,
+      action: SUPER_CAMPEONATO_ACTIONS.SUBMIT_CONTENDERS,
       ...payload,
     });
   };
@@ -62,8 +57,7 @@ export function useOnSubmitContenderAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitBetsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-bets',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -76,7 +70,7 @@ export function useOnSubmitBetsAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitBetsPayload) => {
     request({
-      action: ACTIONS.SUBMIT_BETS,
+      action: SUPER_CAMPEONATO_ACTIONS.SUBMIT_BETS,
       ...payload,
     });
   };
@@ -85,8 +79,7 @@ export function useOnSubmitBetsAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -99,7 +92,7 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitBattleVotesPayload) => {
     request({
-      action: ACTIONS.SUBMIT_VOTES,
+      action: SUPER_CAMPEONATO_ACTIONS.SUBMIT_VOTES,
       ...payload,
     });
   };

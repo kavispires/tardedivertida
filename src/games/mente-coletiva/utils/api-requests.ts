@@ -6,18 +6,16 @@ import type {
   SubmitQuestionPayload,
 } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'menteColetivaSubmitAction');
+import { MENTE_COLETIVA_ACTIONS } from './constants';
 
 export function useOnSubmitQuestionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-question',
     onSuccess: () => setStep(3),
     onError: () => setStep(1),
@@ -30,7 +28,7 @@ export function useOnSubmitQuestionAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitQuestionPayload) => {
     request({
-      action: 'SUBMIT_QUESTION',
+      action: MENTE_COLETIVA_ACTIONS.SUBMIT_QUESTION,
       ...payload,
     });
   };
@@ -39,8 +37,7 @@ export function useOnSubmitQuestionAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitCustomQuestionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-question',
     onSuccess: () => setStep(3),
     onError: () => setStep(1),
@@ -53,7 +50,7 @@ export function useOnSubmitCustomQuestionAPIRequest(setStep: UseStep['setStep'])
 
   return (payload: SubmitCustomQuestionPayload) => {
     request({
-      action: 'SUBMIT_CUSTOM_QUESTION',
+      action: MENTE_COLETIVA_ACTIONS.SUBMIT_CUSTOM_QUESTION,
       ...payload,
     });
   };
@@ -62,8 +59,7 @@ export function useOnSubmitCustomQuestionAPIRequest(setStep: UseStep['setStep'])
 export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-answers',
     onSuccess: () => setStep(2),
     onError: () => setStep(1),
@@ -76,7 +72,7 @@ export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitAnswersPayload) => {
     request({
-      action: 'SUBMIT_ANSWERS',
+      action: MENTE_COLETIVA_ACTIONS.SUBMIT_ANSWERS,
       ...payload,
     });
   };
@@ -85,8 +81,7 @@ export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
 export function useOnAddAnswerAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'add-answer',
     successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!'),
     errorMessage: translate(
@@ -97,7 +92,7 @@ export function useOnAddAnswerAPIRequest() {
 
   return (payload: AddAnswerPayload) => {
     request({
-      action: 'ADD_ANSWER',
+      action: MENTE_COLETIVA_ACTIONS.ADD_ANSWER,
       ...payload,
     });
   };
@@ -106,8 +101,7 @@ export function useOnAddAnswerAPIRequest() {
 export function useOnNextAnswersAPIRequest(clearAllowList: GenericFunction) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'next-answers',
     onSuccess: clearAllowList,
     successMessage: translate(
@@ -122,7 +116,7 @@ export function useOnNextAnswersAPIRequest(clearAllowList: GenericFunction) {
 
   return (payload: NextAnswersPayload) => {
     request({
-      action: 'NEXT_ANSWERS',
+      action: MENTE_COLETIVA_ACTIONS.NEXT_ANSWERS,
       ...payload,
     });
   };

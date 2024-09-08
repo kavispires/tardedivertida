@@ -56,7 +56,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -140,6 +140,6 @@ export const submitAction = async (data: MegamixSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['data'], 'submit data');
       return handleSubmitTrackAnswer(gameName, gameId, playerId, data.data);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

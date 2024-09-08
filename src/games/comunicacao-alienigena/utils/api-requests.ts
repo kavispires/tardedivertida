@@ -7,19 +7,16 @@ import type {
   SubmitSeedingPayload,
 } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
 
-const submitAction = httpsCallable(functions, 'comunicacaoAlienigenaSubmitAction');
+import { COMUNICACAO_ALIENIGENA_ACTIONS } from './constants';
 
 export function useOnSubmitAlienAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -32,7 +29,7 @@ export function useOnSubmitAlienAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitAlienPayload) => {
     request({
-      action: 'SUBMIT_ALIEN',
+      action: COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN,
       ...payload,
     });
   };
@@ -41,8 +38,7 @@ export function useOnSubmitAlienAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitSeedingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-seeds',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -55,7 +51,7 @@ export function useOnSubmitSeedingAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitSeedingPayload) => {
     request({
-      action: 'SUBMIT_SEEDS',
+      action: COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_SEEDS,
       ...payload,
     });
   };
@@ -64,8 +60,7 @@ export function useOnSubmitSeedingAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitHumanInquiryAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -78,7 +73,7 @@ export function useOnSubmitHumanInquiryAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitHumanInquiryPayload) => {
     request({
-      action: 'SUBMIT_HUMAN_INQUIRY',
+      action: COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_HUMAN_INQUIRY,
       ...payload,
     });
   };
@@ -87,8 +82,7 @@ export function useOnSubmitHumanInquiryAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitAlienResponseAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
     errorMessage: translate(
@@ -99,7 +93,7 @@ export function useOnSubmitAlienResponseAPIRequest() {
 
   return (payload: SubmitAlienResponsePayload) => {
     request({
-      action: 'SUBMIT_ALIEN_RESPONSE',
+      action: COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN_RESPONSE,
       ...payload,
     });
   };
@@ -112,8 +106,7 @@ export function useOnMakeReady() {
 export function useOnSubmitAlienRequestAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -126,7 +119,7 @@ export function useOnSubmitAlienRequestAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitAlienRequestPayload) => {
     request({
-      action: 'SUBMIT_ALIEN_REQUEST',
+      action: COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN_REQUEST,
       ...payload,
     });
   };
@@ -135,8 +128,7 @@ export function useOnSubmitAlienRequestAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitOfferingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -149,7 +141,7 @@ export function useOnSubmitOfferingAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitOfferingPayload) => {
     request({
-      action: 'SUBMIT_OFFERING',
+      action: COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_OFFERING,
       ...payload,
     });
   };

@@ -49,11 +49,6 @@ type FirebaseContext = {
 type Collection<T> = Record<CardId, T>;
 
 /**
- * Generic HttpsCallable function
- */
-type GenericCallableFunction = (data: any, context: FirebaseContext) => unknown;
-
-/**
  * Used to wrap HttpsCallable functions groups
  */
 type CallablePayload<TPayload> = TPayload & { action: string };
@@ -62,22 +57,19 @@ interface GameOptions {
   [key: string]: boolean | string;
 }
 
-interface CreateGamePayload {
-  gameName: string;
-  language: string;
-  version: string;
-  options?: GameOptions;
-}
-
-interface LoadGamePayload {
+interface ActionPayload {
   gameId: GameId;
-  gameName: string;
+  gameName: GameName;
+  playerId: PlayerId;
+  action: string;
+  // Anything else in the payload
+  [key: string]: any;
 }
 
 interface Engine {
   getInitialState: any;
   getNextPhase: any;
-  playerCounts: PlayerCounts;
+  getPlayerCounts: () => PlayerCounts;
   submitAction: any;
 }
 
@@ -87,11 +79,6 @@ interface AddPlayerPayload {
   playerName: PlayerName;
   playerAvatarId: PlayerAvatarId;
   isGuest?: boolean;
-}
-
-interface BasicGamePayload {
-  gameId: GameId;
-  gameName: GameName;
 }
 
 interface Meta {

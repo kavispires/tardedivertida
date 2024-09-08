@@ -1,3 +1,7 @@
+export const NA_RUA_DO_MEDO_ACTIONS = {
+  SUBMIT_DECISION: 'SUBMIT_DECISION',
+} as const;
+
 export const GRID_REPEAT: NumberDictionary = {
   3: 3,
   4: 4,

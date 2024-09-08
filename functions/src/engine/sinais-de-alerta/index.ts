@@ -57,7 +57,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
@@ -124,13 +124,13 @@ export const submitAction = async (data: SinaisDeAlertaSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
-    case SINAIS_DE_ALERTA_ACTIONS.SUBMIT_SDA_DRAWING:
+    case SINAIS_DE_ALERTA_ACTIONS.SUBMIT_DRAWING:
       utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);
-    case SINAIS_DE_ALERTA_ACTIONS.SUBMIT_SDA_EVALUATION:
+    case SINAIS_DE_ALERTA_ACTIONS.SUBMIT_EVALUATION:
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.guesses, data.choseRandomly);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

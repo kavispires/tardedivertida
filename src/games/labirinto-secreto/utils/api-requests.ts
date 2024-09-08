@@ -1,17 +1,15 @@
 import type { SubmitMapPayload, SubmitPathGuessPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 
-const submitAction = httpsCallable(functions, 'labirintoSecretoSubmitAction');
+import { LABIRINTO_SECRETO_ACTIONS } from './constants';
 
 export function useOnSubmitMapAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-map',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -24,7 +22,7 @@ export function useOnSubmitMapAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitMapPayload) => {
     request({
-      action: 'SUBMIT_MAP',
+      action: LABIRINTO_SECRETO_ACTIONS.SUBMIT_MAP,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitMapAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitPathAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-path',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -47,7 +44,7 @@ export function useOnSubmitPathAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitPathGuessPayload) => {
     request({
-      action: 'SUBMIT_PATH',
+      action: LABIRINTO_SECRETO_ACTIONS.SUBMIT_PATH,
       ...payload,
     });
   };

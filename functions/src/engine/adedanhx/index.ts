@@ -54,7 +54,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
@@ -127,6 +127,6 @@ export const submitAction = async (data: AdedanhxSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
       return handleSubmitRejectAnswers(gameName, gameId, playerId, data.evaluations);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

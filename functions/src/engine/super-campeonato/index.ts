@@ -63,7 +63,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
@@ -162,6 +162,6 @@ export const submitAction = async (data: SuperCampeonatoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit bets');
       return handleSubmitVotes(gameName, gameId, playerId, data.votes);
     default:
-      utils.firestore.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

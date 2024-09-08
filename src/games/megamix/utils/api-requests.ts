@@ -1,17 +1,13 @@
 import type { SubmitAnswerPayload } from './types';
 import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'megamixSubmitAction');
+import { MEGAMIX_ACTIONS } from './constants';
 
 export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-seed',
     onSuccess: () => setStep(3),
     successMessage: translate('Dados enviados com sucesso', 'Data submitted successfully'),
@@ -23,7 +19,7 @@ export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitAnswerPayload) => {
     request({
-      action: 'SUBMIT_SEEDS',
+      action: MEGAMIX_ACTIONS.SUBMIT_SEEDS,
       ...payload,
     });
   };
@@ -32,8 +28,7 @@ export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitTrackAnswerAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-task',
     onSuccess: () => setStep(3),
     successMessage: translate('Tarefa enviada com sucesso', 'Track submitted successfully'),
@@ -45,7 +40,7 @@ export function useOnSubmitTrackAnswerAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitAnswerPayload) => {
     request({
-      action: 'SUBMIT_TRACK_ANSWER',
+      action: MEGAMIX_ACTIONS.SUBMIT_TRACK_ANSWER,
       ...payload,
     });
   };
