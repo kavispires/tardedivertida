@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "6.0.7",
+  "version": "6.0.8",
   "title": {
     "pt": "Cruza Palavras",
     "en": "Mixed Clues"

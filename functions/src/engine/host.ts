@@ -5,7 +5,7 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
-import { CallableRequestV2, FirebaseAuth } from '../types/reference';
+import { CallableRequest, FirebaseAuth } from '../types/reference';
 
 export type CreateGamePayload = {
   gameName: string;
@@ -33,14 +33,14 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   const { gameName, language, version, options } = data;
 
   if (!gameName) {
-    return utils.firebase.throwExceptionV2('a gameName is required', actionText);
+    return utils.firebase.throwException('a gameName is required', actionText);
   }
 
   // Get gameCode
   const gameCode = GAME_CODES[gameName];
 
   if (!gameCode) {
-    return utils.firebase.throwExceptionV2(`provided gameCode is invalid ${gameName}`, actionText);
+    return utils.firebase.throwException(`provided gameCode is invalid ${gameName}`, actionText);
   }
 
   // Get list of used ids
@@ -58,7 +58,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await gameRef.collection(gameId).doc('state').get();
   if (tempGame.exists) {
-    return utils.firebase.throwExceptionV2(
+    return utils.firebase.throwException(
       `the generated game id ${gameId} belongs to an existing session`,
       actionText
     );
@@ -85,7 +85,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
 
     response = meta;
   } catch (e) {
-    return utils.firebase.throwExceptionV2(`${e}`, `${actionText} in the firestore database`);
+    return utils.firebase.throwException(`${e}`, `${actionText} in the firestore database`);
   }
 
   try {
@@ -135,14 +135,14 @@ const lockGame = async (data: BasicGamePayload) => {
   const playerCounts = getPlayerCounts();
 
   if (numPlayers < playerCounts.MIN) {
-    utils.firebase.throwExceptionV2(
+    utils.firebase.throwException(
       `Game ${gameId} has an insufficient number of players: Minimum ${playerCounts.MIN} players, but has ${numPlayers}`,
       actionText
     );
   }
 
   if (numPlayers > playerCounts.MAX) {
-    utils.firebase.throwExceptionV2(
+    utils.firebase.throwException(
       `Game ${gameId} has more players than it supports: Maximum ${playerCounts.MAX} players, but has ${numPlayers}`,
       actionText
     );
@@ -163,7 +163,7 @@ const lockGame = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firebase.throwExceptionV2(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return false;
@@ -200,7 +200,7 @@ const unlockAndResetGame = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firebase.throwExceptionV2(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return false;
@@ -242,7 +242,7 @@ const forceStateProperty = async (data: BasicGamePayload) => {
   try {
     await sessionRef.doc('state').update(state);
   } catch (error) {
-    return utils.firebase.throwExceptionV2(error, actionText);
+    return utils.firebase.throwException(error, actionText);
   }
 
   return true;
@@ -267,7 +267,7 @@ const forceLastRound = async (data: BasicGamePayload) => {
   try {
     await sessionRef.doc('state').update({ 'round.forceLastRound': true });
   } catch (error) {
-    return utils.firebase.throwExceptionV2(error, actionText);
+    return utils.firebase.throwException(error, actionText);
   }
 
   return true;
@@ -319,7 +319,7 @@ const playAgain = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firebase.throwExceptionV2(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return false;
@@ -344,24 +344,24 @@ const HOST_API_ACTIONS = {
 /**
  * Executes the game host engine.
  *
- * @param request - The CallableRequestV2 object.
+ * @param request - The CallableRequest object.
  */
-export const hostEngine = (request: CallableRequestV2<CreateGamePayload | BasicGamePayload>) => {
+export const hostEngine = (request: CallableRequest<CreateGamePayload | BasicGamePayload>) => {
   // Verify action
   const action = request.data?.action;
   if (!action) {
-    return utils.firebase.throwExceptionV2('Action not provided', 'perform request');
+    return utils.firebase.throwException('Action not provided', 'perform request');
   }
 
   // Verify auth
   const uid = request.auth?.uid;
   if (!uid) {
-    return utils.firebase.throwExceptionV2('User not authenticated', action);
+    return utils.firebase.throwException('User not authenticated', action);
   }
 
   if (HOST_API_ACTIONS[action]) {
     return HOST_API_ACTIONS[action](request.data, request.auth);
   }
 
-  return utils.firebase.throwExceptionV2('Admin action does not exist', action);
+  return utils.firebase.throwException('Admin action does not exist', action);
 };

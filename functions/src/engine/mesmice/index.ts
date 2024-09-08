@@ -132,6 +132,6 @@ export const submitAction = async (data: MesmiceSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['featureId'], 'submit featureId');
       return handleSubmitFeature(gameName, gameId, playerId, data.featureId);
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

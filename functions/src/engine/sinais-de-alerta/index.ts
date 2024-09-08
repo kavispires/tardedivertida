@@ -131,6 +131,6 @@ export const submitAction = async (data: SinaisDeAlertaSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.guesses, data.choseRandomly);
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

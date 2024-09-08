@@ -140,6 +140,6 @@ export const submitAction = async (data: MegamixSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['data'], 'submit data');
       return handleSubmitTrackAnswer(gameName, gameId, playerId, data.data);
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

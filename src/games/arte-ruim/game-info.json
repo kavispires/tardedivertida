@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "arte-ruim",
-  "version": "6.0.8",
+  "version": "6.0.9",
   "title": {
     "pt": "Arte Ruim Pra Dedéu",
     "en": "Questionable Art"

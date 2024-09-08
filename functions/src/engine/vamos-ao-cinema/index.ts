@@ -135,6 +135,6 @@ export const submitAction = async (data: VamosAoCinemaSubmitAction) => {
       return handleVoteForPoster(gameName, gameId, playerId, data.movieId, data.posterId);
 
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

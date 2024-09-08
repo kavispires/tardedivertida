@@ -1,24 +1,24 @@
 import { COMMON_ACTIONS } from './engine/common';
-import { CallableRequestV2 } from './types/reference';
+import { CallableRequest } from './types/reference';
 import utils from './utils';
 import { getEngine } from './utils/delegators';
 
 /**
  * Executes the game engine.
  *
- * @param request - The CallableRequestV2 object.
+ * @param request - The CallableRequest object.
  */
-export const gameEngine = (request: CallableRequestV2<ActionPayload>) => {
+export const gameEngine = (request: CallableRequest<ActionPayload>) => {
   // Verify action
   const action = request.data?.action;
   if (!action) {
-    return utils.firebase.throwExceptionV2('Action not provided', 'perform request');
+    return utils.firebase.throwException('Action not provided', 'perform request');
   }
 
   // Verify auth
   const uid = request.auth?.uid;
   if (!uid) {
-    return utils.firebase.throwExceptionV2('User not authenticated', action);
+    return utils.firebase.throwException('User not authenticated', action);
   }
 
   // Special case: Load Game cannot require gameName because it only has the ID
@@ -29,7 +29,7 @@ export const gameEngine = (request: CallableRequestV2<ActionPayload>) => {
   // Verify gameName
   const gameName = request.data?.gameName;
   if (!gameName) {
-    return utils.firebase.throwExceptionV2('Game name not provided', action);
+    return utils.firebase.throwException('Game name not provided', action);
   }
 
   // Delegate global actions
@@ -40,7 +40,7 @@ export const gameEngine = (request: CallableRequestV2<ActionPayload>) => {
   // Delegate game first, then action
   const engine = getEngine(gameName);
   if (!engine) {
-    return utils.firebase.throwExceptionV2('Invalid game name', action);
+    return utils.firebase.throwException('Invalid game name', action);
   }
 
   const basicActions = {
