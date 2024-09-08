@@ -2,21 +2,11 @@ import { chunk, cloneDeep } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { useEffect } from 'react';
 
 import { parseLetters } from './helpers';
 import { SETTINGS } from './settings';
-import { DailyPalavreadoEntry, PalavreadoLetter, PalavreadoLocalToday } from './types';
-
-type GameState = {
-  hearts: number;
-  selection: number | null; // indexes of letters
-  swap: number[]; // indexes of letters
-  letters: PalavreadoLetter[];
-  boardState: string[][];
-  guesses: string[][]; // words guesses per heart
-  state: string;
-  swaps: number;
-};
+import { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
 
 const defaultArteRuimLocalToday: PalavreadoLocalToday = {
   id: '',
@@ -170,6 +160,14 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
   const isWin = Object.values(state.letters).every((l) => l.locked);
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
+
+  useEffect(() => {
+    if (isComplete) {
+      updateLocalStorage({
+        status: 'played',
+      });
+    }
+  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);

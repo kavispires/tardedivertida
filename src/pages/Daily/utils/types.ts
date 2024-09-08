@@ -18,6 +18,8 @@ export type DailyResponse = {
   'teoria-de-conjuntos'?: DailyTeoriaDeConjuntosEntry;
 };
 
+export type DailyGameStatus = 'idle' | 'playing' | 'played';
+
 export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'idle';
 
 export type Letter = {

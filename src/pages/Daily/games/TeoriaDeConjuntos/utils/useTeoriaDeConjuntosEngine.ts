@@ -3,6 +3,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { useEffect } from 'react';
 import { deepCopy } from 'utils/helpers';
 
 import { parseLocalToday } from './helpers';
@@ -51,14 +52,6 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
   const { translate } = useLanguage();
   const { state, setState, updateState } = useDailyGameState<GameState>(getInitialState(data));
 
-  // CONDITIONS
-  const isWin = state.win;
-  const isLose = state.hearts <= 0;
-  const isComplete = isWin || isLose;
-
-  // RESULTS MODAL
-  const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
-
   const { updateLocalStorage } = useDailyLocalToday<TeoriaDeConjuntosLocalToday>({
     key: SETTINGS.LOCAL_TODAY_KEY,
     gameId: data.id,
@@ -74,6 +67,22 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
       }
     },
   });
+
+  // CONDITIONS
+  const isWin = state.win;
+  const isLose = state.hearts <= 0;
+  const isComplete = isWin || isLose;
+
+  useEffect(() => {
+    if (isComplete) {
+      updateLocalStorage({
+        status: 'played',
+      });
+    }
+  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // RESULTS MODAL
+  const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
 
   const onSelectThing = (thing: TThing) => {
     updateState({ activeThing: thing });

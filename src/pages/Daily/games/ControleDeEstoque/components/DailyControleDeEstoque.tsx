@@ -16,6 +16,7 @@ import { FulfillingPhase } from './FulfillingPhase';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { StockingPhase } from './StockingPhase';
+import { PreloadItems } from './PreloadItems';
 
 type DailyControleDeEstoqueProps = {
   data: DailyControleDeEstoqueEntry;
@@ -61,6 +62,8 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
       </Header>
       <Layout.Content ref={contentRef}>
         <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
+
+        <PreloadItems goods={data.goods} />
 
         <div key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
           <Region>

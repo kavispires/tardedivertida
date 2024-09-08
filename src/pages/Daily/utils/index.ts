@@ -62,3 +62,16 @@ export function writeHeartResultString(remainHearts: number, totalHearts: number
 export const wait = async (duration = 1000) => {
   await new Promise((resolve) => setTimeout(resolve, duration));
 };
+
+/**
+ * Checks if a specific key was played today.
+ *
+ * @param key - The key to check.
+ * @returns A boolean indicating whether the key was played today.
+ */
+export const checkWasPlayedToday = (key: string): boolean => {
+  const session = JSON.parse(localStorage.getItem(key) || '{}');
+  const today = getToday();
+  console.log(session);
+  return session?.id === today && session?.status === 'played';
+};

@@ -1,6 +1,8 @@
 import { Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
+import { DualTranslate, Translate } from 'components/language';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
+import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
@@ -15,9 +17,7 @@ import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/util
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
-import { getToday } from '../utils';
-import { DualTranslate, Translate } from 'components/language';
-import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
+import { checkWasPlayedToday } from '../utils';
 
 const PRIORITY_LIST = [
   TEORIA_DE_CONJUNTOS,
@@ -29,15 +29,9 @@ const PRIORITY_LIST = [
   ARTISTA,
 ];
 
-const checkIsPlayedToday = (key: string): boolean => {
-  const session = JSON.parse(localStorage.getItem(key) || '{}');
-  const today = getToday();
-  return session?.id === today;
-};
-
 const getNextGame = (): string => {
   for (const game of PRIORITY_LIST) {
-    if (!checkIsPlayedToday(game.LOCAL_TODAY_KEY)) {
+    if (!checkWasPlayedToday(game.LOCAL_TODAY_KEY)) {
       return game.LOCAL_TODAY_KEY;
     }
   }

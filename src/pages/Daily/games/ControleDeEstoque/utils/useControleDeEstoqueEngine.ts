@@ -3,27 +3,12 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { useEffect } from 'react';
 import { SEPARATOR } from 'utils/constants';
 import { deepCopy } from 'utils/helpers';
 
 import { PHASES, SETTINGS } from './settings';
-import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry } from './types';
-
-type GoodId = string;
-
-type GameState = {
-  hearts: number;
-  phase: keyof typeof PHASES;
-  warehouse: (GoodId | null)[];
-  fulfillments: { order: GoodId; shelfIndex: number }[];
-  lastPlacedGoodId: GoodId | null;
-  activeOrder: GoodId | null;
-  latestAttempt: number | null;
-  win: boolean;
-  guesses: string[];
-  evaluations: boolean[][];
-  extraAttempts: number;
-};
+import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
 
 const defaultLocalToday: ControleDeEstoqueLocalToday = {
   id: '',
@@ -180,6 +165,15 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
   const isWin = state.win;
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
+
+  useEffect(() => {
+    console.log('isComplete', isComplete);
+    if (isComplete) {
+      updateLocalStorage({
+        status: 'played',
+      });
+    }
+  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
