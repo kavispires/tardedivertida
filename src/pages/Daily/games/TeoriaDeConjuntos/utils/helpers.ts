@@ -7,8 +7,10 @@ export const parseLocalToday = (
   state: GameState
 ): GameState => {
   // For every guess in localToday, remove the item from the hand and add it to the diagram
+  console.log('guesses', localToday.guesses);
   localToday.guesses?.forEach((guess) => {
     const activeThing = state.hand.find((t) => t.id === guess.thingId);
+    console.log('Applying thing', activeThing?.name);
     if (activeThing) {
       // Remove it from hand
       state.hand = state.hand.filter((t) => t.id !== guess.thingId);
@@ -23,16 +25,21 @@ export const parseLocalToday = (
       }
 
       if (activeThing.rule !== guess.sectionId) {
+        console.log('wrong section');
         if (state.deck.length > 0) {
           state.hand.push(state.deck.pop()!);
         }
       } else {
+        console.log('correct section');
         if (state.hand.length === 0) {
+          console.log('empty hand');
           state.win = true;
         }
       }
     }
   });
+
+  console.log('win?', state.win);
 
   return {
     ...state,
