@@ -157,6 +157,6 @@ export const submitAction = async (data: VendavalDePalpiteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['clueId'], 'submit help');
       return handleSubmitHelp(gameName, gameId, playerId, data.clueId);
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhos-pesadelos",
-  "version": "0.11.37",
+  "version": "0.11.38",
   "title": {
     "pt": "Sonhos e Pesadelos",
     "en": "Dreams and Nightmares"

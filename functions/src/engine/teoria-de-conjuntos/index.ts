@@ -147,6 +147,6 @@ export const submitAction = async (data: TeoriaDeConjuntosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.evaluation);
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

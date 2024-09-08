@@ -22,7 +22,7 @@ const loadGame = async (data: LoadGamePayload) => {
   const gameMeta = await metaRef.doc(gameId).get();
 
   if (!gameMeta.exists) {
-    return utils.firebase.throwExceptionV2(`game ${gameId} does not exist`, actionText);
+    return utils.firebase.throwException(`game ${gameId} does not exist`, actionText);
   }
 
   const gameMetaData = gameMeta.data();
@@ -78,7 +78,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const numPlayers = utils.players.getPlayerCount(players);
 
   if (numPlayers === playerCounts.MAX) {
-    utils.firebase.throwExceptionV2(
+    utils.firebase.throwException(
       `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${playerCounts.MIN}`,
       actionText
     );
@@ -89,10 +89,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const meta = metaDoc.data() ?? {};
 
   if (meta?.isLocked) {
-    utils.firebase.throwExceptionV2(
-      `This game ${gameId} is locked and cannot accept new players`,
-      actionText
-    );
+    utils.firebase.throwException(`This game ${gameId} is locked and cannot accept new players`, actionText);
   }
 
   try {
@@ -109,7 +106,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
     });
     return newPlayer;
   } catch (error) {
-    utils.firebase.throwExceptionV2(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 };
 
@@ -142,7 +139,7 @@ const makeMeReady = async (data: Payload) => {
       await sessionRef.doc('state').update({ [path]: true });
       return true;
     } catch (error) {
-      utils.firebase.throwExceptionV2(error, actionText);
+      utils.firebase.throwException(error, actionText);
     }
   }
 
@@ -152,7 +149,7 @@ const makeMeReady = async (data: Payload) => {
   try {
     return getNextPhase(gameName, gameId);
   } catch (error) {
-    utils.firebase.throwExceptionV2(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 };
 
@@ -199,7 +196,7 @@ const rateGame = async (data: ExtendedPayload, auth: FirebaseAuth) => {
           [gameId]: data.ratings,
         });
     } catch (error) {
-      utils.firebase.throwExceptionV2(error, actionText);
+      utils.firebase.throwException(error, actionText);
     }
   }
   return true;

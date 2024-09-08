@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions/v1';
 // eslint-disable-next-line
 import * as functionsV2 from 'firebase-functions/v2';
 
-import { FirebaseAuth, GenericCallableFunctionV2 } from '../types/reference';
+import { GenericCallableFunction } from '../types/reference';
 import utils from '../utils';
 
 export const config = functions.config;
@@ -12,54 +12,33 @@ export const config = functions.config;
  * CLOUD FUNCTIONS V2 MIGRATION
  */
 
-export const throwExceptionV2 = (error: any, action: string) => {
+export const throwException = (error: any, action: string) => {
   if (process.env.FIRESTORE_EMULATOR_HOST) {
     console.error(`Failed to ${action}`, error);
   }
   throw new functionsV2.https.HttpsError('internal', `Failed to ${action}: ${String(error)}`);
 };
 
-export const apiDelegatorV2 = (
+export const apiDelegator = (
   request: functionsV2.https.CallableRequest<ActionPayload>,
-  actions: Record<string, GenericCallableFunctionV2>
+  actions: Record<string, GenericCallableFunction>
 ) => {
   const uid = request.auth?.uid;
   const action = request.data?.action;
 
   if (!action) {
-    return utils.firebase.throwExceptionV2('Action not provided', 'perform request');
+    return utils.firebase.throwException('Action not provided', 'perform request');
   }
 
   if (!uid) {
-    return utils.firebase.throwExceptionV2('User not authenticated', action.toLowerCase());
+    return utils.firebase.throwException('User not authenticated', action.toLowerCase());
   }
 
   if (!actions[action]) {
-    return utils.firebase.throwExceptionV2('Invalid action', action.toLowerCase());
+    return utils.firebase.throwException('Invalid action', action.toLowerCase());
   }
 
   return actions[action](request.data, request.auth);
-};
-
-/**
- * Created a delegating function for API actions
- * @param actions Dictionary of actions accepted by the API
- * @returns a function that delegates given action to the corresponding function
- */
-export const apiDelegator = (apiName: string, actions: Record<string, GenericCallableFunctionV2>) => {
-  return (payload: CallablePayload<unknown>, auth: FirebaseAuth) => {
-    const { action, ...data } = payload;
-
-    if (!action) {
-      return throwExceptionV2('Missing action', apiName);
-    }
-
-    if (!actions[action]) {
-      return throwExceptionV2('Invalid action', apiName);
-    }
-
-    return actions[action](data, auth);
-  };
 };
 
 /**

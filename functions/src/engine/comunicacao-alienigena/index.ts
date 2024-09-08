@@ -201,6 +201,6 @@ export const submitAction = async (data: ComunicacaoAlienigenaSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['offeringId'], 'submit offeringId');
       return handleSubmitOffering(gameName, gameId, playerId, data.offeringId);
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

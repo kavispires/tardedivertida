@@ -154,6 +154,6 @@ export const submitAction = async (data: MenteColetivaSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['answer'], 'add answer');
       return handleAddAnswer(gameName, gameId, playerId, data.answer);
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

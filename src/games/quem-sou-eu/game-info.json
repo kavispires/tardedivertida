@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "title": {
     "pt": "Quem Sou Eu?",
     "en": "Who Am I?"

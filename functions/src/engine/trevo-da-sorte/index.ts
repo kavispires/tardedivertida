@@ -135,6 +135,6 @@ export const submitAction = async (data: TrevoDaSorteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guesses', 'activeCloverId'], 'submit guesses');
       return handleSubmitGuess(gameName, gameId, playerId, data.guesses, data.activeCloverId);
     default:
-      utils.firebase.throwExceptionV2(`Given action ${action} is not allowed`, action);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

@@ -5,7 +5,7 @@ import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '../utils';
 import { isEmpty } from 'lodash';
-import { throwExceptionV2 } from './firebase';
+import { throwException } from './firebase';
 
 /**
  * Get Firebase session for the data collection (used to save bot/seed data)
@@ -220,7 +220,7 @@ export const saveGame = async (
       await sessionRef.doc('state').set({ ...saveContent.set.state, updatedAt: Date.now() } ?? {});
     }
   } catch (error) {
-    throwExceptionV2(error, 'set game state');
+    throwException(error, 'set game state');
   }
   try {
     if (
@@ -236,7 +236,7 @@ export const saveGame = async (
       await sessionRef.doc('store').update({ ...(saveContent.update.store ?? {}), ...cleanup });
     }
   } catch (error) {
-    throwExceptionV2(error, 'update game store');
+    throwException(error, 'update game store');
   }
 
   try {
@@ -256,7 +256,7 @@ export const saveGame = async (
         .update({ ...(saveContent.update.state ?? {}), ...cleanup, updatedAt: Date.now() });
     }
   } catch (error) {
-    throwExceptionV2(error, 'update game state');
+    throwException(error, 'update game state');
   }
 
   return true;
@@ -330,7 +330,7 @@ export const updatePlayer = async ({
     await sessionRef.doc('state').update({ ...playerChange });
   } catch (error) {
     // TODO: log error
-    return throwExceptionV2(error, actionText);
+    return throwException(error, actionText);
   }
   if (shouldReady && nextPhaseFunction) {
     const { state } = await utils.firestore.getStateReferences<DefaultState>(gameName, gameId, actionText);
@@ -366,7 +366,7 @@ export const updateStore = async ({
   try {
     await sessionRef.doc('store').update({ ...change });
   } catch (error) {
-    return throwExceptionV2(error, actionText);
+    return throwException(error, actionText);
   }
 
   if (nextPhaseFunction) {
@@ -398,7 +398,7 @@ export const updateState = async ({
   try {
     await sessionRef.doc('state').update({ ...change });
   } catch (error) {
-    return throwExceptionV2(error, actionText);
+    return throwException(error, actionText);
   }
 
   if (nextPhaseFunction) {
