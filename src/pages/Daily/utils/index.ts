@@ -72,6 +72,5 @@ export const wait = async (duration = 1000) => {
 export const checkWasPlayedToday = (key: string): boolean => {
   const session = JSON.parse(localStorage.getItem(key) || '{}');
   const today = getToday();
-  console.log(session);
   return session?.id === today && session?.status === 'played';
 };

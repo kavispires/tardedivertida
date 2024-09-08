@@ -167,7 +167,6 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
   const isComplete = isWin || isLose;
 
   useEffect(() => {
-    console.log('isComplete', isComplete);
     if (isComplete) {
       updateLocalStorage({
         status: 'played',
