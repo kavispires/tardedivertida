@@ -38,7 +38,7 @@ export function Hub() {
         </Space>
 
         <div className="hub-list">
-          <PlayedWrapper lsKey={ARTE_RUIM.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={ARTE_RUIM.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/arte-ruim" className="hub-item">
                 <DailyArtGameIcon style={{ width: 75 }} />
