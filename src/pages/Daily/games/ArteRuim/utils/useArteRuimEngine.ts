@@ -1,55 +1,19 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { LettersDictionary } from 'pages/Daily/utils/types';
-import { useEffect } from 'react';
 import { removeDuplicates } from 'utils/helpers';
 
-import { getLettersInWord } from './helpers';
+import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
 import { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
 
-const defaultArteRuimLocalToday: ArteRuimLocalToday = {
-  id: '',
-  letters: [],
-  number: 0,
-};
+export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameState) {
+  const { state, setState } = useDailyGameState<GameState>(initialState);
 
-export function useArteRuimEngine(data: DailyArteRuimEntry) {
-  const { state, setState, updateState } = useDailyGameState<GameState>({
-    solution: getLettersInWord(data.text),
-    hearts: SETTINGS.HEARTS,
-    guesses: {},
-  });
-
-  const { localToday, updateLocalStorage } = useDailyLocalToday<ArteRuimLocalToday>({
-    key: SETTINGS.LOCAL_TODAY_KEY,
+  const { localToday, updateLocalStorage } = useDailyLocalTodayV2<ArteRuimLocalToday>({
+    key: SETTINGS.KEY,
     gameId: data.id,
-    challengeNumber: data.number ?? 0,
-    defaultValue: defaultArteRuimLocalToday,
-    onApplyLocalState: (value) => {
-      let hearts = SETTINGS.HEARTS;
-      let solution = { ...state.solution };
-      const guesses = value.letters.reduce((acc: LettersDictionary, letter) => {
-        const isCorrect = state.solution[letter] !== undefined;
-        if (state.solution[letter] !== undefined) {
-          solution = { ...solution, [letter]: true };
-        }
-        acc[letter] = {
-          letter: letter,
-          state: isCorrect ? 'correct' : 'incorrect',
-          disabled: true,
-        };
-        hearts = isCorrect ? hearts : hearts - 1;
-        return acc;
-      }, {});
-
-      updateState({
-        guesses,
-        hearts,
-        solution,
-      });
-    },
+    defaultValue: DEFAULT_LOCAL_TODAY,
   });
 
   // ACTIONS
@@ -92,13 +56,10 @@ export function useArteRuimEngine(data: DailyArteRuimEntry) {
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
 
-  useEffect(() => {
-    if (isComplete) {
-      updateLocalStorage({
-        status: 'played',
-      });
-    }
-  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
+  useMarkAsPlayed({
+    key: SETTINGS.KEY,
+    isComplete,
+  });
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);

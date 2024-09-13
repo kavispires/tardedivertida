@@ -2,12 +2,14 @@ import { Button, Layout, Modal, Space } from 'antd';
 import { DualTranslate, Translate } from 'components/language';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
+import { useMemo } from 'react';
 import { Me } from 'types/user';
 
 import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
+import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyArteRuimEntry } from '../utils/types';
 import { useArteRuimEngine } from '../utils/useArteRuimEngine';
@@ -22,12 +24,14 @@ type DailyArteRuimProps = {
 };
 
 export function DailyArteRuim({ data }: DailyArteRuimProps) {
+  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const { hearts, guesses, showResultModal, setShowResultModal, isWin, isComplete, guessLetter, solution } =
-    useArteRuimEngine(data);
+    useArteRuimEngine(data, initialState);
 
   return (
     <Layout className="app">
-      <Header icon={<DailyArtGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
+      <Header icon={<DailyArtGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>
