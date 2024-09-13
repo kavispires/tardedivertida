@@ -47,7 +47,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={AQUI_O.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={AQUI_O.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/aqui-o" className="hub-item">
                 <DailyFindingGameIcon style={{ width: 75 }} />
