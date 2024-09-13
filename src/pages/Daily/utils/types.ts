@@ -29,3 +29,8 @@ export type Letter = {
 };
 
 export type LettersDictionary = Dictionary<Letter>;
+
+export interface WithRequiredId {
+  id: string;
+  status?: DailyGameStatus;
+}
