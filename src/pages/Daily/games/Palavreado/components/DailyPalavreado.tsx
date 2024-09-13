@@ -72,13 +72,21 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           )}
         </Region>
 
-        <TextRegion direction="vertical">
+        <TextRegion direction="vertical" size="small">
           {guesses.map((attempt, index) => (
-            <Space key={`${attempt}-${index}`} split={<Divider type="vertical" />}>
+            <Space
+              key={`${attempt}-${index}`}
+              split={<Divider type="vertical" className="mx-0" />}
+              size="small"
+            >
               {attempt.map((word, i) => (
-                <span className="palavreado-word" key={`${attempt}-${index}-${word}-${i}`}>
+                <Typography.Text
+                  keyboard
+                  className="palavreado-word"
+                  key={`${attempt}-${index}-${word}-${i}`}
+                >
                   {word}
-                </span>
+                </Typography.Text>
               ))}
             </Space>
           ))}
