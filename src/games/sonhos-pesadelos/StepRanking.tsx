@@ -1,16 +1,17 @@
 // Ant Design Resources
-import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound, GameRanking } from 'types/game';
+import type { GamePlayers } from 'types/player';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { Step } from 'components/steps';
-import { StepRankingWrapper } from 'components/ranking';
-import { Translate } from 'components/language';
-import { RoundsLeftInstruction } from 'components/text';
 import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
+import { StepRankingWrapper } from 'components/ranking';
+import { Step } from 'components/steps';
+import { RoundsLeftInstruction } from 'components/text';
 
 type StepRankingProps = {
   players: GamePlayers;

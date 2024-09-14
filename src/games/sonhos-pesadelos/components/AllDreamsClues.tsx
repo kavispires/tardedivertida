@@ -3,14 +3,14 @@ import clsx from 'clsx';
 import { Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { Dream } from '../utils/types';
-// Constants
-import { LETTERS } from 'utils/constants';
 // Utils
+import { LETTERS } from 'utils/constants';
 import { getColorFromLetter, getEntryId } from 'utils/helpers';
 // Components
-import { Card } from 'components/cards';
 import { TransparentButton } from 'components/buttons';
+import { Card } from 'components/cards';
+// Internal
+import type { Dream } from '../utils/types';
 
 type AllDreamsCluesProps = {
   dreams: Dream[];

@@ -1,10 +1,12 @@
-import type { SubmitDreamPayload, SubmitVotesPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitDreamPayload, SubmitVotesPayload } from './types';
 import { SONHOS_PESADELOS_ACTIONS } from './constants';
+
+
 
 export function useOnSubmitDreamAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

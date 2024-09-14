@@ -1,9 +1,10 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Dream } from './types';
 // Utils
 import { LETTERS, SEPARATOR } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
+// Internal
+import type { Dream } from './types';
 
 export const getClueId = (votes: StringDictionary, cardEntryId: string): string[] => {
   return Object.keys(votes).filter((key) => votes[key] === cardEntryId);

@@ -1,22 +1,23 @@
 // Types
 import { PhaseProps } from 'types/game';
 // Hooks
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitDreamAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { DreamIcon } from 'icons/DreamIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
 import { ImageCardPreloadHand } from 'components/image-cards';
-import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { StepTellDream } from './StepTellDream';
-import { DreamTellingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+// Internal
+import { useOnSubmitDreamAPIRequest } from './utils/api-requests';
+import { DreamTellingRules } from './components/RulesBlobs';
+import { StepTellDream } from './StepTellDream';
 
 export function PhaseDreamTelling({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

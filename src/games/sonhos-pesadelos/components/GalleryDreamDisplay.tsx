@@ -1,11 +1,12 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { GalleryEntry } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { AvatarName } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
+// Internal
+import type { GalleryEntry } from '../utils/types';
 
 type GalleryDreamDisplayProps = {
   entry: GalleryEntry;
