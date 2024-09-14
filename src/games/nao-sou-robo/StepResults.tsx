@@ -3,21 +3,22 @@ import clsx from 'clsx';
 import { Avatar as AntAvatar, Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Robot, RobotGalleryEntry } from './utils/types';
-import type { UseStep } from 'hooks/useStep';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import type { UseStep } from 'hooks/useStep';
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
+import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
+import { Avatar, IconAvatar } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TimedButton } from 'components/buttons';
-import { Avatar, IconAvatar } from 'components/avatars';
+// Internal
+import type { Robot, RobotGalleryEntry } from './utils/types';
 import { CaptchaTopic } from './components/CaptchaTopic';
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { RobotResult } from './components/RobotResult';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';

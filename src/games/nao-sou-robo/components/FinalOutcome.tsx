@@ -1,16 +1,20 @@
+import { useMemo } from 'react';
+// Types
+import { GamePlayers } from 'types/player';
+// Icons
+import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
+import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
+// Components
 import { IconAvatar } from 'components/avatars';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Instruction, TextHighlight } from 'components/text';
-import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
-import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
-import { useMemo } from 'react';
-import { GamePlayers } from 'types/player';
-
+// Internal
 import { OUTCOME } from '../utils/constants';
 import { Robot } from '../utils/types';
 import { EnergyHighlight } from './Highlights';
+
 
 type FinalOutcomeProps = {
   players: GamePlayers;
