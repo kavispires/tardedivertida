@@ -4,18 +4,19 @@ import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimesHediondosCard } from 'types/tdr';
-import type { GroupedItems, ItemsDict } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
+// Internal
+import type { GroupedItems, ItemsDict } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { EvidenceHighlight, WeaponHighlight } from './components/Highlights';
 
 type StepItemsSelectionProps = {

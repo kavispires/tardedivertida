@@ -1,34 +1,34 @@
-// Types
-import type { PhaseProps } from 'types/game';
 import { useState } from 'react';
 // Types
-import type { SubmitCrimePayload } from './utils/types';
-// State & Hooks
+import type { PhaseProps } from 'types/game';
+// Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
-import { mockCrime } from './utils/mock';
 // Icons
-import { EventIcon } from 'icons/EventIcon';
-import { SkullIcon } from 'icons/SkullIcon';
 import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
-import { LocationIcon } from 'icons/LocationIcon';
 import { CrimeTapeIcon } from 'icons/CrimeTapeIcon';
+import { EventIcon } from 'icons/EventIcon';
+import { LocationIcon } from 'icons/LocationIcon';
+import { SkullIcon } from 'icons/SkullIcon';
 // Components
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
-import { Instruction } from 'components/text';
+import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+// Internal
+import type { SubmitCrimePayload } from './utils/types';
+import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
+import { mockCrime } from './utils/mock';
 import { WelcomeMessage } from './components/RulesBlobs';
 import { StepItemsSelection } from './StepItemsSelection';
 import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
-import { DevButton } from 'components/debug';
 
 export function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);

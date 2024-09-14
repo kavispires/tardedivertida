@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Button, ButtonProps } from 'antd';
-// State
+// Components
 import { Translate } from 'components/language';
+// State
 
 interface ContinueButtonProps extends ButtonProps {
   onClick: GenericFunction;

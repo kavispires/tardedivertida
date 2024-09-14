@@ -1,29 +1,30 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Collapse, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+import { Button, Collapse, Space } from 'antd';
 // Types
-import { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, Results, ScenesDict } from './utils/types';
-// Utils
-import { getAnimationClass, getLastItem } from 'utils/helpers';
-import { isEntryLocked } from './utils/helpers';
+import { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
+import { getAnimationClass, getLastItem } from 'utils/helpers';
 // Components
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { Instruction, RuleInstruction, Title } from 'components/text';
+// Internal
+import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, Results, ScenesDict } from './utils/types';
+import { isEntryLocked } from './utils/helpers';
 import { CrimeSummary } from './components/CrimeSummary';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
 import { ScoringMessage } from './components/RulesBlobs';
 import { PlayersCards } from './components/PlayersCards';
 import { CrimeGuessStatus } from './components/CrimeGuessStatus';
 import { ResultsTable } from './components/ResultsTable';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { TimedButton } from 'components/buttons';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepRevealProps = {
   user: GamePlayer;
