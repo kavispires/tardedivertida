@@ -1,8 +1,10 @@
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+// Internal
 import { NA_RUA_DO_MEDO_ACTIONS } from './constants';
 import { SubmitDecisionPayload } from './types';
+
 
 export function useOnSubmitDecisionAPIRequest() {
   const { translate } = useLanguage();

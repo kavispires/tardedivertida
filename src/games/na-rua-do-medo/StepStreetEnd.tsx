@@ -1,18 +1,19 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { CandySidewalk, StreetCard } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { CandySidewalk, StreetCard } from './utils/types';
 import { PlayerStats } from './components/PlayerStats';
 import { Street } from './components/Street';
 import { CardCountExplanation } from './components/RulesBlobs';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { HostNextPhaseButton } from 'components/host';
 import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepStreetEndProps = {
