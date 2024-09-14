@@ -1,7 +1,9 @@
-import { App } from 'antd';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useIdle } from 'react-use';
+// Ant Design Resources
+import { App } from 'antd';
+// Internal
 import { useLanguage } from './useLanguage';
 
 export function useIdleRedirect() {

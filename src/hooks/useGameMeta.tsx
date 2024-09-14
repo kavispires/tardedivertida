@@ -1,18 +1,19 @@
-import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Types
 import type { GameMeta } from 'types/game';
-// Hooks
+// Services
+import { GAME_API_COMMON_ACTIONS, GAME_API } from 'services/adapters';
+// Utils
+import { print } from 'utils/helpers';
+// Internal
 import { useLanguage } from './useLanguage';
 import { useLoading } from './useLoading';
 import { useGameId } from './useGameId';
 import { useError } from './useError';
 // API
-import { GAME_API_COMMON_ACTIONS, GAME_API } from 'services/adapters';
-// Utils
-import { print } from 'utils/helpers';
 
 /**
  * Get game meta document

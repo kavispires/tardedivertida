@@ -1,12 +1,12 @@
+import { USE_MOCKS } from 'dev-configs';
 import { useState } from 'react';
-// Hooks
-import { useCountdown } from './useCountdown';
-import { useGlobalState } from './useGlobalState';
-import { useHost } from './useHost';
 // Utils
 import { VIEWER_ID } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
-import { USE_MOCKS } from 'dev-configs';
+// Internal
+import { useCountdown } from './useCountdown';
+import { useGlobalState } from './useGlobalState';
+import { useHost } from './useHost';
 
 /**
  * Runs mock function tht performs whatever after 3-6 seconds

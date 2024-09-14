@@ -1,6 +1,6 @@
-import { FirebaseApp, initializeApp } from 'firebase/app';
+import { USE_FIRESTORE_EMULATOR, USE_FUNCTIONS_EMULATOR } from 'dev-configs';
 import { getAnalytics } from 'firebase/analytics';
-import { getFirestore, connectFirestoreEmulator, Firestore } from 'firebase/firestore';
+import { FirebaseApp, initializeApp } from 'firebase/app';
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -14,12 +14,12 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
+import { getFirestore, connectFirestoreEmulator, Firestore } from 'firebase/firestore';
 import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/functions';
 // Ant Design Resources
 import { message, notification } from 'antd';
 // Hooks
 import { setGlobalState } from 'hooks/useGlobalState';
-import { USE_FIRESTORE_EMULATOR, USE_FUNCTIONS_EMULATOR } from 'dev-configs';
 
 const buildKey = () => {
   return [

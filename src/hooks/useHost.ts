@@ -1,3 +1,4 @@
+// Internal
 import { useGameMeta } from './useGameMeta';
 import { useGlobalState } from './useGlobalState';
 

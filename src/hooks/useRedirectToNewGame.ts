@@ -1,11 +1,12 @@
-import { App } from 'antd';
-import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { useState } from 'react';
+// Ant Design Resources
+import { App } from 'antd';
 // Types
 import type { GameMeta } from 'types/game';
 // Services
 import { GAME_API, GAME_API_COMMON_ACTIONS, HOST_API, HOST_API_ACTIONS } from 'services/adapters';
-// Hooks
+// Internal
 import { useCurrentUserContext } from './useCurrentUserContext';
 
 type GameMetaResponse = {

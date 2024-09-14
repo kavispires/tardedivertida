@@ -22,7 +22,6 @@ import TESTE_DE_ELENCO from 'games/teste-de-elenco/utils/achievements';
 import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 // Types
 import type { AchievementReference } from 'types/achievements';
-// Data
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
 // import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';

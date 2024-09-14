@@ -1,4 +1,5 @@
 import { TimerResult, TimerSettings, useTimer } from 'react-timer-hook';
+// Utils
 import { inNSeconds } from 'utils/helpers';
 
 type SelectedTimeSettings = Omit<TimerSettings, 'expiryTimestamp'>;

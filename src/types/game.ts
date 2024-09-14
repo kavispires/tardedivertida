@@ -1,3 +1,4 @@
+// Internal
 import { GameInfo } from './game-info';
 import { GamePlayers } from './player';
 

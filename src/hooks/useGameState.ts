@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-// Hooks
-import { useFirestoreDocument } from './useFirestoreDocument';
 // Utils
 import { print } from 'utils/helpers';
+// Internal
+import { useFirestoreDocument } from './useFirestoreDocument';
 
 export function useGameState(gameId: GameId, gameName: GameName): GameState {
   const { notification } = App.useApp();

@@ -1,3 +1,4 @@
+// Utils
 import { getRandomItem } from 'utils/helpers';
 
 const lowClues = ['agua', 'bola', 'coco', 'dedo'];
