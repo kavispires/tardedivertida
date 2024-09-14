@@ -17,20 +17,20 @@ import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { DailyArtistaEntry } from '../utils/types';
-import { useArtistaEngine } from '../utils/useArtistaEngine';
+import { DailyPicacoEntry } from '../utils/types';
+import { usePicacoEngine } from '../utils/usePicacoEngine';
 import { Canvas } from './Canvas';
 import { Rules } from './Rules';
 
-type DailyArtistaProps = {
-  data: DailyArtistaEntry;
+type DailyPicacoProps = {
+  data: DailyPicacoEntry;
   currentUser: Me;
 };
 
-export function DailyArtista({ data, currentUser }: DailyArtistaProps) {
+export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
   const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
   const { cardNumber, card, onNextCard, isPlaying, isIdle, isSaving, alreadyPlayed, onStart } =
-    useArtistaEngine(data, currentUser, initialState);
+    usePicacoEngine(data, currentUser, initialState);
 
   // UI state
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();

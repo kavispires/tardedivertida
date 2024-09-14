@@ -6,9 +6,9 @@ import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 import { getToday } from '../../utils';
-import { DailyArtista } from './components/DailyArtista';
+import { DailyPicaco } from './components/DailyPicaco';
 
-export function DailyArtistaGame() {
+export function DailyPicacoGame() {
   const { currentUser } = useCurrentUserContext();
   const today = getToday();
 
@@ -25,5 +25,5 @@ export function DailyArtistaGame() {
     return <DailyError />;
   }
 
-  return <DailyArtista data={dailyData} currentUser={currentUser} />;
+  return <DailyPicaco data={dailyData} currentUser={currentUser} />;
 }
