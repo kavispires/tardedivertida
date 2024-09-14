@@ -1,14 +1,14 @@
-// Types
-import type { PhaseProps } from 'types/game';
 // Ant Design Resources
 import { Space } from 'antd';
-// Utils
-import achievementsReference from './utils/achievements';
+// Types
+import type { PhaseProps } from 'types/game';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+// Internal
+import achievementsReference from './utils/achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (

@@ -1,23 +1,24 @@
-import { useMemo, useState } from 'react';
 import clsx from 'clsx';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Item, SubmitPairsPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
-import { mockPairs } from './utils/mock';
 import { getAnimationClass } from 'utils/helpers';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { Item, SubmitPairsPayload } from './utils/types';
+import { mockPairs } from './utils/mock';
 import { ItemEntry } from './components/ItemEntry';
-import { TransparentButton } from 'components/buttons';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepTemplateProps = {
   user: GamePlayer;
