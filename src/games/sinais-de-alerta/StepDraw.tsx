@@ -1,23 +1,24 @@
+import { mockDrawing } from 'mock/drawing';
 import { useEffect, useState } from 'react';
-
+// Types
+import { GamePlayer } from 'types/player';
+import { TextCard } from 'types/tdr';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockDrawing } from 'mock/drawing';
 // Icons
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
-import { Step, type StepProps } from 'components/steps';
-import { Card } from 'components/cards';
-import { DrawingCanvas } from 'components/canvas';
 import { SinaisDeAlertaTimerSound } from 'components/audio/SinaisDeAlertaSound';
+import { DrawingCanvas } from 'components/canvas';
+import { Card } from 'components/cards';
 import { DevButton } from 'components/debug';
-import { TextCard } from 'types/tdr';
-import { GamePlayer } from 'types/player';
+import { Step, type StepProps } from 'components/steps';
+// Internal
 import { getTitle } from './utils/helpers';
 import { WarningSignBackgroundMask } from './components/WarningSignBackgroundMask';
+
 
 type StepDrawProps = {
   user: GamePlayer;

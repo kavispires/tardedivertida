@@ -1,9 +1,14 @@
-import { GamePlayers } from 'types/player';
-import { FinalGalleryEntry } from '../utils/types';
+// Ant Design Resources
 import { Progress, Space, Typography } from 'antd';
-import { AvatarName } from 'components/avatars';
-import { WarningDrawing } from './WarningDrawing';
+// Types
+import { GamePlayers } from 'types/player';
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
+// Components
+import { AvatarName } from 'components/avatars';
+// Internal
+import { FinalGalleryEntry } from '../utils/types';
+import { WarningDrawing } from './WarningDrawing';
 
 type FinalGalleryItemProps = {
   entry: FinalGalleryEntry;
