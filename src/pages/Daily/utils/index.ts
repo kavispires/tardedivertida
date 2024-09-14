@@ -85,10 +85,16 @@ export const composeLocalPlayedKey = (key: string) => `TD_DAILY_${key}_LOCAL_PLA
  */
 export const checkWasPlayedToday = (key: string): boolean => {
   const localKey = composeLocalTodayKey(key);
-  const playedKey = composeLocalPlayedKey(key);
   const session = JSON.parse(localStorage.getItem(localKey) || '{}');
+  const playedKey = composeLocalPlayedKey(key);
   const played = JSON.parse(localStorage.getItem(playedKey) || 'false');
   const today = getToday();
+  const isToday = session?.id === today;
+  if (!isToday) {
+    localStorage.setItem(playedKey, JSON.stringify(false));
+    return false;
+  }
+
   return session?.id === today && played;
 };
 
