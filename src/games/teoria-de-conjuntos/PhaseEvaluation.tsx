@@ -1,18 +1,19 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
-import { PHASES } from 'utils/phases';
-import { useOnSubmitEvaluationAPIRequest } from './utils/api-requests';
-// Icons
-// Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseContainer } from 'components/phases';
-import { Guess } from './utils/types';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
+import { PHASES } from 'utils/phases';
+// Components
+import { PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
+import { useOnSubmitEvaluationAPIRequest } from './utils/api-requests';
+import { Guess } from './utils/types';
 import { StepEvaluate } from './StepEvaluate';
+// Icons
 
 export function PhaseEvaluation({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep();

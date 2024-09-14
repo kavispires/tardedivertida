@@ -1,11 +1,16 @@
+// Ant Design Resources
 import { Flex } from 'antd';
+// Types
+import { GamePlayer } from 'types/player';
+import { Item } from 'types/tdr';
+// Icons
+import { ArrowIcon } from 'icons/ArrowIcon';
+// Components
 import { AvatarCard, IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { SpeechBubble } from 'components/text/SpeechBubble';
-import { ArrowIcon } from 'icons/ArrowIcon';
-import { Item } from 'types/tdr';
+// Internal
 import { Guess } from '../utils/types';
-import { GamePlayer } from 'types/player';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 
 type PlayerGuessProps = {

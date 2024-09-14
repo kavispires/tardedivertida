@@ -1,10 +1,13 @@
+// Ant Design Resources
 import { AimOutlined } from '@ant-design/icons';
 import { Flex, Tag, Tooltip } from 'antd';
+// Types
+import { Item } from 'types/tdr';
+// Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
-import { Item } from 'types/tdr';
 
 type MyThingsProps = {
   hand: string[];

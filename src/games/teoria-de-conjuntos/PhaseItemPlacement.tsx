@@ -1,21 +1,22 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
-import { PHASES } from 'utils/phases';
-import { useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
-// Icons
-// Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseContainer } from 'components/phases';
-import { Guess } from './utils/types';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
+import { PHASES } from 'utils/phases';
+// Components
+import { PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
+import { Guess } from './utils/types';
 import { Announcement } from './components/Announcement';
 import { StepPlaceItem } from './StepPlaceItem';
-import { useUser } from 'hooks/useUser';
-import { ViewOr } from 'components/views';
 import { StepWaitPlaceItem } from './StepWaitPlaceItem';
+// Icons
 
 export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep();

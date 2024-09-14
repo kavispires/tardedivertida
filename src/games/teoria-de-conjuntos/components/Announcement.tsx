@@ -1,23 +1,28 @@
+// Ant Design Resources
 import { Flex } from 'antd';
+// Types
+import { GamePlayer } from 'types/player';
+import { Item } from 'types/tdr';
+// Icons
+import { ApplauseIcon } from 'icons/ApplauseIcon';
+import { ArrowIcon } from 'icons/ArrowIcon';
+import { BoxEqualIcon } from 'icons/BoxEqualIcon';
+import { CheckMarkIcon } from 'icons/CheckMarkIcon';
+import { CrownIcon } from 'icons/CrownIcon';
+import { DiagramIcon } from 'icons/DiagramIcon';
+import { GarbageIcon } from 'icons/GarbageIcon';
+import { SkullIcon } from 'icons/SkullIcon';
+// Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement } from 'components/phases';
 import { Instruction } from 'components/text';
-import { ApplauseIcon } from 'icons/ApplauseIcon';
-import { ArrowIcon } from 'icons/ArrowIcon';
-import { BoxEqualIcon } from 'icons/BoxEqualIcon';
-import { DiagramIcon } from 'icons/DiagramIcon';
-import { SkullIcon } from 'icons/SkullIcon';
-import { GamePlayer } from 'types/player';
-import { Item } from 'types/tdr';
-
+// Internal
 import { OUTCOME } from '../utils/constants';
 import { Guess } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
-import { CheckMarkIcon } from 'icons/CheckMarkIcon';
-import { CrownIcon } from 'icons/CrownIcon';
-import { GarbageIcon } from 'icons/GarbageIcon';
+
 
 type AnnouncementProps = {
   activePlayer: GamePlayer;
