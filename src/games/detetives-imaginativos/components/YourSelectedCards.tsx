@@ -1,10 +1,11 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { CardEntry } from '../utils/types';
 // Components
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
+// Internal
+import type { CardEntry } from '../utils/types';
 
 type YourSelectedCardsProps = {
   table: CardEntry[];

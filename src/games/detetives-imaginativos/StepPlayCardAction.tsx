@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { App } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
+import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { CardEntry } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Icons
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 // Components
-import { Table } from './components/Table';
+import { IconAvatar } from 'components/avatars';
+import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageCardHand } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { ViewOr } from 'components/views';
-import { IconAvatar } from 'components/avatars';
-import { ImageCardHand } from 'components/image-cards';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { TurnOrder } from 'components/players';
-import { isEarliestPlayerWithFewestCards } from './utils/helpers';
 import { TimedTimerClock } from 'components/timers';
+import { ViewOr } from 'components/views';
+// Internal
+import type { CardEntry } from './utils/types';
+import { isEarliestPlayerWithFewestCards } from './utils/helpers';
+import { Table } from './components/Table';
 
 type StepPlayCardActionProps = {
   isUserTheImpostor: boolean;

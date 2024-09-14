@@ -5,18 +5,19 @@ import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { VoteIcon } from 'icons/VoteIcon';
 // Components
 import { Translate } from 'components/language';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+// Internal
+import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { StepVoting } from './StepVoting';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 
 export function PhaseVoting({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();

@@ -5,16 +5,17 @@ import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnFinishDefenseRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { DefenseIcon } from 'icons/DefenseIcon';
 // Components
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import { useOnFinishDefenseRequest } from './utils/api-requests';
 import { StepDefending } from './StepDefending';
 
 export function PhaseDefense({ state, players, info }: PhaseProps) {
