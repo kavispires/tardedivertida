@@ -1,8 +1,8 @@
-// Types
-import type { ObjectCardObj } from '../utils/types';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate } from 'components/language';
+// Internal
+import type { ObjectCardObj } from '../utils/types';
 
 type ObjectCardProps = {
   item: ObjectCardObj;

@@ -1,23 +1,24 @@
-import { useMemo, useState } from 'react';
 import { orderBy } from 'lodash';
+import { mockClue } from 'mock/clues';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
-// Type
+// Types
 import type { GamePlayer } from 'types/player';
-import { type UseStep } from 'hooks/useStep';
-import type { ExtendedObjectFeatureCard, ObjectCardObj, SubmitObjectPayload } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockClue } from 'mock/clues';
+import { useMock } from 'hooks/useMock';
+import { type UseStep } from 'hooks/useStep';
 // Components
+import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { ExtendedObjectFeatureCard, ObjectCardObj, SubmitObjectPayload } from './utils/types';
 import { ObjectFeature } from './components/ObjectFeature';
 import { ObjectCard } from './components/ObjectCard';
+// Type
 
 type StepWriteClueProps = {
   user: GamePlayer;
