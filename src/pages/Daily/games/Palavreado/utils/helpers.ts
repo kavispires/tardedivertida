@@ -1,4 +1,72 @@
-import { PalavreadoLetter } from './types';
+import { chunk, cloneDeep } from 'lodash';
+import { loadLocalToday } from 'pages/Daily/utils';
+import { deepCopy } from 'utils/helpers';
+
+import { SETTINGS } from './settings';
+import { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
+
+export const DEFAULT_LOCAL_TODAY: PalavreadoLocalToday = {
+  id: '',
+  boardState: [],
+  number: 0,
+  swaps: 0,
+};
+
+export const getInitialState = (data: DailyPalavreadoEntry): GameState => {
+  const size = data.keyword.length;
+
+  const localToday = loadLocalToday({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+  });
+
+  const state: GameState = {
+    selection: null,
+    swap: [],
+    letters: parseLetters(data.letters, size),
+    boardState: [],
+    guesses: [],
+    hearts: Math.max(SETTINGS.HEARTS, size),
+    state: '',
+    swaps: 0,
+  };
+
+  if (localToday.boardState) {
+    const hearts = Math.max(SETTINGS.HEARTS, size) - localToday.boardState.length;
+
+    // Read state of the board and apply guesses
+    const lsGuesses = (localToday.boardState ?? []).map((board) => {
+      const guess = chunk(board, size);
+      return guess.map((g) => g.join(''));
+    });
+
+    // Apply latest board state
+    const latestBoardState = localToday.boardState[localToday.boardState.length - 1];
+    const copyLetters = cloneDeep(state.letters);
+    const answer = data.words.join('');
+    if (latestBoardState) {
+      copyLetters.forEach((letter, index) => {
+        letter.letter = latestBoardState[index];
+
+        if (letter.state === 'idle' && letter.letter === answer[index]) {
+          letter.state = String(Math.floor(index / size)) as PalavreadoLetter['state'];
+          letter.locked = true;
+        }
+
+        return letter;
+      });
+    }
+
+    state.hearts = hearts;
+    state.guesses = lsGuesses;
+    state.letters = copyLetters;
+    state.boardState = localToday.boardState ?? [];
+    state.swaps = localToday.swaps ?? 0;
+  }
+
+  return state;
+};
 
 const KEYWORD_INDEXES: Record<number, number[]> = {
   4: [0, 5, 10, 15],

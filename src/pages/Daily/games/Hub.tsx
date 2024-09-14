@@ -74,7 +74,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={PALAVREADO.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={PALAVREADO.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/palavreado" className="hub-item">
                 <DailyWordGameIcon style={{ width: 75 }} />

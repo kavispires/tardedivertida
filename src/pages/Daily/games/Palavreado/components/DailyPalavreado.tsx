@@ -1,19 +1,21 @@
 import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
 import { DualTranslate, Translate } from 'components/language';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
+import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { useMemo } from 'react';
 import { Me } from 'types/user';
 
 import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
+import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyPalavreadoEntry } from '../utils/types';
 import { usePalavreadoEngine } from '../utils/usePalavreadoEngine';
 import { Board } from './Board';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { Region, TextRegion } from 'pages/Daily/components/Region';
 
 type DailyPalavreadoProps = {
   data: DailyPalavreadoEntry;
@@ -21,6 +23,7 @@ type DailyPalavreadoProps = {
 };
 
 export function DailyPalavreado({ data }: DailyPalavreadoProps) {
+  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
   const {
     hearts,
     selection,
@@ -36,7 +39,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     swaps,
     size,
     keyword,
-  } = usePalavreadoEngine(data);
+  } = usePalavreadoEngine(data, initialState);
 
   return (
     <Layout className="app">
@@ -121,6 +124,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             </Flex>
           </TextRegion>
         )}
+
         <Modal
           title={<Translate pt="Resultado" en="Results" />}
           open={showResultModal}
