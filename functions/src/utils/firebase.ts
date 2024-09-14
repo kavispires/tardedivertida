@@ -1,26 +1,27 @@
 // eslint-disable-next-line
-import * as functions from 'firebase-functions/v1';
-// eslint-disable-next-line
-import * as functionsV2 from 'firebase-functions/v2';
+import * as functions from 'firebase-functions/v2';
 
 import { GenericCallableFunction } from '../types/reference';
 import utils from '../utils';
 
-export const config = functions.config;
+export const isEmulatingFunctions = () => !!process.env.FUNCTIONS_EMULATOR;
+export const isEmulatingFirestore = () => !!process.env.FIRESTORE_EMULATOR_HOST;
+export const isEmulatingEnvironment = () => isEmulatingFunctions() && isEmulatingFirestore();
 
 /**
  * CLOUD FUNCTIONS V2 MIGRATION
  */
 
 export const throwException = (error: any, action: string) => {
-  if (process.env.FIRESTORE_EMULATOR_HOST) {
-    console.error(`Failed to ${action}`, error);
-  }
-  throw new functionsV2.https.HttpsError('internal', `Failed to ${action}: ${String(error)}`);
+  // TODO: Verify
+  // if (isEmulatingFirestore()) {
+  //   console.error(`Failed to ${action}`, error);
+  // }
+  throw new functions.https.HttpsError('internal', `Failed to ${action}: ${String(error)}`);
 };
 
 export const apiDelegator = (
-  request: functionsV2.https.CallableRequest<ActionPayload>,
+  request: functions.https.CallableRequest<ActionPayload>,
   actions: Record<string, GenericCallableFunction>
 ) => {
   const uid = request.auth?.uid;

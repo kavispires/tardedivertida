@@ -8,7 +8,7 @@ import aliemItemsMock from './alien-items.json';
  * Feeds basic data to the emulator DB
  */
 export const feedEmulatorDB = async () => {
-  if (!process.env.FIRESTORE_EMULATOR_HOST) {
+  if (!utils.firebase.isEmulatingFirestore()) {
     console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }
@@ -50,7 +50,7 @@ export const feedEmulatorDB = async () => {
 };
 
 export const feedEmulatorUser = async () => {
-  if (!process.env.FIRESTORE_EMULATOR_HOST) {
+  if (!utils.firebase.isEmulatingFirestore()) {
     console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }
@@ -58,7 +58,7 @@ export const feedEmulatorUser = async () => {
   console.log('\x1b[33m%s\x1b[0m', '🤡 Seeding Emulator User');
 
   // USERS
-  const emulateUid = utils.firebase.config().emulator_admin_uid;
+  const emulateUid = process.env.EMULATOR_ADMIN_UID ?? 'emulate-uid';
 
   const emulateUser = {
     avatars: {
@@ -79,7 +79,7 @@ export const feedEmulatorUser = async () => {
 };
 
 export const feedEmulatorDaily = async () => {
-  if (!process.env.FIRESTORE_EMULATOR_HOST) {
+  if (!utils.firebase.isEmulatingFirestore()) {
     console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }
