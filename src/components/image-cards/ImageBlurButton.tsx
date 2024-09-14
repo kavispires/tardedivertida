@@ -1,7 +1,7 @@
 // Ant Design Resources
-import { Button, Tooltip } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-// Utils
+import { Button, Tooltip } from 'antd';
+// Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 // Components
 import { Translate } from 'components/language';

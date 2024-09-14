@@ -1,19 +1,23 @@
-import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 // Ant Design Resources
 import { Button, Form, Image, Modal, Space } from 'antd';
-// API
-import { convertGuestoToUser } from 'services/firebase';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-// Image
-import logo from 'assets/images/tarde-divertida-logo.svg';
+// Services
+import { convertGuestoToUser } from 'services/firebase';
+// Icons
+import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
-import { IconAvatar } from 'components/avatars';
-import { UserStatsIcon } from 'icons/UserStatsIcon';
+// Internal
 import { SignUpForm } from './SignUp';
+// Images
+import logo from 'assets/images/tarde-divertida-logo.svg';
+// API
+// Image
 
 type ConvertGuestToAccountProps = {
   onSuccess: GenericFunction;

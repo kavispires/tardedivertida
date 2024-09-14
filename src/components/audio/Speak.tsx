@@ -1,6 +1,8 @@
-import { useLanguage } from 'hooks/useLanguage';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useEffect } from 'react';
+// Hooks
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { speak } from 'utils/speech';
 
 type SpeakProps = {

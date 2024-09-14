@@ -1,5 +1,6 @@
-import { Tooltip } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Utils

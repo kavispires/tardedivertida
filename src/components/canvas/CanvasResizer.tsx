@@ -1,7 +1,7 @@
 // Ant Design Resources
-import { Slider } from 'antd';
 import { DragOutlined } from '@ant-design/icons';
-// State & Hooks
+import { Slider } from 'antd';
+// Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { FixedMenuButton } from 'components/buttons';

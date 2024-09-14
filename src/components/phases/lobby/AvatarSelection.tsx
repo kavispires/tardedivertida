@@ -1,16 +1,16 @@
 import { useCallback, useMemo } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-// Images
-import avatars from 'assets/images/avatars.svg';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { getRandomItem } from 'utils/helpers';
 // Components
 import { DualTranslate } from 'components/language';
+// Images
+import avatars from 'assets/images/avatars.svg';
 
 type AvatarSelectionProps = {
   players: GamePlayers;

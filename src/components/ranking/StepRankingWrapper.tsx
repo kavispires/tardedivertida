@@ -2,14 +2,15 @@ import { ReactNode } from 'react';
 // Ant Design Resources
 import { CaretUpOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRanking } from 'types/game';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { RankingBoard } from './RankingBoard';
 
 type StepRankingWrapperProps = {

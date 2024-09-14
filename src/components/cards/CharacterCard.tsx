@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Ant Design resources
+// Ant Design Resources
 import { Image } from 'antd';
 // Types
 import type { ContenderCard } from 'types/tdr';
@@ -10,10 +10,11 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { DualTranslate } from 'components/language';
 import { ImageBlurButtonContainer } from 'components/image-cards';
+import { DualTranslate } from 'components/language';
 // Sass
 import './CharacterCard.scss';
+// Ant Design resources
 
 export type OverlayColor = 'blue' | 'gray' | 'green' | 'orange' | 'pink' | 'purple' | 'red' | 'yellow';
 

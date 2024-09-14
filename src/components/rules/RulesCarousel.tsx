@@ -1,17 +1,18 @@
-import clsx from 'clsx';
-// Ant Design Resources
-import { Typography, Image, Carousel, Button, Space } from 'antd';
 import { CarouselRef } from 'antd/es/carousel';
+import clsx from 'clsx';
+import { createRef } from 'react';
+import { useKeyPressEvent } from 'react-use';
+// Ant Design Resources
+import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
+import { Typography, Image, Carousel, Button, Space } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Constants
+// Utils
 import { PUBLIC_URL } from 'utils/constants';
-import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
-import { createRef } from 'react';
+// Components
 import { Translate } from 'components/language';
-import { useKeyPressEvent } from 'react-use';
 
 type RulesCarouselProps = {
   info: GameInfo;

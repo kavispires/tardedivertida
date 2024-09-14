@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Button, ButtonProps } from 'antd';
-// Hook and Utils
+// Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Sass
 import './TimedButton.scss';
+// Hook and Utils
 
 interface TimedButtonProps extends ButtonProps {
   /**

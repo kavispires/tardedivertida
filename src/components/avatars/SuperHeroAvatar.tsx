@@ -1,7 +1,7 @@
+// Internal
+import { type CustomAvatarProps, CustomAvatarWrapper } from './CustomAvatarWrapper';
 // Images
 import superHeroes from 'assets/images/super-heroes.svg';
-// Components
-import { type CustomAvatarProps, CustomAvatarWrapper } from './CustomAvatarWrapper';
 // Sass
 import './ClubberAvatar.scss';
 

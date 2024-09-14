@@ -1,4 +1,4 @@
-// Components
+// Internal
 import { ImageCard } from './ImageCard';
 // Sass
 import './ImageCardPreloadHand.scss';

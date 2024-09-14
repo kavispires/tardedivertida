@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 // Ant Design Resources
-import { Typography, theme } from 'antd';
 import {
   AlertFilled,
   BulbFilled,
@@ -13,6 +12,7 @@ import {
   RobotFilled,
   StarFilled,
 } from '@ant-design/icons';
+import { Typography, theme } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Sass

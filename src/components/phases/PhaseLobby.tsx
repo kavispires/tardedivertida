@@ -1,22 +1,22 @@
 import { orderBy } from 'lodash';
+import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
 // Types
-import type { GameInfo } from 'types/game-info';
 import type { GameMeta } from 'types/game';
+import type { GameInfo } from 'types/game-info';
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Constants
-import { PHASES } from 'utils/phases';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useEffect } from 'react';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-
 import { resetGlobalState, useGlobalState } from 'hooks/useGlobalState';
+import { useStep } from 'hooks/useStep';
+// Utils
+import { PHASES } from 'utils/phases';
 // Components
-import { PhaseContainer } from 'components/phases';
-import { AvatarEntry } from 'components/avatars';
-import { CloudBackground } from './lobby/CloudBackground';
 import { AdminMenuDrawer } from 'components/admin';
+import { AvatarEntry } from 'components/avatars';
+import { PhaseContainer } from 'components/phases';
+// Internal
+import { CloudBackground } from './lobby/CloudBackground';
 import { StepJoin } from './lobby/StepJoin';
 import { LobbyStep } from './lobby/LobbyStep';
 import { StepInfo } from './lobby/StepInfo';

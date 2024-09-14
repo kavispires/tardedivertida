@@ -1,13 +1,14 @@
 // Types
-import type { GameInfo } from 'types/game-info';
 import type { GameState } from 'types/game';
-// Constants
+import type { GameInfo } from 'types/game-info';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 // Components
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { PhaseContainer } from './PhaseContainer';
 
 type PhaseWaitProps = {

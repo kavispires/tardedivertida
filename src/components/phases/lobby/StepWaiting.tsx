@@ -1,24 +1,26 @@
+import { useMutation } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useEffect } from 'react';
-import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { App, Space, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-// API & Hooks
-import { useLanguage } from 'hooks/useLanguage';
+// Hooks
 import { useGameMeta } from 'hooks/useGameMeta';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-// Images
-import avatars from 'assets/images/avatars.svg';
-// Utils
-import { getAnimationClass } from 'utils/helpers';
 // Services
 import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
 import { HostButton, HostOnlyContainer } from 'components/host';
+import { Translate } from 'components/language';
+// Images
+import avatars from 'assets/images/avatars.svg';
+// API & Hooks
+// Services
 
 type StepWaitingProps = {
   players: GamePlayers;

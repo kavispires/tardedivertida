@@ -1,9 +1,10 @@
 // Types
 import type { GameRound } from 'types/game';
+// Utils
+import { pluralize } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
-import { pluralize } from 'utils/helpers';
 
 type RoundsLeftInstructionProps = {
   /**

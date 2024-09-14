@@ -1,5 +1,5 @@
 import React from 'react';
-
+// Internal
 import { PageError } from './PageError';
 
 interface ErrorBoundaryProps {

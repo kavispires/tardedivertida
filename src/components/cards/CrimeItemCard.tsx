@@ -9,6 +9,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
+// Internal
 import { ItemCard } from './ItemCard';
 // Sass
 import './CrimeItemCard.scss';
