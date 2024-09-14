@@ -56,7 +56,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={CONTROLE_DE_ESTOQUE.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={CONTROLE_DE_ESTOQUE.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/controle-de-estoque" className="hub-item">
                 <DailyWarehouseGameIcon style={{ width: 75 }} />

@@ -1,56 +1,25 @@
 import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { useEffect } from 'react';
-import { SEPARATOR } from 'utils/constants';
 import { deepCopy } from 'utils/helpers';
 
+import { DEFAULT_LOCAL_TODAY, getGuessString, getInitialState, validateAttempts } from './helpers';
 import { PHASES, SETTINGS } from './settings';
 import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
 
-const defaultLocalToday: ControleDeEstoqueLocalToday = {
-  id: '',
-  number: 0,
-  warehouse: [],
-  guesses: [],
-  extraAttempts: 0,
-};
-
-const getInitialState = (data: DailyControleDeEstoqueEntry): GameState => {
-  return {
-    hearts: SETTINGS.HEARTS,
-    phase: PHASES.STOCKING,
-    warehouse: Array(data.goods.length).fill(null),
-    fulfillments: [],
-    lastPlacedGoodId: null,
-    latestAttempt: null,
-    win: false,
-    guesses: [],
-    evaluations: [],
-    activeOrder: null,
-    extraAttempts: 0,
-  };
-};
-
-export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
+export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, initialState: GameState) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
-  const { state, setState, updateState } = useDailyGameState<GameState>(getInitialState(data));
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
   const currentGood: string | undefined = data.goods[state.warehouse.filter(Boolean).length];
 
-  const { updateLocalStorage } = useDailyLocalToday<ControleDeEstoqueLocalToday>({
-    key: SETTINGS.LOCAL_TODAY_KEY,
+  const { updateLocalStorage } = useDailyLocalTodayV2<ControleDeEstoqueLocalToday>({
+    key: SETTINGS.KEY,
     gameId: data.id,
-    challengeNumber: data.number ?? 0,
-    defaultValue: defaultLocalToday,
-    onApplyLocalState: (value) => {
-      if (value.warehouse.length || value.extraAttempts) {
-        updateState(parseLocalStorage(value, data.goods.length));
-      }
-    },
+    defaultValue: DEFAULT_LOCAL_TODAY,
   });
 
   /**
@@ -166,13 +135,10 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
 
-  useEffect(() => {
-    if (isComplete) {
-      updateLocalStorage({
-        status: 'played',
-      });
-    }
-  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
+  useMarkAsPlayed({
+    key: SETTINGS.KEY,
+    isComplete,
+  });
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
@@ -183,18 +149,13 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
       guesses: [],
       extraAttempts: state.extraAttempts + 1,
     });
-    const resetState = getInitialState(data);
+    const resetState = getInitialState(data, true);
     setState({
       ...resetState,
       extraAttempts: state.extraAttempts + 1,
       hearts: SETTINGS.HEARTS - state.extraAttempts - 1,
     });
   };
-
-  // DEV
-  // useEffect(() => {
-  //   updateState({ warehouse: [...data.goods], phase: PHASES.FULFILLING });
-  // }, [data.goods]);
 
   return {
     hearts: state.hearts,
@@ -221,55 +182,3 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry) {
     reset,
   };
 }
-
-const validateAttempts = (warehouse: GameState['warehouse'], fulfillments: GameState['fulfillments']) => {
-  return fulfillments.reduce((acc: boolean[], fulfillment) => {
-    // If it's out of stock
-    if (fulfillment.shelfIndex === -1) {
-      const evaluation = !warehouse.some((good) => good === fulfillment.order);
-      acc.push(evaluation);
-      return acc;
-    }
-
-    // Any other order, should be placed correctly
-    const evaluation = fulfillment.order === warehouse[fulfillment.shelfIndex];
-    acc.push(evaluation);
-    return acc;
-  }, []);
-};
-
-const getGuessString = (fulfillments: GameState['fulfillments']) => {
-  return fulfillments.map((f) => `${f.order}${SEPARATOR}${f.shelfIndex}`).join(',');
-};
-
-const parseGuessString = (guessString: string) => {
-  return guessString.split(',').map((g) => {
-    const [order, shelfIndex] = g.split(SEPARATOR);
-    return { order, shelfIndex: Number(shelfIndex) };
-  });
-};
-
-const parseLocalStorage = (value: ControleDeEstoqueLocalToday, goodsQuantity: number) => {
-  // Update phase
-  const warehouse = value.warehouse.length > 0 ? value.warehouse : Array(goodsQuantity).fill(null);
-  const phase = warehouse.every(Boolean) ? PHASES.FULFILLING : PHASES.STOCKING;
-  const guesses = value.warehouse.length > 0 ? value.guesses ?? [] : [];
-  const extraAttempts = value.extraAttempts ?? 0;
-  // Activate the last order attempt
-  const fulfillments = guesses.length > 0 ? parseGuessString(guesses[guesses.length - 1]) : [];
-  // Determine win
-  const attempts = validateAttempts(warehouse, fulfillments);
-
-  const win = attempts.length > 0 && attempts.every(Boolean);
-
-  return {
-    phase,
-    warehouse,
-    guesses,
-    evaluations: guesses.map((g) => validateAttempts(warehouse, parseGuessString(g))),
-    hearts: SETTINGS.HEARTS - guesses.length - extraAttempts,
-    extraAttempts,
-    fulfillments,
-    win,
-  };
-};
