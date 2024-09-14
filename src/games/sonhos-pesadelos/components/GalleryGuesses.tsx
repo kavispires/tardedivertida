@@ -2,12 +2,13 @@
 import { Avatar as AntAvatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { GalleryEntry } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
 import { StarPoints } from 'components/points';
+// Internal
+import type { GalleryEntry } from '../utils/types';
 import { DreamCard } from './DreamCard';
 
 type GalleryGuessesProps = {

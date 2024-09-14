@@ -1,18 +1,19 @@
 // Types
 import type { GamePlayers } from 'types/player';
-import type { UseStep } from 'hooks/useStep';
-import type { GalleryEntry } from './utils/types';
 // Hooks
+import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { GalleryDreamDisplay } from './components/GalleryDreamDisplay';
-import { GalleryGuesses } from './components/GalleryGuesses';
+import { Translate } from 'components/language';
+import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { SlideShow } from 'components/slide-show';
-import { Translate } from 'components/language';
+// Internal
+import type { GalleryEntry } from './utils/types';
+import { GalleryDreamDisplay } from './components/GalleryDreamDisplay';
+import { GalleryGuesses } from './components/GalleryGuesses';
 
 type StepResultsProps = {
   players: GamePlayers;
