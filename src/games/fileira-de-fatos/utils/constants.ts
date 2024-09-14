@@ -1,3 +1,4 @@
+// Internal
 import { ScaleEntry } from './types';
 
 export const FILEIRA_DE_FATOS_ACTIONS = {

@@ -4,16 +4,17 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
-// Utils
-import { getReference } from './utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import { getReference } from './utils/helpers';
 import { Scenarios } from './components/Scenarios';
-import { AvatarName } from 'components/avatars';
 import { Results } from './components/Results';
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 

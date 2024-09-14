@@ -1,10 +1,12 @@
-import type { SubmitScenarioOrderPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitScenarioOrderPayload } from './types';
 import { FILEIRA_DE_FATOS_ACTIONS } from './constants';
+
+
 
 export function useOnSubmitOrderingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
