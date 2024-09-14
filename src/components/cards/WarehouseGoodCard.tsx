@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 // Components
+import { DualTranslate } from 'components/language';
 import { Sprite } from 'components/sprites';
 // Sass
 import './WarehouseGoodCard.scss';
-import { DualTranslate } from 'components/language';
 
 export type WarehouseGoodCardProps = {
   /**

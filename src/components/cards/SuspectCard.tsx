@@ -1,10 +1,11 @@
-// Type
+// Types
 import { SuspectCard as SuspectCardType } from 'types/tdr';
 // Components
-import { DualTranslate } from 'components/language';
 import { ImageCard } from 'components/image-cards';
+import { DualTranslate } from 'components/language';
 // Sass
 import './SuspectCard.scss';
+// Type
 
 type SuspectCardProps = {
   /**

@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useTitle } from 'react-use';
 // Hooks
-import { useGameState } from 'hooks/useGameState';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
-import { useIdleRedirect } from 'hooks/useIdleRedirect';
 import { useGameMeta } from 'hooks/useGameMeta';
+import { useGameState } from 'hooks/useGameState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useIdleRedirect } from 'hooks/useIdleRedirect';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import GAME_LIST from 'utils/info';
 // Components
-import { PhaseLobby } from 'components/phases';
-import { GameInfoDrawer } from 'components/drawers';
 import { AdminMenuDrawer } from 'components/admin';
+import { GameInfoDrawer } from 'components/drawers';
+import { PhaseLobby } from 'components/phases';
+// Internal
 import { RedirectSession } from './RedirectSession';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 type SessionProps = {
   /**

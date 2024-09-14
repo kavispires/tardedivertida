@@ -1,6 +1,6 @@
 // Ant Design Resources
-import { Button } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 // Components
 import { Translate } from 'components/language';
 

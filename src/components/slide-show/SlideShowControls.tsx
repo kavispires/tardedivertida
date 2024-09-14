@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import {
   PauseOutlined,
   PlayCircleOutlined,
@@ -8,6 +7,7 @@ import {
   StepForwardOutlined,
   TrophyOutlined,
 } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { UseStep } from 'hooks/useStep';

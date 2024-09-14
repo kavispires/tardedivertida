@@ -1,25 +1,26 @@
-import { useToggle } from 'react-use';
 import { useNavigate } from 'react-router-dom';
+import { useToggle } from 'react-use';
 // Ant Design Resources
-import { Avatar as AntAvatar, Badge, Button, Divider, Drawer, Space } from 'antd';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
+import { Avatar as AntAvatar, Badge, Button, Divider, Drawer, Space } from 'antd';
 // Types
-import type { GameInfo } from 'types/game-info';
 import type { GameState } from 'types/game';
+import type { GameInfo } from 'types/game-info';
 import type { GamePlayers } from 'types/player';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { Avatar } from 'components/avatars';
+import { DebugOnly } from 'components/debug';
+import { GameBanner } from 'components/general/GameBanner';
+import { Translate } from 'components/language';
+import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
+import { RulesModal } from 'components/rules';
+// Internal
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
-import { DebugOnly } from 'components/debug';
-import { RulesModal } from 'components/rules';
-import { Translate } from 'components/language';
-import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
-import { GameBanner } from 'components/general/GameBanner';
-import { Avatar } from 'components/avatars';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;

@@ -1,16 +1,17 @@
 import { ReactNode, useState } from 'react';
 // Types
-import type { GameInfo } from 'types/game-info';
 import type { GameState } from 'types/game';
+import type { GameInfo } from 'types/game-info';
 import type { GamePlayers } from 'types/player';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { Translate } from 'components/language';
+// Internal
 import { GameOver } from './GameOver';
 
 type GameOverWrapperProps = {

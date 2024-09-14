@@ -1,13 +1,13 @@
-import { ReactNode } from 'react';
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
-// Utils
-import { AVATARS } from 'utils/avatars';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
-// Components
+// Utils
+import { AVATARS } from 'utils/avatars';
+// Internal
 import { Avatar } from './Avatar';
 // Sass
 import './AvatarCard.scss';

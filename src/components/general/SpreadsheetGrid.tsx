@@ -1,6 +1,6 @@
-// Sass
 import clsx from 'clsx';
 import { ReactNode } from 'react';
+// Sass
 import './SpreadsheetGrid.scss';
 
 type SpreadsheetGridProps = {

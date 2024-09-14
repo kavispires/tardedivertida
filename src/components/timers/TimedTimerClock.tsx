@@ -1,7 +1,10 @@
-import { MetricHighlight, MetricHighlightProps } from 'components/metrics/MetricHighlight';
-import { useCountdown, useCountdownSettings } from 'hooks/useCountdown';
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { ReactNode } from 'react';
+// Hooks
+import { useCountdown, useCountdownSettings } from 'hooks/useCountdown';
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
+// Components
+import { MetricHighlight, MetricHighlightProps } from 'components/metrics/MetricHighlight';
 
 const padTime = (value: number) => (value < 10 ? `0${value}` : value);
 

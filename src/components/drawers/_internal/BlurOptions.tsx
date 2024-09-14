@@ -1,12 +1,13 @@
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-// Ant Design Resource
+import { useState } from 'react';
+// Ant Design Resources
 import { Alert, App, Button, Checkbox, Spin } from 'antd';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { Translate } from 'components/language';
+// Ant Design Resource
 
 export function BlurOptions() {
   const { message } = App.useApp();

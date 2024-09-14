@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { AutoComplete, Button, Form, Select, App } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-// Utils
+// Services
 import { HOST_API_ACTIONS } from 'services/adapters';
-// Components
+// Internal
 import { ValueFormItem } from './ValueFormItem';
 
 type ForceStateFormProps = {

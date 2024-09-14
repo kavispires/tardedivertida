@@ -1,32 +1,34 @@
-import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 // Ant Design Resources
-import { Button, Layout, Space } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
+import { Button, Layout, Space } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 import type { GamePlayers } from 'types/player';
-// Utils
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useGameId } from 'hooks/useGameId';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+import { useUser } from 'hooks/useUser';
+// Services
 import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
+// Utils
 import {
   getRandomNegativeReadyMessage,
   getRandomNeutralReadyMessage,
   getRandomPositiveReadyMessage,
   speak,
 } from 'utils/speech';
-// Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
-import { useUser } from 'hooks/useUser';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useGameId } from 'hooks/useGameId';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
-import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
+import { LoadingPage } from 'components/loaders';
 import { Title } from 'components/text';
+// Internal
 import { RulesCarousel } from '../rules';
 import { AutoNextPhase } from './rules/AutoNextPhase';
 

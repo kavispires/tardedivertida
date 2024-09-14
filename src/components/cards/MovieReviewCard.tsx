@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-// Components
 import HighlighterImport from 'react-highlight-words';
+// Components
 import { Translate } from 'components/language';
 // Sass
 import './MovieReviewCard.scss';

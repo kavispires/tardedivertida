@@ -1,9 +1,9 @@
+import Tooltip from 'antd/lib/tooltip';
 import clsx from 'clsx';
 // Images
 import trees from 'assets/images/trees.svg';
 // Sass
 import './TreeCard.scss';
-import Tooltip from 'antd/lib/tooltip';
 
 type TreeCardProps = {
   /**

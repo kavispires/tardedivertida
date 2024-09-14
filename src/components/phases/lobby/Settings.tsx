@@ -1,10 +1,11 @@
 // Ant Design Resources
-import { Button, Divider, Space, Switch, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-// API & Hooks
+import { Button, Divider, Space, Switch, Tooltip } from 'antd';
+// Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { Translate } from 'components/language';
+// API & Hooks
 
 type SettingsProps = {
   hasImages: boolean;
