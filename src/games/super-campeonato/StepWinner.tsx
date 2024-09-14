@@ -1,20 +1,22 @@
-// Ant Design resources
-import { Space } from 'antd';
+// Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
+import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
-import type { Bet, Bracket } from './utils/type';
-import type { UseStep } from 'hooks/useStep';
 // Hooks
+import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { TimedButton } from 'components/buttons';
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import type { Bet, Bracket } from './utils/type';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { Challenge } from './components/Challenge';
-import { CharacterCard } from 'components/cards/CharacterCard';
+// Ant Design resources
 
 type StepWinnerProps = {
   challenge: TextCard;

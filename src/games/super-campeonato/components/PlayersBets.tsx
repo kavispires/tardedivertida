@@ -2,14 +2,15 @@ import clsx from 'clsx';
 import { useMemo } from 'react';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { Bracket, ContenderByTier } from '../utils/type';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
-import { findBetContenders, getContenderIdsByTier } from '../utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
-import { Translate } from 'components/language';
 import { CharacterCard } from 'components/cards/CharacterCard';
+import { Translate } from 'components/language';
+// Internal
+import type { Bracket, ContenderByTier } from '../utils/type';
+import { findBetContenders, getContenderIdsByTier } from '../utils/helpers';
 
 type PlayersBetsProps = {
   players: GamePlayers;

@@ -1,20 +1,22 @@
-// Ant Design resources
+// Ant Design Resources
 import { Divider, Space } from 'antd';
 // Types
 import { PhaseProps } from 'types/game';
-// Types
-import type { PastBattles } from './utils/type';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
+import { Card } from 'components/cards';
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { GameOverWrapper } from 'components/game-over';
+import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
-import { Card } from 'components/cards';
-import { Achievements } from 'components/general/Achievements';
+// Internal
+import type { PastBattles } from './utils/type';
 import { achievementsReference } from './utils/achievements';
-import { CharacterCard } from 'components/cards/CharacterCard';
+// Ant Design resources
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const pastBattles: PastBattles = state.pastBattles;

@@ -1,16 +1,17 @@
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { Bet, Bracket, BracketTier } from './utils/type';
 // Components
+import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import type { Bet, Bracket, BracketTier } from './utils/type';
 import { Brackets } from './components/Brackets';
 import { TierTitle } from './components/TierTitle';
 import { Challenge } from './components/Challenge';
 import { Voting } from './components/Voting';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
-import { ReadyPlayersBar } from 'components/players';
 
 type StepBattleProps = {
   onSubmitVotes: GenericFunction;
