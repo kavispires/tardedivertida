@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Space } from 'antd';
-// Types
-import type { Characters } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
+// Internal
+import type { Characters } from '../utils/types';
 import { Card } from './Card';
 
 type TableProps = {

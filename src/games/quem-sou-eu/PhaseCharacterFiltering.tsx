@@ -1,18 +1,19 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { FilterIcon } from 'icons/FilterIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
+// Internal
+import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
 import { StepSelectCharacters } from './StepSelectCharacters';
 
 export function PhaseCharacterFiltering({ players, state, info }: PhaseProps) {

@@ -1,20 +1,21 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Avatar as AntAvatar, Space, Typography } from 'antd';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar, Space, Typography } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Characters } from '../utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
+import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { StarPoints } from 'components/points';
-import { ImageCard } from 'components/image-cards';
+// Internal
+import type { Characters } from '../utils/types';
 
 type GalleryGuessesProps = {
   players: GamePlayers;
