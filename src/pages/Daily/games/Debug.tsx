@@ -1,7 +1,7 @@
 import { DailyChrome } from '../components/DailyChrome';
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
-import { SETTINGS as ARTISTA } from '../games/Artista/utils/settings';
+import { SETTINGS as ARTISTA } from './Picaco/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';

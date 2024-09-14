@@ -8,12 +8,12 @@ import { removeDuplicates } from 'utils/helpers';
 
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import { ArtistaLocalToday, DailyArtistaEntry, DrawingToSave, GameState } from './types';
+import { PicacoLocalToday, DailyPicacoEntry, DrawingToSave, GameState } from './types';
 
-export function useArtistaEngine(data: DailyArtistaEntry, currentUser: Me, initialState: GameState) {
+export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initialState: GameState) {
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } = useDailyLocalTodayV2<ArtistaLocalToday>({
+  const { updateLocalStorage } = useDailyLocalTodayV2<PicacoLocalToday>({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: DEFAULT_LOCAL_TODAY,

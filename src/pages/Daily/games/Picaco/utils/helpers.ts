@@ -3,15 +3,15 @@ import { loadLocalToday } from 'pages/Daily/utils';
 import { deepCopy } from 'utils/helpers';
 
 import { SETTINGS } from './settings';
-import { ArtistaLocalToday, DailyArtistaEntry, GameState } from './types';
+import { PicacoLocalToday, DailyPicacoEntry, GameState } from './types';
 
-export const DEFAULT_LOCAL_TODAY: ArtistaLocalToday = {
+export const DEFAULT_LOCAL_TODAY: PicacoLocalToday = {
   id: '',
   number: 0,
   played: false,
 };
 
-export const getInitialState = (data: DailyArtistaEntry): GameState => {
+export const getInitialState = (data: DailyPicacoEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
