@@ -103,23 +103,12 @@ sort_imports() {
   # Find and sort the imports in .ts and .tsx files, then re-add them to the staging area
   git diff --name-only --cached | grep -E '\.(ts|tsx)$' | while read -r file; do
     node ./scripts/sort-imports.js "$file"
-    git add "$file"
-    echo "   ➕ Sorted and re-added sorted $file to staging."
-  done
-  echo "✅ Done"
-}
-
-format_code() {
-  echo "🎨 Formatting code with Prettier"
-  # Find and format .ts and .tsx files with Prettier, then re-add them to the staging area
-  git diff --name-only --cached | grep -E '\.(ts|tsx)$' | while read -r file; do
     npx prettier --write "$file"
     git add "$file"
-    echo "  ➕ Formatted and re-added formatted $file to staging."
+    echo "   ➕ Sorted and re-added $file to staging."
   done
   echo "✅ Done"
 }
 
 sort_imports
-format_code
 check_game_versions
