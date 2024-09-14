@@ -65,7 +65,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={FILMACO.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={FILMACO.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/filmaco" className="hub-item">
                 <DailyMovieGameIcon style={{ width: 75 }} />
