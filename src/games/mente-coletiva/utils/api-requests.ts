@@ -1,16 +1,18 @@
 import type {
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import { MENTE_COLETIVA_ACTIONS } from './constants';
   AddAnswerPayload,
   NextAnswersPayload,
   SubmitAnswersPayload,
   SubmitCustomQuestionPayload,
   SubmitQuestionPayload,
 } from './types';
-import type { UseStep } from 'hooks/useStep';
 
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
 
-import { MENTE_COLETIVA_ACTIONS } from './constants';
 
 export function useOnSubmitQuestionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

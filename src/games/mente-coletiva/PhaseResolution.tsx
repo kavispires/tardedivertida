@@ -2,16 +2,17 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { CustomerReviewIcon } from 'icons/CustomerReviewIcon';
 // Components
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+// Internal
 import { StepResolution } from './StepResolution';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 export function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);

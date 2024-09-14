@@ -1,3 +1,4 @@
+// Types
 import { GroupQuestionCard } from 'types/tdr';
 
 export type Question = {
