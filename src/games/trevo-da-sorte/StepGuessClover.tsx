@@ -2,22 +2,22 @@
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { CloverObject, Leaves } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockGuesses } from './utils/mock';
-import { useCloverState } from './utils/useCloverState';
 // Components
 import { AvatarName } from 'components/avatars';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import type { CloverObject, Leaves } from './utils/types';
+import { mockGuesses } from './utils/mock';
+import { useCloverState } from './utils/useCloverState';
 import { Clover } from './components/Clover';
 import { DetachedLeaves } from './components/DetachedLeaves';
 import { GuessingRules } from './components/RulesBlobs';
-import { PopoverRule } from 'components/rules';
 
 type StepGuessCloverProps = {
   clover: CloverObject;

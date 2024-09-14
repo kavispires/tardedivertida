@@ -1,13 +1,13 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { CloverObject, Leaves } from './utils/types';
-// Hooks
-import { useCloverState } from './utils/useCloverState';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { CloverObject, Leaves } from './utils/types';
+import { useCloverState } from './utils/useCloverState';
 import { Clover } from './components/Clover';
 import { DetachedLeaves } from './components/DetachedLeaves';
 

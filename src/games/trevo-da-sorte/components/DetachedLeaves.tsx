@@ -1,13 +1,14 @@
 import clsx from 'clsx';
-import { useMemo } from 'react';
 import { orderBy } from 'lodash';
-// And Design Resources
+import { useMemo } from 'react';
+// Ant Design Resources
 import { Space } from 'antd';
-// Types
-import type { Leaves, LeafId, LeafEvent } from '../utils/types';
 // Components
 import { Instruction } from 'components/text';
+// Internal
+import type { Leaves, LeafId, LeafEvent } from '../utils/types';
 import { Leaf } from './Leaf';
+// And Design Resources
 
 type DetachedLeavesProps = {
   leaves: Leaves;

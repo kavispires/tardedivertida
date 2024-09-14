@@ -1,8 +1,14 @@
+import type {
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
-// Types
-import type {
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getRandomItem } from 'utils/helpers';
+// Internal
+import { onRotate, parseRotation } from './helpers';
+import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from './constants';
   CloverObject,
   CloverMode,
   Guesses,
@@ -12,12 +18,6 @@ import type {
   LeafPosition,
   Leaves,
 } from './types';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
-// Helpers
-import { onRotate, parseRotation } from './helpers';
-import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from './constants';
-import { getRandomItem } from 'utils/helpers';
 
 /**
  * Keeps track of the clover state

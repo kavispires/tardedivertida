@@ -1,3 +1,4 @@
+// Internal
 import { DIRECTIONS_INDEXES, LEAVES_ORDER } from './constants';
 import type { CloverObject, CloverLeaf, LeafPosition, Guesses, Leaves } from './types';
 

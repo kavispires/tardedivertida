@@ -1,10 +1,12 @@
-import type { SubmitBadWordsPayload, SubmitCloverGuessesPayload, SubmitCluesPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitBadWordsPayload, SubmitCloverGuessesPayload, SubmitCluesPayload } from './types';
 import { TREVO_DA_SORTE_ACTIONS } from './constants';
+
+
 
 export function useOnSubmitBadWordsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

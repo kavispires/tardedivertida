@@ -1,10 +1,9 @@
-// Types
-import type { Leaves, CloverObject } from '../utils/types';
-// Utils
-import { parseRotation } from '../utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
+// Internal
+import type { Leaves, CloverObject } from '../utils/types';
+import { parseRotation } from '../utils/helpers';
 
 type ConfirmCluesProps = {
   clover: CloverObject;
