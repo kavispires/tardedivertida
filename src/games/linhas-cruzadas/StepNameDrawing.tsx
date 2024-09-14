@@ -2,18 +2,19 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Prompt } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+// Internal
+import type { Prompt } from './utils/types';
 
 type StepNameDrawingProps = {
   currentPrompt: Prompt;

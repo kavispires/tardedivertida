@@ -1,16 +1,18 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
-// Types
-import type { GamePlayers } from 'types/player';
-import type { Slide } from '../utils/types';
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { Translate } from 'components/language';
-import { Card } from 'components/cards';
-import { CanvasSVG } from 'components/canvas';
+// Components
 import { Avatar, AvatarName } from 'components/avatars';
+import { CanvasSVG } from 'components/canvas';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+// Internal
+import type { Slide } from '../utils/types';
 // Componentes
 
 type PageProps = {
