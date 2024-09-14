@@ -1,72 +1,20 @@
 import { chunk, cloneDeep } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { useEffect } from 'react';
 
-import { parseLetters } from './helpers';
+import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
 import { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
 
-const defaultArteRuimLocalToday: PalavreadoLocalToday = {
-  id: '',
-  boardState: [],
-  number: 0,
-  swaps: 0,
-};
-
-export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
+export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: GameState) {
   const size = data.keyword.length;
-  const { state, setState, updateState } = useDailyGameState<GameState>({
-    selection: null,
-    swap: [],
-    letters: parseLetters(data.letters, size),
-    boardState: [],
-    guesses: [],
-    hearts: Math.max(SETTINGS.HEARTS, size),
-    state: '',
-    swaps: 0,
-  });
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } = useDailyLocalToday<PalavreadoLocalToday>({
-    key: SETTINGS.LOCAL_TODAY_KEY,
+  const { updateLocalStorage } = useDailyLocalTodayV2<PalavreadoLocalToday>({
+    key: SETTINGS.KEY,
     gameId: data.id,
-    challengeNumber: data.number ?? 0,
-    defaultValue: defaultArteRuimLocalToday,
-    onApplyLocalState: (value) => {
-      const hearts = Math.max(SETTINGS.HEARTS, size) - value.boardState.length;
-
-      // Read state of the board and apply guesses
-      const lsGuesses = (value.boardState ?? []).map((board) => {
-        const guess = chunk(board, size);
-        return guess.map((g) => g.join(''));
-      });
-
-      // Apply latest board state
-      const latestBoardState = value.boardState[value.boardState.length - 1];
-      const copyLetters = cloneDeep(state.letters);
-      const answer = data.words.join('');
-      if (latestBoardState) {
-        copyLetters.forEach((letter, index) => {
-          letter.letter = latestBoardState[index];
-
-          if (letter.state === 'idle' && letter.letter === answer[index]) {
-            letter.state = String(Math.floor(index / size)) as PalavreadoLetter['state'];
-            letter.locked = true;
-          }
-
-          return letter;
-        });
-      }
-
-      updateState({
-        hearts,
-        guesses: lsGuesses,
-        letters: copyLetters,
-        boardState: value.boardState ?? [],
-        swaps: value.swaps ?? 0,
-      });
-    },
+    defaultValue: DEFAULT_LOCAL_TODAY,
   });
 
   // ACTIONS
@@ -161,13 +109,10 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry) {
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
 
-  useEffect(() => {
-    if (isComplete) {
-      updateLocalStorage({
-        status: 'played',
-      });
-    }
-  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
+  useMarkAsPlayed({
+    key: SETTINGS.KEY,
+    isComplete,
+  });
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
