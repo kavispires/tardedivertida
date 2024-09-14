@@ -4,8 +4,6 @@ import { ReactNode } from 'react';
 import { Space } from 'antd';
 // Internal
 import type { Track } from '../utils/types';
-// AntDesign Resources
-// Type
 
 type SpaceResultCheckWrapperProps = {
   task: Track;

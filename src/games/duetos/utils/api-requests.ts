@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitPairsPayload } from './types';
 import { DUETOS_ACTIONS } from './constants';
 
-
 export function useOnSubmitPairsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

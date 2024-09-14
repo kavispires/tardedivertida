@@ -1,4 +1,3 @@
-import {
 import { useState } from 'react';
 // Ant Design Resources
 import { ShoppingCartOutlined } from '@ant-design/icons';
@@ -21,6 +20,7 @@ import { mockCardPick } from './utils/mock';
 import { CaptchaTopic } from './components/CaptchaTopic';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';
+import {
   CaptchaHighlight,
   EnergyHighlight,
   EventHighlight,

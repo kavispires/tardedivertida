@@ -22,7 +22,6 @@ import { Solution } from './components/Solution';
 import { DiagramSection } from './components/DiagramSection';
 import { RoundAlert } from './components/RoundAlert';
 
-
 type StepWaitPlaceItemProps = {
   players: GamePlayers;
   user: GamePlayer;

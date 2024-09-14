@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitFeaturePayload, SubmitObjectPayload } from './types';
 import { MESMICE_ACTIONS } from './constants';
 
-
 export function useOnSubmitObjectAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

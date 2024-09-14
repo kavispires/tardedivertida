@@ -9,7 +9,6 @@ import { sortPlayers } from 'utils/helpers';
 import { VIPLineIcon } from 'icons/VIPLineIcon';
 // Internal
 import { ClubberAvatar } from '../../../components/avatars/ClubberAvatar';
-// AntDesign Resources
 
 type MinigameTitleProps = {
   players: GamePlayers;

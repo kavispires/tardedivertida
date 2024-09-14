@@ -15,7 +15,6 @@ import { OUTCOME } from '../utils/constants';
 import { Robot } from '../utils/types';
 import { EnergyHighlight } from './Highlights';
 
-
 type FinalOutcomeProps = {
   players: GamePlayers;
   outcome: string;

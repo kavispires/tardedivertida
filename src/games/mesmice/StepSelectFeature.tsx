@@ -1,4 +1,3 @@
-import type {
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
@@ -22,16 +21,17 @@ import { RuleInstruction, Title } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { mockFeatureSelection } from './utils/mock';
-import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
-import { ScoreTrack } from './components/ScoreTrack';
-import { GroupScore } from './components/GroupScore';
-import { ObjectFeature } from './components/ObjectFeature';
-// Type
+import type {
   ExtendedObjectFeatureCard,
   HistoryEntry,
   ObjectCardObj,
   SubmitFeaturePayload,
 } from './utils/types';
+import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
+import { ScoreTrack } from './components/ScoreTrack';
+import { GroupScore } from './components/GroupScore';
+import { ObjectFeature } from './components/ObjectFeature';
+// Type
 
 type StepSelectFeatureProps = {
   user: GamePlayer;

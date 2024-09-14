@@ -10,7 +10,6 @@ import { ViewOr } from 'components/views';
 import { TIMES } from '../utils/constants';
 import { MonsterCard } from '../../../components/cards/MonsterCard';
 
-
 type ViewSketchingProps = {
   isUserTheWitness: boolean;
   remainingSketchingTime: number;

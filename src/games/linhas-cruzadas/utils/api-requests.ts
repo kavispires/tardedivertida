@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitDrawingPayload, SubmitGuessPayload, SubmitPromptPayload } from './types';
 import { LINHAS_CRUZADAS_ACTIONS } from './constants';
 
-
 export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

@@ -1,4 +1,3 @@
-import {
 import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
@@ -16,7 +15,7 @@ import { DiagramArea } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 import { TripleDiagram } from './TripleDiagram/TripleDiagram';
 import { TripleDiagramClickableAreas } from './TripleDiagram/TripleDiagramClickableAreas';
-
+import {
   AreaPlacedItems,
   calculateProportionalValues,
   getCenterPointInArea,

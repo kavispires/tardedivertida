@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitDecisionPayload, SubmitMessagePayload, SubmitTargetPayload } from './types';
 import { QUEM_NAO_MATA_ACTIONS } from './constants';
 
-
 export function useOnSubmitTargetAPIRequest() {
   const { translate } = useLanguage();
 

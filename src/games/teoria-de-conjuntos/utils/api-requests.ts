@@ -6,8 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitEvaluationPayload, SubmitItemPlacementPayload, SubmitJudgePayload } from './types';
 import { TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
 
-
-
 export function useOnSubmitJudgeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

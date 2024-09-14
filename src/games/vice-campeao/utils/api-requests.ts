@@ -5,8 +5,6 @@ import type { UseStep } from 'hooks/useStep';
 // Internal
 import type { SubmitActionPayload } from './types';
 
-
-
 export function useOnSubmitVotingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

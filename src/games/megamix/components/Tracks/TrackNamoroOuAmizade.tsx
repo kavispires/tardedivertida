@@ -13,7 +13,6 @@ import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 import { Candidate } from '../Candidate';
-// AntDesign Resources
 
 export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

@@ -4,7 +4,6 @@ import { ReactNode } from 'react';
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-// AntDesign Resources
 
 type SpacePlayerCheckWrapperProps = {
   playersList: GamePlayer[];

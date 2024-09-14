@@ -6,8 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitReactionPayload, SubmitTweetPayload } from './types';
 import { POLEMICA_DA_VEZ_ACTIONS } from './constants';
 
-
-
 export function useOnSubmitTweetAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

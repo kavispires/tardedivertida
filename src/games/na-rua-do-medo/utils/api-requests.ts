@@ -5,7 +5,6 @@ import { useLanguage } from 'hooks/useLanguage';
 import { NA_RUA_DO_MEDO_ACTIONS } from './constants';
 import { SubmitDecisionPayload } from './types';
 
-
 export function useOnSubmitDecisionAPIRequest() {
   const { translate } = useLanguage();
 

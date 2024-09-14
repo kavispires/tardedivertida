@@ -1,13 +1,13 @@
-import { ReactNode } from 'react';
 import clsx from 'clsx';
-// AntDesign Resources
-import { Button } from 'antd';
+import { ReactNode } from 'react';
+// Ant Design Resources
 import { CheckCircleFilled, DislikeFilled, LikeFilled } from '@ant-design/icons';
+import { Button } from 'antd';
 // Components
 import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 // Sass
 import './SocialProfile.scss';
-import { Translate } from 'components/language';
 
 type SocialProfileProps = {
   /**

@@ -14,7 +14,6 @@ import { Instruction } from 'components/text';
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-// AntDesign Resources
 
 export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const doorWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });

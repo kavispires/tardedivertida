@@ -11,7 +11,6 @@ import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
-// AntDesign Resources
 
 export function ResultLabirintoSecreto({ track, winningValues }: ResultComponentProps) {
   return (

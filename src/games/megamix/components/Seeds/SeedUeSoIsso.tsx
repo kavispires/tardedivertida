@@ -14,7 +14,6 @@ import { Title } from 'components/text';
 // Internal
 import type { SeedEntryUeSoIsso } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';
-// AntDesign Resources
 
 type SeedUeSoIssoProps = {
   seed: SeedEntryUeSoIsso;
