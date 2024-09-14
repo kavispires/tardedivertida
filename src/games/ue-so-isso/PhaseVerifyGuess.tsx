@@ -1,22 +1,23 @@
 // Types
 import { PhaseProps } from 'types/game';
 // Hooks
+import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
-import { useHost } from 'hooks/useHost';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 // Components
-import { Step, StepSwitcher } from 'components/steps';
-import { StepGuessVerification } from './StepGuessVerification';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
 import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { Step, StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
+import { StepGuessVerification } from './StepGuessVerification';
 
 export function PhaseVerifyGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();

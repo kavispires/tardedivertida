@@ -2,22 +2,23 @@
 import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
 import { useUser } from 'hooks/useUser';
-// Resources & Utils
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
-import { StepSuggestion } from './StepSuggestion';
+// Internal
+import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { WaitingRoomSuggestions } from './components/WaitingRoomSuggestions';
+import { StepSuggestion } from './StepSuggestion';
 
 export function PhaseSuggest({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);

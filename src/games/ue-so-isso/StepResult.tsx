@@ -3,20 +3,21 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { Suggestion } from './utils/types';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, TextHighlight, Title } from 'components/text';
+// Internal
+import type { Suggestion } from './utils/types';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { GroupProgress } from './components/GroupProgress';
 import { WrongGuessHighlight } from './components/Highlights';
-import { HostNextPhaseButton } from 'components/host';
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepResultProps = {
   guess: string;

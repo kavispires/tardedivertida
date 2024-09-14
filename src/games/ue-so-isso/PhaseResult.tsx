@@ -3,16 +3,17 @@ import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { SpeechBubbleIcon } from 'icons/SpeechBubbleIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { Instruction, TextHighlight } from 'components/text';
 import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { Instruction, TextHighlight } from 'components/text';
+// Internal
 import { StepResult } from './StepResult';
 
 export function PhaseResult({ state, players, info }: PhaseProps) {
