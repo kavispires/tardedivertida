@@ -1,30 +1,32 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
-//Design Resources
-import { Space, Table } from 'antd';
+// Ant Design Resources
 import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined } from '@ant-design/icons';
+import { Space, Table } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Clue, Grid, GridType } from './utils/types';
-import type { UseStep } from 'hooks/useStep';
 // Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { AVATARS as avatars } from 'utils/avatars';
 import { getMeanDuration } from 'utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
+// Internal
+import type { Clue, Grid, GridType } from './utils/types';
 import { WordGrid } from './components/WordGrid';
 import { ClueCard } from './components/ClueCard';
 import { PreviousClue } from './components/PreviousClue';
 import { ScoringRule } from './components/RulesBlobs';
-import { AvatarName } from 'components/avatars';
-import { TimedButton } from 'components/buttons';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
+//Design Resources
 
 const AVATARS: PlainObject = avatars;
 

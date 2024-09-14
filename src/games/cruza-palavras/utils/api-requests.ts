@@ -1,9 +1,11 @@
-import type { SubmitCluePayload, SubmitGuessesPayload, SubmitWordsPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitCluePayload, SubmitGuessesPayload, SubmitWordsPayload } from './types';
 import { CRUZA_PALAVRAS_ACTIONS } from './constants';
+
 
 export function useOnSubmitWordsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
