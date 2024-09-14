@@ -1,11 +1,15 @@
+import { Fragment, useMemo } from 'react';
+// Ant Design Resources
 import { Divider, Flex, Typography } from 'antd';
+// Hooks
 import { useLoading } from 'hooks/useLoading';
-import { Solutions } from '../utils/types';
+// Components
 import { Translate } from 'components/language';
+// Internal
+import { Solutions } from '../utils/types';
+import { countWordProperties } from '../utils/helper';
 import { CircleHighlight } from './Highlights';
 import { YesNoSwitch } from './YesNoSwitch';
-import { Fragment, useMemo } from 'react';
-import { countWordProperties } from '../utils/helper';
 
 type SolutionProps = {
   solutions: Solutions;

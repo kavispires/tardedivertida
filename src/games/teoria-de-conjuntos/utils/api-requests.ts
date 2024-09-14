@@ -1,10 +1,12 @@
-import type { SubmitEvaluationPayload, SubmitItemPlacementPayload, SubmitJudgePayload } from './types';
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitEvaluationPayload, SubmitItemPlacementPayload, SubmitJudgePayload } from './types';
 import { TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
 
-import type { UseStep } from 'hooks/useStep';
+
 
 export function useOnSubmitJudgeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
