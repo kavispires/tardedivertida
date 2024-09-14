@@ -1,9 +1,11 @@
-import type { SubmitGridAnswersPayload, SubmitRejectedAnswers } from './types';
-import type { UseStep } from 'hooks/useStep';
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitGridAnswersPayload, SubmitRejectedAnswers } from './types';
 import { ADEDANHX_ACTIONS } from './constants';
+
 
 export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

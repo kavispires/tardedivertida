@@ -1,20 +1,21 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Divider, Input, Switch } from 'antd';
 import { LockFilled, UnlockFilled } from '@ant-design/icons';
+import { Divider, Input, Switch } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TopicCard } from 'types/tdr';
-import type { AdedanhxGrid, Answer, AnswerGridEntry, LetterEntry } from '../utils/types';
 // Utils
 import { NOOP } from 'utils/constants';
 // Icons
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
 // Components
-import { Translate } from 'components/language';
 import { Avatar, AvatarName, IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { AdedanhxGrid, Answer, AnswerGridEntry, LetterEntry } from '../utils/types';
 import { CategoryIcon } from './CategoryIcon';
 
 type GridProps = {

@@ -3,18 +3,19 @@ import { useMemo, useState } from 'react';
 import { RocketFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { isDevEnv, pluralize } from 'utils/helpers';
 // Components
+import { TimedButton } from 'components/buttons';
+import { HostOnlyContainer } from 'components/host';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { HostOnlyContainer } from 'components/host';
-import { TimedButton } from 'components/buttons';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from './utils/types';
 import { EvaluationGroup } from './components/EvaluationGroup';
 
 type StepEvaluateGroupProps = {

@@ -1,25 +1,26 @@
 // Types
 import type { PhaseProps } from 'types/game';
 import type { TopicCard } from 'types/tdr';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { ANSWERING_TIME_IN_MINUTES } from './utils/constants';
 // Icons
-import { TimeWritingIcon } from 'icons/TimedWritingIcon';
 import { LockIcon } from 'icons/LockIcon';
+import { TimeWritingIcon } from 'icons/TimedWritingIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { IconAvatar } from 'components/avatars';
-import { StepAnswerGrid } from './StepAnswerGrid';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+// Internal
+import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
+import { ANSWERING_TIME_IN_MINUTES } from './utils/constants';
+import { StepAnswerGrid } from './StepAnswerGrid';
 
 export function PhaseAnswering({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

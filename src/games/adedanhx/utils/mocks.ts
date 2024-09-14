@@ -1,6 +1,8 @@
-import type { TopicCard } from 'types/tdr';
 import { random } from 'lodash';
 import { mockClue } from 'mock/clues';
+// Types
+import type { TopicCard } from 'types/tdr';
+// Internal
 import { ANSWERING_TIME } from './constants';
 import { Answer, LetterEntry } from './types';
 
