@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { SeedEntryArteRuim } from '../../utils/types';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { NOOP } from 'utils/constants';
-// Components
-import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
-import { Card } from 'components/cards';
-import { DrawingCanvas } from 'components/canvas';
+// Icons
 import { PanicIcon } from 'icons/PanicIcon';
+// Components
 import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
+import { DrawingCanvas } from 'components/canvas';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { Instruction, Title } from 'components/text';
+// Internal
+import type { SeedEntryArteRuim } from '../../utils/types';
+// AntDesign Resources
 
 type SeedArteRuimProps = {
   seed: SeedEntryArteRuim;

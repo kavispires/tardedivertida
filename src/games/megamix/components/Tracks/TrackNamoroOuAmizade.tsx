@@ -1,18 +1,19 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { DatingCandidateImageCard } from 'types/tdr';
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 import { Candidate } from '../Candidate';
+// AntDesign Resources
 
 export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

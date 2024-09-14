@@ -1,12 +1,12 @@
-// Types
-import type { ResultComponentProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { DoorFrame } from 'components/game/DoorFrame';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultImage({ winningValues, containerWidth }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {

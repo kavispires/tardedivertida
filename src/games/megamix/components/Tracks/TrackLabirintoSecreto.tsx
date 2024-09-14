@@ -1,24 +1,25 @@
 import { Fragment } from 'react';
-// AntDesign Resources
-import { Space } from 'antd';
+// Ant Design Resources
 import { RightSquareOutlined } from '@ant-design/icons';
-// Types
-import type { TrackProps } from '../../utils/types';
+import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
+// Icons
+import { MapIcon } from 'icons/MapIcon';
+import { TreeOneIcon } from 'icons/TreeOneIcon';
+import { TreeThreeIcon } from 'icons/TreeThreeIcon';
+import { TreeTwoIcon } from 'icons/TreeTwoIcon';
 // Components
-import { Translate } from 'components/language';
-import { Instruction, TextHighlight } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TransparentButton } from 'components/buttons';
-import { TreeOneIcon } from 'icons/TreeOneIcon';
-import { TreeTwoIcon } from 'icons/TreeTwoIcon';
-import { TreeThreeIcon } from 'icons/TreeThreeIcon';
-import { MapIcon } from 'icons/MapIcon';
+import { Translate } from 'components/language';
+import { Instruction, TextHighlight } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
 export const TrackLabirintoSecreto = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

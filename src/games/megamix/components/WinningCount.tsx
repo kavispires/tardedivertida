@@ -1,7 +1,8 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
 // Components
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
+// AntDesign Resources
 
 type WinningCountProps = {
   winners: number;

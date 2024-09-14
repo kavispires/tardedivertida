@@ -1,20 +1,20 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Components
+import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-import { TransparentButton } from 'components/buttons';
-import { CharacterCard } from 'components/cards/CharacterCard';
+// AntDesign Resources
 
 export const TrackPalhetaDeCores = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();

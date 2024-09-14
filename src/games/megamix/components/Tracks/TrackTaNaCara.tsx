@@ -1,23 +1,24 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
-import { useMock } from 'hooks/useMock';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockSelection } from '../../utils/mock';
-// Components
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
-import { Card } from 'components/cards';
+import { useMock } from 'hooks/useMock';
+// Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
-import { SuspectCard } from 'components/cards/SuspectCard';
+// Components
 import { IconAvatar } from 'components/avatars';
+import { Card } from 'components/cards';
+import { SuspectCard } from 'components/cards/SuspectCard';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
 export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
   const cardWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });

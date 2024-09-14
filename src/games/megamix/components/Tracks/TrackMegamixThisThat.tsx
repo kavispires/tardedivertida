@@ -1,20 +1,20 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
-import { useMock } from 'hooks/useMock';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockSelection } from '../../utils/mock';
+import { useMock } from 'hooks/useMock';
 // Components
+import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
-import { TransparentButton } from 'components/buttons';
 
 export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();

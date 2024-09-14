@@ -1,11 +1,11 @@
-// Types
-import type { ResultComponentProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultRetratoFalado({ track, winningValues, containerWidth }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {

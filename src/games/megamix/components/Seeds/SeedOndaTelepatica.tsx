@@ -1,14 +1,15 @@
 import { useState } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Input, Space } from 'antd';
-// Types
-import type { SeedEntryOndaTelepatica } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { SeedEntryOndaTelepatica } from '../../utils/types';
+// AntDesign Resources
 
 type SeedOndaTelepaticaProps = {
   seed: SeedEntryOndaTelepatica;

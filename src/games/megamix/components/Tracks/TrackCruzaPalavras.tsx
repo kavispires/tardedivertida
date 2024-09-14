@@ -1,20 +1,20 @@
-// AntDesign Resources
-import { Button, ButtonProps, Space } from 'antd';
+// Ant Design Resources
 import { PlusCircleFilled } from '@ant-design/icons';
-// Types
-import type { TrackProps } from '../../utils/types';
+import { Button, ButtonProps, Space } from 'antd';
 // Hooks
-import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockSelection } from '../../utils/mock';
+import { useMock } from 'hooks/useMock';
 // Components
 import { Avatar } from 'components/avatars';
+import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
-import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
 import { SpeechBubble } from 'components/text/SpeechBubble';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
 export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

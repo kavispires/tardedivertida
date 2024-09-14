@@ -1,18 +1,18 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
-import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockSelection } from '../../utils/mock';
+import { useMock } from 'hooks/useMock';
 // Components
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
 import { MovieCard } from 'components/cards/MovieCard';
 import { MovieReviewCard } from 'components/cards/MovieReviewCard';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
 export const TrackVamosAoCinema = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

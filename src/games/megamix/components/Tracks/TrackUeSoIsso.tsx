@@ -1,21 +1,23 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
-import { mockSelection } from '../../utils/mock';
 import { LETTERS } from 'utils/constants';
 // Components
+import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { TransparentButton } from 'components/buttons';
+// AntDesign Resources
 
 export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const { isLoading } = useLoading();

@@ -4,16 +4,17 @@ import type { PhaseProps } from 'types/game';
 import type { GamePlayer } from 'types/player';
 // Utils
 import { AVATARS } from 'utils/avatars';
-import { achievementsReference } from './utils/achievements';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
 import { Avatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
+import { Achievements } from 'components/general/Achievements';
+import { Container } from 'components/general/Container';
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { Container } from 'components/general/Container';
-import { Achievements } from 'components/general/Achievements';
+// Internal
+import { achievementsReference } from './utils/achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (

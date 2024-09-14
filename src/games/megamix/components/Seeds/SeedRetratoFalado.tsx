@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useAudio } from 'react-use';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { SeedEntryRetratoFalado } from '../../utils/types';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useCountdown } from 'hooks/useCountdown';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Utils
 import { NOOP } from 'utils/constants';
-// Components
-import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
-import { DrawingCanvas } from 'components/canvas';
+// Icons
 import { PanicIcon } from 'icons/PanicIcon';
+// Components
+import { DrawingCanvas } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { ImageCardPreloadHand } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { Instruction, Title } from 'components/text';
+// Internal
+import type { SeedEntryRetratoFalado } from '../../utils/types';
+// AntDesign Resources
 // Sound
 const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
 

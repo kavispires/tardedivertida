@@ -1,19 +1,18 @@
-import { useState } from 'react';
 import clsx from 'clsx';
+import { getColorModifier } from 'games/onda-telepatica/utils/helpers';
+import { useState } from 'react';
 // Ant Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
-import { getColorModifier } from 'games/onda-telepatica/utils/helpers';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackOndaTelepatica = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {

@@ -1,24 +1,25 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Button } from 'antd';
 // Types
 import type { CrimesHediondosCard } from 'types/tdr';
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Icons
 import { KnifeIcon } from 'icons/KnifeIcon';
-// Components
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
 import { LoupeIcon } from 'icons/LoupeIcon';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
+// Components
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { SceneTile } from 'components/game/SceneTile';
+import { Translate } from 'components/language';
+import { MetricHighlight } from 'components/metrics/MetricHighlight';
+import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
 export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const cardWidth = useCardWidth(12, { minWidth: 100, maxWidth: 130 });

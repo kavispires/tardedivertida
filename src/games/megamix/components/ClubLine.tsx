@@ -1,13 +1,15 @@
 import { useMemo } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
 import { sortPlayers } from 'utils/helpers';
-// Components
+// Icons
 import { VIPLineIcon } from 'icons/VIPLineIcon';
+// Internal
 import { ClubberAvatar } from '../../../components/avatars/ClubberAvatar';
+// AntDesign Resources
 
 type MinigameTitleProps = {
   players: GamePlayers;
