@@ -59,7 +59,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyDiagramGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
+      <Header icon={<DailyDiagramGameIcon />} localStorageKey={SETTINGS.KEY}>
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
