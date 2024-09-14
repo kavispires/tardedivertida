@@ -8,15 +8,14 @@
   background-color: get-color('white', 5, 0.8);
   border: 1px solid get-color('white', 8);
   color: get-color('gray', 4);
+  z-index: 155;
+  transition: all 250ms;
 
   @include box-shadow;
-  transition: all 250ms;
 
   @include xs {
     position: static;
   }
-
-  z-index: 155;
 
   // Each position should have 12 (initial top) + pos# * 12 (height plus spacing)
   &--0 {
