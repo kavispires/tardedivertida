@@ -1,12 +1,14 @@
+import clsx from 'clsx';
+import { useEffect } from 'react';
 import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout, App } from 'antd';
-// Components
+// Icons
 import * as icons from 'icons/collection';
-import { DevHeader } from './DevHeader';
+// Components
 import { TransparentButton } from 'components/buttons';
-import { useEffect } from 'react';
-import clsx from 'clsx';
+// Internal
+import { DevHeader } from './DevHeader';
 
 const COLOR_NAMES = [
   'brown',

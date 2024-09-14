@@ -1,16 +1,17 @@
 import clsx from 'clsx';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Image, ImageProps } from 'antd';
-// Constants
-import { PUBLIC_URL } from 'utils/constants';
-// Assets
-import placeholder from 'assets/images/placeholder.jpg';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+// Utils
+import { PUBLIC_URL } from 'utils/constants';
+// Images
+import placeholder from 'assets/images/placeholder.jpg';
 // Sass
 import './ImageCard.scss';
-import { useMemo } from 'react';
+// Assets
 
 export type ImageCardProps = {
   /**

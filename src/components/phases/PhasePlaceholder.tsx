@@ -1,7 +1,7 @@
 // Types
-import type { GameInfo } from 'types/game-info';
 import type { GameState } from 'types/game';
-// Components
+import type { GameInfo } from 'types/game-info';
+// Internal
 import { PhaseContainer } from './index';
 
 type PhasePlaceholderProps = {

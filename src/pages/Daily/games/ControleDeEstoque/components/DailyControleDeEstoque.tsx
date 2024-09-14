@@ -1,18 +1,23 @@
-import { Button, Divider, Layout, Modal, Popconfirm, Tooltip, Typography } from 'antd';
-import { DualTranslate, Translate } from 'components/language';
-import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
 import { useMeasure } from 'react-use';
+// Ant Design Resources
+import { Button, Divider, Layout, Modal, Popconfirm, Tooltip, Typography } from 'antd';
+// Types
 import { Me } from 'types/user';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
-
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
+// Icons
+import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
+// Components
+import { DualTranslate, Translate } from 'components/language';
+// Internal
 import { getInitialState } from '../utils/helpers';
 import { PHASES, SETTINGS } from '../utils/settings';
 import { DailyControleDeEstoqueEntry } from '../utils/types';
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
 import { FulfillingPhase } from './FulfillingPhase';
 import { PreloadItems } from './PreloadItems';
 import { ResultsModalContent } from './ResultsModalContent';

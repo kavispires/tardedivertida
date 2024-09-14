@@ -1,12 +1,14 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { MovieReviewCard } from 'components/cards/MovieReviewCard';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { MovieReviewCard } from 'components/cards/MovieReviewCard';
-import { useLanguage } from 'hooks/useLanguage';
 
 export function TextHighlightTest({ onResult, step }: TestStepProps) {
   const { translate } = useLanguage();

@@ -1,3 +1,4 @@
+// Icons
 import * as icons from 'icons/collection';
 
 export const collectionByCategory: Record<string, string[]> = {

@@ -3,16 +3,16 @@ import { Flex } from 'antd';
 // Types
 import { GamePlayers } from 'types/player';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useHost } from 'hooks/useHost';
+import { useLoading } from 'hooks/useLoading';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
+import { AvatarCard } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, RuleInstructionProps, Title, TitleProps } from 'components/text';
-import { Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
-import { AvatarCard } from 'components/avatars';
 
 type StepSelectPlayerProps = {
   players: GamePlayers;

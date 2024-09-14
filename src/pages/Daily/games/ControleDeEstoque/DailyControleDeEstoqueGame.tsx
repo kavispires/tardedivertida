@@ -1,12 +1,13 @@
-import './utils/styles.scss';
-
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
-
-import { getToday } from '../../utils';
+// Hooks
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+// Internal
 import { DailyControleDeEstoque } from './components/DailyControleDeEstoque';
+import { getToday } from '../../utils';
+// Sass
+import './utils/styles.scss';
 
 export function DailyControleDeEstoqueGame() {
   const { currentUser } = useCurrentUserContext();

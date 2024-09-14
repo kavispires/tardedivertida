@@ -1,24 +1,26 @@
 import clsx from 'clsx';
 import { ReactNode, useEffect } from 'react';
 // Ant Design Resources
-import { Tooltip } from 'antd';
 import { PauseOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 // Hooks
+import { useCountdown } from 'hooks/useCountdown';
+import { useHost } from 'hooks/useHost';
+import { useHostActionRequest } from 'hooks/useHostActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useHost } from 'hooks/useHost';
-import { useCountdown } from 'hooks/useCountdown';
-// Utils
+// Services
 import { HOST_API_ACTIONS } from 'services/adapters';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
+import { WaitingTime } from 'components/timers';
+// Internal
 import { HostOnlyContainer } from './HostOnlyContainer';
 import { HostButton } from './HostButton';
-import { WaitingTime } from 'components/timers';
-import { useHostActionRequest } from 'hooks/useHostActionRequest';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
   if (!round || round.current === round.total || round.forceLastRound) {

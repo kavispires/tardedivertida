@@ -1,10 +1,12 @@
-import { App, Button, Flex, Popconfirm } from 'antd';
-import { Translate } from 'components/language';
 import { useNavigate } from 'react-router-dom';
-import { isDevEnv } from 'utils/helpers';
-
+// Ant Design Resources
 import { BugOutlined } from '@ant-design/icons';
-
+import { App, Button, Flex, Popconfirm } from 'antd';
+// Utils
+import { isDevEnv } from 'utils/helpers';
+// Components
+import { Translate } from 'components/language';
+// Internal
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
 import { SETTINGS as ARTISTA } from '../games/Picaco/utils/settings';

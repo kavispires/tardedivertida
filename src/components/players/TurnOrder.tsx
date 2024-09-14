@@ -1,15 +1,16 @@
-import { Fragment, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
+import { Fragment, ReactNode, useMemo } from 'react';
 // Ant Design Resources
 import { ForwardFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Helpers
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
-import { reorder } from './reorder';
 // Components
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+// Internal
+import { reorder } from './reorder';
 
 type TurnOrderProps = {
   /**

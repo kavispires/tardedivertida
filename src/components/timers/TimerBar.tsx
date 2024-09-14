@@ -1,3 +1,4 @@
+// Ant Design Resources
 import { Progress, ProgressProps } from 'antd';
 
 interface TimerBarProps extends ProgressProps {

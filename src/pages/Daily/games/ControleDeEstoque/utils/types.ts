@@ -1,4 +1,5 @@
 import { DateKey } from 'pages/Daily/utils/types';
+// Internal
 import { PHASES } from './settings';
 
 export type GoodId = string;

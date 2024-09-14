@@ -1,18 +1,22 @@
-import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { UserCredential } from 'firebase/auth';
+import { useState } from 'react';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, App, Switch, Space, ButtonProps } from 'antd';
-// API
-import { resetPassword, signIn, signInWithGoogle } from 'services/firebase';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Image
-import logo from 'assets/images/tarde-divertida-logo.svg';
+// Services
+import { resetPassword, signIn, signInWithGoogle } from 'services/firebase';
+// Icons
+import { GoogleIcon } from 'icons/GoogleIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { UserCredential } from 'firebase/auth';
-import { IconAvatar } from 'components/avatars';
-import { GoogleIcon } from 'icons/GoogleIcon';
+// Images
+import logo from 'assets/images/tarde-divertida-logo.svg';
+// API
+// Image
 
 type SignInProps = {
   onSuccess: GenericFunction;

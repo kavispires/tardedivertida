@@ -1,23 +1,24 @@
-import { ReactNode, useState } from 'react';
 import clsx from 'clsx';
+import { ReactNode, useState } from 'react';
 // Ant Design Resources
-import { Alert, Button, Input, Rate } from 'antd';
 import { StarFilled } from '@ant-design/icons';
-// Adapters
-import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
+import { Alert, Button, Input, Rate } from 'antd';
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useCountdown } from 'hooks/useCountdown';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useGameMeta } from 'hooks/useGameMeta';
+import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useGameMeta } from 'hooks/useGameMeta';
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+// Services
+import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
 import { FixedMenuButton } from 'components/buttons';
+import { Translate } from 'components/language';
+// Adapters
 
 const { TextArea } = Input;
 

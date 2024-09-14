@@ -101,7 +101,7 @@ check_game_versions() {
 sort_imports() {
   echo "♻️ Sorting imports"
   # Find and sort the imports in .ts and .tsx files, then re-add them to the staging area
-  git diff --name-only --cached | grep -E '\.(ts|tsx)$' | while read -r file; do
+  git diff --name-only --cached | grep '^src/.*\.(ts|tsx)$' | while read -r file; do
     node ./scripts/sort-imports.js "$file"
     npx prettier --write "$file"
     git add "$file"

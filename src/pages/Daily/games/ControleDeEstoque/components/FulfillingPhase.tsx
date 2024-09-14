@@ -1,10 +1,11 @@
+import { Region, TextRegion } from 'pages/Daily/components/Region';
+// Ant Design Resources
+import { BarChartOutlined, WarningFilled } from '@ant-design/icons';
 import { Button } from 'antd';
+// Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { Region, TextRegion } from 'pages/Daily/components/Region';
-
-import { BarChartOutlined, WarningFilled } from '@ant-design/icons';
-
+// Internal
 import { PHASES } from '../utils/settings';
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 import { FulfillmentBoard } from './FulfillmentBoard';

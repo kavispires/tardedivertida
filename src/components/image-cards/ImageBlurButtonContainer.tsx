@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
-// Components
+// Internal
 import { ImageBlurButton } from './ImageBlurButton';
 // Sass
 import './ImageBlurButtonContainer.scss';

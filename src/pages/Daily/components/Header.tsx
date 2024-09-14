@@ -1,6 +1,9 @@
-import { Layout, Typography } from 'antd';
-import { IconAvatar } from 'components/avatars';
 import { ReactNode, useState } from 'react';
+// Ant Design Resources
+import { Layout, Typography } from 'antd';
+// Components
+import { IconAvatar } from 'components/avatars';
+// Internal
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
 
 type HeaderProps = {

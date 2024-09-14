@@ -1,3 +1,4 @@
+// Internal
 import { getRandomItem } from './helpers';
 
 /**

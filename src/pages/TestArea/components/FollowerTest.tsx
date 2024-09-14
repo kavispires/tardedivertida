@@ -1,16 +1,19 @@
+import { random } from 'lodash';
+import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import { GamePlayer } from 'types/player';
+// Icons
+import { EarthIcon } from 'icons/EarthIcon';
 // Components
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { EarthIcon } from 'icons/EarthIcon';
-import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { useState } from 'react';
-import { random } from 'lodash';
-import { GamePlayer } from 'types/player';
 
 export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
   const [contentType, setContentType] = useState<'div' | 'avatar' | 'icon'>('div');

@@ -1,4 +1,6 @@
+// Icons
 import { PlayersIcon } from 'icons/PlayersIcon';
+// Components
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function PlayersHighlight({ children, type, iconSize, className }: HighlightProps) {

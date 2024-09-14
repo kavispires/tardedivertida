@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react';
 import { Alert, Button, Divider, Modal } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
-// API & Hooks
+// Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { UseStep } from 'hooks/useStep';
 // Services
 import { signInAsGuest } from 'services/firebase';
 // Components
-import { DualTranslate, Translate } from 'components/language';
 import { SignIn, SignInWithGoogle } from 'components/auth/SignIn';
 import { SignUp } from 'components/auth/SignUp';
+import { DualTranslate, Translate } from 'components/language';
 
 type StepJoinProps = {
   info: GameInfo;

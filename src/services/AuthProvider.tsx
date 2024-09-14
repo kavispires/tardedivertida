@@ -1,18 +1,21 @@
-import { ReactNode, createContext, useEffect, useState } from 'react';
-import { auth } from './firebase';
-import type { User } from 'firebase/auth';
 import { useQuery } from '@tanstack/react-query';
+import type { User } from 'firebase/auth';
+import { getToday } from 'pages/Daily/utils';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
+// Ant Design Resources
 import { App } from 'antd';
-import { USER_API, USER_API_ACTIONS } from './adapters';
+// Types
 import type { Me } from 'types/user';
+// Hooks
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Utils
 import { print } from 'utils/helpers';
-import { getToday } from 'pages/Daily/utils';
-// Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useLanguage } from 'hooks/useLanguage';
-import { useGlobalState } from 'hooks/useGlobalState';
+// Internal
+import { auth } from './firebase';
+import { USER_API, USER_API_ACTIONS } from './adapters';
 
 const PLACEHOLDER_GAME_USER_ENTRY = {
   gameId: '',

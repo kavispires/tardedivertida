@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-// Hooks
-import { useFirestoreDocument } from './useFirestoreDocument';
 // Utils
 import { print } from 'utils/helpers';
+// Internal
+import { useFirestoreDocument } from './useFirestoreDocument';
 
 export function useGamePlayers(gameId: GameId, gameName: GameName): GamePlayers {
   const docPath = `games/${gameName}/${gameId}/players`;

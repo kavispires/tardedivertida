@@ -1,25 +1,26 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Drawer, Popconfirm } from 'antd';
 import { FireFilled } from '@ant-design/icons';
+import { Button, Drawer, Popconfirm } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Hooks
-import { useHostActionRequest } from 'hooks/useHostActionRequest';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLoading } from 'hooks/useLoading';
-import { useGameMeta } from 'hooks/useGameMeta';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-// Utils
+import { useGameMeta } from 'hooks/useGameMeta';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useHostActionRequest } from 'hooks/useHostActionRequest';
+import { useLoading } from 'hooks/useLoading';
+// Services
 import { HOST_API_ACTIONS } from 'services/adapters';
 import { getFirebaseUrl } from 'services/firebase';
 // Components
+import { FixedMenuButton } from 'components/buttons';
+import { Translate } from 'components/language';
+// Internal
 import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';
-import { FixedMenuButton } from 'components/buttons';
-import { Translate } from 'components/language';
 // Sass
 import './AdminMenuDrawer.scss';
 

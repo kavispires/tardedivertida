@@ -1,28 +1,29 @@
+import clsx from 'clsx';
 import { ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Button, Image, Progress, Space } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-import type { GamePlayer } from 'types/player';
-// Types
 import type { GameInfo } from 'types/game-info';
-// Images
-import gameOverTitle from 'assets/images/game-over-title.svg';
-// Utils
-import { useLanguage } from 'hooks/useLanguage';
-import { AVATARS } from 'utils/avatars';
-// Components
-import { Translate } from 'components/language';
-import { Avatar } from 'components/avatars';
-import { HostOnlyButton } from 'components/host';
-import { Instruction } from 'components/text';
-import { RateGameWidget } from './RateGameWidget';
+import type { GamePlayer } from 'types/player';
+// Hooks
 import { useCountdown } from 'hooks/useCountdown';
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { AVATARS } from 'utils/avatars';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
+// Components
+import { Avatar } from 'components/avatars';
+import { HostOnlyButton } from 'components/host';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import clsx from 'clsx';
+import { Instruction } from 'components/text';
+// Internal
+import { RateGameWidget } from './RateGameWidget';
+// Images
+import gameOverTitle from 'assets/images/game-over-title.svg';
 // import { ConvertGuestToAccountModal } from 'components/auth/ConvertGuestToAccount';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;

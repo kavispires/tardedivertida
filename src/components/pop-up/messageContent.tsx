@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 // Icons
+import { RulesIcon } from 'icons/RulesIcon';
 import { VideoGameControllerIcon } from 'icons/VideoGameControllerIcon';
 // Components
-import { RulesIcon } from 'icons/RulesIcon';
 import { Translate } from 'components/language';
 
 /**

@@ -1,8 +1,8 @@
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { Translate } from 'components/language';
 import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
 
 type AutoNextPhaseProps = {
   players: GamePlayers;

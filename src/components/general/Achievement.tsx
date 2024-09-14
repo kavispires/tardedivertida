@@ -1,11 +1,12 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Button, Popover } from 'antd';
 // Types
 import type { AchievementInfo } from 'types/achievements';
 // Components
 import { DualTranslate } from 'components/language';
+// Internal
 import { Medal } from './Medal';
 
 type AchievementProps = {

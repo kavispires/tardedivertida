@@ -1,3 +1,4 @@
+// Types
 import { GamePlayer } from 'types/player';
 
 /**

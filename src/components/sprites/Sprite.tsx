@@ -1,6 +1,8 @@
-import { WarningOutlined } from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
+// Ant Design Resources
+import { WarningOutlined } from '@ant-design/icons';
 import { Spin, Tooltip } from 'antd';
+// Hooks
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 
 type SpriteProps = {

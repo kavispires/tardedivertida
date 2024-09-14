@@ -1,12 +1,13 @@
-import './utils/styles.scss';
-
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
-
+// Hooks
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+// Internal
+import { DailyPalavreado } from './components/DailyPalavreado';
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 import { getToday } from '../../utils';
-import { DailyPalavreado } from './components/DailyPalavreado';
+// Sass
+import './utils/styles.scss';
 
 export function DailyPalavreadoGame() {
   const { currentUser } = useCurrentUserContext();

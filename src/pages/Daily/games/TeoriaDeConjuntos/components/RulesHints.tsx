@@ -1,8 +1,10 @@
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Button, Modal, Typography } from 'antd';
-import { Translate } from 'components/language';
 import { Region } from 'pages/Daily/components/Region';
 import { useToggle } from 'react-use';
+// Ant Design Resources
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Button, Modal, Typography } from 'antd';
+// Components
+import { Translate } from 'components/language';
 
 export function RulesHints() {
   const [showTipsModal, toggleTipsModal] = useToggle(false);

@@ -1,7 +1,6 @@
-import { ReactNode } from 'react';
-import clsx from 'clsx';
-// Types
 import type { AvatarSize } from 'antd/lib/avatar/AvatarContext';
+import clsx from 'clsx';
+import { ReactNode } from 'react';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 

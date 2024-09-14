@@ -1,7 +1,8 @@
 import { chunk, cloneDeep } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
+// Utils
 import { deepCopy } from 'utils/helpers';
-
+// Internal
 import { SETTINGS } from './settings';
 import { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
 

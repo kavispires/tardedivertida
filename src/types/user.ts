@@ -1,3 +1,4 @@
+// Internal
 import type { AchievementKey } from './achievements';
 
 interface GameUserEntry {

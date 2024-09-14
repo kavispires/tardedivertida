@@ -1,10 +1,10 @@
-// Images
-import avatars from 'assets/images/avatars.svg';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-import { DualTranslate, Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
+import { DualTranslate, Translate } from 'components/language';
+// Images
+import avatars from 'assets/images/avatars.svg';
 
 type UsualAvatarsSelectionProps = {
   setSelectedAvatar: GenericFunction;

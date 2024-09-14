@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
 import { orderBy } from 'lodash';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Card, Layout, Progress, Space } from 'antd';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
+// Components
+import { CanvasSVG } from 'components/canvas';
 import { LoadingPage } from 'components/loaders';
 import { Title } from 'components/text';
-import { CanvasSVG } from 'components/canvas';
 // Components
 
 function Gallery() {

@@ -1,3 +1,4 @@
+// Internal
 import { isDevEnv } from '../utils/helpers';
 import { useGlobalState } from './useGlobalState';
 

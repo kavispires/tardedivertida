@@ -2,19 +2,20 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-// Assets
-import roundTitleEn from 'assets/images/round-title-en.svg';
-import roundTitlePt from 'assets/images/round-title-pt.svg';
-// Utils
-import { getAnimationClass } from 'utils/helpers';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+// Images
+import roundTitleEn from 'assets/images/round-title-en.svg';
+import roundTitlePt from 'assets/images/round-title-pt.svg';
+// Assets
 
 type RoundAnnouncementProps = {
   round: GameRound;

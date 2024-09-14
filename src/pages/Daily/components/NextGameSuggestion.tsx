@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
+// Ant Design Resources
 import { Typography } from 'antd';
-import { IconAvatar } from 'components/avatars';
-import { DualTranslate, Translate } from 'components/language';
+// Icons
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
@@ -8,8 +9,10 @@ import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
-import { Link } from 'react-router-dom';
-
+// Components
+import { IconAvatar } from 'components/avatars';
+import { DualTranslate, Translate } from 'components/language';
+// Internal
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
 import { SETTINGS as ARTISTA } from '../games/Picaco/utils/settings';

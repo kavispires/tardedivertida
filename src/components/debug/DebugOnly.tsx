@@ -1,5 +1,6 @@
-import { useDevFeatures } from 'hooks/useDevFeatures';
 import { ReactNode } from 'react';
+// Hooks
+import { useDevFeatures } from 'hooks/useDevFeatures';
 
 type DebugOnlyProps = {
   dev?: boolean;

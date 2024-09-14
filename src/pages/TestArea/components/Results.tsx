@@ -1,11 +1,12 @@
 // Ant Design Resources
 import { Space } from 'antd';
-// Components
-import { IconAvatar } from 'components/avatars';
+// Icons
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxMinusIcon } from 'icons/BoxMinusIcon';
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
 
 const getActiveIcon = (value?: boolean, active?: boolean) => {
   if (value) return BoxCheckMarkIcon;

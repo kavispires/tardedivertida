@@ -1,19 +1,24 @@
-import { Flex, Space, Typography } from 'antd';
 import clsx from 'clsx';
-import { IconAvatar } from 'components/avatars';
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+// Ant Design Resources
+import { Flex, Space, Typography } from 'antd';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Icons
 import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
-import { getAnimationClass } from 'utils/helpers';
-
-import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
+// Components
+import { IconAvatar } from 'components/avatars';
+import { ItemCard } from 'components/cards/ItemCard';
+import { Translate } from 'components/language';
+// Internal
 import { SETTINGS } from '../utils/settings';
+import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 const titles = [
   <>

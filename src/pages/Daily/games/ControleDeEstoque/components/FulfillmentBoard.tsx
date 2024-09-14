@@ -1,9 +1,12 @@
 import clsx from 'clsx';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+// Components
 import { TransparentButton } from 'components/buttons';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
-import { getAnimationClass } from 'utils/helpers';
-
+// Internal
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 
 type FulfillmentBoardProps = {

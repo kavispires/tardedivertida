@@ -1,6 +1,6 @@
 // Ant Design Resources
-import { Avatar as AntAvatar, Typography } from 'antd';
 import { LikeFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar, Typography } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Components

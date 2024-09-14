@@ -2,12 +2,13 @@ import { random } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
 // Components
+import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { ImageCardHand } from 'components/image-cards';
-import { FloatingHand } from 'components/general/FloatingHand';
 
 const hand = Array(8)
   .fill(0)

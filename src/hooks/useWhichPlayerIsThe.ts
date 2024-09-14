@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-// Hooks
-import { useGlobalState } from './useGlobalState';
 // Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
+// Internal
+import { useGlobalState } from './useGlobalState';
 
 /**
  * Gets player that is assigned to a property in the state

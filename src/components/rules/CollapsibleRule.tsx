@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 // Ant Design Resources
 import { Collapse, CollapseProps } from 'antd';
 // Components
-import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 
 type CollapsibleRuleProps = {
   /**

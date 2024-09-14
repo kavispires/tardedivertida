@@ -1,12 +1,13 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Components
+import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+import { TimedTimerBar, TimedTimerClock } from 'components/timers';
+// Internal
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { TimedTimerBar, TimedTimerClock } from 'components/timers';
-import { TimedButton } from 'components/buttons';
 
 export function TimersTest({ onResult, step }: TestStepProps) {
   return (

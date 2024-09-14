@@ -1,18 +1,21 @@
-import { Button, Layout, Modal, Space } from 'antd';
-import { DualTranslate, Translate } from 'components/language';
-import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { useMemo } from 'react';
-import { Me } from 'types/user';
-
+// Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
-
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
+import { Button, Layout, Modal, Space } from 'antd';
+// Types
+import { Me } from 'types/user';
+// Icons
+import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
+// Components
+import { DualTranslate, Translate } from 'components/language';
+// Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyArteRuimEntry } from '../utils/types';
 import { useArteRuimEngine } from '../utils/useArteRuimEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
 import { DrawingCarousel } from './DrawingCarousel';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';

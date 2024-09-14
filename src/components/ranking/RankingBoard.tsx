@@ -1,20 +1,20 @@
 import clsx from 'clsx';
-import { LegacyRef, ReactNode, useEffect, useMemo, useState } from 'react';
 import { orderBy } from 'lodash';
+import { LegacyRef, ReactNode, useEffect, useMemo, useState } from 'react';
 import { useEffectOnce, useMeasure } from 'react-use';
 // Ant Design Resources
-import { Tooltip } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRanking } from 'types/game';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-// Helpers
+// Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type GainedPointProps = {
   gainedPoint: number;

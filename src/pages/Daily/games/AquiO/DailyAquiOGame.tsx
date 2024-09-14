@@ -1,14 +1,15 @@
-import './utils/styles.scss';
-
-import { useLanguage } from 'hooks/useLanguage';
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 import { useRandomAquiOChallenge } from 'pages/Daily/games/AquiO/data/useRandomAquiOChallenge';
-import { useState } from 'react';
-
-import { getToday, wait } from '../../utils';
-import { DailyAquiO } from './components/DailyAquiO';
 import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
+import { useState } from 'react';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Internal
+import { DailyAquiO } from './components/DailyAquiO';
+import { getToday, wait } from '../../utils';
+// Sass
+import './utils/styles.scss';
 
 export function DailyAquiOGame() {
   const today = getToday();

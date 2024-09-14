@@ -1,12 +1,14 @@
-import { useCountdown } from 'hooks/useCountdown';
 import { intersectionBy } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from 'react-use';
+// Hooks
+import { useCountdown } from 'hooks/useCountdown';
+// Utils
 import { inNSeconds } from 'utils/helpers';
-
+// Internal
 import { DEFAULT_LOCAL_TODAY, getDiscs } from './helpers';
 import { SETTINGS } from './settings';
 import { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';

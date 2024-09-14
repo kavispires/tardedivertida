@@ -1,9 +1,9 @@
+import clsx from 'clsx';
 import { CSSProperties, ReactNode, useRef, useState } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
-import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Flex, Space } from 'antd';
 import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
+import { Button, Flex, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
 
