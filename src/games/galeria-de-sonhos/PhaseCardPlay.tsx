@@ -1,33 +1,34 @@
+import {
 import { useEffect, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useStep } from 'hooks/useStep';
-import { useLoading } from 'hooks/useLoading';
-import { useOnPlayCardAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
-import {
-  GO_TO_CARD_PLAY_STEP,
-  GO_TO_PLAYER_WITH_NIGHTMARE_STEP,
-  GO_TO_SEE_CARD_STEP,
-} from './utils/constants';
 // Icons
 import { DoorSignIcon } from 'icons/DoorSignIcon';
 import { NightmareIcon } from 'icons/NightmareIcon';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { CardHighlight } from 'components/metrics/CardHighlight';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
 import { Instruction } from 'components/text';
+// Internal
+import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { CardPlayRules } from './components/RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { CardHighlight } from 'components/metrics/CardHighlight';
+  GO_TO_CARD_PLAY_STEP,
+  GO_TO_PLAYER_WITH_NIGHTMARE_STEP,
+  GO_TO_SEE_CARD_STEP,
+} from './utils/constants';
 
 export function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
   const { isLoading } = useLoading();

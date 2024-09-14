@@ -1,28 +1,28 @@
 import clsx from 'clsx';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Alert, Divider, Space } from 'antd';
-import { useMemo } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { LatestInfo } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import type { UseStep } from 'hooks/useStep';
-// Constants
-import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
-// Helpers
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
 import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 // Components
-import { Step } from 'components/steps';
 import { AvatarName } from 'components/avatars';
-import { Translate } from 'components/language';
-import { ImageCard } from 'components/image-cards';
 import { TimedButton } from 'components/buttons';
 import { HostNextPhaseButton } from 'components/host';
+import { ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
+import { Step } from 'components/steps';
+// Internal
+import type { LatestInfo } from './utils/types';
+import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
 import { ListPlayers } from './components/ListPlayers';
 import { MatchCount } from './components/MatchCount';
-import { TurnOrder } from 'components/players';
 
 type MatchingPlayersReduceResult = {
   matchingPlayers: GamePlayer[];

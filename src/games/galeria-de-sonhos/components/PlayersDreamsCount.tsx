@@ -4,12 +4,13 @@ import { useMemo } from 'react';
 import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { CardInHand } from '../utils/types';
-// Helpers
+// Utils
 import { getAnimationClass, getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
+// Internal
+import type { CardInHand } from '../utils/types';
 
 type PlayersDreamsCountProps = {
   players: GamePlayers;

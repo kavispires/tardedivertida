@@ -1,17 +1,18 @@
 import clsx from 'clsx';
-// Design Resources
-import { Image } from 'antd';
-// Types
-import type { ImageCardObj } from '../utils/types';
+// Ant Design Resources
 import { CloseCircleOutlined } from '@ant-design/icons';
+import { Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
-import { BORDER_TOTAL_SIZE } from '../utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { Translate } from 'components/language';
+// Internal
+import type { ImageCardObj } from '../utils/types';
+import { BORDER_TOTAL_SIZE } from '../utils/constants';
+// Design Resources
 
 type SelectTableProps = {
   table: ImageCardObj[];

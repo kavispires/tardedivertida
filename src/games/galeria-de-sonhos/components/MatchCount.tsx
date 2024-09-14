@@ -5,10 +5,11 @@ import { pluralize } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { StarPoints } from 'components/points';
-import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { StarPoints } from 'components/points';
+// Internal
 import { SuperSparkFireworks } from './SuperSparkFireworks';
 
 type MatchCountProps = {
