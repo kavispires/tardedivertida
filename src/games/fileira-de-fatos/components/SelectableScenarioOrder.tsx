@@ -1,23 +1,23 @@
-import { useState } from 'react';
 import { findLastIndex } from 'lodash';
+import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import { RiseOutlined, UndoOutlined } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
-import type { OnSubmitOrder } from '../utils/types';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useCardWidth } from 'hooks/useCardWidth';
-// Utils
-import { getReference } from '../utils/helpers';
+import { useLoading } from 'hooks/useLoading';
 // Components
-import { Translate } from 'components/language';
-import { Scenarios } from './Scenarios';
-import { RuleInstruction } from 'components/text';
 import { TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
+import { Translate } from 'components/language';
+import { RuleInstruction } from 'components/text';
+// Internal
+import type { OnSubmitOrder } from '../utils/types';
+import { getReference } from '../utils/helpers';
 import { mockOrder } from '../utils/mock';
+import { Scenarios } from './Scenarios';
 
 type SelectableScenarioOrderProps = {
   scenarios: TextCard[];

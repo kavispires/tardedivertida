@@ -1,10 +1,11 @@
 // Types
 import type { TextCard } from 'types/tdr';
-import type { OnSubmitOrder } from './utils/types';
 // Components
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { OnSubmitOrder } from './utils/types';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 
