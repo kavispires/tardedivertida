@@ -1,29 +1,29 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
+import { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
 // Components
-import { Step, type StepProps } from 'components/steps';
-import { PopoverRule } from 'components/rules';
 import { CanvasResizer } from 'components/canvas';
-import { RuleInstruction, Title } from 'components/text';
+import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
-import { TextCard } from 'types/tdr';
+import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
 import { DrawingEntry } from './utils/types';
+import { useGuessing } from './utils/useGuessing';
 import { EvaluationRules } from './components/RulesBlobs';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
 import { EvaluationAllSubjects } from './components/EvaluationAllSubjects';
 import { EvaluationAllDescriptors } from './components/EvaluationAllDescriptors';
-import { Container } from 'components/general/Container';
-import { useGuessing } from './utils/useGuessing';
 
 type StepEvaluateProps = {
   user: GamePlayer;

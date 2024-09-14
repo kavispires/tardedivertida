@@ -1,3 +1,4 @@
+// Types
 import { TextCard } from 'types/tdr';
 
 export const getTitle = (
