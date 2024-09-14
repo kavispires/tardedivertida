@@ -1,14 +1,16 @@
 // Types
-import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry } from '../utils/types';
 import type { GamePlayers } from 'types/player';
 // Icons
-import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 import { BoxEqualIcon } from 'icons/BoxEqualIcon';
+import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
+// Internal
+import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry } from '../utils/types';
 import { ObjectCard } from './ObjectCard';
 import { ObjectFeature } from './ObjectFeature';
+import { ScoreTrack } from './ScoreTrack';
 
 type FinalGalleryEntryProps = {
   entry: MesmiceGalleryEntry;
@@ -32,6 +34,7 @@ export function FinalGalleryEntry({ entry, features, players }: FinalGalleryEntr
           <IconAvatar icon={<BoxEqualIcon />} size="small" />
         </div>
         <ObjectFeature feature={features[entry.featureId]} width={48} />
+        <ScoreTrack history={entry.history} hideInstructions />
       </div>
     </div>
   );

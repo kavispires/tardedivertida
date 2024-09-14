@@ -11,12 +11,12 @@ import { Translate } from 'components/language';
 export function BlurOptions() {
   const { message } = App.useApp();
   const { blurCard } = useBlurCards();
-  const baseUrl = useTDBaseUrl('tdi-data');
+  const baseUrl = useTDBaseUrl('resources');
 
   const { isLoading, isError, data } = useQuery({
     queryKey: ['credo'],
     queryFn: async () => {
-      const response = await fetch(`${baseUrl}/credo.json`);
+      const response = await fetch(`${baseUrl}/images-credo.json`);
       return await response.json();
     },
   });

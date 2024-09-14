@@ -1,6 +1,5 @@
-// Type
+// Internal
 import type { ResultComponentProps } from '../utils/types';
-// Components
 import { WinningCount } from './WinningCount';
 import { FallbackComponent } from './FallbackComponent';
 import { ResultArteRuim } from './Results/ResultArteRuim';
@@ -20,6 +19,8 @@ import { ResultLabirintoSecreto } from './Results/ResultLabirintoSecreto';
 import { ResultPalhetaDeCores } from './Results/ResultPalhetaDeCores';
 import { ResultQuemNaoMata } from './Results/ResultQuemNaoMata';
 import { ResultWhoSaidThis } from './Results/ResultWhoSaidThis';
+import { ResultCrimesHediondos } from './Results/ResultCrimesHediondos';
+// Type
 
 export const ResultValueDelegator = (props: ResultComponentProps) => {
   const ResultComponent =
@@ -27,7 +28,7 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
       'arte-ruim': ResultArteRuim,
       'comunicacao-alienigena': ResultComunicacaoAlienigena,
       'contadores-historias': ResultImage,
-      'crimes-hediondos': ResultImage,
+      'crimes-hediondos': ResultCrimesHediondos,
       'cruza-palavras': ResultCruzaPalavras,
       'detetives-imaginativos': ResultImage,
       'dilema-dos-esquiadores': ResultText,

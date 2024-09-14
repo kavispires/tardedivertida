@@ -21,7 +21,7 @@ type PhaseAnnouncementBasicProps = {
    */
   title: ReactNode;
   /**
-   * The icon displayed to illustrate the phase (default: MultitaskIcon)
+   * The icon displayed to illustrate the phase
    */
   icon: ReactNode;
   /**

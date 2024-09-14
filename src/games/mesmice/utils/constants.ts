@@ -1,3 +1,8 @@
+export const MESMICE_ACTIONS = {
+  SUBMIT_OBJECT: 'SUBMIT_OBJECT',
+  SUBMIT_OBJECT_FEATURE: 'SUBMIT_OBJECT_FEATURE',
+} as const;
+
 export const MESMICE_PHASES = {
   LOBBY: 'LOBBY',
   RULES: 'RULES',
@@ -6,4 +11,11 @@ export const MESMICE_PHASES = {
   OBJECT_FEATURE_ELIMINATION: 'OBJECT_FEATURE_ELIMINATION',
   RESULT: 'RESULT',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
+
+export const OUTCOME = {
+  NEW: 'NEW',
+  CONTINUE: 'CONTINUE',
+  WIN: 'WIN',
+  LOSE: 'LOSE',
+} as const;

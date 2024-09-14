@@ -54,7 +54,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -68,7 +68,7 @@ export const getNextPhase = async (
   gameId: GameId,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -79,37 +79,37 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === RETRATO_FALADO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getMonsterCards();
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> COMPOSITE_SKETCH
   if (nextPhase === RETRATO_FALADO_PHASES.COMPOSITE_SKETCH) {
     const newPhase = await prepareCompositeSketchPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // COMPOSITE_SKETCH -> EVALUATION
   if (nextPhase === RETRATO_FALADO_PHASES.EVALUATION) {
     const newPhase = await prepareEvaluationPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // EVALUATION -> REVEAL
   if (nextPhase === RETRATO_FALADO_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // REVEAL -> GAME_OVER
   if (nextPhase === RETRATO_FALADO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -136,6 +136,6 @@ export const submitAction = async (data: RetratoFaladoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

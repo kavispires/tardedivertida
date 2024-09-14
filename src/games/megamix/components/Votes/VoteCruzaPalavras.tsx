@@ -1,7 +1,7 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
 // Components
 import { Avatar } from 'components/avatars';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {

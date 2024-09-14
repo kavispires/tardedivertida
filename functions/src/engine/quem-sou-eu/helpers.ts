@@ -11,10 +11,14 @@ import { FirebaseStoreData, QuemSouEuAchievement } from './types';
  * @param isGameOver
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
+export const determineNextPhase = (currentPhase: string, round: Round, imageCardsMode: boolean): string => {
   const { RULES, SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS, GAME_OVER } =
     QUEM_SOU_EU_PHASES;
   const order = [RULES, SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS];
+
+  if (currentPhase === SETUP) {
+    return imageCardsMode ? CHARACTER_DESCRIPTION : CHARACTER_FILTERING;
+  }
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CHARACTER_DESCRIPTION;

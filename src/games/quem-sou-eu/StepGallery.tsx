@@ -1,27 +1,28 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { UseStep } from 'hooks/useStep';
-import type { Characters, GalleryEntry } from './utils/types';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { PAGE_DURATION } from './utils/constants';
 import { getAvatarColorById } from 'utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { Title } from 'components/text';
 import { PopoverRule } from 'components/rules';
 import { SlideShow } from 'components/slide-show';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+// Internal
+import type { Characters, GalleryEntry } from './utils/types';
+import { PAGE_DURATION } from './utils/constants';
 import { ScoringRules } from './components/RulesBlobs';
-import { AvatarName } from 'components/avatars';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
-import { CharacterCard } from 'components/cards/CharacterCard';
 import { GalleryGuesses } from './components/GalleryGuesses';
+import { Card } from './components/Card';
 
 type StepGalleryProps = {
   players: GamePlayers;
@@ -32,6 +33,7 @@ type StepGalleryProps = {
   setStep: UseStep['setStep'];
   isFirstGalleryRunThrough: boolean;
   round: GameRound;
+  imageCardMode: boolean;
 };
 
 export function StepGallery({
@@ -43,6 +45,7 @@ export function StepGallery({
   setStep,
   isFirstGalleryRunThrough,
   round,
+  imageCardMode,
 }: StepGalleryProps) {
   useTemporarilyHidePlayersBar();
   const glyphWidth = useCardWidth(20, {
@@ -85,7 +88,7 @@ export function StepGallery({
             <AvatarName player={currentPlayer} size="large" />
           </div>
           <Space className="space-container" direction="vertical">
-            <CharacterCard character={characters[characterId]} size={characterWidth} />
+            <Card character={characters[characterId]} width={characterWidth} imageCardMode={imageCardMode} />
             <PlayerGlyphs player={currentPlayer} glyphWidth={glyphWidth} />
           </Space>
         </div>
@@ -98,6 +101,7 @@ export function StepGallery({
           currentColor={currentColor}
           currentPlayer={currentPlayer}
           round={round}
+          imageCardMode={imageCardMode}
         />
       </SlideShow>
     </Step>

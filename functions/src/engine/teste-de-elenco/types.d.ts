@@ -1,4 +1,4 @@
-import { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import { Item, MovieCard, SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 import { TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_ACTIONS } from './constants';
 
 export type TesteDeElencoOptions = {
@@ -37,17 +37,21 @@ export type MovieGenre = {
 
 export type Movie = {
   id: string;
-  title: DualLanguageValue;
+  movieTitle: string;
+  movieProps: Item[];
+  genre: DualLanguageValue;
   roles: Collection<ActingRole>;
   rolesOrder: string[];
 };
 
 export interface ResourceData {
+  moviesSamples: MovieCard[];
+  itemsSamples: Item[];
   allCards: TestimonyQuestionCard[];
   allActors: SuspectCard[];
 }
 
-export interface TesteDeElencoStore extends DefaultStore {
+export interface TesteDeElencoStore extends DefaultStore<TesteDeElencoOptions> {
   traits: string[];
   actors: SuspectCard[];
   [key: string]: any;

@@ -6,7 +6,8 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import { addAlienItems, addSpecial, calculateResults, getAchievements } from './helpers';
+import { addItems, addSpecial, calculateResults, getAchievements } from './helpers';
+import { savedData } from './data';
 
 /**
  * Setup
@@ -34,25 +35,25 @@ export const prepareSetupPhase = async (
   const { items, decks } = resourceData;
 
   // Round 1 is always items
-  addAlienItems(items, CARDS_PER_NORMAL_ROUND, round1);
+  addItems(items, CARDS_PER_NORMAL_ROUND, round1);
 
   // Round 2 is special or alien items
   if (decks[0]) {
     addSpecial(resourceData[decks[0]], CARDS_PER_NORMAL_ROUND, round2, decks[0]);
   } else {
-    addAlienItems(items, CARDS_PER_NORMAL_ROUND, round2);
+    addItems(items, CARDS_PER_NORMAL_ROUND, round2);
   }
 
   // Round 3 is special if there are 3 special rounds, otherwise use this on round 4
   if (decks.length < 3 || decks.length === 2) {
-    addAlienItems(items, CARDS_PER_HARD_ROUND, round3);
+    addItems(items, CARDS_PER_HARD_ROUND, round3);
   } else {
     addSpecial(resourceData[decks[1]], CARDS_PER_HARD_ROUND, round3, decks[1]);
   }
 
   // Round 4
   if (decks.length < 2) {
-    addAlienItems(items, CARDS_PER_HARD_ROUND, round4);
+    addItems(items, CARDS_PER_HARD_ROUND, round4);
   } else {
     const index = decks.length - 1;
     addSpecial(resourceData[decks[index]], CARDS_PER_HARD_ROUND, round4, decks[index]);
@@ -156,7 +157,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.DUETOS,
@@ -170,14 +171,14 @@ export const prepareGameOverPhase = async (
 
   const gallery = store.gallery;
 
-  // Save data (contenderIds, contendersGlyphs)
-  // await saveData(store.contendersGlyphs ?? {});
+  // Save data (pairs)
+  await savedData(store.contendersGlyphs ?? {});
 
   utils.players.cleanup(players, []);
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

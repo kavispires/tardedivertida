@@ -1,19 +1,20 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { useOnSubmitPairsAPIRequest } from './utils/api-requests';
 // Icons
 import { SocksIcon } from 'icons/SocksIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { RoundAnnouncement } from 'components/round';
+// Internal
+import { useOnSubmitPairsAPIRequest } from './utils/api-requests';
 import { MadePairs } from './components/MadePairs';
 import { StepMakePairs } from './StepMakePairs';
 

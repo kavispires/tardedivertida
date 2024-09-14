@@ -1,7 +1,7 @@
 import { AlienItem } from '../../types/tdr';
 import { COMUNICACAO_ALIENIGENA_ACHIEVEMENTS, COMUNICACAO_ALIENIGENA_ACTIONS, ITEM_TYPES } from './constants';
 
-export interface ComunicacaoAlienigenaOptions {
+export type ComunicacaoAlienigenaOptions = {
   /**
    * Possibly include nsfw items
    */
@@ -18,7 +18,7 @@ export interface ComunicacaoAlienigenaOptions {
    * Enables debug mode
    */
   debugMode?: boolean;
-}
+};
 
 export type ItemId = string;
 export type SignId = string;
@@ -37,6 +37,7 @@ export interface Item {
   offerings: PlayerId[];
   offered?: boolean;
   inquired?: number;
+  name?: DualLanguageValue;
 }
 
 export interface Offer {
@@ -57,6 +58,10 @@ export interface Sign {
    * Attribute name
    */
   attribute: DualLanguageValue;
+  /**
+   * Attribute description
+   */
+  description?: DualLanguageValue;
 }
 
 export interface InquiryHistoryEntry {
@@ -84,7 +89,7 @@ export interface OfferingsStatus {
 
 export type ComunicacaoAlienigenaAchievement = keyof typeof COMUNICACAO_ALIENIGENA_ACHIEVEMENTS;
 
-export interface ComunicacaoAlienigenaStore extends DefaultStore {
+export interface ComunicacaoAlienigenaStore extends DefaultStore<ComunicacaoAlienigenaOptions> {
   [key: string]: any;
   botAlienItemKnowledge: Record<ItemId, AlienItem>;
   botAlienSignKnowledge: Record<SignKey, ItemId[]>;

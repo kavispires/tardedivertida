@@ -1,7 +1,8 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
+// Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteOndaTelepatica({ playersList }: VoteComponentProps) {

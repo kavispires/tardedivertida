@@ -1,6 +1,6 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/player';
 import { GroupQuestionCard, SpectrumCard, TextCard } from 'types/tdr';
 
 export type Track = {

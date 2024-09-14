@@ -21,7 +21,7 @@ export const handlePlayCard = async (
 ) => {
   const actionText = 'play a card';
 
-  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -33,7 +33,7 @@ export const handlePlayCard = async (
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  await utils.firebase.updatePlayer({
+  await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -89,7 +89,7 @@ export const handlePlayCard = async (
 export const handleDefend = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {
   const actionText = 'defend';
 
-  const { sessionRef, state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -132,7 +132,7 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -157,7 +157,7 @@ export const handleSubmitClue = async (
   playerId: PlayerId,
   clue: string
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,

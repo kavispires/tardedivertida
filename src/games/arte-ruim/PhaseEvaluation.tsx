@@ -1,21 +1,22 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { StepEvaluation } from './StepEvaluation';
-import { EvaluationRules } from './components/TextBlobs';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
 import { ViewIf } from 'components/views';
+// Internal
+import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
+import { EvaluationRules } from './components/TextBlobs';
+import { EvaluatedDrawings } from './components/EvaluatedDrawings';
+import { StepEvaluation } from './StepEvaluation';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);

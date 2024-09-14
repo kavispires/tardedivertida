@@ -7,28 +7,22 @@ export type CruzaPalavrasOptions = {
    */
   largerGrid: boolean;
   /**
-   * Uses things-properties data instead of words
+   * Determines the source of the grid headers
    */
-  propertiesGrid?: boolean;
+  gridType: 'words' | 'properties' | 'contenders' | 'imageCards' | 'items';
   /**
-   * Uses contenders instead of words
+   * Allow nsfw content
    */
-  contenderGrid?: boolean;
-  /**
-   * Use image cards instead of words
-   */
-  imageGrid?: boolean;
-  /**
-   * Possibly include nsfw images
-   */
-  nsfw?: boolean;
+  nsfw: boolean;
 };
+
+export type TextCardWithType = TextCard & { type?: string };
+
+export type Deck = TextCardWithType[];
 
 export type ResourceData = {
-  deck: TextCard[];
+  deck: Deck;
 };
-
-export type Deck = TextCard[];
 
 export type PastClues = Collection<string[]>;
 
@@ -54,9 +48,9 @@ export type GridCell = {
 
 export type CruzaPalavrasAchievement = keyof typeof CRUZA_PALAVRAS_ACHIEVEMENTS;
 
-export interface CruzaPalavrasStore extends DefaultStore {
-  deck?: Deck;
-  pastClues?: PastClues;
+export interface CruzaPalavrasStore extends DefaultStore<CruzaPalavrasOptions> {
+  deck: Deck;
+  pastClues: PastClues;
   [key: string]: any;
 }
 
@@ -73,5 +67,5 @@ export interface CruzaPalavrasSubmitAction extends Payload {
   action: keyof typeof CRUZA_PALAVRAS_ACTIONS;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | CruzaPalavrasState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | CruzaPalavrasStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & CruzaPalavrasState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & CruzaPalavrasStore;

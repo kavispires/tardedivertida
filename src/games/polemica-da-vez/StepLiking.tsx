@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
 import clsx from 'clsx';
-//Design Resources
+import { useMemo, useState } from 'react';
+// Ant Design Resources
 import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
@@ -10,15 +10,17 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { Tweet } from './components/Tweet';
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
-import { IconAvatar } from 'components/avatars';
+// Internal
+import { Tweet } from './components/Tweet';
+//Design Resources
 
 type StepLikingProps = {
   currentTweet: TextCard;

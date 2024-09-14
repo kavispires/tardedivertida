@@ -5,10 +5,6 @@ export type ContadoresHistoriasOptions = {
    * Each player goes one or twice
    */
   fixedRounds: boolean;
-  /**
-   * Use original image decks only
-   */
-  allImageDecks: boolean;
 };
 
 export interface ResourceData {

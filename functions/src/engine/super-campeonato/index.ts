@@ -63,14 +63,14 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -86,7 +86,7 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === SUPER_CAMPEONATO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getResourceData(
@@ -95,44 +95,44 @@ export const getNextPhase = async (
       !!store.options?.nsfw
     );
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // * -> CHALLENGE_SELECTION
   if (nextPhase === SUPER_CAMPEONATO_PHASES.CHALLENGE_SELECTION) {
     const newPhase = await prepareChallengeSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CHALLENGE_SELECTION -> CONTENDER_SELECTION
   if (nextPhase === SUPER_CAMPEONATO_PHASES.CONTENDER_SELECTION) {
     const newPhase = await prepareContenderSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CONTENDER_SELECTION -> BETS
   if (nextPhase === SUPER_CAMPEONATO_PHASES.BETS) {
     const newPhase = await prepareBetsPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // * -> BATTLE
   if (nextPhase === SUPER_CAMPEONATO_PHASES.BATTLE) {
     const newPhase = await prepareBattlePhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // * -> RESULTS
   if (nextPhase === SUPER_CAMPEONATO_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESULTS --> GAME_OVER
   if (nextPhase === SUPER_CAMPEONATO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -162,6 +162,6 @@ export const submitAction = async (data: SuperCampeonatoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit bets');
       return handleSubmitVotes(gameName, gameId, playerId, data.votes);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

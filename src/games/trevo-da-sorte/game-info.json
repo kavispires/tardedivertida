@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
-  "version": "beta",
+  "version": "none",
   "title": {
     "pt": "Trevo da Sorte",
     "en": "Clover Words"
@@ -49,6 +49,22 @@
   },
   "tags": ["cooperative", "guessing", "writing", "brain-burner"],
   "cooperative": true,
-  "available": true,
-  "options": [{ "label": "Difficulty", "key": "hardGame", "off": "Normal", "on": "Hard" }]
+  "available": false,
+  "options": [
+    {
+      "key": "hardGame",
+      "kind": "switch",
+      "label": "Difficulty",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "Hard",
+          "value": true
+        }
+      ]
+    }
+  ]
 }

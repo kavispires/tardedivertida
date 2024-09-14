@@ -1,3 +1,4 @@
+// Components
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction } from 'components/text';
 

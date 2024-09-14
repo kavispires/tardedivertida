@@ -10,6 +10,7 @@ import {
   MovieGenre,
   TesteDeElencoAchievement,
 } from './types';
+import { Item } from '../../types/tdr';
 
 /**
  * Determine the next phase based on the current one
@@ -47,24 +48,45 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
  * @param players
  * @returns
  */
-const determineMovieGenre = (players: Players): MovieGenre => {
-  const votes = utils.players.getRankedVotes(players, 'genre', true);
+const determineMovieVotes = (
+  players: Players
+): { genre: MovieGenre; movieTitle: string; selectedProps: string[] } => {
+  const genreVotes = utils.players.getRankedVotes(players, 'genre', true);
+  const genreKey = utils.game.getRandomItem(genreVotes).value;
+  const genre = GENRES[genreKey];
 
-  const genreKey = utils.game.getRandomItem(votes).value;
+  const movieTitle = utils.game.getRandomItem(
+    utils.players.getRankedVotes(players, 'movieTitle', true)
+  ).value;
 
-  return GENRES[genreKey];
+  const selectedProps = utils.players.getListOfPlayers(players).reduce((acc: string[], player) => {
+    if (player.selectedProps) {
+      acc = utils.game.removeDuplicates([...acc, ...player.selectedProps]);
+    }
+    return acc;
+  }, []);
+
+  return {
+    genre,
+    movieTitle,
+    selectedProps,
+  };
 };
 
 export const determineCastingOrder = (movie: MovieGenre): string[] => {
   return movie.roles.map((role) => role.id).reverse();
 };
 
-export const buildMovie = (players: Players, store: FirebaseStoreData): Movie => {
-  const genre = determineMovieGenre(players);
+export const buildMovie = (players: Players, store: FirebaseStoreData, movieProps: Item[]): Movie => {
+  const { genre, selectedProps, movieTitle } = determineMovieVotes(players);
 
   const movie: Movie = {
     id: genre.id,
-    title: genre.title,
+    genre: genre.title,
+    movieTitle,
+    movieProps: selectedProps
+      .map((propId) => movieProps.find((item) => item.id === propId))
+      .filter(Boolean) as Item[],
     roles: {},
     rolesOrder: determineCastingOrder(genre),
   };

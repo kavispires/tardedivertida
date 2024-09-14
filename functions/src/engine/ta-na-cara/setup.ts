@@ -253,7 +253,7 @@ export const prepareGameOverPhase = async (
 
   const gallery = store.usedCharacters.reverse();
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.TA_NA_CARA,

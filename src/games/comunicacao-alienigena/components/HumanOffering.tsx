@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Item, OfferingsStatus, Sign } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { RuleInstruction } from 'components/text';
+// Internal
+import type { Item, OfferingsStatus, Sign } from '../utils/types';
 import { CurseItemHighlight, ItemsHighlight } from './Highlights';
 import { HumanSignBoard } from './HumanSignBoard';
 import { SelectableObjectsGrid } from './SelectableObjectsGrid';
@@ -83,6 +84,7 @@ export function HumanOffering({
           selectObject={setSelected}
           user={user}
           maxObjects={2}
+          status={status}
         />
         <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
       </Space>

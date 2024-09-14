@@ -1,24 +1,25 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitOrderingAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { BarChartIcon } from 'icons/BarChartIcon';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { TurnOrder } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitOrderingAPIRequest } from './utils/api-requests';
+import { FirstRoundIntroduction } from './components/RulesExplanation';
 import { StepOrderScenarios } from './StepOrderScenarios';
 import { StepJudgeScenarios } from './StepJudgeScenarios';
-import { FirstRoundIntroduction } from './components/RulesExplanation';
 
 export function PhaseOrdering({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep();

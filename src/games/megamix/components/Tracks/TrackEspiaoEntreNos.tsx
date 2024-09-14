@@ -1,18 +1,17 @@
 import { useState } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Input, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockText } from '../../utils/mock';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockText } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackEspiaoEntreNos = ({ track, round, onSubmitAnswer, user }: TrackProps) => {

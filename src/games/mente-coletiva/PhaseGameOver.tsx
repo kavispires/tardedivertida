@@ -3,9 +3,6 @@ import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 import type { GamePlayer } from 'types/player';
-import type { GalleryEntry } from './utils/types';
-// Utils
-import { achievementsReference } from './utils/achievements';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
@@ -13,6 +10,9 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+// Internal
+import type { GalleryEntry } from './utils/types';
+import { achievementsReference } from './utils/achievements';
 import { SheepAvatar } from './components/SheepAvatar';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {

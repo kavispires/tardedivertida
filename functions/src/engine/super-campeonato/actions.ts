@@ -17,7 +17,7 @@ export const handleSubmitChallenge = async (
   playerId: PlayerId,
   challengeId: CardId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -42,7 +42,7 @@ export const handleSubmitContenders = async (
   playerId: PlayerId,
   contendersId: CardId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -71,7 +71,7 @@ export const handleSubmitBets = async (
   semi: string,
   final: string
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -96,7 +96,7 @@ export const handleSubmitVotes = async (
   playerId: PlayerId,
   votes: NumberDictionary
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

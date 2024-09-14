@@ -1,0 +1,35 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "S",
+  "gameName": "vice-campeao",
+  "version": "planned",
+  "title": {
+    "pt": "Vice-Campeão",
+    "en": "Runner-Up"
+  },
+  "popularName": {
+    "pt": "o do segundo lugar",
+    "en": "the one of the second place"
+  },
+  "basedOn": "?tsrif yhW",
+  "summary": {
+    "pt": "Tente ser o segundo colocado sempre",
+    "en": "Try to be the runner-up always"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["competitive", "same-time"],
+  "available": false
+}

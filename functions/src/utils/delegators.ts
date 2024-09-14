@@ -26,12 +26,14 @@ import * as quemSouEuEngine from '../engine/quem-sou-eu';
 import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from '../engine/super-campeonato';
 import * as taNaCaraEngine from '../engine/ta-na-cara';
+import * as teoriaDeConjuntos from '../engine/teoria-de-conjuntos';
 import * as testemunhaOcularEngine from '../engine/testemunha-ocular';
 import * as testeDeElencoEngine from '../engine/teste-de-elenco';
 import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
 import * as vamosAoCinemaEngine from '../engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
+import * as sinaisDeAlertaEngine from '../engine/sinais-de-alerta';
 
 const engines = {
   [GAME_NAMES.ADEDANHX]: adedanhxEngine,
@@ -58,9 +60,11 @@ const engines = {
   [GAME_NAMES.QUEM_SOU_EU]: quemSouEuEngine,
   [GAME_NAMES.PORTA_DOS_DESESPERADOS]: portadosDesesperadosEngine,
   [GAME_NAMES.RETRATO_FALADO]: retratoFaladoEngine,
+  [GAME_NAMES.SINAIS_DE_ALERTA]: sinaisDeAlertaEngine,
   [GAME_NAMES.SONHOS_PESADELOS]: sonhosPesadelosEngine,
   [GAME_NAMES.SUPER_CAMPEONATO]: superCampeonatoEngine,
   [GAME_NAMES.TA_NA_CARA]: taNaCaraEngine,
+  [GAME_NAMES.TEORIA_DE_CONJUNTOS]: teoriaDeConjuntos,
   [GAME_NAMES.TESTEMUNHA_OCULAR]: testemunhaOcularEngine,
   [GAME_NAMES.TESTE_DE_ELENCO]: testeDeElencoEngine,
   [GAME_NAMES.TREVO_DA_SORTE]: trevoDaSorteEngine,
@@ -70,9 +74,11 @@ const engines = {
 };
 
 /**
+ * Retrieves the engine for a given game name.
  *
- * @param gameName
- * @returns
+ * @param gameName - The name of the game.
+ * @returns The engine associated with the game name.
+ * @throws Error if the collection for the game name does not exist.
  */
 export const getEngine = (gameName: string): Engine => {
   const engine = engines?.[gameName];

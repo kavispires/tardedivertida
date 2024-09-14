@@ -1,9 +1,10 @@
 import { orderBy } from 'lodash';
 // Types
 import { CrimesHediondosCard } from 'types/tdr';
-import type { GuessHistoryEntry, History, ItemsDict } from '../utils/types';
 // Utils
 import { getLastItem } from 'utils/helpers';
+// Internal
+import type { GuessHistoryEntry, History, ItemsDict } from '../utils/types';
 
 type SplitWeaponsAndEvidence = {
   weapons: CrimesHediondosCard[];

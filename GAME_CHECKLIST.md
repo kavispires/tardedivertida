@@ -7,6 +7,7 @@ Legend
 - ❌ No
 - 🟡 Some
 - ⛔️ Impossible/Won't happen
+- ⏹ Non-applicable
 - ✴️ Needs work/fix/refactor
 
 ## Arte Ruim Pra Dedéu
@@ -67,12 +68,12 @@ Legend
 - Code: `?`
 - Availability: ✅
 - Rating: ⭐⭐⭐⭐
-- Rules: ❌
-- Achievements: ❌
+- Rules: ✅
+- Achievements: ✅
 - Overlaid Phase Announcements: ✅
 - Bots: ✅
 - Game Over flavor: ✅
-- Custom Clouds: 🔘
+- Custom Clouds: ✅
 
 ## Contadores de Histórias
 

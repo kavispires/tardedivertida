@@ -1,11 +1,11 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
-import { ImageBlurButtonContainer } from 'components/image-cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
+import { ImageBlurButtonContainer } from 'components/image-cards';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteCharacterTrack({ playersList }: VoteComponentProps) {

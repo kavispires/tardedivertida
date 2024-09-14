@@ -1,19 +1,20 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRanking, GameRound } from 'types/game';
-import type { CardEntry } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { HostNextPhaseButton } from 'components/host';
 import { AvatarName } from 'components/avatars';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { StepRankingWrapper } from 'components/ranking';
+import { Step, type StepProps } from 'components/steps';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
+// Internal
+import type { CardEntry } from './utils/types';
 import { TableFocus } from './components/TableFocus';
 import { VotingOptions } from './components/VotingOptions';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps';
 
 type StepRevealProps = {
   impostor: GamePlayer;

@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-// Utils
-import { ALIEN_CANVAS } from '../utils/constants';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { SignCard } from 'components/cards/SignCard';
+// Internal
+import { ALIEN_CANVAS } from '../utils/constants';
 
 type AlienViewBoardProps = {
   request: string | string[];

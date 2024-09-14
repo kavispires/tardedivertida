@@ -1,15 +1,15 @@
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { Bracket } from './utils/type';
 // Hooks
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockBets } from './utils/mock';
 // Components
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { Bracket } from './utils/type';
+import { mockBets } from './utils/mock';
 import { Brackets } from './components/Brackets';
 import { BetsForm } from './components/BetsForm';
 import { Challenge } from './components/Challenge';

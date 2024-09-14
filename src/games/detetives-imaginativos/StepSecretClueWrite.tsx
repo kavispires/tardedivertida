@@ -7,11 +7,11 @@ import type { GamePlayer } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
+import { ImageCardHand } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { ImageCardHand } from 'components/image-cards';
-import { CardHighlight } from 'components/metrics/CardHighlight';
 
 type SecretClueWriteProps = {
   onSubmitClue: GenericFunction;

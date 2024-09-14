@@ -190,7 +190,7 @@ export const prepareGameOverPhase = async (
 
   calculateAllAchievements(players, store);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   const achievements = getAchievements(store);
 
@@ -208,7 +208,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, ['tracks']),
+      storeCleanup: utils.firestore.cleanupStore(store, ['tracks']),
     },
     set: {
       state: {

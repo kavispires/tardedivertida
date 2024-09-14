@@ -1,30 +1,31 @@
 import clsx from 'clsx';
 import { shuffle } from 'lodash';
-import { useEffectOnce } from 'react-use';
 import { useCallback, useState } from 'react';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Characters } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getEntryId, sortPlayers } from 'utils/helpers';
-import { getRibbons, prepareGuesses } from './utils/helpers';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { RibbonGroup } from 'components/ribbons';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
-import { CharacterCard } from 'components/cards/CharacterCard';
+// Internal
+import type { Characters } from './utils/types';
+import { getRibbons, prepareGuesses } from './utils/helpers';
 import { ScoringRules } from './components/RulesBlobs';
-import { RibbonGroup } from 'components/ribbons';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
+import { Card } from './components/Card';
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -33,6 +34,7 @@ type StepGuessingProps = {
   characters: Characters;
   tableOrder: CardId[];
   round: GameRound;
+  imageCardMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
@@ -43,6 +45,7 @@ export function StepGuessing({
   characters,
   tableOrder,
   round,
+  imageCardMode,
 }: StepGuessingProps) {
   const { isLoading } = useLoading();
   const glyphWidth = useCardWidth(20, {
@@ -151,10 +154,11 @@ export function StepGuessing({
                 className="q-voting-characters__button"
               >
                 <RibbonGroup labels={labels} />
-                <CharacterCard
+                <Card
                   character={characters[cardId]}
-                  size={characterWidth}
+                  width={characterWidth}
                   className={clsx(cardId === 'a' && 'q-character-player')}
+                  imageCardMode={imageCardMode}
                 />
               </TransparentButton>
             );

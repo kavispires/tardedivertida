@@ -80,6 +80,36 @@ export function CrimeItemCard({
     );
   }
 
+  // const [, cardType, itemId] = item.id.split('-');
+  // console.log('cardType', cardType);
+
+  // if (cardType && itemId) {
+  //   const ct = cardType === 'wp' ? 'weapon' : 'evidence';
+  //   const name = { pt: '', en: '' };
+  //   return (
+  //     <ImageBlurButtonContainer cardId={item.id}>
+  //       <div
+  //         className={clsx('crime-item-card', isSelected && 'crime-item-card--selected', className)}
+  //         style={activeColor && isSelected ? { borderColor: 'black', backgroundColor: activeColor } : {}}
+  //       >
+  //         <Popover content={dualTranslate(name).toUpperCase()}>
+  //           <Tag
+  //             className="crime-item-card__name"
+  //             color={ct === 'weapon' ? 'geekblue' : 'volcano'}
+  //             style={{ maxWidth: `${cardWidth}px` }}
+  //           >
+  //             <span>{isDebugEnabled ? item.id : <DualTranslate>{name}</DualTranslate>}</span>
+  //           </Tag>
+  //         </Popover>
+  //         <div className={clsx('crime-item-card__item-container', `crime-item-card__item-container--${ct}`)}>
+  //           <ItemCard id={itemId} width={cardWidth * 0.85} className="crime-item-card__item" />
+  //         </div>
+  //       </div>
+  //     </ImageBlurButtonContainer>
+  //   );
+  // }
+
+  // Fallback, not really used
   return (
     <ImageBlurButtonContainer cardId={item.id}>
       <div
@@ -95,7 +125,13 @@ export function CrimeItemCard({
             <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
           </Tag>
         </Popover>
-        <ImageCard id={item.id} cardWidth={cardWidth} className="crime-item-card__image" preview={preview} />
+        <ImageCard
+          classic
+          id={item.id}
+          cardWidth={cardWidth}
+          className="crime-item-card__image"
+          preview={preview}
+        />
       </div>
     </ImageBlurButtonContainer>
   );

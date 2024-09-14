@@ -9,7 +9,7 @@ export const handleSubmitWords = async (
   playerId: PlayerId,
   words: CardId[]
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -27,7 +27,7 @@ export const handleSubmitClue = async (
   clue: string,
   currentClueCoordinate: number
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -45,7 +45,7 @@ export const handleSubmitGuesses = async (
   guesses: StringDictionary,
   choseRandomly: boolean
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

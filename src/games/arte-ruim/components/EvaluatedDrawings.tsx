@@ -1,14 +1,16 @@
 import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { ArteRuimCard, ArteRuimDrawing } from '../utils/types';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-// Components
-import { CanvasSVG } from 'components/canvas';
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+// Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
+// Components
 import { AvatarName } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { CanvasSVG } from 'components/canvas';
+// Internal
+import type { ArteRuimCard, ArteRuimDrawing } from '../utils/types';
 
 type EvaluatedDrawingsProps = {
   votes?: StringDictionary;
@@ -23,7 +25,7 @@ type EvaluatedDrawingsProps = {
  * @returns
  */
 export function EvaluatedDrawings({ votes, cards, drawings, players }: EvaluatedDrawingsProps) {
-  const [canvasSize] = useGlobalState('canvasSize');
+  const [canvasSize] = useGlobalLocalStorage('canvasSize');
 
   const cardsDict = useMemo(
     () =>

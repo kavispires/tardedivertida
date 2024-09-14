@@ -1,21 +1,22 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useOnPlayCardAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 // Components
 import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+// Internal
+import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { StepPlayCard } from './StepPlayCard';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 export function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);

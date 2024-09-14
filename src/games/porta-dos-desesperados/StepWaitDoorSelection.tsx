@@ -4,15 +4,16 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
-import { PHASES } from 'utils/phases';
 import { NOOP, PLACEHOLDER_PLAYER } from 'utils/constants';
-import { shouldAnnounceTrap } from './utils/helpers';
-import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
+import { PHASES } from 'utils/phases';
 // Components
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import { shouldAnnounceTrap } from './utils/helpers';
+import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';

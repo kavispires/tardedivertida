@@ -1,26 +1,27 @@
 import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Image, Space } from 'antd';
 import { RadarChartOutlined } from '@ant-design/icons';
+import { Button, Image, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { useDancingDoors } from './utils/useTrapHooks';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
-import { PHASES } from 'utils/phases';
-import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
-import { shouldAnnounceTrap } from './utils/helpers';
-import { mockDoorSelection } from './utils/mock';
 import { getAnimationClass, removeDuplicates } from 'utils/helpers';
+import { PHASES } from 'utils/phases';
 // Components
 import { AvatarName } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
+// Internal
+import { useDancingDoors } from './utils/useTrapHooks';
+import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
+import { shouldAnnounceTrap } from './utils/helpers';
+import { mockDoorSelection } from './utils/mock';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';

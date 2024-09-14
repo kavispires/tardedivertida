@@ -1,4 +1,4 @@
-import { getUserRef } from './firebase';
+import { getUserRef } from './firestore';
 import { removeDuplicates } from './game-utils';
 import { getListOfPlayers } from './players-utils';
 

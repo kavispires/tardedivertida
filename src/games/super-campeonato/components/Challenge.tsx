@@ -1,4 +1,4 @@
-// Ant Design resources
+// Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
@@ -6,6 +6,7 @@ import type { TextCard } from 'types/tdr';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Card } from 'components/cards';
+// Ant Design resources
 
 type ChallengeProps = {
   challenge: TextCard;

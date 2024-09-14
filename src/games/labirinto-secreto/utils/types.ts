@@ -29,16 +29,24 @@ export interface Tree {
    */
   id: TreeId;
   /**
-   * The tree picture
+   * The tree picture (a string means an itemId)
    */
-  treeType: number;
+  treeType: number | string;
   /**
    * Text card
    */
   card: TextCard;
 }
 
-export type Direction = 'UP' | 'RIGHT' | 'DOWN' | 'LEFT';
+export type Direction =
+  | 'UP'
+  | 'RIGHT'
+  | 'DOWN'
+  | 'LEFT'
+  | 'UP_LEFT'
+  | 'UP_RIGHT'
+  | 'DOWN_LEFT'
+  | 'DOWN_RIGHT';
 
 export interface MapSegment {
   /**

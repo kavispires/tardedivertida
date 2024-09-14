@@ -1,17 +1,15 @@
-import type { SubmitFeaturePayload, SubmitObjectPayload } from './types';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
-
-const submitAction = httpsCallable(functions, 'mesmiceSubmitAction');
+// Internal
+import type { SubmitFeaturePayload, SubmitObjectPayload } from './types';
+import { MESMICE_ACTIONS } from './constants';
 
 export function useOnSubmitObjectAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-object',
     onSuccess: () => setStep(3),
     successMessage: translate('Objeto submetido com sucesso', 'Object submitted successfully'),
@@ -23,7 +21,7 @@ export function useOnSubmitObjectAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitObjectPayload) => {
     request({
-      action: 'SUBMIT_OBJECT',
+      action: MESMICE_ACTIONS.SUBMIT_OBJECT,
       ...payload,
     });
   };
@@ -32,8 +30,7 @@ export function useOnSubmitObjectAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitFeatureAPIRequest(setStep: UseStep['setStep'], errorStep: number) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-feature',
     onSuccess: () => setStep(errorStep + 1),
     onError: () => setStep(errorStep),
@@ -46,7 +43,7 @@ export function useOnSubmitFeatureAPIRequest(setStep: UseStep['setStep'], errorS
 
   return (payload: SubmitFeaturePayload) => {
     request({
-      action: 'SUBMIT_OBJECT_FEATURE',
+      action: MESMICE_ACTIONS.SUBMIT_OBJECT_FEATURE,
       ...payload,
     });
   };

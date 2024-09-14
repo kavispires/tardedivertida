@@ -1,19 +1,19 @@
 import clsx from 'clsx';
-// Types
-import type { Item } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
+import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
+import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { Card } from 'components/cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { EmojiCard } from 'components/cards/EmojiCard';
+import { GlyphCard } from 'components/cards/GlyphCard';
 import { ItemCard } from 'components/cards/ItemCard';
 import { SuspectCard } from 'components/cards/SuspectCard';
-import { ImageCard } from 'components/image-cards';
-import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
-import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
-import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
-import { GlyphCard } from 'components/cards/GlyphCard';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+// Internal
+import type { Item } from '../utils/types';
 
 type ItemEntryProps = {
   itemEntry: Item;
@@ -40,12 +40,14 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
 
   if (itemEntry.type === 'images') {
     return (
-      <ImageCard
-        id={itemEntry.value}
-        cardWidth={(looseItem ? 1.5 : 1) * 100 * sizeMultiplier}
-        className={className}
-        preview={false}
-      />
+      <ImageBlurButtonContainer cardId={itemEntry.value}>
+        <ImageCard
+          id={itemEntry.value}
+          cardWidth={(looseItem ? 1.5 : 1) * 100 * sizeMultiplier}
+          className={className}
+          preview={false}
+        />
+      </ImageBlurButtonContainer>
     );
   }
 

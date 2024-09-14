@@ -1,25 +1,25 @@
 import { Fragment, useMemo } from 'react';
 // Ant Design Resources
+import { CaretRightOutlined } from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
-// Utils
-import { achievementsReference } from './utils/achievements';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
+import { MagicCandlesIcon } from 'icons/MagicCandlesIcon';
 import { MagicCultLeaderIcon } from 'icons/MagicCultLeaderIcon';
 import { MagicSkullIcon } from 'icons/MagicSkullIcon';
-import { MagicCandlesIcon } from 'icons/MagicCandlesIcon';
 // Components
-import { Instruction, RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { GameOverWrapper } from 'components/game-over';
-import { LoseGameText } from './components/RulesBlobs';
 import { Achievements } from 'components/general/Achievements';
-import { DoorFrame } from '../../components/game/DoorFrame';
 import { ImageCard } from 'components/image-cards';
-import { CaretRightOutlined } from '@ant-design/icons';
+import { Translate } from 'components/language';
+import { Instruction, RuleInstruction, Title } from 'components/text';
+// Internal
+import { achievementsReference } from './utils/achievements';
+import { LoseGameText } from './components/RulesBlobs';
+import { DoorFrame } from '../../components/game/DoorFrame';
 
 export function PhaseGameOver({ players, state, info }: PhaseProps) {
   const isVictory = state.winCondition === 'WIN';

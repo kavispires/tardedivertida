@@ -11,7 +11,6 @@ export function DevMenu() {
     { label: 'Icons', value: '/dev/icons', disabled: pathname === '/dev/icons' },
     { label: 'Colors', value: '/dev/colors', disabled: pathname === '/dev/colors' },
     { label: 'Sprites', value: '/dev/sprites', disabled: pathname === '/dev/sprites' },
-    { label: 'Resources', value: '/dev/resources', disabled: pathname === '/dev/resources' },
     { label: 'Playground', value: '/dev/playground', disabled: pathname === '/dev/playground' },
     { label: 'Showcase', value: '/showcase', disabled: pathname === '/showcase' },
   ];

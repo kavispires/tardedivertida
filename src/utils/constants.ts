@@ -120,6 +120,15 @@ export const TAG_DICT: Record<
     index: 7,
     group: 'actions',
   },
+  puzzle: {
+    label: {
+      en: 'puzzle',
+      pt: 'quebra-cabeça',
+    },
+    color: 'geekblue',
+    index: 8,
+    group: 'actions',
+  },
   // About Feeling inducing
   'push-your-luck': {
     label: {
@@ -233,14 +242,6 @@ export const LATEST_GAME_IDS: string = 'latestGameIds';
 
 export const NOOP = () => {};
 
-export const ADMIN_ACTIONS = {
-  GO_TO_NEXT_PHASE: 'GO_TO_NEXT_PHASE',
-  FORCE_STATE_PROPERTY: 'FORCE_STATE_PROPERTY',
-  PLAY_AGAIN: 'PLAY_AGAIN',
-  FORCE_END_GAME: 'FORCE_END_GAME',
-  RESET_GAME: 'RESET_GAME',
-};
-
 /**
  * Enum of available games
  */
@@ -276,9 +277,11 @@ export const GAME_COLLECTION = {
   QUEM_NAO_MATA: 'quem-nao-mata',
   QUEM_SOU_EU: 'quem-sou-eu',
   RETRATO_FALADO: 'retrato-falado',
+  SINAIS_DE_ALERTA: 'sinais-de-alerta',
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   SUPER_CAMPEONATO: 'super-campeonato',
   TA_NA_CARA: 'ta-na-cara',
+  TEORIA_DE_CONJUNTOS: 'teoria-de-conjuntos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   TESTE_DE_ELENCO: 'teste-de-elenco',
   TREVO_DA_SORTE: 'trevo-da-sorte',
@@ -316,4 +319,4 @@ export const PLACEHOLDER_PLAYER: GamePlayer = {
 
 export const VIEWER_ID = '$viewer$';
 
-export const TOTAL_ALIEN_ITEMS = '1384';
+export const TOTAL_ALIEN_ITEMS = '1418';

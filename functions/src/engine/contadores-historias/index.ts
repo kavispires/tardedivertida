@@ -64,14 +64,14 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -84,13 +84,13 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getData(utils.players.getPlayerCount(players), store.options.allImageDecks);
+    const additionalData = await getData(utils.players.getPlayerCount(players));
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
 
     return getNextPhase(gameName, gameId);
   }
@@ -98,31 +98,31 @@ export const getNextPhase = async (
   // * -> STORY
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.STORY) {
     const newPhase = await prepareStoryPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // STORY -> CARD_PLAY
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.CARD_PLAY) {
     const newPhase = await prepareCardPlayPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CARD_PLAY -> VOTING
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.VOTING) {
     const newPhase = await prepareVotingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // VOTING -> RESOLUTION
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -148,6 +148,6 @@ export const submitAction = async (data: ContadoresHistoriasSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "1.0.13",
+  "version": "2.0.8",
   "title": {
     "pt": "Eu Não Sou Um Robô",
     "en": "I'm Not A Robot"
@@ -17,7 +17,7 @@
     "en": "Find the bot among the images"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "captcha-clouds",
     "color": "",
     "backgroundColor": ""
   },

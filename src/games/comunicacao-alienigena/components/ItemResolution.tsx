@@ -1,14 +1,13 @@
-// Types
-import type { Item } from '../utils/types';
-// Utils
-import { ITEM_TYPES } from '../utils/constants';
 // Icons
-import { BoxOneIcon } from 'icons/BoxOneIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { BoxMinusIcon } from 'icons/BoxMinusIcon';
+import { BoxOneIcon } from 'icons/BoxOneIcon';
 // Components
-import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language';
+// Internal
+import type { Item } from '../utils/types';
+import { ITEM_TYPES } from '../utils/constants';
 
 type ItemResolutionProps = {
   itemId: CardId;
@@ -21,7 +20,7 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
   if (item?.type === ITEM_TYPES.CURSE) {
     return (
       <div>
-        <IconAvatar icon={<BoxXIcon />} size="small" /> <Translate pt="Amaldiçoado" en="Cursed" />
+        <IconAvatar icon={<BoxMinusIcon />} size="small" /> <Translate pt="Amaldiçoado" en="Cursed" />
       </div>
     );
   }

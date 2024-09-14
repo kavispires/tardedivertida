@@ -3,21 +3,22 @@ import { useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRanking, GameRound } from 'types/game';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Pasture } from './components/Pasture';
-import { RoundType } from './components/RoundType';
-import { Step, type StepProps, StepSwitcher } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
-import { HostNextPhaseButton } from 'components/host';
+import { Step, type StepProps, StepSwitcher } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+// Internal
+import { Pasture } from './components/Pasture';
+import { RoundType } from './components/RoundType';
 
 type StepResolutionProps = {
   ranking: GameRanking;

@@ -1,19 +1,20 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { ScaredIcon } from 'icons/ScaredIcon';
 import { HouseIcon } from 'icons/HouseIcon';
+import { ScaredIcon } from 'icons/ScaredIcon';
 // Components
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+// Internal
 import { StepStreetEnd } from './StepStreetEnd';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 export function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);

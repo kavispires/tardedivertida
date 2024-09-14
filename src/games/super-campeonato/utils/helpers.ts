@@ -1,5 +1,5 @@
 import { orderBy } from 'lodash';
-// Types
+// Internal
 import type { Bet, Bracket, BracketTier, ContenderByTier, FightingContender } from './type';
 
 /**

@@ -1,17 +1,15 @@
-import type { SubmitScenarioOrderPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'fileiraDeFatosSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitScenarioOrderPayload } from './types';
+import { FILEIRA_DE_FATOS_ACTIONS } from './constants';
 
 export function useOnSubmitOrderingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-order',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -24,7 +22,7 @@ export function useOnSubmitOrderingAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitScenarioOrderPayload) => {
     request({
-      action: 'SUBMIT_SCENARIO_ORDER',
+      action: FILEIRA_DE_FATOS_ACTIONS.SUBMIT_SCENARIO_ORDER,
       ...payload,
     });
   };

@@ -90,7 +90,7 @@ export const getCards = async (
 
   if (options.useAllCards) {
     // Check daily history
-    const dailyRef = utils.firebase.getDailyRef(language === 'pt' ? 'diario' : 'daily');
+    const dailyRef = utils.firestore.getDailyRef(language === 'pt' ? 'diario' : 'daily');
     const historyDoc = await dailyRef.doc('history').get();
     const history = historyDoc.data() || { used: [] };
     const usedCards: string[] = history.used;
@@ -143,7 +143,7 @@ export const getCards = async (
   );
 
   if (resetUsedCards) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ARTE_RUIM);
+    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ARTE_RUIM);
   }
 
   return {

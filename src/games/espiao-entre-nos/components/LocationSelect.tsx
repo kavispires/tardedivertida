@@ -1,14 +1,14 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-// Types
-import type { Location } from '../utils/types';
+import { Button, Popconfirm, Select, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import type { Location } from '../utils/types';
 
 type LocationSelectProps = {
   locations: Location[];

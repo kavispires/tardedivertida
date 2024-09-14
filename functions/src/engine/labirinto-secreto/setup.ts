@@ -16,6 +16,7 @@ import {
   buildForest,
   buildPaths,
   distributeCards,
+  getAchievements,
   getAllCompletePlayerIds,
   getIsPlayerMapComplete,
   getPlayersWhoHaveNotCompletedTheirMaps,
@@ -36,7 +37,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Build forest
-  const forest = buildForest(resourceData.forestCards);
+  const forest = buildForest(resourceData.forestCards, !!store?.options?.itemTreeType);
 
   // Build player paths
   buildPaths(players);
@@ -46,12 +47,24 @@ export const prepareSetupPhase = async (
 
   const { gameOrder } = utils.players.buildGameOrder(players);
 
-  // const achievements = utils.achievements.setup(players, store, {
-  //   adjectives: 0,
-  //   complete: 0,
-  //   distance: 0,
-  //   guiding: 0,
-  // });
+  const achievements = utils.achievements.setup(players, store, {
+    adjectives: 0, // card quantity
+    negatives: 0, // card quantity but negated
+
+    up: 0,
+    down: 0,
+    left: 0,
+    right: 0,
+    up_left: 0,
+    up_right: 0,
+    down_left: 0,
+    down_right: 0,
+
+    distance: 0, // trees walked to total
+    guide: 0, // players got yours
+    guided: 0, // you got guided by players
+  });
+  store.achievements = achievements;
 
   utils.players.addPropertiesToPlayers(players, { history: {} });
 
@@ -122,7 +135,6 @@ export const preparePathFollowingPhase = async (
 
   if (!state.activePlayerId) {
     // Update players maps and hands
-
     listOfPlayers.forEach((player) => {
       if (getIsPlayerMapComplete(player)) {
         player.map.forEach((segment: MapSegment) => {
@@ -174,11 +186,12 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const ranking = getRankingAndProcessScoring(players);
+  const ranking = getRankingAndProcessScoring(players, store);
 
   // Save
   return {
     update: {
+      store,
       state: {
         phase: LABIRINTO_SECRETO_PHASES.RESULTS,
         players,
@@ -196,9 +209,20 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  // const achievements = getAchievements(store);
+  // Achievements: Count how many cards used by each player
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    player.map.forEach((segment: MapSegment) => {
+      const clueCount = segment.clues.length;
+      utils.achievements.increase(store, player.id, 'adjectives', clueCount);
+      // Negatives
+      const negatives = segment.clues.filter((clue) => clue.negate).length;
+      utils.achievements.increase(store, player.id, 'negatives', negatives);
+    });
+  });
 
-  await utils.firebase.markGameAsComplete(gameId);
+  const achievements = getAchievements(store);
+
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.LABIRINTO_SECRETO,
@@ -206,7 +230,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -214,7 +238,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {
@@ -224,7 +248,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         forest: state.forest,
-        // achievements,
+        achievements,
       },
     },
   };

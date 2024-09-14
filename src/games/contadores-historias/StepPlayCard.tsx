@@ -4,15 +4,16 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { TableFaceDown } from './components/TableFaceDown';
-import { mockPlayCard } from './utils/mock';
+import { Card } from 'components/cards';
+import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageCardHand } from 'components/image-cards';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Card } from 'components/cards';
 import { ViewOr } from 'components/views';
-import { Translate } from 'components/language';
-import { ImageCardHand } from 'components/image-cards';
-import { FloatingHand } from 'components/general/FloatingHand';
+// Internal
+import { mockPlayCard } from './utils/mock';
+import { TableFaceDown } from './components/TableFaceDown';
 
 type StepPlayCardProps = {
   players: GamePlayers;

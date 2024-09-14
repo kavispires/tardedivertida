@@ -3,17 +3,18 @@ import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { SelectListIcon } from 'icons/SelectListIcon';
+import { ListIcon } from 'icons/ListIcon';
 // Components
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
-import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+// Internal
+import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
 import { StepSelectChallenge } from './StepSelectChallenge';
 
 export function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
@@ -24,7 +25,7 @@ export function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<SelectListIcon />}
+      icon={<ListIcon />}
       title={<Translate pt="Desafio" en="Challenge" />}
       currentRound={state?.round?.current}
       duration={5}

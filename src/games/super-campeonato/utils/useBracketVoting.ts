@@ -1,7 +1,6 @@
 import { useState } from 'react';
-// Types
+// Internal
 import type { Bracket, BracketTier } from './type';
-// Utils
 import { targetByTier, voteTarget } from './constants';
 
 export function useBracketVoting(tier: BracketTier) {

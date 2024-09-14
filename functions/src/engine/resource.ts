@@ -9,23 +9,9 @@ import utils from '../utils';
  */
 export const fetchResource = async <T = any>(resourceName: string): Promise<T | any> => {
   try {
-    const response = await fetch(`${utils.firebase.config().td_url.resources}${resourceName}.json`);
+    const response = await fetch(`${process.env.TD_RESOURCES}${resourceName}.json`);
     return response.json();
   } catch (e) {
     return utils.firebase.throwException(`${e}`, `Failed to get resource for ${resourceName}`);
-  }
-};
-
-/**
- * Queries a tdi data file
- * @param path
- * @returns
- */
-export const fetchTDIData = async <T = any>(dataFileName: string): Promise<T | any> => {
-  try {
-    const response = await fetch(`${utils.firebase.config().td_url.data}${dataFileName}.json`);
-    return response.json();
-  } catch (e) {
-    return utils.firebase.throwException(`${e}`, `Failed to get image data for ${dataFileName}`);
   }
 };

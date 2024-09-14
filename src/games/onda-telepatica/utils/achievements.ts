@@ -1,3 +1,4 @@
+// Types
 import { AchievementReference } from 'types/achievements';
 
 export const achievementsReference: AchievementReference = {

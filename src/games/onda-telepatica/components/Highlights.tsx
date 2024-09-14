@@ -1,3 +1,5 @@
+// Ant Design Resources
+import { BackwardOutlined, ForwardOutlined } from '@ant-design/icons';
 // Types
 import type { SpectrumCard } from 'types/tdr';
 // Hooks
@@ -7,7 +9,6 @@ import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
 // Components
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 import { TextHighlight } from 'components/text';
-import { BackwardOutlined, ForwardOutlined } from '@ant-design/icons';
 
 export function WavelengthHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (

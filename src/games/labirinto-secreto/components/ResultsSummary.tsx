@@ -1,18 +1,20 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
-import { Avatar, IconAvatar } from 'components/avatars';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { MapSegment, Tree } from '../utils/types';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
+import { FlagIcon } from 'icons/FlagIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
-import { FlagIcon } from 'icons/FlagIcon';
 // Components
+import { Avatar, IconAvatar } from 'components/avatars';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { MapSegment, Tree } from '../utils/types';
+import { TreeImage } from './TreeImage';
 
 type PlayerMapResultsSummaryProps = {
   players: GamePlayers;
@@ -41,12 +43,7 @@ export function PlayerMapResultsSummary({
           <div className="player-map__segment" key={`map-${segment.index}`}>
             <div className="player-map__top">
               {tree ? (
-                <TreeCard
-                  id={String(tree.treeType)}
-                  className="player-map__tree"
-                  text={tree.card.text}
-                  width={75}
-                />
+                <TreeImage id={tree.treeType} text={tree.card.text} className="player-map__tree" width={75} />
               ) : (
                 <TreeCard id="1" className="player-map__tree-invisible" text="" width={75} />
               )}

@@ -1,28 +1,29 @@
 import clsx from 'clsx';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { CandySidewalk, StreetCard } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Utils
-import { mockPlayerDecision } from './utils/mock';
 import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { WalkIcon } from 'icons/WalkIcon';
 import { HouseIcon } from 'icons/HouseIcon';
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { WalkIcon } from 'icons/WalkIcon';
 // Components
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { CandySidewalk, StreetCard } from './utils/types';
+import { mockPlayerDecision } from './utils/mock';
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
 import { CardCountExplanation, DecisionExplanation } from './components/RulesBlobs';
 import { Street } from './components/Street';
-import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { TransparentButton } from 'components/buttons';
 import { CandyHighlight, TitleIPadHighlight } from './components/Highlights';
 import { PlayersDecisionState } from './components/PlayersDecisionState';
 import { NewHouseCard } from './components/NewHouseCard';

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { ForwardFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
 import { reorder } from './reorder';
@@ -36,6 +36,10 @@ type TurnOrderProps = {
    * Reorder turn order so it starts with given player
    */
   reorderByUser?: PlayerId;
+  /**
+   *
+   */
+  additionalInfoParser?: (player: GamePlayer) => ReactNode;
 };
 
 export function TurnOrder({
@@ -45,6 +49,7 @@ export function TurnOrder({
   reorderByUser,
   title,
   className = '',
+  additionalInfoParser,
 }: TurnOrderProps) {
   const orderList = useMemo(
     () => (Boolean(reorderByUser) ? reorder(order, reorderByUser!) : order),
@@ -67,6 +72,7 @@ export function TurnOrder({
                 style={isActive ? { backgroundColor: getAvatarColorById(player.avatarId) } : undefined}
               >
                 <AvatarName player={player} />
+                {!!additionalInfoParser && additionalInfoParser(player)}
               </span>
               {index < order.length - 1 && (
                 <span className="turn-order__arrow">

@@ -56,7 +56,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -70,7 +70,7 @@ export const getNextPhase = async (
   gameId: GameId,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -81,7 +81,7 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === MEGAMIX_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const data = await getData(
@@ -90,33 +90,33 @@ export const getNextPhase = async (
       utils.players.getPlayerCount(players)
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> SEEDING
   if (nextPhase === MEGAMIX_PHASES.SEEDING) {
     const newPhase = await prepareSeedingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // SEEDING/RESULT -> TRACK
   if (nextPhase === MEGAMIX_PHASES.TRACK) {
     const newPhase = await prepareTrackPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // TRACK -> RESULT
   if (nextPhase === MEGAMIX_PHASES.RESULT) {
     const newPhase = await prepareResultPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESULT -> GAME_OVER
   if (nextPhase === MEGAMIX_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
 
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -140,6 +140,6 @@ export const submitAction = async (data: MegamixSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['data'], 'submit data');
       return handleSubmitTrackAnswer(gameName, gameId, playerId, data.data);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

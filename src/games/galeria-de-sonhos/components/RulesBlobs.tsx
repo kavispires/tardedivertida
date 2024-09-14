@@ -1,6 +1,6 @@
 // Types
-import type { GamePlayer } from 'types/player';
 import type { GameRound } from 'types/game';
+import type { GamePlayer } from 'types/player';
 // Components
 import { AvatarName } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';

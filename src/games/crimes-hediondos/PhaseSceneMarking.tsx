@@ -1,21 +1,22 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
-import { mockSceneMark } from './utils/mock';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { LoupeIcon } from 'icons/LoupeIcon';
 // Components
 import { DualTranslate, Translate } from 'components/language';
-import { RoundAnnouncement } from 'components/round';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
+// Internal
+import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
+import { mockSceneMark } from './utils/mock';
 import { StepNewScene } from './StepNewScene';
 
 export function PhaseSceneMarking({ players, state, info }: PhaseProps) {

@@ -1,9 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Space } from 'antd';
-// Types
+// Internal
 import type { Item } from '../utils/types';
-// Components
 import { ItemEntry } from './ItemEntry';
 
 type PairProps = {

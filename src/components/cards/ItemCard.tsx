@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Sprite } from 'components/sprites';
 // Sass
 import './ItemCard.scss';
+import { DualTranslate } from 'components/language';
 
 export type ItemCardProps = {
   /**
@@ -21,6 +22,14 @@ export type ItemCardProps = {
    * Replacement title, usually the name of the item
    */
   title?: string;
+  /**
+   * Optional text to display
+   */
+  text?: DualLanguageValue;
+  /**
+   * Optional padding
+   */
+  padding?: number;
 };
 
 const BASE = 64;
@@ -31,7 +40,7 @@ const BASE = 64;
  * @param str - The input string.
  * @returns An array containing the source and item ID.
  */
-const getSource = (str: string) => {
+export const getSource = (str: string) => {
   const match = str.match(/\d+/);
   const numId = match ? parseInt(match[0], 10) : 0;
   const itemId = `item-${numId}`;
@@ -43,15 +52,20 @@ const getSource = (str: string) => {
 /**
  * An item card component.
  */
-export function ItemCard({ id, width, className, title }: ItemCardProps) {
+export function ItemCard({ id, width = 75, className, title, text, padding }: ItemCardProps) {
   const [source, itemId] = getSource(id);
 
+  const height = text ? 'auto' : `${width}px`;
+  const divPadding = padding === 0 ? { padding: 0 } : {};
+
   return (
-    <div
-      className={clsx('item-card', className)}
-      style={{ width: `${width ?? 75}px`, height: `${width ?? 75}px` }}
-    >
-      <Sprite source={source} id={itemId} width={width} title={title} />
+    <div className={clsx('item-card', className)} style={{ width: `${width}px`, height, ...divPadding }}>
+      <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
+      {Boolean(text) && (
+        <span className="item-card__text">
+          <DualTranslate>{text!}</DualTranslate>
+        </span>
+      )}
     </div>
   );
 }

@@ -1,20 +1,20 @@
-// AntDesign Resources
+import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
+// Ant Design Resources
 import { Avatar, Button, Space } from 'antd';
-// Types
-import type { StreetCard, TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
+// Icons
+import { StreetIcon } from 'icons/StreetIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { StreetCard, TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-import { TransparentButton } from 'components/buttons';
-import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
-import { StreetIcon } from 'icons/StreetIcon';
-import { IconAvatar } from 'components/avatars';
 
 export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

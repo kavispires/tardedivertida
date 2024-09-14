@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 import { auth } from './firebase';
 import type { User } from 'firebase/auth';
 import { useQuery } from '@tanstack/react-query';
@@ -113,33 +113,30 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const isAuthenticated = Boolean(authenticatedUser);
 
   // Game gameID
-  const query = useQuery<any>({
+  const query = useQuery<Me>({
     queryKey: ['user'],
     queryFn: async () => {
       console.count('Fetching user...');
-      return await USER_API.run({ action: USER_API_ACTIONS.GET_USER, date: getToday() });
+      const response = await USER_API.run({ action: USER_API_ACTIONS.GET_USER, date: getToday() });
+      print({ me: response.data }, 'table');
+      setLoader('user', false);
+      return response.data as Me;
     },
     enabled: isAuthenticated,
     retry: false,
-    onSuccess: (response) => {
-      const data = response.data as Me;
-      print({ me: data }, 'table');
-    },
-    onError: (e: any) => {
-      if (!authenticatedUser?.isAnonymous) {
-        console.error(e);
-        notification.error({
-          message: 'Failed to load user',
-          description: JSON.stringify(e.message),
-        });
-      }
-    },
-    onSettled: () => {
-      setLoader('user', false);
-    },
   });
 
-  const firestoreUser = query.data?.data ?? defaultData;
+  useEffect(() => {
+    if (!authenticatedUser?.isAnonymous && query.isError) {
+      console.error(query.error);
+      notification.error({
+        message: 'Failed to load user',
+        description: JSON.stringify(query.error.message),
+      });
+    }
+  }, [query.isError]); // eslint-disable-line
+
+  const firestoreUser = query.data ?? defaultData;
 
   return (
     <AuthContext.Provider

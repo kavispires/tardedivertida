@@ -1,6 +1,5 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Robot } from '../utils/types';
 // Icons
 import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
@@ -8,6 +7,8 @@ import { IconAvatar } from 'components/avatars';
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { Robot } from '../utils/types';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type FloatingPlayerStatsProps = {

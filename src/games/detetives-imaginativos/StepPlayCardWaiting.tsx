@@ -2,19 +2,20 @@
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { Table } from './components/Table';
-import { Instruction, TextHighlight, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarName, IconAvatar } from 'components/avatars';
-import { ImageCardHand } from 'components/image-cards';
 import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageCardHand } from 'components/image-cards';
+import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
+import { Instruction, TextHighlight, Title } from 'components/text';
+// Internal
+import type { CardEntry } from './utils/types';
+import { Table } from './components/Table';
 
 type StepPlayCardWaitingProps = {
   isUserTheImpostor: boolean;

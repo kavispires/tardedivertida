@@ -1,11 +1,12 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { CardEntry } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Step, type StepProps } from 'components/steps';
 import { ViewOr } from 'components/views';
+// Internal
+import type { CardEntry } from './utils/types';
 import { StepDefendingAction } from './StepDefendingAction';
 import { StepDefendingWaiting } from './StepDefendingWaiting';
 

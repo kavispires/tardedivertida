@@ -1,4 +1,5 @@
-import { AlienItem, ObjectFeatureCard } from 'types/tdr';
+// Types
+import { Item, ObjectFeatureCard } from 'types/tdr';
 
 export enum Phase {
   CLUE_WRITING = 'CLUE_WRITING',
@@ -15,7 +16,7 @@ export type SubmitFeaturePayload = {
   featureId: string;
 };
 
-export type ObjectCardObj = Pick<AlienItem, 'id' | 'name'>;
+export type ObjectCardObj = Pick<Item, 'id' | 'name'>;
 
 export type ExtendedObjectFeatureCard = ObjectFeatureCard & { eliminated?: boolean };
 
@@ -31,4 +32,5 @@ export type MesmiceGalleryEntry = {
   item: ObjectCardObj;
   clue: string;
   featureId: CardId;
+  history: HistoryEntry[];
 };

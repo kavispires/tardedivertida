@@ -1,6 +1,6 @@
 import { has } from 'lodash';
 import { ReactNode } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';

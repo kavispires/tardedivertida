@@ -1,17 +1,15 @@
-import type { SubmitMovieActorPayload, SubmitMovieGenrePayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'testeDeElencoSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitMovieActorPayload, SubmitMovieGenrePayload } from './types';
+import { TESTE_DE_ELENCO_ACTIONS } from './constants';
 
 export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-genre',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -24,7 +22,7 @@ export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitMovieGenrePayload) => {
     request({
-      action: 'SELECT_MOVIE_GENRE',
+      action: TESTE_DE_ELENCO_ACTIONS.SELECT_MOVIE_GENRE,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitMovieActorAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-genre',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
@@ -47,7 +44,7 @@ export function useOnSubmitMovieActorAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitMovieActorPayload) => {
     request({
-      action: 'SELECT_ACTOR',
+      action: TESTE_DE_ELENCO_ACTIONS.SELECT_ACTOR,
       ...payload,
     });
   };

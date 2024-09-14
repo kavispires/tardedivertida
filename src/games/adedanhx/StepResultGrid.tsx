@@ -1,16 +1,18 @@
 // Ant Design Resources
-import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { AdedanhxGrid, AnswerGridEntry } from './utils/types';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { AdedanhxGrid, AnswerGridEntry } from './utils/types';
 import { AnswersGrid } from './components/Grid';
-import { TimedButton } from 'components/buttons';
 import { ScoringRule } from './components/RulesBlobs';
 
 type StepResultGridProps = {

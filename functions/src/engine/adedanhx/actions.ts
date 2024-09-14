@@ -12,7 +12,7 @@ export const handleSubmitAnswers = async (
   stop?: boolean
 ) => {
   if (stop) {
-    await utils.firebase.updateState({
+    await utils.firestore.updateState({
       gameName,
       gameId,
       playerId,
@@ -21,7 +21,7 @@ export const handleSubmitAnswers = async (
     });
   }
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -35,7 +35,7 @@ export const handleSubmitAnswers = async (
 export const handleNextEvaluationGroup = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {
   const actionText = 'play a card';
 
-  const { state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -49,7 +49,7 @@ export const handleNextEvaluationGroup = async (gameName: GameName, gameId: Game
   // Unready everybody
   utils.players.unReadyPlayers(players);
 
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -70,7 +70,7 @@ export const handleSubmitRejectAnswers = async (
     return acc;
   }, {});
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

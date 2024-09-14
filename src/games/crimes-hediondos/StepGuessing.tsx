@@ -3,24 +3,25 @@ import { useEffect, useState } from 'react';
 import { Button, Space } from 'antd';
 // Types
 import { GamePlayer, GamePlayers } from 'types/player';
-import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, ScenesDict } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAvatarColorById, getLastItem } from 'utils/helpers';
-import { mockGuesses } from './utils/mock';
-import { autoSelectCorrectGuesses, getHistory } from './utils/helpers';
 // Icons
 import { InvestigationIcon } from 'icons/InvestigationIcon';
 // Components
+import { DebugOnly } from 'components/debug';
+import { FloatingHand } from 'components/general/FloatingHand';
+import { Translate } from 'components/language';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, ScenesDict } from './utils/types';
+import { mockGuesses } from './utils/mock';
+import { autoSelectCorrectGuesses, getHistory } from './utils/helpers';
 import { CrimeSummary } from './components/CrimeSummary';
 import { PlayersCards } from './components/PlayersCards';
 import { SelectableGroupedItemsBoard } from './components/SelectableGroupedItemsBoard';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { DebugOnly } from 'components/debug';
-import { FloatingHand } from 'components/general/FloatingHand';
 
 type StepGuessingProps = {
   user: GamePlayer;

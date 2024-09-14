@@ -1,13 +1,13 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// Utils
-import { achievementsReference } from './utils/achievements';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
+// Internal
+import { achievementsReference } from './utils/achievements';
 import { FinalGallery } from './components/FinalGallery';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {

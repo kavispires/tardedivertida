@@ -2,17 +2,21 @@
 import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
+import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
-import { StepWitnessSelection } from './StepWitnessSelection';
+// Internal
+import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);
@@ -47,6 +51,35 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
     </PhaseAnnouncement>
   );
 
+  const title = (
+    <>
+      <IconAvatar icon={<AnimatedClockIcon />} size="large" />
+      <br />
+      <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
+    </>
+  );
+
+  const ruleInstruction = (
+    <Translate
+      pt={
+        <>
+          Em Testemunha Ocular, um jogador será a testemunha que presenciou um crime desconhecido. Essa
+          testemunha responderá perguntas de sim-ou-não para ajudar os outros jogadores, detetives, a
+          liberarem pelo menos um dos <PlayersHighlight>12 suspeitos</PlayersHighlight> em cada rodada. Você
+          quer ser a testemunha?
+        </>
+      }
+      en={
+        <>
+          In Eye Witness, a player will be the witness who witnessed an unknown crime. This witness will
+          answer yes-or-no questions to help the other players, detective, to release at least one of the{' '}
+          <PlayersHighlight>12 suspects</PlayersHighlight>
+          each round. Do you want to be the witness?
+        </>
+      }
+    />
+  );
+
   return (
     <PhaseContainer
       info={info}
@@ -56,10 +89,17 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <StepWitnessSelection
+        <StepSelectPlayer
           players={players}
-          onWitnessButtonClick={onWitnessButtonClick}
           announcement={announcement}
+          titleProps={{
+            children: <>{title}</>,
+          }}
+          ruleInstructionProps={{
+            children: <>{ruleInstruction}</>,
+            type: 'lore',
+          }}
+          onSubmitPlayer={(playerId) => onWitnessButtonClick({ witnessId: playerId })}
         />
       </StepSwitcher>
     </PhaseContainer>

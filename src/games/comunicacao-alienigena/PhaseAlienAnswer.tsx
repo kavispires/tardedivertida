@@ -1,18 +1,19 @@
 // Types
 import { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnMakeReady, useOnSubmitAlienResponseAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { HieroglyphIcon } from 'icons/HieroglyphIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
+import { useOnMakeReady, useOnSubmitAlienResponseAPIRequest } from './utils/api-requests';
 import { StepAlienAnswers } from './StepAlienAnswers';
 
 export function PhaseAlienAnswer({ players, state, info }: PhaseProps) {

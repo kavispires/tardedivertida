@@ -5,12 +5,12 @@ import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
 // Components
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;

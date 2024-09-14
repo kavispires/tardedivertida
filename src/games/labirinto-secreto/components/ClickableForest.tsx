@@ -1,24 +1,25 @@
-import { useState } from 'react';
 import { findLast } from 'lodash';
+import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { MapSegment, OnSubmitPathGuessFunction, Tree, TreeId } from '../utils/types';
-// Utils
-import { getAnimationClass } from 'utils/helpers';
-import { buildUserMappingForLatestTree, getAvailableSegments } from '../utils/helpers';
-import { mockFollowedPath } from '../utils/mocks';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Forest } from './Forest';
-import { Translate } from 'components/language';
-import { PlayerMap } from './PlayerMap';
-import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { MapEntry } from './MapEntry';
 import { DevButton } from 'components/debug';
+import { Translate } from 'components/language';
+import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
+// Internal
+import type { MapSegment, OnSubmitPathGuessFunction, Tree, TreeId } from '../utils/types';
+import { buildUserMappingForLatestTree, getAvailableSegments } from '../utils/helpers';
+import { mockFollowedPath } from '../utils/mocks';
+import { Forest } from './Forest';
+import { PlayerMap } from './PlayerMap';
+import { MapEntry } from './MapEntry';
 
 type ClickableForestProps = {
   forest: Tree[];

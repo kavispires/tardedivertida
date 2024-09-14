@@ -68,7 +68,7 @@ export const prepareSetupPhase = async (
           total: itemsInfo.rounds,
         },
         players,
-        alienId: hasBot ? '_a-bot' : utils.firebase.deleteValue(),
+        alienId: hasBot ? '_a-bot' : utils.firestore.deleteValue(),
         items: additionalData.items,
         signs: additionalData.signs,
         inquiryHistory: [],
@@ -227,7 +227,7 @@ export const prepareHumanAskPhase = async (
       objectIds: state.currentInquiry,
       playerId: state.humanId,
       intention: state.currentIntention ?? '',
-      assumption: store.assumption,
+      assumption: store.assumption ?? '?',
       confidence: store.confidence ?? 0,
     });
   }
@@ -292,7 +292,7 @@ export const prepareAlienAnswerPhase = async (
         state.signs,
         currentIntention
       )
-    : utils.firebase.deleteValue();
+    : utils.firestore.deleteValue();
 
   // Cleanup players
   utils.players.removePropertiesFromPlayers(players, ['objectsIds', 'intention']);
@@ -521,7 +521,7 @@ export const prepareGameOverPhase = async (
     state.alienId
   );
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.COMUNICACAO_ALIENIGENA,
@@ -540,7 +540,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

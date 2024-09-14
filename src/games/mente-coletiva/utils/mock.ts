@@ -1,5 +1,7 @@
 import { shuffle } from 'lodash';
+// Utils
 import { getEntryId, getRandomItem } from 'utils/helpers';
+// Internal
 import { Question } from './types';
 
 export const mockAnswers = (userId: PlayerId, numAnswers: number) => {

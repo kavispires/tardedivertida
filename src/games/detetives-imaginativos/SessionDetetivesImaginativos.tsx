@@ -1,14 +1,16 @@
+// Ant Design Resources
 import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-// Constants
+// Utils
 import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
-import { Session } from 'components/session';
-import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
+import { Session } from 'components/session';
+// Internal
 import { PhaseSecretClue } from './PhaseSecretClue';
 import { PhaseCardPlay } from './PhaseCardPlay';
 import { PhaseDefense } from './PhaseDefense';

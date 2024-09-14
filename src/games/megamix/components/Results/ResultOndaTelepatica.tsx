@@ -1,8 +1,8 @@
-// Types
-import type { ResultComponentProps } from '../../utils/types';
 // Components
-import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultOndaTelepatica({ winningTeam, winningValues, playersList }: ResultComponentProps) {
   return (

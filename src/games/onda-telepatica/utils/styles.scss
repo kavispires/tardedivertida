@@ -8,6 +8,7 @@
 .o-dial-guess-selection {
   &__clue {
     background-color: get-color('white');
+    color: get-color('black');
     font-weight: bolder;
     padding: get-unit(1);
     margin: get-unit(0 1);
@@ -347,4 +348,8 @@ $base-angle: 8deg;
     font-style: italic;
     color: get-color('gray', 8);
   }
+}
+
+.o-needle-choice {
+  min-width: 300px;
 }

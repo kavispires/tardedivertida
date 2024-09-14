@@ -4,20 +4,20 @@ import { orderBy } from 'lodash';
 import { Col, Row } from 'antd';
 // Types
 import { PhaseProps } from 'types/game';
-import type { GalleryEntry } from './utils/types';
-// Utils
-import achievementsReference from './utils/achievements';
 // Icons
-import { FlagIcon } from 'icons/FlagIcon';
+import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
+import { FlagIcon } from 'icons/FlagIcon';
 // Components
+import { Avatar, IconAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
+import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { Avatar, IconAvatar } from 'components/avatars';
-import { Achievements } from 'components/general/Achievements';
+// Internal
+import type { GalleryEntry } from './utils/types';
+import achievementsReference from './utils/achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (

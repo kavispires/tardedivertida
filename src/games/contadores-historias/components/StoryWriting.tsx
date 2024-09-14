@@ -7,14 +7,14 @@ import { GamePlayer } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockStory } from '../utils/mock';
 // Components
-import { BookPages } from '../../../components/game/BookPages';
+import { ImageCard, ImageCardHand } from 'components/image-cards';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
-import { Translate } from 'components/language';
-import { ImageCard, ImageCardHand } from 'components/image-cards';
+// Internal
+import { mockStory } from '../utils/mock';
+import { BookPages } from '../../../components/game/BookPages';
 
 type StoryWritingProps = {
   user: GamePlayer;

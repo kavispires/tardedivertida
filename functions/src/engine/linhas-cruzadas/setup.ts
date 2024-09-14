@@ -218,7 +218,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const achievements = getAchievements(store);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.LINHAS_CRUZADAS,

@@ -1,7 +1,7 @@
 /**
  * Generic text card
  * Used for: adjectives, categories, challenges, characters, galeria-de-sonhos, labirinto-secreto,
- * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities, tweets
+ * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities
  */
 export type TextCard = {
   /**
@@ -40,9 +40,9 @@ export type AlienItem = {
    */
   nsfw?: boolean;
   /**
-   * Any categories the item belongs to
+   * Any decks the item belongs to
    */
-  categories?: string[];
+  decks?: string[];
 };
 
 /**
@@ -160,7 +160,7 @@ export type CrimesHediondosCard = {
   /**
    * The type of the card
    */
-  type: 'weapon' | 'evidence' | string;
+  type: 'weapon' | 'evidence';
   /**
    * The name of the card
    */
@@ -225,13 +225,13 @@ export type DatingCandidateCard = {
    */
   id: CardId;
   /**
-   * the text of the card
+   * The text of the card
    */
   text: string;
   /**
    * The type of the card
    */
-  type: 'fun-fact' | 'interest' | 'need' | string;
+  type: 'fun-fact' | 'interest' | 'need';
 };
 
 /**
@@ -250,7 +250,22 @@ export type DatingCandidateImageCard = {
   /**
    * The type of the card
    */
-  type: 'head' | 'body' | string;
+  type: 'head' | 'body';
+};
+
+export type DiagramTopic = {
+  /**
+   * Unique identifier for the card
+   */
+  id: CardId;
+  /**
+   * The text of the card
+   */
+  text: string;
+  /**
+   * The type of the card
+   */
+  type: 'attribute' | 'word' | 'context';
 };
 
 export type DilemmaCard = {
@@ -351,7 +366,7 @@ export type MovieReviewCard = {
   /**
    * The type of review
    */
-  type: 'good' | 'bad' | string;
+  type: 'good' | 'bad';
   /**
    * The parts of the text that should be highlighted
    */
@@ -550,4 +565,115 @@ export type TopicCard = {
    * The level of difficulty
    */
   level: number;
+};
+
+/**
+ * Tweet Card
+ * Used for: tweets
+ */
+export type Tweet = {
+  /**
+   * Unique identifier for the card
+   */
+  id: CardId;
+  /**
+   * the text of the card
+   */
+  text: string;
+};
+
+/**
+ * Item Card
+ * Used for: items
+ */
+export type Item = {
+  /**
+   * Unique identifier for the item
+   */
+  id: string;
+  /**
+   * The name of the item
+   */
+  name: DualLanguageValue;
+  /**
+   * The decks the item can be used in
+   */
+  decks?: string[];
+  /**
+   * Flag indicating if it's nsfw
+   */
+  nsfw?: boolean;
+};
+
+/**
+ * Item Atributes Values
+ */
+export type ItemAtributesValues = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The dictionary of attribute keys and their values
+   */
+  attributes: Record<string, -10 | -3 | -1 | 5 | 10 | number>;
+  /**
+   * Indicates if all attributes have been assigned numbers
+   */
+  complete?: boolean;
+  /**
+   * The timestamp of the last update
+   */
+  updatedAt?: number;
+  /**
+   * The alien message using prefixes and attribute keys
+   * (^) -10, (!) -3, (~) -1, () 5, (+) 10
+   */
+  message?: string[];
+  /**
+   * The percentage of non-unclear attribute values
+   */
+  reliability?: number;
+  /***
+   * The value of the absolute extreme opposite and all positive values in attributes
+   */
+  score?: number;
+};
+
+/**
+ * Item Attributes
+ */
+export type ItemAttributes = {
+  /**
+   * Unique identifier for the attribute (first 3 letters)
+   */
+  id: string;
+  /**
+   * The name of the attribute
+   */
+  name: DualLanguageValue;
+  /**
+   * The description of the attribute
+   */
+  description: DualLanguageValue;
+  /**
+   * The level of difficulty
+   */
+  level: number;
+  /**
+   * Present on the original game
+   */
+  default: boolean;
+  /**
+   * Priority value when sorting ties
+   */
+  priority: number;
+  /**
+   *
+   */
+  spriteId: string;
+  /**
+   * Use for attributes that only accept yes/no (unclear) values (-3, -1, 5)
+   */
+  limited?: boolean;
 };

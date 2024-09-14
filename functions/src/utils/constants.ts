@@ -146,6 +146,11 @@ const GAMES = [
     key: 'RETRATO_FALADO',
   },
   {
+    name: 'sinais-de-alerta',
+    code: 'S',
+    key: 'SINAIS_DE_ALERTA',
+  },
+  {
     name: 'sonhos-pesadelos',
     code: 'S',
     key: 'SONHOS_PESADELOS',
@@ -159,6 +164,11 @@ const GAMES = [
     name: 'ta-na-cara',
     code: 'T',
     key: 'TA_NA_CARA',
+  },
+  {
+    name: 'teoria-de-conjuntos',
+    code: 'Q',
+    key: 'TEORIA_DE_CONJUNTOS',
   },
   {
     name: 'testemunha-ocular',
@@ -222,6 +232,7 @@ export const GLOBAL_USED_DOCUMENTS = {
   CONTENDERS: 'usedContenders',
   GROUP_QUESTIONS: 'usedGroupQuestions',
   IMAGE_CARDS: 'usedImageCards',
+  ITEMS: 'usedItems',
   MONSTERS: 'usedMonsters',
   MOVIES: 'usedMoviesAndReviews',
   MURDER_OBJECTS: 'usedMurderObjects',
@@ -242,8 +253,10 @@ export const DATA_DOCUMENTS = {
   OPPOSING_IDEAS_CLUES: 'opposingIdeasClues',
   SUFFIX_COUNTS: 'suffixCounts',
   SUSPECT_ANSWERS: 'suspectAnswers',
-  DRAWINGS: 'drawings',
+  DRAWINGS: 'drawings', // requires language suffix
   MONSTER_DRAWINGS: 'monsterDrawings',
+  PAIRS: 'pairs',
+  SIGNS: 'signs', // requires language suffix
 };
 
 export const TDR_RESOURCES = {
@@ -256,6 +269,7 @@ export const TDR_RESOURCES = {
   CHALLENGES: 'challenges',
   CHARACTERS: 'characters',
   CHOICES: 'choices',
+  COLORS: 'colors',
   CONTENDERS: 'contenders', // dual-language
   CRIME_EVIDENCE: 'crime-evidence', // dual-language
   CRIME_TILES: 'crime-tiles', // dual-language
@@ -263,9 +277,14 @@ export const TDR_RESOURCES = {
   DATING_CANDIDATE: 'dating-candidate',
   DATING_CANDIDATE_BODIES: 'dating-candidate-bodies', // dual-language
   DATING_CANDIDATE_HEADS: 'dating-candidate-heads', // dual-language
+  DIAGRAM_TOPICS: 'diagram-topics',
   DILEMMAS: 'dilemmas',
   DRAWING_WORDS: 'drawing-words',
+  EMOTIONS: 'emotions',
   GROUP_QUESTIONS: 'group-questions',
+  ITEMS: 'items', // dual-language
+  ITEMS_ATTRIBUTES: 'items-attributes', // dual-language
+  ITEMS_ATTRIBUTE_VALUES: 'items-attribute-values', // dual-language
   MONSTER_ORIENTATION: 'monster-orientation',
   MOVIE_REVIEWS: 'movie-reviews',
   MOVIES: 'movies',
@@ -285,6 +304,8 @@ export const TDR_RESOURCES = {
   TOPICS: 'topics',
   TREE_WORDS: 'tree-words',
   TWEETS: 'tweets',
+  WARNING_SIGNS_DESCRIPTORS: 'warning-signs-descriptors',
+  WARNING_SIGNS_SUBJECTS: 'warning-signs-subjects',
 };
 
 export const SEPARATOR = ';;';

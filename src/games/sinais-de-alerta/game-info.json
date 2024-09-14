@@ -1,0 +1,47 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "S",
+  "gameName": "sinais-de-alerta",
+  "version": "0.0.6",
+  "title": {
+    "pt": "Sinais de Alerta",
+    "en": "Warning Signs"
+  },
+  "popularName": {
+    "pt": "Jogo das placas",
+    "en": ""
+  },
+  "basedOn": "sngiS noituaC",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": [
+      "Em Sinais de Alerta, você é parte do setor de sinalizações do Departamento de Trânsito de uma cidade.",
+      "Cada rodada você é encarregado de criar uma placa de sinalização específica em 30 segundos",
+      "Após todos derem criado suas placas é hora de tentar adivinhar o sujeito e o descritivo de cada placa",
+      "Você ganha pontos por acertar a dos outros e pontos pelos outros jogadores terem acertado a sua",
+      "O jogo acaba após 5 rodadas e o jogador com mais pontos vence"
+    ],
+    "en": [
+      "In Warning Signs, you are part of the signaling sector of the Traffic Department of a city.",
+      "Each round you are in charge of creating a specific signaling sign in 30 seconds",
+      "After everyone has created their signs, it's time to try to guess the subject and the description of each sign",
+      "You earn points for guessing the others' signs and points for the other players having guessed yours",
+      "The game ends after 5 rounds and the player with the most points wins"
+    ]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["competitive", "drawing", "pairing", "timed"],
+  "available": true
+}

@@ -2,14 +2,35 @@
 
 .forest-container {
   max-width: 90vw;
-  overflow-x: auto;
-  overflow-y: hidden;
   background: get-color('green', 8, 0.85);
   border-radius: 75px;
 
   &--small {
-    transform: scale(0.7);
-    transform-origin: top center;
+    max-width: 50vw;
+    border-radius: 50px;
+  }
+}
+
+.forest-container-temp {
+  width: 90vw;
+  height: 10px;
+}
+
+.forest-container-area {
+  position: relative;
+}
+
+.forest-container-controls {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+
+  &--top {
+    top: get-unit(1);
+  }
+
+  &--bottom {
+    bottom: get-unit(1);
   }
 }
 
@@ -35,6 +56,7 @@
   &__tree-button {
     cursor: pointer;
     border-radius: 50%;
+
     &:hover {
       transform: scale(1.1);
       background-color: get-color('white', 5, 0.5);
@@ -138,6 +160,155 @@
       left: 0;
       transform: translate(-50%, 0) rotate(180deg);
     }
+
+    &--UP_LEFT {
+      top: 0;
+      right: 0;
+      transform: translate(60%, -60%) rotate(-45deg);
+    }
+
+    &--UP_RIGHT {
+      top: 0;
+      left: 0;
+      transform: translate(-60%, -60%) rotate(-135deg);
+    }
+
+    &--DOWN_LEFT {
+      bottom: 0;
+      left: 0;
+      transform: translate(-60%, 60%) rotate(135deg);
+    }
+
+    &--DOWN_RIGHT {
+      bottom: 0;
+      right: 0;
+      transform: translate(60%, 60%) rotate(45deg);
+    }
+  }
+
+  &__arrow-line {
+    position: absolute;
+    z-index: -1;
+    content: ' ';
+    width: 75px;
+    border: 3px dashed transparent;
+    opacity: 0.75;
+
+    &--UP {
+      width: 15px;
+      top: 0;
+      transform: translate(0, -50%) rotate(-90deg);
+    }
+
+    &--RIGHT {
+      width: 15px;
+      right: 0;
+      transform: translate(50%, 0);
+    }
+
+    &--DOWN {
+      width: 15px;
+      bottom: 0;
+      transform: translate(0, 50%) rotate(90deg);
+    }
+
+    &--LEFT {
+      width: 15px;
+      left: 0;
+      transform: translate(-50%, 0) rotate(180deg);
+    }
+
+    &--UP_LEFT {
+      width: 75px;
+      top: 0;
+      right: 0;
+      transform: translate(55%, -100%) rotate(-45deg);
+    }
+
+    &--UP_RIGHT {
+      width: 75px;
+      top: 0;
+      left: 0;
+      transform: translate(-55%, -100%) rotate(-135deg);
+    }
+
+    &--DOWN_LEFT {
+      width: 75px;
+      bottom: 0;
+      left: 0;
+      transform: translate(-55%, 100%) rotate(135deg);
+    }
+
+    &--DOWN_RIGHT {
+      width: 75px;
+      bottom: 0;
+      right: 0;
+      transform: translate(55%, 100%) rotate(45deg);
+    }
+  }
+
+  &__arrow-from-line {
+    position: absolute;
+    z-index: -1;
+    content: ' ';
+    width: 75px;
+    border: 3px dashed transparent;
+    opacity: 0.75;
+
+    &--UP {
+      width: 15px;
+      top: 0;
+      transform: translate(0, -50%) rotate(-90deg);
+    }
+
+    &--RIGHT {
+      width: 15px;
+      top: 50%;
+      right: 0;
+      transform: translate(50%, 0);
+    }
+
+    &--DOWN {
+      width: 15px;
+      top: 0;
+      left: 50%;
+      transform: translate(0, 50%) rotate(90deg);
+    }
+
+    &--LEFT {
+      width: 15px;
+      top: 50%;
+      left: 0;
+      transform: translate(-50%, 0) rotate(180deg);
+    }
+
+    &--UP_LEFT {
+      width: 75px;
+      bottom: 0;
+      right: 0;
+      transform: translate(55%, 100%) rotate(-135deg);
+    }
+
+    &--UP_RIGHT {
+      width: 75px;
+      bottom: 0;
+      left: 0;
+      transform: translate(-55%, 100%) rotate(135deg);
+    }
+
+    &--DOWN_LEFT {
+      width: 75px;
+      top: 0;
+      right: 0;
+      transform: translate(55%, -100%) rotate(135deg);
+    }
+
+    &--DOWN_RIGHT {
+      width: 75px;
+      top: 0;
+      left: 0;
+      transform: translate(-55%, -100%) rotate(-135deg);
+    }
   }
 
   &__start {
@@ -216,6 +387,30 @@
       right: 0;
       top: 50%;
       transform: translate(50%, -50%) rotate(180deg);
+    }
+
+    &--UP_LEFT {
+      bottom: 0;
+      right: 0;
+      transform: translate(100%, 100%) rotate(-135deg);
+    }
+
+    &--UP_RIGHT {
+      bottom: 0;
+      left: 0;
+      transform: translate(-100%, 100%) rotate(-45deg);
+    }
+
+    &--DOWN_LEFT {
+      top: 0;
+      right: 0;
+      transform: translate(100%, -100%) rotate(135deg);
+    }
+
+    &--DOWN_RIGHT {
+      top: 0;
+      left: 0;
+      transform: translate(-100%, -100%) rotate(45deg);
     }
   }
 
@@ -404,5 +599,5 @@
 }
 
 .game-over-avatar-strip {
-  min-height: 130px;
+  min-height: 200px;
 }

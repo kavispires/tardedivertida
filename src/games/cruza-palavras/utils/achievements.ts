@@ -1,3 +1,4 @@
+// Types
 import { AchievementReference } from 'types/achievements';
 
 const ACHIEVEMENTS = {
@@ -74,7 +75,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Quieter',
     },
     description: {
-      pt: 'Usou as dias mais curtas',
+      pt: 'Usou as dicas mais curtas',
       en: 'Used the shortest words',
     },
   },

@@ -1,16 +1,23 @@
-import { useGlobalState } from './useGlobalState';
+import { useGlobalLocalStorage } from './useGlobalLocalStorage';
+
+export type UseLanguageResult = {
+  language: Language;
+  translate: (pt: string, en: string, custom?: string) => string;
+  dualTranslate: (dualLanguageObj: DualLanguageValue) => string;
+  setLanguage: (language: Language) => void;
+  toggleLanguage: () => void;
+};
 
 /**
  * Translate text
  * @returns
  */
-export function useLanguage(): {
-  language: Language;
-  translate: (pt: string, en: string, custom?: string) => string;
-  dualTranslate: (dualLanguageObj: DualLanguageValue) => string;
-  setLanguage: (u: React.SetStateAction<Language>) => void;
-} {
-  const [language, setLanguage] = useGlobalState('language');
+export function useLanguage(): UseLanguageResult {
+  const [language, setLanguage] = useGlobalLocalStorage('language');
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'pt' ? 'en' : 'pt');
+  };
 
   function translate(pt: string, en: string, custom?: string): string {
     if (!language) {
@@ -43,5 +50,6 @@ export function useLanguage(): {
     translate,
     dualTranslate,
     setLanguage,
+    toggleLanguage,
   };
 }

@@ -4,11 +4,13 @@ import type { GamePlayer } from 'types/player';
 // Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 
+/**
+ * Global state for the app with value that should be shared across components during the duration of the app.
+ * Anything persistent though sessions should be stored with useLocalStorage.
+ */
 type InitialState = {
   appStartedAt: number;
   showPlayersBar: boolean;
-  // Language
-  language: Language;
   // User/Player
   userId: string | null;
   username: string;
@@ -16,14 +18,6 @@ type InitialState = {
   user: GamePlayer;
   isAdminEnabled: boolean;
   isDebugEnabled: boolean;
-  blurredCards: BooleanDictionary;
-  blurEnabled: boolean;
-  // Sound
-  volume: number;
-  // Drawing Games
-  canvasSize: number;
-  // Espiao-entre-nos
-  cache: PlainObject;
   // Retrato-Falado
   monsterOrientation: 'vertical' | 'horizontal';
   // Dev
@@ -34,8 +28,6 @@ type InitialState = {
 const initialState: InitialState = {
   appStartedAt: Date.now(),
   showPlayersBar: true,
-  // Language
-  language: 'en',
   // User/Player
   userId: null,
   username: '',
@@ -43,14 +35,6 @@ const initialState: InitialState = {
   user: PLACEHOLDER_PLAYER,
   isAdminEnabled: true,
   isDebugEnabled: false,
-  blurredCards: {},
-  blurEnabled: false,
-  // Sound
-  volume: 0.5,
-  // Drawing games
-  canvasSize: 50,
-  // Espiao-entre-nos
-  cache: {},
   // Retrato-Falado
   monsterOrientation: 'vertical',
   // Dev

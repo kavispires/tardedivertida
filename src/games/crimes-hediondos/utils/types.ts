@@ -1,3 +1,4 @@
+// Types
 import type { CrimesHediondosCard, CrimeSceneTile } from 'types/tdr';
 
 export type GroupedItems = {

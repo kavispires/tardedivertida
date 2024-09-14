@@ -1,11 +1,11 @@
-import { useMemo } from 'react';
 import clsx from 'clsx';
+import { useMemo } from 'react';
 import { useWindowSize } from 'react-use';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
-// Components
+// Internal
 import { RoundType } from './RoundType';
 import { SheepAvatar } from './SheepAvatar';
 

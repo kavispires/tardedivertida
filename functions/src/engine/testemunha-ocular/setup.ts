@@ -192,7 +192,7 @@ export const prepareGameOverPhase = async (
   players: Players,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   const winners = additionalPayload?.win ? utils.players.getListOfPlayers(players) : [];
 
@@ -213,7 +213,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

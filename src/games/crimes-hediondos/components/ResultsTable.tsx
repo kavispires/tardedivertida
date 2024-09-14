@@ -3,14 +3,15 @@ import { orderBy } from 'lodash';
 import { Table, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { Results } from '../utils/types';
 // Icons
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
 import { BoxMinusIcon } from 'icons/BoxMinusIcon';
 import { BoxOneIcon } from 'icons/BoxOneIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { AvatarName, Avatar, IconAvatar } from 'components/avatars';
+// Internal
+import type { Results } from '../utils/types';
 import { CrimeGuessStatus } from './CrimeGuessStatus';
 
 type ResultsTableProps = {

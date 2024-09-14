@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.2",
+  "version": "1.0.19",
   "title": {
     "pt": "Jogo da Mesmice",
     "en": "Same But Different"
@@ -17,7 +17,7 @@
     "en": "Eliminate the features that do not apply to the objects of the round"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "analysis-cloud",
     "color": "",
     "backgroundColor": ""
   },
@@ -35,24 +35,51 @@
   "options": [
     {
       "key": "nsfw",
+      "kind": "switch",
       "label": "NSFW",
-      "off": "No",
-      "on": "Yes",
-      "description": "Allow NSFW content"
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "complexMode",
+      "kind": "switch",
       "label": "Complexity",
-      "off": "Regular",
-      "on": "Complex",
-      "description": "Use more complex features"
+      "description": "Use more complex features",
+      "values": [
+        {
+          "label": "Regular",
+          "value": false
+        },
+        {
+          "label": "Complex",
+          "value": true
+        }
+      ]
     },
     {
       "key": "hardMode",
+      "kind": "switch",
       "label": "Difficulty",
-      "off": "Normal",
-      "on": "Hard",
-      "description": "Uses 8 features instead of 6"
+      "description": "Uses 8 features instead of 6",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "Hard",
+          "value": true
+        }
+      ]
     }
   ]
 }

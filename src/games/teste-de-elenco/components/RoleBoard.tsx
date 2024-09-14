@@ -1,18 +1,18 @@
+import { Fragment } from 'react';
 // Ant Design Resources
 import { Space, Avatar as AntAvatar } from 'antd';
-// Types
-import type { ActingRole, FeatureFilm } from '../utils/types';
 // Utils
 import { pluralize } from 'utils/helpers';
-import { Icons } from '../utils/helpers';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { Instruction, TextHighlight, Title } from 'components/text';
-import { DualTranslate, Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
-import { Fragment } from 'react';
+import { DualTranslate, Translate } from 'components/language';
+import { Instruction, TextHighlight, Title } from 'components/text';
+// Internal
+import type { ActingRole, FeatureFilm } from '../utils/types';
+import { Icons } from '../utils/helpers';
 
 type RoleBoardProps = {
   movie?: FeatureFilm;
@@ -35,8 +35,11 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
           <>
             <Icon width={75} />
             <Title size="small" className="role__title">
-              <DualTranslate>{movie.title}</DualTranslate>
+              {movie.movieTitle}
             </Title>
+            <TextHighlight>
+              <DualTranslate>{movie.genre}</DualTranslate>
+            </TextHighlight>
           </>
         )}
         {children}

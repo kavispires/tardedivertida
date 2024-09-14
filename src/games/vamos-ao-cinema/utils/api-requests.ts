@@ -1,17 +1,15 @@
-import type { SubmitMovieSelectionPayload, SubmitMovieEliminationPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'vamosAoCinemaSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitMovieSelectionPayload, SubmitMovieEliminationPayload } from './types';
+import { VAMOS_AO_CINEMA_ACTIONS } from './constants';
 
 export function useOnSubmitMovieSelectionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
 
     onSuccess: () => setStep(2),
@@ -25,7 +23,7 @@ export function useOnSubmitMovieSelectionAPIRequest(setStep: UseStep['setStep'])
 
   return (payload: SubmitMovieSelectionPayload) => {
     request({
-      action: 'SELECT_MOVIE',
+      action: VAMOS_AO_CINEMA_ACTIONS.SELECT_MOVIE,
       ...payload,
     });
   };
@@ -34,8 +32,7 @@ export function useOnSubmitMovieSelectionAPIRequest(setStep: UseStep['setStep'])
 export function useOnSubmitMovieEliminationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     onBeforeCall: () =>
       window.scrollTo({
@@ -54,7 +51,7 @@ export function useOnSubmitMovieEliminationAPIRequest(setStep: UseStep['setStep'
 
   return (payload: SubmitMovieEliminationPayload) => {
     request({
-      action: 'ELIMINATE_MOVIE',
+      action: VAMOS_AO_CINEMA_ACTIONS.ELIMINATE_MOVIE,
       ...payload,
     });
   };
@@ -63,8 +60,7 @@ export function useOnSubmitMovieEliminationAPIRequest(setStep: UseStep['setStep'
 export function useOnSubmitMoviePosterAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-action',
     onError: () => setStep(0),
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
@@ -76,7 +72,7 @@ export function useOnSubmitMoviePosterAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitMovieEliminationPayload) => {
     request({
-      action: 'VOTE_FOR_POSTER',
+      action: VAMOS_AO_CINEMA_ACTIONS.VOTE_FOR_POSTER,
       ...payload,
     });
   };

@@ -4,16 +4,17 @@ import { Button, Collapse, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
-import type { Crime, GroupedItems, ItemsDict, SceneTilePayload, ScenesDict } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { Crime, GroupedItems, ItemsDict, SceneTilePayload, ScenesDict } from './utils/types';
 import { CrimeSummary } from './components/CrimeSummary';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
-import { SceneTile } from 'components/game/SceneTile';
 
 type StepNewSceneProps = {
   user: GamePlayer;

@@ -3,13 +3,14 @@ import { useMemo } from 'react';
 import { Space } from 'antd';
 // Types
 import { GamePlayer } from 'types/player';
-import { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
 // Icons
 import { BoxEqualIcon } from 'icons/BoxEqualIcon';
 import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
+// Internal
+import { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
 import { ObjectCard } from './ObjectCard';
 import { ObjectFeature } from './ObjectFeature';
 

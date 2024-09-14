@@ -1,22 +1,20 @@
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import { TA_NA_CARA_ACTIONS } from './constants';
 import type {
   SubmitAnswerPayload,
   SubmitGuessPayload,
   SubmitPromptPayload,
   SubmitTargetPayload,
 } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
-import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'taNaCaraSubmitAction');
 
 export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-prompt',
     onSuccess: () => setStep(2),
     successMessage: translate('Pergunta submetida com sucesso', 'Question submitted successfully'),
@@ -28,7 +26,7 @@ export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitPromptPayload) => {
     request({
-      action: 'SUBMIT_PROMPT',
+      action: TA_NA_CARA_ACTIONS.SUBMIT_PROMPT,
       ...payload,
     });
   };
@@ -37,8 +35,7 @@ export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-target',
     onSuccess: () => setStep(2),
     successMessage: translate('Alvo submetida com sucesso', 'Target submitted successfully'),
@@ -50,7 +47,7 @@ export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitTargetPayload) => {
     request({
-      action: 'SUBMIT_TARGET',
+      action: TA_NA_CARA_ACTIONS.SUBMIT_TARGET,
       ...payload,
     });
   };
@@ -59,8 +56,7 @@ export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitAnswerAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-answer',
     successMessage: translate('Resposta submetida com sucesso', 'Answer submitted successfully'),
     errorMessage: translate(
@@ -71,7 +67,7 @@ export function useOnSubmitAnswerAPIRequest() {
 
   return (payload: SubmitAnswerPayload) => {
     request({
-      action: 'SUBMIT_ANSWER',
+      action: TA_NA_CARA_ACTIONS.SUBMIT_ANSWER,
       ...payload,
     });
   };
@@ -80,8 +76,7 @@ export function useOnSubmitAnswerAPIRequest() {
 export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     onSuccess: () => setStep(2),
     actionName: 'submit-guess',
     successMessage: translate('Palpite submetido com sucesso', 'Guess submitted successfully'),
@@ -93,7 +88,7 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitGuessPayload) => {
     request({
-      action: 'SUBMIT_GUESS',
+      action: TA_NA_CARA_ACTIONS.SUBMIT_GUESS,
       ...payload,
     });
   };

@@ -12,7 +12,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
-import { Menu } from 'pages/Daily/components/ConnectTrio/Menu';
+
 import { LoginModal } from 'pages/Me/components/LoginModal';
 import { ReactNode, useEffect } from 'react';
 import { useTitle } from 'react-use';
@@ -51,8 +51,6 @@ function ConnectTrioGame({ game, createNewGame }: ConnectTrioGameProps) {
 
   return (
     <>
-      <Menu userDaily={{ total: 0, longestStreak: 0, streak: 0 }} hearts={hearts} openRules={true} />
-
       <Space className="space-container" direction="vertical">
         <Typography.Title level={2} className="connect-trio-heading">
           <Translate pt="Faça grupos de três" en="Create groups of three" />

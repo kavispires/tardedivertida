@@ -1,19 +1,18 @@
-// AntDesign Resources
+import { Book } from 'games/porta-dos-desesperados/components/Book';
+// Ant Design Resources
 import { Button, Image, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Components
+import { DoorFrame } from 'components/game/DoorFrame';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { Book } from 'games/porta-dos-desesperados/components/Book';
-import { DoorFrame } from 'components/game/DoorFrame';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
@@ -52,6 +51,19 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
           }
         />
       </Instruction>
+
+      <Space className="i-book-container">
+        <Image.PreviewGroup>
+          <Book>
+            <ImageBlurButtonContainer cardId={track.data.book}>
+              <ImageCard id={track.data.book[0]} cardWidth={140} />
+            </ImageBlurButtonContainer>
+            <ImageBlurButtonContainer cardId={track.data.book}>
+              <ImageCard id={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
+            </ImageBlurButtonContainer>
+          </Book>
+        </Image.PreviewGroup>
+      </Space>
       <Image.PreviewGroup>
         <Space className="space-container">
           {track.data.doors.map((cardId: ImageCardId) => {
@@ -76,19 +88,6 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
           })}
         </Space>
       </Image.PreviewGroup>
-
-      <Space className="i-book-container">
-        <Image.PreviewGroup>
-          <Book>
-            <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard id={track.data.book[0]} cardWidth={140} />
-            </ImageBlurButtonContainer>
-            <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard id={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
-            </ImageBlurButtonContainer>
-          </Book>
-        </Image.PreviewGroup>
-      </Space>
     </>
   );
 };

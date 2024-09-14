@@ -8,12 +8,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import {
-  useOnGuessLocationAPIRequest,
-  useOnMakeAccusationAPIRequest,
-  useOnSendLastQuestionerAPIRequest,
-} from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { LoupeIcon } from 'icons/LoupeIcon';
@@ -21,11 +16,17 @@ import { OpinionsIcon } from 'icons/OpinionsIcon';
 import { TimerIcon } from 'icons/TimerIcon';
 // Components
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { StepInvestigation } from './StepInvestigation';
+// Internal
+import {
+  useOnGuessLocationAPIRequest,
+  useOnMakeAccusationAPIRequest,
+  useOnSendLastQuestionerAPIRequest,
+} from './utils/api-requests';
 import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepInvestigation } from './StepInvestigation';
 
 export function PhaseInvestigation({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { PlusSquareFilled } from '@ant-design/icons';
-// Types
-import type { ItemsDict } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+// Internal
+import type { ItemsDict } from '../utils/types';
 
 type SelectedItemsProps = {
   items: ItemsDict;

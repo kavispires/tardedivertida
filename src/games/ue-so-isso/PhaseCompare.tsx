@@ -1,23 +1,24 @@
 // Types
 import { PhaseProps } from 'types/game';
 // Hooks
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
-import { StepCompareSuggestions } from './StepCompareSuggestions';
-import { ComparisonRules } from './components/RulesBlobs';
-import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { WaitingRoom } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
-import { WaitingRoom } from 'components/players';
+// Internal
+import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
+import { ComparisonRules } from './components/RulesBlobs';
+import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
+import { StepCompareSuggestions } from './StepCompareSuggestions';
 
 export function PhaseCompare({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);

@@ -1,3 +1,9 @@
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import { ESPIAO_ENTRE_NOS_ACTIONS } from './constants';
 import type {
   GameProgressPayload,
   GuessLocationPayload,
@@ -5,21 +11,11 @@ import type {
   SendLastQuestionerPayload,
   SubmitVotePayload,
 } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { ADMIN_API } from 'services/adapters';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
-import { useLanguage } from 'hooks/useLanguage';
-import { ADMIN_ACTIONS } from 'utils/constants';
-
-const submitAction = httpsCallable(functions, 'espiaoEntreNosSubmitAction');
 
 export function useOnGuessLocationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-guess',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -32,7 +28,7 @@ export function useOnGuessLocationAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: GuessLocationPayload) => {
     request({
-      action: 'GUESS_LOCATION',
+      action: ESPIAO_ENTRE_NOS_ACTIONS.GUESS_LOCATION,
       ...payload,
     });
   };
@@ -41,8 +37,7 @@ export function useOnGuessLocationAPIRequest(setStep: UseStep['setStep']) {
 export function useOnMakeAccusationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'make-accusation',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -55,7 +50,7 @@ export function useOnMakeAccusationAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: MakeAccusationPayload) => {
     request({
-      action: 'MAKE_ACCUSATION',
+      action: ESPIAO_ENTRE_NOS_ACTIONS.MAKE_ACCUSATION,
       ...payload,
     });
   };
@@ -64,8 +59,7 @@ export function useOnMakeAccusationAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-vote',
     onError: () => setStep(1),
     successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully'),
@@ -77,7 +71,7 @@ export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitVotePayload) => {
     request({
-      action: 'SUBMIT_VOTE',
+      action: ESPIAO_ENTRE_NOS_ACTIONS.SUBMIT_VOTE,
       ...payload,
     });
   };
@@ -86,8 +80,7 @@ export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSendLastQuestionerAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-last-questioner',
     onError: () => setStep(1),
     successMessage: translate(
@@ -102,29 +95,33 @@ export function useOnSendLastQuestionerAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SendLastQuestionerPayload) => {
     request({
-      action: 'LAST_QUESTIONER',
+      action: ESPIAO_ENTRE_NOS_ACTIONS.LAST_QUESTIONER,
       ...payload,
     });
   };
 }
 
+// TODO: Fix this
 export function useOnProgressGameAPIRequest(setStep: UseStep['setStep']) {
-  const { translate } = useLanguage();
+  // const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: ADMIN_API.performAdminAction,
-    actionName: 'progress-game',
-    onError: () => setStep(1),
-    successMessage: translate('Jogo progredido com sucesso', 'Game progressed successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-      'Oops, the application found an error while trying to continue'
-    ),
-  });
+  // const request = useGameActionRequest({
+  //   apiFunction: ADMIN_API.performAdminAction,
+  //   actionName: 'progress-game',
+  //   onError: () => setStep(1),
+  //   successMessage: translate('Jogo progredido com sucesso', 'Game progressed successfully'),
+  //   errorMessage: translate(
+  //     'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+  //     'Oops, the application found an error while trying to continue'
+  //   ),
+  // });
 
+  // return (payload: GameProgressPayload) => {
+  //   request({
+  //     action: payload.end ? ADMIN_ACTIONS.FORCE_END_GAME : ADMIN_ACTIONS.GO_TO_NEXT_PHASE,
+  //   });
+  // };
   return (payload: GameProgressPayload) => {
-    request({
-      action: payload.end ? ADMIN_ACTIONS.FORCE_END_GAME : ADMIN_ACTIONS.GO_TO_NEXT_PHASE,
-    });
+    console.log(payload);
   };
 }

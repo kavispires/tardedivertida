@@ -42,7 +42,7 @@ export function GlyphCard({ id, width, className }: GlyphCardProps) {
 
   return (
     <div className={clsx('glyph-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
-      <Sprite source={source} id={glyphId} width={width} padding={0} />
+      <Sprite source={source} id={glyphId} width={width ? width - 12 : undefined} padding={0} />
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import clsx from 'clsx';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { Bracket, BracketTier } from '../utils/type';
 // Components
-import { Translate } from 'components/language';
-import { BracketContenderVotes } from './BracketContenderVotes';
 import { CharacterCard } from 'components/cards/CharacterCard';
+import { Translate } from 'components/language';
+// Internal
+import type { Bracket, BracketTier } from '../utils/type';
+import { BracketContenderVotes } from './BracketContenderVotes';
 
 type BracketsProps = {
   brackets: Bracket[];

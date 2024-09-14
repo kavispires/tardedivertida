@@ -2,27 +2,28 @@
 import { Avatar } from 'antd';
 // Types
 import type { PhaseProps, GameRound } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitTrackAnswerAPIRequest } from './utils/api-requests';
-import { useColorizeBackground } from './utils/useColorizeBackground';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { showDJPruPruPruStep } from './utils/helpers';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
 // Components
+import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+// Internal
+import { useOnSubmitTrackAnswerAPIRequest } from './utils/api-requests';
+import { useColorizeBackground } from './utils/useColorizeBackground';
+import { showDJPruPruPruStep } from './utils/helpers';
 import { TrackIcon } from './components/TrackIcon';
 import { TrackInstructions } from './components/TrackInstructions';
-import { StepTrack } from './StepTrack';
 import { TrackTitle } from './components/TrackTitle';
 import { DJInstructions } from './components/RulesBlobs';
-import { Translate } from 'components/language';
-import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
+import { StepTrack } from './StepTrack';
 
 export function PhaseTrack({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

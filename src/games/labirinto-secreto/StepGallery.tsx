@@ -1,20 +1,22 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Tree } from './utils/types';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Utils
-import { PAGE_DURATION } from './utils/constants';
 import { getAvatarColorById } from 'utils/helpers';
-import { buildPlayerMapping } from './utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { SlideShowControls } from 'components/slide-show/SlideShowControls';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { Tree } from './utils/types';
+import { PAGE_DURATION } from './utils/constants';
+import { buildPlayerMapping } from './utils/helpers';
 import { Forest } from './components/Forest';
-import { AvatarName } from 'components/avatars';
-import { SlideShowControls } from 'components/slide-show/SlideShowControls';
 import { PlayerMapResultsSummary } from './components/ResultsSummary';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepGalleryProps = {
   players: GamePlayers;

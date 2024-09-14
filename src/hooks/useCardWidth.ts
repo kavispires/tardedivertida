@@ -42,7 +42,7 @@ export function useCardWidth(
  * @param options.margin the outer margin of the container that should be removed from the width
  * @returns
  */
-export function useCardWidthByContainerRef(
+export function useCardWidthByContainerRef<TRef = HTMLDivElement>(
   quantity: number,
   options?: {
     gap?: number;
@@ -50,7 +50,7 @@ export function useCardWidthByContainerRef(
     maxWidth?: number;
     margin?: number;
   }
-): [number, LegacyRef<HTMLDivElement>] {
+): [number, LegacyRef<TRef>] {
   const [ref, { width }] = useMeasure();
   const { gap = 32, minWidth = 120, maxWidth = 300, margin = 0 } = options ?? {};
 
@@ -59,7 +59,7 @@ export function useCardWidthByContainerRef(
     return Number.isNaN(value) ? minWidth : value;
   }, [width, quantity, gap, minWidth, maxWidth, margin]);
 
-  const containerRef = ref as LegacyRef<HTMLDivElement>;
+  const containerRef = ref as unknown as LegacyRef<TRef>;
 
   return [cardWidth, containerRef];
 }

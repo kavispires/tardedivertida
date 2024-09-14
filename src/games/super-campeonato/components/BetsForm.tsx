@@ -2,25 +2,25 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { Bracket, FightingContender } from '../utils/type';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { getSmartBetContenderOptions } from '../utils/helpers';
-import { DEFAULT_BETS, TIER_BY_STEP } from '../utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { MedalIcon } from 'icons/MedalIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
 import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { ContendersSelect } from './ContendersSelect';
 import { IconAvatar } from 'components/avatars';
-import { ResetBetsButton } from './ResetBetsButton';
+import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Instruction } from 'components/text';
+// Internal
+import type { Bracket, FightingContender } from '../utils/type';
+import { getSmartBetContenderOptions } from '../utils/helpers';
+import { DEFAULT_BETS, TIER_BY_STEP } from '../utils/constants';
+import { ContendersSelect } from './ContendersSelect';
+import { ResetBetsButton } from './ResetBetsButton';
 
 type BetsFormProps = {
   brackets: Bracket[];

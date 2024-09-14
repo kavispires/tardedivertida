@@ -1,40 +1,20 @@
-import { AlienItem, ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
+import { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
 import { DUETOS_ACHIEVEMENTS, DUETOS_ACTIONS } from './constants';
 
-export interface DuetosOptions {
+export type DuetosOptions = {
   /**
    * Possibly include nsfw items
    */
-  nsfw?: boolean;
+  nsfw: boolean;
   /**
    * Enables bot selection
    */
-  withBots?: boolean;
+  withBots: boolean;
   /**
-   * Enables image cards
+   * Special grounds
    */
-  withImages?: boolean;
-  /**
-   * Enables sprites round
-   */
-  withSprites?: boolean;
-  /**
-   * Enables avatars round
-   */
-  withAvatars?: boolean;
-  /**
-   * Enables words round
-   */
-  withWords?: boolean;
-  /**
-   * Enables contenders round
-   */
-  withContenders?: boolean;
-  /**
-   * Enables suspects round
-   */
-  withSuspects?: boolean;
-}
+  specialRounds: 'images' | 'sprites' | 'avatars' | 'words' | 'contenders' | 'suspects';
+};
 
 export type ItemEntry = {
   id: string;
@@ -43,7 +23,7 @@ export type ItemEntry = {
 };
 
 export interface ResourceData {
-  items: AlienItem[];
+  items: Item[];
   images: CardId[];
   emojis: number[];
   glyphs: number[];
@@ -56,9 +36,17 @@ export interface ResourceData {
   decks: string[];
 }
 
+type GalleryItem = {
+  pairId: string;
+  pair: (ItemEntry | undefined)[];
+  players: PlayerId[];
+};
+
+export type Gallery = GalleryItem[];
+
 export type DuetosAchievement = keyof typeof DUETOS_ACHIEVEMENTS;
 
-export interface DuetosStore extends DefaultStore {
+export interface DuetosStore extends DefaultStore<DuetosOptions> {
   [key: string]: any;
 }
 
@@ -75,5 +63,5 @@ export interface DuetosSubmitAction extends Payload {
   action: keyof typeof DUETOS_ACTIONS;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | DuetosState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | DuetosStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & DuetosState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & DuetosStore;

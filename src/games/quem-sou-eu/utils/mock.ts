@@ -1,4 +1,5 @@
 import { sample, sampleSize } from 'lodash';
+// Internal
 import { Character } from './types';
 
 export const mockSelectCharacters = (characters: Character[]) => {

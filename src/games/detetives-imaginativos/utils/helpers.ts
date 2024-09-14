@@ -1,3 +1,4 @@
+// Internal
 import type { CardEntry } from './types';
 
 export function isEarliestPlayerWithFewestCards(

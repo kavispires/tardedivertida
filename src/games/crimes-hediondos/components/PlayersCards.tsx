@@ -1,15 +1,16 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { History } from '../utils/types';
-// Helpers
-import { isHistoryLocked } from '../utils/helpers';
+// Utils
 import { sortPlayers } from 'utils/helpers';
 // Icons
-import { LockIcon } from 'icons/LockIcon';
 import { KnifeIcon } from 'icons/KnifeIcon';
+import { LockIcon } from 'icons/LockIcon';
 // Components
 import { AvatarCard, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
+// Internal
+import type { History } from '../utils/types';
+import { isHistoryLocked } from '../utils/helpers';
 
 type PlayersCardsProps = {
   activePlayerId: PlayerId;

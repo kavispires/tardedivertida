@@ -1,9 +1,9 @@
-// Types
-import type { GroupedItems, ItemsDict } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+// Internal
+import type { GroupedItems, ItemsDict } from '../utils/types';
 
 type GroupedItemsBoardProps = {
   groupedItems: GroupedItems;

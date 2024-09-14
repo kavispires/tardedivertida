@@ -3,17 +3,18 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
-// Resources and Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { PictureIcon } from 'icons/PictureIcon';
 // Components
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
+// Internal
 import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
-import { Translate } from 'components/language';
 
 function PhaseGallery({ players, state, info, meta }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);

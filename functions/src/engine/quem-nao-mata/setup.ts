@@ -112,7 +112,7 @@ export const prepareGameOverPhase = async (
   // Save
   const winners = utils.players.determineWinners(players);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.QUEM_NAO_MATA,

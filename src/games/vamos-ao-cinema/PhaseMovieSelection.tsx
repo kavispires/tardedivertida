@@ -1,22 +1,23 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
-import { useStep } from 'hooks/useStep';
+// Hooks
 import { useMock } from 'hooks/useMock';
-import { useOnSubmitMovieSelectionAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { mockMovieSelection } from './utils/mock';
 // Icons
 import { ReviewIcon } from 'icons/ReviewIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
+// Internal
+import { useOnSubmitMovieSelectionAPIRequest } from './utils/api-requests';
+import { mockMovieSelection } from './utils/mock';
 import { YourMovie } from './components/YourMovie';
-import { RoundAnnouncement } from 'components/round';
 import { StepSelectMovie } from './StepSelectMovie';
 
 export function PhaseMovieSelection({ players, state, info }: PhaseProps) {

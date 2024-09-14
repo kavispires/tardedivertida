@@ -1,0 +1,35 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "E",
+  "gameName": "escape-room",
+  "version": "planned",
+  "title": {
+    "pt": "Escape Room",
+    "en": "Escape Room"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "ecapS ni sbooN",
+  "summary": {
+    "pt": "Com as pistas que vocês tem em mãos, você consegue escapar da sala?",
+    "en": "With the clues you have in hand, can you escape the room?"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 3,
+    "max": 10
+  },
+  "tags": ["cooperative", "brain-burner", "images", "timed", "puzzle"],
+  "available": false
+}

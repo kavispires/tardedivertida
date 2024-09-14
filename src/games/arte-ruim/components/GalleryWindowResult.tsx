@@ -1,17 +1,19 @@
 // Ant Design Resources
-import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar, Typography } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { PlayersSay } from '../utils/types';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
-// Components
-import { Translate } from 'components/language';
-import { Avatar } from 'components/avatars';
-import { StarPoints } from 'components/points';
+// Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
+// Components
+import { Avatar } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language';
+import { StarPoints } from 'components/points';
+// Internal
+import type { PlayersSay } from '../utils/types';
 
 type GalleryWindowResultProps = {
   playerArtist: GamePlayer;

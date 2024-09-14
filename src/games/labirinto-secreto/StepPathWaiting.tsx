@@ -1,13 +1,14 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Tree } from './utils/types';
 // Components
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { Tree } from './utils/types';
 import { Forest } from './components/Forest';
 import { MapHighlight, TreeHighlight } from './components/Highlights';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PlayerMap } from './components/PlayerMap';
 
 type StepPathWaitingProps = {

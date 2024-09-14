@@ -3,21 +3,21 @@ import clsx from 'clsx';
 import { Space } from 'antd';
 // Types
 import { GamePlayer, GamePlayers } from 'types/player';
-import type { TableEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockVote } from './utils/mock';
 // Components
 import { Card } from 'components/cards';
+import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { TableEntry } from './utils/types';
+import { mockVote } from './utils/mock';
 import { VotingRules } from './components/RulesBlobs';
-import { ImageCard, ImageCardButton } from 'components/image-cards';
 
 type StepVotingProps = {
   players: GamePlayers;

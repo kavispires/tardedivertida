@@ -231,7 +231,7 @@ export const prepareRevealPhase = async (
         outcome,
         eliminatedMovies,
         votedForSelectedMovie,
-        finalMovieId: finalMovieId ?? utils.firebase.deleteValue(),
+        finalMovieId: finalMovieId ?? utils.firestore.deleteValue(),
         score,
         groupScore: store.score,
         ...posterUpdate,
@@ -246,7 +246,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   const finalMovies = getFinalMovies(store.finalMovies, players, store.moviePosters);
 
@@ -266,7 +266,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

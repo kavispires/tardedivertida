@@ -17,7 +17,7 @@ type SignUpProps = {
 export function SignUp({ onSuccess }: SignUpProps) {
   const [form] = Form.useForm();
 
-  const { isLoading, mutate, isError } = useMutation({
+  const { isPending, mutate, isError } = useMutation({
     mutationKey: ['sign-up'],
     mutationFn: async () => await signUp(form.getFieldValue('username'), form.getFieldValue('password')),
     onSuccess: () => {
@@ -35,7 +35,7 @@ export function SignUp({ onSuccess }: SignUpProps) {
         <Image src={logo} preview={false} />
       </div>
 
-      <SignUpForm form={form} onFinish={onFinish} isError={isError} isLoading={isLoading} />
+      <SignUpForm form={form} onFinish={onFinish} isError={isError} isLoading={isPending} />
     </div>
   );
 }

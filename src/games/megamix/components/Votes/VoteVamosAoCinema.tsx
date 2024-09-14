@@ -1,9 +1,8 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
-// Utils
-import { getMovieTitles } from '../../utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
+import { getMovieTitles } from '../../utils/helpers';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteVamosAoCinema({ track, playersList }: VoteComponentProps) {

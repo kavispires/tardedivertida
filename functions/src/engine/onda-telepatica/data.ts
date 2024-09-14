@@ -30,7 +30,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCategories).length < PLAYER_COUNTS.MAX * 2) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS);
+    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS);
     return { allCategories };
   }
 

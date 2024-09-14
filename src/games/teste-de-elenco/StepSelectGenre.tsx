@@ -1,40 +1,62 @@
+import { sampleSize } from 'lodash';
+import { useState } from 'react';
 // Ant Design Resources
-import { Space } from 'antd';
+import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { MovieGenreOption, SubmitMovieGenrePayload } from './utils/types';
+import { Item } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getRandomItem } from 'utils/helpers';
-import { Icons } from './utils/helpers';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { ItemCard } from 'components/cards/ItemCard';
+import { Container } from 'components/general/Container';
+import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { DualTranslate, Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
-import { IconAvatar } from 'components/avatars';
+// Internal
+import type { MovieGenreOption, SubmitMovieGenrePayload } from './utils/types';
+import { Icons } from './utils/helpers';
 
 type StepSelectGenreProps = {
   user: GamePlayer;
   genres: MovieGenreOption[];
   onSubmitGenre: (payload: SubmitMovieGenrePayload) => void;
+  moviesTitles: string[];
+  movieProps: Item[];
 } & Pick<StepProps, 'announcement'>;
 
-export function StepSelectGenre({ user, announcement, genres, onSubmitGenre }: StepSelectGenreProps) {
+export function StepSelectGenre({
+  user,
+  announcement,
+  genres,
+  onSubmitGenre,
+  moviesTitles,
+  movieProps,
+}: StepSelectGenreProps) {
   const { isLoading } = useLoading();
+  const [selectedMovieTitle, setSelectedMovieTitle] = useState<string>('');
+  const [selectedGenre, setSelectedGenre] = useState<string>('');
+  const [selectedProps, setSelectedProps] = useState<string[]>([]);
 
   useMock(() => {
-    onSubmitGenre({ genre: getRandomItem(genres).key });
+    onSubmitGenre({
+      genre: getRandomItem(genres).key,
+      movieTitle: getRandomItem(moviesTitles),
+      propsIds: sampleSize(movieProps, 1).map((prop) => prop.id),
+    });
   });
 
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        <Translate pt={<>Selecione o gênero do filme</>} en={<>Select the movie genre</>} />
+        <Translate en={<>Let's customize the movie!</>} pt={<>Vamos personalizar o filme!</>} />
       </Title>
 
       <RuleInstruction type="rule">
@@ -42,7 +64,7 @@ export function StepSelectGenre({ user, announcement, genres, onSubmitGenre }: S
           pt={
             <>
               Somos diretores de elenco tentando determinar o elenco para um filme! Haverá 5 papéis para
-              escalar, mas primeiro precisamos decidir qual é o gênero do filme em que vamos trabalhar!
+              escalar, mas primeiro precisamos decidir algumas coisas sobre o filme em que vamos trabalhar!
               <br />
               Isso vai determinar quais serão os papéis que precisaremos escalar!
             </>
@@ -50,7 +72,7 @@ export function StepSelectGenre({ user, announcement, genres, onSubmitGenre }: S
           en={
             <>
               We are casting directors trying to determine the cast for a movie! There will be 5 roles to
-              cast, but we first need to decide what genre is the movie we'll be working on!
+              cast, but we first need to decide some things about the movie we'll be working on!
               <br />
               This will determine what roles we'll need to cast!
             </>
@@ -58,21 +80,94 @@ export function StepSelectGenre({ user, announcement, genres, onSubmitGenre }: S
         />
       </RuleInstruction>
 
-      <Space className="movie-genre-selection">
+      <Container
+        title={<Translate en="Select the genre of te movie" pt="Selecione o gênero do filme" />}
+        contentProps={{
+          style: { gridTemplateColumns: `repeat(${genres.length}, 1fr)` },
+          className: 'movie-personalization-selection',
+        }}
+      >
         {genres.map((genre) => {
           const Icon = Icons?.[genre.key] ?? MovieGenreIcon;
           return (
             <TransparentButton
               key={genre.key}
-              onClick={() => onSubmitGenre({ genre: genre.key })}
+              onClick={() => setSelectedGenre(genre.key)}
               disabled={isLoading || user.ready}
-              className="movie-genre-selection__button"
+              className="movie-personalization-selection__button"
+              active={selectedGenre === genre.key}
+              activeClass="movie-personalization-selection__button--selected"
             >
               <IconAvatar icon={<Icon />} size={64} />
               <DualTranslate>{genre.title}</DualTranslate>
             </TransparentButton>
           );
         })}
+      </Container>
+
+      <Container
+        title={<Translate en="Select the title of te movie" pt="Selecione o título do filme" />}
+        contentProps={{
+          style: { gridTemplateColumns: `repeat(${moviesTitles.length}, 1fr)` },
+          className: 'movie-personalization-selection',
+        }}
+      >
+        {moviesTitles.map((title) => {
+          return (
+            <TransparentButton
+              key={title}
+              onClick={() => setSelectedMovieTitle(title)}
+              disabled={isLoading || user.ready}
+              className="movie-personalization-selection__button"
+              active={selectedMovieTitle === title}
+              activeClass="movie-personalization-selection__button--selected"
+            >
+              <span>{title}</span>
+            </TransparentButton>
+          );
+        })}
+      </Container>
+
+      <Container
+        title={
+          <Translate
+            en="Select a thing important for the plot"
+            pt="Selecione um elemento importante para o enredo"
+          />
+        }
+        contentProps={{
+          style: { gridTemplateColumns: `repeat(${movieProps.length}, 1fr)` },
+          className: 'movie-personalization-selection',
+        }}
+      >
+        {movieProps.map((item) => {
+          return (
+            <TransparentButton
+              key={item.id}
+              onClick={() => setSelectedProps([item.id])}
+              disabled={isLoading || user.ready}
+              className="movie-personalization-selection__button"
+              active={selectedProps[0] === item.id}
+              activeClass="movie-personalization-selection__button--selected"
+            >
+              <ItemCard id={item.id} text={item.name} />
+            </TransparentButton>
+          );
+        })}
+      </Container>
+
+      <Space className="space-container">
+        <Button
+          size="large"
+          type="primary"
+          onClick={() =>
+            onSubmitGenre({ genre: selectedGenre, movieTitle: selectedMovieTitle, propsIds: selectedProps })
+          }
+          loading={isLoading}
+          disabled={user.ready || !selectedGenre || !selectedMovieTitle || !selectedProps.length}
+        >
+          <Translate en="Submit" pt="Enviar" />
+        </Button>
       </Space>
     </Step>
   );

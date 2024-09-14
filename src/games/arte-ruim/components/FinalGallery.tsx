@@ -1,9 +1,10 @@
 // Types
 import type { GamePlayers } from 'types/player';
-import type { ArteRuimDrawing } from '../utils/types';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
+// Internal
+import type { ArteRuimDrawing } from '../utils/types';
 import { DrawingGrade } from './DrawingGrade';
 
 type FinalGalleryProps = {

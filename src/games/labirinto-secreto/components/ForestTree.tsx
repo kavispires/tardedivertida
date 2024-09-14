@@ -1,17 +1,17 @@
 import clsx from 'clsx';
-// Types
-import type { MapSegment, Tree, TreeId } from '../utils/types';
 // Utils
-import { getOriginDirection } from '../utils/helpers';
 import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { FlagIcon } from 'icons/FlagIcon';
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { CompassIcon } from 'icons/CompassIcon';
 import { FinishLineIcon } from 'icons/FinishLineIcon';
+import { FlagIcon } from 'icons/FlagIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { TreeCard } from 'components/cards/TreeCard';
+// Internal
+import type { MapSegment, Tree, TreeId } from '../utils/types';
+import { getOriginDirection } from '../utils/helpers';
+import { TreeImage } from './TreeImage';
 
 type ForestTreeProps = {
   segment: MapSegment;
@@ -57,8 +57,8 @@ export function ForestTree({
         className
       )}
     >
-      <TreeCard
-        id={String(tree.treeType)}
+      <TreeImage
+        id={tree.treeType}
         text={segment?.passed && hidePassedTreeNames ? '' : tree.card.text}
         width={width}
       />
@@ -87,11 +87,21 @@ export function ForestTree({
         />
       )}
       {(showArrow || showPath || isPassed) && !isFinalPoint && isSegment && segment.direction && (
-        <IconAvatar
-          icon={<ArrowIcon />}
-          size="large"
-          className={`forest__arrow forest__arrow--${segment.direction}`}
-        />
+        <>
+          <span
+            className={clsx(
+              `forest__arrow-line forest__arrow-line--${segment.direction}`,
+              isSegment && showPath && 'forest__tree--segment',
+              isPassed && 'forest__tree--passed',
+              isCurrentTree && 'forest__tree--current'
+            )}
+          />
+          <IconAvatar
+            icon={<ArrowIcon />}
+            size="large"
+            className={`forest__arrow forest__arrow--${segment.direction}`}
+          />
+        </>
       )}
     </div>
   );

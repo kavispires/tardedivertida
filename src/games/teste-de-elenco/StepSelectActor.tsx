@@ -1,17 +1,18 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { ActingRole, FeatureFilm, SubmitMovieActorPayload } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getRandomItem } from 'utils/helpers';
 // Components
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { ActingRole, FeatureFilm, SubmitMovieActorPayload } from './utils/types';
 import { ActorsBoard } from './components/ActorsBoard';
 import { RoleBoard } from './components/RoleBoard';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { CastSummary } from './components/CastSummary';
 
 type StepSelectActorProps = {
@@ -29,7 +30,14 @@ export function StepSelectActor({
   movie,
 }: StepSelectActorProps) {
   useMock(() => {
-    onSubmitActor({ actorId: getRandomItem(activeRole.selection) });
+    onSubmitActor({
+      actorId: getRandomItem([
+        ...activeRole.selection,
+        activeRole.selection[0],
+        activeRole.selection[0],
+        activeRole.selection[0],
+      ]),
+    });
   });
 
   return (
@@ -38,7 +46,9 @@ export function StepSelectActor({
         <Translate pt={<>Selecione um ator!</>} en={<>Cast a role:</>} />
       </Title>
 
-      <RoleBoard activeRole={activeRole} instruction="SELECT" movie={movie} />
+      <RoleBoard activeRole={activeRole} instruction="SELECT" movie={movie}>
+        <CastSummary movie={movie} />
+      </RoleBoard>
 
       <ActorsBoard
         actors={activeRole.candidates}

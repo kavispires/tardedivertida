@@ -1,4 +1,6 @@
+// Utils
 import { getRandomItem } from 'utils/helpers';
+// Internal
 import { TableEntry } from './types';
 
 const randomWords = ['avocado', 'bell pepper', 'crustaceous', 'dinner'];

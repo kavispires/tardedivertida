@@ -45,7 +45,7 @@ export function SignIn({ onSuccess }: SignInProps) {
 }
 
 export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & ButtonProps) {
-  const { isLoading, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
+  const { isPending, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
     mutationFn: async () => await signInWithGoogle(),
     onSuccess,
   });
@@ -76,7 +76,7 @@ export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & Bu
           type="primary"
           size="large"
           onClick={onFinish}
-          loading={isLoading}
+          loading={isPending}
           block
           icon={<IconAvatar icon={<GoogleIcon />} size="small" />}
           {...buttonProps}
@@ -93,7 +93,7 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
   const { translate } = useLanguage();
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const { isLoading, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
+  const { isPending, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
     mutationFn: async () => await signIn(form.getFieldValue('username'), form.getFieldValue('password')),
     onSuccess,
   });
@@ -152,7 +152,7 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
         )}
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit" loading={isLoading}>
+          <Button type="primary" htmlType="submit" loading={isPending}>
             <Translate pt="Entrar" en="Submit" />
           </Button>
 
@@ -186,7 +186,7 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
   const [form] = Form.useForm();
   const { translate } = useLanguage();
 
-  const { isLoading, mutate, isError } = useMutation({
+  const { isPending, mutate, isError } = useMutation({
     mutationFn: async () => await resetPassword(form.getFieldValue('username')),
     onSuccess: () => {
       onSuccess();
@@ -246,7 +246,7 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
       )}
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit" disabled={isLoading}>
+        <Button type="primary" htmlType="submit" loading={isPending}>
           <Translate pt="Enviar" en="Submit" />
         </Button>
       </Form.Item>

@@ -317,21 +317,32 @@ export const addBots = (
  * Get list of non-bot players
  * @param players
  * @param includeBots default=false
+ * @param butThese player ids to ignore
  * @returns array of players
  */
-export const getListOfPlayers = (players: Players, includeBots = false): Player[] => {
-  if (includeBots) return Object.values(players);
-  return Object.values(players).filter((player) => player.type === 'player');
+export const getListOfPlayers = (
+  players: Players,
+  includeBots = false,
+  butThese: PlayerId[] = []
+): Player[] => {
+  const options = Object.values(players).filter((player) => !butThese.includes(player.id));
+  if (includeBots) return options;
+  return options.filter((player) => player.type === 'player');
 };
 
 /**
  * Get list of players ids
  * @param players
  * @param includeBots
+ * @param butThese
  * @returns
  */
-export const getListOfPlayersIds = (players: Players, includeBots = false): PlayerId[] => {
-  return getListOfPlayers(players, includeBots).map((player) => player.id);
+export const getListOfPlayersIds = (
+  players: Players,
+  includeBots = false,
+  butThese: PlayerId[] = []
+): PlayerId[] => {
+  return getListOfPlayers(players, includeBots, butThese).map((player) => player.id);
 };
 
 /**
@@ -364,9 +375,10 @@ export const neutralizeBotScores = (players: Players) => {
 export const buildGameOrder = (
   players: Players,
   doublingThreshold = 0,
-  includeBots = false
+  includeBots = false,
+  excludePlayersIds: PlayerId[] = []
 ): { gameOrder: PlayerId[]; playerIds: PlayerId[]; playerCount: number } => {
-  const playerIds = shuffle(getListOfPlayersIds(players, includeBots));
+  const playerIds = shuffle(getListOfPlayersIds(players, includeBots, excludePlayersIds));
   const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
   return { gameOrder, playerIds, playerCount: playerIds.length };
 };

@@ -1,18 +1,19 @@
 // Types
 import { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitMovieGenreAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
+// Internal
+import { useOnSubmitMovieGenreAPIRequest } from './utils/api-requests';
 import { StepSelectGenre } from './StepSelectGenre';
 
 export function PhaseMovieGenreSelection({ players, state, info }: PhaseProps) {
@@ -59,6 +60,8 @@ export function PhaseMovieGenreSelection({ players, state, info }: PhaseProps) {
           user={user}
           onSubmitGenre={onSubmitGenre}
           genres={state.genres}
+          moviesTitles={state.movieTitles}
+          movieProps={state.movieProps}
           announcement={announcement}
         />
       </StepSwitcher>

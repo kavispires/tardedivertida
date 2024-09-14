@@ -1,13 +1,14 @@
 import clsx from 'clsx';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { ArteRuimDrawing } from '../utils/types';
 // Utils
 import { getEntryId } from 'utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { Ribbon } from 'components/ribbons';
-import { AvatarName } from 'components/avatars';
+// Internal
+import type { ArteRuimDrawing } from '../utils/types';
 
 type EvaluationAllDrawingsProps = {
   drawings: ArteRuimDrawing[];

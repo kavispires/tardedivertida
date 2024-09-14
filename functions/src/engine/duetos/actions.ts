@@ -17,7 +17,7 @@ export const handleSubmitPairs = async (
   playerId: PlayerId,
   pairs: CardId[]
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

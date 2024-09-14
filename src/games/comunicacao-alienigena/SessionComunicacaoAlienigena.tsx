@@ -2,16 +2,15 @@
 import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-// Constants
+// Utils
 import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
-// Utils
-import localStorage from 'services/localStorage';
 // Components
-import { Session } from 'components/session';
-import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
+import { Session } from 'components/session';
+// Internal
 import { PhaseAlienSelection } from './PhaseAlienSelection';
 import { PhaseHumanAsk } from './PhaseHumanAsk';
 import { PhaseAlienAnswer } from './PhaseAlienAnswer';
@@ -33,8 +32,6 @@ function getActiveComponent(state: GameState) {
     case PHASES.DEFAULT.RULES:
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
-      // Clear cache
-      localStorage.set({ cache: '{}' });
       return PhaseSetup;
     case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION:
       return PhaseAlienSelection;

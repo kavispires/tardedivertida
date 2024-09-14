@@ -1,16 +1,17 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { MagicBookSpellIcon } from 'icons/MagicBookSpellIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepResults } from './StepResults';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
+import { StepResults } from './StepResults';
 
 export function PhaseResolution({ players, state, info }: PhaseProps) {
   const { step, goToNextStep } = useStep();

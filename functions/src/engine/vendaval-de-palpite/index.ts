@@ -64,14 +64,14 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -82,43 +82,43 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getData(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> BOSS_SELECTION
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.BOSS_SELECTION) {
     const newPhase = await prepareBossPlayerSelection();
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // BOSS_SELECTION -> SECRET_WORD_SELECTION
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.SECRET_WORD_SELECTION) {
     const newPhase = await prepareSecretWordSelection(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // * -> CARD_PLAY
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES) {
     const newPhase = await preparePlayersClues(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // CARD_PLAY -> RESOLUTION
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.CLUE_EVALUATIONS) {
     const newPhase = await prepareClueEvaluations(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -157,6 +157,6 @@ export const submitAction = async (data: VendavalDePalpiteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['clueId'], 'submit help');
       return handleSubmitHelp(gameName, gameId, playerId, data.clueId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

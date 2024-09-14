@@ -9,7 +9,7 @@ export const handleSubmitScenarioOrder = async (
   playerId: PlayerId,
   order: CardId[]
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

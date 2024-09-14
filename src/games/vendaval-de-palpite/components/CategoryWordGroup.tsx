@@ -1,4 +1,6 @@
+// Ant Design Resources
 import { Space } from 'antd';
+// Internal
 import { CategoryCard } from './CategoryCard';
 import { SecretWordCard } from './SecretWordCard';
 

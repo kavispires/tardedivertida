@@ -3,21 +3,22 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitPlayerCluesAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { DiscussionIcon } from 'icons/DiscussionIcon';
 // Components
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
-import { Translate } from 'components/language';
-import { StepPlayerClue } from './StepPlayerClue';
-import { RoundAnnouncement } from 'components/round';
 import { ViewOr } from 'components/views';
-import { StepBossWaiting } from './StepBossWaiting';
+// Internal
+import { useOnSubmitPlayerCluesAPIRequest } from './utils/api-requests';
 import { Board } from './components/Board';
+import { StepPlayerClue } from './StepPlayerClue';
+import { StepBossWaiting } from './StepBossWaiting';
 
 export function PhasePlayersClues({ state, players, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);

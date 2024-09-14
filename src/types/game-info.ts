@@ -30,13 +30,19 @@ export type GameInfo = {
   };
   tags: string[];
   available: boolean;
-  options?: {
-    label: string;
-    key: string;
-    on: string;
-    off: string;
-    description?: string;
-    disabled?: boolean;
-  }[];
   mobileFriendly?: boolean;
+  options?: GameInfoOption[];
+};
+
+export type GameInfoOption = {
+  key: string;
+  label: string;
+  description?: string;
+  disabled?: boolean;
+  // 'switch' | 'checkbox' | 'radio'
+  kind: string;
+  values: {
+    label: string;
+    value: string | boolean;
+  }[];
 };

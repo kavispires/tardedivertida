@@ -2,15 +2,16 @@ import { useEffect } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
+import { useCache } from 'hooks/useCache';
 import { useCountdown } from 'hooks/useCountdown';
-import { useGlobalState } from 'hooks/useGlobalState';
 // Utils
 import { formatTime, getRandomItem } from 'utils/helpers';
-import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
 // Icons
 import { MagicHourGlassIcon } from 'icons/MagicHourGlassIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
+// Internal
+import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
 
 type SandTimerProps = {
   trap: string;
@@ -29,7 +30,7 @@ export function SandTimer({
   onSubmitDoor,
   onMakeReady,
 }: SandTimerProps) {
-  const [, setCache] = useGlobalState('cache');
+  const { setCache } = useCache();
 
   const handleExpire = () => {
     if (!user.doorId) {

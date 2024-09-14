@@ -21,7 +21,7 @@ export const handleExtraAction = async (
 ) => {
   // Save card to store
   try {
-    const { state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    const { state } = await utils.firestore.getStateReferences<FirebaseStateData>(
       gameName,
       gameId,
       actionText
@@ -50,7 +50,7 @@ export const handleElimination = async (
   actionText: string,
   additionalPayload: any
 ) => {
-  const { sessionRef, state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -74,7 +74,7 @@ export const handleElimination = async (
     } else {
       const eliminatedSuspects = state?.eliminatedSuspects || [];
       eliminatedSuspects.push(suspectId);
-      await utils.firebase.saveGame(sessionRef, {
+      await utils.firestore.saveGame(sessionRef, {
         update: {
           state: {
             eliminatedSuspects,
