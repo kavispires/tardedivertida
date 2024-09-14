@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const IMPORT_COMMENTS = [
   '// Ant Design Resources',
+  '',
   '// Types',
   '// Hooks',
   '// Utils',
@@ -16,6 +17,7 @@ const IMPORT_COMMENTS = [
   '// Internal',
   '// Resources and Utils',
   '// Images',
+  '// Fonts',
 ];
 
 function sortImportGroups(group, name) {
@@ -159,20 +161,45 @@ const processFile = (filePath) => {
 
   // Remove all import comments that precede a import line
   const filteredLines = lines.filter((line, index) => {
-    if (IMPORT_COMMENTS.includes(line.trim()) && lines[index + 1].startsWith('import ')) {
+    if (IMPORT_COMMENTS.includes(line.trim()) && lines[index + 1]?.startsWith('import ')) {
       return false;
     }
     return true;
   });
 
   // Extract import lines
-  const importLines = filteredLines.filter((line) => line.startsWith('import '));
-  // Sort the imports
+  const importLines = [];
+  const nonImportLines = [];
+
+  let currentImport = '';
+
+  filteredLines.forEach((line) => {
+    if (line.startsWith('import ')) {
+      // If it's single line import, add it to the import lines
+      if (line.endsWith(';')) {
+        importLines.push(line);
+      } else {
+        // If it's a multiline import, start adding to the current import
+        currentImport = line.trim() + ' ';
+      }
+    } else if (currentImport) {
+      // If we are in a multiline import, continue to add the line
+      currentImport += line.trim() + ' ';
+      if (line.endsWith(';')) {
+        importLines.push(currentImport.trim());
+        currentImport = '';
+      }
+    }
+    // If it's not an import line, add it to the non-import lines
+    else {
+      nonImportLines.push(line);
+    }
+  });
 
   const sortedImports = sortImports(importLines);
 
   // Replace original imports with sorted imports
-  const nonImportLines = filteredLines.filter((line) => !line.startsWith('import '));
+
   const newFileContents = sortedImports + nonImportLines.join('\n');
 
   // Write the changes back to the file
