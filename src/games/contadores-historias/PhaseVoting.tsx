@@ -1,21 +1,22 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { VoteIcon } from 'icons/VoteIcon';
 // Components
+import { ImageCardPreloadHand } from 'components/image-cards';
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { ImageCardPreloadHand } from 'components/image-cards';
-import { StepVoting } from './StepVoting';
+// Internal
+import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { VotingRules } from './components/RulesBlobs';
-import { Translate } from 'components/language';
+import { StepVoting } from './StepVoting';
 
 export function PhaseVoting({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
