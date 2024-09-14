@@ -1,22 +1,23 @@
 import { useEffect } from 'react';
 // Ant Design Resources
+import { CheckSquareOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { MonsterImage } from 'types/tdr';
-import type { Sketch } from './utils/types';
-// Utils
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
-import { MonsterCard } from '../../components/cards/MonsterCard';
-import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { ViewOr } from 'components/views';
 import { CanvasResizer, CanvasSVG } from 'components/canvas';
+import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { CheckSquareOutlined } from '@ant-design/icons';
 import { Step, type StepProps } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { ViewOr } from 'components/views';
+// Internal
+import type { Sketch } from './utils/types';
+import { MonsterCard } from '../../components/cards/MonsterCard';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
