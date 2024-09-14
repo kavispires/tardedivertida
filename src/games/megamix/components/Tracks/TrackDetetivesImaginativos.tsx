@@ -1,8 +1,6 @@
 import clsx from 'clsx';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Image, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -10,13 +8,16 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { AVATARS, BOTS_LIST } from 'utils/avatars';
-import { mockSelection } from '../../utils/mock';
 // Components
 import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
 export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const cardWidth = useCardWidth(7, { minWidth: 200, maxWidth: 270 });

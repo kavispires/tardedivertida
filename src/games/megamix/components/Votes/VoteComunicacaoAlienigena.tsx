@@ -1,9 +1,9 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
 // Components
 import { Avatar } from 'components/avatars';
-import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { ItemCard } from 'components/cards/ItemCard';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
+import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteComunicacaoAlienigena({ playersList }: VoteComponentProps) {
   return (

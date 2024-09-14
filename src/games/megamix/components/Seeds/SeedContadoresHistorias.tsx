@@ -1,14 +1,15 @@
 import moment from 'moment';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { SeedEntryContadoresHistorias } from '../../utils/types';
 // Components
 import { Avatar } from 'components/avatars';
+import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { SeedEntryContadoresHistorias } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';
-import { ImageCard } from 'components/image-cards';
+// AntDesign Resources
 
 const now = moment().format('MMMM YYYY, h:mm');
 

@@ -1,19 +1,19 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Image, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { useCardWidth } from 'hooks/useCardWidth';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Components
+import { BookPages } from 'components/game/BookPages';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { BookPages } from 'components/game/BookPages';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
 export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

@@ -1,20 +1,20 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
-import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockSelection } from '../../utils/mock';
+import { useMock } from 'hooks/useMock';
 // Components
+import { AvatarCard } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
-import { TransparentButton } from 'components/buttons';
-import { AvatarCard } from 'components/avatars';
-import { Card } from 'components/cards';
 
 export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }: TrackProps) => {
   const { isLoading } = useLoading();

@@ -1,9 +1,9 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Components
 import { Avatar } from 'components/avatars';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteValue({ playersList }: VoteComponentProps) {

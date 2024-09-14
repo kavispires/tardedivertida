@@ -1,19 +1,20 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound, GameRanking } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Icons
 import { BouncerIcon } from 'icons/BouncerIcon';
-// Hooks
-import { useColorizeBackground } from './utils/useColorizeBackground';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import { useColorizeBackground } from './utils/useColorizeBackground';
 
 type StepRankingProps = {
   user: GamePlayer;

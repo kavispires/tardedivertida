@@ -1,20 +1,20 @@
-// AntDesign Resources
+import { Book } from 'games/porta-dos-desesperados/components/Book';
+// Ant Design Resources
 import { Button, Image, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Components
+import { DoorFrame } from 'components/game/DoorFrame';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { Book } from 'games/porta-dos-desesperados/components/Book';
-import { DoorFrame } from 'components/game/DoorFrame';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
+// AntDesign Resources
 
 export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const doorWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });

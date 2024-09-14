@@ -1,19 +1,20 @@
 import { useState } from 'react';
-// AntDesign Resources
-import { Button, Input, Space } from 'antd';
+// Ant Design Resources
 import { FlagFilled, HeartFilled, MessageFilled } from '@ant-design/icons';
-// Types
-import type { SeedEntryMenteColetiva } from '../../utils/types';
+import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { SixPackIcon } from 'icons/SixPackIcon';
 // Components
 import { Avatar } from 'components/avatars';
+import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+// Internal
+import type { SeedEntryMenteColetiva } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';
-import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
+// AntDesign Resources
 
 type SeedMenteColetivaProps = {
   seed: SeedEntryMenteColetiva;

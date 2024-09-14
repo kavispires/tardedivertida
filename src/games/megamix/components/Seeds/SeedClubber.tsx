@@ -1,9 +1,8 @@
 import { useEffectOnce } from 'react-use';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Segmented, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { SeedEntryClubberOutfit } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
@@ -11,7 +10,10 @@ import { LETTERS } from 'utils/constants';
 // Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+// Internal
+import type { SeedEntryClubberOutfit } from '../../utils/types';
 import { ClubberAvatar } from '../../../../components/avatars/ClubberAvatar';
+// AntDesign Resources
 
 type SeedClubberProps = {
   seed: SeedEntryClubberOutfit;

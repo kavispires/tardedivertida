@@ -1,8 +1,8 @@
-// Types
-import type { ResultComponentProps } from '../../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultMegamix({ track, winningValues, winningTeam, playersList }: ResultComponentProps) {
   return (

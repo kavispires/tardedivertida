@@ -1,10 +1,11 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
-// Components
-import { Avatar } from 'components/avatars';
-import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
+// Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
+// Components
+import { Avatar } from 'components/avatars';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
+import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteTaNaCara({ playersList }: VoteComponentProps) {
   return (

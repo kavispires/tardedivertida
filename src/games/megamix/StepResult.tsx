@@ -1,33 +1,34 @@
+import { memoize } from 'lodash';
 import { LegacyRef, useMemo } from 'react';
 import { useMeasure } from 'react-use';
-import { memoize } from 'lodash';
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Track } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
+import { useCountdown } from 'hooks/useCountdown';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { sortPlayers } from 'utils/helpers';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
-import { useCountdown } from 'hooks/useCountdown';
-import { useColorizeBackground } from './utils/useColorizeBackground';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
 import { GarbageIcon } from 'icons/GarbageIcon';
 import { VIPLineIcon } from 'icons/VIPLineIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TimedButton } from 'components/buttons';
-import { ClubberAvatar } from '../../components/avatars/ClubberAvatar';
-import { IconAvatar } from 'components/avatars';
+// Internal
+import type { Track } from './utils/types';
+import { useColorizeBackground } from './utils/useColorizeBackground';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TrackTitle } from './components/TrackTitle';
 import { VotesDelegator } from './components/VotesDelegator';
+import { ClubberAvatar } from '../../components/avatars/ClubberAvatar';
 
 type StepResultProps = {
   user: GamePlayer;

@@ -1,12 +1,13 @@
 // Types
-import type { VoteComponentProps } from '../../utils/types';
+import { CrimesHediondosCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
-import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
-import { CrimesHediondosCard } from 'types/tdr';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
+import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteCrimesHediondos({ playersList, track }: VoteComponentProps) {
   const width = useCardWidth(playersList.length + 4, {

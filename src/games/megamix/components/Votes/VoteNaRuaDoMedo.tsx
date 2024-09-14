@@ -1,10 +1,10 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
+import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
 import { Avatar } from 'components/avatars';
-import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteNaRuaDoMedo({ track, playersList }: VoteComponentProps) {

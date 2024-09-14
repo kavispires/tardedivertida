@@ -1,9 +1,9 @@
-// Type
-import type { Track } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
+// Internal
+import type { Track } from '../utils/types';
 import { INSTRUCTIONS } from '../utils/constants';
+// Type
 
 type TrackInstructionsProps = {
   track: Track;
