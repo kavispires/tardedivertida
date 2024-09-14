@@ -92,12 +92,11 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={TEORIA_DE_CONJUNTOS.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={TEORIA_DE_CONJUNTOS.KEY}>
             <TransparentButton
               hoverType="sepia"
               className={clsx(
-                !checkWasPlayedToday(TEORIA_DE_CONJUNTOS.LOCAL_TODAY_KEY) &&
-                  getAnimationClass('tada', { repeat: 3 })
+                !checkWasPlayedToday(TEORIA_DE_CONJUNTOS.KEY) && getAnimationClass('tada', { repeat: 3 })
               )}
             >
               <Link to="/diario/teoria-de-conjuntos" className="hub-item">

@@ -1,72 +1,23 @@
 import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { useEffect } from 'react';
 import { deepCopy } from 'utils/helpers';
 
-import { parseLocalToday } from './helpers';
+import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
 import { DailyTeoriaDeConjuntosEntry, GameState, Guess, TeoriaDeConjuntosLocalToday, TThing } from './types';
 
-const defaultLocalToday: TeoriaDeConjuntosLocalToday = {
-  guesses: [],
-  hearts: SETTINGS.HEARTS,
-};
-
-const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState => {
-  return {
-    hearts: SETTINGS.HEARTS,
-    win: false,
-    hand: data.things.slice(0, 4),
-    deck: data.things.slice(4),
-    rule1Things: [
-      {
-        id: data.rule1.thing.id,
-        name: data.rule1.thing.name,
-        rule: 1,
-      },
-    ],
-    rule2Things: [
-      {
-        id: data.rule2.thing.id,
-        name: data.rule2.thing.name,
-        rule: 2,
-      },
-    ],
-    intersectingThings: [
-      {
-        id: data.intersectingThing.id,
-        name: data.intersectingThing.name,
-      },
-    ],
-    activeThing: null,
-    activeArea: null,
-    guesses: [],
-  };
-};
-
-export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
+export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, initialState: GameState) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
-  const { state, setState, updateState } = useDailyGameState<GameState>(getInitialState(data));
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } = useDailyLocalToday<TeoriaDeConjuntosLocalToday>({
-    key: SETTINGS.LOCAL_TODAY_KEY,
+  const { updateLocalStorage } = useDailyLocalTodayV2<TeoriaDeConjuntosLocalToday>({
+    key: SETTINGS.KEY,
     gameId: data.id,
-    challengeNumber: data.number ?? 0,
-    defaultValue: defaultLocalToday,
-    onApplyLocalState: (value) => {
-      console.log(value);
-      if (value.guesses.length > 0) {
-        setState((prevState) => {
-          const copy = deepCopy(prevState);
-
-          return parseLocalToday(value, data, copy);
-        });
-      }
-    },
+    defaultValue: DEFAULT_LOCAL_TODAY,
   });
 
   // CONDITIONS
@@ -74,13 +25,10 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
 
-  useEffect(() => {
-    if (isComplete) {
-      updateLocalStorage({
-        status: 'played',
-      });
-    }
-  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
+  useMarkAsPlayed({
+    key: SETTINGS.KEY,
+    isComplete,
+  });
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
@@ -161,11 +109,6 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry) {
       }
 
       return copy;
-    });
-
-    console.log({
-      guesses: localStateUpdate,
-      hearts: localStateUpdateHearts,
     });
 
     // Update local today
