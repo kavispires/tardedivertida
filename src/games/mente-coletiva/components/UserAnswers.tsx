@@ -1,14 +1,14 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Instruction } from 'components/text';
 
 type UserAnswersProps = {
   answerGroup: any;

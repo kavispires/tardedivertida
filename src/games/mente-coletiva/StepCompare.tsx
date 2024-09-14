@@ -1,18 +1,20 @@
 // Ant Design Resources
 import { Divider } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { AllowedList, Answer, AnswerGroupObject, Question } from './utils/types';
-// Hook
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
+import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
+// Internal
+import type { AllowedList, Answer, AnswerGroupObject, Question } from './utils/types';
 import { AdminAnswerControl } from './components/AdminAnswerControl';
 import { AnswerGroup } from './components/AnswerGroup';
 import { UserAnswers } from './components/UserAnswers';
-import { Translate } from 'components/language';
-import { HostNextPhaseButton } from 'components/host';
+// Hook
 
 type StepCompareProps = {
   currentQuestion: Question;

@@ -1,22 +1,23 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Checkbox } from 'antd';
 import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
+import { Checkbox } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { AnswerGroupObject, Question } from '../utils/types';
+// Hooks
+import { useHost } from 'hooks/useHost';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useHost } from 'hooks/useHost';
 // Components
-import { SheepAvatar } from './SheepAvatar';
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { Card } from 'components/cards';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+// Internal
+import type { AnswerGroupObject, Question } from '../utils/types';
+import { SheepAvatar } from './SheepAvatar';
 
 type AnswerGroupProps = {
   currentQuestion: Question;
