@@ -1,6 +1,4 @@
-// Types
-import type { GameInfo } from 'types/game-info';
-// Games
+import comingSoonGames from 'assets/data/coming-soon-games.json';
 import ADEDANHX from 'games/adedanhx/game-info.json';
 import ARTE_RUIM from 'games/arte-ruim/game-info.json';
 import BOMBA_RELOGIO from 'games/bomba-relogio/game-info.json';
@@ -37,15 +35,17 @@ import SONHOS_PESADELOS from 'games/sonhos-pesadelos/game-info.json';
 import SUPER_CAMPEONATO from 'games/super-campeonato/game-info.json';
 import TA_NA_CARA from 'games/ta-na-cara/game-info.json';
 import TEORIA_DE_CONJUNTOS from 'games/teoria-de-conjuntos/game-info.json';
-import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/game-info.json';
 import TESTE_DE_ELENCO from 'games/teste-de-elenco/game-info.json';
+import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/game-info.json';
 import TREVO_DA_SORTE from 'games/trevo-da-sorte/game-info.json';
 import UE_SO_ISSO from 'games/ue-so-isso/game-info.json';
 import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/game-info.json';
 import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/game-info.json';
 import VICE_CAMPEAO from 'games/vice-campeao/game-info.json';
 import VINGATIVOS from 'games/vingativos/game-info.json';
-import comingSoonGames from 'assets/data/coming-soon-games.json';
+// Types
+import type { GameInfo } from 'types/game-info';
+// Games
 
 const others = comingSoonGames as Record<GameName, GameInfo>;
 
