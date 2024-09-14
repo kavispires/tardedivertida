@@ -6,7 +6,7 @@ import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { TDIcon } from 'icons/TDIcon';
+import { DrawingIcon } from 'icons/DrawingIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -16,7 +16,6 @@ import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { useState } from 'react';
 import { RoundAnnouncement } from 'components/round';
 import { StepDraw } from './StepDraw';
-import { DrawingIcon } from 'icons/DrawingIcon';
 
 export function PhaseDrawing({ players, state, info, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

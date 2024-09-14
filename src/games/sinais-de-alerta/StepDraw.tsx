@@ -12,8 +12,7 @@ import { PanicIcon } from 'icons/PanicIcon';
 import { Step, type StepProps } from 'components/steps';
 import { Card } from 'components/cards';
 import { DrawingCanvas } from 'components/canvas';
-// TODO: add music
-// import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
+import { SinaisDeAlertaTimerSound } from 'components/audio/SinaisDeAlertaSound';
 import { DevButton } from 'components/debug';
 import { TextCard } from 'types/tdr';
 import { GamePlayer } from 'types/player';
@@ -83,6 +82,7 @@ export function StepDraw({
           </>
         )}
       </Card>
+      {isRunning && <SinaisDeAlertaTimerSound />}
 
       <DevButton onClick={onMockDrawing}>Mock Drawing</DevButton>
 
