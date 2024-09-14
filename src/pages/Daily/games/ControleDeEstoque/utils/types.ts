@@ -1,4 +1,4 @@
-import { DailyGameStatus, DateKey } from 'pages/Daily/utils/types';
+import { DateKey } from 'pages/Daily/utils/types';
 import { PHASES } from './settings';
 
 export type GoodId = string;
@@ -33,5 +33,4 @@ export type ControleDeEstoqueLocalToday = {
   guesses: string[]; // <goodId>::<shelfIndex>[]
   number: number;
   extraAttempts: number;
-  status?: DailyGameStatus;
 };

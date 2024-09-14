@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
-import { DrawingToSave } from '../games/Artista/utils/types';
+import { DrawingToSave } from '../games/Picaco/utils/types';
 
 export function useDailySaveDrawings(onSuccess: Function) {
   const { translate } = useLanguage();

@@ -1,19 +1,21 @@
 import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
 import { DualTranslate, Translate } from 'components/language';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
+import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { useMemo } from 'react';
 import { Me } from 'types/user';
 
 import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
+import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyPalavreadoEntry } from '../utils/types';
 import { usePalavreadoEngine } from '../utils/usePalavreadoEngine';
 import { Board } from './Board';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { Region, TextRegion } from 'pages/Daily/components/Region';
 
 type DailyPalavreadoProps = {
   data: DailyPalavreadoEntry;
@@ -21,6 +23,7 @@ type DailyPalavreadoProps = {
 };
 
 export function DailyPalavreado({ data }: DailyPalavreadoProps) {
+  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
   const {
     hearts,
     selection,
@@ -36,11 +39,11 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     swaps,
     size,
     keyword,
-  } = usePalavreadoEngine(data);
+  } = usePalavreadoEngine(data, initialState);
 
   return (
     <Layout className="app">
-      <Header icon={<DailyWordGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
+      <Header icon={<DailyWordGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>
@@ -72,13 +75,21 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           )}
         </Region>
 
-        <TextRegion direction="vertical">
+        <TextRegion direction="vertical" size="small">
           {guesses.map((attempt, index) => (
-            <Space key={`${attempt}-${index}`} split={<Divider type="vertical" />}>
+            <Space
+              key={`${attempt}-${index}`}
+              split={<Divider type="vertical" className="mx-0" />}
+              size="small"
+            >
               {attempt.map((word, i) => (
-                <span className="palavreado-word" key={`${attempt}-${index}-${word}-${i}`}>
+                <Typography.Text
+                  keyboard
+                  className="palavreado-word"
+                  key={`${attempt}-${index}-${word}-${i}`}
+                >
                   {word}
-                </span>
+                </Typography.Text>
               ))}
             </Space>
           ))}
@@ -113,6 +124,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             </Flex>
           </TextRegion>
         )}
+
         <Modal
           title={<Translate pt="Resultado" en="Results" />}
           open={showResultModal}

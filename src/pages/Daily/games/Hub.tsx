@@ -19,7 +19,7 @@ import { DailyChrome } from '../components/DailyChrome';
 import { PlayedWrapper } from '../components/PlayedWrapper';
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
-import { SETTINGS as ARTISTA } from '../games/Artista/utils/settings';
+import { SETTINGS as PICACO } from './Picaco/utils/settings';
 import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
@@ -38,7 +38,7 @@ export function Hub() {
         </Space>
 
         <div className="hub-list">
-          <PlayedWrapper lsKey={ARTE_RUIM.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={ARTE_RUIM.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/arte-ruim" className="hub-item">
                 <DailyArtGameIcon style={{ width: 75 }} />
@@ -47,7 +47,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={AQUI_O.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={AQUI_O.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/aqui-o" className="hub-item">
                 <DailyFindingGameIcon style={{ width: 75 }} />
@@ -56,7 +56,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={CONTROLE_DE_ESTOQUE.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={CONTROLE_DE_ESTOQUE.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/controle-de-estoque" className="hub-item">
                 <DailyWarehouseGameIcon style={{ width: 75 }} />
@@ -65,7 +65,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={FILMACO.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={FILMACO.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/filmaco" className="hub-item">
                 <DailyMovieGameIcon style={{ width: 75 }} />
@@ -74,7 +74,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={PALAVREADO.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={PALAVREADO.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/palavreado" className="hub-item">
                 <DailyWordGameIcon style={{ width: 75 }} />
@@ -83,7 +83,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={ARTISTA.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={PICACO.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/picaco" className="hub-item">
                 <DailyDrawingGameIcon style={{ width: 75 }} />
@@ -92,12 +92,11 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={TEORIA_DE_CONJUNTOS.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={TEORIA_DE_CONJUNTOS.KEY}>
             <TransparentButton
               hoverType="sepia"
               className={clsx(
-                !checkWasPlayedToday(TEORIA_DE_CONJUNTOS.LOCAL_TODAY_KEY) &&
-                  getAnimationClass('tada', { repeat: 3 })
+                !checkWasPlayedToday(TEORIA_DE_CONJUNTOS.KEY) && getAnimationClass('tada', { repeat: 3 })
               )}
             >
               <Link to="/diario/teoria-de-conjuntos" className="hub-item">

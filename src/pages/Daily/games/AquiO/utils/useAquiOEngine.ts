@@ -1,56 +1,29 @@
 import { useCountdown } from 'hooks/useCountdown';
 import { intersectionBy } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import { inNSeconds } from 'utils/helpers';
 
-import { getDiscs } from './helpers';
+import { DEFAULT_LOCAL_TODAY, getDiscs } from './helpers';
 import { SETTINGS } from './settings';
 import { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
 
-const defaultAquiOLocalToday: AquiOLocalToday = {
-  id: '',
-  number: 0,
-  maxProgress: 0,
-  hardMode: false,
-  attempts: 0,
-  hearts: SETTINGS.HEARTS,
-  status: 'idle',
-};
-
 const DURATION = 60;
 
-export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
+export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, isRandomGame: boolean) {
   const [timesUp, setTimesUp] = useState(false);
 
   const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
 
-  const { state, setState, updateState } = useDailyGameState<GameState>({
-    hearts: SETTINGS.HEARTS,
-    goal: SETTINGS.GOAL,
-    discs: [],
-    discIndex: 0,
-    attempts: 0,
-    maxProgress: 0,
-  });
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
   const { updateLocalStorage } = useDailyLocalToday<AquiOLocalToday>({
-    key: SETTINGS.LOCAL_TODAY_KEY,
+    key: SETTINGS.KEY,
     gameId: data.id,
-    challengeNumber: data.number,
-    defaultValue: defaultAquiOLocalToday,
-    disabled: isRandomGame,
-    onApplyLocalState: (value) => {
-      updateState({
-        discIndex: value.maxProgress,
-        maxProgress: value.maxProgress,
-        attempts: value.attempts ?? 0,
-        hearts: value.hearts,
-      });
-    },
+    defaultValue: DEFAULT_LOCAL_TODAY,
   });
 
   // ADDITIONAL STATE
@@ -73,7 +46,6 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
           hardMode: mode === 'challenge',
           hearts: state.hearts,
           maxProgress: Math.max(state.discIndex, state.maxProgress),
-          status: 'played',
         });
         updateState({
           maxProgress: Math.max(state.discIndex, state.maxProgress),
@@ -117,15 +89,15 @@ export function useAquiOEngine(data: DailyAquiOEntry, isRandomGame: boolean) {
       if (isWin) {
         updateLocalStorage({
           maxProgress: SETTINGS.GOAL,
-          status: 'played',
-        });
-      } else {
-        updateLocalStorage({
-          status: 'played',
         });
       }
     }
   }, [isWin, isLose]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useMarkAsPlayed({
+    key: SETTINGS.KEY,
+    isComplete,
+  });
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete, () => pause());

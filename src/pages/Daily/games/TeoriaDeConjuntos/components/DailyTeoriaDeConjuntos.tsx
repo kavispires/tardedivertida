@@ -13,6 +13,7 @@ import { BarChartOutlined } from '@ant-design/icons';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
+import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyTeoriaDeConjuntosEntry } from '../utils/types';
 import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
@@ -21,8 +22,8 @@ import { InDiagramThings } from './InDiagramThings';
 import { PlacementModal } from './PlacementModal';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { Thing } from './Thing';
 import { RulesHints } from './RulesHints';
+import { Thing } from './Thing';
 
 type DailyTeoriaDeConjuntosProps = {
   data: DailyTeoriaDeConjuntosEntry;
@@ -30,6 +31,7 @@ type DailyTeoriaDeConjuntosProps = {
 };
 
 export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
+  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
   const {
     hearts,
     showResultModal,
@@ -46,7 +48,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
     onSelectArea,
     onConfirmPlacement,
     guesses,
-  } = useTeoriaDeConjuntosEngine(data);
+  } = useTeoriaDeConjuntosEngine(data, initialState);
 
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
 
@@ -57,7 +59,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyDiagramGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
+      <Header icon={<DailyDiagramGameIcon />} localStorageKey={SETTINGS.KEY}>
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>

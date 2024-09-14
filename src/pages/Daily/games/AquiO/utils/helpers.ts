@@ -1,7 +1,51 @@
 import { chain, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
 import { SEPARATOR } from 'utils/constants';
 
-import { AquiODisc, DailyAquiOEntry } from './types';
+import { AquiODisc, AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
+import { SETTINGS } from './settings';
+import { loadLocalToday } from 'pages/Daily/utils';
+import { deepCopy } from 'utils/helpers';
+
+export const DEFAULT_LOCAL_TODAY: AquiOLocalToday = {
+  id: '',
+  number: 0,
+  maxProgress: 0,
+  hardMode: false,
+  attempts: 0,
+  hearts: SETTINGS.HEARTS,
+};
+
+/**
+ * Retrieves the initial state for the game.
+ * @param data - The DailyAquiOEntry data.
+ * @param isRandomGame - A boolean indicating if the game is random.
+ * @returns The initial game state.
+ */
+export const getInitialState = (data: DailyAquiOEntry, isRandomGame: boolean): GameState => {
+  const localToday = loadLocalToday({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+  });
+
+  const state: GameState = {
+    hearts: SETTINGS.HEARTS,
+    goal: SETTINGS.GOAL,
+    discs: [],
+    discIndex: 0,
+    attempts: 0,
+    maxProgress: 0,
+  };
+
+  if (!isRandomGame) {
+    state.attempts = localToday.attempts ?? 0;
+    state.discIndex = localToday.maxProgress ?? 0;
+    state.maxProgress = localToday.maxProgress ?? 0;
+    state.hearts = localToday.hearts ?? SETTINGS.HEARTS;
+  }
+
+  return state;
+};
 
 export const getDiscs = (entry: DailyAquiOEntry, challengingGame?: boolean): AquiODisc[] => {
   const allItems = shuffle(entry.itemsIds);

@@ -1,4 +1,4 @@
-import { DailyGameStatus, DateKey, LettersDictionary } from 'pages/Daily/utils/types';
+import { DateKey, LettersDictionary } from 'pages/Daily/utils/types';
 
 export type GameState = {
   hearts: number;
@@ -20,5 +20,4 @@ export type FilmacoLocalToday = {
   id: DateKey;
   number: number;
   letters: string[];
-  status?: DailyGameStatus;
 };
