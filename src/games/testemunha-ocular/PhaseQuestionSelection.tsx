@@ -4,21 +4,22 @@ import { PhaseProps } from 'types/game';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { InvestigationIcon } from 'icons/InvestigationIcon';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+// Internal
+import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 import { StepSelectQuestion } from './StepSelectQuestion';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();

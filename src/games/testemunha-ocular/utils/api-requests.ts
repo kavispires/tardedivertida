@@ -1,7 +1,9 @@
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+// Internal
 import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
+
 
 export function useOnSelectWitnessAPIRequest() {
   const { translate } = useLanguage();

@@ -1,12 +1,12 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Icons
-import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { CollapsibleRule } from 'components/rules';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { CollapsibleRule } from 'components/rules';
 
 type QuestionsHistoryProps = {
   history: THistoryEntry[];
