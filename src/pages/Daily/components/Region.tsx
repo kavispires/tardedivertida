@@ -1,5 +1,6 @@
-import { Space, SpaceProps } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Space, SpaceProps } from 'antd';
 
 export function Region({ className, align, direction, children, ...props }: SpaceProps) {
   return (

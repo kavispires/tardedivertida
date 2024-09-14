@@ -1,12 +1,12 @@
-import { ReactNode, useRef } from 'react';
 import clsx from 'clsx';
+import { ReactNode, useRef } from 'react';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';
+import { LoadingPage } from 'components/loaders';
 
 type PhaseContainerProps = {
   /**

@@ -1,13 +1,15 @@
-import { Radio, RadioChangeEvent, Space, Table, TableColumnType, Tag } from 'antd';
-import { ItemCard } from 'components/cards/ItemCard';
-import { LoadingPage } from 'components/loaders';
+import { useQuery } from '@tanstack/react-query';
 import { orderBy } from 'lodash';
 import { useMemo, useState } from 'react';
 import { useTitle } from 'react-use';
+// Ant Design Resources
+import { Radio, RadioChangeEvent, Space, Table, TableColumnType, Tag } from 'antd';
+// Utils
 import { PUBLIC_URL, TOTAL_ALIEN_ITEMS } from 'utils/constants';
-
-import { useQuery } from '@tanstack/react-query';
-
+// Components
+import { ItemCard } from 'components/cards/ItemCard';
+import { LoadingPage } from 'components/loaders';
+// Internal
 import { DevHeader } from '../DevHeader';
 import { ConnectionGroup, GroupSummary, ItemGroup } from './types';
 

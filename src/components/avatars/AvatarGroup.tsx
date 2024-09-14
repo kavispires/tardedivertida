@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 import { Avatar as AntAvatar, AvatarProps, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-// Components
+// Internal
 import { Avatar } from './Avatar';
 
 type AvatarGroupProps = {

@@ -1,14 +1,16 @@
 import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, FormInstance } from 'antd';
-// API
-import { signUp } from 'services/firebase';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Image
-import logo from 'assets/images/tarde-divertida-logo.svg';
+// Services
+import { signUp } from 'services/firebase';
 // Components
 import { Translate } from 'components/language';
+// Images
+import logo from 'assets/images/tarde-divertida-logo.svg';
+// API
+// Image
 
 type SignUpProps = {
   onSuccess: GenericFunction;

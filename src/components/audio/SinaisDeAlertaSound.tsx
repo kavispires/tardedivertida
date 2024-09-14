@@ -1,6 +1,7 @@
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
+// Hooks
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Sound
 const sinaisDeAlertaTimer = require('assets/sounds/sinais-de-alerta-30.mp3');
 

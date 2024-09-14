@@ -1,5 +1,5 @@
 import { useEffectOnce } from 'react-use';
-
+// Internal
 import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 
 type UseCacheProps = {

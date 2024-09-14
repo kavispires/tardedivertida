@@ -1,20 +1,21 @@
-import { Space, Typography } from 'antd';
 import clsx from 'clsx';
-import { TransparentButton } from 'components/buttons';
-import { LanguageSwitch, Translate } from 'components/language';
+import { Link } from 'react-router-dom';
+// Ant Design Resources
+import { Space, Typography } from 'antd';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Icons
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
-// import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
-// import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
-// import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
-import { Link } from 'react-router-dom';
-import { getAnimationClass } from 'utils/helpers';
-
+// Components
+import { TransparentButton } from 'components/buttons';
+import { LanguageSwitch, Translate } from 'components/language';
+// Internal
 import { DailyChrome } from '../components/DailyChrome';
 import { PlayedWrapper } from '../components/PlayedWrapper';
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
@@ -25,6 +26,9 @@ import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { checkWasPlayedToday } from '../utils';
+// import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
+// import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
+// import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 
 export function Hub() {
   return (

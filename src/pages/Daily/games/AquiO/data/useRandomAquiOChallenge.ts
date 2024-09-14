@@ -1,10 +1,10 @@
-import { sample } from 'lodash';
-import { print } from 'utils/helpers';
-
 import { useQuery } from '@tanstack/react-query';
-
-import { wait } from '../../../utils';
+import { sample } from 'lodash';
+// Utils
+import { print } from 'utils/helpers';
+// Internal
 import { AquiOSet, DailyAquiOEntry } from '../utils/types';
+import { wait } from '../../../utils';
 import miscSets from './misc-sets.json';
 
 const MISC_SETS: AquiOSet[] = miscSets;

@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayer } from 'types/player';
-// Components
+// Internal
 import { PlayerRibbon } from './PlayerRibbon';
 import { Ribbon } from './Ribbon';
 

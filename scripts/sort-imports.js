@@ -18,6 +18,8 @@ const IMPORT_COMMENTS = [
   '// Resources and Utils',
   '// Images',
   '// Fonts',
+  '// API & Hooks',
+  '// Services',
 ];
 
 function sortImportGroups(group, name) {

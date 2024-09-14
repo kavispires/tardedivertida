@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-// Components
+// Internal
 import { TimerBar } from './TimerBar';
 
 type TimedTimerBarProps = {

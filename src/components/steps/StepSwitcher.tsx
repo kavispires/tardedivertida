@@ -4,9 +4,9 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { print } from 'utils/helpers';
 // Components
-import { WaitingRoom } from 'components/players';
-import { Loading } from 'components/loaders';
 import { Translate } from 'components/language';
+import { Loading } from 'components/loaders';
+import { WaitingRoom } from 'components/players';
 
 const getWaitingRoomInstruction = (kind: string) => {
   switch (kind) {

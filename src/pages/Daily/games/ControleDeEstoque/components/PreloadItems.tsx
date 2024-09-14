@@ -1,3 +1,4 @@
+// Components
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 
 type PreloadItemsProps = {

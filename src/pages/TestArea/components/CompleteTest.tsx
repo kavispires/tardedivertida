@@ -5,6 +5,7 @@ import { Button, Input, Space, App } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { TestStepProps } from '../TestArea';
 
 export function CompleteTest({ results }: TestStepProps) {

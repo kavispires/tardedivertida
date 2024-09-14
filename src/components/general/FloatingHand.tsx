@@ -5,8 +5,8 @@ import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
 // Components
-import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
 // Sass
 import './FloatingHand.scss';
 

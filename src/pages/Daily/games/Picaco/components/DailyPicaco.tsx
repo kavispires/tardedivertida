@@ -1,24 +1,29 @@
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { useMemo } from 'react';
+import { useMeasure } from 'react-use';
+// Ant Design Resources
 import { Button, Divider, Layout, Space } from 'antd';
+// Types
+import { Me } from 'types/user';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
+import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
+import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+// Components
 import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { DualTranslate, Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { useMemo } from 'react';
-import { useMeasure } from 'react-use';
-import { Me } from 'types/user';
-import { getAnimationClass } from 'utils/helpers';
-
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
+// Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyPicacoEntry } from '../utils/types';
 import { usePicacoEngine } from '../utils/usePicacoEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
 import { Canvas } from './Canvas';
 import { Rules } from './Rules';
 

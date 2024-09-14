@@ -1,15 +1,16 @@
-// Components
-// Sass
-import './Me.scss';
-
-import { App, Button, Input, Select, Space, Typography } from 'antd';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { cloneDeep, merge } from 'lodash';
 import { useMemo, useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTitle } from 'react-use';
+// Ant Design Resources
+import { App, Button, Input, Select, Space, Typography } from 'antd';
+// Services
 import { USER_API, USER_API_ACTIONS } from 'services/adapters';
 import { firestore } from 'services/firebase';
+// Sass
+import './Me.scss';
+// Components
 
 interface GameUserEntry {
   gameName?: GameName;

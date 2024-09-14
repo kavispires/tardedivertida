@@ -1,6 +1,7 @@
+import { ReactNode } from 'react';
+// Ant Design Resources
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
-import { ReactNode } from 'react';
 
 type FilterEntryProps = {
   label: ReactNode;

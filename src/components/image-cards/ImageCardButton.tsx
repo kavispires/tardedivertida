@@ -1,14 +1,16 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 // Ant Design Resources
-import { Button, ButtonProps } from 'antd';
 import { DownCircleOutlined, UpCircleOutlined } from '@ant-design/icons';
-//  Components
-import { Translate } from 'components/language';
+import { Button, ButtonProps } from 'antd';
+// Components
 import { DebugOnly } from 'components/debug';
+import { Translate } from 'components/language';
+// Internal
 import { ImageBlurButtonContainer } from './ImageBlurButtonContainer';
 // Sass
 import './ImageCardButton.scss';
+//  Components
 
 type ImageCardButtonProps = {
   /**

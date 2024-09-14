@@ -1,3 +1,4 @@
+// Internal
 import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 
 type UseBlurCards = {

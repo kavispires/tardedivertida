@@ -1,26 +1,30 @@
-import './ConnectTrio.scss';
-
-import { Button, Layout, Modal, Space, Typography } from 'antd';
 import clsx from 'clsx';
+import { LoginModal } from 'pages/Me/components/LoginModal';
+import { ReactNode, useEffect } from 'react';
+import { useTitle } from 'react-use';
+// Ant Design Resources
+import { Button, Layout, Modal, Space, Typography } from 'antd';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
+// Components
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { PageError } from 'components/errors';
 import { Translate } from 'components/language';
 import { Loading } from 'components/loaders';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useLanguage } from 'hooks/useLanguage';
-import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
-
-import { LoginModal } from 'pages/Me/components/LoginModal';
-import { ReactNode, useEffect } from 'react';
-import { useTitle } from 'react-use';
-
+// Internal
 import { useConnectTrioEngine, useConnectTrioGame } from './hooks';
 import { ResultsModalContent } from './ResultsModalContent';
 import { ConnectionGame } from './types';
-import { getAnimationClass } from 'utils/helpers';
+// Sass
+import './ConnectTrio.scss';
 
 const { Header, Content } = Layout;
 

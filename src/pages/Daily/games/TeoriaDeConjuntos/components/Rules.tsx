@@ -1,9 +1,10 @@
-import { Typography } from 'antd';
-import { Translate } from 'components/language';
 import { BetaBanner } from 'pages/Daily/components/BetaBanner';
-
+// Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
-
+import { Typography } from 'antd';
+// Components
+import { Translate } from 'components/language';
+// Internal
 import { SETTINGS } from '../utils/settings';
 
 export function Rules() {

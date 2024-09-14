@@ -1,13 +1,14 @@
 // Ant Design Resources
-import { Button, Switch, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { Button, Switch, Tooltip } from 'antd';
 // Hooks
-import { useDevFeatures } from 'hooks/useDevFeatures';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
+// Internal
 import { BlurOptions } from './BlurOptions';
 
 export function SectionSettings() {

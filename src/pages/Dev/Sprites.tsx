@@ -1,7 +1,8 @@
+import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 import { orderBy } from 'lodash';
-import { useTitle } from 'react-use';
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useTitle } from 'react-use';
 // Ant Design Resources
 import { Col, Divider, Layout, Row, Select } from 'antd';
 // Hooks
@@ -9,16 +10,16 @@ import { useQueryParams } from 'hooks/useQueryParams';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { makeArray } from 'utils/helpers';
-import { MEDALS_IDS } from './utils/constants';
 // Components
 import { Avatar } from 'components/avatars';
-import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
-import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
-import { Medal } from 'components/general/Medal';
-import { TreeCard } from 'components/cards/TreeCard';
+import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { EmojiCard } from 'components/cards/EmojiCard';
+import { TreeCard } from 'components/cards/TreeCard';
+import { Medal } from 'components/general/Medal';
+// Internal
+import { MEDALS_IDS } from './utils/constants';
 import { DevHeader } from './DevHeader';
 
 type SpriteOption = {

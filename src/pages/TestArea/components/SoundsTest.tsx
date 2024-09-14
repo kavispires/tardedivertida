@@ -1,18 +1,21 @@
+import { delay } from 'lodash';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Hooks
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { speak } from 'utils/speech';
 // Components
+import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
+import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
+import { Speak } from 'components/audio/Speak';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
-import { useEffect, useState } from 'react';
-import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
-import { speak } from 'utils/speech';
-import { Speak } from 'components/audio/Speak';
-import { useLanguage } from 'hooks/useLanguage';
-import { delay } from 'lodash';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 export function SoundsTest({ onResult, step }: TestStepProps) {
   const [showAudio, setShowAudio] = useState<string>('');

@@ -1,5 +1,7 @@
+// Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
+// Components
 import { Translate } from 'components/language';
 
 export function Rules() {

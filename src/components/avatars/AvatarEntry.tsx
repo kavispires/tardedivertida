@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
+// Internal
 import { Avatar } from './Avatar';
 // Sass
 import './AvatarEntry.scss';

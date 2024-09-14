@@ -1,15 +1,16 @@
 import clsx from 'clsx';
-// Resources
-import { AVATARS } from 'utils/avatars';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
-// Components
+// Utils
+import { AVATARS } from 'utils/avatars';
+// Internal
 import { Avatar } from './Avatar';
 // Sass
 import './AvatarName.scss';
+// Resources
 
 type AvatarNameProps = {
   /**

@@ -1,9 +1,9 @@
+import { DefaultOptionType } from 'antd/lib/select';
 import { capitalize } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { FilterOutlined } from '@ant-design/icons';
 import { InputNumber, Select, Space, TreeSelect } from 'antd';
-import { DefaultOptionType } from 'antd/lib/select';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

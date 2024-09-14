@@ -1,8 +1,8 @@
 import { lazy, Suspense } from 'react';
 // Hooks
+import { useGameMeta } from 'hooks/useGameMeta';
 import { useIsGameStale } from 'hooks/useIsGameStale';
 import { useLanguage } from 'hooks/useLanguage';
-import { useGameMeta } from 'hooks/useGameMeta';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { GAME_COLLECTION } from 'utils/constants';

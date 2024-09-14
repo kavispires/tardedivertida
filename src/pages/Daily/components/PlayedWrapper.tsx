@@ -1,7 +1,10 @@
 import { ReactNode } from 'react';
-import { checkWasPlayedToday } from '../utils';
-import { IconAvatar } from 'components/avatars';
+// Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
+// Internal
+import { checkWasPlayedToday } from '../utils';
 
 type PlayedWrapperProps = {
   children: ReactNode;

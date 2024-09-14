@@ -1,10 +1,11 @@
 import { chain, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
+import { loadLocalToday } from 'pages/Daily/utils';
+// Utils
 import { SEPARATOR } from 'utils/constants';
-
+import { deepCopy } from 'utils/helpers';
+// Internal
 import { AquiODisc, AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
 import { SETTINGS } from './settings';
-import { loadLocalToday } from 'pages/Daily/utils';
-import { deepCopy } from 'utils/helpers';
 
 export const DEFAULT_LOCAL_TODAY: AquiOLocalToday = {
   id: '',

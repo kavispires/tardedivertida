@@ -1,4 +1,5 @@
 // Ant Design Resources
+import { ClockCircleOutlined } from '@ant-design/icons';
 import { Card, Image, Divider, Badge, Space } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
@@ -8,10 +9,10 @@ import { useLanguage } from 'hooks/useLanguage';
 import { PUBLIC_URL } from 'utils/constants';
 import { calculateGameAverageDuration, isDevEnv, truncateRecommended } from 'utils/helpers';
 // Components
-import { RulesModal } from 'components/rules';
-import { CreateGameFlow } from './CreateGameModal';
 import { GameTags } from 'components/general/GameTags';
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { RulesModal } from 'components/rules';
+// Internal
+import { CreateGameFlow } from './CreateGameModal';
 
 const getVersionColor = (version: string) => {
   if (version.includes('dev')) {

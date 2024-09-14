@@ -1,9 +1,12 @@
-import { App, Input, Space, Typography } from 'antd';
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { useLanguage } from 'hooks/useLanguage';
 import { useEffect } from 'react';
 import { useCopyToClipboard } from 'react-use';
+// Ant Design Resources
+import { App, Input, Space, Typography } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Components
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 
 type CopyToClipboardResultProps = {
   result: string;

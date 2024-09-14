@@ -1,6 +1,7 @@
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
+// Hooks
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Sound
 const airHorn = require('assets/sounds/airhorn.mp3');
 

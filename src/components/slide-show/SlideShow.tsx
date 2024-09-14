@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { UseStep } from 'hooks/useStep';
-// Components
+// Internal
 import { SlideShowControls } from './SlideShowControls';
 
 type SlideShowProps = {

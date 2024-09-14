@@ -9,7 +9,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
-// Components
+// Internal
 import { Avatar } from './Avatar';
 import { IconAvatar } from './IconAvatar';
 // Sass

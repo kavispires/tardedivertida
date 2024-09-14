@@ -4,9 +4,10 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
 import { LoadingPage } from 'components/loaders';
-// Pages
+// Internal
 import Home from './Home/Home';
 import Login from './Login/Login';
+// Pages
 // Routes Lazy load
 const Me = lazy(() => import('pages/Me/Me' /* webpackChunkName: "page-me" */));
 const Users = lazy(() => import('pages/Me/Users' /* webpackChunkName: "page-users" */));

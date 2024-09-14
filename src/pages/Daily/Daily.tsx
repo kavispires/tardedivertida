@@ -1,11 +1,10 @@
-import './utils/daily.scss';
-
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useLanguage } from 'hooks/useLanguage';
 import { LoginModal } from 'pages/Me/components/LoginModal';
 import { useLocation } from 'react-router-dom';
 import { useEffectOnce, useTitle } from 'react-use';
-
+// Hooks
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useLanguage } from 'hooks/useLanguage';
+// Internal
 import { DailyChrome } from './components/DailyChrome';
 import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';
 import { DailyArteRuimGame } from './games/ArteRuim/DailyArteRuimGame';
@@ -17,6 +16,8 @@ import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
 import { DailyPicacoGame } from './games/Picaco/DailyPicacoGame';
 import { DailyTeoriaDeConjuntosGame } from './games/TeoriaDeConjuntos/DailyTeoriaDeConjuntosGame';
 import { getDailyName } from './utils';
+// Sass
+import './utils/daily.scss';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();

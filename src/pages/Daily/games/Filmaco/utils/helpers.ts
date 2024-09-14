@@ -1,7 +1,8 @@
 import { loadLocalToday } from 'pages/Daily/utils';
 import { LettersDictionary } from 'pages/Daily/utils/types';
+// Utils
 import { deepCopy } from 'utils/helpers';
-
+// Internal
 import { SETTINGS } from './settings';
 import { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
 

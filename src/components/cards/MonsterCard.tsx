@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Button, Space, SpaceProps } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
+import { Button, Space, SpaceProps } from 'antd';
 // Types
 import { type MonsterImage } from 'types/tdr';
 // Hooks

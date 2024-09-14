@@ -1,3 +1,4 @@
+// Hooks
 import { useCountdown } from 'hooks/useCountdown';
 
 type TimeForActionProps = {

@@ -1,17 +1,18 @@
-import { Fragment, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
+import { Fragment, ReactNode, useMemo } from 'react';
 // Ant Design Resources
 import { BackwardFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/player';
-// Helpers
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
-import { reorder } from './reorder';
 // Icons
 import { RotationIcon } from 'icons/RotationIcon';
 // Components
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+// Internal
+import { reorder } from './reorder';
 
 type TableOrderProps = {
   /**

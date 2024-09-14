@@ -2,10 +2,12 @@ import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySaveDrawings';
 import { wait } from 'pages/Daily/utils';
+// Types
 import { Me } from 'types/user';
+// Utils
 import { SEPARATOR } from 'utils/constants';
 import { removeDuplicates } from 'utils/helpers';
-
+// Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
 import { PicacoLocalToday, DailyPicacoEntry, DrawingToSave, GameState } from './types';

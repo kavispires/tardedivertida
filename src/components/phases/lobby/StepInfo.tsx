@@ -1,25 +1,26 @@
+import { mockPlayerName } from 'mock/players';
 import { useEffect, useState } from 'react';
+import { useLocalStorage } from 'react-use';
 // Ant Design Resources
 import { Alert, AutoComplete, Button } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 import type { GamePlayers } from 'types/player';
-// API & Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+// Hooks
 import { useAddPlayer } from 'hooks/useAddPlayer';
-
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useLanguage } from 'hooks/useLanguage';
 import { UseStep } from 'hooks/useStep';
 // Utils
 import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
-import { mockPlayerName } from 'mock/players';
 // Components
 import { Translate } from 'components/language';
+// Internal
 import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';
 import { UsualAvatarsSelection } from './UsualAvatarsSelection';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLocalStorage } from 'react-use';
+// API & Hooks
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 

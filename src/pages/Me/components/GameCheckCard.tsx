@@ -11,13 +11,14 @@ import { useQueryParams } from 'hooks/useQueryParams';
 // Utils
 import ACHIEVEMENTS_DICT from 'utils/achievements';
 // Icons
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
+import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { GameBanner } from 'components/general/GameBanner';
 import { DualTranslate, Translate } from 'components/language';
+// Internal
 import { GameStatistics } from './GameStatistics';
 
 type GameUserStatisticsProps = {

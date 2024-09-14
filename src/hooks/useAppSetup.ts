@@ -1,4 +1,5 @@
 import { useEffectOnce } from 'react-use';
+// Internal
 import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 import { useCardWidth } from './useCardWidth';
 

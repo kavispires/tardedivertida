@@ -1,5 +1,5 @@
-import { Stage, Layer, Line } from 'react-konva';
 import clsx from 'clsx';
+import { Stage, Layer, Line } from 'react-konva';
 
 type CanvasProps = {
   drawing?: string | CanvasLine[];
