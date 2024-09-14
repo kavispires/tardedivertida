@@ -83,7 +83,7 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
-          <PlayedWrapper lsKey={ARTISTA.LOCAL_TODAY_KEY}>
+          <PlayedWrapper lsKey={ARTISTA.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/picaco" className="hub-item">
                 <DailyDrawingGameIcon style={{ width: 75 }} />

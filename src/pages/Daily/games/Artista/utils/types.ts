@@ -1,4 +1,4 @@
-import { DailyGameStatus, DateKey } from 'pages/Daily/utils/types';
+import { DateKey } from 'pages/Daily/utils/types';
 import { ArteRuimCard } from 'types/tdr';
 
 export type GameState = {
@@ -20,7 +20,6 @@ export type ArtistaLocalToday = {
   id: DateKey;
   number: number;
   played: boolean;
-  status?: DailyGameStatus;
 };
 
 export type DrawingToSave = {

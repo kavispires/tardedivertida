@@ -1,43 +1,22 @@
-import { sampleSize } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySaveDrawings';
 import { wait } from 'pages/Daily/utils';
-
 import { Me } from 'types/user';
 import { SEPARATOR } from 'utils/constants';
 import { removeDuplicates } from 'utils/helpers';
 
+import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
 import { ArtistaLocalToday, DailyArtistaEntry, DrawingToSave, GameState } from './types';
 
-const defaultLocalToday: ArtistaLocalToday = {
-  id: '',
-  number: 0,
-  played: false,
-};
+export function useArtistaEngine(data: DailyArtistaEntry, currentUser: Me, initialState: GameState) {
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-export function useArtistaEngine(data: DailyArtistaEntry, currentUser: Me) {
-  const { state, setState, updateState } = useDailyGameState<GameState>({
-    cards: sampleSize(data.cards, SETTINGS.DRAWINGS),
-    drawings: [],
-    cardIndex: 0,
-    played: false,
-    screen: 'idle',
-  });
-
-  const { updateLocalStorage } = useDailyLocalToday<ArtistaLocalToday>({
-    key: SETTINGS.LOCAL_TODAY_KEY,
+  const { updateLocalStorage } = useDailyLocalTodayV2<ArtistaLocalToday>({
+    key: SETTINGS.KEY,
     gameId: data.id,
-    challengeNumber: data.number ?? 0,
-    defaultValue: defaultLocalToday,
-    onApplyLocalState: (value) => {
-      if (value.played) {
-        updateState({
-          played: value.played,
-        });
-      }
-    },
+    defaultValue: DEFAULT_LOCAL_TODAY,
   });
 
   const card = state.cards[state.cardIndex];
@@ -68,8 +47,13 @@ export function useArtistaEngine(data: DailyArtistaEntry, currentUser: Me) {
   };
 
   const mutation = useDailySaveDrawings(() => {
-    updateLocalStorage({ played: true, status: 'played' });
+    updateLocalStorage({ played: true });
     updateState({ played: true, screen: 'idle' });
+  });
+
+  useMarkAsPlayed({
+    key: SETTINGS.KEY,
+    isComplete: state.played,
   });
 
   const onSaveDrawings = (stateToSave: GameState) => {
