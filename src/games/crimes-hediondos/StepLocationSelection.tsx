@@ -1,19 +1,21 @@
 import { useState } from 'react';
+// Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
-import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { SceneTile } from 'components/game/SceneTile';
+// Internal
+import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 type StepLocationSelectionProps = {
   user: GamePlayer;

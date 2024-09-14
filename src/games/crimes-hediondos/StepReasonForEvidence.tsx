@@ -1,15 +1,17 @@
 import { useState } from 'react';
+// Ant Design Resources
+import { Space } from 'antd';
 // Types
 import type { CrimeSceneTile } from 'types/tdr';
-import type { ItemsDict, SceneTilePayload } from './utils/types';
 // Components
+import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { SceneTile } from 'components/game/SceneTile';
+// Internal
+import type { ItemsDict, SceneTilePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
-import { Space } from 'antd';
 import { ResetButton } from './components/ResetButton';
 import { EvidenceHighlight } from './components/Highlights';
 

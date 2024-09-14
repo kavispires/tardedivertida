@@ -1,10 +1,12 @@
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
 import { CRIMES_HEDIONDOS_ACTIONS } from './constants';
 import { SubmitCrimePayload, SubmitGuessesPayload, SubmitMarkPayload } from './types';
 
-import type { UseStep } from 'hooks/useStep';
+
 export function useOnSubmitCrimeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

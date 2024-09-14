@@ -1,18 +1,18 @@
-import { useMemo } from 'react';
 import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-import type { Crime } from './utils/types';
 // Hooks
 import { useUser } from 'hooks/useUser';
-// Utils
-import achievementsReference from './utils/achievements';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { CrimeSummary } from './components/CrimeSummary';
 import { Achievements } from 'components/general/Achievements';
+// Internal
+import type { Crime } from './utils/types';
+import achievementsReference from './utils/achievements';
+import { CrimeSummary } from './components/CrimeSummary';
 
 export function PhaseGameOver({ state, players, info }: PhaseProps) {
   const crimes: Crime[] = useMemo(() => orderBy(state.crimes ?? [], ['playerId']), [state.crimes]);
