@@ -1,20 +1,21 @@
 // Ant Design Resources
-import { Space } from 'antd';
 import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
+import { Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { UseStep } from 'hooks/useStep';
 // Hooks
+import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { Tweet } from './components/Tweet';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import { Tweet } from './components/Tweet';
 import { TweetComment } from './components/TweetComment';
 
 type StepResolutionProps = {

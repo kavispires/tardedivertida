@@ -3,17 +3,17 @@ import { orderBy } from 'lodash';
 import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 // Types
 import type { PhaseProps } from 'types/game';
-// Types
-import type { PastTweet } from './utils/types';
 // Icons
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import achievementsReference from './utils/achievements';
 // Components
-import { GameOverWrapper } from 'components/game-over';
-import { Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
+import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+import { Translate } from 'components/language';
+// Internal
+import type { PastTweet } from './utils/types';
+import achievementsReference from './utils/achievements';
 
 export function PhaseGameOver({ state, players, info }: PhaseProps) {
   const playerCount = Object.keys(players).length;

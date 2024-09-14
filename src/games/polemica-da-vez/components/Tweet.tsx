@@ -1,8 +1,8 @@
-// Ant Design Resources
-import { Avatar } from 'antd';
-import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
-// Components
 import clsx from 'clsx';
+// Ant Design Resources
+import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
+// Icons
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 
 type TweetProps = {
