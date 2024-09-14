@@ -31,7 +31,6 @@ import { DiagramSection } from './components/DiagramSection';
 import { RoundAlert } from './components/RoundAlert';
 import { Solution } from './components/Solution';
 
-
 type StepPlaceItemProps = {
   players: GamePlayers;
   user: GamePlayer;

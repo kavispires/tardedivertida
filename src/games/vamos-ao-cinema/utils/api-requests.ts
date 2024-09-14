@@ -6,8 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitMovieSelectionPayload, SubmitMovieEliminationPayload } from './types';
 import { VAMOS_AO_CINEMA_ACTIONS } from './constants';
 
-
-
 export function useOnSubmitMovieSelectionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

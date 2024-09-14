@@ -13,7 +13,6 @@ import { Title } from 'components/text';
 // Internal
 import type { SeedEntryClubberOutfit } from '../../utils/types';
 import { ClubberAvatar } from '../../../../components/avatars/ClubberAvatar';
-// AntDesign Resources
 
 type SeedClubberProps = {
   seed: SeedEntryClubberOutfit;

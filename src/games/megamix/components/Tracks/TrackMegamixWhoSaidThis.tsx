@@ -13,8 +13,6 @@ import { RuleInstruction } from 'components/text';
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-// AntDesign Resources
-
 
 export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }: TrackProps) => {
   const { isLoading } = useLoading();

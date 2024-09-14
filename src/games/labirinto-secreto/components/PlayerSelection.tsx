@@ -7,8 +7,6 @@ import { IconAvatar } from 'components/avatars';
 // Internal
 import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';
-// Components
-
 
 type PlayerSelectionMapProps = {
   forest: Tree[];

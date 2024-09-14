@@ -19,7 +19,6 @@ import { Step, type StepProps } from 'components/steps';
 import { getTitle } from './utils/helpers';
 import { WarningSignBackgroundMask } from './components/WarningSignBackgroundMask';
 
-
 type StepDrawProps = {
   user: GamePlayer;
   cards: Dictionary<TextCard>;

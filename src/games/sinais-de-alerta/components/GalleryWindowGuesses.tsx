@@ -17,7 +17,6 @@ import { Translate } from 'components/language';
 import type { GalleryEntry } from '../utils/types';
 import { getTitle } from '../utils/helpers';
 
-
 type GalleryWindowGuessesProps = {
   players: GamePlayers;
   cards: Dictionary<TextCard>;

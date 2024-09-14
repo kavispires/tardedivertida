@@ -17,7 +17,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryRetratoFalado } from '../../utils/types';
-// AntDesign Resources
+
 // Sound
 const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
 

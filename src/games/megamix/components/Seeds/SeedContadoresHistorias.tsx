@@ -9,7 +9,6 @@ import { Instruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryContadoresHistorias } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';
-// AntDesign Resources
 
 const now = moment().format('MMMM YYYY, h:mm');
 

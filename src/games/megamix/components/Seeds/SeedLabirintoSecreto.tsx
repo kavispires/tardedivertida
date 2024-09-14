@@ -12,7 +12,6 @@ import { Translate } from 'components/language';
 import { Instruction, TextHighlight, Title } from 'components/text';
 // Internal
 import type { SeedEntryLabirintoSecreto } from '../../utils/types';
-// AntDesign Resources
 
 type SeedLabirintoSecretoProps = {
   seed: SeedEntryLabirintoSecreto;

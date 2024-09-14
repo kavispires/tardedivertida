@@ -13,7 +13,6 @@ import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 // Internal
 import type { Slide } from '../utils/types';
-// Componentes
 
 type PageProps = {
   slide: Slide;

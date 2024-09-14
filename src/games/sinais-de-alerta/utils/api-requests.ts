@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitDrawingPayload, SubmitEvaluationPayload } from './types';
 import { SINAIS_DE_ALERTA_ACTIONS } from './constants';
 
-
 export function useOnSubmitDrawingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

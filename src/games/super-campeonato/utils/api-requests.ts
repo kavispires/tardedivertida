@@ -1,16 +1,15 @@
-import type {
 // Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Internal
 import { SUPER_CAMPEONATO_ACTIONS } from './constants';
+import type {
   SubmitBattleVotesPayload,
   SubmitBetsPayload,
   SubmitChallengePayload,
   SubmitContendersPayload,
 } from './type';
-
 
 export function useOnSubmitChallengeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

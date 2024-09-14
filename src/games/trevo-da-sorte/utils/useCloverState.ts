@@ -1,4 +1,3 @@
-import type {
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -9,6 +8,7 @@ import { getRandomItem } from 'utils/helpers';
 // Internal
 import { onRotate, parseRotation } from './helpers';
 import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from './constants';
+import type {
   CloverObject,
   CloverMode,
   Guesses,

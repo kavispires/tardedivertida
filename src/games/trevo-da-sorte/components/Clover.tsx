@@ -1,4 +1,3 @@
-import type {
 import clsx from 'clsx';
 import { useRef } from 'react';
 import { useKeyPressEvent } from 'react-use';
@@ -15,7 +14,7 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 import { Translate } from 'components/language';
 // Internal
 import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
-import { LeafSlot } from './LeafSlot';
+import type {
   CloverMode,
   Leaves,
   LeafIndex,
@@ -26,6 +25,7 @@ import { LeafSlot } from './LeafSlot';
   Guesses,
   CloverObject,
 } from '../utils/types';
+import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
   mode: CloverMode;

@@ -6,8 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitCharactersPayload, SubmitGlyphsPayload, SubmitGuessesPayload } from './types';
 import { QUEM_SOU_EU_ACTIONS } from './constants';
 
-
-
 export function useOnSubmitCharactersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

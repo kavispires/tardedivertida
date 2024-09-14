@@ -17,7 +17,6 @@ import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryArteRuim } from '../../utils/types';
-// AntDesign Resources
 
 type SeedArteRuimProps = {
   seed: SeedEntryArteRuim;

@@ -17,7 +17,6 @@ import { SpeechBubble } from 'components/text/SpeechBubble';
 import type { AlienSign, TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-// AntDesign Resources
 
 export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const { isLoading } = useLoading();

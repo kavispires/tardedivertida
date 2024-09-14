@@ -13,7 +13,6 @@ import { Instruction, TextHighlight } from 'components/text';
 import type { TrackProps } from '../../utils/types';
 import { mockText } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-// AntDesign Resources
 
 export const TrackEspiaoEntreNos = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();

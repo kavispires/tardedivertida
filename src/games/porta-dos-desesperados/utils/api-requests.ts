@@ -7,8 +7,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitDoorPayload, SubmitPagesPayload } from './types';
 import { PORTA_DOS_DESESPERADOS_ACTIONS } from './constants';
 
-
-
 export function useOnSubmitPagesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

@@ -25,7 +25,6 @@ import { SeedUeSoIsso } from './components/Seeds/SeedUeSoIsso';
 import { SeedMenteColetiva } from './components/Seeds/SeedMenteColetiva';
 import { SeedContadoresHistorias } from './components/Seeds/SeedContadoresHistorias';
 import { SeedParty } from './components/Seeds/SeedParty';
-// AntDesign Resources
 
 type StepSeedingProps = {
   players: GamePlayers;

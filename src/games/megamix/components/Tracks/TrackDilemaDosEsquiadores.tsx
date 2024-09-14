@@ -19,7 +19,6 @@ import { Instruction } from 'components/text';
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-// AntDesign Resources
 
 export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();

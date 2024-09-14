@@ -9,7 +9,6 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryOndaTelepatica } from '../../utils/types';
-// AntDesign Resources
 
 type SeedOndaTelepaticaProps = {
   seed: SeedEntryOndaTelepatica;

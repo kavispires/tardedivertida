@@ -13,7 +13,6 @@ import { Instruction } from 'components/text';
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-// AntDesign Resources
 
 export const TrackRetratoFalado = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const cardWidth = useCardWidth(5, { minWidth: 250, maxWidth: 270 });

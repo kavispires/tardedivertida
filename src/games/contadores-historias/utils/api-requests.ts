@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { PlayCardPayload, SubmitStoryPayload, SubmitVotePayload } from './types';
 import { CONTADORES_HISTORIAS_ACTIONS } from './constants';
 
-
 export function useOnSubmitStoryAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

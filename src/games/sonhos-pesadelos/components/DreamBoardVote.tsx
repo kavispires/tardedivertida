@@ -13,7 +13,6 @@ import { getClueId } from '../utils/helpers';
 import { DreamCard } from './DreamCard';
 // Components
 
-
 type DreamBoardVoteProps = {
   table: ImageCardId[];
   user: GamePlayer;

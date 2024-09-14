@@ -6,7 +6,6 @@ import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-// Amt Design Resources
 
 export function FallbackComponent(_: unknown) {
   return (

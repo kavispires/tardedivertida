@@ -8,8 +8,6 @@ import { DualTranslate, Translate } from 'components/language';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryParty } from '../../utils/types';
-// AntDesign Resources
-// Utils
 
 type SeedPartyProps = {
   seed: SeedEntryParty;

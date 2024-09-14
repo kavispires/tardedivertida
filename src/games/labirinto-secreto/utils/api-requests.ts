@@ -6,8 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitMapPayload, SubmitPathGuessPayload } from './types';
 import { LABIRINTO_SECRETO_ACTIONS } from './constants';
 
-
-
 export function useOnSubmitMapAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

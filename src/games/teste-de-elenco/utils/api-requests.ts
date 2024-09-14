@@ -6,8 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitMovieActorPayload, SubmitMovieGenrePayload } from './types';
 import { TESTE_DE_ELENCO_ACTIONS } from './constants';
 
-
-
 export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

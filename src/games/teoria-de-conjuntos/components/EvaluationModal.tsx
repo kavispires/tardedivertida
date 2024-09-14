@@ -13,7 +13,6 @@ import { Translate } from 'components/language';
 import { Solutions } from '../utils/types';
 import { Solution } from './Solution';
 
-
 type EvaluationModalProps = {
   item: Item;
   onSubmitEvaluation: (evaluation: string) => void;

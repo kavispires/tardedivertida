@@ -14,7 +14,6 @@ import { SpeechBubble } from 'components/text/SpeechBubble';
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-// AntDesign Resources
 
 export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

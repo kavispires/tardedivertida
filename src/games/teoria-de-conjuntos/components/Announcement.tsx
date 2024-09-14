@@ -23,7 +23,6 @@ import { OUTCOME } from '../utils/constants';
 import { Guess } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 
-
 type AnnouncementProps = {
   activePlayer: GamePlayer;
   previousActivePlayer: GamePlayer;
