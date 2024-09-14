@@ -1,19 +1,20 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { SealIcon } from 'icons/SealIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
+// Internal
+import { ScoringRules } from './components/RulesBlobs';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
-import { ScoringRules } from './components/RulesBlobs';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
 
 export function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
