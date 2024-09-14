@@ -1,16 +1,17 @@
-import { useState } from 'react';
 import { orderBy } from 'lodash';
+import { useState } from 'react';
 // Ant Design Resources
 import { Badge, Button, Select, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Item, OfferingsStatus, Sign } from '../utils/types';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useLoading } from 'hooks/useLoading';
 import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+// Internal
+import type { Item, OfferingsStatus, Sign } from '../utils/types';
 import { HumanSignBoard } from './HumanSignBoard';
 import { SelectableObjectsGrid } from './SelectableObjectsGrid';
 

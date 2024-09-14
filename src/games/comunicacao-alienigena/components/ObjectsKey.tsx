@@ -1,5 +1,6 @@
 // Components
 import { Translate } from 'components/language';
+// Internal
 import { OfferingsStatus } from '../utils/types';
 
 type ObjectsKeyProps = {

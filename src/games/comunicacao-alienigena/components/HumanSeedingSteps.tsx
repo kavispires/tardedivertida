@@ -4,18 +4,19 @@ import { useState } from 'react';
 import { Button, Flex, Space, Steps, Switch } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Seed } from '../utils/types';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
 import { SEPARATOR } from 'utils/constants';
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { DualTranslate, Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
 import { Card } from 'components/cards';
 import { ItemCard } from 'components/cards/ItemCard';
+import { DualTranslate, Translate } from 'components/language';
+import { Instruction, Title } from 'components/text';
+// Internal
+import type { Seed } from '../utils/types';
 
 type HumanSeedingStepsProps = {
   user: GamePlayer;

@@ -1,18 +1,19 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
-import { useStep } from 'hooks/useStep';
+// Hooks
 import { useCache, useCacheAlternative } from 'hooks/useCache';
-// Resources & Utils
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { useOnSubmitSeedingAPIRequest } from './utils/api-requests';
 // Icons
 import { BooksIcon } from 'icons/BooksIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
+import { useOnSubmitSeedingAPIRequest } from './utils/api-requests';
 import { StepSeedAlien } from './StepSeedAlien';
 
 export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {

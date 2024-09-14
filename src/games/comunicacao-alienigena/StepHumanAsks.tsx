@@ -2,27 +2,29 @@
 import { Space } from 'antd';
 // Types
 import { GamePlayer, GamePlayers } from 'types/player';
-import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
+// Utils
+import { PHASES } from 'utils/phases';
 // Components
+import { AvatarName } from 'components/avatars';
+import { DebugOnly } from 'components/debug';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
+import { ViewIf } from 'components/views';
+// Internal
+import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
-import { ViewIf } from 'components/views';
 import { HumanInquiry } from './components/HumanInquiry';
 import { AlienContent, HumanContent } from './components/Content';
 import { History } from './components/History';
-import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { BotPopupRule } from './components/BotPopupRules';
 import { ItemsHighlight } from './components/Highlights';
-import { DebugOnly } from 'components/debug';
-import { PHASES } from 'utils/phases';
 
 type StepHumanAsksProps = {
   players: GamePlayers;
