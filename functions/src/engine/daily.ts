@@ -17,7 +17,7 @@ type DailyGetterPayload = {
  * @throws An exception if the user is not authenticated or if the daily data does not exist.
  */
 const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
-  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
+  if (utils.firebase.isEmulatingEnvironment()) {
     await feedEmulatorDaily();
   }
 

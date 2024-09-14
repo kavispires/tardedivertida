@@ -23,7 +23,7 @@ export type CreateGamePayload = {
  * @returns The metadata of the created game.
  */
 const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
-  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
+  if (utils.firebase.isEmulatingEnvironment()) {
     feedEmulatorDB();
   }
 
@@ -64,7 +64,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
     );
   }
 
-  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
+  if (utils.firebase.isEmulatingEnvironment()) {
     gameId = Array(4).fill(gameCode).join('');
   }
 

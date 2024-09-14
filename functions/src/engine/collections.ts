@@ -11,7 +11,7 @@ import { PastCategories } from './onda-telepatica/types';
 export const getDataFirebaseDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
   let response: any;
 
-  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
+  if (utils.firebase.isEmulatingEnvironment()) {
     return fallback;
   }
 
