@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { ArteRuimCard, ArteRuimDrawing } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
@@ -15,13 +14,15 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
-import { prepareVotes } from './utils/helpers';
 // Components
-import { Step, type StepProps } from 'components/steps';
-import { PopoverRule } from 'components/rules';
 import { CanvasResizer } from 'components/canvas';
-import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { ArteRuimCard, ArteRuimDrawing } from './utils/types';
+import { prepareVotes } from './utils/helpers';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
 import { EvaluationAllCards } from './components/EvaluationAllCards';
 import { EvaluationRules } from './components/TextBlobs';

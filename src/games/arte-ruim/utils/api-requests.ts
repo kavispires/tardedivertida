@@ -1,9 +1,11 @@
-import type { SubmitDrawingPayload, SubmitVotingPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitDrawingPayload, SubmitVotingPayload } from './types';
 import { ARTE_RUIM_ACTIONS } from './constants';
+
 
 export function useOnSubmitDrawingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

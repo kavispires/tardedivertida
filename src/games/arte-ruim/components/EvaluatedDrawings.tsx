@@ -1,14 +1,16 @@
 import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { ArteRuimCard, ArteRuimDrawing } from '../utils/types';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-// Components
-import { CanvasSVG } from 'components/canvas';
-import { IconAvatar } from 'components/avatars/IconAvatar';
+// Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
+// Components
 import { AvatarName } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { CanvasSVG } from 'components/canvas';
+// Internal
+import type { ArteRuimCard, ArteRuimDrawing } from '../utils/types';
 
 type EvaluatedDrawingsProps = {
   votes?: StringDictionary;

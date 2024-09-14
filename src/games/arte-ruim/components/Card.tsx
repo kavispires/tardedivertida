@@ -1,10 +1,10 @@
+import { ReactNode } from 'react';
 // Ant Design Resources
 import { WarningOutlined } from '@ant-design/icons';
-// Helpers
+// Utils
 import { getColorFromLetter } from 'utils/helpers';
 // Components
 import { Card } from 'components/cards';
-import { ReactNode } from 'react';
 
 type ArteRuimCardProps = {
   /**
