@@ -6,10 +6,11 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
-import { Message } from '../utils/types';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+// Internal
+import { Message } from '../utils/types';
 
 type MessageBoardProps = {
   messages: Record<PlayerId, Message>;
