@@ -1,3 +1,4 @@
+// Utils
 import { LETTERS } from 'utils/constants';
 import { getRandomItem } from 'utils/helpers';
 

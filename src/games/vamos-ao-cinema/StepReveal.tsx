@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
 import type { GameRound } from 'types/game';
+import type { GamePlayers, GamePlayer } from 'types/player';
 import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -10,21 +10,22 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { HostNextPhaseButton } from 'components/host';
+import { ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TurnOrder } from 'components/players';
+import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+import { ViewIf } from 'components/views';
+// Internal
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
-import { TurnOrder } from 'components/players';
-import { AvatarName } from 'components/avatars';
-import { HostNextPhaseButton } from 'components/host';
-import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 import { MovieHighlight } from './components/MovieHighlight';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { TransparentButton } from 'components/buttons';
-import { ImageCard } from 'components/image-cards';
-import { ViewIf } from 'components/views';
 
 type StepRevealProps = {
   players: GamePlayers;

@@ -1,12 +1,12 @@
 // Types
 import type { MovieCard } from 'types/tdr';
-// Utils
-import { getMovieTitle } from '../utils/helpers';
 // Icons
 import { FilmReelIcon } from 'icons/FilmReelIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { TextHighlight } from 'components/text';
+// Internal
+import { getMovieTitle } from '../utils/helpers';
 
 type MovieHighlightProps = {
   movies: MovieCard[];

@@ -1,3 +1,4 @@
+// Types
 import { MovieCard } from 'types/tdr';
 
 export const getMovieTitle = (movies: MovieCard[], letter: string) => {
