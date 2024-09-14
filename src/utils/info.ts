@@ -45,7 +45,6 @@ import VICE_CAMPEAO from 'games/vice-campeao/game-info.json';
 import VINGATIVOS from 'games/vingativos/game-info.json';
 // Types
 import type { GameInfo } from 'types/game-info';
-// Games
 
 const others = comingSoonGames as Record<GameName, GameInfo>;
 
