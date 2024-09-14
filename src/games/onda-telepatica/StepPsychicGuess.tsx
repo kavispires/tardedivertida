@@ -2,7 +2,6 @@
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { CurrentCategory } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -10,6 +9,8 @@ import { useMock } from 'hooks/useMock';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
+// Internal
+import type { CurrentCategory } from './utils/types';
 import { Dial } from './components/Dial';
 
 type StepPsychicGuessProps = {

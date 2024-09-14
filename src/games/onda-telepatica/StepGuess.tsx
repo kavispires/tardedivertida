@@ -1,17 +1,16 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Slider, Space } from 'antd';
-// Types
-import type { CurrentCategory } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockGuess } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { CurrentCategory } from './utils/types';
+import { mockGuess } from './utils/mock';
 import { Dial } from './components/Dial';
 
 type PromptProps = {
