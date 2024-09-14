@@ -1,3 +1,4 @@
+// Types
 import { Item, ObjectFeatureCard } from 'types/tdr';
 
 export enum Phase {

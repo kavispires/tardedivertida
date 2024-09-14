@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Tooltip } from 'antd';
-// Types
+// Components
+import { DualTranslate } from 'components/language';
+// Internal
 import type { ExtendedObjectFeatureCard } from '../utils/types';
 // Images
 import featuresIcons from './feature-icons.svg';
-// Components
-import { DualTranslate } from 'components/language';
 
 type ObjectFeatureProps = {
   feature: ExtendedObjectFeatureCard;

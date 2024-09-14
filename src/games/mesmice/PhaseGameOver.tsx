@@ -1,8 +1,5 @@
 // Types
 import type { PhaseProps } from 'types/game';
-import type { MesmiceGalleryEntry } from './utils/types';
-// Utils
-import { achievementsReference } from './utils/achievements';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
@@ -10,6 +7,9 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+// Internal
+import type { MesmiceGalleryEntry } from './utils/types';
+import { achievementsReference } from './utils/achievements';
 import { FinalGalleryEntry } from './components/FinalGalleryEntry';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
