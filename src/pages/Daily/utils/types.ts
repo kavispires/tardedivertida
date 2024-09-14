@@ -18,8 +18,6 @@ export type DailyResponse = {
   'teoria-de-conjuntos'?: DailyTeoriaDeConjuntosEntry;
 };
 
-export type DailyGameStatus = 'idle' | 'playing' | 'played';
-
 export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'idle';
 
 export type Letter = {
@@ -32,5 +30,4 @@ export type LettersDictionary = Dictionary<Letter>;
 
 export interface WithRequiredId {
   id: string;
-  status?: DailyGameStatus;
 }

@@ -1,7 +1,7 @@
 import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { deepCopy } from 'utils/helpers';
 
@@ -14,7 +14,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
   const { translate } = useLanguage();
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } = useDailyLocalTodayV2<TeoriaDeConjuntosLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<TeoriaDeConjuntosLocalToday>({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: DEFAULT_LOCAL_TODAY,

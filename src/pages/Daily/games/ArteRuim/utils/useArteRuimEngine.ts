@@ -1,5 +1,5 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { removeDuplicates } from 'utils/helpers';
 
@@ -10,7 +10,7 @@ import { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
 export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameState) {
   const { state, setState } = useDailyGameState<GameState>(initialState);
 
-  const { localToday, updateLocalStorage } = useDailyLocalTodayV2<ArteRuimLocalToday>({
+  const { localToday, updateLocalStorage } = useDailyLocalToday<ArteRuimLocalToday>({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: DEFAULT_LOCAL_TODAY,
