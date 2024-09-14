@@ -1,4 +1,6 @@
+// Ant Design Resources
 import { Typography } from 'antd';
+// Components
 import { Translate } from 'components/language';
 
 export function Rules() {

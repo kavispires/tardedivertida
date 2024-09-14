@@ -1,9 +1,12 @@
-import { Alert, Button, Space } from 'antd';
-import { useLanguage } from 'hooks/useLanguage';
-
-import { DailyChrome } from './DailyChrome';
-import { Translate } from 'components/language';
 import { useNavigate } from 'react-router-dom';
+// Ant Design Resources
+import { Alert, Button, Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Components
+import { Translate } from 'components/language';
+// Internal
+import { DailyChrome } from './DailyChrome';
 
 export function DailyError() {
   const { toggleLanguage, language } = useLanguage();

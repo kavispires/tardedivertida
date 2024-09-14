@@ -1,8 +1,9 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+// Utils
 import { removeDuplicates } from 'utils/helpers';
-
+// Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
 import { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';

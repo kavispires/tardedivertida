@@ -1,12 +1,13 @@
-import './utils/styles.scss';
-
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
-
-import { getToday } from '../../utils';
-import { DailyTeoriaDeConjuntos } from './components/DailyTeoriaDeConjuntos';
 import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
+// Hooks
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+// Internal
+import { DailyTeoriaDeConjuntos } from './components/DailyTeoriaDeConjuntos';
+import { getToday } from '../../utils';
+// Sass
+import './utils/styles.scss';
 
 export function DailyTeoriaDeConjuntosGame() {
   const { currentUser } = useCurrentUserContext();

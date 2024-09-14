@@ -1,14 +1,18 @@
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+// Ant Design Resources
 import { Space, Typography } from 'antd';
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Icons
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
-import { getSourceName, writeHeartResultString } from 'pages/Daily/utils';
-
-import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
+// Components
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+// Internal
 import { SETTINGS } from '../utils/settings';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
   challenge: number;

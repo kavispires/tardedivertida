@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-
-import { PalavreadoLetter } from '../utils/types';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
+// Internal
+import { PalavreadoLetter } from '../utils/types';
 
 type BoardProps = {
   letters: PalavreadoLetter[];

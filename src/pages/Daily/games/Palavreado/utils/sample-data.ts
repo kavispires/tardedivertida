@@ -1,3 +1,4 @@
+// Internal
 import { DailyPalavreadoEntry } from './types';
 
 const defaultValue: Pick<DailyPalavreadoEntry, 'id' | 'number' | 'language' | 'type'> = {

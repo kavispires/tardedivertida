@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+// Services
 import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
 
 type DailySetterPayload = {
@@ -19,7 +20,7 @@ export function useDailyChallengeMutation() {
     },
     onSuccess: () => {
       queryClient.refetchQueries({
-        queryKey: ['user']
+        queryKey: ['user'],
       });
     },
     onError: (e: any) => {},

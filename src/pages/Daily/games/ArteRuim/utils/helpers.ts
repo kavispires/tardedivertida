@@ -1,8 +1,10 @@
 import { loadLocalToday } from 'pages/Daily/utils';
+import { LettersDictionary } from 'pages/Daily/utils/types';
+// Utils
+import { deepCopy } from 'utils/helpers';
+// Internal
 import { SETTINGS } from './settings';
 import { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
-import { LettersDictionary } from 'pages/Daily/utils/types';
-import { deepCopy } from 'utils/helpers';
 
 export const DEFAULT_LOCAL_TODAY: ArteRuimLocalToday = {
   id: '',

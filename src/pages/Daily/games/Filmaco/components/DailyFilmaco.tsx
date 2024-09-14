@@ -1,21 +1,25 @@
-import { Button, Layout, Modal, Space, Typography } from 'antd';
-import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate, Translate } from 'components/language';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { Region } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
-import { Me } from 'types/user';
-
+// Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
-
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
+import { Button, Layout, Modal, Space, Typography } from 'antd';
+// Types
+import { Me } from 'types/user';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Icons
+import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
+// Components
+import { ItemCard } from 'components/cards/ItemCard';
+import { DualTranslate, Translate } from 'components/language';
+// Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyFilmacoEntry } from '../utils/types';
 import { useFilmacoEngine } from '../utils/useFilmacoEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';

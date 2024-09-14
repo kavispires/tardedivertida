@@ -1,10 +1,15 @@
-import { Flex } from 'antd';
-import { DrawingCanvas } from 'components/canvas';
-import { useCountdown } from 'hooks/useCountdown';
 import { useState } from 'react';
-import { SETTINGS } from '../utils/settings';
-import { TimerBar } from 'components/timers';
+// Ant Design Resources
+import { Flex } from 'antd';
+// Hooks
+import { useCountdown } from 'hooks/useCountdown';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
+// Components
+import { DrawingCanvas } from 'components/canvas';
+import { TimerBar } from 'components/timers';
+// Internal
+import { SETTINGS } from '../utils/settings';
 
 type CanvasProps = {
   onNextCard: (lines: any) => void;

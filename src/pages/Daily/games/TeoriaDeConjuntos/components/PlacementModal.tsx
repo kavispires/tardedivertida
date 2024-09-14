@@ -1,9 +1,12 @@
-import { Flex, Modal } from 'antd';
-import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
-import { Translate } from 'components/language';
 import { Region } from 'pages/Daily/components/Region';
-import { Thing } from './Thing';
+// Ant Design Resources
 import { CaretDownOutlined } from '@ant-design/icons';
+import { Flex, Modal } from 'antd';
+// Components
+import { Translate } from 'components/language';
+// Internal
+import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
+import { Thing } from './Thing';
 
 type PlacementModalProps = Pick<
   ReturnType<typeof useTeoriaDeConjuntosEngine>,

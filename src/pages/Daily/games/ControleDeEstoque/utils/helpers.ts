@@ -1,7 +1,8 @@
 import { loadLocalToday } from 'pages/Daily/utils';
+// Utils
 import { SEPARATOR } from 'utils/constants';
 import { deepCopy } from 'utils/helpers';
-
+// Internal
 import { PHASES, SETTINGS } from './settings';
 import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
 
@@ -38,7 +39,7 @@ export const getInitialState = (data: DailyControleDeEstoqueEntry, removeHeart?:
     // Update phase
     const warehouse =
       localToday.warehouse.length > 0 ? localToday.warehouse : Array(data.goods.length).fill(null);
-    const guesses = localToday.warehouse.length > 0 ? localToday.guesses ?? [] : [];
+    const guesses = localToday.warehouse.length > 0 ? (localToday.guesses ?? []) : [];
 
     // Activate the last order attempt
     const fulfillments = guesses.length > 0 ? parseGuessString(guesses[guesses.length - 1]) : [];
