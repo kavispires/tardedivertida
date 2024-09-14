@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
 import { CloudUploadOutlined, MinusOutlined } from '@ant-design/icons';
+import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';

@@ -5,19 +5,19 @@ import type { GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSuggestions } from './utils/mock';
 // Components
-import { WritingRules } from './components/RulesBlobs';
-import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { AvatarName } from 'components/avatars';
+import { DevButton } from 'components/debug';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
+import { ControlledInputWriting } from 'components/input';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
-import { ControlledInputWriting } from 'components/input';
-import { DevButton } from 'components/debug';
+// Internal
+import { mockSuggestions } from './utils/mock';
+import { WritingRules } from './components/RulesBlobs';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { WritingHighlight } from './components/Highlights';
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
 
 type StepSuggestionProps = {
   guesser: GamePlayer;

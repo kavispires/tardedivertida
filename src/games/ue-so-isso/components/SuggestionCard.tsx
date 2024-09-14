@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
+import { Avatar as AntAvatar } from 'antd';
 // Utils
-import { getColorFromIndex } from 'utils/helpers';
 import { LETTERS } from 'utils/constants';
+import { getColorFromIndex } from 'utils/helpers';
 // Components
-import { Card } from 'components/cards';
 import { Avatar } from 'components/avatars';
+import { Card } from 'components/cards';
 
 type SuggestionCardProps = {
   avatarId: string;
