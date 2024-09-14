@@ -3,25 +3,26 @@ import { useState } from 'react';
 import { Space } from 'antd';
 // Types
 import { GamePlayer, GamePlayers } from 'types/player';
-import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useLoading } from 'hooks/useLoading';
 // Components
+import { AvatarName } from 'components/avatars';
+import { DebugOnly } from 'components/debug';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
+// Internal
+import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
 import { AlienWritingBoard } from './components/AlienWritingBoard';
 import { AlienContent, HumanContent } from './components/Content';
 import { History } from './components/History';
-import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { SelectableObjectsGrid } from './components/SelectableObjectsGrid';
-import { DebugOnly } from 'components/debug';
 
 type StepAlienRequestsProps = {
   players: GamePlayers;

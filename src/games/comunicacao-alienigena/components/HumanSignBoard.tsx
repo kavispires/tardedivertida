@@ -1,18 +1,18 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Button, Popconfirm, Popover, Space, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-// Types
-import type { Sign } from '../utils/types';
+import { Button, Popconfirm, Popover, Space, Tooltip } from 'antd';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { DrawingCanvas } from 'components/canvas';
+import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
-import { SignCard } from 'components/cards/SignCard';
+// Internal
+import type { Sign } from '../utils/types';
 
 type HumanSignBoardProps = {
   signs: Sign[];

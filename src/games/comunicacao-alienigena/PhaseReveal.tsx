@@ -1,23 +1,24 @@
+import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { AlienHappyIcon } from 'icons/AlienHappyIcon';
 import { AlienAngryIcon } from 'icons/AlienAngryIcon';
+import { AlienHappyIcon } from 'icons/AlienHappyIcon';
 import { AlienNeutralIcon } from 'icons/AlienNeutralIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { StepReveal } from './StepReveal';
-import { useMemo } from 'react';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
 import { Item, RequestHistoryEntry } from './utils/types';
 import { ITEM_TYPES } from './utils/constants';
+import { StepReveal } from './StepReveal';
 
 export function PhaseReveal({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

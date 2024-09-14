@@ -1,10 +1,11 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Item } from './utils/types';
 // Components
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { Item } from './utils/types';
 import { BotPopupRule } from './components/BotPopupRules';
 import { HumanSeedingSteps } from './components/HumanSeedingSteps';
 

@@ -1,19 +1,20 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useStep } from 'hooks/useStep';
+// Hooks
 import { useCache, useCacheAlternative } from 'hooks/useCache';
-// Resources & Utils
+import { useStep } from 'hooks/useStep';
+// Utils
 import { PHASES } from 'utils/phases';
-import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
 // Icons
 import { UfoIcon } from 'icons/UfoIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
+// Internal
+import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
 import { CurseItemHighlight, HieroglyphHighlight, ItemsHighlight } from './components/Highlights';
 
 export function PhaseAlienSelection({ players, state, info }: PhaseProps) {

@@ -1,20 +1,21 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitHumanInquiryAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
-import { StepHumanAsks } from './StepHumanAsks';
 import { StepSwitcher } from 'components/steps';
+// Internal
+import { useOnSubmitHumanInquiryAPIRequest } from './utils/api-requests';
+import { StepHumanAsks } from './StepHumanAsks';
 
 export function PhaseHumanAsk({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

@@ -1,20 +1,21 @@
 import clsx from 'clsx';
 import { isEmpty, orderBy } from 'lodash';
+import { useEffect } from 'react';
 // Ant Design Resources
-import { Button, Popconfirm, Popover, Space } from 'antd';
 import { CheckCircleFilled, CheckSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
-// Types
-import type { Sign } from '../utils/types';
+import { Button, Popconfirm, Popover, Space } from 'antd';
 // Hooks
 import { useCacheAlternative } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { PHASES } from 'utils/phases';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
-import { useEffect } from 'react';
-import { PHASES } from 'utils/phases';
+// Internal
+import type { Sign } from '../utils/types';
 
 type SignsKeyCardProps = {
   signs: Sign[];

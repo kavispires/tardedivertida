@@ -1,4 +1,11 @@
 import type {
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import { COMUNICACAO_ALIENIGENA_ACTIONS } from './constants';
   SubmitAlienPayload,
   SubmitAlienRequestPayload,
   SubmitAlienResponsePayload,
@@ -6,12 +13,7 @@ import type {
   SubmitOfferingPayload,
   SubmitSeedingPayload,
 } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
 
-import { COMUNICACAO_ALIENIGENA_ACTIONS } from './constants';
 
 export function useOnSubmitAlienAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

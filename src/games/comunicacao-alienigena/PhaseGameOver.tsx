@@ -1,21 +1,21 @@
-// Types
-import type { PhaseProps } from 'types/game';
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import type { PhaseProps } from 'types/game';
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
-// Utils
-import achievementsReference from './utils/achievements';
 // Components
 import { GameOverWrapper } from 'components/game-over';
+import { Achievements } from 'components/general/Achievements';
 import { ViewIf } from 'components/views';
+// Internal
+import achievementsReference from './utils/achievements';
 import { History } from './components/History';
 import { HumanSignBoard } from './components/HumanSignBoard';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
-import { Achievements } from 'components/general/Achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const [, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
