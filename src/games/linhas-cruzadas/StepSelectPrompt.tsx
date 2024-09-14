@@ -1,7 +1,5 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { PromptCard, SubmitPromptPayload } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -13,6 +11,8 @@ import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { PromptCard, SubmitPromptPayload } from './utils/types';
 
 type StepSelectPromptProps = {
   prompts: PromptCard[];

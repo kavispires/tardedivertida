@@ -1,10 +1,7 @@
 // Types
 import type { PhaseProps } from 'types/game';
-import type { AlbumEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-// Utils
-import achievementsReference from './utils/achievements';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
@@ -12,6 +9,9 @@ import { AvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+// Internal
+import type { AlbumEntry } from './utils/types';
+import achievementsReference from './utils/achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const slideCount = Math.min(state.album[0]?.slides.length ?? 5, 8);
