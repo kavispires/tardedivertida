@@ -1,20 +1,22 @@
 import { useState, useCallback } from 'react';
 import { useEffectOnce } from 'react-use';
-//Design Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Clue, Grid, GridType } from './utils/types';
 // Utils
 import { shuffle } from 'utils/helpers';
-import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
 // Components
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { Clue, Grid, GridType } from './utils/types';
+import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
 import { WordGrid } from './components/WordGrid';
 import { SelectableCell } from './components/SelectableCell';
 import { Clues } from './components/Clues';
+//Design Resources
 
 type StepGuessingProps = {
   grid: Grid;

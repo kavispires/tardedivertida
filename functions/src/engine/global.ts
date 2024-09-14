@@ -10,7 +10,7 @@ export const getGlobalFirebaseDocData = async (documentName: string, fallback: a
   let response;
 
   try {
-    response = (await utils.firebase.getGlobalRef().doc(documentName)?.get())?.data() ?? fallback;
+    response = (await utils.firestore.getGlobalRef().doc(documentName)?.get())?.data() ?? fallback;
   } catch (e) {
     console.error(e);
     response = fallback;
@@ -51,7 +51,7 @@ export const updateGlobalFirebaseDoc = async (documentName: string, data: any): 
   }
 
   if (newData) {
-    await utils.firebase.getGlobalRef().doc(documentName).update(newData);
+    await utils.firestore.getGlobalRef().doc(documentName).update(newData);
   }
 
   return true;

@@ -1,22 +1,23 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { AvatarName } from 'components/avatars';
-import { ViewOr } from 'components/views';
-import { StepGuessPlayer } from './StepGuessPlayer';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { StepGuessPlayer } from './StepGuessPlayer';
 import { StepWaitingForGuesses } from './StepWaitingForGuesses';
 
 export function PhaseGuessing({ players, state, info }: PhaseProps) {

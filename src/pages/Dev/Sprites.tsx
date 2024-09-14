@@ -1,3 +1,4 @@
+import { orderBy } from 'lodash';
 import { useTitle } from 'react-use';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -8,22 +9,17 @@ import { useQueryParams } from 'hooks/useQueryParams';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { makeArray } from 'utils/helpers';
+import { MEDALS_IDS } from './utils/constants';
 // Components
 import { Avatar } from 'components/avatars';
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
-import { GlyphCard } from 'components/cards/GlyphCard';
-import { ItemCard } from 'components/cards/ItemCard';
-import { DevHeader } from './DevHeader';
-import { MEDALS_IDS } from './utils/constants';
 import { Medal } from 'components/general/Medal';
 import { TreeCard } from 'components/cards/TreeCard';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { EmojiCard } from 'components/cards/EmojiCard';
-import { orderBy } from 'lodash';
-import { SignCard } from 'components/cards/SignCard';
-import { TOTAL_ALIEN_ITEMS } from 'utils/constants';
+import { DevHeader } from './DevHeader';
 
 type SpriteOption = {
   key: string;
@@ -41,13 +37,6 @@ const options: Record<string, SpriteOption> = {
     prefix: 'avatar',
     quantity: 50,
     extra: ['A', 'B', 'C', 'D', 'E', 'N'],
-    startAt: 0,
-  },
-  'alien-signs': {
-    key: 'alien-signs',
-    label: 'Alien Signs',
-    prefix: 'sign',
-    quantity: 36,
     startAt: 0,
   },
   sheep: {
@@ -76,20 +65,6 @@ const options: Record<string, SpriteOption> = {
     label: 'Super Heroes',
     prefix: 'super-hero',
     quantity: 50,
-    startAt: 0,
-  },
-  glyphs: {
-    key: 'glyphs',
-    label: 'Glyphs',
-    prefix: 'glyph',
-    quantity: 365,
-    startAt: 1,
-  },
-  items: {
-    key: 'items',
-    label: 'Items',
-    prefix: 'item',
-    quantity: Number(TOTAL_ALIEN_ITEMS),
     startAt: 0,
   },
   trees: {
@@ -128,12 +103,9 @@ function SpritesPage() {
 
   const activeContent = {
     avatars: <AvatarsContent />,
-    glyphs: <GlyphsContent />,
-    items: <ItemsContent />,
     medals: <MedalsContent />,
     trees: <TreeContent />,
     emojis: <EmojisContent />,
-    'alien-signs': <AlienSignsContent />,
   }?.[active.key] ?? <Content type={active.key} />;
 
   return (
@@ -238,44 +210,6 @@ function Content({ type }: { type: string }) {
   );
 }
 
-function ItemsContent() {
-  const { quantity, startAt } = options.items;
-
-  const ids = makeArray(quantity, startAt);
-
-  return (
-    <ul className="sprites__flex">
-      {ids.map((id) => {
-        return (
-          <li key={`items-${id}`} className="sprites__flex-item">
-            <ItemCard id={String(id)} />
-            {id}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-function AlienSignsContent() {
-  const { quantity, startAt } = options['alien-signs'];
-
-  const ids = makeArray(quantity, startAt);
-
-  return (
-    <ul className="sprites__flex">
-      {ids.map((id) => {
-        return (
-          <li key={`items-${id}`} className="sprites__flex-item">
-            <SignCard id={String(id)} />
-            {id}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
 function EmojisContent() {
   const { quantity, startAt } = options.emojis;
 
@@ -287,25 +221,6 @@ function EmojisContent() {
         return (
           <li key={`items-${id}`} className="sprites__flex-item">
             <EmojiCard id={String(id)} />
-            {id}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-function GlyphsContent() {
-  const { quantity, startAt } = options.glyphs;
-
-  const ids = makeArray(quantity, startAt);
-
-  return (
-    <ul className="sprites__flex">
-      {ids.map((id) => {
-        return (
-          <li key={`costume-${id}`} className="sprites__flex-item">
-            <GlyphCard id={String(id)} />
             {id}
           </li>
         );

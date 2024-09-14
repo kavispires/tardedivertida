@@ -3,15 +3,17 @@ import { useMemo } from 'react';
 import { Avatar as AntAvatar, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { DuetosGalleryEntry, Item, LefOutEntry } from './utils/types';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
+import { Avatar } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TimedButton } from 'components/buttons';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Avatar } from 'components/avatars';
+// Internal
+import type { DuetosGalleryEntry, Item, LefOutEntry } from './utils/types';
 import { Pair } from './components/Pair';
 
 type StepResultProps = {

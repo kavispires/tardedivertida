@@ -1,28 +1,29 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button, App, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
+import { Button, App, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { Suggestion } from './utils/types';
 // Hooks
+import { useHost } from 'hooks/useHost';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useHost } from 'hooks/useHost';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components
-import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { ComparisonDetailedRules, ComparisonPhaseRules } from './components/RulesBlobs';
+import { HostButton, HostOnlyContainer } from 'components/host';
+import { Translate } from 'components/language';
+import { messageContent } from 'components/pop-up';
+import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { HostButton, HostOnlyContainer } from 'components/host';
-import { messageContent } from 'components/pop-up';
-import { Cards } from './components/Cards';
 import { ViewIf } from 'components/views';
+// Internal
+import type { Suggestion } from './utils/types';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { ComparisonDetailedRules, ComparisonPhaseRules } from './components/RulesBlobs';
+import { Cards } from './components/Cards';
 
 type StepCompareSuggestionsProps = {
   isUserTheController: boolean;

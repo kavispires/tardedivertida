@@ -41,7 +41,7 @@ export const MAX_ROUNDS = 15;
 
 export const MAGIC_UNITS_PER_PLAYER_COUNT = {
   2: 15,
-  3: 21,
+  3: 22,
   4: 25,
   5: 25,
   6: 25,

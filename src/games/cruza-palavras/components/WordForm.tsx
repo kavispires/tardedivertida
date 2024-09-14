@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-//Design Resources
+// Ant Design Resources
 import { Button, Input, InputRef, Space } from 'antd';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
+//Design Resources
 
 type WordFormProps = {
   x: string;

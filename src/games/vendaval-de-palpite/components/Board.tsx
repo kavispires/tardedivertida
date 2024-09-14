@@ -3,12 +3,13 @@ import clsx from 'clsx';
 import { Avatar, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { BoardObject, Clue, Clues } from '../utils/types';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+// Internal
+import type { BoardObject, Clue, Clues } from '../utils/types';
 
 type BoardProps = {
   board: BoardObject;

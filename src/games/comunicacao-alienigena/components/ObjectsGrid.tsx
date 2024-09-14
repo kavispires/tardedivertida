@@ -1,13 +1,15 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Badge, Space } from 'antd';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
-// Types
-import type { Item } from '../utils/types';
+import { Badge, Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+// Internal
+import type { Item, OfferingsStatus } from '../utils/types';
 import { ObjectsKey } from './ObjectsKey';
 
 type ObjectsGridProps = {
@@ -15,9 +17,11 @@ type ObjectsGridProps = {
   showTypes?: boolean;
   activeObjects?: CardId[];
   showAll?: boolean;
+  status: OfferingsStatus;
 };
 
-export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }: ObjectsGridProps) {
+export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, status }: ObjectsGridProps) {
+  const { dualTranslate } = useLanguage();
   return (
     <Space direction="vertical">
       <Title level={3} size="xx-small" white>
@@ -34,7 +38,11 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
             )}
           >
             <Badge size="small" count={item.inquired} color="orange">
-              <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              <ItemCard
+                id={`${item.id}`}
+                className={clsx(item.offered && 'objects-grid__item-offered')}
+                title={item.name ? dualTranslate(item.name) : undefined}
+              />
             </Badge>
 
             {showAll && Boolean(item.offered) && item.type === 'ITEM' && (
@@ -51,7 +59,7 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }
         ))}
       </div>
 
-      <ObjectsKey />
+      <ObjectsKey status={status} />
     </Space>
   );
 }

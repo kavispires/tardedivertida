@@ -41,7 +41,14 @@ export const prepareSetupPhase = async (
 
   utils.players.addPropertiesToPlayers(players, { coordinates: [] });
 
-  const gameType = store.options.contenderGrid ? 'contenders' : store.options.imageGrid ? 'images' : 'words';
+  const gameType =
+    {
+      words: 'words',
+      properties: 'words',
+      contenders: 'contenders',
+      imageCards: 'images',
+      items: 'items',
+    }?.[store?.options?.gridType ?? 'words'] || 'words';
 
   // Save
   return {
@@ -119,11 +126,11 @@ export const prepareClueWritingPhase = async (
 
   const round = utils.helpers.increaseRound(state.round);
   const playerCount = utils.players.getPlayerCount(players);
-  const largerGridCount = store.options.largerGrid ? 1 : 0;
+  const largerGridCount = store?.options?.largerGrid ? 1 : 0;
   const coordinateLength = WORDS_PER_COORDINATE[playerCount] + store.gridRebuilds + largerGridCount;
 
   // Build grid if rounds 1 or if there is not enough available cells for all players
-  const largerGridAvailability = store.options.largerGrid ? 2 : 0;
+  const largerGridAvailability = store?.options?.largerGrid ? 2 : 0;
   const shouldBuildGrid = !checkForAvailableCells(state.grid, playerCount, largerGridAvailability);
 
   const grid = shouldBuildGrid
@@ -232,7 +239,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.CRUZA_PALAVRAS,
@@ -245,13 +252,13 @@ export const prepareGameOverPhase = async (
   });
 
   // Save data
-  await saveData(store.language, store.pastClues, store.options.contenderGrid);
+  await saveData(store.language, store.pastClues, store?.options?.gridType === 'contenders');
 
   utils.players.cleanup(players, []);
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

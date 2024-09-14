@@ -2,14 +2,15 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { QuestionsDictionary } from '../utils/types';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter } from 'utils/helpers';
 // Components
 import { Card } from 'components/cards';
-import { Translate } from 'components/language';
 import { FloatingHand } from 'components/general/FloatingHand';
+import { Translate } from 'components/language';
+// Internal
+import type { QuestionsDictionary } from '../utils/types';
 
 type UserQuestionsProps = {
   user: GamePlayer;

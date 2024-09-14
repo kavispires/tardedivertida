@@ -2,21 +2,22 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
-import { mockGuess } from './utils/mock';
 import { pluralize } from 'utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
+import { mockGuess } from './utils/mock';
 import { CharactersBoard } from './components/CharactersBoard';
 import { PlayerBoard } from './components/PlayersBoards';
-import { TurnOrder } from 'components/players';
-import { AvatarName } from 'components/avatars';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepGuessPlayerProps = {
   players: GamePlayers;

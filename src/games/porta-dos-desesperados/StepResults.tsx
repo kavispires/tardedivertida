@@ -1,21 +1,22 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
+import type { GamePlayers } from 'types/player';
 // Utils
-import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
+import { pluralize } from 'utils/helpers';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight } from './components/Highlights';
 import { TrapPopupRule } from './components/RulesBlobs';
-import { pluralize } from 'utils/helpers';
 
 type StepResultsProps = {
   doors: CardId[];

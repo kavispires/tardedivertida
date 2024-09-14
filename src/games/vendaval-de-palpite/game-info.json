@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.16",
+  "version": "0.9.30",
   "title": {
     "pt": "Vendaval de Palpite",
     "en": "Brainy Storm"
@@ -17,7 +17,8 @@
     "en": "A secret work with a known category. Can you guess that word by just associating words?"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "brainstorm-clouds",
+    "backgroundColor": "rgb(148, 154, 134)",
     "color": ""
   },
   "rules": {
@@ -34,5 +35,5 @@
     "perPlayer": 0
   },
   "tags": ["cooperative", "same-time", "writing", "guessing", "brain-burner"],
-  "available": true
+  "available": false
 }

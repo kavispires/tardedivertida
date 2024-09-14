@@ -3,17 +3,18 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { StepAnswering } from './StepAnswering';
-import { AnsweringRules } from './components/RulesBlobs';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
+import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
+import { AnsweringRules } from './components/RulesBlobs';
+import { StepAnswering } from './StepAnswering';
 
 export function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps) {
   const { step, setStep } = useStep(0);

@@ -1,11 +1,10 @@
 // Ant Design Resources
-import { Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-// Types
-import type { AdedanhxGalleryEntry } from '../utils/types';
+import { Tooltip } from 'antd';
 // Utils
 import { NOOP } from 'utils/constants';
-// Components
+// Internal
+import type { AdedanhxGalleryEntry } from '../utils/types';
 import { CategoryCell, LetterCell } from './Grid';
 
 type FinalGalleryEntryProps = {

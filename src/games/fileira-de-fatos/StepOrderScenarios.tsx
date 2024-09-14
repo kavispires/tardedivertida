@@ -1,15 +1,16 @@
 // Types
 import type { GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { OnSubmitOrder } from './utils/types';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
+// Internal
+import type { OnSubmitOrder } from './utils/types';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepOrderScenariosProps = {
   activePlayer: GamePlayer;

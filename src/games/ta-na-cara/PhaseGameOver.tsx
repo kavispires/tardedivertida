@@ -7,6 +7,7 @@ import type { GamePlayer } from 'types/player';
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
+// Internal
 import { PlayerBoard } from './components/PlayersBoards';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {

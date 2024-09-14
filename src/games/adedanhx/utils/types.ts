@@ -1,3 +1,4 @@
+// Types
 import type { TopicCard } from 'types/tdr';
 
 export type SubmitGridAnswersPayload = {

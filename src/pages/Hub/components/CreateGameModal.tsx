@@ -1,26 +1,26 @@
-import clsx from 'clsx';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Image, Modal, Button, Divider, Typography, Switch, Space, Alert, App } from 'antd';
+import { Image, Modal, Button, Divider, Space, Alert, App } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Adapters
-import { ADMIN_API, ADMIN_API_ACTIONS } from 'services/adapters';
+import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-import { useLocalStorage } from 'hooks/useLocalStorage';
 import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
 // Constants
-import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { Loading } from 'components/loaders';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { GameCustomizations } from './GameCustomizations';
 
 const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) => {
   const now = Date.now();
@@ -32,10 +32,8 @@ const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) =
     return acc;
   }, {});
   return {
-    [LATEST_GAME_IDS]: {
-      ...cleanedUpIds,
-      [newId]: now,
-    },
+    ...cleanedUpIds,
+    [newId]: now,
   };
 };
 
@@ -57,11 +55,48 @@ const latestGameBeforeNewOne = (latestGameIds: NumberDictionary) => {
   return orderedList[1].gameId;
 };
 
-type CreateGameModalProps = {
+const getOptionsDefaultValues = (
+  options: GameInfo['options']
+): Record<string, boolean | string | string[]> => {
+  return (
+    options?.reduce((acc: Record<string, boolean | string | string[]>, option) => {
+      if (option.kind === 'switch') {
+        acc[option.key] = false;
+      }
+      if (option.kind === 'radio') {
+        acc[option.key] = option.values[0].value;
+      }
+      if (option.kind === 'checkbox') {
+        acc[option.key] = [];
+      }
+      return acc;
+    }, {}) ?? {}
+  );
+};
+
+type CreateGameFlowProps = {
   gameInfo: GameInfo;
 };
 
-export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element {
+export function CreateGameFlow({ gameInfo }: CreateGameFlowProps) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button type="primary" onClick={() => setOpen(true)} block>
+        <Translate pt="Criar" en="Create" />
+      </Button>
+      {open && <CreateGameModal gameInfo={gameInfo} open={open} setOpen={setOpen} />}
+    </>
+  );
+}
+
+type CreateGameModalProps = {
+  gameInfo: GameInfo;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+};
+
+function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX.Element {
   const { message, notification } = App.useApp();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -69,15 +104,15 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
 
   const { language, translate } = useLanguage();
   const { setLoader } = useLoading();
-  const [getLocalStorage, setLocalStorage] = useLocalStorage();
-  const [isVisible, setVisibility] = useState(false);
+
   const [isLoading, setLoading] = useState(false);
   const [gameId, setGameId] = useState(null);
   const [, setUserId] = useGlobalState('userId');
   const [, setUserName] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [options, setOptions] = useState({});
-  const previousGameId = latestGameBeforeNewOne(getLocalStorage(LATEST_GAME_IDS, {}));
+  const [options, setOptions] = useState(getOptionsDefaultValues(gameInfo.options));
+  const [latestGameIds, setLatestGameIds] = useGlobalLocalStorage('latestGameIds');
+  const previousGameId = latestGameBeforeNewOne(latestGameIds);
 
   const { startRedirect, isSettingRedirect, wasRedirectSuccessful } = useRedirectToNewGame();
 
@@ -87,11 +122,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
     }
   }, [state, gameId, message]);
 
-  const onCloseModal = useCallback(() => {
-    setVisibility(false);
-  }, []);
-
-  const onChangeOptions = (key: string, value: boolean) => {
+  const onChangeOptions = (key: string, value: boolean | string | string[]) => {
     setOptions((s) => ({
       ...s,
       [key]: value,
@@ -102,8 +133,9 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
     try {
       setLoader('create', true);
       setLoading(true);
-      const response: PlainObject = await ADMIN_API.run({
-        action: ADMIN_API_ACTIONS.CREATE_GAME,
+
+      const response: PlainObject = await HOST_API.run({
+        action: HOST_API_ACTIONS.CREATE_GAME,
         gameName: gameInfo.gameName,
         language,
         options,
@@ -114,7 +146,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
         setUserId(null);
         setUserName('');
         setUserAvatarId('');
-        setLocalStorage(updateLocal24hGameIds(getLocalStorage(LATEST_GAME_IDS), response.data.gameId));
+        setLatestGameIds(updateLocal24hGameIds(latestGameIds, response.data.gameId));
         const baseUrl = window.location.href.split(pathname)[0];
         copyToClipboard(`${baseUrl}/${response.data.gameId}`);
       }
@@ -129,7 +161,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
         placement: 'bottomLeft',
       });
       console.error(e);
-      setVisibility(false);
+      setOpen(false);
     } finally {
       setLoading(false);
       setLoader('create', false);
@@ -147,199 +179,133 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
   };
 
   return (
-    <>
-      <Button type="primary" onClick={() => setVisibility(true)} block>
-        <Translate pt="Criar" en="Create" />
-      </Button>
-      {isVisible && (
-        <Modal
-          title={`${translate('Criando novo jogo', 'Creating new game')}: ${gameInfo.title[language]}`}
-          open={isVisible}
-          onCancel={onCloseModal}
-          onOk={onConfirmGame}
-          okButtonProps={{ disabled: Boolean(!gameId) || isSettingRedirect }}
-          maskClosable={false}
-        >
+    <Modal
+      title={`${translate('Criando novo jogo', 'Creating new game')}: ${gameInfo.title[language]}`}
+      open={open}
+      onCancel={() => setOpen(false)}
+      onOk={onConfirmGame}
+      okButtonProps={{ disabled: Boolean(!gameId) || isSettingRedirect }}
+      maskClosable={false}
+    >
+      <>
+        <Image
+          alt={gameInfo.title[language]}
+          src={`${PUBLIC_URL.BANNERS}${gameInfo.gameName}-${language}.jpg`}
+          fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
+          className="round-corners"
+        />
+
+        {!gameId && (
+          <Instruction>
+            <Translate pt="Você está criando um jogo em:" en="You are creating a game in:" />{' '}
+            <LanguageSwitch />
+          </Instruction>
+        )}
+
+        <GameCustomizations
+          options={gameInfo.options}
+          disabled={isLoading || Boolean(gameId)}
+          onChangeOptions={onChangeOptions}
+          selectedOptions={options}
+        />
+
+        <Divider />
+
+        {isLoading && (
           <>
-            <Image
-              alt={gameInfo.title[language]}
-              src={`${PUBLIC_URL.BANNERS}${gameInfo.gameName}-${language}.jpg`}
-              fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
-              className="round-corners"
-            />
+            <Instruction>
+              <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
+            </Instruction>
+            <Loading message={translate('Gerando...', 'Generating...')} margin />
+          </>
+        )}
 
-            {!gameId && (
-              <Instruction>
-                <Translate pt="Você está criando um jogo em:" en="You are creating a game in:" />{' '}
-                <LanguageSwitch />
-              </Instruction>
-            )}
-
-            <Options
-              options={gameInfo.options}
-              disabled={isLoading || Boolean(gameId)}
-              onChangeOptions={onChangeOptions}
-              selectedOptions={options}
-            />
-
-            <Divider />
-
-            {isLoading && (
-              <>
-                <Instruction>
-                  <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
-                </Instruction>
-                <Loading message={translate('Gerando...', 'Generating...')} margin />
-              </>
-            )}
-
-            {gameInfo.version.startsWith('alpha') && (
-              <Alert
-                type="warning"
-                showIcon
-                message={
-                  <Translate
-                    pt="Este jogo está em alpha, não o jogue"
-                    en="This game is still in alpha and shouldn't be played"
-                  />
-                }
+        {gameInfo.version.startsWith('alpha') && (
+          <Alert
+            type="warning"
+            showIcon
+            message={
+              <Translate
+                pt="Este jogo está em alpha, não o jogue"
+                en="This game is still in alpha and shouldn't be played"
               />
-            )}
+            }
+          />
+        )}
 
-            {gameInfo.version.startsWith('beta') && (
-              <Alert
-                type="warning"
-                showIcon
-                message={
-                  <Translate
-                    pt="Este jogo está em beta, prossiga com cuidado"
-                    en="This game is in beta and bugs might be everywhere"
-                  />
-                }
+        {gameInfo.version.startsWith('beta') && (
+          <Alert
+            type="warning"
+            showIcon
+            message={
+              <Translate
+                pt="Este jogo está em beta, prossiga com cuidado"
+                en="This game is in beta and bugs might be everywhere"
               />
-            )}
+            }
+          />
+        )}
 
-            {Boolean(gameId) ? (
-              <div>
-                <Title className="center">
-                  <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}
-                </Title>
-                <Instruction>
-                  {previousGameId && !wasRedirectSuccessful && (
-                    <Alert
-                      type="info"
-                      showIcon
-                      message={
+        {Boolean(gameId) ? (
+          <div>
+            <Title className="center">
+              <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}
+            </Title>
+            <Instruction>
+              {previousGameId && !wasRedirectSuccessful && (
+                <Alert
+                  type="info"
+                  showIcon
+                  message={
+                    <>
+                      <Translate
+                        pt={<>Você quer redirecionar jogadores em {previousGameId} para essa nova partida?</>}
+                        en={<>Redirect players in {previousGameId} to this new play?</>}
+                      />
+                      <Button
+                        size="large"
+                        onClick={() => {
+                          startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName);
+                        }}
+                        disabled={!gameId || !previousGameId}
+                        loading={isSettingRedirect}
+                      >
+                        <Translate pt="Redirecione-os" en="Redirect them" />
+                      </Button>
+                    </>
+                  }
+                />
+              )}
+              {wasRedirectSuccessful && (
+                <Alert
+                  type="info"
+                  showIcon
+                  message={
+                    <Translate
+                      pt={
                         <>
-                          <Translate
-                            pt={
-                              <>
-                                Você quer redirecionar jogadores em {previousGameId} para essa nova partida?
-                              </>
-                            }
-                            en={<>Redirect players in {previousGameId} to this new play?</>}
-                          />
-                          <Button
-                            size="large"
-                            onClick={() =>
-                              startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName)
-                            }
-                            disabled={!gameId || !previousGameId}
-                            loading={isSettingRedirect}
-                          >
-                            <Translate pt="Redirecione-os" en="Redirect them" />
-                          </Button>
+                          Jogadores em {previousGameId} foram convidados para o jogo {gameId}
+                        </>
+                      }
+                      en={
+                        <>
+                          Players in {previousGameId} have been invited to {gameId}
                         </>
                       }
                     />
-                  )}
-                  {wasRedirectSuccessful && (
-                    <Alert
-                      type="info"
-                      showIcon
-                      message={
-                        <Translate
-                          pt={
-                            <>
-                              Jogadores em {previousGameId} foram convidados para o jogo {gameId}
-                            </>
-                          }
-                          en={
-                            <>
-                              Players in {previousGameId} have been invited to {gameId}
-                            </>
-                          }
-                        />
-                      }
-                    />
-                  )}
-                </Instruction>
-              </div>
-            ) : (
-              <Space className="space-container" align="center">
-                <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
-                  <Translate pt="Criar Jogo" en="Create Game" />
-                </Button>
-              </Space>
-            )}
-          </>
-        </Modal>
-      )}
-    </>
-  );
-}
-
-type OptionsProps = {
-  options?: GameInfo['options'];
-  disabled: boolean;
-  onChangeOptions: GenericFunction;
-  selectedOptions: PlainObject;
-};
-function Options({ options = [], disabled, onChangeOptions, selectedOptions }: OptionsProps) {
-  return Boolean(options.length) ? (
-    <div className="create-game-modal-options">
-      <Typography.Title level={5} className="create-game-modal-options__title">
-        <Translate pt="Opções:" en="Options:" />
-      </Typography.Title>
-      <div className="create-game-modal-options__list">
-        {(options ?? []).map((option) => (
-          <Typography.Paragraph
-            key={`option-${option.label}`}
-            className={clsx(
-              'create-game-modal-options__option',
-              option.disabled && 'create-game-modal-options__option--disabled'
-            )}
-          >
-            <span className="create-game-modal-options__label">{option.label}</span>
-            <span
-              className={clsx(
-                'create-game-modal-options__off',
-                !selectedOptions[option.key] && 'create-game-modal-options--selected'
+                  }
+                />
               )}
-            >
-              {option?.off ?? ''}
-            </span>
-            <Switch disabled={disabled || option.disabled} onChange={(e) => onChangeOptions(option.key, e)} />
-            <span
-              className={clsx(
-                'create-game-modal-options__on',
-                selectedOptions[option.key] && 'create-game-modal-options--selected'
-              )}
-            >
-              {option?.on ?? ''}
-            </span>
-            {Boolean(option.description) && (
-              <span className="create-game-modal-options__option-description">{option.description}</span>
-            )}
-          </Typography.Paragraph>
-        ))}
-      </div>
-    </div>
-  ) : (
-    <div className="create-game-modal-options create-game-modal-options__no-options">
-      <Typography.Text>
-        <Translate pt="Este jogo não possui customizações" en="This game does not support customizations" />
-      </Typography.Text>
-    </div>
+            </Instruction>
+          </div>
+        ) : (
+          <Space className="space-container" align="center">
+            <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
+              <Translate pt="Criar Jogo" en="Create Game" />
+            </Button>
+          </Space>
+        )}
+      </>
+    </Modal>
   );
 }

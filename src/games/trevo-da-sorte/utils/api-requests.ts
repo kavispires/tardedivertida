@@ -1,18 +1,15 @@
-import type { SubmitBadWordsPayload, SubmitCloverGuessesPayload, SubmitCluesPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-import { ACTIONS } from './constants';
-
-const submitAction = httpsCallable(functions, 'trevoDaSorteSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitBadWordsPayload, SubmitCloverGuessesPayload, SubmitCluesPayload } from './types';
+import { TREVO_DA_SORTE_ACTIONS } from './constants';
 
 export function useOnSubmitBadWordsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-bad-words',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -25,7 +22,7 @@ export function useOnSubmitBadWordsAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitBadWordsPayload) => {
     request({
-      action: ACTIONS.SUBMIT_BAD_WORDS,
+      action: TREVO_DA_SORTE_ACTIONS.SUBMIT_BAD_WORDS,
       ...payload,
     });
   };
@@ -34,8 +31,7 @@ export function useOnSubmitBadWordsAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitCluesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-clues',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -48,7 +44,7 @@ export function useOnSubmitCluesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitCluesPayload) => {
     request({
-      action: ACTIONS.SUBMIT_CLUES,
+      action: TREVO_DA_SORTE_ACTIONS.SUBMIT_CLUES,
       ...payload,
     });
   };
@@ -57,8 +53,7 @@ export function useOnSubmitCluesAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-guess',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -71,7 +66,7 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitCloverGuessesPayload) => {
     request({
-      action: ACTIONS.SUBMIT_GUESS,
+      action: TREVO_DA_SORTE_ACTIONS.SUBMIT_GUESS,
       ...payload,
     });
   };

@@ -2,17 +2,20 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { QuestionsDictionary } from '../utils/types';
-// Hook
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
+// Icons
+import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { AvatarCard, IconAvatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { QuestionsDictionary } from '../utils/types';
+// Hook
 
 type PlayersBoardsProps = {
   players: GamePlayers;

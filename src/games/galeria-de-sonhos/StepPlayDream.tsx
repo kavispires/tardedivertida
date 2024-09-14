@@ -1,30 +1,31 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
+import { RobotOutlined } from '@ant-design/icons';
 import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { ImageCardObj } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { BotsRules, CardPlayRules } from './components/RulesBlobs';
-import { PlayTable } from './components/PlayTable';
+import { AvatarName } from 'components/avatars';
+import { FixedMenuButton } from 'components/buttons';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
+import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { Card } from 'components/cards';
-import { AvatarName } from 'components/avatars';
-import { PopoverRule } from 'components/rules';
-import { TurnOrder } from 'components/players';
+// Internal
+import type { ImageCardObj } from './utils/types';
+import { BotsRules, CardPlayRules } from './components/RulesBlobs';
+import { PlayTable } from './components/PlayTable';
 import { PlayersDreamsCount } from './components/PlayersDreamsCount';
-import { FixedMenuButton } from 'components/buttons';
-import { RobotOutlined } from '@ant-design/icons';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepDreamsSelectionProps = {
   table: ImageCardObj[];

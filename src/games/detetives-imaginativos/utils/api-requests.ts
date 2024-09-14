@@ -1,17 +1,15 @@
-import type { SubmitPlayCardPayload, SubmitSecretCluePayload, SubmitVotePayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'detetivesImaginativosSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitPlayCardPayload, SubmitSecretCluePayload, SubmitVotePayload } from './types';
+import { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
 export function useOnSubmitSecretClueAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-secret-clue',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -24,7 +22,7 @@ export function useOnSubmitSecretClueAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitSecretCluePayload) => {
     request({
-      action: 'SUBMIT_CLUE',
+      action: DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_CLUE,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitSecretClueAPIRequest(setStep: UseStep['setStep']) {
 export function useOnPlayCardAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'play-card',
     successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
     errorMessage: translate(
@@ -45,7 +42,7 @@ export function useOnPlayCardAPIRequest() {
 
   return (payload: SubmitPlayCardPayload) => {
     request({
-      action: 'PLAY_CARD',
+      action: DETETIVES_IMAGINATIVOS_ACTIONS.PLAY_CARD,
       ...payload,
     });
   };
@@ -54,8 +51,7 @@ export function useOnPlayCardAPIRequest() {
 export function useOnFinishDefenseRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'finish-defense',
     successMessage: translate('Defesa concluída com sucesso', 'Defense concluded successfully'),
     errorMessage: translate(
@@ -66,7 +62,7 @@ export function useOnFinishDefenseRequest() {
 
   return () => {
     request({
-      action: 'DEFEND',
+      action: DETETIVES_IMAGINATIVOS_ACTIONS.DEFEND,
     });
   };
 }
@@ -74,8 +70,7 @@ export function useOnFinishDefenseRequest() {
 export function useOnSubmitVoteAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-vote',
     successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
@@ -86,7 +81,7 @@ export function useOnSubmitVoteAPIRequest() {
 
   return (payload: SubmitVotePayload) => {
     request({
-      action: 'SUBMIT_VOTE',
+      action: DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_VOTE,
       ...payload,
     });
   };

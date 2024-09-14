@@ -1,8 +1,8 @@
 import { has } from 'lodash';
 import { ReactNode } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
-// Type
+// Internal
 import type { Track } from '../utils/types';
 
 type SpaceResultCheckWrapperProps = {

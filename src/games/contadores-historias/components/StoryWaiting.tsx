@@ -1,15 +1,16 @@
-// Type
+// Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
+import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TableOrder } from 'components/players/TableOrder';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageCardHand } from 'components/image-cards';
+// Type
 
 type StoryWaitingProps = {
   storyteller: GamePlayer;

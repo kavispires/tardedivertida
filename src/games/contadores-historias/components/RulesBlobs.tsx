@@ -3,8 +3,8 @@ import type { GamePlayer } from 'types/player';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Instruction } from 'components/text';
 
 export function VotingRules(): JSX.Element {
   return (

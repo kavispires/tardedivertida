@@ -1,17 +1,16 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Slider, Space } from 'antd';
-// Types
-import type { CurrentCategory } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockGuess } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { CurrentCategory } from './utils/types';
+import { mockGuess } from './utils/mock';
 import { Dial } from './components/Dial';
 
 type PromptProps = {
@@ -20,7 +19,7 @@ type PromptProps = {
 
 function Prompt({ currentCategory }: PromptProps) {
   return (
-    <Instruction contained>
+    <RuleInstruction type="action">
       <Translate pt="Qual número melhor indica" en="What number best translates" />
       <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
       <Translate pt="na escala" en="on the scale" />{' '}
@@ -33,7 +32,7 @@ function Prompt({ currentCategory }: PromptProps) {
         pt="Clique no número ou use a barra abaixo para alinhar o ponteiro na sua resposta, então aperte Enviar."
         en="Click on the number or use the slider below to position the pointer on your guess, then press Submit."
       />
-    </Instruction>
+    </RuleInstruction>
   );
 }
 
@@ -52,7 +51,7 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
 
   return (
     <Step className="o-dial-guess-selection" announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate pt="Hora de brilhar telepaticamente!" en="Time to shine telepathically!" />
       </Title>
       <Prompt currentCategory={currentCategory} />

@@ -51,14 +51,14 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -69,12 +69,12 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
 
     return getNextPhase(gameName, gameId);
   }
@@ -82,25 +82,25 @@ export const getNextPhase = async (
   // * -> HINT_GIVING
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.HINT_GIVING) {
     const newPhase = await prepareHintGivingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // HINT_GIVING -> HINT_RECEIVING
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.HINT_RECEIVING) {
     const newPhase = await prepareHintReceivingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // HINT_RECEIVING -> GUESS_THE_CODE
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.GUESS_THE_CODE) {
     const newPhase = await prepareGuessTheCodePhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // GUESS_THE_CODE --> GAME_OVER
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -139,6 +139,6 @@ export const submitAction = async (data: InstrumentosCodificadosSubmitAction) =>
       }
       return handleSubmitCode(gameName, gameId, playerId, data.code);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

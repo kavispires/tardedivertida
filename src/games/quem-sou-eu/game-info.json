@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "1.4.54",
+  "version": "2.0.11",
   "title": {
     "pt": "Quem Sou Eu?",
     "en": "Who Am I?"
@@ -50,21 +50,56 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "pairing", "same-time", "achievements"],
+  "tags": ["cooperative", "pairing", "same-time", "achievements", "images"],
   "available": true,
   "options": [
     {
-      "label": "Characters",
-      "key": "moreCharacters",
-      "off": "Normal",
-      "on": "More (Harder)"
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
-      "key": "nsfw",
-      "label": "NSFW",
-      "off": "No",
-      "on": "Yes",
-      "description": "Allow NSFW characters"
+      "key": "moreCharacters",
+      "kind": "switch",
+      "label": "Difficulty",
+      "description": "Increase the number of options to choose from",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "Harder",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "imageCardsMode",
+      "label": "Type",
+      "kind": "switch",
+      "description": "Use image cards instead of characters/celebrities",
+      "values": [
+        {
+          "label": "Characters (recommended)",
+          "value": false
+        },
+        {
+          "label": "Image Cards",
+          "value": true
+        }
+      ]
     }
   ]
 }

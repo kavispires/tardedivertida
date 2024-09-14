@@ -1,4 +1,9 @@
+// Internal
 import { ScaleEntry } from './types';
+
+export const FILEIRA_DE_FATOS_ACTIONS = {
+  SUBMIT_SCENARIO_ORDER: 'SUBMIT_SCENARIO_ORDER',
+} as const;
 
 export const POSITIVE_SCALE: ScaleEntry[] = [
   {

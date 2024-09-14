@@ -1,34 +1,35 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import { GamePlayer, GamePlayers } from 'types/player';
 import { GameRound } from 'types/game';
-import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
+import { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Icons
-import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 import { ClockIcon } from 'icons/ClockIcon';
+import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 // Components
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
+import { DebugOnly } from 'components/debug';
 import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
+import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { Instruction, RuleInstruction, Title } from 'components/text';
+import { ViewIf } from 'components/views';
+// Internal
+import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
 import { AlienContent, HumanContent } from './components/Content';
 import { ItemResolution } from './components/ItemResolution';
 import { History } from './components/History';
-import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
-import { ViewIf } from 'components/views';
-import { DebugOnly } from 'components/debug';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -120,14 +121,14 @@ export function StepReveal({
 
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} />
+          <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
           <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} />
+          <ObjectsGrid items={items} status={status} />
           <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </HumanContent>

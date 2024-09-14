@@ -38,6 +38,10 @@ type ObjectDictionary = {
   [key: string]: PlainObject;
 };
 
+type ArrayDictionary<T = string> = {
+  [key: string]: T[];
+};
+
 type FirebaseContext = {
   [key: string]: any;
 };
@@ -45,31 +49,27 @@ type FirebaseContext = {
 type Collection<T> = Record<CardId, T>;
 
 /**
- * Generic HttpsCallable function
- */
-type GenericCallableFunction = (data: any, context: FirebaseContext) => unknown;
-
-/**
  * Used to wrap HttpsCallable functions groups
  */
 type CallablePayload<TPayload> = TPayload & { action: string };
 
-interface CreateGamePayload {
-  gameName: string;
-  language: string;
-  version: string;
-  options?: BooleanDictionary;
+interface GameOptions {
+  [key: string]: boolean | string;
 }
 
-interface LoadGamePayload {
+interface ActionPayload {
   gameId: GameId;
-  gameName: string;
+  gameName: GameName;
+  playerId: PlayerId;
+  action: string;
+  // Anything else in the payload
+  [key: string]: any;
 }
 
 interface Engine {
   getInitialState: any;
   getNextPhase: any;
-  playerCounts: PlayerCounts;
+  getPlayerCounts: () => PlayerCounts;
   submitAction: any;
 }
 
@@ -79,11 +79,6 @@ interface AddPlayerPayload {
   playerName: PlayerName;
   playerAvatarId: PlayerAvatarId;
   isGuest?: boolean;
-}
-
-interface BasicGamePayload {
-  gameId: GameId;
-  gameName: GameName;
 }
 
 interface Meta {
@@ -98,7 +93,7 @@ interface Meta {
   language: string;
   version?: string;
   replay: number;
-  options?: BooleanDictionary;
+  options?: GameOptions;
 }
 
 interface PlayerCounts {
@@ -122,10 +117,10 @@ interface DefaultState {
   [key: string]: any;
 }
 
-interface DefaultStore {
-  language: Language;
-  options?: BooleanDictionary;
+interface DefaultStore<TOptions = GameOptions> {
   createdAt: DateMilliseconds;
+  language: Language;
+  options?: TOptions;
   [key: string]: any;
 }
 
@@ -175,7 +170,7 @@ interface InitialStateArgs {
   /**
    * Game options
    */
-  options?: PlainObject;
+  options?: GameOptions;
   /**
    * Function to generate stuff during game creating, for example adding bots
    * @returns an object with optional meta, store, state, or players values
@@ -186,7 +181,7 @@ interface InitialStateArgs {
 interface Round {
   current: number;
   total: number;
-  forceLastRound: boolean;
+  forceLastRound?: boolean;
 }
 
 interface Player {
@@ -320,19 +315,7 @@ interface GroupProgress {
 
 type SuspectCardsOptions = {
   /**
-   * Uses the official cards otherwise the TD cartoon ones
+   * Determines the images used in the suspect cards
    */
-  official?: boolean;
-  /**
-   * Uses the realistic AI cards otherwise any previous setting
-   */
-  realistic?: boolean;
-  /**
-   * Uses the models (everyone is beautiful) cards otherwise any previous setting
-   */
-  models?: boolean;
-  /**
-   * Uses the wacky cards otherwise any previous setting
-   */
-  wacky?: boolean;
+  deckType: 'regular' | 'realistic' | 'models' | 'wacky';
 };

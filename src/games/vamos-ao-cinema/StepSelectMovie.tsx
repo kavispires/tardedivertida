@@ -2,9 +2,10 @@
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Components
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
 

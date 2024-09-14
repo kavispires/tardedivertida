@@ -54,14 +54,14 @@ export const TOTAL_SIGNS = 25;
 export const ITEMS_COUNT = {
   2: {
     answers: 8,
-    required: 6,
-    curses: 6,
+    required: 5,
+    curses: 8,
     rounds: 12,
   },
   3: {
     answers: 8,
-    required: 8,
-    curses: 6,
+    required: 6,
+    curses: 7,
     rounds: 10,
   },
   4: {

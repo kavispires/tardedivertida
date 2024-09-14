@@ -54,7 +54,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -68,7 +68,7 @@ export const getNextPhase = async (
   gameId: GameId,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -87,38 +87,38 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === LABIRINTO_SECRETO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
-    const data = await getData(store.language, utils.players.getPlayerCount(players));
+    const data = await getData(store.language, utils.players.getPlayerCount(players), store?.options ?? {});
     const newPhase = await prepareSetupPhase(store, state, players, data);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> DRAW
   if (nextPhase === LABIRINTO_SECRETO_PHASES.MAP_BUILDING) {
     const newPhase = await prepareMapBuildingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // DRAW -> EVALUATION
   if (nextPhase === LABIRINTO_SECRETO_PHASES.PATH_FOLLOWING) {
-    await utils.firebase.triggerWaitPhase(sessionRef);
+    await utils.firestore.triggerWaitPhase(sessionRef);
     const newPhase = await preparePathFollowingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // EVALUATION -> GALLERY
   if (nextPhase === LABIRINTO_SECRETO_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // GALLERY -> GAME_OVER
   if (nextPhase === LABIRINTO_SECRETO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -146,6 +146,6 @@ export const submitAction = async (data: LabirintoSecretoSubmitAction) => {
       );
       return handleSubmitPath(gameName, gameId, playerId, data.pathId, data.guess, data.choseRandomly);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

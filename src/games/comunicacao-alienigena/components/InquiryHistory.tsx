@@ -1,13 +1,14 @@
+import type { ColumnsType } from 'antd/es/table';
 // Ant Design Resources
 import { Space, Table } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
 // Types
 import { GamePlayers } from 'types/player';
-import type { InquiryHistoryEntry, Sign } from '../utils/types';
 // Components
 import { AvatarName } from 'components/avatars';
-import { DualTranslate, Translate } from 'components/language';
 import { ItemCard } from 'components/cards/ItemCard';
+import { DualTranslate, Translate } from 'components/language';
+// Internal
+import type { InquiryHistoryEntry, Sign } from '../utils/types';
 import { AlienViewBoard } from './AlienViewBoard';
 
 type InquiryHistoryProps = {

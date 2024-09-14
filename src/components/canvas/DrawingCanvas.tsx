@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { CSSProperties, ReactNode, useRef, useState } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button, Flex, Space } from 'antd';
 import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
 // Components
 import { Translate } from 'components/language';
@@ -40,6 +40,15 @@ type DrawingCanvasProps = {
    *
    */
   willReadFrequently?: boolean;
+  /**
+   *
+   */
+  style?: CSSProperties;
+  /**
+   * A mask to be used under the canvas
+   * Requires changing canvas to be transparent and setting the mask to have an absolute position
+   */
+  mask?: ReactNode;
 };
 
 /**
@@ -55,6 +64,8 @@ export const DrawingCanvas = ({
   width = 500,
   height,
   willReadFrequently = false,
+  style = {},
+  mask,
 }: DrawingCanvasProps) => {
   const [drawingHistory, setDrawingHistory] = useState<CanvasLine[]>([]);
   const isDrawing = useRef(false);
@@ -208,7 +219,8 @@ export const DrawingCanvas = ({
     }?.[strokeWidth] ?? 5;
 
   return (
-    <Space direction="vertical" align="center">
+    <Flex vertical align="center" className="relative">
+      {mask}
       <Stage
         width={width}
         height={height || width}
@@ -221,7 +233,7 @@ export const DrawingCanvas = ({
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
         className={clsx('drawing-canvas', className)}
-        style={{ width: `${width}px`, height: `${height || width}px` }}
+        style={{ width: `${width}px`, height: `${height || width}px`, ...style }}
         willReadFrequently={willReadFrequently}
         id="drawing-canvas"
       >
@@ -255,6 +267,6 @@ export const DrawingCanvas = ({
           </Button>
         </Space>
       )}
-    </Space>
+    </Flex>
   );
 };

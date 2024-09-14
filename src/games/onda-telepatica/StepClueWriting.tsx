@@ -7,12 +7,12 @@ import { SpectrumCard } from 'types/tdr';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockHint } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
+import { mockHint } from './utils/mock';
 import { Dial } from './components/Dial';
 import { ClueWritingRules } from './components/RulesBlobs';
 import { TargetSideHighlight, WavelengthHighlight } from './components/Highlights';
@@ -52,16 +52,16 @@ export function StepClueWriting({
 
   return (
     <Step fullWidth>
-      <Title>
+      <Title white>
         <Translate pt="Escreva sua dica" en="Write your clue" />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
               O ponteiro está no <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>{' '}
-              <TargetSideHighlight target={target} card={card} />. Escreva uma dica que ajude os outros
-              jogadores a escolher exatamente esse número!
+              <TargetSideHighlight target={target} card={card} />. <strong>Escreva</strong> uma dica que ajude
+              os outros jogadores a escolher exatamente esse número!
               <br />
               Revise as regras de quais dicas são válidas clicando no Ícone de Livrinho.
             </>
@@ -69,23 +69,24 @@ export function StepClueWriting({
           en={
             <>
               The needle is pointing at <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>{' '}
-              <TargetSideHighlight target={target} card={card} />. Write a clue that will help the other
-              players to choose this exact number!
+              <TargetSideHighlight target={target} card={card} />. <strong>Write</strong> a clue that will
+              help the other players to choose this exact number!
               <br />
               Revise the rules for clue writing by clicking on the top left Book Icon.
             </>
           }
         />
         <ClueWritingRules />
-      </Instruction>
+      </RuleInstruction>
       <Dial target={target} card={card!} showTarget />
       <Space className="space-container" align="center">
         <Input
           onChange={onChangeInput}
           onPressEnter={onSubmitClue}
           placeholder={translate('Escreva aqui', 'Write here')}
+          size="large"
         />
-        <Button type="primary" onClick={onSubmitClue} disabled={isLoading} loading={isLoading}>
+        <Button type="primary" onClick={onSubmitClue} disabled={isLoading} loading={isLoading} size="large">
           <Translate pt="Enviar" en="Send" />
         </Button>
       </Space>

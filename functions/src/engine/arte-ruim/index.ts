@@ -59,7 +59,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -73,7 +73,7 @@ export const getNextPhase = async (
   gameId: GameId,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -86,7 +86,7 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === ARTE_RUIM_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const data = await getCards(
@@ -95,32 +95,32 @@ export const getNextPhase = async (
       store.options as ArteRuimGameOptions
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> DRAW
   if (nextPhase === ARTE_RUIM_PHASES.DRAW) {
     const newPhase = await prepareDrawPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // DRAW -> EVALUATION
   if (nextPhase === ARTE_RUIM_PHASES.EVALUATION) {
     const newPhase = await prepareEvaluationPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // EVALUATION -> GALLERY
   if (nextPhase === ARTE_RUIM_PHASES.GALLERY) {
     const newPhase = await prepareGalleryPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // GALLERY -> GAME_OVER
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -144,6 +144,6 @@ export const submitAction = async (data: ArteRuimSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(gameName, gameId, playerId, data.votes, data.choseRandomly);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

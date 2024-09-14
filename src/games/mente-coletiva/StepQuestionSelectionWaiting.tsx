@@ -7,6 +7,7 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { Pasture } from './components/Pasture';
 
 type StepQuestionSelectionWaitingProps = {

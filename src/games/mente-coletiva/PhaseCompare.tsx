@@ -4,17 +4,18 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { DiscussionIcon } from 'icons/DiscussionIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { StepCompare } from './StepCompare';
-import { ComparingRules } from './components/RulesBlobs';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
+import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './utils/api-requests';
+import { ComparingRules } from './components/RulesBlobs';
+import { StepCompare } from './StepCompare';
 
 export function PhaseCompare({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);

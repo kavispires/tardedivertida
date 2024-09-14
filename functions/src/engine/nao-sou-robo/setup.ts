@@ -6,7 +6,7 @@ import {
   MIN_ROUND_CARDS,
   NAO_SOU_ROBO_PHASES,
   OUTCOME,
-  ROBOT_GOAL,
+  ROBOT_GOAL_BY_PLAYER_COUNT,
   ROUND_TYPES,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
@@ -41,7 +41,7 @@ export const prepareSetupPhase = async (
   // Build word pool
   const pool = utils.game.makeArray(MAX_ROUNDS).reduce((acc, _, i) => {
     const roundType = ROUND_TYPES[i % ROUND_TYPES.length];
-    if (['words', 'adjectives', 'emojis'].includes(roundType)) {
+    if (['colors', 'emotions', 'words', 'emojis'].includes(roundType)) {
       acc[i + 1] = {
         round: i + 1,
         roundType,
@@ -68,7 +68,7 @@ export const prepareSetupPhase = async (
 
   const robot: Robot = {
     points: 0,
-    goal: ROBOT_GOAL,
+    goal: ROBOT_GOAL_BY_PLAYER_COUNT[utils.players.getPlayerCount(players)],
     state: 0,
     beat: 0,
   };
@@ -210,11 +210,11 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = state.outcome === OUTCOME.ROBOT_WINS ? [] : utils.players.determineWinners(players);
 
   const achievements = getAchievements(store);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.NAO_SOU_ROBO,
@@ -231,11 +231,11 @@ export const prepareGameOverPhase = async (
   // Save data (words, adjectives, imageCards)
   // await saveData(state.language, gallery);
 
-  utils.players.cleanup(players, []);
+  utils.players.cleanup(players, ['beat', 'suspicion']);
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {
@@ -247,6 +247,7 @@ export const prepareGameOverPhase = async (
         achievements,
         gallery,
         outcome: state.outcome,
+        robot: state.robot,
       },
     },
   };

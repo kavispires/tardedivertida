@@ -1,12 +1,13 @@
 // Ant Design Resources
-import { Button, Modal, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { Button, Modal, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-// Hooks and API
+// Hooks
 import { useHost } from 'hooks/useHost';
 // Components
 import { Translate } from 'components/language';
+// Hooks and API
 
 type FinalAssessmentModalProps = {
   // isModalVisible: boolean;

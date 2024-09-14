@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.1.40",
+  "version": "4.1.52",
   "title": {
     "pt": "Galeria de sonhos",
     "en": "Dream Gallery"
@@ -54,26 +54,36 @@
   },
   "options": [
     {
-      "label": "Images",
-      "key": "allImageDecks",
-      "off": "Originals",
-      "on": "All",
-      "description": "When off, only original Tarde Divertida decks will be used (preferred)"
-    },
-    {
-      "label": "Hard Mode",
       "key": "hardMode",
-      "off": "1-10 cards",
-      "on": "4-10 cards",
-      "description": "Number of cards to be selected during Dream Selection phase"
+      "kind": "switch",
+      "label": "Hard Mode",
+      "description": "Number of cards to be selected during Dream Selection phase",
+      "values": [
+        {
+          "label": "1-10 cards",
+          "value": false
+        },
+        {
+          "label": "4-10 cards",
+          "value": true
+        }
+      ]
     },
-
     {
-      "label": "Additional players",
       "key": "withBots",
-      "off": "Only Humans",
-      "on": "Add 3 Bots",
-      "description": "Only use it for 2 players"
+      "kind": "switch",
+      "label": "Bot Dream Scouts",
+      "description": "Adds 3 bots to be used in 2-player games",
+      "values": [
+        {
+          "label": "off",
+          "value": false
+        },
+        {
+          "label": "on",
+          "value": true
+        }
+      ]
     }
   ]
 }

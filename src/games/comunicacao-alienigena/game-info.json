@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "4.1.15",
+  "version": "4.1.37",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -57,31 +57,67 @@
   "options": [
     {
       "key": "nsfw",
+      "kind": "switch",
       "label": "NSFW Items",
-      "off": "No",
-      "on": "Yes",
-      "description": "Allow NSFW items"
+      "description": "Allow NSFW items",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "botAlien",
+      "kind": "switch",
       "label": "Alien Bot",
-      "off": "No",
-      "on": "Yes",
-      "description": "The bot will play as the alien and try to convey and guess clues through AI"
+      "description": "The bot will play as the alien and try to convey and guess clues through AI",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "easyMode",
+      "kind": "switch",
       "label": "Difficulty",
-      "off": "Normal",
-      "on": "Easy",
-      "description": "Easy mode gives 3 starting known attributes instead of 1"
+      "description": "Easy mode gives 3 starting known attributes instead of 1",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "Easy",
+          "value": true
+        }
+      ]
     },
     {
       "key": "debugMode",
+      "kind": "switch",
       "label": "Debug Mode",
-      "off": "No",
-      "on": "Yes",
-      "description": "Debug mode will show the alien's attributes and symbols"
+      "description": "Debug mode will show the alien's attributes and symbols",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     }
   ]
 }

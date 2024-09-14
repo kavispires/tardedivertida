@@ -2,7 +2,6 @@
 import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Types
 import {
-  AlienItem,
   ArteRuimCard,
   ArteRuimGroup,
   DatingCandidateCard,
@@ -53,28 +52,28 @@ export const getData = async (
 
   // Get all custom tracks
   const possibleTracks: TrackCandidate[] = [];
-  if (options.imagesTrack) {
+  if (options.tracks.includes('images')) {
     possibleTracks.push(getRandomTrackGame(IMAGES_TRACKS, allowNSFW));
   }
-  if (options.charactersTrack) {
+  if (options.tracks.includes('characters')) {
     possibleTracks.push(getRandomTrackGame(CHARACTERS_TRACKS, allowNSFW));
   }
-  if (options.opinionsTrack) {
+  if (options.tracks.includes('opinions')) {
     possibleTracks.push(getRandomTrackGame(OPINIONS_TRACKS, allowNSFW));
   }
-  if (options.drawingTrack) {
+  if (options.tracks.includes('drawing')) {
     possibleTracks.push(getRandomTrackGame(DRAWING_TRACKS, allowNSFW));
   }
-  if (options.wordsTrack) {
+  if (options.tracks.includes('words')) {
     possibleTracks.push(getRandomTrackGame(WORDS_TRACKS, allowNSFW));
   }
-  if (options.judgingTrack && allowNSFW) {
+  if (options.tracks.includes('judging') && allowNSFW) {
     possibleTracks.push(getRandomTrackGame(JUDGING_TRACKS, allowNSFW));
   }
-  if (options.specialTrack) {
+  if (options.tracks.includes('special')) {
     possibleTracks.push(getRandomTrackGame(SPECIAL_TRACKS, allowNSFW));
   }
-  if (options.unpopularTrack) {
+  if (options.tracks.includes('unpopular')) {
     possibleTracks.push(getRandomTrackGame(UNPOPULAR_TRACKS, allowNSFW));
   }
 
@@ -90,7 +89,7 @@ export const getData = async (
     GAME_NAMES.DETETIVES_IMAGINATIVOS
   );
   if (detetiveImaginativosTrack) {
-    const imageCardsDeck = await utils.imageCards.getImageCards(10, false);
+    const imageCardsDeck = await utils.imageCards.getImageCards(10);
 
     // VARIANT: Impostor
     if (detetiveImaginativosTrack.variant === 'detective') {
@@ -121,7 +120,7 @@ export const getData = async (
   // IMAGES_TRACKS: GALERIA_DE_SONHOS
   const galeriaDeSonhosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.GALERIA_DE_SONHOS);
   if (galeriaDeSonhosTrack) {
-    const imageCardsDeck = await utils.imageCards.getImageCards(10, false);
+    const imageCardsDeck = await utils.imageCards.getImageCards(10);
     const themes = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.THEME_WORDS}-${language}`)
     );
@@ -140,7 +139,7 @@ export const getData = async (
     GAME_NAMES.PORTA_DOS_DESESPERADOS
   );
   if (portaDosDesesperadosTrack) {
-    const imageCardsDeck = await utils.imageCards.getImageCards(10, false);
+    const imageCardsDeck = await utils.imageCards.getImageCards(10);
     customTracks.push({
       game: GAME_NAMES.PORTA_DOS_DESESPERADOS,
 
@@ -155,7 +154,7 @@ export const getData = async (
   // IMAGE_TRACKS: CONTADORES_HISTORIAS
   const contadoresHistoriasTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CONTADORES_HISTORIAS);
   if (contadoresHistoriasTrack) {
-    const imageCardsDeck = await utils.imageCards.getImageCards(10, false);
+    const imageCardsDeck = await utils.imageCards.getImageCards(10);
     const cards: ArteRuimCard[] = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`)
     );
@@ -492,16 +491,11 @@ export const getData = async (
     };
     const selectedAttributes = utils.game.getRandomItems(Object.values(attributes), 2);
 
-    const allAlienItemsObj: Collection<AlienItem> = await resourceUtils.fetchResource(
-      TDR_RESOURCES.ALIEN_ITEMS
-    );
-
-    const selectedAlienItems: AlienItem[] = utils.game.getRandomItems(
-      allowNSFW
-        ? Object.values(allAlienItemsObj)
-        : Object.values(allAlienItemsObj).filter((item) => !item.nsfw),
-      5
-    );
+    const selectedAlienItems = await utils.tdr.getItems(5, {
+      allowNSFW,
+      decks: ['alien'],
+      cleanUp: utils.tdr.itemUtils.cleanupDecks,
+    });
 
     customTracks.push({
       game: GAME_NAMES.COMUNICACAO_ALIENIGENA,

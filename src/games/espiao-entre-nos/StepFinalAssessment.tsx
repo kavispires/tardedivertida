@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { FinalAssessment, Location, Outcome } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -11,6 +10,8 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { FinalAssessment, Location, Outcome } from './utils/types';
 import { FinalAssessmentInstruction } from './components/RulesBlobs';
 import { EspiaoEntreNosCard as Card } from './components/Card';
 import { LocationsList } from './components/LocationsList';

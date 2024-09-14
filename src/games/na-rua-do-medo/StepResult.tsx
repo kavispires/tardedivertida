@@ -1,20 +1,21 @@
 import clsx from 'clsx';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { CandySidewalk, StreetCard } from './utils/types';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
+import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+// Internal
+import type { CandySidewalk, StreetCard } from './utils/types';
 import { PlayerStats } from './components/PlayerStats';
 import { Street } from './components/Street';
 import { CardCountExplanation } from './components/RulesBlobs';
-import { Step } from 'components/steps';
-import { Title } from 'components/text';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { HostNextPhaseButton } from 'components/host';
 import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepResultProps = {

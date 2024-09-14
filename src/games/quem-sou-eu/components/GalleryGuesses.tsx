@@ -1,19 +1,21 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Avatar as AntAvatar, Space, Typography } from 'antd';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar, Space, Typography } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Characters } from '../utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
+import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { StarPoints } from 'components/points';
+// Internal
+import type { Characters } from '../utils/types';
 
 type GalleryGuessesProps = {
   players: GamePlayers;
@@ -23,6 +25,7 @@ type GalleryGuessesProps = {
   currentColor: string;
   currentPlayer: GamePlayer;
   round: GameRound;
+  imageCardMode: boolean;
 };
 
 export function GalleryGuesses({
@@ -33,6 +36,7 @@ export function GalleryGuesses({
   currentColor,
   currentPlayer,
   round,
+  imageCardMode,
 }: GalleryGuessesProps) {
   const entries = orderBy(
     Object.entries(playersSay).map(([cardId, playersIds]) => {
@@ -67,7 +71,11 @@ export function GalleryGuesses({
                 ) : (
                   <MessageFilled className="q-gallery__speech-bubble-icon" />
                 )}
-                <DualTranslate>{entry.character.name}</DualTranslate>
+                {imageCardMode ? (
+                  <ImageCard id={entry.character.id} cardWidth={35} className="inline" />
+                ) : (
+                  <DualTranslate>{entry.character.name}</DualTranslate>
+                )}
               </div>
               <div className="q-gallery__players">
                 <AntAvatar.Group>

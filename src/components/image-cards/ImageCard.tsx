@@ -10,6 +10,7 @@ import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Sass
 import './ImageCard.scss';
+import { useMemo } from 'react';
 
 export type ImageCardProps = {
   /**
@@ -40,6 +41,10 @@ export type ImageCardProps = {
    * Forces height to be the same as the width
    */
   square?: boolean;
+  /**
+   * Use classic image library
+   */
+  classic?: boolean;
 };
 
 /**
@@ -53,15 +58,23 @@ export const ImageCard = ({
   previewImageId = '',
   fileExtension = 'jpg',
   square = false,
+  classic = false,
 }: ImageCardProps) => {
   const { shouldBeBlurred } = useBlurCards();
-  const baseUrl = useTDBaseUrl('tdi');
+  const baseUrl = useTDBaseUrl(classic ? 'classic' : 'images');
 
   const baseClass = 'image-card';
 
-  const fallbackName = `placeholder-${id[id.length - 1]}`;
+  const { imageURL, fallbackName } = useMemo(() => {
+    const imageURL = id.replace(/-/g, '/');
+    const numId = Number(imageURL?.split('/')?.at(-1) ?? id[id.length - 1]) % 12;
 
-  const imageURL = id.replace(/-/g, '/');
+    const fallbackName = `placeholder-${numId}`;
+    return {
+      imageURL,
+      fallbackName,
+    };
+  }, [id]);
 
   const isBlurred = shouldBeBlurred(id);
 

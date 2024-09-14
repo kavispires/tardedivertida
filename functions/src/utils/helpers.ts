@@ -1,4 +1,5 @@
 import { LETTERS, LETTERS_EN, LETTERS_PT } from './constants';
+import { isEmulatingEnvironment } from './firebase';
 import { getListOfPlayers } from './players-utils';
 
 /**
@@ -201,7 +202,7 @@ export const flattenArray = <T>(twoDimensionalArray: T[][]): T[] =>
  * @param duration
  */
 export const wait = async (duration = 3000) => {
-  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
+  if (isEmulatingEnvironment()) {
     await new Promise((resolve) => setTimeout(resolve, duration));
   }
 };

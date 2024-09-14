@@ -3,9 +3,17 @@ import { DIRECTIONS, LABIRINTO_SECRETO_ACHIEVEMENTS, LABIRINTO_SECRETO_ACTIONS }
 
 export type LabirintoSecretoGameOptions = {
   /**
-   * Longer path of 7 trees instead of 5
+   * Shorter path with 5 instead of 10 trees
    */
-  longPath: boolean;
+  shortPath?: boolean;
+  /**
+   * Use items instead of trees
+   */
+  itemTreeType?: boolean;
+  /**
+   * Possibly include nsfw items
+   */
+  nsfw?: boolean;
 };
 
 export type ResourceData = {
@@ -26,9 +34,9 @@ export interface Tree {
    */
   id: TreeId;
   /**
-   * The tree picture
+   * The tree picture (a string means an itemId)
    */
-  treeType: number;
+  treeType: number | string;
   /**
    * Text card
    */

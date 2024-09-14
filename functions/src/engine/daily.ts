@@ -1,5 +1,7 @@
+import { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
+import * as dataUtils from './collections';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD
@@ -7,18 +9,20 @@ type DailyGetterPayload = {
 };
 
 /**
- * Gets today's daily entry
- * @param data - Payload including the date
- * @param context
- * @returns
+ * Retrieves the daily data based on the provided parameters.
+ *
+ * @param data - The payload containing the necessary data for retrieving the daily data.
+ * @param auth - The authentication object containing the user's information.
+ * @returns The daily data object.
+ * @throws An exception if the user is not authenticated or if the daily data does not exist.
  */
-const getDaily = async (data: DailyGetterPayload, context: FirebaseContext) => {
-  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
+const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
+  if (utils.firebase.isEmulatingEnvironment()) {
     await feedEmulatorDaily();
   }
 
   const actionText = 'get daily';
-  const uid = context?.auth?.uid;
+  const uid = auth?.uid;
 
   if (!uid) {
     return utils.firebase.throwException('User not authenticated', actionText);
@@ -29,7 +33,7 @@ const getDaily = async (data: DailyGetterPayload, context: FirebaseContext) => {
     return utils.firebase.throwException('Date not provided', actionText);
   }
 
-  const dailyRef = utils.firebase.getDailyRef(data.document);
+  const dailyRef = utils.firestore.getDailyRef(data.document);
   const dailyDoc = await dailyRef.doc(date).get();
 
   if (!dailyDoc.exists) {
@@ -37,7 +41,14 @@ const getDaily = async (data: DailyGetterPayload, context: FirebaseContext) => {
   }
 
   const dailyData = dailyDoc.data();
-  return dailyData;
+
+  if (dailyData?.['arte-ruim']) {
+    return dailyData;
+  }
+
+  return {
+    'arte-ruim': dailyData,
+  };
 };
 
 export type DailySetterPayload = {
@@ -48,10 +59,16 @@ export type DailySetterPayload = {
   letters: string[];
 };
 
-// Save today to user
-const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => {
+/**
+ * Saves the daily data for a user.
+ *
+ * @param data - The daily data to be saved.
+ * @param auth - The authentication information of the user.
+ * @returns A boolean indicating whether the save operation was successful.
+ */
+const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
   const actionText = 'save daily';
-  const uid = context?.auth?.uid;
+  const uid = auth?.uid;
 
   if (!uid) {
     return utils.firebase.throwException('User not authenticated', actionText);
@@ -61,7 +78,7 @@ const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => 
   if (!id) {
     return utils.firebase.throwException('Payload is missing data', actionText);
   }
-  const userRef = utils.firebase.getUserRef();
+  const userRef = utils.firestore.getUserRef();
 
   let isError = false;
 
@@ -87,12 +104,12 @@ const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => 
 
   // Error: possibly because the user does not exist
   if (isError) {
-    const userRef = utils.firebase.getUserRef();
+    const userRef = utils.firestore.getUserRef();
     const user = await userRef.doc(uid).get();
 
     // If the user object doesn't exist, just create one
     if (!user.exists) {
-      const newUser = utils.user.generateNewUser(uid, context?.auth?.token?.provider_id === 'anonymous');
+      const newUser = utils.user.generateNewUser(uid, auth?.token?.provider_id === 'anonymous');
       await userRef.doc(uid).set(newUser);
 
       // Add daily
@@ -104,9 +121,41 @@ const saveDaily = async (data: DailySetterPayload, context: FirebaseContext) => 
   return true;
 };
 
+type DailySaveDrawingPayload = {
+  drawings: any;
+  language: Language;
+};
+
+/**
+ * Saves the drawing data to the 'drawings' collection.
+ *
+ * @param data - The payload containing the drawing data.
+ * @param auth - The authentication object.
+ * @returns A boolean indicating whether the saving was successful.
+ */
+const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) => {
+  const actionText = 'save drawings';
+  const uid = auth?.uid;
+
+  if (!uid) {
+    return utils.firebase.throwException('User not authenticated', actionText);
+  }
+
+  await dataUtils.updateDataCollectionRecursively('drawings', data.language, data.drawings);
+
+  return true;
+};
+
 const DAILY_API_ACTIONS = {
   GET_DAILY: getDaily,
   SAVE_DAILY: saveDaily,
+  SAVE_DRAWING: saveDrawing,
 };
 
-export const dailyApi = utils.firebase.apiDelegator('daily api', DAILY_API_ACTIONS);
+/**
+ * Executes the daily engine.
+ *
+ * @param request - The CallableRequest object.
+ */
+export const dailyEngine = (request: CallableRequest) =>
+  utils.firebase.apiDelegator(request, DAILY_API_ACTIONS);

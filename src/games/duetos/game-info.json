@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.16",
+  "version": "1.1.37",
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -17,7 +17,7 @@
     "en": "Pair the cards like the other players"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "socks-clouds",
     "color": "",
     "backgroundColor": ""
   },
@@ -46,60 +46,68 @@
   "options": [
     {
       "key": "nsfw",
+      "kind": "switch",
       "label": "NSFW",
-      "off": "No",
-      "on": "Yes",
-      "description": "Allow NSFW content"
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
       "key": "withBots",
+      "kind": "switch",
       "label": "Add Bots",
-      "off": "No",
-      "on": "Yes",
       "description": "Add bots to the game (for 2-3 player games only)",
-      "disabled": true
+      "disabled": true,
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
     },
     {
-      "key": "withImages",
-      "label": "Image Cards Special Round",
-      "off": "No",
-      "on": "Yes",
-      "description": "Up to 3 special rounds are allowed"
-    },
-    {
-      "key": "withWords",
-      "label": "Word Special Round",
-      "off": "No",
-      "on": "Yes",
-      "description": "Up to 3 special rounds are allowed"
-    },
-    {
-      "key": "withContenders",
-      "label": "Celebrities Special Round",
-      "off": "No",
-      "on": "Yes",
-      "description": "Up to 3 special rounds are allowed"
-    },
-    {
-      "key": "withSuspects",
-      "label": "Characters Special Round",
-      "off": "No",
-      "on": "Yes",
-      "description": "Up to 3 special rounds are allowed"
-    },
-    {
-      "key": "withSprites",
-      "label": "Sprites Special Round (Emojis, Glyphs)",
-      "off": "No",
-      "on": "Yes",
-      "description": "Up to 3 special rounds are allowed"
-    },
-    {
-      "key": "withAvatars",
-      "label": "Avatars Special Round (Clubbers, Costumes, Super Heroes)",
-      "off": "No",
-      "on": "Yes",
-      "description": "Up to 3 special rounds are allowed"
+      "key": "specialRounds",
+      "kind": "checkbox",
+      "label": "Special Rounds",
+      "description": "Enable special rounds (Up to 3 special rounds will be used)",
+      "values": [
+        {
+          "label": "Image Cards",
+          "value": "images"
+        },
+        {
+          "label": "Word",
+          "value": "words"
+        },
+        {
+          "label": "Celebrities",
+          "value": "contenders"
+        },
+        {
+          "label": "People/Suspects",
+          "value": "suspects"
+        },
+        {
+          "label": "Sprites (Emojis, Glyphs)",
+          "value": "sprites"
+        },
+        {
+          "label": "Avatars (Clubbers, Costumes, Super Heroes)",
+          "value": "avatars"
+        }
+      ]
     }
   ]
 }

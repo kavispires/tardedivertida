@@ -1,16 +1,18 @@
 import { useState } from 'react';
-//Design Resources
+// Ant Design Resources
 import { Button, Input } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
 import type { GameRound } from 'types/game';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
 import { ScoringRules } from './components/RulesBlobs';
+//Design Resources
 
 type StepTweetSelectionProps = {
   currentTweets: TextCard[];

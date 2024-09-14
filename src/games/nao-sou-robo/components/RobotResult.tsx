@@ -1,16 +1,15 @@
-// Types
-import type { Robot, RobotGalleryEntry } from '../utils/types';
-// Utils
-import { BEAT_THRESHOLD, OUTCOME } from '../utils/constants';
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
-import { CardHighlight } from 'components/metrics/CardHighlight';
+// Internal
+import type { Robot, RobotGalleryEntry } from '../utils/types';
+import { BEAT_THRESHOLD, OUTCOME } from '../utils/constants';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type RobotResultProps = {
@@ -43,13 +42,13 @@ export function RobotResult({ result, robot }: RobotResultProps) {
           {outcome === OUTCOME.TOO_SUSPICIOUS && (
             <Translate
               pt="Agora tenho certeza que você é um robô com 100% de precisão!"
-              en="Now I'm certain you are a robot with 100% accuracy"
+              en="Now I am certain you are a robot with 100% accuracy"
             />
           )}
           {outcome === OUTCOME.CONTINUE && (
             <Translate
               pt="Ainda não tenho certeza que você não é um robô, tente comprar seu ingresso novamente"
-              en="I'm still not sure if you are a robot, try to buy your ticket again"
+              en="I am still not sure if you are a robot, try to buy your ticket again"
             />
           )}
         </SpeechBubble>

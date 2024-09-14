@@ -1,17 +1,15 @@
-import type { PlayCardPayload, SubmitCardsPayload, SubmitWordPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'galeriaDeSonhosSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { PlayCardPayload, SubmitCardsPayload, SubmitWordPayload } from './types';
+import { GALERIA_DE_SONHOS_ACTIONS } from './constants';
 
 export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-word',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
@@ -24,7 +22,7 @@ export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitWordPayload) => {
     request({
-      action: 'SUBMIT_WORD',
+      action: GALERIA_DE_SONHOS_ACTIONS.SUBMIT_WORD,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-cards',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -47,7 +44,7 @@ export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitCardsPayload) => {
     request({
-      action: 'SUBMIT_CARDS',
+      action: GALERIA_DE_SONHOS_ACTIONS.SUBMIT_CARDS,
       ...payload,
     });
   };
@@ -56,10 +53,8 @@ export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
 export function useOnPlayCardAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'play-card',
-    // onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
     successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
     errorMessage: translate(
@@ -70,7 +65,7 @@ export function useOnPlayCardAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: PlayCardPayload) => {
     request({
-      action: 'PLAY_CARD',
+      action: GALERIA_DE_SONHOS_ACTIONS.PLAY_CARD,
       ...payload,
     });
   };

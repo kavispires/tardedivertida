@@ -2,22 +2,24 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TurnOrder } from 'components/players';
+import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
+// Internal
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';
 import { PlayerBoard } from './components/PlayersBoards';
-import { TurnOrder } from 'components/players';
-import { AvatarName } from 'components/avatars';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { ViewOr } from 'components/views';
-import { ListOfPlayers } from 'components/players/ListOfPlayers';
-import { TimedButton } from 'components/buttons';
 
 type StepRevealProps = {
   players: GamePlayers;

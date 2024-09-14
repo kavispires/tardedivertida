@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.38",
+  "version": "4.0.46",
   "title": {
     "pt": "Onda Telepática",
     "en": "Telepathic Waves"
@@ -55,10 +55,19 @@
   "available": true,
   "options": [
     {
-      "label": "End Game",
       "key": "fixedRounds",
-      "off": "10 points (10 rounds max)",
-      "on": "Each player once (6+) or twice (1-5)"
+      "kind": "switch",
+      "label": "End Game",
+      "values": [
+        {
+          "label": "10 points (10 rounds max)",
+          "value": false
+        },
+        {
+          "label": "Each player once (6+) or twice (1-5)",
+          "value": true
+        }
+      ]
     }
   ]
 }

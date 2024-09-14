@@ -1,4 +1,4 @@
-import { AlienItem, ObjectFeatureCard } from '../../types/tdr';
+import { Item, ObjectFeatureCard } from '../../types/tdr';
 import { MESMICE_ACHIEVEMENTS, MESMICE_ACTIONS, OUTCOME } from './constants';
 
 export type MesmiceOptions = {
@@ -18,7 +18,24 @@ export type MesmiceOptions = {
 
 export type ResourceData = {
   features: ObjectFeatureCard[];
-  items: Partial<AlienItem>[];
+  items: Partial<Item>[];
+};
+
+export type ObjectCardObj = Pick<Item, 'id' | 'name'>;
+
+export type HistoryEntry = {
+  featureId: CardId;
+  pass: boolean;
+  votes: PlayerId[];
+  score: number;
+};
+
+export type MesmiceGalleryEntry = {
+  playerId: PlayerId;
+  item: ObjectCardObj;
+  clue: string;
+  featureId: CardId;
+  history: HistoryEntry[];
 };
 
 export type Outcome = keyof typeof OUTCOME;

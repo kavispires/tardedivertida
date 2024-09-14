@@ -4,13 +4,15 @@ import { Avatar, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { ScaleEntry } from '../utils/types';
-// Hook
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
+import { AvatarStrip } from 'components/avatars';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { DualTranslate } from 'components/language';
-import { AvatarStrip } from 'components/avatars';
+// Internal
+import type { ScaleEntry } from '../utils/types';
+// Hook
 
 type ScenarioCardProps = {
   scenarios: (TextCard | null)[];

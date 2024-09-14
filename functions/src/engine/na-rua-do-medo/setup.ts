@@ -274,7 +274,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.NA_RUA_DO_MEDO,
@@ -290,7 +290,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

@@ -1,13 +1,14 @@
 // Ant Design Resources
 import { Button, Flex } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound, GameRanking } from 'types/game';
+import type { GamePlayers } from 'types/player';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
-import { HostNextPhaseButton } from 'components/host';
 
 type StepRankingProps = {
   players: GamePlayers;

@@ -1,22 +1,22 @@
 // Ant Design Resources
 import { Badge, Button, Space } from 'antd';
 // Types
-import { ContenderCard } from 'types/tdr';
 import type { GamePlayer } from 'types/player';
+import { ContenderCard } from 'types/tdr';
 // Hooks
+import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-// Utils
-import { mockSelectCharacters } from './utils/mock';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { CharacterCard } from 'components/cards/CharacterCard';
+import { Translate } from 'components/language';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { CharacterCard } from 'components/cards/CharacterCard';
+// Internal
+import { mockSelectCharacters } from './utils/mock';
 
 type StepSelectCharactersProps = {
   user: GamePlayer;
@@ -99,7 +99,8 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
             size="large"
             type="primary"
             onClick={() => onSelectCharacters({ characters: selectedCharacters })}
-            disabled={isLoading || user.ready || count !== 6}
+            loading={isLoading}
+            disabled={user.ready || count !== 6}
           >
             <Translate pt="Enviar cartas" en="Submit cards" />
           </Button>
@@ -107,6 +108,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         <Button
           size="large"
           onClick={() => onSelectCharacters({ characters: mockSelectCharacters(availableCharacters) })}
+          loading={isLoading}
           disabled={isLoading || user.ready}
         >
           <Translate pt={<>Escolha pra mim</>} en={<>Choose for me</>} />

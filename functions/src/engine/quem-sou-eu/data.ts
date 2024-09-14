@@ -2,11 +2,12 @@
 import { GLOBAL_USED_DOCUMENTS, DATA_DOCUMENTS } from '../../utils/constants';
 import { CHARACTERS_PER_PLAYER, EXTRA_CHARACTERS, MINIMUM_CHARACTERS } from './constants';
 // Type
-import { ResourceData } from './types';
+import { QuemSouEuOptions, ResourceData } from './types';
 // Helpers
 import * as globalUtils from '../global';
 import * as collectionUtils from '../collections';
 import utils from '../../utils';
+import { ContenderCard } from '../../types/tdr';
 
 /**
  * Get characters based on the game's language
@@ -17,15 +18,28 @@ import utils from '../../utils';
 export const getResourceData = async (
   language: Language,
   playerCount: number,
-  allowNSFW: boolean
+  options: QuemSouEuOptions
 ): Promise<ResourceData> => {
+  const allowNSFW = !!options.nsfw;
+  const imageCardsMode = !!options.imageCardsMode;
+
   const quantityNeeded =
     (Math.max(playerCount, MINIMUM_CHARACTERS) + EXTRA_CHARACTERS) * CHARACTERS_PER_PLAYER;
 
-  const characters = await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);
+  const characters = imageCardsMode ? [] : await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);
+  const imageCards: ContenderCard[] = (
+    imageCardsMode ? await utils.imageCards.getImageCards(quantityNeeded) : []
+  ).map((cardId) => ({
+    id: cardId,
+    name: {
+      pt: `image-card-${cardId}`,
+      en: `image-card-${cardId}`,
+    },
+  }));
 
   return {
     characters,
+    imageCards,
   };
 };
 

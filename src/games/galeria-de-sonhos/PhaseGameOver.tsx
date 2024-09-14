@@ -1,12 +1,12 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// Utils
-import { achievementsReference } from './utils/achievements';
 // Icons
 import { LadderIcon } from 'icons/LadderIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+// Internal
+import { achievementsReference } from './utils/achievements';
 import { BestMatches } from './components/BestMatches';
 import { GameOverTable } from './components/GameOverTable';
 

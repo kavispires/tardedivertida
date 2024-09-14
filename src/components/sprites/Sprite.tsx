@@ -36,18 +36,18 @@ type SpriteProps = {
  * @returns a single sprite item
  */
 export function Sprite({ id, source, width = 75, padding = 6, title, className }: SpriteProps) {
-  const baseUrl = useTDBaseUrl('tdi');
+  const baseUrl = useTDBaseUrl('sprites');
 
   const { isLoading, data, isError } = useQuery({
     queryKey: ['sprite', source],
     queryFn: async () => {
-      const response = await fetch(`${baseUrl}sprites/${source}.svg`);
+      const response = await fetch(`${baseUrl}/sprites/${source}.svg`);
       return await response.text();
     },
     enabled: !!id && !!source,
   });
 
-  const paddedWidth = width - 12;
+  const paddedWidth = width - padding * 2;
 
   if (isLoading) {
     return (

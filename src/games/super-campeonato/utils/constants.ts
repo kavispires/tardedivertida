@@ -1,11 +1,12 @@
+// Internal
 import { BracketTier } from './type';
 
-export const ACTIONS = {
+export const SUPER_CAMPEONATO_ACTIONS = {
   SUBMIT_CHALLENGE: 'SUBMIT_CHALLENGE',
   SUBMIT_CONTENDERS: 'SUBMIT_CONTENDERS',
   SUBMIT_BETS: 'SUBMIT_BETS',
   SUBMIT_VOTES: 'SUBMIT_VOTES',
-};
+} as const;
 
 export const voteTarget: Record<number, number> = {
   0: 8,

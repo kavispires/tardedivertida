@@ -4,19 +4,20 @@ import { useEffectOnce } from 'react-use';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { Dream } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';
-import { mockVotes } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { Dream } from './utils/types';
+import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';
+import { mockVotes } from './utils/mock';
 import { AllDreamsClues } from './components/AllDreamsClues';
 import { DreamBoardVote } from './components/DreamBoardVote';
 

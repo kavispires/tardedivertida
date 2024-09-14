@@ -10,8 +10,9 @@ export interface ResourceData {
   botCards: CardId[];
   emojis: number[];
   words: TextCard[];
+  colors: TextCard[];
+  emotions: TextCard[];
   glyphs: number[];
-  adjectives: TextCard[];
 }
 
 export interface Robot {

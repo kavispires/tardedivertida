@@ -9,7 +9,7 @@ export const handleSubmitTarget = async (
   playerId: PlayerId,
   targetId: PlayerId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -27,7 +27,7 @@ export const handleSubmitMessage = async (
   recipientId?: PlayerId
 ) => {
   // Handle player
-  await utils.firebase.updateState({
+  await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -37,7 +37,7 @@ export const handleSubmitMessage = async (
   });
 
   // Handle state
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -54,7 +54,7 @@ export const handleSubmitDecision = async (
   playerId: PlayerId,
   decision: string
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

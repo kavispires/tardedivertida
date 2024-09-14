@@ -1,22 +1,23 @@
 // Types
 import type { PhaseProps } from 'types/game';
-import type { ImageCardObj } from './utils/types';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
 import { useUser } from 'hooks/useUser';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { DreamIcon } from 'icons/DreamIcon';
 // Components
 import { ImageCardPreloadHand } from 'components/image-cards';
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
+// Internal
+import type { ImageCardObj } from './utils/types';
+import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
 import { DreamSelectionRules } from './components/RulesBlobs';
-import { StepDreamsSelection } from './StepDreamsSelection';
-import { Translate } from 'components/language';
 import { SelectedDreams } from './components/SelectedDreams';
+import { StepDreamsSelection } from './StepDreamsSelection';
 
 export function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
   const user = useUser(players, state);

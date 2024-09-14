@@ -1,26 +1,37 @@
-import { Layout, Typography } from 'antd';
-import { IconAvatar } from 'components/avatars';
+import { Layout } from 'antd';
 import { Translate } from 'components/language';
 import { CalendarIcon } from 'icons/CalendarIcon';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
-const { Header, Content } = Layout;
+import { useDailyChallenge } from '../hooks/useDailyChallenge';
+import { getToday } from '../utils';
+import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
+import { Header } from './Header';
+
+const { Content, Footer } = Layout;
 
 type DailyChromeProps = {
-  challenge?: ReactNode;
   children: ReactNode;
 };
 
-export function DailyChrome({ challenge, children }: DailyChromeProps) {
+export function DailyChrome({ children }: DailyChromeProps) {
+  const challengeQuery = useDailyChallenge(getToday());
+  const [count, setCount] = useState(0);
+
   return (
     <Layout className="app">
-      <Header className="daily-header">
-        <IconAvatar icon={<CalendarIcon />} />
-        <Typography.Title level={1} className="daily-heading">
-          <Translate pt="TD Diário" en="TD Daily" /> {challenge}
-        </Typography.Title>
+      <Header icon={<CalendarIcon />} localStorageKey="">
+        <button onClick={() => setCount((prev) => prev + 1)} className="invisible-secret-button">
+          <Translate pt="TD Diário" en="TD Daily" />
+        </button>
       </Header>
+      {challengeQuery.isLoading ? <div className="loading-bar"></div> : <></>}
       <Content>{children}</Content>
+      {count >= 5 && (
+        <Footer>
+          <DevResetLocalStorageButton />
+        </Footer>
+      )}
     </Layout>
   );
 }

@@ -2,10 +2,9 @@
 import { Avatar as AntAvatar, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { UseStep } from 'hooks/useStep';
-import type { TableEntry } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Avatar, AvatarName, AvatarNPC } from 'components/avatars';
@@ -15,8 +14,10 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
-import { BookPages } from '../../components/game/BookPages';
+// Internal
+import type { TableEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
+import { BookPages } from '../../components/game/BookPages';
 
 type StepResolutionProps = {
   players: GamePlayers;

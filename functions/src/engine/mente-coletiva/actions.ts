@@ -20,7 +20,7 @@ export const handleSubmitQuestion = async (
   playerId: PlayerId,
   questionId: string
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -46,7 +46,7 @@ export const handleSubmitCustomQuestion = async (
   playerId: PlayerId,
   customQuestion: GroupQuestionCard
 ) => {
-  return await utils.firebase.updateStore({
+  return await utils.firestore.updateStore({
     gameName,
     gameId,
     playerId,
@@ -72,7 +72,7 @@ export const handleSubmitAnswers = async (
   playerId: PlayerId,
   answers: StringDictionary
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -99,7 +99,7 @@ export const handleNextAnswers = async (
 ) => {
   const actionText = 'advance answers';
 
-  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -140,7 +140,7 @@ export const handleNextAnswers = async (
   }
 
   try {
-    await utils.firebase.saveGame(sessionRef, {
+    await utils.firestore.saveGame(sessionRef, {
       update: {
         state: {
           players,
@@ -172,7 +172,7 @@ export const handleAddAnswer = async (
 ) => {
   const actionText = 'add answer';
 
-  const { sessionRef, state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText

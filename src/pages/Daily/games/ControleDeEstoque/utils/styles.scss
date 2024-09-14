@@ -1,0 +1,108 @@
+@use 'styles/sass' as *;
+
+.controle-de-estoque-title {
+  text-transform: uppercase;
+}
+
+.shelves-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: get-unit(3);
+  background-color: get-color('brown', 5);
+  place-items: center;
+  padding: get-unit(3);
+
+  &__empty-shelf {
+    background: get-color('black', 5);
+    border: get-unit(3) inset get-color('brown', 6);
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    color: get-color('white');
+  }
+
+  &__empty-shelf-button {
+    background: get-color('black', 1);
+    display: grid;
+    border: 0;
+    place-items: center;
+    color: get-color('white');
+    cursor: pointer;
+  }
+
+  &__shelf {
+    background: get-color('black', 5);
+    border: get-unit(1) inset get-color('brown', 4);
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    color: get-color('white');
+  }
+
+  &__shelf-fulfilled {
+    position: relative;
+  }
+
+  &__placed-order {
+    rotate: 10deg;
+    opacity: 0.95;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    outline: get-unit(1) solid get-color('yellow');
+  }
+}
+
+.current-order {
+  filter: grayscale(20%);
+  rotate: 10deg;
+}
+
+.fulfillment-center {
+  display: flex;
+  justify-content: center;
+  margin: get-unit(0 2);
+  gap: get-unit(2);
+
+  &__orders {
+    display: flex;
+    gap: get-unit(1);
+    background: get-color('white');
+    padding: get-unit(2);
+    border-radius: get-unit(2);
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 20px solid transparent;
+      border-right-color: get-color('white');
+      border-left: 0;
+      border-bottom: 0;
+      margin-top: -15px;
+      margin-left: -15px;
+    }
+  }
+}
+
+.order {
+  border: none;
+  transition: all 250ms;
+
+  &--active {
+    border: get-unit(1) solid get-color('yellow');
+    rotate: 10deg;
+  }
+
+  &--fulfilled {
+    opacity: 50%;
+    scale: 75%;
+  }
+}

@@ -42,6 +42,10 @@ body {
   }
 }
 
+.text-center {
+  text-align: center;
+}
+
 .center {
   text-align: center;
 }
@@ -106,6 +110,11 @@ body {
   align-items: center;
 }
 
+.space-center {
+  justify-content: center;
+  align-items: center;
+}
+
 .grid-container {
   margin: get-unit(2 0);
   display: grid;
@@ -155,4 +164,13 @@ body {
 
 .transparent.transparent {
   background: none;
+}
+
+// Mostly use in items with dark background
+.transparent-gradient.transparent-gradient {
+  background: radial-gradient(get-color('gray', 3, 0.5), transparent);
+}
+
+.inline {
+  display: inline;
 }

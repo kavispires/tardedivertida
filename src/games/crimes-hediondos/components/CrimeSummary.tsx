@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import clsx from 'clsx';
+import { useState } from 'react';
 // Ant Design Resources
-import { Button, Tooltip } from 'antd';
 import {
   CheckCircleFilled,
   ClockCircleFilled,
@@ -11,20 +10,22 @@ import {
   LockFilled,
   SafetyOutlined,
 } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
-import type { Crime, GuessHistoryEntry, ItemsDict, ScenesDict } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
+import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { Translate } from 'components/language';
+// Internal
+import type { Crime, GuessHistoryEntry, ItemsDict, ScenesDict } from '../utils/types';
 import { ItemCardEmpty } from './ItemCardEmpty';
 import { CrimeGuessStatus } from './CrimeGuessStatus';
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 
 const CARD_WIDTH = 100;
 

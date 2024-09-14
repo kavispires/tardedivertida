@@ -5,12 +5,12 @@ import { App } from 'antd';
 // Types
 import type { GameMeta } from 'types/game';
 // Hooks
-import { useLocalStorage } from './useLocalStorage';
+import { useLanguage } from './useLanguage';
 import { useLoading } from './useLoading';
 import { useGameId } from './useGameId';
 import { useError } from './useError';
 // API
-import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
+import { GAME_API_COMMON_ACTIONS, GAME_API } from 'services/adapters';
 // Utils
 import { print } from 'utils/helpers';
 
@@ -21,7 +21,7 @@ import { print } from 'utils/helpers';
 export function useGameMeta(): GameMeta {
   const { notification } = App.useApp();
   const gameId = useGameId();
-  const [, setLocalStorage] = useLocalStorage();
+  const { setLanguage } = useLanguage();
   const { setLoader } = useLoading();
   const { setError } = useError();
 
@@ -29,33 +29,32 @@ export function useGameMeta(): GameMeta {
   const query = useQuery({
     queryKey: ['meta', gameId],
     queryFn: async () => {
+      setLoader('load', true);
       console.count('Fetching game meta...');
-      return await GAME_API.run({ action: GAME_API_ACTIONS.LOAD_GAME, gameId });
+
+      const response = await GAME_API.run({ action: GAME_API_COMMON_ACTIONS.LOAD_GAME, gameId });
+      const data = response.data as GameMeta;
+
+      print({ meta: data });
+      setLanguage(data?.language ?? 'pt');
+      setLoader('load', false);
+      return response;
     },
     enabled: Boolean(gameId),
     staleTime: 30 * 60 * 1000, // 30 minutes
-    onSuccess: (response) => {
-      setLoader('load', true);
-      const data = response.data as GameMeta;
-      print({ meta: data });
-      setLocalStorage({ language: data?.language ?? 'pt' });
-    },
-    onError: (e: any) => {
-      console.error(e);
-      setError('meta', JSON.stringify(e.message));
-      notification.error({
-        message: 'Failed to load game',
-        description: JSON.stringify(e.message),
-      });
-    },
-    onSettled: () => {
-      setLoader('load', false);
-    },
   });
 
   useEffect(() => {
     if (!query.isError && query.isSuccess) {
       setError('meta', '');
+    }
+    if (query.isError) {
+      console.error(query.error);
+      setError('meta', JSON.stringify(query.error.message));
+      notification.error({
+        message: 'Failed to load game',
+        description: JSON.stringify(query.error.message),
+      });
     }
   }, [query.isError]); // eslint-disable-line
 

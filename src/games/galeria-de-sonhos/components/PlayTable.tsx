@@ -1,20 +1,20 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Image } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
-// Types
-import type { ImageCardObj } from '../utils/types';
+import { Button, Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { BORDER_TOTAL_SIZE } from '../utils/constants';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-cards';
 import { Translate } from 'components/language';
+// Internal
+import type { ImageCardObj } from '../utils/types';
+import { BORDER_TOTAL_SIZE } from '../utils/constants';
 
 type PlayTableProps = {
   table: ImageCardObj[];

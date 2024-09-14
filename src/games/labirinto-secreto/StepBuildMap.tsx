@@ -1,23 +1,23 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { OnSubmitMapFunction, Tree } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
-// Utils
-import { buildPlayerMappingForLatestTree } from './utils/helpers';
-import { mockNewMap } from './utils/mocks';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 import { TreeIcon } from 'icons/TreeIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { OnSubmitMapFunction, Tree } from './utils/types';
+import { buildPlayerMappingForLatestTree } from './utils/helpers';
+import { mockNewMap } from './utils/mocks';
 import { Forest } from './components/Forest';
 import { CompassHighlight } from './components/Highlights';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { MapBuilder } from './components/MapBuilder';
-import { IconAvatar } from 'components/avatars';
 
 type StepBuildMapProps = {
   players: GamePlayers;

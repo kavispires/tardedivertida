@@ -2,32 +2,33 @@
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from './utils/types';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
+import { ItemCard } from 'components/cards/ItemCard';
+import { DebugOnly } from 'components/debug';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
+import { ViewIf } from 'components/views';
+// Internal
+import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from './utils/types';
+import { OfferingsStatus } from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
-import { ViewIf } from 'components/views';
 import { AlienWritingBoard } from './components/AlienWritingBoard';
 import { AlienContent, HumanContent } from './components/Content';
 import { History } from './components/History';
-import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
-import { ItemCard } from 'components/cards/ItemCard';
 import { BotPopupRule } from './components/BotPopupRules';
-import { DebugOnly } from 'components/debug';
-import { OfferingsStatus } from './utils/types';
 
 type StepAlienAnswersProps = {
   players: GamePlayers;
@@ -171,14 +172,14 @@ export function StepAlienAnswers({
 
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} />
+          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} status={status} />
           <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} />
+          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} status={status} />
           <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
         </Space>
       </HumanContent>

@@ -1,11 +1,11 @@
-// Amt Design Resources
+// Ant Design Resources
 import { Space } from 'antd';
 // Icons
 import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { Title } from 'components/text';
 import { Translate } from 'components/language';
+import { Title } from 'components/text';
 
 export function FallbackComponent(_: unknown) {
   return (

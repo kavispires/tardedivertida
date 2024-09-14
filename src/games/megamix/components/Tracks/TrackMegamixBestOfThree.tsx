@@ -1,17 +1,16 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
-import { useMock } from 'hooks/useMock';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockSelection } from '../../utils/mock';
+import { useMock } from 'hooks/useMock';
 // Components
-import { Card } from 'components/cards';
-import { MinigameTitle } from '../MinigameTitle';
 import { TransparentButton } from 'components/buttons';
+import { Card } from 'components/cards';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();

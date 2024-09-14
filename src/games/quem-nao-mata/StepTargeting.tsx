@@ -1,21 +1,25 @@
-// Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import { useEffect, useMemo, useState } from 'react';
+import { useCounter, useEffectOnce } from 'react-use';
+// Ant Design Resources
 import { ReadOutlined } from '@ant-design/icons';
 import { Button, App } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+// Components
 import { Translate } from 'components/language';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { TimedTimerBar } from 'components/timers';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useEffect, useMemo, useState } from 'react';
-import { useCounter, useEffectOnce } from 'react-use';
+// Internal
+import type { Message } from './utils/types';
 import { MessageBoard } from './components/MessageBoard';
 import { PlayerStatus } from './components/PlayerStatus';
 import { PlayerTargetCardButton } from './components/PlayerTargetCardButton';
 import { GeneralRules } from './components/RulesBlobs';
-import type { Message } from './utils/types';
 
 type StepTargetingProps = {
   user: GamePlayer;

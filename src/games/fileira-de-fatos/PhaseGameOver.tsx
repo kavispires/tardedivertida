@@ -2,17 +2,17 @@
 import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
-// Utils
-import { getReference } from './utils/helpers';
-import achievementsReference from './utils/achievements';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { Translate } from 'components/language';
-import { Container } from 'components/general/Container';
-import { FinalScenarios } from './components/FinalScenarios';
 import { Achievements } from 'components/general/Achievements';
+import { Container } from 'components/general/Container';
+import { Translate } from 'components/language';
+// Internal
+import { getReference } from './utils/helpers';
+import achievementsReference from './utils/achievements';
+import { FinalScenarios } from './components/FinalScenarios';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (

@@ -17,6 +17,7 @@ import utils from '../../utils';
 // Internal
 import { buildGallery, buildRanking, getAchievements } from './helpers';
 import { saveData } from './data';
+import { ContenderCard } from '../../types/tdr';
 
 /**
  * Setup
@@ -32,6 +33,9 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const playerCount = utils.players.getPlayerCount(players);
+  const imageCardsMode = !!store.options?.imageCardsMode;
+
+  const deck = imageCardsMode ? additionalData.imageCards : additionalData.characters;
 
   /**
    * Adds
@@ -40,11 +44,16 @@ export const prepareSetupPhase = async (
   tableCharactersCount += store.options?.moreCharacters ? EXTRA_CHARACTERS : 0;
 
   // Get table characters (6 - playerCount)
-  const table = utils.game.dealItems(additionalData.characters, tableCharactersCount * TOTAL_ROUNDS);
+  const table = utils.game.dealItems(deck, tableCharactersCount * TOTAL_ROUNDS);
 
   // Get 8 characters per player
   utils.players.getListOfPlayers(players).forEach((player) => {
-    player.availableCharacters = utils.game.dealItems(additionalData.characters, CHARACTERS_PER_PLAYER);
+    player.availableCharacters = utils.game.dealItems(deck, CHARACTERS_PER_PLAYER);
+    if (imageCardsMode) {
+      player.selectedCharacters = utils.game.shuffle(
+        player.availableCharacters.map((c: ContenderCard) => c.id)
+      );
+    }
   });
 
   const achievements = utils.achievements.setup(players, store, {
@@ -69,6 +78,7 @@ export const prepareSetupPhase = async (
       state: {
         phase: QUEM_SOU_EU_PHASES.SETUP,
         players,
+        mode: imageCardsMode ? 'imageCards' : 'characters',
         round: {
           current: 0,
           total: TOTAL_ROUNDS,
@@ -268,7 +278,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.QUEM_SOU_EU,
@@ -282,14 +292,15 @@ export const prepareGameOverPhase = async (
 
   const gallery = store.gallery;
 
-  // Save data (contenderIds, contendersGlyphs)
-  await saveData(store.contendersGlyphs ?? {});
+  if (!store.options?.imageCardsMode) {
+    await saveData(store.contendersGlyphs ?? {});
+  }
 
   utils.players.cleanup(players, []);
 
   return {
     update: {
-      storeCleanup: utils.firebase.cleanupStore(store, []),
+      storeCleanup: utils.firestore.cleanupStore(store, []),
     },
     set: {
       state: {

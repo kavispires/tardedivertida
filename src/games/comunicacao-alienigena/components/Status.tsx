@@ -1,7 +1,5 @@
 // Ant Design Resources
 import { Badge } from 'antd';
-// Types
-import type { OfferingsStatus } from '../utils/types';
 // Icons
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
 // Components
@@ -9,6 +7,8 @@ import { Translate } from 'components/language';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
+// Internal
+import type { OfferingsStatus } from '../utils/types';
 import { CurseItemHighlight, ItemsHighlight } from './Highlights';
 
 type StatusProps = {

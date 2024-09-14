@@ -1,6 +1,8 @@
-import { shuffle } from 'utils/helpers';
 // Types
 import type { GamePlayer } from 'types/player';
+// Utils
+import { shuffle } from 'utils/helpers';
+// Internal
 import { Dream } from './types';
 
 const mockedDreamClues = [

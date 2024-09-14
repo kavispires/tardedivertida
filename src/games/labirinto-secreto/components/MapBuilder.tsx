@@ -3,23 +3,24 @@ import { useState } from 'react';
 import { Button, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { getPossibleTreeIds } from '../utils/helpers';
 // Icons
-import { NoIcon } from 'icons/NoIcon';
 import { LocationIcon } from 'icons/LocationIcon';
+import { NoIcon } from 'icons/NoIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
-import { TreeCard } from 'components/cards/TreeCard';
-import { Translate } from 'components/language';
-import { IconAvatar } from 'components/avatars';
 import { Container } from 'components/general/Container';
+import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
+// Internal
+import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
+import { getPossibleTreeIds } from '../utils/helpers';
+import { TreeImage } from './TreeImage';
 
 type MapBuilderProps = {
   forest: Tree[];
@@ -34,6 +35,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
   const previousSelections = map.map((segment) => segment.clues);
   const [selections, setSelections] = useState<(ExtendedTextCard | null)[]>(map.map((_) => null));
   const [currentIndex, setIndex] = useState(0);
+  const [skippedIndexes, setSkippedIndexes] = useState<number[]>([]);
 
   const onSetCard = (card: ExtendedTextCard) => {
     setSelections((prev) => {
@@ -44,12 +46,13 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
     setIndex((prev) => prev + 1);
   };
 
-  const onSkipTree = () => {
+  const onSkipTree = (index: number) => {
     setSelections((prev) => {
       const copy = [...prev];
       copy[currentIndex] = null;
       return copy;
     });
+    setSkippedIndexes((prev) => [...prev, index]);
     setIndex((prev) => prev + 1);
   };
 
@@ -62,6 +65,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       });
       return copy;
     });
+    setSkippedIndexes((prev) => prev.filter((v) => v !== index));
     setIndex(index);
   };
 
@@ -138,8 +142,11 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 );
               })}
 
-              <TransparentButton onClick={() => onUnsetCard(index)} disabled={!selections?.[index]}>
-                <TreeCard id={String(tree.treeType)} text={tree.card.text} />
+              <TransparentButton
+                onClick={() => onUnsetCard(index)}
+                disabled={!(selections?.[index] || skippedIndexes.includes(index))}
+              >
+                <TreeImage id={tree.treeType} text={tree.card.text} />
               </TransparentButton>
             </div>
           );
@@ -147,12 +154,9 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       </Space>
 
       {possibleTreeIds.length > 0 && (
-        <Space className="contained">
+        <Space className="contained" wrap>
           <strong>
-            <Translate
-              pt="Outros possíveis caminhos para a árvore atual"
-              en="Other possible paths for the current tree"
-            />
+            <Translate pt="Caminhos possíveis para a árvore atual" en="Possible paths for the current tree" />
             :
           </strong>
           {possibleTreeIds.map((treeId, index) => (
@@ -180,7 +184,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         <Button
           size="large"
           type="default"
-          onClick={() => onSkipTree()}
+          onClick={() => onSkipTree(currentIndex)}
           disabled={!previousSelections?.[currentIndex]?.length}
         >
           <Translate pt="Pular árvore" en="Skip tree" />

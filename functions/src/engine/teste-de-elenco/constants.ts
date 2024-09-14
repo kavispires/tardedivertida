@@ -163,8 +163,8 @@ export const ROLES: Record<string, MovieRole> = {
   THE_FIRST_TO_DIE: {
     id: 'THE_FIRST_TO_DIE',
     title: {
-      en: 'The Special Guest',
-      pt: 'O Convidado Especial',
+      en: 'The First to Die',
+      pt: 'O Primeiro a Morrer',
     },
     description: {
       en: 'The one who dies in the opening scene',

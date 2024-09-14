@@ -1,17 +1,18 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
 // Components
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 

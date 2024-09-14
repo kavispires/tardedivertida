@@ -1,14 +1,16 @@
-//Design Resources
-import { Button } from 'antd';
-import { PlusCircleFilled } from '@ant-design/icons';
+// Ant Design Resources
+import { MinusSquareOutlined, PlusCircleFilled } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Clue, GridCell } from '../utils/types';
-// Utils
-import { getClueFromKey } from '../utils/helpers';
 // Components
+import { Translate } from 'components/language';
+// Internal
+import type { Clue, GridCell } from '../utils/types';
+import { getClueFromKey } from '../utils/helpers';
 import { ClueCard } from './ClueCard';
 import { PreviousClue } from './PreviousClue';
+//Design Resources
 
 type SelectableCellProps = {
   onSelectCell: GenericFunction;
@@ -51,6 +53,23 @@ export function SelectableCell({
 
   if (cell.text) {
     return <PreviousClue clue={cell.text} />;
+  }
+
+  if (cell.playerId === user.id) {
+    return (
+      <Tooltip
+        title={
+          <Translate
+            pt="Essa célula pertence a uma de duas outras dicas, então não pode ser essa"
+            en="This cell belongs to one of two other clues, so it can't be this one"
+          />
+        }
+      >
+        <Button shape="circle" ghost>
+          <MinusSquareOutlined />
+        </Button>
+      </Tooltip>
+    );
   }
 
   return (

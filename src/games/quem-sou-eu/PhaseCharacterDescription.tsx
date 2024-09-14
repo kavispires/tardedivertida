@@ -1,21 +1,22 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 // Icons
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { StepSelectGlyphs } from './StepSelectGlyphs';
-import { RoundAnnouncement } from 'components/round';
+// Internal
+import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 import { WaitingRoomCharacter } from './components/WaitingRoomCharacter';
+import { StepSelectGlyphs } from './StepSelectGlyphs';
 
 export function PhaseCharacterDescription({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
@@ -65,6 +66,7 @@ export function PhaseCharacterDescription({ players, state, info }: PhaseProps) 
           tableOrder={state.tableOrder}
           announcement={announcement}
           roundType={state.roundType}
+          imageCardMode={state.mode === 'imageCards'}
         />
       </StepSwitcher>
     </PhaseContainer>

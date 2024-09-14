@@ -1,3 +1,4 @@
+// Types
 import type { AchievementReference } from 'types/achievements';
 
 const ACHIEVEMENTS = {
@@ -7,6 +8,7 @@ const ACHIEVEMENTS = {
   MOST_TARGET_VOTES: 'MOST_TARGET_VOTES',
   MOST_COMMUNITY_VOTES: 'MOST_COMMUNITY_VOTES',
   FEWEST_COMMUNITY_VOTES: 'FEWEST_COMMUNITY_VOTES',
+  MOST_INDIVIDUAL_POINTS: 'MOST_INDIVIDUAL_POINTS',
 };
 
 export const achievementsReference: AchievementReference = {
@@ -74,6 +76,17 @@ export const achievementsReference: AchievementReference = {
     description: {
       pt: 'Votou com menos jogadores durante o jogo',
       en: 'Voted with less players during the game',
+    },
+  },
+  [ACHIEVEMENTS.MOST_INDIVIDUAL_POINTS]: {
+    icon: 'star',
+    title: {
+      pt: 'Mais Pontos Individuais',
+      en: 'Most Individual Points',
+    },
+    description: {
+      pt: 'Fez mais pontos sozinho (achou que não estávamos contando pontos né?)',
+      en: "Got the most points alone (thought we weren't counting points, huh?)",
     },
   },
 };

@@ -1,3 +1,4 @@
+// Internal
 import { AdedanhxGrid, Answer } from './types';
 
 export const buildAnswerSheet = (grid: AdedanhxGrid) => {

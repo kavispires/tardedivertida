@@ -1,13 +1,14 @@
-// Hooks
-import { useLoading } from 'hooks/useLoading';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Grid, GridType } from './utils/types';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
 // Components
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { Grid, GridType } from './utils/types';
 import { WordGrid } from './components/WordGrid';
 import { WritingCell } from './components/WritingCell';
 import { WritingCluesRule } from './components/RulesBlobs';

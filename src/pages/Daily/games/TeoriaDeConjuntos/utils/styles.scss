@@ -1,0 +1,74 @@
+@use 'styles/sass' as *;
+
+.teoria-de-conjuntos-title {
+  text-transform: uppercase;
+}
+
+.thing {
+  &__sprite {
+    background: transparent;
+  }
+  &__name {
+    // font-size: 1.5em;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.thing-enlarged {
+  // font-size: 2em;
+
+  .thing__name {
+    font-size: 2em;
+  }
+}
+
+.thing-button {
+  background: white;
+  padding: 1px;
+  border-radius: $border-radius;
+  border: get-unit(1) solid transparent;
+
+  &__active {
+    border: get-unit(1) solid get-color('pink');
+  }
+}
+
+.venn-diagram {
+  &__circle-content-left {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 80%;
+    border-bottom-left-radius: 70%;
+  }
+
+  &__circle-content-right {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 80%;
+    border-bottom-right-radius: 70%;
+  }
+
+  &__circle-content-intersection {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+
+.diagram-area-sample {
+  background: get-color('gray', 1, 0.5);
+  width: 100%;
+  border-radius: $border-radius;
+  padding: get-unit(1);
+}
+
+.rules-hints {
+  margin-top: get-unit(8);
+}

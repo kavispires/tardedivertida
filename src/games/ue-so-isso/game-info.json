@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.1.27",
+  "version": "3.1.36",
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -55,35 +55,71 @@
   "available": true,
   "options": [
     {
-      "label": "Word Pool",
       "key": "fewerCards",
-      "off": "5 options",
-      "on": "3 options",
-      "description": "When selecting the possible secret word for the round"
+      "kind": "switch",
+      "label": "Word Pool",
+      "description": "When selecting the possible secret word for the round",
+      "values": [
+        {
+          "label": "5 options",
+          "value": false
+        },
+        {
+          "label": "3 options",
+          "value": true
+        }
+      ]
     },
     {
-      "label": "Timed",
       "key": "withTimer",
-      "off": "No time limit",
-      "on": "2 minutes",
+      "kind": "switch",
+      "label": "Timed",
       "description": "When coming up with clues",
-      "disabled": true
+      "disabled": true,
+      "values": [
+        {
+          "label": "No time limit",
+          "value": false
+        },
+        {
+          "label": "2 minutes",
+          "value": true
+        }
+      ]
     },
     {
-      "label": "Hints",
       "key": "withHints",
-      "off": "No",
-      "on": "Yes",
+      "kind": "switch",
+      "label": "Hints",
       "description": "Answering will be timed and hints will be timely given",
-      "disabled": true
+      "disabled": true,
+      "values": [
+        {
+          "label": "No",
+          "value": false
+        },
+        {
+          "label": "Yes",
+          "value": true
+        }
+      ]
     },
     {
-      "label": "Bot",
       "key": "withBot",
-      "off": "No",
-      "on": "Yes",
+      "kind": "switch",
+      "label": "Bot",
       "description": "A bot will also write suggestions with the only purpose of eliminating clues",
-      "disabled": true
+      "disabled": true,
+      "values": [
+        {
+          "label": "No",
+          "value": false
+        },
+        {
+          "label": "Yes",
+          "value": true
+        }
+      ]
     }
   ]
 }

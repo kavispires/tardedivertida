@@ -1,11 +1,11 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
-// Utils
-import { ALIEN_CANVAS } from '../utils/constants';
 // Components
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
+// Internal
+import { ALIEN_CANVAS } from '../utils/constants';
 
 type HumanSignBoardProps = {
   onSubmit: GenericFunction;

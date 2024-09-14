@@ -35,7 +35,7 @@ export const getCards = async (language: string): Promise<ResourceData> => {
     Object.keys(movies).length < MOVIES_PER_ROUND * TOTAL_ROUNDS ||
     Object.keys(reviews).length < TOTAL_REVIEW_CARDS
   ) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MOVIES);
+    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MOVIES);
     return {
       movies: allMovies,
       reviews: allReviews,

@@ -1,0 +1,104 @@
+@use 'styles/sass' as *;
+
+.palavreado-board {
+  display: grid;
+  // grid-template-rows: repeat(4, 4rem);
+  // grid-template-columns: repeat(4, 4rem);
+  gap: get-unit(2);
+  place-items: center;
+  margin: get-unit(4 8);
+
+  &__tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: get-color('white', 5, 0.85);
+    height: 4rem;
+    width: 4rem;
+    font-size: 2em;
+    border: 2px solid get-color('black', 5, 0.5);
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &--button {
+      cursor: pointer;
+      &:hover {
+        border: 2px solid get-color('white', 5, 1);
+      }
+    }
+
+    &--sample {
+      height: 2rem;
+      width: 2rem;
+      min-height: 2rem;
+      min-width: 2rem;
+      aspect-ratio: 1 / 1;
+      font-size: 1.25em;
+    }
+
+    &--place-guessed {
+      background: get-color('white', 5, 0.65);
+      border-color: get-color('black', 5, 1);
+      border-style: dashed;
+    }
+
+    &--correct {
+      background-color: get-color('green', 2);
+      border: 2px solid get-color('white', 4, 0.5);
+      color: get-color('black');
+    }
+
+    &--0 {
+      background-color: get-color('red', 4);
+      border: 2px solid get-color('red', 4, 0.5);
+      color: get-color('white');
+    }
+
+    &--1 {
+      background-color: get-color('blue', 4);
+      border: 2px solid get-color('blue', 4, 0.5);
+      color: get-color('white');
+    }
+
+    &--2 {
+      background-color: get-color('purple', 4);
+      border: 2px solid get-color('purple', 4, 0.5);
+      color: get-color('white');
+    }
+
+    &--3 {
+      background-color: get-color('brown', 5);
+      border: 2px solid get-color('brown', 5, 0.5);
+      color: get-color('white');
+    }
+
+    &--4 {
+      background-color: get-color('orange', 4);
+      border: 2px solid get-color('orange', 4, 0.5);
+      color: get-color('white');
+    }
+
+    &--selected {
+      background: get-color('yellow', 3, 1);
+      border: 2px solid get-color('white', 5, 1);
+      color: get-color('black');
+    }
+  }
+}
+
+.palavreado-guesses {
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: get-unit(6);
+}
+
+.palavreado-word {
+  text-transform: uppercase;
+}
+
+.palavreado-used-position-instruction {
+  margin: get-unit(2 auto);
+  width: calc(100% - get-unit(4));
+  max-width: 720px;
+  display: flex;
+  justify-content: center;
+}

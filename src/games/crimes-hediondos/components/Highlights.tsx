@@ -1,5 +1,5 @@
 // Icons
-import { BoxIcon } from 'icons/BoxIcon';
+import { CardboardBoxIcon } from 'icons/CardboardBoxIcon';
 import { KnifeIcon } from 'icons/KnifeIcon';
 // Components
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
@@ -14,7 +14,7 @@ export function WeaponHighlight({ children, type, iconSize, className }: Highlig
 
 export function EvidenceHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<BoxIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight icon={<CardboardBoxIcon />} type={type} iconSize={iconSize} className={className}>
       {children}
     </MetricHighlight>
   );

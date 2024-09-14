@@ -1,16 +1,17 @@
-// Type
+// Types
 import type { GamePlayer } from 'types/player';
-import { ObjectCardObj } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockObjectIdSelection } from './utils/mock';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
+// Internal
+import { ObjectCardObj } from './utils/types';
+import { mockObjectIdSelection } from './utils/mock';
 import { ObjectCard } from './components/ObjectCard';
+// Type
 
 type StepSelectObjectProps = {
   user: GamePlayer;
@@ -43,7 +44,7 @@ export function StepSelectObject({ user, announcement, onSelectObject }: StepSel
           }
           en={
             <>
-              In this game, you will write a clue that best connects your object with the drawn
+              In this game, you will write a clue that best connects your object with the assigned
               characteristic.
               <br />
               First, <strong>select</strong> one of the objects below that you are most familiar with.

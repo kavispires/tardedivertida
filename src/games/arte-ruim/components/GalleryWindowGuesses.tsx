@@ -1,16 +1,17 @@
 import { orderBy } from 'lodash';
+// Ant Design Resources
+import { CrownFilled, MessageFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { ArteRuimCard } from '../utils/types';
-import type { PlayersSay } from '../utils/types';
-// Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
-import { CrownFilled, MessageFilled } from '@ant-design/icons';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
+// Internal
+import type { ArteRuimCard } from '../utils/types';
+import type { PlayersSay } from '../utils/types';
 
 type GalleryWindowGuessesProps = {
   playersSay: PlayersSay;

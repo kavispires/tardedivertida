@@ -1,16 +1,16 @@
 // Types
 import type { GamePlayer } from 'types/player';
 import type { MonsterImage } from 'types/tdr';
-// Utils
-import { TIMES } from '../utils/constants';
 // Components
+import { AvatarName } from 'components/avatars';
 import { DrawingCanvas } from 'components/canvas';
+import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
-import { MonsterCard } from 'components/cards/MonsterCard';
-import { AvatarName } from 'components/avatars';
+// Internal
+import { TIMES } from '../utils/constants';
 
 type ViewWitnessingProps = {
   isUserTheWitness: boolean;

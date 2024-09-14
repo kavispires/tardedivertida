@@ -1,7 +1,5 @@
 import clsx from 'clsx';
 // Types
-import type { CardEntry } from '../utils/types';
-// Types
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -13,6 +11,8 @@ import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+// Internal
+import type { CardEntry } from '../utils/types';
 
 type TableProps = {
   table: CardEntry[];

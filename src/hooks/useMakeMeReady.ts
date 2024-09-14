@@ -1,16 +1,15 @@
-import { GAME_API, GAME_API_ACTIONS } from 'services/adapters';
+import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
 import { useLanguage } from './useLanguage';
-import { UseAPICallArgs, useAPICall } from './useAPICall';
+import { useGameActionRequest, UseGameActionRequestArgs } from './useGameActionRequest';
 
-type UseOnMakeMeReady = Omit<UseAPICallArgs, 'apiFunction' | 'actionName'>;
+type UseOnMakeMeReady = Omit<UseGameActionRequestArgs, 'actionName'>;
 
 export function useOnMakeMeReady(args: UseOnMakeMeReady) {
   const { translate } = useLanguage();
 
   const { successMessage, errorMessage, ...rest } = args;
 
-  const request = useAPICall({
-    apiFunction: GAME_API.run,
+  const request = useGameActionRequest({
     actionName: 'be-ready',
     successMessage: translate('Você está pronto!', 'You are ready!', successMessage),
     errorMessage: translate(
@@ -23,7 +22,7 @@ export function useOnMakeMeReady(args: UseOnMakeMeReady) {
 
   return () => {
     request({
-      action: GAME_API_ACTIONS.MAKE_PLAYER_READY,
+      action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY,
     });
   };
 }

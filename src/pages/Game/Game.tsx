@@ -110,6 +110,11 @@ const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpa
 const SessionQuemSouEu = lazy(
   () => import('games/quem-sou-eu/SessionQuemSouEu' /* webpackChunkName: "quem-sou-eu" */)
 );
+const SessionTeoriaDeConjuntos = lazy(
+  () =>
+    import('games/teoria-de-conjuntos/SessionTeoriaDeConjuntos' /* webpackChunkName: "teoria-de-conjuntos" */)
+);
+
 const SessionTaNaCara = lazy(
   () => import('games/ta-na-cara/SessionTaNaCara' /* webpackChunkName: "ta-na-cara" */)
 );
@@ -117,6 +122,9 @@ const SessionTesteDeElenco = lazy(
   () => import('games/teste-de-elenco/SessionTesteDeElenco' /* webpackChunkName: "teste-de-elenco" */)
 );
 const SessionMesmice = lazy(() => import('games/mesmice/SessionMesmice' /* webpackChunkName: "mesmice" */));
+const SessionSinaisDeAlerta = lazy(
+  () => import('games/sinais-de-alerta/SessionSinaisDeAlerta' /* webpackChunkName: "sinais-de-alerta" */)
+);
 
 function Game() {
   const { translate } = useLanguage();
@@ -307,6 +315,12 @@ function Game() {
             <SessionTaNaCara />
           </Suspense>
         );
+      case GAME_COLLECTION.TEORIA_DE_CONJUNTOS:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionTeoriaDeConjuntos />
+          </Suspense>
+        );
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
         return (
           <Suspense fallback={<LoadingPage />}>
@@ -341,6 +355,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionVendavalDePalpite />
+          </Suspense>
+        );
+      case GAME_COLLECTION.SINAIS_DE_ALERTA:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionSinaisDeAlerta />
           </Suspense>
         );
 

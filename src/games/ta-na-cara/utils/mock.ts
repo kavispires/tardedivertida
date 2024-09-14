@@ -1,8 +1,9 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import { CharactersDictionary } from './types';
 // Utils
 import { getRandomItem } from 'utils/helpers';
+// Internal
+import { CharactersDictionary } from './types';
 
 export function mockPromptDecision(
   user: GamePlayer,

@@ -1,14 +1,15 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { OnSubmitPathGuessFunction, Tree } from './utils/types';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { OnSubmitPathGuessFunction, Tree } from './utils/types';
 import { ClickableForest } from './components/ClickableForest';
-import { AvatarName } from 'components/avatars';
 import { MapHighlight, TreeHighlight } from './components/Highlights';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepFollowPathProps = {
   players: GamePlayers;

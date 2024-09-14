@@ -1,0 +1,29 @@
+import { Layout, Typography } from 'antd';
+import { IconAvatar } from 'components/avatars';
+import { ReactNode, useState } from 'react';
+import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
+
+type HeaderProps = {
+  icon: ReactNode;
+  children: ReactNode;
+  localStorageKey: string;
+};
+
+export function Header({ icon, children, localStorageKey }: HeaderProps) {
+  const [count, setCount] = useState(0);
+
+  return (
+    <Layout.Header className="daily-header">
+      <button
+        onClick={localStorageKey ? () => setCount((prev) => prev + 1) : undefined}
+        className="invisible-secret-button daily-header"
+      >
+        <IconAvatar icon={icon} />
+        <Typography.Title level={1} className="daily-heading">
+          {children}
+        </Typography.Title>
+      </button>
+      {count >= 5 && <DevResetLocalStorageButton localStorageKey={localStorageKey} />}
+    </Layout.Header>
+  );
+}

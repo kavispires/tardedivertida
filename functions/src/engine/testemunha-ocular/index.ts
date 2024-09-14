@@ -59,7 +59,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
@@ -67,7 +67,7 @@ export const getNextPhase = async (
   currentState?: FirebaseStateData,
   additionalPayload?: PlainObject
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -83,44 +83,44 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getQuestionsAndSuspects(store.language, store.options);
     const newPhase = await prepareSetupPhase(additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> WITNESS_SELECTION
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION) {
     const newPhase = await prepareWitnessSelectionPhase(players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // * -> QUESTION_SELECTION
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION) {
     const newPhase = await prepareQuestionSelectionPhase(store, state, players, additionalPayload ?? {});
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // QUESTION_SELECTION -> QUESTIONING
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.QUESTIONING) {
     const newPhase = await prepareQuestioningPhase(store, state, players, additionalPayload ?? {});
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // QUESTIONING -> TRIAL
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.TRIAL) {
     const newPhase = await prepareTrialPhase(store, state, players, additionalPayload ?? {});
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // TRIAL -> GAME_OVER
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players, additionalPayload ?? {});
 
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -164,6 +164,6 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
       });
 
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

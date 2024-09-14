@@ -1,10 +1,10 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
 export function VoteRetratoFalado({ track, playersList }: VoteComponentProps) {

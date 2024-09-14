@@ -3,29 +3,30 @@ import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider, Popconfirm } from 'antd';
-// Type
+// Types
 import type { GamePlayer } from 'types/player';
 // Hooks
+import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { mockFeatureSelection } from './utils/mock';
 // Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
+import { AvatarName, IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { Step, StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
+// Internal
+import { mockFeatureSelection } from './utils/mock';
 import type {
   ExtendedObjectFeatureCard,
   HistoryEntry,
   ObjectCardObj,
   SubmitFeaturePayload,
 } from './utils/types';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { ViewOr } from 'components/views';
 import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
 import { ScoreTrack } from './components/ScoreTrack';
 import { GroupScore } from './components/GroupScore';
@@ -71,6 +72,7 @@ export function StepSelectFeature({
   return (
     <Step fullWidth>
       <Title>
+        {isUserTheActivePlayer && <IconAvatar icon={<AnimatedClockIcon />} size="large" />}
         <Translate
           pt={<>Qual característica menos combina os dois objetos?</>}
           en={<>Which feature least connects the two objects?</>}
@@ -170,7 +172,7 @@ export function StepSelectFeature({
 
       <Divider />
 
-      <ScoreTrack history={history} features={features} />
+      <ScoreTrack history={history} />
     </Step>
   );
 }

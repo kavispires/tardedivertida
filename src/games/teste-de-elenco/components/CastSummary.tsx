@@ -1,23 +1,23 @@
 // Ant Design Resources
-import { Tooltip } from 'antd';
 import { CheckOutlined, QuestionOutlined } from '@ant-design/icons';
-// Types
-import type { FeatureFilm } from '../utils/types';
+import { Tooltip } from 'antd';
 // Icons
-import { StarIcon } from 'icons/StarIcon';
-import { FireIcon } from 'icons/FireIcon';
-import { MovieStarIcon } from 'icons/MovieStarIcon';
-import { SkullIcon } from 'icons/SkullIcon';
-import { PlayerIcon } from 'icons/PlayerIcon';
-import { LoveIcon } from 'icons/LoveIcon';
-import { SupportIcon } from 'icons/SupportIcon';
-import { ComedyIcon } from 'icons/ComedyIcon';
-import { SpeakerIcon } from 'icons/SpeakerIcon';
 import { BrainIcon } from 'icons/BrainIcon';
+import { ComedyIcon } from 'icons/ComedyIcon';
+import { FireIcon } from 'icons/FireIcon';
 import { KnifeIcon } from 'icons/KnifeIcon';
+import { LoveIcon } from 'icons/LoveIcon';
+import { MovieStarIcon } from 'icons/MovieStarIcon';
+import { PlayerIcon } from 'icons/PlayerIcon';
+import { SkullIcon } from 'icons/SkullIcon';
+import { SpeakerIcon } from 'icons/SpeakerIcon';
+import { StarIcon } from 'icons/StarIcon';
+import { SupportIcon } from 'icons/SupportIcon';
 // Components
-import { DualTranslate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
+import { DualTranslate } from 'components/language';
+// Internal
+import type { FeatureFilm } from '../utils/types';
 
 type CastSummaryProps = {
   movie: FeatureFilm;

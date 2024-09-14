@@ -1,12 +1,13 @@
 // Ant Design Resources
 import { Button } from 'antd';
-// Types
-import type { FightingContender } from '../utils/type';
-// Components
-import { Translate } from 'components/language';
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+// Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { FloatingHand } from 'components/general/FloatingHand';
+import { Translate } from 'components/language';
+// Internal
+import type { FightingContender } from '../utils/type';
 
 type ContendersHandProps = {
   contenders: FightingContender[];

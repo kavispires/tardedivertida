@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Tooltip } from 'antd';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { sortPlayers } from 'utils/helpers';
@@ -18,7 +18,7 @@ type SuspectsListProps = {
 
 export function SuspectsList({ players }: SuspectsListProps) {
   const { translate } = useLanguage();
-  const [cache, setCache] = useGlobalState('cache');
+  const { cache, setCache } = useCache();
   const sortedPlayers = sortPlayers(players);
 
   const onCross = (playerId: string) => {

@@ -1,0 +1,82 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "Q",
+  "gameName": "teoria-de-conjuntos",
+  "version": "2.0.8",
+  "title": {
+    "pt": "Teoria de Conjuntos",
+    "en": "Venn Diagram"
+  },
+  "popularName": {
+    "pt": "Dos círculos",
+    "en": "The circles one"
+  },
+  "basedOn": "sgniR ni sgnihT",
+  "summary": {
+    "pt": "Desfaça-se de suas coisas colocando-os nos círculos corretos.",
+    "en": "Get rid of your things by placing them in the correct circles."
+  },
+  "appearance": {
+    "clouds": "diagram-clouds",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "en": [
+      "In Venn Diagram, players must place their things in the correct sections.",
+      "Each circle in the diagram has a secret rule that only the judge knows.",
+      "The current player must place a things accordingly to what they think are the secret rules and the judge will evaluate it.",
+      "If they placed in the correct section, they can place another thing. If they are wrong, they get a new thing and it's another player's turn",
+      "The player who gets rid of all their things first wins and you don't even need to know the secret rules to do that."
+    ],
+    "pt": [
+      "Em Teoria de Conjuntos, os jogadores devem colocar suas coisas nas seções corretas.",
+      "Cada círculo no diagrama tem uma regra secreta que apenas o juiz conhece.",
+      "O jogador atual deve colocar uma coisa de acordo com o que eles acham que são as regras secretas e o juiz avaliará.",
+      "Se ele colocarem na seção correta, então pode colocar outra coisa. Se estiver errado, recebe uma nova coisa e é a vez de outro jogador",
+      "O jogador que se livrar de todas as suas coisas primeiro vence e você nem precisa saber as regras secretas para fazer isso."
+    ]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["competitive", "turn-based", "guessing", "brain-burner", "achievements"],
+  "available": true,
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "easyGame",
+      "kind": "switch",
+      "label": "Complexity",
+      "description": "Regular: Triple Venn diagram. Easy: Double Venn diagram.",
+      "disabled": true,
+      "values": [
+        {
+          "label": "Regular",
+          "value": false
+        },
+        {
+          "label": "Easy",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

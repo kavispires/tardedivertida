@@ -5,12 +5,13 @@ import type { GamePlayer } from 'types/player';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getEntryId } from 'utils/helpers';
-import { getClueId } from '../utils/helpers';
 // Components
-
-import { DreamCard } from './DreamCard';
-import { RibbonGroup } from 'components/ribbons';
 import { ImageBlurButton, ImageCardSelectButton } from 'components/image-cards';
+import { RibbonGroup } from 'components/ribbons';
+// Internal
+import { getClueId } from '../utils/helpers';
+import { DreamCard } from './DreamCard';
+// Components
 
 type DreamBoardVoteProps = {
   table: ImageCardId[];

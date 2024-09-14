@@ -7,13 +7,13 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { CandyIcon } from 'icons/CandyIcon';
 import { HouseIcon } from 'icons/HouseIcon';
-import { WalkIcon } from 'icons/WalkIcon';
-import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
 import { ScaredIcon } from 'icons/ScaredIcon';
+import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
+import { WalkIcon } from 'icons/WalkIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
+import { Translate } from 'components/language';
 
 type PlayersDecisionStateProps = {
   players: GamePlayers;

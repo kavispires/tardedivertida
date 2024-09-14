@@ -1,11 +1,11 @@
-// Types
-import type { ResultComponentProps, StreetCard } from '../../utils/types';
+import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
+// Internal
+import type { ResultComponentProps, StreetCard } from '../../utils/types';
 
 export function ResultNaRuaDoMedo({ track, winningValues, winningTeam, playersList }: ResultComponentProps) {
   if (track.variant === 'house') {

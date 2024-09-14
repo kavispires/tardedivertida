@@ -2,7 +2,6 @@
 import { Popconfirm, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { ActingRole, SubmitMovieActorPayload } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -10,6 +9,8 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { SuspectCard } from 'components/cards/SuspectCard';
+// Internal
+import type { ActingRole, SubmitMovieActorPayload } from '../utils/types';
 
 type ActorsBoardProps = {
   actors: ActingRole['candidates'];

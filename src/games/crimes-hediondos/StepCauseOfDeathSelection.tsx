@@ -3,16 +3,17 @@ import { useState } from 'react';
 import { Space } from 'antd';
 // Types
 import type { CrimeSceneTile } from 'types/tdr';
-import type { ItemsDict, SceneTilePayload } from './utils/types';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { SceneTile } from '../../components/game/SceneTile';
+// Internal
+import type { ItemsDict, SceneTilePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
 import { WeaponHighlight } from './components/Highlights';
+import { SceneTile } from '../../components/game/SceneTile';
 
 type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;

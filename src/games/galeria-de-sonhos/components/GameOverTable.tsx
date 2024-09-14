@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Image } from 'antd';
-// Types
-import type { ImageCardObj } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-// Helpers
+// Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageBlurButton, ImageCard } from 'components/image-cards';
+// Internal
+import type { ImageCardObj } from '../utils/types';
 
 type TableProps = {
   table: ImageCardObj[];

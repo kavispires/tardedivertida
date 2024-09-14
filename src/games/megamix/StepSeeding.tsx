@@ -1,20 +1,20 @@
 import { useState } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Steps } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { SeedEntry } from './utils/types';
 // Hooks
+import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
-import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { buildSeedingSteps } from './utils/helpers';
-import { mockSeeding } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import type { SeedEntry } from './utils/types';
+import { buildSeedingSteps } from './utils/helpers';
+import { mockSeeding } from './utils/mock';
 import { SeedArteRuim } from './components/Seeds/SeedArteRuim';
 import { SeedLabirintoSecreto } from './components/Seeds/SeedLabirintoSecreto';
 import { SeedClubber } from './components/Seeds/SeedClubber';

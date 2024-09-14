@@ -3,29 +3,30 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { AdedanhxGrid, Answer, SubmitGridAnswersPayload } from './utils/types';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useCountdown } from 'hooks/useCountdown';
+import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
-import { buildAnswerSheet } from './utils/helpers';
 import { SEPARATOR } from 'utils/constants';
-import { ANSWERING_TIME, ANSWERING_TIME_IN_MINUTES } from './utils/constants';
-import { mockAnswers } from './utils/mocks';
 // Icons
 import { LockIcon } from 'icons/LockIcon';
 import { StopIcon } from 'icons/StopIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { DevButton } from 'components/debug';
+import { Translate } from 'components/language';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { IconAvatar } from 'components/avatars';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Grid } from './components/Grid';
 import { TimerClock } from 'components/timers';
+// Internal
+import type { AdedanhxGrid, Answer, SubmitGridAnswersPayload } from './utils/types';
+import { buildAnswerSheet } from './utils/helpers';
+import { ANSWERING_TIME, ANSWERING_TIME_IN_MINUTES } from './utils/constants';
+import { mockAnswers } from './utils/mocks';
+import { Grid } from './components/Grid';
 import { StopAnnouncement } from './components/StopAnnouncement';
-import { DevButton } from 'components/debug';
 
 type StepAnswerGridProps = {
   players: GamePlayers;

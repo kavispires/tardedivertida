@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space, Switch } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-// Types
-import type { Clues, BoardEntry } from '../utils/types';
+import { Button, Space, Switch } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { Clues, BoardEntry } from '../utils/types';
 
 type ClueEvaluationProps = {
   clues: Clues;

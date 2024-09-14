@@ -22,7 +22,7 @@ export const NAO_SOU_ROBO_ACHIEVEMENTS = {
 
 export const PLAYER_COUNTS = {
   MIN: 2,
-  MAX: 10,
+  MAX: 8,
 };
 
 export const OUTCOME = {
@@ -38,11 +38,19 @@ export const CARDS_PER_PLAYER = 8;
 
 export const DECK_PER_PLAYER = MAX_ROUNDS + CARDS_PER_PLAYER;
 
-export const ROUND_TYPES = ['words', 'adjectives', 'glyphs', 'emojis'];
+export const ROUND_TYPES = ['colors', 'emotions', 'glyphs', 'words', 'emojis'];
 
-export const MIN_ROUND_CARDS = 5;
+export const MIN_ROUND_CARDS = 9;
 
-export const ROBOT_GOAL = 10;
+export const ROBOT_GOAL_BY_PLAYER_COUNT = {
+  2: 20,
+  3: 20,
+  4: 20,
+  5: 15,
+  6: 15,
+  7: 8,
+  8: 5,
+};
 
 export const SUSPICION_THRESHOLD = 3;
 

@@ -1,7 +1,19 @@
 import clsx from 'clsx';
 import { useRef } from 'react';
 import { useKeyPressEvent } from 'react-use';
-// Types
+// Ant Design Resources
+import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
+import { Button, Input, Tooltip } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Icons
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { BoxOneIcon } from 'icons/BoxOneIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
+// Components
+import { Translate } from 'components/language';
+// Internal
+import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
 import type {
   CloverMode,
   Leaves,
@@ -13,19 +25,6 @@ import type {
   Guesses,
   CloverObject,
 } from '../utils/types';
-// Ant Design Resources
-import { Button, Input, Tooltip } from 'antd';
-import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
-// Icons
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { BoxOneIcon } from 'icons/BoxOneIcon';
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-// Components
-import { Translate } from 'components/language';
 import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {

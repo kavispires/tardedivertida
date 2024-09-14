@@ -22,6 +22,7 @@ import { useCountdown } from 'hooks/useCountdown';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 import { Step, type StepProps } from 'components/steps';
+import clsx from 'clsx';
 // import { ConvertGuestToAccountModal } from 'components/auth/ConvertGuestToAccount';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
@@ -79,7 +80,7 @@ export function GameOver({
             fallback={`${PUBLIC_URL.RULES}game-rule-not-found.jpg`}
             alt={dualTranslate(info.title)}
             preview={false}
-            className={getAnimationClass('bounceInDown')}
+            className={clsx(getAnimationClass('bounceInDown'), 'round-corners margin')}
           />
         ) : (
           <img src={gameOverTitle} alt="Game Over" className={getAnimationClass('bounceInDown')} />
@@ -184,7 +185,7 @@ export function GameOver({
 
       {/* <ConvertGuestToAccountModal /> */}
 
-      <Space align="center" direction="vertical" className="full-width padding">
+      <Space align="center" direction="vertical" className="full-width padding" style={{ marginTop: '48px' }}>
         <Button onClick={() => navigate('/')}>
           <Translate pt="Página Inicial" en="Home Page" />
         </Button>

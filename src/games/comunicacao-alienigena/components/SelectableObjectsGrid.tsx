@@ -3,15 +3,18 @@ import clsx from 'clsx';
 import { Badge, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Item } from '../utils/types';
-// Hook
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+// Internal
+import type { Item, OfferingsStatus } from '../utils/types';
 import { ObjectsKey } from './ObjectsKey';
+// Hook
 
 type SelectableObjectsGridProps = {
   user: GamePlayer;
@@ -22,6 +25,7 @@ type SelectableObjectsGridProps = {
   hideKey?: boolean;
   showTypes?: boolean;
   isAlienRequest?: boolean;
+  status: OfferingsStatus;
 };
 
 export function SelectableObjectsGrid({
@@ -33,9 +37,10 @@ export function SelectableObjectsGrid({
   hideKey = false,
   showTypes = false,
   isAlienRequest = false,
+  status,
 }: SelectableObjectsGridProps) {
   const { isLoading } = useLoading();
-
+  const { dualTranslate } = useLanguage();
   return (
     <Space direction="vertical">
       <Title level={3} size="xx-small" white>
@@ -49,7 +54,11 @@ export function SelectableObjectsGrid({
               key={`selectable-${item.id}`}
             >
               <Badge size="small" count={item.inquired} color="orange">
-                <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+                <ItemCard
+                  id={`${item.id}`}
+                  className={clsx(item.offered && 'objects-grid__item-offered')}
+                  title={item.name ? dualTranslate(item.name) : undefined}
+                />
               </Badge>
             </div>
           ) : (
@@ -67,14 +76,18 @@ export function SelectableObjectsGrid({
               onClick={() => selectObject(item.id)}
             >
               <Badge size="small" count={item.inquired} color="orange">
-                <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+                <ItemCard
+                  id={`${item.id}`}
+                  className={clsx(item.offered && 'objects-grid__item-offered')}
+                  title={item.name ? dualTranslate(item.name) : undefined}
+                />
               </Badge>
             </TransparentButton>
           )
         )}
       </div>
 
-      {!hideKey && <ObjectsKey />}
+      {!hideKey && <ObjectsKey status={status} />}
     </Space>
   );
 }

@@ -1,3 +1,4 @@
+// Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
@@ -7,9 +8,10 @@ import { QualitySealIcon } from 'icons/QualitySealIcon';
 import { TheEndIcon } from 'icons/TheEndIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
-import { IconAvatar } from 'components/avatars';
+// Internal
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
 

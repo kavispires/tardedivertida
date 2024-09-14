@@ -1,19 +1,20 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+// Internal
 import { StepReveal } from './StepReveal';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 export function PhaseReveal({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);

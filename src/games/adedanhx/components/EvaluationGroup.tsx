@@ -1,25 +1,26 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button, Space, Switch, Tooltip } from 'antd';
 import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Space, Switch, Tooltip } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { NOOP } from 'utils/constants';
-import { ANSWERING_TIME } from '../utils/constants';
+import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { Translate } from 'components/language';
 import { AvatarName, IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { CategoryCell, LetterCell } from './Grid';
-import { getAnimationClass } from 'utils/helpers';
 import { TimedTimerBar } from 'components/timers';
+// Internal
+import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from '../utils/types';
+import { ANSWERING_TIME } from '../utils/constants';
+import { CategoryCell, LetterCell } from './Grid';
 
 type EvaluationGroupProps = {
   players: GamePlayers;

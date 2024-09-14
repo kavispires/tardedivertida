@@ -1,3 +1,4 @@
+// Internal
 import { NEGATIVE_SCALE, POSITIVE_SCALE } from './constants';
 
 export const getReference = (kind: string) => {

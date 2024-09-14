@@ -1,6 +1,6 @@
 // Constants
 import { DECK_PER_PLAYER, MAX_ROUNDS, MIN_ROUND_CARDS } from './constants';
-import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Type
 import { TextCard } from '../../types/tdr';
 import { GalleryEntry, ResourceData } from './types';
@@ -8,6 +8,7 @@ import { GalleryEntry, ResourceData } from './types';
 import utils from '../../utils';
 import * as dataUtils from '../collections';
 import * as globalUtils from '../global';
+import * as resourceUtils from '../resource';
 
 /**
  * Get data
@@ -16,17 +17,26 @@ import * as globalUtils from '../global';
  * @returns
  */
 export const getResourceData = async (language: Language, playerCount: number): Promise<ResourceData> => {
-  const imageCardsNeeded = DECK_PER_PLAYER * playerCount + MAX_ROUNDS * MIN_ROUND_CARDS;
+  const imageCardsNeeded = DECK_PER_PLAYER * MAX_ROUNDS + MAX_ROUNDS * MIN_ROUND_CARDS;
 
   const images = utils.game.shuffle(await utils.imageCards.getImageCards(imageCardsNeeded));
 
   const quantityNeeded = Math.ceil(MAX_ROUNDS / 3);
 
+  // Colors
+  const allColors: Collection<TextCard> = await resourceUtils.fetchResource(
+    `${TDR_RESOURCES.COLORS}-${language}`
+  );
+  const colors = utils.game.getRandomItems(Object.values(allColors), quantityNeeded);
+
+  // Emotions
+  const allEmotions: Collection<TextCard> = await resourceUtils.fetchResource(
+    `${TDR_RESOURCES.EMOTIONS}-${language}`
+  );
+  const emotions = utils.game.getRandomItems(Object.values(allEmotions), quantityNeeded);
+
   // Words
   const words = await utils.tdr.getSingleWords(language, quantityNeeded);
-
-  // Adjectives
-  const adjectives = await utils.tdr.getAdjectives(language, quantityNeeded);
 
   // Glyphs
   const glyphs = utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded * 3);
@@ -36,7 +46,7 @@ export const getResourceData = async (language: Language, playerCount: number): 
 
   // Robot cards
   const botCards = utils.game
-    .makeArray(MAX_ROUNDS * MIN_ROUND_CARDS)
+    .makeArray(MAX_ROUNDS * (MIN_ROUND_CARDS - playerCount))
     .map(() => {
       return images.pop() as string;
     })
@@ -48,7 +58,8 @@ export const getResourceData = async (language: Language, playerCount: number): 
     emojis,
     words,
     glyphs,
-    adjectives,
+    colors,
+    emotions,
   };
 };
 

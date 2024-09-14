@@ -1,8 +1,9 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
+import type { GamePlayers } from 'types/player';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
 import { HostNextPhaseButton } from 'components/host';

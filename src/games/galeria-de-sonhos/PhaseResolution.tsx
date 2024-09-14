@@ -1,18 +1,19 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { StepRankingWrapper } from 'components/ranking';
-import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepRankingWrapper } from 'components/ranking';
+import { StepSwitcher } from 'components/steps';
+import { Instruction, RoundsLeftInstruction } from 'components/text';
+// Internal
 import { RowSwapInstruction } from './components/RulesBlobs';
 
 export function PhaseResolution({ players, state, info }: PhaseProps) {

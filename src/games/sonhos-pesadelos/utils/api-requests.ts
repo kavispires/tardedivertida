@@ -1,17 +1,15 @@
-import type { SubmitDreamPayload, SubmitVotesPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'sonhosPesadelosSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitDreamPayload, SubmitVotesPayload } from './types';
+import { SONHOS_PESADELOS_ACTIONS } from './constants';
 
 export function useOnSubmitDreamAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-dream',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
@@ -24,7 +22,7 @@ export function useOnSubmitDreamAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitDreamPayload) => {
     request({
-      action: 'SUBMIT_DREAM',
+      action: SONHOS_PESADELOS_ACTIONS.SUBMIT_DREAM,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitDreamAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
@@ -47,7 +44,7 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitVotesPayload) => {
     request({
-      action: 'SUBMIT_VOTING',
+      action: SONHOS_PESADELOS_ACTIONS.SUBMIT_VOTING,
       ...payload,
     });
   };

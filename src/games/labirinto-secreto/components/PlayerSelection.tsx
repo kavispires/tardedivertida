@@ -1,12 +1,12 @@
 // Ant Design Resources
 import { Space } from 'antd';
-import { IconAvatar } from 'components/avatars';
-// Types
-import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { TreeCard } from 'components/cards/TreeCard';
+import { IconAvatar } from 'components/avatars';
+// Internal
+import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
+import { TreeImage } from './TreeImage';
 
 type PlayerSelectionMapProps = {
   forest: Tree[];
@@ -47,7 +47,7 @@ export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapPr
               );
             })}
 
-            <TreeCard id={String(tree.treeType)} text={passed ? '' : tree.card.text} />
+            <TreeImage id={tree.treeType} text={passed ? '' : tree.card.text} />
           </div>
         );
       })}

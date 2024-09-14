@@ -6,7 +6,6 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
   SonhosPesadelosInitialState,
-  SonhosPesadelosOptions,
   SonhosPesadelosSubmitAction,
 } from './types';
 // Utils
@@ -33,8 +32,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
-  version: string,
-  options: SonhosPesadelosOptions
+  version: string
 ): SonhosPesadelosInitialState => {
   return utils.helpers.getDefaultInitialState<SonhosPesadelosInitialState>({
     gameId,
@@ -46,21 +44,20 @@ export const getInitialState = (
     initialPhase: SONHOS_PESADELOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
-    options,
   });
 };
 
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -71,12 +68,12 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === SONHOS_PESADELOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getInspirationThemes(store.language, store.options.allImageDecks);
+    const additionalData = await getInspirationThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
 
     return getNextPhase(gameName, gameId);
   }
@@ -84,25 +81,25 @@ export const getNextPhase = async (
   // * -> DREAM_TELLING
   if (nextPhase === SONHOS_PESADELOS_PHASES.DREAM_TELLING) {
     const newPhase = await prepareDreamTellingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // DREAM_TELLING -> MATCHING
   if (nextPhase === SONHOS_PESADELOS_PHASES.MATCHING) {
     const newPhase = await prepareMatchingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // MATCHING -> RESOLUTION
   if (nextPhase === SONHOS_PESADELOS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION --> GAME_OVER
   if (nextPhase === SONHOS_PESADELOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -126,6 +123,6 @@ export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(gameName, gameId, playerId, data.votes);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

@@ -1,15 +1,17 @@
 import { capitalize } from 'lodash';
-// AntDesign Resources
-import { Button, Space } from 'antd';
+// Ant Design Resources
 import { HeartOutlined, MessageOutlined, SendOutlined } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { SeedEntryLabirintoSecreto } from '../../utils/types';
-// Components
+// Icons
 import { BikiniModelIcon } from 'icons/BikiniModelIcon';
+// Components
+import { SocialProfile } from 'components/game/SocialProfile';
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { SocialProfile } from 'components/game/SocialProfile';
+// Internal
+import type { SeedEntryLabirintoSecreto } from '../../utils/types';
 
 type SeedLabirintoSecretoProps = {
   seed: SeedEntryLabirintoSecreto;

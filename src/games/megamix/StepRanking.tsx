@@ -1,19 +1,20 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound, GameRanking } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Icons
 import { BouncerIcon } from 'icons/BouncerIcon';
-// Hooks
-import { useColorizeBackground } from './utils/useColorizeBackground';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import { useColorizeBackground } from './utils/useColorizeBackground';
 
 type StepRankingProps = {
   user: GamePlayer;
@@ -32,7 +33,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
       <RuleInstruction type="alert">
         <Translate
           pt="Somente jogadores na área VIP são ranqueados, porque você não pode ganhar se não estiver lá!"
-          en="Only players in the VIP area can be ranked since you can't win if you're not there"
+          en="Only players in the VIP area can be ranked since you can't win if you're not there. We are elitist!"
         />
       </RuleInstruction>
     </>

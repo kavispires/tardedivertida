@@ -35,6 +35,15 @@ export const prepareSetupPhase = async (
 
   utils.players.addPropertiesToPlayers(players, { votes: [] });
 
+  // Build movie title
+  const movieTitles = additionalData.moviesSamples.reduce((acc: string[], movie, index) => {
+    if (index % 2 === 0) {
+      acc.push(`${movie.prefix} ${additionalData.moviesSamples[index + 1].suffix}`);
+    }
+
+    return acc;
+  }, []);
+
   // Save
   return {
     update: {
@@ -46,6 +55,8 @@ export const prepareSetupPhase = async (
       state: {
         phase: TESTE_DE_ELENCO_PHASES.SETUP,
         players,
+        movieTitles,
+        movieProps: additionalData.itemsSamples,
         round: {
           current: 0,
           total: MAX_ROUNDS,
@@ -104,8 +115,8 @@ export const prepareActorSelectionPhase = async (
 
   let movie: Movie = state.movie;
   if (!movie) {
-    movie = buildMovie(players, store);
-    utils.players.removePropertiesFromPlayers(players, ['genre']);
+    movie = buildMovie(players, store, state.movieProps);
+    utils.players.removePropertiesFromPlayers(players, ['genre', 'selectedProps', 'movieTitle']);
   }
 
   utils.players.removePropertiesFromPlayers(players, ['actorId']);
@@ -130,7 +141,7 @@ export const prepareActorSelectionPhase = async (
         movie,
         activeRoleId,
       },
-      stateCleanup: ['genres', 'ranking', 'outcome'],
+      stateCleanup: ['genres', 'ranking', 'outcome', 'movieTitles', 'movieProps'],
     },
   };
 };
@@ -152,6 +163,10 @@ export const prepareResultPhase = async (
         movie: state.movie,
         outcome,
         ranking,
+        round: {
+          ...state.round,
+          total: outcome === 'CAST' ? state.round.total - 1 : state.round.total,
+        },
       },
     },
   };
@@ -167,7 +182,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store, players);
 
-  await utils.firebase.markGameAsComplete(gameId);
+  await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.TESTE_DE_ELENCO,

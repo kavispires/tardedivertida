@@ -2,11 +2,12 @@
 import { Space, Avatar as AntAvatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { Sketch } from '../utils/types';
 // Components
 import { Avatar } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
+// Internal
+import type { Sketch } from '../utils/types';
 
 type MonsterSketchesProps = {
   sketches: Sketch[];

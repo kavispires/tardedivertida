@@ -51,7 +51,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
  *
@@ -65,7 +65,7 @@ export const getNextPhase = async (
   gameId: GameId,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -76,10 +76,10 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === QUEM_NAO_MATA_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     const newPhase = await prepareSetupPhase(store, state, players);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
 
     return getNextPhase(gameName, gameId);
   }
@@ -87,31 +87,31 @@ export const getNextPhase = async (
   // SETUP/STANDOFF/RESOLUTION -> TARGETING
   if (nextPhase === QUEM_NAO_MATA_PHASES.TARGETING) {
     const newPhase = await prepareTargetingPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // TARGETING -> STANDOFF
   if (nextPhase === QUEM_NAO_MATA_PHASES.STANDOFF) {
     const newPhase = await prepareStandoffPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // STANDOFF -> DUEL
   if (nextPhase === QUEM_NAO_MATA_PHASES.DUEL) {
     const newPhase = await prepareDuelPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // DUEL -> RESOLUTION
   if (nextPhase === QUEM_NAO_MATA_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // STREET_END -> GAME_OVER
   if (nextPhase === QUEM_NAO_MATA_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -138,6 +138,6 @@ export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
       return handleSubmitDecision(gameName, gameId, playerId, data.decision);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

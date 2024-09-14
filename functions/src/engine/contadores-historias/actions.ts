@@ -22,7 +22,7 @@ export const handleSubmitStory = async (
   cardId: string
 ) => {
   // Get 'players' from given game session
-  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     'submit story'
@@ -30,7 +30,7 @@ export const handleSubmitStory = async (
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  await utils.firebase.updatePlayer({
+  await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -69,7 +69,7 @@ export const handlePlayCard = async (
   cardId: string
 ) => {
   const actionText = 'play a card';
-  const { state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+  const { state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText
@@ -81,7 +81,7 @@ export const handlePlayCard = async (
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -110,7 +110,7 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

@@ -54,14 +54,14 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCounts = PLAYER_COUNTS;
+export const getPlayerCounts = () => PLAYER_COUNTS;
 
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -72,38 +72,38 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === TESTE_DE_ELENCO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firebase.triggerSetupPhase(sessionRef);
+    await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getData(store.language, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firebase.saveGame(sessionRef, newPhase);
+    await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> MOVIE_GENRE_SELECTION
   if (nextPhase === TESTE_DE_ELENCO_PHASES.MOVIE_GENRE_SELECTION) {
     const newPhase = await prepareMovieGenreSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // * -> ACTOR_SELECTION
   if (nextPhase === TESTE_DE_ELENCO_PHASES.ACTOR_SELECTION) {
     const newPhase = await prepareActorSelectionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // ACTOR_SELECTION -> RESULT
   if (nextPhase === TESTE_DE_ELENCO_PHASES.RESULT) {
     const newPhase = await prepareResultPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // RESULT -> GAME_OVER
   if (nextPhase === TESTE_DE_ELENCO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
 
-    return utils.firebase.saveGame(sessionRef, newPhase);
+    return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -124,8 +124,8 @@ export const submitAction = async (data: TesteDeElencoSubmitAction) => {
   switch (action) {
     case TESTE_DE_ELENCO_ACTIONS.SELECT_MOVIE_GENRE:
       actionText = 'select genre';
-      utils.firebase.validateSubmitActionProperties(data, ['genre'], actionText);
-      return handleSubmitGenre(gameName, gameId, playerId, data.genre);
+      utils.firebase.validateSubmitActionProperties(data, ['genre', 'movieTitle', 'propsIds'], actionText);
+      return handleSubmitGenre(gameName, gameId, playerId, data.genre, data.movieTitle, data.propsIds);
 
     case TESTE_DE_ELENCO_ACTIONS.SELECT_ACTOR:
       actionText = 'select actor';
@@ -133,6 +133,6 @@ export const submitAction = async (data: TesteDeElencoSubmitAction) => {
       return handleSubmitActor(gameName, gameId, playerId, data.actorId);
 
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
 };

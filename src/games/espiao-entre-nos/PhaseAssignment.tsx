@@ -4,19 +4,20 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { SpyNewspaperIcon } from 'icons/SpyNewspaperIcon';
-import { SecretIcon } from 'icons/SecretIcon';
 import { PassportIcon } from 'icons/PassportIcon';
+import { SecretIcon } from 'icons/SecretIcon';
+import { SpyNewspaperIcon } from 'icons/SpyNewspaperIcon';
 // Components
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+// Internal
 import { StepAssignment } from './StepAssignment';
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 
 export function PhaseAssignment({ state, players, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);

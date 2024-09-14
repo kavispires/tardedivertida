@@ -9,7 +9,7 @@ import { FilterFilled } from '@ant-design/icons';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import GAMES from 'utils/info';
@@ -29,7 +29,7 @@ function Showcase() {
   const { language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const { width } = useWindowSize();
-  const [, setLanguage] = useGlobalState('language');
+  const [, setLanguage] = useGlobalLocalStorage('language');
 
   const [showFilters, setShowFilters] = useState(false);
   const [showModal, setShowModal] = useState('');

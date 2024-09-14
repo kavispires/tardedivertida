@@ -13,6 +13,7 @@ import { PhaseLobby } from 'components/phases';
 import { GameInfoDrawer } from 'components/drawers';
 import { AdminMenuDrawer } from 'components/admin';
 import { RedirectSession } from './RedirectSession';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 type SessionProps = {
   /**
@@ -30,7 +31,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   const { language } = useLanguage();
   const state = useGameState(gameMeta.gameId, gameCollection);
   const [userId] = useGlobalState('userId');
-  const [, setLanguage] = useGlobalState('language');
+  const [, setLanguage] = useGlobalLocalStorage('language');
   const [info, setInfo] = useState<any>({});
   const gameName = info?.title ?? '';
   const players = state.players ?? {};

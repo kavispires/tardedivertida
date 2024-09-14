@@ -3,21 +3,22 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import { type MonsterImage } from 'types/tdr';
-import type { UseStep } from 'hooks/useStep';
-import type { Sketch } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { MonsterCard } from '../../components/cards/MonsterCard';
-import { MonsterSketches } from './components/MonsterSketches';
-import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Step, type StepProps } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+// Internal
+import type { Sketch } from './utils/types';
+import { MonsterSketches } from './components/MonsterSketches';
+import { MonsterCard } from '../../components/cards/MonsterCard';
 
 type StepResultsProps = {
   currentMonster: MonsterImage;
@@ -56,7 +57,7 @@ export function StepResults({
     minWidth: 150,
     maxWidth: 300,
   });
-  const [canvasSize] = useGlobalState('canvasSize');
+  const [canvasSize] = useGlobalLocalStorage('canvasSize');
 
   const { mostVotedSketches, otherSketches } = sketches.reduce(
     (acc: Sketches, sketch) => {

@@ -1,17 +1,15 @@
-import type { SubmitCategoryPayload, SubmitCluePayload, SubmitGuessPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'ondaTelepaticaSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitCategoryPayload, SubmitCluePayload, SubmitGuessPayload } from './types';
+import { ONDA_TELEPATICA_ACTIONS } from './constants';
 
 export function useOnSubmitCategoryAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-category',
     successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
     errorMessage: translate(
@@ -22,7 +20,7 @@ export function useOnSubmitCategoryAPIRequest() {
 
   return (payload: SubmitCategoryPayload) => {
     request({
-      action: 'SUBMIT_CATEGORY',
+      action: ONDA_TELEPATICA_ACTIONS.SUBMIT_CATEGORY,
       ...payload,
     });
   };
@@ -31,8 +29,7 @@ export function useOnSubmitCategoryAPIRequest() {
 export function useOnSubmitClueAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-category',
     successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
     errorMessage: translate(
@@ -43,7 +40,7 @@ export function useOnSubmitClueAPIRequest() {
 
   return (payload: SubmitCluePayload) => {
     request({
-      action: 'SUBMIT_CLUE',
+      action: ONDA_TELEPATICA_ACTIONS.SUBMIT_CLUE,
       ...payload,
     });
   };
@@ -52,8 +49,7 @@ export function useOnSubmitClueAPIRequest() {
 export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-guess',
     onSuccess: () => setStep(2),
     onError: () => setStep(1),
@@ -66,7 +62,7 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitGuessPayload) => {
     request({
-      action: 'SUBMIT_GUESS',
+      action: ONDA_TELEPATICA_ACTIONS.SUBMIT_GUESS,
       ...payload,
     });
   };

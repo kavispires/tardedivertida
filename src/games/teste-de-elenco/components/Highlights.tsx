@@ -1,6 +1,6 @@
 // Icons
-import { MovieStarIcon } from 'icons/MovieStarIcon';
 import { ClipboardIcon } from 'icons/ClipboardIcon';
+import { MovieStarIcon } from 'icons/MovieStarIcon';
 // Components
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 

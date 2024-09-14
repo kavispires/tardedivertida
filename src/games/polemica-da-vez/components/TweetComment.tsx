@@ -3,6 +3,7 @@ import moment from 'moment';
 import type { GamePlayer } from 'types/player';
 // Components
 import { Avatar } from 'components/avatars';
+// Internal
 import { CommentText } from './CommentText';
 
 type TweetCommentProps = {

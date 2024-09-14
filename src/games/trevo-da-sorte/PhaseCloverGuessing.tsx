@@ -1,21 +1,22 @@
 // Types
 import { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { CloverIcon } from 'icons/CloverIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { TurnOrder } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { StepGuessClover } from './StepGuessClover';
 import { ViewOr } from 'components/views';
-import { TurnOrder } from 'components/players';
+// Internal
+import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { StepGuessClover } from './StepGuessClover';
 import { StepWaitClover } from './StepWaitClover';
 
 export function PhaseCloverGuessing({ players, state, info }: PhaseProps) {

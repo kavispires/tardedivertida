@@ -1,13 +1,10 @@
 // Types
 import type { GamePlayers } from 'types/player';
-import type { ArteRuimCard } from './utils/types';
-import type { ArteRuimWindow } from './utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import type { UseStep } from 'hooks/useStep';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { WINDOW_DURATION } from './utils/constants';
 import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { CanvasSVG } from 'components/canvas';
@@ -16,6 +13,10 @@ import { PopoverRule } from 'components/rules';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import type { ArteRuimCard } from './utils/types';
+import type { ArteRuimWindow } from './utils/types';
+import { WINDOW_DURATION } from './utils/constants';
 import { GalleryWindowCredits } from './components/GalleryWindowCredits';
 import { GalleryWindowGuesses } from './components/GalleryWindowGuesses';
 import { GalleryWindowResult } from './components/GalleryWindowResult';

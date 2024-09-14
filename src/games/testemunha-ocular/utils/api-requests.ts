@@ -1,15 +1,13 @@
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'testemunhaOcularSubmitAction');
+// Internal
+import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
 export function useOnSelectWitnessAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'select-witness',
     successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully'),
     errorMessage: translate(
@@ -20,7 +18,7 @@ export function useOnSelectWitnessAPIRequest() {
 
   return (payload: SelectWitnessPayload) => {
     request({
-      action: 'SELECT_WITNESS',
+      action: TESTEMUNHA_OCULAR_ACTIONS.SELECT_WITNESS,
       ...payload,
     });
   };
@@ -29,8 +27,7 @@ export function useOnSelectWitnessAPIRequest() {
 export function useOnSelectQuestionAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'select-question',
     successMessage: translate('Pergunta enviada com sucesso', 'Question submitted successfully'),
     errorMessage: translate(
@@ -41,7 +38,7 @@ export function useOnSelectQuestionAPIRequest() {
 
   return (payload: SelectQuestionPayload) => {
     request({
-      action: 'SELECT_QUESTION',
+      action: TESTEMUNHA_OCULAR_ACTIONS.SELECT_QUESTION,
       ...payload,
     });
   };
@@ -50,8 +47,7 @@ export function useOnSelectQuestionAPIRequest() {
 export function useOnSubmitTestimonyAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-testimony',
     successMessage: translate('Testemunho enviada com sucesso', 'Testimony submitted successfully'),
     errorMessage: translate(
@@ -62,7 +58,7 @@ export function useOnSubmitTestimonyAPIRequest() {
 
   return (payload: SubmitTestimonyPayload) => {
     request({
-      action: 'GIVE_TESTIMONY',
+      action: TESTEMUNHA_OCULAR_ACTIONS.GIVE_TESTIMONY,
       ...payload,
     });
   };
@@ -71,8 +67,7 @@ export function useOnSubmitTestimonyAPIRequest() {
 export function useOnEliminateSuspectAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'eliminate-suspect',
     successMessage: translate('Suspeito eliminado com sucesso', 'Suspect release submitted successfully'),
     errorMessage: translate(
@@ -83,7 +78,7 @@ export function useOnEliminateSuspectAPIRequest() {
 
   return (payload: EliminatePayload) => {
     request({
-      action: 'ELIMINATE_SUSPECT',
+      action: TESTEMUNHA_OCULAR_ACTIONS.ELIMINATE_SUSPECT,
       ...payload,
     });
   };

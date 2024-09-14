@@ -9,7 +9,7 @@ export const handleSubmitCharacters = async (
   playerId: PlayerId,
   characters: CardId[]
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -26,7 +26,7 @@ export const handleSubmitGlyphs = async (
   playerId: PlayerId,
   glyphs: Collection<boolean>
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -44,7 +44,7 @@ export const handleSubmitGuesses = async (
   guesses: Record<PlayerId, CardId>,
   choseRandomly: boolean
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,

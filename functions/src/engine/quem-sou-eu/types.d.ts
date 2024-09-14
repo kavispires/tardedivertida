@@ -10,10 +10,15 @@ export type QuemSouEuOptions = {
    * Possibly include nsfw characters
    */
   nsfw?: boolean;
+  /**
+   * Uses image cards instead of characters
+   */
+  imageCardsMode?: boolean;
 };
 
 export interface ResourceData {
   characters: ContenderCard[];
+  imageCards: ContenderCard[];
 }
 
 export interface Character {

@@ -1,17 +1,15 @@
-import type { SubmitGridAnswersPayload, SubmitRejectedAnswers } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'adedanhxSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitGridAnswersPayload, SubmitRejectedAnswers } from './types';
+import { ADEDANHX_ACTIONS } from './constants';
 
 export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-answers',
     onSuccess: () => setStep(3),
     onError: () => setStep(2),
@@ -24,7 +22,7 @@ export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitGridAnswersPayload) => {
     request({
-      action: 'SUBMIT_ANSWERS',
+      action: ADEDANHX_ACTIONS.SUBMIT_ANSWERS,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
 export function useOnNextEvaluationGroupAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'go-to-next-evaluation-group',
 
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
@@ -46,7 +43,7 @@ export function useOnNextEvaluationGroupAPIRequest() {
 
   return () => {
     request({
-      action: 'NEXT_EVALUATION_GROUP',
+      action: ADEDANHX_ACTIONS.NEXT_EVALUATION_GROUP,
     });
   };
 }
@@ -54,8 +51,7 @@ export function useOnNextEvaluationGroupAPIRequest() {
 export function useOnRejectAnswersAPIRequest() {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'go-to-next-evaluation-group',
 
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
@@ -67,7 +63,7 @@ export function useOnRejectAnswersAPIRequest() {
 
   return (payload: SubmitRejectedAnswers) => {
     request({
-      action: 'SUBMIT_REJECTED_ANSWERS',
+      action: ADEDANHX_ACTIONS.SUBMIT_REJECTED_ANSWERS,
       ...payload,
     });
   };

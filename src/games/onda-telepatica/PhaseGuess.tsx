@@ -1,24 +1,28 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { SoundWaveIcon } from 'icons/SoundWaveIcon';
 // Components
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { NeedleChoice } from './components/NeedleChoice';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
 
 export function PhaseGuess({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
+  const user = useUser(players, state);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   const onSendGuess = useOnSubmitGuessAPIRequest(setStep);
@@ -39,7 +43,15 @@ export function PhaseGuess({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}>
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{
+          content: (
+            <NeedleChoice currentCategory={state.currentCategory} user={user} isPsychic={isUserThePsychic} />
+          ),
+        }}
+      >
         {/* Step 0 */}
         <ViewOr condition={isUserThePsychic}>
           <StepPsychicGuess

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { App, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { CardEntry } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -12,11 +11,13 @@ import { getAnimationClass } from 'utils/helpers';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
+import { messageContent } from 'components/pop-up';
 import { Instruction, TextHighlight, Title } from 'components/text';
+// Internal
+import type { CardEntry } from './utils/types';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';
 import { TableFocus } from './components/TableFocus';
 import { YourSelectedCards } from './components/YourSelectedCards';
-import { messageContent } from 'components/pop-up';
 
 type StepDefendingActionProps = {
   clue: string;

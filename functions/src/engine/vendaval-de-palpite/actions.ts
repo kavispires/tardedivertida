@@ -18,7 +18,7 @@ export const handleSubmitBossPlayer = async (
   playerId: PlayerId,
   bossId: string
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -46,7 +46,7 @@ export const handleSubmitSecretWord = async (
   secretWord: string,
   categories: string[]
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -75,7 +75,7 @@ export const handleSubmitPlayerClues = async (
   clues: string[],
   guesses?: string[]
 ) => {
-  return await utils.firebase.updatePlayer({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -103,7 +103,7 @@ export const handleSubmitEvaluation = async (
   // Count trues
   const trues = Object.values(evaluation).filter((result) => result).length;
 
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -131,7 +131,7 @@ export const handleSubmitOutcome = async (
   playerId: PlayerId,
   outcome: string
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
@@ -157,7 +157,7 @@ export const handleSubmitHelp = async (
   playerId: PlayerId,
   clueId: ClueId
 ) => {
-  return await utils.firebase.updateState({
+  return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,

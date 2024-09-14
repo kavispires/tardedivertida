@@ -1,17 +1,18 @@
 // Types
 import { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { ChatIcon } from 'icons/ChatIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
+import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
 import { StepAnswerTheQuestion } from './StepAnswerTheQuestion';
 
 export function PhaseAnswer({ players, state, info }: PhaseProps) {

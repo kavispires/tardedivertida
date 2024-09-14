@@ -1,17 +1,15 @@
-import { SubmitCrimePayload, SubmitGuessesPayload, SubmitMarkPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { functions } from 'services/firebase';
-import { httpsCallable } from 'firebase/functions';
-import { useAPICall } from 'hooks/useAPICall';
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
-const submitAction = httpsCallable(functions, 'crimesHediondosSubmitAction');
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import { CRIMES_HEDIONDOS_ACTIONS } from './constants';
+import { SubmitCrimePayload, SubmitGuessesPayload, SubmitMarkPayload } from './types';
 
 export function useOnSubmitCrimeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-crime',
     onBeforeCall: () => setStep(11),
     onError: () => setStep(9),
@@ -24,7 +22,7 @@ export function useOnSubmitCrimeAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitCrimePayload) => {
     request({
-      action: 'SUBMIT_CRIME',
+      action: CRIMES_HEDIONDOS_ACTIONS.SUBMIT_CRIME,
       ...payload,
     });
   };
@@ -33,8 +31,7 @@ export function useOnSubmitCrimeAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitMarkAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-mark',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
@@ -50,7 +47,7 @@ export function useOnSubmitMarkAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitMarkPayload) => {
     request({
-      action: 'SUBMIT_MARK',
+      action: CRIMES_HEDIONDOS_ACTIONS.SUBMIT_MARK,
       ...payload,
     });
   };
@@ -59,8 +56,7 @@ export function useOnSubmitMarkAPIRequest(setStep: UseStep['setStep']) {
 export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
-  const request = useAPICall({
-    apiFunction: submitAction,
+  const request = useGameActionRequest({
     actionName: 'submit-guesses',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
@@ -73,7 +69,7 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
 
   return (payload: SubmitGuessesPayload) => {
     request({
-      action: 'SUBMIT_GUESSES',
+      action: CRIMES_HEDIONDOS_ACTIONS.SUBMIT_GUESSES,
       ...payload,
     });
   };

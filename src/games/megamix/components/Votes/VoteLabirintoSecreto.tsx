@@ -1,11 +1,12 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
 // Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
+// Utils
+import { LETTERS } from 'utils/constants';
 // Components
 import { Avatar } from 'components/avatars';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
-import { LETTERS } from 'utils/constants';
 
 export function VoteLabirintoSecreto({ playersList }: VoteComponentProps) {
   return (
