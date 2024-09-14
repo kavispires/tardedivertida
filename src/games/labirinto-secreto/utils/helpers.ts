@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
+// Internal
 import type { Direction, MapSegment, PlayerMapping, Point, TreeId } from './types';
-// Utils
 import { DIRECTIONS, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 
 /**

@@ -1,8 +1,9 @@
-// Components
-import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+// Icons
 import { CompassIcon } from 'icons/CompassIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { TreeIcon } from 'icons/TreeIcon';
+// Components
+import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function CompassHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<CompassIcon />}>{children}</MetricHighlight>;

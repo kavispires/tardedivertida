@@ -1,23 +1,24 @@
 // Types
 import type { PhaseProps } from 'types/game';
-import type { MapSegment } from './utils/types';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { useOnSubmitMapAPIRequest } from './utils/api-requests';
 // Icons
 import { MapIcon } from 'icons/MapIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { StepBuildMap } from './StepBuildMap';
-import { PlayerSelectionMap } from './components/PlayerSelection';
-import { StepBuildWait } from './StepBuildWait';
 import { ViewOr } from 'components/views';
+// Internal
+import type { MapSegment } from './utils/types';
+import { useOnSubmitMapAPIRequest } from './utils/api-requests';
+import { PlayerSelectionMap } from './components/PlayerSelection';
+import { StepBuildMap } from './StepBuildMap';
+import { StepBuildWait } from './StepBuildWait';
 
 export function PhaseMapBuilding({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

@@ -1,28 +1,29 @@
 import clsx from 'clsx';
 import { findLast } from 'lodash';
-import { Fragment } from 'react/jsx-runtime';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
-import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
+import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
+import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 import { Button, Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useScreenWidth } from 'hooks/useScreenWidth';
 import { useLanguage } from 'hooks/useLanguage';
+import { useScreenWidth } from 'hooks/useScreenWidth';
 // Utils
-import { getDirection } from '../utils/helpers';
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Icons
+import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { ForestTree } from './ForestTree';
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { AvatarGroup } from 'components/avatars/AvatarGroup';
 import { ViewIf } from 'components/views';
+// Internal
+import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
+import { getDirection } from '../utils/helpers';
+import { ForestTree } from './ForestTree';
 
 type ForestProps = {
   appWidth?: number;

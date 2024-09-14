@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-// Types
-import type { MapSegment, Tree } from '../utils/types';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+// Internal
+import type { MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';
 
 type MapEntryProps = {
