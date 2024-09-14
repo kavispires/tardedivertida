@@ -33,7 +33,7 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyMovieGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
+      <Header icon={<DailyMovieGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>

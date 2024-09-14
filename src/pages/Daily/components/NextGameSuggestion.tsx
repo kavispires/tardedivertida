@@ -31,8 +31,8 @@ const PRIORITY_LIST = [
 
 const getNextGame = (): string => {
   for (const game of PRIORITY_LIST) {
-    if (!checkWasPlayedToday(game.LOCAL_TODAY_KEY)) {
-      return game.LOCAL_TODAY_KEY;
+    if (!checkWasPlayedToday(game.KEY)) {
+      return game.KEY;
     }
   }
   return '';
@@ -40,7 +40,7 @@ const getNextGame = (): string => {
 
 export function NextGameSuggestion() {
   switch (getNextGame()) {
-    case AQUI_O.LOCAL_TODAY_KEY:
+    case AQUI_O.KEY:
       return (
         <Typography.Paragraph className="center" strong>
           <Translate
@@ -55,7 +55,7 @@ export function NextGameSuggestion() {
         </Typography.Paragraph>
       );
 
-    case ARTE_RUIM.LOCAL_TODAY_KEY:
+    case ARTE_RUIM.KEY:
       return (
         <Typography.Paragraph className="center" strong>
           <Translate pt="Adivinhe o título das obras de arte!" en="Guess the title of the artworks!" />
@@ -66,7 +66,7 @@ export function NextGameSuggestion() {
         </Typography.Paragraph>
       );
 
-    case CONTROLE_DE_ESTOQUE.LOCAL_TODAY_KEY:
+    case CONTROLE_DE_ESTOQUE.KEY:
       return (
         <Typography.Paragraph className="center" strong>
           <Translate
@@ -81,7 +81,7 @@ export function NextGameSuggestion() {
         </Typography.Paragraph>
       );
 
-    case FILMACO.LOCAL_TODAY_KEY:
+    case FILMACO.KEY:
       return (
         <Typography.Paragraph className="center" strong>
           <Translate
@@ -95,7 +95,7 @@ export function NextGameSuggestion() {
         </Typography.Paragraph>
       );
 
-    case PALAVREADO.LOCAL_TODAY_KEY:
+    case PALAVREADO.KEY:
       return (
         <Typography.Paragraph className="center" strong>
           <Translate
@@ -110,7 +110,7 @@ export function NextGameSuggestion() {
         </Typography.Paragraph>
       );
 
-    case ARTISTA.LOCAL_TODAY_KEY:
+    case ARTISTA.KEY:
       return (
         <Typography.Paragraph className="center" strong>
           <Translate
@@ -124,7 +124,7 @@ export function NextGameSuggestion() {
         </Typography.Paragraph>
       );
 
-    case TEORIA_DE_CONJUNTOS.LOCAL_TODAY_KEY:
+    case TEORIA_DE_CONJUNTOS.KEY:
       return (
         <Typography.Paragraph className="center" strong>
           <Translate pt="Quantas vogais tem em PQP?" en="Can you solve this set challenge?" />
