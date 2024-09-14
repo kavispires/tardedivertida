@@ -1,10 +1,12 @@
-import type { SubmitMovieActorPayload, SubmitMovieGenrePayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitMovieActorPayload, SubmitMovieGenrePayload } from './types';
 import { TESTE_DE_ELENCO_ACTIONS } from './constants';
+
+
 
 export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

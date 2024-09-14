@@ -1,18 +1,19 @@
 // Types
 import { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { Icons } from './utils/helpers';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
+import { DualTranslate, Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { DualTranslate, Translate } from 'components/language';
+// Internal
+import { Icons } from './utils/helpers';
 import { StepRanking } from './StepRanking';
 import { StepResult } from './StepResult';
 

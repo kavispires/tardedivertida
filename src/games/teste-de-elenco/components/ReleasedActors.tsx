@@ -3,12 +3,13 @@ import { useMemo } from 'react';
 import { Avatar as AntAvatar, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { ActingRole } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
 import { SuspectCard } from 'components/cards/SuspectCard';
+// Internal
+import type { ActingRole } from '../utils/types';
 
 type ReleasedActorsProps = {
   actors: ActingRole['candidates'];

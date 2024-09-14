@@ -3,19 +3,21 @@ import { useMemo } from 'react';
 import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { ActingRole } from './utils/types';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
-import { DualTranslate, Translate } from 'components/language';
-import { RoleBoard } from './components/RoleBoard';
 import { TimedButton } from 'components/buttons';
 import { SuspectCard } from 'components/cards/SuspectCard';
+import { Container } from 'components/general/Container';
 import { ImageCard } from 'components/image-cards';
+import { DualTranslate, Translate } from 'components/language';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, TextHighlight, Title } from 'components/text';
+// Internal
+import type { ActingRole } from './utils/types';
+import { RoleBoard } from './components/RoleBoard';
 import { ActorsSelections } from './components/ActorsSelections';
 import { ReleasedActors } from './components/ReleasedActors';
-import { Container } from 'components/general/Container';
 
 type StepResultProps = {
   user: GamePlayer;

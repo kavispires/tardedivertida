@@ -1,3 +1,4 @@
+// Types
 import { Item, SuspectCard } from 'types/tdr';
 
 export type SubmitMovieGenrePayload = {
