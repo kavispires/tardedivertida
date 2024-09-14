@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Tooltip } from 'antd';
 import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
-// Types
-import type { Location } from '../utils/types';
+import { Button, Tooltip } from 'antd';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import type { Location } from '../utils/types';
 
 type LocationsListProps = {
   locations: Location[];

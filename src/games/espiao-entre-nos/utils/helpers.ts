@@ -1,3 +1,4 @@
+// Internal
 import { Location, Resolution, ResolutionStatus } from './types';
 
 export const determineView = (

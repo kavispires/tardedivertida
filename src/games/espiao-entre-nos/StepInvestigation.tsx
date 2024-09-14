@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
-import type { UseStep } from 'hooks/useStep';
 // Ant Design Resources
 import { App, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Location, Outcome, TimerType } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { Location, Outcome, TimerType } from './utils/types';
 import { EspiaoEntreNosCard as Card } from './components/Card';
 import { LocationSelect } from './components/LocationSelect';
 import { LocationsList } from './components/LocationsList';
