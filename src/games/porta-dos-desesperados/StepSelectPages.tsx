@@ -1,27 +1,28 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import { CloseCircleFilled } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
-import { PHASES } from 'utils/phases';
-import { TRAPS } from './utils/constants';
-import { shouldAnnounceTrap } from './utils/helpers';
-import { mockPageSelection } from './utils/mock';
 import { getAnimationClass } from 'utils/helpers';
+import { PHASES } from 'utils/phases';
 // Components
+import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageBlurButton, ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
-import { DoorFrame } from '../../components/game/DoorFrame';
+// Internal
+import { TRAPS } from './utils/constants';
+import { shouldAnnounceTrap } from './utils/helpers';
+import { mockPageSelection } from './utils/mock';
 import { TrapPopupRule } from './components/RulesBlobs';
-import { FloatingHand } from 'components/general/FloatingHand';
 import { BookHighlight, DoorHighlight } from './components/Highlights';
+import { DoorFrame } from '../../components/game/DoorFrame';
 
 type StepSelectPagesProps = {
   pages: CardId[];

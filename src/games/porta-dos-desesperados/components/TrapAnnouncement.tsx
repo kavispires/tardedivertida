@@ -1,11 +1,11 @@
-// Types
+// Hooks
 import type { UseStep } from 'hooks/useStep';
-// Utils
-import { getTrapDetails } from '../utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { PhaseAnnouncement } from 'components/phases';
 import { Instruction } from 'components/text';
+// Internal
+import { getTrapDetails } from '../utils/helpers';
 
 type TrapAnnouncementProps = {
   trap: string;

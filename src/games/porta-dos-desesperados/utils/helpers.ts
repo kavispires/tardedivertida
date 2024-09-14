@@ -1,14 +1,15 @@
 // Utils
 import { PHASES } from 'utils/phases';
-import { TRAPS } from './constants';
-// Components
+// Icons
 import { DreamCatcherIcon } from 'icons/DreamCatcherIcon';
 import { MagicCandlesIcon } from 'icons/MagicCandlesIcon';
+import { MagicDivinationIcon } from 'icons/MagicDivinationIcon';
+import { MagicHamsaIcon } from 'icons/MagicHamsaIcon';
+import { MagicRunesIcon } from 'icons/MagicRunesIcon';
 import { MagicTarotCardsIcon } from 'icons/MagicTarotCardsIcon';
 import { MagicVoodooDollIcon } from 'icons/MagicVoodooDollIcon';
-import { MagicHamsaIcon } from 'icons/MagicHamsaIcon';
-import { MagicDivinationIcon } from 'icons/MagicDivinationIcon';
-import { MagicRunesIcon } from 'icons/MagicRunesIcon';
+// Internal
+import { TRAPS } from './constants';
 
 export function shouldAnnounceTrap(trap: string, phase: string) {
   if (phase === PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION) {
