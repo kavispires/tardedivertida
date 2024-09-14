@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # Function to increment the patch version in the game-info.json file
 # Accepts one argument: the path to the game-info.json file
 function increment_patch_version {
