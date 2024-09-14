@@ -2,7 +2,6 @@
 import { Avatar, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { QuestionsDictionary } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
@@ -10,10 +9,12 @@ import { LETTERS } from 'utils/constants';
 import { getColorFromLetter, sortPlayers } from 'utils/helpers';
 // Components
 import { AvatarCard } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { TransparentButton } from 'components/buttons';
+// Internal
+import type { QuestionsDictionary } from '../utils/types';
 
 type PlayerChoicesProps = {
   players: GamePlayers;

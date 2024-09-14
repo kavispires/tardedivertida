@@ -1,3 +1,4 @@
+// Types
 import { SuspectCard } from 'types/tdr';
 
 export type SubmitPromptPayload = {

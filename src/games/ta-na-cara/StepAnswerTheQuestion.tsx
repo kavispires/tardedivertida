@@ -2,25 +2,25 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockAnswer } from './utils/mock';
 // Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
-import { Translate } from 'components/language';
+import { ViewIf } from 'components/views';
+// Internal
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
+import { mockAnswer } from './utils/mock';
 import { CharactersBoard } from './components/CharactersBoard';
 import { PlayerBoard } from './components/PlayersBoards';
-import { TurnOrder } from 'components/players';
-import { TransparentButton } from 'components/buttons';
-import { IconAvatar } from 'components/avatars';
-import { ViewIf } from 'components/views';
 
 type StepAnswerTheQuestionProps = {
   players: GamePlayers;
