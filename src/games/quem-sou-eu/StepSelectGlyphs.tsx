@@ -2,27 +2,27 @@
 import { Button, Popover, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Characters } from './utils/types';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useMock } from 'hooks/useMock';
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { prepareGlyphs } from './utils/helpers';
-import { mockGlyphs } from './utils/mock';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Icons
-import { YesIcon } from 'icons/YesIcon';
 import { NoIcon } from 'icons/NoIcon';
+import { YesIcon } from 'icons/YesIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { GlyphCard } from 'components/cards/GlyphCard';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
+// Internal
+import type { Characters } from './utils/types';
+import { prepareGlyphs } from './utils/helpers';
+import { mockGlyphs } from './utils/mock';
 import { Table } from './components/Table';
-import { GlyphCard } from 'components/cards/GlyphCard';
-import { IconAvatar } from 'components/avatars';
 import { NegativeHighlight, PositiveHighlight } from './components/Highlights';
 
 type StepSelectGlyphsProps = {

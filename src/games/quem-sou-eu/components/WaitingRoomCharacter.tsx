@@ -1,8 +1,10 @@
+// Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
+// Internal
 import { PlayerGlyphs } from './PlayerGlyphs';
 
 type WaitingRoomCharacterProps = {

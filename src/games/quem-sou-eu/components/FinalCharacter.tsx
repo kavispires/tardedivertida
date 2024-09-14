@@ -1,15 +1,15 @@
 import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { FinalCharacterEntry } from '../utils/types';
-// Utils
-import { parseSelectedGlyphs } from '../utils/helpers';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { GlyphCard } from 'components/cards/GlyphCard';
+// Internal
+import type { FinalCharacterEntry } from '../utils/types';
+import { parseSelectedGlyphs } from '../utils/helpers';
 import { Card } from './Card';
 
 type FinalCharacterProps = {
