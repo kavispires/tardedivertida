@@ -1,14 +1,15 @@
 // Types
 import type { PhaseProps } from 'types/game';
-import type { AdedanhxGalleryEntry } from './utils/types';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { achievementsReference } from './utils/achievements';
 import { Achievements } from 'components/general/Achievements';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+// Internal
+import type { AdedanhxGalleryEntry } from './utils/types';
+import { achievementsReference } from './utils/achievements';
 import { FinalGalleryEntry } from './components/FinalGalleryEntry';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
