@@ -1,7 +1,7 @@
 import { useCountdown } from 'hooks/useCountdown';
 import { intersectionBy } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from 'react-use';
@@ -20,7 +20,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
 
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } = useDailyLocalTodayV2<AquiOLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<AquiOLocalToday>({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: DEFAULT_LOCAL_TODAY,

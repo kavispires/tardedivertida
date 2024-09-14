@@ -1,5 +1,5 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalTodayV2, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySaveDrawings';
 import { wait } from 'pages/Daily/utils';
 import { Me } from 'types/user';
@@ -13,7 +13,7 @@ import { PicacoLocalToday, DailyPicacoEntry, DrawingToSave, GameState } from './
 export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initialState: GameState) {
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } = useDailyLocalTodayV2<PicacoLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<PicacoLocalToday>({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: DEFAULT_LOCAL_TODAY,
