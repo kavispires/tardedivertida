@@ -9,14 +9,14 @@ import type { TextCard } from 'types/tdr';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { WORST_TO_REMOVE } from './utils/constants';
-import { mockSelectCards } from './utils/mock';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
+import { WORST_TO_REMOVE } from './utils/constants';
+import { mockSelectCards } from './utils/mock';
 
 type StepSelectWordsProps = {
   hand: TextCard[];

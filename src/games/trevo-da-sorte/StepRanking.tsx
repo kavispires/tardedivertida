@@ -1,13 +1,13 @@
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRanking, GameRound } from 'types/game';
-import type { CloverObject, Leaves } from './utils/types';
-// Hooks
-import { useCloverState } from './utils/useCloverState';
+import type { GamePlayers } from 'types/player';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
+// Internal
+import type { CloverObject, Leaves } from './utils/types';
+import { useCloverState } from './utils/useCloverState';
 import { Clover } from './components/Clover';
 import { PlayersGuesses } from './components/PlayersGuesses';
 

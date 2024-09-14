@@ -3,12 +3,13 @@ import { useState } from 'react';
 import { Tabs } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { CloverObject, Leaves } from '../utils/types';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Instruction } from 'components/text';
+// Internal
+import type { CloverObject, Leaves } from '../utils/types';
 import { Clover } from './Clover';
 
 type PlayersGuessesProps = {
