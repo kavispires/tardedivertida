@@ -1,22 +1,26 @@
+import { useMemo } from 'react';
+import { useMeasure } from 'react-use';
+// Ant Design Resources
 import { Button, Divider, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
+// Utils
+import { getAnimationClass, isDevEnv } from 'utils/helpers';
+// Icons
+import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
+// Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { TimerBar } from 'components/timers';
-import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
-import { useMemo } from 'react';
-import { useMeasure } from 'react-use';
-import { getAnimationClass, isDevEnv } from 'utils/helpers';
-
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
+// Internal
 import { SETTINGS } from '../utils/settings';
 import { DailyAquiOEntry } from '../utils/types';
 import { useAquiOEngine } from '../utils/useAquiOEngine';
+import { getInitialState } from '../utils/helpers';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
 import { Disc } from './Disc';
 import { PreloadItems } from './PreloadItems';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { getInitialState } from '../utils/helpers';
 
 type DailyAquiOProps = {
   data: DailyAquiOEntry;

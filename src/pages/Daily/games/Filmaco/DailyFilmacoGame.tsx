@@ -1,12 +1,13 @@
-import './utils/styles.scss';
-
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
-
+// Hooks
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+// Internal
+import { DailyFilmaco } from './components/DailyFilmaco';
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 import { getToday } from '../../utils';
-import { DailyFilmaco } from './components/DailyFilmaco';
+// Sass
+import './utils/styles.scss';
 
 export function DailyFilmacoGame() {
   const { currentUser } = useCurrentUserContext();

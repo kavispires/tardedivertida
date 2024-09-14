@@ -1,8 +1,11 @@
-import { Layout } from 'antd';
-import { Translate } from 'components/language';
-import { CalendarIcon } from 'icons/CalendarIcon';
 import { ReactNode, useState } from 'react';
-
+// Ant Design Resources
+import { Layout } from 'antd';
+// Icons
+import { CalendarIcon } from 'icons/CalendarIcon';
+// Components
+import { Translate } from 'components/language';
+// Internal
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
 import { getToday } from '../utils';
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';

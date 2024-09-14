@@ -1,3 +1,4 @@
+// Internal
 import { TThing } from '../utils/types';
 import { Thing } from './Thing';
 

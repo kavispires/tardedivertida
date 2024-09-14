@@ -1,10 +1,13 @@
+import { Region, TextRegion } from 'pages/Daily/components/Region';
+// Ant Design Resources
 import { Typography } from 'antd';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Components
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { Region, TextRegion } from 'pages/Daily/components/Region';
-import { getAnimationClass } from 'utils/helpers';
-
+// Internal
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 import { StockingBoard } from './StockingBoard';
 

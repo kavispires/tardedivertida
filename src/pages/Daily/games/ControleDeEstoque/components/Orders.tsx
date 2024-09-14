@@ -1,12 +1,15 @@
 import clsx from 'clsx';
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Icons
 import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 import { LocationIcon } from 'icons/LocationIcon';
 import { OnlineOrderIcon } from 'icons/OnlineOrderIcon';
-import { getAnimationClass } from 'utils/helpers';
-
+// Components
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+// Internal
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 
 type OrdersProps = {

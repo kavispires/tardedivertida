@@ -1,10 +1,13 @@
-import { App } from 'antd';
-import { useLanguage } from 'hooks/useLanguage';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+// Ant Design Resources
+import { App } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { deepCopy } from 'utils/helpers';
-
+// Internal
 import { DEFAULT_LOCAL_TODAY, getGuessString, getInitialState, validateAttempts } from './helpers';
 import { PHASES, SETTINGS } from './settings';
 import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';

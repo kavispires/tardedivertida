@@ -1,18 +1,21 @@
-import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
-import { DualTranslate, Translate } from 'components/language';
-import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
-import { Me } from 'types/user';
-
+// Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
-
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
+import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
+// Types
+import { Me } from 'types/user';
+// Icons
+import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
+// Components
+import { DualTranslate, Translate } from 'components/language';
+// Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyPalavreadoEntry } from '../utils/types';
 import { usePalavreadoEngine } from '../utils/usePalavreadoEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
 import { Board } from './Board';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';

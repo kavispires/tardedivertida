@@ -1,6 +1,7 @@
 import { loadLocalToday } from 'pages/Daily/utils';
+// Utils
 import { deepCopy } from 'utils/helpers';
-
+// Internal
 import { SETTINGS } from './settings';
 import { DailyTeoriaDeConjuntosEntry, GameState, TeoriaDeConjuntosLocalToday } from './types';
 

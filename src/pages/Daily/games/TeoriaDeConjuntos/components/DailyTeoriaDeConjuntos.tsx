@@ -1,22 +1,26 @@
-import { Button, Layout, Modal, Rate, Tooltip, Typography } from 'antd';
 import clsx from 'clsx';
-import { TransparentButton } from 'components/buttons';
-import { DualTranslate, Translate } from 'components/language';
-import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
 import { useMeasure } from 'react-use';
-import { Me } from 'types/user';
-import { getAnimationClass } from 'utils/helpers';
-
+// Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
-
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
+import { Button, Layout, Modal, Rate, Tooltip, Typography } from 'antd';
+// Types
+import { Me } from 'types/user';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
+// Components
+import { TransparentButton } from 'components/buttons';
+import { DualTranslate, Translate } from 'components/language';
+// Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyTeoriaDeConjuntosEntry } from '../utils/types';
 import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
 import { Diagram } from './Diagram';
 import { InDiagramThings } from './InDiagramThings';
 import { PlacementModal } from './PlacementModal';

@@ -1,9 +1,12 @@
-import { Avatar, Space } from 'antd';
-import { IconAvatar } from 'components/avatars';
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 import { LettersDictionary } from 'pages/Daily/utils/types';
 import { useMemo } from 'react';
-
+// Ant Design Resources
+import { Avatar, Space } from 'antd';
+// Icons
+import { BoxBlankIcon } from 'icons/BoxBlankIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
+// Internal
 import { cleanupLetter, isLetter } from '../utils/helpers';
 
 type PromptProps = {

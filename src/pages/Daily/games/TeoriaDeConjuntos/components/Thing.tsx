@@ -1,5 +1,7 @@
-import { Flex, Typography } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Flex, Typography } from 'antd';
+// Components
 import { ItemCard } from 'components/cards/ItemCard';
 
 type ThingProps = {

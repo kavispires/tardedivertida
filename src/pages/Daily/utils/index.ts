@@ -1,5 +1,7 @@
 import moment from 'moment';
+// Utils
 import { isDevEnv } from 'utils/helpers';
+// Internal
 import { WithRequiredId } from './types';
 
 /**

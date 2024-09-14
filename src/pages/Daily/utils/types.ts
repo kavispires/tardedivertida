@@ -1,3 +1,4 @@
+// Internal
 import { DailyAquiOEntry } from '../games/AquiO/utils/types';
 import { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
 import { DailyPicacoEntry } from '../games/Picaco/utils/types';
