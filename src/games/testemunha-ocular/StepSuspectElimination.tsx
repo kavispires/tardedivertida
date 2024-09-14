@@ -1,21 +1,22 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { SuspectCard } from 'types/tdr';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { Suspects } from './components/Suspects';
-import { QuestionsHistory } from './components/QuestionsHistory';
+import { AvatarName, IconAvatar } from 'components/avatars';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { Card } from 'components/cards';
+// Internal
+import { Suspects } from './components/Suspects';
+import { QuestionsHistory } from './components/QuestionsHistory';
 
 type StepSuspectEliminationProps = {
   suspects: SuspectCard[];

@@ -1,8 +1,7 @@
-import { useMemo } from 'react';
 import { orderBy } from 'lodash';
-// Type
+import { useMemo } from 'react';
+// Internal
 import type { VoteComponentProps } from '../utils/types';
-// Components
 import { FallbackComponent } from './FallbackComponent';
 import { VoteArteRuim } from './Votes/VoteArteRuim';
 import { VoteCruzaPalavras } from './Votes/VoteCruzaPalavras';
@@ -22,6 +21,7 @@ import { VoteTaNaCara } from './Votes/VoteTaNaCara';
 import { VoteLabirintoSecreto } from './Votes/VoteLabirintoSecreto';
 import { VoteWhoSaidThis } from './Votes/VoteWhoSaidThis';
 import { VoteCrimesHediondos } from './Votes/VoteCrimesHediondos';
+// Type
 
 export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
   const playersList = useMemo(

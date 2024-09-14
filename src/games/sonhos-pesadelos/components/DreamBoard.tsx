@@ -5,6 +5,7 @@ import type { GamePlayer } from 'types/player';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Translate } from 'components/language';
+// Internal
 import { DreamCard } from './DreamCard';
 
 type DreamBoardProps = {

@@ -1,9 +1,9 @@
-import type { SubmitMapPayload, SubmitPathGuessPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
-
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitMapPayload, SubmitPathGuessPayload } from './types';
 import { LABIRINTO_SECRETO_ACTIONS } from './constants';
 
 export function useOnSubmitMapAPIRequest(setStep: UseStep['setStep']) {

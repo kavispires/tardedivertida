@@ -1,9 +1,9 @@
 import { sampleSize, union } from 'lodash';
-// Types
-import type { ExtendedTextCard, MapSegment, TreeId } from './types';
 // Utils
-import { getAvailableSegments } from './helpers';
 import { getRandomItem } from 'utils/helpers';
+// Internal
+import type { ExtendedTextCard, MapSegment, TreeId } from './types';
+import { getAvailableSegments } from './helpers';
 
 export const mockNewMap = (hand: ExtendedTextCard): ExtendedTextCard[] => {
   return sampleSize<ExtendedTextCard>(hand, 3).map((card) => ({

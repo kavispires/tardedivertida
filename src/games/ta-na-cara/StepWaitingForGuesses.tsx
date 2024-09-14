@@ -1,17 +1,18 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';
-import { IconAvatar } from 'components/avatars';
 import { PlayersBoards } from './components/PlayersBoards';
-import { TurnOrder } from 'components/players';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepWaitingForGuessesProps = {
   players: GamePlayers;

@@ -1,10 +1,9 @@
 // Types
 import { PhaseProps } from 'types/game';
 // Hooks
+import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useLoading } from 'hooks/useLoading';
-import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -15,6 +14,8 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+// Internal
+import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
 import { StepSuspectElimination } from './StepSuspectElimination';
 
 function PhaseTrial({ state, players, info }: PhaseProps) {

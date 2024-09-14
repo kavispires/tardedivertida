@@ -1,14 +1,15 @@
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import { TA_NA_CARA_ACTIONS } from './constants';
 import type {
   SubmitAnswerPayload,
   SubmitGuessPayload,
   SubmitPromptPayload,
   SubmitTargetPayload,
 } from './types';
-import type { UseStep } from 'hooks/useStep';
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-
-import { TA_NA_CARA_ACTIONS } from './constants';
 
 export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

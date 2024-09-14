@@ -1,31 +1,32 @@
 import { useEffect } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useStep } from 'hooks/useStep';
-import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-// Resources & Utils
+import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
-import { TRAPS } from './utils/constants';
-import { shouldAnnounceTrap } from './utils/helpers';
 // Icons
 import { MagicBookIcon } from 'icons/MagicBookIcon';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
+import { TurnOrder } from 'components/players';
+import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
+import { TRAPS } from './utils/constants';
+import { shouldAnnounceTrap } from './utils/helpers';
 import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { RoundOneRule, RoundRule } from './components/RulesBlobs';
+import { BookHighlight } from './components/Highlights';
 import { StepSelectPages } from './StepSelectPages';
 import { StepWaitPageSelection } from './StepWaitPageSelection';
-import { BookHighlight } from './components/Highlights';
-import { TurnOrder } from 'components/players';
 
 export function PhaseBookPossession({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();

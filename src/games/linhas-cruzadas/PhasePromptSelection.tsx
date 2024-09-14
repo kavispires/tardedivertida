@@ -1,18 +1,19 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { ListIcon } from 'icons/ListIcon';
 // Components
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
+// Internal
+import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
 import { StepSelectPrompt } from './StepSelectPrompt';
 
 export function PhasePromptSelection({ players, state, info }: PhaseProps) {

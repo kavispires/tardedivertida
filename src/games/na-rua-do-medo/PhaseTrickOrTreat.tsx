@@ -1,22 +1,23 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { StreetIcon } from 'icons/StreetIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
 import { ImageCardPreloadHand } from 'components/image-cards';
-import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { StepMakeDecision } from './StepMakeDecision';
-import { PlayerStats } from './components/PlayerStats';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+// Internal
+import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
+import { PlayerStats } from './components/PlayerStats';
+import { StepMakeDecision } from './StepMakeDecision';
 
 export function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);

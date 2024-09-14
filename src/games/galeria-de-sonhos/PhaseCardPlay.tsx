@@ -1,4 +1,3 @@
-import {
 import { useEffect, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
@@ -22,13 +21,14 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
-import { CardPlayRules } from './components/RulesBlobs';
-import { StepPlayDream } from './StepPlayDream';
-import { StepAnnounceDream } from './StepAnnounceDream';
+import {
   GO_TO_CARD_PLAY_STEP,
   GO_TO_PLAYER_WITH_NIGHTMARE_STEP,
   GO_TO_SEE_CARD_STEP,
 } from './utils/constants';
+import { CardPlayRules } from './components/RulesBlobs';
+import { StepPlayDream } from './StepPlayDream';
+import { StepAnnounceDream } from './StepAnnounceDream';
 
 export function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
   const { isLoading } = useLoading();

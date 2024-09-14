@@ -1,8 +1,7 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -10,14 +9,16 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getColorFromIndex } from 'utils/helpers';
-import { mockSelection } from '../../utils/mock';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { CanvasSVG } from 'components/canvas';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-import { CanvasSVG } from 'components/canvas';
-import { TransparentButton } from 'components/buttons';
 
 export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const cardWidth = useCardWidth(5, {

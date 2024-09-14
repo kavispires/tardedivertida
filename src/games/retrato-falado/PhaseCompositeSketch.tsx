@@ -1,23 +1,24 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
-import { TIMES } from './utils/constants';
 // Icons
 import { MonsterIcon } from 'icons/MonsterIcon';
 // Components
-import { StepTestimonial } from './StepTestimonial';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+// Internal
+import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './utils/api-requests';
+import { TIMES } from './utils/constants';
+import { StepTestimonial } from './StepTestimonial';
 
 export function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

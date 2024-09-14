@@ -1,3 +1,9 @@
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import { UE_SO_ISSO_ACTIONS } from './constants';
 import type {
   SendGuessPayload,
   SubmitOutcomePayload,
@@ -6,12 +12,6 @@ import type {
   SubmitVotesPayload,
   ValidateSuggestionPayload,
 } from './types';
-import type { UseStep } from 'hooks/useStep';
-
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-
-import { UE_SO_ISSO_ACTIONS } from './constants';
 
 export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();

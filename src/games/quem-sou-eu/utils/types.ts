@@ -1,3 +1,4 @@
+// Types
 import { ContenderCard } from 'types/tdr';
 
 export type SubmitCharactersPayload = {

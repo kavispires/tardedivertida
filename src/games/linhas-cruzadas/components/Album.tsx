@@ -1,11 +1,12 @@
 // Types
 import type { GamePlayers } from 'types/player';
-import type { AlbumEntry } from '../utils/types';
-// Helpers
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
+// Internal
+import type { AlbumEntry } from '../utils/types';
 import { Page } from './Page';
 
 type AlbumProps = {

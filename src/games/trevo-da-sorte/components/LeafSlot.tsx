@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
-// Types
-import type { LeafEntry, LeafPosition, LeafId } from '../utils/types';
 // Icons
 import { GuessIcon } from 'icons/GuessIcon';
 // Components
-import { Leaf } from './Leaf';
 import { IconAvatar } from 'components/avatars';
+// Internal
+import type { LeafEntry, LeafPosition, LeafId } from '../utils/types';
+import { Leaf } from './Leaf';
 
 type LeafSlotProps = {
   leaf?: LeafEntry;

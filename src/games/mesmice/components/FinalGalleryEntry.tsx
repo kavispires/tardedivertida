@@ -1,12 +1,13 @@
 // Types
-import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry } from '../utils/types';
 import type { GamePlayers } from 'types/player';
 // Icons
-import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 import { BoxEqualIcon } from 'icons/BoxEqualIcon';
+import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
+// Internal
+import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry } from '../utils/types';
 import { ObjectCard } from './ObjectCard';
 import { ObjectFeature } from './ObjectFeature';
 import { ScoreTrack } from './ScoreTrack';

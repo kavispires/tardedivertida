@@ -1,24 +1,24 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
-import { useMock } from 'hooks/useMock';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockSelection } from '../../utils/mock';
+import { useMock } from 'hooks/useMock';
+// Icons
+import { SkiingIcon } from 'icons/SkiingIcon';
+import { SnowHillIcon } from 'icons/SnowHillIcon';
 // Components
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-import { SkiingIcon } from 'icons/SkiingIcon';
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons';
-import { SnowHillIcon } from 'icons/SnowHillIcon';
-import clsx from 'clsx';
 
 export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();

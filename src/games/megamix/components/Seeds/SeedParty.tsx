@@ -1,14 +1,13 @@
 import { useState } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Input, Space } from 'antd';
-// Types
-import type { SeedEntryParty } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
 // Components
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction, RuleInstruction, Title } from 'components/text';
+// Internal
+import type { SeedEntryParty } from '../../utils/types';
 
 type SeedPartyProps = {
   seed: SeedEntryParty;

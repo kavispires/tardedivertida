@@ -1,4 +1,6 @@
+// Components
 import { CanvasSVG } from 'components/canvas';
+// Internal
 import { WarningSignBackgroundMask } from './WarningSignBackgroundMask';
 
 type WarningDrawingProps = {

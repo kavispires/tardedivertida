@@ -1,27 +1,28 @@
+import { sampleSize } from 'lodash';
+import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { MovieGenreOption, SubmitMovieGenrePayload } from './utils/types';
+import { Item } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getRandomItem } from 'utils/helpers';
-import { Icons } from './utils/helpers';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { ItemCard } from 'components/cards/ItemCard';
+import { Container } from 'components/general/Container';
+import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { DualTranslate, Translate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
-import { IconAvatar } from 'components/avatars';
-import { Item } from 'types/tdr';
-import { sampleSize } from 'lodash';
-import { useState } from 'react';
-import { Container } from 'components/general/Container';
-import { ItemCard } from 'components/cards/ItemCard';
+// Internal
+import type { MovieGenreOption, SubmitMovieGenrePayload } from './utils/types';
+import { Icons } from './utils/helpers';
 
 type StepSelectGenreProps = {
   user: GamePlayer;

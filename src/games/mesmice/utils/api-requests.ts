@@ -1,10 +1,11 @@
-import type { SubmitFeaturePayload, SubmitObjectPayload } from './types';
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitFeaturePayload, SubmitObjectPayload } from './types';
 import { MESMICE_ACTIONS } from './constants';
 
-import type { UseStep } from 'hooks/useStep';
 export function useOnSubmitObjectAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

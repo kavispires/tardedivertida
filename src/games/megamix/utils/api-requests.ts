@@ -1,7 +1,9 @@
-import type { SubmitAnswerPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitAnswerPayload } from './types';
 import { MEGAMIX_ACTIONS } from './constants';
 
 export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {

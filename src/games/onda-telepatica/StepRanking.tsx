@@ -1,14 +1,16 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound, GameRanking } from 'types/game';
+import type { GamePlayers } from 'types/player';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
-import { HostNextPhaseButton } from 'components/host';
 import { PopoverRule } from 'components/rules';
+// Internal
 import { ScoringRules } from './components/RulesBlobs';
 
 type StepRankingProps = {

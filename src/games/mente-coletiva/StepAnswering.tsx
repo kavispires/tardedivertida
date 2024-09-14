@@ -3,24 +3,25 @@ import { useState } from 'react';
 import { Button, Input, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Question } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { getEntryId } from 'utils/helpers';
-import { mockAnswers } from './utils/mock';
 // Components
-import { Pasture } from './components/Pasture';
-import { AnsweringRules } from './components/RulesBlobs';
-import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
+import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { DevButton } from 'components/debug';
+import { Step, type StepProps } from 'components/steps';
+import { Title } from 'components/text';
 import { TimedTimerClock } from 'components/timers';
-import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
+// Internal
+import type { Question } from './utils/types';
+import { mockAnswers } from './utils/mock';
+import { Pasture } from './components/Pasture';
+import { AnsweringRules } from './components/RulesBlobs';
 
 type StepAnsweringProps = {
   currentQuestion: Question;

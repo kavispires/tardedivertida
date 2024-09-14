@@ -1,7 +1,6 @@
-import {
 import clsx from 'clsx';
-// Components
-import { Translate } from 'components/language';
+// Ant Design Resources
+import {
   CheckCircleFilled,
   CloseCircleFilled,
   LockFilled,
@@ -9,6 +8,8 @@ import { Translate } from 'components/language';
   QuestionCircleFilled,
   WarningFilled,
 } from '@ant-design/icons';
+// Components
+import { Translate } from 'components/language';
 
 type CrimeGuessStatusProps = {
   status: string;

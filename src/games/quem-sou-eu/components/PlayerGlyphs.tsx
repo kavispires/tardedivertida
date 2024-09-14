@@ -1,15 +1,15 @@
 import { useMemo } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
-// Utils
-import { parseSelectedGlyphs } from '../utils/helpers';
 // Icons
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { GlyphCard } from 'components/cards/GlyphCard';
+// Internal
+import { parseSelectedGlyphs } from '../utils/helpers';
 
 type PlayerGlyphsProps = {
   player: GamePlayer;

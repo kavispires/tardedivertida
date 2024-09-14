@@ -9,14 +9,15 @@ import { useLanguage } from 'hooks/useLanguage';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { Suspects } from './components/Suspects';
-import { QuestionsHistory } from './components/QuestionsHistory';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { Step, type StepProps } from 'components/steps';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
+// Internal
+import { Suspects } from './components/Suspects';
+import { QuestionsHistory } from './components/QuestionsHistory';
 
 type StepQuestioningProps = {
   suspects: SuspectCard[];

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
-// Helpers
+// Internal
 import { getColorModifier } from '../utils/helpers';
 
 type OpposingIdeasCardProps = {

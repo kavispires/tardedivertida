@@ -1,4 +1,6 @@
+// Types
 import { GamePlayer } from 'types/player';
+// Utils
 import { stringRemoveAccents } from 'utils/helpers';
 
 export function countWordProperties(word: string): {

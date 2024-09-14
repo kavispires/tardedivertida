@@ -1,22 +1,21 @@
 // Ant Design Resources
 import { Button, Popconfirm, Space } from 'antd';
-// Types
-import type { CloverObject, Leaves } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockClues } from './utils/mock';
-import { prepareClueSubmission } from './utils/helpers';
-import { useCloverState } from './utils/useCloverState';
 // Components
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import type { CloverObject, Leaves } from './utils/types';
+import { mockClues } from './utils/mock';
+import { prepareClueSubmission } from './utils/helpers';
+import { useCloverState } from './utils/useCloverState';
 import { Clover } from './components/Clover';
 import { WritingRules } from './components/RulesBlobs';
-import { PopoverRule } from 'components/rules';
 import { ConfirmClues } from './components/ConfirmClues';
 
 type StepWriteCluesProps = {

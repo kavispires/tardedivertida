@@ -4,22 +4,23 @@ import type { PhaseProps } from 'types/game';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
-import { mockTweetSelection } from './utils/mock';
 // Icons
 import { TrendingIcon } from 'icons/TrendingIcon';
 // Components
-import { StepTweetSelection } from './StepTweetSelection';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Step, StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
-import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { ViewOr } from 'components/views';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder, WaitingRoom } from 'components/players';
+import { RoundAnnouncement } from 'components/round';
+import { Step, StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
+import { mockTweetSelection } from './utils/mock';
 import { ScoringRules } from './components/RulesBlobs';
+import { StepTweetSelection } from './StepTweetSelection';
 
 export function PhaseTweetSelection({ state, players, info, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

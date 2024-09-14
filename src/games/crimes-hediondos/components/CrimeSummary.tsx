@@ -1,7 +1,15 @@
-import {
 import clsx from 'clsx';
 import { useState } from 'react';
 // Ant Design Resources
+import {
+  CheckCircleFilled,
+  ClockCircleFilled,
+  EnvironmentOutlined,
+  ExceptionOutlined,
+  GiftOutlined,
+  LockFilled,
+  SafetyOutlined,
+} from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
@@ -18,14 +26,6 @@ import { Translate } from 'components/language';
 import type { Crime, GuessHistoryEntry, ItemsDict, ScenesDict } from '../utils/types';
 import { ItemCardEmpty } from './ItemCardEmpty';
 import { CrimeGuessStatus } from './CrimeGuessStatus';
-  CheckCircleFilled,
-  ClockCircleFilled,
-  EnvironmentOutlined,
-  ExceptionOutlined,
-  GiftOutlined,
-  LockFilled,
-  SafetyOutlined,
-} from '@ant-design/icons';
 
 const CARD_WIDTH = 100;
 

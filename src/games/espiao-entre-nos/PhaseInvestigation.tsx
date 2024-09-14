@@ -1,4 +1,3 @@
-import {
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -21,12 +20,13 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
-import { StepInvestigation } from './StepInvestigation';
+import {
   useOnGuessLocationAPIRequest,
   useOnMakeAccusationAPIRequest,
   useOnSendLastQuestionerAPIRequest,
 } from './utils/api-requests';
+import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
+import { StepInvestigation } from './StepInvestigation';
 
 export function PhaseInvestigation({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

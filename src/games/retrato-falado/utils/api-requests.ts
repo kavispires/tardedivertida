@@ -1,7 +1,9 @@
-import type { SubmitOrientationPayload, SubmitSketchPayload, SubmitVotePayload } from './types';
-import type { UseStep } from 'hooks/useStep';
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitOrientationPayload, SubmitSketchPayload, SubmitVotePayload } from './types';
 import { RETRATO_FALADO_ACTIONS } from './constants';
 
 export function useOnSubmitOrientationAPIRequest(setStep: UseStep['setStep']) {

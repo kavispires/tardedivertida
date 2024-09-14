@@ -1,16 +1,17 @@
+// Types
+import type { SpectrumCard } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Types
-import type { SpectrumCard } from 'types/tdr';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
-import { IconAvatar } from 'components/avatars';
 
 type StepCategorySelectionProps = {
   currentCategories: SpectrumCard[];

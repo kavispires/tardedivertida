@@ -1,7 +1,7 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
 // Components
 import { Avatar } from 'components/avatars';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SplatterSVG } from '../Tracks/TrackPalhetaDeFores';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 

@@ -1,4 +1,6 @@
+// Utils
 import { getRandomItem } from 'utils/helpers';
+// Internal
 import { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './types';
 
 export const mockObjectIdSelection = (items: ObjectCardObj[]) => {

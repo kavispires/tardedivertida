@@ -1,3 +1,4 @@
+// Components
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PopoverRule } from 'components/rules';

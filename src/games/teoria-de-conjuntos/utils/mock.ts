@@ -1,4 +1,5 @@
 import { sample } from 'lodash';
+// Internal
 import { DiagramArea } from './types';
 
 export const mockDiagramSelection = (hand: CardId[], diagrams: Dictionary<DiagramArea>) => {

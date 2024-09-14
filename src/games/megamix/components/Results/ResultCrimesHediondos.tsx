@@ -1,12 +1,13 @@
 // Types
-import type { ResultComponentProps } from '../../utils/types';
+import { CrimesHediondosCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
-import { CrimesHediondosCard } from 'types/tdr';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultCrimesHediondos({ track, winningValues, containerWidth }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, {

@@ -1,22 +1,22 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Space } from 'antd';
-// Types
-import type { AlienSign, TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
+// Icons
+import { AlienIcon } from 'icons/AlienIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { ItemCard } from 'components/cards/ItemCard';
+import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
-import { ItemCard } from 'components/cards/ItemCard';
-import { TransparentButton } from 'components/buttons';
-import { IconAvatar } from 'components/avatars';
-import { AlienIcon } from 'icons/AlienIcon';
 import { SpeechBubble } from 'components/text/SpeechBubble';
-import { SignCard } from 'components/cards/SignCard';
+// Internal
+import type { AlienSign, TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const { isLoading } = useLoading();

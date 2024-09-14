@@ -1,17 +1,17 @@
-// Types
+// Icons
+import { BoxBlankIcon } from 'icons/BoxBlankIcon';
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
+import { Container } from 'components/general/Container';
+import { Translate } from 'components/language';
+import { RuleInstruction } from 'components/text';
+// Internal
 import type { HistoryEntry } from '../utils/types';
 // Images
 import featuresIcons from './feature-icons.svg';
-// Icons
-import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
-// Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { RuleInstruction } from 'components/text';
-import { Container } from 'components/general/Container';
-import { BoxXIcon } from 'icons/BoxXIcon';
 
 type ScoreTrackProps = {
   history: HistoryEntry[];

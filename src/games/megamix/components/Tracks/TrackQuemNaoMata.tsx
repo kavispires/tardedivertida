@@ -1,21 +1,22 @@
 import clsx from 'clsx';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
-import { mockSelection } from '../../utils/mock';
+import { sortPlayers } from 'utils/helpers';
+// Icons
+import { ShooterIcon } from 'icons/ShooterIcon';
 // Components
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
 import { Avatar } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ShooterIcon } from 'icons/ShooterIcon';
-import { sortPlayers } from 'utils/helpers';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) => {
   const { isLoading } = useLoading();

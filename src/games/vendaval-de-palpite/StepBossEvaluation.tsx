@@ -1,11 +1,12 @@
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Clues, BoardObject } from './utils/types';
+import type { GamePlayers } from 'types/player';
 // Components
+import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { Clues, BoardObject } from './utils/types';
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
 import { OutcomeOptions } from './components/OutcomeOptions';

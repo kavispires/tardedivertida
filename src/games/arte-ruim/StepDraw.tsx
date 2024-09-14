@@ -64,9 +64,7 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
       <Card
         size="large"
         header={translate('Desenhe', 'Draw', isDebugEnabled ? secretCard?.id : undefined)}
-        footer={Array(secretCard?.level)
-          .fill('•')
-          .join('')}
+        footer={Array(secretCard?.level).fill('•').join('')}
         className="a-draw-step__card"
         color="yellow"
       >

@@ -1,9 +1,10 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Track } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
 import { Step, type StepProps } from 'components/steps';
+// Internal
+import type { Track } from './utils/types';
 import { ClubLine } from './components/ClubLine';
 import { FallbackComponent } from './components/FallbackComponent';
 import { TrackArteRuim } from './components/Tracks/TrackArteRuim';

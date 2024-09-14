@@ -3,17 +3,17 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { AlbumEntry } from './utils/types';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
-// Utils
-import { PAGE_DURATION } from './utils/constants';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import type { AlbumEntry } from './utils/types';
+import { PAGE_DURATION } from './utils/constants';
 import { Album } from './components/Album';
 
 type StepAlbumProps = {

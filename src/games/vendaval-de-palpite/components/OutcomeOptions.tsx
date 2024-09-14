@@ -1,4 +1,6 @@
+// Ant Design Resources
 import { Alert, Button, Divider } from 'antd';
+// Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';

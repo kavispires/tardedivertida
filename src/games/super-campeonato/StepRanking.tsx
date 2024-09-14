@@ -1,12 +1,13 @@
 // Types
-import type { GamePlayers } from 'types/player';
 import type { GameRound, GameRanking } from 'types/game';
-import type { Bet, Bracket } from './utils/type';
+import type { GamePlayers } from 'types/player';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { RoundsLeftInstruction } from 'components/text';
+// Internal
+import type { Bet, Bracket } from './utils/type';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { Brackets } from './components/Brackets';
 import { PlayersBets } from './components/PlayersBets';

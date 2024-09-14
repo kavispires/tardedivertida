@@ -1,18 +1,18 @@
+import { Fragment } from 'react';
 // Ant Design Resources
 import { Space, Avatar as AntAvatar } from 'antd';
-// Types
-import type { ActingRole, FeatureFilm } from '../utils/types';
 // Utils
 import { pluralize } from 'utils/helpers';
-import { Icons } from '../utils/helpers';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { Instruction, TextHighlight, Title } from 'components/text';
-import { DualTranslate, Translate } from 'components/language';
 import { IconAvatar } from 'components/avatars';
-import { Fragment } from 'react';
+import { DualTranslate, Translate } from 'components/language';
+import { Instruction, TextHighlight, Title } from 'components/text';
+// Internal
+import type { ActingRole, FeatureFilm } from '../utils/types';
+import { Icons } from '../utils/helpers';
 
 type RoleBoardProps = {
   movie?: FeatureFilm;

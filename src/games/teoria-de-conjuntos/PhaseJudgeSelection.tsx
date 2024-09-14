@@ -1,17 +1,18 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
-import { useOnSubmitJudgeAPIRequest } from './utils/api-requests';
 // Icons
 import { LawIcon } from 'icons/LawIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
 import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
+// Internal
+import { useOnSubmitJudgeAPIRequest } from './utils/api-requests';
 
 export function PhaseJudgeSelection({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep();

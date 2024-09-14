@@ -1,9 +1,10 @@
 import { sampleSize } from 'lodash';
 // Types
-import type { CloverObject, Guesses, Leaves } from './types';
 import type { TextCard } from 'types/tdr';
 // Utils
 import { getRandomItem, shuffle } from 'utils/helpers';
+// Internal
+import type { CloverObject, Guesses, Leaves } from './types';
 import { ROTATIONS, WORST_TO_REMOVE } from './constants';
 import { getWord } from './helpers';
 

@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import { CRIMES_HEDIONDOS_ACTIONS } from './constants';
 import { SubmitCrimePayload, SubmitGuessesPayload, SubmitMarkPayload } from './types';
 
-
 export function useOnSubmitCrimeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

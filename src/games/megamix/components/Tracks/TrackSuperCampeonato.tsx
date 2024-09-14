@@ -1,22 +1,21 @@
-// AntDesign Resources
-import { Button, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 import type { FightingContender } from 'games/super-campeonato/utils/type';
+// Ant Design Resources
+import { Button, Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Components
 import { Card } from 'components/cards';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { ImageBlurButtonContainer } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackSuperCampeonato = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const { translate } = useLanguage();

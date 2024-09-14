@@ -1,17 +1,17 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, App, Space } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
+import { Button, App, Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { TransparentButton } from 'components/buttons';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { Card } from 'components/cards';
 
 type StepSecretWordSelectionProps = {
   words: TextCard[];

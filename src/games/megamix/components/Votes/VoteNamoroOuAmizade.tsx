@@ -1,7 +1,7 @@
-// Types
-import type { VoteComponentProps } from '../../utils/types';
 // Components
 import { Avatar } from 'components/avatars';
+// Internal
+import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Candidate } from '../Candidate';
 

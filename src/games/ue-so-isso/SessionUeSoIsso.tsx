@@ -1,14 +1,16 @@
+// Ant Design Resources
 import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-// Constants
+// Utils
 import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
-import { Session } from 'components/session';
-import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
+import { Session } from 'components/session';
+// Internal
 import { PhaseWordSelection } from './PhaseWordSelection';
 import { PhaseSuggest } from './PhaseSuggest';
 import { PhaseCompare } from './PhaseCompare';
@@ -16,10 +18,11 @@ import { PhaseGuess } from './PhaseGuess';
 import { PhaseResult } from './PhaseResult';
 import { PhaseGameOver } from './PhaseGameOver';
 import { PhaseVerifyGuess } from './PhaseVerifyGuess';
-// Fonts
+// Sass
 import 'assets/fonts/architects-daughter.scss';
-// Session
 import './utils/styles.scss';
+// Fonts
+// Session
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

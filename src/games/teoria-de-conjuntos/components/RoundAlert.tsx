@@ -1,8 +1,11 @@
+// Ant Design Resources
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
+// Types
+import { GameRound } from 'types/game';
+// Components
 import { Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
-import { GameRound } from 'types/game';
 
 export function RoundAlert({ round }: { round: GameRound }) {
   const roundsLeft = round.total - round.current + 1;

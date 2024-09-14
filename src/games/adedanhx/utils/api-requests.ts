@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitGridAnswersPayload, SubmitRejectedAnswers } from './types';
 import { ADEDANHX_ACTIONS } from './constants';
 
-
 export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

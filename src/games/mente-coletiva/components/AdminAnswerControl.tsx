@@ -1,18 +1,19 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { AllowedList, Answer, AnswerGroupObject } from '../utils/types';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useLoading } from 'hooks/useLoading';
 // Components
-import { HostOnlyContainer } from 'components/host';
-import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
+import { HostOnlyContainer } from 'components/host';
+import { Translate } from 'components/language';
+// Internal
+import type { AllowedList, Answer, AnswerGroupObject } from '../utils/types';
 
 type AdminAnswerControlProps = {
   allAnswers: Answer[];

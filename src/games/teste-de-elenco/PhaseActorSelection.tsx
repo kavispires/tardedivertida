@@ -1,18 +1,19 @@
 // Types
 import { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitMovieActorAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { SofaIcon } from 'icons/SofaIcon';
 // Components
+import { DualTranslate, Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { DualTranslate, Translate } from 'components/language';
+// Internal
+import { useOnSubmitMovieActorAPIRequest } from './utils/api-requests';
 import { StepSelectActor } from './StepSelectActor';
 
 export function PhaseActorSelection({ players, state, info }: PhaseProps) {

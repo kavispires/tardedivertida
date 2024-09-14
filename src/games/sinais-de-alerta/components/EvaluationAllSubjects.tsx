@@ -1,9 +1,13 @@
+// Ant Design Resources
 import { Space } from 'antd';
+// Types
+import { TextCard } from 'types/tdr';
+// Icons
+import { CheckMarkIcon } from 'icons/CheckMarkIcon';
+// Components
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
-import { CheckMarkIcon } from 'icons/CheckMarkIcon';
-import { TextCard } from 'types/tdr';
 
 type EvaluationAllSubjectsProps = {
   cards: Dictionary<TextCard>;

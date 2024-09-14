@@ -1,8 +1,11 @@
-import { Avatar } from 'antd';
-import { ItemCard } from 'components/cards/ItemCard';
 import { DiagramArea } from 'games/teoria-de-conjuntos/utils/types';
 import { useMemo } from 'react';
+// Ant Design Resources
+import { Avatar } from 'antd';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
+// Components
+import { ItemCard } from 'components/cards/ItemCard';
 
 const CONTAINER_BOX_WIDTH = 820;
 const CONTAINER_BOX_HEIGHT = 720;

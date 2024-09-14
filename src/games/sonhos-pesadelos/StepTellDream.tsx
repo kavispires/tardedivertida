@@ -7,14 +7,14 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockDream } from './utils/mock';
 // Components
-import { DreamBoard } from './components/DreamBoard';
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+// Internal
+import { mockDream } from './utils/mock';
+import { DreamBoard } from './components/DreamBoard';
 
 type StepTellDreamProps = {
   players: GamePlayers;

@@ -2,11 +2,12 @@
 import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
-import type { Captcha } from '../utils/types';
 // Components
 import { Card } from 'components/cards';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { GlyphCard } from 'components/cards/GlyphCard';
+// Internal
+import type { Captcha } from '../utils/types';
 
 type CaptchaTopicProps = {
   captcha: Captcha;

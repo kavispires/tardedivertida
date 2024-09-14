@@ -1,7 +1,7 @@
 // Types
 import { ContenderCard } from 'types/tdr';
-import { CharacterCard } from 'components/cards/CharacterCard';
 // Components
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 
 type CardProps = {

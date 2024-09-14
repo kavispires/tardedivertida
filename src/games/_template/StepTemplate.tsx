@@ -3,9 +3,9 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 
 type StepTemplateProps = {
   players: GamePlayers;

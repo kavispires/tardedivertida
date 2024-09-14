@@ -1,3 +1,4 @@
+// Types
 import type { AchievementReference } from 'types/achievements';
 
 const ACHIEVEMENTS = {

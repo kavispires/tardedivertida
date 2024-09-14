@@ -1,8 +1,11 @@
-import { Input, Switch } from 'antd';
 import clsx from 'clsx';
-import { Translate } from 'components/language';
-import { useLanguage } from 'hooks/useLanguage';
 import { useEffect, useState } from 'react';
+// Ant Design Resources
+import { Input, Switch } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Components
+import { Translate } from 'components/language';
 
 type ClueInputProps = {
   id: string;

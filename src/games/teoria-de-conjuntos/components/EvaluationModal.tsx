@@ -1,13 +1,17 @@
-import { Button, Divider, Flex, Modal, Typography } from 'antd';
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
 import { useState } from 'react';
+// Ant Design Resources
+import { Button, Divider, Flex, Modal, Typography } from 'antd';
+// Types
 import { Item } from 'types/tdr';
-
-import { Solutions } from '../utils/types';
-import { Solution } from './Solution';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+// Components
+import { ItemCard } from 'components/cards/ItemCard';
+import { Translate } from 'components/language';
+// Internal
+import { Solutions } from '../utils/types';
+import { Solution } from './Solution';
 
 type EvaluationModalProps = {
   item: Item;

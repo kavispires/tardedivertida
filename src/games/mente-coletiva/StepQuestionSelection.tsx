@@ -1,21 +1,21 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Question } from './utils/types';
 // Hooks
-import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { mockSelectQuestion } from './utils/mock';
+import { useMock } from 'hooks/useMock';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import type { Question } from './utils/types';
+import { mockSelectQuestion } from './utils/mock';
 import { Pasture } from './components/Pasture';
 import { GamePremiseRules } from './components/RulesBlobs';
 import { CustomQuestion } from './components/CustomQuestion';
-import { TransparentButton } from 'components/buttons';
-import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 
 type StepQuestionSelectionProps = {
   activePlayer: GamePlayer;

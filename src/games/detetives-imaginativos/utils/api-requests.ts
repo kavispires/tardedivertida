@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitPlayCardPayload, SubmitSecretCluePayload, SubmitVotePayload } from './types';
 import { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
-
 export function useOnSubmitSecretClueAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
