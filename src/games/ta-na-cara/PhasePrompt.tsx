@@ -1,23 +1,24 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitPromptAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { ChoiceIcon } from 'icons/ChoiceIcon';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { StepSelectPrompt } from './StepSelectPrompt';
 import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitPromptAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
+import { StepSelectPrompt } from './StepSelectPrompt';
 import { StepWaitingForPrompt } from './StepWaitingForPrompt';
-import { AvatarName } from 'components/avatars';
 
 export function PhasePrompt({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

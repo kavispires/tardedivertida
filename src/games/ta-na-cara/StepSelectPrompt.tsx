@@ -1,18 +1,19 @@
-// Hooks
-import { useMock } from 'hooks/useMock';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
-// Mocks
-import { mockPromptDecision } from './utils/mock';
+// Hooks
+import { useMock } from 'hooks/useMock';
 // Components
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
+import { mockPromptDecision } from './utils/mock';
 import { CharactersBoard } from './components/CharactersBoard';
 import { PlayersBoards } from './components/PlayersBoards';
 import { PlayerChoices } from './components/PlayerChoices';
-import { TurnOrder } from 'components/players';
+// Mocks
 
 type StepSelectPromptProps = {
   players: GamePlayers;

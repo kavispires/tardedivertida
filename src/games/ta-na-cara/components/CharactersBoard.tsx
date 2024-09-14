@@ -1,16 +1,16 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Image, Popconfirm } from 'antd';
-// Types
-import type { CharactersDictionary } from '../utils/types';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
+import { TransparentButton } from 'components/buttons';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
-import { TransparentButton } from 'components/buttons';
+// Internal
+import type { CharactersDictionary } from '../utils/types';
 
 type CharactersBoardProps = {
   charactersIds: CardId[];
