@@ -15,6 +15,7 @@ import { getAnimationClass } from 'utils/helpers';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
+import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import { DailyArtistaEntry } from '../utils/types';
 import { useArtistaEngine } from '../utils/useArtistaEngine';
@@ -27,8 +28,9 @@ type DailyArtistaProps = {
 };
 
 export function DailyArtista({ data, currentUser }: DailyArtistaProps) {
+  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
   const { cardNumber, card, onNextCard, isPlaying, isIdle, isSaving, alreadyPlayed, onStart } =
-    useArtistaEngine(data, currentUser);
+    useArtistaEngine(data, currentUser, initialState);
 
   // UI state
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
