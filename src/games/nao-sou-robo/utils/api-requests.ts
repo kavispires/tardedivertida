@@ -1,9 +1,11 @@
-import type { SubmitRobotCardPayload, SubmitRobotGuessPayload } from './types';
-import type { UseStep } from 'hooks/useStep';
+// Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
-
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import type { SubmitRobotCardPayload, SubmitRobotGuessPayload } from './types';
 import { NAO_SOU_ROBO_ACTIONS } from './constants';
+
 
 export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
