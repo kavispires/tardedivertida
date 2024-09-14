@@ -1,3 +1,4 @@
+// Internal
 import { Direction } from './types';
 
 export const LABIRINTO_SECRETO_ACTIONS = {

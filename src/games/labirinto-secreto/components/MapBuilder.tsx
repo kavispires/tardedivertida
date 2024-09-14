@@ -3,22 +3,23 @@ import { useState } from 'react';
 import { Button, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { getPossibleTreeIds } from '../utils/helpers';
 // Icons
-import { NoIcon } from 'icons/NoIcon';
 import { LocationIcon } from 'icons/LocationIcon';
+import { NoIcon } from 'icons/NoIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
-import { Translate } from 'components/language';
-import { IconAvatar } from 'components/avatars';
 import { Container } from 'components/general/Container';
+import { Translate } from 'components/language';
 import { TextHighlight } from 'components/text';
+// Internal
+import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
+import { getPossibleTreeIds } from '../utils/helpers';
 import { TreeImage } from './TreeImage';
 
 type MapBuilderProps = {

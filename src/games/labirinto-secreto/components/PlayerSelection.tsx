@@ -1,13 +1,14 @@
 // Ant Design Resources
 import { Space } from 'antd';
-import { IconAvatar } from 'components/avatars';
-// Types
-import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 // Components
-
+import { IconAvatar } from 'components/avatars';
+// Internal
+import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';
+// Components
+
 
 type PlayerSelectionMapProps = {
   forest: Tree[];

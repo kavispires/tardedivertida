@@ -1,18 +1,19 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
-import { Avatar, IconAvatar } from 'components/avatars';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { MapSegment, Tree } from '../utils/types';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
+import { FlagIcon } from 'icons/FlagIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
-import { FlagIcon } from 'icons/FlagIcon';
 // Components
+import { Avatar, IconAvatar } from 'components/avatars';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';
 
 type PlayerMapResultsSummaryProps = {
