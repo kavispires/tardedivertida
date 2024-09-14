@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
+// Ant Design Resources
 import { Button, Popover } from 'antd';
 // Types
 import { DiagramTopic } from 'types/tdr';
-// Utils
-import { DiagramExamples } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { RuleInstruction, TextHighlight } from 'components/text';
+// Internal
+import { DiagramExamples } from '../utils/types';
 import { CircleHighlight } from './Highlights';
 
 type ExamplesProps = {

@@ -6,7 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitDrawingPayload, SubmitVotingPayload } from './types';
 import { ARTE_RUIM_ACTIONS } from './constants';
 
-
 export function useOnSubmitDrawingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

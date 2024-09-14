@@ -1,25 +1,27 @@
-import { useMemo } from 'react';
 import clsx from 'clsx';
-// Ant Design resources
+import { useMemo } from 'react';
+// Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { Bet, Bracket, BracketTier } from '../utils/type';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
-import { useBracketVoting } from '../utils/useBracketVoting';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { mockVotes } from '../utils/mock';
 // Components
 import { TransparentButton } from 'components/buttons';
+import { CharacterCard, OverlayColor } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { CharacterCard, OverlayColor } from 'components/cards/CharacterCard';
+// Internal
+import type { Bet, Bracket, BracketTier } from '../utils/type';
+import { useBracketVoting } from '../utils/useBracketVoting';
+import { mockVotes } from '../utils/mock';
 import { TierContenders } from './TierContenders';
+// Ant Design resources
 
 type VotingProps = {
   brackets: Bracket[];

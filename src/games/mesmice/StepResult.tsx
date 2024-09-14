@@ -3,30 +3,32 @@ import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider } from 'antd';
-// Type
-import type { GamePlayer, GamePlayers } from 'types/player';
+// Types
 import type { GameRound, MostVotesResult } from 'types/game';
-import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './utils/types';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { OUTCOME } from './utils/constants';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { HostNextPhaseButton } from 'components/host';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { IconAvatar } from 'components/avatars';
 import { ViewIf } from 'components/views';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './utils/types';
+import { OUTCOME } from './utils/constants';
 import { ObjectFeature } from './components/ObjectFeature';
 import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
 import { ScoreTrack } from './components/ScoreTrack';
 import { Votes } from './components/Votes';
-import { HostNextPhaseButton } from 'components/host';
 import { GroupScore } from './components/GroupScore';
+// Type
 
 type StepResultProps = {
   user: GamePlayer;

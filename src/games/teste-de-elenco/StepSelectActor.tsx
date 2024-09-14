@@ -1,17 +1,18 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { ActingRole, FeatureFilm, SubmitMovieActorPayload } from './utils/types';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getRandomItem } from 'utils/helpers';
 // Components
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { ActingRole, FeatureFilm, SubmitMovieActorPayload } from './utils/types';
 import { ActorsBoard } from './components/ActorsBoard';
 import { RoleBoard } from './components/RoleBoard';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { CastSummary } from './components/CastSummary';
 
 type StepSelectActorProps = {

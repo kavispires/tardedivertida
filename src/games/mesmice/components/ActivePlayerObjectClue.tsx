@@ -1,12 +1,13 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { ObjectCardObj } from '../utils/types';
 // Icons
 import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
-import { ObjectCard } from './ObjectCard';
 import { Card } from 'components/cards';
+// Internal
+import type { ObjectCardObj } from '../utils/types';
+import { ObjectCard } from './ObjectCard';
 
 type ActivePlayerObjectClueProps = {
   activePlayer: GamePlayer;

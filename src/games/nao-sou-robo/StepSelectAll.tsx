@@ -1,33 +1,34 @@
-import { useMemo, useRef } from 'react';
 import clsx from 'clsx';
+import { useMemo, useRef } from 'react';
 // Ant Design Resources
 import { Avatar, Button, Flex, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Captcha, CaptchaCard, Robot, SubmitRobotGuessPayload } from './utils/types';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Utils
-import { mockGuess } from './utils/mock';
 import { getAnimationClass, shuffle } from 'utils/helpers';
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { CardHighlight } from 'components/metrics/CardHighlight';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
-import { CaptchaTopic } from './components/CaptchaTopic';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { IconAvatar } from 'components/avatars';
 import { SpeechBubble } from 'components/text/SpeechBubble';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { Captcha, CaptchaCard, Robot, SubmitRobotGuessPayload } from './utils/types';
+import { mockGuess } from './utils/mock';
+import { CaptchaTopic } from './components/CaptchaTopic';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';
-import { TransparentButton } from 'components/buttons';
 
 type StepSelectAllProps = {
   players: GamePlayers;

@@ -1,3 +1,8 @@
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
 import type {
   SubmitBossPlayerPayload,
   SubmitSecretWordPayload,
@@ -6,11 +11,6 @@ import type {
   SubmitOutcomePayload,
   SubmitHelpPayload,
 } from './types';
-import type { UseStep } from 'hooks/useStep';
-
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-
 import { VENDAVAL_DE_PALPITE_ACTIONS } from './constants';
 
 export function useOnSubmitBossPlayerAPIRequest(setStep: UseStep['setStep']) {

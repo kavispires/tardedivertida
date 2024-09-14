@@ -1,22 +1,23 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
 import type { GameRound } from 'types/game';
-import type { FightingContender } from './utils/type';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
-import { mockSelectChallenge } from './utils/mock';
 // Components
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
-import { ContendersHand } from './components/ContendersHand';
+import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { FightingContender } from './utils/type';
+import { mockSelectChallenge } from './utils/mock';
+import { ContendersHand } from './components/ContendersHand';
 
 type StepSelectChallengeProps = {
   onSubmitChallenge: GenericFunction;

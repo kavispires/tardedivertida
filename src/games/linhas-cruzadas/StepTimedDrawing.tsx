@@ -3,18 +3,19 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { Prompt } from './utils/types';
 // Utils
 import { AVATARS } from 'utils/avatars';
-import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { Step } from 'components/steps';
-import { Card } from 'components/cards';
-import { TimedTimerBar } from 'components/timers';
 import { DrawingCanvas } from 'components/canvas';
+import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { TimedTimerBar } from 'components/timers';
+// Internal
+import type { Prompt } from './utils/types';
+import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 
 type StepTimedDrawingProps = {
   currentPrompt: Prompt;

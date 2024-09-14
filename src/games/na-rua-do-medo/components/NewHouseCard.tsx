@@ -1,14 +1,14 @@
 import clsx from 'clsx';
-// Types
-import type { StreetCard } from '../utils/types';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useCountdown } from 'hooks/useCountdown';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { NOOP } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageCard } from 'components/image-cards';
+// Internal
+import type { StreetCard } from '../utils/types';
 
 type NewHouseCardProps = {
   /**

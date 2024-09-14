@@ -3,34 +3,34 @@ import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider, Popconfirm } from 'antd';
-// Type
+// Types
 import type { GamePlayer } from 'types/player';
 // Hooks
+import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { mockFeatureSelection } from './utils/mock';
 // Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
+import { AvatarName, IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { Step, StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
+// Internal
+import { mockFeatureSelection } from './utils/mock';
 import type {
   ExtendedObjectFeatureCard,
   HistoryEntry,
   ObjectCardObj,
   SubmitFeaturePayload,
 } from './utils/types';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { ViewOr } from 'components/views';
 import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
 import { ScoreTrack } from './components/ScoreTrack';
 import { GroupScore } from './components/GroupScore';
 import { ObjectFeature } from './components/ObjectFeature';
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 
 type StepSelectFeatureProps = {
   user: GamePlayer;

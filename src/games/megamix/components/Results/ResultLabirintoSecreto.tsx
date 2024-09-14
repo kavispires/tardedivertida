@@ -1,15 +1,16 @@
 import { Fragment } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { RightSquareOutlined } from '@ant-design/icons';
-// Types
-import type { ResultComponentProps } from '../../utils/types';
 // Utils
 import { LETTERS } from 'utils/constants';
+// Icons
+import { MapIcon } from 'icons/MapIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { MapIcon } from 'icons/MapIcon';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultLabirintoSecreto({ track, winningValues }: ResultComponentProps) {
   return (

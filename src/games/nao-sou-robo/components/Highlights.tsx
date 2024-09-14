@@ -1,8 +1,8 @@
 // Icons
-import { EventIcon } from 'icons/EventIcon';
 import { CaptchaIcon } from 'icons/CaptchaIcon';
-import { RobotIcon } from 'icons/RobotIcon';
 import { EnergyIcon } from 'icons/EnergyIcon';
+import { EventIcon } from 'icons/EventIcon';
+import { RobotIcon } from 'icons/RobotIcon';
 import { ThiefIcon } from 'icons/ThiefIcon';
 // Components
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';

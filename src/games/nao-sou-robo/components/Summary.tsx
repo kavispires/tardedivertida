@@ -2,9 +2,10 @@
 import { Divider, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Robot } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import type { Robot } from '../utils/types';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type SummaryProps = {

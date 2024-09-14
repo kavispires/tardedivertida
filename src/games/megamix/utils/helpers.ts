@@ -1,7 +1,9 @@
+// Ant Design Resources
 import { StepProps } from 'antd';
 // Types
 import { GameRound } from 'types/game';
 import { MovieCard } from 'types/tdr';
+// Internal
 import { SeedEntry } from './types';
 
 export const buildSeedingSteps = (

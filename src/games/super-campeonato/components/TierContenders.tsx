@@ -1,9 +1,9 @@
-// Types
-import type { Bracket } from '../utils/type';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
+// Internal
+import type { Bracket } from '../utils/type';
 
 type TierContendersProps = {
   contenders: Bracket[][];

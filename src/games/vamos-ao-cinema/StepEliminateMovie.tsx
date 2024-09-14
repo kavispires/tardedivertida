@@ -7,13 +7,14 @@ import { getAnimationClass } from 'utils/helpers';
 import { StarIcon } from 'icons/StarIcon';
 import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
+import { AvatarName, IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
-import { TurnOrder } from 'components/players';
-import { AvatarName, IconAvatar } from 'components/avatars';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 
 type StepEliminateMovieProps = {

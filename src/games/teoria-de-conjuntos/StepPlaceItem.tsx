@@ -1,31 +1,33 @@
+import { useRef, useState } from 'react';
+// Ant Design Resources
+import { AimOutlined } from '@ant-design/icons';
+import { Button, Flex, Space, Tag, Tooltip } from 'antd';
 // Types
+import { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
+import { Item } from 'types/tdr';
 // Hooks
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { ItemCard } from 'components/cards/ItemCard';
+import { Container } from 'components/general/Container';
+import { DualTranslate, Translate } from 'components/language';
+import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { DualTranslate, Translate } from 'components/language';
-import { DiagramRules } from './components/RulesBlobs';
+// Internal
 import { DiagramArea, DiagramExamples, Solutions, SubmitItemPlacementPayload } from './utils/types';
-import { Item } from 'types/tdr';
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { Button, Flex, Space, Tag, Tooltip } from 'antd';
-import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { useRef, useState } from 'react';
-import { ItemCard } from 'components/cards/ItemCard';
-import { TransparentButton } from 'components/buttons';
-import { getAnimationClass } from 'utils/helpers';
-
-import { SelectedAreasCircles } from './components/SelectedAreasCircles';
-import { TurnOrder } from 'components/players';
-import { Container } from 'components/general/Container';
-import { DiagramSection } from './components/DiagramSection';
-import { useMock } from 'hooks/useMock';
 import { mockDiagramSelection } from './utils/mock';
 import { getPlayerItemsLeft } from './utils/helper';
-import { AimOutlined } from '@ant-design/icons';
-import { GameRound } from 'types/game';
+import { DiagramRules } from './components/RulesBlobs';
+import { SelectedAreasCircles } from './components/SelectedAreasCircles';
+import { DiagramSection } from './components/DiagramSection';
 import { RoundAlert } from './components/RoundAlert';
 import { Solution } from './components/Solution';
 

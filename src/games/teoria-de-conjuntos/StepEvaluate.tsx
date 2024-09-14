@@ -1,24 +1,27 @@
 // Types
+import { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
+import { Item } from 'types/tdr';
 // Hooks
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
+import { AvatarName, IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { DiagramRules, EvaluationRules } from './components/RulesBlobs';
+// Internal
 import { DiagramArea, DiagramExamples, Guess, Solutions, SubmitEvaluationPayload } from './utils/types';
-import { Item } from 'types/tdr';
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { TurnOrder } from 'components/players';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
+import { getPlayerItemsLeft } from './utils/helper';
+import { DiagramRules, EvaluationRules } from './components/RulesBlobs';
 import { MyThings } from './components/MyThings';
 import { EvaluationModal } from './components/EvaluationModal';
 import { DiagramSection } from './components/DiagramSection';
 import { PlayerGuess } from './components/PlayerGuess';
-import { getPlayerItemsLeft } from './utils/helper';
-import { GameRound } from 'types/game';
 import { RoundAlert } from './components/RoundAlert';
+// Hooks
 
 type StepEvaluateProps = {
   players: GamePlayers;

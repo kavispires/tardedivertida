@@ -1,14 +1,17 @@
+// Ant Design Resources
+import { Space } from 'antd';
+// Types
 import type { SuspectCard } from 'types/tdr';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { Suspects } from './components/Suspects';
-import { QuestionsHistory } from './components/QuestionsHistory';
-import { Space } from 'antd';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { Card } from 'components/cards';
+// Internal
+import { Suspects } from './components/Suspects';
+import { QuestionsHistory } from './components/QuestionsHistory';
 
 type StepSelectQuestionProps = {
   questions: Question[];

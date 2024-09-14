@@ -1,11 +1,11 @@
 // Types
 import type { GamePlayers } from 'types/player';
+import { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import type { UseStep } from 'hooks/useStep';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { WINDOW_DURATION } from './utils/constants';
 import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
@@ -13,12 +13,13 @@ import { PopoverRule } from 'components/rules';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
+// Internal
+import { WINDOW_DURATION } from './utils/constants';
+import { GalleryEntry } from './utils/types';
 import { GalleryWindowCredits } from './components/GalleryWindowCredits';
 import { GalleryWindowGuesses } from './components/GalleryWindowGuesses';
 import { GalleryWindowResult } from './components/GalleryWindowResult';
 import { ScoringRules } from './components/RulesBlobs';
-import { GalleryEntry } from './utils/types';
-import { TextCard } from 'types/tdr';
 import { WarningDrawing } from './components/WarningDrawing';
 
 type StepGalleryProps = {

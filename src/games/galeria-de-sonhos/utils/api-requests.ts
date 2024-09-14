@@ -6,8 +6,6 @@ import type { UseStep } from 'hooks/useStep';
 import type { PlayCardPayload, SubmitCardsPayload, SubmitWordPayload } from './types';
 import { GALERIA_DE_SONHOS_ACTIONS } from './constants';
 
-
-
 export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 

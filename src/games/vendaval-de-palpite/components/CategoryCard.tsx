@@ -1,6 +1,9 @@
-import { Card } from 'components/cards';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { pluralize } from 'utils/helpers';
+// Components
+import { Card } from 'components/cards';
 
 type CategoryCardProps = {
   categories: string[];

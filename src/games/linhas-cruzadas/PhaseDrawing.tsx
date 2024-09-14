@@ -1,22 +1,23 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
-import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 // Icons
 import { DrawingIcon } from 'icons/DrawingIcon';
 // Components
+import { Translate } from 'components/language';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
 import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+// Internal
+import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
+import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 import { StepTimedDrawing } from './StepTimedDrawing';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 export function PhaseDrawing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

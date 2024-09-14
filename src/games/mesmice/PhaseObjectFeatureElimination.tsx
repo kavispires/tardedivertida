@@ -1,22 +1,23 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitFeatureAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { TurnOrder } from 'components/players';
+import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { RoundAnnouncement } from 'components/round';
-import { TurnOrder } from 'components/players';
-import { AvatarName } from 'components/avatars';
+// Internal
+import { useOnSubmitFeatureAPIRequest } from './utils/api-requests';
 import { WaitingRoomFeature } from './components/WaitingRoomFeature';
 import { StepSelectFeature } from './StepSelectFeature';
 

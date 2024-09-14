@@ -1,13 +1,18 @@
+// Ant Design Resources
 import { Typography } from 'antd';
-import { DrawingEntry } from '../utils/types';
+// Types
+import { GamePlayers } from 'types/player';
+import { TextCard } from 'types/tdr';
+// Icons
+import { CheckMarkIcon } from 'icons/CheckMarkIcon';
+// Components
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
-import { WarningDrawing } from './WarningDrawing';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
-import { GamePlayers } from 'types/player';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { CheckMarkIcon } from 'icons/CheckMarkIcon';
-import { TextCard } from 'types/tdr';
+// Internal
+import { DrawingEntry } from '../utils/types';
+import { WarningDrawing } from './WarningDrawing';
 
 type EvaluationAllDrawingsProps = {
   players: GamePlayers;

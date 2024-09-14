@@ -1,25 +1,26 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
-import { shouldAnnounceTrap } from './utils/helpers';
 // Icons
 import { MagicDoorIcon } from 'icons/MagicDoorIcon';
 // Components
+import { ImageCardPreloadHand } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { ViewOr } from 'components/views';
+// Internal
+import { shouldAnnounceTrap } from './utils/helpers';
 import { useOnMakeReady, useOnSubmitDoorAPIRequest } from './utils/api-requests';
 import { TrapAnnouncement } from './components/TrapAnnouncement';
-import { ViewOr } from 'components/views';
 import { StepSelectDoor } from './StepSelectDoor';
 import { StepWaitDoorSelection } from './StepWaitDoorSelection';
-import { Translate } from 'components/language';
-import { ImageCardPreloadHand } from 'components/image-cards';
 
 export function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
   const user = useUser(players, state);

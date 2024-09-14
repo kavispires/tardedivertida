@@ -1,9 +1,9 @@
-// Type
-import type { Track } from '../utils/types';
-// Utils
-import { TITLES } from '../utils/constants';
 // Components
 import { DualTranslate } from 'components/language';
+// Internal
+import type { Track } from '../utils/types';
+import { TITLES } from '../utils/constants';
+// Type
 
 type TrackTitleProps = {
   track: Track;

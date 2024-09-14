@@ -4,9 +4,8 @@ import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
-import { PHASES } from 'utils/phases';
 import { getAnimationClass } from 'utils/helpers';
-import { shouldAnnounceTrap } from './utils/helpers';
+import { PHASES } from 'utils/phases';
 // Icons
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
@@ -14,6 +13,8 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
 import { Step } from 'components/steps';
+// Internal
+import { shouldAnnounceTrap } from './utils/helpers';
 import { BookHighlight } from './components/Highlights';
 import { TrapPopupRule } from './components/RulesBlobs';
 

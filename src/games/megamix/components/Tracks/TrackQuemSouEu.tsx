@@ -1,22 +1,22 @@
+import { PlayerGlyphs } from 'games/quem-sou-eu/components/PlayerGlyphs';
+import type { FightingContender } from 'games/super-campeonato/utils/type';
 import { useMemo } from 'react';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { TrackProps } from '../../utils/types';
-import type { FightingContender } from 'games/super-campeonato/utils/type';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Components
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { PlayerGlyphs } from 'games/quem-sou-eu/components/PlayerGlyphs';
 
 export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();

@@ -1,16 +1,18 @@
 // Ant Design Resources
-import { Divider, Typography } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
+import { Divider, Typography } from 'antd';
 // Types
-import type { GalleryEntry } from '../utils/types';
-// Utils
-// Components
-import { Translate } from 'components/language';
-import { GarbageIcon } from 'icons/GarbageIcon';
-import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TextCard } from 'types/tdr';
-import { getTitle } from '../utils/helpers';
+// Icons
+import { GarbageIcon } from 'icons/GarbageIcon';
+// Components
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { GalleryEntry } from '../utils/types';
+import { getTitle } from '../utils/helpers';
+// Utils
 
 type GalleryWindowResultProps = {
   cards: Dictionary<TextCard>;

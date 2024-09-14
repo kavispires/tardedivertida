@@ -5,10 +5,10 @@ import type { MonsterImage } from 'types/tdr';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useGlobalState } from 'hooks/useGlobalState';
-// Utils
-import { TIMES, VIEWS } from './utils/constants';
 // Components
 import { ViewSwitch } from 'components/views';
+// Internal
+import { TIMES, VIEWS } from './utils/constants';
 import { ViewAnnouncement } from './components/ViewAnnouncement';
 import { ViewLastSeconds } from './components/ViewLastSeconds';
 import { ViewSketching } from './components/ViewSketching';

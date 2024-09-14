@@ -1,9 +1,13 @@
-import { GamePlayer } from 'types/player';
-import { CurrentCategory } from '../utils/types';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// Ant Design Resources
 import { Slider } from 'antd';
 import type { SliderSingleProps } from 'antd';
+// Types
+import { GamePlayer } from 'types/player';
+// Components
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import { CurrentCategory } from '../utils/types';
 
 type NeedleChoiceProps = {
   user: GamePlayer;

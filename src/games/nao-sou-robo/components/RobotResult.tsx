@@ -1,16 +1,15 @@
-// Types
-import type { Robot, RobotGalleryEntry } from '../utils/types';
-// Utils
-import { BEAT_THRESHOLD, OUTCOME } from '../utils/constants';
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
-import { CardHighlight } from 'components/metrics/CardHighlight';
+// Internal
+import type { Robot, RobotGalleryEntry } from '../utils/types';
+import { BEAT_THRESHOLD, OUTCOME } from '../utils/constants';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type RobotResultProps = {

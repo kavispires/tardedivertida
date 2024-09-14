@@ -1,14 +1,12 @@
-import { useMemo } from 'react';
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { UseStep } from 'hooks/useStep';
-import type { CurrentCategory } from './utils/types';
 // Hooks
+import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { countDifferentGuesses, getGuessResultClass, getPoints } from './utils/helpers';
 import { getMeanDuration } from 'utils/helpers';
 // Components
 import { Avatar, AvatarName } from 'components/avatars';
@@ -17,8 +15,11 @@ import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { Dial } from './components/Dial';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { CurrentCategory } from './utils/types';
+import { countDifferentGuesses, getGuessResultClass, getPoints } from './utils/helpers';
+import { Dial } from './components/Dial';
 import { ScoringRules } from './components/RulesBlobs';
 
 type SentenceProps = {

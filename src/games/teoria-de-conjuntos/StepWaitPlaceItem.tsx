@@ -1,24 +1,25 @@
 // Types
+import { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
+import { Item } from 'types/tdr';
 // Hooks
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
+// Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
-// Components
 import { Step, StepProps } from 'components/steps';
 import { Title } from 'components/text';
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
-import { Item } from 'types/tdr';
-
-import { DiagramRules } from './components/RulesBlobs';
+// Internal
 import { DiagramArea, DiagramExamples, Solutions } from './utils/types';
+import { getPlayerItemsLeft } from './utils/helper';
+import { DiagramRules } from './components/RulesBlobs';
 import { MyThings } from './components/MyThings';
 import { Solution } from './components/Solution';
 import { DiagramSection } from './components/DiagramSection';
-import { getPlayerItemsLeft } from './utils/helper';
-import { GameRound } from 'types/game';
 import { RoundAlert } from './components/RoundAlert';
 
 type StepWaitPlaceItemProps = {

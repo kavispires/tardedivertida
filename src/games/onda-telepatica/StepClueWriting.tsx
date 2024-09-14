@@ -7,12 +7,12 @@ import { SpectrumCard } from 'types/tdr';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockHint } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import { mockHint } from './utils/mock';
 import { Dial } from './components/Dial';
 import { ClueWritingRules } from './components/RulesBlobs';
 import { TargetSideHighlight, WavelengthHighlight } from './components/Highlights';

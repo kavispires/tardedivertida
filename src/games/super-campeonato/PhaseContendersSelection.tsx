@@ -3,18 +3,19 @@ import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
-import { StepSelectContenders } from './StepSelectContenders';
+// Internal
+import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
 import { ContendersHand } from './components/ContendersHand';
+import { StepSelectContenders } from './StepSelectContenders';
 
 export function PhaseContenderSelection({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);

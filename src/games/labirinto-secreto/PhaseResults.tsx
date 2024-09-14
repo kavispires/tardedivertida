@@ -1,21 +1,22 @@
 import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-import type { MapSegment } from './utils/types';
-// State & Hooks
-import { useStep } from 'hooks/useStep';
+// Hooks
 import { useSlideShow } from 'hooks/useSlideShow';
+import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Resources & Utils
-import { PHASES } from 'utils/phases';
+// Utils
 import { sortPlayers } from 'utils/helpers';
+import { PHASES } from 'utils/phases';
 // Icons
 import { PathIcon } from 'icons/PathIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
+// Internal
+import type { MapSegment } from './utils/types';
 import { StepRanking } from './StepRanking';
 import { StepGallery } from './StepGallery';
 

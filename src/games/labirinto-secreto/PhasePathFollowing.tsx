@@ -1,22 +1,23 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
-import { useOnSubmitPathAPIRequest } from './utils/api-requests';
 // Icons
 import { DirectionsIcon } from 'icons/DirectionsIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { TurnOrder } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { StepFollowPath } from './StepFollowPath';
 import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitPathAPIRequest } from './utils/api-requests';
+import { StepFollowPath } from './StepFollowPath';
 import { StepPathWaiting } from './StepPathWaiting';
 
 export function PhasePathFollowing({ players, state, info }: PhaseProps) {

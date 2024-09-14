@@ -1,6 +1,5 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Decision, StreetCard } from '../utils/types';
 // Icons
 import { HouseIcon } from 'icons/HouseIcon';
 import { QuestionIcon } from 'icons/QuestionIcon';
@@ -8,9 +7,11 @@ import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
 import { AvatarStrip, IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
+// Internal
+import type { Decision, StreetCard } from '../utils/types';
 
 type PlayerStatsProps = {
   user: GamePlayer;

@@ -1,3 +1,4 @@
+// Types
 import type { MonsterImage } from 'types/tdr';
 
 export type Sketch = {

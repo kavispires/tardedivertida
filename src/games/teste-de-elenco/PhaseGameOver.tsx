@@ -2,26 +2,25 @@
 import { Input, Space } from 'antd';
 // Types
 import { PhaseProps } from 'types/game';
-// Types
-import type { FeatureFilm } from './utils/types';
-// Utils
-import { achievementsReference } from './utils/achievements';
-import { Icons, chatGPTMoviePrompt } from './utils/helpers';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
+import { SuspectCard } from 'components/cards/SuspectCard';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Container } from 'components/general/Container';
+import { HostOnlyContainer } from 'components/host';
+import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';
+// Internal
+import type { FeatureFilm } from './utils/types';
+import { achievementsReference } from './utils/achievements';
+import { Icons, chatGPTMoviePrompt } from './utils/helpers';
 import { RoleBoard } from './components/RoleBoard';
-import { SuspectCard } from 'components/cards/SuspectCard';
-import { ImageCard } from 'components/image-cards';
-import { HostOnlyContainer } from 'components/host';
 import { MovieStats } from './components/MovieStats';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {

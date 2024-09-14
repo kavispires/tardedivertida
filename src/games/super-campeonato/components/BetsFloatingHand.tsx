@@ -1,17 +1,16 @@
 import { useMemo } from 'react';
-// Types
-import type { Bet, Bracket } from '../utils/type';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-// Utils
-import { findBetContenders } from '../utils/helpers';
 // Icons
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 // Components
-import { ImageBlurButtonContainer } from 'components/image-cards';
-import { Translate } from 'components/language';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageBlurButtonContainer } from 'components/image-cards';
+import { Translate } from 'components/language';
+// Internal
+import type { Bet, Bracket } from '../utils/type';
+import { findBetContenders } from '../utils/helpers';
 
 type BetsFloatingHandProps = {
   bets: Bet;

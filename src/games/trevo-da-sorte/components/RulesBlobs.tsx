@@ -1,8 +1,8 @@
-// Utils
-import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from '../utils/constants';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from '../utils/constants';
 
 export function WritingRules() {
   return (

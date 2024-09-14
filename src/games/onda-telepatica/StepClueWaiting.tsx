@@ -9,6 +9,7 @@ import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
+// Internal
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 
 type StepClueWaitingProps = {

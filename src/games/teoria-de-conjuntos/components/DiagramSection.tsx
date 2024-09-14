@@ -1,21 +1,25 @@
+import clsx from 'clsx';
+import { useMemo, useState } from 'react';
+// Ant Design Resources
 import { Alert, Divider, Flex } from 'antd';
+// Types
+import { Item } from 'types/tdr';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
-import { useMemo, useState } from 'react';
-import { Item } from 'types/tdr';
-
+// Internal
 import { DiagramArea } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
+import { TripleDiagram } from './TripleDiagram/TripleDiagram';
+import { TripleDiagramClickableAreas } from './TripleDiagram/TripleDiagramClickableAreas';
 import {
   AreaPlacedItems,
   calculateProportionalValues,
   getCenterPointInArea,
 } from './TripleDiagram/AreaPlacedItems';
-import { TripleDiagram } from './TripleDiagram/TripleDiagram';
-import { TripleDiagramClickableAreas } from './TripleDiagram/TripleDiagramClickableAreas';
-import clsx from 'clsx';
-import { getAnimationClass } from 'utils/helpers';
 
 type DiagramSectionProps = {
   width: number;

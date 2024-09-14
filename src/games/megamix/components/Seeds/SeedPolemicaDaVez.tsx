@@ -1,9 +1,9 @@
-// Types
-import type { SeedEntryPolemicaDaVez } from '../../utils/types';
 // Components
+import { Tweet } from 'components/game/SocialProfile';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { Tweet } from 'components/game/SocialProfile';
+// Internal
+import type { SeedEntryPolemicaDaVez } from '../../utils/types';
 
 type SeedPolemicaDaVezProps = {
   seed: SeedEntryPolemicaDaVez;

@@ -1,25 +1,26 @@
 // Types
-import type { GamePlayer } from 'types/player';
 import type { PhaseProps } from 'types/game';
+import type { GamePlayer } from 'types/player';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { OpinionsIcon } from 'icons/OpinionsIcon';
 // Components
-import { StepWordSelection } from './StepWordSelection';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { GroupProgress } from './components/GroupProgress';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
-import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
-import { StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
-import { ViewOr } from 'components/views';
+import { StepWordSelection } from './StepWordSelection';
 
 type RoundAnnouncementTextProps = {
   guesser: GamePlayer;

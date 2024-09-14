@@ -2,19 +2,20 @@
 import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
-import type { MapSegment, Tree } from './utils/types';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
-import { achievementsReference } from './utils/achievements';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
-import { Translate } from 'components/language';
-import { Container } from 'components/general/Container';
 import { AvatarStrip } from 'components/avatars';
-import { PlayerMap } from './components/PlayerMap';
+import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+import { Container } from 'components/general/Container';
+import { Translate } from 'components/language';
+// Internal
+import type { MapSegment, Tree } from './utils/types';
+import { achievementsReference } from './utils/achievements';
+import { PlayerMap } from './components/PlayerMap';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const sortedPlayers = sortPlayers(players);

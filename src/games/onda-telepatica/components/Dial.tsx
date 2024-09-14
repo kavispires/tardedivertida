@@ -1,9 +1,8 @@
 import clsx from 'clsx';
 // Types
 import type { SpectrumCard } from 'types/tdr';
-// Utils
+// Internal
 import { getBracketClass } from '../utils/helpers';
-// Components
 import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type DialProps = {

@@ -1,3 +1,4 @@
+// Internal
 import { BracketTier } from './type';
 
 export const SUPER_CAMPEONATO_ACTIONS = {

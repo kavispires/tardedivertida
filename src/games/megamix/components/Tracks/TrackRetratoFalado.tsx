@@ -1,19 +1,18 @@
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
-// Types
-import type { TrackProps } from '../../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelection } from '../../utils/mock';
 // Components
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { MinigameTitle } from '../MinigameTitle';
 import { CanvasSVG } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { TrackProps } from '../../utils/types';
+import { mockSelection } from '../../utils/mock';
+import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackRetratoFalado = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
   const cardWidth = useCardWidth(5, { minWidth: 250, maxWidth: 270 });

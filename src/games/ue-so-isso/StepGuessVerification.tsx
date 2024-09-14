@@ -1,26 +1,27 @@
-import { useEffect } from 'react';
 import clsx from 'clsx';
+import { useEffect } from 'react';
 // Ant Design Resources
-import { Button, App, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { Button, App, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { Suggestion } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { AvatarName } from 'components/avatars';
+import { SuggestionEasel } from 'components/game/SuggestionEasel';
+import { HostOnlyContainer } from 'components/host';
+import { Translate } from 'components/language';
 import { messageContent } from 'components/pop-up';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
-import { AvatarName } from 'components/avatars';
-import { Translate } from 'components/language';
 import { ViewIf } from 'components/views';
-import { HostOnlyContainer } from 'components/host';
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
+// Internal
+import type { Suggestion } from './utils/types';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 
 type StepGuessVerificationProps = {
   guess: string;

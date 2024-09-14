@@ -3,15 +3,16 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
-import type { Suggestion } from './utils/types';
 // Components
-import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
+import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Step, type StepProps } from 'components/steps';
+import { Instruction, RuleInstruction, Title } from 'components/text';
+// Internal
+import type { Suggestion } from './utils/types';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 
 type StepWaitingForGuessProps = {
   guesser: GamePlayer;

@@ -1,3 +1,4 @@
+// Utils
 import { shuffle } from 'utils/helpers';
 
 const suggestedWords = [

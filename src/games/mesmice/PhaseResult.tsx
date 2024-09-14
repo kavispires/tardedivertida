@@ -1,20 +1,21 @@
 import { ReactNode } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { SkullIcon } from 'icons/SkullIcon';
+import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+// Internal
 import { StepResult } from './StepResult';
 
 export function PhaseResult({ players, state, info }: PhaseProps) {

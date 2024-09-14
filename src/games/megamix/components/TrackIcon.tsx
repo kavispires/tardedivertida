@@ -1,6 +1,4 @@
-// Type
-import type { Track } from '../utils/types';
-// Components
+// Icons
 import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 import { BoxingGlovesIcon } from 'icons/BoxingGlovesIcon';
@@ -31,6 +29,9 @@ import { TDIcon } from 'icons/TDIcon';
 import { TrendingIcon } from 'icons/TrendingIcon';
 import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
 import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
+// Internal
+import type { Track } from '../utils/types';
+// Type
 
 type TrackIconProps = {
   track: Track;

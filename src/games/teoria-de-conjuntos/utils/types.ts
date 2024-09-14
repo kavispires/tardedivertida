@@ -1,4 +1,6 @@
+// Types
 import { DiagramTopic } from 'types/tdr';
+// Internal
 import { OUTCOME } from './constants';
 
 export type SubmitJudgePayload = {

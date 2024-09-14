@@ -1,8 +1,7 @@
 // Types
 import type { PhaseProps } from 'types/game';
-import type { FinalGalleryEntry } from './utils/types';
-// Utils
-import { achievementsReference } from './utils/achievements';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
@@ -10,8 +9,10 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+// Internal
+import type { FinalGalleryEntry } from './utils/types';
+import { achievementsReference } from './utils/achievements';
 import { FinalGalleryItem } from './components/FinalGalleryItem';
-import { useCardWidth } from 'hooks/useCardWidth';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const canvasWidth = useCardWidth(8, { gap: 16, minWidth: 100, maxWidth: 500 });

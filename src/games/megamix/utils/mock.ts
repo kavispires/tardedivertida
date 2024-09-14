@@ -1,9 +1,9 @@
-// Types
-import type { SeedEntry } from './types';
-// Utils
 import { mockClue } from 'mock/clues';
 import { mockDrawing } from 'mock/drawing';
+// Utils
 import { getRandomItem } from 'utils/helpers';
+// Internal
+import type { SeedEntry } from './types';
 
 export function mockSeeding(seeds: SeedEntry[]) {
   const data: PlainObject = {};

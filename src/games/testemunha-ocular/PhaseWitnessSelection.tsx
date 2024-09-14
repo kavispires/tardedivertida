@@ -2,20 +2,21 @@
 import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
+import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
 import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
-import { IconAvatar } from 'components/avatars';
-import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
+import { Instruction } from 'components/text';
+// Internal
+import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);

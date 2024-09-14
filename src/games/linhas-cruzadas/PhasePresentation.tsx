@@ -1,18 +1,19 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { PhotoAlbumIcon } from 'icons/PhotoAlbumIcon';
 // Components
-import { TurnOrder } from 'components/players';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { StepSwitcher } from 'components/steps';
-import { StepAlbum } from './StepAlbum';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { TurnOrder } from 'components/players';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+// Internal
+import { StepAlbum } from './StepAlbum';
 
 export function PhasePresentation({ players, state, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);

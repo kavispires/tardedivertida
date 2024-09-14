@@ -2,9 +2,8 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-// Types
+// Internal
 import type { Suggestion } from '../utils/types';
-// Components
 import { SuggestionCard } from './SuggestionCard';
 
 type CardsProps = {

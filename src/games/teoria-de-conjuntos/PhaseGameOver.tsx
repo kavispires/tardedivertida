@@ -1,21 +1,23 @@
+// Ant Design Resources
+import { Divider } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
-// import type { MesmiceGalleryEntry } from './utils/types';
-// Utils
-import { achievementsReference } from './utils/achievements';
+// Hooks
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Internal
+import { achievementsReference } from './utils/achievements';
 import { DiagramSection } from './components/DiagramSection';
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { Solution } from './components/Solution';
 import { MyThings } from './components/MyThings';
-import { useUser } from 'hooks/useUser';
-import { Divider } from 'antd';
 import { GameOverIcon } from './components/Announcement';
+// import type { MesmiceGalleryEntry } from './utils/types';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const user = useUser(players, state);

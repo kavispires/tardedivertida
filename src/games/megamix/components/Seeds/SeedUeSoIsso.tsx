@@ -1,10 +1,8 @@
+import clsx from 'clsx';
 import moment from 'moment';
 import { useState } from 'react';
-import clsx from 'clsx';
-// AntDesign Resources
+// Ant Design Resources
 import { Button, Input, Space } from 'antd';
-// Types
-import type { SeedEntryUeSoIsso } from '../../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -13,6 +11,8 @@ import { getAnimationClass } from 'utils/helpers';
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+// Internal
+import type { SeedEntryUeSoIsso } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';
 
 type SeedUeSoIssoProps = {

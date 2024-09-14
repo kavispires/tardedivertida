@@ -1,18 +1,20 @@
-import { Avatar as AntAvatar, Button, Space, Spin } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Avatar as AntAvatar, Button, Space, Spin } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { MovieCard as MovieCardType } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { ScaredIcon } from 'icons/ScaredIcon';
 import { StarIcon } from 'icons/StarIcon';
 import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
-import { MovieCard } from 'components/cards/MovieCard';
 import { Avatar, IconAvatar } from 'components/avatars';
-import { getAnimationClass } from 'utils/helpers';
+import { MovieCard } from 'components/cards/MovieCard';
 
 type MoviesProps = {
   movies: MovieCardType[];

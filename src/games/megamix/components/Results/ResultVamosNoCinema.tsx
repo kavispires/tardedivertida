@@ -1,10 +1,9 @@
-// Types
-import type { ResultComponentProps } from '../../utils/types';
-// Utils
-import { getMovieTitles } from '../../utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { ResultComponentProps } from '../../utils/types';
+import { getMovieTitles } from '../../utils/helpers';
 
 export function ResultVamosAoCinema({
   track,

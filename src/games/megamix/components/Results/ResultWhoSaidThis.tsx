@@ -1,10 +1,10 @@
-// Types
-import type { ResultComponentProps } from '../../utils/types';
 // Components
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarCard } from 'components/avatars';
 import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultWhoSaidThis({ track, winningValues, players }: ResultComponentProps) {
   return (

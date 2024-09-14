@@ -2,11 +2,12 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+// Internal
+import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
 import { ActivePlayerObjectClue } from './ActivePlayerObjectClue';
 import { ObjectFeature } from './ObjectFeature';
 

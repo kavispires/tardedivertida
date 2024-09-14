@@ -1,9 +1,10 @@
 // Types
-import type { Bet, Bracket, FightingContender } from './type';
 import { TextCard } from 'types/tdr';
 // Utils
-import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
 import { deepCopy, getRandomItem } from 'utils/helpers';
+// Internal
+import type { Bet, Bracket, FightingContender } from './type';
+import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
 import { getSmartBetContenderOptions } from './helpers';
 
 export function mockSelectChallenge(challenges: TextCard[]): CardId {
