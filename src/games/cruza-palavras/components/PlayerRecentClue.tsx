@@ -2,10 +2,11 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { GridCell } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';
+// Internal
+import type { GridCell } from '../utils/types';
 
 type PlayerRecentClueProps = {
   user: GamePlayer;

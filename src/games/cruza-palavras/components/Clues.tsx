@@ -1,8 +1,6 @@
-// Types
+// Internal
 import type { Clue } from '../utils/types';
-// Helpers
 import { getClueKey } from '../utils/helpers';
-// Components
 import { ClueCard } from './ClueCard';
 
 type CluesProps = {

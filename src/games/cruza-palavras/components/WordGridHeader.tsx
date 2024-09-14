@@ -1,8 +1,6 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Image, Tooltip } from 'antd';
-// Types
-import type { GridCell, GridType } from '../utils/types';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -10,8 +8,11 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { ItemCard } from 'components/cards/ItemCard';
+import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+// Internal
+import type { GridCell, GridType } from '../utils/types';
+// Design Resources
 
 type WordGridHeaderProps = {
   cell: GridCell;

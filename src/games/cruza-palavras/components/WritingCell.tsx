@@ -1,13 +1,15 @@
-//Design Resources
-import { Button, Popover } from 'antd';
+// Ant Design Resources
 import { FormOutlined } from '@ant-design/icons';
+import { Button, Popover } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { GridCell } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import type { GridCell } from '../utils/types';
 import { PreviousClue } from './PreviousClue';
 import { WordForm } from './WordForm';
+//Design Resources
 
 type WritingCellProps = {
   onSubmitClue: GenericFunction;

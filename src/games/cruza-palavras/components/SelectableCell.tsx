@@ -1,15 +1,16 @@
-//Design Resources
-import { Button, Tooltip } from 'antd';
+// Ant Design Resources
 import { MinusSquareOutlined, PlusCircleFilled } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Clue, GridCell } from '../utils/types';
-// Utils
-import { getClueFromKey } from '../utils/helpers';
 // Components
+import { Translate } from 'components/language';
+// Internal
+import type { Clue, GridCell } from '../utils/types';
+import { getClueFromKey } from '../utils/helpers';
 import { ClueCard } from './ClueCard';
 import { PreviousClue } from './PreviousClue';
-import { Translate } from 'components/language';
+//Design Resources
 
 type SelectableCellProps = {
   onSelectCell: GenericFunction;

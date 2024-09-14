@@ -4,15 +4,16 @@ import { Badge, Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
+import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
+import { TransparentButton } from 'components/buttons';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { Card } from 'components/cards';
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { TransparentButton } from 'components/buttons';
+// Internal
 import { TextCardWithType } from './utils/types';
 
 type StepSelectWordsProps = {
