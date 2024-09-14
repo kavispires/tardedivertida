@@ -8,26 +8,27 @@ import { Me } from 'types/user';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import ACHIEVEMENTS_DICT from 'utils/achievements';
-import { availableGamesCount, durationToHours, playableGames, timestampToDate } from '../utils';
 // Icons
-import { TrophyIcon } from 'icons/TrophyIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
-import { UserStatsIcon } from 'icons/UserStatsIcon';
-import { SkullIcon } from 'icons/SkullIcon';
-import { DiceIcon } from 'icons/DiceIcon';
+import { CalendarIcon } from 'icons/CalendarIcon';
 import { CatalogIcon } from 'icons/CatalogIcon';
 import { ClockIcon } from 'icons/ClockIcon';
-import { CalendarIcon } from 'icons/CalendarIcon';
+import { DiceIcon } from 'icons/DiceIcon';
 import { PlayersIcon } from 'icons/PlayersIcon';
+import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
+import { SkullIcon } from 'icons/SkullIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
+import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
+import { LogoutButton } from 'components/auth/LogoutButton';
+import { Avatar, IconAvatar } from 'components/avatars';
 import { LanguageSwitch, Translate } from 'components/language';
 import { Title } from 'components/text';
+// Internal
+import { availableGamesCount, durationToHours, playableGames, timestampToDate } from '../utils';
 import { UserName } from './UserName';
-import { Avatar, IconAvatar } from 'components/avatars';
 import { StatisticCard } from './StatisticCard';
 import { InfoCard } from './InfoCard';
 import { GameCheckCard } from './GameCheckCard';
-import { LogoutButton } from 'components/auth/LogoutButton';
 // Sass
 import '../Me.scss';
 

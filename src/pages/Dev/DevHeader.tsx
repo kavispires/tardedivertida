@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
-// Components
+// Internal
 import { DevMenu } from './DevMenu';
 
 type DevHeaderProps = {

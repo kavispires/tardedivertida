@@ -2,8 +2,9 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Layout, Space, Steps } from 'antd';
 // Components
-import { Title } from 'components/text';
 import { Translate } from 'components/language';
+import { Title } from 'components/text';
+// Internal
 import { LanguageTest } from './components/LanguageTest';
 import { DrawingTest } from './components/DrawingTest';
 import { Results } from './components/Results';

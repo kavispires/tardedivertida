@@ -4,23 +4,24 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useEffectOnce, useTitle, useWindowSize } from 'react-use';
 // Ant Design Resources
-import { Avatar, Image, Layout, Modal, Space } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
+import { Avatar, Image, Layout, Modal, Space } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import GAMES from 'utils/info';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
-import { filterGames } from './helpers';
+import GAMES from 'utils/info';
 // Components
-import { FiltersDrawer } from './components/FilterDrawers';
-import { GameDetailsContent } from './components/GameDetailsContent';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+// Internal
+import { FiltersDrawer } from './components/FilterDrawers';
+import { GameDetailsContent } from './components/GameDetailsContent';
+import { filterGames } from './helpers';
 
 const GAME_LIST: GameInfo[] = Object.values(GAMES);
 

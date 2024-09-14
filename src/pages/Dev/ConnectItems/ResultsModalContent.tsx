@@ -1,13 +1,17 @@
+import { useEffect } from 'react';
+import { useCopyToClipboard } from 'react-use';
+// Ant Design Resources
 import { App, Input, Space, Typography } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Icons
+import { BoxXIcon } from 'icons/BoxXIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
+// Components
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { useLanguage } from 'hooks/useLanguage';
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
-import { useEffect } from 'react';
-import { useCopyToClipboard } from 'react-use';
-
+// Internal
 import { ConnectionGame, GroupSummary } from './types';
 
 type ResultsModalContentProps = {

@@ -2,11 +2,12 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Components
+import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { DrawingCanvas } from 'components/canvas';
 
 export function DrawingTest({ onResult, step }: TestStepProps) {
   const [lines, setLines] = useState<any>([]);

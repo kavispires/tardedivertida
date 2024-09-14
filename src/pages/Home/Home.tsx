@@ -3,16 +3,17 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTitle } from 'react-use';
 // Ant Design Resources
-import { Button, Image, Input, Layout, Space } from 'antd';
 import { ForwardFilled } from '@ant-design/icons';
+import { Button, Image, Input, Layout, Space } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { resetGlobalState } from 'hooks/useGlobalState';
-// Assets
-import logo from 'assets/images/tarde-divertida-logo.svg';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
-import { useLanguage } from 'hooks/useLanguage';
+// Images
+import logo from 'assets/images/tarde-divertida-logo.svg';
+// Assets
 
 function Home() {
   useTitle('Tarde Divertida');

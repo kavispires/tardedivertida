@@ -1,14 +1,16 @@
 // Ant Design Resources
 import { Space } from 'antd';
-// Components
-import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
-import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
-import { IconAvatar } from 'components/avatars';
+// Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { EarthIcon } from 'icons/EarthIcon';
 import { HeartIcon } from 'icons/HeartIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { Instruction, Title } from 'components/text';
+// Internal
+import { DecisionButtons } from './DecisionButtons';
+import { TestStepProps } from '../TestArea';
 
 export function IconsTest({ onResult, step }: TestStepProps) {
   return (

@@ -1,13 +1,15 @@
+import { sortBy } from 'lodash';
+import { useEffect, useState } from 'react';
 import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout, App, Switch, Divider } from 'antd';
-// Components
+// Icons
 import * as icons from 'icons/collection';
-import { DevHeader } from './DevHeader';
-import { TransparentButton } from 'components/buttons';
-import { useEffect, useState } from 'react';
 import { collectionByCategory, collectionByGame, collectionUnassigned } from 'icons/collectionByGame';
-import { sortBy } from 'lodash';
+// Components
+import { TransparentButton } from 'components/buttons';
+// Internal
+import { DevHeader } from './DevHeader';
 
 type IconEntry = [string, (props: React.SVGProps<SVGSVGElement>) => JSX.Element];
 

@@ -4,6 +4,7 @@ import { Space } from 'antd';
 import { Translate } from 'components/language';
 import { LanguageButtons } from 'components/language/LanguageButtons';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
 
