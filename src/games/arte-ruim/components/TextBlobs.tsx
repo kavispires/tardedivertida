@@ -1,9 +1,11 @@
 import clsx from 'clsx';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Components
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
-import { getAnimationClass } from 'utils/helpers';
 
 export const DrawInstruction = () => (
   <Instruction>

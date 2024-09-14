@@ -1,12 +1,11 @@
 import clsx from 'clsx';
-// Types
-import type { ArteRuimCard } from '../utils/types';
 // Hooks
 import { useDevFeatures } from 'hooks/useDevFeatures';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getEntryId } from 'utils/helpers';
-// Components
+// Internal
+import type { ArteRuimCard } from '../utils/types';
 import { ArteRuimCard as Card } from './Card';
 
 type EvaluationAllCardsProps = {

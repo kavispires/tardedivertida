@@ -1,3 +1,4 @@
+// Utils
 import { SEPARATOR } from 'utils/constants';
 
 export function prepareVotes(votes: StringDictionary) {
