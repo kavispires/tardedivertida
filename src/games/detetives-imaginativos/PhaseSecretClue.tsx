@@ -4,20 +4,21 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitSecretClueAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { SecretIcon } from 'icons/SecretIcon';
 // Components
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ImageCardPreloadHand } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitSecretClueAPIRequest } from './utils/api-requests';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 

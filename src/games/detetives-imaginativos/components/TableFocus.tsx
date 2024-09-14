@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { CardEntry } from '../utils/types';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -12,6 +11,8 @@ import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+// Internal
+import type { CardEntry } from '../utils/types';
 
 type TableFocusProps = {
   currentPlayer: GamePlayer;
