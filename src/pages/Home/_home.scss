@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 $particleSize: 20vmin;
 $animationDuration: 6s;
 $amount: 20;
@@ -69,8 +71,8 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
           color: nth($colors, random(length($colors)));
           top: random(100) * 1%;
           left: random(100) * 1%;
-          animation-duration: calc(random($animationDuration * 10) / 10) * 1s + 10s;
-          animation-delay: calc(random(($animationDuration + 10s) * 10) / 10) * -1s;
+          animation-duration: calc(math.random(math.div($animationDuration * 10, 1s)) * 1s) + 10s;
+          animation-delay: calc(math.random(math.div(($animationDuration + 10s) * 10, 1s)) * -1s);
           transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
           $blurRadius: (random() + 0.5) * $particleSize * 0.5;
           $x: if(random() > 0.5, -1, 1);
