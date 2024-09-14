@@ -5,6 +5,7 @@ import { Button, Divider, Drawer, Space } from 'antd';
 import type { GameInfo } from 'types/game-info';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
+// Internal
 import { CustomFilterOptions } from './CustomFilterOptions';
 import { FilterOptions } from './FilterOptions';
 import { FilterEntry } from './FilterEntry';

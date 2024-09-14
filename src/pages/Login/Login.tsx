@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Layout, Button, Form, Input, Alert, Image } from 'antd';
-// API
-import { signIn } from 'services/firebase';
-// Image
-import logo from 'assets/images/tarde-divertida-logo.svg';
+// Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+// Services
+import { signIn } from 'services/firebase';
+// Images
+import logo from 'assets/images/tarde-divertida-logo.svg';
+// API
+// Image
 
 const layout = {
   labelCol: { span: 8 },

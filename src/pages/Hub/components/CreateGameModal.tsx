@@ -1,26 +1,28 @@
+import { orderBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
-import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Image, Modal, Button, Divider, Space, Alert, App } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
-// Adapters
-import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Hooks
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
-// Constants
+// Services
+import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
+// Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
 import { Loading } from 'components/loaders';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { Instruction, Title } from 'components/text';
+// Internal
 import { GameCustomizations } from './GameCustomizations';
+// Adapters
 
 const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) => {
   const now = Date.now();

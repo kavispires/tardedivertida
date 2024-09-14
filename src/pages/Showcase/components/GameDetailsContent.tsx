@@ -8,8 +8,8 @@ import { useLanguage } from 'hooks/useLanguage';
 import { PUBLIC_URL } from 'utils/constants';
 import { truncateRecommended } from 'utils/helpers';
 // Components
-import { RulesModal } from 'components/rules';
 import { GameTags } from 'components/general/GameTags';
+import { RulesModal } from 'components/rules';
 
 export function GameDetailsContent({ game }: { game: GameInfo }) {
   const { language, translate } = useLanguage();

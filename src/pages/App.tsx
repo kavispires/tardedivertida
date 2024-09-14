@@ -1,23 +1,24 @@
-import { useEffectOnce } from 'react-use';
-import { HashRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { HashRouter } from 'react-router-dom';
+import { useEffectOnce } from 'react-use';
 import { useLocalStorage } from 'react-use';
 // Ant Design Resources
 import { ConfigProvider, Layout, App as AntApp } from 'antd';
-// Services
-import { AuthProvider } from 'services/AuthProvider';
 // Hooks
+import { useAppSetup } from 'hooks/useAppSetup';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useError } from 'hooks/useError';
-import { useAppSetup } from 'hooks/useAppSetup';
-// State
 import { useGlobalState } from 'hooks/useGlobalState';
+// Services
+import { AuthProvider } from 'services/AuthProvider';
 // Components
-import { LoadingBar, LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';
-// Pages
-import { routes } from './Routes';
 import ErrorBoundary from 'components/errors/ErrorBoundary';
+import { LoadingBar, LoadingPage } from 'components/loaders';
+// Internal
+import { routes } from './Routes';
+// State
+// Pages
 
 const queryClient = new QueryClient({
   defaultOptions: {

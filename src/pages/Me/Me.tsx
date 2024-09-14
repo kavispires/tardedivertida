@@ -1,9 +1,9 @@
-import { useTitle } from 'react-use';
 import { useEffect } from 'react';
+import { useTitle } from 'react-use';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-// Components
+// Internal
 import { LoginModal } from './components/LoginModal';
 import { MeContent } from './components/MeContent';
 // Sass

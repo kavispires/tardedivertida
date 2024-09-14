@@ -3,11 +3,11 @@ import clsx from 'clsx';
 import { Typography, Switch, Radio, Checkbox } from 'antd';
 // Types
 import type { GameInfo, GameInfoOption } from 'types/game-info';
+// Components
+import { Translate } from 'components/language';
 // Adapters
 // Hooks
 // Constants
-// Components
-import { Translate } from 'components/language';
 
 type GameCustomizationsProps = {
   options?: GameInfo['options'];

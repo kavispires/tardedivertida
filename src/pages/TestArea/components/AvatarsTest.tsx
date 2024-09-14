@@ -1,18 +1,19 @@
+import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 import { random } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
+import { AvatarCard, AvatarName, AvatarStrip } from 'components/avatars';
+import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
+import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
+import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
+// Internal
 import { DecisionButtons } from './DecisionButtons';
 import { TestStepProps } from '../TestArea';
-import { AvatarCard, AvatarName, AvatarStrip } from 'components/avatars';
-import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
-import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
-import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
-import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 
 const superHeroId = String(random(0, 20));
 

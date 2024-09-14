@@ -1,17 +1,18 @@
-import { useState } from 'react';
 import { random } from 'lodash';
+import { useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
-import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
 import { TransparentButton } from 'components/buttons';
 import { ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
 import { RibbonGroup } from 'components/ribbons';
+import { Instruction, Title } from 'components/text';
+// Internal
+import { DecisionButtons } from './DecisionButtons';
+import { TestStepProps } from '../TestArea';
 
 const imageId = `cnt-${random(1, 100)}`;
 

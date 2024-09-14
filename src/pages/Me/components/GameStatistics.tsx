@@ -1,33 +1,34 @@
 // Ant Design Resources
-import { Col, Divider, Rate, Row } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
+import { Col, Divider, Rate, Row } from 'antd';
 // Types
+import type { AchievementReference } from 'types/achievements';
 import type { GameInfo } from 'types/game-info';
 import type { GameUserStatistics } from 'types/user';
-import type { AchievementReference } from 'types/achievements';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { durationToHours, timestampToDate } from '../utils';
 import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
 // Icons
-import { PlayersIcon } from 'icons/PlayersIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
-import { SkullIcon } from 'icons/SkullIcon';
+import { CalendarIcon } from 'icons/CalendarIcon';
 import { ClockIcon } from 'icons/ClockIcon';
 import { DiceIcon } from 'icons/DiceIcon';
-import { CalendarIcon } from 'icons/CalendarIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { MultitaskIcon } from 'icons/MultitaskIcon';
+import { PlayersIcon } from 'icons/PlayersIcon';
+import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
+import { SkullIcon } from 'icons/SkullIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { GameBanner } from 'components/general/GameBanner';
 import { DualTranslate, Translate } from 'components/language';
 import { RulesModal } from 'components/rules';
-import { IconAvatar } from 'components/avatars';
+import { Title } from 'components/text';
+// Internal
+import { durationToHours, timestampToDate } from '../utils';
 import { InfoCard } from './InfoCard';
 import { StatisticCard } from './StatisticCard';
 import { UserAchievements } from './UserAchievements';
-import { Title } from 'components/text';
 
 type GameUserStatisticsProps = {
   info: GameInfo;

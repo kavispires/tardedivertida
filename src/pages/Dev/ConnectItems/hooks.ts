@@ -1,11 +1,13 @@
-import { App } from 'antd';
-import { useLanguage } from 'hooks/useLanguage';
+import { useQuery } from '@tanstack/react-query';
 import { cloneDeep, orderBy, sample, sampleSize, shuffle } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
+// Ant Design Resources
+import { App } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { PUBLIC_URL } from 'utils/constants';
-
-import { useQuery } from '@tanstack/react-query';
-
+// Internal
 import { ConnectionGame, ConnectionGroup, GroupDictEntry, GroupSummary, ItemGroup } from './types';
 
 const emojiColors: StringDictionary = {
