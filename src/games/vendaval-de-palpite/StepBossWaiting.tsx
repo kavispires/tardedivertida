@@ -1,10 +1,11 @@
 // Types
 import type { GamePlayers } from 'types/player';
-import type { Clues, BoardObject } from './utils/types';
 // Components
 import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
 import { Step } from 'components/steps';
+// Internal
+import type { Clues, BoardObject } from './utils/types';
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
 

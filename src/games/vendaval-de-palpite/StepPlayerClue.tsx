@@ -1,28 +1,29 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Alert } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
+import { Alert } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
 import type { GameRound } from 'types/game';
-import type { Clues, BoardObject } from './utils/types';
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useMock } from 'hooks/useMock';
 // Utils
-import { mockClues } from './utils/mock';
-import { getAnimationClass } from 'utils/helpers';
 import { SEPARATOR } from 'utils/constants';
-import { WRITE_CLUE_TIME, WRITE_CLUE_TIME_FIRST_ROUND } from './utils/constants';
+import { getAnimationClass } from 'utils/helpers';
 // Components
+import { ControlledInputWriting } from 'components/input';
+import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+import { TimerBar } from 'components/timers';
+// Internal
+import type { Clues, BoardObject } from './utils/types';
+import { mockClues } from './utils/mock';
+import { WRITE_CLUE_TIME, WRITE_CLUE_TIME_FIRST_ROUND } from './utils/constants';
 import { Board } from './components/Board';
-import { ControlledInputWriting } from 'components/input';
 import { ClueInput } from './components/ClueInput';
 import { CategoryCard } from './components/CategoryCard';
-import { TimerBar } from 'components/timers';
 
 type StepPlayerClueProps = {
   secretWord: string;

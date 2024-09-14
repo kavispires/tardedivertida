@@ -1,16 +1,17 @@
 // Ant Design Resources
 import { Alert } from 'antd';
 // Types
-// Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { Clues, BoardObject } from './utils/types';
 // Components
+import { Avatar, AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { Clues, BoardObject } from './utils/types';
 import { Board } from './components/Board';
 import { CategoryCard } from './components/CategoryCard';
-import { Avatar, AvatarName } from 'components/avatars';
+// Types
 
 type StepPlayersWaitEvaluationProps = {
   categories: string[];
