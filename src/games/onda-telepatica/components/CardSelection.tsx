@@ -2,6 +2,7 @@
 import type { SpectrumCard } from 'types/tdr';
 // Components
 import { Instruction, Title } from 'components/text';
+// Internal
 import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type CardSelectionProps = {
