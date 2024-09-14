@@ -1,13 +1,13 @@
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
-// Utils
-import { TIMES } from '../utils/constants';
 // Components
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
+// Internal
+import { TIMES } from '../utils/constants';
 
 type ViewSketchingProps = {
   isUserTheWitness: boolean;

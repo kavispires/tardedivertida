@@ -5,12 +5,13 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { Title } from 'components/text';
 import { GameOverWrapper } from 'components/game-over';
-import { Translate } from 'components/language';
-import { MonsterSketches } from './components/MonsterSketches';
 import { Achievements } from 'components/general/Achievements';
+import { Translate } from 'components/language';
+import { Title } from 'components/text';
+// Internal
 import { achievementsReference } from './utils/achievements';
+import { MonsterSketches } from './components/MonsterSketches';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const canvasWidth = useCardWidth(6, {
