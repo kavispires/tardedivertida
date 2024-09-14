@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Tooltip } from 'antd';
-// Types
-import type { StreetCard } from '../utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -10,6 +8,8 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+// Internal
+import type { StreetCard } from '../utils/types';
 import { CandyCount } from './CandyCount';
 
 type HouseCardProps = {

@@ -2,11 +2,12 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useUser } from 'hooks/useUser';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepResult } from './StepResult';
 import { PhaseContainer } from 'components/phases';
+// Internal
+import { StepResult } from './StepResult';
 
 export function PhaseResult({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
