@@ -3,14 +3,15 @@ import { RadarChartOutlined, RobotOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
-import { getTrapDetails } from '../utils/helpers';
-import { TOTAL_DOORS } from '../utils/constants';
 import { sortPlayers } from 'utils/helpers';
 // Components
+import { AvatarName } from 'components/avatars';
+import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
-import { FixedMenuButton } from 'components/buttons';
-import { AvatarName } from 'components/avatars';
+// Internal
+import { getTrapDetails } from '../utils/helpers';
+import { TOTAL_DOORS } from '../utils/constants';
 import { CrystalHighlight, DoorHighlight } from './Highlights';
 
 type RoundOneRuleProps = {

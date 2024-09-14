@@ -2,15 +2,16 @@ import { useEffect } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
 import { useCache } from 'hooks/useCache';
+import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { formatTime, getRandomItem } from 'utils/helpers';
-import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
 // Icons
 import { MagicHourGlassIcon } from 'icons/MagicHourGlassIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
+// Internal
+import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
 
 type SandTimerProps = {
   trap: string;
