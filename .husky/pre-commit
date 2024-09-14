@@ -98,4 +98,16 @@ check_game_versions() {
   echo "✅ Done"
 }
 
+sort_imports() {
+  echo "♻️ Sorting imports"
+  # Find and sort the imports in .ts and .tsx files, then re-add them to the staging area
+  git diff --name-only --cached | grep -E '\.(ts|tsx)$' | while read -r file; do
+    node ./scripts/sort-imports.js "$file"
+    git add "$file"
+    echo "   ➕ Sorted and re-added sorted $file to staging."
+  done
+  echo "✅ Done"
+}
+
+sort_imports
 check_game_versions
