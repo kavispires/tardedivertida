@@ -31,7 +31,6 @@ import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
 import { ScoreTrack } from './components/ScoreTrack';
 import { GroupScore } from './components/GroupScore';
 import { ObjectFeature } from './components/ObjectFeature';
-// Type
 
 type StepSelectFeatureProps = {
   user: GamePlayer;
