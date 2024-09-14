@@ -1,11 +1,12 @@
 // Types
 import type { GamePlayers } from 'types/player';
-import type { FinalAssessment } from '../utils/types';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+// Internal
+import type { FinalAssessment } from '../utils/types';
 
 type FinalAssessmentInstructionProps = {
   finalAssessment: FinalAssessment;

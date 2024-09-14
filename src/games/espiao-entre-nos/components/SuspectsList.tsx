@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Tooltip } from 'antd';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks

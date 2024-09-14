@@ -2,9 +2,10 @@
 import { Modal, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { FinalAssessment } from '../utils/types';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import type { FinalAssessment } from '../utils/types';
 import { PlayerSelect } from './PlayerSelect';
 import { FinalAssessmentInstruction } from './RulesBlobs';
 

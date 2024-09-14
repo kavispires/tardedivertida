@@ -1,13 +1,14 @@
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { Location } from './utils/types';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { Location } from './utils/types';
 import { EspiaoEntreNosCard as Card } from './components/Card';
 import { LocationsList } from './components/LocationsList';
 import { Notes } from './components/Notes';

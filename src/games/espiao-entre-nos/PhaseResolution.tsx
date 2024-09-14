@@ -4,21 +4,22 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnProgressGameAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
-import { determineView } from './utils/helpers';
 // Icons
-import { MapLocationIcon } from 'icons/MapLocationIcon';
-import { ThiefIcon } from 'icons/ThiefIcon';
-import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 import { HandcuffsIcon } from 'icons/HandcuffsIcon';
+import { MapLocationIcon } from 'icons/MapLocationIcon';
+import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
+import { ThiefIcon } from 'icons/ThiefIcon';
 // Components
-import { StepResolution } from './StepResolution';
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
-import { Translate } from 'components/language';
+// Internal
+import { useOnProgressGameAPIRequest } from './utils/api-requests';
+import { determineView } from './utils/helpers';
+import { StepResolution } from './StepResolution';
 
 export function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

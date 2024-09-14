@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { ResolutionStatus } from './utils/types';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -10,6 +9,8 @@ import { HostButton, HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+// Internal
+import type { ResolutionStatus } from './utils/types';
 
 type StepVotingProps = {
   players: GamePlayers;

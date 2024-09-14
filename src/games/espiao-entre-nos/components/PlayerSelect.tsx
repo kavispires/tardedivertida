@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { Button, Popconfirm, Select, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks

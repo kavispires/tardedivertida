@@ -2,7 +2,6 @@
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Location } from './utils/types';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -12,6 +11,8 @@ import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { View, ViewSwitch } from 'components/views';
+// Internal
+import type { Location } from './utils/types';
 import { EspiaoEntreNosCard as Card } from './components/Card';
 import { LocationsList } from './components/LocationsList';
 import { Notes } from './components/Notes';

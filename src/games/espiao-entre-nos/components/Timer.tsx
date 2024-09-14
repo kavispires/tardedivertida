@@ -1,9 +1,10 @@
 import { useTimer } from 'react-timer-hook';
-// Types
-import type { TimerType } from '../utils/types';
+// Hooks
 import type { UseStep } from 'hooks/useStep';
 // Utils
 import { inNTime } from 'utils/helpers';
+// Internal
+import type { TimerType } from '../utils/types';
 
 type TimerProps = {
   timer: TimerType;

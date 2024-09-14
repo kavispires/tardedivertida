@@ -1,16 +1,18 @@
 import type {
+// Hooks
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+// Internal
+import { ESPIAO_ENTRE_NOS_ACTIONS } from './constants';
   GameProgressPayload,
   GuessLocationPayload,
   MakeAccusationPayload,
   SendLastQuestionerPayload,
   SubmitVotePayload,
 } from './types';
-import type { UseStep } from 'hooks/useStep';
 
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
 
-import { ESPIAO_ENTRE_NOS_ACTIONS } from './constants';
 
 export function useOnGuessLocationAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
