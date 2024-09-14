@@ -1,19 +1,20 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
-import { useUser } from 'hooks/useUser';
+// Hooks
 import { useStep } from 'hooks/useStep';
-// Resources & Utils
+import { useUser } from 'hooks/useUser';
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
 // Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
-import { StepTargeting } from './StepTargeting';
+// Internal
 import { useOnSubmitMessageAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
+import { StepTargeting } from './StepTargeting';
 
 export function PhaseTargeting({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
