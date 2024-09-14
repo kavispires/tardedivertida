@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 
 const IMPORT_COMMENTS = [
   '// Ant Design Resources',
@@ -15,6 +14,8 @@ const IMPORT_COMMENTS = [
   '// Sass',
   '// Constants',
   '// Internal',
+  '// Resources and Utils',
+  '// Images',
 ];
 
 function sortImportGroups(group, name) {
@@ -35,6 +36,36 @@ function sortImportGroups(group, name) {
   return [...sorted, ''];
 }
 
+function getPriority(path) {
+  if (path.startsWith('./utils/') || path.startsWith('../utils/')) {
+    return 1;
+  }
+
+  if (path.startsWith('./components/') || path.startsWith('../components/')) {
+    return 2;
+  }
+
+  return 3;
+}
+
+function sortRelativeImports(group) {
+  const sorted = group.sort((a, b) => {
+    const fromA = a.match(/from\s+'([^']+)'/)?.[1] || '';
+    const fromB = b.match(/from\s+'([^']+)'/)?.[1] || '';
+
+    const priorityA = getPriority(fromA);
+    const priorityB = getPriority(fromB);
+
+    return priorityA - priorityB;
+  });
+
+  if (sorted.length === 0) {
+    return '';
+  }
+
+  return ['// Internal', ...sorted, ''];
+}
+
 // Sorting function
 const sortImports = (imports) => {
   const groups = {
@@ -48,6 +79,7 @@ const sortImports = (imports) => {
     icons: [],
     components: [],
     relative: [],
+    images: [],
     sass: [],
   };
 
@@ -85,8 +117,12 @@ const sortImports = (imports) => {
       groups.components.push(line);
     }
     // Sass imports
-    else if (line.endsWith(".scss'")) {
+    else if (line.endsWith(".scss';")) {
       groups.sass.push(line);
+    }
+    // Images imports
+    else if (line.endsWith(".png';") || line.endsWith(".svg';") || line.endsWith(".jpg';")) {
+      groups.images.push(line);
     }
     // Relative imports
     else if (line.includes("'./") || line.includes("'../")) {
@@ -96,7 +132,7 @@ const sortImports = (imports) => {
     }
   });
 
-  return [
+  const newLines = [
     ...sortImportGroups(groups.external),
     ...sortImportGroups(groups.antd, 'Ant Design Resources'),
     ...sortImportGroups(groups.types, 'Types'),
@@ -106,11 +142,14 @@ const sortImports = (imports) => {
     ...sortImportGroups(groups.utils, 'Utils'),
     ...sortImportGroups(groups.icons, 'Icons'),
     ...sortImportGroups(groups.components, 'Components'),
-    ...sortImportGroups(groups.relative, 'Internal'),
+    ...sortRelativeImports(groups.relative),
+    ...sortImportGroups(groups.images, 'Images'),
     ...sortImportGroups(groups.sass, 'Sass'),
-  ]
-    .filter(Boolean)
-    .join('\n');
+  ].filter(Boolean);
+
+  newLines.push('');
+
+  return newLines.join('\n');
 };
 
 // Process a single file
@@ -134,7 +173,7 @@ const processFile = (filePath) => {
 
   // Replace original imports with sorted imports
   const nonImportLines = filteredLines.filter((line) => !line.startsWith('import '));
-  const newFileContents = sortedImports + '\n' + nonImportLines.join('\n');
+  const newFileContents = sortedImports + nonImportLines.join('\n');
 
   // Write the changes back to the file
   fs.writeFileSync(filePath, newFileContents, 'utf8');
