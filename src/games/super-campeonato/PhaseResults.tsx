@@ -4,15 +4,16 @@ import { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { TournamentIcon } from 'icons/TournamentIcon';
 // Components
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
 import { StepRanking } from './StepRanking';
 import { StepWinner } from './StepWinner';
 

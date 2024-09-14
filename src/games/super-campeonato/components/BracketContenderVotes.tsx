@@ -2,9 +2,10 @@
 import { Avatar as AntAvatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import type { Bracket } from '../utils/type';
 // Components
 import { Avatar } from 'components/avatars';
+// Internal
+import type { Bracket } from '../utils/type';
 
 type BracketContenderVotesProps = {
   bracket: Bracket;

@@ -1,14 +1,14 @@
 // Types
 import type { TextCard } from 'types/tdr';
-import type { FightingContender } from './utils/type';
 // Hooks
 import { useMock } from 'hooks/useMock';
-// Utils
-import { mockSelectContender } from './utils/mock';
 // Components
+import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
+// Internal
+import type { FightingContender } from './utils/type';
+import { mockSelectContender } from './utils/mock';
 import { ContendersHand } from './components/ContendersHand';
 import { Challenge } from './components/Challenge';
 

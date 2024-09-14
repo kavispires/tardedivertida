@@ -1,7 +1,7 @@
-// Types
-import type { BracketTier } from '../utils/type';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import type { BracketTier } from '../utils/type';
 
 type TierTitleProps = {
   tier: BracketTier;
