@@ -1,7 +1,7 @@
 {
   "name": "tardedivertida",
   "homepage": "http://www.kavispires.com/tardedivertida/",
-  "version": "47.0.8",
+  "version": "47.0.9",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
@@ -90,12 +90,12 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.3.0",
-    "@testing-library/react": "^14.1.2",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "gh-pages": "^6.1.1",
-    "husky": "^8.0.0",
-    "lint-staged": "^14.0.1",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "prettier": "^3.3.3"
   }
 }
