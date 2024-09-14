@@ -5,11 +5,11 @@ import type { TextCard } from 'types/tdr';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
-import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 
 type StepWordSelectionProps = {
   onSubmitWord: GenericFunction;

@@ -1,8 +1,8 @@
-// Types
 import { sample } from 'lodash';
-import type { ImageCardObj } from './types';
 // Utils
 import { shuffle } from 'utils/helpers';
+// Internal
+import type { ImageCardObj } from './types';
 
 export const mockDreamSelection = (cards: ImageCardObj[], hardMode: boolean): string[] => {
   const selectionOrder = sample([

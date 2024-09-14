@@ -1,23 +1,24 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// State & Hooks
+// Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitWordAPIRequest } from './utils/api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Icons
 import { SleepIcon } from 'icons/SleepIcon';
 // Components
-import { GeneralRules, WordSelectionRules } from './components/RulesBlobs';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { RoundAnnouncement } from 'components/round';
-import { Instruction } from 'components/text';
-import { Translate } from 'components/language';
-import { ViewOr } from 'components/views';
-import { WaitingRoom } from 'components/players';
 import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { WaitingRoom } from 'components/players';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { ViewOr } from 'components/views';
+// Internal
+import { useOnSubmitWordAPIRequest } from './utils/api-requests';
+import { GeneralRules, WordSelectionRules } from './components/RulesBlobs';
 import { StepWordSelection } from './StepWordSelection';
 
 export function PhaseWordSelection({ players, state, info }: PhaseProps) {
