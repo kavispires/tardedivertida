@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { isDevEnv } from 'utils/helpers';
+import { WithRequiredId } from './types';
 
 /**
  * Returns the current date in the format 'YYYY-MM-DD'.
@@ -64,13 +65,67 @@ export const wait = async (duration = 1000) => {
 };
 
 /**
+ * Composes a key for storing a value in local storage for today's date.
+ * @param key - The game key to compose.
+ * @returns The composed key for today's date.
+ */
+export const composeLocalTodayKey = (key: string) => `TD_DAILY_${key}_LOCAL_TODAY`;
+
+/**
+ * Composes a local played key for the daily feature.
+ * @param key - The key to compose the local played key for.
+ * @returns The composed local played key.
+ */
+export const composeLocalPlayedKey = (key: string) => `TD_DAILY_${key}_LOCAL_PLAYED`;
+
+/**
  * Checks if a specific key was played today.
- *
  * @param key - The key to check.
  * @returns A boolean indicating whether the key was played today.
  */
 export const checkWasPlayedToday = (key: string): boolean => {
-  const session = JSON.parse(localStorage.getItem(key) || '{}');
+  const localKey = composeLocalTodayKey(key);
+  const session = JSON.parse(localStorage.getItem(localKey) || '{}');
+  const playedKey = composeLocalPlayedKey(key);
+  const played = JSON.parse(localStorage.getItem(playedKey) || 'false');
   const today = getToday();
-  return session?.id === today && session?.status === 'played';
+  const isToday = session?.id === today;
+  if (!isToday) {
+    localStorage.setItem(playedKey, JSON.stringify(false));
+    return false;
+  }
+
+  return session?.id === today && played;
 };
+
+/**
+ * Loads the locally stored data for today's game based on the provided key and game ID.
+ * If the locally stored data is not valid or does not match the provided game ID, it resets the data to the provided default value.
+ * @param options - The options for loading the local data.
+ * @param options.key - The key used to identify the local data.
+ * @param options.gameId - The ID of the game.
+ * @param options.defaultValue - The default value for the local data.
+ * @returns The locally stored data for today's game.
+ */
+export function loadLocalToday<TLocal extends WithRequiredId>({
+  key,
+  gameId,
+  defaultValue,
+}: {
+  key: string;
+  gameId: string;
+  defaultValue: TLocal;
+}): TLocal {
+  const localKey = composeLocalTodayKey(key);
+  const previouslyStored = JSON.parse(localStorage.getItem(localKey) ?? '{}');
+
+  const isDefaultValueValid = Object.keys(defaultValue).every((k) => k in previouslyStored);
+
+  if (!isDefaultValueValid || previouslyStored.id !== gameId) {
+    const newLocalToday = { ...defaultValue, id: gameId };
+    localStorage.setItem(localKey, JSON.stringify(newLocalToday));
+    return newLocalToday;
+  }
+
+  return previouslyStored;
+}

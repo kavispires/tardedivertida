@@ -16,6 +16,7 @@ import { Disc } from './Disc';
 import { PreloadItems } from './PreloadItems';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
+import { getInitialState } from '../utils/helpers';
 
 type DailyAquiOProps = {
   data: DailyAquiOEntry;
@@ -25,6 +26,8 @@ type DailyAquiOProps = {
 };
 
 export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyAquiOProps) {
+  const initialState = useMemo(() => getInitialState(data, isRandomGame), [isRandomGame]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const {
     hearts,
     showResultModal,
@@ -44,7 +47,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
     isPlaying,
     attempts,
     maxProgress,
-  } = useAquiOEngine(data, isRandomGame);
+  } = useAquiOEngine(data, initialState, isRandomGame);
 
   // UI state
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
@@ -57,7 +60,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
 
   return (
     <Layout className="app">
-      <Header icon={<DailyFindingGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
+      <Header icon={<DailyFindingGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>

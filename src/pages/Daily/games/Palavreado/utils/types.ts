@@ -1,4 +1,4 @@
-import { DailyGameStatus, DateKey } from 'pages/Daily/utils/types';
+import { DateKey } from 'pages/Daily/utils/types';
 
 export type GameState = {
   hearts: number;
@@ -26,7 +26,6 @@ export type PalavreadoLocalToday = {
   boardState: string[][];
   number: number;
   swaps: number;
-  status?: DailyGameStatus;
 };
 
 export type PalavreadoLetter = {

@@ -6,17 +6,17 @@ import { LoginModal } from 'pages/Me/components/LoginModal';
 import { useLocation } from 'react-router-dom';
 import { useEffectOnce, useTitle } from 'react-use';
 
-import { DailyArteRuimGame } from './games/ArteRuim/DailyArteRuimGame';
 import { DailyChrome } from './components/DailyChrome';
-import { Hub } from './games/Hub';
 import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';
-import { getDailyName } from './utils';
-import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
-import { DailyArtistaGame } from './games/Artista/DailyArtistaGame';
-import { DailyFilmacoGame } from './games/Filmaco/DailyFilmacoGame';
+import { DailyArteRuimGame } from './games/ArteRuim/DailyArteRuimGame';
 import { DailyControleDeEstoqueGame } from './games/ControleDeEstoque/DailyControleDeEstoqueGame';
 import { DebugPage } from './games/Debug';
+import { DailyFilmacoGame } from './games/Filmaco/DailyFilmacoGame';
+import { Hub } from './games/Hub';
+import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
+import { DailyPicacoGame } from './games/Picaco/DailyPicacoGame';
 import { DailyTeoriaDeConjuntosGame } from './games/TeoriaDeConjuntos/DailyTeoriaDeConjuntosGame';
+import { getDailyName } from './utils';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -48,7 +48,7 @@ function DailyPage() {
       filmaco: DailyFilmacoGame,
       hub: Hub,
       palavreado: DailyPalavreadoGame,
-      picaco: DailyArtistaGame,
+      picaco: DailyPicacoGame,
       'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
       debug: DebugPage,
     }?.[subPath] ?? Hub;

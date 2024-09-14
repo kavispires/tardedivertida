@@ -9,14 +9,15 @@ import { getAnimationClass } from 'utils/helpers';
 
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
+import { getInitialState } from '../utils/helpers';
 import { PHASES, SETTINGS } from '../utils/settings';
 import { DailyControleDeEstoqueEntry } from '../utils/types';
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 import { FulfillingPhase } from './FulfillingPhase';
+import { PreloadItems } from './PreloadItems';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { StockingPhase } from './StockingPhase';
-import { PreloadItems } from './PreloadItems';
 
 type DailyControleDeEstoqueProps = {
   data: DailyControleDeEstoqueEntry;
@@ -24,6 +25,8 @@ type DailyControleDeEstoqueProps = {
 };
 
 export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
+  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const {
     hearts,
     warehouse,
@@ -45,7 +48,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
     latestAttempt,
     phase,
     orders,
-  } = useControleDeEstoqueEngine(data);
+  } = useControleDeEstoqueEngine(data, initialState);
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
 
   const shouldShakeScreen = latestAttempt && !isComplete;
@@ -57,7 +60,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyWarehouseGameIcon />} localStorageKey={SETTINGS.LOCAL_TODAY_KEY}>
+      <Header icon={<DailyWarehouseGameIcon />} localStorageKey={SETTINGS.KEY}>
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
@@ -65,23 +68,23 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
 
         <PreloadItems goods={data.goods} />
 
+        <Region>
+          <Typography.Text strong className="controle-de-estoque-title">
+            {data.title}
+          </Typography.Text>
+        </Region>
+
+        {phase === PHASES.STOCKING && currentGood && (
+          <StockingPhase
+            warehouse={warehouse}
+            currentGood={currentGood}
+            lastPlacedGoodId={lastPlacedGoodId}
+            onPlaceGood={onPlaceGood}
+            shelfWidth={shelfWidth}
+          />
+        )}
+
         <div key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
-          <Region>
-            <Typography.Text strong className="controle-de-estoque-title">
-              {data.title}
-            </Typography.Text>
-          </Region>
-
-          {phase === PHASES.STOCKING && currentGood && (
-            <StockingPhase
-              warehouse={warehouse}
-              currentGood={currentGood}
-              lastPlacedGoodId={lastPlacedGoodId}
-              onPlaceGood={onPlaceGood}
-              shelfWidth={shelfWidth}
-            />
-          )}
-
           {phase !== PHASES.STOCKING && (
             <FulfillingPhase
               phase={phase}
@@ -131,7 +134,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
           description={<Translate pt="Você perderá um coração." en="You will lose a heart." />}
           onConfirm={reset}
         >
-          <Button type="primary" danger>
+          <Button type="primary" danger disabled={hearts <= 0}>
             <Translate pt="Recomeçar Jogo" en="Reset Game" />
           </Button>
         </Popconfirm>

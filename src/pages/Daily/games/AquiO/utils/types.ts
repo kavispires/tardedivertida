@@ -1,4 +1,4 @@
-import { DailyGameStatus, DateKey } from 'pages/Daily/utils/types';
+import { DateKey } from 'pages/Daily/utils/types';
 
 export type AquiOLocalToday = {
   id: DateKey;
@@ -7,7 +7,6 @@ export type AquiOLocalToday = {
   attempts: number;
   hardMode: boolean;
   hearts: number;
-  status: DailyGameStatus;
 };
 
 export type GameState = {

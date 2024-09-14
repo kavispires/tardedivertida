@@ -7,11 +7,12 @@ import { BugOutlined } from '@ant-design/icons';
 
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
-import { SETTINGS as ARTISTA } from '../games/Artista/utils/settings';
+import { SETTINGS as ARTISTA } from '../games/Picaco/utils/settings';
 import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
+import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
 
 const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA, FILMACO, CONTROLE_DE_ESTOQUE, TEORIA_DE_CONJUNTOS];
 
@@ -27,7 +28,10 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
     if (localStorageKey) {
       localStorage.removeItem(localStorageKey);
     } else {
-      keys.forEach((key) => localStorage.removeItem(key.LOCAL_TODAY_KEY));
+      keys.forEach((key) => {
+        localStorage.removeItem(composeLocalTodayKey(key.KEY));
+        localStorage.removeItem(composeLocalPlayedKey(key.KEY));
+      });
     }
     message.success(<Translate pt="LS resetado corretamente" en="LS reset successfully" />);
     navigate('/diario');
@@ -42,7 +46,10 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       localStorage.setItem(localStorageKey, yesterday);
       return;
     } else {
-      keys.forEach((key) => localStorage.setItem(key.LOCAL_TODAY_KEY, yesterday));
+      keys.forEach((key) => {
+        localStorage.setItem(composeLocalTodayKey(key.KEY), yesterday);
+        localStorage.setItem(composeLocalPlayedKey(key.KEY), yesterday);
+      });
     }
     navigate('/diario');
   };

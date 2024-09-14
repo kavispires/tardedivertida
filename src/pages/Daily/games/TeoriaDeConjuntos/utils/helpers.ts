@@ -1,16 +1,56 @@
+import { loadLocalToday } from 'pages/Daily/utils';
+import { deepCopy } from 'utils/helpers';
+
 import { SETTINGS } from './settings';
 import { DailyTeoriaDeConjuntosEntry, GameState, TeoriaDeConjuntosLocalToday } from './types';
 
-export const parseLocalToday = (
-  localToday: TeoriaDeConjuntosLocalToday,
-  data: DailyTeoriaDeConjuntosEntry,
-  state: GameState
-): GameState => {
-  // For every guess in localToday, remove the item from the hand and add it to the diagram
-  console.log('guesses', localToday.guesses);
-  localToday.guesses?.forEach((guess) => {
+export const DEFAULT_LOCAL_TODAY: TeoriaDeConjuntosLocalToday = {
+  id: '',
+  guesses: [],
+  hearts: SETTINGS.HEARTS,
+};
+
+export const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState => {
+  const localToday = loadLocalToday({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+  });
+
+  const state: GameState = {
+    hearts: SETTINGS.HEARTS,
+    win: false,
+    hand: data.things.slice(0, 4),
+    deck: data.things.slice(4),
+    rule1Things: [
+      {
+        id: data.rule1.thing.id,
+        name: data.rule1.thing.name,
+        rule: 1,
+      },
+    ],
+    rule2Things: [
+      {
+        id: data.rule2.thing.id,
+        name: data.rule2.thing.name,
+        rule: 2,
+      },
+    ],
+    intersectingThings: [
+      {
+        id: data.intersectingThing.id,
+        name: data.intersectingThing.name,
+      },
+    ],
+    activeThing: null,
+    activeArea: null,
+    guesses: [],
+  };
+
+  // Apply local state
+  localToday.guesses.forEach((guess) => {
     const activeThing = state.hand.find((t) => t.id === guess.thingId);
-    console.log('Applying thing', activeThing?.name);
+
     if (activeThing) {
       // Remove it from hand
       state.hand = state.hand.filter((t) => t.id !== guess.thingId);
@@ -25,25 +65,19 @@ export const parseLocalToday = (
       }
 
       if (activeThing.rule !== guess.sectionId) {
-        console.log('wrong section');
         if (state.deck.length > 0) {
           state.hand.push(state.deck.pop()!);
         }
       } else {
-        console.log('correct section');
         if (state.hand.length === 0) {
-          console.log('empty hand');
           state.win = true;
         }
       }
     }
   });
 
-  console.log('win?', state.win);
+  state.guesses = localToday.guesses ?? state.guesses ?? [];
+  state.hearts = localToday.hearts ?? state.hearts ?? SETTINGS.HEARTS;
 
-  return {
-    ...state,
-    guesses: localToday.guesses ?? state.guesses ?? [],
-    hearts: localToday.hearts ?? state.hearts ?? SETTINGS.HEARTS,
-  };
+  return state;
 };

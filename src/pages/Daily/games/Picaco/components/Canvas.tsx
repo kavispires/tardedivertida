@@ -26,7 +26,7 @@ export function Canvas({ onNextCard, maxWidth }: CanvasProps) {
 
   return (
     <Flex className="full-width" vertical style={{ maxWidth }}>
-      <TimerBar value={timeLeft - 1} total={duration} className="artista-time-bar" />
+      <TimerBar value={timeLeft - 1} total={duration} className="picaco-time-bar" />
       {timeLeft < 12 && (
         <DrawingCanvas
           lines={lines}
