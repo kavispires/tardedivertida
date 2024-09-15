@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import moment from 'moment';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Services
@@ -26,6 +27,12 @@ export function useDailyChallenge(today: string) {
       const responseData = response.data as DailyResponse;
       print({ [collectionName]: responseData }, 'table');
       return responseData;
+    },
+    staleTime: () => {
+      // Calculate time until midnight
+      const now = moment();
+      const midnight = moment().endOf('day');
+      return midnight.diff(now); // Difference in milliseconds
     },
     enabled: language === 'pt',
     retry: false,
