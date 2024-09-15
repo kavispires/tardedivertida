@@ -7,7 +7,6 @@ import { ConfigProvider, Layout, App as AntApp } from 'antd';
 import { useAppSetup } from 'hooks/useAppSetup';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useError } from 'hooks/useError';
-
 // Services
 import { AuthProvider } from 'services/AuthProvider';
 // Components
@@ -16,8 +15,6 @@ import ErrorBoundary from 'components/errors/ErrorBoundary';
 import { LoadingBar, LoadingPage } from 'components/loaders';
 // Internal
 import { routes } from './Routes';
-// State
-// Pages
 
 const queryClient = new QueryClient({
   defaultOptions: {
