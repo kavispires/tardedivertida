@@ -1,14 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HashRouter } from 'react-router-dom';
-import { useEffectOnce } from 'react-use';
-import { useLocalStorage } from 'react-use';
+import { useLocation } from 'react-use';
 // Ant Design Resources
 import { ConfigProvider, Layout, App as AntApp } from 'antd';
 // Hooks
 import { useAppSetup } from 'hooks/useAppSetup';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useError } from 'hooks/useError';
-import { useGlobalState } from 'hooks/useGlobalState';
+
 // Services
 import { AuthProvider } from 'services/AuthProvider';
 // Components
@@ -31,16 +30,8 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const [, setUsername] = useGlobalState('username');
-  const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [localUsername] = useLocalStorage('username', '');
-  const [localAvatarId] = useLocalStorage('avatarId', '');
-
-  useEffectOnce(() => {
-    setUsername(localUsername ?? '');
-    setUserAvatarId(localAvatarId ?? '');
-  });
-
+  // Set up default like username, avatar, canvasSize
+  useAppSetup();
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
@@ -63,9 +54,13 @@ function App() {
 }
 
 function AppLayout() {
-  const { isLoading } = useCurrentUserContext();
-  const { isError, errors } = useError();
   useAppSetup();
+  const { isLoading: isUserLoading } = useCurrentUserContext();
+  const { isError, errors } = useError();
+  // Use location from react-use to bypass the need of the router context
+  const location = useLocation();
+  // Daily games shouldn't be held hostage of the user loading state
+  const isLoading = !location?.hash?.includes('diario') && isUserLoading;
 
   return (
     <Layout className="app background" id="app">
