@@ -17,7 +17,7 @@ export function DailyAquiOGame() {
   const [isRandomGame, setRandomGame] = useState(false);
 
   // Load challenge
-  const challengeQuery = useDailyChallenge(`${today}`);
+  const challengeQuery = useDailyChallenge();
   const randomGameQuery = useRandomAquiOChallenge(`${today}`);
 
   if (challengeQuery.isLoading || challengeQuery.isRefetching || randomGameQuery.isLoading) {
@@ -34,7 +34,6 @@ export function DailyAquiOGame() {
   const onToggleGame = async () => {
     setRandomGame((prev) => !prev);
     await wait(250);
-    challengeQuery.refetch();
   };
 
   return (

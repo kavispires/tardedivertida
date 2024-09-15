@@ -35,7 +35,6 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
       solution[letter] = true;
     }
 
-    console.log(solution);
     const win = Object.values(solution)
       .filter((value) => value !== undefined)
       .every(Boolean);

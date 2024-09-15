@@ -18,6 +18,7 @@ import { DailyTeoriaDeConjuntosGame } from './games/TeoriaDeConjuntos/DailyTeori
 import { getDailyName } from './utils';
 // Sass
 import './utils/daily.scss';
+import { DailyContextProvider } from './hooks/useDailyChallenge';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -34,9 +35,11 @@ function DailyPage() {
 
   if (!isAuthenticated) {
     return (
-      <DailyChrome>
-        <LoginModal isAuthenticated={false} />
-      </DailyChrome>
+      <DailyContextProvider>
+        <DailyChrome>
+          <LoginModal isAuthenticated={false} />
+        </DailyChrome>
+      </DailyContextProvider>
     );
   }
 
@@ -54,7 +57,11 @@ function DailyPage() {
       debug: DebugPage,
     }?.[subPath] ?? Hub;
 
-  return <Outlet />;
+  return (
+    <DailyContextProvider>
+      <Outlet />
+    </DailyContextProvider>
+  );
 }
 
 export default DailyPage;

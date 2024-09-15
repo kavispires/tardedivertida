@@ -28,7 +28,6 @@ export function useAppSetup() {
   });
 
   useEffectOnce(() => {
-    console.log(localUsername);
     setUsername(localUsername ?? '');
     setUserAvatarId(localAvatarId ?? '');
     setLanguage(localLanguage);

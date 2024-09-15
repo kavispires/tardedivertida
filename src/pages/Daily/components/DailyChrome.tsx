@@ -7,7 +7,6 @@ import { CalendarIcon } from 'icons/CalendarIcon';
 import { Translate } from 'components/language';
 // Internal
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
-import { getToday } from '../utils';
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
 import { Header } from './Header';
 
@@ -18,7 +17,7 @@ type DailyChromeProps = {
 };
 
 export function DailyChrome({ children }: DailyChromeProps) {
-  const challengeQuery = useDailyChallenge(getToday());
+  const challengeQuery = useDailyChallenge();
   const [count, setCount] = useState(0);
 
   return (
@@ -28,7 +27,7 @@ export function DailyChrome({ children }: DailyChromeProps) {
           <Translate pt="TD Diário" en="TD Daily" />
         </button>
       </Header>
-      {challengeQuery.isLoading ? <div className="loading-bar"></div> : <></>}
+      {challengeQuery.isLoading && <div className="loading-bar"></div>}
       <Content>{children}</Content>
       {count >= 5 && (
         <Footer>
