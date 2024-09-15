@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktardedivertida=self.webpackChunktardedivertida||[]).push([[8630],{38630:(e,r,s)=>{s.d(r,{j:()=>c});var a=s(37055),t=s(10413);s(65043);const i=s.p+"static/media/super-heroes.0b721fab8914710587d3abe7c51397c7.svg";s(37496);var d=s(70579),c=function(e){return(0,d.jsx)(t.m,(0,a.A)({sprite:i,prefix:"super-hero"},e))}}}]);
+//# sourceMappingURL=8630.1e63cccd.chunk.js.map
