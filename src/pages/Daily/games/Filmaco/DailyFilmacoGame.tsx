@@ -5,16 +5,14 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Internal
 import { DailyFilmaco } from './components/DailyFilmaco';
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
-import { getToday } from '../../utils';
 // Sass
 import './utils/styles.scss';
 
 export function DailyFilmacoGame() {
   const { currentUser } = useCurrentUserContext();
-  const today = getToday();
 
   // Load challenge
-  const challengeQuery = useDailyChallenge(`${today}`);
+  const challengeQuery = useDailyChallenge();
 
   if (challengeQuery.isLoading) {
     return <DailyLoading />;

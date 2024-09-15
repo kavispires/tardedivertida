@@ -13,7 +13,7 @@ export function DailyPalavreadoGame() {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const challengeQuery = useDailyChallenge(getToday());
+  const challengeQuery = useDailyChallenge();
 
   if (challengeQuery.isLoading) {
     return <DailyLoading />;

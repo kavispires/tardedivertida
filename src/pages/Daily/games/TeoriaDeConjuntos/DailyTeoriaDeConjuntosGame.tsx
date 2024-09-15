@@ -13,7 +13,7 @@ export function DailyTeoriaDeConjuntosGame() {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const challengeQuery = useDailyChallenge(getToday());
+  const challengeQuery = useDailyChallenge();
 
   if (challengeQuery.isLoading || challengeQuery.isRefetching) {
     return <DailyLoading />;

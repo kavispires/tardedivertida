@@ -13,7 +13,7 @@ export function DailyControleDeEstoqueGame() {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const challengeQuery = useDailyChallenge(getToday());
+  const challengeQuery = useDailyChallenge();
 
   if (challengeQuery.isLoading) {
     return <DailyLoading />;
