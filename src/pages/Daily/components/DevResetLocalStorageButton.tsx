@@ -28,7 +28,8 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
 
   const onReset = () => {
     if (localStorageKey) {
-      localStorage.removeItem(localStorageKey);
+      localStorage.removeItem(composeLocalTodayKey(localStorageKey));
+      localStorage.removeItem(composeLocalPlayedKey(localStorageKey));
     } else {
       keys.forEach((key) => {
         localStorage.removeItem(composeLocalTodayKey(key.KEY));
@@ -45,7 +46,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       number: -1,
     });
     if (localStorageKey) {
-      localStorage.setItem(localStorageKey, yesterday);
+      localStorage.setItem(composeLocalTodayKey(localStorageKey), yesterday);
       return;
     } else {
       keys.forEach((key) => {
