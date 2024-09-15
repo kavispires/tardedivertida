@@ -140,7 +140,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [query.isError]); // eslint-disable-line
 
   const firestoreUser = query.data ?? defaultData;
-
+  console.count('is, this the problem?');
   return (
     <AuthContext.Provider
       value={{
