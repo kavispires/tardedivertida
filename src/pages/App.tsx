@@ -52,12 +52,12 @@ function App() {
 
 function AppLayout() {
   useAppSetup();
-  const { isLoading: isUserLoading } = useCurrentUserContext();
+  const { isLoading: isUserLoading, isAuthenticating } = useCurrentUserContext();
   const { isError, errors } = useError();
   // Use location from react-use to bypass the need of the router context
   const location = useLocation();
   // Daily games shouldn't be held hostage of the user loading state
-  const isLoading = !location?.hash?.includes('diario') && isUserLoading;
+  const isLoading = isAuthenticating || (!location?.hash?.includes('diario') && isUserLoading);
 
   return (
     <Layout className="app background" id="app">

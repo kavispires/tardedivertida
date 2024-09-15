@@ -31,7 +31,7 @@ const DEFAULT_ME_DATA: Me = {
   isAdmin: false,
   names: [],
   avatars: [],
-  language: JSON.parse(localStorage.getItem('TD_language') || '') || 'en',
+  language: JSON.parse(localStorage.getItem('TD_language') || '"en"') || 'en',
   statistics: {
     plays: 0,
     uniqueGamesPlayed: 0,
@@ -71,12 +71,14 @@ const DEFAULT_ME_DATA: Me = {
 export const AuthContext = createContext<{
   currentUser: Me;
   isLoading: boolean;
+  isAuthenticating: boolean;
   isAdmin: boolean;
   isAuthenticated: boolean;
   isGuest: boolean;
 }>({
   currentUser: DEFAULT_ME_DATA,
   isLoading: true,
+  isAuthenticating: true,
   isAdmin: false,
   isAuthenticated: false,
   isGuest: false,
@@ -88,6 +90,7 @@ type AuthProviderProps = {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authenticatedUser, setAuthenticatedUser] = useState<User | null>(null);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const { translate } = useLanguage();
   const [, setUserId] = useGlobalState('userId');
@@ -104,6 +107,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
 
       setIsLoading(false);
+      setIsAuthenticating(false);
     });
   });
 
@@ -146,6 +150,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       value={{
         currentUser: firestoreUser,
         isLoading: isLoading || (isAuthenticated && query.isLoading),
+        isAuthenticating,
         isAdmin: Boolean(firestoreUser.isAdmin),
         isAuthenticated,
         isGuest: Boolean(authenticatedUser?.isAnonymous),
