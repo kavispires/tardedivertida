@@ -5,6 +5,8 @@ import { useEffectOnce } from 'react-use';
 const APP_NAME = 'TD';
 
 type LocalStorageState = {
+  username: string;
+  avatarId: string;
   blurEnabled: boolean;
   language: Language;
   volume: number;
@@ -16,6 +18,8 @@ type LocalStorageState = {
 };
 
 const initialState: LocalStorageState = {
+  username: '',
+  avatarId: '',
   blurEnabled: false,
   language: 'en',
   volume: 0.5,
@@ -34,7 +38,7 @@ const { useGlobalState, setGlobalState } = createGlobalState(initialState);
  * @param property - The property name to generate the key for.
  * @returns The key for storing the value in local storage.
  */
-export const getKey = (property: string) => `${APP_NAME}${property}`;
+export const getKey = (property: string) => `${APP_NAME}_${property}`;
 
 /**
  * Custom hook that provides a way to store and retrieve data in the local storage.

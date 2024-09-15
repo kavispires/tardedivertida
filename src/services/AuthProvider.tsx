@@ -31,7 +31,7 @@ const DEFAULT_ME_DATA: Me = {
   isAdmin: false,
   names: [],
   avatars: [],
-  language: 'en',
+  language: JSON.parse(localStorage.getItem('TD_language') || '') || 'en',
   statistics: {
     plays: 0,
     uniqueGamesPlayed: 0,

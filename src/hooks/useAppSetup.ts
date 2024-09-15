@@ -1,8 +1,9 @@
-import { useEffectOnce, useLocalStorage } from 'react-use';
+import { useEffectOnce } from 'react-use';
 // Internal
 import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 import { useCardWidth } from './useCardWidth';
 import { useGlobalState } from './useGlobalState';
+import { useLanguage } from './useLanguage';
 
 /**
  * Setup basic app settings
@@ -13,8 +14,10 @@ import { useGlobalState } from './useGlobalState';
 export function useAppSetup() {
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [localUsername] = useLocalStorage('username', '');
-  const [localAvatarId] = useLocalStorage('avatarId', '');
+  const { setLanguage } = useLanguage();
+  const [localUsername] = useGlobalLocalStorage('username');
+  const [localAvatarId] = useGlobalLocalStorage('avatarId');
+  const [localLanguage] = useGlobalLocalStorage('language');
 
   const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
   const cardWidth = useCardWidth(5, {
@@ -25,11 +28,11 @@ export function useAppSetup() {
   });
 
   useEffectOnce(() => {
+    console.log(localUsername);
     setUsername(localUsername ?? '');
     setUserAvatarId(localAvatarId ?? '');
-  });
+    setLanguage(localLanguage);
 
-  useEffectOnce(() => {
     if (canvasSize === 50) {
       setCanvasSize(cardWidth);
     }
