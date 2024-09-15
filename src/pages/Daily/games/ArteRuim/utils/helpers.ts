@@ -28,6 +28,7 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
     solution: getLettersInWord(data.text),
     hearts: SETTINGS.HEARTS,
     guesses: {},
+    win: false,
   };
 
   let solution = { ...state.solution };
@@ -46,6 +47,9 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
   }, {});
 
   state.guesses = guesses;
+  state.win = Object.values(solution)
+    .filter((value) => value !== undefined)
+    .every(Boolean);
 
   return state;
 }

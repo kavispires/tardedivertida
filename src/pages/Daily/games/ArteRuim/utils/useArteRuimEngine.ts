@@ -35,6 +35,11 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
       solution[letter] = true;
     }
 
+    console.log(solution);
+    const win = Object.values(solution)
+      .filter((value) => value !== undefined)
+      .every(Boolean);
+
     setState((prev) => ({
       ...prev,
       guesses: {
@@ -47,13 +52,12 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
       },
       solution,
       hearts: isCorrect ? prev.hearts : prev.hearts - 1,
+      win,
     }));
   };
 
   // CONDITIONS
-  const isWin = Object.values(state.solution)
-    .filter((value) => value !== undefined)
-    .every(Boolean);
+  const isWin = state.win;
   const isLose = state.hearts <= 0;
   const isComplete = isWin || isLose;
 

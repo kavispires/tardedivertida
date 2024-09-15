@@ -4,6 +4,7 @@ export type GameState = {
   hearts: number;
   solution: BooleanDictionary;
   guesses: LettersDictionary;
+  win: boolean;
 };
 
 export type DailyArteRuimEntry = {
