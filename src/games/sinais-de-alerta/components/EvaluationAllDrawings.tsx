@@ -13,16 +13,17 @@ import { Translate } from 'components/language';
 // Internal
 import { DrawingEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 type EvaluationAllDrawingsProps = {
   players: GamePlayers;
   cards: Dictionary<TextCard>;
   drawings: DrawingEntry[];
   onSelect: (cardId: CardId) => void;
-  width: number;
   subjectGuesses: StringDictionary;
   descriptorGuesses: StringDictionary;
   gameLanguage: Language;
+  activeItem: CardId;
 };
 
 export function EvaluationAllDrawings({
@@ -30,11 +31,13 @@ export function EvaluationAllDrawings({
   cards,
   drawings,
   onSelect,
-  width,
   subjectGuesses,
   descriptorGuesses,
   gameLanguage,
+  activeItem,
 }: EvaluationAllDrawingsProps) {
+  const [canvasSize] = useGlobalLocalStorage('canvasSize');
+  console.log({ activeItem });
   return (
     <Container
       title={<Translate pt="Desenhos" en="Drawings" />}
@@ -48,13 +51,15 @@ export function EvaluationAllDrawings({
         return (
           <TransparentButton
             key={drawing.playerId}
-            style={{ width }}
+            style={{ width: canvasSize }}
             onClick={() => onSelect(drawing.playerId)}
             className="sda-word-button"
+            active={drawing.playerId === activeItem}
+            activeClass="sda-word-button--active"
           >
             {isFullyGuessed && <IconAvatar icon={<CheckMarkIcon />} className="sda-word-button__matched" />}
             <AvatarName player={players[drawing.playerId]} />
-            <WarningDrawing drawing={drawing.drawing} width={width} />
+            <WarningDrawing drawing={drawing.drawing} width={canvasSize} />
             <Typography.Text code className="uppercase">
               {gameLanguage === 'pt' ? (
                 <>

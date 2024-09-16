@@ -29,6 +29,7 @@ export function PhaseEvaluation({ players, state, info, meta }: PhaseProps) {
       title={<Translate pt="Adivinhação" en="Match the cards" />}
       currentRound={state?.round?.current}
       type="overlay"
+      duration={state.round.current < 2 ? 12 : undefined}
     >
       <EvaluationRules />
     </PhaseAnnouncement>

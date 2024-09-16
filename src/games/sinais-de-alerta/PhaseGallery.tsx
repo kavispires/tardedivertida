@@ -31,6 +31,7 @@ export function PhaseGallery({ players, state, info, meta }: PhaseProps) {
           currentRound={state?.round?.current}
           unskippable
           type="block"
+          duration={state.round.current < 3 ? 12 : undefined}
         >
           <GalleryRules />
         </PhaseAnnouncement>
