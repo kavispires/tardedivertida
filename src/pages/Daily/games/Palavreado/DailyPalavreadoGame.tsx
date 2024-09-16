@@ -5,7 +5,6 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Internal
 import { DailyPalavreado } from './components/DailyPalavreado';
 import { useDailyChallenge } from '../../hooks/useDailyChallenge';
-import { getToday } from '../../utils';
 // Sass
 import './utils/styles.scss';
 
