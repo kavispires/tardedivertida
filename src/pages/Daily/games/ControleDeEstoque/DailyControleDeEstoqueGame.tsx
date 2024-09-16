@@ -5,7 +5,6 @@ import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Internal
 import { DailyControleDeEstoque } from './components/DailyControleDeEstoque';
-import { getToday } from '../../utils';
 // Sass
 import './utils/styles.scss';
 
