@@ -49,7 +49,7 @@ export function StepEvaluate({
 }: StepEvaluateProps) {
   const { isLoading } = useLoading();
 
-  const canvasWidth = useCardWidth(8, { gap: 16, minWidth: 100, maxWidth: 500 });
+  const canvasWidth = useCardWidth(6, { gap: 16, minWidth: 120, maxWidth: 500 });
   const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
   const {
     subjectGuesses,
@@ -178,10 +178,10 @@ export function StepEvaluate({
           cards={cards}
           drawings={drawings}
           onSelect={activateItem}
-          width={canvasWidth}
           subjectGuesses={subjectGuesses}
           descriptorGuesses={descriptorGuesses}
           gameLanguage={gameLanguage}
+          activeItem={activeItem}
         />
 
         {gameLanguage === 'pt' ? subjects : descriptors}

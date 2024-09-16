@@ -80,6 +80,16 @@
     top: -15px;
     right: -15px;
   }
+
+  &--active {
+    background-color: get-color('white');
+    background: radial-gradient(
+      circle closest-side,
+      get-color('white') 0%,
+      get-color('white') 80%,
+      transparent 100%
+    );
+  }
 }
 
 .sda-gallery {
