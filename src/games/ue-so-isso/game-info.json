@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.1.36",
+  "release": "stable",
+  "version": "3.1.37",
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -52,7 +53,6 @@
   },
   "tags": ["cooperative", "guessing", "writing", "mobile-friendly", "achievements"],
   "cooperative": true,
-  "available": true,
   "options": [
     {
       "key": "fewerCards",

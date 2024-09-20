@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.19",
+  "version": "1.0.20",
+  "release": "stable",
   "title": {
     "pt": "Jogo da Mesmice",
     "en": "Same But Different"
@@ -31,7 +32,6 @@
     "max": 10
   },
   "tags": ["cooperative", "discussion", "writing", "achievements"],
-  "available": true,
   "options": [
     {
       "key": "nsfw",

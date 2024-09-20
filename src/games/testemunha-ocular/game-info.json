@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "3.0.50",
+  "version": "3.0.51",
+  "release": "stable",
   "title": {
     "pt": "Testemunha Ocular",
     "en": "Eye Witness"
@@ -43,7 +44,6 @@
     "perPlayer": 0
   },
   "tags": ["cooperative", "turn-based", "guessing", "discussion"],
-  "available": true,
   "options": [
     {
       "key": "nsfw",

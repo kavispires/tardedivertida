@@ -82,13 +82,18 @@ function Hub() {
     const sortedGameList = orderBy(gameList, [`title.[${language}]`], ['asc']);
 
     return sortedGameList.reduce(
-      (acc: any, game) => {
-        if (game.available) {
-          if (['alpha', 'dev'].includes(game.version) || game.version.startsWith('beta')) {
-            acc.devGames.push(game);
-          } else {
-            acc.availableGames.push(game);
-          }
+      (
+        acc: {
+          availableGames: GameInfo[];
+          devGames: GameInfo[];
+          comingSoonGames: GameInfo[];
+        },
+        game
+      ) => {
+        if (['stable'].includes(game.release)) {
+          acc.availableGames.push(game);
+        } else if (['dev', 'beta'].includes(game.release)) {
+          acc.devGames.push(game);
         } else {
           acc.comingSoonGames.push(game);
         }
@@ -176,7 +181,7 @@ function RowOfGames({ games }: RowOfGamesProps) {
     <Row gutter={[8, 16]}>
       {games.map((game: GameInfo) => (
         <Col key={game.gameName} xs={24} sm={12} md={8} lg={8} xl={6} xxl={4}>
-          <GameCard game={game} isAdmin={game.available} />
+          <GameCard game={game} isAdmin={['dev', 'beta', 'stable'].includes(game.release)} />
         </Col>
       ))}
     </Row>

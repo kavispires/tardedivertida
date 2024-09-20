@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "1.0.28",
+  "version": "1.0.29",
+  "release": "stable",
   "title": {
     "pt": "Adedanhx",
     "en": "Stop-ish!"
@@ -44,6 +45,5 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["same-time", "timed", "writing", "competitive", "achievements"],
-  "available": true
+  "tags": ["same-time", "timed", "writing", "competitive", "achievements"]
 }

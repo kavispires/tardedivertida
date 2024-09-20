@@ -6,7 +6,7 @@ export const filterGames = (list: GameInfo[], filters: PlainObject) => {
     let result: boolean[] = [];
     // Availability
     if (doesExist(filters.availability)) {
-      const res = game.available && !game.version.endsWith('alpha');
+      const res = ['beta', 'stable'].includes(game.release);
       result.push(filters.availability === 'on' ? res : !res);
     }
 

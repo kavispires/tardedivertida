@@ -5,6 +5,7 @@ export type GameInfo = {
   gameCode: GameCode;
   gameName: GameName;
   version: string;
+  release: string;
   title: DualLanguageValue;
   popularName: DualLanguageValue;
   basedOn: string;
@@ -29,8 +30,6 @@ export type GameInfo = {
     perPlayer: number;
   };
   tags: string[];
-  available: boolean;
-  mobileFriendly?: boolean;
   options?: GameInfoOption[];
 };
 
