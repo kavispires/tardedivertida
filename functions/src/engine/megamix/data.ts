@@ -527,7 +527,7 @@ export const getData = async (
   if (crimesHediondosTrack) {
     const allWeapons = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_WEAPONS);
     const allEvidence = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_EVIDENCE);
-    const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_TILES);
+    const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_SCENES);
     const crimes = parseCrimeTiles(allScenes);
 
     // VARIANT: WEAPON

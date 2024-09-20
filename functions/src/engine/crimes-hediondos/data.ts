@@ -23,7 +23,7 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   );
 
   // Get scene tiles
-  const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_TILES);
+  const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_SCENES);
 
   // Filter weapons and evidence
   const useOriginalImages = options.originalImages ?? false;

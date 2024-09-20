@@ -272,7 +272,7 @@ export const TDR_RESOURCES = {
   COLORS: 'colors',
   CONTENDERS: 'contenders', // dual-language
   CRIME_EVIDENCE: 'crime-evidence', // dual-language
-  CRIME_TILES: 'crime-tiles', // dual-language
+  CRIME_SCENES: 'crime-scenes', // dual-language
   CRIME_WEAPONS: 'crime-weapons', // dual-language
   DATING_CANDIDATE: 'dating-candidate',
   DATING_CANDIDATE_BODIES: 'dating-candidate-bodies', // dual-language
