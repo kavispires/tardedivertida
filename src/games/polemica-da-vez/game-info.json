@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "3.0.18",
+  "version": "3.0.19",
+  "release": "stable",
   "title": {
     "pt": "Polêmica da Vez",
     "en": "That's Polemic"
@@ -46,7 +47,6 @@
     "perPlayer": 0
   },
   "tags": ["competitive", "voting", "guessing", "achievements"],
-  "available": true,
   "options": [
     {
       "key": "fixedRounds",

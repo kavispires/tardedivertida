@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "2.0.14",
+  "version": "2.0.15",
+  "release": "stable",
   "title": {
     "pt": "Crimes Hediondos",
     "en": "Horrific Crimes"
@@ -36,7 +37,6 @@
     "perPlayer": 6
   },
   "tags": ["competitive", "same-time", "pairing", "bots", "achievements"],
-  "available": true,
   "options": [
     {
       "key": "originalImages",

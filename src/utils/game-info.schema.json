@@ -5,6 +5,10 @@
     "gameCode": { "type": "string" },
     "gameName": { "type": "string" },
     "version": { "type": "string" },
+    "release": {
+      "type": "string",
+      "enum": ["dev", "beta", "stable", "planned", "cancelled", "deprecated"]
+    },
     "title": {
       "type": "object",
       "properties": {
@@ -103,7 +107,6 @@
         ]
       }
     },
-    "available": { "type": "boolean", "default": false },
     "options": {
       "type": "array",
       "items": {
@@ -140,6 +143,7 @@
     "gameCode",
     "gameName",
     "version",
+    "release",
     "title",
     "popularName",
     "basedOn",
@@ -147,7 +151,6 @@
     "rules",
     "playerCount",
     "tags",
-    "available",
     "appearance"
   ]
 }

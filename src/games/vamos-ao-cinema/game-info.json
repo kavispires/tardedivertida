@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "1.3.44",
+  "version": "1.3.45",
+  "release": "stable",
   "title": {
     "pt": "Vamos Ao Cinema",
     "en": "Movie Night"
@@ -35,6 +36,5 @@
     "base": 30,
     "perPlayer": 1
   },
-  "tags": ["cooperative", "turn-based", "guessing", "push-your-luck"],
-  "available": true
+  "tags": ["cooperative", "turn-based", "guessing", "push-your-luck"]
 }

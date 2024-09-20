@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "palheta-de-cores",
-  "version": "none",
+  "version": "0.0.1",
+  "release": "planned",
   "title": {
     "pt": "Palheta de Cores",
     "en": "Color Palette"

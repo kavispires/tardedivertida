@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "none",
+  "version": "0.0.1",
+  "release": "planned",
   "title": {
     "pt": "Bomba Relógio",
     "en": "Time Bomb"

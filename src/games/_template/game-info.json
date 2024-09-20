@@ -2,7 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "ι",
   "gameName": "template",
-  "version": "planned",
+  "version": "0.0.1",
+  "release": "planned",
   "title": {
     "pt": "Template",
     "en": "Template"

@@ -149,7 +149,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
 
         {isAdmin && (
           <div style={{ marginTop: '1rem' }}>
-            {Boolean(game.available) && <CreateGameFlow gameInfo={game} />}
+            {['dev', 'beta', 'stable'].includes(game.release) && <CreateGameFlow gameInfo={game} />}
           </div>
         )}
       </div>
