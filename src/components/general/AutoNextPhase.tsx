@@ -18,7 +18,7 @@ export function AutoNextPhase({ players }: AutoNextPhaseProps) {
 
   return (
     <HostNextPhaseButton round={{ current: -1, total: 10, forceLastRound: false }} autoTriggerTime={15}>
-      <Translate pt="Começar o jogo" en="Start the game" />
+      <Translate pt="Continuar" en="Next" />
     </HostNextPhaseButton>
   );
 }

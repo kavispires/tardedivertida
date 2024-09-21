@@ -30,7 +30,7 @@ import { LoadingPage } from 'components/loaders';
 import { Title } from 'components/text';
 // Internal
 import { RulesCarousel } from '../rules';
-import { AutoNextPhase } from './rules/AutoNextPhase';
+import { AutoNextPhase } from '../general/AutoNextPhase';
 
 type PhaseRulesProps = {
   players: GamePlayers;
