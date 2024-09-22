@@ -29,6 +29,10 @@ const SessionContadoresHistorias = lazy(
       'games/contadores-historias/SessionContadoresHistorias' /* webpackChunkName: "contadores-historias" */
     )
 );
+const SessionControleDeEstoque = lazy(
+  () =>
+    import('games/controle-de-estoque/SessionControleDeEstoque' /* webpackChunkName: "controle-de-estoque" */)
+);
 const SessionCrimesHediondos = lazy(
   () => import('games/crimes-hediondos/SessionCrimesHediondos' /* webpackChunkName: "crimes-hediondos" */)
 );
@@ -175,6 +179,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionContadoresHistorias />
+          </Suspense>
+        );
+      case GAME_COLLECTION.CONTROLE_DE_ESTOQUE:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionControleDeEstoque />
           </Suspense>
         );
       case GAME_COLLECTION.CRUZA_PALAVRAS:

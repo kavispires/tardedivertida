@@ -3,6 +3,7 @@ import * as adedanhxEngine from '../engine/adedanhx';
 import * as arteRuimEngine from '../engine/arte-ruim';
 import * as comunicacaoAlienigenaEngine from '../engine/comunicacao-alienigena';
 import * as contadoresHistoriasEngine from '../engine/contadores-historias';
+import * as controleDeEstoqueEngine from '../engine/controle-de-estoque';
 import * as crimesHediondosEngine from '../engine/crimes-hediondos';
 import * as cruzaPalavrasEngine from '../engine/cruza-palavras';
 import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
@@ -23,6 +24,7 @@ import * as polemicaDaVezEngine from '../engine/polemica-da-vez';
 import * as retratoFaladoEngine from '../engine/retrato-falado';
 import * as quemNaoMataEngine from '../engine/quem-nao-mata';
 import * as quemSouEuEngine from '../engine/quem-sou-eu';
+import * as sinaisDeAlertaEngine from '../engine/sinais-de-alerta';
 import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from '../engine/super-campeonato';
 import * as taNaCaraEngine from '../engine/ta-na-cara';
@@ -33,13 +35,13 @@ import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
 import * as vamosAoCinemaEngine from '../engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
-import * as sinaisDeAlertaEngine from '../engine/sinais-de-alerta';
 
 const engines = {
   [GAME_NAMES.ADEDANHX]: adedanhxEngine,
   [GAME_NAMES.ARTE_RUIM]: arteRuimEngine,
   [GAME_NAMES.COMUNICACAO_ALIENIGENA]: comunicacaoAlienigenaEngine,
   [GAME_NAMES.CONTADORES_HISTORIAS]: contadoresHistoriasEngine,
+  [GAME_NAMES.CONTROLE_DE_ESTOQUE]: controleDeEstoqueEngine,
   [GAME_NAMES.CRIMES_HEDIONDOS]: crimesHediondosEngine,
   [GAME_NAMES.CRUZA_PALAVRAS]: cruzaPalavrasEngine,
   [GAME_NAMES.DETETIVES_IMAGINATIVOS]: detetivesImaginativosEngine,
@@ -55,10 +57,10 @@ const engines = {
   [GAME_NAMES.NA_RUA_DO_MEDO]: naRuaDoMedoEngine,
   [GAME_NAMES.NAO_SOU_ROBO]: naoSouRoboEngine,
   [GAME_NAMES.ONDA_TELEPATICA]: ondaTelepaticaEngine,
+  [GAME_NAMES.PORTA_DOS_DESESPERADOS]: portadosDesesperadosEngine,
   [GAME_NAMES.POLEMICA_DA_VEZ]: polemicaDaVezEngine,
   [GAME_NAMES.QUEM_NAO_MATA]: quemNaoMataEngine,
   [GAME_NAMES.QUEM_SOU_EU]: quemSouEuEngine,
-  [GAME_NAMES.PORTA_DOS_DESESPERADOS]: portadosDesesperadosEngine,
   [GAME_NAMES.RETRATO_FALADO]: retratoFaladoEngine,
   [GAME_NAMES.SINAIS_DE_ALERTA]: sinaisDeAlertaEngine,
   [GAME_NAMES.SONHOS_PESADELOS]: sonhosPesadelosEngine,

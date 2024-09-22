@@ -252,6 +252,7 @@ export const GAME_COLLECTION = {
   BOMBA_RELOGIO: 'bomba-relogio',
   COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',
   CONTADORES_HISTORIAS: 'contadores-historias',
+  CONTROLE_DE_ESTOQUE: 'controle-de-estoque',
   CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores',
   CRIMES_HEDIONDOS: 'crimes-hediondos',
   CRUZA_PALAVRAS: 'cruza-palavras',

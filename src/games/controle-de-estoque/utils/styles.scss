@@ -1,0 +1,81 @@
+@use 'styles/sass' as *;
+
+.warehouse {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: get-unit(3);
+  background: get-color('black', 5);
+  place-items: center;
+  padding: get-unit(3);
+  border-radius: $border-radius;
+  color: get-color('black', 1);
+
+  &__empty-shelf {
+    background: get-color('black', 5);
+    border: 1px dashed get-color('black', 1);
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+  }
+
+  &__empty-available-shelf {
+    background: get-color('black', 4);
+    color: get-color('white');
+    font-size: 1.25rem;
+  }
+
+  &__empty-shelf-button {
+    background: get-color('black', 1);
+    display: grid;
+    place-items: center;
+    border: get-unit(1) outset get-color('brown', 7);
+    color: get-color('white');
+    cursor: pointer;
+    font-size: 1.25rem;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      background: get-color('brown', 7);
+    }
+  }
+
+  &__shelf {
+    background: get-color('black', 5);
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    color: get-color('white');
+  }
+
+  &__shelf-active {
+    border: 3px solid get-color('pink', 3);
+    border-radius: $border-radius;
+  }
+
+  &__shelf-fulfilled {
+    position: relative;
+  }
+
+  &__placed-order {
+    rotate: 10deg;
+    opacity: 0.95;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    outline: get-unit(1) solid get-color('yellow');
+  }
+}
+
+.warehouse-good {
+  &--TINTED_GLASS {
+    filter: blur(5px);
+  }
+
+  &--EYE_EXAM {
+    filter: blur(12px);
+  }
+}

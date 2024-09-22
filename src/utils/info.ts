@@ -5,6 +5,7 @@ import BOMBA_RELOGIO from 'games/bomba-relogio/game-info.json';
 import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/game-info.json';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/game-info.json';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/game-info.json';
+import CONTROLE_DE_ESTOQUE from 'games/controle-de-estoque/game-info.json';
 import CRIMES_HEDIONDOS from 'games/crimes-hediondos/game-info.json';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/game-info.json';
 import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/game-info.json';
@@ -56,6 +57,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'cinegrafistas-amadores': CINEGRAFISTAS_AMADORES,
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'contadores-historias': CONTADORES_HISTORIAS,
+  'controle-de-estoque': CONTROLE_DE_ESTOQUE,
   'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': DETETIVES_IMAGINATIVOS,

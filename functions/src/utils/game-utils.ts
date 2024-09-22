@@ -258,7 +258,7 @@ export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: BooleanDicti
 /**
  * Creates array of given length filled with indexes
  * @param length the length of the array
- * @param startAt the starting value
+ * @param startAt the starting value (default: 0)
  * @returns
  */
 export const makeArray = (length = 1, startAt = 0): number[] =>

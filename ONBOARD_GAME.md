@@ -19,7 +19,7 @@ All file paths here are relative to `functions/src`.
 
 ### Update delegators in `functions/src/utils/delegators.ts`
 
-- Add entry to `getEngine`.
+- Add entry to `engines`.
 
 ## UI Setup
 
