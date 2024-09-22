@@ -17,7 +17,7 @@ export function AutoNextPhase({ players }: AutoNextPhaseProps) {
   if (!isEverybodyReady) return <></>;
 
   return (
-    <HostNextPhaseButton round={{ current: -1, total: 10, forceLastRound: false }} autoTriggerTime={15}>
+    <HostNextPhaseButton round={{ current: -1, total: 10, forceLastRound: false }} autoTriggerTime={20}>
       <Translate pt="Continuar" en="Next" />
     </HostNextPhaseButton>
   );

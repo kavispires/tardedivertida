@@ -15,6 +15,7 @@ import { GameInfoDrawer } from 'components/drawers';
 import { PhaseLobby } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';
+import { AutoNextPhase } from 'components/general/AutoNextPhase';
 
 type SessionProps = {
   /**
@@ -69,6 +70,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
       <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
       <RedirectSession state={state} />
       <ActiveComponent players={players} state={state} info={info} meta={gameMeta} />
+      <AutoNextPhase players={players} />
       <AdminMenuDrawer state={state} players={players} />
     </>
   );
