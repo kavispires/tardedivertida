@@ -31,6 +31,11 @@ const GAMES = [
     key: 'CONTADORES_HISTORIAS',
   },
   {
+    name: 'controle-de-estoque',
+    code: 'C',
+    key: 'CONTROLE_DE_ESTOQUE',
+  },
+  {
     name: 'crimes-hediondos',
     code: 'H',
     key: 'CRIMES_HEDIONDOS',
@@ -304,6 +309,7 @@ export const TDR_RESOURCES = {
   TOPICS: 'topics',
   TREE_WORDS: 'tree-words',
   TWEETS: 'tweets',
+  WAREHOUSE_BOSS_IDEAS: 'warehouse-boss-ideas',
   WARNING_SIGNS_DESCRIPTORS: 'warning-signs-descriptors',
   WARNING_SIGNS_SUBJECTS: 'warning-signs-subjects',
 };

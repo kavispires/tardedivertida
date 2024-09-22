@@ -82,6 +82,7 @@ export const collectionByGame: Record<string, string[]> = {
     'UfoIcon',
   ],
   'contadores-de-historias': ['FairyTaleIcon', 'SealIcon'],
+  'controle-de-estoque': ['BossIdeaIcon', 'MysteryBoxIcon', 'ShippingBoxIcon', 'OnlineOrderIcon'],
   'crimes-hediondos': [
     'EventIcon',
     'SkullIcon',
@@ -232,7 +233,6 @@ export const collectionByGame: Record<string, string[]> = {
   'trevo-da-sorte': ['CloverIcon'],
   'dilema-dos-esquiadores': ['SkiingIcon', 'SnowHillIcon'],
   'sonhos-pesadelos': ['CountdownIcon'],
-  'controle-de-estoque': ['OnlineOrderIcon', 'ShippingBoxIcon'],
 };
 
 const flatGeneralList = Object.values(collectionByCategory).flat();
