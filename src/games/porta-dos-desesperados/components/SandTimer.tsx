@@ -30,7 +30,7 @@ export function SandTimer({
   onSubmitDoor,
   onMakeReady,
 }: SandTimerProps) {
-  const { setCache } = useCache();
+  const { setCache } = useCache({ defaultValue: { doors: [] } });
 
   const handleExpire = () => {
     if (!user.doorId) {
@@ -65,7 +65,7 @@ export function SandTimer({
       }
     }
     return () => {};
-  }, [timeLeft, setCache]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [timeLeft]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (timeLeft - TIMER_LEAD === 0) {
     onDisableButtons();
