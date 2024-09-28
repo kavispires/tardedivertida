@@ -289,6 +289,8 @@ export const prepareResolutionPhase = async (
       });
     });
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {

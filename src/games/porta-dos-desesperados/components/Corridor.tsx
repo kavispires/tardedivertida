@@ -7,8 +7,8 @@ import { Avatar as AntAvatar, Button, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
+import { useCache } from 'hooks/useCache';
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
@@ -49,8 +49,9 @@ export function Corridor({
     maxWidth: 350,
     margin: 8,
   });
+
   const { isLoading } = useLoading();
-  const [cache] = useGlobalLocalStorage('cache');
+  const { cache } = useCache();
 
   const voteMap = useMemo(
     () =>

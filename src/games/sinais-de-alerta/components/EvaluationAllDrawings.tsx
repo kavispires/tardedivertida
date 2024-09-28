@@ -37,7 +37,7 @@ export function EvaluationAllDrawings({
   activeItem,
 }: EvaluationAllDrawingsProps) {
   const [canvasSize] = useGlobalLocalStorage('canvasSize');
-  console.log({ activeItem });
+
   return (
     <Container
       title={<Translate pt="Desenhos" en="Drawings" />}

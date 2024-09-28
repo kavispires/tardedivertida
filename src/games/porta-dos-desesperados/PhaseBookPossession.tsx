@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useCache } from 'hooks/useCache';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Utils
@@ -31,7 +31,7 @@ import { StepWaitPageSelection } from './StepWaitPageSelection';
 export function PhaseBookPossession({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
-  const [, setCache] = useGlobalLocalStorage('cache');
+  const { setCache } = useCache({ defaultValue: { doors: [] } });
 
   const onSubmitPages = useOnSubmitPagesAPIRequest(setStep);
 
@@ -39,7 +39,7 @@ export function PhaseBookPossession({ players, state, info }: PhaseProps) {
     if (state.trap === TRAPS.DELAYING_DOORS || state.trap === TRAPS.VANISHING_DOORS) {
       setCache({ doors: [] });
     }
-  }, [state.trap, setCache]);
+  }, [state.trap]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PhaseContainer
