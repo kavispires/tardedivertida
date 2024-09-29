@@ -42,6 +42,7 @@ export function EvaluationAllDrawings({
     <Container
       title={<Translate pt="Desenhos" en="Drawings" />}
       contentProps={{ className: 'space-container' }}
+      className="contained"
     >
       {drawings.map((drawing) => {
         const subject = cards?.[subjectGuesses?.[drawing.playerId]]?.text;
