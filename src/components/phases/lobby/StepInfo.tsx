@@ -20,7 +20,6 @@ import { Translate } from 'components/language';
 import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';
 import { UsualAvatarsSelection } from './UsualAvatarsSelection';
-// API & Hooks
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
