@@ -193,6 +193,9 @@ export const prepareResolutionPhase = async (
   // Save to store most matched card
   const mostVotedCards = getMostVotedCards(state.table, state.word);
 
+  // Unready players
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {
