@@ -43,7 +43,7 @@ export function StepDraw({
   const [isTimesUp, setTimesUp] = useState(false);
 
   const { seconds, start, isRunning } = useCountdown({
-    duration: timeLimit + 2,
+    duration: timeLimit + 5,
     autoStart: false,
     onExpire: () => {
       setTimesUp(true);

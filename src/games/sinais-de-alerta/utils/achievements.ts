@@ -29,46 +29,45 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.FEWEST_DESCRIPTORS]: {
     icon: 'face-dead',
     title: {
-      pt: 'Menos descritivo',
-      en: 'Least descriptive',
+      pt: 'Menos descritivos',
+      en: 'Fewest descriptors',
     },
     description: {
       pt: 'Acertou menos descritores',
       en: 'Guessed the least descriptors',
     },
   },
-
   [ACHIEVEMENTS.MOST_SUBJECTS]: {
     icon: 'dialog',
     title: {
-      pt: 'Mais sugestivo',
-      en: 'Most suggestive',
+      pt: 'Mais sujeitos',
+      en: 'Most subjects',
     },
     description: {
-      pt: 'Acertou mais sugestões',
-      en: 'Guessed the most suggestions',
+      pt: 'Acertou mais sujeitos',
+      en: 'Guessed the most subjects',
     },
   },
   [ACHIEVEMENTS.FEWEST_SUBJECTS]: {
     icon: 'face-fed-up',
     title: {
-      pt: 'Menos sugestivo',
-      en: 'Least suggestive',
+      pt: 'Menos sujeitos',
+      en: 'Fewest subjects',
     },
     description: {
-      pt: 'Acertou menos sugestões',
-      en: 'Guessed the least suggestions',
+      pt: 'Acertou menos sujeitos',
+      en: 'Guessed the least subjects',
     },
   },
   [ACHIEVEMENTS.TABLE_VOTES]: {
     icon: 'table',
     title: {
-      pt: 'Voto de mesa',
+      pt: 'Voto no extra',
       en: 'Table vote',
     },
     description: {
-      pt: 'Votou em todas as cartas',
-      en: 'Voted on all cards',
+      pt: 'Votou em cartas que não era de jogadores mais vezes',
+      en: 'Voted on non-player cards more times',
     },
   },
   [ACHIEVEMENTS.CHOOSE_FOR_ME]: {
@@ -78,8 +77,8 @@ export const achievementsReference: AchievementReference = {
       en: 'Guess for me',
     },
     description: {
-      pt: 'Usou a opção de chutar',
-      en: 'Used the guess for me option',
+      pt: 'Usou a opção de chutar mais vezes',
+      en: 'Used the guess for me option the most',
     },
   },
   [ACHIEVEMENTS.BEST_DESCRIPTOR]: {
@@ -96,8 +95,8 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.WORST_DESCRIPTOR]: {
     icon: 'face-oops',
     title: {
-      pt: 'Pior descritor',
-      en: 'Worst descriptor',
+      pt: 'Descritor menos habilidoso',
+      en: 'Not so skilled descriptor',
     },
     description: {
       pt: 'Desenhou o pior descritor',
@@ -118,8 +117,8 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.WORST_SUBJECT]: {
     icon: 'face-perplexed',
     title: {
-      pt: 'Pior sujeito',
-      en: 'Worst subject',
+      pt: 'Sujeito mais mais ou menos',
+      en: 'Not so skilled subject',
     },
     description: {
       pt: 'Desenhou o pior sujeito',

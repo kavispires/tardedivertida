@@ -22,7 +22,7 @@ export function PhaseDrawing({ players, state, info, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);
-  const timeLimit: number = state.timeLimit;
+  const timeLimit: number = state.timeLimit ?? 30;
 
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
 

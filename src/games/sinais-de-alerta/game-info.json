@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "release": "stable",
   "title": {
     "pt": "Sinais de Alerta",
@@ -26,7 +26,7 @@
     "pt": [
       "Em Sinais de Alerta, você é parte do setor de sinalizações do Departamento de Trânsito de uma cidade.",
       "Cada rodada você é encarregado de criar uma placa de sinalização específica em 30 segundos",
-      "Após todos derem criado suas placas é hora de tentar adivinhar o sujeito e o descritivo de cada placa",
+      "Após todos terem criado suas placas é hora de tentar adivinhar o sujeito e o descritivo de cada placa",
       "Você ganha pontos por acertar a dos outros e pontos pelos outros jogadores terem acertado a sua",
       "O jogo acaba após 5 rodadas e o jogador com mais pontos vence"
     ],
