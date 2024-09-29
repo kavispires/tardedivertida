@@ -130,6 +130,8 @@ export const prepareResultsPhase = async (
 ): Promise<SaveGamePayload> => {
   const { ranking, gallery, leftOut } = calculateResults(players, state.pool, store);
 
+  utils.players.unReadyPlayers(players);
+
   return {
     update: {
       store: {

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.38",
+  "version": "1.1.39",
   "release": "stable",
   "title": {
     "pt": "Duetos",
