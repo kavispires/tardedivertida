@@ -176,6 +176,8 @@ export const prepareResolutionPhase = async (
     language: store.language,
   });
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {
