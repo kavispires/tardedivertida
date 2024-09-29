@@ -212,6 +212,8 @@ export const prepareRevealPhase = async (
   // Gather votes
   const { ranking, whoGotNoPoints } = buildRanking(players, state.clues, store);
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {
