@@ -229,6 +229,9 @@ export const prepareResolutionPhase = async (
   // Calculate distance
   calculateSheepTravelDistance(store, players, pastureChange);
 
+  // Unready players
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {
