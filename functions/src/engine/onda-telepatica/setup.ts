@@ -141,6 +141,8 @@ export const prepareRevealPhase = async (
   // Gather votes
   const ranking = buildRanking(players, state.currentCategory, state.psychicId, store);
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {
