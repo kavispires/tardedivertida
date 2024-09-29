@@ -252,6 +252,9 @@ export const prepareResultsPhase = async (
     });
   });
 
+  // Unready players
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {
