@@ -8,6 +8,7 @@ import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constant
 import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
 import { buildIdDictionary } from './helpers';
+import { updateDataFirebaseDoc } from '../engine/collections';
 
 export const getItems = async (
   quantity: number,
@@ -443,5 +444,5 @@ export const saveUsedAdjectives = async (usedAdjectives: BooleanDictionary) => {
  * @returns
  */
 export const savePairs = async (pairs: BooleanDictionary) => {
-  return updateGlobalFirebaseDoc(DATA_DOCUMENTS.PAIRS, pairs);
+  return updateDataFirebaseDoc(DATA_DOCUMENTS.PAIRS, pairs);
 };

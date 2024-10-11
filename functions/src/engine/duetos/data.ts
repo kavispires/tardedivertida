@@ -138,6 +138,5 @@ export const savedData = async (gallery: Gallery): Promise<boolean> => {
     acc[item.pairId] = true;
     return acc;
   }, {});
-
   return await utils.tdr.savePairs(dataDict);
 };

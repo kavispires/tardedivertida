@@ -174,7 +174,7 @@ export const prepareGameOverPhase = async (
   const gallery = store.gallery;
 
   // Save data (pairs)
-  await savedData(store.contendersGlyphs ?? {});
+  await savedData(store.gallery ?? []);
 
   utils.players.cleanup(players, []);
 
