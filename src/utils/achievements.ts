@@ -18,6 +18,7 @@ import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/utils/achieveme
 import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
 import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
 import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
+import SINAIS_DE_ALERTA from 'games/sinais-de-alerta/utils/achievements';
 import TESTE_DE_ELENCO from 'games/teste-de-elenco/utils/achievements';
 import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 // Types
@@ -69,6 +70,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'quem-nao-mata': null,
   'quem-sou-eu': QUEM_SOU_EU,
   'retrato-falado': RETRATO_FALADO,
+  'sinais-de-alerta': SINAIS_DE_ALERTA,
   'sonhos-pesadelos': null,
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': null,

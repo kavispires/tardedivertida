@@ -18,7 +18,7 @@ function Me() {
     if (currentUser.language) {
       setLanguage(currentUser.language);
     }
-  }, [currentUser.language, setLanguage]);
+  }, [currentUser.language]); // eslint-disable-line
 
   return (
     <MeContent user={currentUser} additionalContent={<LoginModal isAuthenticated={isAuthenticated} />} />

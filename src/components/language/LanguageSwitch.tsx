@@ -14,7 +14,9 @@ export function LanguageSwitch() {
   const [language, setLanguage] = useGlobalLocalStorage('language');
 
   const onSwitchClick = (e: any) => {
+    console.log('butca');
     const value = e ? 'pt' : 'en';
+    console.log(e);
     setLanguage(value);
   };
 
