@@ -168,6 +168,8 @@ export const prepareComparePhase = async (
   // Save gallery, the answer(s) with most matches for the question
   store.gallery.push(getMostFrequentAnswers(answersList, state.currentQuestion));
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {
