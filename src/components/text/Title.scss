@@ -49,9 +49,11 @@
 
   &#{$self}--align-left {
     text-align: left;
+    margin-left: 0;
   }
 
   &#{$self}--align-right {
     text-align: right;
+    margin-right: 0;
   }
 }
