@@ -52,7 +52,7 @@ export const prepareSetupPhase = async (additionalData: ResourceData): Promise<S
 };
 
 export const prepareWitnessSelectionPhase = async (players: Players): Promise<SaveGamePayload> => {
-  utils.players.readyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Save
   return {
@@ -71,10 +71,8 @@ export const prepareQuestionSelectionPhase = async (
   players: Players,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
-  const turnOrder =
-    store.turnOrder.length > 0
-      ? store.turnOrder
-      : determineTurnOrder(players, additionalPayload?.witnessId ?? state.witnessId);
+  const witnessId = additionalPayload?.witnessId ?? state.witnessId;
+  const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : determineTurnOrder(players, witnessId);
 
   // Determine questioner player
   const questionerIndex = store.questionerIndex + 1;
@@ -124,7 +122,7 @@ export const prepareQuestionSelectionPhase = async (
         round: utils.helpers.increaseRound(state.round),
         questionerId,
         questions,
-        witnessId: additionalPayload?.witnessId ?? state.witnessId,
+        witnessId,
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
         groupScore,
       },

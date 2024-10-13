@@ -5,7 +5,7 @@ import { SUSPECT_COUNT } from './constants';
 import { FirebaseStateData } from './types';
 
 /**
- *
+ * Adds data to the state and goes to the next phase
  * @param gameName
  * @param gameId
  * @param playerId
