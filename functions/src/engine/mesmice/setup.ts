@@ -274,7 +274,7 @@ export const prepareGameOverPhase = async (
   await utils.firestore.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
-    gameName: GAME_NAMES.ADEDANHX,
+    gameName: GAME_NAMES.MESMICE,
     gameId,
     startedAt: store.createdAt,
     players,
