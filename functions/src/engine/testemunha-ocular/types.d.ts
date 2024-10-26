@@ -6,6 +6,10 @@ export type TestemunhaOcularOptions = {
    * Allow nsfw traits
    */
   nsfw?: boolean;
+  /**
+   * Harder game (more suspects)
+   */
+  harderGame?: boolean;
 } & SuspectCardsOptions;
 
 export type SuspectId = CardId;
@@ -21,6 +25,14 @@ export interface ResourceData {
   allSuspects: SuspectCard[];
 }
 
+export type Status = {
+  questions: number;
+  totalTime: number;
+  suspects: number;
+  released: number;
+  score: number;
+};
+
 export interface TestemunhaOcularStore extends DefaultStore<TestemunhaOcularOptions> {
   pastQuestions: TestemunhaOcularEntry[];
   gameOrder: PlayerId[];
@@ -33,7 +45,6 @@ export interface TestemunhaOcularStore extends DefaultStore<TestemunhaOcularOpti
 export interface TestemunhaOcularState extends DefaultState {
   suspects?: SuspectCard[];
   perpetrator?: any;
-  groupScore?: any;
   questionerId?: any;
   questions?: any;
   question?: any;
@@ -54,5 +65,5 @@ export interface TestemunhaOcularSubmitAction extends Payload {
   action: keyof typeof TESTEMUNHA_OCULAR_ACTIONS;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | TestemunhaOcularState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | TestemunhaOcularStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & TestemunhaOcularState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & TestemunhaOcularStore;

@@ -72,6 +72,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
           question={state.question}
           history={state.history}
           announcement={announcement}
+          status={state.status}
         />
       </StepSwitcher>
     </PhaseContainer>

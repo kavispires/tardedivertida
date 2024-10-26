@@ -21,8 +21,10 @@ export const PLAYER_COUNTS = {
   MAX: 10,
 };
 
-export const MAX_ROUNDS = 11;
+export const MAX_ROUNDS = 10;
 
 export const SUSPECT_COUNT = 12;
+
+export const HARD_MODE_EXTRA_SUSPECT_COUNT = 6;
 
 export const QUESTION_COUNT = 22;

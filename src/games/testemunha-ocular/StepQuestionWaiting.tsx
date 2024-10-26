@@ -11,6 +11,8 @@ import { RuleInstruction, Title } from 'components/text';
 // Internal
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
+import { Status, THistoryEntry } from './utils/types';
+import { Summary } from './components/Summary';
 
 type StepQuestionWaitingProps = {
   suspects: SuspectCard[];
@@ -19,6 +21,7 @@ type StepQuestionWaitingProps = {
   questioner: GamePlayer;
   isUserTheWitness: boolean;
   history: THistoryEntry[];
+  status: Status;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepQuestionWaiting({
@@ -29,10 +32,11 @@ export function StepQuestionWaiting({
   isUserTheWitness,
   history,
   announcement,
+  status,
 }: StepQuestionWaitingProps) {
   return (
     <Step announcement={announcement}>
-      <Title>
+      <Title size="medium" white>
         <IconAvatar icon={<AnimatedClockIcon />} size="large" />
         <br />
         <Translate pt={<>Examine os suspeitos</>} en={<>Examine the suspects</>} />
@@ -65,6 +69,8 @@ export function StepQuestionWaiting({
       />
 
       {history.length > 0 && <QuestionsHistory history={history} />}
+
+      {status && <Summary status={status} />}
     </Step>
   );
 }

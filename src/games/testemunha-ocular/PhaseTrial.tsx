@@ -83,6 +83,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
           testimony={state.testimony}
           history={state.history}
           announcement={announcement}
+          status={state.status}
         />
       </StepSwitcher>
     </PhaseContainer>

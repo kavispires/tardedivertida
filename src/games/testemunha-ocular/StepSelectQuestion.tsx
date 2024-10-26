@@ -12,6 +12,8 @@ import { RuleInstruction, Title } from 'components/text';
 // Internal
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
+import { Question, Status, THistoryEntry } from './utils/types';
+import { Summary } from './components/Summary';
 
 type StepSelectQuestionProps = {
   questions: Question[];
@@ -20,6 +22,7 @@ type StepSelectQuestionProps = {
   suspects: SuspectCard[];
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];
+  status: Status;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectQuestion({
@@ -30,10 +33,11 @@ export function StepSelectQuestion({
   previouslyEliminatedSuspects,
   history,
   announcement,
+  status,
 }: StepSelectQuestionProps) {
   return (
     <Step announcement={announcement}>
-      <Title>
+      <Title size="medium" white>
         <Translate pt="Selecione uma pergunta" en="Select a question" />
       </Title>
       <RuleInstruction type="action">
@@ -63,6 +67,8 @@ export function StepSelectQuestion({
       <Suspects suspects={suspects} eliminatedSuspects={previouslyEliminatedSuspects} />
 
       {history.length > 0 && <QuestionsHistory history={history} />}
+
+      {status && <Summary status={status} />}
     </Step>
   );
 }

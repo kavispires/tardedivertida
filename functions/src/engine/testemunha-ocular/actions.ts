@@ -5,19 +5,19 @@ import { SUSPECT_COUNT } from './constants';
 import { FirebaseStateData } from './types';
 
 /**
- * Adds data to the state and goes to the next phase
- * @param gameName
- * @param gameId
- * @param playerId
- * @param actionText
- * @param additionalPayload
- * @returns
+ * Handles an extra action within the game by saving the card to the store and transitioning to the next phase.
+ *
+ * @param gameName - The name of the game.
+ * @param gameId - The unique identifier of the game.
+ * @param actionText - A description of the action being performed.
+ * @param additionalPayload - Any additional data required for the action.
+ * @returns A promise that resolves to the next phase of the game or throws an exception if the action fails.
  */
 export const handleExtraAction = async (
   gameName: GameName,
   gameId: GameId,
   actionText: string,
-  additionalPayload: any
+  additionalPayload: PlainObject
 ) => {
   // Save card to store
   try {
@@ -36,19 +36,27 @@ export const handleExtraAction = async (
 };
 
 /**
+ * Handles the elimination action in the game.
  *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param actionText
- * @param additionalPayload
- * @returns
+ * @param gameName - The name of the game.
+ * @param gameId - The unique identifier of the game.
+ * @param actionText - The text describing the action.
+ * @param additionalPayload - Additional data required for the action.
+ * @returns A promise that resolves to the next phase of the game or true if no phase change is needed.
+ *
+ * The function performs the following steps:
+ * 1. Retrieves the current game state and session reference.
+ * 2. Determines if the game should proceed to the next phase based on the action and game state.
+ * 3. Checks if the suspect is the perpetrator or an innocent person.
+ * 4. Updates the game state with the eliminated suspect if they are innocent.
+ * 5. Determines if the game is won or lost based on the number of eliminated suspects.
+ * 6. Proceeds to the next phase if necessary, handling any errors that occur.
  */
 export const handleElimination = async (
   gameName: GameName,
   gameId: GameId,
   actionText: string,
-  additionalPayload: any
+  additionalPayload: PlainObject
 ) => {
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
@@ -78,6 +86,10 @@ export const handleElimination = async (
         update: {
           state: {
             eliminatedSuspects,
+            status: {
+              ...state.status,
+              released: state.status.released + 1,
+            },
           },
         },
       });

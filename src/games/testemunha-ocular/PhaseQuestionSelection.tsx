@@ -79,6 +79,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             suspects={state.suspects}
             history={state.history}
             announcement={announcement}
+            status={state.status}
           />
 
           <StepQuestionWaiting
@@ -89,6 +90,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             suspects={state.suspects}
             history={state.history}
             announcement={announcement}
+            status={state.status}
           />
         </ViewOr>
       </StepSwitcher>
