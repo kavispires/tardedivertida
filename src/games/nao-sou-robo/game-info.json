@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "release": "stable",
   "title": {
     "pt": "Eu Não Sou Um Robô",
