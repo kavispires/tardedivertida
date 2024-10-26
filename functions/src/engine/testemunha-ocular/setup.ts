@@ -2,12 +2,19 @@
 import { TestimonyQuestionCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcularEntry } from './types';
 // Constants
-import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import {
+  HARD_MODE_EXTRA_SUSPECT_COUNT,
+  MAX_ROUNDS,
+  QUESTION_COUNT,
+  SUSPECT_COUNT,
+  TESTEMUNHA_OCULAR_PHASES,
+} from './constants';
 // Helpers
 import utils from '../../utils';
 import { calculateScore, determineTurnOrder, getQuestionerId, getQuestions } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 import { saveData } from './data';
+import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -15,9 +22,21 @@ import { saveData } from './data';
  * Resets previous changes to the store
  * @returns
  */
-export const prepareSetupPhase = async (additionalData: ResourceData): Promise<SaveGamePayload> => {
+export const prepareSetupPhase = async (
+  store: FirebaseStoreData,
+  additionalData: ResourceData
+): Promise<SaveGamePayload> => {
   // Build suspects grid
-  const suspects = utils.game.getRandomItems(additionalData.allSuspects, SUSPECT_COUNT);
+  const isHarderGame = store.options?.harderGame ?? false;
+  const suspects = orderBy(
+    utils.game.getRandomItems(
+      additionalData.allSuspects,
+      SUSPECT_COUNT + (isHarderGame ? HARD_MODE_EXTRA_SUSPECT_COUNT : 0)
+    ),
+    [`name.${store.language}`],
+    ['asc']
+  );
+
   const perpetrator = utils.game.getRandomItem(suspects);
 
   const shuffledAvailableCards = utils.game.shuffle(additionalData.allCards);
@@ -44,7 +63,13 @@ export const prepareSetupPhase = async (additionalData: ResourceData): Promise<S
         },
         suspects,
         perpetrator,
-        groupScore: 0,
+        status: {
+          questions: 0,
+          totalTime: MAX_ROUNDS,
+          suspects: suspects.length,
+          released: 0,
+          score: 0,
+        },
         history: [],
       },
     },
@@ -75,10 +100,10 @@ export const prepareQuestionSelectionPhase = async (
   const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : determineTurnOrder(players, witnessId);
 
   // Determine questioner player
-  const questionerIndex = store.questionerIndex + 1;
+  const questionerIndex = (store.questionerIndex ?? -1) + 1;
   const questionerId = getQuestionerId(turnOrder, questionerIndex);
   // Determine questions
-  const questionIndex = store.questionIndex + 2;
+  const questionIndex = (store.questionIndex ?? -2) + 2;
   const questions = getQuestions(store.deck, questionIndex);
 
   // Calculate score and move eliminated suspects
@@ -90,7 +115,7 @@ export const prepareQuestionSelectionPhase = async (
   const eliminatedSuspects = state?.eliminatedSuspects ?? [];
 
   // Calculate score
-  const groupScore = calculateScore(state.score ?? 0, state.round.current, eliminatedSuspects.length);
+  const score = calculateScore(state.status.score ?? 0, state.round.current, eliminatedSuspects.length);
 
   // Add entry to store
   let testimonyEntry: TestemunhaOcularEntry | PlainObject = {};
@@ -124,7 +149,12 @@ export const prepareQuestionSelectionPhase = async (
         questions,
         witnessId,
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
-        groupScore,
+        status: {
+          ...state.status,
+          score,
+          questions: state.status.questions + 1,
+          released: previouslyEliminatedSuspects.length,
+        },
       },
       stateCleanup: ['question', 'testimony', 'eliminatedSuspects'],
     },
@@ -165,7 +195,7 @@ export const prepareTrialPhase = async (
   const history = [...state.history];
   history.push({
     ...state.question,
-    answer: testimony,
+    statement: testimony,
   });
 
   utils.players.readyPlayers(players, state.questionerId);
@@ -220,7 +250,7 @@ export const prepareGameOverPhase = async (
         players,
         gameEndedAt: Date.now(),
         perpetrator: state.perpetrator,
-        groupScore: state.groupScore,
+        status: state.status,
         outcome: additionalPayload?.win ? 'WIN' : 'LOSE',
         history: state.history,
       },

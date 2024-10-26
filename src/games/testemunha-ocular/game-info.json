@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "3.0.52",
+  "version": "4.0.0",
   "release": "stable",
   "title": {
     "pt": "Testemunha Ocular",
@@ -31,7 +31,14 @@
       "Se os detetives liberarem o criminoso, todos perdem. Se o último suspeito é o criminoso, todos ganham",
       "Mas há um porém! A testemunha não fala nada sobre a aparência, simplesmente julga o criminoso"
     ],
-    "en": ["TBD"]
+    "en": [
+      "One crime. One witness... that judge people by their appearances. What could go wrong?",
+      "One player will be the witness of a horrible crime, the others, detectives.",
+      "In each round, a question is asked to the witness, who must answer yes or no",
+      "Then, the detectives must release at least one of the suspects, one by one.",
+      "If the detectives release the criminal, everyone loses. If the last suspect is the criminal, everyone wins",
+      "But there is a catch! The witness says nothing about the appearance, simply judges the criminal"
+    ]
   },
   "playerCount": {
     "best": 3,
@@ -45,6 +52,22 @@
   },
   "tags": ["cooperative", "turn-based", "guessing", "discussion"],
   "options": [
+    {
+      "key": "harderGame",
+      "kind": "switch",
+      "label": "Difficulty",
+      "description": "Choose the difficulty of the game",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false
+        },
+        {
+          "label": "Hard",
+          "value": true
+        }
+      ]
+    },
     {
       "key": "nsfw",
       "kind": "switch",

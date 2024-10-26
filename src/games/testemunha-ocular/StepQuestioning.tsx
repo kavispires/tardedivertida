@@ -18,6 +18,8 @@ import { ViewIf } from 'components/views';
 // Internal
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
+import { Status, THistoryEntry } from './utils/types';
+import { Summary } from './components/Summary';
 
 type StepQuestioningProps = {
   suspects: SuspectCard[];
@@ -29,6 +31,7 @@ type StepQuestioningProps = {
   onAnswer: GenericFunction;
   question: GamePlayer;
   history: THistoryEntry[];
+  status: Status;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepQuestioning({
@@ -42,12 +45,13 @@ export function StepQuestioning({
   question,
   history,
   announcement,
+  status,
 }: StepQuestioningProps) {
   const { translate } = useLanguage();
 
   return (
     <Step announcement={announcement}>
-      <Title level={3} size="medium">
+      <Title level={3} size="medium" white>
         <Translate
           pt={
             <>
@@ -139,6 +143,8 @@ export function StepQuestioning({
       />
 
       {history.length > 0 && <QuestionsHistory history={history} />}
+
+      {status && <Summary status={status} />}
     </Step>
   );
 }

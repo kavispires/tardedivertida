@@ -40,12 +40,12 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
         <Translate
           pt={
             <>
-              O interrogatório durou <TimeHighlight>{state.groupScore ?? '?'}</TimeHighlight> horas.
+              O interrogatório durou <TimeHighlight>{state.round.current ?? '?'}</TimeHighlight> horas.
             </>
           }
           en={
             <>
-              The interrogation lasted for <TimeHighlight>{state.groupScore ?? '?'}</TimeHighlight> hours.
+              The interrogation lasted for <TimeHighlight>{state.round.current ?? '?'}</TimeHighlight> hours.
             </>
           }
         />

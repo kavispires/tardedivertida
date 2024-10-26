@@ -13,10 +13,12 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, Title } from 'components/text';
 // Internal
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
+import { Status, THistoryEntry } from './utils/types';
+import { Summary } from './components/Summary';
 
 type StepSuspectEliminationProps = {
   suspects: SuspectCard[];
@@ -32,6 +34,7 @@ type StepSuspectEliminationProps = {
   question: GamePlayer;
   testimony: boolean;
   history: THistoryEntry[];
+  status: Status;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSuspectElimination({
@@ -49,6 +52,7 @@ export function StepSuspectElimination({
   history,
   questioner,
   announcement,
+  status,
 }: StepSuspectEliminationProps) {
   const { translate } = useLanguage();
 
@@ -57,7 +61,7 @@ export function StepSuspectElimination({
 
   return (
     <Step announcement={announcement}>
-      <Title level={3} size="medium">
+      <Title level={3} size="medium" white>
         <AvatarName player={witness} addressUser />
         <Translate en="answered" pt="respondeu" />{' '}
         {testimony ? (
@@ -81,7 +85,8 @@ export function StepSuspectElimination({
           className="t-card"
           size="large"
         >
-          {question.question}
+          {testimony ? '' : translate('não ', 'does not ')}
+          {question.answer}
         </Card>
       </Space>
 
@@ -91,6 +96,11 @@ export function StepSuspectElimination({
             pt="Clique em um suspeito para liberá-lo(a)."
             en="Click on a suspect card to release it."
           />
+          <br />
+          <Translate pt="Selecione alguém que" en="Select someone that " />{' '}
+          <TextHighlight>
+            {testimony ? translate('NÃO ', 'DOES NOT ') : ''} {question.answer}
+          </TextHighlight>
           <br />
           {Boolean(eliminatedSuspects?.length && isUserTheQuestioner) && (
             <Button type="primary" onClick={onPass} disabled={isLoading}>
@@ -108,6 +118,11 @@ export function StepSuspectElimination({
             pt="é quem libera os suspeitos e ele(a) precisa liberar pelo menos um."
             en="is the one who is releasing the suspects and they must release at least one."
           />
+          <br />
+          <Translate pt="E deve ser alguém que" en="It must someone that " />{' '}
+          <TextHighlight>
+            {testimony ? translate('NÃO ', 'DOES NOT ') : ''} {question.answer}
+          </TextHighlight>
         </RuleInstruction>
       )}
 
@@ -119,6 +134,8 @@ export function StepSuspectElimination({
       />
 
       {history.length > 0 && <QuestionsHistory history={history} />}
+
+      {status && <Summary status={status} />}
     </Step>
   );
 }

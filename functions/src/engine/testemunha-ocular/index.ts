@@ -87,7 +87,7 @@ export const getNextPhase = async (
 
     // Request data
     const additionalData = await getQuestionsAndSuspects(store.language, store.options);
-    const newPhase = await prepareSetupPhase(additionalData);
+    const newPhase = await prepareSetupPhase(store, additionalData);
     await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }

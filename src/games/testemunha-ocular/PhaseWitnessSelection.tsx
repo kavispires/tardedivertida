@@ -20,6 +20,7 @@ import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);
+  const suspectCount = state?.suspects?.length ?? '?';
 
   const onWitnessButtonClick = useOnSelectWitnessAPIRequest();
 
@@ -64,16 +65,16 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
       pt={
         <>
           Em Testemunha Ocular, um jogador será a testemunha que presenciou um crime desconhecido. Essa
-          testemunha responderá perguntas de sim-ou-não para ajudar os outros jogadores, detetives, a
-          liberarem pelo menos um dos <PlayersHighlight>12 suspeitos</PlayersHighlight> em cada rodada. Você
-          quer ser a testemunha?
+          testemunha responderá perguntas de sim-ou-não para ajudar os outros jogadores (detetives) a
+          liberarem pelo menos um dos <PlayersHighlight>{suspectCount} suspeitos</PlayersHighlight> a cada
+          rodada. Você quer ser a testemunha?
         </>
       }
       en={
         <>
           In Eye Witness, a player will be the witness who witnessed an unknown crime. This witness will
-          answer yes-or-no questions to help the other players, detective, to release at least one of the{' '}
-          <PlayersHighlight>12 suspects</PlayersHighlight>
+          answer yes-or-no questions to help the other players (detectives) to release at least one of the{' '}
+          <PlayersHighlight>{suspectCount} suspects</PlayersHighlight>
           each round. Do you want to be the witness?
         </>
       }
@@ -93,6 +94,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
           players={players}
           announcement={announcement}
           titleProps={{
+            white: true,
             children: <>{title}</>,
           }}
           ruleInstructionProps={{

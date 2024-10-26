@@ -7,6 +7,7 @@ import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { CollapsibleRule } from 'components/rules';
+import { THistoryEntry } from '../utils/types';
 
 type QuestionsHistoryProps = {
   history: THistoryEntry[];
@@ -18,8 +19,10 @@ export function QuestionsHistory({ history }: QuestionsHistoryProps) {
       <ol>
         {history.map((entry) => (
           <li key={`history-entry-${entry.id}`} className="t-history__entry">
-            <span className="t-history__question">{entry.question}</span>
-            {entry.answer ? (
+            <span className="t-history__question">
+              {entry.statement ? '' : <Translate pt="Não" en="Does not" />} {entry.answer}
+            </span>
+            {entry.statement ? (
               <Tooltip title={<Translate pt="Sim" en="Yes" />} className="t-history__icon">
                 <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" />
               </Tooltip>

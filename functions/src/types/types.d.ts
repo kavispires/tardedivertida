@@ -120,7 +120,7 @@ interface DefaultState {
 interface DefaultStore<TOptions = GameOptions> {
   createdAt: DateMilliseconds;
   language: Language;
-  options?: TOptions;
+  options: TOptions;
   [key: string]: any;
 }
 
