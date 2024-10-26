@@ -1,7 +1,7 @@
 // Constants
 import { ATTRIBUTES, AVAILABLE_SIGNS, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
 // Type
-import { AlienItem, ItemAttributes } from '../../types/tdr';
+import { AlienItem, ItemAttribute } from '../../types/tdr';
 import { Item, Sign, ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Helpers
 import utils from '../../utils';
@@ -30,7 +30,7 @@ export const getResourceData = async (
 
   // If not bot alien, use new libraries
   if (!isBotAlien) {
-    const itemAttributesResponse: Collection<ItemAttributes> = await resourceUtils.fetchResource(
+    const itemAttributesResponse: Collection<ItemAttribute> = await resourceUtils.fetchResource(
       TDR_RESOURCES.ITEMS_ATTRIBUTES
     );
     const itemAttributes = utils.game.getRandomItems(

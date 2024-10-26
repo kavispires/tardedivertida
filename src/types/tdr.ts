@@ -1,7 +1,7 @@
 /**
  * Generic text card
  * Used for: adjectives, categories, challenges, characters, galeria-de-sonhos, labirinto-secreto,
- * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities
+ * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities, emotions, colors
  */
 export type TextCard = {
   /**
@@ -16,11 +16,16 @@ export type TextCard = {
    * Flag indicating if it's nsfw
    */
   nsfw?: boolean;
+  /**
+   * Flag indicating if it's exclusive to a group
+   */
+  private?: boolean;
 };
 
 /**
  * Alien Item
  * Used for: alien-items
+ * @deprecated
  */
 export type AlienItem = {
   /**
@@ -40,9 +45,9 @@ export type AlienItem = {
    */
   nsfw?: boolean;
   /**
-   * Any categories the item belongs to
+   * Any decks the item belongs to
    */
-  categories?: string[];
+  decks?: string[];
 };
 
 /**
@@ -147,6 +152,59 @@ export type ChoiceCard = {
    * The question (only present when type is best-of-three)
    */
   question?: string;
+};
+
+/**
+ *
+ */
+export type CityLocation = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The name of the contender
+   */
+  name: DualLanguageValue;
+  /**
+   * The category of the location
+   */
+  category: string;
+  /**
+   * Flag indicating if it's NSFW
+   */
+  nsfw?: boolean;
+};
+
+/**
+ * Concept Card
+ * Used for: concepts
+ */
+export type Concept = {
+  /**
+   * Unique identifier for the card
+   */
+  id: CardId;
+  /**
+   * The name of the concept
+   */
+  name: string;
+  /**
+   * Other names for the concept
+   */
+  additionalNames: string[];
+  /**
+   * Query terms using when searching for the concept
+   */
+  queryTerms: string;
+  /**
+   * Flag indicating if the concept is default (original to the game)
+   */
+  default: boolean;
+  /**
+   * The type of concept
+   */
+  type: string;
 };
 
 /**
@@ -294,6 +352,14 @@ export type DiagramTopic = {
    * The type of the card
    */
   type: 'attribute' | 'word' | 'context';
+  /**
+   * The level of the card
+   */
+  level: number;
+  /**
+   * If the topic comes from its original source
+   */
+  og?: boolean;
 };
 
 export type DilemmaCard = {
@@ -528,6 +594,14 @@ export type SuspectCard = {
    * The age range of the suspect
    */
   age: string;
+  /**
+   * The build of the suspect
+   */
+  build: 'S' | 'M' | 'L' | string;
+  /**
+   * The height of the suspect
+   */
+  height: 'S' | 'M' | 'L' | string;
 };
 
 /**
@@ -593,6 +667,10 @@ export type TopicCard = {
    * The level of difficulty
    */
   level: number;
+  /**
+   * Flag indicating if it's nsfw
+   */
+  nsfw?: boolean;
 };
 
 /**
@@ -611,6 +689,11 @@ export type Tweet = {
 };
 
 /**
+ * Unique identifier for an item.
+ */
+export type ItemId = string;
+
+/**
  * Item Card
  * Used for: items
  */
@@ -618,7 +701,7 @@ export type Item = {
   /**
    * Unique identifier for the item
    */
-  id: string;
+  id: ItemId;
   /**
    * The name of the item
    */
@@ -626,11 +709,19 @@ export type Item = {
   /**
    * The groups the item can be used in
    */
-  groups?: string[];
+  decks?: string[];
   /**
    * Flag indicating if it's nsfw
    */
   nsfw?: boolean;
+  /**
+   * Other names for the item in English
+   */
+  aliasesEn?: string[];
+  /**
+   * Other names for the item in Portuguese
+   */
+  aliasesPt?: string[];
 };
 
 /**
@@ -638,19 +729,40 @@ export type Item = {
  */
 export type ItemAtributesValues = {
   /**
-   * Unique identifier for the card
+   * Unique identifier for the item
    */
-  id: string;
+  id: ItemId;
   /**
    * The dictionary of attribute keys and their values
    */
-  attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;
+  attributes: Record<string, -10 | -3 | -1 | 5 | 10 | number>;
+  /**
+   * Indicates if all attributes have been assigned numbers
+   */
+  complete?: boolean;
+  /**
+   * The timestamp of the last update
+   */
+  updatedAt?: number;
+  /**
+   * The alien message using prefixes and attribute keys
+   * (^) -10, (!) -3, (~) -1, (+) 5, (*) 10
+   */
+  key?: string;
+  /**
+   * The percentage of non-unclear attribute values
+   */
+  reliability?: number;
+  /***
+   * The value of the absolute extreme opposite and all positive values in attributes
+   */
+  score?: number;
 };
 
 /**
- * Item Attributes
+ * Item Attribute
  */
-export type ItemAttributes = {
+export type ItemAttribute = {
   /**
    * Unique identifier for the attribute (first 3 letters)
    */
@@ -671,4 +783,232 @@ export type ItemAttributes = {
    * Present on the original game
    */
   default: boolean;
+  /**
+   * Priority value when sorting ties
+   */
+  priority: number;
+  /**
+   *
+   */
+  spriteId: string;
+  /**
+   * Use for attributes that only accept yes/no (unclear) values (-3, -1, 5)
+   */
+  limited?: boolean;
+};
+
+export type ItemGroup = {
+  /**
+   * Unique identifier for the group, usually its name
+   */
+  id: string;
+  /**
+   * The items in the group
+   */
+  itemsIds: ItemId[];
+};
+
+export type DailyDiscSet = {
+  /**
+   * The id (the setId in the library OR the date in a daily game)
+   */
+  id: string;
+  /**
+   * The title of the set
+   */
+  title: DualLanguageValue;
+  /**
+   * The items in the set
+   */
+  itemsIds: ItemId[];
+};
+
+export type DailyMovieSet = {
+  /**
+   * The id (the setId in the library OR the date in a daily game)
+   */
+  id: string;
+  /**
+   * The title of the set
+   */
+  title: string;
+  /**
+   * The items in the set
+   */
+  itemsIds: ItemId[];
+  /**
+   * The release year of the movie
+   */
+  year: number;
+};
+
+export type DailyQuartetSet = {
+  /**
+   * The id (the setId in the library OR the date in a daily game)
+   */
+  id: string;
+  /**
+   * The title of the set
+   */
+  title: string;
+  /**
+   * The items in the set
+   */
+  itemsIds: ItemId[];
+  /**
+   * The level of difficulty of the set
+   */
+  level: number;
+  /**
+   * The type of quartet (visual, word, general, meaning)
+   */
+  type?: string;
+};
+
+export type DailyDiagramRule = {
+  /**
+   * The id (the setId in the library OR the date in a daily game)
+   */
+  id: string;
+  /**
+   * The title of the set
+   */
+  title: string;
+  /**
+   * The level of difficulty of the set
+   */
+  level: number;
+  /**
+   * The type of rules
+   */
+  type: string;
+  /**
+   * Indicates  how a rule is verified
+   */
+  method: 'auto' | 'manual' | 'dependency';
+  /**
+   * The date in milliseconds the rule was last updated
+   */
+  updatedAt: DateMilliseconds;
+};
+
+export type DailyDiagramItem = {
+  /**
+   * The item id
+   */
+  itemId: string;
+  /**
+   * The set name of the item
+   * (if changed, the rules must be re-checked)
+   */
+  name: string;
+  /**
+   * Word separated in syllables with : as a separator
+   * e.g. "alien" -> "a:li:en"
+   */
+  syllables?: string;
+  /**
+   * The stressed syllable in the word
+   * 0 is the last syllable, 1 is the second to last, etc.
+   */
+  stressedSyllable?: number;
+  /**
+   * The list of rules the item agrees with
+   */
+  rules: string[];
+  /**
+   * The date in milliseconds the rule was last updated
+   */
+  updatedAt: DateMilliseconds;
+};
+
+type MovieGender = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The name of the genre
+   */
+  name: DualLanguageValue;
+  /**
+   * The additive rating level (to determine the audience rating)
+   */
+  rating: number;
+  /**
+   * Lists of roles this genre requires
+   */
+  rolesIds: string[];
+};
+
+type MovieSubGenre = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The name of the subgenre
+   */
+  name: DualLanguageValue;
+  /**
+   * The additive rating level (to determine the audience rating)
+   */
+  rating: number;
+  /**
+   * Lists of roles this sub-genre might have
+   */
+  rolesIds: string[];
+};
+
+type MovieRole = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The name of the role
+   */
+  title: DualLanguageValue;
+  /**
+   * The description of the role
+   */
+  description: DualLanguageValue;
+  /**
+   * The level of complexity of the role (how many starting traits it requires 1-3)
+   */
+  complexity: number;
+  /**
+   * The number of actors that would audition to this role
+   */
+  pool: number;
+  /**
+   * The type of role (main, supporting, extra) for iconography purposes
+   */
+  type: string;
+};
+
+type MovieFeature = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The name of the feature
+   */
+  name: DualLanguageValue;
+  /**
+   * The probability of the feature appearing in the movie (percentage 0-100)
+   */
+  probability: number;
+  /**
+   * The additive rating level (to determine the audience rating) (may be negative)
+   */
+  rating: number;
+};
+
+export type MovieGenres = {
+  genres: Dictionary<MovieGender>;
+  subGenres: Dictionary<MovieSubGenre>;
+  roles: Dictionary<MovieRole>;
+  features: Dictionary<MovieFeature>;
 };
