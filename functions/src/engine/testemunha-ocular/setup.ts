@@ -11,7 +11,13 @@ import {
 } from './constants';
 // Helpers
 import utils from '../../utils';
-import { calculateScore, determineTurnOrder, getQuestionerId, getQuestions } from './helpers';
+import {
+  calculateScore,
+  determineTurnOrder,
+  getAchievements,
+  getQuestionerId,
+  getQuestions,
+} from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 import { saveData } from './data';
 import { orderBy } from 'lodash';
@@ -24,6 +30,7 @@ import { orderBy } from 'lodash';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
+  players: Players,
   additionalData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Build suspects grid
@@ -44,6 +51,11 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = utils.game.getRandomItems(shuffledAvailableCards, QUESTION_COUNT);
 
+  const achievements = utils.achievements.setup(players, store, {
+    witness: 0,
+    releases: [],
+  });
+
   // Save
   return {
     update: {
@@ -54,6 +66,7 @@ export const prepareSetupPhase = async (
         pastQuestions: [],
         turnOrder: [],
         gameOrder: [],
+        achievements,
       },
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.SETUP,
@@ -97,7 +110,16 @@ export const prepareQuestionSelectionPhase = async (
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
   const witnessId = additionalPayload?.witnessId ?? state.witnessId;
+
+  utils.achievements.increase(store, witnessId, 'witness', 1);
+
   const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : determineTurnOrder(players, witnessId);
+
+  const eliminatedSuspects = state?.eliminatedSuspects ?? [];
+
+  if (state.questionerId) {
+    utils.achievements.push(store, state.questionerId, 'releases', eliminatedSuspects.length);
+  }
 
   // Determine questioner player
   const questionerIndex = (store.questionerIndex ?? -1) + 1;
@@ -111,8 +133,6 @@ export const prepareQuestionSelectionPhase = async (
     ...(state?.previouslyEliminatedSuspects ?? []),
     ...(state?.eliminatedSuspects ?? []),
   ];
-
-  const eliminatedSuspects = state?.eliminatedSuspects ?? [];
 
   // Calculate score
   const score = calculateScore(state.status.score ?? 0, state.round.current, eliminatedSuspects.length);
@@ -140,6 +160,7 @@ export const prepareQuestionSelectionPhase = async (
         questionerIndex,
         questionIndex,
         pastQuestions,
+        achievements: store.achievements,
       },
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
@@ -224,13 +245,15 @@ export const prepareGameOverPhase = async (
 
   const winners = additionalPayload?.win ? utils.players.getListOfPlayers(players) : [];
 
+  const achievements = getAchievements(store, state.witnessId ?? '');
+
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
     gameId,
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -253,6 +276,7 @@ export const prepareGameOverPhase = async (
         status: state.status,
         outcome: additionalPayload?.win ? 'WIN' : 'LOSE',
         history: state.history,
+        achievements,
       },
     },
   };

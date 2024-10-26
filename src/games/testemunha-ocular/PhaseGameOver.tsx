@@ -14,6 +14,8 @@ import { Instruction } from 'components/text';
 // Internal
 import { AnnouncementContent } from './components/TextBlobs';
 import { QuestionsHistory } from './components/QuestionsHistory';
+import achievementsReference from './utils/achievements';
+import { Achievements } from 'components/general/Achievements';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const { language } = useLanguage();
@@ -57,6 +59,8 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
           <div className="t-suspects-table__suspect-name">{state.perpetrator.name[language]}</div>
         </div>
       </Instruction>
+
+      <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
 
       <QuestionsHistory history={state.history} />
     </GameOverWrapper>

@@ -54,12 +54,22 @@ export const prepareSetupPhase = async (
     extraInfo.debugMode = true;
   }
 
+  const achievements = utils.achievements.setup(players, store, {
+    objectInquiries: 0,
+    singleInquiry: 0,
+    correct: 0,
+    cursed: 0,
+    blank: 0,
+    alien: 0,
+  });
+
   // Save
   return {
     update: {
       store: {
         botAlienItemKnowledge: additionalData.botAlienItemKnowledge,
         botAlienSignKnowledge: {},
+        achievements,
       },
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.SETUP,
@@ -95,21 +105,9 @@ export const prepareAlienSelectionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, store, {
-    objectInquiries: 0,
-    singleInquiry: 0,
-    correct: 0,
-    cursed: 0,
-    blank: 0,
-    alien: 0,
-  });
-
   // Save
   return {
     update: {
-      store: {
-        achievements,
-      },
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION,
         players,
@@ -123,15 +121,6 @@ export const prepareAlienSeedingPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, store, {
-    objectInquiries: 0,
-    singleInquiry: 0,
-    correct: 0,
-    cursed: 0,
-    blank: 0,
-    alien: 0,
-  });
-
   // Unready players
   utils.players.unReadyPlayers(players, state.alienId);
 
@@ -189,7 +178,6 @@ export const prepareAlienSeedingPhase = async (
   return {
     update: {
       store: {
-        achievements,
         botAlienSignKnowledge,
       },
       state: {
