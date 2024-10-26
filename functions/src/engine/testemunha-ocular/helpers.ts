@@ -1,8 +1,9 @@
 import { TestimonyQuestionCard } from '../../types/tdr';
 // Constants
-import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import { MAX_ROUNDS, TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
+import { FirebaseStoreData, TestemunhaOcularAchievement } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -89,4 +90,46 @@ export const calculateScore = (
   if (currentRound === 0) return 0;
 
   return currentScore + currentRound * eliminatedSuspectsCount;
+};
+
+/**
+ * Get achievements:
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData, witnessId: PlayerId) => {
+  const achievements: Achievement<TestemunhaOcularAchievement>[] = [];
+
+  // Witness:
+  const { most } = utils.achievements.getMostAndLeastOf(store, 'witness');
+  if (most) {
+    achievements.push({
+      type: TESTEMUNHA_OCULAR_ACHIEVEMENTS.PLAYED_AS_WITNESS,
+      playerId: most.playerId,
+      value: most.value,
+    });
+  }
+
+  // Releases:
+  const { most: mostReleases, least: fewerReleases } = utils.achievements.getMostAndLeastOfAverage(
+    store,
+    'releases',
+    [witnessId]
+  );
+  if (mostReleases) {
+    achievements.push({
+      type: TESTEMUNHA_OCULAR_ACHIEVEMENTS.BEST_QUESTIONS,
+      playerId: mostReleases.playerId,
+      value: mostReleases.value,
+    });
+  }
+
+  if (fewerReleases) {
+    achievements.push({
+      type: TESTEMUNHA_OCULAR_ACHIEVEMENTS.MOST_USELESS_QUESTIONS,
+      playerId: fewerReleases.playerId,
+      value: fewerReleases.value,
+    });
+  }
+
+  return achievements;
 };

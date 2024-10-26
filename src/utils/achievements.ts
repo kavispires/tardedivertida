@@ -35,7 +35,7 @@ import type { AchievementReference } from 'types/achievements';
 // import QUEM_NAO_MATA from 'games/quem-nao-mata/utils/achievements';
 // import SONHOS_PESADELOS from 'games/sonhos-pesadelos/utils/achievements';
 // import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
-// import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
+import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 // import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
 // import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 // import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/utils/achievements';
@@ -74,7 +74,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'sonhos-pesadelos': null,
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': null,
-  'testemunha-ocular': null,
+  'testemunha-ocular': TESTEMUNHA_OCULAR,
   'teste-de-elenco': TESTE_DE_ELENCO,
   'trevo-da-sorte': null,
   'ue-so-isso': UE_SO_ISSO,
