@@ -57,4 +57,4 @@ export function MetricHighlight({
   );
 }
 
-export type HighlightProps = Pick<MetricHighlightProps, 'children' | 'type' | 'iconSize' | 'className'>;
+export type HighlightProps = Omit<MetricHighlightProps, 'icon'>;
