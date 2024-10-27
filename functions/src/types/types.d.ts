@@ -81,7 +81,7 @@ interface AddPlayerPayload {
   isGuest?: boolean;
 }
 
-interface Meta {
+interface Meta<TOptions = GameOptions> {
   gameId: GameId;
   gameName: GameName;
   createdAt: DateMilliseconds;
@@ -93,7 +93,7 @@ interface Meta {
   language: string;
   version?: string;
   replay: number;
-  options?: GameOptions;
+  options?: TOptions;
 }
 
 interface PlayerCounts {
@@ -130,7 +130,7 @@ interface InitialState {
   state: DefaultState;
 }
 
-interface InitialStateArgs {
+interface InitialStateArgs<TOptions = GameOptions> {
   /**
    * The game Id
    */
@@ -170,7 +170,7 @@ interface InitialStateArgs {
   /**
    * Game options
    */
-  options?: GameOptions;
+  options?: TOptions;
   /**
    * Function to generate stuff during game creating, for example adding bots
    * @returns an object with optional meta, store, state, or players values

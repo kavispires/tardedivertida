@@ -9,13 +9,7 @@ import {
   LetterEntry,
 } from './types';
 // Constants
-import {
-  ADEDANHX_ACHIEVEMENTS,
-  ADEDANHX_PHASES,
-  LETTERS_PER_ROUND,
-  TOPICS_PER_ROUND,
-  TOTAL_ROUNDS,
-} from './constants';
+import { ADEDANHX_ACHIEVEMENTS, ADEDANHX_PHASES } from './constants';
 import { SEPARATOR } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
@@ -45,14 +39,21 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return ANSWERING;
 };
 
-export const buildGrid = (allTopics: TopicCard[], allLetters: LetterEntry[]) => {
-  const shuffledTopics = utils.game.shuffle(allTopics);
+export const buildGrid = (
+  allTopics: TopicCard[],
+  allLetters: LetterEntry[],
+  topicsQuantity: number,
+  lettersQuantity: number,
+  roundsCount: number,
+  allowNSFW: boolean
+) => {
+  const shuffledTopics = utils.game.shuffle(allTopics).filter((topic) => allowNSFW || !topic.nsfw);
   const easyTopics: TopicCard[] = [];
   const mediumTopics: TopicCard[] = [];
   const hardTopics: TopicCard[] = [];
-  const easyTopicsQuantity = TOPICS_PER_ROUND * 2;
-  const mediumTopicsQuantity = TOPICS_PER_ROUND * 2;
-  const hardTopicsQuantity = TOPICS_PER_ROUND;
+  const easyTopicsQuantity = topicsQuantity * 2;
+  const mediumTopicsQuantity = topicsQuantity * 2;
+  const hardTopicsQuantity = topicsQuantity;
 
   for (let i = 0; i < shuffledTopics.length; i++) {
     // Stop if we have enough topics
@@ -85,9 +86,9 @@ export const buildGrid = (allTopics: TopicCard[], allLetters: LetterEntry[]) => 
 
   // Distribute topics
   const topics: TopicCard[] = utils.game
-    .makeArray(TOPICS_PER_ROUND * TOTAL_ROUNDS)
+    .makeArray(topicsQuantity * roundsCount)
     .map((_: any, index: number) => {
-      const position = index % TOPICS_PER_ROUND;
+      const position = index % topicsQuantity;
       let topic: TopicCard | undefined = undefined;
       if (position === 0 || position === 1) {
         topic = easyTopics.pop();
@@ -110,9 +111,9 @@ export const buildGrid = (allTopics: TopicCard[], allLetters: LetterEntry[]) => 
   const easyLetters: LetterEntry[] = [];
   const mediumLetters: LetterEntry[] = [];
   const hardLetters: LetterEntry[] = [];
-  const easyLettersQuantity = LETTERS_PER_ROUND * 2;
-  const mediumLettersQuantity = LETTERS_PER_ROUND * 1;
-  const hardLettersQuantity = LETTERS_PER_ROUND;
+  const easyLettersQuantity = lettersQuantity * 2;
+  const mediumLettersQuantity = lettersQuantity * 1;
+  const hardLettersQuantity = lettersQuantity;
 
   for (let i = 0; i < shuffledLetters.length; i++) {
     // Stop if we have enough letters
@@ -144,9 +145,9 @@ export const buildGrid = (allTopics: TopicCard[], allLetters: LetterEntry[]) => 
   }
 
   const letters: LetterEntry[] = utils.game
-    .makeArray(LETTERS_PER_ROUND * TOTAL_ROUNDS)
+    .makeArray(lettersQuantity * roundsCount)
     .map((_: any, index: number) => {
-      const position = index % LETTERS_PER_ROUND;
+      const position = index % lettersQuantity;
       let letter: LetterEntry | undefined = undefined;
       if (position === 0 || position === 1) {
         letter = easyLetters.pop();
@@ -167,14 +168,20 @@ export const buildGrid = (allTopics: TopicCard[], allLetters: LetterEntry[]) => 
   return { topics, letters };
 };
 
-export const getCurrentGrid = (topics: TopicCard[], letters: LetterEntry[], currentRound: number) => {
+export const getCurrentGrid = (
+  topics: TopicCard[],
+  letters: LetterEntry[],
+  currentRound: number,
+  topicsQuantity: number,
+  lettersQuantity: number
+) => {
   const roundIndex = currentRound - 1;
-  const startTopicIndex = roundIndex * TOPICS_PER_ROUND;
-  const endTopicIndex = startTopicIndex + TOPICS_PER_ROUND;
+  const startTopicIndex = roundIndex * topicsQuantity;
+  const endTopicIndex = startTopicIndex + topicsQuantity;
   const xHeaders = topics.slice(startTopicIndex, endTopicIndex);
 
-  const startLetters = roundIndex * LETTERS_PER_ROUND;
-  const endLetters = startLetters + LETTERS_PER_ROUND;
+  const startLetters = roundIndex * lettersQuantity;
+  const endLetters = startLetters + lettersQuantity;
   const yHeaders = letters.slice(startLetters, endLetters);
 
   return {

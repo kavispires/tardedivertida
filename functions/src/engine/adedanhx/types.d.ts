@@ -3,9 +3,21 @@ import { ADEDANHX_ACHIEVEMENTS, ADEDANHX_ACTIONS } from './constants';
 
 export type AdedanhxOptions = {
   /**
-   * Removes a row and column from the grid
+   * How long the game will last (rounds)
    */
-  shortGrid: boolean;
+  shorterGame: boolean;
+  /**
+   * How many columns in the grid
+   */
+  columnSize: string;
+  /**
+   * How many rows in the grid
+   */
+  rowSize: string;
+  /**
+   * If nsfw topics are allowed
+   */
+  nsfw: boolean;
 };
 
 export type LetterEntry = {
@@ -64,7 +76,7 @@ export type GalleryEntry = {
 
 export type AdedanhxAchievement = keyof typeof ADEDANHX_ACHIEVEMENTS;
 
-export interface AdedanhxStore extends DefaultStore {
+export interface AdedanhxStore extends DefaultStore<AdedanhxOptions> {
   [key: string]: any;
 }
 
@@ -81,5 +93,5 @@ export interface AdedanhxSubmitAction extends Payload {
   action: keyof typeof ADEDANHX_ACTIONS;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | AdedanhxState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | AdedanhxStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & AdedanhxState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & AdedanhxStore;
