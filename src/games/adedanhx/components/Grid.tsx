@@ -39,7 +39,13 @@ export function Grid({ grid, answers, updateAnswer, toggleLock }: GridProps) {
   }, [grid.xHeaders, grid.yHeaders]);
 
   return (
-    <div className="adedanhx-grid">
+    <div
+      className="adedanhx-grid"
+      style={{
+        gridTemplateColumns: `auto repeat(${grid.yHeaders.length + 1}, 1fr)`,
+        gridTemplateRows: `auto repeat(${grid.xHeaders.length - 1}, 1fr)`,
+      }}
+    >
       {gridMap.map((element: PlainObject, i) => {
         const key = String((element?.letters || element?.label || element.id) ?? element.type);
 

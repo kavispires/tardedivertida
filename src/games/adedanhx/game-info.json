@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "1.0.29",
+  "version": "2.0.0",
   "release": "stable",
   "title": {
     "pt": "Adedanhx",
@@ -41,9 +41,86 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [3, 4, 5, 6],
+    "best": 5,
     "min": 2,
     "max": 10
   },
-  "tags": ["same-time", "timed", "writing", "competitive", "achievements"]
+  "tags": ["same-time", "timed", "writing", "competitive", "achievements"],
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW questions",
+      "description": "Allow NSFW questions",
+      "values": [
+        {
+          "label": "No",
+          "value": false
+        },
+        {
+          "label": "Yes",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "shorterGame",
+      "kind": "switch",
+      "label": "Duration",
+      "description": "How many rounds in th game",
+      "values": [
+        {
+          "label": "Normal",
+          "value": false,
+          "description": "5 rounds"
+        },
+        {
+          "label": "Shorter",
+          "value": true,
+          "description": "3 rounds (recommended)"
+        }
+      ]
+    },
+    {
+      "key": "columnSize",
+      "kind": "radio",
+      "label": "Categories",
+      "description": "How many columns in the grid",
+      "values": [
+        {
+          "label": "Normal (5)",
+          "value": "5"
+        },
+        {
+          "label": "Small (3)",
+          "value": "3"
+        },
+        {
+          "label": "Large (7)",
+          "value": "7"
+        }
+      ]
+    },
+    {
+      "key": "rowSize",
+      "kind": "radio",
+      "label": "Letters",
+      "description": "How many rows in the grid",
+      "values": [
+        {
+          "label": "Normal (4)",
+          "value": "4"
+        },
+        {
+          "label": "Small (2)",
+          "value": "2"
+        },
+        {
+          "label": "Large (6)",
+          "value": "6"
+        }
+      ]
+    }
+  ]
 }

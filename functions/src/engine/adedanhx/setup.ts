@@ -1,5 +1,11 @@
 // Constants
-import { ADEDANHX_PHASES } from './constants';
+import {
+  ADEDANHX_PHASES,
+  LETTERS_PER_ROUND,
+  SHORT_GAME_ROUNDS,
+  TOPICS_PER_ROUND,
+  TOTAL_ROUNDS,
+} from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
@@ -29,7 +35,16 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Gather topics and letters for the entire game 5x4 grid
   const { allTopics, allLetters } = resourceData;
-  const { letters, topics } = buildGrid(allTopics, allLetters);
+  const options = store.options;
+  const roundsCount = options.shorterGame ? SHORT_GAME_ROUNDS : TOTAL_ROUNDS;
+  const { letters, topics } = buildGrid(
+    allTopics,
+    allLetters,
+    Number(options.columnSize ?? TOPICS_PER_ROUND),
+    Number(options.rowSize ?? LETTERS_PER_ROUND),
+    roundsCount,
+    !!options.nsfw
+  );
 
   const achievements = utils.achievements.setup(players, store, {
     stop: 0,
@@ -51,6 +66,11 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: ADEDANHX_PHASES.SETUP,
+        round: {
+          current: 0,
+          total: roundsCount,
+          forceLastRound: false,
+        },
       },
     },
   };
@@ -66,9 +86,16 @@ export const prepareAnsweringPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['evaluations', 'answers']);
 
   const round = utils.helpers.increaseRound(state.round);
+  const options = store.options;
 
   // Get current grid
-  const grid = getCurrentGrid(store.topics, store.letters, round.current);
+  const grid = getCurrentGrid(
+    store.topics,
+    store.letters,
+    round.current,
+    Number(options.columnSize ?? TOPICS_PER_ROUND),
+    Number(options.rowSize ?? LETTERS_PER_ROUND)
+  );
 
   // Save
   return {

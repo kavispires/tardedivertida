@@ -31,6 +31,7 @@ export const PLAYER_COUNTS = {
 };
 
 export const TOTAL_ROUNDS = 5;
+export const SHORT_GAME_ROUNDS = 3;
 export const TOPICS_PER_ROUND = 5;
 export const LETTERS_PER_ROUND = 4;
 
