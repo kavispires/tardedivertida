@@ -34,7 +34,7 @@ export type AnswerEvaluationEntry = {
   timestamp: number;
   points: number;
   autoRejected: boolean;
-  accepted: false;
+  rejected: boolean;
 };
 
 export type GroupAnswerEvaluationEntry = {

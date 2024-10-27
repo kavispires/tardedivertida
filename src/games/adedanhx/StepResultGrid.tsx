@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import type { AdedanhxGrid, AnswerGridEntry } from './utils/types';
+import type { AdedanhxGrid, AnswerGridEntry, GroupAnswerEvaluationEntry } from './utils/types';
 import { AnswersGrid } from './components/Grid';
 import { ScoringRule } from './components/RulesBlobs';
 
@@ -20,6 +20,7 @@ type StepResultGridProps = {
   user: GamePlayer;
   grid: AdedanhxGrid;
   answersGrid: Record<string, AnswerGridEntry>;
+  answersGroups: GroupAnswerEvaluationEntry[];
   goToNextStep: UseStep['goToNextStep'];
 } & Pick<StepProps, 'announcement'>;
 
@@ -27,6 +28,7 @@ export function StepResultGrid({
   grid,
   players,
   answersGrid,
+  answersGroups,
   goToNextStep,
   announcement,
 }: StepResultGridProps) {
@@ -40,7 +42,7 @@ export function StepResultGrid({
         <ScoringRule />
       </RuleInstruction>
 
-      <AnswersGrid grid={grid} answersGrid={answersGrid} players={players} />
+      <AnswersGrid grid={grid} answersGrid={answersGrid} answersGroups={answersGroups} players={players} />
 
       <Space className="space-container" align="center">
         <TimedButton duration={25} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>

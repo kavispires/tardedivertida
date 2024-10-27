@@ -25,13 +25,13 @@ import { CategoryCell, LetterCell } from './Grid';
 type EvaluationGroupProps = {
   players: GamePlayers;
   user: GamePlayer;
-  answerGroup: GroupAnswerEvaluationEntry;
+  answersGroup: GroupAnswerEvaluationEntry;
   onSubmitRejections: (payload: SubmitRejectedAnswers) => void;
   timer: number;
 };
 
 export function EvaluationGroup({
-  answerGroup,
+  answersGroup,
   players,
   user,
   onSubmitRejections,
@@ -42,11 +42,11 @@ export function EvaluationGroup({
   const [rejections, setRejections] = useState<BooleanDictionary>({});
 
   useEffect(() => {
-    if (groupId !== answerGroup.id) {
+    if (groupId !== answersGroup.id) {
       setRejections({});
-      setGroupId(answerGroup.id);
+      setGroupId(answersGroup.id);
     }
-  }, [answerGroup.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [answersGroup.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateRejection = (answerId: string, isRejected: boolean) => {
     setRejections((prev) => {
@@ -64,19 +64,19 @@ export function EvaluationGroup({
     <div>
       <div className="space-container evaluation-entry">
         <div className="space-container evaluation-entry__side">
-          <span className={clsx(getAnimationClass('flipInY'))} key={answerGroup.topic.id}>
-            <CategoryCell data={answerGroup.topic} updateAnswer={NOOP} />
+          <span className={clsx(getAnimationClass('flipInY'))} key={answersGroup.topic.id}>
+            <CategoryCell data={answersGroup.topic} updateAnswer={NOOP} />
           </span>
           <PlusOutlined />
-          <span className={clsx(getAnimationClass('flipInY'))} key={answerGroup.letter.letters}>
-            <LetterCell data={answerGroup.letter} updateAnswer={NOOP} />
+          <span className={clsx(getAnimationClass('flipInY'))} key={answersGroup.letter.letters}>
+            <LetterCell data={answersGroup.letter} updateAnswer={NOOP} />
           </span>
         </div>
         <div
           className={clsx('space-container evaluation-entry__side', getAnimationClass('fadeIn'))}
-          key={answerGroup.id}
+          key={answersGroup.id}
         >
-          {answerGroup.answers.map((answer, index) => {
+          {answersGroup.answers.map((answer, index) => {
             return (
               <div className="evaluation-entry__player" key={answer.playerId}>
                 <TimeHighlight>{ANSWERING_TIME - answer.timestamp}"</TimeHighlight>{' '}
@@ -118,14 +118,14 @@ export function EvaluationGroup({
               className="button"
               onClick={() => onSubmitRejections({ evaluations: Object.keys(rejections) })}
               loading={isLoading}
-              disabled={Object.keys(rejections).length === 0 || user?.evaluations[answerGroup.id]}
+              disabled={Object.keys(rejections).length === 0 || user?.evaluations[answersGroup.id]}
             >
-              <Translate pt="Enviar erros" en="Submit wrong answers" />
+              <Translate pt="Rejeitar respostas" en="Reject wrong answers" />
             </Button>
           </Space>
         </div>
       </div>
-      <Space className="space-container" key={answerGroup.id}>
+      <Space className="space-container" key={answersGroup.id}>
         <TimedTimerBar duration={timer} onExpire={NOOP} className="margin" />
       </Space>
     </div>

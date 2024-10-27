@@ -53,6 +53,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
           announcement={announcement}
           grid={state.grid}
           answersGrid={state.answersGrid}
+          answersGroups={state.answersGroups}
           goToNextStep={goToNextStep}
         />
 

@@ -42,7 +42,7 @@ export const handleNextEvaluationGroup = async (gameName: GameName, gameId: Game
   );
 
   // If it's the last answer, go to the next phase
-  if (state.answerGroups.length - 1 === state.answerGroupIndex) {
+  if (state.answersGroups.length - 1 === state.answersGroupIndex) {
     return getNextPhase(gameName, gameId);
   }
 
@@ -54,7 +54,7 @@ export const handleNextEvaluationGroup = async (gameName: GameName, gameId: Game
     gameId,
     playerId,
     actionText: 'stop the game',
-    change: { answerGroupIndex: state.answerGroupIndex + 1, players },
+    change: { answersGroupIndex: state.answersGroupIndex + 1, players },
   });
 };
 

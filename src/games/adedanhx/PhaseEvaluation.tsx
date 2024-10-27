@@ -60,8 +60,8 @@ export function PhaseEvaluation({ players, state, info }: PhaseProps) {
           players={players}
           user={user}
           announcement={announcement}
-          answerGroups={state.answerGroups}
-          answerGroupIndex={state.answerGroupIndex}
+          answersGroups={state.answersGroups}
+          answersGroupIndex={state.answersGroupIndex}
           onNextGroup={onNextGroup}
           onSubmitRejections={onSubmitRejections}
         />
