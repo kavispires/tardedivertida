@@ -16,7 +16,7 @@ import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Instruction, TextHighlight } from 'components/text';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { ANSWERING_TIME_IN_MINUTES } from './utils/constants';
@@ -70,7 +70,7 @@ export function PhaseAnswering({ players, state, info }: PhaseProps) {
           currentRound={state?.round?.current}
           type="block"
           onClose={goToNextStep}
-          duration={20}
+          duration={state.grid.xHeaders.length * 4}
           unskippable
         >
           <Instruction>
@@ -78,7 +78,12 @@ export function PhaseAnswering({ players, state, info }: PhaseProps) {
               pt={
                 <>
                   As categorias da rodada são{' '}
-                  <strong>{state.grid.xHeaders.map((c: TopicCard) => c.label).join(', ')}</strong>.
+                  {state.grid.xHeaders.map((c: TopicCard) => (
+                    <TextHighlight dark key={c.label}>
+                      {c.label}
+                    </TextHighlight>
+                  ))}
+                  .
                   <br />
                   Você ganha pontos bônus se você for o primeiro a responder uma célula! Boa sorte!
                 </>
@@ -86,7 +91,12 @@ export function PhaseAnswering({ players, state, info }: PhaseProps) {
               en={
                 <>
                   The round categories are{' '}
-                  <strong>{state.grid.xHeaders.map((c: TopicCard) => c.label).join(', ')}</strong>.
+                  {state.grid.xHeaders.map((c: TopicCard) => (
+                    <TextHighlight dark key={c.label}>
+                      {c.label}
+                    </TextHighlight>
+                  ))}
+                  .
                   <br />
                   You get bonus points if you are the first to answer a cell! Good luck!
                 </>

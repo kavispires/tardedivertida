@@ -107,7 +107,7 @@ export const prepareAnsweringPhase = async (
         players,
         stop: false,
       },
-      stateCleanup: ['ranking', 'answerGroup', 'answerGroupIndex', 'answerGrid', 'stop'],
+      stateCleanup: ['ranking', 'answersGroups', 'answerGroupIndex', 'answerGrid', 'stop'],
     },
   };
 };
@@ -122,7 +122,7 @@ export const prepareEvaluationPhase = async (
   utils.players.addPropertiesToPlayers(players, { evaluations: {} });
 
   // Gather answers per player per cell, and auto-verify them
-  const answerGroups = groupAnswers(players, state.grid.xHeaders, state.grid.yHeaders, store);
+  const answersGroups = groupAnswers(players, state.grid.xHeaders, state.grid.yHeaders, store);
 
   if (state.stop) {
     // Achievement: stop
@@ -138,8 +138,8 @@ export const prepareEvaluationPhase = async (
       state: {
         phase: ADEDANHX_PHASES.EVALUATION,
         players,
-        answerGroups,
-        answerGroupIndex: 0,
+        answersGroups,
+        answersGroupIndex: 0,
       },
     },
   };
@@ -151,7 +151,7 @@ export const prepareResultsPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather votes
-  const { answersGrid, ranking } = evaluateAnswers(players, state.answerGroups, store);
+  const { answersGrid, ranking } = evaluateAnswers(players, state.answersGroups, store);
 
   storeGalleryData(store, state.grid.xHeaders, state.grid.yHeaders, answersGrid);
 
@@ -168,6 +168,7 @@ export const prepareResultsPhase = async (
         ranking,
         players,
         answersGrid,
+        answersGroups: state.answersGroups,
       },
     },
   };

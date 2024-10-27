@@ -19,24 +19,31 @@
   }
 
   &__header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     flex-direction: column;
     font-family: 'Zilla Slab', monospace;
     position: relative;
     padding: get-unit(2);
   }
 
+  &__category-icon {
+    display: flex;
+    justify-content: center;
+  }
+
   &__category-label {
     max-width: 20ch;
     text-align: center;
     font-size: 1.25em;
+    display: grid;
+    place-items: center;
   }
 
   &__level {
     color: get-color('yellow', 7);
-    display: block;
+    display: flex;
+    justify-content: center;
   }
 
   &__letters-label {
@@ -172,4 +179,10 @@
     align-self: stretch;
     display: flex;
   }
+}
+
+.popover-results {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: get-unit(2);
 }

@@ -21,8 +21,8 @@ import { EvaluationGroup } from './components/EvaluationGroup';
 type StepEvaluateGroupProps = {
   players: GamePlayers;
   user: GamePlayer;
-  answerGroups: GroupAnswerEvaluationEntry[];
-  answerGroupIndex: number;
+  answersGroups: GroupAnswerEvaluationEntry[];
+  answersGroupIndex: number;
   onNextGroup: () => void;
   onSubmitRejections: (payload: SubmitRejectedAnswers) => void;
 } & Pick<StepProps, 'announcement'>;
@@ -31,22 +31,22 @@ export function StepEvaluateGroup({
   players,
   user,
   announcement,
-  answerGroups,
-  answerGroupIndex,
+  answersGroups,
+  answersGroupIndex,
   onNextGroup,
   onSubmitRejections,
 }: StepEvaluateGroupProps) {
   const { isLoading } = useLoading();
 
-  const answerGroup = answerGroups[answerGroupIndex];
+  const answersGroup = answersGroups[answersGroupIndex];
 
   // How long to wait to enable the button to give type to players to evaluate
   const waitDuration = useMemo(() => {
     // Dev
     if (isDevEnv) return 2;
     // When only 2 or less answers left
-    return Math.min(answerGroup.answers.length * 3, 12);
-  }, [answerGroup.answers.length]);
+    return Math.min(answersGroup.answers.length * 3, 12);
+  }, [answersGroup.answers.length]);
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -56,7 +56,7 @@ export function StepEvaluateGroup({
             <>
               Avaliação{' '}
               <TextHighlight>
-                {answerGroupIndex + 1} / {answerGroups.length}
+                {answersGroupIndex + 1} / {answersGroups.length}
               </TextHighlight>
             </>
           }
@@ -64,7 +64,7 @@ export function StepEvaluateGroup({
             <>
               Evaluation{' '}
               <TextHighlight>
-                {answerGroupIndex + 1} / {answerGroups.length}
+                {answersGroupIndex + 1} / {answersGroups.length}
               </TextHighlight>
             </>
           }
@@ -80,11 +80,11 @@ export function StepEvaluateGroup({
               <br />
               Todos que responderam ganham{' '}
               <PointsHighlight>
-                {answerGroup.letter.level} {pluralize(answerGroup.letter.level, 'ponto')}
+                {answersGroup.letter.level} {pluralize(answersGroup.letter.level, 'ponto')}
               </PointsHighlight>{' '}
               e o primeiro jogador que respondeu corretamente ganha{' '}
               <PointsHighlight type="positive">
-                {answerGroup.topic.level} {pluralize(answerGroup.topic.level, 'ponto')}
+                {answersGroup.topic.level} {pluralize(answersGroup.topic.level, 'ponto')}
               </PointsHighlight>
               adicionais.
             </>
@@ -96,11 +96,11 @@ export function StepEvaluateGroup({
               <br />
               Everyone who answered earns{' '}
               <PointsHighlight>
-                {answerGroup.letter.level} {pluralize(answerGroup.letter.level, 'point')}
+                {answersGroup.letter.level} {pluralize(answersGroup.letter.level, 'point')}
               </PointsHighlight>
               and the first player who answered correctly earns additional{' '}
               <PointsHighlight type="positive">
-                {answerGroup.topic.level} {pluralize(answerGroup.topic.level, 'point')}
+                {answersGroup.topic.level} {pluralize(answersGroup.topic.level, 'point')}
               </PointsHighlight>
               .
             </>
@@ -109,18 +109,18 @@ export function StepEvaluateGroup({
       </RuleInstruction>
 
       <EvaluationGroup
-        answerGroup={answerGroup}
+        answersGroup={answersGroup}
         players={players}
         user={user}
         onSubmitRejections={onSubmitRejections}
-        timer={answerGroupIndex === 0 ? 15 : waitDuration}
+        timer={answersGroupIndex === 0 ? 15 : waitDuration}
       />
 
       <VIPNextGroup
-        key={answerGroupIndex}
+        key={answersGroupIndex}
         onNextGroup={onNextGroup}
         isLoading={isLoading}
-        duration={answerGroupIndex === 0 ? 15 : waitDuration}
+        duration={answersGroupIndex === 0 ? 15 : waitDuration}
         players={players}
       />
     </Step>

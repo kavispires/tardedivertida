@@ -296,7 +296,7 @@ function isAccent(word: string): boolean {
 
 export const evaluateAnswers = (
   players: Players,
-  answerGroups: GroupAnswerEvaluationEntry[],
+  answersGroups: GroupAnswerEvaluationEntry[],
   store: FirebaseStoreData
 ) => {
   const playerCount = utils.players.getPlayerCount(players);
@@ -313,9 +313,9 @@ export const evaluateAnswers = (
 
       if (rejections[answerId] >= acceptableRejections) {
         const [groupId] = answerId.split(SEPARATOR);
-        const answerGroup = answerGroups.find((group) => group.id === groupId);
-        if (answerGroup) {
-          const answer = answerGroup.answers.find((answer) => answer.id === answerId);
+        const answersGroup = answersGroups.find((group) => group.id === groupId);
+        if (answersGroup) {
+          const answer = answersGroup.answers.find((answer) => answer.id === answerId);
           if (answer) {
             answer.rejected = true;
             // Achievement: badClues
@@ -331,7 +331,7 @@ export const evaluateAnswers = (
   // Gained Points: [answered, 1st answer bonus]
   const scores = new utils.players.Scores(players, [0, 0]);
 
-  answerGroups.forEach((group) => {
+  answersGroups.forEach((group) => {
     const answerGridEntry: AnswerGridEntry = {
       id: group.id,
       main: {

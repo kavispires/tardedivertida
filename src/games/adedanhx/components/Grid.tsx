@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 // Ant Design Resources
 import { LockFilled, UnlockFilled } from '@ant-design/icons';
-import { Divider, Input, Switch } from 'antd';
+import { Divider, Input, Popover, Switch } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TopicCard } from 'types/tdr';
@@ -15,8 +15,18 @@ import { Avatar, AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 // Internal
-import type { AdedanhxGrid, Answer, AnswerGridEntry, LetterEntry } from '../utils/types';
+import type {
+  AdedanhxGrid,
+  Answer,
+  AnswerGridEntry,
+  GroupAnswerEvaluationEntry,
+  LetterEntry,
+} from '../utils/types';
 import { CategoryIcon } from './CategoryIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
+import { NoIcon } from 'icons/NoIcon';
+import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 
 type GridProps = {
   grid: AdedanhxGrid;
@@ -42,11 +52,11 @@ export function Grid({ grid, answers, updateAnswer, toggleLock }: GridProps) {
     <div
       className="adedanhx-grid"
       style={{
-        gridTemplateColumns: `auto repeat(${grid.yHeaders.length + 1}, 1fr)`,
-        gridTemplateRows: `auto repeat(${grid.xHeaders.length - 1}, 1fr)`,
+        gridTemplateColumns: `auto repeat(${grid.xHeaders.length}, 1fr)`,
+        gridTemplateRows: `auto repeat(${grid.yHeaders.length}, 1fr)`,
       }}
     >
-      {gridMap.map((element: PlainObject, i) => {
+      {gridMap.map((element: PlainObject) => {
         const key = String((element?.letters || element?.label || element.id) ?? element.type);
 
         let CellComponent = CornerCell;
@@ -72,8 +82,11 @@ type AnswersGridProps = {
   players: GamePlayers;
   grid: AdedanhxGrid;
   answersGrid: Record<string, AnswerGridEntry>;
+  answersGroups: GroupAnswerEvaluationEntry[];
 };
-export function AnswersGrid({ grid, players, answersGrid }: AnswersGridProps) {
+export function AnswersGrid({ grid, players, answersGrid, answersGroups }: AnswersGridProps) {
+  console.log('AAAAAAHHHH');
+  console.log({ answersGrid, answersGroups });
   const gridMap = useMemo(() => {
     const m = new Array((grid.xHeaders.length + 1) * (grid.yHeaders.length + 1)).fill(0).map((e, i) => {
       const x = i % (grid.xHeaders.length + 1);
@@ -90,14 +103,24 @@ export function AnswersGrid({ grid, players, answersGrid }: AnswersGridProps) {
   }, [grid.xHeaders, grid.yHeaders, answersGrid]);
 
   return (
-    <div className="adedanhx-grid">
-      {gridMap.map((element: PlainObject, i) => {
+    <div
+      className="adedanhx-grid"
+      style={{
+        gridTemplateColumns: `auto repeat(${grid.xHeaders.length}, 1fr)`,
+        gridTemplateRows: `auto repeat(${grid.yHeaders.length}, 1fr)`,
+      }}
+    >
+      {gridMap.map((element: PlainObject) => {
         const key = String((element?.letters || element?.label || element.id) ?? element.type);
 
         let CellComponent = CornerCell;
         if (element?.letters) CellComponent = LetterCell;
         if (element?.label) CellComponent = CategoryCell;
-        if (element?.type === 'cell') CellComponent = ResultCell;
+        if (element?.type === 'cell') {
+          CellComponent = ResultCell;
+          element.groupAnswer = answersGroups.find((g) => g.id === element.id);
+          console.log({ groupAnswer: element.groupAnswer });
+        }
 
         return <CellComponent key={key} data={element} updateAnswer={NOOP} players={players} />;
       })}
@@ -112,6 +135,7 @@ type Cell = {
 
 type TResultCell = {
   result: AnswerGridEntry;
+  groupAnswer: GroupAnswerEvaluationEntry;
 } & Cell;
 
 type CellProps = {
@@ -180,40 +204,80 @@ function WritingCell({ data, answer, toggleLock = () => {}, updateAnswer }: Cell
 }
 
 function ResultCell({ data, players }: CellProps) {
-  const { result } = data as TResultCell;
+  const { result, groupAnswer } = data as TResultCell;
+  console.log({ result, groupAnswer });
 
-  if (!result || !players)
+  if (!groupAnswer || groupAnswer?.answers?.length === 0 || !players) {
     return (
-      <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
-        <IconAvatar icon={<BoxQuestionMarkIcon />} size="large" />
-      </div>
+      <Popover content={<Translate pt="Ninguém respondeu essa" en="Nobody has answered this one" />}>
+        <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
+          <IconAvatar icon={<BoxQuestionMarkIcon />} size="large" />
+        </div>
+      </Popover>
     );
+  }
+
+  if (groupAnswer?.answers?.length > 0 && !result) {
+    console.log({ groupAnswer });
+    return (
+      <Popover content={<PopoverResult groupAnswer={groupAnswer} players={players} />}>
+        <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
+          <IconAvatar icon={<BoxXIcon />} size="large" />
+        </div>
+      </Popover>
+    );
+  }
 
   return (
-    <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
-      <span className="adedanhx-grid-cell__results-player">
-        <AvatarName player={players[result.main.playerId]} />
-      </span>
-      <span className="adedanhx-grid-cell__results-answer">"{result.main.answer}"</span>
-      <span className="adedanhx-grid-cell__results-score">
-        <PointsHighlight type="positive">{result.main.score}</PointsHighlight>
-      </span>
+    <Popover content={<PopoverResult groupAnswer={groupAnswer} players={players} />}>
+      <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
+        <span className="adedanhx-grid-cell__results-player">
+          <AvatarName player={players[result.main.playerId]} />
+        </span>
+        <span className="adedanhx-grid-cell__results-answer">"{result.main.answer}"</span>
+        <span className="adedanhx-grid-cell__results-score">
+          <PointsHighlight type="positive">{result.main.score}</PointsHighlight>
+        </span>
 
-      <Divider className="adedanhx-grid-cell__results-divider" />
-      <span className="adedanhx-grid-cell__results-players">
-        <div>
-          <PointsHighlight>{result.score}</PointsHighlight>{' '}
-        </div>
+        <Divider className="adedanhx-grid-cell__results-divider" />
+        <span className="adedanhx-grid-cell__results-players">
+          <div>
+            <PointsHighlight>{result.score}</PointsHighlight>{' '}
+          </div>
 
-        {result.playerIds.map((playerId) => (
-          <Avatar
-            key={`${result.id}-${playerId}`}
-            id={players[playerId].avatarId}
-            alt={players[playerId].name}
-            size="small"
-          />
-        ))}
-      </span>
-    </div>
+          {result.playerIds.map((playerId) => (
+            <Avatar
+              key={`${result.id}-${playerId}`}
+              id={players[playerId].avatarId}
+              alt={players[playerId].name}
+              size="small"
+            />
+          ))}
+        </span>
+      </div>
+    </Popover>
+  );
+}
+
+type PopoverResultProps = {
+  groupAnswer: GroupAnswerEvaluationEntry;
+  players: GamePlayers;
+};
+
+function PopoverResult({ groupAnswer, players }: PopoverResultProps) {
+  return (
+    <ul className="popover-results">
+      {groupAnswer.answers.map((answer) => (
+        <Fragment key={answer.id}>
+          <AvatarName player={players[answer.playerId]} />
+          <span>{answer.answer}</span>
+          {answer.autoRejected && <IconAvatar icon={<NoIcon />} size="small" />}
+          {answer.rejected && <IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}
+          {!answer.rejected && !answer.autoRejected && (
+            <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} size="small" />
+          )}
+        </Fragment>
+      ))}
+    </ul>
   );
 }
