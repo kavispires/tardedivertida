@@ -1,5 +1,5 @@
 // Internal
-import { getRandomItem } from './helpers';
+import { getRandomItem, stringRemoveAccents } from './helpers';
 
 /**
  * Tells browser to speak out loud given sentence in given language in given volume
@@ -27,7 +27,7 @@ export function speak(
  */
 export function getRandomWelcomeMessage(name: string): DualLanguageValue {
   // Special flavia
-  if (name.toLowerCase().startsWith('fla')) {
+  if (stringRemoveAccents(name.toLowerCase()).startsWith('fla')) {
     const options = [
       {
         pt: `A mais sexy de todas chegou! Bem-vinda, ${name}!`,
