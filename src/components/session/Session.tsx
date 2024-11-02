@@ -16,6 +16,7 @@ import { PhaseLobby } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';
 import { AutoNextPhase } from 'components/general/AutoNextPhase';
+import { GameInfo } from 'types/game-info';
 
 type SessionProps = {
   /**
@@ -34,7 +35,8 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   const state = useGameState(gameMeta.gameId, gameCollection);
   const [userId] = useGlobalState('userId');
   const [, setLanguage] = useGlobalLocalStorage('language');
-  const [info, setInfo] = useState<any>({});
+
+  const [info, setInfo] = useState<GameInfo>(PLACEHOLDER_GAME_INFO);
   const gameName = info?.title ?? '';
   const players = state.players ?? {};
 
@@ -44,7 +46,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
 
   // Update game description as the gameId comes in
   useEffect(() => {
-    setInfo(gameCollection ? GAME_LIST[gameCollection] : {});
+    setInfo(gameCollection && GAME_LIST[gameCollection] ? GAME_LIST[gameCollection] : PLACEHOLDER_GAME_INFO);
   }, [gameCollection]);
 
   // Update session language to match the game
@@ -75,3 +77,28 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
     </>
   );
 }
+
+const PLACEHOLDER_GAME_INFO: GameInfo = {
+  gameCode: ' ',
+  gameName: '',
+  version: '',
+  release: '',
+  title: { en: '', pt: '' },
+  popularName: { en: '', pt: '' },
+  basedOn: '',
+  summary: { en: '', pt: '' },
+  appearance: {
+    clouds: '',
+    color: '',
+  },
+  rules: {
+    pt: [''],
+    en: [''],
+  },
+  playerCount: {
+    recommended: [0],
+    min: 0,
+    max: 0,
+  },
+  tags: [''],
+};
