@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "release": "stable",
   "title": {
     "pt": "Adedanhx",
@@ -113,12 +113,12 @@
           "value": "4"
         },
         {
-          "label": "Small (2)",
-          "value": "2"
+          "label": "Less (3)",
+          "value": "3"
         },
         {
-          "label": "Large (6)",
-          "value": "6"
+          "label": "More (5)",
+          "value": "5"
         }
       ]
     }
