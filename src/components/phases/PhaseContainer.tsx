@@ -67,6 +67,7 @@ export function PhaseContainer({
   }
 
   const baseClass = 'phase-container';
+  const backgroundColorOverlay = info?.appearance?.backgroundColor;
 
   return (
     <main
@@ -78,6 +79,7 @@ export function PhaseContainer({
       )}
       id="screen"
       ref={screenRef}
+      style={backgroundColorOverlay ? { backgroundColor: backgroundColorOverlay } : {}}
     >
       {children}
     </main>
