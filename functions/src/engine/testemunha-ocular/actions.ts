@@ -1,7 +1,6 @@
 // Utils
 import utils from '../../utils';
 import { getNextPhase } from './index';
-import { SUSPECT_COUNT } from './constants';
 import { FirebaseStateData } from './types';
 
 /**
@@ -95,7 +94,11 @@ export const handleElimination = async (
       });
 
       // If it was actually the final innocent person
-      if (SUSPECT_COUNT - (state.previouslyEliminatedSuspects.length + eliminatedSuspects.length) === 1) {
+      const suspects = state.suspects;
+      if (
+        suspects &&
+        suspects.length - (state.previouslyEliminatedSuspects.length + eliminatedSuspects.length) === 1
+      ) {
         shouldGoToNextPhase = true;
         win = true;
       }
