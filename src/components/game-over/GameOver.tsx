@@ -3,6 +3,7 @@ import { ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Button, Image, Progress, Space } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
 // Types
 import type { GameState } from 'types/game';
 import type { GameInfo } from 'types/game-info';
@@ -24,7 +25,7 @@ import { Instruction } from 'components/text';
 import { RateGameWidget } from './RateGameWidget';
 // Images
 import gameOverTitle from 'assets/images/game-over-title.svg';
-// import { ConvertGuestToAccountModal } from 'components/auth/ConvertGuestToAccount';
+import { Link } from 'react-router-dom';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
@@ -184,12 +185,18 @@ export function GameOver({
 
       {children}
 
-      {/* <ConvertGuestToAccountModal /> */}
-
       <Space align="center" direction="vertical" className="full-width padding" style={{ marginTop: '48px' }}>
-        <Button onClick={() => navigate('/')}>
-          <Translate pt="Página Inicial" en="Home Page" />
-        </Button>
+        <Button.Group>
+          <Button onClick={() => navigate('/')}>
+            <Translate pt="Página Inicial" en="Home Page" />
+          </Button>
+          <Button>
+            <Link to="/me" target="_blank">
+              <Translate pt="Meu Perfil" en="My Profile" />{' '}
+              <ArrowRightOutlined style={{ rotate: '-45deg' }} />
+            </Link>
+          </Button>
+        </Button.Group>
 
         <HostOnlyButton onClick={() => navigate('/hub')}>Hub</HostOnlyButton>
       </Space>
