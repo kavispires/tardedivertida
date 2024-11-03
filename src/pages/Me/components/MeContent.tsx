@@ -70,11 +70,11 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
             ))}
           </InfoCard>
 
-          {Boolean(user?.daily) && (
+          {/* {Boolean(user?.daily) && (
             <InfoCard title={<Translate pt="TD Diários" en="Daily TD" />}>
               <Translate pt="Vitórias" en="Streak" />: {user.daily?.streak} / Total: {user.daily?.total}
             </InfoCard>
-          )}
+          )} */}
         </Row>
 
         <Divider />
@@ -82,7 +82,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
         <Summary user={user} />
 
         <Title size="x-small" level={2} align="left">
-          <Translate pt="Jogos" en="Games" />
+          <Translate pt="Jogos" en="Games" /> ({alphabetizedPlayableGames.length})
         </Title>
 
         <GameCheckCard info={alphabetizedPlayableGames} games={user.games} />

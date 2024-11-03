@@ -59,7 +59,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
       cancelText={<Translate pt="Fechar" en="Close" />}
       onCancel={() => qp.remove('game')}
       okButtonProps={{
-        style: { display: 'none' },
+        hidden: true,
       }}
       centered
       className="me-modal"
