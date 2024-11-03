@@ -10,7 +10,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
-import { Title } from 'components/text';
+import { Instruction, Title } from 'components/text';
 // Internal
 import { Medal } from './Medal';
 
@@ -23,13 +23,32 @@ type AchievementsProps = {
 const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
 export function Achievements({ players, achievements, reference }: AchievementsProps) {
-  if (achievements.length === 0) return <></>;
-
   return (
     <div className={clsx('achievements', getAnimationClass('fadeIn'))}>
       <Title size="small" level={3}>
         <Translate pt="Medalhas" en="Achievements" />
       </Title>
+      {achievements.length === 0 && (
+        <Instruction contained>
+          <Translate
+            pt={
+              <>
+                Nenhuma medalha foi conquistada nesse jogo.
+                <br />
+                Para ganhar uma medalha, apenas uma jogador pode atender a condição.
+              </>
+            }
+            en={
+              <>
+                No achievements were achieved in this game.
+                <br />
+                To win a medal, only one player can meet the condition.
+              </>
+            }
+          />
+        </Instruction>
+      )}
+
       <ul className="achievements-list">
         {achievements.map((achievement, index) => {
           const { icon = 'star', ...achievementObj } = reference[achievement.type] ?? {};
