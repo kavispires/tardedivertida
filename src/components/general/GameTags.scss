@@ -1,0 +1,19 @@
+@use 'styles/sass' as *;
+
+.game-tags-group {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: center;
+
+  border: 1px solid get-color('white', 6);
+  border-radius: $border-radius;
+
+  &__icon {
+    padding: get-unit(1);
+    border-radius: $border-radius;
+    font-size: get-font-size('small');
+    color: get-color('black', 6);
+    border-left: 1px solid get-color('white', 6);
+    border-right: 1px solid get-color('white', 6);
+  }
+}
