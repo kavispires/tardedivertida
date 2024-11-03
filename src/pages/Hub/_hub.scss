@@ -108,6 +108,8 @@
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
     // text-overflow: ellipsis;
     // max-width: 20ch;
   }

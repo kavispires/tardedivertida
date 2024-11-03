@@ -2,15 +2,15 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "0.9.27",
+  "version": "0.9.28",
   "release": "stable",
   "title": {
     "pt": "Fileira De Fatos",
     "en": "Facts Lineup"
   },
   "popularName": {
-    "pt": "",
-    "en": ""
+    "pt": "Das coisas ruins",
+    "en": "The one with ranking bad stuff"
   },
   "basedOn": "oiranecS esaC-tsroW",
   "summary": {
@@ -45,8 +45,8 @@
     "max": 10
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 5,
+    "perPlayer": 4
   },
   "tags": ["competitive", "same-time", "guessing", "achievements"]
 }

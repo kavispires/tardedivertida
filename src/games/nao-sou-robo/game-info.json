@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "release": "stable",
   "title": {
     "pt": "Eu Não Sou Um Robô",
@@ -30,6 +30,10 @@
     "recommended": [4, 5, 6],
     "min": 2,
     "max": 10
+  },
+  "duration": {
+    "base": 5,
+    "perPlayer": 4
   },
   "tags": ["competitive", "images", "guessing", "same-time", "achievements"]
 }
