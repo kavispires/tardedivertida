@@ -64,10 +64,10 @@ export function StepVoting({
           {story}
         </Card>
       </Title>
-      <PopoverRule content={<VotingRules />} />
+      <PopoverRule content={<VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />} />
 
-      <RuleInstruction type="action">
-        <VotingRules />
+      <RuleInstruction type={isUserTheStoryTeller ? 'wait' : 'action'}>
+        <VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />
       </RuleInstruction>
 
       <Space className="c-game-table" wrap>

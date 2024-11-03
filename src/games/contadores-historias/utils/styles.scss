@@ -183,3 +183,26 @@
     transform: scale(0.8);
   }
 }
+
+.c-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__entry {
+    margin: get-unit(2);
+  }
+
+  &__label {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    padding: get-unit(1);
+    background-color: get-color('white', 6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: $border-radius;
+    font-size: 1.25rem;
+    max-width: 300px;
+  }
+}

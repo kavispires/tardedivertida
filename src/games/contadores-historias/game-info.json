@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "3.0.59",
+  "version": "4.0.0",
   "release": "stable",
   "title": {
     "pt": "Contadores de Histórias",
@@ -20,7 +20,7 @@
   "appearance": {
     "clouds": "book-clouds",
     "color": "#1890ff",
-    "backgroundColor": "rgba(76, 210, 244, 0.5)"
+    "backgroundColor": "rgba(140, 225, 225, 0.7)"
   },
   "rules": {
     "pt": [
@@ -59,7 +59,7 @@
       "description": "Choose the number of rounds to play",
       "values": [
         {
-          "label": "30 points (15 rounds max)",
+          "label": "20 points (10 rounds max)",
           "value": false
         },
         {

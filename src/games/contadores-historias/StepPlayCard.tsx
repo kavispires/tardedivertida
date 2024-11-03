@@ -5,7 +5,6 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Card } from 'components/cards';
-import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
@@ -85,14 +84,12 @@ export function StepPlayCard({
 
       <TableFaceDown players={players} user={user} />
 
-      <FloatingHand>
-        <ImageCardHand
-          hand={user.hand}
-          onSelectCard={hasPlayedCardAlready ? undefined : onSelectCard}
-          disabledSelectButton={isLoading || hasPlayedCardAlready}
-          sizeRatio={user.hand?.length}
-        />
-      </FloatingHand>
+      <ImageCardHand
+        hand={user.hand}
+        onSelectCard={hasPlayedCardAlready ? undefined : onSelectCard}
+        disabledSelectButton={isLoading || hasPlayedCardAlready}
+        sizeRatio={user.hand?.length}
+      />
     </Step>
   );
 }

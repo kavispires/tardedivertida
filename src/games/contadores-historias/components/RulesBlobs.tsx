@@ -6,12 +6,18 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Instruction } from 'components/text';
 
-export function VotingRules(): JSX.Element {
+type VotingRulesProps = {
+  isUserTheStoryTeller: boolean;
+};
+
+export function VotingRules({ isUserTheStoryTeller }: VotingRulesProps): JSX.Element {
   return (
     <Translate
       pt={
         <>
-          Hora de selecionar a carta correta!
+          {isUserTheStoryTeller
+            ? 'Aguarde enquanto os outros jogadores selecionam as cartas'
+            : 'Hora de selecionar a carta correta!'}
           <br />
           Se todos acertarem ou todos errarem, cada jogador ganha <PointsHighlight>2</PointsHighlight> pontos,
           menos o contador de histórias.
@@ -25,7 +31,9 @@ export function VotingRules(): JSX.Element {
       }
       en={
         <>
-          Time to select the correct card!
+          {isUserTheStoryTeller
+            ? 'Wait while other players select their cards'
+            : 'Time to select the correct card!'}
           <br />
           If every player gets it correct or wrong, each player but the storyteller gets{' '}
           <PointsHighlight>2</PointsHighlight> points.

@@ -32,7 +32,7 @@ export function PhaseVoting({ state, players, info }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <VotingRules />
+      <VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />
       <ImageCardPreloadHand hand={state.table.map((entry: PlainObject) => entry.cardId)} />
     </PhaseAnnouncement>
   );
