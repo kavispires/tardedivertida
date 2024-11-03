@@ -18,3 +18,9 @@ export type SubmitVotePayload = {
 };
 
 export type Outcome = 'EVERYBODY_GOT' | 'NOBODY_GOT' | 'NORMAL';
+
+export type GalleryEntry = {
+  cardId: string;
+  language: Language;
+  story: string;
+};

@@ -31,11 +31,11 @@ export const CONTADORES_HISTORIAS_ACHIEVEMENTS = {
 
 export const CARDS_PER_PLAYER = 30;
 
-export const HAND_LIMIT = 7;
+export const HAND_LIMIT = 10;
 
-export const MAX_ROUNDS = 15;
+export const MAX_ROUNDS = 10;
 
-export const GAME_OVER_SCORE_THRESHOLD = 30;
+export const GAME_OVER_SCORE_THRESHOLD = 20;
 
 export const TABLE_CARDS_BY_PLAYER_COUNT = {
   3: 3,

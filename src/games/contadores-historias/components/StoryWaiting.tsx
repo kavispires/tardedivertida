@@ -9,8 +9,7 @@ import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TableOrder } from 'components/players/TableOrder';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-// Type
+import { RuleInstruction, Title } from 'components/text';
 
 type StoryWaitingProps = {
   storyteller: GamePlayer;
@@ -26,8 +25,8 @@ export function StoryWaiting({ storyteller, user, players, gameOrder, announceme
         <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
         <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
-      <Instruction contained>
-        <AvatarName player={storyteller} addressUser />{' '}
+      <RuleInstruction type="wait">
+        <AvatarName player={storyteller} />{' '}
         <Translate
           pt="está escrevendo uma história para essa rodada."
           en="is writing a story for this round."
@@ -37,7 +36,7 @@ export function StoryWaiting({ storyteller, user, players, gameOrder, announceme
           pt="Enquanto isso, examine suas cartas! Você as usará durante esta rodada."
           en="In the meantime, examine your cards. You're gonna use them this round."
         />
-      </Instruction>
+      </RuleInstruction>
 
       <TableOrder
         players={players}

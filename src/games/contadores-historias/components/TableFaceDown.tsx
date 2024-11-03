@@ -22,6 +22,7 @@ export function TableFaceDown({ players, user }: TableFaceDownProps) {
           <ImageCardBack
             key={`card-back-${player.id}`}
             cardWidth={150}
+            preview={false}
             className={clsx(
               baseClass,
               `${baseClass}--${index}`,
