@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "release": "stable",
   "title": {
     "pt": "Adedanhx",
@@ -45,6 +45,10 @@
     "best": 5,
     "min": 2,
     "max": 10
+  },
+  "duration": {
+    "base": 30,
+    "perPlayer": 1
   },
   "tags": ["same-time", "timed", "writing", "competitive", "achievements"],
   "options": [

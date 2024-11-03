@@ -150,6 +150,7 @@
     "rules",
     "playerCount",
     "tags",
-    "appearance"
+    "appearance",
+    "duration"
   ]
 }

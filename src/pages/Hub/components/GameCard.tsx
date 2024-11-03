@@ -1,13 +1,13 @@
 // Ant Design Resources
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { Card, Image, Divider, Badge, Space } from 'antd';
+import { Card, Image, Divider, Badge, Space, Tag, Tooltip } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
-import { calculateGameAverageDuration, isDevEnv, truncateRecommended } from 'utils/helpers';
+import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
 // Components
 import { GameTags } from 'components/general/GameTags';
 import { RulesModal } from 'components/rules';
@@ -81,7 +81,12 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
           <Card.Meta
             title={
               <span className="game-card__title" title={game.title[language]}>
-                {isDevEnv && `[${game.gameCode}]`} {game.title[language]}
+                {game.title[language]}{' '}
+                <span>
+                  <Tooltip title={translate('Código do jogo começará com', 'The game id will start with')}>
+                    <Tag>{game.gameCode}</Tag>
+                  </Tooltip>
+                </span>
               </span>
             }
             description={`${translate('Baseado em', 'Based on')} ${game.basedOn
