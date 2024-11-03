@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { Col, Divider, Rate, Row } from 'antd';
+import { Col, Divider, Row } from 'antd';
 // Types
 import type { AchievementReference } from 'types/achievements';
 import type { GameInfo } from 'types/game-info';
@@ -21,6 +21,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { GameBanner } from 'components/general/GameBanner';
+import { GameTags } from 'components/general/GameTags';
 import { DualTranslate, Translate } from 'components/language';
 import { RulesModal } from 'components/rules';
 import { Title } from 'components/text';
@@ -60,14 +61,21 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
           </InfoCard>
           <InfoCard title={<Translate pt="Descrição" en="Summary" />} {...leftColProps}>
             <DualTranslate>{info.summary}</DualTranslate>
-            <br />
             {Boolean(info.rules?.[language]?.length > 1) && (
-              <RulesModal gameInfo={info} buttonProps={{ size: 'small' }} />
+              <>
+                <br />
+                <RulesModal
+                  gameInfo={info}
+                  buttonProps={{ size: 'small', style: { marginTop: 8, marginBottom: 8 } }}
+                />
+              </>
             )}
+            <br />
+            <GameTags tags={info.tags} gameCode={info.gameCode} />
           </InfoCard>
-          <InfoCard title={<Translate pt="Sua avaliação" en="Your Rating" />} {...leftColProps}>
+          {/* <InfoCard title={<Translate pt="Sua avaliação" en="Your Rating" />} {...leftColProps}>
             <Rate value={game?.rating} />
-          </InfoCard>
+          </InfoCard> */}
           <InfoCard title={<Translate pt="Jogadores" en="Players" />} {...leftColProps}>
             <Translate
               pt={
