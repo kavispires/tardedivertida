@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { Region } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
@@ -49,6 +50,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
     guesses,
   } = useComunicacaoAlienigenaEngine(data, initialState);
   const width = useCardWidth(7, { margin: 64, maxWidth: 75, minWidth: 55 });
+  const queryClient = useQueryClient();
 
   const shouldShakeScreen = latestAttempt && !isComplete;
 
@@ -148,9 +150,18 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
         </Region>
 
         {isComplete && (
-          <Space className="results-container" direction="vertical" align="center">
+          <Space className="results-container" direction="vertical" align="center" size="large">
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
+            </Button>
+
+            <Button
+              onClick={() =>
+                queryClient.refetchQueries({ queryKey: ['comunicacao-alienigena-demo'], exact: true })
+              }
+              ghost
+            >
+              <Translate pt="Tentar Outro Demo" en="Try Another Demo" />
             </Button>
           </Space>
         )}

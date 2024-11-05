@@ -15,7 +15,7 @@ export function DailyComunicacaoAlienigenaGame() {
   // Load challenge
   const challengeQuery = useComunicacaoAlienigenaDemo();
 
-  if (challengeQuery.isLoading) {
+  if (challengeQuery.isLoading || challengeQuery.isRefetching) {
     return <DailyLoading />;
   }
 
@@ -25,5 +25,5 @@ export function DailyComunicacaoAlienigenaGame() {
     return <DailyError />;
   }
 
-  return <DailyComunicacaoAlienigena data={dailyData} currentUser={currentUser} />;
+  return <DailyComunicacaoAlienigena key={dailyData.id} data={dailyData} currentUser={currentUser} />;
 }
