@@ -109,13 +109,15 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
 
     const isAllCorrect = attemptResult.every(Boolean);
 
-    message.warning({
-      content: translate(
-        'Um ou mais produtos estão fora de lugar. Tente novamente!',
-        'One or more products are out of place. Try again!'
-      ),
-      duration: 3,
-    });
+    if (!isAllCorrect) {
+      message.warning({
+        content: translate(
+          'Um ou mais produtos estão fora de lugar. Tente novamente!',
+          'One or more products are out of place. Try again!'
+        ),
+        duration: 3,
+      });
+    }
 
     setState((prev) => {
       const copy = deepCopy(prev);

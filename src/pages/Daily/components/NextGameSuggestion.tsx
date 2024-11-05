@@ -130,7 +130,7 @@ export function NextGameSuggestion() {
     case TEORIA_DE_CONJUNTOS.KEY:
       return (
         <Typography.Paragraph className="center" strong>
-          <Translate pt="Quantas vogais tem em PQP?" en="Can you solve this set challenge?" />
+          <Translate pt="Quantas vogais têm em PQP?" en="Can you solve this set challenge?" />
           <br />
           <Link to="/diario/teoria-de-conjuntos">
             <IconAvatar icon={<DailyDiagramGameIcon />} />{' '}

@@ -5,6 +5,7 @@ import { Space, Typography } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
+import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
@@ -25,6 +26,7 @@ import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/util
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
+import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { checkWasPlayedToday } from '../utils';
 // import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 // import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
@@ -106,6 +108,15 @@ export function Hub() {
               <Link to="/diario/teoria-de-conjuntos" className="hub-item">
                 <DailyDiagramGameIcon style={{ width: 75 }} />
                 <Translate pt="Teoria de Conjuntos" en="Diagram Theory" />
+              </Link>
+            </TransparentButton>
+          </PlayedWrapper>
+
+          <PlayedWrapper lsKey={COMUNICACAO_ALIENIGENA.KEY}>
+            <TransparentButton hoverType="sepia">
+              <Link to="/diario/comunicacao-alienigena" className="hub-item hub-item-disabled">
+                <DailyAlienGameIcon style={{ width: 75 }} />
+                <Translate pt="Comunicação Alienígena" en="Alien Communication" />
               </Link>
             </TransparentButton>
           </PlayedWrapper>

@@ -1,0 +1,37 @@
+@use 'styles/sass' as *;
+
+.alien-attributes {
+  background: get-color('white');
+  padding: get-unit(2);
+  border-radius: $border-radius;
+
+  &__sign {
+    background: transparent;
+  }
+}
+
+.alien-attributes__sign.alien-attributes__sign,
+.alien-requests__sign.alien-requests__sign {
+  background: transparent;
+}
+
+.alien-attributes__item.alien-attributes__item {
+  background: transparent;
+  margin: get-unit(1 2);
+}
+
+.alien-requests__attributes {
+  background: get-color('white');
+  padding: get-unit(2);
+  border-radius: $border-radius;
+}
+
+.alien-items__item-button {
+  &:disabled {
+    opacity: 0.25;
+  }
+}
+
+.alien-request__answer.alien-request__answer {
+  background: get-color('lime', 4);
+}

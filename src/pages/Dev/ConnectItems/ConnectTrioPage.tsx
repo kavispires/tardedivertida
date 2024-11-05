@@ -140,8 +140,7 @@ function ConnectTrioGame({ game, createNewGame }: ConnectTrioGameProps) {
           title={<Translate pt="Resultado" en="Results" />}
           open={showResultModal}
           onCancel={() => setShowResultModal(false)}
-          okButtonProps={{ hidden: true }}
-          cancelButtonProps={{ hidden: true }}
+          footer={null}
         >
           <ResultsModalContent
             game={game}

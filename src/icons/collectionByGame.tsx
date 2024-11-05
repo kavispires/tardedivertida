@@ -75,6 +75,7 @@ export const collectionByCategory: Record<string, string[]> = {
   ],
   userPage: ['CalendarIcon', 'CatalogIcon', 'ClockIcon', 'DiceIcon', 'MultitaskIcon'],
   daily: [
+    'DailyAlienGameIcon',
     'DailyArtGameIcon',
     'DailyCrimeGameIcon',
     'DailyDrawingGameIcon',

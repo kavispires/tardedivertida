@@ -120,8 +120,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
           title={<Translate pt="Resultado" en="Results" />}
           open={showResultModal}
           onCancel={() => setShowResultModal(false)}
-          okButtonProps={{ hidden: true }}
-          cancelButtonProps={{ hidden: true }}
+          footer={null}
         >
           <ResultsModalContent
             challenge={data?.number}

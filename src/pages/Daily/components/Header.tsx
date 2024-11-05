@@ -21,7 +21,7 @@ export function Header({ icon, children, localStorageKey }: HeaderProps) {
         onClick={localStorageKey ? () => setCount((prev) => prev + 1) : undefined}
         className="invisible-secret-button daily-header"
       >
-        <IconAvatar icon={icon} />
+        <IconAvatar icon={icon} className="daily-header__icon" />
         <Typography.Title level={1} className="daily-heading">
           {children}
         </Typography.Title>
