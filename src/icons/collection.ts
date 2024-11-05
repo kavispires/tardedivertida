@@ -63,6 +63,7 @@ export * from './CrossWordsIcon';
 export * from './CrownIcon';
 export * from './CulturesIcon';
 export * from './CustomerReviewIcon';
+export * from './DailyAlienGameIcon';
 export * from './DailyArtGameIcon';
 export * from './DailyCrimeGameIcon';
 export * from './DailyDiagramGameIcon';

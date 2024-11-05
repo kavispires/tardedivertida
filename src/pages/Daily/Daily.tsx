@@ -16,9 +16,10 @@ import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
 import { DailyPicacoGame } from './games/Picaco/DailyPicacoGame';
 import { DailyTeoriaDeConjuntosGame } from './games/TeoriaDeConjuntos/DailyTeoriaDeConjuntosGame';
 import { getDailyName } from './utils';
+import { DailyContextProvider } from './hooks/useDailyChallenge';
+import { DailyComunicacaoAlienigenaGame } from './games/ComunicacaoAlienigena/DailyComunicacaoAlienigenaGame';
 // Sass
 import './utils/daily.scss';
-import { DailyContextProvider } from './hooks/useDailyChallenge';
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -48,6 +49,7 @@ function DailyPage() {
       '': Hub,
       'aqui-o': DailyAquiOGame,
       'arte-ruim': DailyArteRuimGame,
+      'comunicacao-alienigena': DailyComunicacaoAlienigenaGame,
       'controle-de-estoque': DailyControleDeEstoqueGame,
       filmaco: DailyFilmacoGame,
       hub: Hub,

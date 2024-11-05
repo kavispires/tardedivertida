@@ -3,6 +3,12 @@ import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 // Internal
 import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
+import {
+  EliminatePayload,
+  SelectQuestionPayload,
+  SelectWitnessPayload,
+  SubmitTestimonyPayload,
+} from './types';
 
 export function useOnSelectWitnessAPIRequest() {
   const { translate } = useLanguage();
