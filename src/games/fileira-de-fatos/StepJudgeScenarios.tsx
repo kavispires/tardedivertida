@@ -23,7 +23,7 @@ export function StepJudgeScenarios({
 }: StepJudgeScenariosProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate pt={<>Você é o juiz da rodada!</>} en={<>You are the round's judge!</>} />
       </Title>
 

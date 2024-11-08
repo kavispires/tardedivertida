@@ -32,6 +32,7 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, roundTy
         <Translate pt="Penalidade em rodadas especiais" en="Penalty in special rounds" />,
         <Translate pt="Bonus por acertar todos" en="Bonus points for getting all correct" />,
       ]}
+      white
     >
       <RuleInstruction type="alert">
         <Translate

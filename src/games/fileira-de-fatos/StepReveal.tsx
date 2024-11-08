@@ -50,7 +50,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <Title white>
         <Translate
           pt={
             <>
