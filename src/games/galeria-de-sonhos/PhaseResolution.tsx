@@ -38,6 +38,7 @@ export function PhaseResolution({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <StepRankingWrapper
+          white
           players={players}
           ranking={state.ranking}
           gainedPointsDescriptions={[

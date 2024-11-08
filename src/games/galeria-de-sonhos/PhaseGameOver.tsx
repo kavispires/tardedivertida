@@ -13,7 +13,12 @@ import { GameOverTable } from './components/GameOverTable';
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<LadderIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+        white
+      />
       <BestMatches bestMatches={state.bestMatches} />
       <GameOverTable table={state.table} />
     </GameOverWrapper>

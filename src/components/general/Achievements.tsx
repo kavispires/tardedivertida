@@ -18,14 +18,15 @@ type AchievementsProps = {
   players: GamePlayers;
   achievements: Achievement[];
   reference: AchievementReference;
+  white?: boolean;
 };
 
 const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
-export function Achievements({ players, achievements, reference }: AchievementsProps) {
+export function Achievements({ players, achievements, reference, white }: AchievementsProps) {
   return (
     <div className={clsx('achievements', getAnimationClass('fadeIn'))}>
-      <Title size="small" level={3}>
+      <Title size="small" level={3} white={white}>
         <Translate pt="Medalhas" en="Achievements" />
       </Title>
       {achievements.length === 0 && (

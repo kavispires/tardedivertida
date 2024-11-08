@@ -37,7 +37,11 @@ export function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
 
   const [activePlayer, isActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [lastActivePlayer] = useWhichPlayerIsThe('lastActivePlayerId', state, players);
-  const [playerInNightmare] = useWhichPlayerIsThe('playerInNightmareId', state, players);
+  const [playerInNightmare, isThePlayerInNightmare] = useWhichPlayerIsThe(
+    'playerInNightmareId',
+    state,
+    players
+  );
 
   const [lastTurnCount, setLastTurnCount] = useState('');
 
@@ -88,7 +92,8 @@ export function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
               }
               en={
                 <>
-                  <AvatarName player={playerInNightmare} size="large" addressUser /> is in a nightmare!
+                  <AvatarName player={playerInNightmare} size="large" addressUser />{' '}
+                  {isThePlayerInNightmare ? 'are' : 'is'} in a nightmare!
                 </>
               }
             />

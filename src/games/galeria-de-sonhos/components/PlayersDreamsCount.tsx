@@ -50,7 +50,7 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                 title={
                   showTooltip ? (
                     <div className={getAnimationClass('tada', { speed: 'fast', infinite: true })}>
-                      {player.name} <Translate pt="tá em apuros!" en="is in danger" />
+                      {player.name} <Translate pt="tá em pesadelo!" en="is in a nightmare" />
                     </div>
                   ) : undefined
                 }

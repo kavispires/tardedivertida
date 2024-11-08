@@ -50,7 +50,7 @@ export function StepDreamsSelection({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <Title size="medium" white>
         <Translate pt="Visite sonhos relacionados à " en="Visit dreams related to " />
         <TextHighlight>{word.text}</TextHighlight>
       </Title>
