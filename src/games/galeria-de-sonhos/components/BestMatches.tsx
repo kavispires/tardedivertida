@@ -21,7 +21,7 @@ export function BestMatches({ bestMatches }: BestMatchesProps) {
   return (
     <Step>
       <Divider />
-      <Title size="x-small" level={3}>
+      <Title size="x-small" level={3} white>
         <Translate pt="Sonhos mais visitados" en="Most visited dreams" />
       </Title>
 

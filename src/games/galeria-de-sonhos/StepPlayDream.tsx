@@ -93,7 +93,7 @@ export function StepPlayDream({
 
       <PlayersDreamsCount players={players} playerInNightmareId={playerInNightmareId} />
 
-      {Boolean(user.fallen) && (
+      {Boolean(user.fallen) && Boolean(user.inNightmare) && (
         <RuleInstruction type="event">
           <Translate
             pt={
@@ -108,6 +108,15 @@ export function StepPlayDream({
                 <PointsHighlight type="negative">1 point</PointsHighlight> per scored card.
               </>
             }
+          />
+        </RuleInstruction>
+      )}
+
+      {Boolean(user.fallen) && !Boolean(user.inNightmare) && (
+        <RuleInstruction type="event">
+          <Translate
+            pt={<>Você não conseguiu dar match em uma de suas cartas, e está fora da rodada.</>}
+            en={<>You didn't get a match in one of your cards, and you're out of the round.</>}
           />
         </RuleInstruction>
       )}
