@@ -10,6 +10,10 @@ import type { TopicCard } from 'types/tdr';
 import { NOOP } from 'utils/constants';
 // Icons
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
+import { NoIcon } from 'icons/NoIcon';
+import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
 import { Avatar, AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -23,10 +27,6 @@ import type {
   LetterEntry,
 } from '../utils/types';
 import { CategoryIcon } from './CategoryIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { NoIcon } from 'icons/NoIcon';
-import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
-import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 
 type GridProps = {
   grid: AdedanhxGrid;
@@ -85,8 +85,6 @@ type AnswersGridProps = {
   answersGroups: GroupAnswerEvaluationEntry[];
 };
 export function AnswersGrid({ grid, players, answersGrid, answersGroups }: AnswersGridProps) {
-  console.log('AAAAAAHHHH');
-  console.log({ answersGrid, answersGroups });
   const gridMap = useMemo(() => {
     const m = new Array((grid.xHeaders.length + 1) * (grid.yHeaders.length + 1)).fill(0).map((e, i) => {
       const x = i % (grid.xHeaders.length + 1);
@@ -119,7 +117,6 @@ export function AnswersGrid({ grid, players, answersGrid, answersGroups }: Answe
         if (element?.type === 'cell') {
           CellComponent = ResultCell;
           element.groupAnswer = answersGroups.find((g) => g.id === element.id);
-          console.log({ groupAnswer: element.groupAnswer });
         }
 
         return <CellComponent key={key} data={element} updateAnswer={NOOP} players={players} />;
@@ -205,7 +202,6 @@ function WritingCell({ data, answer, toggleLock = () => {}, updateAnswer }: Cell
 
 function ResultCell({ data, players }: CellProps) {
   const { result, groupAnswer } = data as TResultCell;
-  console.log({ result, groupAnswer });
 
   if (!groupAnswer || groupAnswer?.answers?.length === 0 || !players) {
     return (
@@ -218,7 +214,6 @@ function ResultCell({ data, players }: CellProps) {
   }
 
   if (groupAnswer?.answers?.length > 0 && !result) {
-    console.log({ groupAnswer });
     return (
       <Popover content={<PopoverResult groupAnswer={groupAnswer} players={players} />}>
         <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
