@@ -17,6 +17,7 @@ export type GameState = {
   hearts: number;
   guesses: string[];
   selection: (string | null)[];
+  slotIndex: number | null;
   latestAttempt: number | null;
   win: boolean;
 };
@@ -28,7 +29,7 @@ export type DailyComunicacaoAlienigenaEntry = {
   type: 'comunicação-alienígena';
   attributes: DailyAlienGameAttribute[];
   requests: DailyAlienGameRequest[];
-  answer: string;
+  solution: string;
   itemsIds: string[];
   valid: boolean;
 };

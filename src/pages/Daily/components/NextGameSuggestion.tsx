@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Icons
+import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
@@ -20,9 +21,11 @@ import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/util
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
+import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { checkWasPlayedToday } from '../utils';
 
 const PRIORITY_LIST = [
+  COMUNICACAO_ALIENIGENA,
   TEORIA_DE_CONJUNTOS,
   ARTE_RUIM,
   FILMACO,
@@ -65,6 +68,21 @@ export function NextGameSuggestion() {
           <br />
           <Link to="/diario/arte-ruim">
             <IconAvatar icon={<DailyArtGameIcon />} /> <DualTranslate>{ARTE_RUIM.NAME}</DualTranslate>!
+          </Link>
+        </Typography.Paragraph>
+      );
+
+    case COMUNICACAO_ALIENIGENA.KEY:
+      return (
+        <Typography.Paragraph className="center" strong>
+          <Translate
+            pt="Não sabe se comunicar com seu cônjuge? Fale com alienígenas!"
+            en="Communication with the aliens is hard!"
+          />
+          <br />
+          <Link to="/diario/comunicacao-alienigena">
+            <IconAvatar icon={<DailyAlienGameIcon />} />{' '}
+            <DualTranslate>{COMUNICACAO_ALIENIGENA.NAME}</DualTranslate>!
           </Link>
         </Typography.Paragraph>
       );

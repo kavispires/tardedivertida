@@ -1,6 +1,7 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
@@ -20,13 +21,26 @@ export function useComunicacaoAlienigenaEngine(
   const { translate } = useLanguage();
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { localToday, updateLocalStorage } = useDailyLocalToday<ComunicacaoAlienigenaLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<ComunicacaoAlienigenaLocalToday>({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: DEFAULT_LOCAL_TODAY,
   });
 
   // ACTIONS
+  const onSlotClick = (slotIndex: number) => {
+    setState((prev) => ({
+      ...prev,
+      slotIndex,
+    }));
+  };
+
+  useEffect(() => {
+    if (!state.win && state.guesses.some((guess) => guess === data.solution)) {
+      setState((prev) => ({ ...prev, win: true }));
+    }
+  }, [state.guesses, data.solution, state.win]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const onItemClick = (itemId: string) => {
     if (state.selection.includes(itemId)) {
       setState((prev) => ({
@@ -34,7 +48,7 @@ export function useComunicacaoAlienigenaEngine(
         selection: prev.selection.map((item) => (item === itemId ? null : item)),
       }));
     } else {
-      const firstNullIndex = state.selection.indexOf(null);
+      const firstNullIndex = state.slotIndex ?? state.selection.indexOf(null);
       if (firstNullIndex !== -1) {
         setState((prev) => {
           const newSelection = [...prev.selection];
@@ -42,6 +56,7 @@ export function useComunicacaoAlienigenaEngine(
           return {
             ...prev,
             selection: newSelection,
+            slotIndex: null,
           };
         });
       }
@@ -65,11 +80,11 @@ export function useComunicacaoAlienigenaEngine(
       });
     }
 
-    // updateLocalStorage({
-    //   guesses: [...state.guesses, newGuessString],
-    // });
+    updateLocalStorage({
+      guesses: [...state.guesses, newGuessString],
+    });
 
-    const isCorrect = data.answer === newGuessString;
+    const isCorrect = data.solution === newGuessString;
 
     if (!isCorrect) {
       message.warning({
@@ -113,11 +128,13 @@ export function useComunicacaoAlienigenaEngine(
     guesses: state.guesses,
     selection: state.selection,
     latestAttempt: state.latestAttempt,
+    slotIndex: state.slotIndex,
     showResultModal,
     setShowResultModal,
     isWin,
     isLose,
     isComplete,
+    onSlotClick,
     onItemClick,
     submitGuess,
     isReady,

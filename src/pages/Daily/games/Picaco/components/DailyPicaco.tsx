@@ -48,7 +48,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyDrawingGameIcon />} localStorageKey="">
+      <Header icon={<DailyDrawingGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>

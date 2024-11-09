@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { sample } from 'lodash';
 import { getSourceName, wait } from 'pages/Daily/utils';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -20,7 +19,7 @@ export const useComunicacaoAlienigenaDemo = () => {
     queryFn: async () => {
       console.count(`Fetching ${collectionName}...`);
       await wait(1250);
-      const responseData = sample(DEMO) as DailyComunicacaoAlienigenaEntry;
+      const responseData = DEMO[1] as DailyComunicacaoAlienigenaEntry;
       print({ [collectionName]: responseData }, 'table');
       return responseData;
     },
