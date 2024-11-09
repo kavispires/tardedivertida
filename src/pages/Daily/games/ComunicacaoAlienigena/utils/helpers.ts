@@ -24,6 +24,7 @@ export const getInitialState = (data: DailyComunicacaoAlienigenaEntry): GameStat
     selection: [null, null, null, null],
     latestAttempt: null,
     win: false,
+    slotIndex: null,
   };
 
   if (localToday) {

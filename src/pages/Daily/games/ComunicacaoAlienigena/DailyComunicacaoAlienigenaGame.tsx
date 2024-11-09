@@ -1,5 +1,6 @@
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
+import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Internal
@@ -7,23 +8,32 @@ import { useComunicacaoAlienigenaDemo } from './utils/useComunicacaoAlienigenaDe
 import { DailyComunicacaoAlienigena } from './components/DailyComunicacaoAlienigena';
 // Sass
 import './utils/styles.scss';
-// Internal
 
 export function DailyComunicacaoAlienigenaGame() {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const challengeQuery = useComunicacaoAlienigenaDemo();
+  const challengeQuery = useDailyChallenge();
+  const demo = useComunicacaoAlienigenaDemo();
 
-  if (challengeQuery.isLoading || challengeQuery.isRefetching) {
+  if (challengeQuery.isLoading || demo.isLoading) {
     return <DailyLoading />;
   }
 
-  const dailyData = challengeQuery?.data;
+  const dailyData = challengeQuery?.data?.['comunicacao-alienigena'];
+  const demoData = demo?.data;
 
-  if (challengeQuery.isError || !dailyData) {
+  if (challengeQuery.isError || (!dailyData && !demoData)) {
     return <DailyError />;
   }
 
-  return <DailyComunicacaoAlienigena key={dailyData.id} data={dailyData} currentUser={currentUser} />;
+  if (dailyData) {
+    return <DailyComunicacaoAlienigena data={dailyData} currentUser={currentUser} />;
+  }
+
+  if (!demoData) {
+    return <DailyError />;
+  }
+
+  return <DailyComunicacaoAlienigena key={demoData.id} data={demoData} currentUser={currentUser} />;
 }

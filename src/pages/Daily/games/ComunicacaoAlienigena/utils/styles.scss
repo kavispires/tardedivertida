@@ -35,3 +35,13 @@
 .alien-request__answer.alien-request__answer {
   background: get-color('lime', 4);
 }
+
+.alien-requests__previous-item {
+  opacity: 0.85;
+  filter: grayscale(0.6);
+}
+
+.alien-request__slot--active {
+  border: 2px solid get-color('lime', 4);
+  border-radius: $border-radius;
+}

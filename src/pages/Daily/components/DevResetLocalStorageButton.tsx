@@ -14,9 +14,19 @@ import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/util
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
+import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
 
-const keys = [AQUI_O, ARTE_RUIM, PALAVREADO, ARTISTA, FILMACO, CONTROLE_DE_ESTOQUE, TEORIA_DE_CONJUNTOS];
+const keys = [
+  AQUI_O,
+  ARTE_RUIM,
+  PALAVREADO,
+  ARTISTA,
+  FILMACO,
+  CONTROLE_DE_ESTOQUE,
+  TEORIA_DE_CONJUNTOS,
+  COMUNICACAO_ALIENIGENA,
+];
 
 type DevResetLocalStorageButtonProps = {
   localStorageKey?: string;

@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { Region } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
@@ -44,15 +43,18 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
     isLose,
     isComplete,
     onItemClick,
+    onSlotClick,
+    slotIndex,
     isReady,
     submitGuess,
     latestAttempt,
     guesses,
   } = useComunicacaoAlienigenaEngine(data, initialState);
   const width = useCardWidth(7, { margin: 64, maxWidth: 75, minWidth: 55 });
-  const queryClient = useQueryClient();
 
   const shouldShakeScreen = latestAttempt && !isComplete;
+
+  const previousGuesses = useMemo(() => guesses.map((guess) => guess.split('-')), [guesses]);
 
   return (
     <Layout className="app">
@@ -123,9 +125,17 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                     <ItemCard id={selection[index]!} width={isLose ? width / 2 : width} padding={0} />
                   </TransparentButton>
                 ) : (
-                  <Avatar shape="square" size="large" className="mt-1">
-                    ?
-                  </Avatar>
+                  <TransparentButton
+                    onClick={() => onSlotClick(index)}
+                    className="mt-3"
+                    disabled={isComplete}
+                    active={slotIndex === index}
+                    activeClass="alien-request__slot--active"
+                  >
+                    <Avatar shape="square" size="large">
+                      ?
+                    </Avatar>
+                  </TransparentButton>
                 )}
 
                 {isComplete && isLose && (
@@ -154,15 +164,6 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
-
-            <Button
-              onClick={() =>
-                queryClient.refetchQueries({ queryKey: ['comunicacao-alienigena-demo'], exact: true })
-              }
-              ghost
-            >
-              <Translate pt="Tentar Outro Demo" en="Try Another Demo" />
-            </Button>
           </Space>
         )}
 
@@ -171,12 +172,12 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             <Translate pt="Entregue essas coisas:" en="Deliver these things:" />
           </Typography.Text>
 
-          <Space>
-            {data.itemsIds.map((itemId, index) => (
+          <Space wrap className="space-container">
+            {data.itemsIds.map((itemId) => (
               <TransparentButton
                 key={itemId}
                 onClick={() => onItemClick(itemId)}
-                disabled={isReady || selection.includes(itemId)}
+                disabled={isComplete || isReady || selection.includes(itemId)}
                 className="alien-items__item-button"
               >
                 <ItemCard id={itemId} width={width} padding={0} />
@@ -184,6 +185,29 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             ))}
           </Space>
         </Region>
+
+        {previousGuesses.length > 0 && (
+          <Region>
+            <Typography.Text strong>
+              <Translate pt="Tentativas anteriores" en="Previous Guesses:" />
+            </Typography.Text>
+            <Space direction="vertical" className="previous-guesses">
+              {previousGuesses.map((guess, index) => (
+                <Space key={index}>
+                  {guess.map((itemId) => (
+                    <ItemCard
+                      key={itemId}
+                      id={itemId}
+                      width={Math.max(width / 2, 40)}
+                      padding={0}
+                      className="alien-requests__previous-item"
+                    />
+                  ))}
+                </Space>
+              ))}
+            </Space>
+          </Region>
+        )}
 
         <Modal
           title={<Translate pt="Resultado" en="Results" />}
@@ -197,7 +221,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             hearts={hearts}
             guesses={guesses}
             attributes={data.attributes}
-            solution={data.answer}
+            solution={data.solution}
             width={width}
           />
         </Modal>

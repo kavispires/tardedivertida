@@ -62,6 +62,20 @@ export function Hub() {
             </TransparentButton>
           </PlayedWrapper>
 
+          <PlayedWrapper lsKey={COMUNICACAO_ALIENIGENA.KEY}>
+            <TransparentButton
+              hoverType="sepia"
+              className={clsx(
+                !checkWasPlayedToday(COMUNICACAO_ALIENIGENA.KEY) && getAnimationClass('tada', { repeat: 3 })
+              )}
+            >
+              <Link to="/diario/comunicacao-alienigena" className="hub-item">
+                <DailyAlienGameIcon style={{ width: 75 }} />
+                <Translate pt="Comunicação Alienígena" en="Alien Communication" />
+              </Link>
+            </TransparentButton>
+          </PlayedWrapper>
+
           <PlayedWrapper lsKey={CONTROLE_DE_ESTOQUE.KEY}>
             <TransparentButton hoverType="sepia">
               <Link to="/diario/controle-de-estoque" className="hub-item">
@@ -99,24 +113,10 @@ export function Hub() {
           </PlayedWrapper>
 
           <PlayedWrapper lsKey={TEORIA_DE_CONJUNTOS.KEY}>
-            <TransparentButton
-              hoverType="sepia"
-              className={clsx(
-                !checkWasPlayedToday(TEORIA_DE_CONJUNTOS.KEY) && getAnimationClass('tada', { repeat: 3 })
-              )}
-            >
+            <TransparentButton hoverType="sepia">
               <Link to="/diario/teoria-de-conjuntos" className="hub-item">
                 <DailyDiagramGameIcon style={{ width: 75 }} />
                 <Translate pt="Teoria de Conjuntos" en="Diagram Theory" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
-
-          <PlayedWrapper lsKey={COMUNICACAO_ALIENIGENA.KEY}>
-            <TransparentButton hoverType="sepia">
-              <Link to="/diario/comunicacao-alienigena" className="hub-item hub-item-disabled">
-                <DailyAlienGameIcon style={{ width: 75 }} />
-                <Translate pt="Comunicação Alienígena" en="Alien Communication" />
               </Link>
             </TransparentButton>
           </PlayedWrapper>
