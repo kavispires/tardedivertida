@@ -47,7 +47,7 @@ function ZoomToLocation({ focusedCellId }: Pick<CityMapSnippetProps, 'focusedCel
     if (focusedCellId) {
       zoomToElement(`cell-${focusedCellId}`, 1.1);
     }
-  }, [focusedCellId]);
+  }, [focusedCellId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <></>;
 }

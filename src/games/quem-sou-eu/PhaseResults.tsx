@@ -13,13 +13,24 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { SLIDE_DURATION } from './utils/constants';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
 export function PhaseResults({ players, state, info }: PhaseProps) {
-  const { step, setStep, goToPreviousStep, goToNextStep } = useStep();
-  const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery?.length ?? 1);
+  const { step, goToPreviousStep, goToNextStep } = useStep();
+
+  const slideShowConfig = useSlideShow({
+    length: state.gallery.length,
+    slideDuration: SLIDE_DURATION,
+    onExpire: goToNextStep,
+  });
+
+  const onGoBack = () => {
+    slideShowConfig.setSlideIndex(0);
+    goToPreviousStep();
+  };
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.RESULTS}>
@@ -43,22 +54,13 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
           players={players}
           gallery={state.gallery}
           characters={state.characters}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-          setStep={setStep}
-          isFirstGalleryRunThrough={isFirstGalleryRunThrough}
+          slideShowConfig={slideShowConfig}
           round={state.round}
           imageCardMode={state.mode === 'imageCards'}
         />
 
         {/* Step 2 */}
-        <StepRanking
-          players={players}
-          ranking={state.ranking}
-          round={state.round}
-          goToPreviousStep={goToPreviousStep}
-          setActiveIndex={setActiveIndex}
-        />
+        <StepRanking players={players} ranking={state.ranking} round={state.round} onGoBack={onGoBack} />
       </StepSwitcher>
     </PhaseContainer>
   );

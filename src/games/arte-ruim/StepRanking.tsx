@@ -4,8 +4,6 @@ import { Button } from 'antd';
 // Types
 import type { GameRanking, GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
-// Hooks
-import type { UseStep } from 'hooks/useStep';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -15,26 +13,18 @@ import { PopoverRule } from 'components/rules';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
 // Internal
 import { ScoringRules } from './components/TextBlobs';
+// Hooks
 
 type StepRankingProps = {
   players: GamePlayers;
   ranking: GameRanking;
   isGameOver: boolean;
   round: GameRound;
-  goToPreviousStep: UseStep['goToPreviousStep'];
-  setActiveIndex: GenericFunction;
+  onGoBack: () => void;
   threshold: number;
 };
 
-export function StepRanking({
-  players,
-  ranking,
-  isGameOver,
-  round,
-  goToPreviousStep,
-  setActiveIndex,
-  threshold,
-}: StepRankingProps) {
+export function StepRanking({ players, ranking, isGameOver, round, onGoBack, threshold }: StepRankingProps) {
   return (
     <StepRankingWrapper
       players={players}
@@ -70,14 +60,7 @@ export function StepRanking({
 
       {!isGameOver && <RoundsLeftInstruction round={round} />}
 
-      <Button
-        size="large"
-        onClick={() => {
-          goToPreviousStep();
-          setActiveIndex(0);
-        }}
-        icon={<PictureOutlined />}
-      >
+      <Button size="large" onClick={onGoBack} icon={<PictureOutlined />}>
         <Translate pt="Ver Galeria Novamente" en="See Gallery Again" />
       </Button>
 

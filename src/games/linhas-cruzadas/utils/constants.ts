@@ -6,4 +6,4 @@ export const LINHAS_CRUZADAS_ACTIONS = {
 
 export const DRAWING_TIME_IN_SECONDS = 120;
 
-export const PAGE_DURATION = 7;
+export const SLIDE_DURATION = 7;
