@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "release": "stable",
   "title": {
     "pt": "Teste De Elenco",
@@ -44,6 +44,10 @@
     "max": 10
   },
   "tags": ["competitive", "voting", "achievements", "same-time"],
+  "duration": {
+    "base": 2,
+    "perPlayer": 2
+  },
   "options": [
     {
       "key": "nsfw",

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -14,6 +14,7 @@ import { LockIcon } from 'icons/LockIcon';
 import { StopIcon } from 'icons/StopIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { SubmitButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
@@ -133,7 +134,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
           >
             Mock Stop
           </DevButton>
-          <Button
+          <SubmitButton
             type="primary"
             size="large"
             className="button"
@@ -143,7 +144,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
             icon={<IconAvatar size="small" icon={<StopIcon />} />}
           >
             <Translate pt="STOP!" en="STOP!" />
-          </Button>
+          </SubmitButton>
         </Space>
       </Instruction>
     </Step>

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "controle-de-estoque",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "dev",
   "title": {
     "pt": "Controle De Estoque",
@@ -14,7 +14,7 @@
   },
   "basedOn": "esuoheraW s'tomliW",
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "package-cloud",
     "color": ""
   },
   "summary": {
@@ -24,6 +24,10 @@
   "rules": {
     "pt": ["TBD"],
     "en": ["TBD"]
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
   },
   "playerCount": {
     "recommended": [4, 5, 6],
