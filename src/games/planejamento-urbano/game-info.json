@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "release": "beta",
   "title": {
     "pt": "Planejamento Urbano",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "construction-clouds",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],

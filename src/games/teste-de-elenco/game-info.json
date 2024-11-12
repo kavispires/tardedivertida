@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "release": "stable",
   "title": {
     "pt": "Teste De Elenco",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "acting-cloud",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "en": [

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "release": "stable",
   "title": {
     "pt": "Contadores de Histórias",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "book-clouds",
-    "color": "#1890ff",
-    "backgroundColor": "rgba(140, 225, 225, 0.7)"
+    "primaryColor": "#1890ff",
+    "backgroundColor": "rgba(140, 225, 225, 0.7)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

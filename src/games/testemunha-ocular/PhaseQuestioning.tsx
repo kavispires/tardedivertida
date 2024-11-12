@@ -18,7 +18,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitTestimonyAPIRequest } from './utils/api-requests';
 import { StepQuestioning } from './StepQuestioning';
 
-function PhaseQuestioning({ state, players, info }: PhaseProps) {
+function PhaseQuestioning({ state, players }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -54,7 +54,6 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
   );
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.TESTEMUNHA_OCULAR.QUESTIONING}
       className="t-phase"

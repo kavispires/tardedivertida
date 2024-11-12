@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.31",
+  "version": "0.9.32",
   "release": "dev",
   "title": {
     "pt": "Vendaval de Palpite",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "brainstorm-clouds",
+    "primaryColor": "",
     "backgroundColor": "rgb(148, 154, 134)",
-    "color": ""
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],

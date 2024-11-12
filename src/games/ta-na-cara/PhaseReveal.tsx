@@ -18,7 +18,7 @@ import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 // Icons
 
-export function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, goToPreviousStep } = useStep();
   const [targetedPlayer] = useWhichPlayerIsThe('targetId', state, players);
@@ -38,7 +38,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

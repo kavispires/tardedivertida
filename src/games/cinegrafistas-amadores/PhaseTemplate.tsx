@@ -13,12 +13,12 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 
-function PhaseTemplate({ players, state, info }: PhaseProps) {
+function PhaseTemplate({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep } = useStep();
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CINEGRAFISTAS_AMADORES.UNKNOWN}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CINEGRAFISTAS_AMADORES.UNKNOWN}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

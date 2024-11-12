@@ -19,7 +19,7 @@ import { ViewOr } from 'components/views';
 import { useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 import { StepGuessVerification } from './StepGuessVerification';
 
-export function PhaseVerifyGuess({ state, players, info }: PhaseProps) {
+export function PhaseVerifyGuess({ state, players }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, setStep } = useStep(0);
   const isHost = useHost();
@@ -42,7 +42,7 @@ export function PhaseVerifyGuess({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.VERIFY_GUESS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.VERIFY_GUESS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>

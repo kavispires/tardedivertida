@@ -20,7 +20,7 @@ import { PlayerSelectionMap } from './components/PlayerSelection';
 import { StepBuildMap } from './StepBuildMap';
 import { StepBuildWait } from './StepBuildWait';
 
-export function PhaseMapBuilding({ players, state, info }: PhaseProps) {
+export function PhaseMapBuilding({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -51,7 +51,7 @@ export function PhaseMapBuilding({ players, state, info }: PhaseProps) {
   const isUserMapComplete = user?.map && user.map.every((segment: MapSegment) => segment.passed);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.MAP_BUILDING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.MAP_BUILDING}>
       <StepSwitcher
         step={step}
         players={players}

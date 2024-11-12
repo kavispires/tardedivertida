@@ -12,6 +12,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Images
 import roundTitleEn from 'assets/images/round-title-en.svg';
 import roundTitlePt from 'assets/images/round-title-pt.svg';
@@ -29,7 +30,6 @@ type RoundAnnouncementProps = {
   className?: string;
   children?: any;
   unskippable?: boolean;
-  circleColor?: string;
 };
 
 export function RoundAnnouncement({
@@ -40,8 +40,9 @@ export function RoundAnnouncement({
   className,
   children,
   unskippable = false,
-  circleColor,
 }: RoundAnnouncementProps) {
+  const info = useGameInfoContext();
+  const circleColor = info.appearance.primaryColor;
   useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
 

@@ -14,10 +14,9 @@ import { Title } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
 
-export function PhaseGameOver({ state, players, info }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper
-      info={info}
       state={state}
       players={players}
       announcementIcon={<TrophyIcon />}

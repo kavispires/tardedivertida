@@ -20,7 +20,7 @@ import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from '.
 import { TIMES } from './utils/constants';
 import { StepTestimonial } from './StepTestimonial';
 
-export function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
+export function PhaseCompositeSketch({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -29,7 +29,7 @@ export function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const onSubmitOrientation = useOnSubmitOrientationAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.COMPOSITE_SKETCH}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.COMPOSITE_SKETCH}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
@@ -38,7 +38,6 @@ export function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
           buttonText=" "
           time={7}
           unskippable
-          circleColor={info?.appearance?.color}
         >
           <Instruction contained>
             <Translate

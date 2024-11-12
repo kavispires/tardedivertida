@@ -17,7 +17,7 @@ import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
 import { CurseItemHighlight, HieroglyphHighlight, ItemsHighlight } from './components/Highlights';
 
-export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
+export function PhaseAlienSelection({ players, state }: PhaseProps) {
   const { step, setStep } = useStep();
 
   // Clear cache from previous games
@@ -84,11 +84,7 @@ export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectPlayer

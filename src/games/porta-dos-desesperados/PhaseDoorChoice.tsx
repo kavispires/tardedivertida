@@ -22,7 +22,7 @@ import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { StepSelectDoor } from './StepSelectDoor';
 import { StepWaitDoorSelection } from './StepWaitDoorSelection';
 
-export function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
+export function PhaseDoorChoice({ players, state, meta }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
@@ -31,7 +31,7 @@ export function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
   const onConfirmDoor = useOnMakeReady(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

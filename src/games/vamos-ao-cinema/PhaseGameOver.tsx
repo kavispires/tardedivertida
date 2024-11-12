@@ -12,10 +12,10 @@ import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       <Space className="space-container" direction="vertical">
         <Title size="xx-small">
           <Translate pt="Pontuação" en="Score" />

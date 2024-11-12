@@ -294,6 +294,9 @@ export const GAME_COLLECTION = {
   VINGATIVOS: 'vingativos',
 };
 
+/**
+ * @deprecated
+ */
 export const THEME_COLORS = {
   BLOOD: '#ab0d17', // dark red
   DEFAULT: '#1890ff',

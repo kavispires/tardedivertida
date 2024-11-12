@@ -19,9 +19,9 @@ import { Title } from 'components/text';
 import type { GalleryEntry } from './utils/types';
 import achievementsReference from './utils/achievements';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <Title size="small" className="margin">

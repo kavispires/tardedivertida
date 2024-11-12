@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
 import { StepSelectChallenge } from './StepSelectChallenge';
 
-export function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
+export function PhaseChallengeSelection({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -38,19 +38,10 @@ export function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.SUPER_CAMPEONATO.CHALLENGE_SELECTION}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.CHALLENGE_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          onPressButton={goToNextStep}
-          time={4}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4}>
           <Instruction contained>
             {state.round.current === state.round.total ? (
               <Translate pt="Rodada final: Somente os finalistas!" en="Final Round: Only finalists" />

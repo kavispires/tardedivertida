@@ -16,7 +16,7 @@ import { Instruction, TextHighlight } from 'components/text';
 // Internal
 import { StepResult } from './StepResult';
 
-export function PhaseResult({ state, players, info }: PhaseProps) {
+export function PhaseResult({ state, players }: PhaseProps) {
   const { step } = useStep(0);
   const [guesser] = useWhichPlayerIsThe('guesserId', state, players);
 
@@ -67,7 +67,7 @@ export function PhaseResult({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.RESULT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

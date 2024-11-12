@@ -18,7 +18,7 @@ import { ScoringRule } from './components/RulesBlobs';
 import { StepRanking } from './StepRanking';
 import { StepResultGrid } from './StepResultGrid';
 
-export function PhaseResults({ players, state, info }: PhaseProps) {
+export function PhaseResults({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
@@ -44,7 +44,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ADEDANHX.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ADEDANHX.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResultGrid

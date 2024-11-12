@@ -17,7 +17,7 @@ import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ players, state, info }: PhaseProps) {
+export function PhaseGuessing({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -39,7 +39,7 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.GUESSING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.GUESSING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepGuessing

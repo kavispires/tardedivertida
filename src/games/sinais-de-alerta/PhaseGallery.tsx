@@ -17,7 +17,7 @@ import { GalleryRules } from './components/RulesBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-export function PhaseGallery({ players, state, info, meta }: PhaseProps) {
+export function PhaseGallery({ players, state, meta }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,
@@ -31,7 +31,7 @@ export function PhaseGallery({ players, state, info, meta }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SINAIS_DE_ALERTA.GALLERY}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SINAIS_DE_ALERTA.GALLERY}>
       <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
         <PhaseAnnouncement

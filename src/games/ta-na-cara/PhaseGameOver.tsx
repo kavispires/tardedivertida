@@ -10,9 +10,9 @@ import { GameOverWrapper } from 'components/game-over';
 // Internal
 import { PlayerBoard } from './components/PlayersBoards';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       <Space className="space-container" wrap>
         {state.gallery.map((entry: GamePlayer) => {
           return (

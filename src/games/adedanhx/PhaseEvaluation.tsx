@@ -17,7 +17,7 @@ import { useOnNextEvaluationGroupAPIRequest, useOnRejectAnswersAPIRequest } from
 import { ScoringRule } from './components/RulesBlobs';
 import { StepEvaluateGroup } from './StepEvaluateGroup';
 
-export function PhaseEvaluation({ players, state, info }: PhaseProps) {
+export function PhaseEvaluation({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step } = useStep();
 
@@ -53,7 +53,7 @@ export function PhaseEvaluation({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ADEDANHX.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ADEDANHX.EVALUATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepEvaluateGroup

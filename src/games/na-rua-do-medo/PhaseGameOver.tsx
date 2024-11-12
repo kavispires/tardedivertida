@@ -21,7 +21,7 @@ import { GRID_REPEAT } from './utils/constants';
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
 
-export function PhaseGameOver({ state, players, info }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const { language } = useLanguage();
   const user = useUser(players, state);
 
@@ -34,7 +34,6 @@ export function PhaseGameOver({ state, players, info }: PhaseProps) {
 
   return (
     <GameOverWrapper
-      info={info}
       state={state}
       players={players}
       announcementIcon={<PoopIcon />}

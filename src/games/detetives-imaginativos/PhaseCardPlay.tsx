@@ -19,7 +19,7 @@ import { Instruction } from 'components/text';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { StepPlayCard } from './StepPlayCard';
 
-export function PhaseCardPlay({ state, players, info }: PhaseProps) {
+export function PhaseCardPlay({ state, players }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const user = useUser(players, state);
@@ -58,7 +58,6 @@ export function PhaseCardPlay({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY}
       className="d-phase d-play-card-phase"

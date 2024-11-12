@@ -20,7 +20,7 @@ import { mockMovieSelection } from './utils/mock';
 import { YourMovie } from './components/YourMovie';
 import { StepSelectMovie } from './StepSelectMovie';
 
-export function PhaseMovieSelection({ players, state, info }: PhaseProps) {
+export function PhaseMovieSelection({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep();
 
@@ -48,7 +48,7 @@ export function PhaseMovieSelection({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.MOVIE_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.MOVIE_SELECTION}>
       <StepSwitcher
         step={step}
         players={players}

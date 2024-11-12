@@ -23,7 +23,7 @@ import { Icons, chatGPTMoviePrompt } from './utils/helpers';
 import { RoleBoard } from './components/RoleBoard';
 import { MovieStats } from './components/MovieStats';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const { language } = useLanguage();
 
   const movie: FeatureFilm = state.movie;
@@ -31,7 +31,7 @@ export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const Icon = Icons?.[movieId] ?? MovieGenreIcon;
 
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<CrownIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <Container

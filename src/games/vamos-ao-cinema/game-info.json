@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "1.3.45",
+  "version": "1.3.46",
   "release": "stable",
   "title": {
     "pt": "Vamos Ao Cinema",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "movies-clouds",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],

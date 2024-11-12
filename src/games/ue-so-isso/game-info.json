@@ -3,7 +3,7 @@
   "gameCode": "U",
   "gameName": "ue-so-isso",
   "release": "stable",
-  "version": "3.1.37",
+  "version": "3.1.38",
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "one-clouds",
-    "color": "#1890ff",
-    "backgroundColor": "rgba(233, 185, 81, 0.5)"
+    "primaryColor": "#1890ff",
+    "backgroundColor": "rgba(233, 185, 81, 0.5)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

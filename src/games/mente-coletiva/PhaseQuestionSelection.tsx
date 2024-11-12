@@ -21,7 +21,7 @@ import { GamePremiseRules } from './components/RulesBlobs';
 import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 
-export function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
+export function PhaseQuestionSelection({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -42,15 +42,10 @@ export function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          onPressButton={goToNextStep}
-          time={3}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={3}>
           <Instruction contained>
             <Translate
               pt="Somos ovelhinhas e nosso pasto está superlotado!"

@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { StepResult } from './StepResults';
 
-export function PhaseResults({ players, state, info }: PhaseProps) {
+export function PhaseResults({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, goToPreviousStep } = useStep();
 
@@ -38,7 +38,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

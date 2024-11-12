@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "3.0.19",
+  "version": "3.0.20",
   "release": "stable",
   "title": {
     "pt": "Polêmica da Vez",
@@ -19,7 +19,9 @@
   },
   "appearance": {
     "clouds": "speech-cloud",
-    "color": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

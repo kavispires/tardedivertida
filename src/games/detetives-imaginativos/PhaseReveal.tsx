@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ state, players, info }: PhaseProps) {
+export function PhaseReveal({ state, players }: PhaseProps) {
   const { step } = useStep(0);
   const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
 
@@ -56,7 +56,6 @@ export function PhaseReveal({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.REVEAL}
       className="d-voting-phase"

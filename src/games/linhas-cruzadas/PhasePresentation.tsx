@@ -15,11 +15,11 @@ import { Instruction } from 'components/text';
 // Internal
 import { StepAlbum } from './StepAlbum';
 
-export function PhasePresentation({ players, state, info }: PhaseProps) {
+export function PhasePresentation({ players, state }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.PRESENTATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.PRESENTATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

@@ -22,7 +22,7 @@ import { mockTweetSelection } from './utils/mock';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepTweetSelection } from './StepTweetSelection';
 
-export function PhaseTweetSelection({ state, players, info, meta }: PhaseProps) {
+export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -51,15 +51,10 @@ export function PhaseTweetSelection({ state, players, info, meta }: PhaseProps) 
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          onPressButton={goToNextStep}
-          time={4}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4}>
           <Instruction contained>
             <Translate
               pt="Cada rodada um novo assunto, a sua opinião e a opinião dos outros."

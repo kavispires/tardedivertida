@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { StepSelectAll } from './StepSelectAll';
 
-export function PhaseAreYouARobot({ players, state, info }: PhaseProps) {
+export function PhaseAreYouARobot({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -37,7 +37,7 @@ export function PhaseAreYouARobot({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.ARE_YOU_A_ROBOT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.ARE_YOU_A_ROBOT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectAll

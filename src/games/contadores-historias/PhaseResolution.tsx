@@ -16,7 +16,7 @@ import { ScoringRules } from './components/RulesBlobs';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResolution({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
 
@@ -32,7 +32,7 @@ export function PhaseResolution({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResolution

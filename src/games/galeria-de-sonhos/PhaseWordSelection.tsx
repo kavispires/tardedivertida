@@ -21,7 +21,7 @@ import { useOnSubmitWordAPIRequest } from './utils/api-requests';
 import { GeneralRules, WordSelectionRules } from './components/RulesBlobs';
 import { StepWordSelection } from './StepWordSelection';
 
-export function PhaseWordSelection({ players, state, info }: PhaseProps) {
+export function PhaseWordSelection({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
 
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);
@@ -29,16 +29,10 @@ export function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const onSubmitWord = useOnSubmitWordAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.WORD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.WORD_SELECTION}>
       <StepSwitcher step={step} players={players} waitingRoom={{ type: 'SERVER' }}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state?.round}
-          onPressButton={goToNextStep}
-          buttonText=" "
-          time={5}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
           <Instruction contained>
             <Translate
               pt="Somos caçadores de sonhos tentando encontrar uns aos outros..."

@@ -1,5 +1,4 @@
 // Internal
-import { GameInfo } from './game-info';
 import { GamePlayers } from './player';
 
 export type GameState<TState = PlainObject, TPlayer = PlainObject> = {
@@ -39,7 +38,6 @@ export type GameRound = {
 export type PhaseProps<TState = PlainObject, TPlayer = PlainObject> = {
   state: GameState<TState, TPlayer>;
   players: GamePlayers<TPlayer>;
-  info: GameInfo;
   meta: GameMeta;
 };
 

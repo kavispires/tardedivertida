@@ -19,23 +19,17 @@ import { useOnSubmitDreamAPIRequest } from './utils/api-requests';
 import { DreamTellingRules } from './components/RulesBlobs';
 import { StepTellDream } from './StepTellDream';
 
-export function PhaseDreamTelling({ state, players, info }: PhaseProps) {
+export function PhaseDreamTelling({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitDream = useOnSubmitDreamAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.DREAM_TELLING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.DREAM_TELLING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          buttonText=""
-          onPressButton={goToNextStep}
-          time={5}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state.round} buttonText="" onPressButton={goToNextStep} time={5}>
           <Instruction contained>
             <Translate
               pt="Sabe quando você sonha com uma coisa, mas não consegue explicar? Então..."

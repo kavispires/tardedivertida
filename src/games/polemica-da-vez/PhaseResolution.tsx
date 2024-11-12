@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResolution({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   const announcement = (
@@ -53,7 +53,7 @@ export function PhaseResolution({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResolution

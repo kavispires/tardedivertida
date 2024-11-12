@@ -17,7 +17,7 @@ import { Icons } from './utils/helpers';
 import { StepRanking } from './StepRanking';
 import { StepResult } from './StepResult';
 
-export function PhaseResult({ players, state, info }: PhaseProps) {
+export function PhaseResult({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
@@ -46,7 +46,7 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
   //
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TESTE_DE_ELENCO.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TESTE_DE_ELENCO.RESULT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

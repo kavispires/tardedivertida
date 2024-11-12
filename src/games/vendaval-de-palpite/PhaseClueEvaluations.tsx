@@ -18,7 +18,7 @@ import { useOnSubmitEvaluationAPIRequest, useOnSubmitOutcomeAPIRequest } from '.
 import { StepBossEvaluation } from './StepBossEvaluation';
 import { StepPlayersWaitEvaluation } from './StepPlayersWaitEvaluation';
 
-export function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
+export function PhaseClueEvaluations({ state, players }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
@@ -26,11 +26,7 @@ export function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
   const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.VENDAVAL_DE_PALPITE.CLUE_EVALUATIONS}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.CLUE_EVALUATIONS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

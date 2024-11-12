@@ -15,10 +15,9 @@ import type { GalleryEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { SheepAvatar } from './components/SheepAvatar';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper
-      info={info}
       state={state}
       players={players}
       announcementIcon={<TheEndIcon />}

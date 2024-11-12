@@ -16,7 +16,7 @@ import { Instruction, TextHighlight } from 'components/text';
 import { useOnSubmitMovieActorAPIRequest } from './utils/api-requests';
 import { StepSelectActor } from './StepSelectActor';
 
-export function PhaseActorSelection({ players, state, info }: PhaseProps) {
+export function PhaseActorSelection({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -45,7 +45,7 @@ export function PhaseActorSelection({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TESTE_DE_ELENCO.ACTOR_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TESTE_DE_ELENCO.ACTOR_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectActor

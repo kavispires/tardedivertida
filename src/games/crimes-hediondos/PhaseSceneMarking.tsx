@@ -19,7 +19,7 @@ import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
 import { mockSceneMark } from './utils/mock';
 import { StepNewScene } from './StepNewScene';
 
-export function PhaseSceneMarking({ players, state, info }: PhaseProps) {
+export function PhaseSceneMarking({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep(0);
 
@@ -50,16 +50,10 @@ export function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state?.round}
-          onPressButton={goToNextStep}
-          buttonText=" "
-          time={5}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
 
         {/* Step 1 */}
         <StepNewScene

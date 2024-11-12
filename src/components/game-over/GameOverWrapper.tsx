@@ -1,7 +1,6 @@
 import { ReactNode, useState } from 'react';
 // Types
 import type { GameState } from 'types/game';
-import type { GameInfo } from 'types/game-info';
 import type { GamePlayers } from 'types/player';
 // Utils
 import { PHASES } from 'utils/phases';
@@ -15,10 +14,6 @@ import { StepSwitcher } from 'components/steps';
 import { GameOver } from './GameOver';
 
 type GameOverWrapperProps = {
-  /**
-   * The game info
-   */
-  info: GameInfo;
   /**
    * The game state
    */
@@ -54,7 +49,6 @@ type GameOverWrapperProps = {
 };
 
 export function GameOverWrapper({
-  info,
   state,
   players,
   announcementIcon = <TheEndIcon />,
@@ -82,19 +76,13 @@ export function GameOverWrapper({
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.DEFAULT.GAME_OVER}
       className="game-over__container"
     >
       <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
-        <GameOver
-          state={state}
-          info={info}
-          rateWidgetCustomText={rateWidgetCustomText}
-          announcement={announcement}
-        >
+        <GameOver state={state} rateWidgetCustomText={rateWidgetCustomText} announcement={announcement}>
           {children}
         </GameOver>
       </StepSwitcher>

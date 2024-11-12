@@ -16,7 +16,9 @@
     "basedOn": "hsaD eldooD",
     "appearance": {
       "clouds": "cloud",
-      "color": ""
+      "primaryColor": "",
+      "backgroundColor": "",
+      "colorScheme": "light"
     },
     "summary": {
       "pt": "Uma palavra secreta, uma corrida, vários desenhos! Quem consegue desenhar o mais rápido possível?",
@@ -50,7 +52,9 @@
     "basedOn": "?????",
     "appearance": {
       "clouds": "cloud",
-      "color": ""
+      "primaryColor": "",
+      "backgroundColor": "",
+      "colorScheme": "light"
     },
     "summary": {
       "pt": "???",

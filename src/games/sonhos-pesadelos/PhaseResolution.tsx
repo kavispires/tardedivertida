@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResolution({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   const slideShowConfig = useSlideShow({
@@ -32,7 +32,7 @@ export function PhaseResolution({ state, players, info }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

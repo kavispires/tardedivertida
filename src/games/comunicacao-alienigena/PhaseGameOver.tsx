@@ -17,10 +17,10 @@ import { HumanSignBoard } from './components/HumanSignBoard';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const [, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <ViewIf condition={state.items && state.signs && state.inquiryHistory && state.requestHistory}>

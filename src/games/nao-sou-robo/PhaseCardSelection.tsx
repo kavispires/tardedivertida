@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitCardAPIRequest } from './utils/api-requests';
 import { StepSelectCard } from './StepSelectCard';
 
-export function PhaseCardSelection({ players, state, info }: PhaseProps) {
+export function PhaseCardSelection({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep();
 
@@ -41,7 +41,7 @@ export function PhaseCardSelection({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.CARD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.CARD_SELECTION}>
       <StepSwitcher
         step={step}
         players={players}
@@ -55,13 +55,7 @@ export function PhaseCardSelection({ players, state, info }: PhaseProps) {
         }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          buttonText=" "
-          onPressButton={goToNextStep}
-          time={5}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5} />
 
         {/* Step 1 */}
         <StepSelectCard

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.30",
+  "version": "2.3.31",
   "release": "stable",
   "title": {
     "pt": "Super Campeonato",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "trophy-clouds",
-    "color": "",
-    "backgroundColor": "rgba(188, 142, 12, 0.75)"
+    "primaryColor": "",
+    "backgroundColor": "rgba(188, 142, 12, 0.75)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

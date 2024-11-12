@@ -21,7 +21,7 @@ import { FirstRoundIntroduction } from './components/RulesExplanation';
 import { StepOrderScenarios } from './StepOrderScenarios';
 import { StepJudgeScenarios } from './StepJudgeScenarios';
 
-export function PhaseOrdering({ players, state, info }: PhaseProps) {
+export function PhaseOrdering({ players, state }: PhaseProps) {
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -57,7 +57,7 @@ export function PhaseOrdering({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.FILEIRA_DE_FATOS.ORDERING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.FILEIRA_DE_FATOS.ORDERING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>

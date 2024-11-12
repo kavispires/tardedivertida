@@ -1,18 +1,13 @@
 import clsx from 'clsx';
 import { ReactNode, useRef } from 'react';
-// Types
-import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 
 type PhaseContainerProps = {
-  /**
-   * The game info
-   */
-  info?: GameInfo;
   /**
    * The current phase that must match the allowed phase
    */
@@ -45,7 +40,6 @@ type PhaseContainerProps = {
  * @returns
  */
 export function PhaseContainer({
-  info,
   phase,
   allowedPhase = '',
   children,
@@ -53,6 +47,7 @@ export function PhaseContainer({
   fullScreen = false,
   white = false,
 }: PhaseContainerProps) {
+  const info = useGameInfoContext();
   const { translate } = useLanguage();
   const screenRef = useRef<HTMLScriptElement>(null);
 

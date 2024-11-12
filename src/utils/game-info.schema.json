@@ -37,11 +37,15 @@
     "appearance": {
       "type": "object",
       "properties": {
-        "color": { "type": "string" },
-        "clouds": { "type": "string" },
-        "backgroundColor": { "type": "string" }
+        "primaryColor": { "type": "string" },
+        "backgroundColor": { "type": "string" },
+        "colorScheme": {
+          "type": "string",
+          "enum": ["light", "dark"]
+        },
+        "clouds": { "type": "string" }
       },
-      "required": ["color", "clouds"]
+      "required": ["primaryColor", "clouds", "backgroundColor", "colorScheme"]
     },
     "rules": {
       "type": "object",

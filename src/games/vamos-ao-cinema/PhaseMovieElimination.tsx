@@ -21,7 +21,7 @@ import { mockMovieElimination } from './utils/mock';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 import { StepEliminateMovie } from './StepEliminateMovie';
 
-export function PhaseMovieElimination({ players, state, info }: PhaseProps) {
+export function PhaseMovieElimination({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
   const [activePlayer, isActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -89,7 +89,7 @@ export function PhaseMovieElimination({ players, state, info }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.MOVIE_ELIMINATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.MOVIE_ELIMINATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepEliminateMovie

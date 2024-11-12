@@ -20,7 +20,7 @@ import { NeedleChoice } from './components/NeedleChoice';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
 
-export function PhaseGuess({ players, state, info }: PhaseProps) {
+export function PhaseGuess({ players, state }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
@@ -42,7 +42,7 @@ export function PhaseGuess({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}>
       <StepSwitcher
         step={step}
         players={players}

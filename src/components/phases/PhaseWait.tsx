@@ -16,9 +16,9 @@ type PhaseWaitProps = {
   state: GameState;
 };
 
-export function PhaseWait({ info, state }: PhaseWaitProps) {
+export function PhaseWait({ state }: PhaseWaitProps) {
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.DEFAULT.WAIT} className="setup">
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.WAIT} className="setup">
       <div className="phase-announcement">
         <Title>
           <Translate pt="Processando..." en="Processing..." />

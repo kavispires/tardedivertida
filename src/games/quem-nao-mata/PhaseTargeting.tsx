@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitMessageAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
 import { StepTargeting } from './StepTargeting';
 
-export function PhaseTargeting({ players, state, info }: PhaseProps) {
+export function PhaseTargeting({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep } = useStep(0);
 
@@ -27,7 +27,7 @@ export function PhaseTargeting({ players, state, info }: PhaseProps) {
   const mockedPlayers = players;
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.TARGETING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.TARGETING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

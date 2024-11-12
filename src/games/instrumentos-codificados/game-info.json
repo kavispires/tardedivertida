@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "ι",
   "gameName": "instrumentos-codificados",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "cancelled",
   "title": {
     "pt": "Instrumentos Codificados",
@@ -19,7 +19,9 @@
   },
   "appearance": {
     "clouds": "cloud",
-    "color": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],

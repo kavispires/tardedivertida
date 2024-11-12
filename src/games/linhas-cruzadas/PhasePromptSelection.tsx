@@ -16,14 +16,14 @@ import { Instruction } from 'components/text';
 import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
 import { StepSelectPrompt } from './StepSelectPrompt';
 
-export function PhasePromptSelection({ players, state, info }: PhaseProps) {
+export function PhasePromptSelection({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.PROMPT_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.PROMPT_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

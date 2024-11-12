@@ -19,7 +19,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { StepAssignment } from './StepAssignment';
 
-export function PhaseAssignment({ state, players, info }: PhaseProps) {
+export function PhaseAssignment({ state, players }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -27,7 +27,6 @@ export function PhaseAssignment({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT}
       className="e-phase"
@@ -39,7 +38,6 @@ export function PhaseAssignment({ state, players, info }: PhaseProps) {
           onPressButton={goToNextStep}
           time={5}
           className="e-round-announcement"
-          circleColor={info?.appearance?.color}
         >
           <Instruction className="e-phase-instruction">
             <Translate pt="Há um espião entre nós!" en="There's a spy among us!" />

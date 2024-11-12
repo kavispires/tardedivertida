@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { StepResult } from './StepResult';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResult({ players, state, info }: PhaseProps) {
+export function PhaseResult({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
@@ -44,7 +44,7 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MEGAMIX.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MEGAMIX.RESULT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

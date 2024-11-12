@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -35,7 +35,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

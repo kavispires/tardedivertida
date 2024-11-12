@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.44",
+  "version": "4.0.45",
   "release": "stable",
   "title": {
     "pt": "Megamix",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "vinyl-cloud",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [
@@ -45,6 +46,10 @@
     "best": 7,
     "min": 4,
     "max": 25
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
   },
   "tags": [
     "competitive",
