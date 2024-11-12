@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 // Ant Design Resources
 import {
   PauseOutlined,
@@ -22,6 +22,7 @@ type SlideShowControlsProps = {
   disableControls: boolean;
   barColor: string;
   windowDuration: number;
+  rankingButtonLabel?: ReactNode;
 };
 
 export function SlideShowControls({
@@ -32,6 +33,7 @@ export function SlideShowControls({
   disableControls,
   barColor = 'gray',
   windowDuration = 10,
+  rankingButtonLabel,
 }: SlideShowControlsProps) {
   const { timeLeft, isRunning, pause, resume } = useCountdown({
     duration: windowDuration * length,
@@ -81,38 +83,27 @@ export function SlideShowControls({
         ></span>
       </div>
 
-      {!disableControls && (
-        <Space>
-          <Button
-            size="large"
-            icon={<StepBackwardOutlined />}
-            onClick={goToPreviousStep}
-            disabled={disableControls || activeIndex === 0}
-          >
-            <Translate pt="Anterior" en="Previous" />
-          </Button>
-          <Button
-            size="large"
-            icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
-            onClick={isRunning ? pause : resume}
-          />
-          <Button
-            size="large"
-            onClick={goToNextStep}
-            disabled={disableControls || activeIndex === length - 1}
-          >
-            <Translate pt="Próximo" en="Next" /> <StepForwardOutlined />
-          </Button>
-          <Button
-            size="large"
-            onClick={() => setStep(2)}
-            icon={<TrophyOutlined />}
-            disabled={disableControls}
-          >
-            <Translate pt="Ver Ranking" en="See Ranking" />
-          </Button>
-        </Space>
-      )}
+      <Space style={{ opacity: disableControls ? 0 : 100 }}>
+        <Button
+          size="large"
+          icon={<StepBackwardOutlined />}
+          onClick={goToPreviousStep}
+          disabled={disableControls || activeIndex === 0}
+        >
+          <Translate pt="Anterior" en="Previous" />
+        </Button>
+        <Button
+          size="large"
+          icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
+          onClick={isRunning ? pause : resume}
+        />
+        <Button size="large" onClick={goToNextStep} disabled={disableControls || activeIndex === length - 1}>
+          <Translate pt="Próximo" en="Next" /> <StepForwardOutlined />
+        </Button>
+        <Button size="large" onClick={() => setStep(2)} icon={<TrophyOutlined />} disabled={disableControls}>
+          {rankingButtonLabel ?? <Translate pt="Ver Ranking" en="See Ranking" />}
+        </Button>
+      </Space>
     </div>
   );
 }

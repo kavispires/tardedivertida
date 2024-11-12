@@ -118,7 +118,6 @@ const SessionTeoriaDeConjuntos = lazy(
   () =>
     import('games/teoria-de-conjuntos/SessionTeoriaDeConjuntos' /* webpackChunkName: "teoria-de-conjuntos" */)
 );
-
 const SessionTaNaCara = lazy(
   () => import('games/ta-na-cara/SessionTaNaCara' /* webpackChunkName: "ta-na-cara" */)
 );
@@ -128,6 +127,12 @@ const SessionTesteDeElenco = lazy(
 const SessionMesmice = lazy(() => import('games/mesmice/SessionMesmice' /* webpackChunkName: "mesmice" */));
 const SessionSinaisDeAlerta = lazy(
   () => import('games/sinais-de-alerta/SessionSinaisDeAlerta' /* webpackChunkName: "sinais-de-alerta" */)
+);
+const SessionPLanejamentoUrbano = lazy(
+  () =>
+    import(
+      'games/planejamento-urbano/SessionPlanejamentoUrbano' /* webpackChunkName: "planejamento-urbano" */
+    )
 );
 
 function Game() {
@@ -229,12 +234,6 @@ function Game() {
             <SessionCrimesHediondos />
           </Suspense>
         );
-      case GAME_COLLECTION.PORTA_DOS_DESESPERADOS:
-        return (
-          <Suspense fallback={<LoadingPage />}>
-            <SessionPortaDosDesesperados />
-          </Suspense>
-        );
       case GAME_COLLECTION.LABIRINTO_SECRETO:
         return (
           <Suspense fallback={<LoadingPage />}>
@@ -283,10 +282,22 @@ function Game() {
             <SessionOndaTelepatica />
           </Suspense>
         );
+      case GAME_COLLECTION.PLANEJAMENTO_URBANO:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionPLanejamentoUrbano />
+          </Suspense>
+        );
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionPolemicaDaVez />
+          </Suspense>
+        );
+      case GAME_COLLECTION.PORTA_DOS_DESESPERADOS:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionPortaDosDesesperados />
           </Suspense>
         );
       case GAME_COLLECTION.QUEM_NAO_MATA:

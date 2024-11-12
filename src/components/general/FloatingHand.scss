@@ -107,3 +107,61 @@
     }
   }
 }
+
+.floating-hand-drawer {
+  &__white-space {
+    width: 1px;
+    min-height: 378px;
+    content: ' ';
+  }
+
+  &__button {
+    display: block;
+    width: clamp(200px, 50vw, 800px);
+    position: fixed;
+    bottom: 0;
+    z-index: 15;
+
+    padding: get-unit(4 2);
+    border: none;
+    border-top-left-radius: get-unit(3);
+    border-top-right-radius: get-unit(3);
+    background-color: get-color('white', 6);
+
+    &:hover {
+      background-color: get-color('white', 5);
+    }
+  }
+
+  &__label {
+    width: 100%;
+    display: block;
+    transition: all 500ms;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__label-open {
+    cursor: pointer;
+  }
+
+  &__label-text {
+    transition: all 500ms;
+    margin-left: get-unit(3);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    line-height: 1rem;
+  }
+
+  &__label-text-hint {
+    transition: all 250ms;
+    font-size: 0.75rem;
+    font-style: italic;
+    font-weight: normal;
+    color: get-color('gray', 3);
+  }
+}

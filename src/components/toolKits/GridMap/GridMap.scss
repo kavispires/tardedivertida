@@ -1,0 +1,40 @@
+@use 'styles/sass' as *;
+
+.grid-map-container {
+  min-width: 500px;
+  min-height: 500px;
+  position: relative;
+  background-color: get-color('white', 5, 0.85);
+  padding: get-unit(10 1);
+  border-radius: $border-radius;
+  margin: get-unit(2);
+}
+
+.grid-map-controls {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &--top {
+    top: get-unit(1);
+  }
+
+  &--bottom {
+    bottom: get-unit(1);
+  }
+}
+
+.grid-map {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 80px);
+  grid-auto-rows: 80px;
+  gap: 4px;
+}
+
+.grid-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -77,7 +77,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
       }
     >
       <div className="game-card__contents">
-        <Space direction="vertical">
+        <Space direction="vertical" className="full-width">
           <Card.Meta
             title={
               <span className="game-card__title" title={game.title[language]}>
