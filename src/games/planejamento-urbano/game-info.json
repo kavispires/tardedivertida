@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "beta",
   "title": {
     "pt": "Planejamento Urbano",
@@ -18,7 +18,7 @@
     "en": "Create the most efficient city."
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "construction-clouds",
     "color": "",
     "backgroundColor": ""
   },
@@ -33,10 +33,8 @@
   },
   "tags": ["cooperative", "discussion", "turn-based"],
   "duration": {
-    "base": 30,
-    "perPlayer": 5,
-    "min": 30,
-    "max": 60
+    "base": 0,
+    "perPlayer": 0
   },
   "available": false,
   "options": [

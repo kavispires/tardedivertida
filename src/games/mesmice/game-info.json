@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "release": "stable",
   "title": {
     "pt": "Jogo da Mesmice",
@@ -30,6 +30,10 @@
     "recommended": [4, 5, 6],
     "min": 2,
     "max": 10
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
   },
   "tags": ["cooperative", "discussion", "writing", "achievements"],
   "options": [
