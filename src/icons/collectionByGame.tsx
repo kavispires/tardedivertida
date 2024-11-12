@@ -257,6 +257,14 @@ export const collectionByGame: Record<string, string[]> = {
   'trevo-da-sorte': ['CloverIcon'],
   'dilema-dos-esquiadores': ['SkiingIcon', 'SnowHillIcon'],
   'sonhos-pesadelos': ['CountdownIcon'],
+  'planejamento-urbano': [
+    'ConeIcon',
+    'BrickWallIcon',
+    'MapBlueprintIcon',
+    'MapCityIcon',
+    'MapCityZonesIcon',
+    'AngryMayorIcon',
+  ],
 };
 
 const flatGeneralList = Object.values(collectionByCategory).flat();
