@@ -10,7 +10,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
-import { useScreenWidth } from 'hooks/useScreenWidth';
+import { useScreenSize } from 'hooks/useScreenSize';
 // Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Icons
@@ -26,7 +26,6 @@ import { getDirection } from '../utils/helpers';
 import { ForestTree } from './ForestTree';
 
 type ForestProps = {
-  appWidth?: number;
   forest: Tree[];
   map?: MapSegment[];
   showPath?: boolean;
@@ -57,7 +56,7 @@ export function Forest({
   forestBorderColor = 'transparent',
   playerMapping,
 }: ForestProps) {
-  const screenWidth = useScreenWidth();
+  const [screenWidth] = useScreenSize();
   const treeWidth = useCardWidth(7, { gap: 16, minWidth: 60, maxWidth: 100 });
 
   if (!forest || !map || map.length === 0 || !screenWidth) {
