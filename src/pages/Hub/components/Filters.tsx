@@ -1,9 +1,8 @@
-import { DefaultOptionType } from 'antd/lib/select';
 import { capitalize } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { FilterOutlined } from '@ant-design/icons';
-import { InputNumber, Select, Space, TreeSelect } from 'antd';
+import { InputNumber, Select, Space, TreeDataNode, TreeSelect } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -83,7 +82,7 @@ function TagTreeSelect({ value, onTreeSelectChange }: any) {
     );
   };
 
-  const treeData: DefaultOptionType[] = useMemo(
+  const treeData: TreeDataNode[] = useMemo(
     () =>
       Object.values(
         Object.keys(TAG_DICT).reduce((acc: any, tagKey: string) => {
