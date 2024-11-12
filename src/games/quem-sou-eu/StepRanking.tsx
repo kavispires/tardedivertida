@@ -4,8 +4,6 @@ import { Button } from 'antd';
 // Types
 import type { GameRound, GameRanking } from 'types/game';
 import type { GamePlayers } from 'types/player';
-// Hooks
-import type { UseStep } from 'hooks/useStep';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -19,11 +17,10 @@ type StepRankingProps = {
   players: GamePlayers;
   ranking: GameRanking;
   round: GameRound;
-  goToPreviousStep: UseStep['goToPreviousStep'];
-  setActiveIndex: GenericFunction;
+  onGoBack: () => void;
 };
 
-export function StepRanking({ players, ranking, round, goToPreviousStep, setActiveIndex }: StepRankingProps) {
+export function StepRanking({ players, ranking, round, onGoBack }: StepRankingProps) {
   return (
     <StepRankingWrapper
       players={players}
@@ -40,14 +37,7 @@ export function StepRanking({ players, ranking, round, goToPreviousStep, setActi
 
       <RoundsLeftInstruction round={round} />
 
-      <Button
-        size="large"
-        onClick={() => {
-          goToPreviousStep();
-          setActiveIndex(0);
-        }}
-        icon={<PictureOutlined />}
-      >
+      <Button size="large" onClick={onGoBack} icon={<PictureOutlined />}>
         <Translate pt="Ver Galeria Novamente" en="See Gallery Again" />
       </Button>
 

@@ -3,4 +3,4 @@ export const SINAIS_DE_ALERTA_ACTIONS = {
   SUBMIT_EVALUATION: 'SUBMIT_EVALUATION',
 } as const;
 
-export const WINDOW_DURATION = 7;
+export const SLIDE_DURATION = 7;

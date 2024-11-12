@@ -3,4 +3,4 @@ export const ARTE_RUIM_ACTIONS = {
   SUBMIT_VOTING: 'SUBMIT_VOTING',
 } as const;
 
-export const WINDOW_DURATION = 10;
+export const SLIDE_DURATION = 10;

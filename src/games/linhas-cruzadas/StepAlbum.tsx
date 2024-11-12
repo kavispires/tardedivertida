@@ -13,7 +13,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 // Internal
 import type { AlbumEntry } from './utils/types';
-import { PAGE_DURATION } from './utils/constants';
+import { SLIDE_DURATION } from './utils/constants';
 import { Album } from './components/Album';
 
 type StepAlbumProps = {
@@ -32,10 +32,10 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
     return album.reduce((total, albumEntry) => total + albumEntry.slides.length, 0);
   }, [album]);
 
-  const totalTime = PAGE_DURATION * totalPages;
+  const totalTime = SLIDE_DURATION * totalPages;
 
   const { timeLeft, isRunning } = useCountdown({
-    duration: PAGE_DURATION * totalPages,
+    duration: SLIDE_DURATION * totalPages,
     autoStart: true,
     onExpire: () => setAreControlsLocked(false),
   });
@@ -68,7 +68,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
   }, [areControlsLocked]);
 
   useEffect(() => {
-    if (isRunning && timeLeft < totalTime && timeLeft % PAGE_DURATION === 0) {
+    if (isRunning && timeLeft < totalTime && timeLeft % SLIDE_DURATION === 0) {
       // If next page exists, go for it, otherwise, next album
       if (currentPage < currentAlbumLastPageIndex) {
         onNextPage();

@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
@@ -18,25 +18,14 @@ import { GalleryGuesses } from './components/GalleryGuesses';
 type StepResultsProps = {
   players: GamePlayers;
   gallery: GalleryEntry[];
-  activeIndex: number;
-  setActiveIndex: GenericFunction;
-  setStep: UseStep['setStep'];
-  isFirstGalleryRunThrough: boolean;
+  slideShowConfig: SlideShowConfig;
   correctGuessPoints: number;
 };
 
-export function StepResults({
-  players,
-  gallery,
-  activeIndex,
-  setActiveIndex,
-  setStep,
-  isFirstGalleryRunThrough,
-  correctGuessPoints,
-}: StepResultsProps) {
+export function StepResults({ players, gallery, slideShowConfig, correctGuessPoints }: StepResultsProps) {
   useTemporarilyHidePlayersBar();
 
-  const galleryEntry = gallery[activeIndex];
+  const galleryEntry = gallery[slideShowConfig.slideIndex];
   const activePlayer = players[galleryEntry.playerId];
 
   return (
@@ -45,16 +34,7 @@ export function StepResults({
         <Translate pt="Resultado" en="Results" />
       </Title>
 
-      <SlideShow
-        players={players}
-        length={gallery.length}
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-        setStep={setStep}
-        disableControls={isFirstGalleryRunThrough}
-        barColor={getAvatarColorById(activePlayer.avatarId)}
-        windowDuration={10}
-      >
+      <SlideShow config={slideShowConfig} barColor={getAvatarColorById(activePlayer.avatarId)}>
         <GalleryDreamDisplay entry={galleryEntry} activePlayer={activePlayer} />
         <GalleryGuesses entry={galleryEntry} players={players} correctGuessPoints={correctGuessPoints} />
       </SlideShow>

@@ -14,15 +14,24 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { SLIDE_DURATION } from './utils/constants';
 import { StepGallery } from './StepGallery';
 import { StepResults } from './StepResults';
 // Icons
 
 export function PhaseResolution({ players, state, info }: PhaseProps) {
-  const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
-  const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
+  const { step, goToNextStep, goToPreviousStep } = useStep(0);
+  const slideShowConfig = useSlideShow({
+    length: state.gallery.length,
+    slideDuration: SLIDE_DURATION,
+    onExpire: goToNextStep,
+  });
+
+  const onGoBack = () => {
+    slideShowConfig.setSlideIndex(0);
+    goToPreviousStep();
+  };
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
-  const [controller] = useWhichPlayerIsThe('controllerId', state, players);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.RESOLUTION}>
@@ -47,17 +56,12 @@ export function PhaseResolution({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <StepGallery
-          players={players}
           activePlayer={activePlayer}
-          controller={controller}
           city={state.city}
           cityLocationsDict={state.cityLocationsDict}
           placements={state.placements}
           gallery={state.gallery}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-          setStep={setStep}
-          isFirstGalleryRunThrough={isFirstGalleryRunThrough}
+          slideShowConfig={slideShowConfig}
         />
 
         <StepResults
@@ -68,7 +72,7 @@ export function PhaseResolution({ players, state, info }: PhaseProps) {
           gallery={state.gallery}
           correct={state.correct}
           status={state.status}
-          goToPreviousStep={goToPreviousStep}
+          onGoBack={onGoBack}
           groupScore={state.groupScore}
           gameOrder={state.gameOrder}
           controllerId={state.controllerId}
