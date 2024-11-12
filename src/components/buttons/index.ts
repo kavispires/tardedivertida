@@ -1,3 +1,4 @@
 export { FixedMenuButton } from './FixedMenuButton';
-export * from './TimedButton';
-export * from './TransparentButton';
+export { TimedButton } from './TimedButton';
+export { TransparentButton } from './TransparentButton';
+export { SubmitButton } from './SubmitButton';
