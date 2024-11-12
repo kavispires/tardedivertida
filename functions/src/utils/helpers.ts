@@ -3,6 +3,15 @@ import { isEmulatingEnvironment } from './firebase';
 import { getListOfPlayers } from './players-utils';
 
 /**
+ * Prints content to console if emulating environment
+ */
+export const print = (content: any) => {
+  if (isEmulatingEnvironment()) {
+    console.log(JSON.stringify(content, null, 2));
+  }
+};
+
+/**
  * Generates an unique game id starting with the gameCode character
  * @param gameCode a single capital letter
  * @param usedIds the list of used ids

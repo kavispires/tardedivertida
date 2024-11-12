@@ -1,0 +1,60 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "U",
+  "gameName": "planejamento-urbano",
+  "version": "0.0.1",
+  "release": "beta",
+  "title": {
+    "pt": "Planejamento Urbano",
+    "en": "City Planning"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "ytiC kniL",
+  "summary": {
+    "pt": "Crie a cidade mais eficiente.",
+    "en": "Create the most efficient city."
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["cooperative", "discussion", "turn-based"],
+  "duration": {
+    "base": 30,
+    "perPlayer": 5,
+    "min": 30,
+    "max": 60
+  },
+  "available": false,
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW locations",
+      "description": "Allow NSFW locations",
+      "values": [
+        {
+          "label": "No",
+          "value": false
+        },
+        {
+          "label": "Yes",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

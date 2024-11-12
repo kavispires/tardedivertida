@@ -121,6 +121,11 @@ const GAMES = [
     key: 'ONDA_TELEPATICA',
   },
   {
+    name: 'planejamento-urbano',
+    code: 'U',
+    key: 'PLANEJAMENTO_URBANO',
+  },
+  {
     name: 'palheta-de-cores',
     code: 'K',
     key: 'PALHETA_DE_CORES',
@@ -274,7 +279,9 @@ export const TDR_RESOURCES = {
   CHALLENGES: 'challenges',
   CHARACTERS: 'characters',
   CHOICES: 'choices',
+  CITY_LOCATIONS: 'city-locations', // dual-language
   COLORS: 'colors',
+  CONCEPTS: 'concepts',
   CONTENDERS: 'contenders', // dual-language
   CRIME_EVIDENCE: 'crime-evidence', // dual-language
   CRIME_SCENES: 'crime-scenes', // dual-language
@@ -291,17 +298,20 @@ export const TDR_RESOURCES = {
   ITEMS_ATTRIBUTES: 'items-attributes', // dual-language
   ITEMS_ATTRIBUTE_VALUES: 'items-attribute-values', // dual-language
   MONSTER_ORIENTATION: 'monster-orientation',
+  MOVIE_GENRES: 'movie-genres', // dual-language
   MOVIE_REVIEWS: 'movie-reviews',
   MOVIES: 'movies',
   NAMING_PROMPTS: 'naming-prompts',
   OBJECT_FEATURES: 'object-features', // dual-language
   QUANTITATIVE_QUESTIONS: 'quantitative-questions',
   SCENARIOS: 'scenarios',
-  SPECTRUMS: 'spectrums',
   SINGLE_WORDS: 'single-words',
+  SPECTRUMS: 'spectrums',
   SPY_LOCATIONS: 'spy-locations',
   SPY_QUESTIONS: 'spy-questions',
   SUSPECTS: 'suspects', // dual-language
+  TEENAGE_RUMORS: 'teenage-rumors', // dual-language
+  TEENAGE_STUDENTS: 'teenage-students', // dual-language
   TESTIMONY_QUESTIONS: 'testimony-questions',
   THEME_WORDS: 'theme-words',
   THING_PROMPTS: 'thing-prompts',
