@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "0.9.29",
+  "version": "0.9.30",
   "release": "stable",
   "title": {
     "pt": "Fileira De Fatos",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "line-cloud",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

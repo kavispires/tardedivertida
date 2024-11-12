@@ -20,7 +20,7 @@ import { DrawInstruction } from './components/TextBlobs';
 import { LevelInstruction } from './components/LevelInstruction';
 import { StepDraw } from './StepDraw';
 
-function PhaseDraw({ players, state, info }: PhaseProps) {
+function PhaseDraw({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);
@@ -42,7 +42,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
       <StepSwitcher
         step={step}
         players={players}
@@ -61,7 +61,6 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
           onPressButton={goToNextStep}
           buttonText=" "
           time={5}
-          circleColor={info?.appearance?.color}
           unskippable
         >
           <Instruction contained>

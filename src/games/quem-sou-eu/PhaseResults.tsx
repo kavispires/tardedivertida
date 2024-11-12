@@ -18,7 +18,7 @@ import { ScoringRules } from './components/RulesBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResults({ players, state, info }: PhaseProps) {
+export function PhaseResults({ players, state }: PhaseProps) {
   const { step, goToPreviousStep, goToNextStep } = useStep();
 
   const slideShowConfig = useSlideShow({
@@ -33,7 +33,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

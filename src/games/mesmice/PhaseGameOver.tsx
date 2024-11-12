@@ -12,9 +12,9 @@ import type { MesmiceGalleryEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { FinalGalleryEntry } from './components/FinalGalleryEntry';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<CrownIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <Container

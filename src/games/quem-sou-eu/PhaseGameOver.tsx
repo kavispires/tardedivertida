@@ -13,9 +13,9 @@ import type { FinalCharacterEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { FinalCharacter } from './components/FinalCharacter';
 
-export function PhaseGameOver({ state, players, info, meta }: PhaseProps) {
+export function PhaseGameOver({ state, players, meta }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <Space className="space-container" wrap>

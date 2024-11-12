@@ -19,7 +19,7 @@ import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
 import { PlayerStats } from './components/PlayerStats';
 import { StepMakeDecision } from './StepMakeDecision';
 
-export function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
+export function PhaseTrickOrTreat({ state, players }: PhaseProps) {
   const user = useUser(players, state);
 
   const isNewStreet = state.street.length === 0;
@@ -28,16 +28,10 @@ export function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const onSubmitDecision = useOnSubmitDecisionAPIRequest();
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.TRICK_OR_TREAT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.TRICK_OR_TREAT}>
       <StepSwitcher step={step} players={players} waitingRoom={{ content: <PlayerStats user={user} /> }}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          buttonText=" "
-          onPressButton={goToNextStep}
-          time={5}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5}>
           <Instruction contained>
             <Translate
               pt={`Vamos pegar doces na Rua do Medo ${state.round.current} de ${state.round.total}`}

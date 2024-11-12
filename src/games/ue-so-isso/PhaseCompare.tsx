@@ -20,7 +20,7 @@ import { ComparisonRules } from './components/RulesBlobs';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { StepCompareSuggestions } from './StepCompareSuggestions';
 
-export function PhaseCompare({ state, players, info }: PhaseProps) {
+export function PhaseCompare({ state, players }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
@@ -49,7 +49,7 @@ export function PhaseCompare({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.COMPARE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.COMPARE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserTheGuesser}>

@@ -21,7 +21,7 @@ import { getAnnouncementKey } from './utils/helpers';
 import { MovieHighlight } from './components/MovieHighlight';
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -68,7 +68,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

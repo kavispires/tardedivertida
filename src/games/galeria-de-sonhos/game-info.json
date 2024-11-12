@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.1.55",
+  "version": "4.1.56",
   "release": "stable",
   "title": {
     "pt": "Galeria de sonhos",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "sky-clouds",
-    "color": "#6052a8",
-    "backgroundColor": "rgba(0, 4, 31, 0.75)"
+    "primaryColor": "#6052a8",
+    "backgroundColor": "rgba(0, 4, 31, 0.75)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

@@ -1,19 +1,19 @@
 import { ReactNode } from 'react';
 // Ant Design Resources
 import { Alert } from 'antd';
-// Types
-import type { GameInfo } from 'types/game-info';
 // Components
 import { GameBanner } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 
 type LobbyStepProps = {
-  info: GameInfo;
   children: ReactNode;
   isLocked: boolean;
 };
 
-export function LobbyStep({ info, children, isLocked }: LobbyStepProps) {
+export function LobbyStep({ children, isLocked }: LobbyStepProps) {
+  const info = useGameInfoContext();
+
   return (
     <div className="lobby-step">
       <div className="lobby-step__card">

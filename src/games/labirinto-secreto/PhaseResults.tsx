@@ -21,7 +21,7 @@ import { SLIDE_DURATION } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepGallery } from './StepGallery';
 
-export function PhaseResults({ players, state, info }: PhaseProps) {
+export function PhaseResults({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToPreviousStep, goToNextStep } = useStep();
   const gallery = useMemo(
@@ -41,7 +41,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

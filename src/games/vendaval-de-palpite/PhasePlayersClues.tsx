@@ -20,27 +20,21 @@ import { Board } from './components/Board';
 import { StepPlayerClue } from './StepPlayerClue';
 import { StepBossWaiting } from './StepBossWaiting';
 
-export function PhasePlayersClues({ state, players, info }: PhaseProps) {
+export function PhasePlayersClues({ state, players }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
   const onSubmitClues = useOnSubmitPlayerCluesAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.PLAYERS_CLUES}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.PLAYERS_CLUES}>
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{ content: <Board players={players} clues={state.clues} board={state.board} /> }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state?.round}
-          onPressButton={goToNextStep}
-          buttonText=" "
-          time={5}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
           <RoundsLeftInstruction round={state.round} />
         </RoundAnnouncement>
 

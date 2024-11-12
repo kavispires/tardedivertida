@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "ι",
   "gameName": "template",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
   "title": {
     "pt": "Template",
@@ -20,7 +20,8 @@
   "appearance": {
     "clouds": "cloud",
     "color": "",
-    "backgroundColor": ""
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],

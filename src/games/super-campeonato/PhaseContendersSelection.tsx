@@ -17,7 +17,7 @@ import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
 import { ContendersHand } from './components/ContendersHand';
 import { StepSelectContenders } from './StepSelectContenders';
 
-export function PhaseContenderSelection({ state, players, info }: PhaseProps) {
+export function PhaseContenderSelection({ state, players }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -38,11 +38,7 @@ export function PhaseContenderSelection({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.SUPER_CAMPEONATO.CONTENDER_SELECTION}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.CONTENDER_SELECTION}>
       <StepSwitcher
         step={step}
         players={players}

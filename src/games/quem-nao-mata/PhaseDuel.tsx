@@ -13,12 +13,12 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 
-export function PhaseDuel({ players, state, info }: PhaseProps) {
+export function PhaseDuel({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep } = useStep(0);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.DUEL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.DUEL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

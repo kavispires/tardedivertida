@@ -5,7 +5,6 @@ import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar as AntAvatar, Badge, Button, Divider, Drawer, Space } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-import type { GameInfo } from 'types/game-info';
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
@@ -17,6 +16,7 @@ import { GameBanner } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
 import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
 import { RulesModal } from 'components/rules';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
@@ -24,12 +24,12 @@ import { SectionSettings } from './_internal/SectionSettings';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;
-  info: GameInfo;
   state: GameState;
   userId: string;
 };
 
-export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerProps) {
+export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) {
+  const info = useGameInfoContext();
   const { language } = useLanguage();
   const [isDrawerOpen, toggleDrawer] = useToggle(false);
   const [isSettingsOpen, toggleSettingsDrawer] = useToggle(false);

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "CC",
   "gameName": "cinegrafistas-amadores",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "planned",
   "title": {
     "pt": "Cinegrafistas Amadores",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "cloud",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],

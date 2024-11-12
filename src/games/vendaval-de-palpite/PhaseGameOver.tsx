@@ -15,10 +15,9 @@ import { Translate } from 'components/language';
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
 
-export function PhaseGameOver({ state, players, info }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper
-      info={info}
       state={state}
       players={players}
       announcementIcon={state.outcome === 'WIN' ? <TrophyIcon /> : <TheEndIcon />}

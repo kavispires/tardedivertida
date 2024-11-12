@@ -22,7 +22,7 @@ import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
 import { StepCategorySelection } from './StepCategorySelection';
 
-export function PhaseDialClue({ players, state, info }: PhaseProps) {
+export function PhaseDialClue({ players, state }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -57,16 +57,10 @@ export function PhaseDialClue({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_CLUE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_CLUE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          buttonText=" "
-          onPressButton={goToNextStep}
-          time={5}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5} />
 
         {/* Step 1 */}
         <ViewOr condition={isUserThePsychic}>

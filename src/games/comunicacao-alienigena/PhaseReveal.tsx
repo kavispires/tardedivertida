@@ -20,7 +20,7 @@ import { Item, RequestHistoryEntry } from './utils/types';
 import { ITEM_TYPES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
@@ -65,7 +65,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

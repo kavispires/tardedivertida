@@ -30,7 +30,7 @@ import { CardPlayRules } from './components/RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
 
-export function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
+export function PhaseCardPlay({ players, state, meta }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, goToNextStep, setStep } = useStep();
   const user = useUser(players, state);
@@ -60,7 +60,7 @@ export function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
   }, [state.activePlayerId, setStep]);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.CARD_PLAY}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.CARD_PLAY}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

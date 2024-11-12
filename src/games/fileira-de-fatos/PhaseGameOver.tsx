@@ -14,9 +14,9 @@ import { getReference } from './utils/helpers';
 import achievementsReference from './utils/achievements';
 import { FinalScenarios } from './components/FinalScenarios';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       <Achievements
         achievements={state.achievements}
         players={players}

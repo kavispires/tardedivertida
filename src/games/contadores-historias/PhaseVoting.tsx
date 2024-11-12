@@ -18,7 +18,7 @@ import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { VotingRules } from './components/RulesBlobs';
 import { StepVoting } from './StepVoting';
 
-export function PhaseVoting({ state, players, info }: PhaseProps) {
+export function PhaseVoting({ state, players }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -39,7 +39,6 @@ export function PhaseVoting({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.CONTADORES_HISTORIAS.VOTING}
       className="c-phase"

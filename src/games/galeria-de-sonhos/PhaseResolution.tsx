@@ -16,11 +16,11 @@ import { Instruction, RoundsLeftInstruction } from 'components/text';
 // Internal
 import { RowSwapInstruction } from './components/RulesBlobs';
 
-export function PhaseResolution({ players, state, info }: PhaseProps) {
+export function PhaseResolution({ players, state }: PhaseProps) {
   const { step, goToNextStep } = useStep();
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.RESOLUTION}>
       <StepSwitcher step={step} players={players} waitingRoom={{ type: 'SERVER' }}>
         {/* Step 0 */}
         <PhaseAnnouncement

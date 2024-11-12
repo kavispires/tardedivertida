@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "release": "stable",
   "title": {
     "pt": "Sinais de Alerta",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "warning-signs-clouds",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "duration": {
     "base": 0,

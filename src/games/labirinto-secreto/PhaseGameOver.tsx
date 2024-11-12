@@ -17,12 +17,12 @@ import type { MapSegment, Tree } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { PlayerMap } from './components/PlayerMap';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const sortedPlayers = sortPlayers(players);
   const forest: Tree[] = state.forest ?? [];
 
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
       <Container title={<Translate pt="Mapas dos Jogadores" en="Players' Maps" />}>
         {sortedPlayers.map((player) => {

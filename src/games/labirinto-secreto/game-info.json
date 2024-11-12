@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "2.2.14",
+  "version": "2.2.15",
   "release": "stable",
   "title": {
     "pt": "Labirinto Secreto",
@@ -15,7 +15,9 @@
   "basedOn": "shtaP citsyM",
   "appearance": {
     "clouds": "tree-cloud",
-    "color": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "summary": {
     "pt": "Jogadores tem que descobrir qual caminho devem seguir num labirinto de palavras usando adjetivos e lógica",

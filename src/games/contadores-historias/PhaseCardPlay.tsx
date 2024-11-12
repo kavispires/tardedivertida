@@ -18,7 +18,7 @@ import { Instruction } from 'components/text';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { StepPlayCard } from './StepPlayCard';
 
-export function PhaseCardPlay({ state, players, info }: PhaseProps) {
+export function PhaseCardPlay({ state, players }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -54,7 +54,7 @@ export function PhaseCardPlay({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.CARD_PLAY}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.CARD_PLAY}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepPlayCard

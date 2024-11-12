@@ -21,7 +21,7 @@ import { useOnSubmitFeatureAPIRequest } from './utils/api-requests';
 import { WaitingRoomFeature } from './components/WaitingRoomFeature';
 import { StepSelectFeature } from './StepSelectFeature';
 
-export function PhaseObjectFeatureElimination({ players, state, info }: PhaseProps) {
+export function PhaseObjectFeatureElimination({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const initialStep = state.outcome === 'NEW' ? 0 : 1;
@@ -55,7 +55,7 @@ export function PhaseObjectFeatureElimination({ players, state, info }: PhasePro
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MESMICE.OBJECT_FEATURE_ELIMINATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MESMICE.OBJECT_FEATURE_ELIMINATION}>
       <StepSwitcher
         step={step}
         players={players}
@@ -72,13 +72,7 @@ export function PhaseObjectFeatureElimination({ players, state, info }: PhasePro
         }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state?.round}
-          onPressButton={goToNextStep}
-          buttonText=" "
-          time={5}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
           <Translate
             pt={
               <>

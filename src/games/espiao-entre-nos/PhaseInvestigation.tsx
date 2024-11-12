@@ -28,7 +28,7 @@ import {
 import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
 import { StepInvestigation } from './StepInvestigation';
 
-export function PhaseInvestigation({ state, players, info }: PhaseProps) {
+export function PhaseInvestigation({ state, players }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
@@ -56,7 +56,6 @@ export function PhaseInvestigation({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION}
       className="e-phase"

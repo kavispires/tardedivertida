@@ -21,7 +21,7 @@ import { achievementsReference } from './utils/achievements';
 import { LoseGameText } from './components/RulesBlobs';
 import { DoorFrame } from '../../components/game/DoorFrame';
 
-export function PhaseGameOver({ players, state, info }: PhaseProps) {
+export function PhaseGameOver({ players, state }: PhaseProps) {
   const isVictory = state.winCondition === 'WIN';
   const doorWidth = useCardWidth(10, {
     gap: 8,
@@ -40,7 +40,6 @@ export function PhaseGameOver({ players, state, info }: PhaseProps) {
 
   return (
     <GameOverWrapper
-      info={info}
       state={state}
       players={players}
       announcementIcon={isVictory ? <MagicCultLeaderIcon /> : <MagicSkullIcon />}

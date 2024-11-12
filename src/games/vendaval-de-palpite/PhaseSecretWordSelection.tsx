@@ -19,18 +19,14 @@ import { useOnSubmitSecretWordAPIRequest } from './utils/api-requests';
 import { StepSecretWordSelection } from './StepSecretWordSelection';
 import { StepWaiting } from './StepWaiting';
 
-export function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
+export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
   const onSubmitSecretWord = useOnSubmitSecretWordAPIRequest(setStep);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.VENDAVAL_DE_PALPITE.SECRET_WORD_SELECTION}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.SECRET_WORD_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

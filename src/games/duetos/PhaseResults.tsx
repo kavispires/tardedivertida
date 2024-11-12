@@ -15,7 +15,7 @@ import { Instruction } from 'components/text';
 import { StepResult } from './StepResults';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResults({ players, state, info }: PhaseProps) {
+export function PhaseResults({ players, state }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
 
   const announcement = (
@@ -32,7 +32,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.DUETOS.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DUETOS.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

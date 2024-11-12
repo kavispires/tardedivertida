@@ -16,7 +16,7 @@ import { StepSwitcher } from 'components/steps';
 import { useOnSubmitAlienRequestAPIRequest } from './utils/api-requests';
 import { StepAlienRequests } from './StepAlienRequests';
 
-export function PhaseAlienRequest({ players, state, info }: PhaseProps) {
+export function PhaseAlienRequest({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
@@ -35,11 +35,7 @@ export function PhaseAlienRequest({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_REQUEST}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_REQUEST}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepAlienRequests

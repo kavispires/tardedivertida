@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { StepRanking } from './StepRanking';
 import { StepWinner } from './StepWinner';
 
-export function PhaseResults({ state, players, info }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
   const user = useUser(players, state);
@@ -44,7 +44,7 @@ export function PhaseResults({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepWinner

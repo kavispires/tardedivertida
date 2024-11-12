@@ -19,7 +19,7 @@ import { StepGallery } from './StepGallery';
 import { StepResults } from './StepResults';
 // Icons
 
-export function PhaseResolution({ players, state, info }: PhaseProps) {
+export function PhaseResolution({ players, state }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,
@@ -34,7 +34,7 @@ export function PhaseResolution({ players, state, info }: PhaseProps) {
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "release": "stable",
   "title": {
     "pt": "Eu Não Sou Um Robô",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "captcha-clouds",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],

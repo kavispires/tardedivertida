@@ -25,7 +25,7 @@ import { TrackTitle } from './components/TrackTitle';
 import { DJInstructions } from './components/RulesBlobs';
 import { StepTrack } from './StepTrack';
 
-export function PhaseTrack({ players, state, info }: PhaseProps) {
+export function PhaseTrack({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep(showDJPruPruPruStep(state.round));
 
@@ -55,7 +55,7 @@ export function PhaseTrack({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MEGAMIX.TRACK}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MEGAMIX.TRACK}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vingativos",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "planned",
   "title": {
     "pt": "Os Vingativos",
@@ -15,7 +15,9 @@
   "basedOn": "muiretsyM",
   "appearance": {
     "clouds": "cloud",
-    "color": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "summary": {
     "pt": "Jogadores são super-heróis tentando descobrir os planos secretos de super vilões",

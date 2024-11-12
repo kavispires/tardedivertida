@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "4.1.40",
+  "version": "4.1.41",
   "release": "stable",
   "title": {
     "pt": "Comunicação Alienígena",
@@ -20,8 +20,9 @@
   },
   "appearance": {
     "clouds": "ufo-cloud",
-    "color": "#6CC417",
-    "backgroundColor": "rgba(53, 32, 48, 0.75)"
+    "primaryColor": "#6CC417",
+    "backgroundColor": "rgba(53, 32, 48, 0.75)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

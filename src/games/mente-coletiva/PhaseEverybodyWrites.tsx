@@ -16,7 +16,7 @@ import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { AnsweringRules } from './components/RulesBlobs';
 import { StepAnswering } from './StepAnswering';
 
-export function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps) {
+export function PhaseEverybodyWrites({ state, players, meta }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -35,7 +35,7 @@ export function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps)
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.EVERYBODY_WRITES}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.EVERYBODY_WRITES}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepAnswering

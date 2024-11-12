@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "release": "stable",
   "title": {
     "pt": "Jogo da Mesmice",
@@ -19,8 +19,9 @@
   },
   "appearance": {
     "clouds": "analysis-cloud",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],

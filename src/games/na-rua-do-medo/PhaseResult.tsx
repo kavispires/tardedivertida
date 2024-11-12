@@ -9,11 +9,11 @@ import { PhaseContainer } from 'components/phases';
 // Internal
 import { StepResult } from './StepResult';
 
-export function PhaseResult({ state, players, info }: PhaseProps) {
+export function PhaseResult({ state, players }: PhaseProps) {
   const user = useUser(players, state);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.RESULT}>
       {/* Step 1 */}
       <StepResult
         players={players}

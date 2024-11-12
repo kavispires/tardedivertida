@@ -22,7 +22,7 @@ import { StepPlanLocations } from './StepPlanLocations';
 import { StepWaitForPlanning } from './StepWaitForPlanning';
 // Icons
 
-export function PhasePlanning({ players, state, info }: PhaseProps) {
+export function PhasePlanning({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const onSubmitPlanning = useOnSubmitPlanningAPIRequest(setStep);
@@ -54,15 +54,10 @@ export function PhasePlanning({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.PLANNING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.PLANNING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          onPressButton={goToNextStep}
-          time={3}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={3}>
           <Instruction contained>
             <Translate
               pt="Somos arquitetos e urbanistas, e estamos planejando a cidade!"

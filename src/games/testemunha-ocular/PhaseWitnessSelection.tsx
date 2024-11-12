@@ -18,7 +18,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 
-function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
+function PhaseWitnessSelection({ state, players }: PhaseProps) {
   const { step } = useStep(0);
   const suspectCount = state?.suspects?.length ?? '?';
 
@@ -83,7 +83,6 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION}
       className="t-phase"

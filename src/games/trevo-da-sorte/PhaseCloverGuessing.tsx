@@ -19,14 +19,14 @@ import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { StepGuessClover } from './StepGuessClover';
 import { StepWaitClover } from './StepWaitClover';
 
-export function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
+export function PhaseCloverGuessing({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [activeCloverPlayer, isUserTheCloverPlayer] = useWhichPlayerIsThe('activeCloverId', state, players);
 
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.CLOVER_GUESSING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.CLOVER_GUESSING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

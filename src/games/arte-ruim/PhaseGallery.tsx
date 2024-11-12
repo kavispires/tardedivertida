@@ -17,7 +17,7 @@ import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-function PhaseGallery({ players, state, info, meta }: PhaseProps) {
+function PhaseGallery({ players, state, meta }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,
@@ -35,12 +35,7 @@ function PhaseGallery({ players, state, info, meta }: PhaseProps) {
     : Object.values(players).some((player) => player.score > 50);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.ARTE_RUIM.GALLERY}
-      className="a-gallery-phase"
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.GALLERY} className="a-gallery-phase">
       <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
         <PhaseAnnouncement

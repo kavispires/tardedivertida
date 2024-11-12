@@ -16,7 +16,7 @@ import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { GuessMessage } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ players, state, info }: PhaseProps) {
+export function PhaseGuessing({ players, state }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -34,7 +34,7 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.GUESSING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.GUESSING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepGuessing
