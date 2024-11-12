@@ -26,6 +26,7 @@ import NAO_SOU_ROBO from 'games/nao-sou-robo/game-info.json';
 import NAUFRAGOS from 'games/naufragos/game-info.json';
 import ONDA_TELEPATICA from 'games/onda-telepatica/game-info.json';
 import PALHETA_DE_CORES from 'games/palheta-de-cores/game-info.json';
+import PLANEJAMENTO_URBANO from 'games/planejamento-urbano/game-info.json';
 import POLEMICA_DA_VEZ from 'games/polemica-da-vez/game-info.json';
 import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/game-info.json';
 import QUEM_NAO_MATA from 'games/quem-nao-mata/game-info.json';
@@ -78,6 +79,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   naufragos: NAUFRAGOS,
   'onda-telepatica': ONDA_TELEPATICA,
   'palheta-de-cores': PALHETA_DE_CORES,
+  'planejamento-urbano': PLANEJAMENTO_URBANO,
   'polemica-da-vez': POLEMICA_DA_VEZ,
   'porta-dos-desesperados': PORTA_DOS_DESESPERADOS,
   'quem-nao-mata': QUEM_NAO_MATA,

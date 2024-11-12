@@ -4,7 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Utils
-import 'utils/styles.scss';
 import { PHASES } from 'utils/phases';
 // Icons
 import { TDIcon } from 'icons/TDIcon';

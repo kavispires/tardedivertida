@@ -9,6 +9,7 @@ import * as players from './players-utils';
 import * as playerHand from './player-hand-utils';
 import * as tdr from './tdr-utils';
 import * as user from './user';
+import * as toolKits from './tool-kits';
 
 export default {
   achievements,
@@ -22,4 +23,5 @@ export default {
   playerHand,
   tdr,
   user,
+  toolKits,
 };
