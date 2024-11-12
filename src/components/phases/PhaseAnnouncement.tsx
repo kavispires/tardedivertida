@@ -106,7 +106,7 @@ export function PhaseAnnouncement({
   type = 'block',
 }: PhaseAnnouncementProps) {
   useTemporarilyHidePlayersBar(type === 'overlay');
-  const durationPerRound = [15, 7, 5]?.[currentRound] ?? 4;
+  const durationPerRound = [7, 15, 7, 5]?.[currentRound] ?? 4;
   const [isActive, setActive] = useState(true);
   const [isRemoved, setRemoved] = useState(false);
 
