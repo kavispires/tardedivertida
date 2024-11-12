@@ -23,6 +23,7 @@ type SlideShowProps = {
   className?: string;
   leftClassName?: string;
   rightClassName?: string;
+  rankingButtonLabel?: ReactNode;
 };
 
 /**
@@ -42,6 +43,7 @@ export function SlideShow({
   className = '',
   leftClassName = '',
   rightClassName = '',
+  rankingButtonLabel,
 }: SlideShowProps) {
   return (
     <div className={clsx('slide-show', className)}>
@@ -59,6 +61,7 @@ export function SlideShow({
         disableControls={disableControls}
         barColor={barColor}
         windowDuration={windowDuration}
+        rankingButtonLabel={rankingButtonLabel}
       />
     </div>
   );

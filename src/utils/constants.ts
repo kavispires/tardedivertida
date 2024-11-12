@@ -274,6 +274,7 @@ export const GAME_COLLECTION = {
   NAUFRAGOS: 'naufragos',
   ONDA_TELEPATICA: 'onda-telepatica',
   PALHETA_DE_CORES: 'palheta-de-cores',
+  PLANEJAMENTO_URBANO: 'planejamento-urbano',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
   PORTA_DOS_DESESPERADOS: 'porta-dos-desesperados',
   QUEM_NAO_MATA: 'quem-nao-mata',

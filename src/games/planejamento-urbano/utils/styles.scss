@@ -1,0 +1,126 @@
+@use 'styles/sass' as *;
+
+.city-site {
+  overflow: hidden;
+  background: get-color('blue', 3);
+  margin: get-unit(1);
+  padding: get-unit(2);
+  border-radius: $border-radius;
+  display: grid;
+  place-items: center;
+  position: relative;
+
+  &--unavailable {
+    opacity: 0.25;
+  }
+
+  &--constructed {
+    background-color: get-color('brown', 7);
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  &--selectable {
+    cursor: pointer;
+    background: get-color('blue', 5);
+  }
+
+  &--temp-construction {
+    rotate: -10deg;
+    translate: -10% -5%;
+    z-index: 2;
+    scale: 0.85;
+  }
+
+  &--temp-construction-cone {
+    position: absolute;
+    z-index: 7;
+    top: get-unit(2);
+    right: get-unit(2);
+    rotate: 30deg;
+  }
+
+  &--temp-construction-A {
+    filter: hue-rotate(220deg);
+  }
+
+  &--temp-construction-B {
+    filter: hue-rotate(120deg);
+  }
+
+  &--temp-construction-C {
+    filter: hue-rotate(170deg);
+  }
+
+  &--temp-construction-D {
+    filter: hue-rotate(60deg);
+  }
+}
+
+.city-site-name {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+
+  padding-inline: 0.4em;
+  background: get-color('white');
+  border: 1px solid rgba(100, 100, 100, 0.2);
+  border-radius: get-unit(1);
+  font-size: 1em;
+
+  &--small {
+    font-size: 0.85em;
+  }
+}
+
+.city-site-category {
+  font-size: 1.25em;
+  // display: block;
+  text-align: center;
+  margin-top: get-unit(1);
+
+  & > span {
+    background: white;
+    border-radius: get-unit(1);
+  }
+}
+
+.city-site-available {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: get-unit(1);
+
+  & > span {
+    margin-inline-end: 0;
+  }
+}
+
+.pu-gallery {
+  &__map {
+    background: get-color('blue', 3);
+    border-radius: $border-radius;
+    height: 100%;
+  }
+
+  &__info {
+    border-radius: $border-radius;
+    height: 100%;
+    padding: get-unit(2);
+  }
+
+  &__label {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: get-unit(1);
+
+    @include lg {
+      font-size: 0.75rem;
+    }
+  }
+}

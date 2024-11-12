@@ -1,7 +1,7 @@
 /**
  * Generic text card
  * Used for: adjectives, categories, challenges, characters, galeria-de-sonhos, labirinto-secreto,
- * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities, emotions, colors
+ * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities, emotions, colors, teenage-rumors
  */
 export type TextCard = {
   /**
@@ -155,7 +155,8 @@ export type ChoiceCard = {
 };
 
 /**
- *
+ * City Location Card
+ * Used for: planejamento-urbano
  */
 export type CityLocation = {
   /**
@@ -1011,4 +1012,46 @@ export type MovieGenres = {
   subGenres: Record<string, MovieSubGenre>;
   roles: Record<string, MovieRole>;
   features: Record<string, MovieFeature>;
+};
+
+/**
+ * Teenage Student Card
+ */
+export type TeenageStudent = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The title of the teenager
+   */
+  title: DualLanguageValue;
+  /**
+   * The name of the teenager
+   */
+  name: DualLanguageValue;
+  /**
+   * The social group the student belongs to
+   */
+  socialGroup: string;
+  /**
+   * The gender of the teenager (male, female, both)
+   **/
+  gender: string;
+  /**
+   * the teenager ethnicity (white, black, asian, mixed, latino, etc...)
+   */
+  ethnicity: string;
+  /**
+   * The teenager's age range ("freshman", "sophomore", "junior", "senior")
+   */
+  age: string;
+  /**
+   * The teenager's build ("small", "medium", "large")
+   */
+  build: string;
+  /**
+   * The teenager's height ("short", "medium", "tall")
+   */
+  height: string;
 };
