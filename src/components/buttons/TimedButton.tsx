@@ -32,6 +32,7 @@ export function TimedButton({
   type,
   onClick,
   hideTimer = false,
+  className,
   ...rest
 }: TimedButtonProps) {
   const { timeLeft } = useCountdown({
@@ -44,9 +45,8 @@ export function TimedButton({
   const timeClass = 'timed-button__time';
 
   return (
-    <Button {...rest} type={type} onClick={onClick ?? onExpire}>
+    <Button className={clsx('timed-button', className)} {...rest} type={type} onClick={onClick ?? onExpire}>
       {children}
-      {Boolean(children && !hideTimer) && ' '}
       {!hideTimer && <span className={clsx(timeClass, `${timeClass}--${type}`)}>{timeLeft}</span>}
     </Button>
   );
