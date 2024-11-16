@@ -28,7 +28,7 @@ export function PhaseResults({ players, state }: PhaseProps) {
   });
 
   const onGoBack = () => {
-    slideShowConfig.setSlideIndex(0);
+    slideShowConfig.reset();
     goToPreviousStep();
   };
 

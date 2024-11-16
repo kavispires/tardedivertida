@@ -27,7 +27,7 @@ export function PhaseResolution({ state, players }: PhaseProps) {
   });
 
   const onGoBack = () => {
-    slideShowConfig.setSlideIndex(0);
+    slideShowConfig.reset();
     goToPreviousStep();
   };
 
