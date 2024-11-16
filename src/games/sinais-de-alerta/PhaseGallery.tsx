@@ -26,7 +26,7 @@ export function PhaseGallery({ players, state, meta }: PhaseProps) {
   });
 
   const onGoBack = () => {
-    slideShowConfig.setSlideIndex(0);
+    slideShowConfig.reset();
     goToPreviousStep();
   };
 

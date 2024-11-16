@@ -30,6 +30,10 @@ export type SlideShowConfig = {
    * Callback function to execute when the slide show expires
    */
   onExpire: () => void;
+  /**
+   * Reset the slide show to the first slide
+   */
+  reset: () => void;
 };
 
 /**
@@ -54,6 +58,7 @@ export function useSlideShow(options: {
     ...options,
     slideIndex,
     setSlideIndex,
+    reset: () => setSlideIndex(0),
     isFirstGalleryRunThrough,
     setIsFirstGalleryRunThrough,
   };

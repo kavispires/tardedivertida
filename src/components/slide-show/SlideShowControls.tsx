@@ -52,16 +52,22 @@ export function SlideShowControls({
 
   // Automatically go to the next window every {windowDuration} seconds
   useEffect(() => {
-    if (timeLeft < totalDuration && timeLeft > 0 && timeLeft % slideDuration === 0) {
-      config.setSlideIndex((s: number) => Math.min(s + 1, config.length - 1));
+    const expectedSlideIndex = Math.max(
+      0,
+      Math.min(config.length - 1, Math.floor((totalDuration - timeLeft) / slideDuration))
+    );
+    if (isRunning && timeLeft < totalDuration && timeLeft > 0 && expectedSlideIndex !== config.slideIndex) {
+      config.setSlideIndex(expectedSlideIndex);
     }
-  }, [timeLeft, config, slideDuration, totalDuration]);
+  }, [timeLeft, config, slideDuration, totalDuration]); // eslint-disable-line
 
   const goToPreviousSlide = () => {
+    pause();
     config.setSlideIndex((s: number) => Math.max(s - 1, 0));
   };
 
   const goToNextSlide = () => {
+    pause();
     config.setSlideIndex((s: number) => Math.min(s + 1, config.length - 1));
   };
 
