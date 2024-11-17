@@ -60,7 +60,7 @@ export function StepAlienRequests({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title white>
+      <Title>
         <Translate
           pt={
             <>

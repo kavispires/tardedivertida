@@ -18,7 +18,7 @@ import { EvaluationRules } from './components/TextBlobs';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 import { StepEvaluation } from './StepEvaluation';
 
-function EvaluationPhase({ players, state, info }: PhaseProps) {
+function EvaluationPhase({ players, state }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -36,7 +36,7 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.EVALUATION}>
       <StepSwitcher
         step={step}
         players={players}

@@ -17,3 +17,8 @@ export const ITEM_TYPES = {
   CURSE: 'CURSE',
   BLANK: 'BLANK',
 };
+
+export const BADGE_INSTRUCTION = {
+  pt: 'Quantas vezes esse item foi parte de uma pergunta',
+  en: 'How many times this item was part of a question',
+};

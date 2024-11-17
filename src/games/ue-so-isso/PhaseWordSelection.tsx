@@ -48,7 +48,7 @@ function RoundAnnouncementText({ guesser, group }: RoundAnnouncementTextProps) {
   );
 }
 
-export function PhaseWordSelection({ state, players, info }: PhaseProps) {
+export function PhaseWordSelection({ state, players }: PhaseProps) {
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const { step, setStep, goToNextStep } = useStep(0);
 
@@ -107,15 +107,10 @@ export function PhaseWordSelection({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          onPressButton={goToNextStep}
-          time={7}
-          circleColor={info?.appearance?.color}
-        >
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={7}>
           <RoundAnnouncementText guesser={guesser} group={state.group} />
         </RoundAnnouncement>
 

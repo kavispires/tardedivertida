@@ -6,7 +6,6 @@
   max-width: $max-width;
   text-wrap: balance;
   text-align: center;
-  color: get-color('black');
 
   &.ant-typography {
     margin-bottom: get-unit(1);
@@ -23,8 +22,16 @@
     }
   }
 
-  &#{$self}--white {
+  &#{$self}--light {
+    color: get-color('black');
+  }
+
+  &#{$self}--dark {
     color: get-color('white');
+  }
+
+  &#{$self}--white {
+    color: get-color('red');
   }
 
   &#{$self}--large {
@@ -55,5 +62,10 @@
   &#{$self}--align-right {
     text-align: right;
     margin-right: 0;
+  }
+
+  &__icon {
+    margin-right: get-unit(2);
+    transform: translateY(-0.1em);
   }
 }

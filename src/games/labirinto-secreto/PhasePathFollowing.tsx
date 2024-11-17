@@ -20,7 +20,7 @@ import { useOnSubmitPathAPIRequest } from './utils/api-requests';
 import { StepFollowPath } from './StepFollowPath';
 import { StepPathWaiting } from './StepPathWaiting';
 
-export function PhasePathFollowing({ players, state, info }: PhaseProps) {
+export function PhasePathFollowing({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -47,7 +47,7 @@ export function PhasePathFollowing({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.PATH_FOLLOWING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.PATH_FOLLOWING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>

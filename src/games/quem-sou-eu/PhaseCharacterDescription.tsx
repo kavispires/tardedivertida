@@ -18,7 +18,7 @@ import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 import { WaitingRoomCharacter } from './components/WaitingRoomCharacter';
 import { StepSelectGlyphs } from './StepSelectGlyphs';
 
-export function PhaseCharacterDescription({ players, state, info }: PhaseProps) {
+export function PhaseCharacterDescription({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
 
@@ -41,7 +41,7 @@ export function PhaseCharacterDescription({ players, state, info }: PhaseProps) 
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.CHARACTER_DESCRIPTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.CHARACTER_DESCRIPTION}>
       <StepSwitcher
         step={step}
         players={players}
@@ -55,7 +55,6 @@ export function PhaseCharacterDescription({ players, state, info }: PhaseProps) 
           onPressButton={goToNextStep}
           buttonText=" "
           time={5}
-          circleColor={info?.appearance?.color}
         ></RoundAnnouncement>
 
         {/* Step 0 */}

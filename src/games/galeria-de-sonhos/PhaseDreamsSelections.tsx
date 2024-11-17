@@ -19,7 +19,7 @@ import { DreamSelectionRules } from './components/RulesBlobs';
 import { SelectedDreams } from './components/SelectedDreams';
 import { StepDreamsSelection } from './StepDreamsSelection';
 
-export function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
+export function PhaseDreamsSelections({ players, state, meta }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -38,7 +38,7 @@ export function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION}>
       <StepSwitcher step={step} players={players} waitingRoom={{ content: <SelectedDreams user={user} /> }}>
         {/* Step 0 */}
         <StepDreamsSelection

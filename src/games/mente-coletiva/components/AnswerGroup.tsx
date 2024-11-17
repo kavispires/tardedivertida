@@ -14,7 +14,7 @@ import { Card } from 'components/cards';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
 import type { AnswerGroupObject, Question } from '../utils/types';
 import { SheepAvatar } from './SheepAvatar';
@@ -51,12 +51,12 @@ export function AnswerGroup({
         <GroupQuestionCard question={currentQuestion} />
       </Card>
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt="Não existe resposta certa ou errada. Aqui, apenas agrupamos respostas iguais para ganhar pontos. O objetivo é pensar como o grupo!"
           en="There's no wrong or right answer. Here, we just group equal answers for points. The goal is to think like the group"
         />
-      </Instruction>
+      </RuleInstruction>
 
       <div className="m-answer-group">
         <div className="m-answer-group__answer-container">

@@ -16,14 +16,14 @@ import { Instruction } from 'components/text';
 import { useOnSubmitCluesAPIRequest } from './utils/api-requests';
 import { StepWriteClues } from './StepWriteClues';
 
-export function PhaseCloverWriting({ players, state, info }: PhaseProps) {
+export function PhaseCloverWriting({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitClues = useOnSubmitCluesAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.CLOVER_WRITING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.CLOVER_WRITING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

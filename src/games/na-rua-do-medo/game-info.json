@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.49",
+  "version": "3.1.51",
   "release": "stable",
+  "available": false,
   "title": {
     "pt": "Na Rua do Medo",
     "en": "Fear Street"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "halloween-clouds",
-    "color": "#ea7702",
-    "backgroundColor": "rgba(27, 7, 57, 0.8)"
+    "primaryColor": "#ea7702",
+    "backgroundColor": "rgba(27, 7, 57, 0.8)",
+    "colorScheme": "dark"
   },
   "rules": {
     "pt": [

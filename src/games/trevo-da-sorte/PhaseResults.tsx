@@ -14,11 +14,11 @@ import { Instruction } from 'components/text';
 // Internal
 import { StepRanking } from './StepRanking';
 
-export function PhaseResults({ players, state, info }: PhaseProps) {
+export function PhaseResults({ players, state }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

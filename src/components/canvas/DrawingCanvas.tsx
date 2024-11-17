@@ -252,7 +252,7 @@ export const DrawingCanvas = ({
         </Layer>
       </Stage>
       {showControls && (
-        <Space>
+        <Space className="mt-2">
           <Button onClick={onUndo} disabled={lines.length === 0}>
             <UndoOutlined />
             <Translate pt="Desfazer" en="Undo" />

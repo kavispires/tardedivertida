@@ -17,7 +17,7 @@ import { useOnSubmitReactionAPIRequest } from './utils/api-requests';
 import { mockGuess } from './utils/mock';
 import { StepLiking } from './StepLiking';
 
-export function PhaseReact({ state, players, info }: PhaseProps) {
+export function PhaseReact({ state, players }: PhaseProps) {
   const { step, setStep } = useStep(0);
 
   const onSubmitReaction = useOnSubmitReactionAPIRequest(setStep);
@@ -55,7 +55,7 @@ export function PhaseReact({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.REACT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.REACT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepLiking

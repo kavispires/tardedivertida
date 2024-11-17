@@ -15,11 +15,11 @@ import { Translate } from 'components/language';
 import type { PastTweet } from './utils/types';
 import achievementsReference from './utils/achievements';
 
-export function PhaseGameOver({ state, players, info }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const playerCount = Object.keys(players).length;
 
   return (
-    <GameOverWrapper announcementIcon={<TrophyIcon />} info={info} state={state} players={players}>
+    <GameOverWrapper announcementIcon={<TrophyIcon />} state={state} players={players}>
       <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
 
       <ul

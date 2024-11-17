@@ -1,6 +1,5 @@
 // Types
 import type { GameState } from 'types/game';
-import type { GameInfo } from 'types/game-info';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -12,15 +11,14 @@ import { Instruction, Title } from 'components/text';
 import { PhaseContainer } from './PhaseContainer';
 
 type PhaseSetupProps = {
-  info: GameInfo;
   state: GameState;
 };
 
-export function PhaseSetup({ info, state }: PhaseSetupProps) {
+export function PhaseSetup({ state }: PhaseSetupProps) {
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
       <div className="phase-announcement">
-        <Title>
+        <Title colorScheme="light">
           <Translate pt="Preparando o jogo..." en="Setting up..." />
         </Title>
 

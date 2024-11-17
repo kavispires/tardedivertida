@@ -18,12 +18,12 @@ import type { PastBattles } from './utils/type';
 import { achievementsReference } from './utils/achievements';
 // Ant Design resources
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const pastBattles: PastBattles = state.pastBattles;
   const { translate } = useLanguage();
 
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Title size="xx-small" className="padding">
         <Translate pt="Campeão Ultimate" en="Ultimate Champion" />
       </Title>

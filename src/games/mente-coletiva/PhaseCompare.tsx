@@ -17,7 +17,7 @@ import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './utils/ap
 import { ComparingRules } from './components/RulesBlobs';
 import { StepCompare } from './StepCompare';
 
-export function PhaseCompare({ state, players, info }: PhaseProps) {
+export function PhaseCompare({ state, players }: PhaseProps) {
   const { step } = useStep(0);
   const user = useUser(players, state);
   const [allowedList, setAllowedList] = useState({});
@@ -40,7 +40,7 @@ export function PhaseCompare({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.COMPARE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.COMPARE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepCompare

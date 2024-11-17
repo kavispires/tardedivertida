@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
+// Components
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 
 function SingleCloud({ type }: { type: string; index?: number }) {
   return (
@@ -55,12 +57,11 @@ function getCloudComponent(type: string) {
   return SingleCloud;
 }
 
-type CloudBackgroundProps = {
-  cloudType?: string;
-  backgroundColor?: string;
-};
+export function CloudBackground() {
+  const gameInfo = useGameInfoContext();
+  const cloudType = gameInfo?.appearance?.clouds ?? 'cloud';
+  const backgroundColor = gameInfo?.appearance?.backgroundColor;
 
-export function CloudBackground({ cloudType = 'cloud', backgroundColor }: CloudBackgroundProps) {
   const CloudTypeComponent = getCloudComponent(cloudType);
 
   const baseClass = 'cloud-background';

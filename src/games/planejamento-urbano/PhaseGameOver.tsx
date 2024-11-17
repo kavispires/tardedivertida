@@ -13,17 +13,16 @@ import { CityMap } from './components/CityMap';
 // import { getReference } from './utils/helpers';
 // import achievementsReference from './utils/achievements';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       {/* <Achievements
         achievements={state.achievements}
         players={players}
         reference={achievementsReference}
-        white
       /> */}
 
-      <Container title={<Translate pt="Cidade Inaugurada" en="Final City" />} titleProps={{ white: true }}>
+      <Container title={<Translate pt="Cidade Inaugurada" en="Final City" />}>
         {state.city && state.cityLocationsDict && (
           <CityMap city={state.city} cityLocationsDict={state.cityLocationsDict} />
         )}

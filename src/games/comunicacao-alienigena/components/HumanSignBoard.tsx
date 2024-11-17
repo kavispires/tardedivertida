@@ -33,7 +33,7 @@ export function HumanSignBoard({ signs, startingAttributes = [] }: HumanSignBoar
 
   return (
     <Space direction="vertical">
-      <Title level={3} size="xx-small" white>
+      <Title level={3} size="xx-small">
         <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
         <Popover
           content={
@@ -45,7 +45,7 @@ export function HumanSignBoard({ signs, startingAttributes = [] }: HumanSignBoar
           title={<Translate pt="Dica" en="Hint" />}
           arrow
         >
-          <Button type="text" icon={<InfoCircleOutlined />} shape="circle" />{' '}
+          <Button type="text" style={{ color: 'white' }} icon={<InfoCircleOutlined />} shape="circle" />{' '}
         </Popover>
       </Title>
       <Space direction="vertical" className="board-container">

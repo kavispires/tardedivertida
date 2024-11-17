@@ -30,7 +30,7 @@ import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
 
-export function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
+export function PhaseCrimeSelection({ players, state }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -118,16 +118,10 @@ export function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state?.round}
-          onPressButton={goToNextStep}
-          buttonText=" "
-          time={5}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
 
         {/* Step 1 */}
         <>

@@ -1,27 +1,28 @@
+import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
+import { BossIdeaCard } from 'types/tdr';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
 import { PHASES } from 'utils/phases';
-// Icons
 // Components
 import { DualTranslate } from 'components/language';
 import { PhaseContainer } from 'components/phases';
+import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { StepPlaceGood } from './StepPlaceGood';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { RoundAnnouncement } from 'components/round';
 import { DAYS_OF_THE_WEEK } from './utils/constants';
-import { BossIdeaCard } from 'types/tdr';
 import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from './utils/api-requests';
-import { useMemo } from 'react';
-import { orderBy } from 'lodash';
+import { StepPlaceGood } from './StepPlaceGood';
 import { StepConfirmGood } from './StepConfirmGood';
+// Icons
 
-export function PhasePlacementConfirmation({ players, state, info }: PhaseProps) {
+export function PhasePlacementConfirmation({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const [supervisor, isUserTheSupervisor] = useWhichPlayerIsThe('supervisorId', state, players);
 
@@ -35,11 +36,7 @@ export function PhasePlacementConfirmation({ players, state, info }: PhaseProps)
   const warehouse = useMemo(() => orderBy(state.warehouseGrid, ['id']), [state.warehouseGrid]);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.CONTROLE_DE_ESTOQUE.PLACEMENT_CONFIRMATION}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CONTROLE_DE_ESTOQUE.PLACEMENT_CONFIRMATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepConfirmGood

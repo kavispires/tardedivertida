@@ -7,24 +7,23 @@ import { CriminalIcon } from 'icons/CriminalIcon';
 import { NewspaperIcon } from 'icons/NewspaperIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
+import { Achievements } from 'components/general/Achievements';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
 // Internal
+import achievementsReference from './utils/achievements';
 import { AnnouncementContent } from './components/TextBlobs';
 import { QuestionsHistory } from './components/QuestionsHistory';
-import achievementsReference from './utils/achievements';
-import { Achievements } from 'components/general/Achievements';
 
-function PhaseGameOver({ state, info, players }: PhaseProps) {
+function PhaseGameOver({ state, players }: PhaseProps) {
   const { language } = useLanguage();
 
   const didUserWin = state.outcome === 'WIN';
 
   return (
     <GameOverWrapper
-      info={info}
       state={state}
       players={players}
       announcementIcon={didUserWin ? <CriminalIcon /> : <NewspaperIcon />}

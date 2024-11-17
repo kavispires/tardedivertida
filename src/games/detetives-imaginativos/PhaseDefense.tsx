@@ -18,7 +18,7 @@ import { Instruction, TextHighlight, Title } from 'components/text';
 import { useOnFinishDefenseRequest } from './utils/api-requests';
 import { StepDefending } from './StepDefending';
 
-export function PhaseDefense({ state, players, info }: PhaseProps) {
+export function PhaseDefense({ state, players }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
@@ -50,7 +50,6 @@ export function PhaseDefense({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.DEFENSE}
       className="d-defense-phase"

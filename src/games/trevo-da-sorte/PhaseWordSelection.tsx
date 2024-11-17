@@ -18,22 +18,17 @@ import { useOnSubmitBadWordsAPIRequest } from './utils/api-requests';
 import { WORST_TO_REMOVE } from './utils/constants';
 import { StepSelectWords } from './StepSelectWords';
 
-export function PhaseWordSelection({ players, state, info }: PhaseProps) {
+export function PhaseWordSelection({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitBadWords = useOnSubmitBadWordsAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.WORD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.WORD_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          onPressButton={goToNextStep}
-          time={4}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} />
 
         {/* Step 1 */}
         <PhaseAnnouncement

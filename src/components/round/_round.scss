@@ -11,6 +11,12 @@
 
   &__title {
     width: 150px;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.35));
+
+    // &--dark {
+    //   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* X-offset, Y-offset, blur-radius, shadow color */
+    //   border-radius: 5px;
+    // }
   }
 
   $roundSize: 350px;
@@ -62,6 +68,11 @@
     font-weight: bolder;
     font-size: 14rem;
     transform: translate(-0.5rem, -0.5rem);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.35));
+
+    // &--dark {
+    //   color: get-color('black');
+    // }
 
     @include xs {
       // width: 250px;

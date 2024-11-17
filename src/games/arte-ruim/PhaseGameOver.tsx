@@ -10,10 +10,9 @@ import { Translate } from 'components/language';
 import { achievementsReference } from './utils/achievements';
 import { FinalGallery } from './components/FinalGallery';
 
-function PhaseGameOver({ state, players, info }: PhaseProps) {
+function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper
-      info={info}
       state={state}
       players={players}
       announcementIcon={<TrophyIcon />}

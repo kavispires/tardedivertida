@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useTitle } from 'react-use';
+import { AliasToken } from 'antd/es/theme/internal';
+import { ReactNode, useEffect, useMemo } from 'react';
+// Ant Design Resources
+import { ConfigProvider } from 'antd';
 // Hooks
 import { useGameMeta } from 'hooks/useGameMeta';
 import { useGameState } from 'hooks/useGameState';
@@ -7,16 +9,15 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useIdleRedirect } from 'hooks/useIdleRedirect';
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import GAME_LIST from 'utils/info';
 // Components
 import { AdminMenuDrawer } from 'components/admin';
 import { GameInfoDrawer } from 'components/drawers';
+import { AutoNextPhase } from 'components/general/AutoNextPhase';
 import { PhaseLobby } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';
-import { AutoNextPhase } from 'components/general/AutoNextPhase';
-import { GameInfo } from 'types/game-info';
+import { GameInfoProvider, useGameAppearance } from './GameInfoContext';
+// Utils
 
 type SessionProps = {
   /**
@@ -36,18 +37,9 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   const [userId] = useGlobalState('userId');
   const [, setLanguage] = useGlobalLocalStorage('language');
 
-  const [info, setInfo] = useState<GameInfo>(PLACEHOLDER_GAME_INFO);
-  const gameName = info?.title ?? '';
   const players = state.players ?? {};
 
   useIdleRedirect();
-
-  useTitle(`${gameName ? `${gameName[language]} | ` : ''}Tarde Divertida`);
-
-  // Update game description as the gameId comes in
-  useEffect(() => {
-    setInfo(gameCollection && GAME_LIST[gameCollection] ? GAME_LIST[gameCollection] : PLACEHOLDER_GAME_INFO);
-  }, [gameCollection]);
 
   // Update session language to match the game
   useEffect(() => {
@@ -58,47 +50,60 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
 
   if (!userId || !players[userId]) {
     return (
-      <>
-        <RedirectSession state={state} />
-        <PhaseLobby players={players} info={info} meta={gameMeta} />;
-      </>
+      <GameInfoProvider gameCollection={gameCollection}>
+        <SessionConfigWrapper>
+          <RedirectSession state={state} />
+          <PhaseLobby players={players} meta={gameMeta} />
+        </SessionConfigWrapper>
+      </GameInfoProvider>
     );
   }
 
   const ActiveComponent: any = getActiveComponent(state);
 
   return (
-    <>
-      <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
-      <RedirectSession state={state} />
-      <ActiveComponent players={players} state={state} info={info} meta={gameMeta} />
-      <AutoNextPhase players={players} />
-      <AdminMenuDrawer state={state} players={players} />
-    </>
+    <GameInfoProvider gameCollection={gameCollection}>
+      <SessionConfigWrapper>
+        <GameInfoDrawer players={players} state={state} userId={userId} />
+        <RedirectSession state={state} />
+        <ActiveComponent players={players} state={state} meta={gameMeta} />
+        <AutoNextPhase players={players} />
+        <AdminMenuDrawer state={state} players={players} />
+      </SessionConfigWrapper>
+    </GameInfoProvider>
   );
 }
 
-const PLACEHOLDER_GAME_INFO: GameInfo = {
-  gameCode: ' ',
-  gameName: '',
-  version: '',
-  release: '',
-  title: { en: '', pt: '' },
-  popularName: { en: '', pt: '' },
-  basedOn: '',
-  summary: { en: '', pt: '' },
-  appearance: {
-    clouds: '',
-    color: '',
-  },
-  rules: {
-    pt: [''],
-    en: [''],
-  },
-  playerCount: {
-    recommended: [0],
-    min: 0,
-    max: 0,
-  },
-  tags: [''],
+type SessionConfigWrapperProps = {
+  children: ReactNode;
 };
+
+export function SessionConfigWrapper({ children }: SessionConfigWrapperProps) {
+  const customTokens = useGetCustomTokens();
+
+  return (
+    <ConfigProvider
+      theme={{
+        token: customTokens,
+      }}
+    >
+      {children}
+    </ConfigProvider>
+  );
+}
+
+function useGetCustomTokens() {
+  const gameAppearance = useGameAppearance();
+
+  return useMemo(() => {
+    const customTokens: Partial<AliasToken> = {};
+    if (gameAppearance.primaryColor) {
+      customTokens.colorPrimary = gameAppearance.primaryColor;
+      customTokens.colorLink = gameAppearance.primaryColor;
+    }
+    if (gameAppearance.surfaceColor) {
+      customTokens.colorBgContainer = gameAppearance.surfaceColor;
+    }
+    return customTokens;
+  }, [gameAppearance]);
+}

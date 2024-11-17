@@ -1,9 +1,7 @@
-// Ant Design Resources
-import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
+import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
@@ -56,19 +54,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionComunicacaoAlienigena() {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: THEME_COLORS.MIDNIGHT,
-          colorLink: THEME_COLORS.MIDNIGHT,
-        },
-      }}
-    >
-      <Session
-        gameCollection={GAME_COLLECTION.COMUNICACAO_ALIENIGENA}
-        getActiveComponent={getActiveComponent}
-      />
-    </ConfigProvider>
+    <Session
+      gameCollection={GAME_COLLECTION.COMUNICACAO_ALIENIGENA}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

@@ -1,29 +1,45 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
-// Types
-import type { GamePlayers } from 'types/player';
+// Ant Design Resources
+import { ButtonProps } from 'antd';
 // Hooks
-import { UseStep } from 'hooks/useStep';
+import { SlideShowConfig } from 'hooks/useSlideShow';
 // Internal
 import { SlideShowControls } from './SlideShowControls';
 
 type SlideShowProps = {
-  players: GamePlayers;
-  children: [ReactNode, ReactNode];
-  length: number;
-  activeIndex: number;
-  setActiveIndex: GenericFunction;
-  setStep: UseStep['setStep'];
-  disableControls: boolean;
-  barColor: string;
-  windowDuration: number;
   /**
-   * Optional custom class name
+   * Slide show configuration provided by useSlideShow
+   */
+  config: SlideShowConfig;
+  /**
+   * The left and right active pages of the slide
+   */
+  children: [ReactNode, ReactNode];
+  /**
+   * The color of the progress bar (default: gray)
+   */
+  barColor: string;
+  /**
+   * Prop indicating if the controls should be disabled
+   */
+  disableControls?: boolean;
+  /**
+   * Optional class name for the wrapper
    */
   className?: string;
+  /**
+   * Optional class name for the left page
+   */
   leftClassName?: string;
+  /**
+   * Optional class name for the right page
+   */
   rightClassName?: string;
-  rankingButtonLabel?: ReactNode;
+  /**
+   * Next Button props (See Ranking Button)
+   */
+  nextButtonProps?: ButtonProps;
 };
 
 /**
@@ -33,17 +49,13 @@ type SlideShowProps = {
  */
 export function SlideShow({
   children,
-  length,
-  activeIndex,
-  setActiveIndex,
-  setStep,
   disableControls,
   barColor,
-  windowDuration = 10,
   className = '',
   leftClassName = '',
   rightClassName = '',
-  rankingButtonLabel,
+  nextButtonProps,
+  config,
 }: SlideShowProps) {
   return (
     <div className={clsx('slide-show', className)}>
@@ -54,14 +66,10 @@ export function SlideShow({
         {children[1]}
       </div>
       <SlideShowControls
-        length={length}
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-        setStep={setStep}
+        config={config}
         disableControls={disableControls}
         barColor={barColor}
-        windowDuration={windowDuration}
-        rankingButtonLabel={rankingButtonLabel}
+        nextButtonProps={nextButtonProps}
       />
     </div>
   );

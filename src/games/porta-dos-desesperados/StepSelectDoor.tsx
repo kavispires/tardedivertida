@@ -95,7 +95,7 @@ export function StepSelectDoor({
 
   return (
     <Step fullWidth>
-      <Title size="medium" white>
+      <Title size="medium">
         <Translate pt="Selecione a porta correta" en="Select the correct door" />
       </Title>
 

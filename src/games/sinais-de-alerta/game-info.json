@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.4",
+  "version": "1.0.9",
   "release": "stable",
+  "available": false,
   "title": {
     "pt": "Sinais de Alerta",
     "en": "Warning Signs"
@@ -18,9 +19,14 @@
     "en": "TBD"
   },
   "appearance": {
-    "clouds": "cloud",
-    "color": "",
-    "backgroundColor": ""
+    "clouds": "warning-signs-clouds",
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
   },
   "rules": {
     "pt": [

@@ -29,7 +29,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 
   // If current phase is Naming, it depends if it will go to back to drawing or presentation
   if (currentPhase === NAMING) {
-    // // In an even number of players, end when there's been slides in a album equal to the number of players + 1, otherwise, just the number of players
+    // In an even number of players, end when there's been slides in a album equal to the number of players + 1, otherwise, just the number of players
     // const slidesToTriggerPresentation = playerCount % 2 === 0 ? playerCount + 1 : playerCount;
 
     // return Object.values(album)[0].slides.length === slidesToTriggerPresentation ? PRESENTATION : DRAWING;

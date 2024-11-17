@@ -21,7 +21,7 @@ import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 import { StepSelectQuestion } from './StepSelectQuestion';
 
-function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
+function PhaseQuestionSelection({ state, players }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -63,7 +63,6 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.TESTEMUNHA_OCULAR.QUESTION_SELECTION}
       className="t-phase"

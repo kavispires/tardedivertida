@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "2.0.9",
+  "version": "2.0.11",
   "release": "stable",
+  "available": false,
   "title": {
     "pt": "Teoria de Conjuntos",
     "en": "Venn Diagram"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "diagram-clouds",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "en": [
@@ -42,6 +44,10 @@
     "recommended": [4, 5, 6],
     "min": 2,
     "max": 10
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
   },
   "tags": ["competitive", "turn-based", "guessing", "brain-burner", "achievements"],
   "options": [

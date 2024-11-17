@@ -3,7 +3,7 @@ import type { GamePlayers } from 'types/player';
 import { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import type { UseStep } from 'hooks/useStep';
+import { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
@@ -14,7 +14,6 @@ import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 // Internal
-import { WINDOW_DURATION } from './utils/constants';
 import { GalleryEntry } from './utils/types';
 import { GalleryWindowCredits } from './components/GalleryWindowCredits';
 import { GalleryWindowGuesses } from './components/GalleryWindowGuesses';
@@ -26,28 +25,16 @@ type StepGalleryProps = {
   gallery: GalleryEntry[];
   players: GamePlayers;
   cards: Dictionary<TextCard>;
-  activeIndex: number;
-  setActiveIndex: GenericFunction;
-  setStep: UseStep['setStep'];
-  isFirstGalleryRunThrough: boolean;
+  slideShowConfig: SlideShowConfig;
   gameLanguage: Language;
 };
 
-export function StepGallery({
-  gallery,
-  players,
-  cards,
-  activeIndex,
-  setActiveIndex,
-  setStep,
-  isFirstGalleryRunThrough,
-  gameLanguage,
-}: StepGalleryProps) {
+export function StepGallery({ gallery, players, cards, slideShowConfig, gameLanguage }: StepGalleryProps) {
   useTemporarilyHidePlayersBar();
 
   const canvasWidth = useCardWidth(3, { gap: 16, minWidth: 150, maxWidth: 300 });
 
-  const galleryEntry = gallery[activeIndex];
+  const galleryEntry = gallery[slideShowConfig.slideIndex];
 
   const playerArtist = players[galleryEntry.artistId];
   const currentColor = getAvatarColorById(playerArtist.avatarId);
@@ -61,14 +48,8 @@ export function StepGallery({
       <PopoverRule content={<ScoringRules />} />
 
       <SlideShow
-        players={players}
-        length={gallery.length}
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-        setStep={setStep}
-        disableControls={isFirstGalleryRunThrough}
+        config={slideShowConfig}
         barColor={currentColor}
-        windowDuration={WINDOW_DURATION}
         leftClassName="sda-gallery__canvas"
         rightClassName="sda-gallery__info"
       >

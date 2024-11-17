@@ -18,7 +18,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { StepDraw } from './StepDraw';
 
-export function PhaseDrawing({ players, state, info, meta }: PhaseProps) {
+export function PhaseDrawing({ players, state, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);
@@ -46,7 +46,7 @@ export function PhaseDrawing({ players, state, info, meta }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SINAIS_DE_ALERTA.DRAWING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SINAIS_DE_ALERTA.DRAWING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
@@ -54,7 +54,6 @@ export function PhaseDrawing({ players, state, info, meta }: PhaseProps) {
           onPressButton={goToNextStep}
           buttonText=" "
           time={5}
-          circleColor={info?.appearance?.color}
           unskippable
         />
 

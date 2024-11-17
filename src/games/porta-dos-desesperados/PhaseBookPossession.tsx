@@ -28,7 +28,7 @@ import { BookHighlight } from './components/Highlights';
 import { StepSelectPages } from './StepSelectPages';
 import { StepWaitPageSelection } from './StepWaitPageSelection';
 
-export function PhaseBookPossession({ players, state, info }: PhaseProps) {
+export function PhaseBookPossession({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
   const { setCache } = useCache({ defaultValue: { doors: [] } });
@@ -42,11 +42,7 @@ export function PhaseBookPossession({ players, state, info }: PhaseProps) {
   }, [state.trap]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
@@ -54,7 +50,6 @@ export function PhaseBookPossession({ players, state, info }: PhaseProps) {
           onPressButton={goToNextStep}
           buttonText=" "
           time={state.round.current === 1 ? 20 : 7}
-          circleColor={info?.appearance?.color}
           unskippable
         >
           {state.round.current === 1 ? (

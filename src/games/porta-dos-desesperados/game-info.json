@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.31",
+  "version": "4.0.35",
   "release": "stable",
+  "available": true,
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
@@ -19,7 +20,9 @@
   },
   "appearance": {
     "clouds": "doors-clouds",
-    "color": "#4b2142"
+    "primaryColor": "#4B2142",
+    "backgroundColor": "rgba(163, 119, 136, 0.85)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

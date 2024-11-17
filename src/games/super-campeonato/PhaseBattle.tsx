@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { StepBattle } from './StepBattle';
 
-export function PhaseBattle({ state, players, info }: PhaseProps) {
+export function PhaseBattle({ state, players }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
   const user = useUser(players, state);
@@ -49,7 +49,7 @@ export function PhaseBattle({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.BATTLE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.BATTLE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepBattle

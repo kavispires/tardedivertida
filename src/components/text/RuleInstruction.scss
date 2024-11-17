@@ -3,7 +3,7 @@
 .rule-instruction {
   $self: &;
 
-  background-color: rgba($color: white, $alpha: 0.6);
+  background-color: rgba($color: white, $alpha: 0.85);
   border-radius: $border-radius;
   max-width: $max-width;
   min-width: $max-width / 2;

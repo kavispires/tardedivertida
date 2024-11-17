@@ -17,7 +17,7 @@ import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/
 import { StepGuessing } from './StepGuessing';
 import { StepWaitingForGuess } from './StepWaitingForGuess';
 
-export function PhaseGuess({ state, players, info }: PhaseProps) {
+export function PhaseGuess({ state, players }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
@@ -36,7 +36,7 @@ export function PhaseGuess({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.GUESS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.GUESS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserTheGuesser}>

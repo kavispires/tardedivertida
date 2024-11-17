@@ -1,3 +1,5 @@
+// Ant Design Resources
+import { Tag } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // Internal
@@ -16,7 +18,9 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
           <Translate pt="Desconhecido" en="Unknown" />
         </span>
         {/* TODO: add to status */}
-        <span>Total: {25}</span>
+        <span>
+          Total: <Tag>{25}</Tag>
+        </span>
       </div>
       <div className="objects-key__entry">
         <span className="objects-key__example objects-key__example--ITEM"></span>
@@ -24,7 +28,10 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
           <Translate pt="O alienígena quer" en="Alien wants it" />
         </span>
         <span>
-          <Translate pt="Entregues / Necessários" en="Delivered / Needed" />: {status.found} / {status.needed}
+          <Translate pt="Entregues / Necessários" en="Delivered / Needed" />:{' '}
+          <Tag>
+            {status.found} / {status.needed}
+          </Tag>
         </span>
       </div>
       <div className="objects-key__entry">
@@ -32,7 +39,9 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
         <span className="objects-key__text">
           <Translate pt="O alienígena tem medo" en="Alien is afraid of it" />
         </span>
-        <span>Amaldiçoados: {status.totalCurses}</span>
+        <span>
+          Amaldiçoados: <Tag>{status.totalCurses}</Tag>
+        </span>
       </div>
       <div className="objects-key__entry">
         <span className="objects-key__example objects-key__example--BLANK"></span>
@@ -40,7 +49,7 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
           <Translate pt="Alienígena não quis" en="Alien did not want it" />
         </span>
         <span>
-          <Translate pt="Rodadas restantes" en="Rounds left" />: {status.timeLeft}
+          <Translate pt="Rodadas restantes" en="Rounds left" />: <Tag>{status.timeLeft}</Tag>
         </span>
       </div>
     </div>

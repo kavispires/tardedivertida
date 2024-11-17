@@ -17,13 +17,22 @@ import { Instruction } from 'components/text';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResolution({ state, players, info }: PhaseProps) {
-  const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
+export function PhaseResolution({ state, players }: PhaseProps) {
+  const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
-  const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
+  const slideShowConfig = useSlideShow({
+    length: state.gallery.length,
+    slideDuration: 10,
+    onExpire: goToNextStep,
+  });
+
+  const onGoBack = () => {
+    slideShowConfig.reset();
+    goToPreviousStep();
+  };
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
@@ -55,22 +64,12 @@ export function PhaseResolution({ state, players, info }: PhaseProps) {
         <StepResults
           players={players}
           gallery={state.gallery}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-          setStep={setStep}
-          isFirstGalleryRunThrough={isFirstGalleryRunThrough}
+          slideShowConfig={slideShowConfig}
           correctGuessPoints={state.correctGuessPoints}
         />
 
         {/* Step 2 */}
-        <StepRanking
-          players={players}
-          ranking={state.ranking}
-          round={state.round}
-          goToPreviousStep={goToPreviousStep}
-          setActiveIndex={setActiveIndex}
-          correctGuessPoints={state.correctGuessPoints}
-        />
+        <StepRanking players={players} ranking={state.ranking} round={state.round} onGoBack={onGoBack} />
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -15,18 +15,30 @@ import { Instruction, Title } from 'components/text';
 import { Medal } from './Medal';
 
 type AchievementsProps = {
+  /**
+   * Players of the game
+   */
   players: GamePlayers;
+  /**
+   * Achievements to be displayed
+   */
   achievements: Achievement[];
+  /**
+   * Reference for the achievements
+   */
   reference: AchievementReference;
-  white?: boolean;
+  /**
+   * Color scheme for the component
+   */
+  colorScheme?: ColorScheme;
 };
 
 const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
-export function Achievements({ players, achievements, reference, white }: AchievementsProps) {
+export function Achievements({ players, achievements, reference, colorScheme }: AchievementsProps) {
   return (
     <div className={clsx('achievements', getAnimationClass('fadeIn'))}>
-      <Title size="small" level={3} white={white}>
+      <Title size="small" level={3} colorScheme={colorScheme}>
         <Translate pt="Medalhas" en="Achievements" />
       </Title>
       {achievements.length === 0 && (

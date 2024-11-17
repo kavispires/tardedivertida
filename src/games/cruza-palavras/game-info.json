@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "6.0.14",
+  "version": "6.0.17",
   "release": "stable",
+  "available": true,
   "title": {
     "pt": "Cruza Palavras",
     "en": "Mixed Clues"
@@ -19,7 +20,10 @@
   },
   "appearance": {
     "clouds": "letter-clouds",
-    "color": "#227168"
+    "primaryColor": "#227168",
+    "surfaceColor": "#E7E3DA",
+    "backgroundColor": "rgba(180,173,163,0.85)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

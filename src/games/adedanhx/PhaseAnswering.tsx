@@ -22,14 +22,14 @@ import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { ANSWERING_TIME_IN_MINUTES } from './utils/constants';
 import { StepAnswerGrid } from './StepAnswerGrid';
 
-export function PhaseAnswering({ players, state, info }: PhaseProps) {
+export function PhaseAnswering({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
 
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ADEDANHX.ANSWERING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ADEDANHX.ANSWERING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
@@ -37,7 +37,6 @@ export function PhaseAnswering({ players, state, info }: PhaseProps) {
           onPressButton={goToNextStep}
           buttonText=" "
           time={state?.round?.current === 1 ? 10 : 5}
-          circleColor={info?.appearance?.color}
           unskippable
         >
           <Instruction contained>

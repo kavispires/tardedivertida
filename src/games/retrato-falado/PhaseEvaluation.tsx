@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { StepVote } from './StepVote';
 
-export function PhaseEvaluation({ players, state, info }: PhaseProps) {
+export function PhaseEvaluation({ players, state }: PhaseProps) {
   const user = useUser(players, state);
 
   const { step, setStep } = useStep(0);
@@ -42,7 +42,7 @@ export function PhaseEvaluation({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.EVALUATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepVote

@@ -57,7 +57,7 @@ export function StepSelectPages({
 
   return (
     <Step fullWidth>
-      <Title size="medium" white>
+      <Title size="medium">
         <Translate
           pt={
             <>

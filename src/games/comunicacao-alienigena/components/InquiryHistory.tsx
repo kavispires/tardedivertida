@@ -87,12 +87,7 @@ function Objects({ objectIds }: Pick<InquiryHistoryEntry, 'objectIds'>) {
   return (
     <Space>
       {objectIds.map((objectId) => (
-        <ItemCard
-          key={`${objectIds.join('-')}-${objectId}`}
-          id={`${objectId}`}
-          className={'objects-grid__item-offered'}
-          width={50}
-        />
+        <ItemCard key={`${objectIds.join('-')}-${objectId}`} id={`${objectId}`} width={50} />
       ))}
     </Space>
   );

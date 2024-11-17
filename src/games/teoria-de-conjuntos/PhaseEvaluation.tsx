@@ -15,7 +15,7 @@ import { Guess } from './utils/types';
 import { StepEvaluate } from './StepEvaluate';
 // Icons
 
-export function PhaseEvaluation({ players, state, info }: PhaseProps) {
+export function PhaseEvaluation({ players, state }: PhaseProps) {
   const { step, setStep } = useStep();
   const user = useUser(players, state);
   const [judge, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
@@ -26,7 +26,7 @@ export function PhaseEvaluation({ players, state, info }: PhaseProps) {
   const currentGuess: Guess = state.currentGuess;
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TEORIA_DE_CONJUNTOS.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TEORIA_DE_CONJUNTOS.EVALUATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepEvaluate

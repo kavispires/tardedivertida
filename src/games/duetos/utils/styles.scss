@@ -41,7 +41,8 @@
   }
 
   &__pair {
-    border: get-unit(2) solid get-color('gray');
+    border: get-unit(2) solid;
+    border-color: get-color('gray');
     border-radius: $border-radius;
     padding: get-unit(2);
     margin: get-unit(2);

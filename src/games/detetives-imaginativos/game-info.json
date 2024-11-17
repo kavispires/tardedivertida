@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "3.0.51",
+  "version": "3.0.53",
   "release": "stable",
+  "available": false,
   "title": {
     "pt": "Detetives Imaginativos",
     "en": "Detective Agency"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "crime-clouds",
-    "color": "#4b2142",
-    "backgroundColor": "rgba(35, 35, 35, 0.8)"
+    "primaryColor": "#4b2142",
+    "backgroundColor": "rgba(35, 35, 35, 0.8)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [

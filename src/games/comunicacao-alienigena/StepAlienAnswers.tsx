@@ -8,8 +8,10 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
@@ -76,9 +78,11 @@ export function StepAlienAnswers({
   // Dev Only
   useMock(() => onConfirmNote());
 
+  const hasAlienResponse = Boolean(alienResponse);
+
   return (
     <Step fullWidth announcement={announcement}>
-      <Title white>
+      <Title icon={hasAlienResponse ? null : <IconAvatar icon={<AnimatedClockIcon />} size="large" />}>
         <Translate
           pt={
             <>
@@ -120,7 +124,7 @@ export function StepAlienAnswers({
         ))}
       </Space>
 
-      <ViewIf condition={!Boolean(alienResponse)}>
+      <ViewIf condition={!hasAlienResponse}>
         <AlienContent user={user}>
           <RuleInstruction type="action">
             <Translate
@@ -145,7 +149,7 @@ export function StepAlienAnswers({
         </AlienContent>
       </ViewIf>
 
-      <ViewIf condition={Boolean(alienResponse)}>
+      <ViewIf condition={hasAlienResponse}>
         <RuleInstruction type="event">
           <Translate pt={<>O Alienígena respondeu:</>} en={<>The Alien answered:</>} />
         </RuleInstruction>

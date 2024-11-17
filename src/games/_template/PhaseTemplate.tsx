@@ -15,7 +15,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { StepTemplate } from './StepTemplate';
 
-export function PhaseTemplate({ players, state, info }: PhaseProps) {
+export function PhaseTemplate({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step } = useStep();
 
@@ -33,7 +33,7 @@ export function PhaseTemplate({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TEMPLATE.UNKNOWN}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TEMPLATE.UNKNOWN}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepTemplate user={user} players={players} announcement={announcement} />

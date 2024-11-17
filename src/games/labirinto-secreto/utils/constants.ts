@@ -20,4 +20,4 @@ export const DIRECTIONS: Record<string, Direction> = {
   DOWN_RIGHT: 'DOWN_RIGHT',
 };
 
-export const PAGE_DURATION = 15;
+export const SLIDE_DURATION = 15;

@@ -19,7 +19,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { StepVoting } from './StepVoting';
 
-export function PhaseVoting({ state, players, info }: PhaseProps) {
+export function PhaseVoting({ state, players }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const user = useUser(players, state);
@@ -57,7 +57,6 @@ export function PhaseVoting({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.VOTING}
       className="d-voting-phase"

@@ -471,6 +471,8 @@ export const prepareRevealPhase = async (
     ...curses,
   };
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {

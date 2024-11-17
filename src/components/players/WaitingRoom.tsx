@@ -40,7 +40,7 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
 
   return (
     <div className="waiting-room">
-      <Title>
+      <Title colorScheme="light">
         <Translate pt="Pronto!" en="Done!" custom={title} />
       </Title>
       {icon ?? <WaitingRoomIcon style={{ width: '6rem' }} />}

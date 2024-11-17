@@ -17,14 +17,14 @@ import { Instruction } from 'components/text';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { StepNameDrawing } from './StepNameDrawing';
 
-export function PhaseNaming({ players, state, info }: PhaseProps) {
+export function PhaseNaming({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.NAMING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.NAMING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

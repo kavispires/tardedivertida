@@ -9,7 +9,7 @@ import { IconAvatar } from 'components/avatars';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
-import { Instruction, TextHighlight } from 'components/text';
+import { Instruction, RuleInstruction, TextHighlight } from 'components/text';
 // Internal
 import { OUTCOME } from '../utils/constants';
 import { Robot } from '../utils/types';
@@ -82,18 +82,18 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
         title={
           <>
             <IconAvatar icon={<UnderConstructionIcon />} />{' '}
-            <Translate pt="Banido do servidor!" en="Banned from the server!" />
+            <Translate pt="Banidos do servidor!" en="Banned from the server!" />
           </>
         }
       >
-        <Instruction contained noMargin>
+        <RuleInstruction type="lore">
           <Translate
             en={<>The players were too suspicions always selecting robot cards! Particularly:</>}
             pt={<>Os jogadores estavam muito suspeitos sempre selecionando cartas de robô! Em particular:</>}
           />
           <br />
           <ListOfPlayers list={mostSuspicious} players={players} prefix="sus" />
-        </Instruction>
+        </RuleInstruction>
       </Container>
     );
   }

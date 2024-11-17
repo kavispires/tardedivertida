@@ -42,12 +42,11 @@ export function CityMapSnippet({
 
 function ZoomToLocation({ focusedCellId }: Pick<CityMapSnippetProps, 'focusedCellId'>) {
   const { zoomToElement } = useControls();
-
   useEffect(() => {
     if (focusedCellId) {
       zoomToElement(`cell-${focusedCellId}`, 1.1);
     }
-  }, [focusedCellId]);
+  }, [focusedCellId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <></>;
 }

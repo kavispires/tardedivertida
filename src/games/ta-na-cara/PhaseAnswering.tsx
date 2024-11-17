@@ -15,7 +15,7 @@ import { StepSwitcher } from 'components/steps';
 import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
 import { StepAnswerTheQuestion } from './StepAnswerTheQuestion';
 
-export function PhaseAnswer({ players, state, info }: PhaseProps) {
+export function PhaseAnswer({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step } = useStep();
 
@@ -32,7 +32,7 @@ export function PhaseAnswer({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.ANSWERING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.ANSWERING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepAnswerTheQuestion

@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "controle-de-estoque",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "release": "dev",
+  "available": false,
   "title": {
     "pt": "Controle De Estoque",
     "en": "Inventory Control"
@@ -14,8 +15,10 @@
   },
   "basedOn": "esuoheraW s'tomliW",
   "appearance": {
-    "clouds": "cloud",
-    "color": ""
+    "clouds": "package-cloud",
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "summary": {
     "pt": "Vocês são trabalhadores que devem colocar produtos no armazém e atender todos os pedidos até o final do dia.",
@@ -24,6 +27,10 @@
   "rules": {
     "pt": ["TBD"],
     "en": ["TBD"]
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
   },
   "playerCount": {
     "recommended": [4, 5, 6],

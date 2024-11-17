@@ -16,7 +16,7 @@ import { ScoringRule } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -34,7 +34,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

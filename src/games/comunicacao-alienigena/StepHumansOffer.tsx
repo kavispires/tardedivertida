@@ -57,7 +57,7 @@ export function StepHumansOffer({
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step fullWidth announcement={announcement}>
-      <Title white>
+      <Title>
         <Translate pt={<>Ofereça um objeto</>} en={<>Offer an object</>} />
       </Title>
 

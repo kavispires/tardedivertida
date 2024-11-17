@@ -17,7 +17,7 @@ import { StepSwitcher } from 'components/steps';
 import { useOnSubmitHumanInquiryAPIRequest } from './utils/api-requests';
 import { StepHumanAsks } from './StepHumanAsks';
 
-export function PhaseHumanAsk({ players, state, info }: PhaseProps) {
+export function PhaseHumanAsk({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
   const [currentHuman, isUserTheCurrentHuman] = useWhichPlayerIsThe('humanId', state, players);
@@ -38,15 +38,10 @@ export function PhaseHumanAsk({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          onPressButton={goToNextStep}
-          time={5}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={5} />
 
         {/* Step 1 */}
         <StepHumanAsks

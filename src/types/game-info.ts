@@ -6,13 +6,16 @@ export type GameInfo = {
   gameName: GameName;
   version: string;
   release: string;
+  available: boolean;
   title: DualLanguageValue;
   popularName: DualLanguageValue;
   basedOn: string;
   summary: DualLanguageValue;
   appearance: {
     clouds: string;
-    color: string;
+    colorScheme: ColorScheme;
+    primaryColor: string;
+    surfaceColor?: string;
     backgroundColor?: string;
   };
   rules: {

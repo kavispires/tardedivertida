@@ -4,7 +4,6 @@ import { useLocalStorage } from 'react-use';
 // Ant Design Resources
 import { Alert, AutoComplete, Button } from 'antd';
 // Types
-import type { GameInfo } from 'types/game-info';
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useAddPlayer } from 'hooks/useAddPlayer';
@@ -16,6 +15,7 @@ import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
 import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';
@@ -24,13 +24,13 @@ import { UsualAvatarsSelection } from './UsualAvatarsSelection';
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
 type StepInfoProps = {
-  info: GameInfo;
   players: GamePlayers;
   setStep: UseStep['setStep'];
 };
 
-export function StepInfo({ info, players, setStep }: StepInfoProps) {
+export function StepInfo({ players, setStep }: StepInfoProps) {
   const { currentUser, isGuest } = useCurrentUserContext();
+  const info = useGameInfoContext();
   const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
     currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)

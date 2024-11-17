@@ -16,14 +16,14 @@ import { Instruction } from 'components/text';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { StepMatchDreams } from './StepMatchDreams';
 
-export function PhaseMatching({ state, players, info }: PhaseProps) {
+export function PhaseMatching({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.MATCHING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.MATCHING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

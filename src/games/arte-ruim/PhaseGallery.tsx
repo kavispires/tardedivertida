@@ -12,25 +12,30 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
+import { SLIDE_DURATION } from './utils/constants';
 import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-function PhaseGallery({ players, state, info, meta }: PhaseProps) {
-  const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
-  const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
+function PhaseGallery({ players, state, meta }: PhaseProps) {
+  const { step, goToNextStep, goToPreviousStep } = useStep(0);
+  const slideShowConfig = useSlideShow({
+    length: state.gallery.length,
+    slideDuration: SLIDE_DURATION,
+    onExpire: goToNextStep,
+  });
+
+  const onGoBack = () => {
+    slideShowConfig.reset();
+    goToPreviousStep();
+  };
 
   const isGameOver = meta.options?.shortGame
     ? state.round.current === 5
     : Object.values(players).some((player) => player.score > 50);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.ARTE_RUIM.GALLERY}
-      className="a-gallery-phase"
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.GALLERY} className="a-gallery-phase">
       <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
         <PhaseAnnouncement
@@ -49,10 +54,7 @@ function PhaseGallery({ players, state, info, meta }: PhaseProps) {
           gallery={state.gallery}
           players={players}
           cards={state.cards}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-          setStep={setStep}
-          isFirstGalleryRunThrough={isFirstGalleryRunThrough}
+          slideShowConfig={slideShowConfig}
         />
 
         {/* Step 2 */}
@@ -61,8 +63,7 @@ function PhaseGallery({ players, state, info, meta }: PhaseProps) {
           ranking={state.ranking}
           isGameOver={isGameOver}
           round={state.round}
-          goToPreviousStep={goToPreviousStep}
-          setActiveIndex={setActiveIndex}
+          onGoBack={onGoBack}
           threshold={state.threshold}
         />
       </StepSwitcher>

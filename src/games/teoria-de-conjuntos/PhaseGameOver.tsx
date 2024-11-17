@@ -19,14 +19,13 @@ import { MyThings } from './components/MyThings';
 import { GameOverIcon } from './components/Announcement';
 // import type { MesmiceGalleryEntry } from './utils/types';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const user = useUser(players, state);
   const [, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
 
   return (
     <GameOverWrapper
-      info={info}
       state={state}
       players={players}
       announcementIcon={<GameOverIcon items={state.items} lastGuess={state.lastGuess} />}
