@@ -2,15 +2,15 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "release": "beta",
   "title": {
     "pt": "Planejamento Urbano",
     "en": "City Planning"
   },
   "popularName": {
-    "pt": "",
-    "en": ""
+    "pt": "O da cidade",
+    "en": "The city one"
   },
   "basedOn": "ytiC kniL",
   "summary": {
@@ -19,13 +19,25 @@
   },
   "appearance": {
     "clouds": "construction-clouds",
-    "primaryColor": "",
-    "backgroundColor": "",
-    "colorScheme": "light"
+    "primaryColor": "#65a1c9",
+    "backgroundColor": "rgba(10, 75, 118, 0.85)",
+    "colorScheme": "dark"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Vamos construir uma cidade juntos nesse jogo cooperativo.",
+      "A cada rodada, um jogador será o arquiteto-chefe e terá que planejar onde 3 (ou mais locais) vão nos espaços disponíveis da cidade.",
+      "Então os outros jogadores devem discutir e combinar os locais onde o arquiteto-chefe sugeriu que fossem colocados.",
+      "O grupo ganha pontos para cada combinação correta, mas se falharem em combinar, o Prefeito os coloca em espaços aleatórios",
+      "O jogo dura 6 rodadas e o grupo ganha se alcançar a meta de pontos!"
+    ],
+    "en": [
+      "Let's build a city together in this cooperative game.",
+      "Each round, a player will be the chief architect and have to plan where 3 (or more locations) go in the available sites of the city.",
+      "Then the other players must discuss and match the locations where the chief architect suggested them to be placed.",
+      "The group wins points for each correct match, but if they fail to match, the Mayor places them in random spaces",
+      "The games goes for 6 rounds and the group wins if they reach the goal of points!"
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],

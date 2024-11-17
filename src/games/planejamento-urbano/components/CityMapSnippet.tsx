@@ -42,7 +42,7 @@ export function CityMapSnippet({
 
 function ZoomToLocation({ focusedCellId }: Pick<CityMapSnippetProps, 'focusedCellId'>) {
   const { zoomToElement } = useControls();
-
+  console.log('focusedCellId', focusedCellId);
   useEffect(() => {
     if (focusedCellId) {
       zoomToElement(`cell-${focusedCellId}`, 1.1);

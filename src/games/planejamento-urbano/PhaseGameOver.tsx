@@ -20,10 +20,9 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         achievements={state.achievements}
         players={players}
         reference={achievementsReference}
-        white
       /> */}
 
-      <Container title={<Translate pt="Cidade Inaugurada" en="Final City" />} titleProps={{ white: true }}>
+      <Container title={<Translate pt="Cidade Inaugurada" en="Final City" />}>
         {state.city && state.cityLocationsDict && (
           <CityMap city={state.city} cityLocationsDict={state.cityLocationsDict} />
         )}
