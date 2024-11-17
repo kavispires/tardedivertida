@@ -33,11 +33,9 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
       <Title size="small">
         <Translate pt="Resultado" en="Results" />
       </Title>
-
       <Title size="xx-small">
         <Translate pt="Pares Vencedores" en="Winnings Pairs" />
       </Title>
-
       {galleryMatches.length > 0 && (
         <RuleInstruction type="scoring">
           <Translate
@@ -67,7 +65,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
           return (
             <Space key={entry.pairId} className="pairs-grid__pair space-container" direction="vertical">
               <Space className="space-container">
-                <AntAvatar.Group maxCount={7}>
+                <AntAvatar.Group max={{ count: 7 }}>
                   {entry.players.map((playerId) => (
                     <Avatar
                       id={players[playerId].avatarId}
@@ -88,7 +86,6 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
           );
         })}
       </Space>
-
       {leftOut.length > 1 && (
         <>
           <Title size="xx-small">
@@ -117,7 +114,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
               return (
                 <Space key={entry.id} className="results" direction="vertical">
                   <Space className="space-container">
-                    <AntAvatar.Group maxCount={7}>
+                    <AntAvatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (
                         <Avatar
                           id={players[playerId].avatarId}
@@ -135,13 +132,11 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
           </Space>
         </>
       )}
-
       <Space className="space-container" align="center">
         <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>
-
       {galleryNoMatches.length > 0 && (
         <>
           <Title size="xx-small">
@@ -153,7 +148,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
               return (
                 <Space key={entry.pairId} className="pairs-grid__pair space-container" direction="vertical">
                   <Space className="space-container">
-                    <AntAvatar.Group maxCount={7}>
+                    <AntAvatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (
                         <Avatar
                           id={players[playerId].avatarId}
