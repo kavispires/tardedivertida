@@ -93,7 +93,6 @@ function PhaseWitnessSelection({ state, players }: PhaseProps) {
           players={players}
           announcement={announcement}
           titleProps={{
-            white: true,
             children: <>{title}</>,
           }}
           ruleInstructionProps={{

@@ -10,9 +10,9 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
+import { Question, Status, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
-import { Question, Status, THistoryEntry } from './utils/types';
 import { Summary } from './components/Summary';
 
 type StepSelectQuestionProps = {
@@ -37,7 +37,7 @@ export function StepSelectQuestion({
 }: StepSelectQuestionProps) {
   return (
     <Step announcement={announcement}>
-      <Title size="medium" white>
+      <Title size="medium">
         <Translate pt="Selecione uma pergunta" en="Select a question" />
       </Title>
       <RuleInstruction type="action">

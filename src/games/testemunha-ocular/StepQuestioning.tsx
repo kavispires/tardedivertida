@@ -16,9 +16,9 @@ import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
+import { Status, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
-import { Status, THistoryEntry } from './utils/types';
 import { Summary } from './components/Summary';
 
 type StepQuestioningProps = {
@@ -51,7 +51,7 @@ export function StepQuestioning({
 
   return (
     <Step announcement={announcement}>
-      <Title level={3} size="medium" white>
+      <Title level={3} size="medium">
         <Translate
           pt={
             <>
