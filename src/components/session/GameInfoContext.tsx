@@ -65,12 +65,12 @@ export const GameInfoProvider = ({ gameCollection, children }: GameInfoContextTy
  * If the hook is used outside of a GameInfoProvider, a warning is logged
  * and the context defaults to a placeholder.
  *
- * @returns {GameInfoContextType} The current context value of GameInfoContext.
+ * @returns The current context value of GameInfoContext.
  *
  * @example
  * const gameInfo = useGameInfoContext();
  *
- * @throws {Error} If the hook is used outside of a GameInfoProvider.
+ * @throws If the hook is used outside of a GameInfoProvider.
  */
 export const useGameInfoContext = () => {
   const context = useContext(GameInfoContext);
@@ -80,4 +80,10 @@ export const useGameInfoContext = () => {
   }
 
   return context;
+};
+
+export const useGameAppearance = () => {
+  const info = useGameInfoContext();
+
+  return info.appearance;
 };
