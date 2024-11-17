@@ -46,7 +46,7 @@ export function PhaseGameOver({ players, state }: PhaseProps) {
       announcementTitle={<Translate pt="A jornada chegou ao fim!" en="The journey has come to an end!" />}
       announcementContent={<Instruction>...</Instruction>}
     >
-      <Title white>
+      <Title>
         {isVictory ? (
           <Translate pt="Conseguimos!" en="We did it!" />
         ) : (
