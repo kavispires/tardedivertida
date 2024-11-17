@@ -15,7 +15,6 @@ import PhaseGallery from './PhaseGallery';
 import PhaseGameOver from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
-// Ant Design Resources
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading

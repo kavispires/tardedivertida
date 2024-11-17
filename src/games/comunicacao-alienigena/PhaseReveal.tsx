@@ -8,6 +8,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
+import { AlienAngry2Icon } from 'icons/AlienAngry2Icon';
 import { AlienAngryIcon } from 'icons/AlienAngryIcon';
 import { AlienHappyIcon } from 'icons/AlienHappyIcon';
 import { AlienNeutralIcon } from 'icons/AlienNeutralIcon';
@@ -44,11 +45,14 @@ export function PhaseReveal({ players, state }: PhaseProps) {
           }
         }
       });
+      if (hasAsk && hasCurse) {
+        return <AlienAngryIcon />;
+      }
       if (hasAsk) {
         return <AlienHappyIcon />;
       }
       if (hasCurse) {
-        return <AlienAngryIcon />;
+        return <AlienAngry2Icon />;
       }
       return <AlienNeutralIcon />;
     }

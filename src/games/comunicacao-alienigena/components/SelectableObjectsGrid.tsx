@@ -13,6 +13,7 @@ import { Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
 import type { Item, OfferingsStatus } from '../utils/types';
+import { BADGE_INSTRUCTION } from '../utils/constants';
 import { ObjectsKey } from './ObjectsKey';
 // Hook
 
@@ -43,7 +44,7 @@ export function SelectableObjectsGrid({
   const { dualTranslate } = useLanguage();
   return (
     <Space direction="vertical">
-      <Title level={3} size="xx-small" white>
+      <Title level={3} size="xx-small">
         <Translate pt="Itens" en="Items" />
       </Title>
       <div className="objects-grid">
@@ -53,7 +54,7 @@ export function SelectableObjectsGrid({
               className={clsx('objects-grid__item', `objects-grid__item--${item.type}`)}
               key={`selectable-${item.id}`}
             >
-              <Badge size="small" count={item.inquired} color="orange">
+              <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
                 <ItemCard
                   id={`${item.id}`}
                   className={clsx(item.offered && 'objects-grid__item-offered')}
@@ -75,7 +76,7 @@ export function SelectableObjectsGrid({
               activeClass={'objects-grid__button--active'}
               onClick={() => selectObject(item.id)}
             >
-              <Badge size="small" count={item.inquired} color="orange">
+              <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
                 <ItemCard
                   id={`${item.id}`}
                   className={clsx(item.offered && 'objects-grid__item-offered')}

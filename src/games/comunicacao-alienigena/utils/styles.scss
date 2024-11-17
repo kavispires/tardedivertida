@@ -12,6 +12,10 @@
   align-items: flex-start;
 }
 
+.bg-primary {
+  background: #b33f62;
+}
+
 .objects-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
