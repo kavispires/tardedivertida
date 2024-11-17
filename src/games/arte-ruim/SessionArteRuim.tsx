@@ -1,9 +1,7 @@
-// Ant Design Resources
-import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
+import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
@@ -17,6 +15,7 @@ import PhaseGallery from './PhaseGallery';
 import PhaseGameOver from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
+// Ant Design Resources
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -43,18 +42,7 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionArteRuim() {
-  return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: THEME_COLORS.WOOD,
-          colorLink: THEME_COLORS.WOOD,
-        },
-      }}
-    >
-      <Session gameCollection={GAME_COLLECTION.ARTE_RUIM} getActiveComponent={getActiveComponent} />
-    </ConfigProvider>
-  );
+  return <Session gameCollection={GAME_COLLECTION.ARTE_RUIM} getActiveComponent={getActiveComponent} />;
 }
 
 export default SessionArteRuim;
