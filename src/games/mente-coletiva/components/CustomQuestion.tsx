@@ -27,7 +27,7 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
       </Space>
       <Space className="contained center" direction="vertical">
         <Title size="xx-small">
-          <Translate pt="Criar pergunta" en="Write custom question" />:
+          <Translate pt="Crie uma pergunta" en="Write custom question" />:
         </Title>
         <Space className="m-custom-question-form">
           <Select value={questionType} onChange={(e) => setQuestionType(e)}>

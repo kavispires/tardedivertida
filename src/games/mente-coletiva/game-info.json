@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "5.2.42",
+  "version": "5.2.43",
   "release": "stable",
   "title": {
     "pt": "Mente Coletiva",
@@ -19,7 +19,7 @@
   },
   "appearance": {
     "clouds": "sheep-cloud",
-    "primaryColor": "#007a5a",
+    "primaryColor": "#8C4103",
     "backgroundColor": "rgba(196, 246, 255, 0.75)",
     "colorScheme": "light"
   },
