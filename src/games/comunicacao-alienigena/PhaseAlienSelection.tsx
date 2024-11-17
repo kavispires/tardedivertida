@@ -92,7 +92,6 @@ export function PhaseAlienSelection({ players, state }: PhaseProps) {
           announcement={announcement}
           titleProps={{
             children: <>{title}</>,
-            white: true,
           }}
           ruleInstructionProps={{
             children: <>{ruleInstruction}</>,

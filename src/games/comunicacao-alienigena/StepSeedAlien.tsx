@@ -18,7 +18,7 @@ type StepSeedAlienProps = {
 export function StepSeedAlien({ user, announcement, onSubmitSeeds, items }: StepSeedAlienProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title white>
+      <Title>
         <Translate pt="Análise de Objetos" en="Objects analyses" />
       </Title>
 
