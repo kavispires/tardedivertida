@@ -45,7 +45,7 @@ export function StepWaitDoorSelection({
 
   return (
     <Step fullWidth>
-      <Title size="medium" white>
+      <Title size="medium">
         <Translate
           pt="Aguarde enquanto os outros jogadores selecionam as portas"
           en="Wait while the players select doors"
