@@ -9,9 +9,9 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
+import { Status, THistoryEntry } from './utils/types';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
-import { Status, THistoryEntry } from './utils/types';
 import { Summary } from './components/Summary';
 
 type StepQuestionWaitingProps = {
@@ -36,7 +36,7 @@ export function StepQuestionWaiting({
 }: StepQuestionWaitingProps) {
   return (
     <Step announcement={announcement}>
-      <Title size="medium" white>
+      <Title size="medium">
         <IconAvatar icon={<AnimatedClockIcon />} size="large" />
         <br />
         <Translate pt={<>Examine os suspeitos</>} en={<>Examine the suspects</>} />
