@@ -17,14 +17,9 @@ import { FinalScenarios } from './components/FinalScenarios';
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
-      <Achievements
-        achievements={state.achievements}
-        players={players}
-        reference={achievementsReference}
-        white
-      />
+      <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
 
-      <Container title={<Translate pt="Cenários" en="Scenarios" />} titleProps={{ white: true }}>
+      <Container title={<Translate pt="Cenários" en="Scenarios" />}>
         {state.gallery &&
           state.gallery.map((entry: PlainObject, index: number) => (
             <Space className="space-contained" key={`gallery-entry-${entry.playerId}-${index}`}>

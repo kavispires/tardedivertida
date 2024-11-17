@@ -50,7 +50,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title white>
+      <Title>
         <Translate
           pt={
             <>
@@ -81,14 +81,9 @@ export function StepReveal({
             </>
           }
         />
-
-        {roundType !== 'NORMAL' && (
-          <>
-            <br />
-            <RoundTypeExplanation roundType={roundType} />
-          </>
-        )}
       </RuleInstruction>
+
+      {roundType !== 'NORMAL' && <RoundTypeExplanation roundType={roundType} />}
 
       <Scenarios scenarios={result} reference={getReference('negative')} player={activePlayer} />
 
