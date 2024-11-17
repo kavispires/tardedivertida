@@ -10,6 +10,20 @@ Legend
 - ⏹ Non-applicable
 - ✴️ Needs work/fix/refactor
 
+## Adedanhx
+
+- Collection: `adedanhx`
+- Code: `K`
+- Availability: ✅
+- Rating: ⭐⭐⭐⭐
+- Rules: ✅
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
+- Bots: 🔘
+- Game Over flavor: 🔘
+- Color Scheme: 🔘
+- Collects Data: 🔘
+
 ## Arte Ruim Pra Dedéu
 
 - Collection: `arte-ruim`
@@ -19,48 +33,11 @@ Legend
 - Rules: 🟡 (old images)
 - Achievements: ✅
 - Overlaid Phase Announcements: ✅
-- Bots: ⛔️ `(only extra cards on the table)`
+- Bots: 🟡 `(only extra cards on the table)`
 - Game Over flavor: ✅
 - Custom Clouds: ✅
-
-## Bomba-Relogio
-
-- Collection: `bomba-relogio`
-- Code: `B`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: 🔘
-
-## Caminhos Mágicos
-
-- Collection: `caminhos-magicos`
-- Code: `Z`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: 🔘
-
-## Cinegrafistas Amadores
-
-- Collection: `cinegrafista-amadores`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: 🔘
+- Color Scheme: ✅
+- Collects Data: ✅
 
 ## Comunicação Alienígena
 
@@ -74,19 +51,23 @@ Legend
 - Bots: ✅
 - Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Contadores de Histórias
 
-- Collection: `cinegrafista-amadores`
-- Code: `?`
+- Collection: `contadores-historias`
+- Code: `C`
 - Availability: ✅
-- Rating: 🔘
+- Rating: ⭐⭐⭐
 - Rules: 🟡 (text only)
 - Achievements: ✅
 - Overlaid Phase Announcements: ✅
 - Bots: ⛔️ `(only extra cards on the table)`
-- Game Over flavor: ❌
+- Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Crimes Hediondos
 
@@ -100,6 +81,8 @@ Legend
 - Bots: ✅
 - Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
 
 ## Cruza Palavras
 
@@ -107,13 +90,14 @@ Legend
 - Code: `X`
 - Availability: ✅
 - Rating: ⭐⭐
-- Rules: ❌
-- Achievements: ❌
+- Rules: 🟡 (text only)
+- Achievements: ✅
 - Overlaid Phase Announcements: ✅
 - Bots: ⛔️
-- Modes: Single words, Contenders
 - Game Over flavor: ❌
 - Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Detetives Imaginativos
 
@@ -127,19 +111,22 @@ Legend
 - Bots: ⛔️
 - Game Over flavor: ❌
 - Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
 
-## Dilema dos Esquiadores
+## Duetos
 
-- Collection: `dilema-dos-esquiadores`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: 🔘
+- Collection: `duetos`
+- Code: `D`
+- Availability: ✅
+- Rating: ✅✅✅✅
+- Rules: 🟡 (text only)
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
+- Bots: ⛔️
+- Game Over flavor: ❌
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Espião Entre Nós
 
@@ -153,19 +140,37 @@ Legend
 - Bots: ⛔️
 - Game Over flavor: 🟡
 - Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
+
+## Eu Não Sou Um Robô
+
+- Collection: `nao-sou-robo`
+- Code: `N`
+- Availability: ✅
+- Rating: ⭐⭐⭐
+- Rules: 🔘
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
+- Bots: ⛔️
+- Game Over flavor: ✅ (lore)
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Fileira de Fatos
 
 - Collection: `fileira-de-fatos`
 - Code: `F`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: 🔘
+- Availability: ✅
+- Rating: ⭐⭐⭐
+- Rules: ✅
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
+- Bots: ⛔️
+- Game Over flavor: ✅
+- Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: ⛔️
 
 ## Galeria de Sonhos
 
@@ -179,19 +184,37 @@ Legend
 - Bots: ✅
 - Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
 
-## Instrumentos Codificados
+## Jogo da Mesmice
 
-- Collection: `instrumentos-codificados`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds:
+- Collection: `mesmice`
+- Code: `J`
+- Availability: ✅
+- Rating: ⭐⭐
+- Rules: ❌
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
+- Bots: ⛔️
+- Game Over flavor: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
+
+## Labirinto Secreto
+
+- Collection: `labirinto-secreto`
+- Code: `Z`
+- Availability: ✅
+- Rating: ⭐⭐⭐⭐
+- Rules: ✅
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
+- Bots: ⛔️
+- Game Over flavor: ✅
+- Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Linhas Cruzadas
 
@@ -201,10 +224,12 @@ Legend
 - Rating: ⭐⭐⭐⭐
 - Rules: 🔘
 - Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
+- Overlaid Phase Announcements: ✅
+- Bots: ⛔️
 - Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Megamix
 
@@ -218,6 +243,8 @@ Legend
 - Bots: 🔘
 - Game Over flavor: 🔘
 - Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
 
 ## Mente Coletiva
 
@@ -227,10 +254,12 @@ Legend
 - Rating: ⭐⭐⭐⭐⭐
 - Rules: 🟡 (images are in portuguese)
 - Achievements: ✅
-- Overlaid Phase Announcements: 🔘
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
-- Game Over flavor: ❌
+- Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Na Rua do Medo
 
@@ -244,19 +273,8 @@ Legend
 - Bots: 🔘
 - Game Over flavor: ✅
 - Custom Clouds: ✅
-
-## Náufragos
-
-- Collection: `naufragos`
-- Code: `N`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds:
+- Color Scheme: ❌
+- Collects Data: 🔘
 
 ## Onda Telepatica
 
@@ -270,19 +288,20 @@ Legend
 - Bots: 🔘
 - Game Over flavor: ✅
 - Custom Clouds: ✅
+- Collects Data: 🔘
 
-## Palheta de Cores
+## Planejamento Urbano
 
-- Collection: `palheta-de-cores`
-- Code: `?`
-- Availability: ❌
+- Collection: `planejamento-urbano`
+- Code: `U`
+- Availability: ✅
 - Rating: 🔘
-- Rules: 🔘
+- Rules: 🟡 (images are in portuguese)
 - Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds:
+- Game Over flavor: ✅
+- Color Scheme: ✅
 
 ## Polêmica da Vez
 
@@ -296,6 +315,8 @@ Legend
 - Bots: 🔘
 - Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
 
 ## Porta dos Desesperados
 
@@ -303,25 +324,14 @@ Legend
 - Code: `I`
 - Availability: ✅
 - Rating: ⭐⭐⭐⭐
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Rules: ✅
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
 - Bots: ✅
-- Game Over flavor: ❌ (idea: all doors that lead to the exit or grid of decisions)
+- Game Over flavor: ✅
 - Custom Clouds: ✅
-
-## Quem Não Mata, Morre
-
-- Collection: `quem-nao-mata`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds:
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Quem Sou eu
 
@@ -335,6 +345,8 @@ Legend
 - Bots: 🔘
 - Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Retrato Falado Monstruoso
 
@@ -348,19 +360,21 @@ Legend
 - Bots: 🔘
 - Game Over flavor: 🔘
 - Custom Clouds: ✅
+- Collects Data: 🔘
 
-## Sonhos & Pesadelos
+## Sinais de Alerta
 
-- Collection: `sonhos-pesadelos`
+- Collection: `aaa`
 - Code: `?`
 - Availability: ❌
-- Rating: ⭐
-- Rules: ✅
+- Rating: 🔘
+- Rules: 🔘
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
-- Game Over flavor: ❌
-- Custom Clouds: ✅
+- Game Over flavor: 🔘
+- Color Scheme: 🔘
+- Collects Data: 🔘
 
 ## Super Campeonato
 
@@ -374,6 +388,50 @@ Legend
 - Bots: 🔘
 - Game Over flavor: 🔘 (idea: add all contenders used)
 - Custom Clouds: ✅
+- Collects Data: 🔘
+
+## Teoria de Conjuntos
+
+- Collection: `aaa`
+- Code: `?`
+- Availability: ❌
+- Rating: 🔘
+- Rules: 🔘
+- Achievements: 🔘
+- Overlaid Phase Announcements: 🔘
+- Bots: 🔘
+- Game Over flavor: 🔘
+- Color Scheme: 🔘
+- Collects Data: 🔘
+
+## Teste de Elenco
+
+- Collection: `aaa`
+- Code: `?`
+- Availability: ❌
+- Rating: 🔘
+- Rules: 🔘
+- Achievements: 🔘
+- Overlaid Phase Announcements: 🔘
+- Bots: 🔘
+- Game Over flavor: 🔘
+- Color Scheme: 🔘
+- Collects Data: 🔘
+
+## Testemunha Ocular
+
+- Collection: `testemunha-ocular`
+- Code: `T`
+- Availability: ✅
+- Rating: ⭐⭐⭐⭐
+- Rules: 🟡 (text only)
+- Achievements: ✅
+- Overlaid Phase Announcements: ❌
+- Bots: 🔘
+- Game Over flavor: ✅
+- Custom Clouds: ✅
+- Color Scheme: ✅
+- Collects Data: 🔘
 
 ## Tá Na Cara
 
@@ -387,32 +445,8 @@ Legend
 - Bots: 🔘
 - Game Over flavor: ✅
 - Custom Clouds: ✅
-
-## Testemunha Ocular
-
-- Collection: `testemunha-ocular`
-- Code: `T`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
-- Rules: 🟡 (text only)
-- Achievements: 🔘
-- Overlaid Phase Announcements: ❌
-- Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-
-## Trevo da Sorte
-
-- Collection: `trevo-da-sorte`
-- Code: `?`
-- Availability: ✴️
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
 
 ## Ué Só Isso
 
@@ -426,6 +460,8 @@ Legend
 - Bots: 🔘
 - Game Over flavor: ❌
 - Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
 
 ## Vamos Ao Cinema
 
@@ -439,6 +475,84 @@ Legend
 - Bots: 🔘
 - Game Over flavor: ✅
 - Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
+
+## TBD
+
+- Collection: `aaa`
+- Code: `?`
+- Availability: ❌
+- Rating: 🔘
+- Rules: 🔘
+- Achievements: 🔘
+- Overlaid Phase Announcements: 🔘
+- Bots: 🔘
+- Game Over flavor: 🔘
+- Color Scheme: 🔘
+
+# In Development Games
+
+- Collects Data: 🔘
+
+## Escape Room
+
+- Collection: `aaa`
+- Code: `?`
+- Availability: ❌
+- Rating: 🔘
+- Rules: 🔘
+- Achievements: 🔘
+- Overlaid Phase Announcements: 🔘
+- Bots: 🔘
+- Game Over flavor: 🔘
+- Color Scheme: 🔘
+- Collects Data: 🔘
+
+## Quem Não Mata, Morre
+
+- Collection: `quem-nao-mata`
+- Code: `?`
+- Availability: ❌
+- Rating: 🔘
+- Rules: 🔘
+- Achievements: 🔘
+- Overlaid Phase Announcements: 🔘
+- Bots: 🔘
+- Game Over flavor: 🔘
+- Custom Clouds:
+- Color Scheme: ❌
+- Collects Data: 🔘
+
+## Sonhos & Pesadelos
+
+- Collection: `sonhos-pesadelos`
+- Code: `?`
+- Availability: ❌
+- Rating: ⭐
+- Rules: ✅
+- Achievements: 🔘
+- Overlaid Phase Announcements: 🔘
+- Bots: 🔘
+- Game Over flavor: ❌
+- Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
+
+## Trevo da Sorte
+
+- Collection: `trevo-da-sorte`
+- Code: `?`
+- Availability: ✴️
+- Rating: 🔘
+- Rules: 🔘
+- Achievements: 🔘
+- Overlaid Phase Announcements: 🔘
+- Bots: 🔘
+- Game Over flavor: 🔘
+- Custom Clouds: ✅
+- Color Scheme: ❌
+- Collects Data: 🔘
 
 ## Vendaval de Palpites
 
@@ -452,15 +566,5 @@ Legend
 - Bots: 🔘
 - Game Over flavor: 🔘
 - Custom Clouds: 🔘
-
-## TBD
-
-- Collection: `aaa`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
+- Color Scheme: ❌
+- Collects Data: 🔘
