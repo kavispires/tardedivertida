@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "controle-de-estoque",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "release": "dev",
+  "available": false,
   "title": {
     "pt": "Controle De Estoque",
     "en": "Inventory Control"

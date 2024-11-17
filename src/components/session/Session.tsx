@@ -16,7 +16,7 @@ import { AutoNextPhase } from 'components/general/AutoNextPhase';
 import { PhaseLobby } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';
-import { GameInfoProvider, useGameAppearance, useGameInfoContext } from './GameInfoContext';
+import { GameInfoProvider, useGameAppearance } from './GameInfoContext';
 // Utils
 
 type SessionProps = {
@@ -77,8 +77,6 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
 type SessionConfigWrapperProps = {
   children: ReactNode;
 };
-
-const DEFAULT_PRIMARY_COLOR = '#1890ff';
 
 export function SessionConfigWrapper({ children }: SessionConfigWrapperProps) {
   const customTokens = useGetCustomTokens();

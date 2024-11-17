@@ -6,6 +6,7 @@ export type GameInfo = {
   gameName: GameName;
   version: string;
   release: string;
+  available: boolean;
   title: DualLanguageValue;
   popularName: DualLanguageValue;
   basedOn: string;

@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "escape-room",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Escape Room",
     "en": "Escape Room"
@@ -32,6 +33,9 @@
     "min": 3,
     "max": 10
   },
-  "tags": ["cooperative", "brain-burner", "images", "timed", "puzzle"],
-  "available": false
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["cooperative", "brain-burner", "images", "timed", "puzzle"]
 }

@@ -5,6 +5,7 @@
     "gameName": "desenho-rapidao",
     "version": "0.0.0",
     "release": "planned",
+    "available": false,
     "title": {
       "pt": "Desenho Rapidão",
       "en": "Fast Draw"
@@ -41,6 +42,7 @@
     "gameName": "sonhinho-bom",
     "version": "0.0.0",
     "release": "planned",
+    "available": false,
     "title": {
       "pt": "Sonhinho Bom",
       "en": "Dream State"
