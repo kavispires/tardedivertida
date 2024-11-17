@@ -19,7 +19,7 @@ type StepWordSelectionProps = {
 export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProps) {
   return (
     <Step fullWidth>
-      <Title white>
+      <Title>
         <Translate pt="Selecione o tema da rodada" en="Select the theme for the round" />
       </Title>
 

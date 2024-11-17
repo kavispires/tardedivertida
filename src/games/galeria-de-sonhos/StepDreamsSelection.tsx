@@ -50,8 +50,8 @@ export function StepDreamsSelection({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium" white>
-        <Translate pt="Visite sonhos relacionados à " en="Visit dreams related to " />
+      <Title size="medium">
+        <Translate pt="Visite sonhos relacionados a " en="Visit dreams related to " />
         <TextHighlight>{word.text}</TextHighlight>
       </Title>
       <DreamSelectionRules contained hardModeEnabled={hardModeEnabled} />
