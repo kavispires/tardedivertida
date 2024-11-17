@@ -38,6 +38,7 @@
       "type": "object",
       "properties": {
         "primaryColor": { "type": "string" },
+        "surfaceColor": { "type": "string" },
         "backgroundColor": { "type": "string" },
         "colorScheme": {
           "type": "string",
