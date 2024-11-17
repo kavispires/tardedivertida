@@ -28,7 +28,7 @@ export function StepRanking({ players, ranking, onGoBack, round }: StepRankingPr
     >
       <RuleInstruction type="event">
         <Translate
-          pt="Não se preocupe se você ficou pra trás! o jogador mais a frente de cada rota, te gritou e você conseguiu encontrá-lo."
+          pt="Não se preocupe se você ficou pra trás! O jogador mais a frente de cada rota, te gritou e você conseguiu encontrá-lo."
           en="Don't worry if you were left behind! The player furthest ahead on that route, call you and you caught up"
         />
       </RuleInstruction>
