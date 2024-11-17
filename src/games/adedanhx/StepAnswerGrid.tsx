@@ -55,7 +55,9 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
 
   const { timeLeft, seconds, minutes } = useCountdown({
     duration: ANSWERING_TIME,
-    onExpire: onSubmit,
+    onExpire: () => {},
+    // TODO: Uncomment when ready
+    // onExpire: onSubmit,
   });
 
   const updateAnswer = (id: string, answer: string) => {

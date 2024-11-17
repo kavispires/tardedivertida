@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "release": "stable",
+  "available": false,
   "title": {
     "pt": "Adedanhx",
     "en": "Stop-ish!"
@@ -20,6 +21,7 @@
   "appearance": {
     "clouds": "letter-clouds",
     "primaryColor": "#3653ad",
+    "surfaceColor": "#fafaff",
     "backgroundColor": "",
     "colorScheme": "light"
   },

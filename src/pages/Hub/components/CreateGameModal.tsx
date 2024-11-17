@@ -84,7 +84,7 @@ export function CreateGameFlow({ gameInfo }: CreateGameFlowProps) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button type="primary" onClick={() => setOpen(true)} block>
+      <Button type="primary" onClick={() => setOpen(true)} block disabled={!gameInfo.available}>
         <Translate pt="Criar" en="Create" />
       </Button>
       {open && <CreateGameModal gameInfo={gameInfo} open={open} setOpen={setOpen} />}

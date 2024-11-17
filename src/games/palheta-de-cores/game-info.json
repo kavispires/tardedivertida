@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "palheta-de-cores",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Palheta de Cores",
     "en": "Color Palette"
@@ -36,6 +37,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "same-time", "pairing"],
-  "available": false
+  "tags": ["cooperative", "same-time", "pairing"]
 }

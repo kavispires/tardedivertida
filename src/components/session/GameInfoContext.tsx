@@ -12,6 +12,7 @@ const PLACEHOLDER_GAME_INFO: GameInfo = {
   gameName: '',
   version: '',
   release: '',
+  available: false,
   title: { en: '', pt: '' },
   popularName: { en: '', pt: '' },
   basedOn: '',

@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Bomba Relógio",
     "en": "Time Bomb"
@@ -43,6 +44,5 @@
   "duration": {
     "base": 0,
     "perPlayer": 0
-  },
-  "available": false
+  }
 }

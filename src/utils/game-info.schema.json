@@ -9,6 +9,7 @@
       "type": "string",
       "enum": ["dev", "beta", "stable", "planned", "cancelled", "deprecated"]
     },
+    "available": { "type": "boolean" },
     "title": {
       "type": "object",
       "properties": {
@@ -148,6 +149,7 @@
     "gameName",
     "version",
     "release",
+    "available",
     "title",
     "popularName",
     "basedOn",

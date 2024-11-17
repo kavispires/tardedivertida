@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "naufragos",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Náufragos",
     "en": "Castaways"
@@ -37,6 +38,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "voting"],
-  "available": false
+  "tags": ["competitive", "voting"]
 }

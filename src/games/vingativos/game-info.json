@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vingativos",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Os Vingativos",
     "en": "Revengers vs Villainus"
@@ -37,6 +38,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "images", "pairing", "discussion", "voting"],
-  "available": false
+  "tags": ["cooperative", "images", "pairing", "discussion", "voting"]
 }

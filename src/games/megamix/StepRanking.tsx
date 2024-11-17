@@ -53,7 +53,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
   if (ranking.length === 0) {
     return (
       <Step>
-        <Title size="small" white>
+        <Title size="small">
           <Translate pt="Ranking" en="Ranking" />?
         </Title>
 
@@ -81,7 +81,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
         />,
       ]}
       title={<Translate pt={<>Ranking da Área VIP</>} en={<>VIP Ranking</>} />}
-      white
+      // TODO: white
       subtitle={innerContent}
     >
       {actions}

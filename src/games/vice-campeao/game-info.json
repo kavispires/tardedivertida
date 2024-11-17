@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "vice-campeao",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Vice-Campeão",
     "en": "Runner-Up"
@@ -36,6 +37,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "same-time"],
-  "available": false
+  "tags": ["competitive", "same-time"]
 }

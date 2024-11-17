@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "release": "dev",
+  "available": false,
   "title": {
     "pt": "Trevo da Sorte",
     "en": "Clover Words"
@@ -52,7 +53,6 @@
   },
   "tags": ["cooperative", "guessing", "writing", "brain-burner"],
   "cooperative": true,
-  "available": false,
   "options": [
     {
       "key": "hardGame",
