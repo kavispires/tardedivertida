@@ -53,12 +53,12 @@ export function StepNameDrawing({
         <Translate
           pt={
             <>
-              <AvatarName player={author} /> desenhou isso, o que é?
+              <AvatarName player={author} /> desenhou isso.
             </>
           }
           en={
             <>
-              <AvatarName player={author} /> draw this, so what is it?
+              <AvatarName player={author} /> drew this.
             </>
           }
         />
