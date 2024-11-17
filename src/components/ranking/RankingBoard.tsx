@@ -223,11 +223,14 @@ export function RankingBoard({
                 gainedPointsDescriptions={gainedPointsDescriptions}
               />
             )}
-            {displayStep >= 2 && (
-              <Tooltip title="Total" color="gold">
+
+            <Tooltip title="Total" color="gold">
+              {displayStep >= 2 ? (
                 <span className="ranking-board__cell-points-total">{newScore}</span>
-              </Tooltip>
-            )}
+              ) : (
+                <span className="ranking-board__cell-points-total-preliminary">{newScore}</span>
+              )}
+            </Tooltip>
           </div>
         );
       })}

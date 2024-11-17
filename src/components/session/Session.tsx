@@ -1,4 +1,5 @@
-import { ReactNode, useEffect } from 'react';
+import { AliasToken } from 'antd/es/theme/internal';
+import { ReactNode, useEffect, useMemo } from 'react';
 // Ant Design Resources
 import { ConfigProvider } from 'antd';
 // Hooks
@@ -15,7 +16,7 @@ import { AutoNextPhase } from 'components/general/AutoNextPhase';
 import { PhaseLobby } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';
-import { GameInfoProvider, useGameInfoContext } from './GameInfoContext';
+import { GameInfoProvider, useGameAppearance, useGameInfoContext } from './GameInfoContext';
 // Utils
 
 type SessionProps = {
@@ -80,18 +81,31 @@ type SessionConfigWrapperProps = {
 const DEFAULT_PRIMARY_COLOR = '#1890ff';
 
 export function SessionConfigWrapper({ children }: SessionConfigWrapperProps) {
-  const gameInfo = useGameInfoContext();
+  const customTokens = useGetCustomTokens();
 
   return (
     <ConfigProvider
       theme={{
-        token: {
-          colorPrimary: gameInfo.appearance.primaryColor || DEFAULT_PRIMARY_COLOR,
-          colorLink: gameInfo.appearance.primaryColor || DEFAULT_PRIMARY_COLOR,
-        },
+        token: customTokens,
       }}
     >
       {children}
     </ConfigProvider>
   );
+}
+
+function useGetCustomTokens() {
+  const gameAppearance = useGameAppearance();
+
+  return useMemo(() => {
+    const customTokens: Partial<AliasToken> = {};
+    if (gameAppearance.primaryColor) {
+      customTokens.colorPrimary = gameAppearance.primaryColor;
+      customTokens.colorLink = gameAppearance.primaryColor;
+    }
+    if (gameAppearance.surfaceColor) {
+      customTokens.colorBgContainer = gameAppearance.surfaceColor;
+    }
+    return customTokens;
+  }, [gameAppearance]);
 }

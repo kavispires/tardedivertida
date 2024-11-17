@@ -16,6 +16,7 @@ type InstructionsProps = {
   contained?: boolean;
   /**
    * Make text color white
+   * @deprecated
    */
   white?: boolean;
   /**
@@ -27,9 +28,13 @@ type InstructionsProps = {
    */
   className?: string;
   /**
-   *
+   * Removes margin from the instruction
    */
   noMargin?: boolean;
+  /**
+   * Color scheme
+   */
+  colorScheme?: ColorScheme;
 };
 
 /**
@@ -42,6 +47,7 @@ export const Instruction = ({
   contained,
   fullWidth,
   noMargin = false,
+  colorScheme,
 }: InstructionsProps) => {
   const baseClass = 'instruction';
 
@@ -50,6 +56,7 @@ export const Instruction = ({
       className={clsx(
         baseClass,
         contained && `${baseClass}--contained`,
+        colorScheme === 'dark' && `${baseClass}--dark`,
         white && `${baseClass}--white`,
         fullWidth && `${baseClass}--full-width`,
         noMargin && `${baseClass}--no-margin`,

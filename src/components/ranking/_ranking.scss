@@ -84,7 +84,7 @@
     align-self: flex-end;
     margin: get-unit(0 2);
     opacity: 0;
-    animation: fade-in 3000ms forwards;
+    animation: fade-in 1000ms forwards;
 
     &--plus {
       background-color: get-color('yellow', 3);
@@ -95,15 +95,19 @@
     }
 
     &--0 {
-      animation-delay: 0ms;
+      animation-delay: 750ms;
     }
 
     &--1 {
-      animation-delay: 300ms;
+      animation-delay: 1000ms;
     }
 
     &--2 {
-      animation-delay: 600ms;
+      animation-delay: 1250ms;
+    }
+
+    &--3 {
+      animation-delay: 1500ms;
     }
   }
 
@@ -113,7 +117,16 @@
     padding: get-unit(0 3);
     font-weight: bolder;
     transform: scale(1.5);
-    animation: fade-in 500ms;
+    animation: fade-in 2500ms forwards;
+  }
+
+  &__cell-points-total-preliminary {
+    font-size: 1.5em;
+    min-width: 50px;
+    padding: get-unit(0 3);
+    font-weight: bolder;
+    transform: scale(1.5);
+    opacity: 0;
   }
 }
 

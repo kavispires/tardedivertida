@@ -8,6 +8,7 @@ import type { GamePlayers } from 'types/player';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
+import { useGameAppearance } from 'components/session/GameInfoContext';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 // Internal
@@ -41,7 +42,7 @@ type StepRankingWrapperProps = {
   /**
    * Whether the title should be white or not
    */
-  white?: boolean;
+  colorScheme?: ColorScheme;
 };
 
 export function StepRankingWrapper({
@@ -51,18 +52,21 @@ export function StepRankingWrapper({
   children,
   title,
   subtitle,
-  white,
+  colorScheme,
 }: StepRankingWrapperProps) {
   useTemporarilyHidePlayersBar();
+  const appearance = useGameAppearance();
+
+  const scheme = colorScheme ?? appearance.colorScheme ?? 'light';
 
   return (
     <Step>
-      <Title white={white}>{title ?? 'Ranking'}</Title>
+      <Title colorScheme={scheme}>{title ?? 'Ranking'}</Title>
 
       {subtitle}
 
       <RankingBoard players={players} ranking={ranking} gainedPointsDescriptions={gainedPointsDescriptions} />
-      <Instruction className="step-ranking-wrapper-gained-points-instruction" white={white}>
+      <Instruction className="step-ranking-wrapper-gained-points-instruction" colorScheme={scheme}>
         <CaretUpOutlined />
         <Translate
           pt="Passe o mouse em cada um dos pontos para saber como eles foram distribuídos"
