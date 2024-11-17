@@ -102,7 +102,7 @@ export function StepSelectAll({
             <Translate
               pt={
                 <>
-                  Selecione <em>todas</em> as imagens abaixo relacionadas com:{' '}
+                  Selecione <em>todas</em> as imagens abaixo relacionadas a:{' '}
                 </>
               }
               en={
