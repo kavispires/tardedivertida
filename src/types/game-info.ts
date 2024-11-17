@@ -12,8 +12,9 @@ export type GameInfo = {
   summary: DualLanguageValue;
   appearance: {
     clouds: string;
+    colorScheme: ColorScheme;
     primaryColor: string;
-    colorScheme: 'light' | 'dark' | string;
+    surfaceColor?: string;
     backgroundColor?: string;
   };
   rules: {

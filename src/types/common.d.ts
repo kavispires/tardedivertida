@@ -8,6 +8,7 @@ type GameId = string;
 type GameName = string;
 type PlayerId = string;
 type PlayerName = string;
+type ColorScheme = 'light' | 'dark' | string;
 
 // Composed
 type Primitive = string | number | boolean | symbol | null;
