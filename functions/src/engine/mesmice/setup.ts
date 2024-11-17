@@ -167,6 +167,8 @@ export const prepareResultPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  utils.players.unReadyPlayers(players);
+
   let groupScore: number = state.groupScore ?? 0;
 
   // Determine most voted feature, awarding achievements

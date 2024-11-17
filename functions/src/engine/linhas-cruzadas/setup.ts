@@ -182,6 +182,7 @@ export const preparePresentationPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   const album = addSlideToAlbum(store.album, players);
+  utils.players.unReadyPlayers(players);
 
   utils.players.removePropertiesFromPlayers(players, ['guess']);
 
