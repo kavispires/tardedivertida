@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitMovieGenreAPIRequest } from './utils/api-requests';
 import { StepSelectGenre } from './StepSelectGenre';
 
-export function PhaseMovieGenreSelection({ players, state, info }: PhaseProps) {
+export function PhaseMovieGenreSelection({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -49,11 +49,7 @@ export function PhaseMovieGenreSelection({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.TESTE_DE_ELENCO.MOVIE_GENRE_SELECTION}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TESTE_DE_ELENCO.MOVIE_GENRE_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectGenre

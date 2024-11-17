@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "ι",
   "gameName": "instrumentos-codificados",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "release": "cancelled",
+  "available": false,
   "title": {
     "pt": "Instrumentos Codificados",
     "en": "Instrumental Cyphers"
@@ -19,7 +20,9 @@
   },
   "appearance": {
     "clouds": "cloud",
-    "color": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],
@@ -34,6 +37,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "competitive", "guessing", "images"],
-  "available": false
+  "tags": ["cooperative", "competitive", "guessing", "images"]
 }

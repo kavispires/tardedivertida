@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.31",
+  "version": "0.9.33",
   "release": "dev",
+  "available": false,
   "title": {
     "pt": "Vendaval de Palpite",
     "en": "Brainy Storm"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "brainstorm-clouds",
+    "primaryColor": "",
     "backgroundColor": "rgb(148, 154, 134)",
-    "color": ""
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],
@@ -35,6 +37,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "same-time", "writing", "guessing", "brain-burner"],
-  "available": false
+  "tags": ["cooperative", "same-time", "writing", "guessing", "brain-burner"]
 }

@@ -22,7 +22,7 @@ import { useOnSubmitSecretClueAPIRequest } from './utils/api-requests';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 
-export function PhaseSecretClue({ state, players, info }: PhaseProps) {
+export function PhaseSecretClue({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -57,20 +57,13 @@ export function PhaseSecretClue({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE}
       className="d-secret-clue-phase"
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          buttonText=" "
-          onPressButton={goToNextStep}
-          time={5}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5} />
 
         {/* Step 1 */}
         <ViewOr condition={isUserTheLeader}>

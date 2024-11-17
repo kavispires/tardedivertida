@@ -16,7 +16,7 @@ import { useOnSubmitWordsAPIRequest } from './utils/api-requests';
 import { WritingCluesRule } from './components/RulesBlobs';
 import { StepSelectWords } from './StepSelectWords';
 
-export function PhaseWordsSelection({ players, state, info }: PhaseProps) {
+export function PhaseWordsSelection({ players, state }: PhaseProps) {
   const { step, setStep } = useStep(0);
 
   const user = useUser(players, state);
@@ -35,7 +35,7 @@ export function PhaseWordsSelection({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.WORDS_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.WORDS_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 1 */}
         <StepSelectWords

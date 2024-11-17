@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.49",
-  "release": "stable",
+  "version": "1.1.51",
+  "release": "deprecated",
+  "available": false,
   "title": {
     "pt": "Tá Na Cara",
     "en": "Guess Who What?"
@@ -15,7 +16,9 @@
   "basedOn": "ohW sseuG",
   "appearance": {
     "clouds": "face-id-cloud",
-    "color": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "summary": {
     "pt": "Você consegue descobrir quem é quem somente com perguntas subjetivas?",
@@ -31,8 +34,11 @@
     "min": 4,
     "max": 10
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["competitive", "turn-based", "guessing"],
-  "available": false,
   "options": [
     {
       "key": "nsfw",

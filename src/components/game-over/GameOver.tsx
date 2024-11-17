@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import { ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // Ant Design Resources
-import { Button, Image, Progress, Space } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
+import { Button, Image, Progress, Space } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-import type { GameInfo } from 'types/game-info';
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
@@ -19,21 +19,17 @@ import { getAnimationClass } from 'utils/helpers';
 import { Avatar } from 'components/avatars';
 import { HostOnlyButton } from 'components/host';
 import { Translate } from 'components/language';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { RateGameWidget } from './RateGameWidget';
 // Images
 import gameOverTitle from 'assets/images/game-over-title.svg';
-import { Link } from 'react-router-dom';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
 type GameOverProps = {
-  /**
-   * The game info
-   */
-  info: GameInfo;
   /**
    * The game state
    */
@@ -52,14 +48,8 @@ type GameOverProps = {
   rateWidgetCustomText?: any;
 } & Pick<StepProps, 'announcement'>;
 
-export function GameOver({
-  state,
-  info,
-  children,
-  className,
-  rateWidgetCustomText,
-  announcement,
-}: GameOverProps) {
+export function GameOver({ state, children, className, rateWidgetCustomText, announcement }: GameOverProps) {
+  const info = useGameInfoContext();
   const { language, dualTranslate } = useLanguage();
   const [showGameBanner, setShowGameBanner] = useState(false);
 

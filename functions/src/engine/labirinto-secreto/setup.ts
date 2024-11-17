@@ -187,6 +187,7 @@ export const prepareResultsPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   const ranking = getRankingAndProcessScoring(players, store);
+  utils.players.unReadyPlayers(players);
 
   // Save
   return {

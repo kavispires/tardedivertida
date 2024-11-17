@@ -1,9 +1,7 @@
-// Ant Design Resources
-import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
+import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
@@ -46,18 +44,7 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionCruzaPalavras() {
-  return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: THEME_COLORS.FOREST,
-          colorLink: THEME_COLORS.FOREST,
-        },
-      }}
-    >
-      <Session gameCollection={GAME_COLLECTION.CRUZA_PALAVRAS} getActiveComponent={getActiveComponent} />
-    </ConfigProvider>
-  );
+  return <Session gameCollection={GAME_COLLECTION.CRUZA_PALAVRAS} getActiveComponent={getActiveComponent} />;
 }
 
 export default SessionCruzaPalavras;

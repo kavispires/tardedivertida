@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "2.0.15",
+  "version": "2.0.17",
   "release": "stable",
+  "available": false,
   "title": {
     "pt": "Crimes Hediondos",
     "en": "Horrific Crimes"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "crime-clouds",
-    "color": "#ab0d17",
-    "backgroundColor": "rgba(35, 35, 35, 0.95)"
+    "primaryColor": "#ab0d17",
+    "backgroundColor": "rgba(35, 35, 35, 0.95)",
+    "colorScheme": "dark"
   },
   "rules": {
     "pt": ["TBD"],

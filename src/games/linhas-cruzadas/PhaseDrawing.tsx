@@ -19,14 +19,14 @@ import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 import { StepTimedDrawing } from './StepTimedDrawing';
 
-export function PhaseDrawing({ players, state, info }: PhaseProps) {
+export function PhaseDrawing({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.DRAWING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.DRAWING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

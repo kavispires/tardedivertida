@@ -18,7 +18,7 @@ import { Instruction } from 'components/text';
 import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
 import { StepSuspectElimination } from './StepSuspectElimination';
 
-function PhaseTrial({ state, players, info }: PhaseProps) {
+function PhaseTrial({ state, players }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
 
@@ -60,12 +60,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.TESTEMUNHA_OCULAR.TRIAL}
-      className="t-phase"
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TESTEMUNHA_OCULAR.TRIAL} className="t-phase">
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSuspectElimination

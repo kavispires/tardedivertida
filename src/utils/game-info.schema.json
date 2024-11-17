@@ -9,6 +9,7 @@
       "type": "string",
       "enum": ["dev", "beta", "stable", "planned", "cancelled", "deprecated"]
     },
+    "available": { "type": "boolean" },
     "title": {
       "type": "object",
       "properties": {
@@ -37,11 +38,16 @@
     "appearance": {
       "type": "object",
       "properties": {
-        "color": { "type": "string" },
-        "clouds": { "type": "string" },
-        "backgroundColor": { "type": "string" }
+        "primaryColor": { "type": "string" },
+        "surfaceColor": { "type": "string" },
+        "backgroundColor": { "type": "string" },
+        "colorScheme": {
+          "type": "string",
+          "enum": ["light", "dark"]
+        },
+        "clouds": { "type": "string" }
       },
-      "required": ["color", "clouds"]
+      "required": ["primaryColor", "clouds", "backgroundColor", "colorScheme"]
     },
     "rules": {
       "type": "object",
@@ -143,6 +149,7 @@
     "gameName",
     "version",
     "release",
+    "available",
     "title",
     "popularName",
     "basedOn",

@@ -20,7 +20,7 @@ import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { WaitingRoomSuggestions } from './components/WaitingRoomSuggestions';
 import { StepSuggestion } from './StepSuggestion';
 
-export function PhaseSuggest({ state, players, info }: PhaseProps) {
+export function PhaseSuggest({ state, players }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
@@ -54,7 +54,6 @@ export function PhaseSuggest({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.UE_SO_ISSO.SUGGEST}
       className="word-selection-phase"

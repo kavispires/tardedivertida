@@ -46,7 +46,7 @@ export function StepResults({
   const doorsLeft = TOTAL_DOORS - currentCorridor + (outcome === OUTCOME.SUCCESS ? 0 : 1);
   return (
     <Step fullWidth>
-      <Title size="medium" white>
+      <Title size="medium">
         <OutcomeTitle outcome={outcome} />
       </Title>
 

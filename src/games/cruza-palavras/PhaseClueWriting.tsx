@@ -18,7 +18,7 @@ import { WritingCluesRule } from './components/RulesBlobs';
 import { PlayerRecentClue } from './components/PlayerRecentClue';
 import { StepClueWriting } from './StepClueWriting';
 
-export function PhaseClueWriting({ players, state, info }: PhaseProps) {
+export function PhaseClueWriting({ players, state }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const user = useUser(players, state);
@@ -37,20 +37,14 @@ export function PhaseClueWriting({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{ content: <PlayerRecentClue grid={state.grid} user={user} /> }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state?.round}
-          onPressButton={goToNextStep}
-          buttonText=" "
-          time={5}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
 
         {/* Step 1 */}
         <StepClueWriting

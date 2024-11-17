@@ -12,6 +12,7 @@ import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
+import { Container } from 'components/general/Container';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
@@ -71,22 +72,23 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
                 <ImageCard id={option.id} cardWidth={cardWidth} />
               </ImageBlurButtonContainer>
 
-              <AntAvatar.Group maxCount={7}>
+              <AntAvatar.Group max={{ count: 7 }}>
                 {option.players.map((playerId) => (
                   <Avatar
                     id={players[playerId].avatarId}
                     key={`votes-${option.id}-${players[playerId].avatarId}`}
                   />
                 ))}
+                {option.players.length === 0 && <Avatar />}
               </AntAvatar.Group>
             </Flex>
           );
         })}
       </Space>
 
-      <Flex justify="center" className="margin">
+      <Container title={<Translate pt="Palavra-chave da Rodada" en="Round's keyword" />}>
         <CaptchaTopic captcha={result} />
-      </Flex>
+      </Container>
 
       <Summary user={user} robot={robot} />
 

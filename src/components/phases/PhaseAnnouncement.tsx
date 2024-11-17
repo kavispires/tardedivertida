@@ -157,7 +157,7 @@ export function PhaseAnnouncement({
             className
           )}
         >
-          <Title>{title}</Title>
+          <Title colorScheme="light">{title}</Title>
 
           <span className="phase-announcement__icon">{icon}</span>
 

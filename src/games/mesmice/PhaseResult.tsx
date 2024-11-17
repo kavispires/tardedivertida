@@ -18,7 +18,7 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { StepResult } from './StepResult';
 
-export function PhaseResult({ players, state, info }: PhaseProps) {
+export function PhaseResult({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step } = useStep();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -42,7 +42,7 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MESMICE.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MESMICE.RESULT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

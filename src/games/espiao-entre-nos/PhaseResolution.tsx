@@ -21,7 +21,7 @@ import { useOnProgressGameAPIRequest } from './utils/api-requests';
 import { determineView } from './utils/helpers';
 import { StepResolution } from './StepResolution';
 
-export function PhaseResolution({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
@@ -36,7 +36,6 @@ export function PhaseResolution({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.RESOLUTION}
       className="e-phase"

@@ -84,7 +84,7 @@ export function StepPlayDream({
 
   return (
     <Step fullWidth>
-      <Title size="small" white>
+      <Title size="small">
         <Translate pt="Bingo dos Sonhos" en="Dream Bingo" />
       </Title>
       <Card header={translate('Tema', 'Theme')} color="purple">

@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.41",
+  "version": "0.10.43",
   "release": "beta",
+  "available": false,
   "title": {
     "pt": "Espião Entre Nós",
     "en": "Spy the Spies"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "cyber-cloud",
-    "color": "#1CC41C",
-    "backgroundColor": "rgba(37, 37, 37, 0.95)"
+    "primaryColor": "#1CC41C",
+    "backgroundColor": "rgba(37, 37, 37, 0.95)",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": [
@@ -43,6 +45,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "same-time", "traitor", "discussion", "timed", "voting"],
-  "available": false
+  "tags": ["competitive", "same-time", "traitor", "discussion", "timed", "voting"]
 }

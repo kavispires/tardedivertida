@@ -18,7 +18,7 @@ import { StepPlaceItem } from './StepPlaceItem';
 import { StepWaitPlaceItem } from './StepWaitPlaceItem';
 // Icons
 
-export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
+export function PhaseItemPlacement({ players, state }: PhaseProps) {
   const { step, setStep } = useStep();
   const user = useUser(players, state);
   const [, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
@@ -42,7 +42,7 @@ export function PhaseItemPlacement({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TEORIA_DE_CONJUNTOS.ITEM_PLACEMENT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TEORIA_DE_CONJUNTOS.ITEM_PLACEMENT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>

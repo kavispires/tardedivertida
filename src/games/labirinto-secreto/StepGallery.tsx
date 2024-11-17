@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -13,7 +13,6 @@ import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
 import type { Tree } from './utils/types';
-import { PAGE_DURATION } from './utils/constants';
 import { buildPlayerMapping } from './utils/helpers';
 import { Forest } from './components/Forest';
 import { PlayerMapResultsSummary } from './components/ResultsSummary';
@@ -21,27 +20,16 @@ import { PlayerMapResultsSummary } from './components/ResultsSummary';
 type StepGalleryProps = {
   players: GamePlayers;
   forest: Tree[];
-  activeIndex: number;
-  setActiveIndex: GenericFunction;
-  setStep: UseStep['setStep'];
-  isFirstGalleryRunThrough: boolean;
+  slideShowConfig: SlideShowConfig;
+
   user: GamePlayer;
   gallery: GamePlayer[];
 };
 
-export function StepGallery({
-  players,
-  gallery,
-  user,
-  forest,
-  activeIndex,
-  setActiveIndex,
-  setStep,
-  isFirstGalleryRunThrough,
-}: StepGalleryProps) {
+export function StepGallery({ players, gallery, user, forest, slideShowConfig }: StepGalleryProps) {
   const playerCount = Object.keys(players).length;
 
-  const currentPlayer = gallery[activeIndex];
+  const currentPlayer = gallery[slideShowConfig.slideIndex];
   const currentColor = getAvatarColorById(currentPlayer.avatarId);
   const playerMapping = buildPlayerMapping(players, currentPlayer);
 
@@ -99,15 +87,7 @@ export function StepGallery({
           playerMapping={playerMapping}
         />
 
-        <SlideShowControls
-          length={gallery.length}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-          setStep={setStep}
-          disableControls={isFirstGalleryRunThrough}
-          barColor={currentColor}
-          windowDuration={PAGE_DURATION}
-        />
+        <SlideShowControls config={slideShowConfig} barColor={currentColor} />
       </div>
     </Step>
   );

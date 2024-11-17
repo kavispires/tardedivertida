@@ -18,7 +18,7 @@ import { useOnSubmitPlacingAPIRequest, useOnUpdatePlacementAPIRequest } from './
 import { StepPlaceLocations } from './StepPlaceLocations';
 // Icons
 
-export function PhasePlacing({ players, state, info }: PhaseProps) {
+export function PhasePlacing({ players, state }: PhaseProps) {
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [controller, isTheController] = useWhichPlayerIsThe('controllerId', state, players);
@@ -54,7 +54,7 @@ export function PhasePlacing({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.PLACING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.PLACING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepPlaceLocations

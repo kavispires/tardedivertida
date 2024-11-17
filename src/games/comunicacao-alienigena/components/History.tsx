@@ -4,6 +4,7 @@ import { Collapse, CollapseProps } from 'antd';
 import { GamePlayers } from 'types/player';
 // Components
 import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 // Internal
 import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from '../utils/types';
 import { InquiryHistory } from './InquiryHistory';
@@ -32,7 +33,7 @@ export function History({
 }: HistoryProps) {
   const panels: CollapseProps['items'] = [
     {
-      key: '1',
+      key: 'inquiries',
       label: <Translate pt="Histórico de Perguntas dos Humanos" en="Human Inquiry History" />,
       children: (
         <>
@@ -49,7 +50,7 @@ export function History({
       ),
     },
     {
-      key: '2',
+      key: 'requests',
       label: <Translate pt="Histórico de Pedidos dos Alienígenas" en="Alien Request History" />,
       children: (
         <>
@@ -66,5 +67,9 @@ export function History({
     },
   ];
 
-  return <Collapse items={panels} />;
+  return (
+    <Instruction contained>
+      <Collapse items={panels} />
+    </Instruction>
+  );
 }

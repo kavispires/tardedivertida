@@ -14,11 +14,11 @@ import type { FinalGalleryEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { FinalGalleryItem } from './components/FinalGalleryItem';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const canvasWidth = useCardWidth(8, { gap: 16, minWidth: 100, maxWidth: 500 });
 
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<CrownIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <Container title={<Translate pt="Sinais" en="Sings" />} contentProps={{ className: 'final-gallery' }}>

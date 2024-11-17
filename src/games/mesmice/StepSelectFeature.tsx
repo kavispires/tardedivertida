@@ -71,8 +71,7 @@ export function StepSelectFeature({
 
   return (
     <Step fullWidth>
-      <Title>
-        {isUserTheActivePlayer && <IconAvatar icon={<AnimatedClockIcon />} size="large" />}
+      <Title icon={isUserTheActivePlayer && <IconAvatar icon={<AnimatedClockIcon />} size="large" />}>
         <Translate
           pt={<>Qual característica menos combina os dois objetos?</>}
           en={<>Which feature least connects the two objects?</>}

@@ -17,7 +17,7 @@ import { useOnSubmitBetsAPIRequest } from './utils/api-requests';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { StepMakeYourBets } from './StepMakeYourBets';
 
-export function PhaseBets({ state, players, info }: PhaseProps) {
+export function PhaseBets({ state, players }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -41,7 +41,7 @@ export function PhaseBets({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.BETS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.BETS}>
       <StepSwitcher
         step={step}
         players={players}

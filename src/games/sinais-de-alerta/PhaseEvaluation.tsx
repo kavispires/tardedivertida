@@ -17,7 +17,7 @@ import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { EvaluationRules } from './components/RulesBlobs';
 import { StepEvaluate } from './StepEvaluate';
 
-export function PhaseEvaluation({ players, state, info, meta }: PhaseProps) {
+export function PhaseEvaluation({ players, state, meta }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -36,7 +36,7 @@ export function PhaseEvaluation({ players, state, info, meta }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SINAIS_DE_ALERTA.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SINAIS_DE_ALERTA.EVALUATION}>
       <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
         <ViewIf condition={state.drawings && user.id}>

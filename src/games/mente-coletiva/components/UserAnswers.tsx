@@ -8,7 +8,7 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 
 type UserAnswersProps = {
   answerGroup: any;
@@ -30,7 +30,7 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
   return (
     <div className="m-step">
       <div className="m-step__contained-content">
-        <Instruction contained>
+        <RuleInstruction type="rule">
           <Translate
             pt="Se você cometeu um erro ortográfico ou acha que sua resposta deveria estar no grupo acima, clique nela para adicioná-la. Você só pode ter uma resposta por pergunta!"
             en="If you made a typo or for some reason think your answer should be in this group, click on it to add it. You can only have one answer per question."
@@ -48,7 +48,7 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container m-user-answers" align="center">
           {Object.entries(answers).map(([key, answerObj]: any) => {

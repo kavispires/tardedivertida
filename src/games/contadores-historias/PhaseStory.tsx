@@ -23,7 +23,7 @@ import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
 import { StoryWaiting } from './components/StoryWaiting';
 import { StoryWriting } from './components/StoryWriting';
 
-export function PhaseStory({ state, players, info }: PhaseProps) {
+export function PhaseStory({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -59,15 +59,10 @@ export function PhaseStory({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          onPressButton={goToNextStep}
-          time={5}
-          circleColor={info?.appearance?.color}
-        />
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={5} />
 
         {/* Step 1 */}
         <ViewOr condition={isUserTheStoryTeller}>

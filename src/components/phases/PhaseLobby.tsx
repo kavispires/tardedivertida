@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
 // Types
 import type { GameMeta } from 'types/game';
-import type { GameInfo } from 'types/game-info';
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
@@ -26,7 +25,6 @@ import './PhaseLobby.scss';
 
 type PhaseLobbyProps = {
   players: GamePlayers;
-  info: GameInfo;
   meta: GameMeta;
 };
 
@@ -35,7 +33,7 @@ type SplitPlayers = {
   right: GamePlayer[];
 };
 
-export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
+export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
   const { step, setStep } = useStep();
   const { currentUser, isAuthenticated } = useCurrentUserContext();
   const [, setUserId] = useGlobalState('userId');
@@ -89,7 +87,7 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
   );
 
   return (
-    <PhaseContainer phase="LOBBY" allowedPhase={PHASES.DEFAULT.LOBBY} info={info}>
+    <PhaseContainer phase="LOBBY" allowedPhase={PHASES.DEFAULT.LOBBY}>
       <div className="lobby">
         <div className="lobby__seating-area-left">
           {left.map((player, index) => (
@@ -123,9 +121,9 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
           ))}
         </div>
 
-        <LobbyStep info={info} isLocked={meta.isLocked}>
-          {step === 0 && <StepJoin info={info} setStep={setStep} />}
-          {step === 1 && <StepInfo info={info} players={players} setStep={setStep} />}
+        <LobbyStep isLocked={meta.isLocked}>
+          {step === 0 && <StepJoin setStep={setStep} />}
+          {step === 1 && <StepInfo players={players} setStep={setStep} />}
           {step === 2 && <StepWaiting players={players} />}
         </LobbyStep>
       </div>
@@ -134,10 +132,7 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
         state={{ phase: 'LOBBY', round: { current: 0, total: 0, forceLastRound: false }, players: {} }}
         players={players}
       />
-      <CloudBackground
-        cloudType={info?.appearance?.clouds}
-        backgroundColor={info?.appearance?.backgroundColor}
-      />
+      <CloudBackground />
     </PhaseContainer>
   );
 }

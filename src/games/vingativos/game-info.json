@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vingativos",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Os Vingativos",
     "en": "Revengers vs Villainus"
@@ -15,7 +16,9 @@
   "basedOn": "muiretsyM",
   "appearance": {
     "clouds": "cloud",
-    "color": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "summary": {
     "pt": "Jogadores são super-heróis tentando descobrir os planos secretos de super vilões",
@@ -35,6 +38,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "images", "pairing", "discussion", "voting"],
-  "available": false
+  "tags": ["cooperative", "images", "pairing", "discussion", "voting"]
 }

@@ -2,8 +2,6 @@ import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, Button, Divider, Modal } from 'antd';
-// Types
-import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { UseStep } from 'hooks/useStep';
@@ -13,14 +11,15 @@ import { signInAsGuest } from 'services/firebase';
 import { SignIn, SignInWithGoogle } from 'components/auth/SignIn';
 import { SignUp } from 'components/auth/SignUp';
 import { DualTranslate, Translate } from 'components/language';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 
 type StepJoinProps = {
-  info: GameInfo;
   setStep: UseStep['setStep'];
 };
 
-export function StepJoin({ info, setStep }: StepJoinProps) {
+export function StepJoin({ setStep }: StepJoinProps) {
   const { isAuthenticated } = useCurrentUserContext();
+  const info = useGameInfoContext();
 
   const { isPending, mutate, isError, error } = useMutation({
     mutationKey: ['sign-in-anon'],

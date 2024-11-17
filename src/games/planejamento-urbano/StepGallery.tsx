@@ -3,17 +3,17 @@ import { useMeasure } from 'react-use';
 import { DragOutlined } from '@ant-design/icons';
 import { Divider, Flex, Typography } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { UseStep } from 'hooks/useStep';
+import { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Icons
 import { AngryMayorIcon } from 'icons/AngryMayorIcon';
 import { ConeIcon } from 'icons/ConeIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
@@ -21,45 +21,32 @@ import { Title } from 'components/text';
 // Internal
 import { City, CityLocationsDict, GalleryEntry } from './utils/types';
 import { getConeColor } from './utils/helpers';
-import { WINDOW_DURATION } from './utils/constants';
 import { LocationCard } from './components/LocationCard';
 import { CityMapSnippet } from './components/CityMapSnippet';
-// Hooks
 
 type StepGalleryProps = {
-  players: GamePlayers;
   activePlayer: GamePlayer;
-  controller: GamePlayer;
   city: City;
   cityLocationsDict: CityLocationsDict;
   placements: number;
   gallery: GalleryEntry[];
-  activeIndex: number;
-  setActiveIndex: GenericFunction;
-  setStep: UseStep['setStep'];
-  isFirstGalleryRunThrough: boolean;
+  slideShowConfig: SlideShowConfig;
 };
 
 export function StepGallery({
-  players,
-
-  controller,
   activePlayer,
   city,
   cityLocationsDict,
   placements,
   gallery,
-  activeIndex,
-  setActiveIndex,
-  setStep,
-  isFirstGalleryRunThrough,
+  slideShowConfig,
 }: StepGalleryProps) {
   useTemporarilyHidePlayersBar();
   const [ref, { width, height }] = useMeasure<HTMLDivElement>();
 
   const constructionWidth = useCardWidth(placements + 5, { maxWidth: 256 });
 
-  const galleryEntry = gallery[activeIndex];
+  const galleryEntry = gallery[slideShowConfig.slideIndex];
   const coneColor = getConeColor(galleryEntry.cone);
 
   return (
@@ -69,17 +56,11 @@ export function StepGallery({
       </Title>
 
       <SlideShow
-        players={players}
-        length={gallery.length}
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-        setStep={setStep}
-        disableControls={isFirstGalleryRunThrough}
+        config={slideShowConfig}
         barColor={coneColor}
-        windowDuration={WINDOW_DURATION}
         leftClassName="pu-gallery__map"
         rightClassName="pu-gallery__info"
-        rankingButtonLabel={<Translate pt="Ver Resultado" en="See Results" />}
+        nextButtonProps={{ children: <Translate pt="Ver Resultado" en="See Results" /> }}
       >
         <div style={{ height: '100%' }} ref={ref}>
           <CityMapSnippet
@@ -106,7 +87,8 @@ export function StepGallery({
           <Divider className="my-2" />
 
           <div className="pu-gallery__label">
-            <Translate pt="Plano do Engenheiro Chefe" en="Chief Engineer's Plan" />
+            <Translate pt="Plano do Engenheiro Chefe" en="Chief Engineer's Plan" />{' '}
+            <AvatarName player={activePlayer} />
           </div>
 
           <Cone

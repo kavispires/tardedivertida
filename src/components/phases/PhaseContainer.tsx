@@ -1,18 +1,13 @@
 import clsx from 'clsx';
 import { ReactNode, useRef } from 'react';
-// Types
-import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { useGameAppearance } from 'components/session/GameInfoContext';
 
 type PhaseContainerProps = {
-  /**
-   * The game info
-   */
-  info?: GameInfo;
   /**
    * The current phase that must match the allowed phase
    */
@@ -35,6 +30,7 @@ type PhaseContainerProps = {
   fullScreen?: boolean;
   /**
    * If the container should be white
+   * @deprecated
    */
   white?: boolean;
 };
@@ -45,7 +41,6 @@ type PhaseContainerProps = {
  * @returns
  */
 export function PhaseContainer({
-  info,
   phase,
   allowedPhase = '',
   children,
@@ -53,10 +48,11 @@ export function PhaseContainer({
   fullScreen = false,
   white = false,
 }: PhaseContainerProps) {
+  const appearance = useGameAppearance();
   const { translate } = useLanguage();
   const screenRef = useRef<HTMLScriptElement>(null);
 
-  if (!info?.gameName || allowedPhase !== phase) {
+  if (allowedPhase !== phase) {
     return <LoadingPage />;
   }
 
@@ -67,7 +63,7 @@ export function PhaseContainer({
   }
 
   const baseClass = 'phase-container';
-  const backgroundColorOverlay = info?.appearance?.backgroundColor;
+  const backgroundColorOverlay = appearance?.backgroundColor;
 
   return (
     <main

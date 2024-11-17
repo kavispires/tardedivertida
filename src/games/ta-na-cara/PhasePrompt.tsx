@@ -20,7 +20,7 @@ import { useOnSubmitPromptAPIRequest, useOnSubmitTargetAPIRequest } from './util
 import { StepSelectPrompt } from './StepSelectPrompt';
 import { StepWaitingForPrompt } from './StepWaitingForPrompt';
 
-export function PhasePrompt({ players, state, info }: PhaseProps) {
+export function PhasePrompt({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -58,7 +58,7 @@ export function PhasePrompt({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.PROMPT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.PROMPT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserTheActivePlayer}>

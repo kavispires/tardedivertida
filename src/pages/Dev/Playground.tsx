@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
 import { useQuery } from '@tanstack/react-query';
 import { doc, updateDoc } from 'firebase/firestore';
 import { CSSProperties, useState } from 'react';
@@ -8,7 +9,6 @@ import { Button, Space } from 'antd';
 import { firestore } from 'services/firebase';
 // Internal
 import { DevHeader } from './DevHeader';
-/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
 
 // import { Image, Layout } from 'antd';
 // Resources

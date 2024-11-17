@@ -17,7 +17,7 @@ import { Instruction } from 'components/text';
 import { useOnMakeAccusationAPIRequest } from './utils/api-requests';
 import { StepFinalAssessment } from './StepFinalAssessment';
 
-export function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
+export function PhaseFinalAssessment({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const user = useUser(players, state);
@@ -29,7 +29,6 @@ export function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer
-      info={info}
       phase={state?.phase}
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT}
       className="e-phase"

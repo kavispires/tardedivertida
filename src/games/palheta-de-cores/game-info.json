@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "palheta-de-cores",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Palheta de Cores",
     "en": "Color Palette"
@@ -19,7 +20,9 @@
   },
   "appearance": {
     "clouds": "cloud",
-    "color": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],
@@ -34,6 +37,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "same-time", "pairing"],
-  "available": false
+  "tags": ["cooperative", "same-time", "pairing"]
 }

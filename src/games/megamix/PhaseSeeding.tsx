@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitSeedAPIRequest } from './utils/api-requests';
 import { StepSeeding } from './StepSeeding';
 
-export function PhaseSeeding({ players, state, info }: PhaseProps) {
+export function PhaseSeeding({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -43,7 +43,7 @@ export function PhaseSeeding({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MEGAMIX.SEEDING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MEGAMIX.SEEDING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSeeding players={players} announcement={announcement} onSubmitData={onSubmitData} user={user} />

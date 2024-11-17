@@ -13,12 +13,12 @@ import { Achievements } from 'components/general/Achievements';
 import type { AlbumEntry } from './utils/types';
 import achievementsReference from './utils/achievements';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   const slideCount = Math.min(state.album[0]?.slides.length ?? 5, 8);
   const cardWidth = useCardWidth(slideCount, { minWidth: 100 });
 
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TheEndIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<TheEndIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <ul className="l-album-strips">

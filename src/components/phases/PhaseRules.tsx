@@ -27,6 +27,7 @@ import {
 // Components
 import { Translate } from 'components/language';
 import { LoadingPage } from 'components/loaders';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 import { Title } from 'components/text';
 // Internal
 import { RulesCarousel } from '../rules';
@@ -37,8 +38,9 @@ type PhaseRulesProps = {
   info: GameInfo;
 };
 
-export function PhaseRules({ players, info }: PhaseRulesProps) {
+export function PhaseRules({ players }: PhaseRulesProps) {
   const { isLoading } = useLoading();
+  const info = useGameInfoContext();
   const { language, translate } = useLanguage();
   const user = useUser(players);
   const [volume] = useGlobalLocalStorage('volume');

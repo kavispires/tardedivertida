@@ -15,9 +15,9 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, Title } from 'components/text';
 // Internal
+import { Status, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
-import { Status, THistoryEntry } from './utils/types';
 import { Summary } from './components/Summary';
 
 type StepSuspectEliminationProps = {
@@ -61,7 +61,7 @@ export function StepSuspectElimination({
 
   return (
     <Step announcement={announcement}>
-      <Title level={3} size="medium" white>
+      <Title level={3} size="medium">
         <AvatarName player={witness} addressUser />
         <Translate en="answered" pt="respondeu" />{' '}
         {testimony ? (

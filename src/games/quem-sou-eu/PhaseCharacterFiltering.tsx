@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
 import { StepSelectCharacters } from './StepSelectCharacters';
 
-export function PhaseCharacterFiltering({ players, state, info }: PhaseProps) {
+export function PhaseCharacterFiltering({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -39,7 +39,7 @@ export function PhaseCharacterFiltering({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.CHARACTER_FILTERING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.CHARACTER_FILTERING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectCharacters

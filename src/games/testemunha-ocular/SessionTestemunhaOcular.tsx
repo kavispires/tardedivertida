@@ -1,9 +1,7 @@
-// Ant Design Resources
-import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
+import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
@@ -19,7 +17,6 @@ import PhaseGameOver from './PhaseGameOver';
 // Sass
 import 'assets/fonts/architects-daughter.scss';
 import './utils/styles.scss';
-// Fonts
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -49,16 +46,7 @@ function getActiveComponent(state: GameState) {
 
 function SessionTestemunhaOcular() {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: THEME_COLORS.SLATE,
-          colorLink: THEME_COLORS.SLATE,
-        },
-      }}
-    >
-      <Session gameCollection={GAME_COLLECTION.TESTEMUNHA_OCULAR} getActiveComponent={getActiveComponent} />
-    </ConfigProvider>
+    <Session gameCollection={GAME_COLLECTION.TESTEMUNHA_OCULAR} getActiveComponent={getActiveComponent} />
   );
 }
 

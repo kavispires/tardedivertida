@@ -8,6 +8,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
+import { AlienAngry2Icon } from 'icons/AlienAngry2Icon';
 import { AlienAngryIcon } from 'icons/AlienAngryIcon';
 import { AlienHappyIcon } from 'icons/AlienHappyIcon';
 import { AlienNeutralIcon } from 'icons/AlienNeutralIcon';
@@ -20,7 +21,7 @@ import { Item, RequestHistoryEntry } from './utils/types';
 import { ITEM_TYPES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ players, state, info }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
@@ -44,11 +45,14 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
           }
         }
       });
+      if (hasAsk && hasCurse) {
+        return <AlienAngryIcon />;
+      }
       if (hasAsk) {
         return <AlienHappyIcon />;
       }
       if (hasCurse) {
-        return <AlienAngryIcon />;
+        return <AlienAngry2Icon />;
       }
       return <AlienNeutralIcon />;
     }
@@ -65,7 +69,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

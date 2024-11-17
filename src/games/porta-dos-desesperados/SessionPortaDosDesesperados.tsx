@@ -1,9 +1,7 @@
-// Ant Design Resources
-import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
+import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
@@ -18,6 +16,7 @@ import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import 'assets/fonts/dancing-script.scss';
 import './utils/styles.scss';
+// Ant Design Resources
 // Fonts
 
 function getActiveComponent(state: GameState) {
@@ -46,19 +45,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionPortaDosDesesperados() {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: THEME_COLORS.MIDNIGHT,
-          colorLink: THEME_COLORS.MIDNIGHT,
-        },
-      }}
-    >
-      <Session
-        gameCollection={GAME_COLLECTION.PORTA_DOS_DESESPERADOS}
-        getActiveComponent={getActiveComponent}
-      />
-    </ConfigProvider>
+    <Session
+      gameCollection={GAME_COLLECTION.PORTA_DOS_DESESPERADOS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

@@ -6,7 +6,6 @@ import type { GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import type { UseStep } from 'hooks/useStep';
 // Components
 import { Container } from 'components/general/Container';
 import { HostNextPhaseButton } from 'components/host';
@@ -22,7 +21,7 @@ import { LocationCard } from './components/LocationCard';
 type StepResultsProps = {
   players: GamePlayers;
   round: GameRound;
-  goToPreviousStep: UseStep['goToPreviousStep'];
+  onGoBack: () => void;
   isLastRound?: boolean;
   groupScore: number;
   correct: number;
@@ -36,7 +35,7 @@ type StepResultsProps = {
 
 export function StepResults({
   players,
-  goToPreviousStep,
+  onGoBack,
   round,
   status,
   correct,
@@ -145,7 +144,7 @@ export function StepResults({
       <TurnOrder players={players} activePlayerId={controllerId} order={gameOrder} />
 
       <Space className="space-container" align="center">
-        <Button onClick={goToPreviousStep}>
+        <Button onClick={onGoBack}>
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>

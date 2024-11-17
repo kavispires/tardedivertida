@@ -14,7 +14,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { StepResolution } from './StepResolution';
 
-export function PhaseResolution({ state, players, info }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps) {
   const { step } = useStep(0);
 
   const announcement = (
@@ -47,7 +47,7 @@ export function PhaseResolution({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResolution

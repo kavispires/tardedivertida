@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "EE",
   "gameName": "dilema-dos-esquiadores",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Dilema dos Esquiadores",
     "en": "Skiers' Dilemma"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "cloud",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],
@@ -35,6 +37,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "same-time", "betting", "voting"],
-  "available": false
+  "tags": ["competitive", "same-time", "betting", "voting"]
 }

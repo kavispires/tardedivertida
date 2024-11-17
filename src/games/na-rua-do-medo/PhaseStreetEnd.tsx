@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { StepStreetEnd } from './StepStreetEnd';
 
-export function PhaseStreetEnd({ state, players, info }: PhaseProps) {
+export function PhaseStreetEnd({ state, players }: PhaseProps) {
   const { step } = useStep(0);
   const user = useUser(players, state);
 
@@ -39,7 +39,7 @@ export function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.STREET_END}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.STREET_END}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepStreetEnd

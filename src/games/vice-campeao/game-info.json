@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "vice-campeao",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Vice-Campeão",
     "en": "Runner-Up"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "cloud",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],
@@ -31,6 +33,9 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["competitive", "same-time"],
-  "available": false
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["competitive", "same-time"]
 }

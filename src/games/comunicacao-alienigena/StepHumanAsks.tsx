@@ -65,7 +65,7 @@ export function StepHumanAsks({
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step fullWidth announcement={isUserTheCurrentHuman ? announcement : undefined}>
-      <Title white>
+      <Title>
         {isUserTheCurrentHuman ? (
           <Translate pt={<>Pergunte ao Alienígena!</>} en={<>Ask the Alien!</>} />
         ) : (

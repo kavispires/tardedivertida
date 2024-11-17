@@ -8,9 +8,9 @@ import { Achievements } from 'components/general/Achievements';
 // Internal
 import achievementsReference from './utils/achievements';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
     </GameOverWrapper>
   );

@@ -5,7 +5,7 @@ import type { GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import type { UseStep } from 'hooks/useStep';
+import { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
@@ -18,7 +18,6 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 // Internal
 import type { Characters, GalleryEntry } from './utils/types';
-import { PAGE_DURATION } from './utils/constants';
 import { ScoringRules } from './components/RulesBlobs';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
 import { GalleryGuesses } from './components/GalleryGuesses';
@@ -28,10 +27,7 @@ type StepGalleryProps = {
   players: GamePlayers;
   characters: Characters;
   gallery: GalleryEntry[];
-  activeIndex: number;
-  setActiveIndex: GenericFunction;
-  setStep: UseStep['setStep'];
-  isFirstGalleryRunThrough: boolean;
+  slideShowConfig: SlideShowConfig;
   round: GameRound;
   imageCardMode: boolean;
 };
@@ -40,10 +36,7 @@ export function StepGallery({
   players,
   gallery,
   characters,
-  activeIndex,
-  setActiveIndex,
-  setStep,
-  isFirstGalleryRunThrough,
+  slideShowConfig,
   round,
   imageCardMode,
 }: StepGalleryProps) {
@@ -58,7 +51,7 @@ export function StepGallery({
     minWidth: 120,
     maxWidth: 200,
   });
-  const { playerId, characterId, playersPoints, playersSay } = gallery[activeIndex];
+  const { playerId, characterId, playersPoints, playersSay } = gallery[slideShowConfig.slideIndex];
 
   const currentPlayer = players[playerId];
   const currentColor = getAvatarColorById(currentPlayer.avatarId);
@@ -72,14 +65,8 @@ export function StepGallery({
       <PopoverRule content={<ScoringRules currentRound={round.current} />} />
 
       <SlideShow
-        players={players}
-        length={gallery.length}
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-        setStep={setStep}
-        disableControls={isFirstGalleryRunThrough}
+        config={slideShowConfig}
         barColor={currentColor}
-        windowDuration={PAGE_DURATION}
         leftClassName="q-gallery__result"
         rightClassName="q-gallery__info"
       >

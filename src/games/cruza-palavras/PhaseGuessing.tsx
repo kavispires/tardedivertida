@@ -16,7 +16,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ players, state, info }: PhaseProps) {
+export function PhaseGuessing({ players, state }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -51,7 +51,7 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.GUESSING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.GUESSING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepGuessing

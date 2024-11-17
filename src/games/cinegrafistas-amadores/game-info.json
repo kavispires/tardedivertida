@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "CC",
   "gameName": "cinegrafistas-amadores",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "release": "planned",
+  "available": false,
   "title": {
     "pt": "Cinegrafistas Amadores",
     "en": "Amateur Cinematographers"
@@ -19,8 +20,9 @@
   },
   "appearance": {
     "clouds": "cloud",
-    "color": "",
-    "backgroundColor": ""
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
   },
   "rules": {
     "pt": ["TBD"],
@@ -35,6 +37,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["same-time", "voting"],
-  "available": false
+  "tags": ["same-time", "voting"]
 }

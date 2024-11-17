@@ -16,7 +16,7 @@ import { StepSwitcher } from 'components/steps';
 import { useOnSubmitSeedingAPIRequest } from './utils/api-requests';
 import { StepSeedAlien } from './StepSeedAlien';
 
-export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {
+export function PhaseAlienSeeding({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 
@@ -36,11 +36,7 @@ export function PhaseAlienSeeding({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SEEDING}
-    >
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SEEDING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSeedAlien

@@ -19,7 +19,7 @@ import { PlayerObjectClueFeature } from './components/PlayerObjectClueFeature';
 import { StepSelectObject } from './StepObjectSelection';
 import { StepWriteClue } from './StepWriteClue';
 
-export function PhaseClueWriting({ players, state, info }: PhaseProps) {
+export function PhaseClueWriting({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep, goToPreviousStep } = useStep();
   const [objectId, setObjectId] = useState<string>('');
@@ -57,7 +57,7 @@ export function PhaseClueWriting({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MESMICE.CLUE_WRITING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MESMICE.CLUE_WRITING}>
       <StepSwitcher
         step={step}
         players={players}

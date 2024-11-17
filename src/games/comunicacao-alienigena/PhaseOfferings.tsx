@@ -16,7 +16,7 @@ import { StepSwitcher } from 'components/steps';
 import { useOnSubmitOfferingAPIRequest } from './utils/api-requests';
 import { StepHumansOffer } from './StepHumansOffer';
 
-export function PhaseOfferings({ players, state, info }: PhaseProps) {
+export function PhaseOfferings({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
@@ -35,7 +35,7 @@ export function PhaseOfferings({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.OFFERINGS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.OFFERINGS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepHumansOffer

@@ -18,7 +18,7 @@ import { useOnSubmitPairsAPIRequest } from './utils/api-requests';
 import { MadePairs } from './components/MadePairs';
 import { StepMakePairs } from './StepMakePairs';
 
-export function PhasePairing({ players, state, info }: PhaseProps) {
+export function PhasePairing({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep();
 
@@ -41,7 +41,7 @@ export function PhasePairing({ players, state, info }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.DUETOS.PAIRING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DUETOS.PAIRING}>
       <StepSwitcher
         step={step}
         players={players}

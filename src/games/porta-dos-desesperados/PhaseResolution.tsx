@@ -13,11 +13,11 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { StepResults } from './StepResults';
 
-export function PhaseResolution({ players, state, info }: PhaseProps) {
+export function PhaseResolution({ players, state }: PhaseProps) {
   const { step, goToNextStep } = useStep();
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

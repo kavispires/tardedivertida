@@ -174,6 +174,8 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  utils.players.unReadyPlayers(players);
+
   const { ranking, robot, result, outcome } = calculateResults(
     players,
     state.robot,

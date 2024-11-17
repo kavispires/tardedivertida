@@ -5,6 +5,7 @@
     "gameName": "desenho-rapidao",
     "version": "0.0.0",
     "release": "planned",
+    "available": false,
     "title": {
       "pt": "Desenho Rapidão",
       "en": "Fast Draw"
@@ -16,7 +17,9 @@
     "basedOn": "hsaD eldooD",
     "appearance": {
       "clouds": "cloud",
-      "color": ""
+      "primaryColor": "",
+      "backgroundColor": "",
+      "colorScheme": "light"
     },
     "summary": {
       "pt": "Uma palavra secreta, uma corrida, vários desenhos! Quem consegue desenhar o mais rápido possível?",
@@ -39,6 +42,7 @@
     "gameName": "sonhinho-bom",
     "version": "0.0.0",
     "release": "planned",
+    "available": false,
     "title": {
       "pt": "Sonhinho Bom",
       "en": "Dream State"
@@ -50,7 +54,9 @@
     "basedOn": "?????",
     "appearance": {
       "clouds": "cloud",
-      "color": ""
+      "primaryColor": "",
+      "backgroundColor": "",
+      "colorScheme": "light"
     },
     "summary": {
       "pt": "???",

@@ -16,9 +16,9 @@ import { Instruction } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
 
-export function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<CrownIcon />}>
+    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       {!isEqual(state.winners, state.fairWinners) && (
         <Container
           title={

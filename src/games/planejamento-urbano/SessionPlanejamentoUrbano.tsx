@@ -1,9 +1,7 @@
-// Ant Design Resources
-import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
+import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
@@ -44,16 +42,7 @@ function getActiveComponent(state: GameState) {
 
 function SessionPlanejamentoUrbano() {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: THEME_COLORS.DEFAULT,
-          colorLink: THEME_COLORS.DEFAULT,
-        },
-      }}
-    >
-      <Session gameCollection={GAME_COLLECTION.PLANEJAMENTO_URBANO} getActiveComponent={getActiveComponent} />
-    </ConfigProvider>
+    <Session gameCollection={GAME_COLLECTION.PLANEJAMENTO_URBANO} getActiveComponent={getActiveComponent} />
   );
 }
 
