@@ -5,7 +5,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { useGameAppearance } from 'components/session/GameInfoContext';
 
 type PhaseContainerProps = {
   /**
@@ -30,6 +30,7 @@ type PhaseContainerProps = {
   fullScreen?: boolean;
   /**
    * If the container should be white
+   * @deprecated
    */
   white?: boolean;
 };
@@ -47,11 +48,11 @@ export function PhaseContainer({
   fullScreen = false,
   white = false,
 }: PhaseContainerProps) {
-  const info = useGameInfoContext();
+  const appearance = useGameAppearance();
   const { translate } = useLanguage();
   const screenRef = useRef<HTMLScriptElement>(null);
 
-  if (!info?.gameName || allowedPhase !== phase) {
+  if (allowedPhase !== phase) {
     return <LoadingPage />;
   }
 
@@ -62,7 +63,7 @@ export function PhaseContainer({
   }
 
   const baseClass = 'phase-container';
-  const backgroundColorOverlay = info?.appearance?.backgroundColor;
+  const backgroundColorOverlay = appearance?.backgroundColor;
 
   return (
     <main

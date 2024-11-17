@@ -18,7 +18,7 @@ export function PhaseSetup({ state }: PhaseSetupProps) {
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
       <div className="phase-announcement">
-        <Title>
+        <Title colorScheme="light">
           <Translate pt="Preparando o jogo..." en="Setting up..." />
         </Title>
 
