@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.46",
+  "version": "4.0.47",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -20,7 +20,7 @@
   },
   "appearance": {
     "clouds": "vinyl-cloud",
-    "primaryColor": "",
+    "primaryColor": "#6052a8",
     "backgroundColor": "",
     "colorScheme": "light"
   },
