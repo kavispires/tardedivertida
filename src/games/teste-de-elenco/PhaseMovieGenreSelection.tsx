@@ -14,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitMovieGenreAPIRequest } from './utils/api-requests';
+import { MovieGenreRules } from './components/RulesBlobs';
 import { StepSelectGenre } from './StepSelectGenre';
 
 export function PhaseMovieGenreSelection({ players, state }: PhaseProps) {
@@ -30,20 +31,7 @@ export function PhaseMovieGenreSelection({ players, state }: PhaseProps) {
       type="overlay"
     >
       <Instruction>
-        <Translate
-          pt={
-            <>
-              Somos diretores de elenco tentando determinar o elenco para um filme! Haverá 5 papéis para
-              escalar, mas primeiro precisamos decidir qual é o gênero do filme em que vamos trabalhar!
-            </>
-          }
-          en={
-            <>
-              We are casting directors trying to determine the cast for a movie! There will be 5 roles to
-              cast, but we first need to decide what genre is the movie we'll be working on!
-            </>
-          }
-        />
+        <MovieGenreRules />
       </Instruction>
     </PhaseAnnouncement>
   );

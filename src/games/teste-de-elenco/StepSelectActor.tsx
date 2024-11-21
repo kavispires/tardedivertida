@@ -63,7 +63,8 @@ export function StepSelectActor({
             <>
               Se um ator receber mais de 50% dos votos, ele será escolhido para o papel!
               <br />
-              Caso contrário, o papel vai o final da fila e vamos reselecioná-lo na próxima rodada.
+              Caso contrário, o papel vai o final da fila e vamos reselecioná-lo na próxima rodada (igual
+              segundo turno de eleição).
               <br />
               Você ganha <PointsHighlight>1</PointsHighlight> por cada jogador que escolher o mesmo ator que
               você.
