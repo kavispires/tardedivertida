@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "release": "stable",
   "available": true,
   "title": {
@@ -49,5 +49,5 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["competitive", "drawing", "pairing", "timed"]
+  "tags": ["competitive", "drawing", "pairing", "timed", "achievements"]
 }
