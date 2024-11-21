@@ -13,7 +13,7 @@ import { CanvasResizer, CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import type { Sketch } from './utils/types';
@@ -56,7 +56,7 @@ export function StepVote({
       <Title>
         <Translate pt="Vote!" en="Vote!" />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt="Vote no desenho que mais se aproxima do monstro."
           en="Vote for the sketch that best represents the monster."
@@ -98,7 +98,7 @@ export function StepVote({
             en={<strong>You cannot vote for yourself.</strong>}
           />
         </ViewOr>
-      </Instruction>
+      </RuleInstruction>
 
       <CanvasResizer />
 
@@ -119,13 +119,12 @@ export function StepVote({
                 onClick={() => onSubmitVote({ vote: player.id })}
                 disabled={ownDrawing}
                 className="r-vote-button"
+                icon={!ownDrawing && <CheckSquareOutlined />}
               >
                 {ownDrawing ? (
                   <Translate pt="Seu" en="Yours" />
                 ) : (
-                  <>
-                    <CheckSquareOutlined /> <Translate pt="Vote neste" en="Vote for this one" />
-                  </>
+                  <Translate pt="Vote neste" en="Vote for this one" />
                 )}
               </Button>
             </Space>

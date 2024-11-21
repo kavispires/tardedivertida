@@ -124,6 +124,8 @@ export const prepareRevealPhase = async (
 
   await saveData(state.sketches, store.language);
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {

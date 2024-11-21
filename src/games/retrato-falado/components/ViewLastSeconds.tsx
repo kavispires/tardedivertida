@@ -3,7 +3,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Components
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
 // Internal
@@ -26,21 +26,21 @@ export function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLin
           <Translate pt="Pronto!" en="Done! " />
         </Title>
         <TimerBar steps={TIMES.EXTRA} value={remainingTime} total={TIMES.EXTRA} strokeColor="red" />
-        <Instruction contained>
+        <RuleInstruction type="event">
           <Translate
             pt="Boca fechada! Aguarde os jogadores darem os últimos retoques."
             en="Shut up! Wait for the other players to finish their drawings."
           />
-        </Instruction>
+        </RuleInstruction>
       </div>
 
       <div className="r-view">
         <Title>
           <Translate pt="Termine!" en="Finish it!" />
         </Title>
-        <Instruction contained>
+        <RuleInstruction type="event">
           <Translate pt="Últimos segundos para os retoques finais" en="A few seconds more to finish" />
-        </Instruction>
+        </RuleInstruction>
         <TimerBar steps={TIMES.EXTRA} value={remainingTime} total={TIMES.EXTRA} strokeColor="red" />
         <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
       </div>
