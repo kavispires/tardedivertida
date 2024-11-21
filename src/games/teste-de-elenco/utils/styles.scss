@@ -18,6 +18,14 @@
       border: 6px solid get-color('white', 5, 0.5);
     }
   }
+
+  &__items {
+    place-items: start;
+  }
+
+  &__item-card {
+    background: transparent;
+  }
 }
 
 .role {

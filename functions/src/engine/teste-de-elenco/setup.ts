@@ -153,6 +153,8 @@ export const prepareResultPhase = async (
 ): Promise<SaveGamePayload> => {
   const { outcome, ranking } = determineCast(players, state, store);
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {

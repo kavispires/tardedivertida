@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Teste De Elenco",
     "en": "Re-Casting Call"
@@ -20,8 +20,8 @@
   },
   "appearance": {
     "clouds": "acting-cloud",
-    "primaryColor": "",
-    "backgroundColor": "",
+    "primaryColor": "#4F1271",
+    "backgroundColor": "rgba(239, 217, 206, 0.75)",
     "colorScheme": "light"
   },
   "rules": {
@@ -54,8 +54,8 @@
     {
       "key": "nsfw",
       "kind": "switch",
-      "label": "NSFW questions",
-      "description": "Allow NSFW questions",
+      "label": "NSFW traits",
+      "description": "Allow NSFW traits",
       "values": [
         {
           "label": "No",

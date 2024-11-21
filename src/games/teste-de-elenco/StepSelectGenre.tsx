@@ -23,6 +23,7 @@ import { RuleInstruction, Title } from 'components/text';
 // Internal
 import type { MovieGenreOption, SubmitMovieGenrePayload } from './utils/types';
 import { Icons } from './utils/helpers';
+import { MovieGenreRules } from './components/RulesBlobs';
 
 type StepSelectGenreProps = {
   user: GamePlayer;
@@ -60,24 +61,7 @@ export function StepSelectGenre({
       </Title>
 
       <RuleInstruction type="rule">
-        <Translate
-          pt={
-            <>
-              Somos diretores de elenco tentando determinar o elenco para um filme! Haverá 5 papéis para
-              escalar, mas primeiro precisamos decidir algumas coisas sobre o filme em que vamos trabalhar!
-              <br />
-              Isso vai determinar quais serão os papéis que precisaremos escalar!
-            </>
-          }
-          en={
-            <>
-              We are casting directors trying to determine the cast for a movie! There will be 5 roles to
-              cast, but we first need to decide some things about the movie we'll be working on!
-              <br />
-              This will determine what roles we'll need to cast!
-            </>
-          }
-        />
+        <MovieGenreRules />
       </RuleInstruction>
 
       <Container
@@ -137,7 +121,7 @@ export function StepSelectGenre({
         }
         contentProps={{
           style: { gridTemplateColumns: `repeat(${movieProps.length}, 1fr)` },
-          className: 'movie-personalization-selection',
+          className: 'movie-personalization-selection movie-personalization-selection__items',
         }}
       >
         {movieProps.map((item) => {
@@ -150,7 +134,11 @@ export function StepSelectGenre({
               active={selectedProps[0] === item.id}
               activeClass="movie-personalization-selection__button--selected"
             >
-              <ItemCard id={item.id} text={item.name} />
+              <ItemCard
+                id={item.id}
+                text={item.name}
+                className="movie-personalization-selection__item-card"
+              />
             </TransparentButton>
           );
         })}
