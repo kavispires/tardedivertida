@@ -182,6 +182,8 @@ export const prepareResultPhase = async (
   // Count candy
   const totalCandyInSidewalk = getTotalCandyInSidewalk(candySidewalk);
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {
@@ -211,6 +213,8 @@ export const prepareStreetEndPhase = async (
   players: Players,
   outcome: Outcome
 ): Promise<SaveGamePayload> => {
+  utils.players.unReadyPlayers(players);
+
   // Scenario 1: Everybody went home
   if (outcome.isEverybodyHome) {
     // Save

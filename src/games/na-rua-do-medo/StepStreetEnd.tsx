@@ -50,7 +50,7 @@ export function StepStreetEnd({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium" white>
+      <Title size="medium">
         {isDoubleHorror ? (
           <Translate
             pt={<>Um segundo {monsterName} surgiu do nada!</>}
