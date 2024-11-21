@@ -259,6 +259,8 @@ export const prepareResultsPhase = async (
   // Calculate achievements
   updateAchievements(store, brackets);
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {

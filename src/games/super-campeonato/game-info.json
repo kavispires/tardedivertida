@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.32",
+  "version": "2.3.33",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"
@@ -20,7 +20,7 @@
   },
   "appearance": {
     "clouds": "trophy-clouds",
-    "primaryColor": "",
+    "primaryColor": "#445E93",
     "backgroundColor": "rgba(188, 142, 12, 0.75)",
     "colorScheme": "light"
   },
