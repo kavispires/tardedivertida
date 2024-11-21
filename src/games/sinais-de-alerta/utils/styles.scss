@@ -73,12 +73,14 @@
 }
 
 .sda-word-button {
-  position: relative;
-
   &__matched {
     position: absolute;
-    top: -15px;
-    right: -15px;
+    top: -10px;
+    right: -30px;
+  }
+
+  &__avatar {
+    position: relative;
   }
 
   &--active {
