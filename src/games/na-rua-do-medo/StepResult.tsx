@@ -47,16 +47,11 @@ export function StepResult({
 
   return (
     <Step fullWidth>
-      <Title size="medium" white className={clsx('n-title', getAnimationClass('fadeIn'))} level={2}>
+      <Title size="medium" className={clsx('n-title', getAnimationClass('fadeIn'))} level={2}>
         <Translate pt="Decisões" en="Decisions" />:
       </Title>
 
-      <Title
-        size="small"
-        white
-        level={3}
-        className={clsx('n-subtitle', getAnimationClass('fadeIn', { delay: 1 }))}
-      >
+      <Title size="small" level={3} className={clsx('n-subtitle', getAnimationClass('fadeIn', { delay: 1 }))}>
         {goingHomePlayerIds.length === 0 && (
           <Translate pt="Todos continuaram..." en="Everybody will continue..." />
         )}
@@ -86,7 +81,7 @@ export function StepResult({
 
       <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
 
-      <HostNextPhaseButton autoTriggerTime={10}>
+      <HostNextPhaseButton autoTriggerTime={7}>
         <Translate pt="Próxima Casa" en="Next House" />
       </HostNextPhaseButton>
 

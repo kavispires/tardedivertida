@@ -70,11 +70,11 @@ export function StepMakeDecision({
 
   return (
     <Step fullWidth className="n-step-trick-or-treat">
-      <Title size="medium" white className={clsx('n-title', getAnimationClass('tada'))} level={2}>
+      <Title size="medium" className={clsx('n-title', getAnimationClass('tada'))} level={2}>
         <Translate pt="Continua ou Volta pra Casa?" en="Next House or Go Home?" />
       </Title>
 
-      <Title size="small" white level={3} className="n-subtitle">
+      <Title size="small" level={3} className="n-subtitle">
         {currentCard.type === 'candy' && (
           <Translate
             pt={
