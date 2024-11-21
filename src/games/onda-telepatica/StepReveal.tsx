@@ -66,7 +66,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title white level={2} className="o-step-reveal-title" size="small">
+      <Title level={2} className="o-step-reveal-title" size="small">
         <Sentence currentCategory={currentCategory} />
       </Title>
 

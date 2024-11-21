@@ -31,7 +31,7 @@ export function StepCategorySelection({
 
   return (
     <Step className="o-card-selection" announcement={announcement}>
-      <Title white>
+      <Title>
         <Translate
           pt="Medium, selecione uma das duas categorias"
           en="Psychic, select one of the two categories"
