@@ -3,6 +3,8 @@ import { Typography } from 'antd';
 // Types
 import { GamePlayers } from 'types/player';
 import { TextCard } from 'types/tdr';
+// Hooks
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Icons
 import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 // Components
@@ -13,7 +15,6 @@ import { Translate } from 'components/language';
 // Internal
 import { DrawingEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 
 type EvaluationAllDrawingsProps = {
   players: GamePlayers;
@@ -58,8 +59,10 @@ export function EvaluationAllDrawings({
             active={drawing.playerId === activeItem}
             activeClass="sda-word-button--active"
           >
-            {isFullyGuessed && <IconAvatar icon={<CheckMarkIcon />} className="sda-word-button__matched" />}
-            <AvatarName player={players[drawing.playerId]} />
+            <span className="sda-word-button__avatar">
+              {isFullyGuessed && <IconAvatar icon={<CheckMarkIcon />} className="sda-word-button__matched" />}
+              <AvatarName player={players[drawing.playerId]} />
+            </span>
             <WarningDrawing drawing={drawing.drawing} width={canvasSize} />
             <Typography.Text code className="uppercase">
               {gameLanguage === 'pt' ? (
