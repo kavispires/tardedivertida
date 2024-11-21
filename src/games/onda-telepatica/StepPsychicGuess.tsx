@@ -33,7 +33,7 @@ export function StepPsychicGuess({
 
   return (
     <Step className="o-dial-guess-selection" announcement={announcement}>
-      <Title size="small" white>
+      <Title size="small">
         <Translate
           pt="Quantos jogadores vão ganhar pontos com sua dica?"
           en="How many players will get points with your clue?"

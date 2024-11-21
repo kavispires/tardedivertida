@@ -52,7 +52,7 @@ export function StepClueWriting({
 
   return (
     <Step fullWidth>
-      <Title white>
+      <Title>
         <Translate pt="Escreva sua dica" en="Write your clue" />
       </Title>
       <RuleInstruction type="action">

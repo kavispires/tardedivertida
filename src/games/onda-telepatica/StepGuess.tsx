@@ -51,7 +51,7 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
 
   return (
     <Step className="o-dial-guess-selection" announcement={announcement}>
-      <Title white>
+      <Title>
         <Translate pt="Hora de brilhar telepaticamente!" en="Time to shine telepathically!" />
       </Title>
       <Prompt currentCategory={currentCategory} />
