@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.1.39",
+  "version": "3.1.40",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -20,7 +20,7 @@
   },
   "appearance": {
     "clouds": "one-clouds",
-    "primaryColor": "#1890ff",
+    "primaryColor": "#1B264F",
     "backgroundColor": "rgba(233, 185, 81, 0.5)",
     "colorScheme": "light"
   },

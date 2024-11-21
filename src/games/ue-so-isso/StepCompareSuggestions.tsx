@@ -87,7 +87,7 @@ export function StepCompareSuggestions({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title white>
+      <Title>
         <Translate pt="Comparem as Dicas" en="Compare Clues" />
       </Title>
 
