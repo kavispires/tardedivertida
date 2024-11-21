@@ -52,7 +52,7 @@ export function StepWordSelection({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title white>
+      <Title>
         <Translate
           pt={
             <>
