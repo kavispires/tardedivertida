@@ -17,10 +17,9 @@ import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
 import { Tweet } from './components/Tweet';
-//Design Resources
 
 type StepLikingProps = {
   currentTweet: TextCard;
@@ -85,12 +84,12 @@ export function StepLiking({
 
       {like !== null && (
         <div className={getAnimationClass('fadeIn')}>
-          <Instruction contained>
+          <RuleInstruction type="action">
             <Translate
               pt="Quantas curtidas esse assunto vai receber?"
               en="How many likes will this tweet get?"
             />
-          </Instruction>
+          </RuleInstruction>
 
           <ul className="p-votes">
             {countOptions.map((option) => {

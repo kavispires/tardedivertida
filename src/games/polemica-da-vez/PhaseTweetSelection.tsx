@@ -85,11 +85,6 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
                       activePlayer={activePlayer}
                       isFixedRounds={isFixedRounds}
                     />
-                    <TurnOrder
-                      order={state.gameOrder}
-                      players={players}
-                      activePlayerId={state.activePlayerId}
-                    />
                   </Instruction>
                   <TurnOrder
                     order={state.gameOrder}

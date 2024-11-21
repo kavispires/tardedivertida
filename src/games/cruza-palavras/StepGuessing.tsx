@@ -16,7 +16,6 @@ import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
 import { WordGrid } from './components/WordGrid';
 import { SelectableCell } from './components/SelectableCell';
 import { Clues } from './components/Clues';
-//Design Resources
 
 type StepGuessingProps = {
   grid: Grid;

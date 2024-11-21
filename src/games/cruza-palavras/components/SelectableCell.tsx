@@ -10,7 +10,6 @@ import type { Clue, GridCell } from '../utils/types';
 import { getClueFromKey } from '../utils/helpers';
 import { ClueCard } from './ClueCard';
 import { PreviousClue } from './PreviousClue';
-//Design Resources
 
 type SelectableCellProps = {
   onSelectCell: GenericFunction;

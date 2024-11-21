@@ -1,9 +1,12 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
+import { RiseOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 // Icons
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
+import { TwitterIcon } from 'icons/TwitterIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
 
 type TweetProps = {
   tweet: string;
@@ -17,7 +20,7 @@ type TweetProps = {
 export function Tweet({ tweet, likes, className = '' }: TweetProps) {
   return (
     <div className={clsx('p-trending-tweet', className)}>
-      <TwitterOutlined /> {tweet} <RiseOutlined />{' '}
+      <IconAvatar icon={<TwitterIcon />} /> {tweet} <RiseOutlined />{' '}
       {Boolean(likes) && (
         <span className="p-trending-tweet__likes">
           <Avatar
