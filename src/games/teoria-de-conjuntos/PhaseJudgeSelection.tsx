@@ -57,7 +57,6 @@ export function PhaseJudgeSelection({ players, state }: PhaseProps) {
           announcement={announcement}
           titleProps={{
             children: <>{title}</>,
-            white: true,
             size: 'small',
           }}
           ruleInstructionProps={{
