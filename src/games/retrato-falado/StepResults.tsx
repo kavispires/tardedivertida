@@ -14,7 +14,7 @@ import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
 import type { Sketch } from './utils/types';
 import { MonsterSketches } from './components/MonsterSketches';
@@ -96,7 +96,7 @@ export function StepResults({
         )}
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="event">
         {Boolean(mostVoted) && mostVotes.length > 1 && (
           <>
             <Translate
@@ -133,7 +133,7 @@ export function StepResults({
             }
           />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <div className="r-monster-list">
         <MonsterCard currentMonster={currentMonster} style={{ width: `${canvasWidth * 2}px` }} />
@@ -145,7 +145,7 @@ export function StepResults({
         />
       </div>
 
-      <Instruction contained>
+      <RuleInstruction type="scoring">
         {mostVotes.includes(witnessVote) ? (
           <Translate
             pt={
@@ -177,7 +177,7 @@ export function StepResults({
             }
           />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep}>
         <Translate pt="Ver Ranking" en="See Ranking" />

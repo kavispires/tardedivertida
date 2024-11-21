@@ -6,7 +6,7 @@ import { AvatarName } from 'components/avatars';
 import { DrawingCanvas } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
 // Internal
@@ -43,7 +43,7 @@ export function ViewWitnessing({
         <Title>
           <Translate pt="Aguarde..." en="Please wait..." />
         </Title>
-        <Instruction contained>
+        <RuleInstruction type="wait">
           <Translate
             pt={
               <>
@@ -56,7 +56,7 @@ export function ViewWitnessing({
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
         <TimerBar steps={TIMES.MEMORY} value={remainingWitnessingTime} total={TIMES.MEMORY} />
         <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
       </div>

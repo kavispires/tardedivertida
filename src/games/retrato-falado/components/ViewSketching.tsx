@@ -3,7 +3,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Components
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
 // Internal
@@ -30,21 +30,21 @@ export function ViewSketching({
         <Title>
           <Translate pt="Descreva o monstro!" en="Describe the monster!" />
         </Title>
-        <TimerBar steps={TIMES.SKETCH} value={remainingSketchingTime} total={TIMES.SKETCH} />
-        <MonsterCard currentMonster={{ id: 'md-bs-000', orientation: 'vertical' }} showControls={false} />
-        <Instruction contained>
+        <RuleInstruction type="tip">
           <Translate
             pt="Tente dar o maior número de detalhes possível. Os jogadores podem te fazer perguntas."
             en="Try to give the largest number of details. Player may ask you questions too."
           />
-        </Instruction>
+        </RuleInstruction>
+        <TimerBar steps={TIMES.SKETCH} value={remainingSketchingTime} total={TIMES.SKETCH} />
+        <MonsterCard currentMonster={{ id: 'md-bs-000', orientation: 'vertical' }} showControls={false} />
       </div>
 
       <div className="r-view">
         <Title>
           <Translate pt="Desenhe!" en="Sketch it!" />
         </Title>
-        <Instruction contained>
+        <RuleInstruction type="tip">
           {remainingSketchingTime > 0 ? (
             <Translate
               pt="Você pode também fazer perguntas à testemunha."
@@ -53,7 +53,7 @@ export function ViewSketching({
           ) : (
             <Translate pt="Últimos segundos para os retoques finais" en="A few seconds more to finish" />
           )}
-        </Instruction>
+        </RuleInstruction>
         <TimerBar steps={TIMES.SKETCH} value={remainingSketchingTime} total={TIMES.SKETCH} />
         <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
       </div>
