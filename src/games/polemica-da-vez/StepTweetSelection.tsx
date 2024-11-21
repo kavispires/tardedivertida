@@ -9,10 +9,9 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
 import { ScoringRules } from './components/RulesBlobs';
-//Design Resources
 
 type StepTweetSelectionProps = {
   currentTweets: TextCard[];
@@ -46,9 +45,9 @@ export function StepTweetSelection({
         <Translate pt="Selecione um assunto" en="Select one tweet" />
       </Title>
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <ScoringRules round={round} isFixedRounds={isFixedRounds} />
-      </Instruction>
+      </RuleInstruction>
 
       <ul className="p-tweets-card">
         {currentTweets.map((tweet) => (

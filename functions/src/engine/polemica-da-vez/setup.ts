@@ -141,6 +141,8 @@ export const prepareResolutionPhase = async (
   // Gather all reactions
   const totalLikes = countLikes(players, store);
 
+  utils.players.unReadyPlayers(players);
+
   // Score players
   const ranking = getRanking(players, totalLikes, store);
 

@@ -26,7 +26,6 @@ import { WordGrid } from './components/WordGrid';
 import { ClueCard } from './components/ClueCard';
 import { PreviousClue } from './components/PreviousClue';
 import { ScoringRule } from './components/RulesBlobs';
-//Design Resources
 
 const AVATARS: PlainObject = avatars;
 

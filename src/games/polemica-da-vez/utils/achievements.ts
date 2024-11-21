@@ -47,12 +47,12 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.WORST_GUESSES]: {
     icon: 'double-arrow-down',
     title: {
-      pt: 'Teve os palpites mais distantes do número correto de curtidas',
-      en: 'Had the farthest guesses from the correct number of likes',
+      pt: 'Mais Pior de Ruim',
+      en: 'Way Off',
     },
     description: {
-      pt: 'Errou mais vezes',
-      en: 'Guessed the least',
+      pt: 'Teve os palpites mais distantes do número correto de curtidas',
+      en: 'Had the farthest guesses from the correct number of likes',
     },
   },
   [ACHIEVEMENTS.MOST_ONE_OFFS]: {

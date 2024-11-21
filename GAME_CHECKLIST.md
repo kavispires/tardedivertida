@@ -315,7 +315,7 @@ Legend
 - Bots: 🔘
 - Game Over flavor: ✅
 - Custom Clouds: ✅
-- Color Scheme: ❌
+- Color Scheme: ✅
 - Collects Data: 🔘
 
 ## Porta dos Desesperados
@@ -351,7 +351,7 @@ Legend
 ## Retrato Falado Monstruoso
 
 - Collection: `retrato-falado`
-- Code: `?`
+- Code: `R`
 - Availability: ✅
 - Rating: ⭐⭐⭐
 - Rules: 🔘
@@ -364,22 +364,22 @@ Legend
 
 ## Sinais de Alerta
 
-- Collection: `aaa`
-- Code: `?`
-- Availability: ❌
+- Collection: `sinais-de-alerta`
+- Code: `S`
+- Availability: ✅
 - Rating: 🔘
 - Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
-- Game Over flavor: 🔘
-- Color Scheme: 🔘
+- Game Over flavor: ✅
+- Color Scheme: ✅
 - Collects Data: 🔘
 
 ## Super Campeonato
 
 - Collection: `super-campeonato`
-- Code: `?`
+- Code: `W`
 - Availability: ✅
 - Rating: ⭐⭐⭐
 - Rules: 🔘
@@ -392,22 +392,22 @@ Legend
 
 ## Teoria de Conjuntos
 
-- Collection: `aaa`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Collection: `teoria-de-conjuntos`
+- Code: `Q`
+- Availability: ✅
+- Rating: ⭐⭐⭐⭐
+- Rules: ✅
+- Achievements: ✅
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
-- Game Over flavor: 🔘
-- Color Scheme: 🔘
+- Game Over flavor: ✅
+- Color Scheme: ✅
 - Collects Data: 🔘
 
 ## Teste de Elenco
 
-- Collection: `aaa`
-- Code: `?`
+- Collection: `teste-de-elenco`
+- Code: `T`
 - Availability: ❌
 - Rating: 🔘
 - Rules: 🔘
@@ -426,7 +426,7 @@ Legend
 - Rating: ⭐⭐⭐⭐
 - Rules: 🟡 (text only)
 - Achievements: ✅
-- Overlaid Phase Announcements: ❌
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
 - Game Over flavor: ✅
 - Custom Clouds: ✅
@@ -451,16 +451,16 @@ Legend
 ## Ué Só Isso
 
 - Collection: `ue-so-isso`
-- Code: `?`
+- Code: `U`
 - Availability: ✅
 - Rating: ⭐⭐⭐
 - Rules: 🟡 (old images)
-- Achievements: ❌
+- Achievements: ✅
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
-- Game Over flavor: ❌
+- Game Over flavor: ✅
 - Custom Clouds: ✅
-- Color Scheme: ❌
+- Color Scheme: ✅
 - Collects Data: 🔘
 
 ## Vamos Ao Cinema

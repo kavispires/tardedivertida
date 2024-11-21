@@ -9,7 +9,6 @@ import { Translate } from 'components/language';
 import type { GridCell } from '../utils/types';
 import { PreviousClue } from './PreviousClue';
 import { WordForm } from './WordForm';
-//Design Resources
 
 type WritingCellProps = {
   onSubmitClue: GenericFunction;
