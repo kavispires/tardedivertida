@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "EE",
   "gameName": "dilema-dos-esquiadores",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "release": "planned",
   "available": false,
   "title": {

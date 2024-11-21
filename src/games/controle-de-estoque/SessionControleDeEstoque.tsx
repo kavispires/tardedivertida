@@ -1,19 +1,18 @@
-// Ant Design Resources
-import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
+import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
+// Internal
 import { PhaseGoodPlacement } from './PhaseGoodPlacement';
+import { PhasePlacementConfirmation } from './PhasePlacementConfirmation';
 // Sass
 import './utils/styles.scss';
-import { PhasePlacementConfirmation } from './PhasePlacementConfirmation';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -43,16 +42,7 @@ function getActiveComponent(state: GameState) {
 
 function SessionControleDeEstoque() {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: THEME_COLORS.DEFAULT,
-          colorLink: THEME_COLORS.DEFAULT,
-        },
-      }}
-    >
-      <Session gameCollection={GAME_COLLECTION.CONTROLE_DE_ESTOQUE} getActiveComponent={getActiveComponent} />
-    </ConfigProvider>
+    <Session gameCollection={GAME_COLLECTION.CONTROLE_DE_ESTOQUE} getActiveComponent={getActiveComponent} />
   );
 }
 

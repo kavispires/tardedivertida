@@ -1,9 +1,7 @@
-// Ant Design Resources
-import { ConfigProvider } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
+import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
@@ -47,16 +45,7 @@ function getActiveComponent(state: GameState) {
 
 function SessionCrimesHediondos() {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: THEME_COLORS.BLOOD,
-          colorLink: THEME_COLORS.BLOOD,
-        },
-      }}
-    >
-      <Session gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS} getActiveComponent={getActiveComponent} />
-    </ConfigProvider>
+    <Session gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS} getActiveComponent={getActiveComponent} />
   );
 }
 
