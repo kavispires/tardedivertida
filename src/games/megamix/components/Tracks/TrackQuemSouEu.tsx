@@ -12,7 +12,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -43,12 +43,12 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
   return (
     <>
       <MinigameTitle title={{ pt: 'Quem Sou Eu?', en: 'Who Am I?' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt="Decifre os símbolos e selecione o personagem que mais tem aver com eles."
           en="Decipher the glyphs and select the character that has the most to do with them."
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container">
         <PlayerGlyphs player={botPlayer} glyphWidth={50} />

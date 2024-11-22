@@ -14,7 +14,7 @@ import { TransparentButton } from 'components/buttons';
 import { CanvasSVG } from 'components/canvas';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -48,7 +48,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
     return (
       <>
         <MinigameTitle title={{ pt: 'Arte Ruim Pra Dedéu', en: 'Questionable Art' }} />
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -69,7 +69,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container">
           <CanvasSVG drawing={track.data.option.drawing} width={cardWidth} className="a-drawing" />
@@ -99,7 +99,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
   return (
     <>
       <MinigameTitle title={{ pt: 'Arte Ruim Pra Dedéu', en: 'Questionable Art' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -120,7 +120,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container">
         <Card header="A" color={getColorFromIndex(0)}>

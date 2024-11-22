@@ -13,7 +13,7 @@ import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -38,13 +38,13 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
   return (
     <>
       <MinigameTitle title={{ pt: 'Tá Na Cara', en: 'Guess Who What?' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt="É bem óbvio só de olhar pra essa pessoa. Mas só pra confirmar, responda essa pergunta de acordo
               com o que você acha."
           en="It's pretty obvious just by looking at this person. But just to confirm, answer this question:"
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Card header={translate('Pergunta', 'Question')} color="orange">
         {track.data.question.question}

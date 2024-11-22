@@ -10,7 +10,7 @@ import { StreetIcon } from 'icons/StreetIcon';
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { StreetCard, TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -38,7 +38,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
     return (
       <>
         <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -55,7 +55,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container" direction="vertical">
           <TransparentButton
@@ -97,7 +97,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
   return (
     <>
       <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -112,7 +112,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container">
         {track.data.options.map((house: StreetCard) => (

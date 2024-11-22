@@ -8,7 +8,7 @@ import { useMock } from 'hooks/useMock';
 import { Avatar } from 'components/avatars';
 import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -32,7 +32,7 @@ export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: Track
   return (
     <>
       <MinigameTitle title={{ pt: 'Cruza Palavras', en: 'Mixed Clues' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -40,7 +40,7 @@ export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: Track
               <br />
               Aonde ela se encaixa na grade para que combine com a linha e a coluna?
               <br />
-              Clique na célula apropriada!
+              Selecione na célula apropriada!
             </>
           }
           en={
@@ -49,11 +49,11 @@ export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: Track
               <br />
               Where does it fit in the grid where it would match the column and row?
               <br />
-              Click the appropriate grid cell!
+              Select the appropriate grid cell!
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container">
         <Avatar id="A" size="large" /> <SpeechBubble shadow>{track.data.clue.text}</SpeechBubble>

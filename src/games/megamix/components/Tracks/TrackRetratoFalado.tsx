@@ -8,7 +8,7 @@ import { useMock } from 'hooks/useMock';
 import { CanvasSVG } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -33,7 +33,7 @@ export const TrackRetratoFalado = ({ track, round, onSubmitAnswer, user, players
     <>
       <MinigameTitle title={{ pt: 'Retrato Falado Monstruoso', en: 'Monster Sketch' }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -50,7 +50,7 @@ export const TrackRetratoFalado = ({ track, round, onSubmitAnswer, user, players
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container">
           <MonsterCard currentMonster={track.data.card} showControls cardWidth={200} />

@@ -11,7 +11,7 @@ import { Card } from 'components/cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { ImageBlurButtonContainer } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -32,12 +32,12 @@ export const TrackSuperCampeonato = ({ track, round, onSubmitAnswer, user, playe
   return (
     <>
       <MinigameTitle title={{ pt: 'Super Campeonato', en: 'Ultimate Championship' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={<>É a batalha final, qual desses dois venceria esse desafio?</>}
           en={<>It's the final showdown, which one of these two would win this challenge?</>}
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container">
         <Card header={translate('Desafio', 'Challenge')} color="purple">

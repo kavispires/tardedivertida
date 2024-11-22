@@ -12,7 +12,7 @@ import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -36,7 +36,7 @@ export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: T
     <>
       <MinigameTitle title={{ pt: 'Ué, só isso?', en: "That's it?" }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -51,7 +51,7 @@ export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: T
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container" wrap>
           {track.data.options.map((option: string) => (
@@ -59,9 +59,9 @@ export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: T
           ))}
         </Space>
 
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate pt="Qual você acha que é a palavra secreta?" en="Which one is the secret word?" />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container">
           {track.data.cards.map((card: TextCard, index: number) => (

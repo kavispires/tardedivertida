@@ -7,7 +7,7 @@ import { useMock } from 'hooks/useMock';
 import { MovieCard } from 'components/cards/MovieCard';
 import { MovieReviewCard } from 'components/cards/MovieReviewCard';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -30,7 +30,7 @@ export const TrackVamosAoCinema = ({ track, round, onSubmitAnswer, user }: Track
   return (
     <>
       <MinigameTitle title={{ pt: 'Vamos ao Cinema!', en: 'Movie Night!' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -45,7 +45,7 @@ export const TrackVamosAoCinema = ({ track, round, onSubmitAnswer, user }: Track
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container">
         <MovieReviewCard

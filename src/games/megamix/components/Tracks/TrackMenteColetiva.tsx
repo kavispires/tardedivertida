@@ -7,7 +7,7 @@ import { useMock } from 'hooks/useMock';
 import { Card } from 'components/cards';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -31,12 +31,12 @@ export const TrackMenteColetiva = ({ track, round, onSubmitAnswer, user }: Track
     <>
       <MinigameTitle title={{ pt: 'Mente Coletiva', en: 'Herd Mind' }} />
       <Space direction="vertical" align="center" className="space-container contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt="Qual das respostas provavelmente viria na sua cabeça primeiro ao ver a pergunta?"
             en="Which of the answers would probably come to your mind first when you see the question?"
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container">
           <Card className="m-question-wrapper" color="yellow">

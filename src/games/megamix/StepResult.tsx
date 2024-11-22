@@ -73,7 +73,7 @@ export function StepResult({
 
   return (
     <Step announcement={announcement}>
-      <Title size="small" white>
+      <Title size="small">
         <Translate pt="Resultado" en="Results" />: <TrackTitle track={track} />
       </Title>
 

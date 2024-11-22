@@ -9,7 +9,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
-import { Instruction, TextHighlight } from 'components/text';
+import { RuleInstruction, TextHighlight } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -37,7 +37,7 @@ export const TrackOndaTelepatica = ({ track, round, onSubmitAnswer, user, player
   return (
     <>
       <MinigameTitle title={{ pt: 'Onda Telepática', en: 'Telepathic Waves' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -54,7 +54,7 @@ export const TrackOndaTelepatica = ({ track, round, onSubmitAnswer, user, player
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Card>{track.data.option.value}</Card>
 

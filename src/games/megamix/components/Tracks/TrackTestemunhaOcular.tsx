@@ -16,7 +16,7 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Card } from 'components/cards';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -43,12 +43,12 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
     <>
       <MinigameTitle title={{ pt: 'Testemunha Ocular', en: 'Eye Witness' }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt="Uma testemunha deu essa resposta ao tentar falar quem era o criminoso à polícia."
             en="A witness gave this answer when trying to explain who the perpetrator was to the police."
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Card header={translate('Pergunta', 'Question')} color="orange">
           {track.data.question.question}
@@ -71,12 +71,12 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
           </SpeechBubble>
         </Space>
 
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt="Qual dos suspeito você acha que é o criminoso?"
             en="Which one of them is the perpetrator?"
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Image.PreviewGroup>
           <Space className="space-container">

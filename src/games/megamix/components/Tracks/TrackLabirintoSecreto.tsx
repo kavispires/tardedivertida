@@ -14,7 +14,7 @@ import { TreeTwoIcon } from 'icons/TreeTwoIcon';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Instruction, TextHighlight } from 'components/text';
+import { RuleInstruction, TextHighlight } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -37,7 +37,7 @@ export const TrackLabirintoSecreto = ({ track, round, onSubmitAnswer, user }: Tr
   return (
     <>
       <MinigameTitle title={{ pt: 'Labirinto Secreto', en: 'Secret Labyrinth' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -58,7 +58,7 @@ export const TrackLabirintoSecreto = ({ track, round, onSubmitAnswer, user }: Tr
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <div className="cm-trees">
         <div className="cm-trees__tree">

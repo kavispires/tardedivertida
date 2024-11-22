@@ -7,7 +7,7 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -31,7 +31,7 @@ export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: Tra
   return (
     <>
       <MinigameTitle title={{ pt: 'Namoro ou Amizade?', en: 'Love or Friendship?' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -44,7 +44,7 @@ export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: Tra
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <div className="noa-candidates">
         {track.data.heads.map((head: DatingCandidateImageCard, index: number) => {
