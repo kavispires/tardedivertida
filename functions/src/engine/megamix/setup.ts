@@ -159,6 +159,8 @@ export const prepareResultPhase = async (
     utils.achievements.increase(store, scoring.winningTeam[0], 'solitaryWinner', 1);
   }
 
+  utils.players.unReadyPlayers(players);
+
   // Save
   return {
     update: {

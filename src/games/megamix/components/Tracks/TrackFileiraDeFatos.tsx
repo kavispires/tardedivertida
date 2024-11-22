@@ -12,7 +12,7 @@ import { LETTERS } from 'utils/constants';
 import { TransparentButton } from 'components/buttons';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { DualTranslate, Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -67,9 +67,9 @@ export const TrackFileiraDeFatos = ({ track, round, onSubmitAnswer, user, player
     <>
       <MinigameTitle title={{ pt: 'Fileira de Fatos', en: 'Facts Lineup' }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate pt="Qual das situações é a pior?" en="Which of the following situations is the worst?" />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container">
           {track.data.scenarios.map((entry: TextCard, index: number) => (

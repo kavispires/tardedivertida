@@ -12,7 +12,7 @@ import { ShooterIcon } from 'icons/ShooterIcon';
 import { Avatar } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -36,7 +36,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
     <>
       <MinigameTitle title={{ pt: 'Quem Não Mata, Morre!', en: 'Mortal Standoff' }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -46,7 +46,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
             }
             en={<>A standoff! Who are you going to shoot first? (It could be yourself)</>}
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container" wrap>
           {sortPlayers(players).map((player, index, arr) => {

@@ -8,7 +8,7 @@ import { useMock } from 'hooks/useMock';
 import { BookPages } from 'components/game/BookPages';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -33,12 +33,12 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
     <>
       <MinigameTitle title={{ pt: 'Contadores de Histórias', en: 'Storytellers' }} />
       <Space direction="vertical" align="center" className="space-container contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
-            pt="Dada a dica abaixo, qual das cartas é a resposta correta?"
-            en="Given the clue below, which card is the correct answer?"
+            pt="A dica abaixo se relaciona à uma das images, qual das cartas é correta?"
+            en="The hint below relates to one of the images, which card is correct?"
           />
-        </Instruction>
+        </RuleInstruction>
 
         <BookPages
           className="c-book-pages"

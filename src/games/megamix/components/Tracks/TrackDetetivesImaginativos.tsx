@@ -12,7 +12,7 @@ import { AVATARS, BOTS_LIST } from 'utils/avatars';
 import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -34,7 +34,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
     return (
       <>
         <MinigameTitle title={{ pt: 'Detetives Imaginativos', en: 'Detective Agency' }} />
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -49,7 +49,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Image.PreviewGroup>
           <ul className="d-table">
@@ -88,12 +88,12 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
           </ul>
         </Image.PreviewGroup>
 
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={<>Qual das suas cartas você usaria para passar despercebido?</>}
             en={<>Which card in your hand would play so you can blend in with the others?</>}
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Image.PreviewGroup>
           <Space className="space-container">
@@ -142,7 +142,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
   return (
     <>
       <MinigameTitle title={{ pt: 'Detetives Imaginativos', en: 'Detective Agency' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -159,7 +159,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Image.PreviewGroup>
         <ul className="d-table">

@@ -14,7 +14,7 @@ import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -37,7 +37,7 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
   return (
     <>
       <MinigameTitle title={{ pt: 'Crimes Hediondos', en: 'Horrific Crimes' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -62,7 +62,7 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <ul className="h-table">
         {Boolean(track.data.scenes.causeOfDeath) && (

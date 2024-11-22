@@ -9,7 +9,7 @@ import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -34,12 +34,12 @@ export const TrackPalhetaDeCores = ({ track, round, onSubmitAnswer, user }: Trac
     <>
       <MinigameTitle title={{ pt: 'Palheta de Cores', en: 'Color Palette' }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={<>Selecione a cor que melhor representa o personagem abaixo!</>}
             en={<>Select the color that best represents the character below!</>}
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Card header={translate('Dica', 'Clue')} color="red">
           <CharacterCard character={track.data.card} className="grayscale" size={200} />

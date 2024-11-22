@@ -8,7 +8,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
-import { Instruction, TextHighlight } from 'components/text';
+import { RuleInstruction, TextHighlight } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockText } from '../../utils/mock';
@@ -37,7 +37,7 @@ export const TrackEspiaoEntreNos = ({ track, round, onSubmitAnswer, user }: Trac
   return (
     <>
       <MinigameTitle title={{ pt: '', en: '' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -54,18 +54,18 @@ export const TrackEspiaoEntreNos = ({ track, round, onSubmitAnswer, user }: Trac
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container">
         <Card>{track.data.question}</Card>
       </Space>
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={<>Responda à pergunta abaixo com uma resposta simples.</>}
           en={<>Answer the prompt below with a simple answer.</>}
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="space-container" direction="vertical">
         <Input

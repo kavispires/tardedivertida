@@ -9,7 +9,7 @@ import { useMock } from 'hooks/useMock';
 import { DoorFrame } from 'components/game/DoorFrame';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -33,7 +33,7 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
   return (
     <>
       <MinigameTitle title={{ pt: 'Porta dos Desesperados', en: 'Obscure Doors' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -50,7 +50,7 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Space className="i-book-container">
         <Image.PreviewGroup>

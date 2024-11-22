@@ -14,7 +14,7 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -68,7 +68,7 @@ export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: Track
     <>
       <MinigameTitle title={{ pt: 'Dilema do Esquiador', en: "Skiers' Dilemma" }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -85,7 +85,7 @@ export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: Track
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container" direction="vertical">
           <div className="dd-animated-skiier">

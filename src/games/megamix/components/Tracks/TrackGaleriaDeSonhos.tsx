@@ -10,7 +10,7 @@ import { Card } from 'components/cards';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { CardHighlight } from 'components/metrics/CardHighlight';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -35,7 +35,7 @@ export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: Tra
   return (
     <>
       <MinigameTitle title={{ pt: 'Galeria dos Sonhos', en: 'Dream Gallery' }} />
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt={
             <>
@@ -49,7 +49,7 @@ export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: Tra
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <Card header={translate('Tema', 'Theme')} color="orange">
         {track.data.theme.text}

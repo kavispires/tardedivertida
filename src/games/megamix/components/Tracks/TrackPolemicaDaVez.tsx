@@ -6,7 +6,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Tweet } from 'components/game/SocialProfile';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -30,7 +30,7 @@ export const TrackPolemicaDaVez = ({ track, round, onSubmitAnswer, user }: Track
     <>
       <MinigameTitle title={{ pt: 'Polêmica da Vez', en: "That's Polemic" }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -45,7 +45,7 @@ export const TrackPolemicaDaVez = ({ track, round, onSubmitAnswer, user }: Track
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Tweet
           avatarId="A"

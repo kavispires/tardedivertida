@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Types
+import { Item } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -11,7 +13,7 @@ import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
 import type { AlienSign, TrackProps } from '../../utils/types';
@@ -36,7 +38,7 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
     <>
       <MinigameTitle title={{ pt: 'Comunicação Alienígena', en: 'Alien Communication' }} />
       <Space direction="vertical" align="center" className="contained margin">
-        <Instruction contained>
+        <RuleInstruction type="lore">
           <Translate
             pt={
               <>
@@ -53,7 +55,7 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
               </>
             }
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container">
           <IconAvatar icon={<AlienIcon />} size="large" />{' '}
@@ -71,22 +73,22 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
           </SpeechBubble>
         </Space>
 
-        <Instruction contained>
+        <RuleInstruction type="action">
           <Translate
             pt={<>Selecione o objeto que tem a ver com a palavra que o alienígena está pedindo.</>}
             en={<>Select the object that has to do with the word the alien is asking for.</>}
           />
-        </Instruction>
+        </RuleInstruction>
 
         <Space className="space-container">
-          {track.data.items.map((itemId: number) => {
+          {track.data.items.map((item: Item) => {
             return (
               <TransparentButton
-                key={`item-${itemId}`}
-                onClick={() => onSelect(String(itemId))}
+                key={`item-${item.id}`}
+                onClick={() => onSelect(item.id)}
                 disabled={isLoading}
               >
-                <ItemCard id={String(itemId)} width={80} />
+                <ItemCard id={item.id} width={80} />
               </TransparentButton>
             );
           })}
