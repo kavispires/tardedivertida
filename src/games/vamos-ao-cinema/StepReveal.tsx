@@ -8,7 +8,7 @@ import type { MovieCard, MovieReviewCard } from 'types/tdr';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
@@ -19,7 +19,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import { Reviews } from './components/Reviews';
@@ -76,7 +76,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
+      <Title size="small" className={getAnimationClass('slideInDown')}>
         <Translate
           pt={
             <>
@@ -95,7 +95,7 @@ export function StepReveal({
 
       <Reviews goodReview={goodReview} badReview={badReview} />
 
-      <Instruction contained>
+      <RuleInstruction type="event">
         <ViewIf condition={outcome === 'CONTINUE'}>
           <Translate
             pt={<>Que bom, ninguém queria esse mesmo! </>}
@@ -191,7 +191,7 @@ export function StepReveal({
             }
           />
         </ViewIf>
-      </Instruction>
+      </RuleInstruction>
 
       <ViewIf condition={isFinalMovie}>
         <div>

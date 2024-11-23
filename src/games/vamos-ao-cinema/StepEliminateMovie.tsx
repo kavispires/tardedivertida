@@ -11,7 +11,7 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
@@ -71,7 +71,7 @@ export function StepEliminateMovie({
 
       <Reviews goodReview={goodReview} badReview={badReview} />
 
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -105,7 +105,7 @@ export function StepEliminateMovie({
             }
           />
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <Movies
         movies={movies}
