@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Space } from 'antd';
+import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -14,7 +14,6 @@ import { LockIcon } from 'icons/LockIcon';
 import { StopIcon } from 'icons/StopIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { SubmitButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
@@ -55,9 +54,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
 
   const { timeLeft, seconds, minutes } = useCountdown({
     duration: ANSWERING_TIME,
-    onExpire: () => {},
-    // TODO: Uncomment when ready
-    // onExpire: onSubmit,
+    onExpire: onSubmit,
   });
 
   const updateAnswer = (id: string, answer: string) => {
@@ -136,7 +133,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
           >
             Mock Stop
           </DevButton>
-          <SubmitButton
+          <Button
             type="primary"
             size="large"
             className="button"
@@ -146,7 +143,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
             icon={<IconAvatar size="small" icon={<StopIcon />} />}
           >
             <Translate pt="STOP!" en="STOP!" />
-          </SubmitButton>
+          </Button>
         </Space>
       </Instruction>
     </Step>
