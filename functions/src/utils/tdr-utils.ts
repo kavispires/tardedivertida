@@ -343,25 +343,49 @@ export const saveUsedSingleWords = async (usedWords: BooleanDictionary) => {
  */
 export const getContenders = async (
   language: Language,
-  allowNSFW?: boolean,
+  allowNSFW: boolean,
+  decks: string[],
   quantity?: number
 ): Promise<ContenderCard[]> => {
   const contendersResponse: Collection<ContenderCard> = await fetchResource(TDR_RESOURCES.CONTENDERS);
 
+  const priorityDecks: Collection<ContenderCard> = {};
+  const includeSpecialDecks = decks.includes('special-td') || decks.includes('special-td-bg');
+
   // Get only contenders that match the language selected
   const languageContenders = Object.values(contendersResponse)
-    .filter((c) => (c.exclusivity ? c.exclusivity === language : true))
+    .filter((c) => (c.exclusivity ? c.exclusivity === language : true && allowNSFW ? true : !c.nsfw))
     .reduce((acc: Collection<ContenderCard>, entry) => {
-      acc[entry.id] = entry;
+      // Special Decks are held in a separate object
+      if (
+        includeSpecialDecks &&
+        (entry.decks?.includes('special-td') || entry.decks?.includes('special-td-bg'))
+      ) {
+        priorityDecks[entry.id] = entry;
+        return acc;
+      }
+
+      // All decks
+      if (decks.includes('any')) {
+        acc[entry.id] = entry;
+        return acc;
+      }
+
+      // Always include the base deck
+      if (entry.decks?.includes('base')) {
+        acc[entry.id] = entry;
+        return acc;
+      }
+
+      // Specific decks
+      if (entry.decks?.some((deck) => decks.includes(deck))) {
+        acc[entry.id] = entry;
+      }
       return acc;
     }, {});
 
   if (!quantity) {
-    if (allowNSFW) {
-      return Object.values(languageContenders);
-    }
-
-    return Object.values(languageContenders).filter((c) => !c.nsfw);
+    return [...Object.values(priorityDecks), ...Object.values(languageContenders)];
   }
 
   // Get used items deck
@@ -370,30 +394,29 @@ export const getContenders = async (
     {}
   );
 
+  const cardQuantity = quantity + 5;
+
   // Filter out used items
-  let availableContenders = gameUtils.filterOutByIds(languageContenders, usedContenders);
+  let availableContendersDict = gameUtils.filterOutByIds(languageContenders, usedContenders);
 
   // If not the minimum items needed, reset and use all
-  if (Object.keys(availableContenders).length < quantity) {
+  if (Object.keys(availableContendersDict).length < cardQuantity) {
     await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
-    availableContenders = languageContenders;
+    availableContendersDict = languageContenders;
   }
 
-  if (allowNSFW) {
-    return gameUtils.getRandomItems(Object.values(availableContenders), quantity);
-  }
-
-  const safeContenders = Object.values(availableContenders).filter((c) => !c.nsfw);
-
-  // If there are enough safe items, return them
-  if (safeContenders.length >= quantity) {
-    return gameUtils.getRandomItems(safeContenders, quantity);
-  }
+  let availableContenders = Object.values(availableContendersDict);
 
   // If not the minimum items needed, reset and use all safe
-  await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
-  const allSafeContenders = Object.values(languageContenders).filter((c) => !c.nsfw);
-  return gameUtils.getRandomItems(Object.values(allSafeContenders), quantity);
+  if (availableContenders.length < cardQuantity) {
+    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+    availableContenders = Object.values(languageContenders);
+  }
+
+  const selectedContenders = gameUtils.getRandomItems(availableContenders, cardQuantity);
+  const withPrioritized = [...Object.values(priorityDecks), ...selectedContenders];
+
+  return gameUtils.getRandomItems(withPrioritized, quantity);
 };
 
 /**

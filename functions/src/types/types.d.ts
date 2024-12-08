@@ -54,7 +54,7 @@ type Collection<T> = Record<CardId, T>;
 type CallablePayload<TPayload> = TPayload & { action: string };
 
 interface GameOptions {
-  [key: string]: boolean | string;
+  [key: string]: boolean | string | string[] | number;
 }
 
 interface ActionPayload {
@@ -318,4 +318,8 @@ type SuspectCardsOptions = {
    * Determines the images used in the suspect cards
    */
   deckType: 'regular' | 'realistic' | 'models' | 'wacky';
+};
+
+type ContendersDecksOptions = {
+  contenderDecks: string[];
 };

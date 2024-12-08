@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Type
 import { TextCard } from '../../types/tdr';
-import { PastBattles, ResourceData } from './types';
+import { PastBattles, ResourceData, SuperCampeonatoOptions } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
@@ -19,7 +19,7 @@ import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER, CONTENDERS_PER_ROUND } from
 export const getResourceData = async (
   language: Language,
   playerCount: number,
-  allowNSFW: boolean
+  options: SuperCampeonatoOptions
 ): Promise<ResourceData> => {
   const challengesResourceName = `${TDR_RESOURCES.CHALLENGES}-${language}`;
   // Get full challenges deck
@@ -42,7 +42,8 @@ export const getResourceData = async (
   // Get full contenders deck
   const contenders = await utils.tdr.getContenders(
     language,
-    allowNSFW,
+    !!options.nsfw,
+    options.contenderDecks,
     Math.max(playerCount, CONTENDERS_PER_ROUND) * CONTENDERS_PER_PLAYER
   );
 

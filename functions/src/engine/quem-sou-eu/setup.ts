@@ -142,6 +142,7 @@ export const prepareCharacterDescriptionPhase = async (
         id: character.id,
         playerId: player.id,
         name: character.name,
+        description: character.description ?? character.name,
       };
     }
   });
@@ -153,6 +154,7 @@ export const prepareCharacterDescriptionPhase = async (
       id: tableCharacter.id,
       playerId: 'bot',
       name: tableCharacter.name,
+      description: tableCharacter.description ?? tableCharacter.name,
     };
   }
 

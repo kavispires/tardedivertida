@@ -26,7 +26,9 @@ export const getResourceData = async (
   const quantityNeeded =
     (Math.max(playerCount, MINIMUM_CHARACTERS) + EXTRA_CHARACTERS) * CHARACTERS_PER_PLAYER;
 
-  const characters = imageCardsMode ? [] : await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);
+  const characters = imageCardsMode
+    ? []
+    : await utils.tdr.getContenders(language, allowNSFW, options.contenderDecks, quantityNeeded);
   const imageCards: ContenderCard[] = (
     imageCardsMode ? await utils.imageCards.getImageCards(quantityNeeded) : []
   ).map((cardId) => ({

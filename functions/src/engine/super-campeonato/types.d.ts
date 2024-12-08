@@ -10,7 +10,7 @@ export type SuperCampeonatoOptions = {
    * Automatically select contenders for the round (for games over 8 players)
    */
   autoContenders?: boolean;
-};
+} & ContendersDecksOptions;
 
 export interface ResourceData {
   contenders: ContenderCard[];

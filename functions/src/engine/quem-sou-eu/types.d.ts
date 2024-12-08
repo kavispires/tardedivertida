@@ -14,7 +14,7 @@ export type QuemSouEuOptions = {
    * Uses image cards instead of characters
    */
   imageCardsMode?: boolean;
-};
+} & ContendersDecksOptions;
 
 export interface ResourceData {
   characters: ContenderCard[];
@@ -24,6 +24,7 @@ export interface ResourceData {
 export interface Character {
   id: CardId;
   name: DualLanguageValue;
+  description: DualLanguageValue;
   playerId: PlayerId;
 }
 

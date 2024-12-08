@@ -164,7 +164,7 @@ export type CityLocation = {
    */
   id: string;
   /**
-   * The name of the contender
+   * The name of the location
    */
   name: DualLanguageValue;
   /**
@@ -226,15 +226,18 @@ export type ContenderCard = {
    */
   exclusivity?: Language;
   /**
+   * The characters description
+   */
+  description?: DualLanguageValue;
+  /**
    * The groups the contender belongs to
    */
-  groups?: string[];
+  decks?: string[];
   /**
    * Flag indicating if it's NSFW
    */
   nsfw?: boolean;
 };
-
 /**
  * Crime Hediondo Card
  * Used for: crime-evidence, crime-weapons
