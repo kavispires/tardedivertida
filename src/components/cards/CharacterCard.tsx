@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Image } from 'antd';
+import { Image, Tooltip } from 'antd';
 // Types
 import type { ContenderCard } from 'types/tdr';
 // Hooks
@@ -50,32 +50,36 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
 
   const imageURL = character.id.replace(/-/g, '/');
 
+  const description = character?.description || character.name;
+
   return (
     <ImageBlurButtonContainer cardId={character.id}>
-      <div className={clsx('character-card', className)} style={{ width: `${size}px` }}>
-        {!hideName && (
-          <span className="character-card__name">
-            <DualTranslate>{character.name}</DualTranslate>
-          </span>
-        )}
-        {overlayColor && (
-          <img
-            src={`${PUBLIC_URL.IN_GAME}/w-overlay-${overlayColor}.png`}
-            className="character-card__overlay"
-            alt="character"
-            style={{ width: `${size}px` }}
+      <Tooltip title={dualTranslate(description)} placement="top">
+        <div className={clsx('character-card', className)} style={{ width: `${size}px` }}>
+          {!hideName && (
+            <span className="character-card__name">
+              <DualTranslate>{character.name}</DualTranslate>
+            </span>
+          )}
+          {overlayColor && (
+            <img
+              src={`${PUBLIC_URL.IN_GAME}/w-overlay-${overlayColor}.png`}
+              className="character-card__overlay"
+              alt="character"
+              style={{ width: `${size}px` }}
+            />
+          )}
+          <Image
+            src={`${baseUrl}/${imageURL}.jpg`}
+            width={size}
+            className={clsx('character-card__image', isBlurred && 'character-card__image--blur')}
+            fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
+            alt={dualTranslate(character.name)}
+            preview={false}
+            title={dualTranslate(character.name)}
           />
-        )}
-        <Image
-          src={`${baseUrl}/${imageURL}.jpg`}
-          width={size}
-          className={clsx('character-card__image', isBlurred && 'character-card__image--blur')}
-          fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
-          alt={dualTranslate(character.name)}
-          preview={false}
-          title={dualTranslate(character.name)}
-        />
-      </div>
+        </div>
+      </Tooltip>
     </ImageBlurButtonContainer>
   );
 }

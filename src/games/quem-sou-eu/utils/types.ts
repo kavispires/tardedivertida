@@ -31,6 +31,7 @@ export type GalleryEntry = {
 export type FinalCharacterEntry = {
   id: CardId;
   name: DualLanguageValue;
+  description: DualLanguageValue;
   glyphs: BooleanDictionary;
   playerId: PlayerId;
 };

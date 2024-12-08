@@ -107,7 +107,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   let contenders: ContenderCard[] = [];
   if (specialDeckTypes.includes('contenders')) {
-    contenders = await utils.tdr.getContenders(language, allowNSFW, quantityNeeded);
+    contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], quantityNeeded);
   }
 
   return {

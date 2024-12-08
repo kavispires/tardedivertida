@@ -170,7 +170,7 @@ export const getData = async (
   // CHARACTERS_TRACKS: SUPER_CAMPEONATO
   const superCampeonatoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.SUPER_CAMPEONATO);
   if (superCampeonatoTrack) {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, 2);
+    const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 2);
     const challenges = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.CHALLENGES}-${language}`)
     );
@@ -187,7 +187,7 @@ export const getData = async (
   // CHARACTERS_TRACKS: QUEM_SOU_EU
   const quemSouEuTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.QUEM_SOU_EU);
   if (quemSouEuTrack) {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, 3);
+    const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 3);
 
     const glyphs = utils.game.sliceInParts(
       utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.GLYPHS, 1), 4),
@@ -207,7 +207,7 @@ export const getData = async (
   // CHARACTERS_TRACKS: PALHETA_DE_CORES
   const palhetaDeCoresTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.PALHETA_DE_CORES);
   if (palhetaDeCoresTrack) {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, 1);
+    const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 1);
 
     customTracks.push({
       game: GAME_NAMES.PALHETA_DE_CORES,

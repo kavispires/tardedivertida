@@ -92,7 +92,7 @@ export const getNextPhase = async (
     const additionalData = await getResourceData(
       store.language,
       utils.players.getPlayerCount(players),
-      !!store.options?.nsfw
+      store.options
     );
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firestore.saveGame(sessionRef, newPhase);

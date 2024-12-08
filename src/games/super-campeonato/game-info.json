@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.34",
+  "version": "2.3.35",
   "release": "stable",
   "available": true,
   "title": {
@@ -68,6 +68,31 @@
           "label": "On",
           "value": true
         }
+      ]
+    },
+    {
+      "key": "contenderDecks",
+      "kind": "checkbox",
+      "label": "Contender Decks",
+      "description": "Choose the decks of contenders (base deck is always included)",
+      "values": [
+        { "value": "anime", "label": "Anime" },
+        { "value": "art", "label": "Art" },
+        { "value": "cartoon", "label": "Cartoon" },
+        { "value": "comics", "label": "Comics" },
+        { "value": "games", "label": "Games" },
+        { "value": "history", "label": "History" },
+        { "value": "internet", "label": "Internet" },
+        { "value": "literature", "label": "Literature" },
+        { "value": "movies", "label": "Movies" },
+        { "value": "music", "label": "Music" },
+        { "value": "mythology", "label": "Mythology" },
+        { "value": "pop-culture", "label": "Pop Culture" },
+        { "value": "random", "label": "Random" },
+        { "value": "sports", "label": "Sports" },
+        { "value": "television", "label": "Television" },
+        { "value": "special-td", "label": "Special TD" },
+        { "value": "special-td-bg", "label": "Special TD BG" }
       ]
     }
   ]

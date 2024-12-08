@@ -14,7 +14,7 @@ export type CruzaPalavrasOptions = {
    * Allow nsfw content
    */
   nsfw: boolean;
-};
+} & ContendersDecksOptions;
 
 export type TextCardWithType = TextCard & { type?: string };
 
