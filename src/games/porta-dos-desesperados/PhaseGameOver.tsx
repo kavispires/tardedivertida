@@ -61,7 +61,7 @@ export function PhaseGameOver({ players, state }: PhaseProps) {
       <RuleInstruction type="lore">
         {isVictory ? (
           <Translate
-            pt="Quando saímos, formos abortados pelo Líder do Oculto e entramos para um culto de bruxaria!!! Viva!"
+            pt="Quando saímos, fomos abordados pelo Líder do Oculto e entramos para um culto de bruxaria!!! Viva!"
             en="As soon as we got out, we were scouted by the Leader of the Occult to join their cult!!! Yay!"
           />
         ) : (
