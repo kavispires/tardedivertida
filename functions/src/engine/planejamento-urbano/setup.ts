@@ -293,7 +293,7 @@ export const prepareResolutionPhase = async (
   if (incorrect === 0) {
     update.status = 'PERFECT';
     update.groupScore += 1;
-    update.placements = Math.max(placements + 1, 4);
+    update.placements = Math.min(placements + 1, 4);
   }
 
   // Save
@@ -360,7 +360,7 @@ export const prepareGameOverPhase = async (
         players,
         cityLocationsDict: state.cityLocationsDict,
         city,
-        groupScore: 0,
+        groupScore: state.groupScore ?? 0,
         achievements,
       },
     },
