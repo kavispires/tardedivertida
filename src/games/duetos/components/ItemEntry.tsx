@@ -79,7 +79,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
   }
 
   if (itemEntry.type === 'emojis') {
-    return <EmojiCard id={itemEntry.value} width={75 * sizeMultiplier} className={className} />;
+    return <EmojiCard id={String(itemEntry.value)} width={75 * sizeMultiplier} className={className} />;
   }
 
   if (itemEntry.type === 'glyphs') {

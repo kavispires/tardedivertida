@@ -109,7 +109,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
             />
           </RuleInstruction>
 
-          <Space wrap className="space-container">
+          <Space wrap className="space-container" style={{ alignItems: 'flex-start' }}>
             {leftOut.map((entry, index) => {
               return (
                 <Space key={entry.id} className="results" direction="vertical">
@@ -143,7 +143,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
             <Translate pt="Pares que não deram match" en="Pairs that didn't match" />
           </Title>
 
-          <Space wrap className="space-container">
+          <Space wrap className="space-container" style={{ alignItems: 'flex-start' }}>
             {galleryNoMatches.map((entry, index) => {
               return (
                 <Space key={entry.pairId} className="pairs-grid__pair space-container" direction="vertical">
