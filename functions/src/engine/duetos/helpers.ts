@@ -97,7 +97,7 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
 
   Object.values(pairsByPlayers).forEach((pairPlayers) => {
     const count = pairPlayers.length;
-    scores.addMultiple(pairPlayers, count, 0);
+    scores.addMultiple(pairPlayers, count - 1, 0);
 
     // Achievements: Alone
     if (count === 1) {
@@ -118,7 +118,7 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
 
   Object.values(extra).forEach((extraPlayers) => {
     const count = extraPlayers.length;
-    scores.addMultiple(extraPlayers, count, 1);
+    scores.addMultiple(extraPlayers, count - 1, 1);
 
     // Achievements: Left out
     extraPlayers.forEach((playerId) => {

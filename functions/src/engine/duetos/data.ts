@@ -132,11 +132,10 @@ export const getResourceData = async (language: Language, options?: DuetosOption
  */
 export const savedData = async (gallery: Gallery): Promise<boolean> => {
   // Save only pairs that were created by more than 2 players
-  const filteredGallery = gallery.filter((item) => item.players.length > 2 && item.pair.every(Boolean));
-
-  const dataDict = filteredGallery.reduce((acc, item) => {
+  const dataDict = gallery.reduce((acc, item) => {
     acc[item.pairId] = true;
     return acc;
   }, {});
+
   return await utils.tdr.savePairs(dataDict);
 };
