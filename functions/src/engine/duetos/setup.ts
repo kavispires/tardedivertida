@@ -171,10 +171,10 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  const gallery = store.gallery;
+  const gallery = store.gallery.filter((item) => item.players.length > 2 && item.pair.every(Boolean));
 
   // Save data (pairs)
-  await savedData(store.gallery ?? []);
+  await savedData(gallery ?? []);
 
   utils.players.cleanup(players, []);
 
