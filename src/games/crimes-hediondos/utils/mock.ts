@@ -1,16 +1,23 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
-import type { CrimeSceneTile } from 'types/tdr';
+import type { GamePlayers, GamePlayer } from "types/player";
+import type { CrimeSceneTile } from "types/tdr";
 // Utils
-import { SEPARATOR } from 'utils/constants';
-import { getLastItem, getRandomItem, shuffle } from 'utils/helpers';
+import { SEPARATOR } from "utils/constants";
+import { getLastItem, getRandomItem, shuffle } from "utils/helpers";
 // Internal
-import type { GroupedItems, GuessHistoryEntry, SubmitCrimePayload } from '../utils/types';
+import type {
+  GroupedItems,
+  GuessHistoryEntry,
+  SubmitCrimePayload,
+} from "../utils/types";
 
-export const mockCrime = (itemsGroup: string[], locationTiles: CrimeSceneTile[]): SubmitCrimePayload => {
+export const mockCrime = (
+  itemsGroup: string[],
+  locationTiles: CrimeSceneTile[],
+): SubmitCrimePayload => {
   const shuffledItems = shuffle(itemsGroup);
-  const weapon = shuffledItems.find((e) => e?.includes('wp'));
-  const evidence = shuffledItems.find((e) => e?.includes('ev'));
+  const weapon = shuffledItems.find((e) => e?.includes("wp"));
+  const evidence = shuffledItems.find((e) => e?.includes("ev"));
   const options = [0, 1, 2, 3, 4, 5];
 
   return {
@@ -23,7 +30,11 @@ export const mockCrime = (itemsGroup: string[], locationTiles: CrimeSceneTile[])
   };
 };
 
-export const mockGuesses = (groupedItems: GroupedItems, players: GamePlayers, user: GamePlayer) => {
+export const mockGuesses = (
+  groupedItems: GroupedItems,
+  players: GamePlayers,
+  user: GamePlayer,
+) => {
   // TODO: intelligent guessing based on history
 
   return Object.values(players).reduce((acc: any, player) => {
@@ -34,7 +45,7 @@ export const mockGuesses = (groupedItems: GroupedItems, players: GamePlayers, us
 
       if (lastGuess) {
         // If correct or locked
-        if (lastGuess.status === 'CORRECT' || lastGuess.status === 'LOCKED') {
+        if (lastGuess.status === "CORRECT" || lastGuess.status === "LOCKED") {
           acc[player.id] = {
             weaponId: lastGuess.weaponId,
             evidenceId: lastGuess.evidenceId,
@@ -43,17 +54,17 @@ export const mockGuesses = (groupedItems: GroupedItems, players: GamePlayers, us
         }
 
         // If half or wrong
-        if (lastGuess.status === 'HALF' || lastGuess.status === 'WRONG') {
+        if (lastGuess.status === "HALF" || lastGuess.status === "WRONG") {
           const group = groupedItems[lastGuess.groupIndex];
-          const weapons: string[] = group.filter((e) => e?.includes('wp'));
-          const evidences: string[] = group.filter((e) => e?.includes('ev'));
+          const weapons: string[] = group.filter((e) => e?.includes("wp"));
+          const evidences: string[] = group.filter((e) => e?.includes("ev"));
 
           const previousPicksDict = historyForThisTarget.reduce(
             (acc: BooleanDictionary, entry: GuessHistoryEntry) => {
               acc[`${entry.weaponId}${SEPARATOR}${entry.evidenceId}`] = true;
               return acc;
             },
-            {}
+            {},
           );
           let pair = `${getRandomItem(weapons)}${SEPARATOR}${getRandomItem(evidences)}`;
 
@@ -71,19 +82,24 @@ export const mockGuesses = (groupedItems: GroupedItems, players: GamePlayers, us
         }
 
         // If wrong group
-        const previouslyWrongGroups = historyForThisTarget.reduce((t: number[], guess: GuessHistoryEntry) => {
-          if (guess.status === 'WRONG_GROUP') {
-            t.push(guess.groupIndex);
-          }
-          return t;
-        }, []);
+        const previouslyWrongGroups = historyForThisTarget.reduce(
+          (t: number[], guess: GuessHistoryEntry) => {
+            if (guess.status === "WRONG_GROUP") {
+              t.push(guess.groupIndex);
+            }
+            return t;
+          },
+          [],
+        );
         const availableGroups = [0, 1, 2, 3]
           .filter((i) => !previouslyWrongGroups.includes(i))
           .map((i) => groupedItems[i]);
         const randomGroup = getRandomItem(availableGroups);
 
-        const weapons: string[] = randomGroup.filter((e) => e?.includes('wp'));
-        const evidences: string[] = randomGroup.filter((e) => e?.includes('ev'));
+        const weapons: string[] = randomGroup.filter((e) => e?.includes("wp"));
+        const evidences: string[] = randomGroup.filter((e) =>
+          e?.includes("ev"),
+        );
         acc[player.id] = {
           weaponId: getRandomItem(weapons),
           evidenceId: getRandomItem(evidences),
@@ -93,8 +109,8 @@ export const mockGuesses = (groupedItems: GroupedItems, players: GamePlayers, us
 
       // If no history exists
       const randomGroup = getRandomItem(Object.values(groupedItems));
-      const weapons: string[] = randomGroup.filter((e) => e?.includes('wp'));
-      const evidences: string[] = randomGroup.filter((e) => e?.includes('ev'));
+      const weapons: string[] = randomGroup.filter((e) => e?.includes("wp"));
+      const evidences: string[] = randomGroup.filter((e) => e?.includes("ev"));
       acc[player.id] = {
         weaponId: getRandomItem(weapons),
         evidenceId: getRandomItem(evidences),

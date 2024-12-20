@@ -1,13 +1,13 @@
-import { orderBy } from 'lodash';
-import { useEffect, useState } from 'react';
+import { orderBy } from "lodash";
+import { useEffect, useState } from "react";
 // Ant Design Resources
-import { Card, Layout, Progress, Space } from 'antd';
+import { Card, Layout, Progress, Space } from "antd";
 // Utils
-import { PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL } from "utils/constants";
 // Components
-import { CanvasSVG } from 'components/canvas';
-import { LoadingPage } from 'components/loaders';
-import { Title } from 'components/text';
+import { CanvasSVG } from "components/canvas";
+import { LoadingPage } from "components/loaders";
+import { Title } from "components/text";
 // Components
 
 function Gallery() {
@@ -19,8 +19,8 @@ function Gallery() {
     setIsLoading(true);
     fetch(`${PUBLIC_URL.RESOURCES}/arteRuimGallery.json`, {
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
     })
       .then(function (response) {
@@ -58,8 +58,8 @@ function Gallery() {
         });
         return acc;
       }, []),
-      ['text', 'playerId'],
-      ['asc', 'asc']
+      ["text", "playerId"],
+      ["asc", "asc"],
     );
     setDataSource(sortedDataSource);
   }, [data]);
@@ -76,19 +76,28 @@ function Gallery() {
         {dataSource.map((entry) => {
           return (
             <Card
-              cover={<CanvasSVG drawing={entry.drawing} className="gallery__card-drawing" />}
+              cover={
+                <CanvasSVG
+                  drawing={entry.drawing}
+                  className="gallery__card-drawing"
+                />
+              }
               className="gallery__card"
             >
               <div className="gallery__card-content">
                 <h3 className="gallery__card-title">{entry.text}</h3>
                 <p className="gallery__card-credits">by {entry.playerId}</p>
-                <p className="gallery__card-date">{entry.date.split(', ')[0]}</p>
-                <p className="gallery__card-level">{Array(entry.level).fill('☆').join('')}</p>
+                <p className="gallery__card-date">
+                  {entry.date.split(", ")[0]}
+                </p>
+                <p className="gallery__card-level">
+                  {Array(entry.level).fill("☆").join("")}
+                </p>
                 <Progress
                   type="circle"
                   percent={entry.successRate ? entry.successRate * 100 : 0}
                   width={30}
-                  status={entry.successRate < 0.1 ? 'exception' : undefined}
+                  status={entry.successRate < 0.1 ? "exception" : undefined}
                   className="gallery__card-progress"
                 />
               </div>

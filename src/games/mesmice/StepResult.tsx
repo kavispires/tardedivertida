@@ -1,33 +1,37 @@
-import clsx from 'clsx';
-import { orderBy } from 'lodash';
-import { useMemo } from 'react';
+import clsx from "clsx";
+import { orderBy } from "lodash";
+import { useMemo } from "react";
 // Ant Design Resources
-import { Divider } from 'antd';
+import { Divider } from "antd";
 // Types
-import type { GameRound, MostVotesResult } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, MostVotesResult } from "types/game";
+import type { GamePlayer, GamePlayers } from "types/player";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Icons
-import { XIcon } from 'icons/XIcon';
+import { XIcon } from "icons/XIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
-import { ViewIf } from 'components/views';
+import { IconAvatar } from "components/avatars";
+import { HostNextPhaseButton } from "components/host";
+import { Translate } from "components/language";
+import { PointsHighlight } from "components/metrics/PointsHighlight";
+import { Step, StepProps } from "components/steps";
+import { RuleInstruction, Title } from "components/text";
+import { ViewIf } from "components/views";
 // Internal
-import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './utils/types';
-import { OUTCOME } from './utils/constants';
-import { ObjectFeature } from './components/ObjectFeature';
-import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
-import { ScoreTrack } from './components/ScoreTrack';
-import { Votes } from './components/Votes';
-import { GroupScore } from './components/GroupScore';
+import type {
+  ExtendedObjectFeatureCard,
+  HistoryEntry,
+  ObjectCardObj,
+} from "./utils/types";
+import { OUTCOME } from "./utils/constants";
+import { ObjectFeature } from "./components/ObjectFeature";
+import { ActivePlayerObjectClue } from "./components/ActivePlayerObjectClue";
+import { ScoreTrack } from "./components/ScoreTrack";
+import { Votes } from "./components/Votes";
+import { GroupScore } from "./components/GroupScore";
 // Type
 
 type StepResultProps = {
@@ -43,7 +47,7 @@ type StepResultProps = {
   outcome: string;
   round: GameRound;
   groupScore: number;
-} & Pick<StepProps, 'announcement'>;
+} & Pick<StepProps, "announcement">;
 
 export function StepResult({
   user,
@@ -62,8 +66,8 @@ export function StepResult({
 }: StepResultProps) {
   const { language } = useLanguage();
   const listOfFeatures = useMemo(
-    () => orderBy(Object.values(features), [`title.${language}`, 'level']),
-    [features, language]
+    () => orderBy(Object.values(features), [`title.${language}`, "level"]),
+    [features, language],
   );
 
   const roundScore = useMemo(
@@ -74,7 +78,7 @@ export function StepResult({
         }
         return acc;
       }, 0),
-    [history]
+    [history],
   );
 
   return (
@@ -92,7 +96,8 @@ export function StepResult({
               <>
                 Parabéns!!! Vocês eliminaram todas as características!!!
                 <br />
-                Pontos da Rodada: <PointsHighlight>{roundScore}</PointsHighlight>
+                Pontos da Rodada:{" "}
+                <PointsHighlight>{roundScore}</PointsHighlight>
               </>
             }
             en={
@@ -122,7 +127,8 @@ export function StepResult({
               <>
                 Oh não! Vocês eliminaram a característica-alvo!!!
                 <br />
-                Pontos da Rodada: <PointsHighlight>{roundScore}</PointsHighlight>
+                Pontos da Rodada:{" "}
+                <PointsHighlight>{roundScore}</PointsHighlight>
               </>
             }
             en={
@@ -138,16 +144,22 @@ export function StepResult({
 
       <div className="game-container">
         <div className="selections-container">
-          <ActivePlayerObjectClue activePlayer={activePlayer} item={item} clue={clue} />
+          <ActivePlayerObjectClue
+            activePlayer={activePlayer}
+            item={item}
+            clue={clue}
+          />
           <div
             className="features-container"
-            style={{ gridTemplateColumns: `repeat(${listOfFeatures.length / 2}, 1fr)` }}
+            style={{
+              gridTemplateColumns: `repeat(${listOfFeatures.length / 2}, 1fr)`,
+            }}
           >
             {listOfFeatures.map((feature, index) => (
               <div
                 className={clsx(
-                  'features-container__button',
-                  getAnimationClass('bounceIn', { delay: index })
+                  "features-container__button",
+                  getAnimationClass("bounceIn", { delay: index }),
                 )}
                 key={feature.id}
               >
@@ -155,12 +167,21 @@ export function StepResult({
                   feature={feature}
                   highlight={
                     feature.id === activePlayer.target &&
-                    (isUserTheActivePlayer || outcome === OUTCOME.LOSE || outcome === OUTCOME.WIN)
+                    (isUserTheActivePlayer ||
+                      outcome === OUTCOME.LOSE ||
+                      outcome === OUTCOME.WIN)
                   }
-                  className={clsx(feature.eliminated && 'features-container__eliminated-object')}
+                  className={clsx(
+                    feature.eliminated &&
+                      "features-container__eliminated-object",
+                  )}
                 />
                 {feature.eliminated && (
-                  <IconAvatar icon={<XIcon />} size="large" className="features-container__eliminated-x" />
+                  <IconAvatar
+                    icon={<XIcon />}
+                    size="large"
+                    className="features-container__eliminated-x"
+                  />
                 )}
               </div>
             ))}

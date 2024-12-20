@@ -1,38 +1,44 @@
-import { orderBy } from 'lodash';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useCopyToClipboard } from 'react-use';
+import { orderBy } from "lodash";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useCopyToClipboard } from "react-use";
 // Ant Design Resources
-import { Image, Modal, Button, Divider, Space, Alert, App } from 'antd';
+import { Image, Modal, Button, Divider, Space, Alert, App } from "antd";
 // Types
-import type { GameInfo } from 'types/game-info';
+import type { GameInfo } from "types/game-info";
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
+import { useGlobalLocalStorage } from "hooks/useGlobalLocalStorage";
+import { useGlobalState } from "hooks/useGlobalState";
+import { useLanguage } from "hooks/useLanguage";
+import { useLoading } from "hooks/useLoading";
+import { useRedirectToNewGame } from "hooks/useRedirectToNewGame";
 // Services
-import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
+import { HOST_API, HOST_API_ACTIONS } from "services/adapters";
 // Utils
-import { PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL } from "utils/constants";
 // Components
-import { LanguageSwitch, Translate } from 'components/language';
-import { Loading } from 'components/loaders';
-import { Instruction, Title } from 'components/text';
+import { LanguageSwitch, Translate } from "components/language";
+import { Loading } from "components/loaders";
+import { Instruction, Title } from "components/text";
 // Internal
-import { GameCustomizations } from './GameCustomizations';
+import { GameCustomizations } from "./GameCustomizations";
 // Adapters
 
-const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) => {
+const updateLocal24hGameIds = (
+  latestGameIds: NumberDictionary,
+  newId: GameId,
+) => {
   const now = Date.now();
   const past24Hours = now - 1000 * 60 * 60 * 24;
-  const cleanedUpIds = Object.entries(latestGameIds ?? {}).reduce((acc: PlainObject, [key, timestamp]) => {
-    if (timestamp > past24Hours) {
-      acc[key] = timestamp;
-    }
-    return acc;
-  }, {});
+  const cleanedUpIds = Object.entries(latestGameIds ?? {}).reduce(
+    (acc: PlainObject, [key, timestamp]) => {
+      if (timestamp > past24Hours) {
+        acc[key] = timestamp;
+      }
+      return acc;
+    },
+    {},
+  );
   return {
     ...cleanedUpIds,
     [newId]: now,
@@ -40,12 +46,14 @@ const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) =
 };
 
 const latestGameBeforeNewOne = (latestGameIds: NumberDictionary) => {
-  const idsObjectList = Object.entries(latestGameIds).map(([gameId, createdAt]) => ({ gameId, createdAt }));
+  const idsObjectList = Object.entries(latestGameIds).map(
+    ([gameId, createdAt]) => ({ gameId, createdAt }),
+  );
   if (idsObjectList.length < 2) {
     return null;
   }
 
-  const orderedList = orderBy(idsObjectList, 'createdAt', 'desc');
+  const orderedList = orderBy(idsObjectList, "createdAt", "desc");
   const twoHoursInMilliseconds = 2 * 60 * 60 * 1000; // 2 hours
   const currentMilliseconds = Date.now();
 
@@ -58,21 +66,24 @@ const latestGameBeforeNewOne = (latestGameIds: NumberDictionary) => {
 };
 
 const getOptionsDefaultValues = (
-  options: GameInfo['options']
+  options: GameInfo["options"],
 ): Record<string, boolean | string | string[]> => {
   return (
-    options?.reduce((acc: Record<string, boolean | string | string[]>, option) => {
-      if (option.kind === 'switch') {
-        acc[option.key] = false;
-      }
-      if (option.kind === 'radio') {
-        acc[option.key] = option.values[0].value;
-      }
-      if (option.kind === 'checkbox') {
-        acc[option.key] = [];
-      }
-      return acc;
-    }, {}) ?? {}
+    options?.reduce(
+      (acc: Record<string, boolean | string | string[]>, option) => {
+        if (option.kind === "switch") {
+          acc[option.key] = false;
+        }
+        if (option.kind === "radio") {
+          acc[option.key] = option.values[0].value;
+        }
+        if (option.kind === "checkbox") {
+          acc[option.key] = [];
+        }
+        return acc;
+      },
+      {},
+    ) ?? {}
   );
 };
 
@@ -84,10 +95,17 @@ export function CreateGameFlow({ gameInfo }: CreateGameFlowProps) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button type="primary" onClick={() => setOpen(true)} block disabled={!gameInfo.available}>
+      <Button
+        type="primary"
+        onClick={() => setOpen(true)}
+        block
+        disabled={!gameInfo.available}
+      >
         <Translate pt="Criar" en="Create" />
       </Button>
-      {open && <CreateGameModal gameInfo={gameInfo} open={open} setOpen={setOpen} />}
+      {open && (
+        <CreateGameModal gameInfo={gameInfo} open={open} setOpen={setOpen} />
+      )}
     </>
   );
 }
@@ -98,7 +116,11 @@ type CreateGameModalProps = {
   setOpen: (open: boolean) => void;
 };
 
-function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX.Element {
+function CreateGameModal({
+  gameInfo,
+  open,
+  setOpen,
+}: CreateGameModalProps): JSX.Element {
   const { message, notification } = App.useApp();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -109,14 +131,18 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
 
   const [isLoading, setLoading] = useState(false);
   const [gameId, setGameId] = useState(null);
-  const [, setUserId] = useGlobalState('userId');
-  const [, setUserName] = useGlobalState('username');
-  const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [options, setOptions] = useState(getOptionsDefaultValues(gameInfo.options));
-  const [latestGameIds, setLatestGameIds] = useGlobalLocalStorage('latestGameIds');
+  const [, setUserId] = useGlobalState("userId");
+  const [, setUserName] = useGlobalState("username");
+  const [, setUserAvatarId] = useGlobalState("userAvatarId");
+  const [options, setOptions] = useState(
+    getOptionsDefaultValues(gameInfo.options),
+  );
+  const [latestGameIds, setLatestGameIds] =
+    useGlobalLocalStorage("latestGameIds");
   const previousGameId = latestGameBeforeNewOne(latestGameIds);
 
-  const { startRedirect, isSettingRedirect, wasRedirectSuccessful } = useRedirectToNewGame();
+  const { startRedirect, isSettingRedirect, wasRedirectSuccessful } =
+    useRedirectToNewGame();
 
   useEffect(() => {
     if (state.value && gameId) {
@@ -133,7 +159,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
 
   const createGame = async () => {
     try {
-      setLoader('create', true);
+      setLoader("create", true);
       setLoading(true);
 
       const response: PlainObject = await HOST_API.run({
@@ -146,27 +172,29 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
       if (response.data.gameId) {
         setGameId(response.data.gameId);
         setUserId(null);
-        setUserName('');
-        setUserAvatarId('');
-        setLatestGameIds(updateLocal24hGameIds(latestGameIds, response.data.gameId));
+        setUserName("");
+        setUserAvatarId("");
+        setLatestGameIds(
+          updateLocal24hGameIds(latestGameIds, response.data.gameId),
+        );
         const baseUrl = window.location.href.split(pathname)[0];
         copyToClipboard(`${baseUrl}/${response.data.gameId}`);
       }
     } catch (e: any) {
       notification.error({
         message: translate(
-          'Aplicativo encontrou um erro ao tentar criar o jogo',
-          'The application found an error while trying to create a game',
-          language
+          "Aplicativo encontrou um erro ao tentar criar o jogo",
+          "The application found an error while trying to create a game",
+          language,
         ),
         description: JSON.stringify(e.message),
-        placement: 'bottomLeft',
+        placement: "bottomLeft",
       });
       console.error(e);
       setOpen(false);
     } finally {
       setLoading(false);
-      setLoader('create', false);
+      setLoader("create", false);
     }
   };
 
@@ -175,14 +203,17 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
       navigate(`/${gameId}`);
     } else {
       message.info(
-        translate('Péra! O jogo ainda não foi inicializado.', 'Wait! The game has not been created')
+        translate(
+          "Péra! O jogo ainda não foi inicializado.",
+          "Wait! The game has not been created",
+        ),
       );
     }
   };
 
   return (
     <Modal
-      title={`${translate('Criando novo jogo', 'Creating new game')}: ${gameInfo.title[language]}`}
+      title={`${translate("Criando novo jogo", "Creating new game")}: ${gameInfo.title[language]}`}
       open={open}
       onCancel={() => setOpen(false)}
       onOk={onConfirmGame}
@@ -199,7 +230,10 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
 
         {!gameId && (
           <Instruction>
-            <Translate pt="Você está criando um jogo em:" en="You are creating a game in:" />{' '}
+            <Translate
+              pt="Você está criando um jogo em:"
+              en="You are creating a game in:"
+            />{" "}
             <LanguageSwitch />
           </Instruction>
         )}
@@ -216,13 +250,19 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
         {isLoading && (
           <>
             <Instruction>
-              <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
+              <Translate
+                pt="O jogo está sendo criado..."
+                en="The game session is being created"
+              />
             </Instruction>
-            <Loading message={translate('Gerando...', 'Generating...')} margin />
+            <Loading
+              message={translate("Gerando...", "Generating...")}
+              margin
+            />
           </>
         )}
 
-        {gameInfo.version.startsWith('alpha') && (
+        {gameInfo.version.startsWith("alpha") && (
           <Alert
             type="warning"
             showIcon
@@ -235,7 +275,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
           />
         )}
 
-        {gameInfo.version.startsWith('beta') && (
+        {gameInfo.version.startsWith("beta") && (
           <Alert
             type="warning"
             showIcon
@@ -251,7 +291,8 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
         {Boolean(gameId) ? (
           <div>
             <Title className="center">
-              <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}
+              <Translate pt="Jogo inicializado" en="Game Initialized" />:{" "}
+              {gameId}
             </Title>
             <Instruction>
               {previousGameId && !wasRedirectSuccessful && (
@@ -261,13 +302,27 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
                   message={
                     <>
                       <Translate
-                        pt={<>Você quer redirecionar jogadores em {previousGameId} para essa nova partida?</>}
-                        en={<>Redirect players in {previousGameId} to this new play?</>}
+                        pt={
+                          <>
+                            Você quer redirecionar jogadores em {previousGameId}{" "}
+                            para essa nova partida?
+                          </>
+                        }
+                        en={
+                          <>
+                            Redirect players in {previousGameId} to this new
+                            play?
+                          </>
+                        }
                       />
                       <Button
                         size="large"
                         onClick={() => {
-                          startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName);
+                          startRedirect(
+                            previousGameId ?? "",
+                            gameId ?? "",
+                            gameInfo.gameName,
+                          );
                         }}
                         disabled={!gameId || !previousGameId}
                         loading={isSettingRedirect}
@@ -286,12 +341,14 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
                     <Translate
                       pt={
                         <>
-                          Jogadores em {previousGameId} foram convidados para o jogo {gameId}
+                          Jogadores em {previousGameId} foram convidados para o
+                          jogo {gameId}
                         </>
                       }
                       en={
                         <>
-                          Players in {previousGameId} have been invited to {gameId}
+                          Players in {previousGameId} have been invited to{" "}
+                          {gameId}
                         </>
                       }
                     />
@@ -302,7 +359,12 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
           </div>
         ) : (
           <Space className="space-container" align="center">
-            <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
+            <Button
+              type="primary"
+              size="large"
+              disabled={isLoading}
+              onClick={createGame}
+            >
               <Translate pt="Criar Jogo" en="Create Game" />
             </Button>
           </Space>

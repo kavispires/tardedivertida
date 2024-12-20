@@ -1,21 +1,21 @@
-import clsx from 'clsx';
-import { ReactNode } from 'react';
+import clsx from "clsx";
+import { ReactNode } from "react";
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button } from "antd";
 // Types
-import type { GameRound } from 'types/game';
+import type { GameRound } from "types/game";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useLanguage } from "hooks/useLanguage";
+import { useTemporarilyHidePlayersBar } from "hooks/useTemporarilyHidePlayersBar";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { useGameAppearance } from 'components/session/GameInfoContext';
+import { TimedButton } from "components/buttons";
+import { Translate } from "components/language";
+import { useGameAppearance } from "components/session/GameInfoContext";
 // Images
-import roundTitleEn from 'assets/images/round-title-en.svg';
-import roundTitlePt from 'assets/images/round-title-pt.svg';
+import roundTitleEn from "assets/images/round-title-en.svg";
+import roundTitlePt from "assets/images/round-title-pt.svg";
 
 type RoundAnnouncementProps = {
   /**
@@ -65,23 +65,33 @@ export function RoundAnnouncement({
   const circleStyle = circleColor ? { borderColor: circleColor } : {};
 
   return (
-    <div className={clsx('round-announcement', className)}>
+    <div className={clsx("round-announcement", className)}>
       <div className="round-announcement__main">
         <div
           className={clsx(
-            'round-announcement__title',
-            appearance.colorScheme === 'dark' && 'round-announcement__title--dark'
+            "round-announcement__title",
+            appearance.colorScheme === "dark" &&
+              "round-announcement__title--dark",
           )}
         >
-          <img src={translate(roundTitlePt, roundTitleEn)} alt={translate('Rodada', 'Round')} />
+          <img
+            src={translate(roundTitlePt, roundTitleEn)}
+            alt={translate("Rodada", "Round")}
+          />
         </div>
-        <div className={clsx('round-announcement__round-wrapper', getAnimationClass('zoomIn'))}>
+        <div
+          className={clsx(
+            "round-announcement__round-wrapper",
+            getAnimationClass("zoomIn"),
+          )}
+        >
           <div className="round-announcement__circle" style={circleStyle} />
           <div className="round-announcement__circle-2" style={circleStyle} />
           <div
             className={clsx(
-              'round-announcement__number',
-              appearance.colorScheme === 'dark' && 'round-announcement__number--dark'
+              "round-announcement__number",
+              appearance.colorScheme === "dark" &&
+                "round-announcement__number--dark",
             )}
           >
             {round?.current ?? round ?? 0}
@@ -91,7 +101,11 @@ export function RoundAnnouncement({
         {children}
 
         {Boolean(onPressButton) && !Boolean(time) && (
-          <Button type="primary" onClick={onPressButton} className="round-announcement__go-button">
+          <Button
+            type="primary"
+            onClick={onPressButton}
+            className="round-announcement__go-button"
+          >
             {buttonText}
           </Button>
         )}

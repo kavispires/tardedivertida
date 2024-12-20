@@ -1,5 +1,5 @@
 // Internal
-import { getRandomItem, stringRemoveAccents } from './helpers';
+import { getRandomItem, stringRemoveAccents } from "./helpers";
 
 /**
  * Tells browser to speak out loud given sentence in given language in given volume
@@ -11,12 +11,12 @@ export function speak(
   text: DualLanguageValue,
   language: Language,
   volume: number,
-  onEnd: GenericFunction = () => {}
+  onEnd: GenericFunction = () => {},
 ): void {
   const utterance = new SpeechSynthesisUtterance(text[language]);
-  utterance.lang = language === 'pt' ? 'pt-BR' : 'en-US';
+  utterance.lang = language === "pt" ? "pt-BR" : "en-US";
   utterance.volume = volume;
-  utterance.addEventListener('end', onEnd);
+  utterance.addEventListener("end", onEnd);
   window.speechSynthesis.speak(utterance);
 }
 
@@ -27,7 +27,7 @@ export function speak(
  */
 export function getRandomWelcomeMessage(name: string): DualLanguageValue {
   // Special flavia
-  if (stringRemoveAccents(name.toLowerCase()).startsWith('fla')) {
+  if (stringRemoveAccents(name.toLowerCase()).startsWith("fla")) {
     const options = [
       {
         pt: `A mais sexy de todas chegou! Bem-vinda, ${name}!`,

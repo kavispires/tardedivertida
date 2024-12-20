@@ -1,33 +1,33 @@
-import clsx from 'clsx';
-import { Link } from 'react-router-dom';
+import clsx from "clsx";
+import { Link } from "react-router-dom";
 // Ant Design Resources
-import { Space, Typography } from 'antd';
+import { Space, Typography } from "antd";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Icons
-import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
-import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
-import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
-import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
-import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
-import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
-import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
+import { DailyAlienGameIcon } from "icons/DailyAlienGameIcon";
+import { DailyArtGameIcon } from "icons/DailyArtGameIcon";
+import { DailyDiagramGameIcon } from "icons/DailyDiagramGameIcon";
+import { DailyDrawingGameIcon } from "icons/DailyDrawingGameIcon";
+import { DailyFindingGameIcon } from "icons/DailyFindingGameIcon";
+import { DailyMovieGameIcon } from "icons/DailyMovieGameIcon";
+import { DailyWarehouseGameIcon } from "icons/DailyWarehouseGameIcon";
+import { DailyWordGameIcon } from "icons/DailyWordGameIcon";
 // Components
-import { TransparentButton } from 'components/buttons';
-import { LanguageSwitch, Translate } from 'components/language';
+import { TransparentButton } from "components/buttons";
+import { LanguageSwitch, Translate } from "components/language";
 // Internal
-import { DailyChrome } from '../components/DailyChrome';
-import { PlayedWrapper } from '../components/PlayedWrapper';
-import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
-import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
-import { SETTINGS as PICACO } from './Picaco/utils/settings';
-import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
-import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
-import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
-import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
-import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
-import { checkWasPlayedToday } from '../utils';
+import { DailyChrome } from "../components/DailyChrome";
+import { PlayedWrapper } from "../components/PlayedWrapper";
+import { SETTINGS as AQUI_O } from "../games/AquiO/utils/settings";
+import { SETTINGS as ARTE_RUIM } from "../games/ArteRuim/utils/settings";
+import { SETTINGS as PICACO } from "./Picaco/utils/settings";
+import { SETTINGS as CONTROLE_DE_ESTOQUE } from "../games/ControleDeEstoque/utils/settings";
+import { SETTINGS as FILMACO } from "../games/Filmaco/utils/settings";
+import { SETTINGS as PALAVREADO } from "../games/Palavreado/utils/settings";
+import { SETTINGS as TEORIA_DE_CONJUNTOS } from "../games/TeoriaDeConjuntos/utils/settings";
+import { SETTINGS as COMUNICACAO_ALIENIGENA } from "../games/ComunicacaoAlienigena/utils/settings";
+import { checkWasPlayedToday } from "../utils";
 // import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 // import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 // import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
@@ -66,12 +66,16 @@ export function Hub() {
             <TransparentButton
               hoverType="sepia"
               className={clsx(
-                !checkWasPlayedToday(COMUNICACAO_ALIENIGENA.KEY) && getAnimationClass('tada', { repeat: 3 })
+                !checkWasPlayedToday(COMUNICACAO_ALIENIGENA.KEY) &&
+                  getAnimationClass("tada", { repeat: 3 }),
               )}
             >
               <Link to="/diario/comunicacao-alienigena" className="hub-item">
                 <DailyAlienGameIcon style={{ width: 75 }} />
-                <Translate pt="Comunicação Alienígena" en="Alien Communication" />
+                <Translate
+                  pt="Comunicação Alienígena"
+                  en="Alien Communication"
+                />
               </Link>
             </TransparentButton>
           </PlayedWrapper>

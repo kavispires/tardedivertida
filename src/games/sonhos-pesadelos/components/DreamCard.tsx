@@ -1,6 +1,6 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Components
-import { ImageBlurButton, ImageCard } from 'components/image-cards';
+import { ImageBlurButton, ImageCard } from "components/image-cards";
 
 type DreamCardProps = {
   cardId: string;
@@ -18,7 +18,7 @@ export function DreamCard({
   isNightmare = false,
   hideBlurButton = false,
 }: DreamCardProps) {
-  const baseClass = 's-dream-board-card';
+  const baseClass = "s-dream-board-card";
 
   return (
     <>
@@ -28,7 +28,7 @@ export function DreamCard({
         className={clsx(
           baseClass,
           isDream && `${baseClass}--dream`,
-          isNightmare && `${baseClass}--nightmare`
+          isNightmare && `${baseClass}--nightmare`,
         )}
       />
       {!hideBlurButton && <ImageBlurButton cardId={cardId} />}

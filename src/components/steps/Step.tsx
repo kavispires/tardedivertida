@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import { ReactNode, forwardRef } from 'react';
+import clsx from "clsx";
+import { ReactNode, forwardRef } from "react";
 
 export type StepProps = {
   /**
@@ -26,20 +26,29 @@ export type StepProps = {
 };
 
 export const Step = forwardRef<HTMLDivElement, StepProps>(
-  ({ children, announcement, fullWidth = false, fullHeight = false, className = '' }: StepProps, ref) => {
+  (
+    {
+      children,
+      announcement,
+      fullWidth = false,
+      fullHeight = false,
+      className = "",
+    }: StepProps,
+    ref,
+  ) => {
     return (
       <div
         ref={ref}
         className={clsx(
-          'step',
-          fullWidth && 'step--full-width',
-          fullHeight && 'step--full-height',
-          className
+          "step",
+          fullWidth && "step--full-width",
+          fullHeight && "step--full-height",
+          className,
         )}
       >
         {announcement}
         {children}
       </div>
     );
-  }
+  },
 );

@@ -1,24 +1,28 @@
-import clsx from 'clsx';
-import { random, sample } from 'lodash';
-import { useMemo } from 'react';
+import clsx from "clsx";
+import { random, sample } from "lodash";
+import { useMemo } from "react";
 // Ant Design Resources
-import { RadarChartOutlined } from '@ant-design/icons';
-import { Avatar as AntAvatar, Button, Image } from 'antd';
+import { RadarChartOutlined } from "@ant-design/icons";
+import { Avatar as AntAvatar, Button, Image } from "antd";
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from "types/player";
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
+import { useCache } from "hooks/useCache";
+import { useCardWidth } from "hooks/useCardWidth";
+import { useLoading } from "hooks/useLoading";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Components
-import { Avatar } from 'components/avatars';
-import { DoorFrame } from 'components/game/DoorFrame';
-import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { Avatar } from "components/avatars";
+import { DoorFrame } from "components/game/DoorFrame";
+import {
+  ImageBlurButton,
+  ImageCard,
+  ImageCardBack,
+} from "components/image-cards";
+import { Translate } from "components/language";
 // Internal
-import { TRAPS } from '../utils/constants';
+import { TRAPS } from "../utils/constants";
 
 type CorridorProps = {
   doors: CardId[];
@@ -55,27 +59,36 @@ export function Corridor({
 
   const voteMap = useMemo(
     () =>
-      Object.values(players).reduce((acc: Record<CardId, PlayerId[]>, player) => {
-        if (player.doorId) {
-          if (acc[player.doorId] === undefined) {
-            acc[player.doorId] = [];
+      Object.values(players).reduce(
+        (acc: Record<CardId, PlayerId[]>, player) => {
+          if (player.doorId) {
+            if (acc[player.doorId] === undefined) {
+              acc[player.doorId] = [];
+            }
+            acc[player.doorId].push(player.id);
           }
-          acc[player.doorId].push(player.id);
-        }
-        return acc;
-      }, {}),
-    [players]
+          return acc;
+        },
+        {},
+      ),
+    [players],
   );
 
   // Trap: Blind Door
   const blindDoor = useMemo(
-    () => (trap === TRAPS.BLIND_DOOR && !disableTrap ? random(0, doors.length - 1) : undefined),
-    [trap, doors.length, disableTrap]
+    () =>
+      trap === TRAPS.BLIND_DOOR && !disableTrap
+        ? random(0, doors.length - 1)
+        : undefined,
+    [trap, doors.length, disableTrap],
   );
 
   // Trap: Vanishing doors OR Delaying Doors
   const hiddenDoorsIndexes = useMemo(() => {
-    if ([TRAPS.VANISHING_DOORS, TRAPS.DELAYING_DOORS].includes(trap) && !disableTrap) {
+    if (
+      [TRAPS.VANISHING_DOORS, TRAPS.DELAYING_DOORS].includes(trap) &&
+      !disableTrap
+    ) {
       return cache?.doors || [];
     }
   }, [cache, trap, disableTrap]);
@@ -83,23 +96,28 @@ export function Corridor({
   return (
     <Image.PreviewGroup
       preview={{
-        className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-fading'),
+        className: clsx(trap === TRAPS.FADED_DOORS && "image-preview-fading"),
       }}
     >
       <div className="i-corridor">
         {doors.map((doorId, index) => {
-          const animationDelayIndex = index < 3 ? index : doors.length - 1 - index;
+          const animationDelayIndex =
+            index < 3 ? index : doors.length - 1 - index;
           const isConcealed = trap === TRAPS.CONCEALED_DOOR && index === 2;
-          const isVanished = trap === TRAPS.VANISHING_DOORS && hiddenDoorsIndexes?.includes(index);
+          const isVanished =
+            trap === TRAPS.VANISHING_DOORS &&
+            hiddenDoorsIndexes?.includes(index);
           const isDelayed =
-            trap === TRAPS.DELAYING_DOORS && !disableTrap && !hiddenDoorsIndexes?.includes(index);
+            trap === TRAPS.DELAYING_DOORS &&
+            !disableTrap &&
+            !hiddenDoorsIndexes?.includes(index);
           return (
             <div
               key={doorId}
               className={clsx(
-                'i-door',
-                answerDoorId === doorId && 'i-door--answer',
-                getAnimationClass('zoomIn', { delay: animationDelayIndex })
+                "i-door",
+                answerDoorId === doorId && "i-door--answer",
+                getAnimationClass("zoomIn", { delay: animationDelayIndex }),
               )}
             >
               <DoorFrame
@@ -108,20 +126,23 @@ export function Corridor({
                 className={clsx(
                   trap === TRAPS.VANISHING_DOORS
                     ? isVanished
-                      ? getAnimationClass('fadeOut', { speed: 'slower' })
-                      : ''
-                    : '',
+                      ? getAnimationClass("fadeOut", { speed: "slower" })
+                      : ""
+                    : "",
                   trap === TRAPS.DELAYING_DOORS
                     ? isDelayed
-                      ? 'invisible'
-                      : getAnimationClass('fadeIn', { speed: 'slower' })
-                    : '',
+                      ? "invisible"
+                      : getAnimationClass("fadeIn", { speed: "slower" })
+                    : "",
                   trap === TRAPS.DANCING_DOORS &&
                     !disableTrap &&
-                    getAnimationClass(sample(['swing', 'wobble', 'rubberBand']), {
-                      infinite: true,
-                      delay: random(0, 10) / 2,
-                    })
+                    getAnimationClass(
+                      sample(["swing", "wobble", "rubberBand"]),
+                      {
+                        infinite: true,
+                        delay: random(0, 10) / 2,
+                      },
+                    ),
                 )}
               >
                 {isConcealed || blindDoor === index ? (
@@ -130,9 +151,13 @@ export function Corridor({
                   <ImageCard
                     id={doorId}
                     cardWidth={150}
-                    className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
+                    className={clsx(
+                      trap === TRAPS.FADED_DOORS && "i-faded-card",
+                    )}
                     preview={trap !== TRAPS.NO_PREVIEW ? true : undefined}
-                    previewImageId={isDelayed || isVanished ? 'back-lockedDoor' : undefined}
+                    previewImageId={
+                      isDelayed || isVanished ? "back-lockedDoor" : undefined
+                    }
                   />
                 )}
               </DoorFrame>
@@ -144,7 +169,12 @@ export function Corridor({
                   <Button
                     onClick={() => onSubmitDoor!({ doorId })}
                     size="small"
-                    disabled={disabled || isLoading || user?.ready || user?.doorId === doorId}
+                    disabled={
+                      disabled ||
+                      isLoading ||
+                      user?.ready ||
+                      user?.doorId === doorId
+                    }
                     shape="round"
                     ghost
                   >
@@ -152,7 +182,11 @@ export function Corridor({
                   </Button>
                 )}
 
-                <AntAvatar.Group maxCount={7} size="small" className="i-door__votes">
+                <AntAvatar.Group
+                  maxCount={7}
+                  size="small"
+                  className="i-door__votes"
+                >
                   {Boolean(voteMap[doorId] && !hideVotes) ? (
                     <>
                       {voteMap[doorId].map((playerId) => (
@@ -160,16 +194,16 @@ export function Corridor({
                           key={`vote-${playerId}`}
                           id={players[playerId].avatarId}
                           alt={players[playerId].name}
-                          className={getAnimationClass('slideInUp')}
+                          className={getAnimationClass("slideInUp")}
                         />
                       ))}
                     </>
                   ) : (
                     <AntAvatar
                       size="small"
-                      className={clsx(!hideVotes && 'invisible')}
+                      className={clsx(!hideVotes && "invisible")}
                       icon={<RadarChartOutlined />}
-                      style={{ backgroundColor: '#000' }}
+                      style={{ backgroundColor: "#000" }}
                     />
                   )}
                 </AntAvatar.Group>

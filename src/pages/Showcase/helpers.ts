@@ -1,53 +1,53 @@
 // Types
-import type { GameInfo } from 'types/game-info';
+import type { GameInfo } from "types/game-info";
 
 export const filterGames = (list: GameInfo[], filters: PlainObject) => {
   return list.filter((game) => {
     let result: boolean[] = [];
     // Availability
     if (doesExist(filters.availability)) {
-      const res = ['beta', 'stable'].includes(game.release);
-      result.push(filters.availability === 'on' ? res : !res);
+      const res = ["beta", "stable"].includes(game.release);
+      result.push(filters.availability === "on" ? res : !res);
     }
 
     // Mobile Friendly
-    evaluateTag(filters, game, 'mobile-friendly', result);
+    evaluateTag(filters, game, "mobile-friendly", result);
 
     // Drawing
-    evaluateTag(filters, game, 'drawing', result);
+    evaluateTag(filters, game, "drawing", result);
 
     // Writing
-    evaluateTag(filters, game, 'writing', result);
+    evaluateTag(filters, game, "writing", result);
 
     // Images
-    evaluateTag(filters, game, 'images', result);
+    evaluateTag(filters, game, "images", result);
 
     // Voting
-    evaluateTag(filters, game, 'voting', result);
+    evaluateTag(filters, game, "voting", result);
 
     // Guessing
-    evaluateTag(filters, game, 'guessing', result);
+    evaluateTag(filters, game, "guessing", result);
 
     // Time
-    evaluateTag(filters, game, 'timed', result);
+    evaluateTag(filters, game, "timed", result);
 
     // Pairing
-    evaluateTag(filters, game, 'pairing', result);
+    evaluateTag(filters, game, "pairing", result);
 
     // Traitor
-    evaluateTag(filters, game, 'traitor', result);
+    evaluateTag(filters, game, "traitor", result);
 
     // Discussion
-    evaluateTag(filters, game, 'discussion', result);
+    evaluateTag(filters, game, "discussion", result);
 
     // Push Your Luck
-    evaluateTag(filters, game, 'push-your-luck', result);
+    evaluateTag(filters, game, "push-your-luck", result);
 
     // Type
-    evaluateCustomTag(filters, game, 'type', result);
+    evaluateCustomTag(filters, game, "type", result);
 
     // Rounds
-    evaluateCustomTag(filters, game, 'rounds', result);
+    evaluateCustomTag(filters, game, "rounds", result);
 
     return result.every((r) => r);
   });
@@ -58,7 +58,8 @@ export const filterGames = (list: GameInfo[], filters: PlainObject) => {
  * @param property
  * @returns
  */
-export const doesExist = (property: any) => property !== undefined && property !== 'any';
+export const doesExist = (property: any) =>
+  property !== undefined && property !== "any";
 
 /**
  * Verify if a tag is selected updating the result array
@@ -67,10 +68,15 @@ export const doesExist = (property: any) => property !== undefined && property !
  * @param tagName
  * @param result
  */
-export const evaluateTag = (filters: PlainObject, game: GameInfo, tagName: string, result: boolean[]) => {
+export const evaluateTag = (
+  filters: PlainObject,
+  game: GameInfo,
+  tagName: string,
+  result: boolean[],
+) => {
   if (doesExist(filters[tagName])) {
     const res = game.tags.includes(tagName);
-    result.push(filters[tagName] === 'on' ? res : !res);
+    result.push(filters[tagName] === "on" ? res : !res);
   }
 };
 
@@ -81,7 +87,7 @@ export const evaluateCustomTag = (
   filters: PlainObject,
   game: GameInfo,
   tagName: string,
-  result: boolean[]
+  result: boolean[],
 ) => {
   if (doesExist(filters[tagName])) {
     const res = game.tags.includes(filters[tagName]);

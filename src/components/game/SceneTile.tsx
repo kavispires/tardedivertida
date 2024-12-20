@@ -1,13 +1,13 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Ant Design Resources
-import { CheckCircleFilled } from '@ant-design/icons';
-import { Button, Popover } from 'antd';
+import { CheckCircleFilled } from "@ant-design/icons";
+import { Button, Popover } from "antd";
 // Types
-import type { CrimeSceneTile } from 'types/tdr';
+import type { CrimeSceneTile } from "types/tdr";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Sass
-import './SceneTile.scss';
+import "./SceneTile.scss";
 
 type SceneTileProps = {
   /**
@@ -30,7 +30,7 @@ type SceneTileProps = {
 export function SceneTile({ tile, index, onSelectValue }: SceneTileProps) {
   const { language } = useLanguage();
   return (
-    <div className={clsx('scene-tile', `scene-tile--${tile.type}`)}>
+    <div className={clsx("scene-tile", `scene-tile--${tile.type}`)}>
       <Popover content={tile.description[language]}>
         <h4 className="scene-tile__title">{tile.title[language]}</h4>
       </Popover>
@@ -42,12 +42,20 @@ export function SceneTile({ tile, index, onSelectValue }: SceneTileProps) {
             <li key={`${tile.id}-value-${i}`}>
               <Button
                 className={clsx(
-                  'scene-tile__button',
+                  "scene-tile__button",
                   `scene-tile__button--${tile.type}`,
-                  isInative && 'scene-tile__button--inactive'
+                  isInative && "scene-tile__button--inactive",
                 )}
-                icon={isActive ? <CheckCircleFilled className="scene-tile__icon" /> : undefined}
-                onClick={onSelectValue ? () => onSelectValue({ tileId: tile.id, value: i }) : () => {}}
+                icon={
+                  isActive ? (
+                    <CheckCircleFilled className="scene-tile__icon" />
+                  ) : undefined
+                }
+                onClick={
+                  onSelectValue
+                    ? () => onSelectValue({ tileId: tile.id, value: i })
+                    : () => {}
+                }
               >
                 {entry[language]}
               </Button>

@@ -1,27 +1,27 @@
-import { orderBy } from 'lodash';
-import { useEffect } from 'react';
-import { useLocalStorage } from 'react-use';
+import { orderBy } from "lodash";
+import { useEffect } from "react";
+import { useLocalStorage } from "react-use";
 // Types
-import type { GameMeta } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameMeta } from "types/game";
+import type { GamePlayer, GamePlayers } from "types/player";
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { resetGlobalState, useGlobalState } from 'hooks/useGlobalState';
-import { useStep } from 'hooks/useStep';
+import { useCurrentUserContext } from "hooks/useCurrentUserContext";
+import { resetGlobalState, useGlobalState } from "hooks/useGlobalState";
+import { useStep } from "hooks/useStep";
 // Utils
-import { PHASES } from 'utils/phases';
+import { PHASES } from "utils/phases";
 // Components
-import { AdminMenuDrawer } from 'components/admin';
-import { AvatarEntry } from 'components/avatars';
-import { PhaseContainer } from 'components/phases';
+import { AdminMenuDrawer } from "components/admin";
+import { AvatarEntry } from "components/avatars";
+import { PhaseContainer } from "components/phases";
 // Internal
-import { CloudBackground } from './lobby/CloudBackground';
-import { StepJoin } from './lobby/StepJoin';
-import { LobbyStep } from './lobby/LobbyStep';
-import { StepInfo } from './lobby/StepInfo';
-import { StepWaiting } from './lobby/StepWaiting';
+import { CloudBackground } from "./lobby/CloudBackground";
+import { StepJoin } from "./lobby/StepJoin";
+import { LobbyStep } from "./lobby/LobbyStep";
+import { StepInfo } from "./lobby/StepInfo";
+import { StepWaiting } from "./lobby/StepWaiting";
 // Sass
-import './PhaseLobby.scss';
+import "./PhaseLobby.scss";
 
 type PhaseLobbyProps = {
   players: GamePlayers;
@@ -36,11 +36,11 @@ type SplitPlayers = {
 export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
   const { step, setStep } = useStep();
   const { currentUser, isAuthenticated } = useCurrentUserContext();
-  const [, setUserId] = useGlobalState('userId');
-  const [, setUsername] = useGlobalState('username');
-  const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [localUsername] = useLocalStorage('username', '');
-  const [localAvatarId] = useLocalStorage('avatarId', '');
+  const [, setUserId] = useGlobalState("userId");
+  const [, setUsername] = useGlobalState("username");
+  const [, setUserAvatarId] = useGlobalState("userAvatarId");
+  const [localUsername] = useLocalStorage("username", "");
+  const [localAvatarId] = useLocalStorage("avatarId", "");
 
   const player = players?.[currentUser.id];
 
@@ -55,8 +55,8 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
       resetGlobalState();
     } else {
       setStep(0);
-      setUsername(localUsername ?? '');
-      setUserAvatarId(localAvatarId ?? '');
+      setUsername(localUsername ?? "");
+      setUserAvatarId(localAvatarId ?? "");
     }
   }, [
     player,
@@ -70,7 +70,7 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
     localAvatarId,
   ]);
 
-  const { left, right } = orderBy(Object.values(players), 'updatedAt').reduce(
+  const { left, right } = orderBy(Object.values(players), "updatedAt").reduce(
     (acc: SplitPlayers, player, index) => {
       if (index % 2 === 0) {
         acc.left.push(player);
@@ -83,7 +83,7 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
     {
       left: [],
       right: [],
-    }
+    },
   );
 
   return (
@@ -129,7 +129,11 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
       </div>
 
       <AdminMenuDrawer
-        state={{ phase: 'LOBBY', round: { current: 0, total: 0, forceLastRound: false }, players: {} }}
+        state={{
+          phase: "LOBBY",
+          round: { current: 0, total: 0, forceLastRound: false },
+          players: {},
+        }}
         players={players}
       />
       <CloudBackground />

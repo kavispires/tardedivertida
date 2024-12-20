@@ -6,7 +6,7 @@ describe('shared/Instruction', function () {
     render(
       <Instruction>
         <div data-testid="element">Hello</div>
-      </Instruction>
+      </Instruction>,
     );
 
     const component = await screen.findByTestId('instruction');
@@ -21,7 +21,7 @@ describe('shared/Instruction', function () {
     render(
       <Instruction contained>
         <div>Hello</div>
-      </Instruction>
+      </Instruction>,
     );
 
     const component = await screen.findByTestId('instruction');
@@ -35,7 +35,7 @@ describe('shared/Instruction', function () {
     render(
       <Instruction contained white>
         <div>Hello</div>
-      </Instruction>
+      </Instruction>,
     );
 
     const component = await screen.findByTestId('instruction');
@@ -50,7 +50,7 @@ describe('shared/Instruction', function () {
     render(
       <Instruction className="world">
         <div>Hello</div>
-      </Instruction>
+      </Instruction>,
     );
 
     const component = await screen.findByTestId('instruction');

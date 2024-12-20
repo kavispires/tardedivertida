@@ -1,27 +1,27 @@
-import clsx from 'clsx';
-import { useEffect } from 'react';
+import clsx from "clsx";
+import { useEffect } from "react";
 // Ant Design Resources
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { Button, App, Space } from 'antd';
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import { Button, App, Space } from "antd";
 // Types
-import type { GamePlayer } from 'types/player';
-import type { TextCard } from 'types/tdr';
+import type { GamePlayer } from "types/player";
+import type { TextCard } from "types/tdr";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Components
-import { AvatarName } from 'components/avatars';
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { HostOnlyContainer } from 'components/host';
-import { Translate } from 'components/language';
-import { messageContent } from 'components/pop-up';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
-import { ViewIf } from 'components/views';
+import { AvatarName } from "components/avatars";
+import { SuggestionEasel } from "components/game/SuggestionEasel";
+import { HostOnlyContainer } from "components/host";
+import { Translate } from "components/language";
+import { messageContent } from "components/pop-up";
+import { Step, type StepProps } from "components/steps";
+import { RuleInstruction, TextHighlight, Title } from "components/text";
+import { ViewIf } from "components/views";
 // Internal
-import type { Suggestion } from './utils/types';
-import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import type { Suggestion } from "./utils/types";
+import { UeSoIssoCard as Card } from "./components/UeSoIssoCard";
 
 type StepGuessVerificationProps = {
   guess: string;
@@ -32,7 +32,7 @@ type StepGuessVerificationProps = {
   secretWord: TextCard;
   onSubmitOutcome: GenericFunction;
   validSuggestions: Suggestion[];
-} & Pick<StepProps, 'announcement'>;
+} & Pick<StepProps, "announcement">;
 
 export function StepGuessVerification({
   guess,
@@ -52,19 +52,23 @@ export function StepGuessVerification({
     if (isUserTheController && !isLoading) {
       message.info(
         messageContent(
-          translate('Você controla!', 'You control!'),
-          translate('Selecione se o adivinhador acertou ou não', 'Select if the guesser got it right or not'),
+          translate("Você controla!", "You control!"),
+          translate(
+            "Selecione se o adivinhador acertou ou não",
+            "Select if the guesser got it right or not",
+          ),
           controller.id,
-          3
-        )
+          3,
+        ),
       );
     }
   }, [isUserTheController, controller.id, translate, isLoading, message]);
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title className={getAnimationClass('heartBeat')}>
-        <AvatarName player={guesser} addressUser /> <Translate pt="disse" en="said" />{' '}
+      <Title className={getAnimationClass("heartBeat")}>
+        <AvatarName player={guesser} addressUser />{" "}
+        <Translate pt="disse" en="said" />{" "}
         <TextHighlight>{guess}</TextHighlight>
       </Title>
 
@@ -76,14 +80,16 @@ export function StepGuessVerification({
             <>
               O sistema não pode verificar se a resposta está correta.
               <br />
-              Por favor, confirme se <AvatarName player={guesser} /> acertou ou não.
+              Por favor, confirme se <AvatarName player={guesser} /> acertou ou
+              não.
             </>
           }
           en={
             <>
               The system wasn't able to verify the guess.
               <br />
-              Please confirm if <AvatarName player={guesser} /> got it right or not.
+              Please confirm if <AvatarName player={guesser} /> got it right or
+              not.
             </>
           }
         />
@@ -92,15 +98,28 @@ export function StepGuessVerification({
       <Space className="u-word-guess-phase__suggestions space-container">
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
-          return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
+          return (
+            <SuggestionEasel
+              key={id}
+              id={id}
+              value={suggestionEntry.suggestion}
+            />
+          );
         })}
       </Space>
 
       <ViewIf condition={isUserTheController}>
         <RuleInstruction type="action">
-          <Translate pt="Aperte o botão correspondente" en="Press the corresponding button" />:
+          <Translate
+            pt="Aperte o botão correspondente"
+            en="Press the corresponding button"
+          />
+          :
         </RuleInstruction>
-        <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
+        <ConfirmationButton
+          onSubmitOutcome={onSubmitOutcome}
+          isLoading={isLoading}
+        />
       </ViewIf>
 
       {!isUserTheController && (
@@ -112,7 +131,10 @@ export function StepGuessVerification({
             />
           }
         >
-          <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
+          <ConfirmationButton
+            onSubmitOutcome={onSubmitOutcome}
+            isLoading={isLoading}
+          />
         </HostOnlyContainer>
       )}
     </Step>
@@ -124,14 +146,17 @@ type ConfirmationButtonProps = {
   isLoading: boolean;
 };
 
-function ConfirmationButton({ onSubmitOutcome, isLoading }: ConfirmationButtonProps) {
+function ConfirmationButton({
+  onSubmitOutcome,
+  isLoading,
+}: ConfirmationButtonProps) {
   return (
-    <Space className={clsx('u-word-guess-phase__guess-submit')}>
+    <Space className={clsx("u-word-guess-phase__guess-submit")}>
       <Button
         icon={<CheckOutlined />}
         type="primary"
-        style={{ backgroundColor: 'green' }}
-        onClick={() => onSubmitOutcome({ outcome: 'CORRECT' })}
+        style={{ backgroundColor: "green" }}
+        onClick={() => onSubmitOutcome({ outcome: "CORRECT" })}
         disabled={isLoading}
       >
         <Translate pt="Acertou" en="Correct" />
@@ -140,7 +165,7 @@ function ConfirmationButton({ onSubmitOutcome, isLoading }: ConfirmationButtonPr
         icon={<CloseOutlined />}
         type="primary"
         danger
-        onClick={() => onSubmitOutcome({ outcome: 'WRONG' })}
+        onClick={() => onSubmitOutcome({ outcome: "WRONG" })}
         disabled={isLoading}
       >
         <Translate pt="Errou" en="Wrong" />

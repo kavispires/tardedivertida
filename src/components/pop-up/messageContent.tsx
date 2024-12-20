@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 // Icons
-import { RulesIcon } from 'icons/RulesIcon';
-import { VideoGameControllerIcon } from 'icons/VideoGameControllerIcon';
+import { RulesIcon } from "icons/RulesIcon";
+import { VideoGameControllerIcon } from "icons/VideoGameControllerIcon";
 // Components
-import { Translate } from 'components/language';
+import { Translate } from "components/language";
 
 /**
  * Pops up a modal with a confirmation button but also closing timeout
@@ -19,7 +19,7 @@ export const messageContent = (
   description: ReactNode,
   id: string,
   duration = 30,
-  type: 'control' | 'rules' = 'control'
+  type: "control" | "rules" = "control",
 ) => {
   const key = `${id} - ${title}`;
 
@@ -42,10 +42,10 @@ export const messageContent = (
     duration,
     key,
     icon:
-      type === 'control' ? (
-        <VideoGameControllerIcon style={{ width: '64px' }} />
+      type === "control" ? (
+        <VideoGameControllerIcon style={{ width: "64px" }} />
       ) : (
-        <RulesIcon style={{ width: '64px' }} />
+        <RulesIcon style={{ width: "64px" }} />
       ),
   };
 };

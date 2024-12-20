@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 // Ant Design Resources
-import { App } from 'antd';
+import { App } from "antd";
 // Utils
-import { getGameIdFromPathname, isValidGameId } from 'utils/helpers';
+import { getGameIdFromPathname, isValidGameId } from "utils/helpers";
 // Internal
-import { useLanguage } from './useLanguage';
+import { useLanguage } from "./useLanguage";
 
 export function useGameId() {
   const { message } = App.useApp();
@@ -23,12 +23,12 @@ export function useGameId() {
     } else {
       message.error(
         translate(
-          'Vixi, a id do jogo na barra de endereços tá errada',
-          'Oops, the game id in the address bar is invalid'
-        )
+          "Vixi, a id do jogo na barra de endereços tá errada",
+          "Oops, the game id in the address bar is invalid",
+        ),
       );
-      setGameId('');
-      navigate('/');
+      setGameId("");
+      navigate("/");
     }
   }, [pathname, setGameId]); // eslint-disable-line
 

@@ -1,12 +1,12 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from "types/player";
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language';
+import { CharacterCard } from "components/cards/CharacterCard";
+import { Translate } from "components/language";
 // Internal
-import type { Bracket, BracketTier } from '../utils/type';
-import { BracketContenderVotes } from './BracketContenderVotes';
+import type { Bracket, BracketTier } from "../utils/type";
+import { BracketContenderVotes } from "./BracketContenderVotes";
 
 type BracketsProps = {
   brackets: Bracket[];
@@ -22,10 +22,10 @@ type BracketTiers = {
 };
 
 const getContenderColor = (index: number, activeTier: BracketTier) => {
-  if (activeTier === 'semi') {
-    return index % 2 === 0 ? 'orange' : 'green';
+  if (activeTier === "semi") {
+    return index % 2 === 0 ? "orange" : "green";
   }
-  return index % 2 === 0 ? 'red' : 'blue';
+  return index % 2 === 0 ? "red" : "blue";
 };
 
 export function Brackets({ brackets, activeTier, players }: BracketsProps) {
@@ -40,7 +40,7 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
       semi: [],
       final: [],
       winner: [],
-    }
+    },
   );
   return (
     <div className="w-brackets-container">
@@ -63,11 +63,15 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
           {quarter.map((entry, index) => (
             <li
               key={`${entry.id}-${entry.position}`}
-              className={clsx('w-team-item', entry.win && 'w-team-item--win')}
+              className={clsx("w-team-item", entry.win && "w-team-item--win")}
             >
               <CharacterCard
                 size={100}
-                overlayColor={activeTier === entry.tier ? getContenderColor(index, activeTier) : 'gray'}
+                overlayColor={
+                  activeTier === entry.tier
+                    ? getContenderColor(index, activeTier)
+                    : "gray"
+                }
                 character={{
                   id: entry.id,
                   name: entry.name,
@@ -82,7 +86,7 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
           {semi.map((entry) => (
             <li
               key={`${entry.id}-${entry.position}`}
-              className={clsx('w-team-item', entry.win && 'w-team-item--win')}
+              className={clsx("w-team-item", entry.win && "w-team-item--win")}
             >
               <CharacterCard
                 size={100}
@@ -101,7 +105,7 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
           {final.map((entry) => (
             <li
               key={`${entry.id}-${entry.position}`}
-              className={clsx('w-team-item', entry.win && 'w-team-item--win')}
+              className={clsx("w-team-item", entry.win && "w-team-item--win")}
             >
               <CharacterCard
                 size={100}
@@ -120,11 +124,14 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
           {winner.map((entry) => (
             <li
               key={`${entry.id}-${entry.position}`}
-              className={clsx('w-team-item', entry.name.pt !== 'TBD' && 'w-team-item--win')}
+              className={clsx(
+                "w-team-item",
+                entry.name.pt !== "TBD" && "w-team-item--win",
+              )}
             >
               <CharacterCard
                 size={100}
-                overlayColor={entry.name.pt !== 'TBD' ? 'yellow' : 'gray'}
+                overlayColor={entry.name.pt !== "TBD" ? "yellow" : "gray"}
                 character={{
                   id: entry.id,
                   name: entry.name,

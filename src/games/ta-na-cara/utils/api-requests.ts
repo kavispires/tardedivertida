@@ -1,26 +1,29 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from "hooks/useGameActionRequest";
+import { useLanguage } from "hooks/useLanguage";
+import type { UseStep } from "hooks/useStep";
 // Internal
-import { TA_NA_CARA_ACTIONS } from './constants';
+import { TA_NA_CARA_ACTIONS } from "./constants";
 import type {
   SubmitAnswerPayload,
   SubmitGuessPayload,
   SubmitPromptPayload,
   SubmitTargetPayload,
-} from './types';
+} from "./types";
 
-export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitPromptAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-prompt',
+    actionName: "submit-prompt",
     onSuccess: () => setStep(2),
-    successMessage: translate('Pergunta submetida com sucesso', 'Question submitted successfully'),
+    successMessage: translate(
+      "Pergunta submetida com sucesso",
+      "Question submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pergunta',
-      'Oops, the application found an error while trying to submit your question'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua pergunta",
+      "Oops, the application found an error while trying to submit your question",
     ),
   });
 
@@ -32,16 +35,19 @@ export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitTargetAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-target',
+    actionName: "submit-target",
     onSuccess: () => setStep(2),
-    successMessage: translate('Alvo submetida com sucesso', 'Target submitted successfully'),
+    successMessage: translate(
+      "Alvo submetida com sucesso",
+      "Target submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
-      'Oops, the application found an error while trying to submit your target'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo",
+      "Oops, the application found an error while trying to submit your target",
     ),
   });
 
@@ -57,11 +63,14 @@ export function useOnSubmitAnswerAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-answer',
-    successMessage: translate('Resposta submetida com sucesso', 'Answer submitted successfully'),
+    actionName: "submit-answer",
+    successMessage: translate(
+      "Resposta submetida com sucesso",
+      "Answer submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
-      'Oops, the application found an error while trying to submit your answer'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta",
+      "Oops, the application found an error while trying to submit your answer",
     ),
   });
 
@@ -73,16 +82,19 @@ export function useOnSubmitAnswerAPIRequest() {
   };
 }
 
-export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitGuessAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
     onSuccess: () => setStep(2),
-    actionName: 'submit-guess',
-    successMessage: translate('Palpite submetido com sucesso', 'Guess submitted successfully'),
+    actionName: "submit-guess",
+    successMessage: translate(
+      "Palpite submetido com sucesso",
+      "Guess submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpite',
-      'Oops, the application found an error while trying to submit your guess'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpite",
+      "Oops, the application found an error while trying to submit your guess",
     ),
   });
 

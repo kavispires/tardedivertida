@@ -1,29 +1,47 @@
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { useDailyGameState } from "pages/Daily/hooks/useDailyGameState";
+import {
+  useDailyLocalToday,
+  useMarkAsPlayed,
+} from "pages/Daily/hooks/useDailyLocalToday";
+import { useShowResultModal } from "pages/Daily/hooks/useShowResultModal";
 // Ant Design Resources
-import { App } from 'antd';
+import { App } from "antd";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { deepCopy } from 'utils/helpers';
+import { deepCopy } from "utils/helpers";
 // Internal
-import { DEFAULT_LOCAL_TODAY, getGuessString, getInitialState, validateAttempts } from './helpers';
-import { PHASES, SETTINGS } from './settings';
-import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
+import {
+  DEFAULT_LOCAL_TODAY,
+  getGuessString,
+  getInitialState,
+  validateAttempts,
+} from "./helpers";
+import { PHASES, SETTINGS } from "./settings";
+import {
+  ControleDeEstoqueLocalToday,
+  DailyControleDeEstoqueEntry,
+  GameState,
+} from "./types";
 
-export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, initialState: GameState) {
+export function useControleDeEstoqueEngine(
+  data: DailyControleDeEstoqueEntry,
+  initialState: GameState,
+) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
-  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
+  const { state, setState, updateState } =
+    useDailyGameState<GameState>(initialState);
 
-  const currentGood: string | undefined = data.goods[state.warehouse.filter(Boolean).length];
+  const currentGood: string | undefined =
+    data.goods[state.warehouse.filter(Boolean).length];
 
-  const { updateLocalStorage } = useDailyLocalToday<ControleDeEstoqueLocalToday>({
-    key: SETTINGS.KEY,
-    gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
-  });
+  const { updateLocalStorage } =
+    useDailyLocalToday<ControleDeEstoqueLocalToday>({
+      key: SETTINGS.KEY,
+      gameId: data.id,
+      defaultValue: DEFAULT_LOCAL_TODAY,
+    });
 
   /**
    * Places a good in the warehouse
@@ -61,7 +79,10 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
   const onFulfill = (shelfIndex: number) => {
     setState((prev) => {
       const copy = deepCopy(prev);
-      copy.fulfillments.push({ order: state.activeOrder!, shelfIndex: shelfIndex });
+      copy.fulfillments.push({
+        order: state.activeOrder!,
+        shelfIndex: shelfIndex,
+      });
       copy.activeOrder = null;
       return copy;
     });
@@ -73,7 +94,9 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
   const onTakeBack = (orderId: string) => {
     setState((prev) => {
       const copy = deepCopy(prev);
-      copy.fulfillments = copy.fulfillments.filter((fulfillment) => fulfillment.order !== orderId);
+      copy.fulfillments = copy.fulfillments.filter(
+        (fulfillment) => fulfillment.order !== orderId,
+      );
       copy.activeOrder = orderId;
       return copy;
     });
@@ -89,8 +112,8 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
     if (state.guesses.includes(newGuessString)) {
       message.warning({
         content: translate(
-          'Você já tentou essa combinação. Tente outra!',
-          'You already tried this combination. Try another one!'
+          "Você já tentou essa combinação. Tente outra!",
+          "You already tried this combination. Try another one!",
         ),
         duration: 5,
       });
@@ -112,8 +135,8 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
     if (!isAllCorrect) {
       message.warning({
         content: translate(
-          'Um ou mais produtos estão fora de lugar. Tente novamente!',
-          'One or more products are out of place. Try again!'
+          "Um ou mais produtos estão fora de lugar. Tente novamente!",
+          "One or more products are out of place. Try again!",
         ),
         duration: 3,
       });
@@ -146,7 +169,8 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
   });
 
   // RESULTS MODAL
-  const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
+  const { showResultModal, setShowResultModal } =
+    useShowResultModal(isComplete);
 
   const reset = () => {
     updateLocalStorage({

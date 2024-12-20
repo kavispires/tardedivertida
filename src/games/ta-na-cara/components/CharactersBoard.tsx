@@ -1,16 +1,16 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Ant Design Resources
-import { Image, Popconfirm } from 'antd';
+import { Image, Popconfirm } from "antd";
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useCardWidth } from "hooks/useCardWidth";
+import { useLanguage } from "hooks/useLanguage";
+import { useLoading } from "hooks/useLoading";
 // Components
-import { TransparentButton } from 'components/buttons';
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate } from 'components/language';
+import { TransparentButton } from "components/buttons";
+import { ImageCard } from "components/image-cards";
+import { DualTranslate } from "components/language";
 // Internal
-import type { CharactersDictionary } from '../utils/types';
+import type { CharactersDictionary } from "../utils/types";
 
 type CharactersBoardProps = {
   charactersIds: CardId[];
@@ -29,7 +29,12 @@ export function CharactersBoard({
 }: CharactersBoardProps) {
   const { language, translate } = useLanguage();
   const { isLoading } = useLoading();
-  const cardWidth = useCardWidth(10, { gap: 16, minWidth: 80, maxWidth: 100, margin: 16 });
+  const cardWidth = useCardWidth(10, {
+    gap: 16,
+    minWidth: 80,
+    maxWidth: 100,
+    margin: 16,
+  });
 
   if (onCardClick) {
     return (
@@ -47,11 +52,11 @@ export function CharactersBoard({
               key={character.id}
               title={translate(
                 `Tem certeza que quer escolher ${name}?`,
-                `Are you sure you want to choose ${name}?`
+                `Are you sure you want to choose ${name}?`,
               )}
               onConfirm={() => onCardClick({ characterId: character.id })}
-              okText={translate('Sim', 'Yes')}
-              cancelText={translate('Não', 'No')}
+              okText={translate("Sim", "Yes")}
+              cancelText={translate("Não", "No")}
               disabled={unavailable || revealed || ownCharacter || isLoading}
             >
               <TransparentButton
@@ -59,16 +64,20 @@ export function CharactersBoard({
                 disabled={unavailable || revealed || ownCharacter || isLoading}
               >
                 <ImageCard
-                  id={revealed ? 'us-00' : character.id}
+                  id={revealed ? "us-00" : character.id}
                   className={clsx(
-                    'characters-table__character-image',
-                    userCharacterId === character.id && 'characters-table__character-image--active',
-                    (unavailable || revealed || ownCharacter) && 'characters-table__character-image--disabled'
+                    "characters-table__character-image",
+                    userCharacterId === character.id &&
+                      "characters-table__character-image--active",
+                    (unavailable || revealed || ownCharacter) &&
+                      "characters-table__character-image--disabled",
                   )}
                   cardWidth={cardWidth - 16}
                   preview={false}
                 />
-                {!unavailable && <div className="characters-table__character-name">{name}</div>}
+                {!unavailable && (
+                  <div className="characters-table__character-name">{name}</div>
+                )}
               </TransparentButton>
             </Popconfirm>
           );
@@ -78,18 +87,22 @@ export function CharactersBoard({
   }
 
   return (
-    <div className="characters-table" style={{ width: `${(cardWidth + 16) * 6}px` }}>
+    <div
+      className="characters-table"
+      style={{ width: `${(cardWidth + 16) * 6}px` }}
+    >
       <Image.PreviewGroup>
         {charactersIds.map((characterId) => {
           const character = charactersDict[characterId];
           return (
             <div className="characters-table__character" key={character.id}>
               <ImageCard
-                id={character?.revealed ? 'us-00' : character.id}
+                id={character?.revealed ? "us-00" : character.id}
                 previewImageId={character.id}
                 className={clsx(
-                  'characters-table__character-image',
-                  userCharacterId === character.id && 'characters-table__character-image--active'
+                  "characters-table__character-image",
+                  userCharacterId === character.id &&
+                    "characters-table__character-image--active",
                 )}
                 cardWidth={cardWidth}
               />

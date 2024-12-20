@@ -1,37 +1,42 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 // Ant Design Resources
-import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
-import { Button, Layout, Space } from 'antd';
+import {
+  CheckCircleFilled,
+  MehFilled,
+  RobotFilled,
+  SmileFilled,
+} from "@ant-design/icons";
+import { Button, Layout, Space } from "antd";
 // Types
-import type { GameInfo } from 'types/game-info';
-import type { GamePlayers } from 'types/player';
+import type { GameInfo } from "types/game-info";
+import type { GamePlayers } from "types/player";
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useGameId } from 'hooks/useGameId';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
-import { useUser } from 'hooks/useUser';
+import { useGameActionRequest } from "hooks/useGameActionRequest";
+import { useGameId } from "hooks/useGameId";
+import { useGlobalLocalStorage } from "hooks/useGlobalLocalStorage";
+import { useGlobalState } from "hooks/useGlobalState";
+import { useLanguage } from "hooks/useLanguage";
+import { useLoading } from "hooks/useLoading";
+import { useMock } from "hooks/useMock";
+import { useUser } from "hooks/useUser";
 // Services
-import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
+import { GAME_API_COMMON_ACTIONS } from "services/adapters";
 // Utils
 import {
   getRandomNegativeReadyMessage,
   getRandomNeutralReadyMessage,
   getRandomPositiveReadyMessage,
   speak,
-} from 'utils/speech';
+} from "utils/speech";
 // Components
-import { Translate } from 'components/language';
-import { LoadingPage } from 'components/loaders';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
-import { Title } from 'components/text';
+import { Translate } from "components/language";
+import { LoadingPage } from "components/loaders";
+import { useGameInfoContext } from "components/session/GameInfoContext";
+import { Title } from "components/text";
 // Internal
-import { RulesCarousel } from '../rules';
-import { AutoNextPhase } from '../general/AutoNextPhase';
+import { RulesCarousel } from "../rules";
+import { AutoNextPhase } from "../general/AutoNextPhase";
 
 type PhaseRulesProps = {
   players: GamePlayers;
@@ -43,8 +48,8 @@ export function PhaseRules({ players }: PhaseRulesProps) {
   const info = useGameInfoContext();
   const { language, translate } = useLanguage();
   const user = useUser(players);
-  const [volume] = useGlobalLocalStorage('volume');
-  const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
+  const [volume] = useGlobalLocalStorage("volume");
+  const [, setIsAdminEnabled] = useGlobalState("isAdminEnabled");
 
   useEffect(() => {
     setIsAdminEnabled(true);
@@ -55,19 +60,19 @@ export function PhaseRules({ players }: PhaseRulesProps) {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
+    queryClient.invalidateQueries({ queryKey: ["meta", gameId] });
   }, [gameId]); // eslint-disable-line
 
   const errorMessage = translate(
-    'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-    'Oh no! The application found an error when trying to continue'
+    "Vixi, o aplicativo encontrou um erro ao tentar continuar",
+    "Oh no! The application found an error when trying to continue",
   );
 
   const onBeReady = useGameActionRequest({
-    actionName: 'be-ready',
+    actionName: "be-ready",
     successMessage: translate(
-      'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players'
+      "Pronto! Aguarde os outros jogadores estarem prontos",
+      "Done! Now wait for the other players",
     ),
     errorMessage,
     onSuccess: () => {
@@ -76,10 +81,10 @@ export function PhaseRules({ players }: PhaseRulesProps) {
   });
 
   const onBeReadyIDK = useGameActionRequest({
-    actionName: 'be-ready',
+    actionName: "be-ready",
     successMessage: translate(
-      'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players'
+      "Pronto! Aguarde os outros jogadores estarem prontos",
+      "Done! Now wait for the other players",
     ),
     errorMessage,
     onSuccess: () => {
@@ -88,10 +93,10 @@ export function PhaseRules({ players }: PhaseRulesProps) {
   });
 
   const onBeReadyQue = useGameActionRequest({
-    actionName: 'be-ready',
+    actionName: "be-ready",
     successMessage: translate(
-      'Vixi, se fudeu então, porque o jogo vai começar!',
-      'Sorry, you are screwed because the game is starting anyway!'
+      "Vixi, se fudeu então, porque o jogo vai começar!",
+      "Sorry, you are screwed because the game is starting anyway!",
     ),
     errorMessage,
     onSuccess: () => {
@@ -100,7 +105,11 @@ export function PhaseRules({ players }: PhaseRulesProps) {
   });
 
   // DEV: Auto-ready
-  useMock(() => onBeReady({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY }), [], 2);
+  useMock(
+    () => onBeReady({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY }),
+    [],
+    2,
+  );
 
   if (!info?.gameName) {
     return <LoadingPage />;
@@ -124,7 +133,9 @@ export function PhaseRules({ players }: PhaseRulesProps) {
           type="primary"
           icon={user.isReady ? <CheckCircleFilled /> : <SmileFilled />}
           disabled={isLoading || user.isReady}
-          onClick={() => onBeReady({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })}
+          onClick={() =>
+            onBeReady({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })
+          }
           loading={isLoading}
         >
           <Translate
@@ -135,17 +146,24 @@ export function PhaseRules({ players }: PhaseRulesProps) {
         <Button
           icon={user.isReady ? <CheckCircleFilled /> : <MehFilled />}
           disabled={isLoading || user.isReady}
-          onClick={() => onBeReadyIDK({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })}
+          onClick={() =>
+            onBeReadyIDK({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })
+          }
           loading={isLoading}
         >
-          <Translate pt="Não entendi nada, mas vamos lá!" en="I don't get it but let's go!" />
+          <Translate
+            pt="Não entendi nada, mas vamos lá!"
+            en="I don't get it but let's go!"
+          />
         </Button>
         <Button
           type="primary"
           danger
           icon={user.isReady ? <CheckCircleFilled /> : <RobotFilled />}
           disabled={isLoading || user.isReady}
-          onClick={() => onBeReadyQue({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })}
+          onClick={() =>
+            onBeReadyQue({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })
+          }
           loading={isLoading}
         >
           <Translate pt="Quê?" en="What?" />

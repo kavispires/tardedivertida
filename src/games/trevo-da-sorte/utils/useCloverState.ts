@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 // Ant Design Resources
-import { App } from 'antd';
+import { App } from "antd";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from "utils/helpers";
 // Internal
-import { onRotate, parseRotation } from './helpers';
-import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from './constants';
+import { onRotate, parseRotation } from "./helpers";
+import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from "./constants";
 import type {
   CloverObject,
   CloverMode,
@@ -17,7 +17,7 @@ import type {
   LeafLocks,
   LeafPosition,
   Leaves,
-} from './types';
+} from "./types";
 
 /**
  * Keeps track of the clover state
@@ -31,28 +31,40 @@ export function useCloverState(
   mode: CloverMode,
   clover: CloverObject,
   leaves: Leaves,
-  onSubmit?: GenericFunction
+  onSubmit?: GenericFunction,
 ) {
   const { notification } = App.useApp();
   const { translate } = useLanguage();
   const [attempts, setAttempts] = useState(0);
-  const [clues, setClues] = useState<string[]>(['', '', '', '']);
+  const [clues, setClues] = useState<string[]>(["", "", "", ""]);
   const [rotation, setRotation] = useState<number>(0);
   const [activeLeafId, setActiveLeafId] = useState<string | null>(null);
   const [activeSlotId, setActiveSlotId] = useState<LeafPosition | null>(null);
-  const [guesses, setGuesses] = useState<Guesses>({ A: null, B: null, C: null, D: null });
-  const [locks, setLocks] = useState<LeafLocks>({ A: false, B: false, C: false, D: false });
+  const [guesses, setGuesses] = useState<Guesses>({
+    A: null,
+    B: null,
+    C: null,
+    D: null,
+  });
+  const [locks, setLocks] = useState<LeafLocks>({
+    A: false,
+    B: false,
+    C: false,
+    D: false,
+  });
   const [rotations, setRotations] = useState<NumberDictionary>(
     Object.keys(leaves).reduce((acc: NumberDictionary, leafId) => {
       acc[leafId] = 0;
       return acc;
-    }, {})
+    }, {}),
   );
   const [usedLeavesIds, setUsedLeavesIds] = useState<string[]>([]);
 
   // Keep used leaves ids up to date
   useEffect(() => {
-    setUsedLeavesIds(Object.values(guesses).map((guess) => guess?.leafId ?? ''));
+    setUsedLeavesIds(
+      Object.values(guesses).map((guess) => guess?.leafId ?? ""),
+    );
   }, [guesses]);
 
   // Keep guess rotation up to date
@@ -240,10 +252,12 @@ export function useCloverState(
       if (entry && (entry.score === undefined || entry.score === 0)) {
         const correctLeaf = clover.leaves[key];
         const isCorrect =
-          entry.leafId === correctLeaf.leafId && parseRotation(entry.rotation) === correctLeaf.rotation;
+          entry.leafId === correctLeaf.leafId &&
+          parseRotation(entry.rotation) === correctLeaf.rotation;
 
         if (isCorrect) {
-          entry.score = attempts === 0 ? FIRST_ATTEMPT_SCORE : SECOND_ATTEMPT_SCORE;
+          entry.score =
+            attempts === 0 ? FIRST_ATTEMPT_SCORE : SECOND_ATTEMPT_SCORE;
           correctCount += 1;
           locksCopy[key] = true;
         } else if (attempts === 0) {
@@ -265,10 +279,13 @@ export function useCloverState(
     }
 
     notification.warning({
-      message: translate(`${4 - correctCount} folhas estão erradas`, `${4 - correctCount} leaves are wrong`),
+      message: translate(
+        `${4 - correctCount} folhas estão erradas`,
+        `${4 - correctCount} leaves are wrong`,
+      ),
       description: translate(
-        'Tente novamente. Pode ter sido folha errada ou rotação errada',
-        'Try again. It may have been wrong leaf or just wrong rotation'
+        "Tente novamente. Pode ter sido folha errada ou rotação errada",
+        "Try again. It may have been wrong leaf or just wrong rotation",
       ),
     });
 
@@ -279,7 +296,9 @@ export function useCloverState(
 
   // BOOLEANS
   const areCluesComplete = clues.every((clue) => clue.trim());
-  const isCloverComplete = Object.values(guesses).every((guess) => Boolean(guess));
+  const isCloverComplete = Object.values(guesses).every((guess) =>
+    Boolean(guess),
+  );
 
   return {
     mode,

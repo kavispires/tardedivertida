@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import { ReactNode, useState } from 'react';
-import { useKeyPressEvent } from 'react-use';
+import clsx from "clsx";
+import { ReactNode, useState } from "react";
+import { useKeyPressEvent } from "react-use";
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button } from "antd";
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useCountdown } from "hooks/useCountdown";
+import { useTemporarilyHidePlayersBar } from "hooks/useTemporarilyHidePlayersBar";
 // Utils
-import { type AnimationType, getAnimationClass } from 'utils/helpers';
+import { type AnimationType, getAnimationClass } from "utils/helpers";
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
+import { TimedButton } from "components/buttons";
+import { Translate } from "components/language";
+import { Title } from "components/text";
 // Sass
-import './PhaseAnnouncement.scss';
+import "./PhaseAnnouncement.scss";
 // Design Resource
 
 type PhaseAnnouncementBasicProps = {
@@ -61,14 +61,14 @@ type PhaseAnnouncementBasicProps = {
   /**
    * If component should be an overlay or a block
    */
-  type?: 'block' | 'overlay';
+  type?: "block" | "overlay";
 };
 
 type PhaseAnnouncementBlock = {
   /**
    * The phase announcement will be its own screen without overlaying any content
    */
-  type: 'block';
+  type: "block";
   /**
    * The function called when the close button is clicked
    */
@@ -79,7 +79,7 @@ type PhaseAnnouncementOverlay = {
   /**
    * The phase announcement will be its own screen without overlaying any content
    */
-  type: 'overlay';
+  type: "overlay";
   /**
    * The function called when the close button is clicked
    */
@@ -102,10 +102,10 @@ export function PhaseAnnouncement({
   duration,
   withoutTimer = false,
   unskippable,
-  animationType = 'backInDown',
-  type = 'block',
+  animationType = "backInDown",
+  type = "block",
 }: PhaseAnnouncementProps) {
-  useTemporarilyHidePlayersBar(type === 'overlay');
+  useTemporarilyHidePlayersBar(type === "overlay");
   const durationPerRound = [7, 15, 7, 5]?.[currentRound] ?? 4;
   const [isActive, setActive] = useState(true);
   const [isRemoved, setRemoved] = useState(false);
@@ -122,7 +122,7 @@ export function PhaseAnnouncement({
   };
 
   // Allow skip when pressing the space bar in a skippable announcement
-  useKeyPressEvent(' ', () => {
+  useKeyPressEvent(" ", () => {
     if (!unskippable) {
       onContinue();
     }
@@ -145,16 +145,18 @@ export function PhaseAnnouncement({
   return (
     <div
       className={clsx(
-        type === 'overlay' && 'phase-announcement-overlay',
-        !isActive && getAnimationClass('fadeOut', { speed: 'faster' })
+        type === "overlay" && "phase-announcement-overlay",
+        !isActive && getAnimationClass("fadeOut", { speed: "faster" }),
       )}
     >
       <div className="phase-announcement-wrapper">
         <div
           className={clsx(
-            'phase-announcement',
-            isActive ? getAnimationClass(animationType, { speed: 'fast' }) : getAnimationClass('bounceOut'),
-            className
+            "phase-announcement",
+            isActive
+              ? getAnimationClass(animationType, { speed: "fast" })
+              : getAnimationClass("bounceOut"),
+            className,
           )}
         >
           <Title colorScheme="light">{title}</Title>

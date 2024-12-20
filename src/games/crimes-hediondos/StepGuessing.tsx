@@ -1,27 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button, Space } from "antd";
 // Types
-import { GamePlayer, GamePlayers } from 'types/player';
+import { GamePlayer, GamePlayers } from "types/player";
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from "hooks/useMock";
 // Utils
-import { getAvatarColorById, getLastItem } from 'utils/helpers';
+import { getAvatarColorById, getLastItem } from "utils/helpers";
 // Icons
-import { InvestigationIcon } from 'icons/InvestigationIcon';
+import { InvestigationIcon } from "icons/InvestigationIcon";
 // Components
-import { DebugOnly } from 'components/debug';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { DebugOnly } from "components/debug";
+import { FloatingHand } from "components/general/FloatingHand";
+import { Translate } from "components/language";
+import { Step, type StepProps } from "components/steps";
+import { RuleInstruction, Title } from "components/text";
 // Internal
-import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, ScenesDict } from './utils/types';
-import { mockGuesses } from './utils/mock';
-import { autoSelectCorrectGuesses, getHistory } from './utils/helpers';
-import { CrimeSummary } from './components/CrimeSummary';
-import { PlayersCards } from './components/PlayersCards';
-import { SelectableGroupedItemsBoard } from './components/SelectableGroupedItemsBoard';
+import type {
+  Crime,
+  GroupedItems,
+  GuessHistoryEntry,
+  ItemsDict,
+  ScenesDict,
+} from "./utils/types";
+import { mockGuesses } from "./utils/mock";
+import { autoSelectCorrectGuesses, getHistory } from "./utils/helpers";
+import { CrimeSummary } from "./components/CrimeSummary";
+import { PlayersCards } from "./components/PlayersCards";
+import { SelectableGroupedItemsBoard } from "./components/SelectableGroupedItemsBoard";
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -32,7 +38,7 @@ type StepGuessingProps = {
   scenesOrder: string[];
   crimes: Crime[];
   onSubmitGuesses: GenericFunction;
-} & Pick<StepProps, 'announcement'>;
+} & Pick<StepProps, "announcement">;
 
 export function StepGuessing({
   user,
@@ -46,7 +52,7 @@ export function StepGuessing({
   announcement,
 }: StepGuessingProps) {
   const [guesses, setGuesses] = useState<PlainObject>({});
-  const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
+  const [activePlayerId, setActivePlayerId] = useState<PlayerId>("");
 
   // DEV: Auto guesses
   useMock(() => {
@@ -68,7 +74,7 @@ export function StepGuessing({
         }),
       };
 
-      const isWeapon = itemId.includes('wp');
+      const isWeapon = itemId.includes("wp");
 
       if (isWeapon) {
         guessObj.weaponId = itemId;
@@ -94,8 +100,10 @@ export function StepGuessing({
   const isOwnCrime = activePlayerId === user.id;
   const activePlayerGuesses = guesses?.[activePlayerId] ?? {};
 
-  const lastGuessHistory = getLastItem(getHistory(user.history, activePlayerId));
-  const isLocked = ['CORRECT', 'LOCKED'].includes(lastGuessHistory?.status);
+  const lastGuessHistory = getLastItem(
+    getHistory(user.history, activePlayerId),
+  );
+  const isLocked = ["CORRECT", "LOCKED"].includes(lastGuessHistory?.status);
 
   // Active stuff
   const { activeWeaponId, activeEvidenceId } = getActiveStuff(
@@ -103,7 +111,7 @@ export function StepGuessing({
     isLocked,
     user,
     activePlayerGuesses,
-    lastGuessHistory
+    lastGuessHistory,
   );
 
   return (
@@ -116,21 +124,21 @@ export function StepGuessing({
         <Translate
           pt={
             <>
-              Selecione cada jogador abaixo, analise suas respostas sobre o crime, e selecione uma arma e um
-              objeto.
-              <br />O par sempre estará no mesmo quadrante, mas os objetos não são exclusivos e diferentes
-              crimes podem usar as mesmas cartas.
+              Selecione cada jogador abaixo, analise suas respostas sobre o
+              crime, e selecione uma arma e um objeto.
+              <br />O par sempre estará no mesmo quadrante, mas os objetos não
+              são exclusivos e diferentes crimes podem usar as mesmas cartas.
               <br />
               Crimes que já tem ambos selecionados são indicados por uma faca.
             </>
           }
           en={
             <>
-              Select each player below, analyze their answers about their crimes, then select a weapon and an
-              object.
+              Select each player below, analyze their answers about their
+              crimes, then select a weapon and an object.
               <br />
-              The pair will always be in the same quadrant, but object are non-exclusive so different crimes
-              might use the same cards.
+              The pair will always be in the same quadrant, but object are
+              non-exclusive so different crimes might use the same cards.
               <br />
               Crimes with both cards selected are indicated by a knife.
             </>
@@ -140,8 +148,15 @@ export function StepGuessing({
 
       <DebugOnly dev>
         <Space className="space-container" align="center">
-          <Button type="dashed" ghost onClick={() => setGuesses(mockGuesses(groupedItems, players, user))}>
-            <Translate pt="Seleção Aleatória Semi-inteligente" en="Semi-intelligent Random Selection" />
+          <Button
+            type="dashed"
+            ghost
+            onClick={() => setGuesses(mockGuesses(groupedItems, players, user))}
+          >
+            <Translate
+              pt="Seleção Aleatória Semi-inteligente"
+              en="Semi-intelligent Random Selection"
+            />
           </Button>
         </Space>
       </DebugOnly>
@@ -207,7 +222,7 @@ const getActiveStuff = (
   isLocked: boolean,
   user: GamePlayer,
   activePlayerGuesses: any,
-  lastGuessHistory: GuessHistoryEntry
+  lastGuessHistory: GuessHistoryEntry,
 ): { activeWeaponId: string; activeEvidenceId: string } => {
   if (isOwnCrime) {
     return {

@@ -1,15 +1,15 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from "types/player";
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from "utils/helpers";
 // Internal
-import { CharactersDictionary } from './types';
+import { CharactersDictionary } from "./types";
 
 export function mockPromptDecision(
   user: GamePlayer,
   players: GamePlayers,
   onSubmitPrompt: GenericFunction,
-  onSubmitTarget: GenericFunction
+  onSubmitTarget: GenericFunction,
 ) {
   const options = [
     ...user.questions,
@@ -19,7 +19,7 @@ export function mockPromptDecision(
 
   const choice = getRandomItem(options);
 
-  if (choice.startsWith('t-')) {
+  if (choice.startsWith("t-")) {
     onSubmitPrompt({ questionId: choice });
   } else {
     onSubmitTarget({ targetId: choice });
@@ -30,15 +30,19 @@ export function mockAnswer() {
   return getRandomItem([true, false]);
 }
 
-export function mockGuess(charactersDict: CharactersDictionary, user: GamePlayer, targetId: PlayerId) {
+export function mockGuess(
+  charactersDict: CharactersDictionary,
+  user: GamePlayer,
+  targetId: PlayerId,
+) {
   return getRandomItem(
     Object.values(charactersDict)
       .filter(
         (character) =>
           character.id !== user.characterId &&
           !character.revealed &&
-          !(user.history?.[targetId] ?? []).includes(character.id)
+          !(user.history?.[targetId] ?? []).includes(character.id),
       )
-      .map((character) => character.id)
+      .map((character) => character.id),
   );
 }

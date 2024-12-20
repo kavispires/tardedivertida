@@ -1,9 +1,9 @@
 // Types
-import type { GameRound } from 'types/game';
+import type { GameRound } from "types/game";
 // Components
-import { Translate } from 'components/language';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Instruction } from 'components/text';
+import { Translate } from "components/language";
+import { PointsHighlight } from "components/metrics/PointsHighlight";
+import { Instruction } from "components/text";
 
 export function DJInstructions({ round }: { round: GameRound }): JSX.Element {
   if (round.current <= 1) {
@@ -13,12 +13,16 @@ export function DJInstructions({ round }: { round: GameRound }): JSX.Element {
           pt={
             <>
               Fala galera! Eu sou o DJ PruPruPru!
-              <br />O objetivo desse jogo é <strong>entrar</strong> e <strong>permanecer</strong> na área VIP!
+              <br />O objetivo desse jogo é <strong>entrar</strong> e{" "}
+              <strong>permanecer</strong> na área VIP!
               <br />
-              Você consegue isso se você sempre responder com a maioria! Não importa se está certo ou errado.
+              Você consegue isso se você sempre responder com a maioria! Não
+              importa se está certo ou errado.
               <br />
-              Ao responder com a maioria, você ganha <PointsHighlight type="positive">1</PointsHighlight>{' '}
-              ponto por entrar na área VIP ou <PointsHighlight type="positive">2</PointsHighlight> points se
+              Ao responder com a maioria, você ganha{" "}
+              <PointsHighlight type="positive">1</PointsHighlight> ponto por
+              entrar na área VIP ou{" "}
+              <PointsHighlight type="positive">2</PointsHighlight> points se
               você estiver lá.
               <br /> Vamos aos hits!
             </>
@@ -27,15 +31,16 @@ export function DJInstructions({ round }: { round: GameRound }): JSX.Element {
             <>
               Yo my party people! I'm DJ PruPruPru!
               <br />
-              The goal of the game is to <strong>join</strong> and <strong>stay</strong> in the VIP area!
+              The goal of the game is to <strong>join</strong> and{" "}
+              <strong>stay</strong> in the VIP area!
               <br />
-              You achieve this by always answering the tracks with the majority. It doesn't matter if it's
-              wrong or right.
+              You achieve this by always answering the tracks with the majority.
+              It doesn't matter if it's wrong or right.
               <br />
-              When answering with the majority, you gain <PointsHighlight type="positive">
-                1
-              </PointsHighlight>{' '}
-              point for joining the VIP area or <PointsHighlight type="positive">2</PointsHighlight> points if
+              When answering with the majority, you gain{" "}
+              <PointsHighlight type="positive">1</PointsHighlight> point for
+              joining the VIP area or{" "}
+              <PointsHighlight type="positive">2</PointsHighlight> points if
               you're already there.
               <br />
               Let's play those hits!
@@ -81,7 +86,8 @@ export function DJInstructions({ round }: { round: GameRound }): JSX.Element {
         }
         en={
           <>
-            It's the last round! The player with the most points in the VIP area will win!
+            It's the last round! The player with the most points in the VIP area
+            will win!
             <br />
             Will that be you?
           </>

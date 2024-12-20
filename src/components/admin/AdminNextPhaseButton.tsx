@@ -1,19 +1,19 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 // Ant Design Resources
-import { FireFilled } from '@ant-design/icons';
+import { FireFilled } from "@ant-design/icons";
 // Types
-import type { GameRound } from 'types/game';
+import type { GameRound } from "types/game";
 // Hooks
-import { useHostActionRequest } from 'hooks/useHostActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useHostActionRequest } from "hooks/useHostActionRequest";
+import { useLanguage } from "hooks/useLanguage";
+import { useLoading } from "hooks/useLoading";
 // Services
-import { HOST_API_ACTIONS } from 'services/adapters';
+import { HOST_API_ACTIONS } from "services/adapters";
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from "components/buttons";
+import { Translate } from "components/language";
 // Internal
-import { AdminOnlyContainer } from './AdminOnlyContainer';
+import { AdminOnlyContainer } from "./AdminOnlyContainer";
 
 function ButtonLabel({ round }: { round?: GameRound }) {
   return !round || round.current === round.total || round.forceLastRound ? (
@@ -49,7 +49,7 @@ type AdminNextPhaseButtonProps = {
  * @returns
  */
 export function AdminNextPhaseButton({
-  className = '',
+  className = "",
   round,
   autoTriggerTime = 0,
   children,
@@ -58,15 +58,19 @@ export function AdminNextPhaseButton({
   const { isLoading } = useLoading();
 
   const onGoToNextPhase = useHostActionRequest({
-    actionName: 'force-next-phase',
-    successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!'),
+    actionName: "force-next-phase",
+    successMessage: translate(
+      "Funcionou, próxima fase!",
+      "It worked, next phase!",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
-      'The application found an error while trying to go to the next phase'
+      "Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase",
+      "The application found an error while trying to go to the next phase",
     ),
   });
 
-  const handleClick = () => onGoToNextPhase({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE });
+  const handleClick = () =>
+    onGoToNextPhase({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE });
 
   return (
     <AdminOnlyContainer className={className}>

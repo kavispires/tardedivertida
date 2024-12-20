@@ -1,9 +1,9 @@
-import clsx from 'clsx';
-import { ReactNode } from 'react';
+import clsx from "clsx";
+import { ReactNode } from "react";
 // Ant Design Resources
-import { Typography } from 'antd';
+import { Typography } from "antd";
 // Sass
-import './Instruction.scss';
+import "./Instruction.scss";
 
 type InstructionsProps = {
   /**
@@ -49,18 +49,18 @@ export const Instruction = ({
   noMargin = false,
   colorScheme,
 }: InstructionsProps) => {
-  const baseClass = 'instruction';
+  const baseClass = "instruction";
 
   return (
     <Typography.Text
       className={clsx(
         baseClass,
         contained && `${baseClass}--contained`,
-        colorScheme === 'dark' && `${baseClass}--dark`,
+        colorScheme === "dark" && `${baseClass}--dark`,
         white && `${baseClass}--white`,
         fullWidth && `${baseClass}--full-width`,
         noMargin && `${baseClass}--no-margin`,
-        className
+        className,
       )}
       data-testid="instruction"
     >

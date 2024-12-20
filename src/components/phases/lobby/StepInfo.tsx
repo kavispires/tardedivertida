@@ -1,31 +1,31 @@
-import { mockPlayerName } from 'mock/players';
-import { useEffect, useState } from 'react';
-import { useLocalStorage } from 'react-use';
+import { mockPlayerName } from "mock/players";
+import { useEffect, useState } from "react";
+import { useLocalStorage } from "react-use";
 // Ant Design Resources
-import { Alert, AutoComplete, Button } from 'antd';
+import { Alert, AutoComplete, Button } from "antd";
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from "types/player";
 // Hooks
-import { useAddPlayer } from 'hooks/useAddPlayer';
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useLanguage } from 'hooks/useLanguage';
-import { UseStep } from 'hooks/useStep';
+import { useAddPlayer } from "hooks/useAddPlayer";
+import { useCurrentUserContext } from "hooks/useCurrentUserContext";
+import { useLanguage } from "hooks/useLanguage";
+import { UseStep } from "hooks/useStep";
 // Utils
-import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
-import { getRandomItem, isDevEnv } from 'utils/helpers';
+import { AVAILABLE_AVATAR_IDS } from "utils/avatars";
+import { getRandomItem, isDevEnv } from "utils/helpers";
 // Components
-import { Translate } from 'components/language';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { Translate } from "components/language";
+import { useGameInfoContext } from "components/session/GameInfoContext";
 // Internal
-import { AvatarSelection } from './AvatarSelection';
-import { Settings } from './Settings';
-import { UsualAvatarsSelection } from './UsualAvatarsSelection';
+import { AvatarSelection } from "./AvatarSelection";
+import { Settings } from "./Settings";
+import { UsualAvatarsSelection } from "./UsualAvatarsSelection";
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
 type StepInfoProps = {
   players: GamePlayers;
-  setStep: UseStep['setStep'];
+  setStep: UseStep["setStep"];
 };
 
 export function StepInfo({ players, setStep }: StepInfoProps) {
@@ -33,12 +33,12 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
   const info = useGameInfoContext();
   const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
-    currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)
+    currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS),
   );
 
-  const [name, setName] = useState((currentUser?.names ?? []).at(-1) ?? '');
-  const [lsAvatarId] = useLocalStorage('username', '');
-  const [lsUsername] = useLocalStorage('avatarId', '');
+  const [name, setName] = useState((currentUser?.names ?? []).at(-1) ?? "");
+  const [lsAvatarId] = useLocalStorage("username", "");
+  const [lsUsername] = useLocalStorage("avatarId", "");
 
   // Load username and avatar from localStorage if any
   useEffect(() => {
@@ -48,16 +48,23 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
       }
 
       if (lsUsername) {
-        setName(lsUsername ?? '');
+        setName(lsUsername ?? "");
       }
     }
   }, [isGuest]); // eslint-disable-line
 
-  const { isPending, mutate } = useAddPlayer(name, selectedAvatar, isGuest, () => setStep(2));
+  const { isPending, mutate } = useAddPlayer(
+    name,
+    selectedAvatar,
+    isGuest,
+    () => setStep(2),
+  );
 
   const hasPlayedBefore = Boolean(currentUser.games?.[info.gameName]);
 
-  const nameOptions = (currentUser?.names ?? []).map((name) => ({ value: name }));
+  const nameOptions = (currentUser?.names ?? []).map((name) => ({
+    value: name,
+  }));
 
   return (
     <>
@@ -68,7 +75,12 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
       {hasPlayedBefore && (
         <Alert
           type="info"
-          message={<Translate pt="Você jogou esse jogo anteriormente" en="You played this game before" />}
+          message={
+            <Translate
+              pt="Você jogou esse jogo anteriormente"
+              en="You played this game before"
+            />
+          }
           className="margin"
         />
       )}
@@ -81,7 +93,10 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
       />
 
       {currentUser && currentUser.avatars.length > 0 && (
-        <UsualAvatarsSelection avatarsIds={currentUser.avatars} setSelectedAvatar={setSelectedAvatar} />
+        <UsualAvatarsSelection
+          avatarsIds={currentUser.avatars}
+          setSelectedAvatar={setSelectedAvatar}
+        />
       )}
 
       <AutoComplete
@@ -89,12 +104,12 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
         options={nameOptions}
         onChange={(value) => setName(value.trim())}
         onSelect={(value) => setName(value.trim())}
-        placeholder={translate('Digite seu nome', 'Type your name')}
+        placeholder={translate("Digite seu nome", "Type your name")}
         maxLength={10}
         value={name || randomName}
       />
 
-      <Settings hasImages={info.tags.includes('images')} />
+      <Settings hasImages={info.tags.includes("images")} />
 
       <Button
         block

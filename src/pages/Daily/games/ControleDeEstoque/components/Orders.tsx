@@ -1,33 +1,44 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Icons
-import { CheckMarkIcon } from 'icons/CheckMarkIcon';
-import { LocationIcon } from 'icons/LocationIcon';
-import { OnlineOrderIcon } from 'icons/OnlineOrderIcon';
+import { CheckMarkIcon } from "icons/CheckMarkIcon";
+import { LocationIcon } from "icons/LocationIcon";
+import { OnlineOrderIcon } from "icons/OnlineOrderIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+import { IconAvatar } from "components/avatars";
+import { TransparentButton } from "components/buttons";
+import { WarehouseGoodCard } from "components/cards/WarehouseGoodCard";
 // Internal
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import { useControleDeEstoqueEngine } from "../utils/useControleDeEstoqueEngine";
 
 type OrdersProps = {
-  fulfillments: ReturnType<typeof useControleDeEstoqueEngine>['fulfillments'];
-  orders: ReturnType<typeof useControleDeEstoqueEngine>['orders'];
-  activeOrder: ReturnType<typeof useControleDeEstoqueEngine>['activeOrder'];
-  onSelectOrder: ReturnType<typeof useControleDeEstoqueEngine>['onSelectOrder'];
+  fulfillments: ReturnType<typeof useControleDeEstoqueEngine>["fulfillments"];
+  orders: ReturnType<typeof useControleDeEstoqueEngine>["orders"];
+  activeOrder: ReturnType<typeof useControleDeEstoqueEngine>["activeOrder"];
+  onSelectOrder: ReturnType<typeof useControleDeEstoqueEngine>["onSelectOrder"];
   shelfWidth: number;
 };
 
-export function Orders({ fulfillments, orders, onSelectOrder, shelfWidth, activeOrder }: OrdersProps) {
+export function Orders({
+  fulfillments,
+  orders,
+  onSelectOrder,
+  shelfWidth,
+  activeOrder,
+}: OrdersProps) {
   return (
     <div className="fulfillment-center">
       <OnlineOrderIcon
         width={shelfWidth / 1.5}
-        className={getAnimationClass('headShake', { infinite: true })}
+        className={getAnimationClass("headShake", { infinite: true })}
       />
-      <div className={clsx('fulfillment-center__orders', getAnimationClass('lightSpeedInLeft'))}>
+      <div
+        className={clsx(
+          "fulfillment-center__orders",
+          getAnimationClass("lightSpeedInLeft"),
+        )}
+      >
         {orders.map((order) => {
           const isFulfilled = fulfillments.find((f) => f.order === order);
 
@@ -41,7 +52,7 @@ export function Orders({ fulfillments, orders, onSelectOrder, shelfWidth, active
               {activeOrder === order && (
                 <IconAvatar
                   icon={<LocationIcon />}
-                  className={getAnimationClass('bounce', { infinite: true })}
+                  className={getAnimationClass("bounce", { infinite: true })}
                 />
               )}
               <WarehouseGoodCard
@@ -49,9 +60,9 @@ export function Orders({ fulfillments, orders, onSelectOrder, shelfWidth, active
                 id={order}
                 width={shelfWidth * 0.85}
                 className={clsx(
-                  'order',
-                  activeOrder === order && 'order--active',
-                  !!isFulfilled && 'order--fulfilled'
+                  "order",
+                  activeOrder === order && "order--active",
+                  !!isFulfilled && "order--fulfilled",
                 )}
               />
             </TransparentButton>

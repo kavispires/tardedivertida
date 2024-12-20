@@ -1,24 +1,27 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameActionRequest } from "hooks/useGameActionRequest";
+import { useLanguage } from "hooks/useLanguage";
 // Internal
-import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
+import { TESTEMUNHA_OCULAR_ACTIONS } from "./constants";
 import {
   EliminatePayload,
   SelectQuestionPayload,
   SelectWitnessPayload,
   SubmitTestimonyPayload,
-} from './types';
+} from "./types";
 
 export function useOnSelectWitnessAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'select-witness',
-    successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully'),
+    actionName: "select-witness",
+    successMessage: translate(
+      "Testemunha enviada com sucesso",
+      "Witness submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar selecionar a testemunha',
-      'Oops, the application found an error while trying to submit the witness'
+      "Vixi, o aplicativo encontrou um erro ao tentar selecionar a testemunha",
+      "Oops, the application found an error while trying to submit the witness",
     ),
   });
 
@@ -34,11 +37,14 @@ export function useOnSelectQuestionAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'select-question',
-    successMessage: translate('Pergunta enviada com sucesso', 'Question submitted successfully'),
+    actionName: "select-question",
+    successMessage: translate(
+      "Pergunta enviada com sucesso",
+      "Question submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar pergunta',
-      'Oops, the application found an error while trying to submit question'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar pergunta",
+      "Oops, the application found an error while trying to submit question",
     ),
   });
 
@@ -54,11 +60,14 @@ export function useOnSubmitTestimonyAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-testimony',
-    successMessage: translate('Testemunho enviada com sucesso', 'Testimony submitted successfully'),
+    actionName: "submit-testimony",
+    successMessage: translate(
+      "Testemunho enviada com sucesso",
+      "Testimony submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu testemunho',
-      'Oops, the application found an error while trying to send your testimony'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar seu testemunho",
+      "Oops, the application found an error while trying to send your testimony",
     ),
   });
 
@@ -74,11 +83,14 @@ export function useOnEliminateSuspectAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'eliminate-suspect',
-    successMessage: translate('Suspeito eliminado com sucesso', 'Suspect release submitted successfully'),
+    actionName: "eliminate-suspect",
+    successMessage: translate(
+      "Suspeito eliminado com sucesso",
+      "Suspect release submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar eliminar o suspeito',
-      'Oops, the application found an error while trying to release the suspect'
+      "Vixi, o aplicativo encontrou um erro ao tentar eliminar o suspeito",
+      "Oops, the application found an error while trying to release the suspect",
     ),
   });
 

@@ -1,11 +1,11 @@
-import clsx from 'clsx';
-import { ReactNode, useRef } from 'react';
+import clsx from "clsx";
+import { ReactNode, useRef } from "react";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Components
-import { PageError } from 'components/errors';
-import { LoadingPage } from 'components/loaders';
-import { useGameAppearance } from 'components/session/GameInfoContext';
+import { PageError } from "components/errors";
+import { LoadingPage } from "components/loaders";
+import { useGameAppearance } from "components/session/GameInfoContext";
 
 type PhaseContainerProps = {
   /**
@@ -42,9 +42,9 @@ type PhaseContainerProps = {
  */
 export function PhaseContainer({
   phase,
-  allowedPhase = '',
+  allowedPhase = "",
   children,
-  className = '',
+  className = "",
   fullScreen = false,
   white = false,
 }: PhaseContainerProps) {
@@ -58,11 +58,16 @@ export function PhaseContainer({
 
   if (!phase) {
     return (
-      <PageError description={translate('Estado do jogo não está correto', 'Game state is not correct')} />
+      <PageError
+        description={translate(
+          "Estado do jogo não está correto",
+          "Game state is not correct",
+        )}
+      />
     );
   }
 
-  const baseClass = 'phase-container';
+  const baseClass = "phase-container";
   const backgroundColorOverlay = appearance?.backgroundColor;
 
   return (
@@ -71,11 +76,15 @@ export function PhaseContainer({
         baseClass,
         fullScreen && `${baseClass}--full-screen`,
         white && `${baseClass}--white`,
-        className
+        className,
       )}
       id="screen"
       ref={screenRef}
-      style={backgroundColorOverlay ? { backgroundColor: backgroundColorOverlay } : {}}
+      style={
+        backgroundColorOverlay
+          ? { backgroundColor: backgroundColorOverlay }
+          : {}
+      }
     >
       {children}
     </main>
