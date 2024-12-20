@@ -72,5 +72,116 @@
       "max": 10
     },
     "tags": ["cooperative"]
+  },
+  "fofoca-quente": {
+    "$schema": "../../utils/game-info.schema.json",
+    "gameCode": "?",
+    "gameName": "fofoca-quente",
+    "version": "0.0.0",
+    "release": "planned",
+    "available": false,
+    "title": {
+      "pt": "Fofoca Quente",
+      "en": "Rumor Has It"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
+    "basedOn": "?????",
+    "appearance": {
+      "clouds": "cloud",
+      "primaryColor": "",
+      "backgroundColor": "",
+      "colorScheme": "light"
+    },
+    "summary": {
+      "pt": "???",
+      "en": "???"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "recommended": [2],
+      "min": 2,
+      "max": 2
+    },
+    "tags": ["competitive"]
+  },
+  "nada-a-declarar": {
+    "$schema": "../../utils/game-info.schema.json",
+    "gameCode": "?",
+    "gameName": "nada-a-declarar",
+    "version": "0.0.0",
+    "release": "planned",
+    "available": false,
+    "title": {
+      "pt": "Nada a Declarar",
+      "en": "Customs Clearance"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
+    "basedOn": "?????",
+    "appearance": {
+      "clouds": "cloud",
+      "primaryColor": "",
+      "backgroundColor": "",
+      "colorScheme": "light"
+    },
+    "summary": {
+      "pt": "???",
+      "en": "???"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "recommended": [4, 5, 6],
+      "min": 3,
+      "max": 6
+    },
+    "tags": ["competitive"]
+  },
+  "comunicacao-alienigena-duo": {
+    "$schema": "../../utils/game-info.schema.json",
+    "gameCode": "?",
+    "gameName": "comunicacao-alienigena-duo",
+    "version": "0.0.0",
+    "release": "planned",
+    "available": false,
+    "title": {
+      "pt": "Comunicação Alienígena Duo",
+      "en": "Alien Communication Duo"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
+    "basedOn": "?????",
+    "appearance": {
+      "clouds": "cloud",
+      "primaryColor": "",
+      "backgroundColor": "",
+      "colorScheme": "light"
+    },
+    "summary": {
+      "pt": "???",
+      "en": "???"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "recommended": [4, 5, 6],
+      "min": 3,
+      "max": 6
+    },
+    "tags": ["cooperative"]
   }
 }
