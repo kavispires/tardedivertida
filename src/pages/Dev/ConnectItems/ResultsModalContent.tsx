@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
-import { useCopyToClipboard } from 'react-use';
+import { useEffect } from "react";
+import { useCopyToClipboard } from "react-use";
 // Ant Design Resources
-import { App, Input, Space, Typography } from 'antd';
+import { App, Input, Space, Typography } from "antd";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Icons
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { BoxXIcon } from "icons/BoxXIcon";
+import { TrophyIcon } from "icons/TrophyIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { IconAvatar } from "components/avatars";
+import { TransparentButton } from "components/buttons";
+import { Translate } from "components/language";
 // Internal
-import { ConnectionGame, GroupSummary } from './types';
+import { ConnectionGame, GroupSummary } from "./types";
 
 type ResultsModalContentProps = {
   game: ConnectionGame;
@@ -32,15 +32,21 @@ export function ResultsModalContent({
   const { message } = App.useApp();
   const { translate, language } = useLanguage();
   const [state, copyToClipboard] = useCopyToClipboard();
-  const result = writeResult(game, hearts, resultPrint, language, correctGroups);
+  const result = writeResult(
+    game,
+    hearts,
+    resultPrint,
+    language,
+    correctGroups,
+  );
 
   useEffect(() => {
     if (state.value) {
       message.info(
         translate(
           `Copiado para a área de transferência: ${state.value}`,
-          `Copied to clipboard: ${state.value}`
-        )
+          `Copied to clipboard: ${state.value}`,
+        ),
       );
     }
   }, [state, message, translate]);
@@ -50,11 +56,13 @@ export function ResultsModalContent({
       <Typography.Title level={2} className="center">
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{" "}
+            <Translate pt="Parabéns!" en="Congratulations!" />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{" "}
+            <Translate pt="Que pena!" en="Too bad!" />
           </>
         )}
       </Typography.Title>
@@ -62,7 +70,10 @@ export function ResultsModalContent({
         {win ? (
           <Translate pt="Você acertou os trios!" en="You guessed the trios!" />
         ) : (
-          <Translate pt="Você não fez todos os trios!" en="You did not create all trios!" />
+          <Translate
+            pt="Você não fez todos os trios!"
+            en="You did not create all trios!"
+          />
         )}
       </Typography.Paragraph>
 
@@ -89,24 +100,24 @@ function writeResult(
   hearts: number = 0,
   resultPrint: string,
   language: Language,
-  correctGroups: GroupSummary[]
+  correctGroups: GroupSummary[],
 ) {
-  let result = '';
+  let result = "";
   const gameId = game.id;
 
   const heartsValue = Math.max(0, hearts);
-  const gameName = language === 'pt' ? 'Conexões Triplas' : 'Connect Trio';
+  const gameName = language === "pt" ? "Conexões Triplas" : "Connect Trio";
 
-  result += '🔗 ' + gameName + ' #' + gameId + '\n';
+  result += "🔗 " + gameName + " #" + gameId + "\n";
   result +=
-    Array(heartsValue).fill('❤️').join('') +
+    Array(heartsValue).fill("❤️").join("") +
     Array(3 - heartsValue)
-      .fill('🩶')
-      .join('');
+      .fill("🩶")
+      .join("");
   result += ` (${Math.round(((correctGroups.length + heartsValue) / 6) * 100)}%)`;
-  result += '\n';
+  result += "\n";
   result += resultPrint;
-  result += '\nhttps://www.kavispires.com/tardedivertida/#/trio';
+  result += "\nhttps://www.kavispires.com/tardedivertida/#/trio";
 
   return result;
 }

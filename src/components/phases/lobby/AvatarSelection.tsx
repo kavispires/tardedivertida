@@ -1,16 +1,16 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from "react";
 // Ant Design Resources
-import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from "types/player";
 // Utils
-import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
-import { getRandomItem } from 'utils/helpers';
+import { AVAILABLE_AVATAR_IDS, AVATARS } from "utils/avatars";
+import { getRandomItem } from "utils/helpers";
 // Components
-import { DualTranslate } from 'components/language';
+import { DualTranslate } from "components/language";
 // Images
-import avatars from 'assets/images/avatars.svg';
+import avatars from "assets/images/avatars.svg";
 
 type AvatarSelectionProps = {
   players: GamePlayers;
@@ -27,15 +27,18 @@ export function AvatarSelection({
 }: AvatarSelectionProps) {
   // Calculate available avatars and monitor if user chose a non-available one
   const availableAvatars = useMemo(() => {
-    const usedAvatars = Object.values(players).reduce((acc: BooleanDictionary, { avatarId, id }) => {
-      if (id !== userId) {
-        acc[avatarId] = true;
-      }
-      return acc;
-    }, {});
+    const usedAvatars = Object.values(players).reduce(
+      (acc: BooleanDictionary, { avatarId, id }) => {
+        if (id !== userId) {
+          acc[avatarId] = true;
+        }
+        return acc;
+      },
+      {},
+    );
 
     const newAvailableAvatars = AVAILABLE_AVATAR_IDS.filter(
-      (avatarId) => usedAvatars[avatarId] === undefined
+      (avatarId) => usedAvatars[avatarId] === undefined,
     );
 
     if (!newAvailableAvatars.includes(selectedAvatar)) {
@@ -60,7 +63,11 @@ export function AvatarSelection({
   return (
     <>
       <div className="lobby-step__avatar-selection">
-        <Button type="dashed" onClick={onPreviousAvatar} className="lobby-step__avatar-nav-button">
+        <Button
+          type="dashed"
+          onClick={onPreviousAvatar}
+          className="lobby-step__avatar-nav-button"
+        >
           <CaretLeftOutlined />
         </Button>
         <svg viewBox="0 0 100 100" className="lobby-avatar">
@@ -69,7 +76,11 @@ export function AvatarSelection({
             <DualTranslate>{AVATARS[selectedAvatar].description}</DualTranslate>
           </title>
         </svg>
-        <Button type="dashed" onClick={onNextAvatar} className="lobby-step__avatar-nav-button">
+        <Button
+          type="dashed"
+          onClick={onNextAvatar}
+          className="lobby-step__avatar-nav-button"
+        >
           <CaretRightOutlined />
         </Button>
       </div>

@@ -1,19 +1,26 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 // Ant Design Resources
-import { Input, Space, Typography } from 'antd';
+import { Input, Space, Typography } from "antd";
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useCurrentUserContext } from "hooks/useCurrentUserContext";
 // Internal
-import { DailyChrome } from '../components/DailyChrome';
-import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
-import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
-import { SETTINGS as ARTISTA } from './Picaco/utils/settings';
-import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
-import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
-import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
-import { getToday } from '../utils';
+import { DailyChrome } from "../components/DailyChrome";
+import { SETTINGS as AQUI_O } from "../games/AquiO/utils/settings";
+import { SETTINGS as ARTE_RUIM } from "../games/ArteRuim/utils/settings";
+import { SETTINGS as ARTISTA } from "./Picaco/utils/settings";
+import { SETTINGS as FILMACO } from "../games/Filmaco/utils/settings";
+import { SETTINGS as PALAVREADO } from "../games/Palavreado/utils/settings";
+import { SETTINGS as CONTROLE_DE_ESTOQUE } from "../games/ControleDeEstoque/utils/settings";
+import { getToday } from "../utils";
 
-const PRIORITY_LIST = [ARTE_RUIM, CONTROLE_DE_ESTOQUE, FILMACO, PALAVREADO, AQUI_O, ARTISTA];
+const PRIORITY_LIST = [
+  ARTE_RUIM,
+  CONTROLE_DE_ESTOQUE,
+  FILMACO,
+  PALAVREADO,
+  AQUI_O,
+  ARTISTA,
+];
 
 export function DebugPage() {
   const { isAdmin } = useCurrentUserContext();
@@ -36,8 +43,13 @@ export function DebugPage() {
 
 function Content({ localKey }: { localKey: string }) {
   const value = useMemo(
-    () => JSON.stringify(JSON.parse(localStorage.getItem(localKey) || '{}'), null, 2),
-    [localKey]
+    () =>
+      JSON.stringify(
+        JSON.parse(localStorage.getItem(localKey) || "{}"),
+        null,
+        2,
+      ),
+    [localKey],
   );
   return (
     <Space direction="vertical">
@@ -45,7 +57,12 @@ function Content({ localKey }: { localKey: string }) {
         {localKey}
       </Typography.Paragraph>
 
-      <Input.TextArea cols={10} rows={8} value={value} style={{ width: 'clamp(300px, 80vw, 960px)' }} />
+      <Input.TextArea
+        cols={10}
+        rows={8}
+        value={value}
+        style={{ width: "clamp(300px, 80vw, 960px)" }}
+      />
     </Space>
   );
 }

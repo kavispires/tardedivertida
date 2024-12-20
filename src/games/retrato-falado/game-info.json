@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "retrato-falado",
-  "version": "2.1.28",
+  "version": "2.1.29",
   "release": "stable",
   "available": true,
   "title": {

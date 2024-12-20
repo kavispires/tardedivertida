@@ -1,18 +1,18 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Ant Design Resources
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Button, Popover } from 'antd';
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Button, Popover } from "antd";
 // Types
-import type { Achievement, AchievementReference } from 'types/achievements';
-import type { GamePlayers } from 'types/player';
+import type { Achievement, AchievementReference } from "types/achievements";
+import type { GamePlayers } from "types/player";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Components
-import { Avatar } from 'components/avatars';
-import { DualTranslate, Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { Avatar } from "components/avatars";
+import { DualTranslate, Translate } from "components/language";
+import { Instruction, Title } from "components/text";
 // Internal
-import { Medal } from './Medal';
+import { Medal } from "./Medal";
 
 type AchievementsProps = {
   /**
@@ -33,11 +33,16 @@ type AchievementsProps = {
   colorScheme?: ColorScheme;
 };
 
-const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
+const unknownText = { pt: "Desconhecido", en: "Unknown" };
 
-export function Achievements({ players, achievements, reference, colorScheme }: AchievementsProps) {
+export function Achievements({
+  players,
+  achievements,
+  reference,
+  colorScheme,
+}: AchievementsProps) {
   return (
-    <div className={clsx('achievements', getAnimationClass('fadeIn'))}>
+    <div className={clsx("achievements", getAnimationClass("fadeIn"))}>
       <Title size="small" level={3} colorScheme={colorScheme}>
         <Translate pt="Medalhas" en="Achievements" />
       </Title>
@@ -48,7 +53,8 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
               <>
                 Nenhuma medalha foi conquistada nesse jogo.
                 <br />
-                Para ganhar uma medalha, apenas uma jogador pode atender a condição.
+                Para ganhar uma medalha, apenas uma jogador pode atender a
+                condição.
               </>
             }
             en={
@@ -64,23 +70,29 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
 
       <ul className="achievements-list">
         {achievements.map((achievement, index) => {
-          const { icon = 'star', ...achievementObj } = reference[achievement.type] ?? {};
+          const { icon = "star", ...achievementObj } =
+            reference[achievement.type] ?? {};
           const player = players[achievement.playerId];
           return (
             <li
               key={`achievement-${achievement.type}`}
               className={clsx(
-                'achievements-entry',
-                getAnimationClass('flipInY', {
-                  delay: index < achievements.length / 2 ? index : achievements.length - 1 - index,
-                })
+                "achievements-entry",
+                getAnimationClass("flipInY", {
+                  delay:
+                    index < achievements.length / 2
+                      ? index
+                      : achievements.length - 1 - index,
+                }),
               )}
             >
               <div className="achievement__medal">
                 <Medal id={icon} />
               </div>
               <h4 className="achievement__title">
-                <DualTranslate>{achievementObj.title ?? unknownText}</DualTranslate>
+                <DualTranslate>
+                  {achievementObj.title ?? unknownText}
+                </DualTranslate>
               </h4>
               <div className="achievement__avatar">
                 <Avatar id={player.avatarId} />
@@ -91,12 +103,19 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
                   <Popover
                     content={
                       <>
-                        <DualTranslate>{achievementObj.description ?? unknownText}</DualTranslate> (
-                        {achievement.value})
+                        <DualTranslate>
+                          {achievementObj.description ?? unknownText}
+                        </DualTranslate>{" "}
+                        ({achievement.value})
                       </>
                     }
                   >
-                    <Button icon={<QuestionCircleOutlined />} shape="circle" type="text" size="small" />
+                    <Button
+                      icon={<QuestionCircleOutlined />}
+                      shape="circle"
+                      type="text"
+                      size="small"
+                    />
                   </Popover>
                 </div>
               )}

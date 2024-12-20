@@ -1,8 +1,8 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Internal
-import { PalavreadoLetter } from '../utils/types';
+import { PalavreadoLetter } from "../utils/types";
 
 type BoardProps = {
   letters: PalavreadoLetter[];
@@ -13,7 +13,14 @@ type BoardProps = {
   size: number;
 };
 
-export function Board({ letters, onLetterSelection, selection, swap, guesses, size }: BoardProps) {
+export function Board({
+  letters,
+  onLetterSelection,
+  selection,
+  swap,
+  guesses,
+  size,
+}: BoardProps) {
   return (
     <div
       className="palavreado-board"
@@ -25,19 +32,23 @@ export function Board({ letters, onLetterSelection, selection, swap, guesses, si
       {letters.map(({ letter, locked, state }, index) => {
         const row = Math.floor(index / size);
         const col = index % size;
-        const previousWrongPlacement = guesses.some((attempts) => attempts[row][col] === letter) && !locked;
+        const previousWrongPlacement =
+          guesses.some((attempts) => attempts[row][col] === letter) && !locked;
 
         return (
           <button
             key={`${letter}-${index}`}
             className={clsx(
-              'palavreado-board__tile',
-              swap.includes(index) && getAnimationClass('zoomIn', { speed: 'faster' }),
-              !locked && selection !== index && 'palavreado-board__tile--button',
-              selection === index && 'palavreado-board__tile--selected',
+              "palavreado-board__tile",
+              swap.includes(index) &&
+                getAnimationClass("zoomIn", { speed: "faster" }),
+              !locked &&
+                selection !== index &&
+                "palavreado-board__tile--button",
+              selection === index && "palavreado-board__tile--selected",
               `palavreado-board__tile--${state}`,
 
-              previousWrongPlacement && `palavreado-board__tile--place-guessed`
+              previousWrongPlacement && `palavreado-board__tile--place-guessed`,
             )}
             onClick={() => (!locked ? onLetterSelection(index) : null)}
           >

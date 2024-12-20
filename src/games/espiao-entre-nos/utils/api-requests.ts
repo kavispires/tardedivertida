@@ -1,28 +1,31 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from "hooks/useGameActionRequest";
+import { useLanguage } from "hooks/useLanguage";
+import type { UseStep } from "hooks/useStep";
 // Internal
-import { ESPIAO_ENTRE_NOS_ACTIONS } from './constants';
+import { ESPIAO_ENTRE_NOS_ACTIONS } from "./constants";
 import type {
   GameProgressPayload,
   GuessLocationPayload,
   MakeAccusationPayload,
   SendLastQuestionerPayload,
   SubmitVotePayload,
-} from './types';
+} from "./types";
 
-export function useOnGuessLocationAPIRequest(setStep: UseStep['setStep']) {
+export function useOnGuessLocationAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-guess',
+    actionName: "submit-guess",
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('Chute submetido com sucesso', 'Guess submitted successfully'),
+    successMessage: translate(
+      "Chute submetido com sucesso",
+      "Guess submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu chute',
-      'Oops, the application found an error while trying to submit your guess'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar seu chute",
+      "Oops, the application found an error while trying to submit your guess",
     ),
   });
 
@@ -34,17 +37,20 @@ export function useOnGuessLocationAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnMakeAccusationAPIRequest(setStep: UseStep['setStep']) {
+export function useOnMakeAccusationAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'make-accusation',
+    actionName: "make-accusation",
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('Acusação submetida com sucesso', 'Accusation submitted successfully'),
+    successMessage: translate(
+      "Acusação submetida com sucesso",
+      "Accusation submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua acusação',
-      'Oops, the application found an error while trying to submit your acusação'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua acusação",
+      "Oops, the application found an error while trying to submit your acusação",
     ),
   });
 
@@ -56,16 +62,19 @@ export function useOnMakeAccusationAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitVoteAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-vote',
+    actionName: "submit-vote",
     onError: () => setStep(1),
-    successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully'),
+    successMessage: translate(
+      "Voto submetido com sucesso",
+      "Vote submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto",
+      "Oops, the application found an error while trying to submit your vote",
     ),
   });
 
@@ -77,19 +86,19 @@ export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSendLastQuestionerAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSendLastQuestionerAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-last-questioner',
+    actionName: "submit-last-questioner",
     onError: () => setStep(1),
     successMessage: translate(
-      'Último perguntador submetido com sucesso',
-      'Last questioner submitted successfully'
+      "Último perguntador submetido com sucesso",
+      "Last questioner submitted successfully",
     ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o último perguntador',
-      'Oops, the application found an error while trying to submit the last questioner'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar o último perguntador",
+      "Oops, the application found an error while trying to submit the last questioner",
     ),
   });
 
@@ -102,7 +111,7 @@ export function useOnSendLastQuestionerAPIRequest(setStep: UseStep['setStep']) {
 }
 
 // TODO: Fix this
-export function useOnProgressGameAPIRequest(setStep: UseStep['setStep']) {
+export function useOnProgressGameAPIRequest(setStep: UseStep["setStep"]) {
   // const { translate } = useLanguage();
 
   // const request = useGameActionRequest({

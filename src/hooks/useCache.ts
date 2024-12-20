@@ -1,6 +1,6 @@
-import { useEffectOnce } from 'react-use';
+import { useEffectOnce } from "react-use";
 // Internal
-import { useGlobalLocalStorage } from './useGlobalLocalStorage';
+import { useGlobalLocalStorage } from "./useGlobalLocalStorage";
 
 type UseCacheProps = {
   /**
@@ -18,7 +18,7 @@ type UseCacheProps = {
  * @param options
  */
 export function useCache(options?: UseCacheProps) {
-  const [cache, setLSCache] = useGlobalLocalStorage('cache');
+  const [cache, setLSCache] = useGlobalLocalStorage("cache");
 
   const resetCache = () => {
     setLSCache({});
@@ -31,10 +31,12 @@ export function useCache(options?: UseCacheProps) {
   });
 
   const setCache = (
-    value: Record<string, any> | ((prevCache: Record<string, any>) => Record<string, any>)
+    value:
+      | Record<string, any>
+      | ((prevCache: Record<string, any>) => Record<string, any>),
   ) => {
     const currentCache = cache;
-    const newCache = typeof value === 'function' ? value(currentCache) : value;
+    const newCache = typeof value === "function" ? value(currentCache) : value;
     setLSCache(newCache);
   };
 
@@ -47,7 +49,7 @@ export function useCache(options?: UseCacheProps) {
  * @param options
  */
 export function useCacheAlternative(options?: UseCacheProps) {
-  const [cache, setLSCache] = useGlobalLocalStorage('cacheAlternative');
+  const [cache, setLSCache] = useGlobalLocalStorage("cacheAlternative");
 
   const resetCache = () => {
     setLSCache({});
@@ -60,10 +62,12 @@ export function useCacheAlternative(options?: UseCacheProps) {
   });
 
   const setCache = (
-    value: Record<string, any> | ((prevCache: Record<string, any>) => Record<string, any>)
+    value:
+      | Record<string, any>
+      | ((prevCache: Record<string, any>) => Record<string, any>),
   ) => {
     const currentCache = cache;
-    const newCache = typeof value === 'function' ? value(currentCache) : value;
+    const newCache = typeof value === "function" ? value(currentCache) : value;
     setLSCache(newCache);
   };
 

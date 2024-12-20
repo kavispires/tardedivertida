@@ -1,17 +1,17 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Ant Design Resources
-import { CloseCircleOutlined } from '@ant-design/icons';
-import { Image } from 'antd';
+import { CloseCircleOutlined } from "@ant-design/icons";
+import { Image } from "antd";
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from "hooks/useCardWidth";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Components
-import { ImageCard, ImageCardButton } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageCard, ImageCardButton } from "components/image-cards";
+import { Translate } from "components/language";
 // Internal
-import type { ImageCardObj } from '../utils/types';
-import { BORDER_TOTAL_SIZE } from '../utils/constants';
+import type { ImageCardObj } from "../utils/types";
+import { BORDER_TOTAL_SIZE } from "../utils/constants";
 // Design Resources
 
 type SelectTableProps = {
@@ -20,7 +20,11 @@ type SelectTableProps = {
   selectedCards: BooleanDictionary;
 };
 
-export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableProps) {
+export function SelectTable({
+  table,
+  onSelectCard,
+  selectedCards,
+}: SelectTableProps) {
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
   return (
     <div className="g-table-container">
@@ -33,10 +37,10 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
               <li
                 key={`g-table-${card.id}`}
                 className={clsx(
-                  'g-table-item',
-                  getAnimationClass('flipInY', {
+                  "g-table-item",
+                  getAnimationClass("flipInY", {
                     delay: index,
-                  })
+                  }),
                 )}
                 style={{ width: `${cardWidth + 8}px` }}
               >
@@ -57,7 +61,10 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                   <ImageCard
                     id={card.id}
                     cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
-                    className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
+                    className={clsx(
+                      "g-table-image",
+                      isSelected && "g-table-image--selected",
+                    )}
                   />
                 </ImageCardButton>
               </li>

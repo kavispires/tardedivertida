@@ -1,7 +1,7 @@
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCard } from "types/tdr";
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from "utils/helpers";
 
 export function mockTweetSelection(currentTweets: TextCard[]) {
   return {
@@ -15,7 +15,7 @@ export function mockGuess(playerCount: number) {
     likesGuess: getRandomItem(
       Array(playerCount + 1)
         .fill(0)
-        .map((e, i) => e + i)
+        .map((e, i) => e + i),
     ),
   };
 }

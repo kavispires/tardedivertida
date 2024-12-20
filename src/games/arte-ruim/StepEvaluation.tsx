@@ -1,31 +1,31 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useEffectOnce } from 'react-use';
+import { useCallback, useEffect, useState } from "react";
+import { useEffectOnce } from "react-use";
 // Ant Design Resources
-import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { CloudUploadOutlined, ThunderboltOutlined } from "@ant-design/icons";
+import { Button, Space } from "antd";
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from "types/player";
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
-import { useVotingMatch } from 'hooks/useVotingMatch';
+import { useCardWidth } from "hooks/useCardWidth";
+import { useGlobalLocalStorage } from "hooks/useGlobalLocalStorage";
+import { useLoading } from "hooks/useLoading";
+import { useMock } from "hooks/useMock";
+import { useVotingMatch } from "hooks/useVotingMatch";
 // Utils
-import { LETTERS } from 'utils/constants';
-import { getEntryId, shuffle } from 'utils/helpers';
+import { LETTERS } from "utils/constants";
+import { getEntryId, shuffle } from "utils/helpers";
 // Components
-import { CanvasResizer } from 'components/canvas';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { CanvasResizer } from "components/canvas";
+import { Translate } from "components/language";
+import { PopoverRule } from "components/rules";
+import { Step, type StepProps } from "components/steps";
+import { RuleInstruction, Title } from "components/text";
 // Internal
-import type { ArteRuimCard, ArteRuimDrawing } from './utils/types';
-import { prepareVotes } from './utils/helpers';
-import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
-import { EvaluationAllCards } from './components/EvaluationAllCards';
-import { EvaluationRules } from './components/TextBlobs';
+import type { ArteRuimCard, ArteRuimDrawing } from "./utils/types";
+import { prepareVotes } from "./utils/helpers";
+import { EvaluationAllDrawings } from "./components/EvaluationAllDrawings";
+import { EvaluationAllCards } from "./components/EvaluationAllCards";
+import { EvaluationRules } from "./components/TextBlobs";
 
 type StepEvaluationProps = {
   drawings: ArteRuimDrawing[];
@@ -34,7 +34,7 @@ type StepEvaluationProps = {
   onSubmitVoting: GenericFunction;
   levelType: string;
   user: GamePlayer;
-} & Pick<StepProps, 'announcement'>;
+} & Pick<StepProps, "announcement">;
 
 export function StepEvaluation({
   drawings,
@@ -47,13 +47,20 @@ export function StepEvaluation({
 }: StepEvaluationProps) {
   const { isLoading } = useLoading();
 
-  const canvasWidth = useCardWidth(5, { gap: 16, minWidth: 150, maxWidth: 500 });
-  const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
-  const { votes, setVotes, activeItem, activateItem, resetVoting, isVotingComplete } = useVotingMatch(
-    'drawing',
-    true,
-    drawings.length || 2
-  );
+  const canvasWidth = useCardWidth(5, {
+    gap: 16,
+    minWidth: 150,
+    maxWidth: 500,
+  });
+  const [canvasSize, setCanvasSize] = useGlobalLocalStorage("canvasSize");
+  const {
+    votes,
+    setVotes,
+    activeItem,
+    activateItem,
+    resetVoting,
+    isVotingComplete,
+  } = useVotingMatch("drawing", true, drawings.length || 2);
   const [choseRandomly, setChoseRandomly] = useState(false);
 
   const onGuessForMe = useCallback(() => {
@@ -61,12 +68,14 @@ export function StepEvaluation({
     const usedDrawings = Object.keys(votes);
     const usedCards = Object.values(votes);
     const drawingsKeys = drawings
-      .map((e: ArteRuimDrawing) => getEntryId(['drawing', e.id]))
+      .map((e: ArteRuimDrawing) => getEntryId(["drawing", e.id]))
       .filter((key: string) => !usedDrawings.includes(key));
     let cardsKeys = shuffle(
       cards
-        .map((e: ArteRuimCard, index: number) => getEntryId(['card', e.id, LETTERS[index]]))
-        .filter((key: string) => !usedCards.includes(key))
+        .map((e: ArteRuimCard, index: number) =>
+          getEntryId(["card", e.id, LETTERS[index]]),
+        )
+        .filter((key: string) => !usedCards.includes(key)),
     );
     // For level 5 specifically, if there are less cards than drawings
     cardsKeys =
@@ -93,11 +102,19 @@ export function StepEvaluation({
   }, [canvasSize, canvasWidth]); // eslint-disable-line
 
   const selectOwnDrawing = useCallback(() => {
-    const playersDrawing = (drawings ?? []).find((drawing: ArteRuimDrawing) => drawing.playerId === user.id);
+    const playersDrawing = (drawings ?? []).find(
+      (drawing: ArteRuimDrawing) => drawing.playerId === user.id,
+    );
     if (playersDrawing && playersDrawing.level !== 5) {
-      const drawingKey = getEntryId(['drawing', playersDrawing.id]);
-      const cardIndex = (cards ?? []).findIndex((card: ArteRuimCard) => card.playerId === user.id);
-      const cardKey = getEntryId(['card', playersDrawing.id, LETTERS[cardIndex]]);
+      const drawingKey = getEntryId(["drawing", playersDrawing.id]);
+      const cardIndex = (cards ?? []).findIndex(
+        (card: ArteRuimCard) => card.playerId === user.id,
+      );
+      const cardKey = getEntryId([
+        "card",
+        playersDrawing.id,
+        LETTERS[cardIndex],
+      ]);
       const vote = { [drawingKey]: cardKey };
       return vote;
     }
@@ -130,7 +147,8 @@ export function StepEvaluation({
             <>
               Faça pares com as cartas e os desenhos.
               <br />
-              Basta clicar em um desenho e depois em sua carta correspondente, ou vice-versa.
+              Basta clicar em um desenho e depois em sua carta correspondente,
+              ou vice-versa.
               <br />
               Para refazer, basta reselecionar o desenho ou carta normalmente.
               <br />
@@ -141,7 +159,8 @@ export function StepEvaluation({
             <>
               Match the cards and drawings.
               <br />
-              Just click on a drawing and then on its corresponding card, or vice versa.
+              Just click on a drawing and then on its corresponding card, or
+              vice versa.
               <br />
               To redo, just reselect the drawing or card normally.
               <br />
@@ -165,13 +184,17 @@ export function StepEvaluation({
             type="default"
             icon={<ThunderboltOutlined />}
             onClick={onGuessForMe}
-            disabled={isLoading || Object.values(votes).length === drawings.length}
+            disabled={
+              isLoading || Object.values(votes).length === drawings.length
+            }
           >
             <Translate pt="Chutar restantes" en="Guess for me" />
           </Button>
           <Button
             type="primary"
-            onClick={() => onSubmitVoting({ votes: prepareVotes(votes), choseRandomly })}
+            onClick={() =>
+              onSubmitVoting({ votes: prepareVotes(votes), choseRandomly })
+            }
             disabled={isLoading || !isVotingComplete}
             icon={<CloudUploadOutlined />}
             loading={isLoading}

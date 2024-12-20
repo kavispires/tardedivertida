@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from "utils/constants";
 
 /**
  * Delete duplicated votes on the 'value' side of the votes object
@@ -32,7 +32,7 @@ export function useVotingMatch(
   keyType: string,
   allowDuplicates: boolean = true,
   completeCount?: number,
-  initialState: Votes = {}
+  initialState: Votes = {},
 ): {
   votes: Votes;
   setVotes: React.Dispatch<any>;
@@ -43,15 +43,21 @@ export function useVotingMatch(
   getEntryId: (arr: string[]) => string;
   isItemActive: (entryId: string) => boolean;
 } {
-  const [votes, setVotes]: [Votes, React.Dispatch<any>] = useState({ ...initialState });
-  const [activeItem, setActiveItem]: [string, React.Dispatch<any>] = useState('');
-  const [isVotingComplete, setIsVotingComplete]: [boolean, React.Dispatch<any>] = useState(false);
+  const [votes, setVotes]: [Votes, React.Dispatch<any>] = useState({
+    ...initialState,
+  });
+  const [activeItem, setActiveItem]: [string, React.Dispatch<any>] =
+    useState("");
+  const [isVotingComplete, setIsVotingComplete]: [
+    boolean,
+    React.Dispatch<any>,
+  ] = useState(false);
 
   const activateItem = useCallback(
     (entryId: string) => {
       // When new Item is already the active item, deselect it
       if (entryId === activeItem) {
-        return setActiveItem('');
+        return setActiveItem("");
       }
 
       const [type] = entryId.split(SEPARATOR);
@@ -75,7 +81,7 @@ export function useVotingMatch(
             [entryId]: activeItem,
           };
         });
-        return setActiveItem('');
+        return setActiveItem("");
       }
 
       // When new item is a value
@@ -92,14 +98,14 @@ export function useVotingMatch(
         };
       });
 
-      return setActiveItem('');
+      return setActiveItem("");
     },
-    [activeItem, keyType, allowDuplicates]
+    [activeItem, keyType, allowDuplicates],
   );
 
   const resetVoting = (newInitialState: Votes) => {
     setVotes(newInitialState ?? initialState);
-    setActiveItem('');
+    setActiveItem("");
   };
 
   const isItemActive = (item: string) => activeItem === item;

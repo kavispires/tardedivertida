@@ -1,32 +1,35 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 // Types
-import type { PhaseProps } from 'types/game';
+import type { PhaseProps } from "types/game";
 // Hooks
-import { useSlideShow } from 'hooks/useSlideShow';
-import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
+import { useSlideShow } from "hooks/useSlideShow";
+import { useStep } from "hooks/useStep";
+import { useUser } from "hooks/useUser";
 // Utils
-import { sortPlayers } from 'utils/helpers';
-import { PHASES } from 'utils/phases';
+import { sortPlayers } from "utils/helpers";
+import { PHASES } from "utils/phases";
 // Icons
-import { PathIcon } from 'icons/PathIcon';
+import { PathIcon } from "icons/PathIcon";
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from "components/language";
+import { PhaseAnnouncement, PhaseContainer } from "components/phases";
+import { StepSwitcher } from "components/steps";
+import { Instruction } from "components/text";
 // Internal
-import type { MapSegment } from './utils/types';
-import { SLIDE_DURATION } from './utils/constants';
-import { StepRanking } from './StepRanking';
-import { StepGallery } from './StepGallery';
+import type { MapSegment } from "./utils/types";
+import { SLIDE_DURATION } from "./utils/constants";
+import { StepRanking } from "./StepRanking";
+import { StepGallery } from "./StepGallery";
 
 export function PhaseResults({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToPreviousStep, goToNextStep } = useStep();
   const gallery = useMemo(
-    () => sortPlayers(players).filter((player) => player.map.some((segment: MapSegment) => segment.active)),
-    [players]
+    () =>
+      sortPlayers(players).filter((player) =>
+        player.map.some((segment: MapSegment) => segment.active),
+      ),
+    [players],
   );
 
   const slideShowConfig = useSlideShow({
@@ -41,7 +44,10 @@ export function PhaseResults({ players, state }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.RESULTS}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PHASES.LABIRINTO_SECRETO.RESULTS}
+    >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
@@ -70,7 +76,12 @@ export function PhaseResults({ players, state }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <StepRanking players={players} round={state.round} ranking={state.ranking} onGoBack={onGoBack} />
+        <StepRanking
+          players={players}
+          round={state.round}
+          ranking={state.ranking}
+          onGoBack={onGoBack}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

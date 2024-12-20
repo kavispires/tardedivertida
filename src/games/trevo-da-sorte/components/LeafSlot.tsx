@@ -1,12 +1,12 @@
-import clsx from 'clsx';
-import { ReactNode } from 'react';
+import clsx from "clsx";
+import { ReactNode } from "react";
 // Icons
-import { GuessIcon } from 'icons/GuessIcon';
+import { GuessIcon } from "icons/GuessIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from "components/avatars";
 // Internal
-import type { LeafEntry, LeafPosition, LeafId } from '../utils/types';
-import { Leaf } from './Leaf';
+import type { LeafEntry, LeafPosition, LeafId } from "../utils/types";
+import { Leaf } from "./Leaf";
 
 type LeafSlotProps = {
   leaf?: LeafEntry;
@@ -37,14 +37,19 @@ export function LeafSlot({
 }: LeafSlotProps) {
   if (!leaf && onActivateSlot) {
     return (
-      <div className={clsx(`y-clover__leaf-${position}`, activeSlotId === position && 'active-class')}>
+      <div
+        className={clsx(
+          `y-clover__leaf-${position}`,
+          activeSlotId === position && "active-class",
+        )}
+      >
         <button
           key={`clue-key-${position}`}
           className={clsx(
-            'y-leaf',
-            'y-leaf--empty',
-            'y-leaf--empty-clickable',
-            activeSlotId === position && 'y-leaf--empty-active'
+            "y-leaf",
+            "y-leaf--empty",
+            "y-leaf--empty-clickable",
+            activeSlotId === position && "y-leaf--empty-active",
           )}
           onClick={(_) => onActivateSlot(position)}
         >
@@ -56,7 +61,12 @@ export function LeafSlot({
 
   if (Boolean(onLeafGrab)) {
     return (
-      <div className={clsx(`y-clover__leaf-${position}`, activeSlotId === position && 'active-class')}>
+      <div
+        className={clsx(
+          `y-clover__leaf-${position}`,
+          activeSlotId === position && "active-class",
+        )}
+      >
         <LeafSlotContent
           leaf={leaf}
           position={position}
@@ -94,7 +104,7 @@ function LeafSlotContent({
   onLeafRotate,
   onLeafRemove,
   isLocked,
-  className = '',
+  className = "",
   icon,
 }: LeafSlotProps) {
   return Boolean(leaf) ? (
@@ -111,7 +121,10 @@ function LeafSlotContent({
       icon={icon}
     />
   ) : (
-    <div key={`clue-key-${position}`} className={clsx('y-leaf', 'y-leaf--empty')}>
+    <div
+      key={`clue-key-${position}`}
+      className={clsx("y-leaf", "y-leaf--empty")}
+    >
       <IconAvatar icon={<GuessIcon />} size="large" />
     </div>
   );

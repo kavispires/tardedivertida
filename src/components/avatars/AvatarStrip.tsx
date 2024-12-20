@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import { ReactNode } from 'react';
+import clsx from "clsx";
+import { ReactNode } from "react";
 // Ant Design Resources
-import { Tooltip } from 'antd';
+import { Tooltip } from "antd";
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from "types/player";
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGlobalState } from "hooks/useGlobalState";
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from "utils/helpers";
 // Internal
-import { Avatar } from './Avatar';
-import { IconAvatar } from './IconAvatar';
+import { Avatar } from "./Avatar";
+import { IconAvatar } from "./IconAvatar";
 // Sass
-import './AvatarStrip.scss';
+import "./AvatarStrip.scss";
 
 type AvatarStripProps = {
   /**
@@ -23,7 +23,7 @@ type AvatarStripProps = {
   /**
    * The strip size
    */
-  size?: 'small' | 'default' | 'large';
+  size?: "small" | "default" | "large";
   /**
    * Optional custom class name
    */
@@ -48,20 +48,20 @@ type AvatarStripProps = {
 
 export const AvatarStrip = ({
   player,
-  size = 'default',
-  className = '',
+  size = "default",
+  className = "",
   withName = false,
   uppercase = false,
   addressUser = false,
   icon,
 }: AvatarStripProps) => {
-  const [userId] = useGlobalState('userId');
+  const [userId] = useGlobalState("userId");
   const { translate } = useLanguage();
 
-  const baseClass = 'avatar-strip';
+  const baseClass = "avatar-strip";
 
   const isUser = player.id === userId;
-  const addressedUser = translate('Você', 'You');
+  const addressedUser = translate("Você", "You");
 
   const sizes = getSize(size);
 
@@ -72,12 +72,18 @@ export const AvatarStrip = ({
           baseClass,
           uppercase && `${baseClass}--uppercase`,
           `${baseClass}--${size}`,
-          className
+          className,
         )}
-        style={{ backgroundColor: getAvatarColorById(player.avatarId), width: sizes.width }}
+        style={{
+          backgroundColor: getAvatarColorById(player.avatarId),
+          width: sizes.width,
+        }}
       >
         {Boolean(icon) ? (
-          <IconAvatar style={{ width: sizes.avatarSize, height: sizes.avatarSize }} icon={icon} />
+          <IconAvatar
+            style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
+            icon={icon}
+          />
         ) : (
           <Avatar
             id={player.avatarId}
@@ -88,7 +94,9 @@ export const AvatarStrip = ({
         )}
         {withName && (
           <>
-            <div className="avatar-strip__name">{addressUser && isUser ? addressedUser : player.name}</div>
+            <div className="avatar-strip__name">
+              {addressUser && isUser ? addressedUser : player.name}
+            </div>
           </>
         )}
       </div>
@@ -101,22 +109,22 @@ export const AvatarStrip = ({
  * @param size
  * @returns
  */
-const getSize = (size: 'small' | 'default' | 'large') => {
+const getSize = (size: "small" | "default" | "large") => {
   switch (size) {
-    case 'small':
+    case "small":
       return {
-        width: '4ch',
-        avatarSize: '2ch',
+        width: "4ch",
+        avatarSize: "2ch",
       };
-    case 'large':
+    case "large":
       return {
-        width: '8ch',
-        avatarSize: '6ch',
+        width: "8ch",
+        avatarSize: "6ch",
       };
     default:
       return {
-        width: '6ch',
-        avatarSize: '4ch',
+        width: "6ch",
+        avatarSize: "4ch",
       };
   }
 };

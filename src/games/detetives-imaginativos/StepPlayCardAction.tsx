@@ -1,28 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 // Ant Design Resources
-import { QuestionCircleFilled } from '@ant-design/icons';
-import { App } from 'antd';
+import { QuestionCircleFilled } from "@ant-design/icons";
+import { App } from "antd";
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from "types/player";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useLanguage } from "hooks/useLanguage";
+import { useTemporarilyHidePlayersBar } from "hooks/useTemporarilyHidePlayersBar";
 // Icons
-import { ImageCardsIcon } from 'icons/ImageCardsIcon';
+import { ImageCardsIcon } from "icons/ImageCardsIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageCardHand } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { messageContent } from 'components/pop-up';
-import { Instruction, TextHighlight, Title } from 'components/text';
-import { TimedTimerClock } from 'components/timers';
-import { ViewOr } from 'components/views';
+import { IconAvatar } from "components/avatars";
+import { FloatingHand } from "components/general/FloatingHand";
+import { ImageCardHand } from "components/image-cards";
+import { Translate } from "components/language";
+import { TurnOrder } from "components/players";
+import { messageContent } from "components/pop-up";
+import { Instruction, TextHighlight, Title } from "components/text";
+import { TimedTimerClock } from "components/timers";
+import { ViewOr } from "components/views";
 // Internal
-import type { CardEntry } from './utils/types';
-import { isEarliestPlayerWithFewestCards } from './utils/helpers';
-import { Table } from './components/Table';
+import type { CardEntry } from "./utils/types";
+import { isEarliestPlayerWithFewestCards } from "./utils/helpers";
+import { Table } from "./components/Table";
 
 type StepPlayCardActionProps = {
   isUserTheImpostor: boolean;
@@ -56,18 +56,22 @@ export function StepPlayCardAction({
   const [wasMessageDisplayed, setWasMessageDisplayed] = useState(false);
 
   useEffect(() => {
-    if (!wasMessageDisplayed && !isLoading && isEarliestPlayerWithFewestCards(table, user.id, turnOrder)) {
+    if (
+      !wasMessageDisplayed &&
+      !isLoading &&
+      isEarliestPlayerWithFewestCards(table, user.id, turnOrder)
+    ) {
       message.info(
         messageContent(
-          translate('Escolha uma carta!', 'Choose a card to play'),
+          translate("Escolha uma carta!", "Choose a card to play"),
           translate(
-            'Aperte o botão Selecionar acima da carta escolhida',
-            'Press the select button above each card'
+            "Aperte o botão Selecionar acima da carta escolhida",
+            "Press the select button above each card",
           ),
 
           currentPlayer.id,
-          3
-        )
+          3,
+        ),
       );
       setWasMessageDisplayed(true);
     }
@@ -88,15 +92,16 @@ export function StepPlayCardAction({
       <Title>
         {isUserTheImpostor ? (
           <>
-            <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
+            <Translate pt="A pista secreta é" en="The secret clue is" />{" "}
             <TextHighlight>
               <QuestionCircleFilled />
-            </TextHighlight>{' '}
+            </TextHighlight>{" "}
             <Translate pt="Você é o impostor!" en="You are the impostor!" />
           </>
         ) : (
           <>
-            <Translate pt="A pista secreta é" en="The secret clue is" /> <TextHighlight>{clue}</TextHighlight>
+            <Translate pt="A pista secreta é" en="The secret clue is" />{" "}
+            <TextHighlight>{clue}</TextHighlight>
           </>
         )}
       </Title>
@@ -104,7 +109,7 @@ export function StepPlayCardAction({
       <Instruction>
         <ViewOr condition={isUserTheImpostor}>
           <>
-            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
+            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{" "}
             <Translate
               pt="Selecione uma carta que mais combine com as cartas que os outros
                 jogadores estão usando."
@@ -113,14 +118,17 @@ export function StepPlayCardAction({
           </>
 
           <>
-            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
+            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{" "}
             <Translate
               pt="Selecione uma carta que mais combine com a pista secreta."
               en="Select a card that best fits the secret clue."
             />
           </>
         </ViewOr>
-        <TimedTimerClock duration={75} onExpire={() => onSelectCard('back-default')} />
+        <TimedTimerClock
+          duration={75}
+          onExpire={() => onSelectCard("back-default")}
+        />
       </Instruction>
 
       <Table table={table} players={players} />

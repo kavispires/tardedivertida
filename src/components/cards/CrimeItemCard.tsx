@@ -1,18 +1,18 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Ant Design Resources
-import { Popover, Tag } from 'antd';
+import { Popover, Tag } from "antd";
 // Types
-import type { CrimesHediondosCard } from 'types/tdr';
+import type { CrimesHediondosCard } from "types/tdr";
 // Hooks
-import { useDevFeatures } from 'hooks/useDevFeatures';
-import { useLanguage } from 'hooks/useLanguage';
+import { useDevFeatures } from "hooks/useDevFeatures";
+import { useLanguage } from "hooks/useLanguage";
 // Components
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
-import { DualTranslate } from 'components/language';
+import { ImageBlurButtonContainer, ImageCard } from "components/image-cards";
+import { DualTranslate } from "components/language";
 // Internal
-import { ItemCard } from './ItemCard';
+import { ItemCard } from "./ItemCard";
 // Sass
-import './CrimeItemCard.scss';
+import "./CrimeItemCard.scss";
 
 type CrimeItemCardProps = {
   /**
@@ -47,7 +47,7 @@ export function CrimeItemCard({
   activeColor,
   preview = true,
   isSelected = false,
-  className = '',
+  className = "",
 }: CrimeItemCardProps) {
   const { dualTranslate } = useLanguage();
   const { isDebugEnabled } = useDevFeatures();
@@ -56,25 +56,43 @@ export function CrimeItemCard({
     return (
       <ImageBlurButtonContainer cardId={item.id}>
         <div
-          className={clsx('crime-item-card', isSelected && 'crime-item-card--selected', className)}
-          style={activeColor && isSelected ? { borderColor: 'black', backgroundColor: activeColor } : {}}
+          className={clsx(
+            "crime-item-card",
+            isSelected && "crime-item-card--selected",
+            className,
+          )}
+          style={
+            activeColor && isSelected
+              ? { borderColor: "black", backgroundColor: activeColor }
+              : {}
+          }
         >
           <Popover content={dualTranslate(item.name).toUpperCase()}>
             <Tag
               className="crime-item-card__name"
-              color={item.type === 'weapon' ? 'geekblue' : 'volcano'}
+              color={item.type === "weapon" ? "geekblue" : "volcano"}
               style={{ maxWidth: `${cardWidth}px` }}
             >
-              <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
+              <span>
+                {isDebugEnabled ? (
+                  item.id
+                ) : (
+                  <DualTranslate>{item.name}</DualTranslate>
+                )}
+              </span>
             </Tag>
           </Popover>
           <div
             className={clsx(
-              'crime-item-card__item-container',
-              `crime-item-card__item-container--${item.type}`
+              "crime-item-card__item-container",
+              `crime-item-card__item-container--${item.type}`,
             )}
           >
-            <ItemCard id={item.itemId} width={cardWidth * 0.85} className="crime-item-card__item" />
+            <ItemCard
+              id={item.itemId}
+              width={cardWidth * 0.85}
+              className="crime-item-card__item"
+            />
           </div>
         </div>
       </ImageBlurButtonContainer>
@@ -114,16 +132,30 @@ export function CrimeItemCard({
   return (
     <ImageBlurButtonContainer cardId={item.id}>
       <div
-        className={clsx('crime-item-card', isSelected && 'crime-item-card--selected', className)}
-        style={activeColor && isSelected ? { borderColor: 'black', backgroundColor: activeColor } : {}}
+        className={clsx(
+          "crime-item-card",
+          isSelected && "crime-item-card--selected",
+          className,
+        )}
+        style={
+          activeColor && isSelected
+            ? { borderColor: "black", backgroundColor: activeColor }
+            : {}
+        }
       >
         <Popover content={dualTranslate(item.name).toUpperCase()}>
           <Tag
             className="crime-item-card__name"
-            color={item.type === 'weapon' ? 'geekblue' : 'volcano'}
+            color={item.type === "weapon" ? "geekblue" : "volcano"}
             style={{ maxWidth: `${cardWidth + 16}px` }}
           >
-            <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
+            <span>
+              {isDebugEnabled ? (
+                item.id
+              ) : (
+                <DualTranslate>{item.name}</DualTranslate>
+              )}
+            </span>
           </Tag>
         </Popover>
         <ImageCard

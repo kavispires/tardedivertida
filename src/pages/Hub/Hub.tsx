@@ -1,28 +1,28 @@
-import { orderBy } from 'lodash';
-import { DevHeader } from 'pages/Dev/DevHeader';
-import { useMemo, useState } from 'react';
-import { useTitle } from 'react-use';
+import { orderBy } from "lodash";
+import { DevHeader } from "pages/Dev/DevHeader";
+import { useMemo, useState } from "react";
+import { useTitle } from "react-use";
 // Ant Design Resources
-import { DatabaseFilled } from '@ant-design/icons';
-import { Typography, Layout, Divider, Row, Col } from 'antd';
+import { DatabaseFilled } from "@ant-design/icons";
+import { Typography, Layout, Divider, Row, Col } from "antd";
 // Types
-import type { GameInfo } from 'types/game-info';
+import type { GameInfo } from "types/game-info";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { SEPARATOR, TAG_RULES } from 'utils/constants';
-import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
-import GAME_LIST from 'utils/info';
+import { SEPARATOR, TAG_RULES } from "utils/constants";
+import { calculateGameAverageDuration, isDevEnv } from "utils/helpers";
+import GAME_LIST from "utils/info";
 // Components
-import { LogoutButton } from 'components/auth/LogoutButton';
-import { LanguageSwitch, Translate } from 'components/language';
+import { LogoutButton } from "components/auth/LogoutButton";
+import { LanguageSwitch, Translate } from "components/language";
 // Internal
-import { GameCard } from './components/GameCard';
-import { DevEmulatorAlert } from './components/DevEmulatorAlert';
-import { Filters } from './components/Filters';
+import { GameCard } from "./components/GameCard";
+import { DevEmulatorAlert } from "./components/DevEmulatorAlert";
+import { Filters } from "./components/Filters";
 
 function Hub() {
-  useTitle('Hub - Tarde Divertida');
+  useTitle("Hub - Tarde Divertida");
   const { language } = useLanguage();
   const [tagFilters, setTagFilters] = useState<string[]>([]);
   const [numberFilters, setNumberFilters] = useState<NumberDictionary>({});
@@ -35,7 +35,8 @@ function Hub() {
         // Check player count
         if (numberFilters.players) {
           result.push(
-            game.playerCount.min <= numberFilters.players && game.playerCount.max >= numberFilters.players
+            game.playerCount.min <= numberFilters.players &&
+              game.playerCount.max >= numberFilters.players,
           );
 
           if (numberFilters.bestWith) {
@@ -43,7 +44,9 @@ function Hub() {
           }
 
           if (numberFilters.recommendedWith) {
-            result.push(game.playerCount.recommended.includes(numberFilters.players));
+            result.push(
+              game.playerCount.recommended.includes(numberFilters.players),
+            );
           }
         }
 
@@ -52,7 +55,7 @@ function Hub() {
         tagFilters.forEach((tagKey) => {
           const [tagGroup, tag] = tagKey.split(SEPARATOR);
 
-          if (tagGroup && tag && TAG_RULES?.[tagGroup] === 'exclusive') {
+          if (tagGroup && tag && TAG_RULES?.[tagGroup] === "exclusive") {
             result.push(game.tags.includes(tag));
           } else if (tag) {
             result.push(game.tags.includes(tag));
@@ -61,25 +64,31 @@ function Hub() {
 
         // Check time
         if (numberFilters.duration) {
-          const duration = calculateGameAverageDuration(game, numberFilters.players ?? 0);
+          const duration = calculateGameAverageDuration(
+            game,
+            numberFilters.players ?? 0,
+          );
 
           if (numberFilters.players) {
             result.push(
               numberFilters.duration >= duration.customTime - 10 &&
-                numberFilters.duration <= duration.customTime + 10
+                numberFilters.duration <= duration.customTime + 10,
             );
           } else {
-            result.push(numberFilters.duration >= duration.min && numberFilters.duration <= duration.max);
+            result.push(
+              numberFilters.duration >= duration.min &&
+                numberFilters.duration <= duration.max,
+            );
           }
         }
 
         return result.every(Boolean);
       }),
-    [tagFilters, numberFilters]
+    [tagFilters, numberFilters],
   );
 
   const { availableGames, comingSoonGames, devGames } = useMemo(() => {
-    const sortedGameList = orderBy(gameList, [`title.[${language}]`], ['asc']);
+    const sortedGameList = orderBy(gameList, [`title.[${language}]`], ["asc"]);
 
     return sortedGameList.reduce(
       (
@@ -88,11 +97,11 @@ function Hub() {
           devGames: GameInfo[];
           comingSoonGames: GameInfo[];
         },
-        game
+        game,
       ) => {
-        if (['stable'].includes(game.release)) {
+        if (["stable"].includes(game.release)) {
           acc.availableGames.push(game);
-        } else if (['dev', 'beta'].includes(game.release)) {
+        } else if (["dev", "beta"].includes(game.release)) {
           acc.devGames.push(game);
         } else {
           acc.comingSoonGames.push(game);
@@ -103,7 +112,7 @@ function Hub() {
         availableGames: [],
         devGames: [],
         comingSoonGames: [],
-      }
+      },
     );
   }, [gameList, language]);
   return (
@@ -114,7 +123,12 @@ function Hub() {
             <DatabaseFilled /> Hub
           </>
         }
-        subTitle={<Translate pt="Selecione um jogo para começar" en="Select a game to start" />}
+        subTitle={
+          <Translate
+            pt="Selecione um jogo para começar"
+            en="Select a game to start"
+          />
+        }
         extra={[
           <LanguageSwitch key="language-switch" />,
           <LogoutButton key="logout-button" danger ghost size="small" />,
@@ -172,7 +186,10 @@ function RowOfGames({ games }: RowOfGamesProps) {
   if (games.length === 0) {
     return (
       <Typography.Text type="secondary">
-        <Translate pt="Nenhum jogo encontrado nessa categoria" en="No games found in this category" />
+        <Translate
+          pt="Nenhum jogo encontrado nessa categoria"
+          en="No games found in this category"
+        />
       </Typography.Text>
     );
   }
@@ -181,7 +198,10 @@ function RowOfGames({ games }: RowOfGamesProps) {
     <Row gutter={[8, 16]}>
       {games.map((game: GameInfo) => (
         <Col key={game.gameName} xs={24} sm={12} md={8} lg={8} xl={6} xxl={4}>
-          <GameCard game={game} isAdmin={['dev', 'beta', 'stable'].includes(game.release)} />
+          <GameCard
+            game={game}
+            isAdmin={["dev", "beta", "stable"].includes(game.release)}
+          />
         </Col>
       ))}
     </Row>

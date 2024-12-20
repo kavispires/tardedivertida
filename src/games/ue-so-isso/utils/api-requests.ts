@@ -1,9 +1,9 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from "hooks/useGameActionRequest";
+import { useLanguage } from "hooks/useLanguage";
+import type { UseStep } from "hooks/useStep";
 // Internal
-import { UE_SO_ISSO_ACTIONS } from './constants';
+import { UE_SO_ISSO_ACTIONS } from "./constants";
 import type {
   SendGuessPayload,
   SubmitOutcomePayload,
@@ -11,19 +11,22 @@ import type {
   SubmitValidationsPayload,
   SubmitVotesPayload,
   ValidateSuggestionPayload,
-} from './types';
+} from "./types";
 
-export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitVotesAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-votes',
+    actionName: "submit-votes",
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!'),
+    successMessage: translate(
+      "Votos enviados com sucesso!",
+      "Votes send successfully!",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-      'Oops, the application failed to send your votes'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos",
+      "Oops, the application failed to send your votes",
     ),
   });
 
@@ -35,17 +38,20 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-suggestion',
+    actionName: "submit-suggestion",
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Dicas enviada com sucesso!', 'Suggestions sent successfully!'),
+    successMessage: translate(
+      "Dicas enviada com sucesso!",
+      "Suggestions sent successfully!",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
-      'Oops, the application failed to send your suggestions'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas",
+      "Oops, the application failed to send your suggestions",
     ),
   });
 
@@ -57,17 +63,20 @@ export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitValidationsAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitValidationsAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-validations',
+    actionName: "submit-validations",
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Validação enviada com sucesso!', 'Validation sent successfully!'),
+    successMessage: translate(
+      "Validação enviada com sucesso!",
+      "Validation sent successfully!",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões',
-      'Oops, the application failed to send the validation'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões",
+      "Oops, the application failed to send the validation",
     ),
   });
 
@@ -83,11 +92,11 @@ export function useOnValidateSuggestionAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'validate-suggestion',
-    successMessage: translate('Atualizado!', 'Updated!'),
+    actionName: "validate-suggestion",
+    successMessage: translate("Atualizado!", "Updated!"),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update'
+      "Vixi, o aplicativo encontrou um erro ao tentar atualizar",
+      "Oops, the application failed to update",
     ),
   });
 
@@ -99,17 +108,20 @@ export function useOnValidateSuggestionAPIRequest() {
   };
 }
 
-export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitOutcomeAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-outcome',
+    actionName: "submit-outcome",
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!'),
+    successMessage: translate(
+      "Resultado enviado com sucesso!",
+      "Outcome sent successfully!",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
-      'Oops, the application failed to submit the outcome'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado",
+      "Oops, the application failed to submit the outcome",
     ),
   });
 
@@ -125,11 +137,11 @@ export function useOnSendGuessAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'send-guess',
-    successMessage: translate('Chute enviado!', 'Guess sent!'),
+    actionName: "send-guess",
+    successMessage: translate("Chute enviado!", "Guess sent!"),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update'
+      "Vixi, o aplicativo encontrou um erro ao tentar atualizar",
+      "Oops, the application failed to update",
     ),
   });
 

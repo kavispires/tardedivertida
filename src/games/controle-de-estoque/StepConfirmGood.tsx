@@ -1,22 +1,24 @@
+import clsx from "clsx";
+// Ant Design Resources
+import { Divider } from "antd";
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from "types/player";
+import { BossIdeaCard } from "types/tdr";
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useCardWidthByContainerRef } from "hooks/useCardWidth";
+import { useLoading } from "hooks/useLoading";
+import { useMock } from "hooks/useMock";
 // Components
-import { DualTranslate, Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
-import { BossIdeaCard } from 'types/tdr';
-import { Good, PlaceGoodPayload, WarehouseSlot } from './utils/types';
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { Warehouse } from './components/Warehouse';
-import { AvatarName } from 'components/avatars';
-import { Divider } from 'antd';
-import { useMock } from 'hooks/useMock';
-import clsx from 'clsx';
-import { BOSS_IDEAS_IDS } from './utils/constants';
-import { StockingProgress } from './components/StockingProgress';
-import { TimedButton } from 'components/buttons';
+import { AvatarName } from "components/avatars";
+import { TimedButton } from "components/buttons";
+import { DualTranslate, Translate } from "components/language";
+import { Step } from "components/steps";
+import { Instruction, RuleInstruction, Title } from "components/text";
+// Internal
+import { Good, PlaceGoodPayload, WarehouseSlot } from "./utils/types";
+import { BOSS_IDEAS_IDS } from "./utils/constants";
+import { Warehouse } from "./components/Warehouse";
+import { StockingProgress } from "./components/StockingProgress";
 
 type StepConfirmGoodProps = {
   players: GamePlayers;
@@ -103,8 +105,10 @@ export function StepConfirmGood({
           onPlaceGood={isLoading || user.ready ? undefined : handlePlaceGood}
           width={cardWidth}
           goodClassName={clsx(
-            bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS',
-            bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM && 'warehouse-good--EYE_EXAM'
+            bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS &&
+              "warehouse-good--TINTED_GLASS",
+            bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM &&
+              "warehouse-good--EYE_EXAM",
           )}
         />
       </Step>
@@ -125,14 +129,14 @@ export function StepConfirmGood({
           <Translate
             pt={
               <>
-                <AvatarName player={supervisor} size="small" /> é o(a) supervisor(a) do dia e colocou a
-                mercadoria no galpão.
+                <AvatarName player={supervisor} size="small" /> é o(a)
+                supervisor(a) do dia e colocou a mercadoria no galpão.
               </>
             }
             en={
               <>
-                <AvatarName player={supervisor} /> is the supervisor of the day and placed the good in the
-                warehouse.
+                <AvatarName player={supervisor} /> is the supervisor of the day
+                and placed the good in the warehouse.
               </>
             }
           />
@@ -172,7 +176,10 @@ export function StepConfirmGood({
         goodsDict={goodsDict}
         warehouse={warehouse}
         width={cardWidth}
-        goodClassName={clsx(bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS')}
+        goodClassName={clsx(
+          bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS &&
+            "warehouse-good--TINTED_GLASS",
+        )}
         conceal={bossIdea.id === BOSS_IDEAS_IDS.CONFIDENTIAL}
       />
     </Step>

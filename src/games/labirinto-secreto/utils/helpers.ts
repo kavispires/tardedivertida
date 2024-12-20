@@ -1,8 +1,14 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from "types/player";
 // Internal
-import type { Direction, MapSegment, PlayerMapping, Point, TreeId } from './types';
-import { DIRECTIONS, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
+import type {
+  Direction,
+  MapSegment,
+  PlayerMapping,
+  Point,
+  TreeId,
+} from "./types";
+import { DIRECTIONS, FOREST_HEIGHT, FOREST_WIDTH } from "./constants";
 
 /**
  * Check if a point is on the edge of the forest
@@ -69,7 +75,10 @@ export const getDirection = (from: TreeId, to: TreeId): Direction => {
  * @param usedIndexes any other tree Ids that are already used
  * @returns - the available tree Ids
  */
-export const getAvailableSegments = (origin: TreeId, usedIndexes: TreeId[]): TreeId[] => {
+export const getAvailableSegments = (
+  origin: TreeId,
+  usedIndexes: TreeId[],
+): TreeId[] => {
   const [x, y] = getPoint(origin);
   const available: Point[] = [];
   // Top
@@ -99,25 +108,41 @@ export const getAvailableSegments = (origin: TreeId, usedIndexes: TreeId[]): Tre
   // Top-Left
   const topLeft: Point = [x - 1, y - 1];
   const topLeftIndex = getIndex(topLeft);
-  if (topLeft[0] >= 0 && topLeft[1] >= 0 && !usedIndexes.includes(topLeftIndex)) {
+  if (
+    topLeft[0] >= 0 &&
+    topLeft[1] >= 0 &&
+    !usedIndexes.includes(topLeftIndex)
+  ) {
     available.push(topLeft);
   }
   // Top-Right
   const topRight: Point = [x + 1, y - 1];
   const topRightIndex = getIndex(topRight);
-  if (topRight[0] < FOREST_WIDTH && topRight[1] >= 0 && !usedIndexes.includes(topRightIndex)) {
+  if (
+    topRight[0] < FOREST_WIDTH &&
+    topRight[1] >= 0 &&
+    !usedIndexes.includes(topRightIndex)
+  ) {
     available.push(topRight);
   }
   // Down-Left
   const downLeft: Point = [x - 1, y + 1];
   const downLeftIndex = getIndex(downLeft);
-  if (downLeft[0] >= 0 && downLeft[1] < FOREST_HEIGHT && !usedIndexes.includes(downLeftIndex)) {
+  if (
+    downLeft[0] >= 0 &&
+    downLeft[1] < FOREST_HEIGHT &&
+    !usedIndexes.includes(downLeftIndex)
+  ) {
     available.push(downLeft);
   }
   // Down-Right
   const downRight: Point = [x + 1, y + 1];
   const downRightIndex = getIndex(downRight);
-  if (downRight[0] < FOREST_WIDTH && downRight[1] < FOREST_HEIGHT && !usedIndexes.includes(downRightIndex)) {
+  if (
+    downRight[0] < FOREST_WIDTH &&
+    downRight[1] < FOREST_HEIGHT &&
+    !usedIndexes.includes(downRightIndex)
+  ) {
     available.push(downRight);
   }
   return available.map((point) => getIndex(point));
@@ -128,14 +153,20 @@ export const getAvailableSegments = (origin: TreeId, usedIndexes: TreeId[]): Tre
  * @param fullMap - the full map of segments
  * @param currentSegment - the current segment
  */
-export const getPossibleTreeIds = (fullMap: MapSegment[], currentSegment?: MapSegment): TreeId[] => {
+export const getPossibleTreeIds = (
+  fullMap: MapSegment[],
+  currentSegment?: MapSegment,
+): TreeId[] => {
   if (!currentSegment) return [];
 
-  const usedTrees = fullMap.filter((segment) => segment.passed).map((segment) => segment.treeId);
+  const usedTrees = fullMap
+    .filter((segment) => segment.passed)
+    .map((segment) => segment.treeId);
 
-  return getAvailableSegments(currentSegment.previousTree ?? currentSegment.treeId, usedTrees).filter(
-    (treeId) => treeId !== currentSegment.treeId
-  );
+  return getAvailableSegments(
+    currentSegment.previousTree ?? currentSegment.treeId,
+    usedTrees,
+  ).filter((treeId) => treeId !== currentSegment.treeId);
 };
 
 /**
@@ -144,7 +175,10 @@ export const getPossibleTreeIds = (fullMap: MapSegment[], currentSegment?: MapSe
  * @param activePlayer
  * @returns
  */
-export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlayer): PlayerMapping => {
+export const buildPlayerMapping = (
+  players: GamePlayers,
+  activePlayer: GamePlayer,
+): PlayerMapping => {
   // Segments that are active for the current player's map
   const currentMap = activePlayer.map as MapSegment[];
   const activeSegments = currentMap.filter((segment) => segment.active);
@@ -154,7 +188,7 @@ export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlaye
   if (activeSegments[0].index > 0) {
     const startingSegment = currentMap[activeSegments[0].index - 1];
     playerMapping[startingSegment.treeId] = Object.keys(players).filter(
-      (playerId) => playerId !== activePlayer.id
+      (playerId) => playerId !== activePlayer.id,
     );
   }
 
@@ -198,7 +232,7 @@ export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlaye
 export const buildUserMappingForLatestTree = (
   user: GamePlayer,
   currentMap: MapSegment[],
-  activePlayerId: PlayerId
+  activePlayerId: PlayerId,
 ): PlayerMapping => {
   // Segments that are active for the current player's map
 
@@ -231,7 +265,7 @@ export const buildUserMappingForLatestTree = (
  */
 export const buildPlayerMappingForLatestTree = (
   players: GamePlayers,
-  activePlayer: GamePlayer
+  activePlayer: GamePlayer,
 ): PlayerMapping => {
   // Segments that are active for the current player's map
   const currentMap = (activePlayer.map ?? []) as MapSegment[];

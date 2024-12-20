@@ -1,28 +1,28 @@
-import clsx from 'clsx';
-import { useMemo } from 'react';
+import clsx from "clsx";
+import { useMemo } from "react";
 // Ant Design Resources
-import { Alert, Divider, Space } from 'antd';
+import { Alert, Divider, Space } from "antd";
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from "types/player";
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useCardWidth } from "hooks/useCardWidth";
+import type { UseStep } from "hooks/useStep";
+import { useTemporarilyHidePlayersBar } from "hooks/useTemporarilyHidePlayersBar";
 // Utils
-import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
+import { getAnimationClass, getAvatarColorById } from "utils/helpers";
 // Components
-import { AvatarName } from 'components/avatars';
-import { TimedButton } from 'components/buttons';
-import { HostNextPhaseButton } from 'components/host';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { Step } from 'components/steps';
+import { AvatarName } from "components/avatars";
+import { TimedButton } from "components/buttons";
+import { HostNextPhaseButton } from "components/host";
+import { ImageCard } from "components/image-cards";
+import { Translate } from "components/language";
+import { TurnOrder } from "components/players";
+import { Step } from "components/steps";
 // Internal
-import type { LatestInfo } from './utils/types';
-import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
-import { ListPlayers } from './components/ListPlayers';
-import { MatchCount } from './components/MatchCount';
+import type { LatestInfo } from "./utils/types";
+import { GO_TO_CARD_PLAY_STEP } from "./utils/constants";
+import { ListPlayers } from "./components/ListPlayers";
+import { MatchCount } from "./components/MatchCount";
 
 type MatchingPlayersReduceResult = {
   matchingPlayers: GamePlayer[];
@@ -34,7 +34,7 @@ type StepAnnounceDreamProps = {
   lastActivePlayer: GamePlayer;
   activePlayer: GamePlayer;
   playerInNightmare?: GamePlayer;
-  setStep: UseStep['setStep'];
+  setStep: UseStep["setStep"];
   players: GamePlayers;
   gameOrder: TurnOrder;
 };
@@ -65,22 +65,35 @@ export function StepAnnounceDream({
           }
           return acc;
         },
-        { matchingPlayers: [], fallenMatchingPlayers: [] }
+        { matchingPlayers: [], fallenMatchingPlayers: [] },
       ),
-    [latest?.matchedPlayers, players, lastActivePlayer.id]
+    [latest?.matchedPlayers, players, lastActivePlayer.id],
   );
 
-  const completedPlayers = Object.values(players).filter((player) => player?.skip || player?.fallen);
+  const completedPlayers = Object.values(players).filter(
+    (player) => player?.skip || player?.fallen,
+  );
 
   return (
     <Step fullWidth>
-      <div className={clsx('g-dream-result', getAnimationClass('fadeIn', { speed: 'slow' }))}>
+      <div
+        className={clsx(
+          "g-dream-result",
+          getAnimationClass("fadeIn", { speed: "slow" }),
+        )}
+      >
         <header
           className="g-dream-result__header"
-          style={{ backgroundColor: getAvatarColorById(lastActivePlayer.avatarId) }}
+          style={{
+            backgroundColor: getAvatarColorById(lastActivePlayer.avatarId),
+          }}
         >
           <AvatarName player={lastActivePlayer} size="large" />
-          <Translate pt="escolheu visitar o sonho" en="chose to visit the dream" />:
+          <Translate
+            pt="escolheu visitar o sonho"
+            en="chose to visit the dream"
+          />
+          :
         </header>
         <div className="g-dream-result__card">
           <ImageCard id={latest.cardId} cardWidth={cardWidth} />
@@ -99,7 +112,10 @@ export function StepAnnounceDream({
                 <Translate pt="Ganharam pontos:" en="Scored points:" />
               </p>
 
-              <ListPlayers listPlayers={matchingPlayers} className="g-dream-result__matched-players-list" />
+              <ListPlayers
+                listPlayers={matchingPlayers}
+                className="g-dream-result__matched-players-list"
+              />
             </>
           )}
         </div>
@@ -122,7 +138,11 @@ export function StepAnnounceDream({
         </div>
         <footer className="g-dream-result__footer">
           {latest.isPhaseOver || latest.cardsLeft === 0 ? (
-            <Space align="center" className="full-width padding" direction="vertical">
+            <Space
+              align="center"
+              className="full-width padding"
+              direction="vertical"
+            >
               <p className="center">
                 <Translate
                   pt="Todos jogadores já usaram seus sonhos ou não deram match com ninguém. Vamos para a próxima rodada?"
@@ -138,14 +158,14 @@ export function StepAnnounceDream({
                       <Translate
                         pt={
                           <>
-                            <AvatarName player={playerInNightmare} /> foi ganancioso(a) não conseguiu usar
-                            todos os sonhos.
+                            <AvatarName player={playerInNightmare} /> foi
+                            ganancioso(a) não conseguiu usar todos os sonhos.
                           </>
                         }
                         en={
                           <>
-                            <AvatarName player={playerInNightmare} /> was too greedy and wasn't able to use of
-                            all their dreams.
+                            <AvatarName player={playerInNightmare} /> was too
+                            greedy and wasn't able to use of all their dreams.
                           </>
                         }
                       />
@@ -153,13 +173,13 @@ export function StepAnnounceDream({
                       <Translate
                         pt={
                           <>
-                            Não há mais jogadores pra dar match com{' '}
+                            Não há mais jogadores pra dar match com{" "}
                             <AvatarName player={players[gameOrder[0]]} />
                           </>
                         }
                         en={
                           <>
-                            There are no players to match anymore with{' '}
+                            There are no players to match anymore with{" "}
                             <AvatarName player={players[gameOrder[0]]} />
                           </>
                         }
@@ -170,7 +190,11 @@ export function StepAnnounceDream({
               )}
             </Space>
           ) : (
-            <Space align="center" className="full-width padding" direction="vertical">
+            <Space
+              align="center"
+              className="full-width padding"
+              direction="vertical"
+            >
               <p className="center">
                 <Translate pt="Próximo jogador:" en="Next player:" />
                 <AvatarName player={activePlayer} addressUser />
@@ -191,7 +215,11 @@ export function StepAnnounceDream({
               <Divider />
               <div className="g-dream-result__completed-players">
                 <p className="g-dream-result__label center">
-                  <Translate pt="Jogadores fora do rodízio" en="Players out of rotation" />:
+                  <Translate
+                    pt="Jogadores fora do rodízio"
+                    en="Players out of rotation"
+                  />
+                  :
                 </p>
                 <ListPlayers
                   listPlayers={completedPlayers}
@@ -204,7 +232,11 @@ export function StepAnnounceDream({
       </div>
 
       {gameOrder.length > 1 && (
-        <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
+        <TurnOrder
+          players={players}
+          order={gameOrder}
+          activePlayerId={activePlayer.id}
+        />
       )}
 
       {(latest.isPhaseOver || latest.cardsLeft === 0) && (

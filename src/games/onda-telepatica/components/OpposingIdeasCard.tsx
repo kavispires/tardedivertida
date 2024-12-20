@@ -1,8 +1,12 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Ant Design Resources
-import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
+import {
+  ArrowLeftOutlined,
+  ArrowRightOutlined,
+  MinusOutlined,
+} from "@ant-design/icons";
 // Internal
-import { getColorModifier } from '../utils/helpers';
+import { getColorModifier } from "../utils/helpers";
 
 type OpposingIdeasCardProps = {
   left: string;
@@ -14,10 +18,15 @@ type OpposingIdeasCardProps = {
   setNeedle?: GenericFunction;
 };
 
-export function OpposingIdeasCard({ left, right, className = '', setNeedle }: OpposingIdeasCardProps) {
+export function OpposingIdeasCard({
+  left,
+  right,
+  className = "",
+  setNeedle,
+}: OpposingIdeasCardProps) {
   const leftColor = getColorModifier(left[0]);
   const rightColor = getColorModifier(right[0]);
-  const cardSideClass = 'o-card__side';
+  const cardSideClass = "o-card__side";
   const isButton = Boolean(setNeedle);
 
   const onSetNeedle = (direction: number) => {
@@ -31,13 +40,13 @@ export function OpposingIdeasCard({ left, right, className = '', setNeedle }: Op
   };
 
   return (
-    <div className={clsx('o-card', className)}>
+    <div className={clsx("o-card", className)}>
       <div
         className={clsx(
           cardSideClass,
           `${cardSideClass}--left`,
           `${cardSideClass}--L${leftColor}`,
-          isButton && `${cardSideClass}--button`
+          isButton && `${cardSideClass}--button`,
         )}
         onClick={() => onSetNeedle(-1)}
       >
@@ -51,7 +60,7 @@ export function OpposingIdeasCard({ left, right, className = '', setNeedle }: Op
           cardSideClass,
           `${cardSideClass}--right`,
           `${cardSideClass}--R${rightColor}`,
-          isButton && `${cardSideClass}--button`
+          isButton && `${cardSideClass}--button`,
         )}
         onClick={() => onSetNeedle(1)}
       >

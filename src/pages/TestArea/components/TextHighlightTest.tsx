@@ -1,14 +1,14 @@
 // Ant Design Resources
-import { Space } from 'antd';
+import { Space } from "antd";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Components
-import { MovieReviewCard } from 'components/cards/MovieReviewCard';
-import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { MovieReviewCard } from "components/cards/MovieReviewCard";
+import { Translate } from "components/language";
+import { Instruction, Title } from "components/text";
 // Internal
-import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
+import { DecisionButtons } from "./DecisionButtons";
+import { TestStepProps } from "../TestArea";
 
 export function TextHighlightTest({ onResult, step }: TestStepProps) {
   const { translate } = useLanguage();
@@ -19,17 +19,20 @@ export function TextHighlightTest({ onResult, step }: TestStepProps) {
       </Title>
 
       <Instruction contained>
-        <Translate pt="Algumas vezes o texto será destacado" en="Sometimes text will be highlighted" />
+        <Translate
+          pt="Algumas vezes o texto será destacado"
+          en="Sometimes text will be highlighted"
+        />
       </Instruction>
 
       <Space wrap className="space-container full-width" direction="vertical">
         <MovieReviewCard
           type="negative"
           text={translate(
-            'O abacate tem três pernas de bambu madeira',
-            'The avocado has three legs made of bamboo'
+            "O abacate tem três pernas de bambu madeira",
+            "The avocado has three legs made of bamboo",
           )}
-          highlights={['três pernas', 'three legs', 'madeira', 'bamboo']}
+          highlights={["três pernas", "three legs", "madeira", "bamboo"]}
         />
       </Space>
 

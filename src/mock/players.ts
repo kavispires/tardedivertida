@@ -1,15 +1,15 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from "types/player";
 // Utils
-import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
-import { getRandomItem } from 'utils/helpers';
+import { AVAILABLE_AVATAR_IDS } from "utils/avatars";
+import { getRandomItem } from "utils/helpers";
 
 /**
  * Random names used during Dev
  */
 const DEV_NAMES: string[] =
-  'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Oli,Pat,Quinn,Roy,Sam,Tim,Una,Vic,Will,Xavier,Yara,Zoe'.split(
-    ','
+  "Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Oli,Pat,Quinn,Roy,Sam,Tim,Una,Vic,Will,Xavier,Yara,Zoe".split(
+    ",",
   );
 
 const cacheNames: BooleanDictionary = {};
@@ -27,11 +27,16 @@ let cacheMockedPlayers: GamePlayers = {};
 const getRandomUniqueItemFromList = (
   source: string[],
   used: string[] = [],
-  cache: BooleanDictionary = {}
+  cache: BooleanDictionary = {},
 ) => {
-  let randomItem = '';
+  let randomItem = "";
   let tries = 0;
-  while (!randomItem || cache[randomItem] || used?.includes(randomItem) || tries < 50) {
+  while (
+    !randomItem ||
+    cache[randomItem] ||
+    used?.includes(randomItem) ||
+    tries < 50
+  ) {
     randomItem = getRandomItem(source);
     tries += 1;
   }
@@ -58,7 +63,7 @@ export function mockPlayerName(used?: string[]): string {
 export function mockPlayers(
   players: GamePlayers,
   quantity: number = 10,
-  properties: PlainObject | GenericFunction = {}
+  properties: PlainObject | GenericFunction = {},
 ): GamePlayers {
   if (Object.keys(cacheMockedPlayers).length === quantity) {
     return {
@@ -84,10 +89,14 @@ export function mockPlayers(
       return {
         id: `_${name.toLowerCase()}`,
         name: `${name}`,
-        avatarId: getRandomUniqueItemFromList(AVAILABLE_AVATAR_IDS, Object.keys(usedAvatars), cacheAvatars),
+        avatarId: getRandomUniqueItemFromList(
+          AVAILABLE_AVATAR_IDS,
+          Object.keys(usedAvatars),
+          cacheAvatars,
+        ),
         updatedAt: Date.now(),
         ready: true,
-        ...(typeof properties === 'function' ? properties(i) : properties),
+        ...(typeof properties === "function" ? properties(i) : properties),
       };
     });
 

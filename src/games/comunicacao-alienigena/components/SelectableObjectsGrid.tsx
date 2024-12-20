@@ -1,20 +1,20 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Ant Design Resources
-import { Badge, Space } from 'antd';
+import { Badge, Space } from "antd";
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from "types/player";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useLanguage } from "hooks/useLanguage";
+import { useLoading } from "hooks/useLoading";
 // Components
-import { TransparentButton } from 'components/buttons';
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
+import { TransparentButton } from "components/buttons";
+import { ItemCard } from "components/cards/ItemCard";
+import { Translate } from "components/language";
+import { Title } from "components/text";
 // Internal
-import type { Item, OfferingsStatus } from '../utils/types';
-import { BADGE_INSTRUCTION } from '../utils/constants';
-import { ObjectsKey } from './ObjectsKey';
+import type { Item, OfferingsStatus } from "../utils/types";
+import { BADGE_INSTRUCTION } from "../utils/constants";
+import { ObjectsKey } from "./ObjectsKey";
 // Hook
 
 type SelectableObjectsGridProps = {
@@ -49,15 +49,22 @@ export function SelectableObjectsGrid({
       </Title>
       <div className="objects-grid">
         {items.map((item) =>
-          Boolean(item.offered) || (isAlienRequest && item.type !== 'ITEM') ? (
+          Boolean(item.offered) || (isAlienRequest && item.type !== "ITEM") ? (
             <div
-              className={clsx('objects-grid__item', `objects-grid__item--${item.type}`)}
+              className={clsx(
+                "objects-grid__item",
+                `objects-grid__item--${item.type}`,
+              )}
               key={`selectable-${item.id}`}
             >
-              <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
+              <Badge
+                count={item.inquired}
+                color="orange"
+                title={dualTranslate(BADGE_INSTRUCTION)}
+              >
                 <ItemCard
                   id={`${item.id}`}
-                  className={clsx(item.offered && 'objects-grid__item-offered')}
+                  className={clsx(item.offered && "objects-grid__item-offered")}
                   title={item.name ? dualTranslate(item.name) : undefined}
                 />
               </Badge>
@@ -65,26 +72,34 @@ export function SelectableObjectsGrid({
           ) : (
             <TransparentButton
               key={`selectable-${item.id}`}
-              className={clsx('objects-grid__button', showTypes && `objects-grid__button--${item.type}`)}
+              className={clsx(
+                "objects-grid__button",
+                showTypes && `objects-grid__button--${item.type}`,
+              )}
               disabled={
                 item.offered ||
-                (!selectedObjects[item.id] && Object.keys(selectedObjects).length === maxObjects) ||
+                (!selectedObjects[item.id] &&
+                  Object.keys(selectedObjects).length === maxObjects) ||
                 isLoading ||
                 user.ready
               }
               active={selectedObjects[item.id]}
-              activeClass={'objects-grid__button--active'}
+              activeClass={"objects-grid__button--active"}
               onClick={() => selectObject(item.id)}
             >
-              <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
+              <Badge
+                count={item.inquired}
+                color="orange"
+                title={dualTranslate(BADGE_INSTRUCTION)}
+              >
                 <ItemCard
                   id={`${item.id}`}
-                  className={clsx(item.offered && 'objects-grid__item-offered')}
+                  className={clsx(item.offered && "objects-grid__item-offered")}
                   title={item.name ? dualTranslate(item.name) : undefined}
                 />
               </Badge>
             </TransparentButton>
-          )
+          ),
         )}
       </div>
 

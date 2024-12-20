@@ -1,20 +1,27 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from "hooks/useGameActionRequest";
+import { useLanguage } from "hooks/useLanguage";
+import type { UseStep } from "hooks/useStep";
 // Internal
-import type { SubmitCategoryPayload, SubmitCluePayload, SubmitGuessPayload } from './types';
-import { ONDA_TELEPATICA_ACTIONS } from './constants';
+import type {
+  SubmitCategoryPayload,
+  SubmitCluePayload,
+  SubmitGuessPayload,
+} from "./types";
+import { ONDA_TELEPATICA_ACTIONS } from "./constants";
 
 export function useOnSubmitCategoryAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-category',
-    successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
+    actionName: "submit-category",
+    successMessage: translate(
+      "Categoria enviada com sucesso!",
+      "Category submitted successfully!",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
-      'Oops, the application failed to submit the category'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria",
+      "Oops, the application failed to submit the category",
     ),
   });
 
@@ -30,11 +37,14 @@ export function useOnSubmitClueAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-category',
-    successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
+    actionName: "submit-category",
+    successMessage: translate(
+      "Categoria enviada com sucesso!",
+      "Category submitted successfully!",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
-      'Oops, the application failed to submit the category'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria",
+      "Oops, the application failed to submit the category",
     ),
   });
 
@@ -46,17 +56,20 @@ export function useOnSubmitClueAPIRequest() {
   };
 }
 
-export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitGuessAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-guess',
+    actionName: "submit-guess",
     onSuccess: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Resposta enviado com sucesso!', 'Guess submitted successfully!'),
+    successMessage: translate(
+      "Resposta enviado com sucesso!",
+      "Guess submitted successfully!",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
-      'Oops, the application failed to submit your guess'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta",
+      "Oops, the application failed to submit your guess",
     ),
   });
 

@@ -1,19 +1,25 @@
-import { useQuery } from '@tanstack/react-query';
-import { cloneDeep, orderBy, sample, sampleSize, shuffle } from 'lodash';
-import { useEffect, useMemo, useState } from 'react';
+import { useQuery } from "@tanstack/react-query";
+import { cloneDeep, orderBy, sample, sampleSize, shuffle } from "lodash";
+import { useEffect, useMemo, useState } from "react";
 // Ant Design Resources
-import { App } from 'antd';
+import { App } from "antd";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL } from "utils/constants";
 // Internal
-import { ConnectionGame, ConnectionGroup, GroupDictEntry, GroupSummary, ItemGroup } from './types';
+import {
+  ConnectionGame,
+  ConnectionGroup,
+  GroupDictEntry,
+  GroupSummary,
+  ItemGroup,
+} from "./types";
 
 const emojiColors: StringDictionary = {
-  teal: '🟩',
-  orange: '🟧',
-  purple: '🟪',
+  teal: "🟩",
+  orange: "🟧",
+  purple: "🟪",
 };
 
 export function useConnectTrioGame() {
@@ -22,9 +28,11 @@ export function useConnectTrioGame() {
   const [game, setGame] = useState<ConnectionGame | null>(null);
 
   const query = useQuery<Dictionary<ConnectionGroup>>({
-    queryKey: ['connect-items'],
+    queryKey: ["connect-items"],
     queryFn: async () => {
-      const response = await fetch(`${PUBLIC_URL.RESOURCES}/connect-items.json`);
+      const response = await fetch(
+        `${PUBLIC_URL.RESOURCES}/connect-items.json`,
+      );
       return await response.json();
     },
   });
@@ -52,8 +60,8 @@ export function useConnectTrioGame() {
         groups,
         total: groups.length,
       })),
-      ['total'],
-      ['desc']
+      ["total"],
+      ["desc"],
     );
   }, [query.data]);
 
@@ -89,15 +97,22 @@ export function useConnectTrioGame() {
     tries = 0;
     while (result.length < 3 && tries < 200) {
       tries++;
-      console.count('tries');
+      console.count("tries");
 
       // Related third group
       const thirdItem = sample(Object.keys(dict));
       if (thirdItem) {
-        const selection = itemCount.find((item) => item.itemId === thirdItem && item);
+        const selection = itemCount.find(
+          (item) => item.itemId === thirdItem && item,
+        );
 
         if (selection && selection.total > 1) {
-          const selectedGroups = getTwoGroups(selection.itemId, selection.groups, dict, usedGroupIds);
+          const selectedGroups = getTwoGroups(
+            selection.itemId,
+            selection.groups,
+            dict,
+            usedGroupIds,
+          );
           if (selectedGroups.length === 2) {
             result.push(selectedGroups[1]);
           }
@@ -118,20 +133,20 @@ export function useConnectTrioGame() {
     }
 
     const newGame: ConnectionGame = {
-      id: '',
+      id: "",
       itemsDict: {},
       groupsDict: {},
       items: [],
     };
 
     const colors: StringDictionary = {
-      0: 'teal',
-      1: 'orange',
-      2: 'purple',
+      0: "teal",
+      1: "orange",
+      2: "purple",
     };
 
     result.forEach((group, index) => {
-      newGame.id += '-' + group.groupId.split('-')[1];
+      newGame.id += "-" + group.groupId.split("-")[1];
       newGame.groupsDict[group.groupId] = {
         groupId: group.groupId,
         name: group.name,
@@ -189,20 +204,25 @@ function getTwoGroups(
   itemId: string,
   groupSummaries: GroupSummary[],
   dict: BooleanDictionary = {},
-  usedGroupIds: string[] = []
+  usedGroupIds: string[] = [],
 ) {
   const mainGroup = cloneDeep(sample(groupSummaries)!);
   mainGroup.items = getTrio(
     itemId,
     mainGroup.items.filter((i) => !dict[i]),
-    true
+    true,
   );
 
-  const itemsDict: BooleanDictionary = mainGroup.items.reduce((acc, item) => ({ ...acc, [item]: true }), {
-    ...dict,
-  });
+  const itemsDict: BooleanDictionary = mainGroup.items.reduce(
+    (acc, item) => ({ ...acc, [item]: true }),
+    {
+      ...dict,
+    },
+  );
 
-  const leftOverGroups = shuffle(groupSummaries.filter((group) => group.groupId !== mainGroup.groupId));
+  const leftOverGroups = shuffle(
+    groupSummaries.filter((group) => group.groupId !== mainGroup.groupId),
+  );
 
   for (let i = 0; i < leftOverGroups.length; i++) {
     const group = leftOverGroups[i];
@@ -239,8 +259,8 @@ export function useConnectTrioEngine(game: ConnectionGame) {
   const [frozenItems, setFrozenItems] = useState<string[]>([]);
   const [selection, setSelection] = useState<string[]>([]);
   const [previousSelection, setPreviousSelection] = useState<string[]>([]);
-  const [resultPrint, setResultPrint] = useState<string>('');
-  const [outcome, setOutcome] = useState<string>('CONTINUE');
+  const [resultPrint, setResultPrint] = useState<string>("");
+  const [outcome, setOutcome] = useState<string>("CONTINUE");
   const [history, setHistory] = useState<string[]>([]);
   const [correctGroups, setCorrectGroups] = useState<GroupDictEntry[]>([]);
   const [showResultModal, setShowResultModal] = useState(false);
@@ -257,7 +277,12 @@ export function useConnectTrioEngine(game: ConnectionGame) {
     }
 
     if (selection.length === 3) {
-      message.info(translate('Você só pode selecionar 3 itens', 'You can only select 3 items'));
+      message.info(
+        translate(
+          "Você só pode selecionar 3 itens",
+          "You can only select 3 items",
+        ),
+      );
       return;
     }
 
@@ -269,29 +294,33 @@ export function useConnectTrioEngine(game: ConnectionGame) {
   };
 
   const onSubmit = async () => {
-    const attemptStr = selection.sort().join('-');
+    const attemptStr = selection.sort().join("-");
     if (history.includes(attemptStr)) {
-      message.info(translate('Você já tentou esse trio', 'You already tried this trio'));
+      message.info(
+        translate("Você já tentou esse trio", "You already tried this trio"),
+      );
       return;
     }
 
     const color = game.itemsDict[selection[0]].color;
     const activeGroup = game.groupsDict[game.itemsDict[selection[0]].groupId];
     let isCorrect = true;
-    let print = '';
+    let print = "";
     selection.forEach((itemId) => {
       if (game.itemsDict[itemId].color !== color) {
         isCorrect = false;
       }
       print += emojiColors[game.itemsDict[itemId].color];
-      print += ' ';
+      print += " ";
     });
-    print += '\n';
+    print += "\n";
 
     setResultPrint((v) => v + print);
 
     if (isCorrect) {
-      message.success(translate('Você acertou um trio!', 'You got the trio right!'));
+      message.success(
+        translate("Você acertou um trio!", "You got the trio right!"),
+      );
       setFrozenItems([...frozenItems, ...selection]);
       setItems(items.filter((item) => !selection.includes(item)));
       setCorrectGroups((s) => [
@@ -307,20 +336,20 @@ export function useConnectTrioEngine(game: ConnectionGame) {
       setPreviousSelection([]);
       if (correctGroups.length === 2) {
         setIsComplete(true);
-        setOutcome('WIN');
+        setOutcome("WIN");
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setShowResultModal(true);
       } else {
-        setOutcome('CORRECT');
+        setOutcome("CORRECT");
       }
     } else {
       setPreviousSelection([...selection]);
       setHistory((h) => [...h, attemptStr]);
-      message.error(translate('Você errou o trio!', 'You got the trio wrong!'));
+      message.error(translate("Você errou o trio!", "You got the trio wrong!"));
       if (hearts === 1) {
-        setOutcome('LOSE');
+        setOutcome("LOSE");
         const otherGroups = Object.values(game.groupsDict).filter(
-          (group) => !correctGroups.find((g) => g.name === group.name)
+          (group) => !correctGroups.find((g) => g.name === group.name),
         );
 
         setCorrectGroups((s) => [
@@ -336,7 +365,7 @@ export function useConnectTrioEngine(game: ConnectionGame) {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setShowResultModal(true);
       } else {
-        setOutcome('WRONG');
+        setOutcome("WRONG");
       }
       setHearts(hearts - 1);
     }

@@ -1,30 +1,30 @@
-import clsx from 'clsx';
-import { LoginModal } from 'pages/Me/components/LoginModal';
-import { ReactNode, useEffect } from 'react';
-import { useTitle } from 'react-use';
+import clsx from "clsx";
+import { LoginModal } from "pages/Me/components/LoginModal";
+import { ReactNode, useEffect } from "react";
+import { useTitle } from "react-use";
 // Ant Design Resources
-import { Button, Layout, Modal, Space, Typography } from 'antd';
+import { Button, Layout, Modal, Space, Typography } from "antd";
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCardWidth } from "hooks/useCardWidth";
+import { useCurrentUserContext } from "hooks/useCurrentUserContext";
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Icons
-import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
+import { PlayerIconsIcon } from "icons/PlayerIconsIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { ItemCard } from 'components/cards/ItemCard';
-import { PageError } from 'components/errors';
-import { Translate } from 'components/language';
-import { Loading } from 'components/loaders';
+import { IconAvatar } from "components/avatars";
+import { TransparentButton } from "components/buttons";
+import { ItemCard } from "components/cards/ItemCard";
+import { PageError } from "components/errors";
+import { Translate } from "components/language";
+import { Loading } from "components/loaders";
 // Internal
-import { useConnectTrioEngine, useConnectTrioGame } from './hooks';
-import { ResultsModalContent } from './ResultsModalContent';
-import { ConnectionGame } from './types';
+import { useConnectTrioEngine, useConnectTrioGame } from "./hooks";
+import { ResultsModalContent } from "./ResultsModalContent";
+import { ConnectionGame } from "./types";
 // Sass
-import './ConnectTrio.scss';
+import "./ConnectTrio.scss";
 
 const { Header, Content } = Layout;
 
@@ -65,11 +65,13 @@ function ConnectTrioGame({ game, createNewGame }: ConnectTrioGameProps) {
             <div
               key={correctGroup.groupId}
               className={clsx(
-                'connect-trio-group-container',
-                outcome === 'CORRECT' && getAnimationClass('fadeIn')
+                "connect-trio-group-container",
+                outcome === "CORRECT" && getAnimationClass("fadeIn"),
               )}
             >
-              <span className="connect-trip-group-name">{correctGroup.name}</span>
+              <span className="connect-trip-group-name">
+                {correctGroup.name}
+              </span>
               <div className="connect-trio-item-container">
                 {correctGroup.items.map((item) => (
                   <ItemCard
@@ -98,8 +100,10 @@ function ConnectTrioGame({ game, createNewGame }: ConnectTrioGameProps) {
                       id={item}
                       width={cardWidth}
                       className={clsx(
-                        isActive && 'item--active',
-                        outcome === 'WRONG' && previousSelection.includes(item) && getAnimationClass('shakeX')
+                        isActive && "item--active",
+                        outcome === "WRONG" &&
+                          previousSelection.includes(item) &&
+                          getAnimationClass("shakeX"),
                       )}
                     />
                   </TransparentButton>
@@ -121,13 +125,22 @@ function ConnectTrioGame({ game, createNewGame }: ConnectTrioGameProps) {
           >
             <Translate pt="Limpar" en="Clear" />
           </Button>
-          <Button onClick={onSubmit} type="primary" shape="round" disabled={selection.length < 3 || disabled}>
+          <Button
+            onClick={onSubmit}
+            type="primary"
+            shape="round"
+            disabled={selection.length < 3 || disabled}
+          >
             <Translate pt="Enviar" en="Submit" />
           </Button>
         </Space>
 
         {disabled && (
-          <Space className="results-container" direction="vertical" align="center">
+          <Space
+            className="results-container"
+            direction="vertical"
+            align="center"
+          >
             <Button onClick={() => setShowResultModal(true)} type="primary">
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
@@ -158,13 +171,17 @@ function ConnectTrioGame({ game, createNewGame }: ConnectTrioGameProps) {
 function ConnectTrioDataWrapper() {
   const { translate } = useLanguage();
 
-  const { isLoading, isError, game, failToCreate, createNewGame } = useConnectTrioGame();
+  const { isLoading, isError, game, failToCreate, createNewGame } =
+    useConnectTrioGame();
 
   if (isLoading) {
     return (
       <ConnectTrioChrome>
         <Space className="space-container">
-          <Loading message={translate('Carregando desafio', 'Loading challenge')} margin />
+          <Loading
+            message={translate("Carregando desafio", "Loading challenge")}
+            margin
+          />
         </Space>
       </ConnectTrioChrome>
     );
@@ -207,17 +224,23 @@ type ConnectTrioChromeProps = {
 function ConnectTrioChrome({ challenge, children }: ConnectTrioChromeProps) {
   const { translate, setLanguage } = useLanguage();
   useEffect(() => {
-    setLanguage('pt');
+    setLanguage("pt");
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useTitle(translate('Conexões Triplas | Tarde Divertida', 'Connect Trio | Tarde Divertida'));
+  useTitle(
+    translate(
+      "Conexões Triplas | Tarde Divertida",
+      "Connect Trio | Tarde Divertida",
+    ),
+  );
 
   return (
     <Layout className="app">
       <Header className="daily-header">
         <IconAvatar icon={<PlayerIconsIcon />} />
         <Typography.Title level={1} className="daily-heading">
-          TD <Translate pt="Conexões Triplas" en="Connect Trio" /> #{challenge ?? 0}
+          TD <Translate pt="Conexões Triplas" en="Connect Trio" /> #
+          {challenge ?? 0}
         </Typography.Title>
       </Header>
       <Content>{children}</Content>

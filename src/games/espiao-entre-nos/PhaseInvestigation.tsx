@@ -1,32 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 // Ant Design Resources
-import { App } from 'antd';
+import { App } from "antd";
 // Types
-import type { PhaseProps } from 'types/game';
+import type { PhaseProps } from "types/game";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useLanguage } from "hooks/useLanguage";
+import { useStep } from "hooks/useStep";
+import { useUser } from "hooks/useUser";
+import { useWhichPlayerIsThe } from "hooks/useWhichPlayerIsThe";
 // Utils
-import { PHASES } from 'utils/phases';
+import { PHASES } from "utils/phases";
 // Icons
-import { LoupeIcon } from 'icons/LoupeIcon';
-import { OpinionsIcon } from 'icons/OpinionsIcon';
-import { TimerIcon } from 'icons/TimerIcon';
+import { LoupeIcon } from "icons/LoupeIcon";
+import { OpinionsIcon } from "icons/OpinionsIcon";
+import { TimerIcon } from "icons/TimerIcon";
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from "components/language";
+import { PhaseAnnouncement, PhaseContainer } from "components/phases";
+import { StepSwitcher } from "components/steps";
+import { Instruction } from "components/text";
 // Internal
 import {
   useOnGuessLocationAPIRequest,
   useOnMakeAccusationAPIRequest,
   useOnSendLastQuestionerAPIRequest,
-} from './utils/api-requests';
-import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
-import { StepInvestigation } from './StepInvestigation';
+} from "./utils/api-requests";
+import { FinalAssessmentPreparationModal } from "./components/FinalAssessmentPreparationModal";
+import { StepInvestigation } from "./StepInvestigation";
 
 export function PhaseInvestigation({ state, players }: PhaseProps) {
   const { translate } = useLanguage();
@@ -34,8 +34,12 @@ export function PhaseInvestigation({ state, players }: PhaseProps) {
   const user = useUser(players, state);
   const { notification } = App.useApp();
 
-  const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
-  const [startingPlayer] = useWhichPlayerIsThe('startingPlayerId', state, players);
+  const [, isUserTheSpy] = useWhichPlayerIsThe("currentSpyId", state, players);
+  const [startingPlayer] = useWhichPlayerIsThe(
+    "startingPlayerId",
+    state,
+    players,
+  );
 
   const onGuessLocation = useOnGuessLocationAPIRequest(setStep);
   const onMakeAccusation = useOnMakeAccusationAPIRequest(setStep);
@@ -44,10 +48,10 @@ export function PhaseInvestigation({ state, players }: PhaseProps) {
   useEffect(() => {
     if (state.timeRemaining > 590000 && startingPlayer.name) {
       notification.info({
-        message: translate('10 minutos!', '10 minutes!'),
+        message: translate("10 minutos!", "10 minutes!"),
         description: translate(
           `${startingPlayer.name} começa perguntando!`,
-          `${startingPlayer.name} starts questioning!`
+          `${startingPlayer.name} starts questioning!`,
         ),
         duration: 10,
       });
@@ -62,7 +66,7 @@ export function PhaseInvestigation({ state, players }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        {state?.outcome?.type !== 'VOTE_FAIL' ? (
+        {state?.outcome?.type !== "VOTE_FAIL" ? (
           <PhaseAnnouncement
             icon={<LoupeIcon />}
             title={<Translate pt="Investigação" en="Investigation" />}
@@ -76,7 +80,12 @@ export function PhaseInvestigation({ state, players }: PhaseProps) {
         ) : (
           <PhaseAnnouncement
             icon={<OpinionsIcon />}
-            title={<Translate pt="A investigação continua" en="The investigation continues" />}
+            title={
+              <Translate
+                pt="A investigação continua"
+                en="The investigation continues"
+              />
+            }
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -85,7 +94,10 @@ export function PhaseInvestigation({ state, players }: PhaseProps) {
             type="block"
           >
             <Instruction>
-              <Translate pt="A votação não foi unanime" en="The vote wasn't unanimous" />
+              <Translate
+                pt="A votação não foi unanime"
+                en="The vote wasn't unanimous"
+              />
             </Instruction>
           </PhaseAnnouncement>
         )}
@@ -117,9 +129,15 @@ export function PhaseInvestigation({ state, players }: PhaseProps) {
           type="block"
         >
           <Instruction>
-            <Translate pt="Preparado para a avaliação final?" en="Are you ready for the final assessment?" />
+            <Translate
+              pt="Preparado para a avaliação final?"
+              en="Are you ready for the final assessment?"
+            />
           </Instruction>
-          <FinalAssessmentPreparationModal onSendLastQuestioner={onSendLastQuestioner} players={players} />
+          <FinalAssessmentPreparationModal
+            onSendLastQuestioner={onSendLastQuestioner}
+            players={players}
+          />
         </PhaseAnnouncement>
       </StepSwitcher>
     </PhaseContainer>

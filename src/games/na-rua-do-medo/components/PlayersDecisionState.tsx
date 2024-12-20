@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import { ReactNode } from 'react';
+import clsx from "clsx";
+import { ReactNode } from "react";
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from "types/player";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Icons
-import { CandyIcon } from 'icons/CandyIcon';
-import { HouseIcon } from 'icons/HouseIcon';
-import { ScaredIcon } from 'icons/ScaredIcon';
-import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
-import { WalkIcon } from 'icons/WalkIcon';
+import { CandyIcon } from "icons/CandyIcon";
+import { HouseIcon } from "icons/HouseIcon";
+import { ScaredIcon } from "icons/ScaredIcon";
+import { TrickOrTreatIcon } from "icons/TrickOrTreatIcon";
+import { WalkIcon } from "icons/WalkIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
-import { Translate } from 'components/language';
+import { IconAvatar } from "components/avatars";
+import { CostumeAvatar } from "components/avatars/CostumeAvatar";
+import { Translate } from "components/language";
 
 type PlayersDecisionStateProps = {
   players: GamePlayers;
@@ -22,7 +22,7 @@ type PlayersDecisionStateProps = {
   alreadyAtHomePlayerIds: PlayerId[];
   cashedInCandy: number;
   candyInHand: number;
-  phase: 'TRICK_OR_TREAT' | 'RESULT' | 'STREET_END';
+  phase: "TRICK_OR_TREAT" | "RESULT" | "STREET_END";
 };
 
 export function PlayersDecisionState({
@@ -58,14 +58,14 @@ export function PlayersDecisionState({
           <Translate
             pt={
               <>
-                Cada um levou {candyInHand + cashedInCandy} <IconAvatar icon={<CandyIcon />} size="small" />{' '}
-                pra casa.
+                Cada um levou {candyInHand + cashedInCandy}{" "}
+                <IconAvatar icon={<CandyIcon />} size="small" /> pra casa.
               </>
             }
             en={
               <>
-                Each one took {candyInHand + cashedInCandy} <IconAvatar icon={<CandyIcon />} size="small" />{' '}
-                home.
+                Each one took {candyInHand + cashedInCandy}{" "}
+                <IconAvatar icon={<CandyIcon />} size="small" /> home.
               </>
             }
           />
@@ -75,27 +75,36 @@ export function PlayersDecisionState({
       <DecisionSection
         players={players}
         playersInSection={continuingPlayerIds}
-        icon={phase === 'STREET_END' ? <ScaredIcon /> : <TrickOrTreatIcon />}
+        icon={phase === "STREET_END" ? <ScaredIcon /> : <TrickOrTreatIcon />}
         title={
           <>
-            {phase === 'TRICK_OR_TREAT' && (
-              <Translate pt="Continua ou Volta?" en="Continuing or Going Home?" />
+            {phase === "TRICK_OR_TREAT" && (
+              <Translate
+                pt="Continua ou Volta?"
+                en="Continuing or Going Home?"
+              />
             )}
-            {phase === 'RESULT' && <Translate pt="Continuando" en="Continuing" />}
-            {phase === 'STREET_END' && <Translate pt="Continuariam" en="Would continue" />}
+            {phase === "RESULT" && (
+              <Translate pt="Continuando" en="Continuing" />
+            )}
+            {phase === "STREET_END" && (
+              <Translate pt="Continuariam" en="Would continue" />
+            )}
           </>
         }
         description={
-          phase === 'STREET_END' ? (
+          phase === "STREET_END" ? (
             <Translate
               pt={
                 <>
-                  Perderam {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" />.
+                  Perderam {candyInHand}{" "}
+                  <IconAvatar icon={<CandyIcon />} size="small" />.
                 </>
               }
               en={
                 <>
-                  Lost {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" /> .
+                  Lost {candyInHand}{" "}
+                  <IconAvatar icon={<CandyIcon />} size="small" /> .
                 </>
               }
             />
@@ -103,12 +112,14 @@ export function PlayersDecisionState({
             <Translate
               pt={
                 <>
-                  Cada um tem {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" /> na sacolinha.
+                  Cada um tem {candyInHand}{" "}
+                  <IconAvatar icon={<CandyIcon />} size="small" /> na sacolinha.
                 </>
               }
               en={
                 <>
-                  Each one has {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" /> in their bag.
+                  Each one has {candyInHand}{" "}
+                  <IconAvatar icon={<CandyIcon />} size="small" /> in their bag.
                 </>
               }
             />
@@ -127,15 +138,28 @@ type DecisionSectionProps = {
   description: ReactNode;
 };
 
-function DecisionSection({ players, playersInSection, icon, title, description }: DecisionSectionProps) {
+function DecisionSection({
+  players,
+  playersInSection,
+  icon,
+  title,
+  description,
+}: DecisionSectionProps) {
   const hasPlayers = playersInSection.length > 0;
 
   return (
-    <div className={clsx('n-players-decision__section', !hasPlayers && 'n-players-decision__section--empty')}>
+    <div
+      className={clsx(
+        "n-players-decision__section",
+        !hasPlayers && "n-players-decision__section--empty",
+      )}
+    >
       <h3
         className={clsx(
-          'n-players-decision__title',
-          !hasPlayers && getAnimationClass('fadeOut') && 'n-players-decision__title--empty'
+          "n-players-decision__title",
+          !hasPlayers &&
+            getAnimationClass("fadeOut") &&
+            "n-players-decision__title--empty",
         )}
       >
         <IconAvatar icon={icon} />
@@ -147,14 +171,25 @@ function DecisionSection({ players, playersInSection, icon, title, description }
           playersInSection.map((playerId) => {
             const player = players[playerId];
             return (
-              <span key={`going-home-player-${player.id}`} className="n-players-decision__player">
-                <CostumeAvatar avatarId={player.avatarId} id={player.costumeId} />
+              <span
+                key={`going-home-player-${player.id}`}
+                className="n-players-decision__player"
+              >
+                <CostumeAvatar
+                  avatarId={player.avatarId}
+                  id={player.costumeId}
+                />
                 {player.name}
               </span>
             );
           })}
       </ul>
-      <p className={clsx('n-players-decision__info', !hasPlayers && 'n-players-decision__info--empty')}>
+      <p
+        className={clsx(
+          "n-players-decision__info",
+          !hasPlayers && "n-players-decision__info--empty",
+        )}
+      >
         {hasPlayers && description}
       </p>
     </div>

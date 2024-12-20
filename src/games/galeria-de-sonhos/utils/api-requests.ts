@@ -1,22 +1,29 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from "hooks/useGameActionRequest";
+import { useLanguage } from "hooks/useLanguage";
+import type { UseStep } from "hooks/useStep";
 // Internal
-import type { PlayCardPayload, SubmitCardsPayload, SubmitWordPayload } from './types';
-import { GALERIA_DE_SONHOS_ACTIONS } from './constants';
+import type {
+  PlayCardPayload,
+  SubmitCardsPayload,
+  SubmitWordPayload,
+} from "./types";
+import { GALERIA_DE_SONHOS_ACTIONS } from "./constants";
 
-export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitWordAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-word',
+    actionName: "submit-word",
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
-    successMessage: translate('Palavra enviada com sucesso', 'Word submitted successfully'),
+    successMessage: translate(
+      "Palavra enviada com sucesso",
+      "Word submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra',
-      'Oops, the application failed to send your word'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra",
+      "Oops, the application failed to send your word",
     ),
   });
 
@@ -28,17 +35,20 @@ export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitCardsAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-cards',
+    actionName: "submit-cards",
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Cartas enviadas com sucesso', 'Cards submitted successfully'),
+    successMessage: translate(
+      "Cartas enviadas com sucesso",
+      "Cards submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas cartas',
-      'Oops, the application failed to send your cards'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar suas cartas",
+      "Oops, the application failed to send your cards",
     ),
   });
 
@@ -50,16 +60,19 @@ export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnPlayCardAPIRequest(setStep: UseStep['setStep']) {
+export function useOnPlayCardAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'play-card',
+    actionName: "play-card",
     onError: () => setStep(2),
-    successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
+    successMessage: translate(
+      "Carta enviada com sucesso",
+      "Card submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application failed to send your card'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta",
+      "Oops, the application failed to send your card",
     ),
   });
 

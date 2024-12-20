@@ -1,26 +1,26 @@
 // Ant Design Resources
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Space } from 'antd';
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Space } from "antd";
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from "types/player";
 // Components
-import { AvatarName } from 'components/avatars';
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { Translate } from 'components/language';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { AvatarName } from "components/avatars";
+import { SuggestionEasel } from "components/game/SuggestionEasel";
+import { Translate } from "components/language";
+import { PointsHighlight } from "components/metrics/PointsHighlight";
+import { Step, type StepProps } from "components/steps";
+import { RuleInstruction, Title } from "components/text";
 // Internal
-import type { Suggestion } from './utils/types';
-import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { Guess } from './components/Guess';
+import type { Suggestion } from "./utils/types";
+import { UeSoIssoCard as Card } from "./components/UeSoIssoCard";
+import { Guess } from "./components/Guess";
 
 type StepGuessingProps = {
   guesser: GamePlayer;
   onSendGuess: GenericFunction;
   onSubmitOutcome: GenericFunction;
   validSuggestions: Suggestion[];
-} & Pick<StepProps, 'announcement'>;
+} & Pick<StepProps, "announcement">;
 
 export function StepGuessing({
   guesser,
@@ -32,7 +32,8 @@ export function StepGuessing({
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        <Translate pt="Hora de brilhar" en="Time to shine" />, <AvatarName player={guesser} />!
+        <Translate pt="Hora de brilhar" en="Time to shine" />,{" "}
+        <AvatarName player={guesser} />!
       </Title>
       <RuleInstruction type="rule">
         <Translate
@@ -49,8 +50,10 @@ export function StepGuessing({
             <>
               <strong>Escreva</strong> sua adivinhação abaixo.
               <br />
-              Se você acertar, o grupo ganha <PointsHighlight type="positive">2 pontos</PointsHighlight> mas
-              se você errar, o grupo perde <PointsHighlight type="negative">1 ponto</PointsHighlight>.
+              Se você acertar, o grupo ganha{" "}
+              <PointsHighlight type="positive">2 pontos</PointsHighlight> mas se
+              você errar, o grupo perde{" "}
+              <PointsHighlight type="negative">1 ponto</PointsHighlight>.
               <br />
               Você pode pular se não estiver se sentindo seguro.
             </>
@@ -59,10 +62,9 @@ export function StepGuessing({
             <>
               <strong>Write</strong> your guess below.
               <br />
-              If you get it right, the group wins <PointsHighlight type="positive">
-                2 points
-              </PointsHighlight>{' '}
-              but if you get it wrong, the group loses{' '}
+              If you get it right, the group wins{" "}
+              <PointsHighlight type="positive">2 points</PointsHighlight> but if
+              you get it wrong, the group loses{" "}
               <PointsHighlight type="negative">1 point</PointsHighlight>.
               <br />
               You can skip if you're not feeling confident.
@@ -76,7 +78,13 @@ export function StepGuessing({
       <Space className="u-word-guess-phase__suggestions">
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
-          return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
+          return (
+            <SuggestionEasel
+              key={id}
+              id={id}
+              value={suggestionEntry.suggestion}
+            />
+          );
         })}
         {validSuggestions.length === 0 && (
           <RuleInstruction type="alert">

@@ -1,15 +1,15 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 // Ant Design Resources
-import { Image, Popconfirm } from 'antd';
+import { Image, Popconfirm } from "antd";
 // Types
-import type { SuspectCard } from 'types/tdr';
+import type { SuspectCard } from "types/tdr";
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useCardWidth } from "hooks/useCardWidth";
+import { useLanguage } from "hooks/useLanguage";
+import { useLoading } from "hooks/useLoading";
 // Components
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate } from 'components/language';
+import { ImageCard } from "components/image-cards";
+import { DualTranslate } from "components/language";
 
 type SuspectsProps = {
   suspects: SuspectCard[];
@@ -18,7 +18,12 @@ type SuspectsProps = {
   eliminatedSuspects?: string[];
 };
 
-export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspects = [] }: SuspectsProps) {
+export function Suspects({
+  suspects,
+  perpetrator,
+  onCardClick,
+  eliminatedSuspects = [],
+}: SuspectsProps) {
   const { language, translate } = useLanguage();
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(7);
@@ -35,11 +40,11 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
               key={suspect.id}
               title={translate(
                 `Tem certeza que quer liberar ${name}?`,
-                `Are you sure you want to release ${name}?`
+                `Are you sure you want to release ${name}?`,
               )}
               onConfirm={() => onCardClick(suspect.id)}
-              okText={translate('Sim', 'Yes')}
-              cancelText={translate('Não', 'No')}
+              okText={translate("Sim", "Yes")}
+              cancelText={translate("Não", "No")}
               disabled={wasEliminated || isLoading}
             >
               <button
@@ -47,16 +52,20 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
                 disabled={wasEliminated || isLoading}
               >
                 <ImageCard
-                  id={wasEliminated ? 'us-00' : suspect.id}
+                  id={wasEliminated ? "us-00" : suspect.id}
                   className={clsx(
-                    't-suspects-table__suspect-image',
-                    perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active',
-                    wasEliminated && 't-suspects-table__suspect-image--disabled'
+                    "t-suspects-table__suspect-image",
+                    perpetrator?.id === suspect.id &&
+                      "t-suspects-table__suspect-image--active",
+                    wasEliminated &&
+                      "t-suspects-table__suspect-image--disabled",
                   )}
                   cardWidth={cardWidth}
                   preview={false}
                 />
-                {!wasEliminated && <div className="t-suspects-table__suspect-name">{name}</div>}
+                {!wasEliminated && (
+                  <div className="t-suspects-table__suspect-name">{name}</div>
+                )}
               </button>
             </Popconfirm>
           );
@@ -73,11 +82,12 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
           return (
             <div className="t-suspects-table__suspect" key={suspect.id}>
               <ImageCard
-                id={wasEliminated ? 'us-00' : suspect.id}
+                id={wasEliminated ? "us-00" : suspect.id}
                 previewImageId={suspect.id}
                 className={clsx(
-                  't-suspects-table__suspect-image',
-                  perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active'
+                  "t-suspects-table__suspect-image",
+                  perpetrator?.id === suspect.id &&
+                    "t-suspects-table__suspect-image--active",
                 )}
                 cardWidth={cardWidth}
               />

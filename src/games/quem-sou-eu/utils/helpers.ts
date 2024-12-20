@@ -1,7 +1,7 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from "types/player";
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from "utils/constants";
 
 /**
  * Creates a glyph reference dictionary where true means positive and false means negative
@@ -11,7 +11,7 @@ import { SEPARATOR } from 'utils/constants';
  */
 export const prepareGlyphs = (
   positive: BooleanDictionary,
-  negative: BooleanDictionary
+  negative: BooleanDictionary,
 ): BooleanDictionary => {
   const dict: BooleanDictionary = {};
   Object.keys(positive).forEach((key) => (dict[key] = true));
@@ -33,11 +33,11 @@ export const parseSelectedGlyphs = (glyphs: BooleanDictionary) => {
   });
 
   while (positive.length < 3) {
-    positive.push('');
+    positive.push("");
   }
 
   while (negative.length < 3) {
-    negative.push('');
+    negative.push("");
   }
 
   return [positive, negative];
@@ -49,7 +49,10 @@ export const parseSelectedGlyphs = (glyphs: BooleanDictionary) => {
  * @param votes
  * @returns
  */
-export const getRibbons = (players: GamePlayers, votes: StringDictionary): Record<string, GamePlayer[]> => {
+export const getRibbons = (
+  players: GamePlayers,
+  votes: StringDictionary,
+): Record<string, GamePlayer[]> => {
   const votesDict: Record<string, GamePlayer[]> = {};
 
   Object.keys(votes).forEach((playerEntry) => {

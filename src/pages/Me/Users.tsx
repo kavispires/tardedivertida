@@ -1,15 +1,15 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { cloneDeep, merge } from 'lodash';
-import { useMemo, useState } from 'react';
-import { useTitle } from 'react-use';
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { cloneDeep, merge } from "lodash";
+import { useMemo, useState } from "react";
+import { useTitle } from "react-use";
 // Ant Design Resources
-import { App, Button, Input, Select, Space, Typography } from 'antd';
+import { App, Button, Input, Select, Space, Typography } from "antd";
 // Services
-import { USER_API, USER_API_ACTIONS } from 'services/adapters';
-import { firestore } from 'services/firebase';
+import { USER_API, USER_API_ACTIONS } from "services/adapters";
+import { firestore } from "services/firebase";
 // Sass
-import './Me.scss';
+import "./Me.scss";
 // Components
 
 interface GameUserEntry {
@@ -53,19 +53,19 @@ interface FirebaseUserDB {
 }
 
 const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
-  id: '',
+  id: "",
   names: [],
   avatars: {},
-  preferredLanguage: 'en',
+  preferredLanguage: "en",
   games: {},
-  gender: 'unknown',
+  gender: "unknown",
   ratings: {},
   blurredImages: {},
   daily: {},
 };
 
 function Users() {
-  useTitle('Users - Tarde Divertida');
+  useTitle("Users - Tarde Divertida");
   const { message, notification } = App.useApp();
   const queryClient = useQueryClient();
 
@@ -73,10 +73,10 @@ function Users() {
   const [selectedUserD, setSelectedUserD] = useState(DEFAULT_FIREBASE_USER_DB);
 
   const usersQuery = useQuery({
-    queryKey: ['users'],
+    queryKey: ["users"],
     queryFn: async () => {
       const querySnapshot = await getDocs(
-        query(collection(firestore, 'users'), where('isGuest', '!=', true))
+        query(collection(firestore, "users"), where("isGuest", "!=", true)),
       );
       const result: any[] = [];
       querySnapshot.forEach((doc) => result.push(doc.data()));
@@ -85,19 +85,19 @@ function Users() {
   });
 
   const usersMutation = useMutation({
-    mutationKey: ['users'],
+    mutationKey: ["users"],
     mutationFn: async (data: FirebaseUserDB) => {
       USER_API.run({ action: USER_API_ACTIONS.UPDATE_USER_DB, ...data });
     },
     onSuccess: () => {
-      message.success('User updated');
+      message.success("User updated");
       queryClient.invalidateQueries({
-        queryKey: ['users'],
+        queryKey: ["users"],
       });
     },
     onError: (error: any) => {
       notification.error({
-        message: 'Error',
+        message: "Error",
         description: error.message,
       });
     },
@@ -106,11 +106,15 @@ function Users() {
   const data: FirebaseUserDB[] = usersQuery.data ?? [];
 
   const onSelectUserO = (uid: string) => {
-    setSelectedUserO(data.find((e) => e.id === uid) ?? DEFAULT_FIREBASE_USER_DB);
+    setSelectedUserO(
+      data.find((e) => e.id === uid) ?? DEFAULT_FIREBASE_USER_DB,
+    );
   };
 
   const onSelectUserD = (uid: string) => {
-    setSelectedUserD(data.find((e) => e.id === uid) ?? DEFAULT_FIREBASE_USER_DB);
+    setSelectedUserD(
+      data.find((e) => e.id === uid) ?? DEFAULT_FIREBASE_USER_DB,
+    );
   };
 
   const options = data.map((entry) => (
@@ -133,7 +137,7 @@ function Users() {
 
   const mergedUser = useMemo(
     () => merge(cloneDeep(selectedUserO ?? {}), cloneDeep(selectedUserD ?? {})),
-    [selectedUserO, selectedUserD]
+    [selectedUserO, selectedUserD],
   );
 
   console.log(data);
@@ -141,13 +145,18 @@ function Users() {
   return (
     <div>
       <Typography.Title>Users</Typography.Title>
-      {usersQuery.isLoading && <Typography.Paragraph>Loading...</Typography.Paragraph>}
-      <Space className="margin" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
+      {usersQuery.isLoading && (
+        <Typography.Paragraph>Loading...</Typography.Paragraph>
+      )}
+      <Space
+        className="margin"
+        style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}
+      >
         <Space direction="vertical">
           <Typography.Title level={2}>Origin</Typography.Title>
           <Space className="margin">{selectO}</Space>
           <Typography.Paragraph>
-            {selectedUserO?.names?.join(', ') ?? 'No user selected'}
+            {selectedUserO?.names?.join(", ") ?? "No user selected"}
           </Typography.Paragraph>
           <Input.TextArea
             value={JSON.stringify(selectedUserO ?? {}, null, 2)}
@@ -161,7 +170,7 @@ function Users() {
           <Typography.Title level={2}>Destination</Typography.Title>
           <Space className="margin">{selectD}</Space>
           <Typography.Paragraph>
-            {selectedUserD?.names?.join(', ') ?? 'No user selected'}
+            {selectedUserD?.names?.join(", ") ?? "No user selected"}
           </Typography.Paragraph>
           <Input.TextArea
             value={JSON.stringify(selectedUserD ?? {}, null, 2)}
@@ -175,7 +184,9 @@ function Users() {
       <Space direction="vertical">
         <Typography.Title level={2}>Merge</Typography.Title>
 
-        <Typography.Paragraph>{mergedUser?.names?.join(', ') ?? 'No user selected'}</Typography.Paragraph>
+        <Typography.Paragraph>
+          {mergedUser?.names?.join(", ") ?? "No user selected"}
+        </Typography.Paragraph>
         <Input.TextArea
           value={JSON.stringify(mergedUser ?? {}, null, 2)}
           rows={20}

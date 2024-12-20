@@ -1,22 +1,25 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from "hooks/useGameActionRequest";
+import { useLanguage } from "hooks/useLanguage";
+import type { UseStep } from "hooks/useStep";
 // Internal
-import type { SubmitMovieActorPayload, SubmitMovieGenrePayload } from './types';
-import { TESTE_DE_ELENCO_ACTIONS } from './constants';
+import type { SubmitMovieActorPayload, SubmitMovieGenrePayload } from "./types";
+import { TESTE_DE_ELENCO_ACTIONS } from "./constants";
 
-export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-genre',
+    actionName: "submit-genre",
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Gênero submetido com sucesso', 'Genre submitted successfully'),
+    successMessage: translate(
+      "Gênero submetido com sucesso",
+      "Genre submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação",
+      "Oops, the application found an error while trying to submit your action",
     ),
   });
 
@@ -28,17 +31,20 @@ export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitMovieActorAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitMovieActorAPIRequest(setStep: UseStep["setStep"]) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-genre',
+    actionName: "submit-genre",
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ator submetido com sucesso', 'Actor submitted successfully'),
+    successMessage: translate(
+      "Ator submetido com sucesso",
+      "Actor submitted successfully",
+    ),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação",
+      "Oops, the application found an error while trying to submit your action",
     ),
   });
 

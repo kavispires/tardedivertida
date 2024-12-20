@@ -1,65 +1,83 @@
 // Ant Design Resources
-import { StepProps } from 'antd';
+import { StepProps } from "antd";
 // Types
-import { GameRound } from 'types/game';
-import { MovieCard } from 'types/tdr';
+import { GameRound } from "types/game";
+import { MovieCard } from "types/tdr";
 // Internal
-import { SeedEntry } from './types';
+import { SeedEntry } from "./types";
 
 export const buildSeedingSteps = (
   seeds: SeedEntry[],
-  translate: (pt: string, en: string, custom?: string | undefined) => string
+  translate: (pt: string, en: string, custom?: string | undefined) => string,
 ): StepProps[] => {
   return seeds.map((seed) => {
     switch (seed.type) {
-      case 'arte-ruim':
+      case "arte-ruim":
         return {
-          title: translate('Hobby Artístico', 'Artistic Hobby'),
-          description: translate('Se expresse!', 'Express yourself!'),
+          title: translate("Hobby Artístico", "Artistic Hobby"),
+          description: translate("Se expresse!", "Express yourself!"),
         };
 
-      case 'contadores-historias':
+      case "contadores-historias":
         return {
-          title: translate('Torpedo da sua mãe', 'Text from your mom'),
-          description: translate('O que ela quer agora?', 'What does she want now?'),
+          title: translate("Torpedo da sua mãe", "Text from your mom"),
+          description: translate(
+            "O que ela quer agora?",
+            "What does she want now?",
+          ),
         };
 
-      case 'labirinto-secreto':
+      case "labirinto-secreto":
         return {
-          title: translate('Postando no Insta', 'Instagram post'),
-          description: translate('Não existe sexy demais!', 'Do it for the likes!'),
+          title: translate("Postando no Insta", "Instagram post"),
+          description: translate(
+            "Não existe sexy demais!",
+            "Do it for the likes!",
+          ),
         };
 
-      case 'mente-coletiva':
+      case "mente-coletiva":
         return {
-          title: translate('Tik Tok', 'Tik Tok'),
-          description: translate('Sempre temos um tempinho!', "There's always time!"),
+          title: translate("Tik Tok", "Tik Tok"),
+          description: translate(
+            "Sempre temos um tempinho!",
+            "There's always time!",
+          ),
         };
-      case 'party':
-      case 'onda-telepatica':
+      case "party":
+      case "onda-telepatica":
         return {
-          title: translate('Tarefa de Casa', 'Homework'),
-          description: translate('Não pode deixar pra depois!', "You can't leave it for tomorrow!"),
+          title: translate("Tarefa de Casa", "Homework"),
+          description: translate(
+            "Não pode deixar pra depois!",
+            "You can't leave it for tomorrow!",
+          ),
         };
-      case 'polemica-da-vez':
+      case "polemica-da-vez":
         return {
-          title: translate('Redes sociais', 'Social Media'),
-          description: translate('Dê uma olhada no twitter', 'Check it out twitter'),
+          title: translate("Redes sociais", "Social Media"),
+          description: translate(
+            "Dê uma olhada no twitter",
+            "Check it out twitter",
+          ),
         };
-      case 'retrato-falado':
+      case "retrato-falado":
         return {
-          title: translate('Flashback', 'Flashback'),
-          description: translate('Um evento traumatizante', 'A traumatizing event'),
+          title: translate("Flashback", "Flashback"),
+          description: translate(
+            "Um evento traumatizante",
+            "A traumatizing event",
+          ),
         };
-      case 'ue-so-isso':
+      case "ue-so-isso":
         return {
-          title: translate('Torpedo do Amigo', "A friend's text"),
-          description: translate('Responda!', 'Reply!'),
+          title: translate("Torpedo do Amigo", "A friend's text"),
+          description: translate("Responda!", "Reply!"),
         };
-      case 'clubber':
+      case "clubber":
         return {
-          title: translate('Look', 'Outfit'),
-          description: translate('Como ir pra balada', 'How to be cool'),
+          title: translate("Look", "Outfit"),
+          description: translate("Como ir pra balada", "How to be cool"),
         };
       default:
         return {};

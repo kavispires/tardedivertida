@@ -1,20 +1,20 @@
-import clsx from 'clsx';
-import { orderBy } from 'lodash';
-import { LegacyRef, ReactNode, useEffect, useMemo, useState } from 'react';
-import { useEffectOnce, useMeasure } from 'react-use';
+import clsx from "clsx";
+import { orderBy } from "lodash";
+import { LegacyRef, ReactNode, useEffect, useMemo, useState } from "react";
+import { useEffectOnce, useMeasure } from "react-use";
 // Ant Design Resources
-import { CrownFilled } from '@ant-design/icons';
-import { Tooltip } from 'antd';
+import { CrownFilled } from "@ant-design/icons";
+import { Tooltip } from "antd";
 // Types
-import type { GameRanking } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRanking } from "types/game";
+import type { GamePlayers } from "types/player";
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
+import { useCountdown } from "hooks/useCountdown";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Components
-import { Avatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { Avatar } from "components/avatars";
+import { Translate } from "components/language";
 
 type GainedPointProps = {
   gainedPoint: number;
@@ -22,23 +22,29 @@ type GainedPointProps = {
   description?: any;
 };
 
-function GainedPoint({ gainedPoint, order, description }: GainedPointProps): JSX.Element {
+function GainedPoint({
+  gainedPoint,
+  order,
+  description,
+}: GainedPointProps): JSX.Element {
   const isPositive = gainedPoint > 0;
   const isNegative = gainedPoint < 0;
   return (
     <li
       className={clsx(
-        'ranking-board__gained-point',
-        isPositive && 'ranking-board__gained-point--plus',
-        isNegative && 'ranking-board__gained-point--minus',
-        `ranking-board__gained-point--${order}`
+        "ranking-board__gained-point",
+        isPositive && "ranking-board__gained-point--plus",
+        isNegative && "ranking-board__gained-point--minus",
+        `ranking-board__gained-point--${order}`,
       )}
     >
       <Tooltip
-        title={description ?? <Translate pt="Pontos ganhos" en="Gained Points" />}
-        color={isPositive ? 'gold' : isNegative ? 'red' : 'gray'}
+        title={
+          description ?? <Translate pt="Pontos ganhos" en="Gained Points" />
+        }
+        color={isPositive ? "gold" : isNegative ? "red" : "gray"}
       >
-        {isPositive ? '+' : ''}
+        {isPositive ? "+" : ""}
         {gainedPoint}
       </Tooltip>
     </li>
@@ -91,7 +97,10 @@ export function RankingBoard({
   const [reRank, setReRank] = useState(0);
   const [ref, { height }] = useMeasure();
 
-  const maxPoints = useMemo(() => Math.max(...ranking.map((scores) => scores.newScore)), [ranking]);
+  const maxPoints = useMemo(
+    () => Math.max(...ranking.map((scores) => scores.newScore)),
+    [ranking],
+  );
 
   const { seconds } = useCountdown({
     duration: 5 + delay,
@@ -108,39 +117,46 @@ export function RankingBoard({
     let lastPosition = 0;
     let lastPoints = 0;
 
-    const rankByFinalScoreDict = orderBy(ranking, ['newScore', 'name'], ['desc', 'asc']).reduce(
-      (acc: PlainObject, entry, index) => {
-        acc[entry.playerId] = index;
-        // Calculate position
-        if (lastPoints === 0 || entry.newScore < lastPoints) {
-          lastPoints = entry.newScore;
-          lastPosition += 1;
-        }
-        positions[entry.playerId] = [0, lastPosition];
-        return acc;
-      },
-      {}
-    );
+    const rankByFinalScoreDict = orderBy(
+      ranking,
+      ["newScore", "name"],
+      ["desc", "asc"],
+    ).reduce((acc: PlainObject, entry, index) => {
+      acc[entry.playerId] = index;
+      // Calculate position
+      if (lastPoints === 0 || entry.newScore < lastPoints) {
+        lastPoints = entry.newScore;
+        lastPosition += 1;
+      }
+      positions[entry.playerId] = [0, lastPosition];
+      return acc;
+    }, {});
 
-    const rankByPreviousScore = orderBy(ranking, ['previousScore', 'name'], ['desc', 'asc']);
+    const rankByPreviousScore = orderBy(
+      ranking,
+      ["previousScore", "name"],
+      ["desc", "asc"],
+    );
 
     // Reset position trackers
     lastPosition = 0;
     lastPoints = 0;
 
-    const tempSortedRanking: GameRanking = rankByPreviousScore.map((entry, index) => {
-      const newEntry = { ...entry };
+    const tempSortedRanking: GameRanking = rankByPreviousScore.map(
+      (entry, index) => {
+        const newEntry = { ...entry };
 
-      newEntry.order = [index, rankByFinalScoreDict[newEntry.playerId]];
-      newEntry.position = positions[newEntry.playerId];
-      // Calculate position
-      if (lastPoints === 0 || entry.previousScore < lastPoints) {
-        lastPoints = entry.previousScore;
-        lastPosition += 1;
-      }
-      newEntry.position[0] = lastPosition;
-      return newEntry;
-    });
+        newEntry.order = [index, rankByFinalScoreDict[newEntry.playerId]];
+        newEntry.position = positions[newEntry.playerId];
+        // Calculate position
+        if (lastPoints === 0 || entry.previousScore < lastPoints) {
+          lastPoints = entry.previousScore;
+          lastPosition += 1;
+        }
+        newEntry.position[0] = lastPosition;
+        return newEntry;
+      },
+    );
 
     setSortedRanking(tempSortedRanking);
   });
@@ -157,11 +173,13 @@ export function RankingBoard({
   return (
     <div
       className={clsx(
-        'ranking-board',
-        seconds > 4 && 'ranking-board--hidden',
-        seconds === 4 && getAnimationClass('fadeIn')
+        "ranking-board",
+        seconds > 4 && "ranking-board--hidden",
+        seconds === 4 && getAnimationClass("fadeIn"),
       )}
-      style={{ height: `${(Math.max(60, height) + 8) * sortedRanking.length}px` }}
+      style={{
+        height: `${(Math.max(60, height) + 8) * sortedRanking.length}px`,
+      }}
     >
       <div
         className="ranking-board__row"
@@ -179,7 +197,10 @@ export function RankingBoard({
           </div>
           <div className="ranking-board__name">Placeholder</div>
         </div>
-        <Tooltip title={<Translate pt="Pontos Anteriores" en="Previous Points" />} color="gray">
+        <Tooltip
+          title={<Translate pt="Pontos Anteriores" en="Previous Points" />}
+          color="gray"
+        >
           <div className="ranking-board__cell-points">0</div>
         </Tooltip>
 
@@ -191,7 +212,14 @@ export function RankingBoard({
       </div>
 
       {sortedRanking.map((entry, index) => {
-        const { playerId, newScore, previousScore, gainedPoints, order, position } = entry;
+        const {
+          playerId,
+          newScore,
+          previousScore,
+          gainedPoints,
+          order,
+          position,
+        } = entry;
         const hPosition = (Math.max(60, height) + 8) * (order[reRank] ?? 0);
 
         return (
@@ -206,29 +234,42 @@ export function RankingBoard({
                 <CrownFilled className="ranking-board__crown-icon" />
               )}
             </div>
-            <div className="ranking-board__cell-position">#{position[reRank] ?? ''}</div>
+            <div className="ranking-board__cell-position">
+              #{position[reRank] ?? ""}
+            </div>
             <div className="ranking-board__cell-player">
               <div className="ranking-board__avatar">
                 <Avatar id={players[playerId].avatarId} />
               </div>
-              <div className="ranking-board__name">{players[playerId].name}</div>
+              <div className="ranking-board__name">
+                {players[playerId].name}
+              </div>
             </div>
-            <Tooltip title={<Translate pt="Pontos Anteriores" en="Previous Points" />} color="gray">
+            <Tooltip
+              title={<Translate pt="Pontos Anteriores" en="Previous Points" />}
+              color="gray"
+            >
               <div className="ranking-board__cell-points">{previousScore}</div>
             </Tooltip>
-            {!hideGainedPoints && displayStep >= 1 && gainedPoints !== undefined && (
-              <GainedPoints
-                gainedPoints={gainedPoints}
-                playerId={playerId}
-                gainedPointsDescriptions={gainedPointsDescriptions}
-              />
-            )}
+            {!hideGainedPoints &&
+              displayStep >= 1 &&
+              gainedPoints !== undefined && (
+                <GainedPoints
+                  gainedPoints={gainedPoints}
+                  playerId={playerId}
+                  gainedPointsDescriptions={gainedPointsDescriptions}
+                />
+              )}
 
             <Tooltip title="Total" color="gold">
               {displayStep >= 2 ? (
-                <span className="ranking-board__cell-points-total">{newScore}</span>
+                <span className="ranking-board__cell-points-total">
+                  {newScore}
+                </span>
               ) : (
-                <span className="ranking-board__cell-points-total-preliminary">{newScore}</span>
+                <span className="ranking-board__cell-points-total-preliminary">
+                  {newScore}
+                </span>
               )}
             </Tooltip>
           </div>

@@ -1,28 +1,32 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 // Ant Design Resources
-import { Space } from 'antd';
+import { Space } from "antd";
 // Types
-import { GamePlayer } from 'types/player';
+import { GamePlayer } from "types/player";
 // Icons
-import { BoxEqualIcon } from 'icons/BoxEqualIcon';
-import { BoxPlusIcon } from 'icons/BoxPlusIcon';
+import { BoxEqualIcon } from "icons/BoxEqualIcon";
+import { BoxPlusIcon } from "icons/BoxPlusIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Card } from 'components/cards';
+import { IconAvatar } from "components/avatars";
+import { Card } from "components/cards";
 // Internal
-import { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
-import { ObjectCard } from './ObjectCard';
-import { ObjectFeature } from './ObjectFeature';
+import { ExtendedObjectFeatureCard, ObjectCardObj } from "../utils/types";
+import { ObjectCard } from "./ObjectCard";
+import { ObjectFeature } from "./ObjectFeature";
 
 type PlayerObjectClueFeatureProps = {
   user: GamePlayer;
   features: Dictionary<ExtendedObjectFeatureCard>;
 };
 
-export function PlayerObjectClueFeature({ user, features }: PlayerObjectClueFeatureProps) {
+export function PlayerObjectClueFeature({
+  user,
+  features,
+}: PlayerObjectClueFeatureProps) {
   const selectedObject = useMemo(
-    () => user.items.find((item: ObjectCardObj) => item.id === user.selectedItemId),
-    [user]
+    () =>
+      user.items.find((item: ObjectCardObj) => item.id === user.selectedItemId),
+    [user],
   );
 
   if (!selectedObject || !user.target) return <></>;

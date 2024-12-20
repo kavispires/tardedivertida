@@ -1,12 +1,12 @@
-import { orderBy } from 'lodash';
-import { useMemo } from 'react';
+import { orderBy } from "lodash";
+import { useMemo } from "react";
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button, Space } from "antd";
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from "types/player";
 // Components
-import { Avatar, AvatarName } from 'components/avatars';
-import { Translate } from 'components/language';
+import { Avatar, AvatarName } from "components/avatars";
+import { Translate } from "components/language";
 
 type VotingOptionsProps = {
   isAllDisabled: boolean;
@@ -29,23 +29,33 @@ export function VotingOptions({
     () =>
       orderBy(
         Object.values(players).filter((player) => player.id !== leaderId),
-        ['name'],
-        ['asc']
+        ["name"],
+        ["asc"],
       ),
-    [players, leaderId]
+    [players, leaderId],
   );
 
   return (
     <Space className="space-container d-voting-options" align="center">
       {votingOptions?.map((playerOption) => {
-        const votedForPlayer = Object.values(players).filter((player) => player?.vote === playerOption.id);
+        const votedForPlayer = Object.values(players).filter(
+          (player) => player?.vote === playerOption.id,
+        );
         return (
-          <div className="d-voting-options__container" key={`voting-button-${playerOption.name}`}>
+          <div
+            className="d-voting-options__container"
+            key={`voting-button-${playerOption.name}`}
+          >
             <Button
               onClick={() => onVote({ vote: playerOption.id })}
               ghost
               size="large"
-              disabled={isAllDisabled || user?.vote || isLoading || user?.name === playerOption.name}
+              disabled={
+                isAllDisabled ||
+                user?.vote ||
+                isLoading ||
+                user?.name === playerOption.name
+              }
             >
               <AvatarName player={playerOption} uppercase />
             </Button>
