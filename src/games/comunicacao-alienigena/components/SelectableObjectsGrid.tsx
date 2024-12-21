@@ -84,7 +84,7 @@ export function SelectableObjectsGrid({
                 />
               </Badge>
             </TransparentButton>
-          )
+          ),
         )}
       </div>
 

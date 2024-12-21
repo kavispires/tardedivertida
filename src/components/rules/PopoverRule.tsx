@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { ReadOutlined } from '@ant-design/icons';
 // Components
@@ -20,7 +20,7 @@ type PopoverRuleProps = {
   showLabel?: boolean;
 };
 
-export function PopoverRule({ content, label, showLabel = false }: PopoverRuleProps): JSX.Element {
+export function PopoverRule({ content, label, showLabel = false }: PopoverRuleProps) {
   return (
     <FixedMenuButton
       type="popover"

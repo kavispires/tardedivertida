@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 // Ant Design Resources
 import { PauseOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
@@ -74,7 +74,7 @@ export function HostNextPhaseButton({
     successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
-      'The application found an error while trying to go to the next phase'
+      'The application found an error while trying to go to the next phase',
     ),
   });
 
@@ -86,15 +86,16 @@ export function HostNextPhaseButton({
     autoStart: autoTriggerTime > 0,
     duration: autoTriggerTime,
     onExpire: handleClick,
-    disabled: !isHost ?? !hasTimer,
+    disabled: !isHost || !hasTimer,
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only watch for isLoading
   useEffect(() => {
     if (isLoading) {
       pause();
     }
     return () => pause();
-  }, [isLoading]); // eslint-disable-line
+  }, [isLoading]);
 
   return (
     <>
@@ -123,7 +124,7 @@ export function HostNextPhaseButton({
                     getAnimationClass('flash', {
                       speed: 'slow',
                       infinite: true,
-                    })
+                    }),
                 )}
               >
                 {timeLeft}

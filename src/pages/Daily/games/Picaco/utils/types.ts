@@ -1,6 +1,6 @@
-import { DateKey } from 'pages/Daily/utils/types';
+import type { DateKey } from 'pages/Daily/utils/types';
 // Types
-import { ArteRuimCard } from 'types/tdr';
+import type { ArteRuimCard } from 'types/tdr';
 
 export type GameState = {
   cards: ArteRuimCard[];

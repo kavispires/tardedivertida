@@ -71,8 +71,9 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
   const onNegateCard = (index: number) => {
     setSelections((prev) => {
-      const copy = [...prev];
+      const copy = [...(prev ?? [])];
       if (copy[index]) {
+        // biome-ignore lint/style/noNonNullAssertion: idk what's up with the compiler
         copy[index]!.negate = !copy[index]?.negate;
       }
       return copy;
@@ -103,7 +104,10 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 <div className="map-builder__caret">
                   <IconAvatar
                     icon={<LocationIcon />}
-                    className={getAnimationClass('bounce', { speed: 'slow', infinite: true })}
+                    className={getAnimationClass('bounce', {
+                      speed: 'slow',
+                      infinite: true,
+                    })}
                     size="small"
                   />
                 </div>

@@ -1,4 +1,4 @@
-export function ShooterIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function ShooterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#f2ac94" d="M173.5 52.5v90a45 45 0 000-90z"></path>

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import type { User } from 'firebase/auth';
 import { getToday } from 'pages/Daily/utils';
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import { type ReactNode, createContext, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { App } from 'antd';
@@ -133,6 +133,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     retry: false,
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only an error should trigger
   useEffect(() => {
     if (!authenticatedUser?.isAnonymous && query.isError) {
       console.error(query.error);
@@ -141,7 +142,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         description: JSON.stringify(query.error.message),
       });
     }
-  }, [query.isError]); // eslint-disable-line
+  }, [query.isError]);
 
   const firestoreUser = query.data ?? defaultData;
 

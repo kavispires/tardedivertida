@@ -36,7 +36,7 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
         {
           [seed.card.id]: JSON.stringify(lines),
         },
-        true
+        true,
       );
     },
   });

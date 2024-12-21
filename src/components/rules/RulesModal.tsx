@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { ReadOutlined } from '@ant-design/icons';
-import { Button, ButtonProps, Modal } from 'antd';
+import { Button, type ButtonProps, Modal } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -15,7 +15,7 @@ type RulesModalProps = {
   buttonProps?: ButtonProps;
 };
 
-export function RulesModal({ gameInfo, buttonProps }: RulesModalProps): JSX.Element {
+export function RulesModal({ gameInfo, buttonProps }: RulesModalProps) {
   const { language, translate } = useLanguage();
   const [isVisible, setVisibility] = useState(false);
 

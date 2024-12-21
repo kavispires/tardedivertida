@@ -3,7 +3,7 @@ import { Tag } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // Internal
-import { OfferingsStatus } from '../utils/types';
+import type { OfferingsStatus } from '../utils/types';
 
 type ObjectsKeyProps = {
   status: OfferingsStatus;

@@ -1,18 +1,12 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
-// Ant Design Resources
+import type { ReactNode } from 'react';
 import { Tooltip } from 'antd';
-// Types
 import type { GamePlayer } from 'types/player';
-// Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
 import { getAvatarColorById } from 'utils/helpers';
-// Internal
 import { Avatar } from './Avatar';
 import { IconAvatar } from './IconAvatar';
-// Sass
 import './AvatarStrip.scss';
 
 type AvatarStripProps = {
@@ -72,11 +66,14 @@ export const AvatarStrip = ({
           baseClass,
           uppercase && `${baseClass}--uppercase`,
           `${baseClass}--${size}`,
-          className
+          className,
         )}
-        style={{ backgroundColor: getAvatarColorById(player.avatarId), width: sizes.width }}
+        style={{
+          backgroundColor: getAvatarColorById(player.avatarId),
+          width: sizes.width,
+        }}
       >
-        {Boolean(icon) ? (
+        {icon ? (
           <IconAvatar style={{ width: sizes.avatarSize, height: sizes.avatarSize }} icon={icon} />
         ) : (
           <Avatar
@@ -87,9 +84,7 @@ export const AvatarStrip = ({
           />
         )}
         {withName && (
-          <>
-            <div className="avatar-strip__name">{addressUser && isUser ? addressedUser : player.name}</div>
-          </>
+          <div className="avatar-strip__name">{addressUser && isUser ? addressedUser : player.name}</div>
         )}
       </div>
     </Tooltip>

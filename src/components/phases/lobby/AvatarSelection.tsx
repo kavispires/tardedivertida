@@ -26,6 +26,7 @@ export function AvatarSelection({
   userId,
 }: AvatarSelectionProps) {
   // Calculate available avatars and monitor if user chose a non-available one
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only needs recomputing when players change
   const availableAvatars = useMemo(() => {
     const usedAvatars = Object.values(players).reduce((acc: BooleanDictionary, { avatarId, id }) => {
       if (id !== userId) {
@@ -35,7 +36,7 @@ export function AvatarSelection({
     }, {});
 
     const newAvailableAvatars = AVAILABLE_AVATAR_IDS.filter(
-      (avatarId) => usedAvatars[avatarId] === undefined
+      (avatarId) => usedAvatars[avatarId] === undefined,
     );
 
     if (!newAvailableAvatars.includes(selectedAvatar)) {
@@ -43,7 +44,7 @@ export function AvatarSelection({
     }
 
     return newAvailableAvatars;
-  }, [players]); // eslint-disable-line
+  }, [players]);
 
   const onPreviousAvatar = useCallback(() => {
     const index = availableAvatars.indexOf(selectedAvatar);
@@ -64,7 +65,7 @@ export function AvatarSelection({
           <CaretLeftOutlined />
         </Button>
         <svg viewBox="0 0 100 100" className="lobby-avatar">
-          <use href={avatars + `#avatar-${selectedAvatar}`}></use>
+          <use href={`${avatars}#avatar-${selectedAvatar}`}></use>
           <title>
             <DualTranslate>{AVATARS[selectedAvatar].description}</DualTranslate>
           </title>

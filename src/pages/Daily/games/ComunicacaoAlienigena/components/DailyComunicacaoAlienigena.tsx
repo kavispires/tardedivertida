@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import { Region } from 'pages/Daily/components/Region';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { ArrowRightOutlined, BarChartOutlined } from '@ant-design/icons';
 import { Avatar, Button, Flex, Layout, Modal, Space, Typography } from 'antd';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -20,7 +20,7 @@ import { DualTranslate, Translate } from 'components/language';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { DailyComunicacaoAlienigenaEntry } from '../utils/types';
+import type { DailyComunicacaoAlienigenaEntry } from '../utils/types';
 import { useComunicacaoAlienigenaEngine } from '../utils/useComunicacaoAlienigenaEngine';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -33,7 +33,7 @@ type DailyComunicacaoAlienigenaProps = {
 };
 
 export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
   const {
     hearts,
     selection,
@@ -101,53 +101,68 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           </Typography.Text>
 
           <Flex className="alien-requests" gap={8}>
-            {data.requests.map((request, index) => (
-              <Flex
-                vertical
-                className="alien-requests__request"
-                key={request.itemId}
-                align="center"
-                justify="flex-start"
-              >
-                <Avatar className="mb-2">{index + 1}</Avatar>
-                <Flex vertical className="alien-requests__attributes" align="center">
-                  <SignCard id={request.spritesIds[2]} width={width - 12} className="alien-requests__sign" />
-                  <SignCard id={request.spritesIds[1]} width={width - 12} className="alien-requests__sign" />
-                  <SignCard id={request.spritesIds[0]} width={width - 12} className="alien-requests__sign" />
+            {data.requests.map((request, index) => {
+              const selected = selection[index];
+              return (
+                <Flex
+                  vertical
+                  className="alien-requests__request"
+                  key={request.itemId}
+                  align="center"
+                  justify="flex-start"
+                >
+                  <Avatar className="mb-2">{index + 1}</Avatar>
+                  <Flex vertical className="alien-requests__attributes" align="center">
+                    <SignCard
+                      id={request.spritesIds[2]}
+                      width={width - 12}
+                      className="alien-requests__sign"
+                    />
+                    <SignCard
+                      id={request.spritesIds[1]}
+                      width={width - 12}
+                      className="alien-requests__sign"
+                    />
+                    <SignCard
+                      id={request.spritesIds[0]}
+                      width={width - 12}
+                      className="alien-requests__sign"
+                    />
+                  </Flex>
+
+                  {selected ? (
+                    <TransparentButton
+                      onClick={() => onItemClick(selected)}
+                      className="mt-1"
+                      disabled={isComplete}
+                    >
+                      <ItemCard id={selected} width={isLose ? width / 2 : width} padding={0} />
+                    </TransparentButton>
+                  ) : (
+                    <TransparentButton
+                      onClick={() => onSlotClick(index)}
+                      className="mt-3"
+                      disabled={isComplete}
+                      active={slotIndex === index}
+                      activeClass="alien-request__slot--active"
+                    >
+                      <Avatar shape="square" size="large">
+                        ?
+                      </Avatar>
+                    </TransparentButton>
+                  )}
+
+                  {isComplete && isLose && (
+                    <ItemCard
+                      id={request.itemId}
+                      width={width}
+                      padding={0}
+                      className={clsx('alien-request__answer', getAnimationClass('zoomIn'))}
+                    />
+                  )}
                 </Flex>
-
-                {selection[index] ? (
-                  <TransparentButton
-                    onClick={() => onItemClick(selection[index]!)}
-                    className="mt-1"
-                    disabled={isComplete}
-                  >
-                    <ItemCard id={selection[index]!} width={isLose ? width / 2 : width} padding={0} />
-                  </TransparentButton>
-                ) : (
-                  <TransparentButton
-                    onClick={() => onSlotClick(index)}
-                    className="mt-3"
-                    disabled={isComplete}
-                    active={slotIndex === index}
-                    activeClass="alien-request__slot--active"
-                  >
-                    <Avatar shape="square" size="large">
-                      ?
-                    </Avatar>
-                  </TransparentButton>
-                )}
-
-                {isComplete && isLose && (
-                  <ItemCard
-                    id={request.itemId}
-                    width={width}
-                    padding={0}
-                    className={clsx('alien-request__answer', getAnimationClass('zoomIn'))}
-                  />
-                )}
-              </Flex>
-            ))}
+              );
+            })}
           </Flex>
 
           {isReady && !isComplete && (

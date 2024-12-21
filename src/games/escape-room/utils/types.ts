@@ -1,1 +1,3 @@
-export type SubmitActionPayload = {};
+export type SubmitActionPayload = {
+  temp: string;
+};

@@ -6,7 +6,7 @@ import { LanguageButtons } from 'components/language/LanguageButtons';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
+import type { TestStepProps } from '../TestArea';
 
 export function LanguageTest({ onResult, step }: TestStepProps) {
   return (

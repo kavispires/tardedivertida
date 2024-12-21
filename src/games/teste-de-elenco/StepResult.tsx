@@ -52,8 +52,8 @@ export function StepResult({
       </Title>
 
       <RoleBoard activeRole={activeRole} instruction="RESULT" outcome={outcome}>
-        {outcome === 'CAST' ? (
-          <SuspectCard suspect={activeRole.candidates[activeRole.actor!]} width={120} />
+        {outcome === 'CAST' && activeRole.actor ? (
+          <SuspectCard suspect={activeRole.candidates[activeRole.actor]} width={120} />
         ) : (
           <ImageCard id="us-unknown" cardWidth={120} preview={false} />
         )}
@@ -66,12 +66,12 @@ export function StepResult({
             en="The directors did not reach a consensus. Here are the selected actors for the next phase:"
           />
         )}
-        {outcome === 'CAST' && (
+        {outcome === 'CAST' && activeRole.actor && (
           <Translate
             pt={
               <>
                 <TextHighlight>
-                  <DualTranslate>{activeRole.candidates[activeRole.actor!].name}</DualTranslate>
+                  <DualTranslate>{activeRole.candidates[activeRole.actor].name}</DualTranslate>
                 </TextHighlight>{' '}
                 foi escolhido(a) para o papel!
               </>
@@ -79,7 +79,7 @@ export function StepResult({
             en={
               <>
                 <TextHighlight>
-                  <DualTranslate>{activeRole.candidates[activeRole.actor!].name}</DualTranslate>
+                  <DualTranslate>{activeRole.candidates[activeRole.actor].name}</DualTranslate>
                 </TextHighlight>{' '}
                 was chosen for the role!
               </>

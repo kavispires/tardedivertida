@@ -31,7 +31,7 @@ export function useCloverState(
   mode: CloverMode,
   clover: CloverObject,
   leaves: Leaves,
-  onSubmit?: GenericFunction
+  onSubmit?: GenericFunction,
 ) {
   const { notification } = App.useApp();
   const { translate } = useLanguage();
@@ -40,13 +40,23 @@ export function useCloverState(
   const [rotation, setRotation] = useState<number>(0);
   const [activeLeafId, setActiveLeafId] = useState<string | null>(null);
   const [activeSlotId, setActiveSlotId] = useState<LeafPosition | null>(null);
-  const [guesses, setGuesses] = useState<Guesses>({ A: null, B: null, C: null, D: null });
-  const [locks, setLocks] = useState<LeafLocks>({ A: false, B: false, C: false, D: false });
+  const [guesses, setGuesses] = useState<Guesses>({
+    A: null,
+    B: null,
+    C: null,
+    D: null,
+  });
+  const [locks, setLocks] = useState<LeafLocks>({
+    A: false,
+    B: false,
+    C: false,
+    D: false,
+  });
   const [rotations, setRotations] = useState<NumberDictionary>(
     Object.keys(leaves).reduce((acc: NumberDictionary, leafId) => {
       acc[leafId] = 0;
       return acc;
-    }, {})
+    }, {}),
   );
   const [usedLeavesIds, setUsedLeavesIds] = useState<string[]>([]);
 
@@ -268,7 +278,7 @@ export function useCloverState(
       message: translate(`${4 - correctCount} folhas estão erradas`, `${4 - correctCount} leaves are wrong`),
       description: translate(
         'Tente novamente. Pode ter sido folha errada ou rotação errada',
-        'Try again. It may have been wrong leaf or just wrong rotation'
+        'Try again. It may have been wrong leaf or just wrong rotation',
       ),
     });
 

@@ -41,7 +41,7 @@ export function EvaluationAllCards({
             className={clsx(
               liButtonBaseClass,
               isActive && `${liButtonBaseClass}--active`,
-              isUsed && levelType !== 'pairs' && `${liButtonBaseClass}--used`
+              isUsed && levelType !== 'pairs' && `${liButtonBaseClass}--used`,
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >

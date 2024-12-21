@@ -45,7 +45,7 @@ export const playableGames = Object.entries(GAME_LIST).reduce(
     }
     return acc;
   },
-  {}
+  {},
 );
 
 export const availableGamesCount = Object.keys(playableGames).length;

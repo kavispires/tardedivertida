@@ -1,5 +1,5 @@
 // Types
-import { PhaseProps } from 'types/game';
+import type { PhaseProps } from 'types/game';
 // Hooks
 import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
@@ -64,7 +64,7 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
             />
 
             <Step announcement={announcement}>
-              <></>
+              <div>{/* // TODO: Why? */}</div>
             </Step>
           </ViewOr>
         </ViewOr>

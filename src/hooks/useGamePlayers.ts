@@ -25,13 +25,14 @@ export function useGamePlayers(gameId: GameId, gameName: GameName): GamePlayers 
 
   const players = data ?? {};
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (isLoading || isRefetching) {
       console.count('Refreshing players...');
     } else {
       print(players, 'table');
     }
-  }, [isLoading, isRefetching]); // eslint-disable-line
+  }, [isLoading, isRefetching]);
 
   return players as GamePlayers;
 }

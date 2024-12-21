@@ -41,7 +41,7 @@ export function GalleryGuesses({ entry, players, correctGuessPoints }: GalleryGu
               <AntAvatar.Group>
                 {cardEntry.votes.map((playerId) => {
                   const player = players[playerId];
-                  return <Avatar id={player.avatarId} alt={player.name} size="small" />;
+                  return <Avatar key={playerId} id={player.avatarId} alt={player.name} size="small" />;
                 })}
               </AntAvatar.Group>
               {cardEntry.votes.length > 0 && cardEntry.isDream && (

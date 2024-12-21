@@ -15,7 +15,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
+import type { TestStepProps } from '../TestArea';
 
 export function SoundsTest({ onResult, step }: TestStepProps) {
   const [showAudio, setShowAudio] = useState<string>('');
@@ -59,9 +59,12 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
         <Button
           onClick={() =>
             speak(
-              { pt: 'Olá, o seu teste 4 deu certo', en: 'Hello, you test 4 worked well.' },
+              {
+                pt: 'Olá, o seu teste 4 deu certo',
+                en: 'Hello, you test 4 worked well.',
+              },
               language,
-              volume
+              volume,
             )
           }
           disabled={Boolean(showAudio)}
@@ -71,7 +74,12 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
         {showAudio === 'arte-ruim' && <ArteRuimTimerSound />}
         {showAudio === 'dj' && <DJPruPruPruSound />}
         {showAudio === 'dialog' && (
-          <Speak text={{ pt: 'Olá, o seu teste 3 deu certo', en: 'Hello, you test 3 worked well.' }} />
+          <Speak
+            text={{
+              pt: 'Olá, o seu teste 3 deu certo',
+              en: 'Hello, you test 3 worked well.',
+            }}
+          />
         )}
       </Space>
 

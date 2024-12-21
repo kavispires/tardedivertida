@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
-import { Status } from '../utils/types';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
+// Icons
 import { ClockIcon } from 'icons/ClockIcon';
-import { StatusBar } from 'components/general/StatusBar';
 import { PeopleAssessmentIcon } from 'icons/PeopleAssessmentIcon';
+// Components
+import { StatusBar } from 'components/general/StatusBar';
 import { Translate } from 'components/language';
+import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+// Internal
+import type { Status } from '../utils/types';
 
 type SummaryProps = {
   status: Status;
@@ -38,7 +41,7 @@ export function Summary({ status }: SummaryProps) {
         value: <PointsHighlight iconPlacement="before">{status.score}</PointsHighlight>,
       },
     ],
-    [status]
+    [status],
   );
 
   return <StatusBar entries={entries} title="Status" />;

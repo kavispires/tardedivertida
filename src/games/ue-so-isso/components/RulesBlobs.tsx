@@ -5,7 +5,7 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction, RuleInstruction } from 'components/text';
 
-export function WritingRules(): JSX.Element {
+export function WritingRules() {
   return (
     <RuleInstruction type="action">
       <Translate
@@ -13,8 +13,7 @@ export function WritingRules(): JSX.Element {
           <>
             Hora de escrever uma dica para a palavra secreta!
             <br />A dica tem que ser uma <strong>palavra única</strong> que ajude o adivinhador... adivinhar.
-            <br />
-            É proibido usar derivados, partes da palavra ou traduções em outras línguas.
+            <br />É proibido usar derivados, partes da palavra ou traduções em outras línguas.
             <br />E não seja tão óbvio, já que dicas similares são eliminadas!
           </>
         }
@@ -35,7 +34,7 @@ export function WritingRules(): JSX.Element {
   );
 }
 
-export function ComparisonRules(): JSX.Element {
+export function ComparisonRules() {
   return (
     <Instruction>
       <Translate
@@ -58,7 +57,7 @@ export function ComparisonRules(): JSX.Element {
   );
 }
 
-export function ComparisonDetailedRules(): JSX.Element {
+export function ComparisonDetailedRules() {
   return (
     <Instruction contained>
       <Translate
@@ -88,7 +87,11 @@ export function ComparisonDetailedRules(): JSX.Element {
     </Instruction>
   );
 }
-export function ComparisonPhaseRules({ controller }: { controller: GamePlayer }): JSX.Element {
+export function ComparisonPhaseRules({
+  controller,
+}: {
+  controller: GamePlayer;
+}) {
   return (
     <RuleInstruction type="event">
       <Translate
@@ -118,7 +121,11 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
   );
 }
 
-export function GuessingRules({ guesser }: { guesser: GamePlayer }): JSX.Element {
+export function GuessingRules({
+  guesser,
+}: {
+  guesser: GamePlayer;
+}) {
   return (
     <RuleInstruction type="rule">
       <Translate

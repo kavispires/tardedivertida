@@ -86,7 +86,7 @@ export function BlurOptions() {
 
       <Checkbox
         checked={selected.aliens}
-        disabled={!Boolean(data.aliens)}
+        disabled={!data.aliens}
         onChange={(e) => onUpdateSelected('aliens', e.target.checked)}
         className="blur-options__checkbox"
       >
@@ -95,7 +95,7 @@ export function BlurOptions() {
 
       <Checkbox
         checked={selected.cockroaches}
-        disabled={!Boolean(data.cockroaches)}
+        disabled={!data.cockroaches}
         onChange={(e) => onUpdateSelected('cockroaches', e.target.checked)}
         className="blur-options__checkbox"
       >
@@ -104,7 +104,7 @@ export function BlurOptions() {
 
       <Checkbox
         checked={selected.scorpions}
-        disabled={!Boolean(data.scorpions)}
+        disabled={!data.scorpions}
         onChange={(e) => onUpdateSelected('scorpions', e.target.checked)}
         className="blur-options__checkbox"
       >
@@ -113,7 +113,7 @@ export function BlurOptions() {
 
       <Checkbox
         checked={selected.snakes}
-        disabled={!Boolean(data.snakes)}
+        disabled={!data.snakes}
         onChange={(e) => onUpdateSelected('snakes', e.target.checked)}
         className="blur-options__checkbox"
       >
@@ -122,7 +122,7 @@ export function BlurOptions() {
 
       <Checkbox
         checked={selected.spiders}
-        disabled={!Boolean(data.spiders)}
+        disabled={!data.spiders}
         onChange={(e) => onUpdateSelected('spiders', e.target.checked)}
         className="blur-options__checkbox"
       >

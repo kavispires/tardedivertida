@@ -10,7 +10,7 @@ import { deepCopy } from 'utils/helpers';
 // Internal
 import { DEFAULT_LOCAL_TODAY, getGuessString, getInitialState, validateAttempts } from './helpers';
 import { PHASES, SETTINGS } from './settings';
-import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
+import type { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
 
 export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, initialState: GameState) {
   const { message } = App.useApp();
@@ -61,8 +61,13 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
   const onFulfill = (shelfIndex: number) => {
     setState((prev) => {
       const copy = deepCopy(prev);
-      copy.fulfillments.push({ order: state.activeOrder!, shelfIndex: shelfIndex });
-      copy.activeOrder = null;
+      if (state.activeOrder) {
+        copy.fulfillments.push({
+          order: state.activeOrder,
+          shelfIndex: shelfIndex,
+        });
+        copy.activeOrder = null;
+      }
       return copy;
     });
   };
@@ -90,7 +95,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
       message.warning({
         content: translate(
           'Você já tentou essa combinação. Tente outra!',
-          'You already tried this combination. Try another one!'
+          'You already tried this combination. Try another one!',
         ),
         duration: 5,
       });
@@ -113,7 +118,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
       message.warning({
         content: translate(
           'Um ou mais produtos estão fora de lugar. Tente novamente!',
-          'One or more products are out of place. Try again!'
+          'One or more products are out of place. Try again!',
         ),
         duration: 3,
       });

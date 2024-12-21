@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
-import { Card, Col, Statistic, StatisticProps } from 'antd';
+import { Card, Col, Statistic, type StatisticProps } from 'antd';
 // Components
 import { IconAvatar } from 'components/avatars';
 
@@ -15,7 +15,7 @@ export function StatisticCard({ icon, title, value, disabled, description, ...re
     <Col xs={24} sm={8} md={8} lg={6}>
       <Card bordered={false} size="small" className="me__card-statistic">
         <Statistic
-          title={<>{title}</>}
+          title={title}
           value={disabled ? 0 : value}
           prefix={<IconAvatar size="small" icon={icon} />}
           {...rest}

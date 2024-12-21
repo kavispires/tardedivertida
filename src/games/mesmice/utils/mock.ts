@@ -1,7 +1,7 @@
 // Utils
 import { getRandomItem } from 'utils/helpers';
 // Internal
-import { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './types';
+import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './types';
 
 export const mockObjectIdSelection = (items: ObjectCardObj[]) => {
   return getRandomItem(items).id;
@@ -10,7 +10,7 @@ export const mockObjectIdSelection = (items: ObjectCardObj[]) => {
 export const mockFeatureSelection = (
   features: ExtendedObjectFeatureCard[],
   history: HistoryEntry[],
-  target: string
+  target: string,
 ) => {
   const usedFeatureIds = history.map((h) => h.featureId);
   const safe = features

@@ -1,4 +1,4 @@
-import { LegacyRef, useMemo } from 'react';
+import { type LegacyRef, useMemo } from 'react';
 import { useMeasure, useWindowSize } from 'react-use';
 
 /**
@@ -20,7 +20,7 @@ export function useCardWidth(
     maxWidth?: number;
     margin?: number;
     containerWidth?: number;
-  }
+  },
 ): number {
   const { gap = 32, minWidth = 120, maxWidth = 300, margin = 0 } = options ?? {};
   const { width: windowWidth } = useWindowSize();
@@ -49,7 +49,7 @@ export function useCardWidthByContainerRef<TRef = HTMLDivElement>(
     minWidth?: number;
     maxWidth?: number;
     margin?: number;
-  }
+  },
 ): [number, LegacyRef<TRef>] {
   const [ref, { width }] = useMeasure();
   const { gap = 32, minWidth = 120, maxWidth = 300, margin = 0 } = options ?? {};

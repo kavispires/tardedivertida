@@ -29,7 +29,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const nonWinningPlayers = orderBy(
     Object.values(players).filter((player) => !winningPlayersIds.includes(player.id)),
     'score',
-    'desc'
+    'desc',
   );
 
   return (
@@ -54,7 +54,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         <ul className="n-game-over-players">
           {state.winners.map((player: GamePlayer) => {
             return (
-              <div className="n-game-over-player">
+              <div key={player.id} className="n-game-over-player">
                 <CostumeAvatar
                   key={`winner-${player.id}`}
                   avatarId={state.winners[0].avatarId}
@@ -71,7 +71,9 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
 
       <ul
         className="n-game-over-players"
-        style={{ gridTemplateColumns: `repeat(${GRID_REPEAT?.[Object.keys(players).length] ?? 5}, 1fr)` }}
+        style={{
+          gridTemplateColumns: `repeat(${GRID_REPEAT?.[Object.keys(players).length] ?? 5}, 1fr)`,
+        }}
       >
         {nonWinningPlayers.map((player) => (
           <li className="n-game-over-player" key={`game-over-player-${player.id}`}>

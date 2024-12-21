@@ -32,7 +32,7 @@ export function NewHouseCard({ card }: NewHouseCardProps) {
     <div
       className={clsx(
         `${baseClass}`,
-        timeLeft > 0 ? getAnimationClass('bounceIn') : getAnimationClass('bounceOut')
+        timeLeft > 0 ? getAnimationClass('bounceIn') : getAnimationClass('bounceOut'),
       )}
     >
       <div className={clsx(`${baseClass}--container`, `${baseClass}--${card.type}`)}>

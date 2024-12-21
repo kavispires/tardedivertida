@@ -5,7 +5,7 @@ import { Translate } from 'components/language';
 // Sass
 import './MovieReviewCard.scss';
 
-// TODO: Verify
+// TODO: Type just doesn't work, I believe it's because the library is too old
 const Highlighter = HighlighterImport as any;
 
 type MovieReviewCardProps = {

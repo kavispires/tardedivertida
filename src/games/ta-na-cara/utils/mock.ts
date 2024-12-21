@@ -3,13 +3,13 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 // Utils
 import { getRandomItem } from 'utils/helpers';
 // Internal
-import { CharactersDictionary } from './types';
+import type { CharactersDictionary } from './types';
 
 export function mockPromptDecision(
   user: GamePlayer,
   players: GamePlayers,
   onSubmitPrompt: GenericFunction,
-  onSubmitTarget: GenericFunction
+  onSubmitTarget: GenericFunction,
 ) {
   const options = [
     ...user.questions,
@@ -37,8 +37,8 @@ export function mockGuess(charactersDict: CharactersDictionary, user: GamePlayer
         (character) =>
           character.id !== user.characterId &&
           !character.revealed &&
-          !(user.history?.[targetId] ?? []).includes(character.id)
+          !(user.history?.[targetId] ?? []).includes(character.id),
       )
-      .map((character) => character.id)
+      .map((character) => character.id),
   );
 }

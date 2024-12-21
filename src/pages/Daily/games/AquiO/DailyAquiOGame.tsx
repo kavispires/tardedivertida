@@ -37,6 +37,12 @@ export function DailyAquiOGame() {
   };
 
   return (
-    <DailyAquiO data={data} language={language} onToggleGame={onToggleGame} isRandomGame={isRandomGame} />
+    <DailyAquiO
+      key={String(isRandomGame)}
+      data={data}
+      language={language}
+      onToggleGame={onToggleGame}
+      isRandomGame={isRandomGame}
+    />
   );
 }

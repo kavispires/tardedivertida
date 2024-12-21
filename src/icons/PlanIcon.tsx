@@ -1,4 +1,4 @@
-export function PlanIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function PlanIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#e6e5e0" d="M40 88h432v272H40z"></path>

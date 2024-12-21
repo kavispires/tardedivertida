@@ -47,7 +47,7 @@ export function StepLiking({
       Array(Object.keys(players).length + 1)
         .fill(0)
         .map((e, i) => e + i),
-    [players]
+    [players],
   );
 
   return (
@@ -62,7 +62,7 @@ export function StepLiking({
           className={clsx(
             'p-reaction-button',
             'p-reaction-button--like',
-            like === true && 'p-reaction-button--active'
+            like === true && 'p-reaction-button--active',
           )}
           onClick={() => setLike(true)}
         >
@@ -73,7 +73,7 @@ export function StepLiking({
           className={clsx(
             'p-reaction-button',
             'p-reaction-button--dislike',
-            like === false && 'p-reaction-button--active'
+            like === false && 'p-reaction-button--active',
           )}
           onClick={() => setLike(false)}
         >

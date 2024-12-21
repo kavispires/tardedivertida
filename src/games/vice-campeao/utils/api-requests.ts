@@ -15,7 +15,7 @@ export function useOnSubmitVotingAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      'Oops, the application found an error while trying to submit your action',
     ),
   });
 

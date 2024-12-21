@@ -29,11 +29,11 @@ export function useOnSubmitSketchAPIRequest(setStep: UseStep['setStep']) {
     onError: () => setStep(1),
     successMessage: translate(
       'Acabou o tempo! Desenho enviado com sucesso',
-      "Time's up! Sketch submitted successfully"
+      "Time's up! Sketch submitted successfully",
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
-      'Oops, the application failed to send your sketch'
+      'Oops, the application failed to send your sketch',
     ),
   });
 
@@ -55,7 +55,7 @@ export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application failed to send your vote'
+      'Oops, the application failed to send your vote',
     ),
   });
 

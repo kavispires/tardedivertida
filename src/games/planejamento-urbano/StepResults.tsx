@@ -15,7 +15,7 @@ import { TurnOrder } from 'components/players';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { CityLocationsDict, GalleryEntry } from './utils/types';
+import type { CityLocationsDict, GalleryEntry } from './utils/types';
 import { LocationCard } from './components/LocationCard';
 
 type StepResultsProps = {

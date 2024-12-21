@@ -17,7 +17,7 @@ import { IconAvatar } from 'components/avatars';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, StepProps } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
@@ -63,7 +63,7 @@ export function StepResult({
   const { language } = useLanguage();
   const listOfFeatures = useMemo(
     () => orderBy(Object.values(features), [`title.${language}`, 'level']),
-    [features, language]
+    [features, language],
   );
 
   const roundScore = useMemo(
@@ -74,7 +74,7 @@ export function StepResult({
         }
         return acc;
       }, 0),
-    [history]
+    [history],
   );
 
   return (
@@ -141,13 +141,15 @@ export function StepResult({
           <ActivePlayerObjectClue activePlayer={activePlayer} item={item} clue={clue} />
           <div
             className="features-container"
-            style={{ gridTemplateColumns: `repeat(${listOfFeatures.length / 2}, 1fr)` }}
+            style={{
+              gridTemplateColumns: `repeat(${listOfFeatures.length / 2}, 1fr)`,
+            }}
           >
             {listOfFeatures.map((feature, index) => (
               <div
                 className={clsx(
                   'features-container__button',
-                  getAnimationClass('bounceIn', { delay: index })
+                  getAnimationClass('bounceIn', { delay: index }),
                 )}
                 key={feature.id}
               >

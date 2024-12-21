@@ -72,11 +72,11 @@ export function StepPlayDream({
           translate('Você controla!', 'You control!'),
           translate(
             'Selecione a carta-sonho que você acha que vai dar match com pelo menos um jogador!',
-            'Select the dream card you think will match at least one player'
+            'Select the dream card you think will match at least one player',
           ),
           activePlayer.id,
-          3
-        )
+          3,
+        ),
       );
       setShowedMessage(true);
     }
@@ -112,7 +112,7 @@ export function StepPlayDream({
         </RuleInstruction>
       )}
 
-      {Boolean(user.fallen) && !Boolean(user.inNightmare) && (
+      {Boolean(user.fallen) && !user.inNightmare && (
         <RuleInstruction type="event">
           <Translate
             pt={<>Você não conseguiu dar match em uma de suas cartas, e está fora da rodada.</>}

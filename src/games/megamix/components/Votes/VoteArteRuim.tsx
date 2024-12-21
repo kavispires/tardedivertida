@@ -19,7 +19,7 @@ export function VoteArteRuim({ track, playersList }: VoteComponentProps) {
       <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
         {playersList.map((player) => {
           const drawing = track.data.options.find(
-            (entry: PlainObject) => entry.playerId === player.data.value
+            (entry: PlainObject) => entry.playerId === player.data.value,
           );
           return (
             <div key={`vote-${player.id}`} className="player-vote">

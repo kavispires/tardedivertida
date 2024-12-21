@@ -20,7 +20,7 @@ type PlayerGlyphsProps = {
 export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
   const [positive, negative] = useMemo(
     () => parseSelectedGlyphs(player.selectedGlyphs ?? {}),
-    [player.selectedGlyphs]
+    [player.selectedGlyphs],
   );
 
   return (
@@ -38,7 +38,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
             key={`pos-${player.id}-${id}-${index}`}
           >
             <IconAvatar icon={<YesIcon />} size="small" />
-            {Boolean(id) ? (
+            {id ? (
               <GlyphCard width={glyphWidth} id={id} />
             ) : (
               <div
@@ -56,7 +56,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
             key={`neg-${player.id}-${id}-${index}`}
           >
             <IconAvatar icon={<NoIcon />} size="small" />
-            {Boolean(id) ? (
+            {id ? (
               <GlyphCard width={glyphWidth} id={id} />
             ) : (
               <div

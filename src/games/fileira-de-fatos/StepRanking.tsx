@@ -28,9 +28,9 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, roundTy
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Posições corretas" en="Correct positions" />,
-        <Translate pt="Penalidade em rodadas especiais" en="Penalty in special rounds" />,
-        <Translate pt="Bonus por acertar todos" en="Bonus points for getting all correct" />,
+        <Translate key="1" pt="Posições corretas" en="Correct positions" />,
+        <Translate key="2" pt="Penalidade em rodadas especiais" en="Penalty in special rounds" />,
+        <Translate key="3" pt="Bonus por acertar todos" en="Bonus points for getting all correct" />,
       ]}
     >
       <RuleInstruction type="alert">

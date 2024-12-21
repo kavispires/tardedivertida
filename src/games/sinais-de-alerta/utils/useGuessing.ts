@@ -1,7 +1,7 @@
 import { shuffle } from 'lodash';
 import { useMemo, useState } from 'react';
 // Internal
-import { DrawingEntry } from './types';
+import type { DrawingEntry } from './types';
 
 const checkIsSubject = (cardId: string) => cardId.includes('wss');
 const checkIsDescriptor = (cardId: string) => cardId.includes('wsd');

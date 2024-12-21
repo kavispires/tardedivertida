@@ -10,7 +10,7 @@ import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 // Internal
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 
 type OrdersProps = {
   fulfillments: ReturnType<typeof useControleDeEstoqueEngine>['fulfillments'];
@@ -51,7 +51,7 @@ export function Orders({ fulfillments, orders, onSelectOrder, shelfWidth, active
                 className={clsx(
                   'order',
                   activeOrder === order && 'order--active',
-                  !!isFulfilled && 'order--fulfilled'
+                  !!isFulfilled && 'order--fulfilled',
                 )}
               />
             </TransparentButton>

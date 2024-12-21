@@ -33,7 +33,10 @@ export function useGameMeta(): GameMeta {
       setLoader('load', true);
       console.count('Fetching game meta...');
 
-      const response = await GAME_API.run({ action: GAME_API_COMMON_ACTIONS.LOAD_GAME, gameId });
+      const response = await GAME_API.run({
+        action: GAME_API_COMMON_ACTIONS.LOAD_GAME,
+        gameId,
+      });
       const data = response.data as GameMeta;
 
       print({ meta: data });
@@ -45,6 +48,7 @@ export function useGameMeta(): GameMeta {
     staleTime: 30 * 60 * 1000, // 30 minutes
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!query.isError && query.isSuccess) {
       setError('meta', '');
@@ -57,11 +61,12 @@ export function useGameMeta(): GameMeta {
         description: JSON.stringify(query.error.message),
       });
     }
-  }, [query.isError]); // eslint-disable-line
+  }, [query.isError]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setLoader('load', query.isLoading);
-  }, [query.isLoading]); // eslint-disable-line
+  }, [query.isLoading]);
 
   return (query.data?.data ?? {
     gameId: '',

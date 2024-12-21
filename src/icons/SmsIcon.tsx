@@ -1,4 +1,4 @@
-export function SmsIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function SmsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#dfebfa" d="M194.2 44.2h282.5v423.7H194.2z"></path>

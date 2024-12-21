@@ -184,7 +184,7 @@ export const getColorFromLetter = (letter: string): string => {
 export const getPlayersFromIds = (
   playerIds: PlayerId[],
   players: GamePlayers,
-  justNames = false
+  justNames = false,
 ): (GamePlayer | PlayerName)[] => {
   return playerIds.map((playerId) => {
     const player = players[playerId];
@@ -209,7 +209,7 @@ export const pluralize = (quantity: number, singular: string, plural?: string): 
  * @param {any[]} list
  * @returns
  */
-export const shuffle = (list: any[]): any[] => {
+export const shuffle = <T>(list: T[]): T[] => {
   const result = [...list];
   result.sort(() => Math.random() - 0.5);
   return result;
@@ -254,20 +254,20 @@ export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.col
 
 function hexToRgb(hex: string): [number, number, number] {
   // Remove the hash at the start if it's there
-  hex = hex.replace(/^#/, '');
+  const sanitizedHex = hex.replace(/^#/, '');
 
   // Parse the r, g, b values
-  let r = parseInt(hex.substring(0, 2), 16);
-  let g = parseInt(hex.substring(2, 4), 16);
-  let b = parseInt(hex.substring(4, 6), 16);
+  const r = Number.parseInt(sanitizedHex.substring(0, 2), 16);
+  const g = Number.parseInt(sanitizedHex.substring(2, 4), 16);
+  const b = Number.parseInt(sanitizedHex.substring(4, 6), 16);
 
   return [r, g, b];
 }
 
 function luminance(r: number, g: number, b: number): number {
   const a = [r, g, b].map((v) => {
-    v /= 255;
-    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    const normalizedV = v / 255;
+    return normalizedV <= 0.03928 ? normalizedV / 12.92 : ((normalizedV + 0.055) / 1.055) ** 2.4;
   });
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
@@ -403,7 +403,7 @@ export const getAnimationClass = (
     speed?: 'slow' | 'slower' | 'fast' | 'faster';
     infinite?: boolean;
     repeat?: 1 | 2 | 3;
-  }
+  },
 ) => {
   const result = ['animate__animated', `animate__${type}`];
 
@@ -416,7 +416,7 @@ export const getAnimationClass = (
   }
 
   if (options?.infinite) {
-    result.push(`animate__infinite`);
+    result.push('animate__infinite');
   } else if (options?.repeat) {
     result.push(`animate__repeat-${options?.repeat}`);
   }
@@ -486,7 +486,7 @@ export const truncateRecommended = (recommended: number[]): string => {
  */
 export const sortPlayers = memoize(
   (players: GamePlayers, by = ['name'], orders: ('asc' | 'desc')[] = ['asc']) =>
-    orderBy(Object.values(players), by, orders)
+    orderBy(Object.values(players), by, orders),
 );
 
 /**
@@ -524,7 +524,7 @@ export const getMeanDuration = (
   numPlayers: number,
   durationPerPlayer: number,
   maxDuration = 30,
-  minDuration = 5
+  minDuration = 5,
 ) => {
   const duration = numPlayers * durationPerPlayer;
 
@@ -565,9 +565,10 @@ export const formatTime = (seconds: number): string => {
 
 /**
  * Remove accents from a string keeping original letters
- * @param str
- * @returns
+ * @param str - The string to remove accents from.
+ * @returns The string without accents.
  */
 export function stringRemoveAccents(str: string): string {
+  // biome-ignore lint/suspicious/noMisleadingCharacterClass: IDK why this is being flagged
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }

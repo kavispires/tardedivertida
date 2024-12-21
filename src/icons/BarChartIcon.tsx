@@ -1,4 +1,4 @@
-export function BarChartIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function BarChartIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#ffe27a" d="M123.1 480H49.6V309.2a10 10 0 0110-10H113a10 10 0 0110 10z"></path>

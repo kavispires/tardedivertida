@@ -16,7 +16,7 @@ export function useOnSubmitSecretClueAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Pista Secreta submetida com sucesso', 'Secret clue submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pista secreta',
-      'Oops, the application found an error while trying to submit your secret clue'
+      'Oops, the application found an error while trying to submit your secret clue',
     ),
   });
 
@@ -36,7 +36,7 @@ export function useOnPlayCardAPIRequest() {
     successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card'
+      'Oops, the application found an error while trying to submit your card',
     ),
   });
 
@@ -56,7 +56,7 @@ export function useOnFinishDefenseRequest() {
     successMessage: translate('Defesa concluída com sucesso', 'Defense concluded successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
-      'Oops, the application found an error while trying to conclude your defense'
+      'Oops, the application found an error while trying to conclude your defense',
     ),
   });
 
@@ -75,7 +75,7 @@ export function useOnSubmitVoteAPIRequest() {
     successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote'
+      'Oops, the application found an error while trying to submit your vote',
     ),
   });
 

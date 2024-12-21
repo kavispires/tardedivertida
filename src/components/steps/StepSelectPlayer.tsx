@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
@@ -12,7 +12,13 @@ import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, RuleInstructionProps, Title, TitleProps } from 'components/text';
+import {
+  Instruction,
+  RuleInstruction,
+  type RuleInstructionProps,
+  Title,
+  type TitleProps,
+} from 'components/text';
 
 type StepSelectPlayerProps = {
   players: GamePlayers;

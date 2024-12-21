@@ -1,4 +1,4 @@
-export function UfoIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function UfoIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#a8e7ef" d="M367.42 251.65a127.32 127.32 0 10-232.89-44.22z"></path>

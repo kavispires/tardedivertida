@@ -43,7 +43,7 @@ export function GameCustomizations({
             key={`option-${option.label}`}
             className={clsx(
               'create-game-modal-options__option',
-              option.disabled && 'create-game-modal-options__option--disabled'
+              option.disabled && 'create-game-modal-options__option--disabled',
             )}
           >
             <div className="create-game-modal-options__label">
@@ -101,7 +101,7 @@ function SwitchOptions({ option, disabled, onChangeOptions, selectedOptions }: O
       <span
         className={clsx(
           'create-game-modal-options__off',
-          !selectedOptions[option.key] && 'create-game-modal-options--selected'
+          !selectedOptions[option.key] && 'create-game-modal-options--selected',
         )}
       >
         {option?.values[0].label ?? ''}
@@ -110,7 +110,7 @@ function SwitchOptions({ option, disabled, onChangeOptions, selectedOptions }: O
       <span
         className={clsx(
           'create-game-modal-options__on',
-          selectedOptions[option.key] && 'create-game-modal-options--selected'
+          selectedOptions[option.key] && 'create-game-modal-options--selected',
         )}
       >
         {option?.values[1].label ?? ''}

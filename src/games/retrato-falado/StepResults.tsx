@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import { type MonsterImage } from 'types/tdr';
+import type { MonsterImage } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
@@ -80,13 +80,13 @@ export function StepResults({
     {
       mostVotedSketches: [],
       otherSketches: [],
-    }
+    },
   );
 
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        {Boolean(mostVoted) ? (
+        {mostVoted ? (
           <Translate pt="O retrato mais votado foi..." en="The sketch who got the most votes was..." />
         ) : (
           <Translate
@@ -106,7 +106,7 @@ export function StepResults({
             <br />
           </>
         )}
-        {Boolean(mostVoted) ? (
+        {mostVoted ? (
           <Translate
             pt={
               <>

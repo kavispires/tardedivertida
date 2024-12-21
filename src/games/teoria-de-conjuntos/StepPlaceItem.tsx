@@ -3,9 +3,9 @@ import { useRef, useState } from 'react';
 import { AimOutlined } from '@ant-design/icons';
 import { Button, Flex, Space, Tag, Tooltip } from 'antd';
 // Types
-import { GameRound } from 'types/game';
+import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
-import { Item } from 'types/tdr';
+import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -22,7 +22,7 @@ import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { DiagramArea, DiagramExamples, Solutions, SubmitItemPlacementPayload } from './utils/types';
+import type { DiagramArea, DiagramExamples, Solutions, SubmitItemPlacementPayload } from './utils/types';
 import { mockDiagramSelection } from './utils/mock';
 import { getPlayerItemsLeft } from './utils/helper';
 import { DiagramRules } from './components/RulesBlobs';
@@ -76,7 +76,9 @@ export function StepPlaceItem({
     }
   };
 
-  const selectedItem = items[selectedItemId ?? ''] ?? { name: { en: '', pt: '' } };
+  const selectedItem = items[selectedItemId ?? ''] ?? {
+    name: { en: '', pt: '' },
+  };
 
   useMock(() => {
     onSubmitItemPlacement(mockDiagramSelection(user.hand ?? [], diagrams));
@@ -109,9 +111,15 @@ export function StepPlaceItem({
           size="large"
           loading={isLoading}
           disabled={!selectedArea || !selectedItemId}
-          onClick={() => onSubmitItemPlacement({ position: selectedArea!, itemId: selectedItemId! })}
+          onClick={() => {
+            if (selectedArea && selectedItemId) {
+              onSubmitItemPlacement({
+                position: selectedArea,
+                itemId: selectedItemId,
+              });
+            }
+          }}
           ref={scrollToSubmitRef}
-          style={{}}
         >
           <Translate en="Submit" pt="Enviar" />
           <span className="selected-item">
@@ -130,7 +138,10 @@ export function StepPlaceItem({
           id={selectedItemId ?? ''}
           width={100}
           text={items[selectedItemId ?? '']?.name}
-          className={getAnimationClass('pulse', { infinite: true, speed: 'faster' })}
+          className={getAnimationClass('pulse', {
+            infinite: true,
+            speed: 'faster',
+          })}
         />
       </MouseFollowingContent>
 
@@ -189,9 +200,8 @@ export function StepPlaceItem({
               <>
                 Selecione uma de suas coisas e coloque-as em uma das áreas do diagrama. Se já houver coisas
                 lá, você pode tentar basear sua colocação nelas.
-                <br />
-                O objetivo é colocar corretamente suas coisas no diagrama com base nas regras secretas de cada
-                área.
+                <br />O objetivo é colocar corretamente suas coisas no diagrama com base nas regras secretas
+                de cada área.
                 <br />
                 Se você colocar certo, poderá colocar outra coisa. Se você colocar errado, receberá uma nova
                 coisa e será a vez do próximo jogador.

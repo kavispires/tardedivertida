@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/player';
 // Icons
 import { BoxEqualIcon } from 'icons/BoxEqualIcon';
 import { BoxPlusIcon } from 'icons/BoxPlusIcon';
@@ -10,7 +10,7 @@ import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 // Internal
-import { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
+import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
 import { ObjectCard } from './ObjectCard';
 import { ObjectFeature } from './ObjectFeature';
 
@@ -22,7 +22,7 @@ type PlayerObjectClueFeatureProps = {
 export function PlayerObjectClueFeature({ user, features }: PlayerObjectClueFeatureProps) {
   const selectedObject = useMemo(
     () => user.items.find((item: ObjectCardObj) => item.id === user.selectedItemId),
-    [user]
+    [user],
   );
 
   if (!selectedObject || !user.target) return <></>;

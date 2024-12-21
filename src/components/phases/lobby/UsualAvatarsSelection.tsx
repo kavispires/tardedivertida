@@ -37,7 +37,7 @@ export function UsualAvatarOption({ avatarId, setSelectedAvatar }: UsualAvatarOp
   return (
     <TransparentButton onClick={() => setSelectedAvatar(avatarId)}>
       <svg viewBox="0 0 100 100" className="lobby-usual-avatar-selection__avatar">
-        <use href={avatars + `#avatar-${avatarId}`}></use>
+        <use href={`${avatars}#avatar-${avatarId}`}></use>
         <title>
           <DualTranslate>{AVATARS[avatarId].description}</DualTranslate>
         </title>

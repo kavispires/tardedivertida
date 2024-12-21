@@ -37,7 +37,7 @@ export function DreamBoardVote({ table, activeItem, onActivateItem, votes }: Dre
             className={clsx(
               's-dream-board__entry',
               liButtonBaseClass,
-              isActive && `${liButtonBaseClass}--active`
+              isActive && `${liButtonBaseClass}--active`,
             )}
             key={`board-${cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}

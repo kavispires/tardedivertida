@@ -27,7 +27,7 @@ export function DebugPage() {
       <Space direction="vertical" className="margin">
         <pre>Today: {getToday()}</pre>
         {PRIORITY_LIST.map((game) => (
-          <Content localKey={game.KEY} />
+          <Content key={game.KEY} localKey={game.KEY} />
         ))}
       </Space>
     </DailyChrome>
@@ -37,7 +37,7 @@ export function DebugPage() {
 function Content({ localKey }: { localKey: string }) {
   const value = useMemo(
     () => JSON.stringify(JSON.parse(localStorage.getItem(localKey) || '{}'), null, 2),
-    [localKey]
+    [localKey],
   );
   return (
     <Space direction="vertical">

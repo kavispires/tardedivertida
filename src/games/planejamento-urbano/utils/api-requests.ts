@@ -16,7 +16,7 @@ export function useOnSubmitPlanningAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Planejamento submetido com sucesso', 'Planning submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu planejamento',
-      'Oops, the application found an error while trying to submit your planning'
+      'Oops, the application found an error while trying to submit your planning',
     ),
   });
 
@@ -38,7 +38,7 @@ export function useOnSubmitPlacingAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Construção submetida com sucesso', 'Construction submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção',
-      'Oops, the application found an error while trying to submit your construction'
+      'Oops, the application found an error while trying to submit your construction',
     ),
   });
 
@@ -58,7 +58,7 @@ export function useOnUpdatePlacementAPIRequest() {
     successMessage: translate('Construção atualizada com sucesso', 'Construction updated successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção',
-      'Oops, the application found an error while trying to submit your construction'
+      'Oops, the application found an error while trying to submit your construction',
     ),
   });
 

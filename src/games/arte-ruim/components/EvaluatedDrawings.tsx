@@ -33,7 +33,7 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
         acc[card.id] = card;
         return acc;
       }, {}),
-    [cards]
+    [cards],
   );
 
   const drawingsDict = useMemo(
@@ -42,7 +42,7 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
         acc[drawing.id] = drawing;
         return acc;
       }, {}),
-    [drawings]
+    [drawings],
   );
 
   if (!votes) {

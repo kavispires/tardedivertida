@@ -41,18 +41,19 @@ export function PhaseInvestigation({ state, players }: PhaseProps) {
   const onMakeAccusation = useOnMakeAccusationAPIRequest(setStep);
   const onSendLastQuestioner = useOnSendLastQuestionerAPIRequest(setStep);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (state.timeRemaining > 590000 && startingPlayer.name) {
       notification.info({
         message: translate('10 minutos!', '10 minutes!'),
         description: translate(
           `${startingPlayer.name} começa perguntando!`,
-          `${startingPlayer.name} starts questioning!`
+          `${startingPlayer.name} starts questioning!`,
         ),
         duration: 10,
       });
     }
-  }, [startingPlayer.name]); // eslint-disable-line
+  }, [startingPlayer.name]);
 
   return (
     <PhaseContainer

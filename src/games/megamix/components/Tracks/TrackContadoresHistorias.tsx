@@ -54,7 +54,7 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
           <Space className="space-container">
             {track.data.cards.map((cardId: ImageCardId) => {
               return (
-                <Space className="space-container" direction="vertical">
+                <Space key={cardId} className="space-container" direction="vertical">
                   <ImageBlurButtonContainer cardId={cardId}>
                     <ImageCard id={cardId} cardWidth={cardWidth} />
                   </ImageBlurButtonContainer>

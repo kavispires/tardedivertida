@@ -66,7 +66,7 @@ export function Hub() {
             <TransparentButton
               hoverType="sepia"
               className={clsx(
-                !checkWasPlayedToday(COMUNICACAO_ALIENIGENA.KEY) && getAnimationClass('tada', { repeat: 3 })
+                !checkWasPlayedToday(COMUNICACAO_ALIENIGENA.KEY) && getAnimationClass('tada', { repeat: 3 }),
               )}
             >
               <Link to="/diario/comunicacao-alienigena" className="hub-item">

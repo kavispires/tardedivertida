@@ -1,16 +1,15 @@
 import clsx from 'clsx';
-import { ReactNode, forwardRef } from 'react';
+import { type ReactNode, forwardRef } from 'react';
 
 export type StepProps = {
   /**
    * Overlay PhaseAnnouncement
    */
-  announcement?: JSX.Element;
+  announcement?: ReactNode;
   /**
    * The content of the component
    */
   children: ReactNode;
-
   /**
    * Optional custom class name
    */
@@ -34,12 +33,12 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(
           'step',
           fullWidth && 'step--full-width',
           fullHeight && 'step--full-height',
-          className
+          className,
         )}
       >
         {announcement}
         {children}
       </div>
     );
-  }
+  },
 );

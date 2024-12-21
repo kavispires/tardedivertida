@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
 import { ImageCardBack } from 'components/image-cards';
 
@@ -26,7 +26,7 @@ export function TableFaceDown({ players, user }: TableFaceDownProps) {
             className={clsx(
               baseClass,
               `${baseClass}--${index}`,
-              isHidden && `${baseClass}--${hiddenClassModifier}`
+              isHidden && `${baseClass}--${hiddenClassModifier}`,
             )}
           />
         );

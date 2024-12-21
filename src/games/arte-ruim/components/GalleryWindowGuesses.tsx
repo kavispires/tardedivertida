@@ -39,7 +39,7 @@ export function GalleryWindowGuesses({
       };
     }),
     ['isCorrect', 'count', 'card.text'],
-    ['desc', 'desc', 'asc']
+    ['desc', 'desc', 'asc'],
   );
 
   return (

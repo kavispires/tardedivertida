@@ -21,9 +21,10 @@ type BetsFloatingHandProps = {
 export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: BetsFloatingHandProps) {
   const cardWidth = useCardWidth(5, { minWidth: 100 });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const { quarterCard, semiCard, finalCard, selectedCard } = useMemo(
     () => findBetContenders(brackets, bets, selectedContenderId),
-    [bets?.final, bets?.quarter, bets?.semi] // eslint-disable-line
+    [bets?.final, bets?.quarter, bets?.semi],
   );
 
   if (!quarterCard || !semiCard || !finalCard) return <></>;
@@ -36,30 +37,30 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
             <span className="w-floating-bets__label">
               <Translate pt="Quartas de finais" en="Quarterfinals" />
             </span>
-            <CharacterCard character={quarterCard!} overlayColor="gray" size={cardWidth} />
+            <CharacterCard character={quarterCard} overlayColor="gray" size={cardWidth} />
           </li>
 
           <li className="w-floating-bets__entry">
             <span className="w-floating-bets__label">
               <Translate pt="Semifinais" en="Semifinals" />
             </span>
-            <CharacterCard character={semiCard!} overlayColor="gray" size={cardWidth} />
+            <CharacterCard character={semiCard} overlayColor="gray" size={cardWidth} />
           </li>
 
           <li className="w-floating-bets__entry">
             <span className="w-floating-bets__label">
               <Translate pt="Final" en="Final" />
             </span>
-            <CharacterCard character={finalCard!} overlayColor="gray" size={cardWidth} />
+            <CharacterCard character={finalCard} overlayColor="gray" size={cardWidth} />
           </li>
 
-          {Boolean(selectedCard) && (
+          {!!selectedCard && (
             <li className="w-floating-bets__entry w-floating-bets__entry--your-contender">
               <span className="w-floating-bets__label">
                 <Translate pt="Seu competidor" en="Your contender" />
               </span>
-              <ImageBlurButtonContainer cardId={selectedCard!.id}>
-                <CharacterCard character={selectedCard!} overlayColor="gray" size={cardWidth} />
+              <ImageBlurButtonContainer cardId={selectedCard.id}>
+                <CharacterCard character={selectedCard} overlayColor="gray" size={cardWidth} />
               </ImageBlurButtonContainer>
             </li>
           )}

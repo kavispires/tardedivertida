@@ -15,7 +15,7 @@ export function useOnSubmitObjectAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Objeto submetido com sucesso', 'Object submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu objeto',
-      'Oops, the application found an error while trying to submit your object'
+      'Oops, the application found an error while trying to submit your object',
     ),
   });
 
@@ -37,7 +37,7 @@ export function useOnSubmitFeatureAPIRequest(setStep: UseStep['setStep'], errorS
     successMessage: translate('Característica submetida com sucesso', 'Feature submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua característica',
-      'Oops, the application found an error while trying to submit your feature'
+      'Oops, the application found an error while trying to submit your feature',
     ),
   });
 

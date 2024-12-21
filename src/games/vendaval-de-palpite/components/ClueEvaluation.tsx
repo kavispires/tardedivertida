@@ -11,7 +11,7 @@ import type { Clues, BoardEntry } from '../utils/types';
 type ClueEvaluationProps = {
   clues: Clues;
   latestBoardEntry: BoardEntry;
-  onSubmitEvaluation: Function;
+  onSubmitEvaluation: GenericFunction;
 };
 
 export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: ClueEvaluationProps) {
@@ -19,7 +19,7 @@ export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: 
     latestBoardEntry.clues.reduce((acc: BooleanDictionary, clueId) => {
       acc[clueId] = false;
       return acc;
-    }, {})
+    }, {}),
   );
 
   const updateEvaluation = (clueId: string, value: boolean) => {
@@ -48,7 +48,7 @@ export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: 
       <ul className="v-boss-evaluation">
         {Object.keys(evaluation).map((clueId) => {
           return (
-            <li className="v-boss-evaluation__item">
+            <li key={clueId} className="v-boss-evaluation__item">
               <Switch
                 checkedChildren={
                   <>

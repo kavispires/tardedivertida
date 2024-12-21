@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
 import { Flex, Space, Typography } from 'antd';
 // Hooks
@@ -21,21 +22,21 @@ import { SETTINGS } from '../utils/settings';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 const titles = [
-  <>
+  <Fragment key="1">
     <IconAvatar icon={<SkullIcon />} /> <Translate pt="Você é muito ruim!" en="You are really bad!" />
-  </>,
-  <>
+  </Fragment>,
+  <Fragment key="2">
     <IconAvatar icon={<SealOfApprovalIcon />} /> <Translate pt="Foi bem mais ou menos!" en="Pretty Weak!" />
-  </>,
-  <>
+  </Fragment>,
+  <Fragment key="3">
     <IconAvatar icon={<ApplauseIcon />} /> <Translate pt="Muito bom!" en="Very good!" />
-  </>,
-  <>
+  </Fragment>,
+  <Fragment key="4">
     <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
-  </>,
-  <>
+  </Fragment>,
+  <Fragment key="5">
     <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Incrível!" en="Incredible!" />
-  </>,
+  </Fragment>,
 ];
 
 const getTitle = (progress: number, remainingHearts: number) => {
@@ -136,7 +137,10 @@ export function ResultsModalContent({
                 key={id}
                 id={id}
                 width={45}
-                className={getAnimationClass('pulse', { speed: 'fast', delay: index * 0.5 })}
+                className={getAnimationClass('pulse', {
+                  speed: 'fast',
+                  delay: index * 0.5,
+                })}
               />
             ))}
       </Flex>

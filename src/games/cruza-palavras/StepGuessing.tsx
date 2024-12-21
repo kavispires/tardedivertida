@@ -49,7 +49,7 @@ export function StepGuessing({
         setActive(null);
       }
     },
-    [active]
+    [active],
   );
 
   const onSelectCell = useCallback(
@@ -65,14 +65,16 @@ export function StepGuessing({
             return acc;
           }, {});
 
-          newState[getClueKey(active!)] = cellCoordinate;
+          if (active) {
+            newState[getClueKey(active)] = cellCoordinate;
+          }
 
           setActive(null);
           return newState;
         });
       }
     },
-    [active]
+    [active],
   );
 
   const onClearCell = (clueKey: string) => {
@@ -108,7 +110,7 @@ export function StepGuessing({
     setChoseRandomly(true);
 
     const availableCells = shuffle(
-      grid.filter((cell) => cell.available && cell.playerId !== user.id && !usedCells.includes(cell.index))
+      grid.filter((cell) => cell.available && cell.playerId !== user.id && !usedCells.includes(cell.index)),
     );
     const availableClues = clues.filter((clue) => !usedClues.includes(getClueKey(clue)));
     const newGuesses = availableClues.reduce((acc: PlainObject, clueObj, index) => {
@@ -159,7 +161,14 @@ export function StepGuessing({
         gridType={gridType}
         user={user}
         CellComponent={SelectableCell}
-        cellComponentProps={{ onSelectCell, onClearCell, active, guesses, clues, user }}
+        cellComponentProps={{
+          onSelectCell,
+          onClearCell,
+          active,
+          guesses,
+          clues,
+          user,
+        }}
       />
     </Step>
   );

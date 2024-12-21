@@ -14,17 +14,7 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 import { Translate } from 'components/language';
 // Internal
 import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
-import type {
-  CloverMode,
-  Leaves,
-  LeafIndex,
-  LeafId,
-  LeafPosition,
-  LeafLocks,
-  CloverLeaf,
-  Guesses,
-  CloverObject,
-} from '../utils/types';
+import type { CloverMode, Leaves, LeafIndex, LeafId, LeafPosition, LeafLocks, CloverLeaf, Guesses, CloverObject, } from '../utils/types';
 import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
@@ -83,11 +73,13 @@ export function Clover({
                 className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
               >
                 <Input
-                  ref={(el) => (inputRefs.current[index] = el)}
+                  ref={(el) => {
+                    inputRefs.current[index] = el;
+                  }}
                   onChange={onClueChange ? (e) => onClueChange(leafIndex, e.target.value) : undefined}
                   className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
                   placeholder={translate('Escreva aqui', 'Write here')}
-                  disabled={!Boolean(onClueChange)}
+                  disabled={!onClueChange}
                   value={mode === 'write' ? undefined : cloverLeaf.clue}
                   autoFocus={index === 0}
                 />
@@ -146,7 +138,7 @@ const getLeaf = (
   position: LeafPosition,
   cloverLeaf: CloverLeaf,
   guesses: Guesses,
-  rotations: NumberDictionary
+  rotations: NumberDictionary,
 ) => {
   let leafId = '';
   switch (mode) {
@@ -157,7 +149,7 @@ const getLeaf = (
         rotation: rotations[leafId] ?? 0,
         icon: undefined,
       };
-    case 'result':
+    case 'result': {
       leafId = guesses?.[position]?.leafId ?? '';
       const guess = guesses?.[position];
       return {
@@ -165,6 +157,7 @@ const getLeaf = (
         rotation: guess?.rotation ?? 0,
         icon: getIcon(guess?.score ?? 0),
       };
+    }
     case 'write':
       leafId = cloverLeaf.leafId;
       return {
@@ -172,7 +165,6 @@ const getLeaf = (
         rotation: rotations[leafId] ?? 0,
         icon: undefined,
       };
-    case 'view':
     default:
       leafId = cloverLeaf.leafId;
       return {
@@ -202,11 +194,11 @@ const getIcon = (score: number) => {
           <BoxCheckMarkIcon />
         </Tooltip>
       );
-    case 0:
+    // case 0:
     default:
       return (
         <Tooltip title={<Translate pt="Burro pra carai e não acertou" en="Did not get it right" />}>
-          <BoxXIcon />;
+          <BoxXIcon />
         </Tooltip>
       );
   }

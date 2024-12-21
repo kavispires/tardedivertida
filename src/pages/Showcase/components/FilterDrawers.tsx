@@ -88,7 +88,7 @@ export function FiltersDrawer({
       <Divider />
 
       <div className="showcase-filter-section">
-        <label className="showcase-filter-entry__label">
+        <label className="showcase-filter-entry__label" htmlFor="dynamics-filter">
           <Translate pt="Dinâmicas" en="Dynamics" />{' '}
         </label>
       </div>
@@ -140,7 +140,7 @@ export function FiltersDrawer({
       <Divider />
 
       <div className="showcase-filter-section">
-        <label className="showcase-filter-entry__label">
+        <label className="showcase-filter-entry__label" htmlFor="mechanics-filter">
           <Translate pt="Mecânicas" en="Mechanics" />{' '}
         </label>
       </div>

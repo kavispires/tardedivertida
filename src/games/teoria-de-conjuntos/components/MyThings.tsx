@@ -2,7 +2,7 @@
 import { AimOutlined } from '@ant-design/icons';
 import { Flex, Tag, Tooltip } from 'antd';
 // Types
-import { Item } from 'types/tdr';
+import type { Item } from 'types/tdr';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Container } from 'components/general/Container';

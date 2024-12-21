@@ -57,12 +57,12 @@ export const SheepAvatar = ({
       ></path>
 
       <svg viewBox="0 0 100 155">
-        <use href={sheep + `#sheep-face-${sheepId}`}></use>
+        <use href={`${sheep}#sheep-face-${sheepId}`}></use>
       </svg>
 
       <foreignObject x="25" y="0" width="50" height="50" style={{ borderRadius: '50%' }}>
         <svg viewBox="0 0 100 100">
-          <use href={avatars + `#avatar-${id}`}></use>
+          <use href={`${avatars}#avatar-${id}`}></use>
         </svg>
       </foreignObject>
     </svg>

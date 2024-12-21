@@ -9,13 +9,13 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Internal
-import { ComunicacaoAlienigenaLocalToday, DailyComunicacaoAlienigenaEntry, GameState } from './types';
+import type { ComunicacaoAlienigenaLocalToday, DailyComunicacaoAlienigenaEntry, GameState } from './types';
 import { SETTINGS } from './settings';
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 
 export function useComunicacaoAlienigenaEngine(
   data: DailyComunicacaoAlienigenaEntry,
-  initialState: GameState
+  initialState: GameState,
 ) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
@@ -35,11 +35,12 @@ export function useComunicacaoAlienigenaEngine(
     }));
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!state.win && state.guesses.some((guess) => guess === data.solution)) {
       setState((prev) => ({ ...prev, win: true }));
     }
-  }, [state.guesses, data.solution, state.win]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [state.guesses, data.solution, state.win]);
 
   const onItemClick = (itemId: string) => {
     if (state.selection.includes(itemId)) {
@@ -70,7 +71,7 @@ export function useComunicacaoAlienigenaEngine(
       message.warning({
         content: translate(
           'Você já tentou essa combinação. Tente outra!',
-          'You already tried this combination. Try another one!'
+          'You already tried this combination. Try another one!',
         ),
         duration: 5,
       });

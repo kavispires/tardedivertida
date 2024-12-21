@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useRef } from 'react';
+import { type ReactNode, useRef } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -71,7 +71,7 @@ export function PhaseContainer({
         baseClass,
         fullScreen && `${baseClass}--full-screen`,
         white && `${baseClass}--white`,
-        className
+        className,
       )}
       id="screen"
       ref={screenRef}

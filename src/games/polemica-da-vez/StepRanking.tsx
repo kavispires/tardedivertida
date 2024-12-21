@@ -23,7 +23,9 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, isLastR
     <StepRankingWrapper
       players={players}
       ranking={ranking}
-      gainedPointsDescriptions={[<Translate pt="Escolha correta ou próxima" en="Correct or close guess" />]}
+      gainedPointsDescriptions={[
+        <Translate key="1" pt="Escolha correta ou próxima" en="Correct or close guess" />,
+      ]}
     >
       <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>

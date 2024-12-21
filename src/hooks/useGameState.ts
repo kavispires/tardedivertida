@@ -25,13 +25,14 @@ export function useGameState(gameId: GameId, gameName: GameName): GameState {
 
   const state = data ?? {};
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (isLoading || isRefetching) {
       console.count('Refreshing state...');
     } else {
       print({ state });
     }
-  }, [isLoading, isRefetching]); // eslint-disable-line
+  }, [isLoading, isRefetching]);
 
   return state as GameState;
 }

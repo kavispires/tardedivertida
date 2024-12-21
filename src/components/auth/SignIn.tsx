@@ -1,19 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
-import { UserCredential } from 'firebase/auth';
+import type { UserCredential } from 'firebase/auth';
 import { useState } from 'react';
-// Ant Design Resources
-import { Button, Form, Input, Alert, Image, App, Switch, Space, ButtonProps } from 'antd';
-// Hooks
+import { Button, Form, Input, Alert, Image, App, Switch, Space, type ButtonProps } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
-// Services
 import { resetPassword, signIn, signInWithGoogle } from 'services/firebase';
-// Icons
 import { GoogleIcon } from 'icons/GoogleIcon';
-// Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-// Images
 import logo from 'assets/images/tarde-divertida-logo.svg';
 // API
 // Image
@@ -122,7 +116,10 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
           label={<Translate pt="E-mail" en="E-mail" />}
           name="username"
           rules={[
-            { required: true, message: translate('e-mail é um campo obrigatório', 'e-mail is required') },
+            {
+              required: true,
+              message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+            },
           ]}
         >
           <Input />
@@ -132,7 +129,10 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
           label={<Translate pt="Senha" en="Password" />}
           name="password"
           rules={[
-            { required: true, message: translate('e-mail é um campo obrigatório', 'e-mail is required') },
+            {
+              required: true,
+              message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+            },
           ]}
           help={translate('Mínimo 6 caracteres', 'Minimum of 6 characters')}
         >
@@ -197,8 +197,8 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
       message.success(
         translate(
           'Verifique seu e-mail enviado para redefinir a sua senha',
-          'Verify your email to reset your password'
-        )
+          'Verify your email to reset your password',
+        ),
       );
     },
   });
@@ -227,7 +227,10 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
         label={<Translate pt="E-mail" en="E-mail" />}
         name="username"
         rules={[
-          { required: true, message: translate('e-mail é um campo obrigatório', 'e-mail is required') },
+          {
+            required: true,
+            message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+          },
         ]}
       >
         <Input />

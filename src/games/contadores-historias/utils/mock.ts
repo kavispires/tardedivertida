@@ -1,7 +1,7 @@
 // Utils
 import { getRandomItem } from 'utils/helpers';
 // Internal
-import { TableEntry } from './types';
+import type { TableEntry } from './types';
 
 const randomWords = ['avocado', 'bell pepper', 'crustaceous', 'dinner'];
 
@@ -21,7 +21,7 @@ export function mockPlayCard(hand: string[]) {
 export function mockVote(table: TableEntry[], hand: string[]) {
   return {
     vote: getRandomItem(
-      table.map((tableEntry) => tableEntry.cardId).filter((cardId) => !hand.includes(cardId))
+      table.map((tableEntry) => tableEntry.cardId).filter((cardId) => !hand.includes(cardId)),
     ),
   };
 }

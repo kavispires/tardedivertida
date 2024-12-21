@@ -23,8 +23,9 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Deu match com outros jogadores" en="Match other player's paris" />,
+        <Translate key="1" pt="Deu match com outros jogadores" en="Match other player's paris" />,
         <Translate
+          key="2"
           pt="O item de fora foi o mesmo que outros jogadores"
           en="The left out item was the same as other players"
         />,

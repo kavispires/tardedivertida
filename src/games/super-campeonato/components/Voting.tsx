@@ -12,7 +12,7 @@ import { useStep } from 'hooks/useStep';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { TransparentButton } from 'components/buttons';
-import { CharacterCard, OverlayColor } from 'components/cards/CharacterCard';
+import { CharacterCard, type OverlayColor } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -51,7 +51,7 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
           return [];
         })
         .filter((entry) => entry.length > 0),
-    [brackets, tier]
+    [brackets, tier],
   );
 
   const { votes, updateVote, isComplete, checkActiveVote } = useBracketVoting(tier);

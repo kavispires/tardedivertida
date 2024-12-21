@@ -56,12 +56,16 @@ export function StepReveal({
 }: StepRevealProps) {
   useTemporarilyHidePlayersBar();
   const regularPlayers = useMemo(
-    () => Object.values(players).filter((p) => p.id !== psychic.id),
-    [players, psychic.id]
+    () =>
+      orderBy(
+        Object.values(players).filter((p) => p.id !== psychic.id),
+        ['guess', 'name'],
+      ),
+    [players, psychic.id],
   );
   const duration = useMemo(
     () => getMeanDuration(countDifferentGuesses(regularPlayers), 4, 10, 20),
-    [regularPlayers]
+    [regularPlayers],
   );
 
   return (
@@ -88,13 +92,13 @@ export function StepReveal({
         />
       </Instruction>
       <ul className="o-player-guesses">
-        {orderBy(regularPlayers, ['guess', 'name']).map((player) => {
+        {regularPlayers.map((player) => {
           return (
             <li className="o-player-guess" key={player.id}>
               <span
                 className={clsx(
                   'o-player-guess__guess',
-                  getGuessResultClass(player.guess, currentCategory.target!)
+                  getGuessResultClass(player.guess, currentCategory.target ?? 0),
                 )}
               >
                 {player.guess < 0 && '«'}
@@ -104,7 +108,7 @@ export function StepReveal({
               <Avatar id={player.avatarId} className="o-player-guess__avatar" />
               <span className="o-player-guess__name">{player.name}</span>
               <StarPoints
-                quantity={getPoints(player.guess, currentCategory.target!)}
+                quantity={getPoints(player.guess, currentCategory.target ?? 0)}
                 keyPrefix={`${player.id}-points`}
               />
             </li>

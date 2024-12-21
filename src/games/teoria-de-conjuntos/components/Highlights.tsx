@@ -2,7 +2,7 @@
 import { CircleIcon } from 'icons/CircleIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
-import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function CircleHighlight({ children, type, color }: HighlightProps & { color: string }) {
   return (

@@ -11,11 +11,15 @@ import { SEPARATOR } from 'utils/constants';
  */
 export const prepareGlyphs = (
   positive: BooleanDictionary,
-  negative: BooleanDictionary
+  negative: BooleanDictionary,
 ): BooleanDictionary => {
   const dict: BooleanDictionary = {};
-  Object.keys(positive).forEach((key) => (dict[key] = true));
-  Object.keys(negative).forEach((key) => (dict[key] = false));
+  Object.keys(positive).forEach((key) => {
+    dict[key] = true;
+  });
+  Object.keys(negative).forEach((key) => {
+    dict[key] = false;
+  });
 
   return dict;
 };

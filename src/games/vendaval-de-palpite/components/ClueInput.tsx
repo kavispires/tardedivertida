@@ -12,7 +12,7 @@ type ClueInputProps = {
   onChangeInput?: GenericFunction;
   onPressEnter?: GenericFunction;
   value?: string;
-  toggleGuessIds: Function;
+  toggleGuessIds: GenericFunction;
   disabled: boolean;
 };
 
@@ -27,9 +27,10 @@ export function ClueInput({
   const { translate } = useLanguage();
   const [isGuess, setIsGuess] = useState(false);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     toggleGuessIds(id, isGuess);
-  }, [isGuess]); // eslint-disable-line
+  }, [isGuess]);
 
   return (
     <div className={clsx('v-clue-input', isGuess && 'v-clue-input--guess')}>

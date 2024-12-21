@@ -19,8 +19,6 @@ import { HostButton, HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
 // Images
 import avatars from 'assets/images/avatars.svg';
-// API & Hooks
-// Services
 
 type StepWaitingProps = {
   players: GamePlayers;
@@ -52,7 +50,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
 
       if (data.isLocked) {
         message.success(
-          translate('Jogo trancado e iniciado com sucesso!', 'Game locked and initialized successfully')
+          translate('Jogo trancado e iniciado com sucesso!', 'Game locked and initialized successfully'),
         );
       }
     },
@@ -60,7 +58,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
-          'Oops, the application found an error while trying to lock and start the game'
+          'Oops, the application found an error while trying to lock and start the game',
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
@@ -72,13 +70,14 @@ export function StepWaiting({ players }: StepWaitingProps) {
     },
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setLoader('lock-game', isLocking);
 
     return () => {
       setLoader('lock-game', false);
     };
-  }, [isLocking]); // eslint-disable-line
+  }, [isLocking]);
 
   const numPlayers = Object.keys(players).length;
 
@@ -90,7 +89,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
 
       <Space className="space-container">
         <svg viewBox="0 0 100 100" className="lobby-avatar">
-          <use href={avatars + `#avatar-${userAvatarId}`}></use>
+          <use href={`${avatars}#avatar-${userAvatarId}`}></use>
         </svg>
       </Space>
 

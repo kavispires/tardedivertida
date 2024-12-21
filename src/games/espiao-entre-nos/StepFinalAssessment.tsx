@@ -42,6 +42,7 @@ export function StepFinalAssessment({
   const { notification } = App.useApp();
   const { translate } = useLanguage();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (outcome?.type === 'VOTE_FAIL') {
       notification.info({
@@ -50,7 +51,7 @@ export function StepFinalAssessment({
         duration: 10,
       });
     }
-  }, [outcome?.type]); // eslint-disable-line
+  }, [outcome?.type]);
 
   return (
     <Step>

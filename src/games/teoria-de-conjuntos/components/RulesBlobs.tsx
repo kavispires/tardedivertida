@@ -1,13 +1,13 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Button, Popover } from 'antd';
 // Types
-import { DiagramTopic } from 'types/tdr';
+import type { DiagramTopic } from 'types/tdr';
 // Components
 import { Translate } from 'components/language';
 import { RuleInstruction, TextHighlight } from 'components/text';
 // Internal
-import { DiagramExamples } from '../utils/types';
+import type { DiagramExamples } from '../utils/types';
 import { CircleHighlight } from './Highlights';
 
 type ExamplesProps = {
@@ -53,15 +53,15 @@ export function DiagramRules({ examples }: DiagramRulesProps) {
             The <CircleHighlight color="yellow">yellow area</CircleHighlight> has a rule related to the{' '}
             <TextHighlight>word</TextHighlight>: the name of the thing, spelling, grammar or pronunciation.
             <Examples examples={examples.word} title="Word Examples" />
-            {
+            {!!examples.context && (
               <>
                 <br />
                 The <CircleHighlight color="red">red area</CircleHighlight> has a rule related to the{' '}
                 <TextHighlight>context</TextHighlight>
                 of the thing, where you might find it or use it.{' '}
-                <Examples examples={examples.context!} title="Context Examples" />
+                <Examples examples={examples.context} title="Context Examples" />
               </>
-            }
+            )}
           </>
         }
         pt={
@@ -73,13 +73,13 @@ export function DiagramRules({ examples }: DiagramRulesProps) {
             <br />A <CircleHighlight color="yellow">área amarela</CircleHighlight> tem uma regra relacionada à{' '}
             <TextHighlight>palavra</TextHighlight>: o nome da coisa, grafia, gramática ou pronúncia.
             <Examples examples={examples.word} title="Exemplos de Palavras" />
-            {
+            {!!examples.context && (
               <>
                 <br />A <CircleHighlight color="red">área vermelha</CircleHighlight> tem uma regra relacionada
                 ao <TextHighlight>contexto</TextHighlight> da coisa, onde você pode encontrá-la ou usá-la.{' '}
-                <Examples examples={examples.context!} title="Exemplos de Contexto" />
+                <Examples examples={examples.context} title="Exemplos de Contexto" />
               </>
-            }
+            )}
           </>
         }
       />

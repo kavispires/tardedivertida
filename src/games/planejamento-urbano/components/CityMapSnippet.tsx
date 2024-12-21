@@ -4,7 +4,7 @@ import { useControls } from 'react-zoom-pan-pinch';
 // Components
 import { GridMap } from 'components/toolKits/GridMap';
 // Internal
-import { City, CityLocationsDict } from '../utils/types';
+import type { City, CityLocationsDict } from '../utils/types';
 import { useLocationWidth } from '../utils/custom-hooks';
 import { MapSlot } from './MapSlot';
 
@@ -42,11 +42,12 @@ export function CityMapSnippet({
 
 function ZoomToLocation({ focusedCellId }: Pick<CityMapSnippetProps, 'focusedCellId'>) {
   const { zoomToElement } = useControls();
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (focusedCellId) {
       zoomToElement(`cell-${focusedCellId}`, 1.1);
     }
-  }, [focusedCellId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [focusedCellId]);
 
   return <></>;
 }

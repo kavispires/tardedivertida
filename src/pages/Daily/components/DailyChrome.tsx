@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 // Ant Design Resources
 import { Layout } from 'antd';
 // Icons
@@ -23,7 +23,11 @@ export function DailyChrome({ children }: DailyChromeProps) {
   return (
     <Layout className="app">
       <Header icon={<CalendarIcon />} localStorageKey="">
-        <button onClick={() => setCount((prev) => prev + 1)} className="invisible-secret-button">
+        <button
+          type="button"
+          onClick={() => setCount((prev) => prev + 1)}
+          className="invisible-secret-button"
+        >
           <Translate pt="TD Diário" en="TD Daily" />
         </button>
       </Header>

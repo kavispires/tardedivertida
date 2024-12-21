@@ -14,7 +14,7 @@ export function useOnSubmitTargetAPIRequest() {
     successMessage: translate('Alvo selecionado com sucesso', 'Target set successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
-      'Oops, the application failed to send your target'
+      'Oops, the application failed to send your target',
     ),
   });
 
@@ -34,7 +34,7 @@ export function useOnSubmitMessageAPIRequest() {
     successMessage: translate('Mensagem enviada com sucesso!', 'Message sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a mensagem',
-      'Oops, the application failed to send the message'
+      'Oops, the application failed to send the message',
     ),
   });
 
@@ -56,7 +56,7 @@ export function useOnSubmitDecisionAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Decisão enviada com sucesso!', 'Decision sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a sua decisão',
-      'Oops, the application failed to send your decision'
+      'Oops, the application failed to send your decision',
     ),
   });
 

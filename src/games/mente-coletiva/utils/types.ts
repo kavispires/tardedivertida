@@ -1,5 +1,5 @@
 // Types
-import { GroupQuestionCard } from 'types/tdr';
+import type { GroupQuestionCard } from 'types/tdr';
 
 export type Question = {
   id: string;

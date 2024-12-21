@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Sass
@@ -60,7 +60,7 @@ export const Instruction = ({
         white && `${baseClass}--white`,
         fullWidth && `${baseClass}--full-width`,
         noMargin && `${baseClass}--no-margin`,
-        className
+        className,
       )}
       data-testid="instruction"
     >

@@ -22,7 +22,7 @@ export function useOnSubmitQuestionAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
-      'Oops, the application failed to submit the question'
+      'Oops, the application failed to submit the question',
     ),
   });
 
@@ -44,7 +44,7 @@ export function useOnSubmitCustomQuestionAPIRequest(setStep: UseStep['setStep'])
     successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
-      'Oops, the application failed to submit the question'
+      'Oops, the application failed to submit the question',
     ),
   });
 
@@ -66,7 +66,7 @@ export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Respostas enviadas com sucesso!', 'Answers send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar respostas',
-      'Oops, the application failed to submit answers'
+      'Oops, the application failed to submit answers',
     ),
   });
 
@@ -86,7 +86,7 @@ export function useOnAddAnswerAPIRequest() {
     successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar adicionar respostar',
-      'Oops, the application failed to add answer'
+      'Oops, the application failed to add answer',
     ),
   });
 
@@ -106,11 +106,11 @@ export function useOnNextAnswersAPIRequest(clearAllowList: GenericFunction) {
     onSuccess: clearAllowList,
     successMessage: translate(
       'Próximas respostas acionadas com sucesso!',
-      'Next answers triggered successfully!'
+      'Next answers triggered successfully!',
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar avançar',
-      'Oops, the application failed to advance'
+      'Oops, the application failed to advance',
     ),
   });
 

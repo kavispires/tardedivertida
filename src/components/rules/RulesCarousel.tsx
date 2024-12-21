@@ -1,4 +1,4 @@
-import { CarouselRef } from 'antd/es/carousel';
+import type { CarouselRef } from 'antd/es/carousel';
 import clsx from 'clsx';
 import { createRef } from 'react';
 import { useKeyPressEvent } from 'react-use';
@@ -35,7 +35,7 @@ export function RulesCarousel({
   className = '',
   ruleClassName = '',
   actionsClassName,
-}: RulesCarouselProps): JSX.Element {
+}: RulesCarouselProps) {
   const { language } = useLanguage();
   const ref = createRef<CarouselRef>();
 

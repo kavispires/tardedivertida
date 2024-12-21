@@ -49,7 +49,7 @@ export function AdminAnswerControl({
 
         return !included.includes(answer.id) && !playerIds.includes(answer.playerId);
       }),
-    [allAnswers, answerGroup]
+    [allAnswers, answerGroup],
   );
 
   // How long to wait to enable the button to avoid ignoring player's custom adds to the answer group

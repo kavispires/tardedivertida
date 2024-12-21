@@ -68,12 +68,7 @@ export function HumanOffering({
         />
       </RuleInstruction>
 
-      <Button
-        size="large"
-        type="primary"
-        disabled={!Boolean(offeringId)}
-        onClick={() => submitOffer({ offeringId })}
-      >
+      <Button size="large" type="primary" disabled={!offeringId} onClick={() => submitOffer({ offeringId })}>
         <Translate pt="Enviar Objeto" en="Submit Object" />
       </Button>
 

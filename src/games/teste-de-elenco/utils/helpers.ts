@@ -22,12 +22,12 @@ export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): stri
     Object.values(movie.roles).forEach((role) => {
       if (role.cast) {
         if (role.id === 'THE_SPECIAL_GUEST') {
-          prompt += `\nThe reveal `;
+          prompt += '\nThe reveal ';
         } else {
           prompt += `\n${role.title.en} `;
         }
         if (role.id === 'THE_NARRATOR') {
-          prompt += `(reveal the narrator as one of the characters related to the protagonist) `;
+          prompt += '(reveal the narrator as one of the characters related to the protagonist) ';
         }
 
         prompt += `- ${role.description.en}:`;
@@ -48,12 +48,12 @@ export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): stri
   Object.values(movie.roles).forEach((role) => {
     if (role.cast) {
       if (role.id === 'THE_SPECIAL_GUEST') {
-        prompt += `\nA revelação `;
+        prompt += '\nA revelação ';
       } else {
         prompt += `\n${role.title.pt} `;
       }
       if (role.id === 'THE_NARRATOR') {
-        prompt += `(revele que o narrador como um dos personagens relacionados ao protagonista) `;
+        prompt += '(revele que o narrador como um dos personagens relacionados ao protagonista) ';
       }
 
       prompt += `- ${role.description.pt}:`;
@@ -73,14 +73,19 @@ export const getMovieSummary = (movie: FeatureFilm) => {
   const totalActors = roles.length;
 
   // Calculate Gender diversity
-  const maleCount = roles.filter((role) => role.candidates[role.actor!].gender === 'male').length;
-  const femaleCount = roles.filter((role) => role.candidates[role.actor!].gender === 'female').length;
+  const maleCount = roles.filter(
+    (role) => role.actor && role.candidates[role.actor].gender === 'male',
+  ).length;
+  const femaleCount = roles.filter(
+    (role) => role.actor && role.candidates[role.actor]?.gender === 'female',
+  ).length;
 
   const genderDiversity = Math.round(
-    (Math.min(femaleCount, maleCount) / Math.max(femaleCount, maleCount)) * 100
+    (Math.min(femaleCount, maleCount) / Math.max(femaleCount, maleCount)) * 100,
   );
 
   // Calculate Age diversity
+  // biome-ignore lint/style/noNonNullAssertion: <explanation>
   const uniqueAges = new Set(roles.map((role) => role.candidates[role.actor!].age));
   const ageDiversity = (() => {
     if (uniqueAges.size <= 1) return 0;
@@ -89,6 +94,7 @@ export const getMovieSummary = (movie: FeatureFilm) => {
   })();
 
   // Calculate Ethnicity diversity
+  // biome-ignore lint/style/noNonNullAssertion: <explanation>
   const uniqueRaces = new Set(roles.map((role) => role.candidates[role.actor!].ethnicity));
   const ethnicityDiversity = (() => {
     if (uniqueRaces.size <= 1) return 0;

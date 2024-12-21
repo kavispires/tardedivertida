@@ -83,7 +83,7 @@ export function useGlobalLocalStorage<K extends keyof LocalStorageState>(propert
 
 export function setGlobalLocalStorage<K extends keyof LocalStorageState>(
   property: K,
-  value: LocalStorageState[K] | null
+  value: LocalStorageState[K] | null,
 ) {
   const localStorageKey = getKey(property);
   window.localStorage.setItem(localStorageKey, JSON.stringify(value));

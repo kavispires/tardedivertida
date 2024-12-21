@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import { Item } from 'types/tdr';
+import type { Item } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Icons
 import { RulesIcon } from 'icons/RulesIcon';
 import { VideoGameControllerIcon } from 'icons/VideoGameControllerIcon';
@@ -19,7 +19,7 @@ export const messageContent = (
   description: ReactNode,
   id: string,
   duration = 30,
-  type: 'control' | 'rules' = 'control'
+  type: 'control' | 'rules' = 'control',
 ) => {
   const key = `${id} - ${title}`;
 

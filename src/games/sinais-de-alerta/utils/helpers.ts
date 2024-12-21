@@ -1,11 +1,11 @@
 // Types
-import { TextCard } from 'types/tdr';
+import type { TextCard } from 'types/tdr';
 
 export const getTitle = (
   cards: Dictionary<TextCard>,
   subjectId: string,
   descriptorId: string,
-  language: Language
+  language: Language,
 ) => {
   if (language === 'en') {
     return `${cards[descriptorId].text} ${cards[subjectId].text}`;

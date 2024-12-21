@@ -28,7 +28,7 @@ export function DreamCard({
         className={clsx(
           baseClass,
           isDream && `${baseClass}--dream`,
-          isNightmare && `${baseClass}--nightmare`
+          isNightmare && `${baseClass}--nightmare`,
         )}
       />
       {!hideBlurButton && <ImageBlurButton cardId={cardId} />}

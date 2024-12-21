@@ -36,10 +36,10 @@ export function StepRanking({
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Apostou na final corretamente" en="Correct final bet" />,
-        <Translate pt="Apostou nas semifinais corretamente" en="Correct semifinal bet" />,
-        <Translate pt="Apostou nas quartas de finais corretamente" en="Correct quarterfinal bet" />,
-        <Translate pt="Seu competidor ganhou" en="Your competitor won" />,
+        <Translate key="1" pt="Apostou na final corretamente" en="Correct final bet" />,
+        <Translate key="2" pt="Apostou nas semifinais corretamente" en="Correct semifinal bet" />,
+        <Translate key="3" pt="Apostou nas quartas de finais corretamente" en="Correct quarterfinal bet" />,
+        <Translate key="4" pt="Seu competidor ganhou" en="Your competitor won" />,
       ]}
     >
       {!isGameOver && <RoundsLeftInstruction round={round} />}

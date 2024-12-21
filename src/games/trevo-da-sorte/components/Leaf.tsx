@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { DeleteOutlined, RedoOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
@@ -46,7 +46,7 @@ export function Leaf({
   return (
     <div
       key={`leaf-key-${leaf.id}`}
-      className={clsx('y-leaf', grabbable && `y-leaf--grabbable`, getAnimationClass('fadeIn'), className)}
+      className={clsx('y-leaf', grabbable && 'y-leaf--grabbable', getAnimationClass('fadeIn'), className)}
       style={{ transform: `rotate(${rotation}deg)` }}
     >
       {leaf.cards.map((card: TextCard, cIndex: number) =>
@@ -55,7 +55,7 @@ export function Leaf({
             role="button"
             key={card.id}
             className={clsx('y-leaf__card', 'y-leaf__card-button', `y-leaf__card--${cIndex}`)}
-            onClick={() => onLeafGrab!(leaf.id)}
+            onClick={() => onLeafGrab?.(leaf.id)}
           >
             <div className="y-leaf__card-text">{card.text}</div>
           </div>
@@ -63,12 +63,12 @@ export function Leaf({
           <div key={card.id} className={clsx('y-leaf__card', `y-leaf__card--${cIndex}`)}>
             <div className="y-leaf__card-text">{card.text}</div>
           </div>
-        )
+        ),
       )}
       <div className="y-leaf__controls" style={{ transform: `rotate(-${rotation}deg)` }}>
         {!isLocked && rotatable && (
           <Button
-            onClick={(e) => onLeafRotate!(e, leaf.id)}
+            onClick={(e) => onLeafRotate?.(e, leaf.id)}
             className="y-leaf__center y-leaf__center--rotatable"
             shape="circle"
           >
@@ -77,7 +77,7 @@ export function Leaf({
         )}
         {!isLocked && removable && (
           <Button
-            onClick={() => onLeafRemove!(position)}
+            onClick={() => onLeafRemove?.(position)}
             className="y-leaf__center y-leaf__center--rotatable"
             shape="circle"
           >

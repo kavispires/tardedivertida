@@ -1,4 +1,4 @@
-export function QueueIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function QueueIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#965859" d="M187.3 262.5v75a45 45 0 0045-45l-45-30z"></path>

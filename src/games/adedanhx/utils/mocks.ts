@@ -4,7 +4,7 @@ import { mockClue } from 'mock/clues';
 import type { TopicCard } from 'types/tdr';
 // Internal
 import { ANSWERING_TIME } from './constants';
-import { Answer, LetterEntry } from './types';
+import type { Answer, LetterEntry } from './types';
 
 const mockAnswer = (id: string, topic: TopicCard, letter: LetterEntry, correct?: boolean): Answer => {
   // 50% chance of answering
@@ -52,7 +52,7 @@ export const mockAnswers = (
   answers: Record<string, Answer>,
   topics: TopicCard[],
   letters: LetterEntry[],
-  stop?: boolean
+  stop?: boolean,
 ) => {
   const copy = { ...answers };
   Object.keys(copy).forEach((id) => {

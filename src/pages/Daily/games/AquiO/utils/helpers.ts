@@ -4,7 +4,7 @@ import { loadLocalToday } from 'pages/Daily/utils';
 import { SEPARATOR } from 'utils/constants';
 import { deepCopy } from 'utils/helpers';
 // Internal
-import { AquiODisc, AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
+import type { AquiODisc, AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
 import { SETTINGS } from './settings';
 
 export const DEFAULT_LOCAL_TODAY: AquiOLocalToday = {

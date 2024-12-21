@@ -19,7 +19,7 @@ import { routes } from './Routes';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity, // TODO: Verify
+      staleTime: Number.POSITIVE_INFINITY, // TODO: Verify
       refetchOnWindowFocus: false,
       retry: false,
     },

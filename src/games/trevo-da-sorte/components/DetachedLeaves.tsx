@@ -29,7 +29,7 @@ export function DetachedLeaves({
 }: DetachedLeavesProps) {
   const availableLeaves = useMemo(
     () => orderBy(Object.values(leaves), 'id').filter((leaf) => !usedLeavesIds.includes(leaf.id)),
-    [leaves, usedLeavesIds]
+    [leaves, usedLeavesIds],
   );
 
   return (
@@ -39,8 +39,8 @@ export function DetachedLeaves({
           return (
             <div className="y-leaf-loose" key={leaf.id}>
               <Leaf
-                key={leaf!.id}
-                leaf={leaf!}
+                key={leaf.id}
+                leaf={leaf}
                 onLeafGrab={onLeafGrab}
                 onLeafRotate={onLeafRotate}
                 rotation={rotations?.[leaf.id]}

@@ -13,10 +13,10 @@ export function SinaisDeAlertaTimerSound() {
     loop: false,
   });
 
-  // Updated volume
+  // biome-ignore lint/correctness/useExhaustiveDependencies: it only needs to be retriggered when the volume changes
   useEffect(() => {
     controls.volume(volume);
-  }, [volume]); // eslint-disable-line
+  }, [volume]);
 
   return <>{audio}</>;
 }

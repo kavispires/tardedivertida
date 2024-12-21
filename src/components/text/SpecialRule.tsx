@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Components
 import { Translate } from 'components/language';
 // Sass

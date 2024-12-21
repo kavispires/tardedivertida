@@ -7,10 +7,10 @@ import {
   StepForwardOutlined,
   TrophyOutlined,
 } from '@ant-design/icons';
-import { Button, ButtonProps, Space } from 'antd';
+import { Button, type ButtonProps, Space } from 'antd';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-import { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -51,15 +51,17 @@ export function SlideShowControls({
   const disableControlsFlag = disableControls ?? config.isFirstGalleryRunThrough;
 
   // Automatically go to the next window every {windowDuration} seconds
+  // biome-ignore lint/correctness/useExhaustiveDependencies: isRunning shouldn't retrigger the effect
   useEffect(() => {
     const expectedSlideIndex = Math.max(
       0,
-      Math.min(config.length - 1, Math.floor((totalDuration - timeLeft) / slideDuration))
+      Math.min(config.length - 1, Math.floor((totalDuration - timeLeft) / slideDuration)),
     );
     if (isRunning && timeLeft < totalDuration && timeLeft > 0 && expectedSlideIndex !== config.slideIndex) {
       config.setSlideIndex(expectedSlideIndex);
     }
-  }, [timeLeft, config, slideDuration, totalDuration]); // eslint-disable-line
+    return () => {};
+  }, [timeLeft, config, slideDuration, totalDuration]);
 
   const goToPreviousSlide = () => {
     pause();

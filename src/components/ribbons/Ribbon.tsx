@@ -7,7 +7,7 @@ type RibbonProps = {
   position?: 'absolute' | 'static';
 };
 
-export function Ribbon({ label, position = 'absolute' }: RibbonProps): JSX.Element {
+export function Ribbon({ label, position = 'absolute' }: RibbonProps) {
   return (
     <div className={clsx('ribbon', `ribbon--${position}`)}>
       <div
@@ -15,7 +15,7 @@ export function Ribbon({ label, position = 'absolute' }: RibbonProps): JSX.Eleme
           'ribbon__content',
           `ribbon__content--${label}`,
           `color-background--${getColorFromLetter(label)}`,
-          getAnimationClass('bounceIn')
+          getAnimationClass('bounceIn'),
         )}
       >
         {label}

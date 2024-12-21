@@ -30,9 +30,9 @@ type Votes = {
  */
 export function useVotingMatch(
   keyType: string,
-  allowDuplicates: boolean = true,
+  allowDuplicates = true,
   completeCount?: number,
-  initialState: Votes = {}
+  initialState: Votes = {},
 ): {
   votes: Votes;
   setVotes: React.Dispatch<any>;
@@ -43,7 +43,9 @@ export function useVotingMatch(
   getEntryId: (arr: string[]) => string;
   isItemActive: (entryId: string) => boolean;
 } {
-  const [votes, setVotes]: [Votes, React.Dispatch<any>] = useState({ ...initialState });
+  const [votes, setVotes]: [Votes, React.Dispatch<any>] = useState({
+    ...initialState,
+  });
   const [activeItem, setActiveItem]: [string, React.Dispatch<any>] = useState('');
   const [isVotingComplete, setIsVotingComplete]: [boolean, React.Dispatch<any>] = useState(false);
 
@@ -94,7 +96,7 @@ export function useVotingMatch(
 
       return setActiveItem('');
     },
-    [activeItem, keyType, allowDuplicates]
+    [activeItem, keyType, allowDuplicates],
   );
 
   const resetVoting = (newInitialState: Votes) => {

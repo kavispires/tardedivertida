@@ -22,7 +22,7 @@ export function useOnGuessLocationAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Chute submetido com sucesso', 'Guess submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu chute',
-      'Oops, the application found an error while trying to submit your guess'
+      'Oops, the application found an error while trying to submit your guess',
     ),
   });
 
@@ -44,7 +44,7 @@ export function useOnMakeAccusationAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Acusação submetida com sucesso', 'Accusation submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua acusação',
-      'Oops, the application found an error while trying to submit your acusação'
+      'Oops, the application found an error while trying to submit your acusação',
     ),
   });
 
@@ -65,7 +65,7 @@ export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote'
+      'Oops, the application found an error while trying to submit your vote',
     ),
   });
 
@@ -85,11 +85,11 @@ export function useOnSendLastQuestionerAPIRequest(setStep: UseStep['setStep']) {
     onError: () => setStep(1),
     successMessage: translate(
       'Último perguntador submetido com sucesso',
-      'Last questioner submitted successfully'
+      'Last questioner submitted successfully',
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o último perguntador',
-      'Oops, the application found an error while trying to submit the last questioner'
+      'Oops, the application found an error while trying to submit the last questioner',
     ),
   });
 

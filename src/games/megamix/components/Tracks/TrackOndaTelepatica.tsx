@@ -100,7 +100,7 @@ export const TrackOndaTelepatica = ({ track, round, onSubmitAnswer, user, player
           className={clsx(
             cardSideClass,
             `${cardSideClass}--left`,
-            `${cardSideClass}--L${getColorModifier(track.data.card.left)}`
+            `${cardSideClass}--L${getColorModifier(track.data.card.left)}`,
           )}
         >
           <span className="o-card__arrow">
@@ -112,7 +112,7 @@ export const TrackOndaTelepatica = ({ track, round, onSubmitAnswer, user, player
           className={clsx(
             cardSideClass,
             `${cardSideClass}--right`,
-            `${cardSideClass}--R${getColorModifier(track.data.card.right)}`
+            `${cardSideClass}--R${getColorModifier(track.data.card.right)}`,
           )}
         >
           <span className="o-card__arrow">

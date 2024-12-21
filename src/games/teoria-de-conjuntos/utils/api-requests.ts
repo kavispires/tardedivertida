@@ -16,7 +16,7 @@ export function useOnSubmitJudgeAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Juiz submetido com sucesso', 'Judged submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      'Oops, the application found an error while trying to submit your action',
     ),
   });
 
@@ -38,7 +38,7 @@ export function useOnSubmitItemPlacementAPIRequest(setStep: UseStep['setStep']) 
     successMessage: translate('Item submetido com sucesso', 'Item submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      'Oops, the application found an error while trying to submit your action',
     ),
   });
 
@@ -60,7 +60,7 @@ export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Avaliação submetida com sucesso', 'Evaluation submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      'Oops, the application found an error while trying to submit your action',
     ),
   });
 

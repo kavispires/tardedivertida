@@ -6,7 +6,7 @@ import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 // Components
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 // Internal
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 
 type StockingBoardProps = {
   warehouse: ReturnType<typeof useControleDeEstoqueEngine>['warehouse'];
@@ -24,7 +24,11 @@ export function StockingBoard({ warehouse, onPlaceGood, width, lastPlacedGoodId 
         if (!goodId) {
           return (
             <div key={index} className={clsx('shelves-board__empty-shelf')} style={size}>
-              <button className="shelves-board__empty-shelf-button" onClick={() => onPlaceGood(index)}>
+              <button
+                type="button"
+                className="shelves-board__empty-shelf-button"
+                onClick={() => onPlaceGood(index)}
+              >
                 ?
               </button>
             </div>

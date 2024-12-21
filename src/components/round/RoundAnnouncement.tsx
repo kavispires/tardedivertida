@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
@@ -70,7 +70,7 @@ export function RoundAnnouncement({
         <div
           className={clsx(
             'round-announcement__title',
-            appearance.colorScheme === 'dark' && 'round-announcement__title--dark'
+            appearance.colorScheme === 'dark' && 'round-announcement__title--dark',
           )}
         >
           <img src={translate(roundTitlePt, roundTitleEn)} alt={translate('Rodada', 'Round')} />
@@ -81,7 +81,7 @@ export function RoundAnnouncement({
           <div
             className={clsx(
               'round-announcement__number',
-              appearance.colorScheme === 'dark' && 'round-announcement__number--dark'
+              appearance.colorScheme === 'dark' && 'round-announcement__number--dark',
             )}
           >
             {round?.current ?? round ?? 0}
@@ -90,7 +90,7 @@ export function RoundAnnouncement({
 
         {children}
 
-        {Boolean(onPressButton) && !Boolean(time) && (
+        {Boolean(onPressButton) && !time && (
           <Button type="primary" onClick={onPressButton} className="round-announcement__go-button">
             {buttonText}
           </Button>

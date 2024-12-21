@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Typography } from 'antd';
 // Types
-import { GamePlayers } from 'types/player';
-import { TextCard } from 'types/tdr';
+import type { GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Icons
@@ -13,7 +13,7 @@ import { TransparentButton } from 'components/buttons';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 // Internal
-import { DrawingEntry } from '../utils/types';
+import type { DrawingEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';
 
 type EvaluationAllDrawingsProps = {

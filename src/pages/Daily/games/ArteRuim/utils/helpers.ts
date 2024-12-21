@@ -1,10 +1,10 @@
 import { loadLocalToday } from 'pages/Daily/utils';
-import { LettersDictionary } from 'pages/Daily/utils/types';
+import type { LettersDictionary } from 'pages/Daily/utils/types';
 // Utils
-import { deepCopy } from 'utils/helpers';
+import { deepCopy, stringRemoveAccents } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
+import type { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
 
 export const DEFAULT_LOCAL_TODAY: ArteRuimLocalToday = {
   id: '',
@@ -45,6 +45,7 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
     state.hearts = isCorrect ? state.hearts : state.hearts - 1;
     return acc;
   }, {});
+  state.solution = solution;
 
   state.guesses = guesses;
   state.win = Object.values(solution)
@@ -60,10 +61,7 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
  * @returns An object with each letter in the word as a key and a boolean value indicating if the letter has been found.
  */
 export function getLettersInWord(text: string): BooleanDictionary {
-  const cleanedUpText = text
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
+  const cleanedUpText = stringRemoveAccents(text).toLowerCase();
   const letters = cleanedUpText.split('');
   const lettersInWord: BooleanDictionary = {};
 
@@ -83,10 +81,7 @@ export function getLettersInWord(text: string): BooleanDictionary {
  * @returns The cleaned up character.
  */
 export function cleanupLetter(char: string): string {
-  return char
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
+  return stringRemoveAccents(char).toLowerCase();
 }
 
 /**

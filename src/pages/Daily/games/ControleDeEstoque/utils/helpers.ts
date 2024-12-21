@@ -4,7 +4,7 @@ import { SEPARATOR } from 'utils/constants';
 import { deepCopy } from 'utils/helpers';
 // Internal
 import { PHASES, SETTINGS } from './settings';
-import { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
+import type { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
 
 export const DEFAULT_LOCAL_TODAY: ControleDeEstoqueLocalToday = {
   id: '',
@@ -69,7 +69,7 @@ export const getInitialState = (data: DailyControleDeEstoqueEntry, removeHeart?:
  */
 export const validateAttempts = (
   warehouse: GameState['warehouse'],
-  fulfillments: GameState['fulfillments']
+  fulfillments: GameState['fulfillments'],
 ) => {
   return fulfillments.reduce((acc: boolean[], fulfillment) => {
     // If it's out of stock

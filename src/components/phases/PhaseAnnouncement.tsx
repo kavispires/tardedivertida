@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { useKeyPressEvent } from 'react-use';
 // Ant Design Resources
 import { Button } from 'antd';
@@ -146,7 +146,7 @@ export function PhaseAnnouncement({
     <div
       className={clsx(
         type === 'overlay' && 'phase-announcement-overlay',
-        !isActive && getAnimationClass('fadeOut', { speed: 'faster' })
+        !isActive && getAnimationClass('fadeOut', { speed: 'faster' }),
       )}
     >
       <div className="phase-announcement-wrapper">
@@ -154,7 +154,7 @@ export function PhaseAnnouncement({
           className={clsx(
             'phase-announcement',
             isActive ? getAnimationClass(animationType, { speed: 'fast' }) : getAnimationClass('bounceOut'),
-            className
+            className,
           )}
         >
           <Title colorScheme="light">{title}</Title>

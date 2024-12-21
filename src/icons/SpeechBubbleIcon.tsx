@@ -1,4 +1,4 @@
-export function SpeechBubbleIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function SpeechBubbleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path d="M32 469.3a10.7 10.7 0 01-4.8-20.2c1.9-1 46.1-24.5 56-91.3C30.3 323.5 0 275 0 224 0 124 114.8 42.7 256 42.7S512 124 512 224 397.2 405.3 256 405.3c-10 0-20.2-.5-32-1.6a363 363 0 01-192 65.6z"></path>

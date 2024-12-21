@@ -4,7 +4,7 @@ import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import { TextCard } from 'types/tdr';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
@@ -18,7 +18,7 @@ import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { DrawingEntry } from './utils/types';
+import type { DrawingEntry } from './utils/types';
 import { useGuessing } from './utils/useGuessing';
 import { EvaluationRules } from './components/RulesBlobs';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
@@ -49,7 +49,11 @@ export function StepEvaluate({
 }: StepEvaluateProps) {
   const { isLoading } = useLoading();
 
-  const canvasWidth = useCardWidth(6, { gap: 16, minWidth: 120, maxWidth: 500 });
+  const canvasWidth = useCardWidth(6, {
+    gap: 16,
+    minWidth: 120,
+    maxWidth: 500,
+  });
   const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
   const {
     subjectGuesses,
@@ -73,12 +77,13 @@ export function StepEvaluate({
     randomSelection();
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!canvasSize) {
       // Round to increments of 50
       setCanvasSize(Math.floor(canvasWidth / 50) * 50);
     }
-  }, [canvasSize, canvasWidth]); // eslint-disable-line
+  }, [canvasSize, canvasWidth]);
 
   useMock(() => {
     onGuessForMe();
@@ -195,7 +200,7 @@ export function StepEvaluate({
 const prepareGuesses = (
   drawings: DrawingEntry[],
   subjectGuesses: StringDictionary,
-  descriptorGuesses: StringDictionary
+  descriptorGuesses: StringDictionary,
 ) => {
   const guesses: ArrayDictionary<CardId> = {};
 

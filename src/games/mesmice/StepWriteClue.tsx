@@ -9,7 +9,7 @@ import type { GamePlayer } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { type UseStep } from 'hooks/useStep';
+import type { UseStep } from 'hooks/useStep';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -44,7 +44,7 @@ export function StepWriteClue({
 
   const selectedObject = useMemo(
     () => user.items.find((item: ObjectCardObj) => item.id === selectedObjectId),
-    [user, selectedObjectId]
+    [user, selectedObjectId],
   );
 
   const handleSubmitClue = () => {
@@ -53,7 +53,7 @@ export function StepWriteClue({
 
   const listOfFeatures = useMemo(
     () => orderBy(Object.values(features), [`title.${language}`, 'level']),
-    [features, language]
+    [features, language],
   );
 
   return (
@@ -88,7 +88,9 @@ export function StepWriteClue({
         </div>
         <div
           className="features-container"
-          style={{ gridTemplateColumns: `repeat(${listOfFeatures.length / 2}, 1fr)` }}
+          style={{
+            gridTemplateColumns: `repeat(${listOfFeatures.length / 2}, 1fr)`,
+          }}
         >
           {listOfFeatures.map((feature) => (
             <ObjectFeature key={feature.id} feature={feature} highlight={user.target === feature.id} />

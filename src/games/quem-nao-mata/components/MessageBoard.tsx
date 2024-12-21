@@ -10,7 +10,7 @@ import { PLACEHOLDER_PLAYER } from 'utils/constants';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
-import { Message } from '../utils/types';
+import type { Message } from '../utils/types';
 
 type MessageBoardProps = {
   messages: Record<PlayerId, Message>;

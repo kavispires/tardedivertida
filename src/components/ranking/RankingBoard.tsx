@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
-import { LegacyRef, ReactNode, useEffect, useMemo, useState } from 'react';
+import { type LegacyRef, type ReactNode, useEffect, useMemo, useState } from 'react';
 import { useEffectOnce, useMeasure } from 'react-use';
 // Ant Design Resources
 import { CrownFilled } from '@ant-design/icons';
@@ -22,7 +22,7 @@ type GainedPointProps = {
   description?: any;
 };
 
-function GainedPoint({ gainedPoint, order, description }: GainedPointProps): JSX.Element {
+function GainedPoint({ gainedPoint, order, description }: GainedPointProps) {
   const isPositive = gainedPoint > 0;
   const isNegative = gainedPoint < 0;
   return (
@@ -31,7 +31,7 @@ function GainedPoint({ gainedPoint, order, description }: GainedPointProps): JSX
         'ranking-board__gained-point',
         isPositive && 'ranking-board__gained-point--plus',
         isNegative && 'ranking-board__gained-point--minus',
-        `ranking-board__gained-point--${order}`
+        `ranking-board__gained-point--${order}`,
       )}
     >
       <Tooltip
@@ -51,11 +51,7 @@ type GainedPointsProps = {
   gainedPointsDescriptions?: any[];
 };
 
-function GainedPoints({
-  gainedPoints,
-  playerId,
-  gainedPointsDescriptions = [],
-}: GainedPointsProps): JSX.Element {
+function GainedPoints({ gainedPoints, playerId, gainedPointsDescriptions = [] }: GainedPointsProps) {
   const points = Array.isArray(gainedPoints) ? gainedPoints : [gainedPoints];
   return (
     <ul className="ranking-board__cell-gained-points">
@@ -85,7 +81,7 @@ export function RankingBoard({
   gainedPointsDescriptions,
   hideGainedPoints = false,
   delay = 0,
-}: RankingBoardProps): JSX.Element {
+}: RankingBoardProps) {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
   const [reRank, setReRank] = useState(0);
@@ -119,7 +115,7 @@ export function RankingBoard({
         positions[entry.playerId] = [0, lastPosition];
         return acc;
       },
-      {}
+      {},
     );
 
     const rankByPreviousScore = orderBy(ranking, ['previousScore', 'name'], ['desc', 'asc']);
@@ -159,9 +155,11 @@ export function RankingBoard({
       className={clsx(
         'ranking-board',
         seconds > 4 && 'ranking-board--hidden',
-        seconds === 4 && getAnimationClass('fadeIn')
+        seconds === 4 && getAnimationClass('fadeIn'),
       )}
-      style={{ height: `${(Math.max(60, height) + 8) * sortedRanking.length}px` }}
+      style={{
+        height: `${(Math.max(60, height) + 8) * sortedRanking.length}px`,
+      }}
     >
       <div
         className="ranking-board__row"

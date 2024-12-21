@@ -57,7 +57,7 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           className={clsx(
             'w-bet-form__container',
             'w-bet-form__container--final',
-            getAnimationClass('zoomIn')
+            getAnimationClass('zoomIn'),
           )}
         >
           <IconAvatar icon={<TrophyIcon />} size="large" />
@@ -101,7 +101,7 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           className={clsx(
             'w-bet-form__container',
             'w-bet-form__container--semi',
-            getAnimationClass('zoomIn')
+            getAnimationClass('zoomIn'),
           )}
         >
           <IconAvatar icon={<MedalIcon />} size="large" />
@@ -145,7 +145,7 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           className={clsx(
             'w-bet-form__container',
             'w-bet-form__container--quarter',
-            getAnimationClass('zoomIn')
+            getAnimationClass('zoomIn'),
           )}
         >
           <IconAvatar icon={<ThumbsUpIcon />} size="large" />

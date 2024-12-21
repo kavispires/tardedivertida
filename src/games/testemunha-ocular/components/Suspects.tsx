@@ -35,7 +35,7 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
               key={suspect.id}
               title={translate(
                 `Tem certeza que quer liberar ${name}?`,
-                `Are you sure you want to release ${name}?`
+                `Are you sure you want to release ${name}?`,
               )}
               onConfirm={() => onCardClick(suspect.id)}
               okText={translate('Sim', 'Yes')}
@@ -44,6 +44,7 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
             >
               <button
                 className="t-suspects-table__suspect t-suspects-table__suspect-button"
+                type="button"
                 disabled={wasEliminated || isLoading}
               >
                 <ImageCard
@@ -51,7 +52,7 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
                   className={clsx(
                     't-suspects-table__suspect-image',
                     perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active',
-                    wasEliminated && 't-suspects-table__suspect-image--disabled'
+                    wasEliminated && 't-suspects-table__suspect-image--disabled',
                   )}
                   cardWidth={cardWidth}
                   preview={false}
@@ -77,7 +78,7 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
                 previewImageId={suspect.id}
                 className={clsx(
                   't-suspects-table__suspect-image',
-                  perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active'
+                  perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active',
                 )}
                 cardWidth={cardWidth}
               />

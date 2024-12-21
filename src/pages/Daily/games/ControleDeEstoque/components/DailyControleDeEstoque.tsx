@@ -1,10 +1,10 @@
 import { Region, TextRegion } from 'pages/Daily/components/Region';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { Button, Divider, Layout, Modal, Popconfirm, Tooltip, Typography } from 'antd';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -14,7 +14,7 @@ import { DualTranslate, Translate } from 'components/language';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { PHASES, SETTINGS } from '../utils/settings';
-import { DailyControleDeEstoqueEntry } from '../utils/types';
+import type { DailyControleDeEstoqueEntry } from '../utils/types';
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -30,7 +30,7 @@ type DailyControleDeEstoqueProps = {
 };
 
 export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
 
   const {
     hearts,

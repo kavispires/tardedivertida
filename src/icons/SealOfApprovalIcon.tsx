@@ -1,4 +1,4 @@
-export function SealOfApprovalIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function SealOfApprovalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#de5540" d="M337 273l104 176-56-8-32 48-104-176z"></path>

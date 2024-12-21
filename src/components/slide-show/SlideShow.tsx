@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
-import { ButtonProps } from 'antd';
+import type { ButtonProps } from 'antd';
 // Hooks
-import { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Internal
 import { SlideShowControls } from './SlideShowControls';
 

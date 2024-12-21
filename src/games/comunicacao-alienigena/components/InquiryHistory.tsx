@@ -2,7 +2,7 @@ import type { ColumnsType } from 'antd/es/table';
 // Ant Design Resources
 import { Space, Table } from 'antd';
 // Types
-import { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Components
 import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -102,8 +102,8 @@ function Intention({ signs, intention }: IntentionProps) {
 
   return (
     <Space>
-      {Boolean(attribute) ? (
-        <DualTranslate>{attribute!.attribute}</DualTranslate>
+      {attribute ? (
+        <DualTranslate>{attribute.attribute}</DualTranslate>
       ) : (
         <Translate pt="Desconhecido" en="Unknown" />
       )}

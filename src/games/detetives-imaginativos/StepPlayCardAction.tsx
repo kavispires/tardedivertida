@@ -55,6 +55,7 @@ export function StepPlayCardAction({
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
   const [wasMessageDisplayed, setWasMessageDisplayed] = useState(false);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!wasMessageDisplayed && !isLoading && isEarliestPlayerWithFewestCards(table, user.id, turnOrder)) {
       message.info(
@@ -62,12 +63,12 @@ export function StepPlayCardAction({
           translate('Escolha uma carta!', 'Choose a card to play'),
           translate(
             'Aperte o botão Selecionar acima da carta escolhida',
-            'Press the select button above each card'
+            'Press the select button above each card',
           ),
 
           currentPlayer.id,
-          3
-        )
+          3,
+        ),
       );
       setWasMessageDisplayed(true);
     }

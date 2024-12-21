@@ -69,7 +69,12 @@ export function StepReveal({
   onSubmitPoster,
   posters,
 }: StepRevealProps) {
-  const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
+  const posterWidth = useCardWidth(8, {
+    gap: 16,
+    minWidth: 80,
+    maxWidth: 150,
+    margin: 32,
+  });
   const { isLoading } = useLoading();
 
   const isFinalMovie = Boolean(outcome === 'DONE' && mistakes.length < 2 && finalMovieId);
@@ -196,10 +201,11 @@ export function StepReveal({
       <ViewIf condition={isFinalMovie}>
         <div>
           <Title level={4} size="medium">
-            <MovieHighlight movies={movies} movieId={finalMovieId!} />
+            {!!finalMovieId && <MovieHighlight movies={movies} movieId={finalMovieId} />}
           </Title>
           <Instruction contained>
-            <Translate pt="Vote no poster do filme" en="Vote for the movie poster" />:
+            <Translate pt="Vote no poster do filme" en="Vote for the movie poster" />
+            :
             <br />
             <Space className="space-container" wrap>
               {posters.map((posterId) => (

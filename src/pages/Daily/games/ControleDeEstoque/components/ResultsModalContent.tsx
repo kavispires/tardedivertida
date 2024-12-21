@@ -91,7 +91,7 @@ function writeResult({
   const cleanUpAttempts = evaluations.map((row) =>
     row.map((value) => {
       return value ? '📫' : '🤬';
-    })
+    }),
   );
 
   return [

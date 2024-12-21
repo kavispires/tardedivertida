@@ -33,7 +33,7 @@ export function ReadyPlayersBar({
       {
         readyPlayers: [],
         notReadyPlayers: [],
-      }
+      },
     );
 
   if (readyPlayers.length === 0) {

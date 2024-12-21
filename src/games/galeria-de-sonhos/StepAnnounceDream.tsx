@@ -65,9 +65,9 @@ export function StepAnnounceDream({
           }
           return acc;
         },
-        { matchingPlayers: [], fallenMatchingPlayers: [] }
+        { matchingPlayers: [], fallenMatchingPlayers: [] },
       ),
-    [latest?.matchedPlayers, players, lastActivePlayer.id]
+    [latest?.matchedPlayers, players, lastActivePlayer.id],
   );
 
   const completedPlayers = Object.values(players).filter((player) => player?.skip || player?.fallen);
@@ -77,7 +77,9 @@ export function StepAnnounceDream({
       <div className={clsx('g-dream-result', getAnimationClass('fadeIn', { speed: 'slow' }))}>
         <header
           className="g-dream-result__header"
-          style={{ backgroundColor: getAvatarColorById(lastActivePlayer.avatarId) }}
+          style={{
+            backgroundColor: getAvatarColorById(lastActivePlayer.avatarId),
+          }}
         >
           <AvatarName player={lastActivePlayer} size="large" />
           <Translate pt="escolheu visitar o sonho" en="chose to visit the dream" />:

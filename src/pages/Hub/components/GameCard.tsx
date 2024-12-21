@@ -29,7 +29,7 @@ const getVersionColor = (version: string) => {
 
   const major = Number(version.split('.')[0]);
 
-  if (isNaN(major)) {
+  if (Number.isNaN(major)) {
     return '#96A0A3';
   }
 
@@ -100,7 +100,10 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
           {Boolean(game.rules?.[language]?.length > 1) && (
             <RulesModal
               gameInfo={game}
-              buttonProps={{ size: 'small', className: 'game-card__margin-bottom' }}
+              buttonProps={{
+                size: 'small',
+                className: 'game-card__margin-bottom',
+              }}
             />
           )}
 
@@ -131,7 +134,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
           <Card.Meta
             description={translate(
               `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
-              `For ${game.playerCount.min}-${game.playerCount.max} players`
+              `For ${game.playerCount.min}-${game.playerCount.max} players`,
             )}
           />
 
@@ -139,7 +142,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
             className="game-card__player-count"
             description={translate(
               `Melhor com ${game.playerCount.best || '?'} jogadores`,
-              `Best wih ${game.playerCount.best || '?'} players`
+              `Best wih ${game.playerCount.best || '?'} players`,
             )}
           />
 
@@ -147,7 +150,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
             className="game-card__player-count game-card__margin-bottom"
             description={translate(
               `Recomendado jogar com ${truncateRecommended(game.playerCount.recommended)}`,
-              `Recommended with ${truncateRecommended(game.playerCount.recommended)}`
+              `Recommended with ${truncateRecommended(game.playerCount.recommended)}`,
             )}
           />
         </Space>

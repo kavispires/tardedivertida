@@ -20,7 +20,7 @@ export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Pergunta submetida com sucesso', 'Question submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pergunta',
-      'Oops, the application found an error while trying to submit your question'
+      'Oops, the application found an error while trying to submit your question',
     ),
   });
 
@@ -41,7 +41,7 @@ export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Alvo submetida com sucesso', 'Target submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
-      'Oops, the application found an error while trying to submit your target'
+      'Oops, the application found an error while trying to submit your target',
     ),
   });
 
@@ -61,7 +61,7 @@ export function useOnSubmitAnswerAPIRequest() {
     successMessage: translate('Resposta submetida com sucesso', 'Answer submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
-      'Oops, the application found an error while trying to submit your answer'
+      'Oops, the application found an error while trying to submit your answer',
     ),
   });
 
@@ -82,7 +82,7 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Palpite submetido com sucesso', 'Guess submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpite',
-      'Oops, the application found an error while trying to submit your guess'
+      'Oops, the application found an error while trying to submit your guess',
     ),
   });
 

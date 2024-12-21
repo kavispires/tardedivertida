@@ -3,7 +3,7 @@ import { sample } from 'lodash';
 // Utils
 import { print } from 'utils/helpers';
 // Internal
-import { AquiOSet, DailyAquiOEntry } from '../utils/types';
+import type { AquiOSet, DailyAquiOEntry } from '../utils/types';
 import { wait } from '../../../utils';
 import miscSets from './misc-sets.json';
 
@@ -18,7 +18,11 @@ export function useRandomAquiOChallenge(collectionName: string) {
       // Build game getting the set based on today's date
       await wait(150);
 
-      const chosenSet = sample(MISC_SETS)!;
+      const chosenSet = sample(MISC_SETS);
+
+      if (!chosenSet) {
+        throw new Error('No set found');
+      }
 
       const gameData: DailyAquiOEntry = {
         id: 'random',

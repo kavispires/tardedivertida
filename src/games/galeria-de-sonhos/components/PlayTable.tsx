@@ -32,7 +32,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
       <div className="g-table-container">
         <ul className="g-table">
           {table.map((card) => {
-            const isSelected = Boolean((userCards ?? {})[card.id]);
+            const isSelected = Boolean(userCards?.[card.id]);
             const userCardEntry = userCards[card.id] ?? {};
             if (card.used) {
               return (
@@ -49,7 +49,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                     className={clsx(
                       'g-table-image',
                       isSelected && 'g-table-image--selected',
-                      getAnimationClass('zoomIn')
+                      getAnimationClass('zoomIn'),
                     )}
                     previewImageId={card.id}
                   />
@@ -75,7 +75,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                   className={clsx(
                     'g-table-image',
                     isSelected && 'g-table-image--selected',
-                    getAnimationClass('zoomIn')
+                    getAnimationClass('zoomIn'),
                   )}
                 />
                 {isPlayAvailable && userCards[card.id] && (

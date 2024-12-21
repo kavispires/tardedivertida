@@ -16,7 +16,7 @@ export function useOnSubmitTweetAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Assunto enviada com sucesso!', 'Tweet send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu assunto',
-      'Oops, the application failed to submit the tweet'
+      'Oops, the application failed to submit the tweet',
     ),
   });
 
@@ -38,7 +38,7 @@ export function useOnSubmitReactionAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Reação enviada com sucesso!', 'Reaction send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua reação',
-      'Oops, the application failed to submit your reaction'
+      'Oops, the application failed to submit your reaction',
     ),
   });
 

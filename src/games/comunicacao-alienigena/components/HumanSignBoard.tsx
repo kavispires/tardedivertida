@@ -108,7 +108,7 @@ export function HumanSignBoard({ signs, startingAttributes = [] }: HumanSignBoar
             </TransparentButton>
           </Popconfirm>
           <DrawingCanvas
-            lines={cache?.['unknown'] ?? []}
+            lines={cache?.unknown ?? []}
             setLines={(content: any) => updateCache('unknown', content)}
             width={390}
             height={60}

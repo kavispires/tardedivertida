@@ -4,7 +4,7 @@ import type { CardEntry } from './types';
 export function isEarliestPlayerWithFewestCards(
   table: CardEntry[],
   userId: PlayerId,
-  turnOrder: PlayerId[]
+  turnOrder: PlayerId[],
 ): boolean {
   for (let i = 0; i < Math.max(table.length, turnOrder.length); i++) {
     if (!table[i]) {

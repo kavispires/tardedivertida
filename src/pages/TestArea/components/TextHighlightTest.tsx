@@ -8,7 +8,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
+import type { TestStepProps } from '../TestArea';
 
 export function TextHighlightTest({ onResult, step }: TestStepProps) {
   const { translate } = useLanguage();
@@ -27,7 +27,7 @@ export function TextHighlightTest({ onResult, step }: TestStepProps) {
           type="negative"
           text={translate(
             'O abacate tem três pernas de bambu madeira',
-            'The avocado has three legs made of bamboo'
+            'The avocado has three legs made of bamboo',
           )}
           highlights={['três pernas', 'three legs', 'madeira', 'bamboo']}
         />

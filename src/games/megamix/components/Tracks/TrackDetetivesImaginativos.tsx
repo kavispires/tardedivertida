@@ -61,7 +61,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                     cardId={cardId}
                     className={clsx(
                       'd-table__card',
-                      user?.data?.value === cardId && 'd-table__card--selected'
+                      user?.data?.value === cardId && 'd-table__card--selected',
                     )}
                   >
                     <ImageCard
@@ -104,7 +104,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                     cardId={cardId}
                     className={clsx(
                       'd-table__card',
-                      user?.data?.value === cardId && 'd-table__card--selected'
+                      user?.data?.value === cardId && 'd-table__card--selected',
                     )}
                   >
                     <ImageCard

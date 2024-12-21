@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import { Item } from 'types/tdr';
+import type { Item } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -63,7 +63,7 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
             <Space className="space-container">
               {track.data.attributes.map((attribute: AlienSign, index: number) => {
                 return (
-                  <span>
+                  <span key={attribute.id}>
                     <SignCard id={String(track.data.signs[index])} />
                     <DualTranslate>{attribute.name}</DualTranslate>
                   </span>

@@ -12,7 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
-import { Guess } from './utils/types';
+import type { Guess } from './utils/types';
 import { Announcement } from './components/Announcement';
 import { StepPlaceItem } from './StepPlaceItem';
 import { StepWaitPlaceItem } from './StepWaitPlaceItem';

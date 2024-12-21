@@ -1,11 +1,11 @@
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { Region } from 'pages/Daily/components/Region';
-import { useMemo } from 'react';
+import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
 import { Button, Layout, Modal, Space, Typography } from 'antd';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
@@ -16,7 +16,7 @@ import { DualTranslate, Translate } from 'components/language';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { DailyFilmacoEntry } from '../utils/types';
+import type { DailyFilmacoEntry } from '../utils/types';
 import { useFilmacoEngine } from '../utils/useFilmacoEngine';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -30,7 +30,7 @@ type DailyFilmacoProps = {
 };
 
 export function DailyFilmaco({ data }: DailyFilmacoProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
   const { hearts, guesses, showResultModal, setShowResultModal, isWin, isComplete, guessLetter, solution } =
     useFilmacoEngine(data, initialState);
   const width = useCardWidth(5, { margin: 64, maxWidth: 100, minWidth: 65 });

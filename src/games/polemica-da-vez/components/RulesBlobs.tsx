@@ -35,9 +35,9 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
             </>
           )}
           <br />
-          {Boolean(activePlayer) && (
+          {!!activePlayer && (
             <Instruction contained>
-              <AvatarName player={activePlayer!} addressUser /> escolherá o assunto para essa rodada.
+              <AvatarName player={activePlayer} addressUser /> escolherá o assunto para essa rodada.
             </Instruction>
           )}
         </>
@@ -61,9 +61,9 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
             </>
           )}
           <br />
-          {Boolean(activePlayer) && (
+          {!!activePlayer && (
             <Instruction contained>
-              <AvatarName player={activePlayer!} addressUser /> will choose the tweet for this round.
+              <AvatarName player={activePlayer} addressUser /> will choose the tweet for this round.
             </Instruction>
           )}
         </>

@@ -14,7 +14,7 @@ export function useOnSubmitCategoryAPIRequest() {
     successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
-      'Oops, the application failed to submit the category'
+      'Oops, the application failed to submit the category',
     ),
   });
 
@@ -34,7 +34,7 @@ export function useOnSubmitClueAPIRequest() {
     successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
-      'Oops, the application failed to submit the category'
+      'Oops, the application failed to submit the category',
     ),
   });
 
@@ -56,7 +56,7 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Resposta enviado com sucesso!', 'Guess submitted successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
-      'Oops, the application failed to submit your guess'
+      'Oops, the application failed to submit your guess',
     ),
   });
 

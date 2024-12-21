@@ -16,7 +16,7 @@ export function useOnSubmitWordsAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Palavras enviadas com sucesso', 'Words submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas palavras',
-      'Oops, the application failed to send your words'
+      'Oops, the application failed to send your words',
     ),
   });
 
@@ -38,7 +38,7 @@ export function useOnSubmitClueAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Dica enviada com sucesso', 'Clue submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua dica',
-      'Oops, the application failed to send your clue'
+      'Oops, the application failed to send your clue',
     ),
   });
 
@@ -60,7 +60,7 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Respostas enviadas com sucesso', 'Guesses submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
-      'Oops, the application failed to send your guesses'
+      'Oops, the application failed to send your guesses',
     ),
   });
 

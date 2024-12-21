@@ -18,7 +18,7 @@ export function DailyPicacoGame() {
     return <DailyLoading />;
   }
 
-  const dailyData = challengeQuery?.data?.['artista'];
+  const dailyData = challengeQuery?.data?.artista;
 
   if (challengeQuery.isError || !dailyData) {
     return <DailyError />;

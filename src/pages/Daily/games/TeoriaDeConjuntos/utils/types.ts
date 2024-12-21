@@ -1,4 +1,4 @@
-import { DateKey } from 'pages/Daily/utils/types';
+import type { DateKey } from 'pages/Daily/utils/types';
 
 export type TThing = {
   id: string;

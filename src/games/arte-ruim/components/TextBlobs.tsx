@@ -56,8 +56,7 @@ export const EvaluationRules = () => (
       en={
         <>
           Find the pairs of artwork and card by clicking on a card or artwork then on its match.
-          <br />
-          A ribbon will show up on the artwork with the color and letter of the matching card.
+          <br />A ribbon will show up on the artwork with the color and letter of the matching card.
           <br />
           When you're done, click the button to send your evaluation!
         </>
@@ -73,9 +72,7 @@ export const GalleryRules = () => (
         <>
           Agora, mostraremos cada arte, o que os jogadores votaram e a resposta final.
           <br />
-          Se você votou na expressão correta, você ganha <PointsHighlight type="positive">
-            2
-          </PointsHighlight>{' '}
+          Se você votou na expressão correta, você ganha <PointsHighlight type="positive">2</PointsHighlight>{' '}
           pontos.
           <br />
           Quando for a sua arte, você ganha <PointsHighlight type="positive">1</PointsHighlight> ponto para

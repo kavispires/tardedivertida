@@ -16,7 +16,7 @@ export function useOnSubmitPairsAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Pares submetidos com sucesso', 'Paris submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seus pares',
-      'Oops, the application found an error while trying to submit your pairs'
+      'Oops, the application found an error while trying to submit your pairs',
     ),
   });
 

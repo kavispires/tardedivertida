@@ -44,8 +44,7 @@ export function PhaseCompositeSketch({ players, state }: PhaseProps) {
               pt={
                 <>
                   Um meliante monstruoso está a solta!
-                  <br />
-                  A testemunha <AvatarName player={witness} /> tentará relembrar o incidente!
+                  <br />A testemunha <AvatarName player={witness} /> tentará relembrar o incidente!
                 </>
               }
               en={
@@ -77,9 +76,7 @@ export function PhaseCompositeSketch({ players, state }: PhaseProps) {
                     Você terá <TimeHighlight>{TIMES.MEMORY}</TimeHighlight> segundos para memorizar as
                     características do monstro.
                     <br />
-                    Assim que esse tempo acabar, você terá <TimeHighlight>
-                      {TIMES.SKETCH / 60}
-                    </TimeHighlight>{' '}
+                    Assim que esse tempo acabar, você terá <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>{' '}
                     minutos para descrevê-lo para os outros jogadores.
                     <br />
                     Boa sorte!
@@ -105,9 +102,7 @@ export function PhaseCompositeSketch({ players, state }: PhaseProps) {
                     <TimeHighlight>{TIMES.MEMORY}</TimeHighlight> segundos para memorizar as características
                     do monstro.
                     <br />
-                    Assim que esse tempo acabar, você terá <TimeHighlight>
-                      {TIMES.SKETCH / 60}
-                    </TimeHighlight>{' '}
+                    Assim que esse tempo acabar, você terá <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>{' '}
                     minutos para desenhá-lo enquanto a testemunha o descreve.
                     <br />
                     Boa sorte!

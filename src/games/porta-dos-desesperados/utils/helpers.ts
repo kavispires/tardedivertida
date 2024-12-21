@@ -14,7 +14,7 @@ import { TRAPS } from './constants';
 export function shouldAnnounceTrap(trap: string, phase: string) {
   if (phase === PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION) {
     return [TRAPS.FEWER_PAGES, TRAPS.MORE_CLUES, TRAPS.NO_PREVIEW, TRAPS.SEPIA, TRAPS.FADED_DOORS].includes(
-      trap
+      trap,
     );
   }
 

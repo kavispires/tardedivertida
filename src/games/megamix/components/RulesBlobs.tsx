@@ -5,7 +5,7 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Instruction } from 'components/text';
 
-export function DJInstructions({ round }: { round: GameRound }): JSX.Element {
+export function DJInstructions({ round }: { round: GameRound }) {
   if (round.current <= 1) {
     return (
       <Instruction contained>
@@ -32,9 +32,7 @@ export function DJInstructions({ round }: { round: GameRound }): JSX.Element {
               You achieve this by always answering the tracks with the majority. It doesn't matter if it's
               wrong or right.
               <br />
-              When answering with the majority, you gain <PointsHighlight type="positive">
-                1
-              </PointsHighlight>{' '}
+              When answering with the majority, you gain <PointsHighlight type="positive">1</PointsHighlight>{' '}
               point for joining the VIP area or <PointsHighlight type="positive">2</PointsHighlight> points if
               you're already there.
               <br />

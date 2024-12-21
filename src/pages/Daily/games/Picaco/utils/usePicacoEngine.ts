@@ -3,14 +3,14 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySaveDrawings';
 import { wait } from 'pages/Daily/utils';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Utils
 import { SEPARATOR } from 'utils/constants';
 import { removeDuplicates } from 'utils/helpers';
 // Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import { PicacoLocalToday, DailyPicacoEntry, DrawingToSave, GameState } from './types';
+import type { PicacoLocalToday, DailyPicacoEntry, DrawingToSave, GameState } from './types';
 
 export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initialState: GameState) {
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);

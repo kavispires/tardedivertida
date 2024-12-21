@@ -1,7 +1,7 @@
 // Types
-import { GameRound } from 'types/game';
+import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
-import { Item } from 'types/tdr';
+import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Icons
@@ -13,7 +13,7 @@ import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { DiagramArea, DiagramExamples, Guess, Solutions, SubmitEvaluationPayload } from './utils/types';
+import type { DiagramArea, DiagramExamples, Guess, Solutions, SubmitEvaluationPayload } from './utils/types';
 import { getPlayerItemsLeft } from './utils/helper';
 import { DiagramRules, EvaluationRules } from './components/RulesBlobs';
 import { MyThings } from './components/MyThings';

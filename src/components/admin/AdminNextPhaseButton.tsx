@@ -1,18 +1,12 @@
-import { ReactNode } from 'react';
-// Ant Design Resources
+import type { ReactNode } from 'react';
 import { FireFilled } from '@ant-design/icons';
-// Types
 import type { GameRound } from 'types/game';
-// Hooks
 import { useHostActionRequest } from 'hooks/useHostActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-// Services
 import { HOST_API_ACTIONS } from 'services/adapters';
-// Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
-// Internal
 import { AdminOnlyContainer } from './AdminOnlyContainer';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
@@ -62,7 +56,7 @@ export function AdminNextPhaseButton({
     successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
-      'The application found an error while trying to go to the next phase'
+      'The application found an error while trying to go to the next phase',
     ),
   });
 
@@ -78,7 +72,7 @@ export function AdminNextPhaseButton({
         onClick={handleClick}
         onExpire={handleClick}
         duration={autoTriggerTime}
-        hideTimer={!Boolean(autoTriggerTime)}
+        hideTimer={!autoTriggerTime}
       >
         {children ?? <ButtonLabel round={round} />}
       </TimedButton>

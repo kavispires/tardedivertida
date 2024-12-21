@@ -15,7 +15,7 @@ export function mockGuess(playerCount: number) {
     likesGuess: getRandomItem(
       Array(playerCount + 1)
         .fill(0)
-        .map((e, i) => e + i)
+        .map((e, i) => e + i),
     ),
   };
 }

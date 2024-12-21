@@ -63,9 +63,7 @@ export function StepWaitDoorSelection({
               Silêncio e poker face!
               <br />
               Eles tem{' '}
-              <TimeHighlight>
-                {trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}
-              </TimeHighlight>{' '}
+              <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
               minutos para decidir qual(quais) porta(s) entrar.
               <br />
               Cada porta visitada custará{' '}
@@ -81,9 +79,7 @@ export function StepWaitDoorSelection({
               Silence and poker face!
               <br />
               You have{' '}
-              <TimeHighlight>
-                {trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}
-              </TimeHighlight>{' '}
+              <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
               minutes to decide what door(s) to visit.
               <br />
               Each door a player visits costs{' '}

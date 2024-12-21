@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { DownCircleOutlined, UpCircleOutlined } from '@ant-design/icons';
-import { Button, ButtonProps } from 'antd';
+import { Button, type ButtonProps } from 'antd';
 // Components
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
@@ -82,7 +82,7 @@ export function ImageCardButton({
         'image-card-button__button',
         over && 'image-card-button__button--over',
         over && `image-card-button__button--over-${buttonPosition}`,
-        buttonClassName
+        buttonClassName,
       )}
       onClick={() => onClick(id)}
       disabled={disabled}

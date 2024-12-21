@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Icons
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components

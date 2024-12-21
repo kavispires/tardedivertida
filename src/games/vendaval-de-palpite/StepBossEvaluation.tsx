@@ -15,8 +15,8 @@ import { ClueEvaluation } from './components/ClueEvaluation';
 type StepBossEvaluationProps = {
   secretWord: string;
   categories: string[];
-  onSubmitEvaluation: Function;
-  onSubmitOutcome: Function;
+  onSubmitEvaluation: GenericFunction;
+  onSubmitOutcome: GenericFunction;
   board: BoardObject;
   clues: Clues;
   finalAnswersLeft: number;

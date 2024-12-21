@@ -49,9 +49,8 @@ export function GeneralRules() {
             <br />
             Dentro do tema escolhido, podemos visitar os sonhos de até 10 das 15 pessoas (cartas-imagens)
             disponíveis.
-            <br />
-            O objetivo é encontrar uns aos outros em cada sonho, então escolha apenas sonhos que você acredita
-            que outros jogadores também irão escolher.
+            <br />O objetivo é encontrar uns aos outros em cada sonho, então escolha apenas sonhos que você
+            acredita que outros jogadores também irão escolher.
             <br />
             Parece fácil, mas se você escolher um sonho que ninguém mais escolheu... vixi...
           </>
@@ -185,11 +184,9 @@ export function BotsRules() {
             <br />
             Antes da fase do Bingo dos Sonhos, os três bots entram em ação e selecionam cartas segundo se
             seguinte lógica:
-            <br />
-            O bot A seleciona todas as cartas que foram mais selecionadas pelos jogadores.
-            <br />
-            O bot B seleciona cartas que foram selecionadas por apenas um jogador, mas apenas uma por jogador,
-            e somente se mais de um jogador tiver essa carta extra.
+            <br />O bot A seleciona todas as cartas que foram mais selecionadas pelos jogadores.
+            <br />O bot B seleciona cartas que foram selecionadas por apenas um jogador, mas apenas uma por
+            jogador, e somente se mais de um jogador tiver essa carta extra.
             <br />O bot C simplesmente seleciona 4 cartas aleatórias.
           </>
         }

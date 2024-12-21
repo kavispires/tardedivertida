@@ -3,7 +3,7 @@ import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 // Internal
 import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
-import {
+import type {
   EliminatePayload,
   SelectQuestionPayload,
   SelectWitnessPayload,
@@ -18,7 +18,7 @@ export function useOnSelectWitnessAPIRequest() {
     successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar selecionar a testemunha',
-      'Oops, the application found an error while trying to submit the witness'
+      'Oops, the application found an error while trying to submit the witness',
     ),
   });
 
@@ -38,7 +38,7 @@ export function useOnSelectQuestionAPIRequest() {
     successMessage: translate('Pergunta enviada com sucesso', 'Question submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar pergunta',
-      'Oops, the application found an error while trying to submit question'
+      'Oops, the application found an error while trying to submit question',
     ),
   });
 
@@ -58,7 +58,7 @@ export function useOnSubmitTestimonyAPIRequest() {
     successMessage: translate('Testemunho enviada com sucesso', 'Testimony submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu testemunho',
-      'Oops, the application found an error while trying to send your testimony'
+      'Oops, the application found an error while trying to send your testimony',
     ),
   });
 
@@ -78,7 +78,7 @@ export function useOnEliminateSuspectAPIRequest() {
     successMessage: translate('Suspeito eliminado com sucesso', 'Suspect release submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar eliminar o suspeito',
-      'Oops, the application found an error while trying to release the suspect'
+      'Oops, the application found an error while trying to release the suspect',
     ),
   });
 

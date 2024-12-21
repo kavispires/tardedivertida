@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -135,7 +135,7 @@ function DecisionSection({ players, playersInSection, icon, title, description }
       <h3
         className={clsx(
           'n-players-decision__title',
-          !hasPlayers && getAnimationClass('fadeOut') && 'n-players-decision__title--empty'
+          !hasPlayers && getAnimationClass('fadeOut') && 'n-players-decision__title--empty',
         )}
       >
         <IconAvatar icon={icon} />

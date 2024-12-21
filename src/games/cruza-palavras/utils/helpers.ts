@@ -1,7 +1,7 @@
 // Utils
 import { SEPARATOR } from 'utils/constants';
 // Internal
-import { Clue } from './types';
+import type { Clue } from './types';
 
 /**
  * Checks if an instance is a clue

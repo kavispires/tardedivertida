@@ -42,6 +42,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
     setActiveGame(gameName);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: the functions are not important
   useEffect(() => {
     if (qp.queryParams.game && qp.queryParams.game !== activeGameName) {
       activateGameCard(qp.queryParams.game);
@@ -50,7 +51,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
       setOpen(false);
       setActiveGame('');
     }
-  }, [qp.queryParams.game]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [qp.queryParams.game]);
 
   const modal = (
     <Modal

@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 // Types
-import { SpectrumCard } from 'types/tdr';
+import type { SpectrumCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -78,7 +78,7 @@ export function StepClueWriting({
         />
         <ClueWritingRules />
       </RuleInstruction>
-      <Dial target={target} card={card!} showTarget />
+      {!!card && <Dial target={target} card={card} showTarget />}
       <Space className="space-container" align="center">
         <Input
           onChange={onChangeInput}

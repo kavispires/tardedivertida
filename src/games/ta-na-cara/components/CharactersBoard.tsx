@@ -29,7 +29,12 @@ export function CharactersBoard({
 }: CharactersBoardProps) {
   const { language, translate } = useLanguage();
   const { isLoading } = useLoading();
-  const cardWidth = useCardWidth(10, { gap: 16, minWidth: 80, maxWidth: 100, margin: 16 });
+  const cardWidth = useCardWidth(10, {
+    gap: 16,
+    minWidth: 80,
+    maxWidth: 100,
+    margin: 16,
+  });
 
   if (onCardClick) {
     return (
@@ -47,7 +52,7 @@ export function CharactersBoard({
               key={character.id}
               title={translate(
                 `Tem certeza que quer escolher ${name}?`,
-                `Are you sure you want to choose ${name}?`
+                `Are you sure you want to choose ${name}?`,
               )}
               onConfirm={() => onCardClick({ characterId: character.id })}
               okText={translate('Sim', 'Yes')}
@@ -63,7 +68,8 @@ export function CharactersBoard({
                   className={clsx(
                     'characters-table__character-image',
                     userCharacterId === character.id && 'characters-table__character-image--active',
-                    (unavailable || revealed || ownCharacter) && 'characters-table__character-image--disabled'
+                    (unavailable || revealed || ownCharacter) &&
+                      'characters-table__character-image--disabled',
                   )}
                   cardWidth={cardWidth - 16}
                   preview={false}
@@ -89,7 +95,7 @@ export function CharactersBoard({
                 previewImageId={character.id}
                 className={clsx(
                   'characters-table__character-image',
-                  userCharacterId === character.id && 'characters-table__character-image--active'
+                  userCharacterId === character.id && 'characters-table__character-image--active',
                 )}
                 cardWidth={cardWidth}
               />

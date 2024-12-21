@@ -26,6 +26,7 @@ export function useError(): UseError {
   const [isError, setIsError] = useState(false);
   const [errors, setErrors] = useLoadersState('errors');
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setIsError(Object.values(errors).some((v) => v));
   }, [errors, setIsError]);

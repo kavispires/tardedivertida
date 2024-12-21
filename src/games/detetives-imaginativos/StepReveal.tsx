@@ -44,8 +44,13 @@ export function StepReveal({
         players={players}
         ranking={ranking}
         gainedPointsDescriptions={[
-          <Translate pt="Pontos ganhos por achar o impostor" en="Points gained for finding the impostor" />,
           <Translate
+            key="1"
+            pt="Pontos ganhos por achar o impostor"
+            en="Points gained for finding the impostor"
+          />,
+          <Translate
+            key="2"
             pt="Pontos ganhos pelo impostor se safar"
             en="Points gained for the Impostor getting away"
           />,

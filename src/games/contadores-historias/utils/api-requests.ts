@@ -16,7 +16,7 @@ export function useOnSubmitStoryAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('História submetida com sucesso', 'Story submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua história',
-      'Oops, the application found an error while trying to submit your story'
+      'Oops, the application found an error while trying to submit your story',
     ),
   });
 
@@ -37,7 +37,7 @@ export function useOnPlayCardAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Carta submetida com sucesso', 'Card submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card'
+      'Oops, the application found an error while trying to submit your card',
     ),
   });
 
@@ -58,7 +58,7 @@ export function useOnSubmitVoteAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote'
+      'Oops, the application found an error while trying to submit your vote',
     ),
   });
 

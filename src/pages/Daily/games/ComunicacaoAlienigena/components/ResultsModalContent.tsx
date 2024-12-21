@@ -14,7 +14,7 @@ import { SignCard } from 'components/cards/SignCard';
 import { Translate } from 'components/language';
 // Internal
 import { SETTINGS } from '../utils/settings';
-import { DailyComunicacaoAlienigenaEntry } from '../utils/types';
+import type { DailyComunicacaoAlienigenaEntry } from '../utils/types';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
@@ -48,7 +48,7 @@ export function ResultsModalContent({
         solution,
         language,
       }),
-    [challenge, dualTranslate, guesses, hearts, language, solution]
+    [challenge, dualTranslate, guesses, hearts, language, solution],
   );
 
   return (
@@ -76,8 +76,8 @@ export function ResultsModalContent({
       </Typography.Paragraph>
 
       <Space direction="vertical">
-        {attributes.map((attribute, index) => (
-          <Flex gap={6}>
+        {attributes.map((attribute) => (
+          <Flex key={attribute.id} gap={6}>
             <SignCard id={attribute.spriteId} width={width} />
             <Flex vertical>
               <Typography.Text strong>{attribute.name}</Typography.Text>

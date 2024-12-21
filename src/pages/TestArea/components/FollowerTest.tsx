@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/player';
 // Icons
 import { EarthIcon } from 'icons/EarthIcon';
 // Components
@@ -13,7 +13,7 @@ import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
+import type { TestStepProps } from '../TestArea';
 
 export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
   const [contentType, setContentType] = useState<'div' | 'avatar' | 'icon'>('div');

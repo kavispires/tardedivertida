@@ -1,10 +1,10 @@
 import { loadLocalToday } from 'pages/Daily/utils';
-import { LettersDictionary } from 'pages/Daily/utils/types';
+import type { LettersDictionary } from 'pages/Daily/utils/types';
 // Utils
-import { deepCopy } from 'utils/helpers';
+import { deepCopy, stringRemoveAccents } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
+import type { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
 
 export const DEFAULT_LOCAL_TODAY: FilmacoLocalToday = {
   id: '',
@@ -61,10 +61,7 @@ export const getInitialState = (data: DailyFilmacoEntry): GameState => {
  * @returns An object with each letter in the word as a key and a boolean value indicating if the letter has been found.
  */
 export function getLettersInWord(text: string, allowNumbers?: boolean): BooleanDictionary {
-  const cleanedUpText = text
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
+  const cleanedUpText = stringRemoveAccents(text).toLowerCase();
   const letters = cleanedUpText.split('');
   const lettersInWord: BooleanDictionary = {};
 
@@ -89,10 +86,7 @@ export function getLettersInWord(text: string, allowNumbers?: boolean): BooleanD
  * @returns The cleaned up character.
  */
 export function cleanupLetter(char: string): string {
-  return char
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
+  return stringRemoveAccents(char).toLowerCase();
 }
 
 /**

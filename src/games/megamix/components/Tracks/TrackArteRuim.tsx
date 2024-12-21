@@ -130,7 +130,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
 
       <div className="a-drawings">
         {track.data.options.map((entry: PlainObject) => (
-          <div className="a-drawings__entry">
+          <div key={String(entry)} className="a-drawings__entry">
             <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
 
             <Space className="space-container">

@@ -1,4 +1,4 @@
-export function MovieTheaterIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function MovieTheaterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#7fcccb" d="M8 8h464v216H8z"></path>

@@ -49,7 +49,7 @@ export function GalleryGuesses({
       };
     }),
     ['isCorrect', 'count', 'card.text'],
-    ['desc', 'desc', 'asc']
+    ['desc', 'desc', 'asc'],
   );
   const correctGuesses = playersSay[currentPlayer.character.id];
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Space, SpaceProps, Tag, Tooltip } from 'antd';
+import { Space, type SpaceProps, Tag, Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type RulesListProps = {
   /**
@@ -12,6 +12,6 @@ type RulesListProps = {
   className?: string;
 };
 
-export function RulesList({ children, className = '' }: RulesListProps): JSX.Element {
+export function RulesList({ children, className = '' }: RulesListProps) {
   return <ul className={clsx('rules-list', className)}>{children}</ul>;
 }

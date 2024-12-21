@@ -83,9 +83,9 @@ export function StepSelectDoor({
       removeDuplicates(
         Object.values(players)
           .map((player) => player.doorId)
-          .filter(Boolean)
+          .filter(Boolean),
       ).length,
-    [players]
+    [players],
   );
 
   /**
@@ -111,9 +111,7 @@ export function StepSelectDoor({
               livro e não pode falar.
               <br />
               Vocês tem{' '}
-              <TimeHighlight>
-                {trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}
-              </TimeHighlight>{' '}
+              <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
               minutos para decidir qual(quais) porta(s) entrar.
               <br />
               Cada porta visitada custará{' '}
@@ -130,9 +128,7 @@ export function StepSelectDoor({
               book and can't speak.
               <br />
               You have{' '}
-              <TimeHighlight>
-                {trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}
-              </TimeHighlight>{' '}
+              <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
               minutes to decide what door(s) to visit.
               <br />
               Each door a player visits costs{' '}
@@ -155,7 +151,13 @@ export function StepSelectDoor({
       </RuleInstruction>
 
       {trap === TRAPS.NO_COMMUNICATION && (
-        <Instruction contained className={getAnimationClass('pulse', { speed: 'slower', infinite: true })}>
+        <Instruction
+          contained
+          className={getAnimationClass('pulse', {
+            speed: 'slower',
+            infinite: true,
+          })}
+        >
           <strong>
             <RadarChartOutlined /> <Translate pt="Silêncio Absoluto!" en="Absolute Silence!" />
           </strong>

@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
 import { Button, Layout, Modal, Rate, Tooltip, Typography } from 'antd';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -17,7 +17,7 @@ import { DualTranslate, Translate } from 'components/language';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { DailyTeoriaDeConjuntosEntry } from '../utils/types';
+import type { DailyTeoriaDeConjuntosEntry } from '../utils/types';
 import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -35,7 +35,7 @@ type DailyTeoriaDeConjuntosProps = {
 };
 
 export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
   const {
     hearts,
     showResultModal,

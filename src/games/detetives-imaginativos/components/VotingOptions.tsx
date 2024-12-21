@@ -30,9 +30,9 @@ export function VotingOptions({
       orderBy(
         Object.values(players).filter((player) => player.id !== leaderId),
         ['name'],
-        ['asc']
+        ['asc'],
       ),
-    [players, leaderId]
+    [players, leaderId],
   );
 
   return (

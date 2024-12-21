@@ -66,7 +66,7 @@ export const AvatarName = ({
         baseClass,
         uppercase && `${baseClass}--uppercase`,
         upright && `${baseClass}--upright`,
-        className
+        className,
       )}
     >
       <Avatar id={player.avatarId} className="avatar-name__avatar" size={size} />

@@ -134,7 +134,7 @@ export const getPossibleTreeIds = (fullMap: MapSegment[], currentSegment?: MapSe
   const usedTrees = fullMap.filter((segment) => segment.passed).map((segment) => segment.treeId);
 
   return getAvailableSegments(currentSegment.previousTree ?? currentSegment.treeId, usedTrees).filter(
-    (treeId) => treeId !== currentSegment.treeId
+    (treeId) => treeId !== currentSegment.treeId,
   );
 };
 
@@ -154,7 +154,7 @@ export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlaye
   if (activeSegments[0].index > 0) {
     const startingSegment = currentMap[activeSegments[0].index - 1];
     playerMapping[startingSegment.treeId] = Object.keys(players).filter(
-      (playerId) => playerId !== activePlayer.id
+      (playerId) => playerId !== activePlayer.id,
     );
   }
 
@@ -198,7 +198,7 @@ export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlaye
 export const buildUserMappingForLatestTree = (
   user: GamePlayer,
   currentMap: MapSegment[],
-  activePlayerId: PlayerId
+  activePlayerId: PlayerId,
 ): PlayerMapping => {
   // Segments that are active for the current player's map
 
@@ -231,7 +231,7 @@ export const buildUserMappingForLatestTree = (
  */
 export const buildPlayerMappingForLatestTree = (
   players: GamePlayers,
-  activePlayer: GamePlayer
+  activePlayer: GamePlayer,
 ): PlayerMapping => {
   // Segments that are active for the current player's map
   const currentMap = (activePlayer.map ?? []) as MapSegment[];

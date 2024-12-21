@@ -55,29 +55,28 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
             const enclosureKey = `m-enclosure-${enclosureId}`;
             return (
               <div className={clsx('m-enclosure', enclosureKey)} key={enclosureKey}>
-                {sheepPlayers &&
-                  sheepPlayers.map((player: GamePlayer, index: number) => {
-                    const sheepKey = `${enclosureKey}-${player.id}`;
-                    const sheepClassName = `m-sheep--pos-${index}`;
+                {sheepPlayers?.map((player: GamePlayer, index: number) => {
+                  const sheepKey = `${enclosureKey}-${player.id}`;
+                  const sheepClassName = `m-sheep--pos-${index}`;
 
-                    return (
-                      <SheepAvatar
-                        key={sheepKey}
-                        id={player.avatarId}
-                        sheepId={player.sheepId}
-                        className={clsx(
-                          'm-sheep',
-                          sheepClassName,
-                          player.animateRight && 'm-sheep--animate-right',
-                          player.animateLeft && 'm-sheep--animate-left',
-                          player.animateRebound && 'm-sheep--animate-rebound',
-                          player.level === pastureSize && 'm-sheep--animate-die'
-                        )}
-                        width={sheepWidth}
-                        animate
-                      />
-                    );
-                  })}
+                  return (
+                    <SheepAvatar
+                      key={sheepKey}
+                      id={player.avatarId}
+                      sheepId={player.sheepId}
+                      className={clsx(
+                        'm-sheep',
+                        sheepClassName,
+                        player.animateRight && 'm-sheep--animate-right',
+                        player.animateLeft && 'm-sheep--animate-left',
+                        player.animateRebound && 'm-sheep--animate-rebound',
+                        player.level === pastureSize && 'm-sheep--animate-die',
+                      )}
+                      width={sheepWidth}
+                      animate
+                    />
+                  );
+                })}
               </div>
             );
           })}
