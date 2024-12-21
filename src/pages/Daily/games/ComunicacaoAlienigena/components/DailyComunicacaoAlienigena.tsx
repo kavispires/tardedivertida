@@ -1,40 +1,38 @@
-import clsx from "clsx";
-import { Region } from "pages/Daily/components/Region";
-import { useMemo, useState } from "react";
+import clsx from 'clsx';
+import { Region } from 'pages/Daily/components/Region';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { ArrowRightOutlined, BarChartOutlined } from "@ant-design/icons";
-import { Avatar, Button, Flex, Layout, Modal, Space, Typography } from "antd";
+import { ArrowRightOutlined, BarChartOutlined } from '@ant-design/icons';
+import { Avatar, Button, Flex, Layout, Modal, Space, Typography } from 'antd';
 // Types
-import type { Me } from "types/user";
+import type { Me } from 'types/user';
 // Hooks
-import { useCardWidth } from "hooks/useCardWidth";
+import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { DailyAlienGameIcon } from "icons/DailyAlienGameIcon";
+import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 // Components
-import { TransparentButton } from "components/buttons";
-import { ItemCard } from "components/cards/ItemCard";
-import { SignCard } from "components/cards/SignCard";
-import { DualTranslate, Translate } from "components/language";
+import { TransparentButton } from 'components/buttons';
+import { ItemCard } from 'components/cards/ItemCard';
+import { SignCard } from 'components/cards/SignCard';
+import { DualTranslate, Translate } from 'components/language';
 // Internal
-import { getInitialState } from "../utils/helpers";
-import { SETTINGS } from "../utils/settings";
-import type { DailyComunicacaoAlienigenaEntry } from "../utils/types";
-import { useComunicacaoAlienigenaEngine } from "../utils/useComunicacaoAlienigenaEngine";
-import { Header } from "../../../components/Header";
-import { Menu } from "../../../components/Menu";
-import { ResultsModalContent } from "./ResultsModalContent";
-import { Rules } from "./Rules";
+import { getInitialState } from '../utils/helpers';
+import { SETTINGS } from '../utils/settings';
+import type { DailyComunicacaoAlienigenaEntry } from '../utils/types';
+import { useComunicacaoAlienigenaEngine } from '../utils/useComunicacaoAlienigenaEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
+import { ResultsModalContent } from './ResultsModalContent';
+import { Rules } from './Rules';
 
 type DailyComunicacaoAlienigenaProps = {
   data: DailyComunicacaoAlienigenaEntry;
   currentUser: Me;
 };
 
-export function DailyComunicacaoAlienigena({
-  data,
-}: DailyComunicacaoAlienigenaProps) {
+export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaProps) {
   const [initialState] = useState(getInitialState(data));
   const {
     hearts,
@@ -56,10 +54,7 @@ export function DailyComunicacaoAlienigena({
 
   const shouldShakeScreen = latestAttempt && !isComplete;
 
-  const previousGuesses = useMemo(
-    () => guesses.map((guess) => guess.split("-")),
-    [guesses],
-  );
+  const previousGuesses = useMemo(() => guesses.map((guess) => guess.split('-')), [guesses]);
 
   return (
     <Layout className="app">
@@ -81,16 +76,8 @@ export function DailyComunicacaoAlienigena({
 
           <Space direction="vertical" className="alien-attributes">
             {data.attributes.map((attribute) => (
-              <Flex
-                className="alien-attributes__attribute"
-                key={attribute.id}
-                gap={8}
-              >
-                <SignCard
-                  id={attribute.spriteId}
-                  width={width}
-                  className="alien-attributes__sign"
-                />
+              <Flex className="alien-attributes__attribute" key={attribute.id} gap={8}>
+                <SignCard id={attribute.spriteId} width={width} className="alien-attributes__sign" />
                 <ArrowRightOutlined />
                 <Flex className="alien-attributes__items">
                   {attribute.itemsIds.map((itemId) => (
@@ -108,10 +95,7 @@ export function DailyComunicacaoAlienigena({
           </Space>
         </Region>
 
-        <Region
-          key={latestAttempt}
-          className={shouldShakeScreen ? getAnimationClass("shakeX") : ""}
-        >
+        <Region key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
           <Typography.Text strong>
             <Translate pt="Pedidos" en="Requests" />
           </Typography.Text>
@@ -128,11 +112,7 @@ export function DailyComunicacaoAlienigena({
                   justify="flex-start"
                 >
                   <Avatar className="mb-2">{index + 1}</Avatar>
-                  <Flex
-                    vertical
-                    className="alien-requests__attributes"
-                    align="center"
-                  >
+                  <Flex vertical className="alien-requests__attributes" align="center">
                     <SignCard
                       id={request.spritesIds[2]}
                       width={width - 12}
@@ -156,11 +136,7 @@ export function DailyComunicacaoAlienigena({
                       className="mt-1"
                       disabled={isComplete}
                     >
-                      <ItemCard
-                        id={selected}
-                        width={isLose ? width / 2 : width}
-                        padding={0}
-                      />
+                      <ItemCard id={selected} width={isLose ? width / 2 : width} padding={0} />
                     </TransparentButton>
                   ) : (
                     <TransparentButton
@@ -181,10 +157,7 @@ export function DailyComunicacaoAlienigena({
                       id={request.itemId}
                       width={width}
                       padding={0}
-                      className={clsx(
-                        "alien-request__answer",
-                        getAnimationClass("zoomIn"),
-                      )}
+                      className={clsx('alien-request__answer', getAnimationClass('zoomIn'))}
                     />
                   )}
                 </Flex>
@@ -202,17 +175,8 @@ export function DailyComunicacaoAlienigena({
         </Region>
 
         {isComplete && (
-          <Space
-            className="results-container"
-            direction="vertical"
-            align="center"
-            size="large"
-          >
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
+          <Space className="results-container" direction="vertical" align="center" size="large">
+            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
           </Space>

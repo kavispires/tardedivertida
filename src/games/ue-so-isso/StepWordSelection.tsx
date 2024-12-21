@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 // Ant Design Resources
-import { CheckCircleFilled, CloudUploadOutlined } from "@ant-design/icons";
+import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers, GamePlayer } from "types/player";
-import type { TextCard } from "types/tdr";
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Components
-import { AvatarName } from "components/avatars";
-import { TimedButton } from "components/buttons";
-import { Translate } from "components/language";
-import { TurnOrder } from "components/players";
-import { Step, type StepProps } from "components/steps";
-import { RuleInstruction, Title } from "components/text";
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;
@@ -18,7 +18,7 @@ type StepWordSelectionProps = {
   words: TextCard[];
   players: GamePlayers;
   turnOrder: TurnOrder;
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepWordSelection({
   guesser,
@@ -75,8 +75,7 @@ export function StepWordSelection({
               <br />
               <strong>Você pode selecionar quantas quiser!</strong>
               <br />
-              Se você não selecionar nenhuma, a primeira palavra será enviada
-              como sua escolha.
+              Se você não selecionar nenhuma, a primeira palavra será enviada como sua escolha.
             </>
           }
           en={
@@ -85,8 +84,7 @@ export function StepWordSelection({
               <br />
               <strong>You can choose as many as you wish!</strong>
               <br />
-              If you fail to select any of them, the first one will be submitted
-              as your choice.
+              If you fail to select any of them, the first one will be submitted as your choice.
             </>
           }
         />
@@ -96,11 +94,7 @@ export function StepWordSelection({
         {words.map((word) => {
           return (
             <li className="u-word-card__word" key={word.id}>
-              <button
-                type="button"
-                className="u-word-card__button"
-                onClick={() => onSelectWord(word.id)}
-              >
+              <button type="button" className="u-word-card__button" onClick={() => onSelectWord(word.id)}>
                 <span className="u-word-card__text">{word.text}</span>
                 <span className="u-word-card__icon">
                   {Boolean(selectedWords[word.id]) && <CheckCircleFilled />}
@@ -123,12 +117,7 @@ export function StepWordSelection({
         <Translate pt="Enviar votos" en="Send votes" />
       </TimedButton>
 
-      <TurnOrder
-        players={players}
-        order={turnOrder}
-        activePlayerId={guesser.id}
-        className="u-margin"
-      />
+      <TurnOrder players={players} order={turnOrder} activePlayerId={guesser.id} className="u-margin" />
     </Step>
   );
 }

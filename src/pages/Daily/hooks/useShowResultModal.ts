@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-export function useShowResultModal(
-  condition: boolean,
-  onUpdate?: GenericFunction,
-) {
+export function useShowResultModal(condition: boolean, onUpdate?: GenericFunction) {
   const [showResultModal, setShowResultModal] = useState(false);
 
   // Controls auto result modal

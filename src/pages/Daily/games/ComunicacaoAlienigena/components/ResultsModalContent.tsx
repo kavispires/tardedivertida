@@ -1,26 +1,26 @@
-import { NextGameSuggestion } from "pages/Daily/components/NextGameSuggestion";
-import { getDailyName, getSourceName } from "pages/Daily/utils";
-import { useMemo } from "react";
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { getDailyName, getSourceName } from 'pages/Daily/utils';
+import { useMemo } from 'react';
 // Ant Design Resources
-import { Flex, Space, Typography } from "antd";
+import { Flex, Space, Typography } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Icons
-import { BoxXIcon } from "icons/BoxXIcon";
-import { TrophyIcon } from "icons/TrophyIcon";
+import { BoxXIcon } from 'icons/BoxXIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from "components/avatars";
-import { SignCard } from "components/cards/SignCard";
-import { Translate } from "components/language";
+import { IconAvatar } from 'components/avatars';
+import { SignCard } from 'components/cards/SignCard';
+import { Translate } from 'components/language';
 // Internal
-import { SETTINGS } from "../utils/settings";
-import type { DailyComunicacaoAlienigenaEntry } from "../utils/types";
-import { CopyToClipboardResult } from "../../../components/CopyToClipboardResult";
+import { SETTINGS } from '../utils/settings';
+import type { DailyComunicacaoAlienigenaEntry } from '../utils/types';
+import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
   challenge: number;
   guesses: string[];
-  attributes: DailyComunicacaoAlienigenaEntry["attributes"];
+  attributes: DailyComunicacaoAlienigenaEntry['attributes'];
   win: boolean;
   hearts: number;
   solution: string;
@@ -56,22 +56,17 @@ export function ResultsModalContent({
       <Typography.Title level={2} className="center">
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} />{" "}
-            <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} />{" "}
-            <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
           </>
         )}
       </Typography.Title>
       <Typography.Paragraph className="center">
         {win ? (
-          <Translate
-            pt="O alienígena abduziu todos os itens!"
-            en="The alien abducted all items!"
-          />
+          <Translate pt="O alienígena abduziu todos os itens!" en="The alien abducted all items!" />
         ) : (
           <Translate
             pt="O alienígena vai destruir a Terra porque você não estregou as coisas certas!"
@@ -114,12 +109,12 @@ function writeResult({
   solution: string;
   language: Language;
 }) {
-  const solutionItems = solution.split("-");
+  const solutionItems = solution.split('-');
 
-  const indexEmojis = ["🟤", "🟡", "🔵", "🟣"];
+  const indexEmojis = ['🟤', '🟡', '🔵', '🟣'];
 
   const result = guesses.map((guess, index) => {
-    const guessItems = guess.split("-");
+    const guessItems = guess.split('-');
     return guessItems
       .map((item, i) => {
         // Correct?
@@ -128,17 +123,17 @@ function writeResult({
         }
         // Incorrect?
         if (solutionItems.includes(item)) {
-          return "❌";
+          return '❌';
         }
         // Missing?
-        return "👽";
+        return '👽';
       })
-      .join("");
+      .join('');
   });
 
   return [
     `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challenge}`,
     ...result,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join("\n");
+  ].join('\n');
 }

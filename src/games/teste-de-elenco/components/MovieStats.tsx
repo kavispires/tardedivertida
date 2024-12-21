@@ -1,17 +1,17 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 // Ant Design Resources
-import { Divider, Tooltip } from "antd";
+import { Divider, Tooltip } from 'antd';
 // Icons
-import { AgeIcon } from "icons/AgeIcon";
-import { CulturesIcon } from "icons/CulturesIcon";
-import { GenderIcon } from "icons/GenderIcon";
-import { RainbowIcon } from "icons/RainbowIcon";
+import { AgeIcon } from 'icons/AgeIcon';
+import { CulturesIcon } from 'icons/CulturesIcon';
+import { GenderIcon } from 'icons/GenderIcon';
+import { RainbowIcon } from 'icons/RainbowIcon';
 // Components
-import { Translate } from "components/language";
-import { MetricHighlight } from "components/metrics/MetricHighlight";
+import { Translate } from 'components/language';
+import { MetricHighlight } from 'components/metrics/MetricHighlight';
 // Internal
-import type { FeatureFilm } from "../utils/types";
-import { getMovieSummary } from "../utils/helpers";
+import type { FeatureFilm } from '../utils/types';
+import { getMovieSummary } from '../utils/helpers';
 
 type MovieStatsProps = {
   movie: FeatureFilm;
@@ -21,33 +21,21 @@ export function MovieStats({ movie }: MovieStatsProps) {
   const summary = useMemo(() => getMovieSummary(movie), [movie]);
   return (
     <div className="summary">
-      <Tooltip
-        title={<Translate pt="Diversidade de gênero" en="Gender Diversity" />}
-      >
+      <Tooltip title={<Translate pt="Diversidade de gênero" en="Gender Diversity" />}>
         <div>
-          <MetricHighlight icon={<GenderIcon />}>
-            {summary.genderDiversity}%
-          </MetricHighlight>
+          <MetricHighlight icon={<GenderIcon />}>{summary.genderDiversity}%</MetricHighlight>
         </div>
       </Tooltip>
       <Divider type="vertical" />
-      <Tooltip
-        title={<Translate pt="Diversidade de idade" en="Age Diversity" />}
-      >
+      <Tooltip title={<Translate pt="Diversidade de idade" en="Age Diversity" />}>
         <div>
-          <MetricHighlight icon={<AgeIcon />}>
-            {summary.ageDiversity}%
-          </MetricHighlight>
+          <MetricHighlight icon={<AgeIcon />}>{summary.ageDiversity}%</MetricHighlight>
         </div>
       </Tooltip>
       <Divider type="vertical" />
-      <Tooltip
-        title={<Translate pt="Diversidade cultural" en="Cultural Diversity" />}
-      >
+      <Tooltip title={<Translate pt="Diversidade cultural" en="Cultural Diversity" />}>
         <div>
-          <MetricHighlight icon={<CulturesIcon />}>
-            {summary.ethnicityDiversity}%
-          </MetricHighlight>
+          <MetricHighlight icon={<CulturesIcon />}>{summary.ethnicityDiversity}%</MetricHighlight>
         </div>
       </Tooltip>
       {summary.isLGBTQA && (

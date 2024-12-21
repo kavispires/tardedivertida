@@ -1,28 +1,28 @@
-import { Keyboard } from "pages/Daily/components/Keyboard";
-import { Region } from "pages/Daily/components/Region";
-import { useState } from "react";
+import { Keyboard } from 'pages/Daily/components/Keyboard';
+import { Region } from 'pages/Daily/components/Region';
+import { useState } from 'react';
 // Ant Design Resources
-import { BarChartOutlined } from "@ant-design/icons";
-import { Button, Layout, Modal, Space, Typography } from "antd";
+import { BarChartOutlined } from '@ant-design/icons';
+import { Button, Layout, Modal, Space, Typography } from 'antd';
 // Types
-import type { Me } from "types/user";
+import type { Me } from 'types/user';
 // Hooks
-import { useCardWidth } from "hooks/useCardWidth";
+import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
-import { DailyMovieGameIcon } from "icons/DailyMovieGameIcon";
+import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 // Components
-import { ItemCard } from "components/cards/ItemCard";
-import { DualTranslate, Translate } from "components/language";
+import { ItemCard } from 'components/cards/ItemCard';
+import { DualTranslate, Translate } from 'components/language';
 // Internal
-import { getInitialState } from "../utils/helpers";
-import { SETTINGS } from "../utils/settings";
-import type { DailyFilmacoEntry } from "../utils/types";
-import { useFilmacoEngine } from "../utils/useFilmacoEngine";
-import { Header } from "../../../components/Header";
-import { Menu } from "../../../components/Menu";
-import { Prompt } from "./Prompt";
-import { ResultsModalContent } from "./ResultsModalContent";
-import { Rules } from "./Rules";
+import { getInitialState } from '../utils/helpers';
+import { SETTINGS } from '../utils/settings';
+import type { DailyFilmacoEntry } from '../utils/types';
+import { useFilmacoEngine } from '../utils/useFilmacoEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
+import { Prompt } from './Prompt';
+import { ResultsModalContent } from './ResultsModalContent';
+import { Rules } from './Rules';
 
 type DailyFilmacoProps = {
   data: DailyFilmacoEntry;
@@ -31,16 +31,8 @@ type DailyFilmacoProps = {
 
 export function DailyFilmaco({ data }: DailyFilmacoProps) {
   const [initialState] = useState(getInitialState(data));
-  const {
-    hearts,
-    guesses,
-    showResultModal,
-    setShowResultModal,
-    isWin,
-    isComplete,
-    guessLetter,
-    solution,
-  } = useFilmacoEngine(data, initialState);
+  const { hearts, guesses, showResultModal, setShowResultModal, isWin, isComplete, guessLetter, solution } =
+    useFilmacoEngine(data, initialState);
   const width = useCardWidth(5, { margin: 64, maxWidth: 100, minWidth: 65 });
 
   return (
@@ -71,16 +63,8 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
         <Prompt text={data.title} guesses={guesses} />
 
         {isComplete && (
-          <Space
-            className="results-container"
-            direction="vertical"
-            align="center"
-          >
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
+          <Space className="results-container" direction="vertical" align="center">
+            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
           </Space>
@@ -100,12 +84,7 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
           />
         </Modal>
 
-        <Keyboard
-          lettersState={guesses}
-          onLetterClick={guessLetter}
-          disabled={isComplete}
-          withNumbers
-        />
+        <Keyboard lettersState={guesses} onLetterClick={guessLetter} disabled={isComplete} withNumbers />
       </Layout.Content>
     </Layout>
   );

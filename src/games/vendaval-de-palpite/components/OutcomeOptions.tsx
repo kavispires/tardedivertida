@@ -1,9 +1,9 @@
 // Ant Design Resources
-import { Alert, Button, Divider } from "antd";
+import { Alert, Button, Divider } from 'antd';
 // Components
-import { Avatar } from "components/avatars";
-import { Translate } from "components/language";
-import { Instruction } from "components/text";
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 
 type OutcomeOptionsProps = {
   outcome?: string;
@@ -11,23 +11,19 @@ type OutcomeOptionsProps = {
   finalAnswersLeft: number;
 };
 
-export function OutcomeOptions({
-  outcome,
-  onSubmitOutcome,
-  finalAnswersLeft,
-}: OutcomeOptionsProps) {
+export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: OutcomeOptionsProps) {
   return (
     <>
       <Divider />
 
       <Instruction contained>
-        {outcome && outcome !== "CONTINUE" ? (
+        {outcome && outcome !== 'CONTINUE' ? (
           <Alert
             type="warning"
             showIcon
             message={
               <>
-                <Avatar id="A" size="small" />{" "}
+                <Avatar id="A" size="small" />{' '}
                 <Translate
                   pt="Meu algorítimo me diz que um dos casos abaixo aconteceu, selecione o apropriado:"
                   en="According to my calculations, one of the cases below happened, select the appropriate case:"
@@ -56,7 +52,7 @@ export function OutcomeOptions({
             ghost
             onClick={() =>
               onSubmitOutcome({
-                outcome: "WIN",
+                outcome: 'WIN',
               })
             }
           >
@@ -75,7 +71,7 @@ export function OutcomeOptions({
             ghost
             onClick={() =>
               onSubmitOutcome({
-                outcome: "FAIL",
+                outcome: 'FAIL',
               })
             }
           >
@@ -87,7 +83,7 @@ export function OutcomeOptions({
             <Translate
               pt="Jogadores usaram mais respostas do que tinham"
               en="Players wrote more Guesses than they had available"
-            />{" "}
+            />{' '}
             ({finalAnswersLeft})
           </Instruction>
           <Button
@@ -96,7 +92,7 @@ export function OutcomeOptions({
             ghost
             onClick={() =>
               onSubmitOutcome({
-                outcome: "FAIL",
+                outcome: 'FAIL',
               })
             }
             disabled={finalAnswersLeft >= 0}

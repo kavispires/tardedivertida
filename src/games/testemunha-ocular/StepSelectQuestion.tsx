@@ -1,19 +1,19 @@
 // Ant Design Resources
-import { Space } from "antd";
+import { Space } from 'antd';
 // Types
-import type { SuspectCard } from "types/tdr";
+import type { SuspectCard } from 'types/tdr';
 // Utils
-import { LETTERS } from "utils/constants";
+import { LETTERS } from 'utils/constants';
 // Components
-import { Card } from "components/cards";
-import { Translate } from "components/language";
-import { Step, type StepProps } from "components/steps";
-import { RuleInstruction, Title } from "components/text";
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
-import type { Question, Status, THistoryEntry } from "./utils/types";
-import { Suspects } from "./components/Suspects";
-import { QuestionsHistory } from "./components/QuestionsHistory";
-import { Summary } from "./components/Summary";
+import type { Question, Status, THistoryEntry } from './utils/types';
+import { Suspects } from './components/Suspects';
+import { QuestionsHistory } from './components/QuestionsHistory';
+import { Summary } from './components/Summary';
 
 type StepSelectQuestionProps = {
   questions: Question[];
@@ -23,7 +23,7 @@ type StepSelectQuestionProps = {
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];
   status: Status;
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepSelectQuestion({
   questions,
@@ -44,7 +44,7 @@ export function StepSelectQuestion({
         <Translate
           pt="A testemunha responderá a pergunta sobre o  sobre criminoso. A pergunta que você não escolher será descartada."
           en="The witness will answer the question about the perpetrator. The unchosen question will be discarded."
-        />{" "}
+        />{' '}
       </RuleInstruction>
 
       <Space className="space-container" align="center">
@@ -65,10 +65,7 @@ export function StepSelectQuestion({
         })}
       </Space>
 
-      <Suspects
-        suspects={suspects}
-        eliminatedSuspects={previouslyEliminatedSuspects}
-      />
+      <Suspects suspects={suspects} eliminatedSuspects={previouslyEliminatedSuspects} />
 
       {history.length > 0 && <QuestionsHistory history={history} />}
 

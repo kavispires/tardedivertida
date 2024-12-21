@@ -1,12 +1,12 @@
 // Ant Design Resources
-import { Space } from "antd";
+import { Space } from 'antd';
 // Icons
-import { NoIcon } from "icons/NoIcon";
+import { NoIcon } from 'icons/NoIcon';
 // Components
-import { IconAvatar } from "components/avatars";
+import { IconAvatar } from 'components/avatars';
 // Internal
-import type { ExtendedTextCard, MapSegment, Tree } from "../utils/types";
-import { TreeImage } from "./TreeImage";
+import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
+import { TreeImage } from './TreeImage';
 
 type PlayerSelectionMapProps = {
   forest: Tree[];
@@ -14,18 +14,12 @@ type PlayerSelectionMapProps = {
   newMap?: (ExtendedTextCard | null)[];
 };
 
-export function PlayerSelectionMap({
-  forest,
-  map,
-  newMap,
-}: PlayerSelectionMapProps) {
+export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapProps) {
   if (!newMap || !map) {
     return <></>;
   }
 
-  const userMap: MapSegment[] = (map ?? []).filter(
-    (segment: MapSegment) => !segment.passed,
-  );
+  const userMap: MapSegment[] = (map ?? []).filter((segment: MapSegment) => !segment.passed);
 
   return (
     <Space wrap className="space-container">
@@ -39,33 +33,22 @@ export function PlayerSelectionMap({
               <div className="map-builder__card map-builder__card--new">
                 {mapLocation.text}
                 {mapLocation?.negate && (
-                  <IconAvatar
-                    icon={<NoIcon />}
-                    size="small"
-                    className="map-builder__card-no"
-                  />
+                  <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
                 )}
               </div>
             )}
             {segment.clues.map((clue) => {
               return (
-                <div
-                  className="map-builder__card"
-                  key={`card-${segment.index}-${clue.id}`}
-                >
+                <div className="map-builder__card" key={`card-${segment.index}-${clue.id}`}>
                   {clue.text}
                   {clue?.negate && (
-                    <IconAvatar
-                      icon={<NoIcon />}
-                      size="small"
-                      className="map-builder__card-no"
-                    />
+                    <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
                   )}
                 </div>
               );
             })}
 
-            <TreeImage id={tree.treeType} text={passed ? "" : tree.card.text} />
+            <TreeImage id={tree.treeType} text={passed ? '' : tree.card.text} />
           </div>
         );
       })}

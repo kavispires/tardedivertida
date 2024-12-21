@@ -1,11 +1,11 @@
-import { camelCase, memoize, orderBy, startCase } from "lodash";
+import { camelCase, memoize, orderBy, startCase } from 'lodash';
 // Types
-import type { GameInfo } from "types/game-info";
-import type { GamePlayers, GamePlayer } from "types/player";
+import type { GameInfo } from 'types/game-info';
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Utils
-import { AVATARS } from "utils/avatars";
+import { AVATARS } from 'utils/avatars';
 // Internal
-import { SEPARATOR } from "./constants";
+import { SEPARATOR } from './constants';
 
 /**
  * Creates a copy of given object
@@ -29,7 +29,7 @@ export const getGameIdFromPathname = (pathname: string): string => {
  * @returns
  */
 export const getGameIdFromLocation = (location?: PlainObject): string => {
-  const { pathname = "/" } = location ?? {};
+  const { pathname = '/' } = location ?? {};
   return pathname.substring(1);
 };
 
@@ -76,7 +76,7 @@ export const inNTime = (time: number): Date => {
 /**
  * Flag indicating if the environment is for development
  */
-export const isDevEnv: boolean = process.env.NODE_ENV === "development";
+export const isDevEnv: boolean = process.env.NODE_ENV === 'development';
 // export const isDevEnv = false;
 
 const methods = {
@@ -91,7 +91,7 @@ const methods = {
  * @param message - The message to be printed to the console.
  * @param [method='log'] - The console method to use for printing (one of: 'count', 'log', 'table', 'warn').
  */
-export const print = (message: any, method: keyof typeof methods = "log") => {
+export const print = (message: any, method: keyof typeof methods = 'log') => {
   if (isDevEnv) {
     methods[method](message);
   }
@@ -114,23 +114,23 @@ export const isValidGameId = (gameId: GameId): boolean => {
 export const getColorFromIndex = (index: number): string => {
   return (
     [
-      "red",
-      "blue",
-      "green",
-      "yellow",
-      "pink",
-      "purple",
-      "teal",
-      "orange",
-      "coffee",
-      "navy",
-      "light-green",
-      "brown",
-      "hot-pink",
-      "violet",
-      "forest",
-      "cream",
-    ][index] ?? "none"
+      'red',
+      'blue',
+      'green',
+      'yellow',
+      'pink',
+      'purple',
+      'teal',
+      'orange',
+      'coffee',
+      'navy',
+      'light-green',
+      'brown',
+      'hot-pink',
+      'violet',
+      'forest',
+      'cream',
+    ][index] ?? 'none'
   );
 };
 
@@ -142,35 +142,35 @@ export const getColorFromIndex = (index: number): string => {
 export const getColorFromLetter = (letter: string): string => {
   return (
     {
-      A: "red",
-      B: "blue",
-      C: "green",
-      D: "yellow",
-      E: "pink",
-      F: "purple",
-      G: "teal",
-      H: "orange",
-      I: "coffee",
-      J: "navy",
-      K: "light-green",
-      L: "brown",
-      M: "hot-pink",
-      N: "violet",
-      O: "forest",
-      P: "cream",
+      A: 'red',
+      B: 'blue',
+      C: 'green',
+      D: 'yellow',
+      E: 'pink',
+      F: 'purple',
+      G: 'teal',
+      H: 'orange',
+      I: 'coffee',
+      J: 'navy',
+      K: 'light-green',
+      L: 'brown',
+      M: 'hot-pink',
+      N: 'violet',
+      O: 'forest',
+      P: 'cream',
 
       // repeats
-      Q: "red",
-      R: "blue",
-      S: "green",
-      T: "yellow",
-      U: "pink",
-      V: "purple",
-      W: "teal",
-      X: "none",
-      Y: "orange",
-      Z: "coffee",
-    }[letter] ?? "none"
+      Q: 'red',
+      R: 'blue',
+      S: 'green',
+      T: 'yellow',
+      U: 'pink',
+      V: 'purple',
+      W: 'teal',
+      X: 'none',
+      Y: 'orange',
+      Z: 'coffee',
+    }[letter] ?? 'none'
   );
 };
 
@@ -200,11 +200,7 @@ export const getPlayersFromIds = (
  * @param plural
  * @returns
  */
-export const pluralize = (
-  quantity: number,
-  singular: string,
-  plural?: string,
-): string => {
+export const pluralize = (quantity: number, singular: string, plural?: string): string => {
   return quantity === 1 ? singular : plural ? plural : `${singular}s`;
 };
 
@@ -247,20 +243,18 @@ export const hasDuplicates = (arr: any): boolean => {
  * @param str
  * @returns
  */
-export const kebabToPascal = (str: string): string =>
-  startCase(camelCase(str)).replace(/ /g, "");
+export const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace(/ /g, '');
 
 /**
  * Gets avatar color by it
  * @param avatarId
  * @returns
  */
-export const getAvatarColorById = (avatarId: string) =>
-  AVATARS?.[avatarId]?.color ?? "grey";
+export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.color ?? 'grey';
 
 function hexToRgb(hex: string): [number, number, number] {
   // Remove the hash at the start if it's there
-  const sanitizedHex = hex.replace(/^#/, "");
+  const sanitizedHex = hex.replace(/^#/, '');
 
   // Parse the r, g, b values
   const r = Number.parseInt(sanitizedHex.substring(0, 2), 16);
@@ -273,125 +267,121 @@ function hexToRgb(hex: string): [number, number, number] {
 function luminance(r: number, g: number, b: number): number {
   const a = [r, g, b].map((v) => {
     const normalizedV = v / 255;
-    return normalizedV <= 0.03928
-      ? normalizedV / 12.92
-      : ((normalizedV + 0.055) / 1.055) ** 2.4;
+    return normalizedV <= 0.03928 ? normalizedV / 12.92 : ((normalizedV + 0.055) / 1.055) ** 2.4;
   });
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
 
-export const getContrastColor = memoize(
-  (hexColor: string): "white" | "black" => {
-    const [r, g, b] = hexToRgb(hexColor);
-    const lum = luminance(r, g, b);
+export const getContrastColor = memoize((hexColor: string): 'white' | 'black' => {
+  const [r, g, b] = hexToRgb(hexColor);
+  const lum = luminance(r, g, b);
 
-    // Using a contrast threshold of 0.179 (equivalent to luminance 0.5 for black/white)
-    return lum > 0.045 ? "white" : "black";
-  },
-);
+  // Using a contrast threshold of 0.179 (equivalent to luminance 0.5 for black/white)
+  return lum > 0.045 ? 'white' : 'black';
+});
 
 /**
  * Animation types
  * For examples check: https://animate.style/
  */
 export type AnimationType =
-  | "backInDown"
-  | "backInLeft"
-  | "backInRight"
-  | "backInUp"
-  | "backOutDown"
-  | "backOutLeft"
-  | "backOutRight"
-  | "backOutUp"
-  | "bounce"
-  | "bounceIn"
-  | "bounceInDown"
-  | "bounceInLeft"
-  | "bounceInRight"
-  | "bounceInUp"
-  | "bounceOut"
-  | "bounceOutDown"
-  | "bounceOutLeft"
-  | "bounceOutRight"
-  | "bounceOutUp"
-  | "fadeIn"
-  | "fadeInDown"
-  | "fadeInDownBig"
-  | "fadeInLeft"
-  | "fadeInLeftBig"
-  | "fadeInRight"
-  | "fadeInRightBig"
-  | "fadeInUp"
-  | "fadeInUpBig"
-  | "fadeInTopLeft"
-  | "fadeInTopRight"
-  | "fadeInBottomLeft"
-  | "fadeInBottomRight"
-  | "fadeOut"
-  | "fadeOutDown"
-  | "fadeOutDownBig"
-  | "fadeOutLeft"
-  | "fadeOutLeftBig"
-  | "fadeOutRight"
-  | "fadeOutRightBig"
-  | "fadeOutUp"
-  | "fadeOutUpBig"
-  | "fadeOutTopLeft"
-  | "fadeOutTopRight"
-  | "fadeOutBottomLeft"
-  | "fadeOutBottomRight"
-  | "flash"
-  | "flip"
-  | "flipInX"
-  | "flipInY"
-  | "flipOutX"
-  | "flipOutY"
-  | "heartBeat"
-  | "headShake"
-  | "hinge"
-  | "jackInTheBox"
-  | "jello"
-  | "lightSpeedInLeft"
-  | "lightSpeedInRight"
-  | "lightSpeedOutLeft"
-  | "lightSpeedOutRight"
-  | "pulse"
-  | "rollIn"
-  | "rollOut"
-  | "rotateIn"
-  | "rotateInDownLeft"
-  | "rotateInDownRight"
-  | "rotateInUpLeft"
-  | "rotateInUpRight"
-  | "rotateOut"
-  | "rotateOutDownLeft"
-  | "rotateOutDownRight"
-  | "rotateOutUpLeft"
-  | "rotateOutUpRight"
-  | "rubberBand"
-  | "shakeX"
-  | "shakeY"
-  | "slideInDown"
-  | "slideInLeft"
-  | "slideInRight"
-  | "slideInUp"
-  | "slideOutDown"
-  | "slideOutLeft"
-  | "slideOutRight"
-  | "slideOutUp"
-  | "swing"
-  | "tada"
-  | "wobble"
-  | "zoomIn"
-  | "zoomInDown"
-  | "zoomInLeft"
-  | "zoomInRight"
-  | "zoomInUp"
-  | "zoomOut"
-  | "zoomOutDown"
-  | "zoomOutLeft"
-  | "zoomOutRight"
-  | "zoomOutUp";
+  | 'backInDown'
+  | 'backInLeft'
+  | 'backInRight'
+  | 'backInUp'
+  | 'backOutDown'
+  | 'backOutLeft'
+  | 'backOutRight'
+  | 'backOutUp'
+  | 'bounce'
+  | 'bounceIn'
+  | 'bounceInDown'
+  | 'bounceInLeft'
+  | 'bounceInRight'
+  | 'bounceInUp'
+  | 'bounceOut'
+  | 'bounceOutDown'
+  | 'bounceOutLeft'
+  | 'bounceOutRight'
+  | 'bounceOutUp'
+  | 'fadeIn'
+  | 'fadeInDown'
+  | 'fadeInDownBig'
+  | 'fadeInLeft'
+  | 'fadeInLeftBig'
+  | 'fadeInRight'
+  | 'fadeInRightBig'
+  | 'fadeInUp'
+  | 'fadeInUpBig'
+  | 'fadeInTopLeft'
+  | 'fadeInTopRight'
+  | 'fadeInBottomLeft'
+  | 'fadeInBottomRight'
+  | 'fadeOut'
+  | 'fadeOutDown'
+  | 'fadeOutDownBig'
+  | 'fadeOutLeft'
+  | 'fadeOutLeftBig'
+  | 'fadeOutRight'
+  | 'fadeOutRightBig'
+  | 'fadeOutUp'
+  | 'fadeOutUpBig'
+  | 'fadeOutTopLeft'
+  | 'fadeOutTopRight'
+  | 'fadeOutBottomLeft'
+  | 'fadeOutBottomRight'
+  | 'flash'
+  | 'flip'
+  | 'flipInX'
+  | 'flipInY'
+  | 'flipOutX'
+  | 'flipOutY'
+  | 'heartBeat'
+  | 'headShake'
+  | 'hinge'
+  | 'jackInTheBox'
+  | 'jello'
+  | 'lightSpeedInLeft'
+  | 'lightSpeedInRight'
+  | 'lightSpeedOutLeft'
+  | 'lightSpeedOutRight'
+  | 'pulse'
+  | 'rollIn'
+  | 'rollOut'
+  | 'rotateIn'
+  | 'rotateInDownLeft'
+  | 'rotateInDownRight'
+  | 'rotateInUpLeft'
+  | 'rotateInUpRight'
+  | 'rotateOut'
+  | 'rotateOutDownLeft'
+  | 'rotateOutDownRight'
+  | 'rotateOutUpLeft'
+  | 'rotateOutUpRight'
+  | 'rubberBand'
+  | 'shakeX'
+  | 'shakeY'
+  | 'slideInDown'
+  | 'slideInLeft'
+  | 'slideInRight'
+  | 'slideInUp'
+  | 'slideOutDown'
+  | 'slideOutLeft'
+  | 'slideOutRight'
+  | 'slideOutUp'
+  | 'swing'
+  | 'tada'
+  | 'wobble'
+  | 'zoomIn'
+  | 'zoomInDown'
+  | 'zoomInLeft'
+  | 'zoomInRight'
+  | 'zoomInUp'
+  | 'zoomOut'
+  | 'zoomOutDown'
+  | 'zoomOutLeft'
+  | 'zoomOutRight'
+  | 'zoomOutUp';
 
 /**
  * Return the correct animation class from animate.css
@@ -410,12 +400,12 @@ export const getAnimationClass = (
      * Delay (0-20) in 0.5 increments
      */
     delay?: number;
-    speed?: "slow" | "slower" | "fast" | "faster";
+    speed?: 'slow' | 'slower' | 'fast' | 'faster';
     infinite?: boolean;
     repeat?: 1 | 2 | 3;
   },
 ) => {
-  const result = ["animate__animated", `animate__${type}`];
+  const result = ['animate__animated', `animate__${type}`];
 
   if (options?.delay) {
     result.push(`animate__delay-${options?.delay}s`);
@@ -426,12 +416,12 @@ export const getAnimationClass = (
   }
 
   if (options?.infinite) {
-    result.push("animate__infinite");
+    result.push('animate__infinite');
   } else if (options?.repeat) {
     result.push(`animate__repeat-${options?.repeat}`);
   }
 
-  return result.join(" ");
+  return result.join(' ');
 };
 
 /**
@@ -442,26 +432,23 @@ export const getAnimationClass = (
 export const convertYYYYMMDDtoMilliseconds = (yyyymmdd: string): number => {
   const dateArgs = yyyymmdd.match(/\d{2,4}/g);
 
-  const year = Number(dateArgs?.[0] ?? "2022");
-  const month = Number(dateArgs?.[1] ?? "1");
-  const day = Number(dateArgs?.[2] ?? "1");
+  const year = Number(dateArgs?.[0] ?? '2022');
+  const month = Number(dateArgs?.[1] ?? '1');
+  const day = Number(dateArgs?.[2] ?? '1');
 
   return new Date(year, month, day).getTime();
 };
 
 export const truncateRecommended = (recommended: number[]): string => {
-  let result = "";
+  let result = '';
   recommended.forEach((number, index) => {
-    if (!result || result[result.length - 1] === ",") {
+    if (!result || result[result.length - 1] === ',') {
       result += number;
       return;
     }
 
-    if (
-      number - 1 === recommended[index - 1] &&
-      result[result.length - 1] !== "-"
-    ) {
-      result += "-";
+    if (number - 1 === recommended[index - 1] && result[result.length - 1] !== '-') {
+      result += '-';
 
       if (number + 1 !== recommended[index + 1]) {
         result += number;
@@ -471,7 +458,7 @@ export const truncateRecommended = (recommended: number[]): string => {
     }
 
     if (
-      result[result.length - 1] === "-" &&
+      result[result.length - 1] === '-' &&
       number + 1 !== recommended[index + 1] &&
       result[result.length - 1] !== `${number}`
     ) {
@@ -498,7 +485,7 @@ export const truncateRecommended = (recommended: number[]): string => {
  * @returns
  */
 export const sortPlayers = memoize(
-  (players: GamePlayers, by = ["name"], orders: ("asc" | "desc")[] = ["asc"]) =>
+  (players: GamePlayers, by = ['name'], orders: ('asc' | 'desc')[] = ['asc']) =>
     orderBy(Object.values(players), by, orders),
 );
 
@@ -508,10 +495,7 @@ export const sortPlayers = memoize(
  * @param numPlayers
  * @returns
  */
-export const calculateGameAverageDuration = (
-  game: GameInfo,
-  numPlayers = 0,
-) => {
+export const calculateGameAverageDuration = (game: GameInfo, numPlayers = 0) => {
   const base = game?.duration?.base ?? 0;
   const perPlayer = game?.duration?.perPlayer ?? 0;
 
@@ -574,7 +558,7 @@ export const formatTime = (seconds: number): string => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
 
-  const formattedSeconds = remainingSeconds.toString().padStart(2, "0");
+  const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
 
   return `${minutes}:${formattedSeconds}`;
 };
@@ -586,5 +570,5 @@ export const formatTime = (seconds: number): string => {
  */
 export function stringRemoveAccents(str: string): string {
   // biome-ignore lint/suspicious/noMisleadingCharacterClass: IDK why this is being flagged
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }

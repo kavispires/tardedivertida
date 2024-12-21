@@ -1,16 +1,16 @@
-import { type ReactNode, useMemo } from "react";
+import { type ReactNode, useMemo } from 'react';
 // Ant Design Resources
-import { Progress } from "antd";
+import { Progress } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from "types/player";
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { PHASES } from "utils/phases";
+import { PHASES } from 'utils/phases';
 // Components
-import { Translate } from "components/language";
-import { TurnOrder, WaitingRoom } from "components/players";
-import { Step } from "components/steps";
+import { Translate } from 'components/language';
+import { TurnOrder, WaitingRoom } from 'components/players';
+import { Step } from 'components/steps';
 
 type GuesserWaitingRoomProps = {
   players: GamePlayers;
@@ -59,8 +59,8 @@ export function GuesserWaitingRoom({
   }, [players, phase]);
 
   const instructionPrefix = translate(
-    "Aguarde enquanto os outros jogadores",
-    "Please wait while the other players",
+    'Aguarde enquanto os outros jogadores',
+    'Please wait while the other players',
   );
 
   return (
@@ -68,20 +68,10 @@ export function GuesserWaitingRoom({
       <WaitingRoom
         players={players}
         title={`${instructionPrefix} ${instructionSuffix[language]}.`}
-        instruction={
-          <Translate pt="Você é o(a) adivinhador(a)" en="You're the guesser" />
-        }
+        instruction={<Translate pt="Você é o(a) adivinhador(a)" en="You're the guesser" />}
       >
-        <TurnOrder
-          players={players}
-          order={turnOrder}
-          activePlayerId={guesser.id}
-        />
-        <Progress
-          percent={initialProgress + additionalPercentage}
-          status="active"
-          showInfo={false}
-        />
+        <TurnOrder players={players} order={turnOrder} activePlayerId={guesser.id} />
+        <Progress percent={initialProgress + additionalPercentage} status="active" showInfo={false} />
       </WaitingRoom>
     </Step>
   );

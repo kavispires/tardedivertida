@@ -1,9 +1,7 @@
-import { useSearchParams } from "react-router-dom";
-import { useEffectOnce } from "react-use";
+import { useSearchParams } from 'react-router-dom';
+import { useEffectOnce } from 'react-use';
 
-export function useQueryParams(
-  defaultParams: Record<string, string | number> = {},
-) {
+export function useQueryParams(defaultParams: Record<string, string | number> = {}) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   /**
@@ -40,9 +38,9 @@ export function useQueryParams(
 
   const queryParams = searchParams
     .toString()
-    .split("&")
+    .split('&')
     .reduce((qp: Record<string, string>, entry) => {
-      const [key, value] = entry.split("=");
+      const [key, value] = entry.split('=');
       if (key && value !== undefined) {
         qp[key] = value;
       }

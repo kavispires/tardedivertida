@@ -1,35 +1,21 @@
-import clsx from "clsx";
-import { useRef } from "react";
-import { useKeyPressEvent } from "react-use";
+import clsx from 'clsx';
+import { useRef } from 'react';
+import { useKeyPressEvent } from 'react-use';
 // Ant Design Resources
-import { RotateLeftOutlined, RotateRightOutlined } from "@ant-design/icons";
-import { Button, Input, Tooltip } from "antd";
+import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
+import { Button, Input, Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Icons
-import { BoxCheckMarkIcon } from "icons/BoxCheckMarkIcon";
-import { BoxOneIcon } from "icons/BoxOneIcon";
-import { BoxXIcon } from "icons/BoxXIcon";
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { BoxOneIcon } from 'icons/BoxOneIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
-import { Translate } from "components/language";
+import { Translate } from 'components/language';
 // Internal
-import {
-  FIRST_ATTEMPT_SCORE,
-  ROTATIONS,
-  SECOND_ATTEMPT_SCORE,
-} from "../utils/constants";
-import type {
-  CloverMode,
-  Leaves,
-  LeafIndex,
-  LeafId,
-  LeafPosition,
-  LeafLocks,
-  CloverLeaf,
-  Guesses,
-  CloverObject,
-} from "../utils/types";
-import { LeafSlot } from "./LeafSlot";
+import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
+import type { CloverMode, Leaves, LeafIndex, LeafId, LeafPosition, LeafLocks, CloverLeaf, Guesses, CloverObject, } from '../utils/types';
+import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
   mode: CloverMode;
@@ -69,7 +55,7 @@ export function Clover({
   const { translate } = useLanguage();
   const cloverLeaves = Object.entries(clover.leaves);
 
-  useKeyPressEvent("Tab", () => {
+  useKeyPressEvent('Tab', () => {
     onRotate(-1);
   });
 
@@ -80,25 +66,21 @@ export function Clover({
         {cloverLeaves.map(([_, cloverLeaf], index) => {
           const leafIndex = Number(index) as LeafIndex;
 
-          if (mode === "write" && onClueChange) {
+          if (mode === 'write' && onClueChange) {
             return (
               <div
                 key={`clue-key-${leafIndex}`}
-                className={clsx(`y-clover__clue-${leafIndex}`, "y-clover-clue")}
+                className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
               >
                 <Input
                   ref={(el) => {
                     inputRefs.current[index] = el;
                   }}
-                  onChange={
-                    onClueChange
-                      ? (e) => onClueChange(leafIndex, e.target.value)
-                      : undefined
-                  }
+                  onChange={onClueChange ? (e) => onClueChange(leafIndex, e.target.value) : undefined}
                   className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
-                  placeholder={translate("Escreva aqui", "Write here")}
+                  placeholder={translate('Escreva aqui', 'Write here')}
                   disabled={!onClueChange}
-                  value={mode === "write" ? undefined : cloverLeaf.clue}
+                  value={mode === 'write' ? undefined : cloverLeaf.clue}
                   autoFocus={index === 0}
                 />
               </div>
@@ -108,14 +90,9 @@ export function Clover({
           return (
             <div
               key={`clue-key-${leafIndex}`}
-              className={clsx(`y-clover__clue-${leafIndex}`, "y-clover-clue")}
+              className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
             >
-              <span
-                className={clsx(
-                  `y-clover-rotation--${ROTATIONS[index]}`,
-                  "y-clover-clue-readonly",
-                )}
-              >
+              <span className={clsx(`y-clover-rotation--${ROTATIONS[index]}`, 'y-clover-clue-readonly')}>
                 {cloverLeaf.clue}
               </span>
             </div>
@@ -128,14 +105,7 @@ export function Clover({
             leaf,
             rotation: leafRotation,
             icon,
-          } = getLeaf(
-            mode,
-            leaves,
-            cloverLeafPosition as LeafPosition,
-            cloverLeaf,
-            guesses,
-            rotations,
-          );
+          } = getLeaf(mode, leaves, cloverLeafPosition as LeafPosition, cloverLeaf, guesses, rotations);
 
           return (
             <LeafSlot
@@ -170,17 +140,17 @@ const getLeaf = (
   guesses: Guesses,
   rotations: NumberDictionary,
 ) => {
-  let leafId = "";
+  let leafId = '';
   switch (mode) {
-    case "guess":
-      leafId = guesses?.[position]?.leafId ?? "";
+    case 'guess':
+      leafId = guesses?.[position]?.leafId ?? '';
       return {
         leaf: leaves?.[leafId],
         rotation: rotations[leafId] ?? 0,
         icon: undefined,
       };
-    case "result": {
-      leafId = guesses?.[position]?.leafId ?? "";
+    case 'result': {
+      leafId = guesses?.[position]?.leafId ?? '';
       const guess = guesses?.[position];
       return {
         leaf: leaves?.[leafId],
@@ -188,7 +158,7 @@ const getLeaf = (
         icon: getIcon(guess?.score ?? 0),
       };
     }
-    case "write":
+    case 'write':
       leafId = cloverLeaf.leafId;
       return {
         leaf: leaves?.[leafId],
@@ -214,41 +184,20 @@ const getIcon = (score: number) => {
   switch (score) {
     case SECOND_ATTEMPT_SCORE:
       return (
-        <Tooltip
-          title={
-            <Translate
-              pt="Acertou na segunda tentativa"
-              en="Got it in their second attempt"
-            />
-          }
-        >
+        <Tooltip title={<Translate pt="Acertou na segunda tentativa" en="Got it in their second attempt" />}>
           <BoxOneIcon />
         </Tooltip>
       );
     case FIRST_ATTEMPT_SCORE:
       return (
-        <Tooltip
-          title={
-            <Translate
-              pt="Acertou na primeira tentativa"
-              en="Got it in their first attempt"
-            />
-          }
-        >
+        <Tooltip title={<Translate pt="Acertou na primeira tentativa" en="Got it in their first attempt" />}>
           <BoxCheckMarkIcon />
         </Tooltip>
       );
     // case 0:
     default:
       return (
-        <Tooltip
-          title={
-            <Translate
-              pt="Burro pra carai e não acertou"
-              en="Did not get it right"
-            />
-          }
-        >
+        <Tooltip title={<Translate pt="Burro pra carai e não acertou" en="Did not get it right" />}>
           <BoxXIcon />
         </Tooltip>
       );

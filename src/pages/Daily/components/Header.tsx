@@ -1,10 +1,10 @@
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useState } from 'react';
 // Ant Design Resources
-import { Layout, Typography } from "antd";
+import { Layout, Typography } from 'antd';
 // Components
-import { IconAvatar } from "components/avatars";
+import { IconAvatar } from 'components/avatars';
 // Internal
-import { DevResetLocalStorageButton } from "./DevResetLocalStorageButton";
+import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
 
 type HeaderProps = {
   icon: ReactNode;
@@ -19,9 +19,7 @@ export function Header({ icon, children, localStorageKey }: HeaderProps) {
     <Layout.Header className="daily-header">
       <button
         type="button"
-        onClick={
-          localStorageKey ? () => setCount((prev) => prev + 1) : undefined
-        }
+        onClick={localStorageKey ? () => setCount((prev) => prev + 1) : undefined}
         className="invisible-secret-button daily-header"
       >
         <IconAvatar icon={icon} className="daily-header__icon" />
@@ -29,9 +27,7 @@ export function Header({ icon, children, localStorageKey }: HeaderProps) {
           {children}
         </Typography.Title>
       </button>
-      {count >= 5 && (
-        <DevResetLocalStorageButton localStorageKey={localStorageKey} />
-      )}
+      {count >= 5 && <DevResetLocalStorageButton localStorageKey={localStorageKey} />}
     </Layout.Header>
   );
 }

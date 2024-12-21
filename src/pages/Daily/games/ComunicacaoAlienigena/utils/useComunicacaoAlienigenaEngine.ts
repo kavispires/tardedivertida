@@ -1,24 +1,17 @@
-import { useDailyGameState } from "pages/Daily/hooks/useDailyGameState";
-import {
-  useDailyLocalToday,
-  useMarkAsPlayed,
-} from "pages/Daily/hooks/useDailyLocalToday";
-import { useShowResultModal } from "pages/Daily/hooks/useShowResultModal";
-import { useEffect } from "react";
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { useEffect } from 'react';
 // Ant Design Resources
-import { App } from "antd";
+import { App } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { deepCopy } from "utils/helpers";
+import { deepCopy } from 'utils/helpers';
 // Internal
-import type {
-  ComunicacaoAlienigenaLocalToday,
-  DailyComunicacaoAlienigenaEntry,
-  GameState,
-} from "./types";
-import { SETTINGS } from "./settings";
-import { DEFAULT_LOCAL_TODAY } from "./helpers";
+import type { ComunicacaoAlienigenaLocalToday, DailyComunicacaoAlienigenaEntry, GameState } from './types';
+import { SETTINGS } from './settings';
+import { DEFAULT_LOCAL_TODAY } from './helpers';
 
 export function useComunicacaoAlienigenaEngine(
   data: DailyComunicacaoAlienigenaEntry,
@@ -26,15 +19,13 @@ export function useComunicacaoAlienigenaEngine(
 ) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
-  const { state, setState, updateState } =
-    useDailyGameState<GameState>(initialState);
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } =
-    useDailyLocalToday<ComunicacaoAlienigenaLocalToday>({
-      key: SETTINGS.KEY,
-      gameId: data.id,
-      defaultValue: DEFAULT_LOCAL_TODAY,
-    });
+  const { updateLocalStorage } = useDailyLocalToday<ComunicacaoAlienigenaLocalToday>({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: DEFAULT_LOCAL_TODAY,
+  });
 
   // ACTIONS
   const onSlotClick = (slotIndex: number) => {
@@ -55,9 +46,7 @@ export function useComunicacaoAlienigenaEngine(
     if (state.selection.includes(itemId)) {
       setState((prev) => ({
         ...prev,
-        selection: prev.selection.map((item) =>
-          item === itemId ? null : item,
-        ),
+        selection: prev.selection.map((item) => (item === itemId ? null : item)),
       }));
     } else {
       const firstNullIndex = state.slotIndex ?? state.selection.indexOf(null);
@@ -76,13 +65,13 @@ export function useComunicacaoAlienigenaEngine(
   };
 
   const submitGuess = () => {
-    const newGuessString = state.selection.join("-");
+    const newGuessString = state.selection.join('-');
 
     if (state.guesses.includes(newGuessString)) {
       message.warning({
         content: translate(
-          "Você já tentou essa combinação. Tente outra!",
-          "You already tried this combination. Try another one!",
+          'Você já tentou essa combinação. Tente outra!',
+          'You already tried this combination. Try another one!',
         ),
         duration: 5,
       });
@@ -100,10 +89,7 @@ export function useComunicacaoAlienigenaEngine(
 
     if (!isCorrect) {
       message.warning({
-        content: translate(
-          "Combinação incorreta. Tente novamente!",
-          "Incorrect combination. Try again!",
-        ),
+        content: translate('Combinação incorreta. Tente novamente!', 'Incorrect combination. Try again!'),
         duration: 3,
       });
     }
@@ -134,12 +120,9 @@ export function useComunicacaoAlienigenaEngine(
   });
 
   // RESULTS MODAL
-  const { showResultModal, setShowResultModal } = useShowResultModal(
-    isWin || isLose || isComplete,
-  );
+  const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);
 
-  const isReady =
-    state.selection.filter(Boolean).length === data.requests.length;
+  const isReady = state.selection.filter(Boolean).length === data.requests.length;
 
   return {
     hearts: state.hearts,

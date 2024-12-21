@@ -1,12 +1,12 @@
-import { DailyError } from "pages/Daily/components/DailyError";
-import { DailyLoading } from "pages/Daily/components/DailyLoading";
+import { DailyError } from 'pages/Daily/components/DailyError';
+import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 // Hooks
-import { useCurrentUserContext } from "hooks/useCurrentUserContext";
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Internal
-import { DailyPicaco } from "./components/DailyPicaco";
-import { useDailyChallenge } from "../../hooks/useDailyChallenge";
+import { DailyPicaco } from './components/DailyPicaco';
+import { useDailyChallenge } from '../../hooks/useDailyChallenge';
 // Sass
-import "./utils/styles.scss";
+import './utils/styles.scss';
 
 export function DailyPicacoGame() {
   const { currentUser, isLoading } = useCurrentUserContext();

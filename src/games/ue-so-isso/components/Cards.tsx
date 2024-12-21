@@ -1,10 +1,10 @@
 // Ant Design Resources
-import { Space } from "antd";
+import { Space } from 'antd';
 // Types
-import type { GamePlayers } from "types/player";
+import type { GamePlayers } from 'types/player';
 // Internal
-import type { Suggestion } from "../utils/types";
-import { SuggestionCard } from "./SuggestionCard";
+import type { Suggestion } from '../utils/types';
+import { SuggestionCard } from './SuggestionCard';
 
 type CardsProps = {
   suggestions: Suggestion[];
