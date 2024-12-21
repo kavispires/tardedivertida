@@ -52,6 +52,7 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
     },
     {},
   );
+  state.solution = solution;
 
   state.guesses = guesses;
   state.win = Object.values(solution)
