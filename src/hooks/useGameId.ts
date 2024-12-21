@@ -16,6 +16,7 @@ export function useGameId() {
   const navigate = useNavigate();
 
   // Verify url game code
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const urlGameId = getGameIdFromPathname(pathname);
     if (isValidGameId(urlGameId)) {
@@ -30,7 +31,7 @@ export function useGameId() {
       setGameId("");
       navigate("/");
     }
-  }, [pathname, setGameId]); // eslint-disable-line
+  }, [pathname, setGameId]);
 
   return gameId;
 }

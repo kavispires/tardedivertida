@@ -1,37 +1,26 @@
-import { intersectionBy } from "lodash";
-import { useDailyGameState } from "pages/Daily/hooks/useDailyGameState";
-import {
-  useDailyLocalToday,
-  useMarkAsPlayed,
-} from "pages/Daily/hooks/useDailyLocalToday";
-import { useShowResultModal } from "pages/Daily/hooks/useShowResultModal";
-import { useEffect, useMemo, useState } from "react";
-import { useLocalStorage } from "react-use";
+import { intersectionBy } from 'lodash';
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocalStorage } from 'react-use';
 // Hooks
-import { useCountdown } from "hooks/useCountdown";
+import { useCountdown } from 'hooks/useCountdown';
 // Utils
-import { inNSeconds } from "utils/helpers";
+import { inNSeconds } from 'utils/helpers';
 // Internal
-import { DEFAULT_LOCAL_TODAY, getDiscs } from "./helpers";
-import { SETTINGS } from "./settings";
-import { AquiOLocalToday, DailyAquiOEntry, GameState } from "./types";
+import { DEFAULT_LOCAL_TODAY, getDiscs } from './helpers';
+import { SETTINGS } from './settings';
+import type { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
 
 const DURATION = 60;
 
-export function useAquiOEngine(
-  data: DailyAquiOEntry,
-  initialState: GameState,
-  isRandomGame: boolean,
-) {
+export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, isRandomGame: boolean) {
   const [timesUp, setTimesUp] = useState(false);
 
-  const [mode, setMode] = useLocalStorage(
-    SETTINGS.TD_DAILY_AQUI_O_MODE,
-    "normal",
-  );
+  const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
 
-  const { state, setState, updateState } =
-    useDailyGameState<GameState>(initialState);
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
   const { updateLocalStorage } = useDailyLocalToday<AquiOLocalToday>({
     key: SETTINGS.KEY,
@@ -44,9 +33,7 @@ export function useAquiOEngine(
   const discB = state.discs[state.discIndex + 1];
 
   const result = useMemo(
-    () =>
-      intersectionBy(discA?.items ?? [], discB?.items ?? [], "itemId")?.[0]
-        ?.itemId,
+    () => intersectionBy(discA?.items ?? [], discB?.items ?? [], 'itemId')?.[0]?.itemId,
     [discA, discB],
   );
 
@@ -58,7 +45,7 @@ export function useAquiOEngine(
       setTimesUp(true);
       if (!isRandomGame) {
         updateLocalStorage({
-          hardMode: mode === "challenge",
+          hardMode: mode === 'challenge',
           hearts: state.hearts,
           maxProgress: Math.max(state.discIndex, state.maxProgress),
         });
@@ -76,7 +63,7 @@ export function useAquiOEngine(
     });
     setState((prev) => ({
       ...prev,
-      discs: getDiscs(data, mode === "challenge"),
+      discs: getDiscs(data, mode === 'challenge'),
       discIndex: 0,
       attempts: prev.attempts + 1,
     }));
@@ -95,9 +82,9 @@ export function useAquiOEngine(
   // CONDITIONS
   const isWin = state.discIndex === SETTINGS.GOAL;
   const isLose = state.hearts <= 0;
-  const isComplete =
-    (isWin || isLose || timesUp || state.attempts > 0) && !isRunning;
+  const isComplete = (isWin || isLose || timesUp || state.attempts > 0) && !isRunning;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we only need isWin and isLose
   useEffect(() => {
     if (isWin || isLose) {
       pause();
@@ -108,7 +95,7 @@ export function useAquiOEngine(
         });
       }
     }
-  }, [isWin, isLose]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isWin, isLose]);
 
   useMarkAsPlayed({
     key: SETTINGS.KEY,
@@ -116,10 +103,7 @@ export function useAquiOEngine(
   });
 
   // RESULTS MODAL
-  const { showResultModal, setShowResultModal } = useShowResultModal(
-    isComplete,
-    () => pause(),
-  );
+  const { showResultModal, setShowResultModal } = useShowResultModal(isComplete, () => pause());
 
   return {
     hearts: state.hearts,

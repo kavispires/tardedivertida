@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import { Button } from 'antd';

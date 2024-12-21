@@ -1,25 +1,25 @@
-import { useEffect, useMemo, useState } from "react";
-import { useCounter, useEffectOnce } from "react-use";
+import { useEffect, useMemo, useState } from 'react';
+import { useCounter, useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { ReadOutlined } from "@ant-design/icons";
-import { Button, App } from "antd";
+import { ReadOutlined } from '@ant-design/icons';
+import { Button, App } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from "types/player";
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
-import { useLoading } from "hooks/useLoading";
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Components
-import { Translate } from "components/language";
-import { messageContent } from "components/pop-up";
-import { Step } from "components/steps";
-import { Title } from "components/text";
-import { TimedTimerBar } from "components/timers";
+import { Translate } from 'components/language';
+import { messageContent } from 'components/pop-up';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { TimedTimerBar } from 'components/timers';
 // Internal
-import type { Message } from "./utils/types";
-import { MessageBoard } from "./components/MessageBoard";
-import { PlayerStatus } from "./components/PlayerStatus";
-import { PlayerTargetCardButton } from "./components/PlayerTargetCardButton";
-import { GeneralRules } from "./components/RulesBlobs";
+import type { Message } from './utils/types';
+import { MessageBoard } from './components/MessageBoard';
+import { PlayerStatus } from './components/PlayerStatus';
+import { PlayerTargetCardButton } from './components/PlayerTargetCardButton';
+import { GeneralRules } from './components/RulesBlobs';
 
 type StepTargetingProps = {
   user: GamePlayer;
@@ -76,13 +76,7 @@ export function StepTargeting({
 
   const popRule = () => {
     message.info(
-      messageContent(
-        translate("Você controla!", "You control!"),
-        <GeneralRules />,
-        "rules",
-        20,
-        "rules",
-      ),
+      messageContent(translate('Você controla!', 'You control!'), <GeneralRules />, 'rules', 20, 'rules'),
     );
   };
 
@@ -99,18 +93,9 @@ export function StepTargeting({
         <Title size="small">
           <Translate pt="Escolha seu alvo!" en="Choose your target!" />
         </Title>
-        <TimedTimerBar
-          duration={90}
-          steps={18}
-          onExpire={timeExpireDisableVoting}
-        />
+        <TimedTimerBar duration={90} steps={18} onExpire={timeExpireDisableVoting} />
 
-        <Button
-          shape={"round"}
-          size="small"
-          onClick={popRule}
-          icon={<ReadOutlined />}
-        >
+        <Button shape={'round'} size="small" onClick={popRule} icon={<ReadOutlined />}>
           <Translate pt=" Regras" en=" Rules" />
         </Button>
 
@@ -131,11 +116,7 @@ export function StepTargeting({
 
       <div className="q-target-players q-target-players--right">
         {rightPlayersIds.map((playerId) => (
-          <PlayerStatus
-            key={playerId}
-            player={players[playerId]}
-            side="right"
-          />
+          <PlayerStatus key={playerId} player={players[playerId]} side="right" />
         ))}
       </div>
 
@@ -167,14 +148,14 @@ export function StepTargeting({
               <Translate
                 pt={
                   <>
-                    Você pode trocar seu alvo {votingCount} vezes. Se você acha
-                    que será o alvo, use "Emboscada" para contra-atacar.
+                    Você pode trocar seu alvo {votingCount} vezes. Se você acha que será o alvo, use
+                    "Emboscada" para contra-atacar.
                   </>
                 }
                 en={
                   <>
-                    You may change your target {votingCount} times. If you think
-                    you are the target, use "Ambush" to counterattack.
+                    You may change your target {votingCount} times. If you think you are the target, use
+                    "Ambush" to counterattack.
                   </>
                 }
               />

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Alert } from 'antd';
 // Components
@@ -19,7 +19,7 @@ export function LobbyStep({ children, isLocked }: LobbyStepProps) {
       <div className="lobby-step__card">
         <GameBanner title={info?.title} gameName={info?.gameName} className="lobby-step__banner" />
         <div className="lobby-step__content">
-          {Boolean(isLocked) ? (
+          {isLocked ? (
             <>
               <h1 className="lobby-step__title">
                 <Translate pt="Esse jogo está trancado" en="This session is locked" />

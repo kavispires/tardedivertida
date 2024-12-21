@@ -1,17 +1,17 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { ArrowIcon } from "icons/ArrowIcon";
-import { CompassIcon } from "icons/CompassIcon";
-import { FinishLineIcon } from "icons/FinishLineIcon";
-import { FlagIcon } from "icons/FlagIcon";
+import { ArrowIcon } from 'icons/ArrowIcon';
+import { CompassIcon } from 'icons/CompassIcon';
+import { FinishLineIcon } from 'icons/FinishLineIcon';
+import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { IconAvatar } from "components/avatars";
+import { IconAvatar } from 'components/avatars';
 // Internal
-import type { MapSegment, Tree, TreeId } from "../utils/types";
-import { getOriginDirection } from "../utils/helpers";
-import { TreeImage } from "./TreeImage";
+import type { MapSegment, Tree, TreeId } from '../utils/types';
+import { getOriginDirection } from '../utils/helpers';
+import { TreeImage } from './TreeImage';
 
 type ForestTreeProps = {
   segment: MapSegment;
@@ -34,7 +34,7 @@ export function ForestTree({
   currentTreeId,
   showPath = false,
   showArrow = false,
-  className = "",
+  className = '',
   hidePassedTreeNames = false,
   width = 75,
 }: ForestTreeProps) {
@@ -48,18 +48,18 @@ export function ForestTree({
   return (
     <div
       className={clsx(
-        "forest__tree",
+        'forest__tree',
         isStartingPoint && `forest__tree--${originDirection}`,
-        isFinalPoint && showPath && "forest__tree--goal",
-        isSegment && showPath && "forest__tree--segment",
-        isPassed && "forest__tree--passed",
-        isCurrentTree && "forest__tree--current",
+        isFinalPoint && showPath && 'forest__tree--goal',
+        isSegment && showPath && 'forest__tree--segment',
+        isPassed && 'forest__tree--passed',
+        isCurrentTree && 'forest__tree--current',
         className,
       )}
     >
       <TreeImage
         id={tree.treeType}
-        text={segment?.passed && hidePassedTreeNames ? "" : tree.card.text}
+        text={segment?.passed && hidePassedTreeNames ? '' : tree.card.text}
         width={width}
       />
       {showPath && isFinalPoint && (
@@ -75,10 +75,7 @@ export function ForestTree({
           <IconAvatar
             icon={<CompassIcon />}
             size="large"
-            className={clsx(
-              "forest__compass-icon",
-              getAnimationClass("pulse", { infinite: true }),
-            )}
+            className={clsx('forest__compass-icon', getAnimationClass('pulse', { infinite: true }))}
           />
         </div>
       )}
@@ -89,26 +86,23 @@ export function ForestTree({
           className={`forest__start forest__start--${originDirection}`}
         />
       )}
-      {(showArrow || showPath || isPassed) &&
-        !isFinalPoint &&
-        isSegment &&
-        segment.direction && (
-          <>
-            <span
-              className={clsx(
-                `forest__arrow-line forest__arrow-line--${segment.direction}`,
-                isSegment && showPath && "forest__tree--segment",
-                isPassed && "forest__tree--passed",
-                isCurrentTree && "forest__tree--current",
-              )}
-            />
-            <IconAvatar
-              icon={<ArrowIcon />}
-              size="large"
-              className={`forest__arrow forest__arrow--${segment.direction}`}
-            />
-          </>
-        )}
+      {(showArrow || showPath || isPassed) && !isFinalPoint && isSegment && segment.direction && (
+        <>
+          <span
+            className={clsx(
+              `forest__arrow-line forest__arrow-line--${segment.direction}`,
+              isSegment && showPath && 'forest__tree--segment',
+              isPassed && 'forest__tree--passed',
+              isCurrentTree && 'forest__tree--current',
+            )}
+          />
+          <IconAvatar
+            icon={<ArrowIcon />}
+            size="large"
+            className={`forest__arrow forest__arrow--${segment.direction}`}
+          />
+        </>
+      )}
     </div>
   );
 }

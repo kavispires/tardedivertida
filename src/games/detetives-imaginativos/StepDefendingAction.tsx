@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { App, Space } from "antd";
+import { App, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from "types/player";
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { AvatarName } from "components/avatars";
-import { Translate } from "components/language";
-import { TurnOrder } from "components/players";
-import { messageContent } from "components/pop-up";
-import { Instruction, TextHighlight, Title } from "components/text";
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
+import { messageContent } from 'components/pop-up';
+import { Instruction, TextHighlight, Title } from 'components/text';
 // Internal
-import type { CardEntry } from "./utils/types";
-import { EndDefenseTimedButton } from "./components/EndDefenseTimedButton";
-import { TableFocus } from "./components/TableFocus";
-import { YourSelectedCards } from "./components/YourSelectedCards";
+import type { CardEntry } from './utils/types';
+import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';
+import { TableFocus } from './components/TableFocus';
+import { YourSelectedCards } from './components/YourSelectedCards';
 
 type StepDefendingActionProps = {
   clue: string;
@@ -47,19 +47,12 @@ export function StepDefendingAction({
   const [wasMessageDisplayed, setWasMessageDisplayed] = useState(false);
 
   useEffect(() => {
-    if (
-      !wasMessageDisplayed &&
-      !isLoading &&
-      Date.now() - user.updatedAt > 3000000
-    ) {
+    if (!wasMessageDisplayed && !isLoading && Date.now() - user.updatedAt > 3000000) {
       message.info(
         messageContent(
+          translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices"),
           translate(
-            "Sua vez de defender suas escolhas!",
-            "It's your turn to defend your choices",
-          ),
-          translate(
-            "Aperte o botão Concluir Defesa quando terminar",
+            'Aperte o botão Concluir Defesa quando terminar',
             "Press the button End Defense when you're done",
           ),
 
@@ -69,14 +62,7 @@ export function StepDefendingAction({
       );
       setWasMessageDisplayed(true);
     }
-  }, [
-    wasMessageDisplayed,
-    message,
-    currentPlayer?.id,
-    translate,
-    isLoading,
-    user.updatedAt,
-  ]);
+  }, [wasMessageDisplayed, message, currentPlayer?.id, translate, isLoading, user.updatedAt]);
 
   return (
     <>
@@ -85,16 +71,8 @@ export function StepDefendingAction({
         <TextHighlight>{clue}</TextHighlight>
       </Title>
       <Instruction contained>
-        <AvatarName
-          key={currentPlayer.id}
-          player={currentPlayer}
-          className={getAnimationClass("tada")}
-        />
-        ,{" "}
-        <Translate
-          pt="explique porque você escolheu as cartas."
-          en="explain why you chose your cards."
-        />
+        <AvatarName key={currentPlayer.id} player={currentPlayer} className={getAnimationClass('tada')} />,{' '}
+        <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
         <Translate
           pt=" Quando terminar sua defesa, aperte concluir."
           en=" When you're done, press 'End Defense'."
@@ -110,20 +88,13 @@ export function StepDefendingAction({
         )}
       </Instruction>
 
-      <EndDefenseTimedButton
-        onFinishDefenseClick={onFinishDefenseClick}
-        isLoading={isLoading}
-      />
+      <EndDefenseTimedButton onFinishDefenseClick={onFinishDefenseClick} isLoading={isLoading} />
 
       <Space className="space-container" align="center" wrap>
         <TableFocus table={table} currentPlayer={currentPlayer} />
       </Space>
 
-      <TurnOrder
-        players={players}
-        activePlayerId={currentPlayer.id}
-        order={turnOrder}
-      />
+      <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
 
       <YourSelectedCards table={table} user={user} />
     </>

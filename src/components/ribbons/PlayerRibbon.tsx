@@ -13,7 +13,7 @@ type RibbonProps = {
   position?: 'absolute' | 'static';
 };
 
-export function PlayerRibbon({ player, position = 'absolute' }: RibbonProps): JSX.Element {
+export function PlayerRibbon({ player, position = 'absolute' }: RibbonProps) {
   return (
     <div className={clsx('ribbon', `ribbon--${position}`)}>
       <div

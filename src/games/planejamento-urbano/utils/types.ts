@@ -1,7 +1,7 @@
 // Types
-import { CityLocation } from 'types/tdr';
+import type { CityLocation } from 'types/tdr';
 // Components
-import { GridMapType } from 'components/toolKits/GridMap';
+import type { GridMapType } from 'components/toolKits/GridMap';
 
 export type SubmitPlanningPayload = {
   planning: Dictionary<string>;

@@ -1,16 +1,12 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 // Types
-import type { GamePlayer } from "types/player";
+import type { GamePlayer } from 'types/player';
 // Components
-import { StatusBar } from "components/general/StatusBar";
-import { Translate } from "components/language";
+import { StatusBar } from 'components/general/StatusBar';
+import { Translate } from 'components/language';
 // Internal
-import type { Robot } from "../utils/types";
-import {
-  CaptchaHighlight,
-  EnergyHighlight,
-  SuspicionHighlight,
-} from "./Highlights";
+import type { Robot } from '../utils/types';
+import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
 
 type SummaryProps = {
   user: GamePlayer;
@@ -21,41 +17,18 @@ export function Summary({ user, robot }: SummaryProps) {
   const entries = useMemo(
     () => [
       {
-        key: "captchas",
-        title: (
-          <Translate
-            pt="Captcha corretos (individual)"
-            en="Captcha correct (individual)"
-          />
-        ),
-        value: (
-          <CaptchaHighlight>
-            {(user.beat ?? []).filter(Boolean).length}/3
-          </CaptchaHighlight>
-        ),
+        key: 'captchas',
+        title: <Translate pt="Captcha corretos (individual)" en="Captcha correct (individual)" />,
+        value: <CaptchaHighlight>{(user.beat ?? []).filter(Boolean).length}/3</CaptchaHighlight>,
       },
       {
-        key: "suspicions",
-        title: (
-          <Translate
-            pt="Suspeita levantada (individual)"
-            en="Suspicion caused (individual)"
-          />
-        ),
-        value: (
-          <SuspicionHighlight>
-            {(user.suspicion ?? []).filter(Boolean).length}/3
-          </SuspicionHighlight>
-        ),
+        key: 'suspicions',
+        title: <Translate pt="Suspeita levantada (individual)" en="Suspicion caused (individual)" />,
+        value: <SuspicionHighlight>{(user.suspicion ?? []).filter(Boolean).length}/3</SuspicionHighlight>,
       },
       {
-        key: "energy",
-        title: (
-          <Translate
-            pt="Pontos do Robô para revolução (grupo)"
-            en="Robot Points to Doom (group)"
-          />
-        ),
+        key: 'energy',
+        title: <Translate pt="Pontos do Robô para revolução (grupo)" en="Robot Points to Doom (group)" />,
         value: (
           <EnergyHighlight>
             {robot.points}/{robot.goal}

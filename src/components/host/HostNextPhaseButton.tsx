@@ -1,26 +1,26 @@
-import clsx from "clsx";
-import { ReactNode, useEffect } from "react";
+import clsx from 'clsx';
+import { type ReactNode, useEffect } from 'react';
 // Ant Design Resources
-import { PauseOutlined, PlayCircleOutlined } from "@ant-design/icons";
-import { Tooltip } from "antd";
+import { PauseOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 // Types
-import type { GameRound } from "types/game";
+import type { GameRound } from 'types/game';
 // Hooks
-import { useCountdown } from "hooks/useCountdown";
-import { useHost } from "hooks/useHost";
-import { useHostActionRequest } from "hooks/useHostActionRequest";
-import { useLanguage } from "hooks/useLanguage";
-import { useLoading } from "hooks/useLoading";
+import { useCountdown } from 'hooks/useCountdown';
+import { useHost } from 'hooks/useHost';
+import { useHostActionRequest } from 'hooks/useHostActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Services
-import { HOST_API_ACTIONS } from "services/adapters";
+import { HOST_API_ACTIONS } from 'services/adapters';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from "components/language";
-import { WaitingTime } from "components/timers";
+import { Translate } from 'components/language';
+import { WaitingTime } from 'components/timers';
 // Internal
-import { HostOnlyContainer } from "./HostOnlyContainer";
-import { HostButton } from "./HostButton";
+import { HostOnlyContainer } from './HostOnlyContainer';
+import { HostButton } from './HostButton';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
   if (!round || round.current === round.total || round.forceLastRound) {
@@ -67,22 +67,18 @@ export function HostNextPhaseButton({
   const isHost = useHost();
   const { translate } = useLanguage();
   const { loaders } = useLoading();
-  const isLoading = loaders["go-to-next-phase"];
+  const isLoading = loaders['go-to-next-phase'];
 
   const onGoToNextPhase = useHostActionRequest({
-    actionName: "go-to-next-phase",
-    successMessage: translate(
-      "Funcionou, próxima fase!",
-      "It worked, next phase!",
-    ),
+    actionName: 'go-to-next-phase',
+    successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!'),
     errorMessage: translate(
-      "Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase",
-      "The application found an error while trying to go to the next phase",
+      'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
+      'The application found an error while trying to go to the next phase',
     ),
   });
 
-  const handleClick = () =>
-    onGoToNextPhase({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE });
+  const handleClick = () => onGoToNextPhase({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE });
 
   const hasTimer = Boolean(autoTriggerTime);
 
@@ -90,28 +86,24 @@ export function HostNextPhaseButton({
     autoStart: autoTriggerTime > 0,
     duration: autoTriggerTime,
     onExpire: handleClick,
-    disabled: !isHost ?? !hasTimer,
+    disabled: !isHost || !hasTimer,
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only watch for isLoading
   useEffect(() => {
     if (isLoading) {
       pause();
     }
     return () => pause();
-  }, [isLoading]); // eslint-disable-line
+  }, [isLoading]);
 
   return (
     <>
-      {withWaitingTimeBar && (
-        <WaitingTime duration={autoTriggerTime} timeLeft={timeLeft} />
-      )}
+      {withWaitingTimeBar && <WaitingTime duration={autoTriggerTime} timeLeft={timeLeft} />}
 
       <HostOnlyContainer
         label="Host Action"
-        className={clsx(
-          "host-only-container--float",
-          getAnimationClass("slideInUp"),
-        )}
+        className={clsx('host-only-container--float', getAnimationClass('slideInUp'))}
       >
         <Tooltip title="Pause">
           <HostButton
@@ -127,10 +119,10 @@ export function HostNextPhaseButton({
             hasTimer && (
               <span
                 className={clsx(
-                  "host-button-timer",
+                  'host-button-timer',
                   !isRunning &&
-                    getAnimationClass("flash", {
-                      speed: "slow",
+                    getAnimationClass('flash', {
+                      speed: 'slow',
                       infinite: true,
                     }),
                 )}

@@ -2,7 +2,7 @@ import moment from 'moment';
 // Utils
 import { isDevEnv } from 'utils/helpers';
 // Internal
-import { WithRequiredId } from './types';
+import type { WithRequiredId } from './types';
 
 /**
  * Returns the current date in the format 'YYYY-MM-DD'.

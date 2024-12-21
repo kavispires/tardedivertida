@@ -1,11 +1,11 @@
 // Ant Design Resources
-import { LikeFilled } from "@ant-design/icons";
-import { Avatar as AntAvatar, Typography } from "antd";
+import { LikeFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar, Typography } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from "types/player";
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Components
-import { Avatar } from "components/avatars";
-import { Translate } from "components/language";
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type ReadyPlayersBarProps = {
   players: GamePlayers;
@@ -20,25 +20,21 @@ export function ReadyPlayersBar({
   readyTextPlural,
   hideNames = false,
 }: ReadyPlayersBarProps) {
-  const {
-    readyPlayers,
-    notReadyPlayers,
-  }: { readyPlayers: GamePlayer[]; notReadyPlayers: string[] } = Object.values(
-    players,
-  ).reduce(
-    (acc: any, player: GamePlayer) => {
-      if (player.ready) {
-        acc.readyPlayers.push(player);
-      } else {
-        acc.notReadyPlayers.push(player.name);
-      }
-      return acc;
-    },
-    {
-      readyPlayers: [],
-      notReadyPlayers: [],
-    },
-  );
+  const { readyPlayers, notReadyPlayers }: { readyPlayers: GamePlayer[]; notReadyPlayers: string[] } =
+    Object.values(players).reduce(
+      (acc: any, player: GamePlayer) => {
+        if (player.ready) {
+          acc.readyPlayers.push(player);
+        } else {
+          acc.notReadyPlayers.push(player.name);
+        }
+        return acc;
+      },
+      {
+        readyPlayers: [],
+        notReadyPlayers: [],
+      },
+    );
 
   if (readyPlayers.length === 0) {
     return <span></span>;
@@ -55,17 +51,9 @@ export function ReadyPlayersBar({
         <span className="ready-player-bar__speech-bubble">
           <Typography.Text>
             {readyPlayers.length > 1 ? (
-              <Translate
-                pt="Estamos prontos!"
-                en="We're ready!"
-                custom={readyTextPlural}
-              />
+              <Translate pt="Estamos prontos!" en="We're ready!" custom={readyTextPlural} />
             ) : (
-              <Translate
-                pt="Estou pronto!"
-                en="I'm ready!"
-                custom={readyText}
-              />
+              <Translate pt="Estou pronto!" en="I'm ready!" custom={readyText} />
             )}
           </Typography.Text>
           <LikeFilled className="ready-player-bar__speech-bubble-icon" />
@@ -73,8 +61,7 @@ export function ReadyPlayersBar({
       </div>
       {!hideNames && notReadyPlayers.length > 0 && (
         <span className="ready-player-bar__names">
-          <Translate pt="Esperando" en="Waiting for" />:{" "}
-          {notReadyPlayers.join(", ")}
+          <Translate pt="Esperando" en="Waiting for" />: {notReadyPlayers.join(', ')}
         </span>
       )}
     </div>

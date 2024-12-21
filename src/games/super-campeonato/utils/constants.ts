@@ -1,5 +1,5 @@
 // Internal
-import { BracketTier } from './type';
+import type { BracketTier } from './type';
 
 export const SUPER_CAMPEONATO_ACTIONS = {
   SUBMIT_CHALLENGE: 'SUBMIT_CHALLENGE',

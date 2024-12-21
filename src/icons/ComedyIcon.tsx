@@ -1,4 +1,4 @@
-export function ComedyIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function ComedyIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#ffca54" d="M438 89a247 247 0 11-20-20"></path>

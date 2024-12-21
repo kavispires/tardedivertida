@@ -1,5 +1,3 @@
-export type SubmitActionPayload2 = {};
-
 export type SubmitAlienPayload = {
   alienId: PlayerId;
 };

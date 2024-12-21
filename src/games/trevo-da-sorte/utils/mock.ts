@@ -1,12 +1,12 @@
-import { sampleSize } from "lodash";
+import { sampleSize } from 'lodash';
 // Types
-import type { TextCard } from "types/tdr";
+import type { TextCard } from 'types/tdr';
 // Utils
-import { getRandomItem, shuffle } from "utils/helpers";
+import { getRandomItem, shuffle } from 'utils/helpers';
 // Internal
-import type { CloverObject, Guesses, Leaves } from "./types";
-import { ROTATIONS, WORST_TO_REMOVE } from "./constants";
-import { getWord } from "./helpers";
+import type { CloverObject, Guesses, Leaves } from './types';
+import { ROTATIONS, WORST_TO_REMOVE } from './constants';
+import { getWord } from './helpers';
 
 export const mockSelectCards = (cards: TextCard[]): CardId[] =>
   shuffle(cards)
@@ -19,27 +19,23 @@ const glue2Words = (word1: string, word2: string) => {
   )}`;
 };
 
-export const mockClues = (
-  clover: CloverObject,
-  leaves: Leaves,
-  rotations: NumberDictionary,
-): string[] => {
+export const mockClues = (clover: CloverObject, leaves: Leaves, rotations: NumberDictionary): string[] => {
   return [
     glue2Words(
-      getWord(clover, leaves, rotations, "A", "top"),
-      getWord(clover, leaves, rotations, "B", "top"),
+      getWord(clover, leaves, rotations, 'A', 'top'),
+      getWord(clover, leaves, rotations, 'B', 'top'),
     ),
     glue2Words(
-      getWord(clover, leaves, rotations, "B", "right"),
-      getWord(clover, leaves, rotations, "C", "right"),
+      getWord(clover, leaves, rotations, 'B', 'right'),
+      getWord(clover, leaves, rotations, 'C', 'right'),
     ),
     glue2Words(
-      getWord(clover, leaves, rotations, "C", "bottom"),
-      getWord(clover, leaves, rotations, "D", "bottom"),
+      getWord(clover, leaves, rotations, 'C', 'bottom'),
+      getWord(clover, leaves, rotations, 'D', 'bottom'),
     ),
     glue2Words(
-      getWord(clover, leaves, rotations, "D", "left"),
-      getWord(clover, leaves, rotations, "A", "left"),
+      getWord(clover, leaves, rotations, 'D', 'left'),
+      getWord(clover, leaves, rotations, 'A', 'left'),
     ),
   ];
 };

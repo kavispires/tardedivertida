@@ -1,11 +1,11 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Icons
-import { SpeechBubbleThumbsDownIcon } from "icons/SpeechBubbleThumbsDownIcon";
-import { SpeechBubbleThumbsUpIcon } from "icons/SpeechBubbleThumbsUpIcon";
+import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from "components/avatars/IconAvatar";
-import { Translate } from "components/language";
-import { StarPoints } from "components/points";
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language';
+import { StarPoints } from 'components/points';
 
 type CommentTextProps = {
   reaction: boolean;
@@ -14,22 +14,12 @@ type CommentTextProps = {
   points: number;
 };
 
-export function CommentText({
-  reaction,
-  likes,
-  playerId,
-  points,
-}: CommentTextProps) {
+export function CommentText({ reaction, likes, playerId, points }: CommentTextProps) {
   return (
     <span>
       {reaction ? (
         <>
-          <IconAvatar
-            icon={<SpeechBubbleThumbsUpIcon />}
-            shape="square"
-            className="p-like-icon"
-            size={20}
-          />{" "}
+          <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" size={20} />{' '}
           <Translate pt="Curto e " en="I like it and" />
         </>
       ) : (
@@ -39,7 +29,7 @@ export function CommentText({
             shape="square"
             className="p-like-icon"
             size={20}
-          />{" "}
+          />{' '}
           <Translate pt="Não curto, mas " en="I dislike it but " />
         </>
       )}
@@ -48,9 +38,9 @@ export function CommentText({
 
       <span
         className={clsx(
-          points === 3 && "p-tweet-comment__correct",
-          points === 1 && "p-tweet-comment__almost",
-          points === 0 && "p-tweet-comment__incorrect",
+          points === 3 && 'p-tweet-comment__correct',
+          points === 1 && 'p-tweet-comment__almost',
+          points === 0 && 'p-tweet-comment__incorrect',
         )}
       >
         <Translate pt={<>{likes} jogadores</>} en={<>{likes} players</>} />

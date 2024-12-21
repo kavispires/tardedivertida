@@ -1,4 +1,4 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import moment from 'moment';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -7,9 +7,9 @@ import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
 // Utils
 import { print } from 'utils/helpers';
 // Internal
-import { DailyResponse } from '../utils/types';
+import type { DailyResponse } from '../utils/types';
 import { getSourceName, getToday } from '../utils';
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, type ReactNode, useContext } from 'react';
 
 type DailyContextType = Pick<
   UseQueryResult<DailyResponse, Error>,

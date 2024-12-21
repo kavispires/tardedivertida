@@ -1,28 +1,28 @@
 // Ant Design Resources
-import { Space } from "antd";
+import { Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from "types/player";
-import { type MonsterImage } from "types/tdr";
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { MonsterImage } from 'types/tdr';
 // Hooks
-import { useCardWidth } from "hooks/useCardWidth";
-import { useGlobalLocalStorage } from "hooks/useGlobalLocalStorage";
-import type { UseStep } from "hooks/useStep";
-import { useTemporarilyHidePlayersBar } from "hooks/useTemporarilyHidePlayersBar";
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import type { UseStep } from 'hooks/useStep';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { AvatarName } from "components/avatars";
-import { TimedButton } from "components/buttons";
-import { Translate } from "components/language";
-import { PointsHighlight } from "components/metrics/PointsHighlight";
-import { Step, type StepProps } from "components/steps";
-import { RuleInstruction, Title } from "components/text";
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
-import type { Sketch } from "./utils/types";
-import { MonsterSketches } from "./components/MonsterSketches";
-import { MonsterCard } from "../../components/cards/MonsterCard";
+import type { Sketch } from './utils/types';
+import { MonsterSketches } from './components/MonsterSketches';
+import { MonsterCard } from '../../components/cards/MonsterCard';
 
 type StepResultsProps = {
   currentMonster: MonsterImage;
-  goToNextStep: UseStep["goToNextStep"];
+  goToNextStep: UseStep['goToNextStep'];
   sketches: Sketch[];
   user: GamePlayer;
   players: GamePlayers;
@@ -31,7 +31,7 @@ type StepResultsProps = {
   mostVotes: PlayerId[];
   mostVoted: PlayerId;
   votes: Record<PlayerId, PlayerId[]>;
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 type Sketches = {
   mostVotedSketches: Sketch[];
@@ -57,7 +57,7 @@ export function StepResults({
     minWidth: 150,
     maxWidth: 300,
   });
-  const [canvasSize] = useGlobalLocalStorage("canvasSize");
+  const [canvasSize] = useGlobalLocalStorage('canvasSize');
 
   const { mostVotedSketches, otherSketches } = sketches.reduce(
     (acc: Sketches, sketch) => {
@@ -86,11 +86,8 @@ export function StepResults({
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        {Boolean(mostVoted) ? (
-          <Translate
-            pt="O retrato mais votado foi..."
-            en="The sketch who got the most votes was..."
-          />
+        {mostVoted ? (
+          <Translate pt="O retrato mais votado foi..." en="The sketch who got the most votes was..." />
         ) : (
           <Translate
             en="The sketches who got the most votes were..."
@@ -109,18 +106,16 @@ export function StepResults({
             <br />
           </>
         )}
-        {Boolean(mostVoted) ? (
+        {mostVoted ? (
           <Translate
             pt={
               <>
-                Esse jogador ganha{" "}
-                <PointsHighlight type="positive">3</PointsHighlight> pontos.
+                Esse jogador ganha <PointsHighlight type="positive">3</PointsHighlight> pontos.
               </>
             }
             en={
               <>
-                This player gets{" "}
-                <PointsHighlight type="positive">3</PointsHighlight> points.
+                This player gets <PointsHighlight type="positive">3</PointsHighlight> points.
               </>
             }
           />
@@ -128,16 +123,12 @@ export function StepResults({
           <Translate
             pt={
               <>
-                Esses jogadores ganharam{" "}
-                <PointsHighlight type="positive">3</PointsHighlight> pontos
-                cada.
+                Esses jogadores ganharam <PointsHighlight type="positive">3</PointsHighlight> pontos cada.
               </>
             }
             en={
               <>
-                These players get{" "}
-                <PointsHighlight type="positive">3</PointsHighlight> points
-                each.
+                These players get <PointsHighlight type="positive">3</PointsHighlight> points each.
               </>
             }
           />
@@ -145,10 +136,7 @@ export function StepResults({
       </RuleInstruction>
 
       <div className="r-monster-list">
-        <MonsterCard
-          currentMonster={currentMonster}
-          style={{ width: `${canvasWidth * 2}px` }}
-        />
+        <MonsterCard currentMonster={currentMonster} style={{ width: `${canvasWidth * 2}px` }} />
         <MonsterSketches
           sketches={mostVotedSketches}
           players={players}
@@ -162,18 +150,14 @@ export function StepResults({
           <Translate
             pt={
               <>
-                A testemunha <AvatarName player={witness} /> votou no mais
-                votado, logo, é uma testemunha confiável e ganha{" "}
-                <PointsHighlight type="positive">2</PointsHighlight> pontos
-                também.
+                A testemunha <AvatarName player={witness} /> votou no mais votado, logo, é uma testemunha
+                confiável e ganha <PointsHighlight type="positive">2</PointsHighlight> pontos também.
               </>
             }
             en={
               <>
-                The witness <AvatarName player={witness} /> voted with the group
-                which means they are a credible witness and get{" "}
-                <PointsHighlight type="positive">2</PointsHighlight> points as
-                well.
+                The witness <AvatarName player={witness} /> voted with the group which means they are a
+                credible witness and get <PointsHighlight type="positive">2</PointsHighlight> points as well.
               </>
             }
           />
@@ -181,17 +165,14 @@ export function StepResults({
           <Translate
             pt={
               <>
-                A testemunha achou que o desenho de{" "}
-                <AvatarName player={players[witnessVote]} /> foi o melhor, não
-                votou com a maioria, portanto, não ganha pontos.
+                A testemunha achou que o desenho de <AvatarName player={players[witnessVote]} /> foi o melhor,
+                não votou com a maioria, portanto, não ganha pontos.
               </>
             }
             en={
               <>
-                The witness thought that{" "}
-                <AvatarName player={players[witnessVote]} />
-                's sketch was the best. They didn't vote with the majority, so
-                they don't get any points.
+                The witness thought that <AvatarName player={players[witnessVote]} />
+                's sketch was the best. They didn't vote with the majority, so they don't get any points.
               </>
             }
           />

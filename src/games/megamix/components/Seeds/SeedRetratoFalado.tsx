@@ -1,46 +1,44 @@
-import { useEffect, useState } from "react";
-import { useAudio } from "react-use";
+import { useEffect, useState } from 'react';
+import { useAudio } from 'react-use';
 // Ant Design Resources
-import { Button, Space } from "antd";
+import { Button, Space } from 'antd';
 // Hooks
-import { useCountdown } from "hooks/useCountdown";
-import { useGlobalLocalStorage } from "hooks/useGlobalLocalStorage";
+import { useCountdown } from 'hooks/useCountdown';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Utils
-import { NOOP } from "utils/constants";
+import { NOOP } from 'utils/constants';
 // Icons
-import { PanicIcon } from "icons/PanicIcon";
+import { PanicIcon } from 'icons/PanicIcon';
 // Components
-import { DrawingCanvas } from "components/canvas";
-import { MonsterCard } from "components/cards/MonsterCard";
-import { ImageCardPreloadHand } from "components/image-cards";
-import { Translate } from "components/language";
-import { Instruction, Title } from "components/text";
+import { DrawingCanvas } from 'components/canvas';
+import { MonsterCard } from 'components/cards/MonsterCard';
+import { ImageCardPreloadHand } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { Instruction, Title } from 'components/text';
 // Internal
-import type { SeedEntryRetratoFalado } from "../../utils/types";
+import type { SeedEntryRetratoFalado } from '../../utils/types';
 
 // Sound
-const arteRuimTimer = require("assets/sounds/arte-ruim-timer.mp3");
+const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
 
 type SeedRetratoFaladoProps = {
   seed: SeedEntryRetratoFalado;
   updateData: GenericComponent;
 };
 
-export function SeedRetratoFalado({
-  seed,
-  updateData,
-}: SeedRetratoFaladoProps) {
+export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) {
   const [lines, setLines] = useState<any>([]);
   const [isTimesUp, setTimesUp] = useState(false);
-  const [volume] = useGlobalLocalStorage("volume");
+  const [volume] = useGlobalLocalStorage('volume');
   const [audio, , controls] = useAudio({
     src: arteRuimTimer,
   });
 
   // Updated volume
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     controls.volume(volume);
-  }, [volume]); // eslint-disable-line
+  }, [volume]);
 
   const { seconds, start, isRunning } = useCountdown({
     duration: 33,
@@ -75,19 +73,16 @@ export function SeedRetratoFalado({
           <Translate
             pt={
               <>
-                Você tem <strong>30 segundos</strong> para desenhar a carta
-                abaixo.
+                Você tem <strong>30 segundos</strong> para desenhar a carta abaixo.
                 <br />
-                Desenhá-lo é a única coisa que te acalma. Quando estiver pronto,
-                aperte o botão!
+                Desenhá-lo é a única coisa que te acalma. Quando estiver pronto, aperte o botão!
               </>
             }
             en={
               <>
                 You have <strong>30 seconds</strong> to draw the card below.
                 <br />
-                Drawing it is the only thing that calms you down. When you're
-                ready, press the button!
+                Drawing it is the only thing that calms you down. When you're ready, press the button!
               </>
             }
           />
@@ -98,26 +93,16 @@ export function SeedRetratoFalado({
 
         {isRunning && audio}
         <div className="monster-container">
-          {isRunning && (
-            <span className="a-draw__timer">
-              {seconds > 1 ? seconds - 2 : 0}
-            </span>
-          )}
+          {isRunning && <span className="a-draw__timer">{seconds > 1 ? seconds - 2 : 0}</span>}
 
           <MonsterCard
-            currentMonster={
-              isRunning
-                ? seed.card
-                : { id: "md-bs-000", orientation: seed.card.orientation }
-            }
+            currentMonster={isRunning ? seed.card : { id: 'md-bs-000', orientation: seed.card.orientation }}
             showControls
             cardWidth={250}
           />
 
           {isTimesUp ? (
-            <PanicIcon
-              style={{ background: "white", width: "500px", padding: "2em" }}
-            />
+            <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
           ) : isRunning ? (
             <DrawingCanvas lines={lines} setLines={setLines} />
           ) : (

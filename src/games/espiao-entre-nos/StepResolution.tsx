@@ -43,17 +43,17 @@ export function StepResolution({
         )}
       </Title>
 
-      {resolutionStatus.wasAnAccusationAttempt && (
+      {resolutionStatus.wasAnAccusationAttempt && target && (
         <Instruction className="e-phase-instruction">
           <Translate
             pt={
               <>
-                Os agentes tentaram incriminar {target!.name}
+                Os agentes tentaram incriminar {target.name}
                 {resolutionStatus.didTheSpyWin ? ' e erraram feio!' : ' e acertaram na mosca!'}
                 <br />
                 {resolutionStatus.didTheSpyWin
                   ? `O espião era ${currentSpy.name}! Todos os segredos da agência foram revelados e o mundo vai acabar.`
-                  : `Parabéns! O mundo está salvo graças a você.`}
+                  : 'Parabéns! O mundo está salvo graças a você.'}
                 <br />
                 {resolutionStatus.wasABadVoting &&
                   'Da próxima vez, discutam mais antes de fazerem uma votação precipitada.'}
@@ -61,12 +61,12 @@ export function StepResolution({
             }
             en={
               <>
-                The agents tried to pin {target!.name}
+                The agents tried to pin {target.name}
                 {resolutionStatus.didTheSpyWin ? ' and got it all wrong!' : " and hit the bull's eye!"}
                 <br />
                 {resolutionStatus.didTheSpyWin
                   ? `The spy was ${currentSpy.name}! All of the agency secrets were revealed and the world will end.`
-                  : `Congratulations! The world is safe and sound thanks to you.`}
+                  : 'Congratulations! The world is safe and sound thanks to you.'}
                 <br />
                 {resolutionStatus.wasABadVoting && 'Next time, discuss more before making a rash decision.'}
               </>
@@ -75,7 +75,7 @@ export function StepResolution({
         </Instruction>
       )}
 
-      {resolutionStatus.didSpyGuess && (
+      {resolutionStatus.didSpyGuess && resolutionStatus.currentLocation && (
         <Instruction className="e-phase-instruction">
           <Translate
             pt={
@@ -83,11 +83,11 @@ export function StepResolution({
                 O espião disse que o local é {resolutionStatus.guess.name}
                 {resolutionStatus.didTheSpyWin
                   ? ' e acertou na mosca!'
-                  : ` e errou feio! Os Agentes estão num(a) ${resolutionStatus.currentLocation!.name}.`}
+                  : ` e errou feio! Os Agentes estão num(a) ${resolutionStatus.currentLocation.name}.`}
                 <br />
                 {resolutionStatus.didTheSpyWin
-                  ? `Todos os segredos da agência foram revelados e o mundo vai acabar.`
-                  : `Foi por pouco, mas não foi dessa vez que o mal venceu.`}
+                  ? 'Todos os segredos da agência foram revelados e o mundo vai acabar.'
+                  : 'Foi por pouco, mas não foi dessa vez que o mal venceu.'}
               </>
             }
             en={
@@ -95,7 +95,7 @@ export function StepResolution({
                 The spy guessed the location: {resolutionStatus.guess.name}
                 {resolutionStatus.didTheSpyWin
                   ? " and hit the bull's eye!"
-                  : ` and got it all wrong! The agents were at a ${resolutionStatus.currentLocation!.name}.`}
+                  : ` and got it all wrong! The agents were at a ${resolutionStatus.currentLocation.name}.`}
                 <br />
                 {resolutionStatus.didTheSpyWin
                   ? 'All of the agency secrets were revealed and the world will end...'
@@ -107,7 +107,7 @@ export function StepResolution({
       )}
 
       <Instruction className="e-phase-instruction">
-        <h4>{resolutionStatus.currentLocation!.name}</h4>
+        <h4>{resolutionStatus.currentLocation?.name}</h4>
         <Translate pt="Disfarces dos infiltrados:" en="Agent's roles:" />
         {Object.values(players).map(({ id, name, role }) => (
           <li key={`role-list-${id}`}>

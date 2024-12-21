@@ -22,8 +22,8 @@ export function StepRanking({ players, ranking, onGoBack, round }: StepRankingPr
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Pares corretos" en="Correct matches" />,
-        <Translate pt="Pontos por seu desenho" en="Points for your drawing" />,
+        <Translate key="1" pt="Pares corretos" en="Correct matches" />,
+        <Translate key="2" pt="Pontos por seu desenho" en="Points for your drawing" />,
       ]}
     >
       <Space className="space-container" align="center">

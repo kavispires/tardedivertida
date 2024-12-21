@@ -3,7 +3,7 @@ import type { GamePlayer } from 'types/player';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Internal
-import { Dream } from './types';
+import type { Dream } from './types';
 
 const mockedDreamClues = [
   'água',

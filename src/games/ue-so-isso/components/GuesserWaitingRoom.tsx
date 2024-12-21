@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { type ReactNode, useMemo } from "react";
 // Ant Design Resources
 import { Progress } from "antd";
 // Types
@@ -18,7 +18,7 @@ type GuesserWaitingRoomProps = {
     pt: string;
     en: string;
   };
-  announcement?: JSX.Element;
+  announcement?: ReactNode;
   phase: string;
   turnOrder: TurnOrder;
   guesser: GamePlayer;
@@ -44,7 +44,7 @@ export function GuesserWaitingRoom({
     }
 
     return 90;
-  }, []); // eslint-disable-line
+  }, [phase]);
 
   const additionalPercentage = useMemo(() => {
     if (phase === PHASES.UE_SO_ISSO.COMPARE) {

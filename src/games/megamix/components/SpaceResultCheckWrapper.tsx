@@ -1,5 +1,5 @@
 import { has } from 'lodash';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Internal

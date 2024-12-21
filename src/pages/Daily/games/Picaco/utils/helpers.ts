@@ -4,7 +4,7 @@ import { loadLocalToday } from 'pages/Daily/utils';
 import { deepCopy } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import { PicacoLocalToday, DailyPicacoEntry, GameState } from './types';
+import type { PicacoLocalToday, DailyPicacoEntry, GameState } from './types';
 
 export const DEFAULT_LOCAL_TODAY: PicacoLocalToday = {
   id: '',

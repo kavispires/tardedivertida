@@ -1,41 +1,51 @@
-import clsx from 'clsx';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import clsx from "clsx";
+import { NextGameSuggestion } from "pages/Daily/components/NextGameSuggestion";
+import {
+  getDailyName,
+  getSourceName,
+  writeHeartResultString,
+} from "pages/Daily/utils";
+import { Fragment } from "react/jsx-runtime";
 // Ant Design Resources
-import { Flex, Space, Typography } from 'antd';
+import { Flex, Space, Typography } from "antd";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Icons
-import { ApplauseIcon } from 'icons/ApplauseIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
-import { SkullIcon } from 'icons/SkullIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { ApplauseIcon } from "icons/ApplauseIcon";
+import { SealOfApprovalIcon } from "icons/SealOfApprovalIcon";
+import { SkullIcon } from "icons/SkullIcon";
+import { TrophyIcon } from "icons/TrophyIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
+import { IconAvatar } from "components/avatars";
+import { ItemCard } from "components/cards/ItemCard";
+import { Translate } from "components/language";
 // Internal
-import { SETTINGS } from '../utils/settings';
-import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
+import { SETTINGS } from "../utils/settings";
+import { CopyToClipboardResult } from "../../../components/CopyToClipboardResult";
 
 const titles = [
-  <>
-    <IconAvatar icon={<SkullIcon />} /> <Translate pt="Você é muito ruim!" en="You are really bad!" />
-  </>,
-  <>
-    <IconAvatar icon={<SealOfApprovalIcon />} /> <Translate pt="Foi bem mais ou menos!" en="Pretty Weak!" />
-  </>,
-  <>
-    <IconAvatar icon={<ApplauseIcon />} /> <Translate pt="Muito bom!" en="Very good!" />
-  </>,
-  <>
-    <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
-  </>,
-  <>
-    <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Incrível!" en="Incredible!" />
-  </>,
+  <Fragment key="1">
+    <IconAvatar icon={<SkullIcon />} />{" "}
+    <Translate pt="Você é muito ruim!" en="You are really bad!" />
+  </Fragment>,
+  <Fragment key="2">
+    <IconAvatar icon={<SealOfApprovalIcon />} />{" "}
+    <Translate pt="Foi bem mais ou menos!" en="Pretty Weak!" />
+  </Fragment>,
+  <Fragment key="3">
+    <IconAvatar icon={<ApplauseIcon />} />{" "}
+    <Translate pt="Muito bom!" en="Very good!" />
+  </Fragment>,
+  <Fragment key="4">
+    <IconAvatar icon={<TrophyIcon />} />{" "}
+    <Translate pt="Parabéns!" en="Congratulations!" />
+  </Fragment>,
+  <Fragment key="5">
+    <IconAvatar icon={<TrophyIcon />} />{" "}
+    <Translate pt="Incrível!" en="Incredible!" />
+  </Fragment>,
 ];
 
 const getTitle = (progress: number, remainingHearts: number) => {
@@ -124,7 +134,10 @@ export function ResultsModalContent({
           <ItemCard
             id={lastMatch}
             width={45}
-            className={clsx(getAnimationClass('pulse', { speed: 'fast' }), 'item-match-outline')}
+            className={clsx(
+              getAnimationClass("pulse", { speed: "fast" }),
+              "item-match-outline",
+            )}
           />
         )}
         {progress > 0 &&
@@ -136,7 +149,10 @@ export function ResultsModalContent({
                 key={id}
                 id={id}
                 width={45}
-                className={getAnimationClass('pulse', { speed: 'fast', delay: index * 0.5 })}
+                className={getAnimationClass("pulse", {
+                  speed: "fast",
+                  delay: index * 0.5,
+                })}
               />
             ))}
       </Flex>
@@ -182,8 +198,8 @@ function writeResult({
 }): string {
   return [
     `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challengeNumber}`,
-    `${title}${hardMode ? '*' : ''}: ${progress}/${goal}  ${writeHeartResultString(remainingHearts, totalHearts)}`,
+    `${title}${hardMode ? "*" : ""}: ${progress}/${goal}  ${writeHeartResultString(remainingHearts, totalHearts)}`,
     `Tentativas: ${attempts}`,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
+  ].join("\n");
 }

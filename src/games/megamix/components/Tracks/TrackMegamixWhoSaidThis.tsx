@@ -44,7 +44,11 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
           {track.data.card.options.map((playerId: PlayerId) => {
             const player = players[playerId];
             return (
-              <TransparentButton onClick={() => onSelect(playerId)} disabled={isLoading || user.ready}>
+              <TransparentButton
+                key={playerId}
+                onClick={() => onSelect(playerId)}
+                disabled={isLoading || user.ready}
+              >
                 <AvatarCard player={player} withName />
               </TransparentButton>
             );

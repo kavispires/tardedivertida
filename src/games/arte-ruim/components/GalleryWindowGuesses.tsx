@@ -1,17 +1,17 @@
-import { orderBy } from "lodash";
+import { orderBy } from 'lodash';
 // Ant Design Resources
-import { CrownFilled, MessageFilled } from "@ant-design/icons";
-import { Avatar as AntAvatar } from "antd";
+import { CrownFilled, MessageFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar } from 'antd';
 // Types
-import type { GamePlayers } from "types/player";
+import type { GamePlayers } from 'types/player';
 // Utils
-import { getPlayersFromIds } from "utils/helpers";
+import { getPlayersFromIds } from 'utils/helpers';
 // Components
-import { Avatar } from "components/avatars";
-import { Translate } from "components/language";
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 // Internal
-import type { ArteRuimCard } from "../utils/types";
-import type { PlayersSay } from "../utils/types";
+import type { ArteRuimCard } from '../utils/types';
+import type { PlayersSay } from '../utils/types';
 
 type GalleryWindowGuessesProps = {
   playersSay: PlayersSay;
@@ -38,8 +38,8 @@ export function GalleryWindowGuesses({
         isCorrect: windowCardId === cardId,
       };
     }),
-    ["isCorrect", "count", "card.text"],
-    ["desc", "desc", "asc"],
+    ['isCorrect', 'count', 'card.text'],
+    ['desc', 'desc', 'asc'],
   );
 
   return (
@@ -49,23 +49,13 @@ export function GalleryWindowGuesses({
       </div>
       {entries.map((entry, index) => {
         return (
-          <div
-            key={`guess-${entry.cardId}-${index}`}
-            className="a-gallery__guess"
-          >
+          <div key={`guess-${entry.cardId}-${index}`} className="a-gallery__guess">
             <div
               className="a-gallery__speech-bubble"
-              style={
-                entry.isCorrect
-                  ? { backgroundColor: artistColor, color: "white" }
-                  : {}
-              }
+              style={entry.isCorrect ? { backgroundColor: artistColor, color: 'white' } : {}}
             >
               {entry.isCorrect ? (
-                <CrownFilled
-                  className="a-gallery__speech-bubble-icon"
-                  style={{ color: "white" }}
-                />
+                <CrownFilled className="a-gallery__speech-bubble-icon" style={{ color: 'white' }} />
               ) : (
                 <MessageFilled className="a-gallery__speech-bubble-icon" />
               )}
@@ -81,7 +71,7 @@ export function GalleryWindowGuesses({
                 ))}
               </AntAvatar.Group>
               <span className="a-gallery__players-names">
-                {getPlayersFromIds(entry.playersIds, players, true).join(", ")}
+                {getPlayersFromIds(entry.playersIds, players, true).join(', ')}
               </span>
             </div>
           </div>

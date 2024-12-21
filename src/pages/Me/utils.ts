@@ -1,7 +1,7 @@
 // Types
-import type { GameInfo } from "types/game-info";
+import type { GameInfo } from 'types/game-info';
 // Utils
-import GAME_LIST from "utils/info";
+import GAME_LIST from 'utils/info';
 
 /**
  * Converts a timestamp (number of milliseconds since January 1, 1970, 00:00:00 UTC) to a string
@@ -9,20 +9,17 @@ import GAME_LIST from "utils/info";
  * @param timestamp - The timestamp to convert to a date string.
  * @returns A string representation of the date in the format "YYYY/MM/DD HH:MM".
  */
-export function timestampToDate(
-  timestamp: number,
-  includeTime?: false,
-): string {
+export function timestampToDate(timestamp: number, includeTime?: false): string {
   const date = new Date(timestamp);
   const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
 
   if (!includeTime) {
     return `${year}/${month}/${day}`;
   }
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
   return `${year}/${month}/${day} ${hours}:${minutes}`;
 }
 
@@ -43,7 +40,7 @@ export function durationToHours(duration: number): number {
 
 export const playableGames = Object.entries(GAME_LIST).reduce(
   (acc: Record<GameName, GameInfo>, [gameName, info]) => {
-    if (info.release === "stable") {
+    if (info.release === 'stable') {
       acc[gameName] = info;
     }
     return acc;

@@ -1,9 +1,9 @@
-import clsx from "clsx";
-import { ReactNode, useEffect, useRef } from "react";
+import clsx from 'clsx';
+import { type ReactNode, useEffect, useRef } from 'react';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Sass
-import "./MouseFollowingContent.scss";
+import './MouseFollowingContent.scss';
 
 type MouseTrackedContentProps = {
   /**
@@ -29,7 +29,7 @@ type MouseTrackedContentProps = {
  */
 export function MouseFollowingContent({
   children,
-  className = "",
+  className = '',
   contained = false,
   active,
 }: MouseTrackedContentProps) {
@@ -47,22 +47,22 @@ export function MouseFollowingContent({
 function MouseFollowingContentInternal({
   children,
   contained,
-  className = "",
+  className = '',
 }: Partial<MouseTrackedContentProps>) {
   const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (divRef.current) {
-        divRef.current.style.left = e.clientX + 16 + "px";
-        divRef.current.style.top = e.clientY + 16 + "px";
+        divRef.current.style.left = `${e.clientX + 16}px`;
+        divRef.current.style.top = `${e.clientY + 16}px`;
       }
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -70,9 +70,9 @@ function MouseFollowingContentInternal({
     <div
       ref={divRef}
       className={clsx(
-        "mouse-following-content",
-        contained && "mouse-following-content--contained",
-        getAnimationClass("bounceIn"),
+        'mouse-following-content',
+        contained && 'mouse-following-content--contained',
+        getAnimationClass('bounceIn'),
         className,
       )}
     >

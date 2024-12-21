@@ -1,4 +1,4 @@
-export function SecretIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function SecretIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#E6E6E6" d="M464.691 28.009v137.69L47.567 356.903V28.009z"></path>

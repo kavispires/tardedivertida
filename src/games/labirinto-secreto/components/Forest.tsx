@@ -1,33 +1,29 @@
-import clsx from "clsx";
-import { findLast } from "lodash";
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
-import { Fragment } from "react/jsx-runtime";
+import clsx from 'clsx';
+import { findLast } from 'lodash';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
-import {
-  FullscreenExitOutlined,
-  ZoomInOutlined,
-  ZoomOutOutlined,
-} from "@ant-design/icons";
-import { Button, Flex, Space } from "antd";
+import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
+import { Button, Flex, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from "types/player";
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { useCardWidth } from "hooks/useCardWidth";
-import { useLanguage } from "hooks/useLanguage";
-import { useScreenSize } from "hooks/useScreenSize";
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useLanguage } from 'hooks/useLanguage';
+import { useScreenSize } from 'hooks/useScreenSize';
 // Utils
-import { PLACEHOLDER_PLAYER } from "utils/constants";
+import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Icons
-import { AnimatedProcessingIcon } from "icons/AnimatedProcessingIcon";
-import { ArrowIcon } from "icons/ArrowIcon";
+import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
+import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
-import { IconAvatar } from "components/avatars";
-import { AvatarGroup } from "components/avatars/AvatarGroup";
-import { ViewIf } from "components/views";
+import { IconAvatar } from 'components/avatars';
+import { AvatarGroup } from 'components/avatars/AvatarGroup';
+import { ViewIf } from 'components/views';
 // Internal
-import type { MapSegment, PlayerMapping, Tree, TreeId } from "../utils/types";
-import { getDirection } from "../utils/helpers";
-import { ForestTree } from "./ForestTree";
+import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
+import { getDirection } from '../utils/helpers';
+import { ForestTree } from './ForestTree';
 
 type ForestProps = {
   forest: Tree[];
@@ -41,7 +37,7 @@ type ForestProps = {
     disabled: boolean;
   };
   players?: GamePlayers;
-  size?: "small" | "large";
+  size?: 'small' | 'large';
   hidePassedTreeNames?: boolean;
   user?: GamePlayer;
   forestBorderColor?: string;
@@ -54,10 +50,10 @@ export function Forest({
   showPath,
   actions,
   players,
-  size = "large",
+  size = 'large',
   hidePassedTreeNames = false,
   user = PLACEHOLDER_PLAYER,
-  forestBorderColor = "transparent",
+  forestBorderColor = 'transparent',
   playerMapping,
 }: ForestProps) {
   const [screenWidth] = useScreenSize();
@@ -76,15 +72,13 @@ export function Forest({
     acc[segment.treeId] = segment;
     return acc;
   }, {});
-  const currentTreeId =
-    findLast(map, (segment) => segment.passed)?.treeId ?? startingTeeId;
+  const currentTreeId = findLast(map, (segment) => segment.passed)?.treeId ?? startingTeeId;
   const finalTreeId = map[map.length - 1]?.treeId;
 
   const forestFullWidth = 150 * 7 + 72;
-  const isSmall = size === "small";
+  const isSmall = size === 'small';
   const proportion = isSmall ? 0.5 : 0.9;
-  const initialScale =
-    Math.min(forestFullWidth, screenWidth * proportion) / forestFullWidth;
+  const initialScale = Math.min(forestFullWidth, screenWidth * proportion) / forestFullWidth;
 
   return (
     <div className="forest-container-area">
@@ -111,29 +105,16 @@ export function Forest({
             />
 
             <TransformComponent
-              wrapperClass={clsx(
-                "forest-container",
-                size === "small" && "forest-container--small",
-              )}
+              wrapperClass={clsx('forest-container', size === 'small' && 'forest-container--small')}
             >
-              <div
-                className="forest"
-                style={{ borderColor: forestBorderColor }}
-              >
+              <div className="forest" style={{ borderColor: forestBorderColor }}>
                 {forest.map((tree) => {
                   const segment = treeMap?.[tree.id];
 
                   if (actions) {
-                    const {
-                      selection = [],
-                      clickableTrees,
-                      onSelectTree,
-                      activeTree,
-                      disabled,
-                    } = actions;
+                    const { selection = [], clickableTrees, onSelectTree, activeTree, disabled } = actions;
                     const isPathForward = clickableTrees.includes(tree.id);
-                    const isClickable =
-                      isPathForward || selection.includes(tree.id);
+                    const isClickable = isPathForward || selection.includes(tree.id);
 
                     if (isClickable) {
                       const isSelected = selection.includes(tree.id);
@@ -144,16 +125,11 @@ export function Forest({
                         <div
                           key={`tree-${tree.id}`}
                           className={clsx(
-                            "forest__tree-container forest__tree-button",
-                            isPathForward &&
-                              disabled &&
-                              "forest__tree-button--disabled",
+                            'forest__tree-container forest__tree-button',
+                            isPathForward && disabled && 'forest__tree-button--disabled',
                           )}
                           onClick={() => {
-                            if (
-                              (isClickable && !disabled) ||
-                              (isClickable && disabled && !isPathForward)
-                            ) {
+                            if ((isClickable && !disabled) || (isClickable && disabled && !isPathForward)) {
                               onSelectTree(tree.id);
                             }
                           }}
@@ -167,11 +143,9 @@ export function Forest({
                             currentTreeId={currentTreeId}
                             showPath={showPath}
                             className={clsx(
-                              isPathForward &&
-                                !disabled &&
-                                "forest__tree--clickable",
-                              isSelected && "forest__tree--selected",
-                              isActive && "forest__tree--active",
+                              isPathForward && !disabled && 'forest__tree--clickable',
+                              isSelected && 'forest__tree--selected',
+                              isActive && 'forest__tree--active',
                             )}
                             width={treeWidth}
                           />
@@ -183,8 +157,8 @@ export function Forest({
                                     selection[selectionIndex - 1],
                                     tree.id,
                                   )}`,
-                                  isSelected && "forest__tree--selected",
-                                  isActive && "forest__tree--active",
+                                  isSelected && 'forest__tree--selected',
+                                  isActive && 'forest__tree--active',
                                 )}
                               />
                               <IconAvatar
@@ -201,30 +175,27 @@ export function Forest({
                           )}
 
                           {isPathForward && !disabled && (
-                            <>
-                              <IconAvatar
-                                icon={<ArrowIcon />}
-                                size="large"
-                                className={clsx(
-                                  `forest__arrow-to forest__arrow-to--${getDirection(
-                                    selection[selection.length - 1] ??
-                                      activeTree,
-                                    tree.id,
-                                  )}`,
-                                )}
-                              />
-                            </>
+                            <IconAvatar
+                              icon={<ArrowIcon />}
+                              size="large"
+                              className={clsx(
+                                `forest__arrow-to forest__arrow-to--${getDirection(
+                                  selection[selection.length - 1] ?? activeTree,
+                                  tree.id,
+                                )}`,
+                              )}
+                            />
                           )}
 
-                          <ViewIf
-                            condition={!!players && !!playerMapping?.[tree.id]}
-                          >
+                          <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
                             <div className="forest__players">
-                              <PlayerPositions
-                                players={players!}
-                                playerIds={playerMapping?.[tree.id] ?? []}
-                                user={user}
-                              />
+                              {!!players && (
+                                <PlayerPositions
+                                  players={players}
+                                  playerIds={playerMapping?.[tree.id] ?? []}
+                                  user={user}
+                                />
+                              )}
                             </div>
                           </ViewIf>
                         </div>
@@ -233,10 +204,7 @@ export function Forest({
                   }
 
                   return (
-                    <div
-                      key={`tree-${tree.id}`}
-                      className="forest__tree-container"
-                    >
+                    <div key={`tree-${tree.id}`} className="forest__tree-container">
                       <ForestTree
                         segment={segment}
                         tree={tree}
@@ -248,15 +216,15 @@ export function Forest({
                         width={treeWidth}
                       />
 
-                      <ViewIf
-                        condition={!!players && !!playerMapping?.[tree.id]}
-                      >
+                      <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
                         <div className="forest__players">
-                          <PlayerPositions
-                            players={players!}
-                            playerIds={playerMapping?.[tree.id] ?? []}
-                            user={user}
-                          />
+                          {!!players && (
+                            <PlayerPositions
+                              players={players}
+                              playerIds={playerMapping?.[tree.id] ?? []}
+                              user={user}
+                            />
+                          )}
                         </div>
                       </ViewIf>
                     </div>
@@ -284,33 +252,22 @@ function PlayerPositions({ players, playerIds, user }: PlayerPositionsProps) {
     <AvatarGroup
       list={list}
       user={user}
-      tooltipPrefix={translate(
-        "Último lugar visitado por: ",
-        "Last visited place by: ",
-      )}
+      tooltipPrefix={translate('Último lugar visitado por: ', 'Last visited place by: ')}
     />
   );
 }
 
 type ForestControlsProps = {
-  position: "top" | "bottom";
+  position: 'top' | 'bottom';
   zoomIn: (step: number) => void;
   zoomOut: (step: number) => void;
   resetTransform: () => void;
 };
 
-function ForestControls({
-  zoomIn,
-  zoomOut,
-  resetTransform,
-  position,
-}: ForestControlsProps) {
+function ForestControls({ zoomIn, zoomOut, resetTransform, position }: ForestControlsProps) {
   return (
     <Flex
-      className={clsx(
-        "forest-container-controls",
-        `forest-container-controls--${position}`,
-      )}
+      className={clsx('forest-container-controls', `forest-container-controls--${position}`)}
       justify="center"
     >
       <Flex>

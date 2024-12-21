@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks

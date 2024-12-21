@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import React, { ComponentProps, Fragment } from 'react';
+import type React from 'react';
+import { type ComponentProps, Fragment } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
 // Ant Design Resources
 import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Internal
-import { GridMapType, GridMapCellType } from './grid-map';
+import type { GridMapType, GridMapCellType } from './grid-map';
 // Sass
 import './GridMap.scss';
 

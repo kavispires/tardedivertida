@@ -26,8 +26,8 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Escolha correta ou próxima" en="Correct or close guess" />,
-        <Translate pt="Pontos do Medium" en="Psychic points" />,
+        <Translate key="1" pt="Escolha correta ou próxima" en="Correct or close guess" />,
+        <Translate key="2" pt="Pontos do Medium" en="Psychic points" />,
       ]}
     >
       <PopoverRule content={<ScoringRules />} />

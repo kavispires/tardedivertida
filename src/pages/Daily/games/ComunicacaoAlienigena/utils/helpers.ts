@@ -3,7 +3,7 @@ import { loadLocalToday } from 'pages/Daily/utils';
 import { deepCopy } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import { ComunicacaoAlienigenaLocalToday, DailyComunicacaoAlienigenaEntry, GameState } from './types';
+import type { ComunicacaoAlienigenaLocalToday, DailyComunicacaoAlienigenaEntry, GameState } from './types';
 
 export const DEFAULT_LOCAL_TODAY: ComunicacaoAlienigenaLocalToday = {
   id: '',

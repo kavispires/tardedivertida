@@ -5,7 +5,7 @@ import { useWindowSize } from 'react-use';
  * Get the width of the TD content (div with id 'screen')
  */
 export function useScreenSize() {
-  const windowSizes = useWindowSize(300, 300);
+  const windowSizes = useWindowSize({ initialWidth: 300, initialHeight: 300 });
   const [sizes, setScreenSize] = useState(windowSizes);
 
   useEffect(() => {
@@ -16,8 +16,7 @@ export function useScreenSize() {
         height: Math.min(element.clientHeight, windowSizes.height),
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [windowSizes.width]);
+  }, [windowSizes.width, windowSizes.height]);
 
   return [sizes.width, sizes.height];
 }

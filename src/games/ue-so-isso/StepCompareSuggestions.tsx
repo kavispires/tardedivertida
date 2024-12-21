@@ -1,32 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { CloudUploadOutlined } from "@ant-design/icons";
-import { Button, App, Space } from "antd";
+import { CloudUploadOutlined } from '@ant-design/icons';
+import { Button, App, Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from "types/player";
-import type { TextCard } from "types/tdr";
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Hooks
-import { useHost } from "hooks/useHost";
-import { useLanguage } from "hooks/useLanguage";
-import { useLoading } from "hooks/useLoading";
+import { useHost } from 'hooks/useHost';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Utils
-import { deepCopy } from "utils/helpers";
+import { deepCopy } from 'utils/helpers';
 // Components
-import { HostButton, HostOnlyContainer } from "components/host";
-import { Translate } from "components/language";
-import { messageContent } from "components/pop-up";
-import { PopoverRule } from "components/rules";
-import { Step, type StepProps } from "components/steps";
-import { Title } from "components/text";
-import { ViewIf } from "components/views";
+import { HostButton, HostOnlyContainer } from 'components/host';
+import { Translate } from 'components/language';
+import { messageContent } from 'components/pop-up';
+import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { Title } from 'components/text';
+import { ViewIf } from 'components/views';
 // Internal
-import type { Suggestion } from "./utils/types";
-import { UeSoIssoCard as Card } from "./components/UeSoIssoCard";
-import {
-  ComparisonDetailedRules,
-  ComparisonPhaseRules,
-} from "./components/RulesBlobs";
-import { Cards } from "./components/Cards";
+import type { Suggestion } from './utils/types';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { ComparisonDetailedRules, ComparisonPhaseRules } from './components/RulesBlobs';
+import { Cards } from './components/Cards';
 
 type StepCompareSuggestionsProps = {
   isUserTheController: boolean;
@@ -36,7 +33,7 @@ type StepCompareSuggestionsProps = {
   players: GamePlayers;
   secretWord: TextCard;
   suggestions: Suggestion[];
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepCompareSuggestions({
   isUserTheController,
@@ -51,17 +48,11 @@ export function StepCompareSuggestions({
   const { message } = App.useApp();
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [myRecommendation, setMyRecommendation] = useState<Suggestion[]>(
-    deepCopy(suggestions),
-  );
+  const [myRecommendation, setMyRecommendation] = useState<Suggestion[]>(deepCopy(suggestions));
   const isHost = useHost();
   const [wasMessageShown, setWasMessageShown] = useState(false);
 
-  const onSetValidation = (
-    index: number,
-    suggestionEntry: Suggestion,
-    notAllowed?: boolean,
-  ) => {
+  const onSetValidation = (index: number, suggestionEntry: Suggestion, notAllowed?: boolean) => {
     if (notAllowed) return;
 
     const newRecommendation = [...myRecommendation];
@@ -82,25 +73,15 @@ export function StepCompareSuggestions({
     if (isUserTheController && !wasMessageShown && !isLoading) {
       message.info(
         messageContent(
-          translate("Você controla!", "You control!"),
-          translate(
-            "Siga as instruções na página",
-            "Follow the instructions on the page",
-          ),
+          translate('Você controla!', 'You control!'),
+          translate('Siga as instruções na página', 'Follow the instructions on the page'),
           controller.id,
           3,
         ),
       );
       setWasMessageShown(true);
     }
-  }, [
-    isUserTheController,
-    controller.id,
-    translate,
-    wasMessageShown,
-    isLoading,
-    message,
-  ]);
+  }, [isUserTheController, controller.id, translate, wasMessageShown, isLoading, message]);
 
   const suggestionsValues = Object.values(myRecommendation);
 
@@ -132,9 +113,7 @@ export function StepCompareSuggestions({
             type="primary"
             onClick={() =>
               onValidateSuggestions({
-                validSuggestions: suggestionsValues.filter(
-                  (suggestion) => !suggestion.invalid,
-                ),
+                validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
               })
             }
             disabled={isLoading}
@@ -166,16 +145,11 @@ export function StepCompareSuggestions({
           <HostButton
             onClick={() =>
               onValidateSuggestions({
-                validSuggestions: suggestionsValues.filter(
-                  (suggestion) => !suggestion.invalid,
-                ),
+                validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
               })
             }
           >
-            <Translate
-              pt="Confirmar dicas válidas como Admin"
-              en="Confirm valid clues as Admin"
-            />
+            <Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" />
           </HostButton>
         </HostOnlyContainer>
       </ViewIf>

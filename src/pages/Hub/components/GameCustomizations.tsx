@@ -1,16 +1,16 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Ant Design Resources
-import { Typography, Switch, Radio, Checkbox } from "antd";
+import { Typography, Switch, Radio, Checkbox } from 'antd';
 // Types
-import type { GameInfo, GameInfoOption } from "types/game-info";
+import type { GameInfo, GameInfoOption } from 'types/game-info';
 // Components
-import { Translate } from "components/language";
+import { Translate } from 'components/language';
 // Adapters
 // Hooks
 // Constants
 
 type GameCustomizationsProps = {
-  options?: GameInfo["options"];
+  options?: GameInfo['options'];
   disabled: boolean;
   onChangeOptions: GenericFunction;
   selectedOptions: PlainObject;
@@ -26,10 +26,7 @@ export function GameCustomizations({
     return (
       <div className="create-game-modal-options create-game-modal-options__no-options">
         <Typography.Text>
-          <Translate
-            pt="Este jogo não possui customizações"
-            en="This game does not support customizations"
-          />
+          <Translate pt="Este jogo não possui customizações" en="This game does not support customizations" />
         </Typography.Text>
       </div>
     );
@@ -45,20 +42,18 @@ export function GameCustomizations({
           <Typography.Paragraph
             key={`option-${option.label}`}
             className={clsx(
-              "create-game-modal-options__option",
-              option.disabled && "create-game-modal-options__option--disabled",
+              'create-game-modal-options__option',
+              option.disabled && 'create-game-modal-options__option--disabled',
             )}
           >
             <div className="create-game-modal-options__label">
               <span>{option.label}</span>
-              {option.kind !== "switch" && Boolean(option.description) && (
-                <div className="create-game-modal-options__option-description">
-                  {option.description}
-                </div>
+              {option.kind !== 'switch' && Boolean(option.description) && (
+                <div className="create-game-modal-options__option-description">{option.description}</div>
               )}
             </div>
 
-            {option.kind === "switch" && (
+            {option.kind === 'switch' && (
               <SwitchOptions
                 option={option}
                 disabled={disabled}
@@ -66,7 +61,7 @@ export function GameCustomizations({
                 selectedOptions={selectedOptions}
               />
             )}
-            {option.kind === "radio" && (
+            {option.kind === 'radio' && (
               <RadioOptions
                 option={option}
                 disabled={disabled}
@@ -74,7 +69,7 @@ export function GameCustomizations({
                 selectedOptions={selectedOptions}
               />
             )}
-            {option.kind === "checkbox" && (
+            {option.kind === 'checkbox' && (
               <CheckboxOptions
                 option={option}
                 disabled={disabled}
@@ -83,10 +78,8 @@ export function GameCustomizations({
               />
             )}
 
-            {option.kind === "switch" && Boolean(option.description) && (
-              <span className="create-game-modal-options__option-description">
-                {option.description}
-              </span>
+            {option.kind === 'switch' && Boolean(option.description) && (
+              <span className="create-game-modal-options__option-description">{option.description}</span>
             )}
           </Typography.Paragraph>
         ))}
@@ -102,33 +95,25 @@ type OptionProps = {
   selectedOptions: PlainObject;
 };
 
-function SwitchOptions({
-  option,
-  disabled,
-  onChangeOptions,
-  selectedOptions,
-}: OptionProps) {
+function SwitchOptions({ option, disabled, onChangeOptions, selectedOptions }: OptionProps) {
   return (
     <>
       <span
         className={clsx(
-          "create-game-modal-options__off",
-          !selectedOptions[option.key] && "create-game-modal-options--selected",
+          'create-game-modal-options__off',
+          !selectedOptions[option.key] && 'create-game-modal-options--selected',
         )}
       >
-        {option?.values[0].label ?? ""}
+        {option?.values[0].label ?? ''}
       </span>
-      <Switch
-        disabled={disabled || option.disabled}
-        onChange={(e) => onChangeOptions(option.key, e)}
-      />
+      <Switch disabled={disabled || option.disabled} onChange={(e) => onChangeOptions(option.key, e)} />
       <span
         className={clsx(
-          "create-game-modal-options__on",
-          selectedOptions[option.key] && "create-game-modal-options--selected",
+          'create-game-modal-options__on',
+          selectedOptions[option.key] && 'create-game-modal-options--selected',
         )}
       >
-        {option?.values[1].label ?? ""}
+        {option?.values[1].label ?? ''}
       </span>
     </>
   );

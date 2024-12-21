@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import type React from 'react';
+import { useCallback, useState } from 'react';
 import { useDebounce } from 'react-use';
-// Ant Design Resources
-import { Button, ButtonProps } from 'antd';
+import { Button, type ButtonProps } from 'antd';
 
 type SubmitButtonProps = {
   onClick: () => void;

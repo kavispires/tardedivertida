@@ -1,16 +1,16 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Types
-import type { GamePlayer } from "types/player";
+import type { GamePlayer } from 'types/player';
 // Hooks
-import { useCardWidth } from "hooks/useCardWidth";
+import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
-import { getEntryId } from "utils/helpers";
+import { getEntryId } from 'utils/helpers';
 // Components
-import { ImageBlurButton, ImageCardSelectButton } from "components/image-cards";
-import { RibbonGroup } from "components/ribbons";
+import { ImageBlurButton, ImageCardSelectButton } from 'components/image-cards';
+import { RibbonGroup } from 'components/ribbons';
 // Internal
-import { getClueId } from "../utils/helpers";
-import { DreamCard } from "./DreamCard";
+import { getClueId } from '../utils/helpers';
+import { DreamCard } from './DreamCard';
 // Components
 
 type DreamBoardVoteProps = {
@@ -21,26 +21,21 @@ type DreamBoardVoteProps = {
   votes: PlainObject;
 };
 
-export function DreamBoardVote({
-  table,
-  activeItem,
-  onActivateItem,
-  votes,
-}: DreamBoardVoteProps) {
+export function DreamBoardVote({ table, activeItem, onActivateItem, votes }: DreamBoardVoteProps) {
   const cardWidth = useCardWidth(table.length + 1, { gap: 20, margin: 50 });
-  const liButtonBaseClass = "a-evaluation-all-drawings__li-drawing-button";
+  const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
   return (
     <ul className="s-dream-board">
       {table.map((cardId) => {
-        const cardEntryId = getEntryId(["card", cardId]);
+        const cardEntryId = getEntryId(['card', cardId]);
         const isActive = activeItem === cardEntryId;
         const ribbonIds = getClueId(votes, cardEntryId);
 
         return (
           <li
             className={clsx(
-              "s-dream-board__entry",
+              's-dream-board__entry',
               liButtonBaseClass,
               isActive && `${liButtonBaseClass}--active`,
             )}
@@ -50,10 +45,7 @@ export function DreamBoardVote({
             <div className="s-dream-board__card-container">
               <RibbonGroup labels={ribbonIds} />
               <DreamCard cardId={cardId} cardWidth={cardWidth} hideBlurButton />
-              <ImageCardSelectButton
-                cardId={cardEntryId}
-                onClick={onActivateItem}
-              />
+              <ImageCardSelectButton cardId={cardEntryId} onClick={onActivateItem} />
             </div>
             <ImageBlurButton cardId={cardId} />
           </li>

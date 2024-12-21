@@ -1,9 +1,9 @@
 // Types
-import type { GamePlayers, GamePlayer } from "types/player";
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Utils
-import { getRandomItem } from "utils/helpers";
+import { getRandomItem } from 'utils/helpers';
 // Internal
-import { CharactersDictionary } from "./types";
+import type { CharactersDictionary } from './types';
 
 export function mockPromptDecision(
   user: GamePlayer,
@@ -19,7 +19,7 @@ export function mockPromptDecision(
 
   const choice = getRandomItem(options);
 
-  if (choice.startsWith("t-")) {
+  if (choice.startsWith('t-')) {
     onSubmitPrompt({ questionId: choice });
   } else {
     onSubmitTarget({ targetId: choice });
@@ -30,11 +30,7 @@ export function mockAnswer() {
   return getRandomItem([true, false]);
 }
 
-export function mockGuess(
-  charactersDict: CharactersDictionary,
-  user: GamePlayer,
-  targetId: PlayerId,
-) {
+export function mockGuess(charactersDict: CharactersDictionary, user: GamePlayer, targetId: PlayerId) {
   return getRandomItem(
     Object.values(charactersDict)
       .filter(

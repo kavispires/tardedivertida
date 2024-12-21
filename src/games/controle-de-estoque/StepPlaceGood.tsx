@@ -1,26 +1,26 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Ant Design Resources
-import { Divider } from "antd";
+import { Divider } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from "types/player";
-import { BossIdeaCard } from "types/tdr";
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { BossIdeaCard } from 'types/tdr';
 // Hooks
-import { useCardWidthByContainerRef } from "hooks/useCardWidth";
-import { useLoading } from "hooks/useLoading";
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useLoading } from 'hooks/useLoading';
 // Icons
-import { BossIdeaIcon } from "icons/BossIdeaIcon";
-import { MysteryBoxIcon } from "icons/MysteryBoxIcon";
+import { BossIdeaIcon } from 'icons/BossIdeaIcon';
+import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
-import { AvatarName, IconAvatar } from "components/avatars";
-import { WarehouseGoodCard } from "components/cards/WarehouseGoodCard";
-import { DualTranslate, Translate } from "components/language";
-import { Step, type StepProps } from "components/steps";
-import { Instruction, RuleInstruction, Title } from "components/text";
+import { AvatarName, IconAvatar } from 'components/avatars';
+import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+import { DualTranslate, Translate } from 'components/language';
+import { Step, type StepProps } from 'components/steps';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 // Internal
-import { Good, PlaceGoodPayload, WarehouseSlot } from "./utils/types";
-import { BOSS_IDEAS_IDS } from "./utils/constants";
-import { Warehouse } from "./components/Warehouse";
-import { StockingProgress } from "./components/StockingProgress";
+import type { Good, PlaceGoodPayload, WarehouseSlot } from './utils/types';
+import { BOSS_IDEAS_IDS } from './utils/constants';
+import { Warehouse } from './components/Warehouse';
+import { StockingProgress } from './components/StockingProgress';
 
 type StepPlaceGoodProps = {
   players: GamePlayers;
@@ -34,7 +34,7 @@ type StepPlaceGoodProps = {
   isUserTheSupervisor: boolean;
   onPlaceGood: (payload: PlaceGoodPayload) => void;
   stocked: number;
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepPlaceGood({
   players,
@@ -71,16 +71,12 @@ export function StepPlaceGood({
     return (
       <Step fullWidth announcement={announcement} ref={ref}>
         <Title>
-          <IconAvatar icon={<BossIdeaIcon />} />{" "}
-          <DualTranslate>{bossIdea.title}</DualTranslate>
+          <IconAvatar icon={<BossIdeaIcon />} /> <DualTranslate>{bossIdea.title}</DualTranslate>
         </Title>
 
         <RuleInstruction type="lore">
           <strong>
-            <Translate
-              pt={<>Coloque a mercadoria do galpão!</>}
-              en={<>Place the good in the warehouse</>}
-            />
+            <Translate pt={<>Coloque a mercadoria do galpão!</>} en={<>Place the good in the warehouse</>} />
           </strong>
           <Divider className="my-1" />
           <DualTranslate>{bossIdea.description}</DualTranslate>
@@ -98,10 +94,8 @@ export function StepPlaceGood({
             padding={1}
             width={cardWidth}
             className={clsx(
-              bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS &&
-                "warehouse-good--TINTED_GLASS",
-              bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM &&
-                "warehouse-good--EYE_EXAM",
+              bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS',
+              bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM && 'warehouse-good--EYE_EXAM',
             )}
           />
         </Instruction>
@@ -112,10 +106,8 @@ export function StepPlaceGood({
           onPlaceGood={isLoading ? undefined : handlePlaceGood}
           width={cardWidth}
           goodClassName={clsx(
-            bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS &&
-              "warehouse-good--TINTED_GLASS",
-            bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM &&
-              "warehouse-good--EYE_EXAM",
+            bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS',
+            bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM && 'warehouse-good--EYE_EXAM',
           )}
         />
       </Step>
@@ -125,8 +117,7 @@ export function StepPlaceGood({
   return (
     <Step fullWidth announcement={announcement} ref={ref}>
       <Title>
-        <IconAvatar icon={<BossIdeaIcon />} />{" "}
-        <DualTranslate>{bossIdea.title}</DualTranslate>
+        <IconAvatar icon={<BossIdeaIcon />} /> <DualTranslate>{bossIdea.title}</DualTranslate>
       </Title>
 
       <RuleInstruction type="lore">
@@ -134,14 +125,14 @@ export function StepPlaceGood({
           <Translate
             pt={
               <>
-                <AvatarName player={supervisor} size="small" /> é o(a)
-                supervisor(a) do dia e colocará a mercadoria no galpão.
+                <AvatarName player={supervisor} size="small" /> é o(a) supervisor(a) do dia e colocará a
+                mercadoria no galpão.
               </>
             }
             en={
               <>
-                <AvatarName player={supervisor} /> is the supervisor of the day
-                and will place the good in the warehouse.
+                <AvatarName player={supervisor} /> is the supervisor of the day and will place the good in the
+                warehouse.
               </>
             }
           />
@@ -166,10 +157,7 @@ export function StepPlaceGood({
             id={currentGood.id}
             padding={1}
             width={cardWidth}
-            className={clsx(
-              bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS &&
-                "warehouse-good--TINTED_GLASS",
-            )}
+            className={clsx(bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS')}
           />
         )}
       </Instruction>
@@ -178,10 +166,7 @@ export function StepPlaceGood({
         goodsDict={goodsDict}
         warehouse={warehouse}
         width={cardWidth}
-        goodClassName={clsx(
-          bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS &&
-            "warehouse-good--TINTED_GLASS",
-        )}
+        goodClassName={clsx(bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS')}
         conceal={bossIdea.id === BOSS_IDEAS_IDS.CONFIDENTIAL}
       />
     </Step>

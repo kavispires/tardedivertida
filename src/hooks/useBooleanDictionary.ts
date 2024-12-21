@@ -1,4 +1,4 @@
-import { Dispatch, useState } from "react";
+import { type Dispatch, useState } from 'react';
 
 type UseBooleanDictionaryReturnValue = {
   /**

@@ -1,26 +1,35 @@
-import { useMemo } from 'react';
-import { useMeasure } from 'react-use';
+import { useMemo, useState } from "react";
+import { useMeasure } from "react-use";
 // Ant Design Resources
-import { Button, Divider, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
+import {
+  Button,
+  Divider,
+  FloatButton,
+  Layout,
+  Modal,
+  Space,
+  Switch,
+  Typography,
+} from "antd";
 // Utils
-import { getAnimationClass, isDevEnv } from 'utils/helpers';
+import { getAnimationClass, isDevEnv } from "utils/helpers";
 // Icons
-import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
+import { DailyFindingGameIcon } from "icons/DailyFindingGameIcon";
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate, Translate } from 'components/language';
-import { TimerBar } from 'components/timers';
+import { ItemCard } from "components/cards/ItemCard";
+import { DualTranslate, Translate } from "components/language";
+import { TimerBar } from "components/timers";
 // Internal
-import { SETTINGS } from '../utils/settings';
-import { DailyAquiOEntry } from '../utils/types';
-import { useAquiOEngine } from '../utils/useAquiOEngine';
-import { getInitialState } from '../utils/helpers';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
-import { Disc } from './Disc';
-import { PreloadItems } from './PreloadItems';
-import { ResultsModalContent } from './ResultsModalContent';
-import { Rules } from './Rules';
+import { SETTINGS } from "../utils/settings";
+import type { DailyAquiOEntry } from "../utils/types";
+import { useAquiOEngine } from "../utils/useAquiOEngine";
+import { getInitialState } from "../utils/helpers";
+import { Header } from "../../../components/Header";
+import { Menu } from "../../../components/Menu";
+import { Disc } from "./Disc";
+import { PreloadItems } from "./PreloadItems";
+import { ResultsModalContent } from "./ResultsModalContent";
+import { Rules } from "./Rules";
 
 type DailyAquiOProps = {
   data: DailyAquiOEntry;
@@ -29,8 +38,13 @@ type DailyAquiOProps = {
   isRandomGame: boolean;
 };
 
-export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyAquiOProps) {
-  const initialState = useMemo(() => getInitialState(data, isRandomGame), [isRandomGame]); // eslint-disable-line react-hooks/exhaustive-deps
+export function DailyAquiO({
+  data,
+  language,
+  onToggleGame,
+  isRandomGame,
+}: DailyAquiOProps) {
+  const [initialState] = useState(getInitialState(data, isRandomGame));
 
   const {
     hearts,
@@ -69,13 +83,19 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
       </Header>
       <Layout.Content ref={contentRef}>
         <div ref={headerRef}>
-          <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
+          <Menu
+            hearts={hearts}
+            total={SETTINGS.HEARTS}
+            openRules={true}
+            rules={<Rules />}
+          />
           <Space className="space-container">
             <Typography.Text strong>
-              {data.title[language]} | <Translate pt="Disco" en="Disc" /> {discIndex}/{SETTINGS.GOAL}
+              {data.title[language]} | <Translate pt="Disco" en="Disc" />{" "}
+              {discIndex}/{SETTINGS.GOAL}
               {!isRandomGame && (
                 <>
-                  {' '}
+                  {" "}
                   | <Translate pt="Tentativa" en="Attempt" /> {attempts}
                 </>
               )}
@@ -108,16 +128,26 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
               <PreloadItems items={data.itemsIds} />
 
               <Switch
-                unCheckedChildren={<Translate pt="Modo Normal" en="Normal Mode" />}
-                checkedChildren={<Translate pt="Modo Difícil" en="Challenge Mode" />}
-                value={mode === 'challenge'}
-                onChange={(checked) => setMode(checked ? 'challenge' : 'normal')}
+                unCheckedChildren={
+                  <Translate pt="Modo Normal" en="Normal Mode" />
+                }
+                checkedChildren={
+                  <Translate pt="Modo Difícil" en="Challenge Mode" />
+                }
+                value={mode === "challenge"}
+                onChange={(checked) =>
+                  setMode(checked ? "challenge" : "normal")
+                }
               />
             </>
           )}
 
           {isComplete && (
-            <Space className="results-container" align="center" direction="vertical">
+            <Space
+              className="results-container"
+              align="center"
+              direction="vertical"
+            >
               <Button onClick={() => setShowResultModal(true)}>
                 <Translate pt="Ver Resultado" en="Show Results" />
               </Button>
@@ -125,14 +155,24 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
           )}
 
           {(isRandomGame || isComplete) && !isPlaying && (
-            <Space className="results-container" align="center" direction="vertical">
+            <Space
+              className="results-container"
+              align="center"
+              direction="vertical"
+            >
               <Divider />
 
               <Button onClick={onToggleGame}>
                 {isRandomGame ? (
-                  <Translate pt="Jogar o Desafio Diário" en="Play the daily challenge" />
+                  <Translate
+                    pt="Jogar o Desafio Diário"
+                    en="Play the daily challenge"
+                  />
                 ) : (
-                  <Translate pt="Jogar com baralho aleatório" en="Play a random deck" />
+                  <Translate
+                    pt="Jogar com baralho aleatório"
+                    en="Play a random deck"
+                  />
                 )}
               </Button>
             </Space>
@@ -145,14 +185,14 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
                 onSelect={onSelect}
                 key={discA.id}
                 width={discWidth}
-                className={getAnimationClass('slideInUp', { speed: 'fast' })}
+                className={getAnimationClass("slideInUp", { speed: "fast" })}
               />
               <Disc
                 disc={discB}
                 onSelect={onSelect}
                 key={discB.id}
                 width={discWidth}
-                className={getAnimationClass('zoomIn', { speed: 'fast' })}
+                className={getAnimationClass("zoomIn", { speed: "fast" })}
               />
               <DevResult result={result} />
             </Space>
@@ -173,7 +213,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
               progress={discIndex}
               itemsIds={data.itemsIds}
               isRandomGame={isRandomGame}
-              hardMode={mode === 'challenge'}
+              hardMode={mode === "challenge"}
               lastMatch={result}
               maxProgress={maxProgress}
             />
@@ -188,6 +228,11 @@ function DevResult({ result }: { result: string }) {
   if (!isDevEnv) return <></>;
 
   return (
-    <FloatButton shape="square" icon={<ItemCard id={result} width={50} padding={0} className="raw-item" />} />
+    <FloatButton
+      shape="square"
+      icon={
+        <ItemCard id={result} width={50} padding={0} className="raw-item" />
+      }
+    />
   );
 }

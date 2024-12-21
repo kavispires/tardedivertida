@@ -87,7 +87,9 @@ export function Clover({
                 className={clsx(`y-clover__clue-${leafIndex}`, "y-clover-clue")}
               >
                 <Input
-                  ref={(el) => (inputRefs.current[index] = el)}
+                  ref={(el) => {
+                    inputRefs.current[index] = el;
+                  }}
                   onChange={
                     onClueChange
                       ? (e) => onClueChange(leafIndex, e.target.value)
@@ -95,7 +97,7 @@ export function Clover({
                   }
                   className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
                   placeholder={translate("Escreva aqui", "Write here")}
-                  disabled={!Boolean(onClueChange)}
+                  disabled={!onClueChange}
                   value={mode === "write" ? undefined : cloverLeaf.clue}
                   autoFocus={index === 0}
                 />
@@ -177,7 +179,7 @@ const getLeaf = (
         rotation: rotations[leafId] ?? 0,
         icon: undefined,
       };
-    case "result":
+    case "result": {
       leafId = guesses?.[position]?.leafId ?? "";
       const guess = guesses?.[position];
       return {
@@ -185,6 +187,7 @@ const getLeaf = (
         rotation: guess?.rotation ?? 0,
         icon: getIcon(guess?.score ?? 0),
       };
+    }
     case "write":
       leafId = cloverLeaf.leafId;
       return {
@@ -192,7 +195,6 @@ const getLeaf = (
         rotation: rotations[leafId] ?? 0,
         icon: undefined,
       };
-    case "view":
     default:
       leafId = cloverLeaf.leafId;
       return {
@@ -236,7 +238,7 @@ const getIcon = (score: number) => {
           <BoxCheckMarkIcon />
         </Tooltip>
       );
-    case 0:
+    // case 0:
     default:
       return (
         <Tooltip
@@ -247,7 +249,7 @@ const getIcon = (score: number) => {
             />
           }
         >
-          <BoxXIcon />;
+          <BoxXIcon />
         </Tooltip>
       );
   }

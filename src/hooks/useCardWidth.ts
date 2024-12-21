@@ -1,5 +1,5 @@
-import { LegacyRef, useMemo } from "react";
-import { useMeasure, useWindowSize } from "react-use";
+import { type LegacyRef, useMemo } from 'react';
+import { useMeasure, useWindowSize } from 'react-use';
 
 /**
  * Get a card width in px based on the window size of the user's browser
@@ -22,20 +22,12 @@ export function useCardWidth(
     containerWidth?: number;
   },
 ): number {
-  const {
-    gap = 32,
-    minWidth = 120,
-    maxWidth = 300,
-    margin = 0,
-  } = options ?? {};
+  const { gap = 32, minWidth = 120, maxWidth = 300, margin = 0 } = options ?? {};
   const { width: windowWidth } = useWindowSize();
   const width = options?.containerWidth ?? windowWidth;
 
   return useMemo(() => {
-    const value = Math.min(
-      Math.max(Math.floor((width - margin) / quantity) - gap, minWidth),
-      maxWidth,
-    );
+    const value = Math.min(Math.max(Math.floor((width - margin) / quantity) - gap, minWidth), maxWidth);
     return Number.isNaN(value) ? minWidth : value;
   }, [width, quantity, gap, minWidth, maxWidth, margin]);
 }
@@ -60,18 +52,10 @@ export function useCardWidthByContainerRef<TRef = HTMLDivElement>(
   },
 ): [number, LegacyRef<TRef>] {
   const [ref, { width }] = useMeasure();
-  const {
-    gap = 32,
-    minWidth = 120,
-    maxWidth = 300,
-    margin = 0,
-  } = options ?? {};
+  const { gap = 32, minWidth = 120, maxWidth = 300, margin = 0 } = options ?? {};
 
   const cardWidth = useMemo(() => {
-    const value = Math.min(
-      Math.max(Math.floor((width - margin) / quantity) - gap, minWidth),
-      maxWidth,
-    );
+    const value = Math.min(Math.max(Math.floor((width - margin) / quantity) - gap, minWidth), maxWidth);
     return Number.isNaN(value) ? minWidth : value;
   }, [width, quantity, gap, minWidth, maxWidth, margin]);
 

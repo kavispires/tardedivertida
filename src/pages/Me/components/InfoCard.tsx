@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
-import { Card, Col, ColProps } from 'antd';
+import { Card, Col, type ColProps } from 'antd';
 
 type InfoCardProps = {
   title: ReactNode;

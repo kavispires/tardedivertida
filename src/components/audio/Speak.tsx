@@ -14,9 +14,10 @@ export function Speak({ text }: SpeakProps) {
   const { language } = useLanguage();
 
   // Updated volume
+  // biome-ignore lint/correctness/useExhaustiveDependencies: it only needs to be retriggered when the volume changes
   useEffect(() => {
     speak(text, language, volume);
-  }, [volume]); // eslint-disable-line
+  }, [volume]);
 
   return <></>;
 }

@@ -42,7 +42,7 @@ const BASE = 64;
  */
 export const getSource = (str: string) => {
   const match = str.match(/\d+/);
-  const numId = match ? parseInt(match[0], 10) : 0;
+  const numId = match ? Number.parseInt(match[0], 10) : 0;
   const itemId = `item-${numId}`;
   const sourceId = Math.ceil(numId / BASE) * BASE;
   const source = `items-${sourceId}`;
@@ -61,9 +61,9 @@ export function ItemCard({ id, width = 75, className, title, text, padding }: It
   return (
     <div className={clsx('item-card', className)} style={{ width: `${width}px`, height, ...divPadding }}>
       <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
-      {Boolean(text) && (
+      {!!text && (
         <span className="item-card__text">
-          <DualTranslate>{text!}</DualTranslate>
+          <DualTranslate>{text}</DualTranslate>
         </span>
       )}
     </div>

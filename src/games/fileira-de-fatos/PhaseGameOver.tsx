@@ -20,16 +20,15 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
 
       <Container title={<Translate pt="Cenários" en="Scenarios" />}>
-        {state.gallery &&
-          state.gallery.map((entry: PlainObject, index: number) => (
-            <Space className="space-contained" key={`gallery-entry-${entry.playerId}-${index}`}>
-              <FinalScenarios
-                scenarios={entry.scenarios}
-                reference={getReference('negative')}
-                player={players[entry.playerId]}
-              />
-            </Space>
-          ))}
+        {state.gallery?.map((entry: PlainObject, index: number) => (
+          <Space className="space-contained" key={`gallery-entry-${entry.playerId}-${index}`}>
+            <FinalScenarios
+              scenarios={entry.scenarios}
+              reference={getReference('negative')}
+              player={players[entry.playerId]}
+            />
+          </Space>
+        ))}
       </Container>
     </GameOverWrapper>
   );

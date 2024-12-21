@@ -1,15 +1,15 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 // Types
-import type { GamePlayer } from "types/player";
+import type { GamePlayer } from 'types/player';
 // Icons
-import { BoxCheckMarkIcon } from "icons/BoxCheckMarkIcon";
-import { NoIcon } from "icons/NoIcon";
-import { YesIcon } from "icons/YesIcon";
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { NoIcon } from 'icons/NoIcon';
+import { YesIcon } from 'icons/YesIcon';
 // Components
-import { AvatarStrip, IconAvatar } from "components/avatars";
-import { GlyphCard } from "components/cards/GlyphCard";
+import { AvatarStrip, IconAvatar } from 'components/avatars';
+import { GlyphCard } from 'components/cards/GlyphCard';
 // Internal
-import { parseSelectedGlyphs } from "../utils/helpers";
+import { parseSelectedGlyphs } from '../utils/helpers';
 
 type PlayerGlyphsProps = {
   player: GamePlayer;
@@ -38,7 +38,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
             key={`pos-${player.id}-${id}-${index}`}
           >
             <IconAvatar icon={<YesIcon />} size="small" />
-            {Boolean(id) ? (
+            {id ? (
               <GlyphCard width={glyphWidth} id={id} />
             ) : (
               <div
@@ -56,7 +56,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
             key={`neg-${player.id}-${id}-${index}`}
           >
             <IconAvatar icon={<NoIcon />} size="small" />
-            {Boolean(id) ? (
+            {id ? (
               <GlyphCard width={glyphWidth} id={id} />
             ) : (
               <div

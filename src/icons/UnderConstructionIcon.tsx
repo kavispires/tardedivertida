@@ -1,4 +1,4 @@
-export function UnderConstructionIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function UnderConstructionIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#615260" d="M424.3 95.7h32.1v352.7h-32z"></path>

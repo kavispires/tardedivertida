@@ -1,24 +1,20 @@
-import { chunk } from "lodash";
-import { NextGameSuggestion } from "pages/Daily/components/NextGameSuggestion";
-import {
-  getDailyName,
-  getSourceName,
-  writeHeartResultString,
-} from "pages/Daily/utils";
+import { chunk } from 'lodash';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 // Ant Design Resources
-import { Divider, Space, Typography } from "antd";
+import { Divider, Space, Typography } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Icons
-import { BoxXIcon } from "icons/BoxXIcon";
-import { TrophyIcon } from "icons/TrophyIcon";
+import { BoxXIcon } from 'icons/BoxXIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from "components/avatars";
-import { Translate } from "components/language";
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
 // Internal
-import { SETTINGS } from "../utils/settings";
-import { PalavreadoLetter } from "../utils/types";
-import { CopyToClipboardResult } from "../../../components/CopyToClipboardResult";
+import { SETTINGS } from '../utils/settings';
+import type { PalavreadoLetter } from '../utils/types';
+import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
   challenge: number;
@@ -56,27 +52,19 @@ export function ResultsModalContent({
       <Typography.Title level={2} className="center">
         {isWin ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} />{" "}
-            <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} />{" "}
-            <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
           </>
         )}
       </Typography.Title>
       <Typography.Paragraph className="center">
         {isWin ? (
-          <Translate
-            pt="Você acertou as palavras!"
-            en="You guessed the words!"
-          />
+          <Translate pt="Você acertou as palavras!" en="You guessed the words!" />
         ) : (
-          <Translate
-            pt="Você não acertou todas as palavras!"
-            en="You missed the words!"
-          />
+          <Translate pt="Você não acertou todas as palavras!" en="You missed the words!" />
         )}
       </Typography.Paragraph>
 
@@ -113,29 +101,29 @@ function writeResult({
   const cleanUpAttempts = chunk(letters, size).map((row) =>
     row.map((letter) => {
       switch (letter.state) {
-        case "0":
-          return "🟥";
-        case "1":
-          return "🟦";
-        case "2":
-          return "🟪";
-        case "3":
-          return "🟫";
-        case "4":
-          return "🟧";
+        case '0':
+          return '🟥';
+        case '1':
+          return '🟦';
+        case '2':
+          return '🟪';
+        case '3':
+          return '🟫';
+        case '4':
+          return '🟧';
         default:
-          return "⬜️";
+          return '⬜️';
       }
     }),
   );
 
   return [
     `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, Math.max(SETTINGS.HEARTS, size), " ")} (${swaps} trocas)`,
+    `${writeHeartResultString(remainingHearts, Math.max(SETTINGS.HEARTS, size), ' ')} (${swaps} trocas)`,
     cleanUpAttempts
-      .map((row) => row.join(" ").trim())
+      .map((row) => row.join(' ').trim())
       .filter(Boolean)
-      .join("\n"),
+      .join('\n'),
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join("\n");
+  ].join('\n');
 }

@@ -1,9 +1,9 @@
-import clsx from "clsx";
-import { ReactNode } from "react";
+import clsx from 'clsx';
+import type { ReactNode } from 'react';
 // Utils
-import { getColorFromLetter } from "utils/helpers";
+import { getColorFromLetter } from 'utils/helpers';
 // Sass
-import "./Card.scss";
+import './Card.scss';
 
 type CardProps = {
   /**
@@ -13,7 +13,7 @@ type CardProps = {
   header?: string;
   footer?: string;
   color?: string;
-  size?: "small" | "medium" | "large";
+  size?: 'small' | 'medium' | 'large';
   randomColor?: boolean;
   /**
    * Optional custom class name
@@ -25,25 +25,25 @@ type CardProps = {
 };
 export const Card = ({
   children,
-  header = "Carta",
+  header = 'Carta',
   footer,
-  color = "none",
-  size = "medium",
+  color = 'none',
+  size = 'medium',
   randomColor = false,
-  className = "",
-  headerClassName = "",
-  footerClassName = "",
+  className = '',
+  headerClassName = '',
+  footerClassName = '',
   hideHeader = false,
 }: CardProps) => {
-  const baseClass = "card";
+  const baseClass = 'card';
 
   const bgColor = randomColor
     ? getColorFromLetter(
-        typeof children === "string"
+        typeof children === 'string'
           ? children[0].toUpperCase()
-          : header !== "Carta"
+          : header !== 'Carta'
             ? header[0].toUpperCase()
-            : "X",
+            : 'X',
       )
     : color;
 
@@ -51,22 +51,14 @@ export const Card = ({
     <div className={clsx(baseClass, `${baseClass}--${size}`, className)}>
       {!hideHeader && (
         <span
-          className={clsx(
-            `${baseClass}__header`,
-            `color-background--${bgColor}`,
-            headerClassName,
-          )}
-          style={color.startsWith("#") ? { backgroundColor: color } : {}}
+          className={clsx(`${baseClass}__header`, `color-background--${bgColor}`, headerClassName)}
+          style={color.startsWith('#') ? { backgroundColor: color } : {}}
         >
           {header}
         </span>
       )}
       <span className={`${baseClass}__text`}>{children}</span>
-      {footer && (
-        <span className={clsx(`${baseClass}__footer`, footerClassName)}>
-          {footer}
-        </span>
-      )}
+      {footer && <span className={clsx(`${baseClass}__footer`, footerClassName)}>{footer}</span>}
     </div>
   );
 };

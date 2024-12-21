@@ -1,9 +1,9 @@
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { pluralize } from "utils/helpers";
+import { pluralize } from 'utils/helpers';
 // Components
-import { Card } from "components/cards";
+import { Card } from 'components/cards';
 
 type CategoryCardProps = {
   categories: string[];
@@ -16,12 +16,12 @@ export function CategoryCard({ categories }: CategoryCardProps) {
     <Card
       header={pluralize(
         categories.length,
-        translate("Categoria", "Category"),
-        translate("Categorias", "Categories"),
+        translate('Categoria', 'Category'),
+        translate('Categorias', 'Categories'),
       )}
       color="brown"
     >
-      {categories.join(" + ")}
+      {categories.join(' + ')}
     </Card>
   );
 }

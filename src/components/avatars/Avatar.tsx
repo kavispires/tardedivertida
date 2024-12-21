@@ -1,9 +1,6 @@
 import clsx from 'clsx';
-// Ant Design Resources
-import { Avatar as AntAvatar, AvatarProps as AntAvatarProps } from 'antd';
-// Hooks
+import { Avatar as AntAvatar, type AvatarProps as AntAvatarProps } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
-// Images
 import avatars from 'assets/images/avatars.svg';
 
 export interface AvatarProps extends AntAvatarProps {
@@ -29,7 +26,7 @@ export const Avatar = ({ id, size, shape, alt, className, ...rest }: AvatarProps
       alt={alt ?? translate('Fulano', 'John Doe')}
       src={
         <svg viewBox="0 0 100 100">
-          <use href={avatars + `#avatar-${id}`}></use>
+          <use href={`${avatars}#avatar-${id}`}></use>
         </svg>
       }
       {...rest}

@@ -87,9 +87,6 @@ export function PhasePrompt({ players, state }: PhaseProps) {
             activePlayerId={state.activePlayerId}
           />
         </ViewOr>
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -71,16 +71,15 @@ export function StepResolution({
               <div>
                 <Translate pt="Votaram corretamente:" en="Voted correctly:" />
                 <ul className="c-story-book__correct-players">
-                  {solution &&
-                    solution
-                      .votes!.filter((entry) => entry !== storyteller.id)
-                      .map((playerId) => {
-                        return (
-                          <li key={`correct-vote-player-${playerId}`}>
-                            <AvatarName player={players[playerId]} size="small" />
-                          </li>
-                        );
-                      })}
+                  {solution?.votes
+                    ?.filter((entry) => entry !== storyteller.id)
+                    .map((playerId) => {
+                      return (
+                        <li key={`correct-vote-player-${playerId}`}>
+                          <AvatarName player={players[playerId]} size="small" />
+                        </li>
+                      );
+                    })}
                   {(solution?.votes?.length ?? 0) < 2 && (
                     <li className="c-story-book__nobody">
                       <Translate pt="Vixi, ninguém acertou..." en="Well, nobody got it..." />

@@ -2,7 +2,7 @@
 import { CardboardBoxIcon } from 'icons/CardboardBoxIcon';
 import { KnifeIcon } from 'icons/KnifeIcon';
 // Components
-import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function WeaponHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (

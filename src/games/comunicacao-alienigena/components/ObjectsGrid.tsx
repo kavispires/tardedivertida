@@ -1,17 +1,17 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Ant Design Resources
-import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
-import { Badge, Space } from "antd";
+import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
+import { Badge, Space } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { ItemCard } from "components/cards/ItemCard";
-import { Translate } from "components/language";
-import { Title } from "components/text";
+import { ItemCard } from 'components/cards/ItemCard';
+import { Translate } from 'components/language';
+import { Title } from 'components/text';
 // Internal
-import type { Item, OfferingsStatus } from "../utils/types";
-import { BADGE_INSTRUCTION } from "../utils/constants";
-import { ObjectsKey } from "./ObjectsKey";
+import type { Item, OfferingsStatus } from '../utils/types';
+import { BADGE_INSTRUCTION } from '../utils/constants';
+import { ObjectsKey } from './ObjectsKey';
 
 type ObjectsGridProps = {
   items: Item[];
@@ -21,13 +21,7 @@ type ObjectsGridProps = {
   status: OfferingsStatus;
 };
 
-export function ObjectsGrid({
-  items,
-  showTypes = false,
-  activeObjects,
-  showAll,
-  status,
-}: ObjectsGridProps) {
+export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, status }: ObjectsGridProps) {
   const { dualTranslate } = useLanguage();
   return (
     <Space direction="vertical">
@@ -39,29 +33,25 @@ export function ObjectsGrid({
           <div
             key={`objects-grid-${item.id}`}
             className={clsx(
-              "objects-grid__item",
+              'objects-grid__item',
               (showTypes || item.offered) && `objects-grid__item--${item.type}`,
-              activeObjects?.includes(item.id) && `objects-grid__item--ask`,
+              activeObjects?.includes(item.id) && 'objects-grid__item--ask',
             )}
           >
-            <Badge
-              count={item.inquired}
-              color="orange"
-              title={dualTranslate(BADGE_INSTRUCTION)}
-            >
+            <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
               <ItemCard
                 id={`${item.id}`}
-                className={clsx(item.offered && "objects-grid__item-offered")}
+                className={clsx(item.offered && 'objects-grid__item-offered')}
                 title={item.name ? dualTranslate(item.name) : undefined}
               />
             </Badge>
 
-            {showAll && Boolean(item.offered) && item.type === "ITEM" && (
+            {showAll && Boolean(item.offered) && item.type === 'ITEM' && (
               <span className="objects-grid__offered-icon objects-grid__offered-icon--correct">
                 <CheckCircleFilled />
               </span>
             )}
-            {showAll && Boolean(item.offered) && item.type !== "ITEM" && (
+            {showAll && Boolean(item.offered) && item.type !== 'ITEM' && (
               <span className="objects-grid__offered-icon objects-grid__offered-icon--incorrect">
                 <CloseCircleFilled />
               </span>

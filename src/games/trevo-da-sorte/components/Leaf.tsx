@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 // Ant Design Resources
 import { DeleteOutlined, RedoOutlined } from "@ant-design/icons";
 import { Button } from "antd";
@@ -48,7 +48,7 @@ export function Leaf({
       key={`leaf-key-${leaf.id}`}
       className={clsx(
         "y-leaf",
-        grabbable && `y-leaf--grabbable`,
+        grabbable && "y-leaf--grabbable",
         getAnimationClass("fadeIn"),
         className,
       )}
@@ -64,7 +64,7 @@ export function Leaf({
               "y-leaf__card-button",
               `y-leaf__card--${cIndex}`,
             )}
-            onClick={() => onLeafGrab!(leaf.id)}
+            onClick={() => onLeafGrab?.(leaf.id)}
           >
             <div className="y-leaf__card-text">{card.text}</div>
           </div>
@@ -83,7 +83,7 @@ export function Leaf({
       >
         {!isLocked && rotatable && (
           <Button
-            onClick={(e) => onLeafRotate!(e, leaf.id)}
+            onClick={(e) => onLeafRotate?.(e, leaf.id)}
             className="y-leaf__center y-leaf__center--rotatable"
             shape="circle"
           >
@@ -92,7 +92,7 @@ export function Leaf({
         )}
         {!isLocked && removable && (
           <Button
-            onClick={() => onLeafRemove!(position)}
+            onClick={() => onLeafRemove?.(position)}
             className="y-leaf__center y-leaf__center--rotatable"
             shape="circle"
           >

@@ -1,5 +1,5 @@
 // Internal
-import { AdedanhxGrid, Answer } from './types';
+import type { AdedanhxGrid, Answer } from './types';
 
 export const buildAnswerSheet = (grid: AdedanhxGrid) => {
   const answerSheet: Record<string, Answer> = {};

@@ -12,7 +12,7 @@ import { useLanguage } from "hooks/useLanguage";
 // Utils
 import { deepCopy } from "utils/helpers";
 // Internal
-import {
+import type {
   ComunicacaoAlienigenaLocalToday,
   DailyComunicacaoAlienigenaEntry,
   GameState,
@@ -44,11 +44,12 @@ export function useComunicacaoAlienigenaEngine(
     }));
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!state.win && state.guesses.some((guess) => guess === data.solution)) {
       setState((prev) => ({ ...prev, win: true }));
     }
-  }, [state.guesses, data.solution, state.win]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [state.guesses, data.solution, state.win]);
 
   const onItemClick = (itemId: string) => {
     if (state.selection.includes(itemId)) {

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { createGlobalState } from 'react-hooks-global-state';
+import { useEffect, useState } from "react";
+import { createGlobalState } from "react-hooks-global-state";
 
 type InitialState = {
   loaders: BooleanDictionary;
@@ -24,8 +24,9 @@ type UseLoading = {
  */
 export function useLoading(): UseLoading {
   const [isLoading, setLoading] = useState(false);
-  const [loaders, setLoaders] = useLoadersState('loaders');
+  const [loaders, setLoaders] = useLoadersState("loaders");
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setLoading(Object.values(loaders).some((v) => v));
   }, [loaders, setLoading]);

@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import { GameRound } from 'types/game';
-import { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Icons

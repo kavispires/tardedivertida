@@ -1,13 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-// Ant Design Resources
-import { Button, Form, Input, Alert, Image, FormInstance } from 'antd';
-// Hooks
+import { Button, Form, Input, Alert, Image, type FormInstance } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
-// Services
 import { signUp } from 'services/firebase';
-// Components
 import { Translate } from 'components/language';
-// Images
 import logo from 'assets/images/tarde-divertida-logo.svg';
 // API
 // Image
@@ -66,7 +61,10 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
         label={<Translate pt="E-mail" en="E-mail" />}
         name="username"
         rules={[
-          { required: true, message: translate('e-mail é um campo obrigatório', 'e-mail is required') },
+          {
+            required: true,
+            message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+          },
         ]}
       >
         <Input />
@@ -76,7 +74,10 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
         label={<Translate pt="Senha" en="Password" />}
         name="password"
         rules={[
-          { required: true, message: translate('e-mail é um campo obrigatório', 'e-mail is required') },
+          {
+            required: true,
+            message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+          },
         ]}
         help={translate('Mínimo 6 caracteres', 'Minimum of 6 characters')}
       >
@@ -87,7 +88,10 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
         label={<Translate pt="Confirmar Senha" en="Confirm Password" />}
         name="password-confirm"
         rules={[
-          { required: true, message: translate('e-mail é um campo obrigatório', 'e-mail is required') },
+          {
+            required: true,
+            message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+          },
         ]}
       >
         <Input.Password />

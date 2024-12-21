@@ -1,4 +1,4 @@
-export function MagicBookIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function MagicBookIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#f8e883" d="M40.01 408h384v64h-384a32 32 0 010-64z"></path>

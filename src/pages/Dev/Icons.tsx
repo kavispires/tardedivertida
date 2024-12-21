@@ -1,5 +1,5 @@
 import { sortBy } from 'lodash';
-import { useEffect, useState } from 'react';
+import { type ReactElement, useEffect, useState } from 'react';
 import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout, App, Switch, Divider } from 'antd';
@@ -11,7 +11,7 @@ import { TransparentButton } from 'components/buttons';
 // Internal
 import { DevHeader } from './DevHeader';
 
-type IconEntry = [string, (props: React.SVGProps<SVGSVGElement>) => JSX.Element];
+type IconEntry = [string, (props: React.SVGProps<SVGSVGElement>) => ReactElement];
 
 function IconsPage() {
   const { message } = App.useApp();
@@ -61,7 +61,7 @@ type AllIconsViewProps = {
 function AllIconsView({ iconEntries, copyToClipboard }: AllIconsViewProps) {
   return (
     <ul className="icons-grid">
-      {iconEntries.map(([key, Icon], index) => (
+      {iconEntries.map(([key, Icon]) => (
         <li key={key} className="icons-grid__item">
           <TransparentButton onClick={() => copyToClipboard(`<${key} />`)}>
             <Icon style={{ width: '90px' }} />
@@ -122,9 +122,9 @@ function IconsCategoryListing({ list, collection, copyToClipboard }: IconsCatego
             </h2>
             <ul className="icons-category-grid">
               {iconsNames.map((iconName) => {
-                const Icon = (icons as Record<string, (props: React.SVGProps<SVGSVGElement>) => JSX.Element>)[
-                  iconName
-                ];
+                const Icon = (
+                  icons as Record<string, (props: React.SVGProps<SVGSVGElement>) => ReactElement>
+                )[iconName];
 
                 if (!Icon) {
                   console.error(`Icon not found: ${iconName}`);

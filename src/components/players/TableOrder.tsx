@@ -1,18 +1,18 @@
-import clsx from "clsx";
-import { Fragment, ReactNode, useMemo } from "react";
+import clsx from 'clsx';
+import { Fragment, type ReactNode, useMemo } from 'react';
 // Ant Design Resources
-import { BackwardFilled } from "@ant-design/icons";
+import { BackwardFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from "types/player";
+import type { GamePlayers } from 'types/player';
 // Utils
-import { getAvatarColorById } from "utils/helpers";
+import { getAvatarColorById } from 'utils/helpers';
 // Icons
-import { RotationIcon } from "icons/RotationIcon";
+import { RotationIcon } from 'icons/RotationIcon';
 // Components
-import { AvatarName } from "components/avatars";
-import { Translate } from "components/language";
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 // Internal
-import { reorder } from "./reorder";
+import { reorder } from './reorder';
 
 type TableOrderProps = {
   /**
@@ -42,7 +42,7 @@ type TableOrderProps = {
   /**
    * The size of the table order
    */
-  size?: "default" | "small";
+  size?: 'default' | 'small';
 };
 
 /**
@@ -56,19 +56,17 @@ export function TableOrder({
   activePlayerId,
   reorderByUser,
   title,
-  className = "",
+  className = '',
   size,
 }: TableOrderProps) {
   const orderedList = useMemo(
-    () => (Boolean(reorderByUser) ? reorder(order, reorderByUser!) : order),
+    () => (reorderByUser ? reorder(order, reorderByUser) : order),
     [reorderByUser, order],
   );
   const doublePlayerCount = orderedList.length * 2;
 
   return (
-    <div
-      className={clsx("table-order", size && `table-order--${size}`, className)}
-    >
+    <div className={clsx('table-order', size && `table-order--${size}`, className)}>
       <ol className="table-order__players">
         {orderedList.map((playerId, index) => {
           const player = players[playerId];
@@ -78,22 +76,16 @@ export function TableOrder({
             <Fragment key={`table-order-${playerId}`}>
               <li
                 // @ts-ignore
-                style={{ "--t": doublePlayerCount, "--i": index * 2 }}
-                className={clsx(
-                  "table-order__player",
-                  isActive && "table-order__player--active",
-                )}
+                style={{ '--t': doublePlayerCount, '--i': index * 2 }}
+                className={clsx('table-order__player', isActive && 'table-order__player--active')}
               >
-                <span
-                  className="table-order__icon"
-                  style={isActive ? { backgroundColor: color } : undefined}
-                >
+                <span className="table-order__icon" style={isActive ? { backgroundColor: color } : undefined}>
                   <AvatarName player={player} upright />
                 </span>
               </li>
               <li
                 // @ts-ignore
-                style={{ "--t": doublePlayerCount, "--i": index * 2 + 1 }}
+                style={{ '--t': doublePlayerCount, '--i': index * 2 + 1 }}
                 className="table-order__chevron"
               >
                 <span className="table-order__icon">
@@ -105,13 +97,9 @@ export function TableOrder({
         })}
         <li className="table-order__center">
           <div className="table-order__center-container">
-            <RotationIcon style={{ width: "3rem", transform: "scaleX(-1)" }} />
+            <RotationIcon style={{ width: '3rem', transform: 'scaleX(-1)' }} />
             <header className="table-order__title">
-              <Translate
-                en="Player Order"
-                pt="Ordem dos Jogadores"
-                custom={title}
-              />
+              <Translate en="Player Order" pt="Ordem dos Jogadores" custom={title} />
             </header>
           </div>
         </li>

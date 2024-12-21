@@ -33,7 +33,7 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
                 <IconAvatar
                   icon={
                     <svg viewBox="0 0 512 512">
-                      <use href={featuresIcons + `#${entry.featureId}`}></use>
+                      <use href={`${featuresIcons}#${entry.featureId}`}></use>
                     </svg>
                   }
                   size="small"

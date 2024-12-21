@@ -43,7 +43,7 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
   return (
     <>
       <div className="game-info-drawer-container">
-        <button className="game-info-drawer-button" onClick={toggleDrawer}>
+        <button type="button" className="game-info-drawer-button" onClick={toggleDrawer}>
           <span className="game-info-drawer-button__game-title">
             {info.title?.[language] ?? '?'}
             <DebugOnly devOnly>({players?.[userId]?.name})</DebugOnly>

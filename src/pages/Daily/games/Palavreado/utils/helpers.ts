@@ -4,7 +4,7 @@ import { loadLocalToday } from 'pages/Daily/utils';
 import { deepCopy } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
+import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
 
 export const DEFAULT_LOCAL_TODAY: PalavreadoLocalToday = {
   id: '',

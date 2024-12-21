@@ -1,21 +1,21 @@
-import { orderBy } from "lodash";
-import { useMemo } from "react";
+import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
-import { CrownFilled, MessageFilled } from "@ant-design/icons";
-import { Avatar as AntAvatar, Flex, Typography } from "antd";
+import { CrownFilled, MessageFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar, Flex, Typography } from 'antd';
 // Types
-import type { GamePlayers } from "types/player";
-import { TextCard } from "types/tdr";
+import type { GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Utils
-import { getContrastColor, getPlayersFromIds } from "utils/helpers";
+import { getContrastColor, getPlayersFromIds } from 'utils/helpers';
 // Icons
-import { StarIcon } from "icons/StarIcon";
+import { StarIcon } from 'icons/StarIcon';
 // Components
-import { Avatar, IconAvatar } from "components/avatars";
-import { Translate } from "components/language";
+import { Avatar, IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
 // Internal
-import type { GalleryEntry } from "../utils/types";
-import { getTitle } from "../utils/helpers";
+import type { GalleryEntry } from '../utils/types';
+import { getTitle } from '../utils/helpers';
 
 type GalleryWindowGuessesProps = {
   players: GamePlayers;
@@ -42,10 +42,8 @@ export function GalleryWindowGuesses({
             playerStayEntry.descriptorId,
             gameLanguage,
           );
-          const isSubjectCorrect =
-            galleryEntry.subjectId === playerStayEntry.subjectId;
-          const isDescriptorCorrect =
-            galleryEntry.descriptorId === playerStayEntry.descriptorId;
+          const isSubjectCorrect = galleryEntry.subjectId === playerStayEntry.subjectId;
+          const isDescriptorCorrect = galleryEntry.descriptorId === playerStayEntry.descriptorId;
           return {
             id: title,
             playersIds: playerStayEntry.playersIds,
@@ -58,8 +56,8 @@ export function GalleryWindowGuesses({
             count: playerStayEntry.playersIds.length,
           };
         }),
-        ["correctness", "count", "id"],
-        ["desc", "desc", "asc"],
+        ['correctness', 'count', 'id'],
+        ['desc', 'desc', 'asc'],
       ),
     [cards, galleryEntry, gameLanguage],
   );
@@ -79,7 +77,7 @@ export function GalleryWindowGuesses({
                     backgroundColor: artistColor,
                     color: getContrastColor(artistColor),
                   }
-                : { color: "inherit", backgroundColor: "inherit" }
+                : { color: 'inherit', backgroundColor: 'inherit' }
             }
           >
             {entry.subject.text}
@@ -95,7 +93,7 @@ export function GalleryWindowGuesses({
                     backgroundColor: artistColor,
                     color: getContrastColor(artistColor),
                   }
-                : { color: "inherit", backgroundColor: "inherit" }
+                : { color: 'inherit', backgroundColor: 'inherit' }
             }
           >
             {entry.descriptor.text}
@@ -103,10 +101,7 @@ export function GalleryWindowGuesses({
         );
 
         return (
-          <div
-            key={`guess-${entry.id}-${index}`}
-            className="sda-gallery__guess"
-          >
+          <div key={`guess-${entry.id}-${index}`} className="sda-gallery__guess">
             <div
               className="sda-gallery__speech-bubble"
               style={
@@ -119,15 +114,12 @@ export function GalleryWindowGuesses({
               }
             >
               {entry.correctness === 2 ? (
-                <CrownFilled
-                  className="sda-gallery__speech-bubble-icon"
-                  style={{ color: "white" }}
-                />
+                <CrownFilled className="sda-gallery__speech-bubble-icon" style={{ color: 'white' }} />
               ) : (
                 <MessageFilled className="sda-gallery__speech-bubble-icon" />
               )}
 
-              {gameLanguage === "pt" ? (
+              {gameLanguage === 'pt' ? (
                 <span>
                   {subjectName} {descriptorName}
                 </span>
@@ -151,7 +143,7 @@ export function GalleryWindowGuesses({
                 ))}
               </AntAvatar.Group>
               <span className="sda-gallery__players-names">
-                {getPlayersFromIds(entry.playersIds, players, true).join(", ")}
+                {getPlayersFromIds(entry.playersIds, players, true).join(', ')}
               </span>
             </div>
           </div>

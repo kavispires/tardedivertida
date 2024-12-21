@@ -1,4 +1,4 @@
-export function SixPackIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function SixPackIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#efeeef" d="M96 80l-8-40 120-24h104l112 32-8 32-160 32z"></path>

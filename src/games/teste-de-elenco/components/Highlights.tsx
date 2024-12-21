@@ -2,7 +2,7 @@
 import { ClipboardIcon } from 'icons/ClipboardIcon';
 import { MovieStarIcon } from 'icons/MovieStarIcon';
 // Components
-import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function ActorHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<MovieStarIcon />}>{children}</MetricHighlight>;

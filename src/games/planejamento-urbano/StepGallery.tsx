@@ -6,7 +6,7 @@ import { Divider, Flex, Typography } from 'antd';
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Icons
 import { AngryMayorIcon } from 'icons/AngryMayorIcon';
@@ -19,7 +19,7 @@ import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 // Internal
-import { City, CityLocationsDict, GalleryEntry } from './utils/types';
+import type { City, CityLocationsDict, GalleryEntry } from './utils/types';
 import { getConeColor } from './utils/helpers';
 import { LocationCard } from './components/LocationCard';
 import { CityMapSnippet } from './components/CityMapSnippet';
@@ -161,7 +161,7 @@ export function Cone({ cone, adjacentLocationsIds, cityLocationsDict }: ConeProp
 
       <Flex vertical>
         {adjacentLocationsIds.map((locationId) => (
-          <Typography.Text>
+          <Typography.Text key={locationId}>
             <DragOutlined /> <DualTranslate>{cityLocationsDict?.[locationId]?.name}</DualTranslate>
           </Typography.Text>
         ))}

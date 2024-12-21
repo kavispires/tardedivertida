@@ -11,7 +11,6 @@ import { EmojiCard } from 'components/cards/EmojiCard';
 import { DualTranslate } from 'components/language';
 // Internal
 import type { ScaleEntry } from '../utils/types';
-// Hook
 
 type ScenarioCardProps = {
   player: GamePlayer;
@@ -32,7 +31,7 @@ export function FinalScenarios({ scenarios, reference, player }: ScenarioCardPro
       <AvatarStrip player={player} withName />
       {scenarios.map((entry, index) => (
         <div
-          key={`${player.id}-position-${index}-${(entry ?? {}).id}`}
+          key={`${player.id}-position-${index}-${entry?.id}`}
           className="scenario"
           style={{ width: `${width}px` }}
         >

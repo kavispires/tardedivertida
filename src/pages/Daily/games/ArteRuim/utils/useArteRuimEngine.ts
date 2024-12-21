@@ -6,7 +6,7 @@ import { removeDuplicates } from 'utils/helpers';
 // Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
+import type { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
 
 export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameState) {
   const { state, setState } = useDailyGameState<GameState>(initialState);

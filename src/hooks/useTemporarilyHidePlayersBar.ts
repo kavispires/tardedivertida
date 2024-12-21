@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+import { useEffectOnce } from "react-use";
 // Internal
-import { useGlobalState } from './useGlobalState';
+import { useGlobalState } from "./useGlobalState";
 
 export function useTemporarilyHidePlayersBar(ignore = false) {
-  const [, setShowPlayersBar] = useGlobalState('showPlayersBar');
+  const [, setShowPlayersBar] = useGlobalState("showPlayersBar");
 
-  useEffect(() => {
-    setShowPlayersBar(ignore ? true : false);
+  useEffectOnce(() => {
+    setShowPlayersBar(ignore);
     return () => {
       setShowPlayersBar(true);
     };
-  }, []); // eslint-disable-line
+  });
 }

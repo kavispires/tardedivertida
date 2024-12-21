@@ -45,6 +45,7 @@ export function SandTimer({
     onExpire: handleExpire,
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if ((timeLeft - TIMER_LEAD) % 30 === 0) {
       if (trap === TRAPS.DELAYING_DOORS) {
@@ -65,7 +66,7 @@ export function SandTimer({
       }
     }
     return () => {};
-  }, [timeLeft]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [timeLeft]);
 
   if (timeLeft - TIMER_LEAD === 0) {
     onDisableButtons();

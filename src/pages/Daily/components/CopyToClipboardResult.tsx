@@ -1,22 +1,19 @@
-import { useEffect } from "react";
-import { useCopyToClipboard } from "react-use";
+import { useEffect } from 'react';
+import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
-import { App, Input, Space, Typography } from "antd";
+import { App, Input, Space, Typography } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { TransparentButton } from "components/buttons";
-import { Translate } from "components/language";
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 
 type CopyToClipboardResultProps = {
   result: string;
   rows?: number;
 };
 
-export function CopyToClipboardResult({
-  result,
-  rows = 4,
-}: CopyToClipboardResultProps) {
+export function CopyToClipboardResult({ result, rows = 4 }: CopyToClipboardResultProps) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
   const [state, copyToClipboard] = useCopyToClipboard();

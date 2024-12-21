@@ -1,13 +1,17 @@
-import { loadLocalToday } from 'pages/Daily/utils';
-import { LettersDictionary } from 'pages/Daily/utils/types';
+import { loadLocalToday } from "pages/Daily/utils";
+import type { LettersDictionary } from "pages/Daily/utils/types";
 // Utils
-import { deepCopy } from 'utils/helpers';
+import { deepCopy, stringRemoveAccents } from "utils/helpers";
 // Internal
-import { SETTINGS } from './settings';
-import { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
+import { SETTINGS } from "./settings";
+import type {
+  ArteRuimLocalToday,
+  DailyArteRuimEntry,
+  GameState,
+} from "./types";
 
 export const DEFAULT_LOCAL_TODAY: ArteRuimLocalToday = {
-  id: '',
+  id: "",
   letters: [],
   number: 0,
 };
@@ -32,19 +36,22 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
   };
 
   let solution = { ...state.solution };
-  const guesses = localToday.letters.reduce((acc: LettersDictionary, letter) => {
-    const isCorrect = state.solution[letter] !== undefined;
-    if (state.solution[letter] !== undefined) {
-      solution = { ...solution, [letter]: true };
-    }
-    acc[letter] = {
-      letter: letter,
-      state: isCorrect ? 'correct' : 'incorrect',
-      disabled: true,
-    };
-    state.hearts = isCorrect ? state.hearts : state.hearts - 1;
-    return acc;
-  }, {});
+  const guesses = localToday.letters.reduce(
+    (acc: LettersDictionary, letter) => {
+      const isCorrect = state.solution[letter] !== undefined;
+      if (state.solution[letter] !== undefined) {
+        solution = { ...solution, [letter]: true };
+      }
+      acc[letter] = {
+        letter: letter,
+        state: isCorrect ? "correct" : "incorrect",
+        disabled: true,
+      };
+      state.hearts = isCorrect ? state.hearts : state.hearts - 1;
+      return acc;
+    },
+    {},
+  );
 
   state.guesses = guesses;
   state.win = Object.values(solution)
@@ -60,11 +67,8 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
  * @returns An object with each letter in the word as a key and a boolean value indicating if the letter has been found.
  */
 export function getLettersInWord(text: string): BooleanDictionary {
-  const cleanedUpText = text
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-  const letters = cleanedUpText.split('');
+  const cleanedUpText = stringRemoveAccents(text).toLowerCase();
+  const letters = cleanedUpText.split("");
   const lettersInWord: BooleanDictionary = {};
 
   letters.forEach((letter) => {
@@ -83,10 +87,7 @@ export function getLettersInWord(text: string): BooleanDictionary {
  * @returns The cleaned up character.
  */
 export function cleanupLetter(char: string): string {
-  return char
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
+  return stringRemoveAccents(char).toLowerCase();
 }
 
 /**

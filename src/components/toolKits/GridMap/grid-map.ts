@@ -1,22 +1,8 @@
-import { flatten, sample } from "lodash";
+import { flatten, sample } from 'lodash';
 
-export type GridMapOrigin =
-  | "top-left"
-  | "top-right"
-  | "bottom-left"
-  | "bottom-right"
-  | "center";
-export type GridMapCellState =
-  | "available"
-  | "used"
-  | "locked"
-  | "unavailable"
-  | string;
-export type GridMapAdjacency =
-  | "any"
-  | "orthogonal"
-  | "diagonal"
-  | "surrounding";
+export type GridMapOrigin = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center';
+export type GridMapCellState = 'available' | 'used' | 'locked' | 'unavailable' | string;
+export type GridMapAdjacency = 'any' | 'orthogonal' | 'diagonal' | 'surrounding';
 
 /**
  * TD GRID MAP TOOLKIT FUNCTIONS
@@ -126,8 +112,8 @@ function createGridMap<TCellData>(
   height: number,
   options: GridMapOptions<TCellData> = {},
 ): GridMapType<TCellData> {
-  const origin = options.origin || "top-left";
-  const adjacency = options.adjacency || "any";
+  const origin = options.origin || 'top-left';
+  const adjacency = options.adjacency || 'any';
 
   // Create a flattened array of cells
   const cells: GridMapCellType<TCellData>[] = [];
@@ -138,7 +124,7 @@ function createGridMap<TCellData>(
         x,
         y,
         data: null,
-        state: adjacency === "any" ? "available" : "unavailable",
+        state: adjacency === 'any' ? 'available' : 'unavailable',
       });
     }
   }
@@ -150,13 +136,13 @@ function createGridMap<TCellData>(
       const cell = cells.find((cell) => cell.x === x && cell.y === y);
       if (cell) {
         cell.data = data;
-        cell.state = state || "used";
+        cell.state = state || 'used';
       }
     });
   } else if (defaultData) {
     cells.forEach((cell) => {
       cell.data = defaultData.data;
-      cell.state = defaultData.state || "used";
+      cell.state = defaultData.state || 'used';
     });
   }
 
@@ -179,7 +165,7 @@ function composeCellId(x: number, y: number): string {
  * @returns An object containing the x and y coordinates of the cell.
  */
 function parseCellId(id: string): { x: number; y: number } {
-  const [x, y] = id.split("-").map(Number);
+  const [x, y] = id.split('-').map(Number);
   return { x, y };
 }
 
@@ -190,11 +176,7 @@ function parseCellId(id: string): { x: number; y: number } {
  * @param y - The y-coordinate of the cell.
  * @returns The index of the cell in the grid.
  */
-function getCellIndex<TCellData = unknown>(
-  grid: GridMapType<TCellData>,
-  x: number,
-  y: number,
-): number {
+function getCellIndex<TCellData = unknown>(grid: GridMapType<TCellData>, x: number, y: number): number {
   return grid.width * y + x;
 }
 
@@ -233,31 +215,30 @@ function getCellById<TCellData>(
 /**
  * Retrieves the origin cell of the grid based on the specified origin point.
  */
-function getOrigin<TCellData>(
-  grid: GridMapType<TCellData>,
-): GridMapCellType<TCellData | null> | null {
+function getOrigin<TCellData>(grid: GridMapType<TCellData>): GridMapCellType<TCellData | null> | null {
   const { width, height, origin } = grid;
 
-  let originX: number, originY: number;
+  let originX: number;
+  let originY: number;
 
   switch (origin) {
-    case "top-left":
+    case 'top-left':
       originX = 0;
       originY = 0;
       break;
-    case "top-right":
+    case 'top-right':
       originX = width - 1;
       originY = 0;
       break;
-    case "bottom-left":
+    case 'bottom-left':
       originX = 0;
       originY = height - 1;
       break;
-    case "bottom-right":
+    case 'bottom-right':
       originX = width - 1;
       originY = height - 1;
       break;
-    case "center":
+    case 'center':
       originX = Math.floor(width / 2);
       originY = Math.floor(height / 2);
       break;
@@ -294,7 +275,7 @@ function getAllAdjacentCoordinates<TCellData>(
   grid: GridMapType<TCellData>,
   adjacency?: GridMapAdjacency,
   cellState?: GridMapCellState,
-  adjacentCellState: GridMapCellState = "used",
+  adjacentCellState: GridMapCellState = 'used',
 ): { x: number; y: number }[] {
   const availableCells: { x: number; y: number }[] = [];
   const chosenAdjacency = adjacency || grid.adjacency;
@@ -303,25 +284,21 @@ function getAllAdjacentCoordinates<TCellData>(
     for (let x = 0; x < grid.width; x++) {
       const cell = getCellByCoordinates(grid, x, y);
 
-      if (
-        cell &&
-        (cellState ? cell.state === cellState : true) &&
-        cell.data === null
-      ) {
-        if (chosenAdjacency === "any") {
+      if (cell && (cellState ? cell.state === cellState : true) && cell.data === null) {
+        if (chosenAdjacency === 'any') {
           availableCells.push({ x, y });
         } else if (
-          chosenAdjacency === "surrounding" &&
+          chosenAdjacency === 'surrounding' &&
           _isSurroundingAdjacentToUsed(grid, x, y, adjacentCellState)
         ) {
           availableCells.push({ x, y });
         } else if (
-          chosenAdjacency === "orthogonal" &&
+          chosenAdjacency === 'orthogonal' &&
           _isOrthogonallyAdjacentToUsed(grid, x, y, adjacentCellState)
         ) {
           availableCells.push({ x, y });
         } else if (
-          chosenAdjacency === "diagonal" &&
+          chosenAdjacency === 'diagonal' &&
           _isDiagonallyAdjacentToUsed(grid, x, y, adjacentCellState)
         ) {
           availableCells.push({ x, y });
@@ -350,7 +327,7 @@ function getAllAdjacentIds(
   grid: GridMapType<unknown>,
   adjacency?: GridMapAdjacency,
   cellState?: GridMapCellState,
-  adjacentCellState: GridMapCellState = "used",
+  adjacentCellState: GridMapCellState = 'used',
 ): string[] {
   const availableCells: string[] = [];
   const chosenAdjacency = adjacency || grid.adjacency;
@@ -359,25 +336,21 @@ function getAllAdjacentIds(
     for (let x = 0; x < grid.width; x++) {
       const cell = getCellByCoordinates(grid, x, y);
 
-      if (
-        cell &&
-        (cellState ? cell.state === cellState : true) &&
-        cell.data === null
-      ) {
-        if (chosenAdjacency === "any") {
+      if (cell && (cellState ? cell.state === cellState : true) && cell.data === null) {
+        if (chosenAdjacency === 'any') {
           availableCells.push(cell.id);
         } else if (
-          chosenAdjacency === "surrounding" &&
+          chosenAdjacency === 'surrounding' &&
           _isSurroundingAdjacentToUsed(grid, x, y, adjacentCellState)
         ) {
           availableCells.push(cell.id);
         } else if (
-          chosenAdjacency === "orthogonal" &&
+          chosenAdjacency === 'orthogonal' &&
           _isOrthogonallyAdjacentToUsed(grid, x, y, adjacentCellState)
         ) {
           availableCells.push(cell.id);
         } else if (
-          chosenAdjacency === "diagonal" &&
+          chosenAdjacency === 'diagonal' &&
           _isDiagonallyAdjacentToUsed(grid, x, y, adjacentCellState)
         ) {
           availableCells.push(cell.id);
@@ -436,10 +409,7 @@ function _isOrthogonallyAdjacentToUsed<TCellData>(
   return ORTHOGONAL_OFFSETS.some(({ dx, dy }) => {
     const nx = x + dx;
     const ny = y + dy;
-    return (
-      _isWithinBounds(grid, nx, ny) &&
-      getCellByCoordinates(grid, nx, ny)?.state === cellState
-    );
+    return _isWithinBounds(grid, nx, ny) && getCellByCoordinates(grid, nx, ny)?.state === cellState;
   });
 }
 
@@ -461,10 +431,7 @@ function _isDiagonallyAdjacentToUsed<TCellData>(
   return DIAGONAL_OFFSETS.some(({ dx, dy }) => {
     const nx = x + dx;
     const ny = y + dy;
-    return (
-      _isWithinBounds(grid, nx, ny) &&
-      getCellByCoordinates(grid, nx, ny)?.state === cellState
-    );
+    return _isWithinBounds(grid, nx, ny) && getCellByCoordinates(grid, nx, ny)?.state === cellState;
   });
 }
 
@@ -472,15 +439,12 @@ function _isSurroundingAdjacentToUsed<TCellData>(
   grid: GridMapType<TCellData>,
   x: number,
   y: number,
-  cellState: GridMapCellState = "used",
+  cellState: GridMapCellState = 'used',
 ): boolean {
   return SURROUNDING_OFFSETS.some(({ dx, dy }) => {
     const nx = x + dx;
     const ny = y + dy;
-    return (
-      _isWithinBounds(grid, nx, ny) &&
-      getCellByCoordinates(grid, nx, ny)?.state === cellState
-    );
+    return _isWithinBounds(grid, nx, ny) && getCellByCoordinates(grid, nx, ny)?.state === cellState;
   });
 }
 
@@ -493,11 +457,7 @@ function _isSurroundingAdjacentToUsed<TCellData>(
  * @param y - The y-coordinate to check.
  * @returns - Returns `true` if the coordinates are within the bounds of the grid, otherwise `false`.
  */
-function _isWithinBounds<TCellData>(
-  grid: GridMapType<TCellData>,
-  x: number,
-  y: number,
-): boolean {
+function _isWithinBounds<TCellData>(grid: GridMapType<TCellData>, x: number, y: number): boolean {
   return x >= 0 && x < grid.width && y >= 0 && y < grid.height;
 }
 
@@ -508,12 +468,8 @@ function _isWithinBounds<TCellData>(
  * @param grid - The grid from which to retrieve empty cells.
  * @returns An array of cells that contain null data.
  */
-function getEmptyCells<TCellData>(
-  grid: GridMapType<TCellData>,
-): GridMapCellType<TCellData | null>[] {
-  return flatten(grid.cells).filter(
-    (cell): cell is GridMapCellType<TCellData | null> => cell.data === null,
-  );
+function getEmptyCells<TCellData>(grid: GridMapType<TCellData>): GridMapCellType<TCellData | null>[] {
+  return flatten(grid.cells).filter((cell): cell is GridMapCellType<TCellData | null> => cell.data === null);
 }
 
 /**
@@ -538,10 +494,10 @@ function updateCell<TCellData>(
     // Update the cell's data and state
     if (newData === null) {
       cell.data = null;
-      cell.state = state || "available";
+      cell.state = state || 'available';
     } else {
       cell.data = newData;
-      cell.state = cell.state === "locked" ? "locked" : state || "used";
+      cell.state = cell.state === 'locked' ? 'locked' : state || 'used';
     }
 
     // Update surrounding cells based on grid adjacency
@@ -551,17 +507,13 @@ function updateCell<TCellData>(
   return grid;
 }
 
-function _updateSurroundingCells<TCellData>(
-  grid: GridMapType<TCellData>,
-  x: number,
-  y: number,
-) {
+function _updateSurroundingCells<TCellData>(grid: GridMapType<TCellData>, x: number, y: number) {
   const adjacency = grid.adjacency;
 
   const updateIfEmpty = (nx: number, ny: number) => {
     const cell = getCellByCoordinates(grid, nx, ny);
-    if (cell && cell.data === null && cell.state !== "locked") {
-      cell.state = "available";
+    if (cell && cell.data === null && cell.state !== 'locked') {
+      cell.state = 'available';
     }
   };
 
@@ -583,10 +535,7 @@ function updateCellState<TCellData>(
   identifier: string,
   newState: GridMapCellState,
 ): GridMapType<TCellData> {
-  const cell: GridMapCellType<TCellData | null> | null = getCellById(
-    grid,
-    identifier,
-  );
+  const cell: GridMapCellType<TCellData | null> | null = getCellById(grid, identifier);
 
   if (cell) {
     cell.state = newState;
@@ -677,23 +626,15 @@ function createPath<TCellData>(
     if (!currentCell) break;
 
     // Get adjacent cells (orthogonal only to avoid circular paths)
-    const adjacentIds = _getAdjacentIdsByCoordinate(
-      grid,
-      currentCell.x,
-      currentCell.y,
-    );
+    const adjacentIds = _getAdjacentIdsByCoordinate(grid, currentCell.x, currentCell.y);
 
     // Filter out cells already in the path if repetition is not allowed
-    const validNextIds = adjacentIds.filter(
-      (id) => allowRepetition || !path.includes(id),
-    );
+    const validNextIds = adjacentIds.filter((id) => allowRepetition || !path.includes(id));
     if (validNextIds.length === 0) break;
 
     // Choose the next cell, prioritizing endId if it's the final step
     const nextId =
-      i === length - 1 && endId && validNextIds.includes(endId)
-        ? endId
-        : sample(validNextIds) || null;
+      i === length - 1 && endId && validNextIds.includes(endId) ? endId : sample(validNextIds) || null;
 
     if (!nextId) break;
 
@@ -706,7 +647,7 @@ function createPath<TCellData>(
     return null; // Path couldn't meet requirements
   }
 
-  return { id: path.join(";;"), path };
+  return { id: path.join(';;'), path };
 }
 
 /**

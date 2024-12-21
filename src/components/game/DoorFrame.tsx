@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type DoorFrameProps = {
   /**
@@ -28,7 +28,7 @@ export function DoorFrame({ children, width, index, className = '' }: DoorFrameP
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 257.1 318.8"
-      style={Boolean(width) ? { width: `${width}px` } : {}}
+      style={width ? { width: `${width}px` } : {}}
       className={className}
     >
       <defs>

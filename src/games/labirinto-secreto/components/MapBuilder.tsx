@@ -1,26 +1,31 @@
-import { useState } from 'react';
+import { useState } from "react";
 // Ant Design Resources
-import { Button, Space, Tooltip } from 'antd';
+import { Button, Space, Tooltip } from "antd";
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from "types/player";
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from "hooks/useLoading";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Icons
-import { LocationIcon } from 'icons/LocationIcon';
-import { NoIcon } from 'icons/NoIcon';
+import { LocationIcon } from "icons/LocationIcon";
+import { NoIcon } from "icons/NoIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
-import { Container } from 'components/general/Container';
-import { Translate } from 'components/language';
-import { TextHighlight } from 'components/text';
+import { IconAvatar } from "components/avatars";
+import { TransparentButton } from "components/buttons";
+import { Card } from "components/cards";
+import { Container } from "components/general/Container";
+import { Translate } from "components/language";
+import { TextHighlight } from "components/text";
 // Internal
-import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
-import { getPossibleTreeIds } from '../utils/helpers';
-import { TreeImage } from './TreeImage';
+import type {
+  ExtendedTextCard,
+  MapSegment,
+  OnSubmitMapFunction,
+  Tree,
+} from "../utils/types";
+import { getPossibleTreeIds } from "../utils/helpers";
+import { TreeImage } from "./TreeImage";
 
 type MapBuilderProps = {
   forest: Tree[];
@@ -31,9 +36,13 @@ type MapBuilderProps = {
 export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
   const { isLoading } = useLoading();
   const userMap = user?.map ?? [];
-  const map: MapSegment[] = userMap.filter((segment: MapSegment) => !segment.passed);
+  const map: MapSegment[] = userMap.filter(
+    (segment: MapSegment) => !segment.passed,
+  );
   const previousSelections = map.map((segment) => segment.clues);
-  const [selections, setSelections] = useState<(ExtendedTextCard | null)[]>(map.map((_) => null));
+  const [selections, setSelections] = useState<(ExtendedTextCard | null)[]>(
+    map.map((_) => null),
+  );
   const [currentIndex, setIndex] = useState(0);
   const [skippedIndexes, setSkippedIndexes] = useState<number[]>([]);
 
@@ -71,8 +80,9 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
   const onNegateCard = (index: number) => {
     setSelections((prev) => {
-      const copy = [...prev];
+      const copy = [...(prev ?? [])];
       if (copy[index]) {
+        // biome-ignore lint/style/noNonNullAssertion: idk what's up with the compiler
         copy[index]!.negate = !copy[index]?.negate;
       }
       return copy;
@@ -98,12 +108,18 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
           }
 
           return (
-            <div className="map-builder__segment" key={`map-segment-${segment.index}`}>
+            <div
+              className="map-builder__segment"
+              key={`map-segment-${segment.index}`}
+            >
               {currentIndex === index && (
                 <div className="map-builder__caret">
                   <IconAvatar
                     icon={<LocationIcon />}
-                    className={getAnimationClass('bounce', { speed: 'slow', infinite: true })}
+                    className={getAnimationClass("bounce", {
+                      speed: "slow",
+                      infinite: true,
+                    })}
                     size="small"
                   />
                 </div>
@@ -124,7 +140,11 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                     className="map-builder__card map-builder__card--new"
                   >
                     {selections?.[index]?.negate && (
-                      <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
+                      <IconAvatar
+                        icon={<NoIcon />}
+                        size="small"
+                        className="map-builder__card-no"
+                      />
                     )}
                     {selections?.[index]?.text}
                   </TransparentButton>
@@ -135,7 +155,11 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 return (
                   <div className="map-builder__card" key={card.id}>
                     {card?.negate && (
-                      <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
+                      <IconAvatar
+                        icon={<NoIcon />}
+                        size="small"
+                        className="map-builder__card-no"
+                      />
                     )}
                     {card.text}
                   </div>
@@ -144,7 +168,9 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
               <TransparentButton
                 onClick={() => onUnsetCard(index)}
-                disabled={!(selections?.[index] || skippedIndexes.includes(index))}
+                disabled={
+                  !(selections?.[index] || skippedIndexes.includes(index))
+                }
               >
                 <TreeImage id={tree.treeType} text={tree.card.text} />
               </TransparentButton>
@@ -156,13 +182,16 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       {possibleTreeIds.length > 0 && (
         <Space className="contained" wrap>
           <strong>
-            <Translate pt="Caminhos possíveis para a árvore atual" en="Possible paths for the current tree" />
+            <Translate
+              pt="Caminhos possíveis para a árvore atual"
+              en="Possible paths for the current tree"
+            />
             :
           </strong>
           {possibleTreeIds.map((treeId, index) => (
             <TextHighlight
               key={`highlighted-possibility-${treeId}`}
-              className={getAnimationClass('tada', { delay: index })}
+              className={getAnimationClass("tada", { delay: index })}
             >
               {forest?.[treeId]?.card?.text}
             </TextHighlight>

@@ -71,7 +71,7 @@ export function StepTellDream({ players, table, user, onSubmitDream }: StepTellD
       </Space>
 
       <Space className="space-container" align="center">
-        <Button type="primary" disabled={isLoading || !Boolean(dream)} onClick={onSubmitDreamsClick}>
+        <Button type="primary" disabled={isLoading || !dream} onClick={onSubmitDreamsClick}>
           <Translate pt="Enviar Sonho" en="Submit Dream" />
         </Button>
       </Space>

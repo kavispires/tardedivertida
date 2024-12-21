@@ -1,18 +1,18 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import clsx from "clsx";
+import { useEffect, useState } from "react";
 // Ant Design Resources
-import { Input, Switch } from 'antd';
+import { Input, Switch } from "antd";
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from "hooks/useLanguage";
 // Components
-import { Translate } from 'components/language';
+import { Translate } from "components/language";
 
 type ClueInputProps = {
   id: string;
   onChangeInput?: GenericFunction;
   onPressEnter?: GenericFunction;
   value?: string;
-  toggleGuessIds: Function;
+  toggleGuessIds: GenericFunction;
   disabled: boolean;
 };
 
@@ -27,16 +27,19 @@ export function ClueInput({
   const { translate } = useLanguage();
   const [isGuess, setIsGuess] = useState(false);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     toggleGuessIds(id, isGuess);
-  }, [isGuess]); // eslint-disable-line
+  }, [isGuess]);
 
   return (
-    <div className={clsx('v-clue-input', isGuess && 'v-clue-input--guess')}>
+    <div className={clsx("v-clue-input", isGuess && "v-clue-input--guess")}>
       <div className="v-clue-input__inner">
         <Input
           placeholder={
-            disabled ? translate('Acabou o tempo', "Time's up") : translate('Escreva dica aqui', 'Write here')
+            disabled
+              ? translate("Acabou o tempo", "Time's up")
+              : translate("Escreva dica aqui", "Write here")
           }
           key={id}
           id={id}

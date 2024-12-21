@@ -1,12 +1,12 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Hooks
-import { useDevFeatures } from "hooks/useDevFeatures";
+import { useDevFeatures } from 'hooks/useDevFeatures';
 // Utils
-import { LETTERS } from "utils/constants";
-import { getEntryId } from "utils/helpers";
+import { LETTERS } from 'utils/constants';
+import { getEntryId } from 'utils/helpers';
 // Internal
-import type { ArteRuimCard } from "../utils/types";
-import { ArteRuimCard as Card } from "./Card";
+import type { ArteRuimCard } from '../utils/types';
+import { ArteRuimCard as Card } from './Card';
 
 type EvaluationAllCardsProps = {
   cards: ArteRuimCard[];
@@ -24,13 +24,13 @@ export function EvaluationAllCards({
   levelType,
 }: EvaluationAllCardsProps) {
   const { isDebugEnabled } = useDevFeatures();
-  const liButtonBaseClass = "a-evaluation-all-cards__li-card-button";
+  const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
     <ul className="a-evaluation-all-cards">
       {cards.map((cardEntry, index) => {
         const letter = LETTERS[index];
-        const cardEntryId = getEntryId(["card", cardEntry.id, letter]);
+        const cardEntryId = getEntryId(['card', cardEntry.id, letter]);
         const isActive = activeItem === cardEntryId;
         const isUsed = Object.values(votes).includes(cardEntryId);
 
@@ -41,7 +41,7 @@ export function EvaluationAllCards({
             className={clsx(
               liButtonBaseClass,
               isActive && `${liButtonBaseClass}--active`,
-              isUsed && levelType !== "pairs" && `${liButtonBaseClass}--used`,
+              isUsed && levelType !== 'pairs' && `${liButtonBaseClass}--used`,
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >

@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
  * @deprecated
  * @returns
  */
-export function RecentlyCreatedGames(): JSX.Element {
+export function RecentlyCreatedGames() {
   const navigate = useNavigate();
   const [latestGameIds] = useGlobalLocalStorage('latestGameIds');
 

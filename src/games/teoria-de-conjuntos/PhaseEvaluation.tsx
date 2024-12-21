@@ -11,7 +11,7 @@ import { PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitEvaluationAPIRequest } from './utils/api-requests';
-import { Guess } from './utils/types';
+import type { Guess } from './utils/types';
 import { StepEvaluate } from './StepEvaluate';
 // Icons
 

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useIdle } from "react-use";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useIdle } from 'react-use';
 // Ant Design Resources
-import { App } from "antd";
+import { App } from 'antd';
 // Internal
-import { useLanguage } from "./useLanguage";
+import { useLanguage } from './useLanguage';
 
 export function useIdleRedirect() {
   const { notification } = App.useApp();
@@ -18,12 +18,12 @@ export function useIdleRedirect() {
     if (isIdle) {
       notification.warning({
         message: translate(
-          "Página parada por um longo tempo, redirecionando...",
-          "The page has been idle for too long, redirecting...",
+          'Página parada por um longo tempo, redirecionando...',
+          'The page has been idle for too long, redirecting...',
         ),
         duration: 5,
-        onClose: () => navigate("/"),
-        placement: "top",
+        onClose: () => navigate('/'),
+        placement: 'top',
       });
     }
   }, [isIdle, navigate, translate, notification]);

@@ -1,5 +1,5 @@
 // Types
-import { SuspectCard } from 'types/tdr';
+import type { SuspectCard } from 'types/tdr';
 
 export type SubmitPromptPayload = {
   questionId: CardId;

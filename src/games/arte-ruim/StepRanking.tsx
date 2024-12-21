@@ -30,8 +30,9 @@ export function StepRanking({ players, ranking, isGameOver, round, onGoBack, thr
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Votos corretos" en="Correct guesses" />,
+        <Translate key="1" pt="Votos corretos" en="Correct guesses" />,
         <Translate
+          key="2"
           pt="Votos corretos em seu desenho por outros jogadores"
           en="Correct guesses on your drawing by other players"
         />,

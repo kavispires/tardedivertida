@@ -2,12 +2,12 @@
 import { Slider } from 'antd';
 import type { SliderSingleProps } from 'antd';
 // Types
-import { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 // Internal
-import { CurrentCategory } from '../utils/types';
+import type { CurrentCategory } from '../utils/types';
 
 type NeedleChoiceProps = {
   user: GamePlayer;
