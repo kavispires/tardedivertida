@@ -71,31 +71,49 @@ export function DevResetLocalStorageButton({
     navigate("/diario");
   };
 
+  const onLog = () => {
+    if (localStorageKey) {
+      const value = JSON.parse(
+        localStorage.getItem(composeLocalTodayKey(localStorageKey)) ?? "{}",
+      );
+      if (isDevEnv) {
+        console.log(value);
+      } else {
+        alert(JSON.stringify(value, null, 2));
+      }
+    }
+  };
+
   return (
     <Flex justify="center" gap={12}>
-      <Popconfirm
-        title={
-          <Translate
-            pt="Tem certeza que quer resetar o jogo?"
-            en="Are you sure you want to reset the game?"
-          />
-        }
-        onConfirm={onReset}
-      >
-        <Button size="large" type="dashed" icon={<BugOutlined />}>
-          <Translate pt="Resetar LS" en="Reset LS" />
-        </Button>
-      </Popconfirm>
-      {isDevEnv && (
-        <Button
-          size="large"
-          type="dashed"
-          onClick={onDayBefore}
-          icon={<BugOutlined />}
+      <Button.Group>
+        <Popconfirm
+          title={
+            <Translate
+              pt="Tem certeza que quer resetar o jogo?"
+              en="Are you sure you want to reset the game?"
+            />
+          }
+          onConfirm={onReset}
         >
-          Yesterday LS
+          <Button size="large" type="dashed" icon={<BugOutlined />}>
+            <Translate pt="Resetar LS" en="Reset LS" />
+          </Button>
+        </Popconfirm>
+        {isDevEnv && (
+          <Button
+            size="large"
+            type="dashed"
+            onClick={onDayBefore}
+            icon={<BugOutlined />}
+          >
+            Yesterday LS
+          </Button>
+        )}
+        <Button size="large" type="dashed" onClick={onLog}>
+          Log
         </Button>
-      )}
+      </Button.Group>
     </Flex>
   );
 }
