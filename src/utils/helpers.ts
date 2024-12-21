@@ -209,7 +209,7 @@ export const pluralize = (quantity: number, singular: string, plural?: string): 
  * @param {any[]} list
  * @returns
  */
-export const shuffle = (list: any[]): any[] => {
+export const shuffle = <T>(list: T[]): T[] => {
   const result = [...list];
   result.sort(() => Math.random() - 0.5);
   return result;

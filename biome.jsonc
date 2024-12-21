@@ -29,23 +29,23 @@
       "a11y": {
         "noSvgWithoutTitle": "off",
         "useKeyWithClickEvents": "off",
-        "useSemanticElements": "off",
-        "noNoninteractiveElementToInteractiveRole": "off",
-        "useFocusableInteractive": "off"
+        "useSemanticElements": "warn",
+        "noNoninteractiveElementToInteractiveRole": "warn",
+        "useFocusableInteractive": "warn"
       },
       "complexity": {
         "noForEach": "off"
       },
       "security": {
-        "noDangerouslySetInnerHtml": "off"
+        "noDangerouslySetInnerHtml": "warn"
       },
       "style": {
         "useSelfClosingElements": "off",
-        "noParameterAssign": "off"
+        "noParameterAssign": "warn"
       },
       "suspicious": {
-        "noExplicitAny": "off",
-        "noArrayIndexKey": "off"
+        "noExplicitAny": "warn",
+        "noArrayIndexKey": "warn"
       }
     }
   },
