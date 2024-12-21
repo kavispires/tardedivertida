@@ -6,9 +6,9 @@ import { useLanguage } from "hooks/useLanguage";
 // Services
 import { DAILY_API, DAILY_API_ACTIONS } from "services/adapters";
 // Internal
-import { DrawingToSave } from "../games/Picaco/utils/types";
+import type { DrawingToSave } from "../games/Picaco/utils/types";
 
-export function useDailySaveDrawings(onSuccess: Function) {
+export function useDailySaveDrawings(onSuccess: GenericFunction) {
   const { translate } = useLanguage();
   const { notification } = App.useApp();
 

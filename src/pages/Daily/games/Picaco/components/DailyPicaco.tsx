@@ -1,31 +1,31 @@
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { useMemo } from 'react';
-import { useMeasure } from 'react-use';
+import { NextGameSuggestion } from "pages/Daily/components/NextGameSuggestion";
+import { useMemo, useState } from "react";
+import { useMeasure } from "react-use";
 // Ant Design Resources
-import { Button, Divider, Layout, Space } from 'antd';
+import { Button, Divider, Layout, Space } from "antd";
 // Types
-import { Me } from 'types/user';
+import type { Me } from "types/user";
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from "utils/helpers";
 // Icons
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+import { AnimatedProcessingIcon } from "icons/AnimatedProcessingIcon";
+import { DailyDrawingGameIcon } from "icons/DailyDrawingGameIcon";
+import { ThumbsUpIcon } from "icons/ThumbsUpIcon";
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Card } from 'components/cards';
-import { DualTranslate, Translate } from 'components/language';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Instruction } from 'components/text';
+import { IconAvatar } from "components/avatars";
+import { Card } from "components/cards";
+import { DualTranslate, Translate } from "components/language";
+import { TimeHighlight } from "components/metrics/TimeHighlight";
+import { Instruction } from "components/text";
 // Internal
-import { getInitialState } from '../utils/helpers';
-import { SETTINGS } from '../utils/settings';
-import { DailyPicacoEntry } from '../utils/types';
-import { usePicacoEngine } from '../utils/usePicacoEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
-import { Canvas } from './Canvas';
-import { Rules } from './Rules';
+import { getInitialState } from "../utils/helpers";
+import { SETTINGS } from "../utils/settings";
+import type { DailyPicacoEntry } from "../utils/types";
+import { usePicacoEngine } from "../utils/usePicacoEngine";
+import { Header } from "../../../components/Header";
+import { Menu } from "../../../components/Menu";
+import { Canvas } from "./Canvas";
+import { Rules } from "./Rules";
 
 type DailyPicacoProps = {
   data: DailyPicacoEntry;
@@ -33,9 +33,17 @@ type DailyPicacoProps = {
 };
 
 export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
-  const { cardNumber, card, onNextCard, isPlaying, isIdle, isSaving, alreadyPlayed, onStart } =
-    usePicacoEngine(data, currentUser, initialState);
+  const [initialState] = useState(getInitialState(data));
+  const {
+    cardNumber,
+    card,
+    onNextCard,
+    isPlaying,
+    isIdle,
+    isSaving,
+    alreadyPlayed,
+    onStart,
+  } = usePicacoEngine(data, currentUser, initialState);
 
   // UI state
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
@@ -57,8 +65,14 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
           {alreadyPlayed && (
             <Instruction className="info-screen">
               <IconAvatar icon={<ThumbsUpIcon />} />
-              <Translate pt="Você já jogou hoje!" en="You've already played today!" />
-              <Translate pt="Volte amanhã para jogar novamente!" en="Come back tomorrow to play again!" />
+              <Translate
+                pt="Você já jogou hoje!"
+                en="You've already played today!"
+              />
+              <Translate
+                pt="Volte amanhã para jogar novamente!"
+                en="Come back tomorrow to play again!"
+              />
               <Divider />
               <NextGameSuggestion />
             </Instruction>
@@ -67,15 +81,15 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
           {!alreadyPlayed && !isSaving && (
             <Space className="space-container">
               <Card
-                key={isPlaying ? card.id : 'none'}
-                header={isPlaying ? `#${cardNumber}` : '?'}
+                key={isPlaying ? card.id : "none"}
+                header={isPlaying ? `#${cardNumber}` : "?"}
                 color="gold"
-                className={!isPlaying ? 'invisible' : getAnimationClass('tada')}
+                className={!isPlaying ? "invisible" : getAnimationClass("tada")}
               >
                 {!isPlaying ? (
                   <>
-                    Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut
-                    labore et dolore.
+                    Lorem ipsum dolor sit amet, consectetur adipisci elit, sed
+                    eiusmod tempor incidunt ut labore et dolore.
                   </>
                 ) : (
                   card.text
@@ -105,8 +119,12 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
                 <Translate
                   pt={
                     <>
-                      Você tem <TimeHighlight>{SETTINGS.DURATION / SETTINGS.DRAWINGS}</TimeHighlight> segundos
-                      para fazer cada um dos {SETTINGS.DRAWINGS} desenhos.
+                      Você tem{" "}
+                      <TimeHighlight>
+                        {SETTINGS.DURATION / SETTINGS.DRAWINGS}
+                      </TimeHighlight>{" "}
+                      segundos para fazer cada um dos {SETTINGS.DRAWINGS}{" "}
+                      desenhos.
                       <br />
                       Você <strong>NÃO</strong> pode usar letras ou números.
                       <br />O tempo começa assim que você aperta "Começar".
@@ -114,8 +132,11 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
                   }
                   en={
                     <>
-                      You have <TimeHighlight>{SETTINGS.DURATION / SETTINGS.DRAWINGS}</TimeHighlight> seconds
-                      to draw each of the {SETTINGS.DRAWINGS} drawings.
+                      You have{" "}
+                      <TimeHighlight>
+                        {SETTINGS.DURATION / SETTINGS.DRAWINGS}
+                      </TimeHighlight>{" "}
+                      seconds to draw each of the {SETTINGS.DRAWINGS} drawings.
                       <br />
                       You <strong>CANNOT</strong> use letters or numbers.
                       <br />
@@ -124,8 +145,17 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
                   }
                 />
               </Instruction>
-              <Button type="primary" size="large" onClick={onStart} disabled={alreadyPlayed}>
-                {isSaving ? <Translate pt="Salvando" en="Saving" /> : <Translate pt="Começar" en="Start" />}
+              <Button
+                type="primary"
+                size="large"
+                onClick={onStart}
+                disabled={alreadyPlayed}
+              >
+                {isSaving ? (
+                  <Translate pt="Salvando" en="Saving" />
+                ) : (
+                  <Translate pt="Começar" en="Start" />
+                )}
               </Button>
             </Space>
           </Space>

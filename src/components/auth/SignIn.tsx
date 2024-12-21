@@ -1,30 +1,14 @@
-import { useMutation } from "@tanstack/react-query";
-import { UserCredential } from "firebase/auth";
-import { useState } from "react";
-// Ant Design Resources
-import {
-  Button,
-  Form,
-  Input,
-  Alert,
-  Image,
-  App,
-  Switch,
-  Space,
-  ButtonProps,
-} from "antd";
-// Hooks
-import { useLanguage } from "hooks/useLanguage";
-// Services
-import { resetPassword, signIn, signInWithGoogle } from "services/firebase";
-// Icons
-import { GoogleIcon } from "icons/GoogleIcon";
-// Components
-import { IconAvatar } from "components/avatars";
-import { Translate } from "components/language";
-import { Title } from "components/text";
-// Images
-import logo from "assets/images/tarde-divertida-logo.svg";
+import { useMutation } from '@tanstack/react-query';
+import type { UserCredential } from 'firebase/auth';
+import { useState } from 'react';
+import { Button, Form, Input, Alert, Image, App, Switch, Space, type ButtonProps } from 'antd';
+import { useLanguage } from 'hooks/useLanguage';
+import { resetPassword, signIn, signInWithGoogle } from 'services/firebase';
+import { GoogleIcon } from 'icons/GoogleIcon';
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { Title } from 'components/text';
+import logo from 'assets/images/tarde-divertida-logo.svg';
 // API
 // Image
 
@@ -33,7 +17,7 @@ type SignInProps = {
 };
 
 export function SignIn({ onSuccess }: SignInProps) {
-  const [view, setView] = useState("google");
+  const [view, setView] = useState('google');
 
   return (
     <div className="sign-in">
@@ -43,15 +27,13 @@ export function SignIn({ onSuccess }: SignInProps) {
 
       <Space className="space-container">
         <Switch
-          checkedChildren={
-            <Translate pt="E-mail e senha" en="Email and Password" />
-          }
+          checkedChildren={<Translate pt="E-mail e senha" en="Email and Password" />}
           unCheckedChildren="Google"
-          onChange={(checked) => setView(checked ? "email" : "google")}
+          onChange={(checked) => setView(checked ? 'email' : 'google')}
         />
       </Space>
 
-      {view === "google" ? (
+      {view === 'google' ? (
         <SignInWithGoogle onSuccess={onSuccess} />
       ) : (
         <SignInWithEmail onSuccess={onSuccess} />
@@ -60,16 +42,8 @@ export function SignIn({ onSuccess }: SignInProps) {
   );
 }
 
-export function SignInWithGoogle({
-  onSuccess,
-  ...buttonProps
-}: SignInProps & ButtonProps) {
-  const { isPending, mutate, isError } = useMutation<
-    UserCredential,
-    Error,
-    void,
-    unknown
-  >({
+export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & ButtonProps) {
+  const { isPending, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
     mutationFn: async () => await signInWithGoogle(),
     onSuccess,
   });
@@ -83,16 +57,13 @@ export function SignInWithGoogle({
       className="space-container"
       direction="vertical"
       align="center"
-      classNames={{ item: "full-width" }}
+      classNames={{ item: 'full-width' }}
     >
       <>
         {isError && (
           <Alert
             description={
-              <Translate
-                pt="Algo deu errado, tente novamente"
-                en="Something went wrong. Please try again"
-              />
+              <Translate pt="Algo deu errado, tente novamente" en="Something went wrong. Please try again" />
             }
             type="error"
             showIcon
@@ -120,17 +91,8 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
   const { translate } = useLanguage();
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const { isPending, mutate, isError } = useMutation<
-    UserCredential,
-    Error,
-    void,
-    unknown
-  >({
-    mutationFn: async () =>
-      await signIn(
-        form.getFieldValue("username"),
-        form.getFieldValue("password"),
-      ),
+  const { isPending, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
+    mutationFn: async () => await signIn(form.getFieldValue('username'), form.getFieldValue('password')),
     onSuccess,
   });
 
@@ -156,10 +118,7 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
           rules={[
             {
               required: true,
-              message: translate(
-                "e-mail é um campo obrigatório",
-                "e-mail is required",
-              ),
+              message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
             },
           ]}
         >
@@ -172,13 +131,10 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
           rules={[
             {
               required: true,
-              message: translate(
-                "e-mail é um campo obrigatório",
-                "e-mail is required",
-              ),
+              message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
             },
           ]}
-          help={translate("Mínimo 6 caracteres", "Minimum of 6 characters")}
+          help={translate('Mínimo 6 caracteres', 'Minimum of 6 characters')}
         >
           <Input.Password />
         </Form.Item>
@@ -214,7 +170,7 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
           type="info"
           message={
             <ResetPasswordForm
-              email={form.getFieldValue("username")}
+              email={form.getFieldValue('username')}
               onSuccess={() => setShowForgotPassword(false)}
             />
           }
@@ -235,13 +191,13 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
   const { translate } = useLanguage();
 
   const { isPending, mutate, isError } = useMutation({
-    mutationFn: async () => await resetPassword(form.getFieldValue("username")),
+    mutationFn: async () => await resetPassword(form.getFieldValue('username')),
     onSuccess: () => {
       onSuccess();
       message.success(
         translate(
-          "Verifique seu e-mail enviado para redefinir a sua senha",
-          "Verify your email to reset your password",
+          'Verifique seu e-mail enviado para redefinir a sua senha',
+          'Verify your email to reset your password',
         ),
       );
     },
@@ -273,10 +229,7 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
         rules={[
           {
             required: true,
-            message: translate(
-              "e-mail é um campo obrigatório",
-              "e-mail is required",
-            ),
+            message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
           },
         ]}
       >

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { createGlobalState } from 'react-hooks-global-state';
+import { useEffect, useState } from "react";
+import { createGlobalState } from "react-hooks-global-state";
 
 type InitialState = {
   errors: StringDictionary;
@@ -24,8 +24,9 @@ type UseError = {
  */
 export function useError(): UseError {
   const [isError, setIsError] = useState(false);
-  const [errors, setErrors] = useLoadersState('errors');
+  const [errors, setErrors] = useLoadersState("errors");
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setIsError(Object.values(errors).some((v) => v));
   }, [errors, setIsError]);

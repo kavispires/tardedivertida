@@ -1,12 +1,12 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Ant Design Resources
-import { CheckCircleFilled, PlusCircleFilled } from "@ant-design/icons";
+import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayer } from "types/player";
+import type { GamePlayer } from 'types/player';
 // Utils
-import { getColorFromIndex } from "utils/helpers";
+import { getColorFromIndex } from 'utils/helpers';
 // Components
-import { Avatar } from "components/avatars";
+import { Avatar } from 'components/avatars';
 
 type ClueCardProps = {
   isMatched?: boolean;
@@ -31,37 +31,27 @@ export function ClueCard({
   return (
     <div
       className={clsx(
-        "x-clue-card",
-        isSelected && "x-clue-card--selected",
-        !Boolean(color) && `color-border--${colorClass}`,
+        'x-clue-card',
+        isSelected && 'x-clue-card--selected',
+        !color && `color-border--${colorClass}`,
       )}
       style={{ borderColor: color }}
     >
       <span
-        className={clsx(
-          "x-clue-card__icon",
-          !Boolean(color) && `color-background--${colorClass}`,
-        )}
+        className={clsx('x-clue-card__icon', !color && `color-background--${colorClass}`)}
         style={{ backgroundColor: color }}
       >
         {isMatched ? (
-          Boolean(player) ? (
+          player ? (
             <Avatar id={player?.avatarId} />
           ) : (
             <CheckCircleFilled />
           )
         ) : (
-          <PlusCircleFilled
-            style={isSelected ? { color: "gold" } : { color: "white" }}
-          />
+          <PlusCircleFilled style={isSelected ? { color: 'gold' } : { color: 'white' }} />
         )}
       </span>
-      <span
-        className={clsx(
-          "x-clue-card__clue",
-          isMatched && strikeMatches && "x-clue-card__clue--matched",
-        )}
-      >
+      <span className={clsx('x-clue-card__clue', isMatched && strikeMatches && 'x-clue-card__clue--matched')}>
         {clue}
       </span>
     </div>

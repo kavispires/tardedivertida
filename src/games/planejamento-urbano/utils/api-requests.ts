@@ -1,25 +1,22 @@
 // Hooks
-import { useGameActionRequest } from "hooks/useGameActionRequest";
-import { useLanguage } from "hooks/useLanguage";
-import type { UseStep } from "hooks/useStep";
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
 // Internal
-import type { SubmitPlacingPayload, SubmitPlanningPayload } from "./types";
-import { PLANEJAMENTO_URBANO_ACTIONS } from "./constants";
+import type { SubmitPlacingPayload, SubmitPlanningPayload } from './types';
+import { PLANEJAMENTO_URBANO_ACTIONS } from './constants';
 
-export function useOnSubmitPlanningAPIRequest(setStep: UseStep["setStep"]) {
+export function useOnSubmitPlanningAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: "submit-planning",
+    actionName: 'submit-planning',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate(
-      "Planejamento submetido com sucesso",
-      "Planning submitted successfully",
-    ),
+    successMessage: translate('Planejamento submetido com sucesso', 'Planning submitted successfully'),
     errorMessage: translate(
-      "Vixi, o aplicativo encontrou um erro ao tentar enviar seu planejamento",
-      "Oops, the application found an error while trying to submit your planning",
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu planejamento',
+      'Oops, the application found an error while trying to submit your planning',
     ),
   });
 
@@ -31,20 +28,17 @@ export function useOnSubmitPlanningAPIRequest(setStep: UseStep["setStep"]) {
   };
 }
 
-export function useOnSubmitPlacingAPIRequest(setStep: UseStep["setStep"]) {
+export function useOnSubmitPlacingAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: "submit-placing",
+    actionName: 'submit-placing',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate(
-      "Construção submetida com sucesso",
-      "Construction submitted successfully",
-    ),
+    successMessage: translate('Construção submetida com sucesso', 'Construction submitted successfully'),
     errorMessage: translate(
-      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção",
-      "Oops, the application found an error while trying to submit your construction",
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção',
+      'Oops, the application found an error while trying to submit your construction',
     ),
   });
 
@@ -60,14 +54,11 @@ export function useOnUpdatePlacementAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: "update-placing",
-    successMessage: translate(
-      "Construção atualizada com sucesso",
-      "Construction updated successfully",
-    ),
+    actionName: 'update-placing',
+    successMessage: translate('Construção atualizada com sucesso', 'Construction updated successfully'),
     errorMessage: translate(
-      "Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção",
-      "Oops, the application found an error while trying to submit your construction",
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção',
+      'Oops, the application found an error while trying to submit your construction',
     ),
   });
 

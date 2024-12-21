@@ -1,19 +1,19 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { PlusCircleFilled, RocketFilled } from "@ant-design/icons";
-import { Button, Space } from "antd";
+import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
-import type { GamePlayers } from "types/player";
+import type { GamePlayers } from 'types/player';
 // Hooks
-import { useDevFeatures } from "hooks/useDevFeatures";
-import { useLoading } from "hooks/useLoading";
+import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useLoading } from 'hooks/useLoading';
 // Components
-import { Avatar } from "components/avatars";
-import { TimedButton } from "components/buttons";
-import { HostOnlyContainer } from "components/host";
-import { Translate } from "components/language";
+import { Avatar } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { HostOnlyContainer } from 'components/host';
+import { Translate } from 'components/language';
 // Internal
-import type { AllowedList, Answer, AnswerGroupObject } from "../utils/types";
+import type { AllowedList, Answer, AnswerGroupObject } from '../utils/types';
 
 type AdminAnswerControlProps = {
   allAnswers: Answer[];
@@ -47,9 +47,7 @@ export function AdminAnswerControl({
         const included = answerGroup.entries.map((a: Answer) => a.id);
         const playerIds = answerGroup.entries.map((a: Answer) => a.playerId);
 
-        return (
-          !included.includes(answer.id) && !playerIds.includes(answer.playerId)
-        );
+        return !included.includes(answer.id) && !playerIds.includes(answer.playerId);
       }),
     [allAnswers, answerGroup],
   );
@@ -79,10 +77,7 @@ export function AdminAnswerControl({
         icon={<RocketFilled />}
         onExpire={() => setDisableButton(false)}
       >
-        <Translate
-          pt="Confirmar e ir para próxima resposta"
-          en="Confirm and go to next answer"
-        />
+        <Translate pt="Confirmar e ir para próxima resposta" en="Confirm and go to next answer" />
       </TimedButton>
 
       {filteredAnswers.length > 0 && (

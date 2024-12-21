@@ -260,20 +260,22 @@ export const getAvatarColorById = (avatarId: string) =>
 
 function hexToRgb(hex: string): [number, number, number] {
   // Remove the hash at the start if it's there
-  hex = hex.replace(/^#/, "");
+  const sanitizedHex = hex.replace(/^#/, "");
 
   // Parse the r, g, b values
-  let r = parseInt(hex.substring(0, 2), 16);
-  let g = parseInt(hex.substring(2, 4), 16);
-  let b = parseInt(hex.substring(4, 6), 16);
+  const r = Number.parseInt(sanitizedHex.substring(0, 2), 16);
+  const g = Number.parseInt(sanitizedHex.substring(2, 4), 16);
+  const b = Number.parseInt(sanitizedHex.substring(4, 6), 16);
 
   return [r, g, b];
 }
 
 function luminance(r: number, g: number, b: number): number {
   const a = [r, g, b].map((v) => {
-    v /= 255;
-    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    const normalizedV = v / 255;
+    return normalizedV <= 0.03928
+      ? normalizedV / 12.92
+      : ((normalizedV + 0.055) / 1.055) ** 2.4;
   });
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
@@ -424,7 +426,7 @@ export const getAnimationClass = (
   }
 
   if (options?.infinite) {
-    result.push(`animate__infinite`);
+    result.push("animate__infinite");
   } else if (options?.repeat) {
     result.push(`animate__repeat-${options?.repeat}`);
   }
@@ -579,9 +581,10 @@ export const formatTime = (seconds: number): string => {
 
 /**
  * Remove accents from a string keeping original letters
- * @param str
- * @returns
+ * @param str - The string to remove accents from.
+ * @returns The string without accents.
  */
 export function stringRemoveAccents(str: string): string {
+  // biome-ignore lint/suspicious/noMisleadingCharacterClass: IDK why this is being flagged
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }

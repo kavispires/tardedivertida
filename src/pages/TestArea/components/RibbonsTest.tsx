@@ -12,7 +12,7 @@ import { RibbonGroup } from 'components/ribbons';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
+import type { TestStepProps } from '../TestArea';
 
 const imageId = `cnt-${random(1, 100)}`;
 

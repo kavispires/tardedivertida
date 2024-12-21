@@ -22,8 +22,8 @@ export function StepRanking({ players, ranking, onGoBack, round }: StepRankingPr
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Rotas corretos" en="Correct paths" />,
-        <Translate pt="Pontos por sua rota" en="Points for your route" />,
+        <Translate key="1" pt="Rotas corretos" en="Correct paths" />,
+        <Translate key="2" pt="Pontos por sua rota" en="Points for your route" />,
       ]}
     >
       <RuleInstruction type="event">

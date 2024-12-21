@@ -1,5 +1,5 @@
 // Types
-import { CrimesHediondosCard } from 'types/tdr';
+import type { CrimesHediondosCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components

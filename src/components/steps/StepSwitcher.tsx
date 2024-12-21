@@ -1,20 +1,23 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from "react";
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from "types/player";
 // Utils
-import { print } from 'utils/helpers';
+import { print } from "utils/helpers";
 // Components
-import { Translate } from 'components/language';
-import { Loading } from 'components/loaders';
-import { WaitingRoom } from 'components/players';
+import { Translate } from "components/language";
+import { Loading } from "components/loaders";
+import { WaitingRoom } from "components/players";
 
 const getWaitingRoomInstruction = (kind: string) => {
   switch (kind) {
-    case 'SERVER':
+    case "SERVER":
       return (
-        <Translate pt="Aguardando o servidor dar sinal de vida" en="Waiting for the server to resuscitate" />
+        <Translate
+          pt="Aguardando o servidor dar sinal de vida"
+          en="Waiting for the server to resuscitate"
+        />
       );
-    case 'PLAYERS':
+    case "PLAYERS":
       return (
         <Translate
           pt="Vamos aguardar enquanto os outros jogadores terminam!"
@@ -23,7 +26,12 @@ const getWaitingRoomInstruction = (kind: string) => {
       );
 
     default:
-      return <Translate pt="Aguardando algo acontecer..." en="Waiting for something..." />;
+      return (
+        <Translate
+          pt="Aguardando algo acontecer..."
+          en="Waiting for something..."
+        />
+      );
   }
 };
 
@@ -31,7 +39,7 @@ type StepSwitcherProps = {
   /**
    * The content of the component
    */
-  children: JSX.Element[] | JSX.Element;
+  children: ReactNode[] | ReactNode;
   /**
    * The current step
    */
@@ -51,7 +59,7 @@ type StepSwitcherProps = {
     /**
      * The type of waiting room (for players or server)
      */
-    type?: 'SERVER' | 'PLAYERS';
+    type?: "SERVER" | "PLAYERS";
     /**
      * The instruction to replace the default one
      */
@@ -63,8 +71,18 @@ type StepSwitcherProps = {
   };
 };
 
-export function StepSwitcher({ children, step, conditions, players, waitingRoom = {} }: StepSwitcherProps) {
-  if (!players) print('SetSwitcher is being used without `players`, please add it.', 'warn');
+export function StepSwitcher({
+  children,
+  step,
+  conditions,
+  players,
+  waitingRoom = {},
+}: StepSwitcherProps) {
+  if (!players)
+    print(
+      "SetSwitcher is being used without `players`, please add it.",
+      "warn",
+    );
 
   const content = Array.isArray(children) ? children : [children];
 
@@ -73,7 +91,10 @@ export function StepSwitcher({ children, step, conditions, players, waitingRoom 
       <WaitingRoom
         players={players}
         title={<Translate pt="Pronto!" en="Done!" />}
-        instruction={waitingRoom.instruction ?? getWaitingRoomInstruction(waitingRoom.type ?? 'PLAYERS')}
+        instruction={
+          waitingRoom.instruction ??
+          getWaitingRoomInstruction(waitingRoom.type ?? "PLAYERS")
+        }
       >
         {waitingRoom.content}
       </WaitingRoom>
@@ -85,7 +106,7 @@ export function StepSwitcher({ children, step, conditions, players, waitingRoom 
   }
 
   if (conditions?.[step] ?? true) {
-    return content[step];
+    return <>{content[step]}</>;
   }
 
   return <div></div>;

@@ -49,7 +49,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                     </li>
                   );
                 }
-                return <></>;
+                return null;
               })}
             </ul>
           </li>

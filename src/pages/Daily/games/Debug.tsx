@@ -34,7 +34,7 @@ export function DebugPage() {
       <Space direction="vertical" className="margin">
         <pre>Today: {getToday()}</pre>
         {PRIORITY_LIST.map((game) => (
-          <Content localKey={game.KEY} />
+          <Content key={game.KEY} localKey={game.KEY} />
         ))}
       </Space>
     </DailyChrome>

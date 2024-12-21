@@ -1,7 +1,5 @@
-import { ReactNode } from 'react';
-// Hooks
+import type { ReactNode } from 'react';
 import { useGlobalState } from 'hooks/useGlobalState';
-// Internal
 import { AdminButton, AdminOnlyContainer } from './index';
 
 type AdminOnlyButtonProps = {

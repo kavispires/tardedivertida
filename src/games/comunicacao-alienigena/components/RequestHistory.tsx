@@ -2,7 +2,7 @@ import type { ColumnsType } from 'antd/es/table';
 // Ant Design Resources
 import { Space, Table } from 'antd';
 // Types
-import { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Components
 import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -49,7 +49,7 @@ export function RequestHistory({
       key: 'intention',
       title: <Translate pt="Intenção" en="Intention" />,
       dataIndex: 'intention',
-      render: (intention) => (Boolean(intention) ? <ItemCard id={`${intention}`} width={50} /> : <></>),
+      render: (intention) => (intention ? <ItemCard id={`${intention}`} width={50} /> : <></>),
     });
   }
 

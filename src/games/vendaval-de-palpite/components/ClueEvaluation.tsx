@@ -11,7 +11,7 @@ import type { Clues, BoardEntry } from "../utils/types";
 type ClueEvaluationProps = {
   clues: Clues;
   latestBoardEntry: BoardEntry;
-  onSubmitEvaluation: Function;
+  onSubmitEvaluation: GenericFunction;
 };
 
 export function ClueEvaluation({
@@ -53,7 +53,7 @@ export function ClueEvaluation({
       <ul className="v-boss-evaluation">
         {Object.keys(evaluation).map((clueId) => {
           return (
-            <li className="v-boss-evaluation__item">
+            <li key={clueId} className="v-boss-evaluation__item">
               <Switch
                 checkedChildren={
                   <>

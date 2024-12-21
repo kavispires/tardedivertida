@@ -1,5 +1,5 @@
 // Internal
-import { ImageCard, ImageCardProps } from './ImageCard';
+import { ImageCard, type ImageCardProps } from './ImageCard';
 
 type ImageCardBackProps = Omit<ImageCardProps, 'id'> & { id?: ImageCardId };
 

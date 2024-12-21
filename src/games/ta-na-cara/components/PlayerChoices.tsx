@@ -55,6 +55,7 @@ export function PlayerChoices({
         {(user.questions ?? []).map((questionId: CardId, index: number) => {
           return (
             <TransparentButton
+              key={questionId}
               onClick={() => onSubmitPrompt({ questionId })}
               disabled={isLoading || user.ready}
               className="questions-container-grid__button"
@@ -86,6 +87,7 @@ export function PlayerChoices({
           .map((player) => {
             return (
               <TransparentButton
+                key={player.id}
                 onClick={() => onSubmitTarget({ targetId: player.id })}
                 disabled={isLoading || user.ready}
               >

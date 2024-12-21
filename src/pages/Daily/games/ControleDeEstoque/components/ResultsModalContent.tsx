@@ -1,18 +1,18 @@
-import { NextGameSuggestion } from "pages/Daily/components/NextGameSuggestion";
-import { getSourceName, writeHeartResultString } from "pages/Daily/utils";
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 // Ant Design Resources
-import { Space, Typography } from "antd";
+import { Space, Typography } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Icons
-import { BoxXIcon } from "icons/BoxXIcon";
-import { TrophyIcon } from "icons/TrophyIcon";
+import { BoxXIcon } from 'icons/BoxXIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from "components/avatars";
-import { Translate } from "components/language";
+import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
 // Internal
-import { SETTINGS } from "../utils/settings";
-import { CopyToClipboardResult } from "../../../components/CopyToClipboardResult";
+import { SETTINGS } from '../utils/settings';
+import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
   challenge: number;
@@ -44,13 +44,11 @@ export function ResultsModalContent({
       <Typography.Title level={2} className="center">
         {isWin ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} />{" "}
-            <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} />{" "}
-            <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
           </>
         )}
       </Typography.Title>
@@ -61,10 +59,7 @@ export function ResultsModalContent({
 
       <Typography.Paragraph className="center">
         {isWin ? (
-          <Translate
-            pt="Você entregou todos os pedidos!"
-            en="You delivered all orders!"
-          />
+          <Translate pt="Você entregou todos os pedidos!" en="You delivered all orders!" />
         ) : (
           <Translate
             pt="Você não conseguiu entregar todos os pedidos."
@@ -95,17 +90,17 @@ function writeResult({
 }) {
   const cleanUpAttempts = evaluations.map((row) =>
     row.map((value) => {
-      return value ? "📫" : "🤬";
+      return value ? '📫' : '🤬';
     }),
   );
 
   return [
     `${SETTINGS.ICON} TD ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, " ")}`,
+    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')}`,
     cleanUpAttempts
-      .map((row) => row.join(" ").trim())
+      .map((row) => row.join(' ').trim())
       .filter(Boolean)
-      .join("\n"),
+      .join('\n'),
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join("\n");
+  ].join('\n');
 }

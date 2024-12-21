@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Progress, ProgressProps } from 'antd';
+import { Progress, type ProgressProps } from 'antd';
 
 interface TimerBarProps extends ProgressProps {
   steps?: number;

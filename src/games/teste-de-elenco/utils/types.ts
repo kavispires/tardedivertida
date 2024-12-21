@@ -1,5 +1,5 @@
 // Types
-import { Item, SuspectCard } from 'types/tdr';
+import type { Item, SuspectCard } from 'types/tdr';
 
 export type SubmitMovieGenrePayload = {
   genre: string;

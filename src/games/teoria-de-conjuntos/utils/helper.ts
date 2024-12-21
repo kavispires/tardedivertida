@@ -1,7 +1,7 @@
 // Types
-import { GamePlayer } from 'types/player';
+import type { GamePlayer } from "types/player";
 // Utils
-import { stringRemoveAccents } from 'utils/helpers';
+import { stringRemoveAccents } from "utils/helpers";
 
 export function countWordProperties(word: string): {
   letters: number;
@@ -15,27 +15,26 @@ export function countWordProperties(word: string): {
   numberOfWords: number;
   hasAccents: boolean;
 } {
-  const vowels = 'aeiou';
-  const consonants = 'bcdfghjklmnpqrstvwxyz';
+  const vowels = "aeiou";
+  const consonants = "bcdfghjklmnpqrstvwxyz";
   const accents = /[áéíóúãẽĩõũâêîôûàèìòùäëïöü]/;
   const cleanupWord = stringRemoveAccents(word.toLowerCase());
 
-  let letters = 0,
-    vowelsCount = 0,
-    consonantsCount = 0,
-    hasRepeatedVowels = false,
-    hasRepeatedConsonants = false,
-    maxConsecutiveVowels = 0,
-    maxConsecutiveConsonants = 0,
-    hasHyphen = word.includes('-'),
-    numberOfWords = word.split(' ').length,
-    hasAccents = accents.test(word);
-
-  let consecutiveVowels = 0,
-    consecutiveConsonants = 0;
+  let letters = 0;
+  let vowelsCount = 0;
+  let consonantsCount = 0;
+  let hasRepeatedVowels = false;
+  let hasRepeatedConsonants = false;
+  let maxConsecutiveVowels = 0;
+  let maxConsecutiveConsonants = 0;
+  let consecutiveVowels = 0;
+  let consecutiveConsonants = 0;
+  const hasHyphen = word.includes("-");
+  const numberOfWords = word.split(" ").length;
+  const hasAccents = accents.test(word);
 
   for (let i = 0; i < cleanupWord.length; i++) {
-    let char = cleanupWord[i];
+    const char = cleanupWord[i];
     if (/[a-zA-Z]/.test(char)) {
       letters++;
       if (vowels.includes(char)) {
@@ -59,7 +58,7 @@ export function countWordProperties(word: string): {
   const vowelsDict: Dictionary<boolean> = {};
   const consonantsDict: Dictionary<boolean> = {};
   for (let i = 0; i < cleanupWord.length; i++) {
-    let char = cleanupWord[i];
+    const char = cleanupWord[i];
     if (/[a-zA-Z]/.test(char)) {
       if (vowels.includes(char)) {
         if (vowelsDict[char]) {
@@ -84,11 +83,13 @@ export function countWordProperties(word: string): {
     hasRepeatedVowels,
     hasRepeatedConsonants,
     consecutiveVowels: maxConsecutiveVowels > 1 ? maxConsecutiveVowels : 0,
-    consecutiveConsonants: maxConsecutiveConsonants > 1 ? maxConsecutiveConsonants : 0,
+    consecutiveConsonants:
+      maxConsecutiveConsonants > 1 ? maxConsecutiveConsonants : 0,
     hasHyphen,
     numberOfWords,
     hasAccents,
   };
 }
 
-export const getPlayerItemsLeft = (player: GamePlayer) => `(${player?.hand?.length ?? 0})`;
+export const getPlayerItemsLeft = (player: GamePlayer) =>
+  `(${player?.hand?.length ?? 0})`;

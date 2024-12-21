@@ -6,7 +6,7 @@ import { Button, Input, Space, App } from 'antd';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
-import { TestStepProps } from '../TestArea';
+import type { TestStepProps } from '../TestArea';
 
 export function CompleteTest({ results }: TestStepProps) {
   const { message } = App.useApp();
@@ -18,7 +18,7 @@ export function CompleteTest({ results }: TestStepProps) {
     }
   }, [state, message]);
 
-  const result = `Tarde Divertida Test:\n${(results ?? []).map((r) => (r ? `✅` : `❌`)).join('')}`;
+  const result = `Tarde Divertida Test:\n${(results ?? []).map((r) => (r ? '✅' : '❌')).join('')}`;
 
   return (
     <Space className="space-container full-width" direction="vertical">

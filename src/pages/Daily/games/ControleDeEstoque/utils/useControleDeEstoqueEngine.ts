@@ -18,7 +18,7 @@ import {
   validateAttempts,
 } from "./helpers";
 import { PHASES, SETTINGS } from "./settings";
-import {
+import type {
   ControleDeEstoqueLocalToday,
   DailyControleDeEstoqueEntry,
   GameState,
@@ -79,11 +79,13 @@ export function useControleDeEstoqueEngine(
   const onFulfill = (shelfIndex: number) => {
     setState((prev) => {
       const copy = deepCopy(prev);
-      copy.fulfillments.push({
-        order: state.activeOrder!,
-        shelfIndex: shelfIndex,
-      });
-      copy.activeOrder = null;
+      if (state.activeOrder) {
+        copy.fulfillments.push({
+          order: state.activeOrder,
+          shelfIndex: shelfIndex,
+        });
+        copy.activeOrder = null;
+      }
       return copy;
     });
   };

@@ -1,10 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-// Ant Design Resources
-import { App, Button, ButtonProps, Popconfirm } from 'antd';
-// Services
+import { App, Button, type ButtonProps, Popconfirm } from 'antd';
 import { signOut } from 'services/firebase';
-// Components
 import { Translate } from 'components/language';
 // Services
 

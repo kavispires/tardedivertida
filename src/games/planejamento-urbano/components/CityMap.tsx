@@ -2,7 +2,7 @@ import { useWindowSize } from 'react-use';
 // Components
 import { GridMap } from 'components/toolKits/GridMap';
 // Internal
-import { City, CityLocationsDict } from '../utils/types';
+import type { City, CityLocationsDict } from '../utils/types';
 import { useLocationWidth } from '../utils/custom-hooks';
 import { MapSlot } from './MapSlot';
 

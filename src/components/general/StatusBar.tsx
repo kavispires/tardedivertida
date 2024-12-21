@@ -1,4 +1,4 @@
-import { Fragment, ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { Divider, Tooltip } from 'antd';
 
 import './StatusBar.scss';

@@ -8,7 +8,7 @@ import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 // Internal
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 import { StockingBoard } from './StockingBoard';
 
 type StockingPhaseProps = {

@@ -1,14 +1,14 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 // Icons
-import { ClockIcon } from "icons/ClockIcon";
-import { PeopleAssessmentIcon } from "icons/PeopleAssessmentIcon";
+import { ClockIcon } from 'icons/ClockIcon';
+import { PeopleAssessmentIcon } from 'icons/PeopleAssessmentIcon';
 // Components
-import { StatusBar } from "components/general/StatusBar";
-import { Translate } from "components/language";
-import { MetricHighlight } from "components/metrics/MetricHighlight";
-import { PointsHighlight } from "components/metrics/PointsHighlight";
+import { StatusBar } from 'components/general/StatusBar';
+import { Translate } from 'components/language';
+import { MetricHighlight } from 'components/metrics/MetricHighlight';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 // Internal
-import { Status } from "../utils/types";
+import type { Status } from '../utils/types';
 
 type SummaryProps = {
   status: Status;
@@ -18,7 +18,7 @@ export function Summary({ status }: SummaryProps) {
   const entries = useMemo(
     () => [
       {
-        key: "time",
+        key: 'time',
         title: <Translate pt="Tempo" en="Time" />,
         value: (
           <MetricHighlight icon={<ClockIcon />} iconPlacement="before">
@@ -27,25 +27,18 @@ export function Summary({ status }: SummaryProps) {
         ),
       },
       {
-        key: "suspects",
+        key: 'suspects',
         title: <Translate pt="Suspeitos Liberados" en="Released Suspects" />,
         value: (
-          <MetricHighlight
-            icon={<PeopleAssessmentIcon />}
-            iconPlacement="before"
-          >
+          <MetricHighlight icon={<PeopleAssessmentIcon />} iconPlacement="before">
             {status.released}/{status.suspects}
           </MetricHighlight>
         ),
       },
       {
-        key: "score",
+        key: 'score',
         title: <Translate pt="Pontuação" en="Score" />,
-        value: (
-          <PointsHighlight iconPlacement="before">
-            {status.score}
-          </PointsHighlight>
-        ),
+        value: <PointsHighlight iconPlacement="before">{status.score}</PointsHighlight>,
       },
     ],
     [status],

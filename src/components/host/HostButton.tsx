@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { RocketOutlined } from '@ant-design/icons';
-import { Button, ButtonProps } from 'antd';
+import { Button, type ButtonProps } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Sass

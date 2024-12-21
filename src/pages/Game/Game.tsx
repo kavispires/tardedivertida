@@ -1,227 +1,143 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense } from 'react';
 // Hooks
-import { useGameMeta } from "hooks/useGameMeta";
-import { useIsGameStale } from "hooks/useIsGameStale";
-import { useLanguage } from "hooks/useLanguage";
-import { useLoading } from "hooks/useLoading";
+import { useGameMeta } from 'hooks/useGameMeta';
+import { useIsGameStale } from 'hooks/useIsGameStale';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Utils
-import { GAME_COLLECTION } from "utils/constants";
+import { GAME_COLLECTION } from 'utils/constants';
 // Components
-import { PageError } from "components/errors";
-import { LoadingPage } from "components/loaders";
+import { PageError } from 'components/errors';
+import { LoadingPage } from 'components/loaders';
 
 // Game lazy imports
 const SessionAdedanhx = lazy(
-  () =>
-    import("games/adedanhx/SessionAdedanhx" /* webpackChunkName: "adedanhx" */),
+  () => import('games/adedanhx/SessionAdedanhx' /* webpackChunkName: "adedanhx" */),
 );
 const SessionArteRuim = lazy(
-  () =>
-    import(
-      "games/arte-ruim/SessionArteRuim" /* webpackChunkName: "arte-ruim" */
-    ),
+  () => import('games/arte-ruim/SessionArteRuim' /* webpackChunkName: "arte-ruim" */),
 );
 const SessionComunicacaoAlienigena = lazy(
   () =>
     import(
-      "games/comunicacao-alienigena/SessionComunicacaoAlienigena" /* webpackChunkName: "comunicacao-alienigena" */
+      'games/comunicacao-alienigena/SessionComunicacaoAlienigena' /* webpackChunkName: "comunicacao-alienigena" */
     ),
 );
 const SessionContadoresHistorias = lazy(
   () =>
     import(
-      "games/contadores-historias/SessionContadoresHistorias" /* webpackChunkName: "contadores-historias" */
+      'games/contadores-historias/SessionContadoresHistorias' /* webpackChunkName: "contadores-historias" */
     ),
 );
 const SessionControleDeEstoque = lazy(
   () =>
     import(
-      "games/controle-de-estoque/SessionControleDeEstoque" /* webpackChunkName: "controle-de-estoque" */
+      'games/controle-de-estoque/SessionControleDeEstoque' /* webpackChunkName: "controle-de-estoque" */
     ),
 );
 const SessionCrimesHediondos = lazy(
-  () =>
-    import(
-      "games/crimes-hediondos/SessionCrimesHediondos" /* webpackChunkName: "crimes-hediondos" */
-    ),
+  () => import('games/crimes-hediondos/SessionCrimesHediondos' /* webpackChunkName: "crimes-hediondos" */),
 );
 const SessionCruzaPalavras = lazy(
-  () =>
-    import(
-      "games/cruza-palavras/SessionCruzaPalavras" /* webpackChunkName: "cruza-palavras" */
-    ),
+  () => import('games/cruza-palavras/SessionCruzaPalavras' /* webpackChunkName: "cruza-palavras" */),
 );
 const SessionDetetivesImaginativos = lazy(
   () =>
     import(
-      "games/detetives-imaginativos/SessionDetetivesImaginativos" /* webpackChunkName: "detetives-imaginativos" */
+      'games/detetives-imaginativos/SessionDetetivesImaginativos' /* webpackChunkName: "detetives-imaginativos" */
     ),
 );
-const SessionDuetos = lazy(
-  () => import("games/duetos/SessionDuetos" /* webpackChunkName: "duetos" */),
-);
+const SessionDuetos = lazy(() => import('games/duetos/SessionDuetos' /* webpackChunkName: "duetos" */));
 const SessionEspiaoEntreNos = lazy(
-  () =>
-    import(
-      "games/espiao-entre-nos/SessionEspiaoEntreNos" /* webpackChunkName: "espiao-entre-nos" */
-    ),
+  () => import('games/espiao-entre-nos/SessionEspiaoEntreNos' /* webpackChunkName: "espiao-entre-nos" */),
 );
 const SessionFileiraDeFatos = lazy(
-  () =>
-    import(
-      "games/fileira-de-fatos/SessionFileiraDeFatos" /* webpackChunkName: "fileira-de-fatos" */
-    ),
+  () => import('games/fileira-de-fatos/SessionFileiraDeFatos' /* webpackChunkName: "fileira-de-fatos" */),
 );
 const SessionGaleriaDeSonhos = lazy(
-  () =>
-    import(
-      "games/galeria-de-sonhos/SessionGaleriaDeSonhos" /* webpackChunkName: "galeria-de-sonhos" */
-    ),
+  () => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos' /* webpackChunkName: "galeria-de-sonhos" */),
 );
 const SessionPortaDosDesesperados = lazy(
   () =>
     import(
-      "games/porta-dos-desesperados/SessionPortaDosDesesperados" /* webpackChunkName: "porta-dos-desesperados" */
+      'games/porta-dos-desesperados/SessionPortaDosDesesperados' /* webpackChunkName: "porta-dos-desesperados" */
     ),
 );
 const SessionLabirintoSecreto = lazy(
-  () =>
-    import(
-      "games/labirinto-secreto/SessionLabirintoSecreto" /* webpackChunkName: "labirinto-secreto" */
-    ),
+  () => import('games/labirinto-secreto/SessionLabirintoSecreto' /* webpackChunkName: "labirinto-secreto" */),
 );
 const SessionLinhasCruzadas = lazy(
-  () =>
-    import(
-      "games/linhas-cruzadas/SessionLinhasCruzadas" /* webpackChunkName: "linhas-cruzadas" */
-    ),
+  () => import('games/linhas-cruzadas/SessionLinhasCruzadas' /* webpackChunkName: "linhas-cruzadas" */),
 );
 const SessionMenteColetiva = lazy(
-  () =>
-    import(
-      "games/mente-coletiva/SessionMenteColetiva" /* webpackChunkName: "mente-coletiva" */
-    ),
+  () => import('games/mente-coletiva/SessionMenteColetiva' /* webpackChunkName: "mente-coletiva" */),
 );
 const SessionNaRuaDoMedo = lazy(
-  () =>
-    import(
-      "games/na-rua-do-medo/SessionNaRuaDoMedo" /* webpackChunkName: "na-rua-do-medo" */
-    ),
+  () => import('games/na-rua-do-medo/SessionNaRuaDoMedo' /* webpackChunkName: "na-rua-do-medo" */),
 );
 const SessionNaoSouRobo = lazy(
-  () =>
-    import(
-      "games/nao-sou-robo/SessionNaoSouRobo" /* webpackChunkName: "nao-sou-robo" */
-    ),
+  () => import('games/nao-sou-robo/SessionNaoSouRobo' /* webpackChunkName: "nao-sou-robo" */),
 );
 const SessionOndaTelepatica = lazy(
-  () =>
-    import(
-      "games/onda-telepatica/SessionOndaTelepatica" /* webpackChunkName: "onda-telepatica" */
-    ),
+  () => import('games/onda-telepatica/SessionOndaTelepatica' /* webpackChunkName: "onda-telepatica" */),
 );
 const SessionPolemicaDaVez = lazy(
-  () =>
-    import(
-      "games/polemica-da-vez/SessionPolemicaDaVez" /* webpackChunkName: "polemica-da-vez" */
-    ),
+  () => import('games/polemica-da-vez/SessionPolemicaDaVez' /* webpackChunkName: "polemica-da-vez" */),
 );
 const SessionQuemNaoMata = lazy(
-  () =>
-    import(
-      "games/quem-nao-mata/SessionQuemNaoMata" /* webpackChunkName: "quem-nao-mata" */
-    ),
+  () => import('games/quem-nao-mata/SessionQuemNaoMata' /* webpackChunkName: "quem-nao-mata" */),
 );
 const SessionRetratoFalado = lazy(
-  () =>
-    import(
-      "games/retrato-falado/SessionRetratoFalado" /* webpackChunkName: "retrato-falado" */
-    ),
+  () => import('games/retrato-falado/SessionRetratoFalado' /* webpackChunkName: "retrato-falado" */),
 );
 const SessionSonhosPesadelos = lazy(
-  () =>
-    import(
-      "games/sonhos-pesadelos/SessionSonhosPesadelos" /* webpackChunkName: "sonhos-pesadelos" */
-    ),
+  () => import('games/sonhos-pesadelos/SessionSonhosPesadelos' /* webpackChunkName: "sonhos-pesadelos" */),
 );
 const SessionSuperCampeonato = lazy(
-  () =>
-    import(
-      "games/super-campeonato/SessionSuperCampeonato" /* webpackChunkName: "super-campeonato" */
-    ),
+  () => import('games/super-campeonato/SessionSuperCampeonato' /* webpackChunkName: "super-campeonato" */),
 );
 const SessionTestemunhaOcular = lazy(
-  () =>
-    import(
-      "games/testemunha-ocular/SessionTestemunhaOcular" /* webpackChunkName: "testemunha-ocular" */
-    ),
+  () => import('games/testemunha-ocular/SessionTestemunhaOcular' /* webpackChunkName: "testemunha-ocular" */),
 );
 const SessionTrevoDaSorte = lazy(
-  () =>
-    import(
-      "games/trevo-da-sorte/SessionTrevoDaSorte" /* webpackChunkName: "trevo-da-sorte" */
-    ),
+  () => import('games/trevo-da-sorte/SessionTrevoDaSorte' /* webpackChunkName: "trevo-da-sorte" */),
 );
 const SessionUeSoIsso = lazy(
-  () =>
-    import(
-      "games/ue-so-isso/SessionUeSoIsso" /* webpackChunkName: "ue-so-isso" */
-    ),
+  () => import('games/ue-so-isso/SessionUeSoIsso' /* webpackChunkName: "ue-so-isso" */),
 );
 const SessionVamosAoCinema = lazy(
-  () =>
-    import(
-      "games/vamos-ao-cinema/SessionVamosAoCinema" /* webpackChunkName: "vamos-ao-cinema" */
-    ),
+  () => import('games/vamos-ao-cinema/SessionVamosAoCinema' /* webpackChunkName: "vamos-ao-cinema" */),
 );
 const SessionVendavalDePalpite = lazy(
   () =>
     import(
-      "games/vendaval-de-palpite/SessionVendavalDePalpite" /* webpackChunkName: "vendaval-de-palpite" */
+      'games/vendaval-de-palpite/SessionVendavalDePalpite' /* webpackChunkName: "vendaval-de-palpite" */
     ),
 );
-const SessionMegamix = lazy(
-  () =>
-    import("games/megamix/SessionMegamix" /* webpackChunkName: "megamix" */),
-);
+const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpackChunkName: "megamix" */));
 const SessionQuemSouEu = lazy(
-  () =>
-    import(
-      "games/quem-sou-eu/SessionQuemSouEu" /* webpackChunkName: "quem-sou-eu" */
-    ),
+  () => import('games/quem-sou-eu/SessionQuemSouEu' /* webpackChunkName: "quem-sou-eu" */),
 );
 const SessionTeoriaDeConjuntos = lazy(
   () =>
     import(
-      "games/teoria-de-conjuntos/SessionTeoriaDeConjuntos" /* webpackChunkName: "teoria-de-conjuntos" */
+      'games/teoria-de-conjuntos/SessionTeoriaDeConjuntos' /* webpackChunkName: "teoria-de-conjuntos" */
     ),
 );
 const SessionTaNaCara = lazy(
-  () =>
-    import(
-      "games/ta-na-cara/SessionTaNaCara" /* webpackChunkName: "ta-na-cara" */
-    ),
+  () => import('games/ta-na-cara/SessionTaNaCara' /* webpackChunkName: "ta-na-cara" */),
 );
 const SessionTesteDeElenco = lazy(
-  () =>
-    import(
-      "games/teste-de-elenco/SessionTesteDeElenco" /* webpackChunkName: "teste-de-elenco" */
-    ),
+  () => import('games/teste-de-elenco/SessionTesteDeElenco' /* webpackChunkName: "teste-de-elenco" */),
 );
-const SessionMesmice = lazy(
-  () =>
-    import("games/mesmice/SessionMesmice" /* webpackChunkName: "mesmice" */),
-);
+const SessionMesmice = lazy(() => import('games/mesmice/SessionMesmice' /* webpackChunkName: "mesmice" */));
 const SessionSinaisDeAlerta = lazy(
-  () =>
-    import(
-      "games/sinais-de-alerta/SessionSinaisDeAlerta" /* webpackChunkName: "sinais-de-alerta" */
-    ),
+  () => import('games/sinais-de-alerta/SessionSinaisDeAlerta' /* webpackChunkName: "sinais-de-alerta" */),
 );
 const SessionPLanejamentoUrbano = lazy(
   () =>
     import(
-      "games/planejamento-urbano/SessionPlanejamentoUrbano" /* webpackChunkName: "planejamento-urbano" */
+      'games/planejamento-urbano/SessionPlanejamentoUrbano' /* webpackChunkName: "planejamento-urbano" */
     ),
 );
 
@@ -234,17 +150,17 @@ function Game() {
   const isGameStale = useIsGameStale(createdAt);
 
   // Deffer to load screen if any major API call is running
-  if (!gameId || loaders["meta"]) {
+  if (!gameId || loaders.meta) {
     return <LoadingPage />;
   }
 
   if (isGameStale) {
     return (
       <PageError
-        message={translate("Jogo Expirado", "Expired Game")}
+        message={translate('Jogo Expirado', 'Expired Game')}
         description={translate(
-          "Este jogo ou é muito antigo ou não existe",
-          "This game is too old or does not exist",
+          'Este jogo ou é muito antigo ou não existe',
+          'This game is too old or does not exist',
         )}
       />
     );
@@ -476,7 +392,7 @@ function Game() {
         );
 
       default:
-        console.warn("Wrong game library provided");
+        console.warn('Wrong game library provided');
     }
   }
 

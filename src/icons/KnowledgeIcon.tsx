@@ -1,4 +1,4 @@
-export function KnowledgeIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function KnowledgeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#e30256" d="M178.019 227.867v-95.012L269.137 57.2l91.115 75.655v95.012z"></path>

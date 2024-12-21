@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { useMeasure, useToggle } from 'react-use';
 // Ant Design Resources
 import { Drawer } from 'antd';
@@ -39,6 +39,8 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
         className={clsx('floating-hand', isExpanded && 'floating-hand--expanded')}
         onMouseOver={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
+        onFocus={() => setIsExpanded(true)}
+        onBlur={() => setIsExpanded(false)}
       >
         <h3 className="floating-hand__label">
           <IconAvatar
@@ -69,9 +71,11 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
     <>
       <div className="floating-hand-drawer__white-space" />
       <button
+        type="button"
         className="floating-hand-drawer__button"
         onClick={toggleDrawer}
         onMouseOver={() => toggleDrawer(true)}
+        onFocus={() => toggleDrawer(true)}
       >
         <span className="floating-hand-drawer__label">
           <IconAvatar
@@ -91,12 +95,11 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
         title={
           <span
             className="floating-hand-drawer__label floating-hand-drawer__label-open"
-            role="button"
             onClick={() => toggleDrawer(false)}
+            onKeyDown={(e) => e.key === 'Enter' && toggleDrawer(false)}
           >
             <IconAvatar
               icon={icon ?? <HandOfCardsIcon />}
-              // size="large"
               className="floating-hand-drawer__icon"
               alt={translate('Mão de Cartas', 'Hand of Cards')}
             />

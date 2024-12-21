@@ -1,4 +1,4 @@
-export function RainbowIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function RainbowIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#fb6672" d="M472 347H334a78 78 0 10-156 0H40a216 216 0 01432 0z"></path>

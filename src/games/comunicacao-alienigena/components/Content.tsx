@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Types
-import { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/player';
 
 type ContainerProps = {
   user: GamePlayer;

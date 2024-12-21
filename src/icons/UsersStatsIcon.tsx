@@ -1,4 +1,4 @@
-export function UsersStatsIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function UsersStatsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#62dbfb" d="M43.9 256c0-117.2 95-212.1 212.1-212.1V256z"></path>

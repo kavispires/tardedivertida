@@ -7,7 +7,7 @@ import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 import { TransparentButton } from 'components/buttons';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 // Internal
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 
 type FulfillmentBoardProps = {
   activeOrder: ReturnType<typeof useControleDeEstoqueEngine>['activeOrder'];

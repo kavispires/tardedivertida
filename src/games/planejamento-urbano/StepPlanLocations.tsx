@@ -20,9 +20,9 @@ import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { City, CityLocationsDict } from './utils/types';
+import type { City, CityLocationsDict } from './utils/types';
 import { getConeColor } from './utils/helpers';
-import { useOnSubmitPlanningAPIRequest } from './utils/api-requests';
+import type { useOnSubmitPlanningAPIRequest } from './utils/api-requests';
 import { mockAction } from './utils/mocks';
 import { CityMap } from './components/CityMap';
 import { ConeHighlight, ConstructionHighlight } from './components/Highlights';

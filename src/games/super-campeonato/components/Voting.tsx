@@ -1,26 +1,26 @@
-import clsx from "clsx";
-import { useMemo } from "react";
+import clsx from 'clsx';
+import { useMemo } from 'react';
 // Ant Design Resources
-import { Button, Space } from "antd";
+import { Button, Space } from 'antd';
 // Types
-import type { GamePlayers } from "types/player";
+import type { GamePlayers } from 'types/player';
 // Hooks
-import { useCountdown } from "hooks/useCountdown";
-import { useMock } from "hooks/useMock";
-import { useStep } from "hooks/useStep";
+import { useCountdown } from 'hooks/useCountdown';
+import { useMock } from 'hooks/useMock';
+import { useStep } from 'hooks/useStep';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { TransparentButton } from "components/buttons";
-import { CharacterCard, OverlayColor } from "components/cards/CharacterCard";
-import { Translate } from "components/language";
-import { StepSwitcher } from "components/steps";
-import { Instruction } from "components/text";
+import { TransparentButton } from 'components/buttons';
+import { CharacterCard, type OverlayColor } from 'components/cards/CharacterCard';
+import { Translate } from 'components/language';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 // Internal
-import type { Bet, Bracket, BracketTier } from "../utils/type";
-import { useBracketVoting } from "../utils/useBracketVoting";
-import { mockVotes } from "../utils/mock";
-import { TierContenders } from "./TierContenders";
+import type { Bet, Bracket, BracketTier } from '../utils/type';
+import { useBracketVoting } from '../utils/useBracketVoting';
+import { mockVotes } from '../utils/mock';
+import { TierContenders } from './TierContenders';
 // Ant Design resources
 
 type VotingProps = {
@@ -31,13 +31,7 @@ type VotingProps = {
   bets: Bet;
 };
 
-export function Voting({
-  brackets,
-  tier,
-  onSubmitVotes,
-  players,
-  bets,
-}: VotingProps) {
+export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingProps) {
   const { step, goToNextStep } = useStep(0);
 
   const { seconds } = useCountdown({
@@ -60,8 +54,7 @@ export function Voting({
     [brackets, tier],
   );
 
-  const { votes, updateVote, isComplete, checkActiveVote } =
-    useBracketVoting(tier);
+  const { votes, updateVote, isComplete, checkActiveVote } = useBracketVoting(tier);
 
   const colors = getContenderColor(tier);
 
@@ -74,21 +67,15 @@ export function Voting({
       {/* Step 0 */}
       <Instruction contained>
         <p>
-          {tier === "quarter" ? (
+          {tier === 'quarter' ? (
             <Translate pt="Competidores:" en="Contenders:" />
           ) : (
-            <Translate
-              pt="Foram para a próxima fase:"
-              en="Moved to the next bracket:"
-            />
+            <Translate pt="Foram para a próxima fase:" en="Moved to the next bracket:" />
           )}
         </p>
         <TierContenders contenders={bracketedContenders} />
         <p>
-          <Translate
-            pt={<>Votação começando em {seconds}</>}
-            en={<>Voting starting in {seconds}</>}
-          />
+          <Translate pt={<>Votação começando em {seconds}</>} en={<>Voting starting in {seconds}</>} />
         </p>
       </Instruction>
 
@@ -109,12 +96,7 @@ export function Voting({
         </ul>
 
         <Space className="space-container">
-          <Button
-            type="primary"
-            size="large"
-            onClick={() => onSubmitVotes({ votes })}
-            disabled={!isComplete}
-          >
+          <Button type="primary" size="large" onClick={() => onSubmitVotes({ votes })} disabled={!isComplete}>
             <Translate pt="Enviar votos" en="Submit votes" />
           </Button>
         </Space>
@@ -132,16 +114,9 @@ type VotingOptionsProps = {
   checkActiveVote: (pos: number) => boolean;
 };
 
-function VotingOptions({
-  left,
-  right,
-  colorLeft,
-  colorRight,
-  onClick,
-  checkActiveVote,
-}: VotingOptionsProps) {
+function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiveVote }: VotingOptionsProps) {
   return (
-    <li className={clsx("w-voting-options", getAnimationClass("flipInX"))}>
+    <li className={clsx('w-voting-options', getAnimationClass('flipInX'))}>
       <TransparentButton
         onClick={() => onClick(left)}
         active={checkActiveVote(left.position)}
@@ -163,24 +138,22 @@ function VotingOptions({
   );
 }
 
-const getContenderColor = (
-  tier: BracketTier,
-): { left: OverlayColor; right: OverlayColor } => {
+const getContenderColor = (tier: BracketTier): { left: OverlayColor; right: OverlayColor } => {
   switch (tier) {
-    case "quarter":
+    case 'quarter':
       return {
-        left: "red",
-        right: "blue",
+        left: 'red',
+        right: 'blue',
       };
-    case "semi":
+    case 'semi':
       return {
-        left: "green",
-        right: "orange",
+        left: 'green',
+        right: 'orange',
       };
     default:
       return {
-        left: "red",
-        right: "blue",
+        left: 'red',
+        right: 'blue',
       };
   }
 };

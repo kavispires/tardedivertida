@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from 'react';
 // Ant Design Resources
 import {
   PauseOutlined,
@@ -6,15 +6,15 @@ import {
   StepBackwardOutlined,
   StepForwardOutlined,
   TrophyOutlined,
-} from "@ant-design/icons";
-import { Button, ButtonProps, Space } from "antd";
+} from '@ant-design/icons';
+import { Button, type ButtonProps, Space } from 'antd';
 // Hooks
-import { useCountdown } from "hooks/useCountdown";
-import { SlideShowConfig } from "hooks/useSlideShow";
+import { useCountdown } from 'hooks/useCountdown';
+import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from "components/language";
+import { Translate } from 'components/language';
 
 type SlideShowControlsProps = {
   /**
@@ -38,7 +38,7 @@ type SlideShowControlsProps = {
 export function SlideShowControls({
   config,
   disableControls,
-  barColor = "gray",
+  barColor = 'gray',
   nextButtonProps,
 }: SlideShowControlsProps) {
   const slideDuration = config.slideDuration ?? 10;
@@ -48,27 +48,20 @@ export function SlideShowControls({
     autoStart: true,
     onExpire: () => config.onExpire(),
   });
-  const disableControlsFlag =
-    disableControls ?? config.isFirstGalleryRunThrough;
+  const disableControlsFlag = disableControls ?? config.isFirstGalleryRunThrough;
 
   // Automatically go to the next window every {windowDuration} seconds
+  // biome-ignore lint/correctness/useExhaustiveDependencies: isRunning shouldn't retrigger the effect
   useEffect(() => {
     const expectedSlideIndex = Math.max(
       0,
-      Math.min(
-        config.length - 1,
-        Math.floor((totalDuration - timeLeft) / slideDuration),
-      ),
+      Math.min(config.length - 1, Math.floor((totalDuration - timeLeft) / slideDuration)),
     );
-    if (
-      isRunning &&
-      timeLeft < totalDuration &&
-      timeLeft > 0 &&
-      expectedSlideIndex !== config.slideIndex
-    ) {
+    if (isRunning && timeLeft < totalDuration && timeLeft > 0 && expectedSlideIndex !== config.slideIndex) {
       config.setSlideIndex(expectedSlideIndex);
     }
-  }, [timeLeft, config, slideDuration, totalDuration]); // eslint-disable-line
+    return () => {};
+  }, [timeLeft, config, slideDuration, totalDuration]);
 
   const goToPreviousSlide = () => {
     pause();
@@ -82,7 +75,7 @@ export function SlideShowControls({
 
   const slots = useMemo(() => {
     return Array(config.length)
-      .fill("")
+      .fill('')
       .map((e, i) => {
         return (
           <div
@@ -109,10 +102,7 @@ export function SlideShowControls({
         ></span>
       </div>
 
-      <Space
-        style={{ opacity: disableControlsFlag ? 0 : 100 }}
-        className={getAnimationClass("fadeIn")}
-      >
+      <Space style={{ opacity: disableControlsFlag ? 0 : 100 }} className={getAnimationClass('fadeIn')}>
         <Button
           size="large"
           icon={<StepBackwardOutlined />}
@@ -129,9 +119,7 @@ export function SlideShowControls({
         <Button
           size="large"
           onClick={goToNextSlide}
-          disabled={
-            disableControlsFlag || config.slideIndex === config.length - 1
-          }
+          disabled={disableControlsFlag || config.slideIndex === config.length - 1}
         >
           <Translate pt="Próximo" en="Next" /> <StepForwardOutlined />
         </Button>
@@ -142,9 +130,7 @@ export function SlideShowControls({
           icon={nextButtonProps?.icon ?? <TrophyOutlined />}
           disabled={disableControlsFlag}
         >
-          {nextButtonProps?.children ?? (
-            <Translate pt="Ver Ranking" en="See Ranking" />
-          )}
+          {nextButtonProps?.children ?? <Translate pt="Ver Ranking" en="See Ranking" />}
         </Button>
       </Space>
     </div>

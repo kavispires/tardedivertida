@@ -62,7 +62,7 @@ export function CrimeSummary({
     historyEntryIndex >= 0 && history ? history[historyEntryIndex].evidenceId : selectedEvidenceId;
 
   const color = getAvatarColorById(player.avatarId);
-  const hasHistory = history && history.length;
+  const hasHistory = history?.length;
 
   return (
     <div className="h-crime">

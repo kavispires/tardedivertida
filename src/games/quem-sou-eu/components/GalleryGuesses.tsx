@@ -1,21 +1,21 @@
-import { orderBy } from "lodash";
+import { orderBy } from 'lodash';
 // Ant Design Resources
-import { CrownFilled, MessageFilled } from "@ant-design/icons";
-import { Avatar as AntAvatar, Space, Typography } from "antd";
+import { CrownFilled, MessageFilled } from '@ant-design/icons';
+import { Avatar as AntAvatar, Space, Typography } from 'antd';
 // Types
-import type { GameRound } from "types/game";
-import type { GamePlayer, GamePlayers } from "types/player";
+import type { GameRound } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
-import { getPlayersFromIds } from "utils/helpers";
+import { getPlayersFromIds } from 'utils/helpers';
 // Icons
-import { GarbageIcon } from "icons/GarbageIcon";
+import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { Avatar, IconAvatar } from "components/avatars";
-import { ImageCard } from "components/image-cards";
-import { DualTranslate, Translate } from "components/language";
-import { StarPoints } from "components/points";
+import { Avatar, IconAvatar } from 'components/avatars';
+import { ImageCard } from 'components/image-cards';
+import { DualTranslate, Translate } from 'components/language';
+import { StarPoints } from 'components/points';
 // Internal
-import type { Characters } from "../utils/types";
+import type { Characters } from '../utils/types';
 
 type GalleryGuessesProps = {
   players: GamePlayers;
@@ -48,8 +48,8 @@ export function GalleryGuesses({
         isCorrect: currentPlayer.character.id === cardId,
       };
     }),
-    ["isCorrect", "count", "card.text"],
-    ["desc", "desc", "asc"],
+    ['isCorrect', 'count', 'card.text'],
+    ['desc', 'desc', 'asc'],
   );
   const correctGuesses = playersSay[currentPlayer.character.id];
 
@@ -61,32 +61,18 @@ export function GalleryGuesses({
         </div>
         {entries.map((entry, index) => {
           return (
-            <div
-              key={`guess-${entry.cardId}-${index}`}
-              className="q-gallery__guess"
-            >
+            <div key={`guess-${entry.cardId}-${index}`} className="q-gallery__guess">
               <div
                 className="q-gallery__speech-bubble"
-                style={
-                  entry.isCorrect
-                    ? { backgroundColor: currentColor, color: "white" }
-                    : {}
-                }
+                style={entry.isCorrect ? { backgroundColor: currentColor, color: 'white' } : {}}
               >
                 {entry.isCorrect ? (
-                  <CrownFilled
-                    className="q-gallery__speech-bubble-icon"
-                    style={{ color: "white" }}
-                  />
+                  <CrownFilled className="q-gallery__speech-bubble-icon" style={{ color: 'white' }} />
                 ) : (
                   <MessageFilled className="q-gallery__speech-bubble-icon" />
                 )}
                 {imageCardMode ? (
-                  <ImageCard
-                    id={entry.character.id}
-                    cardWidth={35}
-                    className="inline"
-                  />
+                  <ImageCard id={entry.character.id} cardWidth={35} className="inline" />
                 ) : (
                   <DualTranslate>{entry.character.name}</DualTranslate>
                 )}
@@ -101,9 +87,7 @@ export function GalleryGuesses({
                   ))}
                 </AntAvatar.Group>
                 <span className="q-gallery__players-names">
-                  {getPlayersFromIds(entry.playersIds, players, true).join(
-                    ", ",
-                  )}
+                  {getPlayersFromIds(entry.playersIds, players, true).join(', ')}
                 </span>
               </div>
             </div>
@@ -121,31 +105,21 @@ export function GalleryGuesses({
             <div className="q-gallery__players">
               <AntAvatar.Group>
                 {correctGuesses.map((playerId) => {
-                  return (
-                    <Avatar
-                      key={`correct-guess-avatar-${playerId}`}
-                      id={players[playerId].avatarId}
-                    />
-                  );
+                  return <Avatar key={`correct-guess-avatar-${playerId}`} id={players[playerId].avatarId} />;
                 })}
               </AntAvatar.Group>
-              <StarPoints
-                quantity={round.current}
-                keyPrefix={`guessers-points-${currentPlayer.id}`}
-              />
+              <StarPoints quantity={round.current} keyPrefix={`guessers-points-${currentPlayer.id}`} />
               <span className="q-gallery__players-names">
-                {getPlayersFromIds(correctGuesses, players, true).join(", ")}
+                {getPlayersFromIds(correctGuesses, players, true).join(', ')}
               </span>
             </div>
             <div className="q-gallery__player-points">
-              <Avatar id={currentPlayer.avatarId} />{" "}
+              <Avatar id={currentPlayer.avatarId} />{' '}
               <StarPoints
                 quantity={playersPoints?.[currentPlayer.id]}
                 keyPrefix={`artist-points-${currentPlayer.id}`}
-              />{" "}
-              <span className="q-gallery__players-names">
-                {currentPlayer.name}
-              </span>
+              />{' '}
+              <span className="q-gallery__players-names">{currentPlayer.name}</span>
             </div>
           </>
         ) : (

@@ -84,16 +84,18 @@ export function StepNewScene({
       />
 
       <div className="">
-        <CrimeSummary
-          key={`crime-by-${crime!.playerId}`}
-          crime={crime!}
-          scenes={scenes}
-          scenesOrder={scenesOrder}
-          items={items}
-          player={user}
-          selectedWeaponId={user.weaponId}
-          selectedEvidenceId={user.evidenceId}
-        />
+        {crime && (
+          <CrimeSummary
+            key={`crime-by-${crime.playerId}`}
+            crime={crime}
+            scenes={scenes}
+            scenesOrder={scenesOrder}
+            items={items}
+            player={user}
+            selectedWeaponId={user.weaponId}
+            selectedEvidenceId={user.evidenceId}
+          />
+        )}
       </div>
 
       <SceneTile tile={sceneTile} onSelectValue={onSelectItem} index={sceneMarkIndex} />

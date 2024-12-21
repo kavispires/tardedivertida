@@ -4,7 +4,7 @@ import { TrophyOutlined } from '@ant-design/icons';
 import { Button, Collapse, Space } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
-import { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -62,7 +62,7 @@ export function StepReveal({
 
   const activeCrime = crimes.find((crime) => crime.playerId === activePlayerId);
   const isOwnCrime = activePlayerId === user.id;
-  const history: GuessHistoryEntry[] = user.history?.[(activeCrime! ?? {})?.playerId] ?? [];
+  const history: GuessHistoryEntry[] = activeCrime ? (user.history?.[activeCrime?.playerId] ?? []) : [];
   const latestHistoryEntry = getLastItem(history);
   const isLocked = isEntryLocked(latestHistoryEntry);
 
@@ -145,7 +145,7 @@ export function StepReveal({
           className={!isLocked && !isOwnCrime ? getAnimationClass('tada') : ''}
           key={`instruction-status-${activePlayerId}`}
         >
-          {Boolean(latestHistoryEntry) ? (
+          {latestHistoryEntry ? (
             <CrimeGuessStatus status={latestHistoryEntry.status} withDescription />
           ) : isOwnCrime ? (
             <Translate pt="Este é o seu próprio crime" en="This is your own crime" />

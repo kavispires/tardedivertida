@@ -1,4 +1,4 @@
-import { LettersDictionary } from 'pages/Daily/utils/types';
+import type { LettersDictionary } from 'pages/Daily/utils/types';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar, Space } from 'antd';

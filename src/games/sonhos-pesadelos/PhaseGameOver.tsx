@@ -1,5 +1,5 @@
 // Types
-import { PhaseProps } from 'types/game';
+import type { PhaseProps } from 'types/game';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components

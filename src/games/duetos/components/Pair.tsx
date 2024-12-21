@@ -22,15 +22,15 @@ export function Pair({ index, firstItem, secondItem, placeholder, size }: PairPr
       key={`pair-${index}`}
     >
       <div className="pairs-grid__slot">
-        {Boolean(firstItem) ? (
-          <ItemEntry itemEntry={firstItem!} size={size} />
+        {firstItem ? (
+          <ItemEntry itemEntry={firstItem} size={size} />
         ) : (
           <ItemEntry itemEntry={placeholder} className="pairs-grid__empty-slot" size={size} />
         )}
       </div>
       <div className="pairs-grid__slot">
-        {Boolean(secondItem) ? (
-          <ItemEntry itemEntry={secondItem!} size={size} />
+        {secondItem ? (
+          <ItemEntry itemEntry={secondItem} size={size} />
         ) : (
           <ItemEntry itemEntry={placeholder} className="pairs-grid__empty-slot" size={size} />
         )}

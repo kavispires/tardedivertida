@@ -1,6 +1,6 @@
 import { useEffectOnce } from 'react-use';
 // Hooks
-import { UseStep } from 'hooks/useStep';
+import type { UseStep } from 'hooks/useStep';
 
 type PhaseTimerResetProps = {
   goToNextStep: UseStep['goToNextStep'];

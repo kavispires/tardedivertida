@@ -1,12 +1,9 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
-// Ant Design Resources
+import type { ReactNode } from 'react';
 import { FireFilled } from '@ant-design/icons';
-import { Space, SpaceProps } from 'antd';
-// Hooks
+import { Space, type SpaceProps } from 'antd';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalState } from 'hooks/useGlobalState';
-// Sass
 import './AdminOnlyContainer.scss';
 
 interface AdminOnlyContainerProps extends SpaceProps {

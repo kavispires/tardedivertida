@@ -1,5 +1,5 @@
 // Types
-import { TextCard } from 'types/tdr';
+import type { TextCard } from 'types/tdr';
 // Utils
 import { deepCopy, getRandomItem } from 'utils/helpers';
 // Internal

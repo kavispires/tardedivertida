@@ -1,8 +1,6 @@
-import { ReactNode } from 'react';
-// Ant Design Resources
+import type { ReactNode } from 'react';
 import { RocketFilled } from '@ant-design/icons';
-import { Button, ButtonProps } from 'antd';
-// Hooks
+import { Button, type ButtonProps } from 'antd';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 

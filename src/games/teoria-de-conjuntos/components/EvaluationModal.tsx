@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Divider, Flex, Modal, Typography } from 'antd';
 // Types
-import { Item } from 'types/tdr';
+import type { Item } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -10,7 +10,7 @@ import { useLoading } from 'hooks/useLoading';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 // Internal
-import { Solutions } from '../utils/types';
+import type { Solutions } from '../utils/types';
 import { Solution } from './Solution';
 
 type EvaluationModalProps = {

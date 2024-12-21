@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import { GameRanking, GameRound } from 'types/game';
-import { GamePlayers } from 'types/player';
+import type { GameRanking, GameRound } from 'types/game';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
@@ -27,13 +27,15 @@ export function StepRanking({ players, playerCount, ranking, goToPreviousStep, r
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Palpites corretos" en="Correct guesses" />,
+        <Translate key="1" pt="Palpites corretos" en="Correct guesses" />,
         <Translate
+          key="2"
           pt="Palpites que acertaram a célula de outra dica"
           en="Guesses that were placed in a cell for a different clue"
         />,
-        <Translate pt="Palpites recebidos corretamente" en="Received correct guesses" />,
+        <Translate key="3" pt="Palpites recebidos corretamente" en="Received correct guesses" />,
         <Translate
+          key="4"
           pt="Penalidade se ninguém acertou a sua dica"
           en="Penalty for nobody getting your clue correctly"
         />,

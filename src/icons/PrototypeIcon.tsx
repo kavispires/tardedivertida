@@ -1,4 +1,4 @@
-export function PrototypeIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function PrototypeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#57b7eb" d="M8.53 213.33h494.93v290.13H59.73c-28.28 0-51.2-22.92-51.2-51.2V213.33z"></path>

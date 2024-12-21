@@ -1,9 +1,9 @@
 // Types
 import type { GamePlayers } from 'types/player';
-import { TextCard } from 'types/tdr';
+import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
@@ -14,7 +14,7 @@ import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 // Internal
-import { GalleryEntry } from './utils/types';
+import type { GalleryEntry } from './utils/types';
 import { GalleryWindowCredits } from './components/GalleryWindowCredits';
 import { GalleryWindowGuesses } from './components/GalleryWindowGuesses';
 import { GalleryWindowResult } from './components/GalleryWindowResult';

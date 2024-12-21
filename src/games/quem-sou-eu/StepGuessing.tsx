@@ -1,31 +1,31 @@
-import clsx from "clsx";
-import { shuffle } from "lodash";
-import { useCallback, useState } from "react";
-import { useEffectOnce } from "react-use";
+import clsx from 'clsx';
+import { shuffle } from 'lodash';
+import { useCallback, useState } from 'react';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Button, Space } from "antd";
+import { Button, Space } from 'antd';
 // Types
-import type { GameRound } from "types/game";
-import type { GamePlayer, GamePlayers } from "types/player";
+import type { GameRound } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { useCardWidth } from "hooks/useCardWidth";
-import { useLoading } from "hooks/useLoading";
-import { useMock } from "hooks/useMock";
-import { useVotingMatch } from "hooks/useVotingMatch";
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
-import { getEntryId, sortPlayers } from "utils/helpers";
+import { getEntryId, sortPlayers } from 'utils/helpers';
 // Components
-import { TransparentButton } from "components/buttons";
-import { Translate } from "components/language";
-import { RibbonGroup } from "components/ribbons";
-import { Step, type StepProps } from "components/steps";
-import { RuleInstruction, Title } from "components/text";
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { RibbonGroup } from 'components/ribbons';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
-import type { Characters } from "./utils/types";
-import { getRibbons, prepareGuesses } from "./utils/helpers";
-import { ScoringRules } from "./components/RulesBlobs";
-import { PlayerGlyphs } from "./components/PlayerGlyphs";
-import { Card } from "./components/Card";
+import type { Characters } from './utils/types';
+import { getRibbons, prepareGuesses } from './utils/helpers';
+import { ScoringRules } from './components/RulesBlobs';
+import { PlayerGlyphs } from './components/PlayerGlyphs';
+import { Card } from './components/Card';
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -35,7 +35,7 @@ type StepGuessingProps = {
   tableOrder: CardId[];
   round: GameRound;
   imageCardMode: boolean;
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
   user,
@@ -58,8 +58,12 @@ export function StepGuessing({
     minWidth: 120,
     maxWidth: 200,
   });
-  const { votes, setVotes, activateItem, isVotingComplete, isItemActive } =
-    useVotingMatch("player", true, Object.keys(players).length, {});
+  const { votes, setVotes, activateItem, isVotingComplete, isItemActive } = useVotingMatch(
+    'player',
+    true,
+    Object.keys(players).length,
+    {},
+  );
   const [choseRandomly, setChoseRandomly] = useState(false);
 
   const onGuessForMe = () => {
@@ -67,11 +71,11 @@ export function StepGuessing({
     const usedPlayers = Object.keys(votes);
     const usedCharacters = Object.values(votes);
     const playerKeys = Object.keys(players)
-      .map((playerId: string) => getEntryId(["player", playerId]))
+      .map((playerId: string) => getEntryId(['player', playerId]))
       .filter((key: string) => !usedPlayers.includes(key));
     const characterKeys = shuffle(
       Object.keys(characters)
-        .map((cardId: CardId) => getEntryId(["char", cardId]))
+        .map((cardId: CardId) => getEntryId(['char', cardId]))
         .filter((key: string) => !usedCharacters.includes(key)),
     );
     const newVotes = { ...votes };
@@ -87,10 +91,7 @@ export function StepGuessing({
   const selectOwnCard = useCallback(() => {
     if (user.character) {
       return {
-        [getEntryId(["player", user.id])]: getEntryId([
-          "char",
-          user.character.id,
-        ]),
+        [getEntryId(['player', user.id])]: getEntryId(['char', user.character.id]),
       };
     }
   }, [user]);
@@ -113,32 +114,25 @@ export function StepGuessing({
   return (
     <Step fullWidth announcement={announcement}>
       <Title>
-        <Translate
-          pt={<>Pareie os cada personagem com um jogador</>}
-          en={<>Pair player and characters</>}
-        />
+        <Translate pt={<>Pareie os cada personagem com um jogador</>} en={<>Pair player and characters</>} />
       </Title>
 
       <RuleInstruction type="rule">
         <Translate
           pt={
             <>
-              De acordo com a seleção de ícones de cada jogador, tente adivinhar
-              todos os pares.
+              De acordo com a seleção de ícones de cada jogador, tente adivinhar todos os pares.
               <br />
-              <strong>Clique</strong> em uma das barras de ícones então no
-              personagem correspondente.
+              <strong>Clique</strong> em uma das barras de ícones então no personagem correspondente.
               <br />
-              Para desfazer, basta selecionar normalmente que sua escolha era
-              sobreposta.
+              Para desfazer, basta selecionar normalmente que sua escolha era sobreposta.
             </>
           }
           en={
             <>
               Based on each player's glyphs selection, try to guess the pairs.
               <br />
-              <strong>Click</strong> on one of the glyph bars and then on the
-              corresponding character.
+              <strong>Click</strong> on one of the glyph bars and then on the corresponding character.
               <br />
               To undo, just select normally that your choice was overridden.
             </>
@@ -151,7 +145,7 @@ export function StepGuessing({
       <div className="q-voting-container">
         <div className="q-voting-characters">
           {tableOrder.map((cardId) => {
-            const entryId = getEntryId(["char", cardId]);
+            const entryId = getEntryId(['char', cardId]);
             const labels = ribbons[cardId] ?? [];
 
             return (
@@ -165,7 +159,7 @@ export function StepGuessing({
                 <Card
                   character={characters[cardId]}
                   width={characterWidth}
-                  className={clsx(cardId === "a" && "q-character-player")}
+                  className={clsx(cardId === 'a' && 'q-character-player')}
                   imageCardMode={imageCardMode}
                 />
               </TransparentButton>
@@ -175,7 +169,7 @@ export function StepGuessing({
 
         <div className="q-players-glyphs">
           {sortPlayers(players).map((player) => {
-            const entryId = getEntryId(["player", player.id]);
+            const entryId = getEntryId(['player', player.id]);
 
             return (
               <TransparentButton
@@ -183,11 +177,7 @@ export function StepGuessing({
                 onClick={() => activateItem(entryId)}
                 active={isItemActive(entryId)}
               >
-                <PlayerGlyphs
-                  player={player}
-                  glyphWidth={glyphWidth}
-                  done={Boolean(votes[entryId])}
-                />
+                <PlayerGlyphs player={player} glyphWidth={glyphWidth} done={Boolean(votes[entryId])} />
               </TransparentButton>
             );
           })}
@@ -198,18 +188,12 @@ export function StepGuessing({
         <Button
           size="large"
           type="primary"
-          onClick={() =>
-            onSubmitGuesses({ guesses: prepareGuesses(votes), choseRandomly })
-          }
+          onClick={() => onSubmitGuesses({ guesses: prepareGuesses(votes), choseRandomly })}
           disabled={isLoading || user.ready || !isVotingComplete}
         >
           <Translate pt={<>Enviar pares</>} en={<>Submit guesses</>} />
         </Button>
-        <Button
-          size="large"
-          onClick={() => onGuessForMe()}
-          disabled={isLoading || user.ready}
-        >
+        <Button size="large" onClick={() => onGuessForMe()} disabled={isLoading || user.ready}>
           <Translate pt={<>Desistir</>} en={<>Guess for me</>} />
         </Button>
       </Space>

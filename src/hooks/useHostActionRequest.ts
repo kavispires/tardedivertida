@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { App } from 'antd';
 // Services
-import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
+import { HOST_API, type HOST_API_ACTIONS } from 'services/adapters';
 // Internal
 import { useLoading } from './useLoading';
 import { useGlobalState } from './useGlobalState';

@@ -1,32 +1,28 @@
-import clsx from "clsx";
-import { useMemo } from "react";
+import clsx from 'clsx';
+import { useMemo } from 'react';
 // Ant Design Resources
-import { CloseCircleFilled } from "@ant-design/icons";
-import { Button, Space } from "antd";
+import { CloseCircleFilled } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Hooks
-import { useBooleanDictionary } from "hooks/useBooleanDictionary";
-import { useLoading } from "hooks/useLoading";
-import { useMock } from "hooks/useMock";
+import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Utils
-import { getAnimationClass } from "utils/helpers";
-import { PHASES } from "utils/phases";
+import { getAnimationClass } from 'utils/helpers';
+import { PHASES } from 'utils/phases';
 // Components
-import { FloatingHand } from "components/general/FloatingHand";
-import {
-  ImageBlurButton,
-  ImageCard,
-  ImageCardHand,
-} from "components/image-cards";
-import { Translate } from "components/language";
-import { Step } from "components/steps";
-import { Instruction, RuleInstruction, Title } from "components/text";
+import { FloatingHand } from 'components/general/FloatingHand';
+import { ImageBlurButton, ImageCard, ImageCardHand } from 'components/image-cards';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, RuleInstruction, Title } from 'components/text';
 // Internal
-import { TRAPS } from "./utils/constants";
-import { shouldAnnounceTrap } from "./utils/helpers";
-import { mockPageSelection } from "./utils/mock";
-import { TrapPopupRule } from "./components/RulesBlobs";
-import { BookHighlight, DoorHighlight } from "./components/Highlights";
-import { DoorFrame } from "../../components/game/DoorFrame";
+import { TRAPS } from './utils/constants';
+import { shouldAnnounceTrap } from './utils/helpers';
+import { mockPageSelection } from './utils/mock';
+import { TrapPopupRule } from './components/RulesBlobs';
+import { BookHighlight, DoorHighlight } from './components/Highlights';
+import { DoorFrame } from '../../components/game/DoorFrame';
 
 type StepSelectPagesProps = {
   pages: CardId[];
@@ -44,20 +40,13 @@ export function StepSelectPages({
   onSubmitPages,
 }: StepSelectPagesProps) {
   const { isLoading } = useLoading();
-  const {
-    dict: selections,
-    updateDict: select,
-    length: totalSelections,
-  } = useBooleanDictionary({});
+  const { dict: selections, updateDict: select, length: totalSelections } = useBooleanDictionary({});
 
   const isSelectionComplete =
-    trap === TRAPS.MORE_CLUES
-      ? totalSelections === 3
-      : totalSelections > 0 && totalSelections < 3;
+    trap === TRAPS.MORE_CLUES ? totalSelections === 3 : totalSelections > 0 && totalSelections < 3;
 
   const showTrap = useMemo(
-    () =>
-      shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION),
+    () => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION),
     [trap],
   );
 
@@ -72,14 +61,12 @@ export function StepSelectPages({
         <Translate
           pt={
             <>
-              Ajude os jogadores a encontrar a porta{" "}
-              <DoorHighlight>{currentCorridor}</DoorHighlight>:
+              Ajude os jogadores a encontrar a porta <DoorHighlight>{currentCorridor}</DoorHighlight>:
             </>
           }
           en={
             <>
-              Help players find the door{" "}
-              <DoorHighlight>{currentCorridor}</DoorHighlight>:
+              Help players find the door <DoorHighlight>{currentCorridor}</DoorHighlight>:
             </>
           }
         />
@@ -92,11 +79,9 @@ export function StepSelectPages({
           <ImageCard
             id={answerDoorId}
             cardWidth={150}
-            className={clsx(trap === TRAPS.FADED_DOORS && "i-faded-card")}
+            className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
             preview={{
-              className: clsx(
-                trap === TRAPS.FADED_DOORS && "image-preview-faded",
-              ),
+              className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-faded'),
             }}
           />
         </DoorFrame>
@@ -108,20 +93,17 @@ export function StepSelectPages({
         <Translate
           pt={
             <>
-              Acima está a porta que você deve ajudar os outros jogadores a
-              selecionar. <br />
-              Consulte as páginas do livro (cartas) e <strong>
-                selecione
-              </strong>{" "}
-              as que você acha que mais vão ajudar!
+              Acima está a porta que você deve ajudar os outros jogadores a selecionar. <br />
+              Consulte as páginas do livro (cartas) e <strong>selecione</strong> as que você acha que mais vão
+              ajudar!
             </>
           }
           en={
             <>
               Above it's the door you need to help the other players to find.
               <br />
-              Check the book pages(cards) below and <strong>select</strong> the
-              one you think will help them best!
+              Check the book pages(cards) below and <strong>select</strong> the one you think will help them
+              best!
             </>
           }
         />
@@ -133,8 +115,7 @@ export function StepSelectPages({
               <Translate
                 pt={
                   <>
-                    Selecione exatamente <BookHighlight>3</BookHighlight>{" "}
-                    páginas do livro
+                    Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
                   </>
                 }
                 en={
@@ -155,7 +136,7 @@ export function StepSelectPages({
           loading={isLoading}
           disabled={!isSelectionComplete}
           onClick={() => onSubmitPages({ pageIds: Object.keys(selections) })}
-          className={getAnimationClass("tada")}
+          className={getAnimationClass('tada')}
         >
           <Translate pt="Enviar Páginas" en="Submit Pages" />
         </Button>
@@ -172,8 +153,7 @@ export function StepSelectPages({
               <Translate
                 pt={
                   <>
-                    Selecione exatamente <BookHighlight>3</BookHighlight>{" "}
-                    páginas do livro
+                    Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
                   </>
                 }
                 en={
@@ -186,14 +166,13 @@ export function StepSelectPages({
               <Translate
                 pt={
                   <>
-                    Selecione <BookHighlight>1</BookHighlight> ou{" "}
-                    <BookHighlight>2</BookHighlight> páginas do livro
+                    Selecione <BookHighlight>1</BookHighlight> ou <BookHighlight>2</BookHighlight> páginas do
+                    livro
                   </>
                 }
                 en={
                   <>
-                    Select <BookHighlight>1</BookHighlight> or{" "}
-                    <BookHighlight>2</BookHighlight> book pages
+                    Select <BookHighlight>1</BookHighlight> or <BookHighlight>2</BookHighlight> book pages
                   </>
                 }
               />
@@ -207,9 +186,9 @@ export function StepSelectPages({
           selectButtonIcon={<CloseCircleFilled />}
           selectButtonText={<Translate pt="Remover" en="Remove" />}
           onSelectCard={select}
-          cardClassName={clsx(trap === TRAPS.SEPIA && "i-sepia-card")}
+          cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
           imageGroupPreview={{
-            className: clsx(trap === TRAPS.SEPIA && "image-preview-sepia"),
+            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
           }}
         />
       </Instruction>
@@ -221,9 +200,9 @@ export function StepSelectPages({
           disabledSelectButton={isLoading}
           sizeRatio={8}
           selectedCards={selections}
-          cardClassName={clsx(trap === TRAPS.SEPIA && "i-sepia-card")}
+          cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
           imageGroupPreview={{
-            className: clsx(trap === TRAPS.SEPIA && "image-preview-sepia"),
+            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
           }}
         />
       </FloatingHand>

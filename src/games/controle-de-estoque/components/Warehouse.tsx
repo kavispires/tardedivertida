@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Good, WarehouseSlot } from '../utils/types';
+import type { Good, WarehouseSlot } from '../utils/types';
 import { getAnimationClass } from 'utils/helpers';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
@@ -34,8 +34,12 @@ export function Warehouse({
               className={clsx('warehouse__empty-shelf warehouse__empty-available-shelf')}
               style={size}
             >
-              {Boolean(onPlaceGood) ? (
-                <button className="warehouse__empty-shelf-button" onClick={() => onPlaceGood?.(index)}>
+              {onPlaceGood ? (
+                <button
+                  type="button"
+                  className="warehouse__empty-shelf-button"
+                  onClick={() => onPlaceGood?.(index)}
+                >
                   {slot.temporaryName ?? '?'}
                 </button>
               ) : (

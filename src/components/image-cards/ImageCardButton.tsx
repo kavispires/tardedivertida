@@ -1,15 +1,15 @@
-import clsx from "clsx";
-import { ReactNode } from "react";
+import clsx from 'clsx';
+import type { ReactNode } from 'react';
 // Ant Design Resources
-import { DownCircleOutlined, UpCircleOutlined } from "@ant-design/icons";
-import { Button, ButtonProps } from "antd";
+import { DownCircleOutlined, UpCircleOutlined } from '@ant-design/icons';
+import { Button, type ButtonProps } from 'antd';
 // Components
-import { DebugOnly } from "components/debug";
-import { Translate } from "components/language";
+import { DebugOnly } from 'components/debug';
+import { Translate } from 'components/language';
 // Internal
-import { ImageBlurButtonContainer } from "./ImageBlurButtonContainer";
+import { ImageBlurButtonContainer } from './ImageBlurButtonContainer';
 // Sass
-import "./ImageCardButton.scss";
+import './ImageCardButton.scss';
 //  Components
 
 type ImageCardButtonProps = {
@@ -28,7 +28,7 @@ type ImageCardButtonProps = {
   /**
    * The position of the button (default: top)
    */
-  buttonPosition?: "top" | "bottom";
+  buttonPosition?: 'top' | 'bottom';
   /**
    * The button is over the image (default: false)
    */
@@ -52,14 +52,14 @@ type ImageCardButtonProps = {
   /**
    * The props for the button
    */
-  buttonProps?: Omit<ButtonProps, "onClick" | "disabled">;
+  buttonProps?: Omit<ButtonProps, 'onClick' | 'disabled'>;
 };
 
 export function ImageCardButton({
   id,
   children,
-  className = "",
-  buttonPosition = "top",
+  className = '',
+  buttonPosition = 'top',
   over = false,
   icon,
   onClick,
@@ -67,10 +67,9 @@ export function ImageCardButton({
   buttonText,
   buttonProps = {},
 }: ImageCardButtonProps) {
-  const isTop = buttonPosition === "top";
+  const isTop = buttonPosition === 'top';
 
-  const iconComponent =
-    icon ?? (isTop ? <DownCircleOutlined /> : <UpCircleOutlined />);
+  const iconComponent = icon ?? (isTop ? <DownCircleOutlined /> : <UpCircleOutlined />);
 
   const { className: buttonClassName, ...restButtonProps } = buttonProps;
 
@@ -80,8 +79,8 @@ export function ImageCardButton({
       size="small"
       ghost={over}
       className={clsx(
-        "image-card-button__button",
-        over && "image-card-button__button--over",
+        'image-card-button__button',
+        over && 'image-card-button__button--over',
         over && `image-card-button__button--over-${buttonPosition}`,
         buttonClassName,
       )}
@@ -98,11 +97,8 @@ export function ImageCardButton({
   );
 
   return (
-    <div className={clsx("image-card-button", className)}>
-      <ImageBlurButtonContainer
-        cardId={id}
-        position={buttonPosition === "bottom" ? "top" : "bottom"}
-      >
+    <div className={clsx('image-card-button', className)}>
+      <ImageBlurButtonContainer cardId={id} position={buttonPosition === 'bottom' ? 'top' : 'bottom'}>
         <DebugOnly>{id}</DebugOnly>
         <div className="image-card-button__container">
           {isTop && button}

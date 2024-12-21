@@ -1,16 +1,16 @@
-import clsx from "clsx";
-import { Fragment, ReactNode, useMemo } from "react";
+import clsx from 'clsx';
+import { Fragment, type ReactNode, useMemo } from 'react';
 // Ant Design Resources
-import { ForwardFilled } from "@ant-design/icons";
+import { ForwardFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayer, GamePlayers } from "types/player";
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
-import { getAvatarColorById } from "utils/helpers";
+import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { AvatarName } from "components/avatars";
-import { Translate } from "components/language";
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 // Internal
-import { reorder } from "./reorder";
+import { reorder } from './reorder';
 
 type TurnOrderProps = {
   /**
@@ -49,16 +49,16 @@ export function TurnOrder({
   activePlayerId,
   reorderByUser,
   title,
-  className = "",
+  className = '',
   additionalInfoParser,
 }: TurnOrderProps) {
   const orderList = useMemo(
-    () => (Boolean(reorderByUser) ? reorder(order, reorderByUser!) : order),
+    () => (reorderByUser ? reorder(order, reorderByUser) : order),
     [reorderByUser, order],
   );
 
   return (
-    <div className={clsx("turn-order", className)}>
+    <div className={clsx('turn-order', className)}>
       <header className="turn-order__title">
         <Translate en="Player Order" pt="Ordem dos Jogadores" custom={title} />
       </header>
@@ -69,15 +69,8 @@ export function TurnOrder({
           return (
             <Fragment key={`turn-order-player-${playerId}`}>
               <span
-                className={clsx(
-                  "turn-order__player",
-                  isActive && "turn-order__player--active",
-                )}
-                style={
-                  isActive
-                    ? { backgroundColor: getAvatarColorById(player.avatarId) }
-                    : undefined
-                }
+                className={clsx('turn-order__player', isActive && 'turn-order__player--active')}
+                style={isActive ? { backgroundColor: getAvatarColorById(player.avatarId) } : undefined}
               >
                 <AvatarName player={player} />
                 {!!additionalInfoParser && additionalInfoParser(player)}

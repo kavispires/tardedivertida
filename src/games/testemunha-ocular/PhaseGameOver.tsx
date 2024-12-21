@@ -1,5 +1,5 @@
 // Types
-import { PhaseProps } from 'types/game';
+import type { PhaseProps } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons

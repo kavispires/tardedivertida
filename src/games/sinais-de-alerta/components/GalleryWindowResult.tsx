@@ -2,7 +2,7 @@
 import { CrownFilled } from '@ant-design/icons';
 import { Divider, Typography } from 'antd';
 // Types
-import { TextCard } from 'types/tdr';
+import type { TextCard } from 'types/tdr';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 // Components

@@ -1,4 +1,4 @@
-export function TwitterIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <rect width="62" height="62" x="1" y="1" fill="#55d0f2" rx="6"></rect>

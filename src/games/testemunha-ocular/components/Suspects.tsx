@@ -49,6 +49,7 @@ export function Suspects({
             >
               <button
                 className="t-suspects-table__suspect t-suspects-table__suspect-button"
+                type="button"
                 disabled={wasEliminated || isLoading}
               >
                 <ImageCard

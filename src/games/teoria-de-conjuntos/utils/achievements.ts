@@ -1,5 +1,5 @@
 // Types
-import { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/achievements';
 
 export const ACHIEVEMENTS = {
   MOST_ATTRIBUTE_CIRCLE: 'MOST_ATTRIBUTE_CIRCLE',

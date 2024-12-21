@@ -70,7 +70,7 @@ export function StepPlayerClue({
   const toggleGuessIds = (id: string, isGuess: boolean) => {
     const index = Number(id.split(SEPARATOR)[1]);
     setGuessesIds((s) => {
-      let sCopy = [...s];
+      const sCopy = [...s];
       if (isGuess) {
         sCopy.push(index);
         return sCopy;

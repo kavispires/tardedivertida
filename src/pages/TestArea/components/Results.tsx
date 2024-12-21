@@ -32,7 +32,13 @@ export function Results({ steps, results, activeStep }: ResultsProps) {
     <Space className="space-container full-width" wrap>
       {steps.map((_, index) => {
         const ActiveIcon = getActiveIcon(results[index], activeStep === index);
-        return <IconAvatar icon={<ActiveIcon />} {...getActiveClass(results[index], activeStep === index)} />;
+        return (
+          <IconAvatar
+            key={String(ActiveIcon)}
+            icon={<ActiveIcon />}
+            {...getActiveClass(results[index], activeStep === index)}
+          />
+        );
       })}
     </Space>
   );

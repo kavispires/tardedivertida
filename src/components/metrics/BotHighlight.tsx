@@ -1,7 +1,7 @@
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
 // Components
-import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function BotHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (

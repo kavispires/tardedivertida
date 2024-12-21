@@ -2,7 +2,7 @@
 import { Badge, Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import { ContenderCard } from 'types/tdr';
+import type { ContenderCard } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';

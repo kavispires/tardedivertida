@@ -13,8 +13,8 @@ import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import { SETTINGS } from '../utils/settings';
-import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
-import { DailyTeoriaDeConjuntosEntry } from '../utils/types';
+import type { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
+import type { DailyTeoriaDeConjuntosEntry } from '../utils/types';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {

@@ -1,29 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { CloudUploadOutlined, ThunderboltOutlined } from "@ant-design/icons";
-import { Button, Space } from "antd";
+import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { Button, Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from "types/player";
-import { TextCard } from "types/tdr";
+import type { GamePlayers, GamePlayer } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from "hooks/useCardWidth";
-import { useGlobalLocalStorage } from "hooks/useGlobalLocalStorage";
-import { useLoading } from "hooks/useLoading";
-import { useMock } from "hooks/useMock";
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Components
-import { CanvasResizer } from "components/canvas";
-import { Container } from "components/general/Container";
-import { Translate } from "components/language";
-import { PopoverRule } from "components/rules";
-import { Step, type StepProps } from "components/steps";
-import { RuleInstruction, Title } from "components/text";
+import { CanvasResizer } from 'components/canvas';
+import { Container } from 'components/general/Container';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { DrawingEntry } from "./utils/types";
-import { useGuessing } from "./utils/useGuessing";
-import { EvaluationRules } from "./components/RulesBlobs";
-import { EvaluationAllDrawings } from "./components/EvaluationAllDrawings";
-import { EvaluationAllSubjects } from "./components/EvaluationAllSubjects";
-import { EvaluationAllDescriptors } from "./components/EvaluationAllDescriptors";
+import type { DrawingEntry } from './utils/types';
+import { useGuessing } from './utils/useGuessing';
+import { EvaluationRules } from './components/RulesBlobs';
+import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
+import { EvaluationAllSubjects } from './components/EvaluationAllSubjects';
+import { EvaluationAllDescriptors } from './components/EvaluationAllDescriptors';
 
 type StepEvaluateProps = {
   user: GamePlayer;
@@ -34,7 +34,7 @@ type StepEvaluateProps = {
   subjectsIds: CardId[];
   descriptorsIds: CardId[];
   gameLanguage: Language;
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepEvaluate({
   players,
@@ -54,7 +54,7 @@ export function StepEvaluate({
     minWidth: 120,
     maxWidth: 500,
   });
-  const [canvasSize, setCanvasSize] = useGlobalLocalStorage("canvasSize");
+  const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
   const {
     subjectGuesses,
     descriptorGuesses,
@@ -77,12 +77,13 @@ export function StepEvaluate({
     randomSelection();
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!canvasSize) {
       // Round to increments of 50
       setCanvasSize(Math.floor(canvasWidth / 50) * 50);
     }
-  }, [canvasSize, canvasWidth]); // eslint-disable-line
+  }, [canvasSize, canvasWidth]);
 
   useMock(() => {
     onGuessForMe();
@@ -124,8 +125,8 @@ export function StepEvaluate({
         <Translate
           pt={
             <>
-              Faça pares com as cartas e os desenhos. Cada desenho tem um
-              sujeito e um descritor correspondente.
+              Faça pares com as cartas e os desenhos. Cada desenho tem um sujeito e um descritor
+              correspondente.
               <br />
               Basta clicar em uma carta e depois em seu desenho correspondente.
               <br />
@@ -136,8 +137,7 @@ export function StepEvaluate({
           }
           en={
             <>
-              Match the cards and drawings. Each drawing has a corresponding
-              subject and descriptor.
+              Match the cards and drawings. Each drawing has a corresponding subject and descriptor.
               <br />
               Simply click on a card and then on its corresponding drawing.
               <br />
@@ -151,12 +151,7 @@ export function StepEvaluate({
 
       <Space direction="vertical">
         <Space className="space-container" align="center" wrap>
-          <Button
-            type="default"
-            icon={<ThunderboltOutlined />}
-            onClick={resetGuesses}
-            disabled={isLoading}
-          >
+          <Button type="default" icon={<ThunderboltOutlined />} onClick={resetGuesses} disabled={isLoading}>
             <Translate pt="Limpar seleções" en="Clear selections" />
           </Button>
           <Button
@@ -171,11 +166,7 @@ export function StepEvaluate({
             type="primary"
             onClick={() =>
               onSubmitGuesses({
-                guesses: prepareGuesses(
-                  drawings,
-                  subjectGuesses,
-                  descriptorGuesses,
-                ),
+                guesses: prepareGuesses(drawings, subjectGuesses, descriptorGuesses),
                 choseRandomly,
               })
             }
@@ -198,9 +189,9 @@ export function StepEvaluate({
           activeItem={activeItem}
         />
 
-        {gameLanguage === "pt" ? subjects : descriptors}
+        {gameLanguage === 'pt' ? subjects : descriptors}
 
-        {gameLanguage === "pt" ? descriptors : subjects}
+        {gameLanguage === 'pt' ? descriptors : subjects}
       </Space>
     </Step>
   );

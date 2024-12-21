@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 // Icons
 import { GuessIcon } from "icons/GuessIcon";
 // Components
@@ -45,6 +45,7 @@ export function LeafSlot({
       >
         <button
           key={`clue-key-${position}`}
+          type="button"
           className={clsx(
             "y-leaf",
             "y-leaf--empty",
@@ -59,7 +60,7 @@ export function LeafSlot({
     );
   }
 
-  if (Boolean(onLeafGrab)) {
+  if (onLeafGrab) {
     return (
       <div
         className={clsx(
@@ -71,7 +72,7 @@ export function LeafSlot({
           leaf={leaf}
           position={position}
           rotation={rotation}
-          onLeafGrab={() => onLeafGrab!(position)}
+          onLeafGrab={() => onLeafGrab(position)}
           onLeafRotate={onLeafRotate}
           onLeafRemove={onLeafRemove}
           isLocked={isLocked}
@@ -107,10 +108,10 @@ function LeafSlotContent({
   className = "",
   icon,
 }: LeafSlotProps) {
-  return Boolean(leaf) ? (
+  return leaf ? (
     <Leaf
-      key={leaf!.id}
-      leaf={leaf!}
+      key={leaf.id}
+      leaf={leaf}
       onLeafGrab={onLeafGrab}
       onLeafRotate={onLeafRotate}
       onLeafRemove={onLeafRemove}

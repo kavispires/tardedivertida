@@ -127,6 +127,8 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
           const firstItemIndex = index * 2;
           const firstItem = pairs[firstItemIndex];
           const secondItem = pairs[firstItemIndex + 1];
+          const selectedFirstItem = selectedPairs[firstItemIndex];
+          const selectedSecondItem = selectedPairs[firstItemIndex + 1];
 
           return (
             <Space
@@ -135,24 +137,24 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
               key={`pair-${index}`}
             >
               <div className="pairs-grid__slot">
-                {Boolean(firstItem) ? (
+                {firstItem && selectedFirstItem ? (
                   <TransparentButton
-                    onClick={() => removeItem(firstItem!)}
+                    onClick={() => removeItem(firstItem)}
                     className={getAnimationClass('bounceIn')}
                   >
-                    <ItemEntry itemEntry={selectedPairs[firstItemIndex]!} />
+                    <ItemEntry itemEntry={selectedFirstItem} />
                   </TransparentButton>
                 ) : (
                   <ItemEntry itemEntry={pool[0]} className="pairs-grid__empty-slot" />
                 )}
               </div>
               <div className="pairs-grid__slot">
-                {Boolean(secondItem) ? (
+                {secondItem && selectedSecondItem ? (
                   <TransparentButton
-                    onClick={() => removeItem(secondItem!)}
+                    onClick={() => removeItem(secondItem)}
                     className={getAnimationClass('bounceIn')}
                   >
-                    <ItemEntry itemEntry={selectedPairs[firstItemIndex + 1]!} />
+                    <ItemEntry itemEntry={selectedSecondItem} />
                   </TransparentButton>
                 ) : (
                   <ItemEntry itemEntry={pool[0]} className="pairs-grid__empty-slot" />

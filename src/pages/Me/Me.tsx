@@ -14,11 +14,12 @@ function Me() {
   const { isAuthenticated, currentUser } = useCurrentUserContext();
   const [, setLanguage] = useGlobalLocalStorage('language');
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (currentUser.language) {
       setLanguage(currentUser.language);
     }
-  }, [currentUser.language]); // eslint-disable-line
+  }, [currentUser.language]);
 
   return (
     <MeContent user={currentUser} additionalContent={<LoginModal isAuthenticated={isAuthenticated} />} />

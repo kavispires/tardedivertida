@@ -1,14 +1,8 @@
 // Internal
-import { DIRECTIONS_INDEXES, LEAVES_ORDER } from "./constants";
-import type {
-  CloverObject,
-  CloverLeaf,
-  LeafPosition,
-  Guesses,
-  Leaves,
-} from "./types";
+import { DIRECTIONS_INDEXES, LEAVES_ORDER } from './constants';
+import type { CloverObject, CloverLeaf, LeafPosition, Guesses, Leaves } from './types';
 
-export const onRotate = (value: number, direction: number = 1) => {
+export const onRotate = (value: number, direction = 1) => {
   return value + 90 * direction;
 };
 
@@ -52,6 +46,5 @@ export const getWord = (
   const rotation = parseRotation(rotations[leaf.id]);
   const words = [...leaf.cards, ...leaf.cards];
   const initialIndexBasedOnRotation = [0, 270, 180, 90].indexOf(rotation);
-  return words[initialIndexBasedOnRotation + DIRECTIONS_INDEXES[direction]]
-    .text;
+  return words[initialIndexBasedOnRotation + DIRECTIONS_INDEXES[direction]].text;
 };

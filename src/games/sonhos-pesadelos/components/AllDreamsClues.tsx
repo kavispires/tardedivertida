@@ -1,16 +1,16 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Ant Design Resources
-import { Space } from "antd";
+import { Space } from 'antd';
 // Types
-import type { GamePlayers } from "types/player";
+import type { GamePlayers } from 'types/player';
 // Utils
-import { LETTERS } from "utils/constants";
-import { getColorFromLetter, getEntryId } from "utils/helpers";
+import { LETTERS } from 'utils/constants';
+import { getColorFromLetter, getEntryId } from 'utils/helpers';
 // Components
-import { TransparentButton } from "components/buttons";
-import { Card } from "components/cards";
+import { TransparentButton } from 'components/buttons';
+import { Card } from 'components/cards';
 // Internal
-import type { Dream } from "../utils/types";
+import type { Dream } from '../utils/types';
 
 type AllDreamsCluesProps = {
   dreams: Dream[];
@@ -20,21 +20,15 @@ type AllDreamsCluesProps = {
   players: GamePlayers;
 };
 
-export function AllDreamsClues({
-  dreams,
-  activeItem,
-  onActivateItem,
-  votes,
-  players,
-}: AllDreamsCluesProps) {
-  const liButtonBaseClass = "a-evaluation-all-cards__li-card-button";
+export function AllDreamsClues({ dreams, activeItem, onActivateItem, votes, players }: AllDreamsCluesProps) {
+  const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
     <Space className="space-container">
       {dreams.map(({ id, dream }, index) => {
         const player = players[id];
         const letter = LETTERS[index];
-        const cardEntryId = getEntryId(["dream", id, letter]);
+        const cardEntryId = getEntryId(['dream', id, letter]);
         const isActive = activeItem === cardEntryId;
         const isUsed = Object.keys(votes).includes(cardEntryId);
 

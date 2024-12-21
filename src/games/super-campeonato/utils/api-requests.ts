@@ -1,30 +1,27 @@
 // Hooks
-import { useGameActionRequest } from "hooks/useGameActionRequest";
-import { useLanguage } from "hooks/useLanguage";
-import type { UseStep } from "hooks/useStep";
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
 // Internal
-import { SUPER_CAMPEONATO_ACTIONS } from "./constants";
+import { SUPER_CAMPEONATO_ACTIONS } from './constants';
 import type {
   SubmitBattleVotesPayload,
   SubmitBetsPayload,
   SubmitChallengePayload,
   SubmitContendersPayload,
-} from "./type";
+} from './type';
 
-export function useOnSubmitChallengeAPIRequest(setStep: UseStep["setStep"]) {
+export function useOnSubmitChallengeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: "submit-challenge",
+    actionName: 'submit-challenge',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate(
-      "Desafio enviado com sucesso!",
-      "Challenge send successfully!",
-    ),
+    successMessage: translate('Desafio enviado com sucesso!', 'Challenge send successfully!'),
     errorMessage: translate(
-      "Vixi, o aplicativo encontrou um erro ao tentar enviar o desafio",
-      "Oops, the application failed to submit the challenge",
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar o desafio',
+      'Oops, the application failed to submit the challenge',
     ),
   });
 
@@ -36,20 +33,17 @@ export function useOnSubmitChallengeAPIRequest(setStep: UseStep["setStep"]) {
   };
 }
 
-export function useOnSubmitContenderAPIRequest(setStep: UseStep["setStep"]) {
+export function useOnSubmitContenderAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: "submit-contender",
+    actionName: 'submit-contender',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate(
-      "Competidor enviado com sucesso!",
-      "Contender send successfully!",
-    ),
+    successMessage: translate('Competidor enviado com sucesso!', 'Contender send successfully!'),
     errorMessage: translate(
-      "Vixi, o aplicativo encontrou um erro ao tentar enviar o competidor",
-      "Oops, the application failed to submit the contender",
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar o competidor',
+      'Oops, the application failed to submit the contender',
     ),
   });
 
@@ -61,20 +55,17 @@ export function useOnSubmitContenderAPIRequest(setStep: UseStep["setStep"]) {
   };
 }
 
-export function useOnSubmitBetsAPIRequest(setStep: UseStep["setStep"]) {
+export function useOnSubmitBetsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: "submit-bets",
+    actionName: 'submit-bets',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate(
-      "Apostas enviadas com sucesso!",
-      "Bets send successfully!",
-    ),
+    successMessage: translate('Apostas enviadas com sucesso!', 'Bets send successfully!'),
     errorMessage: translate(
-      "Vixi, o aplicativo encontrou um erro ao tentar enviar apostas",
-      "Oops, the application failed to submit bets",
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar apostas',
+      'Oops, the application failed to submit bets',
     ),
   });
 
@@ -86,20 +77,17 @@ export function useOnSubmitBetsAPIRequest(setStep: UseStep["setStep"]) {
   };
 }
 
-export function useOnSubmitVotesAPIRequest(setStep: UseStep["setStep"]) {
+export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: "submit-votes",
+    actionName: 'submit-votes',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate(
-      "Votos enviados com sucesso!",
-      "Votes send successfully!",
-    ),
+    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!'),
     errorMessage: translate(
-      "Vixi, o aplicativo encontrou um erro ao tentar enviar votos",
-      "Oops, the application failed to submit votes",
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar votos',
+      'Oops, the application failed to submit votes',
     ),
   });
 

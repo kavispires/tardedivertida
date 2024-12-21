@@ -1,8 +1,8 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Types
-import type { GamePlayer } from "types/player";
+import type { GamePlayer } from 'types/player';
 // Utils
-import { LETTERS } from "utils/constants";
+import { LETTERS } from 'utils/constants';
 
 export const getColorModifier = (letter: string) => {
   const index = LETTERS.indexOf(letter);
@@ -16,8 +16,8 @@ export const getBracketClass = (
   showTarget: boolean,
   target: number,
 ): string => {
-  const baseBracketClass = "o-dial-numbers";
-  const modifier = num % 2 === 0 ? "even" : "odd";
+  const baseBracketClass = 'o-dial-numbers';
+  const modifier = num % 2 === 0 ? 'even' : 'odd';
 
   return clsx(
     baseBracketClass,
@@ -28,11 +28,11 @@ export const getBracketClass = (
 };
 
 export const getGuessResultClass = (guess: number, target: number): string => {
-  const base = "o-player-guess__guess";
+  const base = 'o-player-guess__guess';
   if (target - guess === 0) return `${base}--blue`;
   if (Math.abs(target - guess) === 1) return `${base}--orange`;
   if (Math.abs(target - guess) === 2) return `${base}--yellow`;
-  return "";
+  return '';
 };
 
 export const getPoints = (guess: number, target: number): number => {

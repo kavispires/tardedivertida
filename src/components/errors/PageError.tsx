@@ -9,7 +9,7 @@ type PageErrorProps = {
   description?: string;
 };
 
-export function PageError({ message, description }: PageErrorProps): JSX.Element {
+export function PageError({ message, description }: PageErrorProps) {
   return (
     <div className="container container--center">
       <Alert

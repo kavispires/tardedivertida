@@ -1,4 +1,4 @@
-export function SmartphoneIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function SmartphoneIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#06f5dd" d="M396 67.5v347l-60 30v-407l60 30z" />

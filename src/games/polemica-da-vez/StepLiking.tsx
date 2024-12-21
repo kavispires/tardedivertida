@@ -1,32 +1,32 @@
-import clsx from "clsx";
-import { useMemo, useState } from "react";
+import clsx from 'clsx';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button } from "antd";
+import { Button } from 'antd';
 // Types
-import type { GamePlayers } from "types/player";
-import type { TextCard } from "types/tdr";
+import type { GamePlayers } from 'types/player';
+import type { TextCard } from 'types/tdr';
 // Hooks
-import { useLoading } from "hooks/useLoading";
+import { useLoading } from 'hooks/useLoading';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { SpeechBubbleThumbsDownIcon } from "icons/SpeechBubbleThumbsDownIcon";
-import { SpeechBubbleThumbsUpIcon } from "icons/SpeechBubbleThumbsUpIcon";
+import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from "components/avatars";
-import { TransparentButton } from "components/buttons";
-import { Translate } from "components/language";
-import { Step, type StepProps } from "components/steps";
-import { RuleInstruction, Title } from "components/text";
+import { IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { Tweet } from "./components/Tweet";
+import { Tweet } from './components/Tweet';
 
 type StepLikingProps = {
   currentTweet: TextCard;
   customTweet: string;
   onSubmitReaction: GenericFunction;
   players: GamePlayers;
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepLiking({
   currentTweet,
@@ -53,51 +53,37 @@ export function StepLiking({
   return (
     <Step fullWidth className="p-step" announcement={announcement}>
       <Title>
-        <Translate
-          pt="O que você acha da polêmica da vez?"
-          en="What do you think of this trending topic?"
-        />
+        <Translate pt="O que você acha da polêmica da vez?" en="What do you think of this trending topic?" />
       </Title>
 
       <div className="p-reaction-buttons">
-        <Tweet
-          tweet={customTweet ?? currentTweet?.text}
-          className="p-reaction-buttons__tweet"
-        />
+        <Tweet tweet={customTweet ?? currentTweet?.text} className="p-reaction-buttons__tweet" />
         <TransparentButton
           className={clsx(
-            "p-reaction-button",
-            "p-reaction-button--like",
-            like === true && "p-reaction-button--active",
+            'p-reaction-button',
+            'p-reaction-button--like',
+            like === true && 'p-reaction-button--active',
           )}
           onClick={() => setLike(true)}
         >
-          <IconAvatar
-            icon={<SpeechBubbleThumbsUpIcon />}
-            shape="square"
-            className="p-like-icon"
-          />
+          <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" />
           <Translate pt="Curto" en="Like" />
         </TransparentButton>
         <TransparentButton
           className={clsx(
-            "p-reaction-button",
-            "p-reaction-button--dislike",
-            like === false && "p-reaction-button--active",
+            'p-reaction-button',
+            'p-reaction-button--dislike',
+            like === false && 'p-reaction-button--active',
           )}
           onClick={() => setLike(false)}
         >
-          <IconAvatar
-            icon={<SpeechBubbleThumbsDownIcon />}
-            shape="square"
-            className="p-like-icon"
-          />
+          <IconAvatar icon={<SpeechBubbleThumbsDownIcon />} shape="square" className="p-like-icon" />
           <Translate pt="Não curto" en="Dislike" />
         </TransparentButton>
       </div>
 
       {like !== null && (
-        <div className={getAnimationClass("fadeIn")}>
+        <div className={getAnimationClass('fadeIn')}>
           <RuleInstruction type="action">
             <Translate
               pt="Quantas curtidas esse assunto vai receber?"

@@ -48,7 +48,7 @@ export function PhaseMapBuilding({ players, state }: PhaseProps) {
     </PhaseAnnouncement>
   );
 
-  const isUserMapComplete = user?.map && user.map.every((segment: MapSegment) => segment.passed);
+  const isUserMapComplete = user?.map?.every((segment: MapSegment) => segment.passed);
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.MAP_BUILDING}>

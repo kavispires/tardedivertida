@@ -28,9 +28,14 @@ export function StepRanking({ players, ranking, round, clover, leaves, activeClo
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Pontos por encontrar só um jogador" en="Points for matching only 1 player" />,
-        <Translate pt="Pontos por encontrar mais de um jogador" en="Points for matching with more players" />,
+        <Translate key="1" pt="Pontos por encontrar só um jogador" en="Points for matching only 1 player" />,
         <Translate
+          key="2"
+          pt="Pontos por encontrar mais de um jogador"
+          en="Points for matching with more players"
+        />,
+        <Translate
+          key="3"
           pt="Pontos perdidos por não ter dado match e estar em um pesadelo"
           en="Points lost for not matching any player while in a nightmare"
         />,

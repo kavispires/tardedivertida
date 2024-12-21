@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
@@ -15,7 +15,7 @@ type FilterEntryProps = {
 export function FilterEntry({ label, tooltip, children }: FilterEntryProps) {
   return (
     <div className="showcase-filter-entry">
-      <label className="showcase-filter-entry__label">
+      <label className="showcase-filter-entry__label" htmlFor={String(label)}>
         {label}
         {Boolean(tooltip) && (
           <Tooltip title={tooltip}>

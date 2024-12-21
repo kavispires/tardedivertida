@@ -1,4 +1,4 @@
-import { lazy, Suspense, ReactNode } from "react";
+import { lazy, Suspense, type ReactNode } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 // Hooks
 import { useCurrentUserContext } from "hooks/useCurrentUserContext";
@@ -7,7 +7,6 @@ import { LoadingPage } from "components/loaders";
 // Internal
 import Home from "./Home/Home";
 import Login from "./Login/Login";
-// Pages
 // Routes Lazy load
 const Me = lazy(() => import("pages/Me/Me" /* webpackChunkName: "page-me" */));
 const Users = lazy(
@@ -42,21 +41,8 @@ const DevPlayground = lazy(
       "pages/Dev/Playground" /* webpackChunkName: "page-dev-playground" */
     ),
 );
-
 const Daily = lazy(
   () => import("pages/Daily/Daily" /* webpackChunkName: "page-td-daily" */),
-);
-const ConnectItems = lazy(
-  () =>
-    import(
-      "pages/Dev/ConnectItems/ConnectItems" /* webpackChunkName: "page-dev-connect-items" */
-    ),
-);
-const ConnectTrio = lazy(
-  () =>
-    import(
-      "pages/Dev/ConnectItems/ConnectTrioPage" /* webpackChunkName: "page-td-connect-trio" */
-    ),
 );
 
 const LazyMe = () => (
@@ -119,16 +105,6 @@ const LazyDiario = () => (
     <Daily />
   </Suspense>
 );
-const LazyConnectItems = () => (
-  <Suspense fallback={<LoadingPage />}>
-    <ConnectItems />
-  </Suspense>
-);
-const LazyConnectTrio = () => (
-  <Suspense fallback={<LoadingPage />}>
-    <ConnectTrio />
-  </Suspense>
-);
 
 /**
  * Wraps admin components that are exclusive to Administrators
@@ -151,7 +127,6 @@ export const routes = (
     <Route path="/eu" element={<LazyMe />} />
     <Route path="/diario/*" element={<LazyDiario />} />
     <Route path="/daily/*" element={<LazyDaily />} />
-    <Route path="/trio" element={<LazyConnectTrio />} />
 
     <Route
       path="/hub"
@@ -199,15 +174,6 @@ export const routes = (
       element={
         <AdminProtectedRoute>
           <LazyUsers />
-        </AdminProtectedRoute>
-      }
-    />
-
-    <Route
-      path="/dev/connectitems"
-      element={
-        <AdminProtectedRoute>
-          <LazyConnectItems />
         </AdminProtectedRoute>
       }
     />

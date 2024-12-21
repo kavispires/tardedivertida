@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
 // Internal
-import { WithRequiredId } from '../utils/types';
+import type { WithRequiredId } from '../utils/types';
 import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
 
 type UseDailyLocalTodayProps<TLocal> = {

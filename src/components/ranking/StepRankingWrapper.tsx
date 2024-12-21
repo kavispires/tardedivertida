@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { CaretUpOutlined } from '@ant-design/icons';
 // Types

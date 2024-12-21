@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from "antd";
+import { Button, Space } from 'antd';
 // Hooks
-import { useCountdown } from "hooks/useCountdown";
-import { useLanguage } from "hooks/useLanguage";
+import { useCountdown } from 'hooks/useCountdown';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { NOOP } from "utils/constants";
+import { NOOP } from 'utils/constants';
 // Icons
-import { PanicIcon } from "icons/PanicIcon";
+import { PanicIcon } from 'icons/PanicIcon';
 // Components
-import { ArteRuimTimerSound } from "components/audio/ArteRuimTimerSound";
-import { DrawingCanvas } from "components/canvas";
-import { Card } from "components/cards";
-import { Translate } from "components/language";
-import { TimeHighlight } from "components/metrics/TimeHighlight";
-import { Instruction, Title } from "components/text";
+import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
+import { DrawingCanvas } from 'components/canvas';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { Instruction, Title } from 'components/text';
 // Internal
-import type { SeedEntryArteRuim } from "../../utils/types";
+import type { SeedEntryArteRuim } from '../../utils/types';
 
 type SeedArteRuimProps = {
   seed: SeedEntryArteRuim;
@@ -61,16 +61,14 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
           <Translate
             pt={
               <>
-                Você tem <TimeHighlight>10 segundos</TimeHighlight> para
-                desenhar a carta abaixo. Quando estiver pronto, aperte o botão,
-                o texto irá aparecer, então desenhe rápido!
+                Você tem <TimeHighlight>10 segundos</TimeHighlight> para desenhar a carta abaixo. Quando
+                estiver pronto, aperte o botão, o texto irá aparecer, então desenhe rápido!
               </>
             }
             en={
               <>
-                You have <TimeHighlight>10 seconds</TimeHighlight> to draw the
-                card below. When you're ready, press the button so the text will
-                show up and then draw fast!
+                You have <TimeHighlight>10 seconds</TimeHighlight> to draw the card below. When you're ready,
+                press the button so the text will show up and then draw fast!
               </>
             }
           />
@@ -79,28 +77,19 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
           <Translate pt="Começar" en="Start" />
         </Button>
 
-        <Card
-          size="large"
-          header={translate("Desenhe", "Draw")}
-          className="a-draw__card"
-          color="yellow"
-        >
+        <Card size="large" header={translate('Desenhe', 'Draw')} className="a-draw__card" color="yellow">
           {isRunning ? (
             <>
               {seed.card.text}
-              <span className="a-draw__timer">
-                {seconds > 1 ? seconds - 2 : 0}
-              </span>
+              <span className="a-draw__timer">{seconds > 1 ? seconds - 2 : 0}</span>
             </>
           ) : (
-            "?"
+            '?'
           )}
         </Card>
         {isRunning && <ArteRuimTimerSound />}
         {isTimesUp ? (
-          <PanicIcon
-            style={{ background: "white", width: "500px", padding: "2em" }}
-          />
+          <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
         ) : isRunning ? (
           <DrawingCanvas lines={lines} setLines={setLines} />
         ) : (

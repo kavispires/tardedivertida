@@ -1,11 +1,11 @@
-import clsx from "clsx";
-import { ReactNode } from "react";
+import clsx from 'clsx';
+import type { ReactNode } from 'react';
 // Ant Design Resources
-import { Typography } from "antd";
+import { Typography } from 'antd';
 // Components
-import { useGameAppearance } from "components/session/GameInfoContext";
+import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
-import "./Title.scss";
+import './Title.scss';
 
 export type TitleProps = {
   /**
@@ -36,11 +36,11 @@ export type TitleProps = {
   /**
    * The size of the title (@default: medium)
    */
-  size?: "xx-small" | "x-small" | "small" | "medium" | "large";
+  size?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
   /**
    * The alignment of the text (@default: center)
    */
-  align?: "left" | "right" | "center";
+  align?: 'left' | 'right' | 'center';
 };
 
 export const Title = ({
@@ -50,21 +50,21 @@ export const Title = ({
   icon,
   className,
   level = 2,
-  size = "medium",
-  align = "center",
+  size = 'medium',
+  align = 'center',
 }: TitleProps) => {
   const appearance = useGameAppearance();
-  const color = colorScheme ?? appearance.colorScheme ?? "light";
+  const color = colorScheme ?? appearance.colorScheme ?? 'light';
 
   return (
     <Typography.Title
       level={level}
       className={clsx(
-        "title",
+        'title',
         `title--${size}`,
         `title--align-${align}`,
         `title--${color}`,
-        white && "title--white",
+        white && 'title--white',
         className,
       )}
     >

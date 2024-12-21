@@ -1,25 +1,25 @@
-import clsx from "clsx";
-import { useEffectOnce } from "react-use";
+import clsx from 'clsx';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Button, Space } from "antd";
+import { Button, Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from "types/player";
+import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
-import { useLoading } from "hooks/useLoading";
-import { useMock } from "hooks/useMock";
-import { useVotingMatch } from "hooks/useVotingMatch";
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from "components/language";
-import { Step } from "components/steps";
-import { Instruction, Title } from "components/text";
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 // Internal
-import type { Dream } from "./utils/types";
-import { cleanupVotes, selectOwnVote, voteRandomly } from "./utils/helpers";
-import { mockVotes } from "./utils/mock";
-import { AllDreamsClues } from "./components/AllDreamsClues";
-import { DreamBoardVote } from "./components/DreamBoardVote";
+import type { Dream } from './utils/types';
+import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';
+import { mockVotes } from './utils/mock';
+import { AllDreamsClues } from './components/AllDreamsClues';
+import { DreamBoardVote } from './components/DreamBoardVote';
 
 type StepMatchDreamsProps = {
   onSubmitVotes: GenericFunction;
@@ -29,17 +29,14 @@ type StepMatchDreamsProps = {
   dreams: Dream[];
 };
 
-export function StepMatchDreams({
-  players,
-  user,
-  table,
-  onSubmitVotes,
-  dreams,
-}: StepMatchDreamsProps) {
+export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }: StepMatchDreamsProps) {
   const { isLoading } = useLoading();
 
-  const { votes, setVotes, activeItem, activateItem, isVotingComplete } =
-    useVotingMatch("dream", true, dreams.length);
+  const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
+    'dream',
+    true,
+    dreams.length,
+  );
 
   // Auto-select own clue
   useEffectOnce(() => {
@@ -79,7 +76,7 @@ export function StepMatchDreams({
           type="default"
           disabled={isLoading}
           onClick={() => setVotes(voteRandomly(votes, dreams, table))}
-          className={clsx(isVotingComplete && getAnimationClass("tada"))}
+          className={clsx(isVotingComplete && getAnimationClass('tada'))}
           size="large"
         >
           <Translate pt="Vote pra mim" en="Vote for me" />
@@ -88,7 +85,7 @@ export function StepMatchDreams({
           type="primary"
           disabled={isLoading || !isVotingComplete}
           onClick={onSubmitDreams}
-          className={clsx(isVotingComplete && getAnimationClass("tada"))}
+          className={clsx(isVotingComplete && getAnimationClass('tada'))}
           size="large"
         >
           <Translate pt="Enviar" en="Submit" />

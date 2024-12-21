@@ -1,16 +1,16 @@
-import clsx from 'clsx';
-import { useEffect } from 'react';
+import clsx from "clsx";
+import { useEffectOnce } from "react-use";
 // Ant Design Resources
-import { Flex, Space } from 'antd';
+import { Flex, Space } from "antd";
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from "hooks/useCardWidth";
 // Internal
-import { LettersDictionary } from '../utils/types';
+import type { LettersDictionary } from "../utils/types";
 
-const NUMBERS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-const FIRST_ROW = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
-const SECOND_ROW = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
-const THIRD_ROW = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
+const NUMBERS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+const FIRST_ROW = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
+const SECOND_ROW = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
+const THIRD_ROW = ["z", "x", "c", "v", "b", "n", "m"];
 
 type KeyboardProps = {
   onLetterClick: GenericFunction;
@@ -29,35 +29,45 @@ export function Keyboard({
   onEnterClick,
   withNumbers,
 }: KeyboardProps) {
-  const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30 });
+  const width = useCardWidth(FIRST_ROW.length + 2, {
+    margin: 16,
+    maxWidth: 30,
+  });
 
-  useEffect(() => {
+  useEffectOnce(() => {
     const handleKeyUp = (event: KeyboardEvent) => {
       const key = event.key;
       if (disabled) return;
 
-      if (key === 'Enter' && onEnterClick) {
+      if (key === "Enter" && onEnterClick) {
         return onEnterClick();
       }
-      if (key === 'Backspace' && onBackspaceClick) {
+      if (key === "Backspace" && onBackspaceClick) {
         return onBackspaceClick();
       }
       if (
         !disabled &&
-        (FIRST_ROW.includes(key) || SECOND_ROW.includes(key) || THIRD_ROW.includes(key)) &&
+        (FIRST_ROW.includes(key) ||
+          SECOND_ROW.includes(key) ||
+          THIRD_ROW.includes(key)) &&
         lettersState?.[key].disabled
       ) {
         return onLetterClick(key);
       }
     };
 
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener("keyup", handleKeyUp);
 
-    return () => window.removeEventListener('keyup', handleKeyUp);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    return () => window.removeEventListener("keyup", handleKeyUp);
+  });
 
   return (
-    <Space direction="vertical" align="center" className="daily-keyboard" size="small">
+    <Space
+      direction="vertical"
+      align="center"
+      className="daily-keyboard"
+      size="small"
+    >
       {withNumbers && (
         <Flex className="daily-keyboard__row">
           {NUMBERS.map((letter) => (
@@ -138,11 +148,14 @@ type KeyProps = {
   letter: string;
   width: number;
   state?: string;
-} & Pick<KeyboardProps, 'onLetterClick' | 'disabled'>;
+} & Pick<KeyboardProps, "onLetterClick" | "disabled">;
 
 function Key({ letter, state, onLetterClick, disabled }: KeyProps) {
-  const baseClassName = 'daily-keyboard__key';
-  const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30 });
+  const baseClassName = "daily-keyboard__key";
+  const width = useCardWidth(FIRST_ROW.length + 2, {
+    margin: 16,
+    maxWidth: 30,
+  });
 
   return (
     <button
@@ -152,7 +165,7 @@ function Key({ letter, state, onLetterClick, disabled }: KeyProps) {
       style={{ width }}
       className={clsx(baseClassName, `${baseClassName}--${state}`)}
       onClick={() => onLetterClick(letter)}
-      disabled={disabled || state === 'disabled'}
+      disabled={disabled || state === "disabled"}
     >
       {letter}
     </button>

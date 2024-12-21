@@ -1,4 +1,4 @@
-import { TimerResult, TimerSettings, useTimer } from 'react-timer-hook';
+import { type TimerResult, type TimerSettings, useTimer } from 'react-timer-hook';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 

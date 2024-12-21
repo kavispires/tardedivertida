@@ -1,39 +1,35 @@
-import { orderBy } from "lodash";
+import { orderBy } from 'lodash';
 // Types
-import type { PhaseProps } from "types/game";
-import type { GamePlayer } from "types/player";
+import type { PhaseProps } from 'types/game';
+import type { GamePlayer } from 'types/player';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
-import { useUser } from "hooks/useUser";
+import { useLanguage } from 'hooks/useLanguage';
+import { useUser } from 'hooks/useUser';
 // Utils
-import { AVATARS } from "utils/avatars";
+import { AVATARS } from 'utils/avatars';
 // Icons
-import { PoopIcon } from "icons/PoopIcon";
+import { PoopIcon } from 'icons/PoopIcon';
 // Components
-import { CostumeAvatar } from "components/avatars/CostumeAvatar";
-import { GameOverWrapper } from "components/game-over";
-import { Achievements } from "components/general/Achievements";
-import { Translate } from "components/language";
-import { Instruction } from "components/text";
+import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
+import { GameOverWrapper } from 'components/game-over';
+import { Achievements } from 'components/general/Achievements';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 // Internal
-import { achievementsReference } from "./utils/achievements";
-import { GRID_REPEAT } from "./utils/constants";
-import { CandyCount } from "./components/CandyCount";
-import { PlayerStats } from "./components/PlayerStats";
+import { achievementsReference } from './utils/achievements';
+import { GRID_REPEAT } from './utils/constants';
+import { CandyCount } from './components/CandyCount';
+import { PlayerStats } from './components/PlayerStats';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   const { language } = useLanguage();
   const user = useUser(players, state);
 
-  const winningPlayersIds = state.winners.map(
-    (player: GamePlayer) => player.id,
-  );
+  const winningPlayersIds = state.winners.map((player: GamePlayer) => player.id);
   const nonWinningPlayers = orderBy(
-    Object.values(players).filter(
-      (player) => !winningPlayersIds.includes(player.id),
-    ),
-    "score",
-    "desc",
+    Object.values(players).filter((player) => !winningPlayersIds.includes(player.id)),
+    'score',
+    'desc',
   );
 
   return (
@@ -58,7 +54,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         <ul className="n-game-over-players">
           {state.winners.map((player: GamePlayer) => {
             return (
-              <div className="n-game-over-player">
+              <div key={player.id} className="n-game-over-player">
                 <CostumeAvatar
                   key={`winner-${player.id}`}
                   avatarId={state.winners[0].avatarId}
@@ -80,15 +76,11 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         }}
       >
         {nonWinningPlayers.map((player) => (
-          <li
-            className="n-game-over-player"
-            key={`game-over-player-${player.id}`}
-          >
+          <li className="n-game-over-player" key={`game-over-player-${player.id}`}>
             <div className="n-game-over-player__name">
               <CostumeAvatar avatarId={player.avatarId} id={player.costumeId} />
               <br />
-              <strong>{player.name}</strong>,{" "}
-              {AVATARS[player.avatarId].description[language]}
+              <strong>{player.name}</strong>, {AVATARS[player.avatarId].description[language]}
             </div>
             <div className="n-game-over-player__candy">
               <CandyCount candyCount={player.score} size="small" />
@@ -97,11 +89,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         ))}
       </ul>
 
-      <Achievements
-        players={players}
-        achievements={state.achievements}
-        reference={achievementsReference}
-      />
+      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <PlayerStats user={user} />
     </GameOverWrapper>

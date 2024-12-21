@@ -1,4 +1,4 @@
-export function BrickWallIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function BrickWallIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#ffcebf" d="M173.17 386.01H7.5v-82.75c0-9 7.29-16.29 16.29-16.29h149.38z"></path>

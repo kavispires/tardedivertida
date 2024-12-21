@@ -1,7 +1,7 @@
 // Types
-import { GameRound } from 'types/game';
+import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
-import { Item } from 'types/tdr';
+import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Icons
@@ -11,10 +11,10 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
-import { Step, StepProps } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { Title } from 'components/text';
 // Internal
-import { DiagramArea, DiagramExamples, Solutions } from './utils/types';
+import type { DiagramArea, DiagramExamples, Solutions } from './utils/types';
 import { getPlayerItemsLeft } from './utils/helper';
 import { DiagramRules } from './components/RulesBlobs';
 import { MyThings } from './components/MyThings';

@@ -1,16 +1,11 @@
-import clsx from "clsx";
-import { ReactNode } from "react";
-// Types
-import type { GamePlayer } from "types/player";
-// Hooks
-import { useGlobalState } from "hooks/useGlobalState";
-import { useLanguage } from "hooks/useLanguage";
-// Utils
-import { AVATARS } from "utils/avatars";
-// Internal
-import { Avatar } from "./Avatar";
-// Sass
-import "./AvatarCard.scss";
+import clsx from 'clsx';
+import type { ReactNode } from 'react';
+import type { GamePlayer } from 'types/player';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { AVATARS } from 'utils/avatars';
+import { Avatar } from './Avatar';
+import './AvatarCard.scss';
 
 type AvatarCardProps = {
   /**
@@ -32,7 +27,7 @@ type AvatarCardProps = {
   /**
    * The card size
    */
-  size?: "small" | "default" | "large";
+  size?: 'small' | 'default' | 'large';
   /**
    * If text should be displayed in uppercase
    */
@@ -54,21 +49,21 @@ type AvatarCardProps = {
 export const AvatarCard = ({
   player,
   addressUser = false,
-  className = "",
+  className = '',
   replacementAvatar,
-  size = "default",
+  size = 'default',
   uppercase = false,
   withName = false,
   withDescription = false,
   withRoundCorners = false,
 }: AvatarCardProps) => {
-  const [userId] = useGlobalState("userId");
+  const [userId] = useGlobalState('userId');
   const { language, translate } = useLanguage();
 
-  const baseClass = "avatar-card";
+  const baseClass = 'avatar-card';
 
   const isUser = player.id === userId;
-  const addressedUser = translate("Você", "You");
+  const addressedUser = translate('Você', 'You');
 
   const sizes = getSize(size);
 
@@ -97,13 +92,9 @@ export const AvatarCard = ({
       )}
       {withName && (
         <>
-          <div className="avatar-card__name">
-            {addressUser && isUser ? addressedUser : player.name}
-          </div>
-          {size !== "small" && withDescription && (
-            <div className="avatar-card__description">
-              {avatar.description[language]}
-            </div>
+          <div className="avatar-card__name">{addressUser && isUser ? addressedUser : player.name}</div>
+          {size !== 'small' && withDescription && (
+            <div className="avatar-card__description">{avatar.description[language]}</div>
           )}
         </>
       )}
@@ -116,22 +107,22 @@ export const AvatarCard = ({
  * @param size
  * @returns
  */
-const getSize = (size: "small" | "default" | "large") => {
+const getSize = (size: 'small' | 'default' | 'large') => {
   switch (size) {
-    case "small":
+    case 'small':
       return {
-        width: "10ch",
-        avatarSize: "6ch",
+        width: '10ch',
+        avatarSize: '6ch',
       };
-    case "large":
+    case 'large':
       return {
-        width: "20ch",
-        avatarSize: "24ch",
+        width: '20ch',
+        avatarSize: '24ch',
       };
     default:
       return {
-        width: "14ch",
-        avatarSize: "12ch",
+        width: '14ch',
+        avatarSize: '12ch',
       };
   }
 };

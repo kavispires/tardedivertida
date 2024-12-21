@@ -1,4 +1,4 @@
-export function TargetIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function TargetIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <circle cx="256" cy="256" r="213.33" fill="#fe4f60"></circle>

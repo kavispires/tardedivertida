@@ -1,27 +1,20 @@
-import { loadLocalToday } from "pages/Daily/utils";
+import { loadLocalToday } from 'pages/Daily/utils';
 // Utils
-import { SEPARATOR } from "utils/constants";
-import { deepCopy } from "utils/helpers";
+import { SEPARATOR } from 'utils/constants';
+import { deepCopy } from 'utils/helpers';
 // Internal
-import { PHASES, SETTINGS } from "./settings";
-import {
-  ControleDeEstoqueLocalToday,
-  DailyControleDeEstoqueEntry,
-  GameState,
-} from "./types";
+import { PHASES, SETTINGS } from './settings';
+import type { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
 
 export const DEFAULT_LOCAL_TODAY: ControleDeEstoqueLocalToday = {
-  id: "",
+  id: '',
   number: 0,
   warehouse: [],
   guesses: [],
   extraAttempts: 0,
 };
 
-export const getInitialState = (
-  data: DailyControleDeEstoqueEntry,
-  removeHeart?: boolean,
-): GameState => {
+export const getInitialState = (data: DailyControleDeEstoqueEntry, removeHeart?: boolean): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
@@ -45,30 +38,21 @@ export const getInitialState = (
   if (localToday.warehouse.length || localToday.extraAttempts) {
     // Update phase
     const warehouse =
-      localToday.warehouse.length > 0
-        ? localToday.warehouse
-        : Array(data.goods.length).fill(null);
-    const guesses =
-      localToday.warehouse.length > 0 ? (localToday.guesses ?? []) : [];
+      localToday.warehouse.length > 0 ? localToday.warehouse : Array(data.goods.length).fill(null);
+    const guesses = localToday.warehouse.length > 0 ? (localToday.guesses ?? []) : [];
 
     // Activate the last order attempt
-    const fulfillments =
-      guesses.length > 0 ? parseGuessString(guesses[guesses.length - 1]) : [];
+    const fulfillments = guesses.length > 0 ? parseGuessString(guesses[guesses.length - 1]) : [];
     // Determine win
     const attempts = validateAttempts(warehouse, fulfillments);
     const extraAttempts = localToday.extraAttempts ?? 0;
     const win = attempts.length > 0 && attempts.every(Boolean);
 
-    state.phase = warehouse.every(Boolean)
-      ? PHASES.FULFILLING
-      : PHASES.STOCKING;
+    state.phase = warehouse.every(Boolean) ? PHASES.FULFILLING : PHASES.STOCKING;
     state.warehouse = warehouse;
     state.guesses = guesses;
-    state.evaluations = guesses.map((g) =>
-      validateAttempts(warehouse, parseGuessString(g)),
-    );
-    state.hearts =
-      SETTINGS.HEARTS - guesses.length - extraAttempts - (removeHeart ? 1 : 0);
+    state.evaluations = guesses.map((g) => validateAttempts(warehouse, parseGuessString(g)));
+    state.hearts = SETTINGS.HEARTS - guesses.length - extraAttempts - (removeHeart ? 1 : 0);
     state.extraAttempts = extraAttempts;
     state.fulfillments = fulfillments;
     state.win = win;
@@ -84,8 +68,8 @@ export const getInitialState = (
  * @returns An array of boolean values indicating whether each fulfillment attempt was successful or not.
  */
 export const validateAttempts = (
-  warehouse: GameState["warehouse"],
-  fulfillments: GameState["fulfillments"],
+  warehouse: GameState['warehouse'],
+  fulfillments: GameState['fulfillments'],
 ) => {
   return fulfillments.reduce((acc: boolean[], fulfillment) => {
     // If it's out of stock
@@ -107,10 +91,8 @@ export const validateAttempts = (
  * @param fulfillments - The fulfillments array containing the game state.
  * @returns A string representing the guesses made in the game.
  */
-export const getGuessString = (fulfillments: GameState["fulfillments"]) => {
-  return fulfillments
-    .map((f) => `${f.order}${SEPARATOR}${f.shelfIndex}`)
-    .join(",");
+export const getGuessString = (fulfillments: GameState['fulfillments']) => {
+  return fulfillments.map((f) => `${f.order}${SEPARATOR}${f.shelfIndex}`).join(',');
 };
 
 /**
@@ -119,7 +101,7 @@ export const getGuessString = (fulfillments: GameState["fulfillments"]) => {
  * @returns An array of objects containing order and shelf index.
  */
 const parseGuessString = (guessString: string) => {
-  return guessString.split(",").map((g) => {
+  return guessString.split(',').map((g) => {
     const [order, shelfIndex] = g.split(SEPARATOR);
     return { order, shelfIndex: Number(shelfIndex) };
   });

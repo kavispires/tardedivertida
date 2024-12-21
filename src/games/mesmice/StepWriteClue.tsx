@@ -1,33 +1,29 @@
-import { orderBy } from "lodash";
-import { mockClue } from "mock/clues";
-import { useMemo, useState } from "react";
+import { orderBy } from 'lodash';
+import { mockClue } from 'mock/clues';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from "antd";
+import { Button, Input, Space } from 'antd';
 // Types
-import type { GamePlayer } from "types/player";
+import type { GamePlayer } from 'types/player';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
-import { useLoading } from "hooks/useLoading";
-import { useMock } from "hooks/useMock";
-import { type UseStep } from "hooks/useStep";
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+import type { UseStep } from 'hooks/useStep';
 // Components
-import { Translate } from "components/language";
-import { Step } from "components/steps";
-import { RuleInstruction, Title } from "components/text";
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
-import type {
-  ExtendedObjectFeatureCard,
-  ObjectCardObj,
-  SubmitObjectPayload,
-} from "./utils/types";
-import { ObjectFeature } from "./components/ObjectFeature";
-import { ObjectCard } from "./components/ObjectCard";
+import type { ExtendedObjectFeatureCard, ObjectCardObj, SubmitObjectPayload } from './utils/types';
+import { ObjectFeature } from './components/ObjectFeature';
+import { ObjectCard } from './components/ObjectCard';
 // Type
 
 type StepWriteClueProps = {
   user: GamePlayer;
   features: Dictionary<ExtendedObjectFeatureCard>;
-  goToPreviousStep: UseStep["goToPreviousStep"];
+  goToPreviousStep: UseStep['goToPreviousStep'];
   selectedObjectId: string;
   onSubmitClue: (payload: SubmitObjectPayload) => void;
 };
@@ -39,18 +35,15 @@ export function StepWriteClue({
   onSubmitClue,
   selectedObjectId,
 }: StepWriteClueProps) {
-  const [clue, setClue] = useState<string>("");
+  const [clue, setClue] = useState<string>('');
   const { translate, language } = useLanguage();
   const { isLoading } = useLoading();
 
   // Dev Only
-  useMock(() =>
-    onSubmitClue({ clue: mockClue("high"), itemId: selectedObjectId }),
-  );
+  useMock(() => onSubmitClue({ clue: mockClue('high'), itemId: selectedObjectId }));
 
   const selectedObject = useMemo(
-    () =>
-      user.items.find((item: ObjectCardObj) => item.id === selectedObjectId),
+    () => user.items.find((item: ObjectCardObj) => item.id === selectedObjectId),
     [user, selectedObjectId],
   );
 
@@ -59,7 +52,7 @@ export function StepWriteClue({
   };
 
   const listOfFeatures = useMemo(
-    () => orderBy(Object.values(features), [`title.${language}`, "level"]),
+    () => orderBy(Object.values(features), [`title.${language}`, 'level']),
     [features, language],
   );
 
@@ -73,21 +66,17 @@ export function StepWriteClue({
         <Translate
           pt={
             <>
-              Com o objeto selecionado, <strong>escreva</strong> uma dica que
-              melhor conecta seu objeto com a característica sorteada para você
-              (destacada em rosa abaixo).
-              <br />O jogo consiste em eliminar as características restantes até
-              que apenas a sua permaneça.
+              Com o objeto selecionado, <strong>escreva</strong> uma dica que melhor conecta seu objeto com a
+              característica sorteada para você (destacada em rosa abaixo).
+              <br />O jogo consiste em eliminar as características restantes até que apenas a sua permaneça.
             </>
           }
           en={
             <>
-              With the selected object, <strong>write</strong> a clue that best
-              connects your object with the assigned characteristic for you
-              (highlighted in pink below).
+              With the selected object, <strong>write</strong> a clue that best connects your object with the
+              assigned characteristic for you (highlighted in pink below).
               <br />
-              The game consists of eliminating the remaining characteristics
-              until only yours remains.
+              The game consists of eliminating the remaining characteristics until only yours remains.
             </>
           }
         />
@@ -104,11 +93,7 @@ export function StepWriteClue({
           }}
         >
           {listOfFeatures.map((feature) => (
-            <ObjectFeature
-              key={feature.id}
-              feature={feature}
-              highlight={user.target === feature.id}
-            />
+            <ObjectFeature key={feature.id} feature={feature} highlight={user.target === feature.id} />
           ))}
         </div>
       </div>
@@ -117,31 +102,24 @@ export function StepWriteClue({
         <Translate
           pt={
             <>
-              A dica que você escrever deve ser um objeto manufaturado que você
-              possa tocar.
+              A dica que você escrever deve ser um objeto manufaturado que você possa tocar.
               <br />
-              Você não pode usar números e nenhuma palavra adicional além do
-              objeto.
+              Você não pode usar números e nenhuma palavra adicional além do objeto.
               <br />
-              Não pode conter nenhum material. (Por exemplo, colher é válido,
-              mas colher de pau não é)
+              Não pode conter nenhum material. (Por exemplo, colher é válido, mas colher de pau não é)
               <br />
-              Em geral, se você tiver a sensação de que está trapaceando,
-              provavelmente está.
+              Em geral, se você tiver a sensação de que está trapaceando, provavelmente está.
             </>
           }
           en={
             <>
               The clue object you write must be a man-made object you can touch.
               <br />
-              You cannot use numbers and no additional words apart from the
-              object.
+              You cannot use numbers and no additional words apart from the object.
               <br />
-              It may not contain any material. (For example, cooking spoon is
-              valid, but wooden spoon is not)
+              It may not contain any material. (For example, cooking spoon is valid, but wooden spoon is not)
               <br />
-              In general, if you have the feeling you are cheating, you probably
-              are.
+              In general, if you have the feeling you are cheating, you probably are.
             </>
           }
         />
@@ -150,10 +128,7 @@ export function StepWriteClue({
       <Space className="space-container">
         <Input
           size="large"
-          placeholder={translate(
-            "Escreva seu objeto aqui",
-            "Write your object here",
-          )}
+          placeholder={translate('Escreva seu objeto aqui', 'Write your object here')}
           onChange={(e) => setClue(e.target.value)}
           onPressEnter={handleSubmitClue}
         />

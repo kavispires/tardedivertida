@@ -1,4 +1,4 @@
-export function HeartIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function HeartIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#e0230d" d="M365 26h-10l-99 460c6-3 248-146 249-320 0-77-63-140-140-140z"></path>

@@ -22,7 +22,7 @@ type EmojiCardProps = {
 /**
  * An emoji card component.
  */
-export function EmojiCard({ id, width, className }: EmojiCardProps): JSX.Element {
+export function EmojiCard({ id, width, className }: EmojiCardProps) {
   const emojiId = id.startsWith('emoji') ? id : `emoji-${id}`;
 
   return (

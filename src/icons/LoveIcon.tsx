@@ -1,4 +1,4 @@
-export function LoveIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function LoveIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#fad78d" d="M60 452l20 20-72 32 32-72 20 20z"></path>

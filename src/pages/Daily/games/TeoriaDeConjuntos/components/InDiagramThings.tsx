@@ -1,5 +1,5 @@
 // Internal
-import { TThing } from '../utils/types';
+import type { TThing } from '../utils/types';
 import { Thing } from './Thing';
 
 type InDiagramThingsProps = {

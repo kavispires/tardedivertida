@@ -1,35 +1,31 @@
-import clsx from "clsx";
-import { orderBy } from "lodash";
+import clsx from 'clsx';
+import { orderBy } from 'lodash';
 // Ant Design Resources
-import {
-  CheckSquareFilled,
-  CloseSquareFilled,
-  TrophyOutlined,
-} from "@ant-design/icons";
-import { Space, Table } from "antd";
+import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined } from '@ant-design/icons';
+import { Space, Table } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from "types/player";
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
-import type { UseStep } from "hooks/useStep";
-import { useTemporarilyHidePlayersBar } from "hooks/useTemporarilyHidePlayersBar";
+import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { AVATARS as avatars } from "utils/avatars";
-import { getMeanDuration } from "utils/helpers";
+import { AVATARS as avatars } from 'utils/avatars';
+import { getMeanDuration } from 'utils/helpers';
 // Components
-import { AvatarName } from "components/avatars";
-import { TimedButton } from "components/buttons";
-import { Translate } from "components/language";
-import { PointsHighlight } from "components/metrics/PointsHighlight";
-import { PopoverRule } from "components/rules";
-import { Step, type StepProps } from "components/steps";
-import { RuleInstruction, Title } from "components/text";
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PopoverRule } from 'components/rules';
+import { Step, type StepProps } from 'components/steps';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
-import type { Clue, Grid, GridType } from "./utils/types";
-import { WordGrid } from "./components/WordGrid";
-import { ClueCard } from "./components/ClueCard";
-import { PreviousClue } from "./components/PreviousClue";
-import { ScoringRule } from "./components/RulesBlobs";
+import type { Clue, Grid, GridType } from './utils/types';
+import { WordGrid } from './components/WordGrid';
+import { ClueCard } from './components/ClueCard';
+import { PreviousClue } from './components/PreviousClue';
+import { ScoringRule } from './components/RulesBlobs';
 
 const AVATARS: PlainObject = avatars;
 
@@ -49,7 +45,7 @@ function PlayersInCell({ cellPlayers, players }: PlayersInCellProps) {
         isCorrect ? (
           <li
             key={`players-in-cell-${playerId}`}
-            className={clsx(isCorrect && "x-players-in-cell-player--correct")}
+            className={clsx(isCorrect && 'x-players-in-cell-player--correct')}
           >
             <AvatarName player={players[playerId]} size="small" />
           </li>
@@ -67,28 +63,20 @@ type ResultCellProps = {
   colorCodedCluesPerPlayer: any;
 };
 
-function ResultCell({
-  cell,
-  clues,
-  players,
-  playerPerVotedCell,
-  colorCodedCluesPerPlayer,
-}: ResultCellProps) {
+function ResultCell({ cell, clues, players, playerPerVotedCell, colorCodedCluesPerPlayer }: ResultCellProps) {
   const clue = clues.find((c) => c.coordinate === cell.index);
   const cellPlayers = playerPerVotedCell[cell.index] ?? [];
 
-  if (clue) {
+  if (clue?.playerId) {
     return (
       <div>
         <ClueCard
           isMatched
           clue={clue.clue}
-          color={colorCodedCluesPerPlayer[clue.playerId!]}
-          player={players[clue.playerId!]}
+          color={colorCodedCluesPerPlayer[clue.playerId]}
+          player={players[clue.playerId]}
         />
-        {Boolean(cellPlayers.length) && (
-          <PlayersInCell cellPlayers={cellPlayers} players={players} />
-        )}
+        {Boolean(cellPlayers.length) && <PlayersInCell cellPlayers={cellPlayers} players={players} />}
       </div>
     );
   }
@@ -99,9 +87,7 @@ function ResultCell({
 
   return (
     <span>
-      {Boolean(cellPlayers.length) && (
-        <PlayersInCell cellPlayers={cellPlayers} players={players} />
-      )}
+      {Boolean(cellPlayers.length) && <PlayersInCell cellPlayers={cellPlayers} players={players} />}
     </span>
   );
 }
@@ -112,44 +98,40 @@ type AnswersListProps = {
   correctCoordinatesPerPlayer: any;
 };
 
-function AnswersList({
-  players,
-  grid,
-  correctCoordinatesPerPlayer,
-}: AnswersListProps) {
+function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersListProps) {
   const { translate } = useLanguage();
 
   const columns = [
     {
-      title: translate("Jogador", "Player"),
-      dataIndex: "player",
-      key: "player",
+      title: translate('Jogador', 'Player'),
+      dataIndex: 'player',
+      key: 'player',
       render: (data: any) => <AvatarName player={data} />,
       sorter: (a: any, b: any) => a.playerName.localeCompare(b.playerName),
     },
     {
-      title: translate("Achou que", "Thought that"),
-      dataIndex: "guess",
-      key: "guess",
+      title: translate('Achou que', 'Thought that'),
+      dataIndex: 'guess',
+      key: 'guess',
       render: (guess: string) => guess.toUpperCase(),
       sorter: (a: any, b: any) => a.guess.localeCompare(b.guess),
     },
     {
-      title: translate("Era", "Was"),
-      dataIndex: "clue",
-      key: "clue",
+      title: translate('Era', 'Was'),
+      dataIndex: 'clue',
+      key: 'clue',
       render: (clue: string) => clue.toUpperCase(),
       sorter: (a: any, b: any) => a.clue.localeCompare(b.clue),
     },
     {
-      title: translate("Resultado", "Result"),
-      dataIndex: "result",
-      key: "result",
+      title: translate('Resultado', 'Result'),
+      dataIndex: 'result',
+      key: 'result',
       render: (value: any) =>
         value ? (
-          <CheckSquareFilled style={{ color: "green" }} />
+          <CheckSquareFilled style={{ color: 'green' }} />
         ) : (
-          <CloseSquareFilled style={{ color: "red" }} />
+          <CloseSquareFilled style={{ color: 'red' }} />
         ),
       sorter: (a: any, b: any) => (a.result === true ? 1 : -1),
     },
@@ -167,9 +149,7 @@ function AnswersList({
           player,
           clue: `${cell.yText} + ${cell.xText}`,
           guess: players[guessedPlayerId].clue,
-          result:
-            correctCoordinatesPerPlayer?.[guessedCoordinate] ===
-            guessedPlayerId,
+          result: correctCoordinatesPerPlayer?.[guessedCoordinate] === guessedPlayerId,
         });
 
         return acc;
@@ -178,42 +158,22 @@ function AnswersList({
     );
   });
 
-  const dataSource: any = orderBy(
-    parsedData.flat(),
-    ["playerName", "guess"],
-    ["asc", "asc"],
-  );
+  const dataSource: any = orderBy(parsedData.flat(), ['playerName', 'guess'], ['asc', 'asc']);
 
-  return (
-    <Table
-      size="small"
-      columns={columns}
-      dataSource={dataSource}
-      pagination={false}
-    />
-  );
+  return <Table size="small" columns={columns} dataSource={dataSource} pagination={false} />;
 }
 
 type BadCluesPlayersListProps = {
   badCluesPlayersList: GamePlayer[];
 };
 
-function BadCluesPlayersList({
-  badCluesPlayersList,
-}: BadCluesPlayersListProps) {
+function BadCluesPlayersList({ badCluesPlayersList }: BadCluesPlayersListProps) {
   return (
     <span>
       {badCluesPlayersList.map((player, index) => (
         <span key={`bad-clue-${player.id}-${index}`}>
-          <AvatarName
-            player={player}
-            key={`bad-clue-${player.id}`}
-            size="small"
-          />
-          {badCluesPlayersList.length > 0 &&
-          index < badCluesPlayersList.length - 1
-            ? ", "
-            : ""}
+          <AvatarName player={player} key={`bad-clue-${player.id}`} size="small" />
+          {badCluesPlayersList.length > 0 && index < badCluesPlayersList.length - 1 ? ', ' : ''}
         </span>
       ))}
     </span>
@@ -226,9 +186,9 @@ type StepRevealProps = {
   gridType: GridType;
   user: GamePlayer;
   clues: Clue[];
-  goToNextStep: UseStep["goToNextStep"];
+  goToNextStep: UseStep['goToNextStep'];
   whoGotNoPoints: PlayerId[];
-} & Pick<StepProps, "announcement">;
+} & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
   grid,
@@ -247,35 +207,30 @@ export function StepReveal({
   }, {});
 
   const colorCodedCluesPerPlayer = clues.reduce((acc: PlainObject, clue) => {
-    acc[clue.playerId!] = AVATARS[players[clue.playerId!].avatarId].color;
+    if (clue.playerId) {
+      acc[clue.playerId] = AVATARS[players[clue.playerId].avatarId].color;
+    }
     return acc;
   }, {});
 
-  const playerPerVotedCell = Object.values(players).reduce(
-    (acc: PlainObject, player) => {
-      Object.entries(player.guesses ?? {}).forEach(
-        ([playerId, coordinate]: any) => {
-          if (playerId !== player.id) {
-            if (acc[coordinate] === undefined) {
-              acc[coordinate] = [];
-            }
-            acc[coordinate].push({
-              playerId: player.id,
-              color: colorCodedCluesPerPlayer[playerId],
-              isCorrect: correctCoordinatesPerPlayer[coordinate] === playerId,
-            });
-          }
-        },
-      );
+  const playerPerVotedCell = Object.values(players).reduce((acc: PlainObject, player) => {
+    Object.entries(player.guesses ?? {}).forEach(([playerId, coordinate]: any) => {
+      if (playerId !== player.id) {
+        if (acc[coordinate] === undefined) {
+          acc[coordinate] = [];
+        }
+        acc[coordinate].push({
+          playerId: player.id,
+          color: colorCodedCluesPerPlayer[playerId],
+          isCorrect: correctCoordinatesPerPlayer[coordinate] === playerId,
+        });
+      }
+    });
 
-      return acc;
-    },
-    {},
-  );
+    return acc;
+  }, {});
 
-  const whoGotNoPointsNames = whoGotNoPoints.map(
-    (playerId) => players[playerId],
-  );
+  const whoGotNoPointsNames = whoGotNoPoints.map((playerId) => players[playerId]);
   const playerCount = Object.keys(players).length;
 
   return (
@@ -292,27 +247,15 @@ export function StepReveal({
             pt={
               <>
                 Ninguém acertou a(s) dica(s) dadas por
-                <BadCluesPlayersList
-                  badCluesPlayersList={whoGotNoPointsNames}
-                />
-                , então ele(s) perde(m){" "}
-                <PointsHighlight type="negative">
-                  - {playerCount}
-                </PointsHighlight>{" "}
-                pontos.
+                <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, então ele(s) perde(m){' '}
+                <PointsHighlight type="negative">- {playerCount}</PointsHighlight> pontos.
               </>
             }
             en={
               <>
                 Nobody got the clues given by
-                <BadCluesPlayersList
-                  badCluesPlayersList={whoGotNoPointsNames}
-                />
-                , so they lose{" "}
-                <PointsHighlight type="negative">
-                  - {playerCount}
-                </PointsHighlight>{" "}
-                points.
+                <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, so they lose{' '}
+                <PointsHighlight type="negative">- {playerCount}</PointsHighlight> points.
               </>
             }
           />
@@ -346,11 +289,7 @@ export function StepReveal({
       <Title level={3} size="x-small">
         <Translate pt="Todas as respostas" en="All Answers" />
       </Title>
-      <AnswersList
-        correctCoordinatesPerPlayer={correctCoordinatesPerPlayer}
-        players={players}
-        grid={grid}
-      />
+      <AnswersList correctCoordinatesPerPlayer={correctCoordinatesPerPlayer} players={players} grid={grid} />
     </Step>
   );
 }

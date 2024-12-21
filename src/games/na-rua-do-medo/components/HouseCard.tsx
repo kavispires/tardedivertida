@@ -1,16 +1,16 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Ant Design Resources
-import { Tooltip } from "antd";
+import { Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ImageCard } from "components/image-cards";
-import { Translate } from "components/language";
+import { ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
 // Internal
-import type { StreetCard } from "../utils/types";
-import { CandyCount } from "./CandyCount";
+import type { StreetCard } from '../utils/types';
+import { CandyCount } from './CandyCount';
 
 type HouseCardProps = {
   /**
@@ -43,27 +43,22 @@ export function HouseCard({
   card,
   candyLeftover,
   id,
-  className = "",
+  className = '',
   active = false,
   preview,
 }: HouseCardProps) {
   const { dualTranslate } = useLanguage();
 
-  const baseClass = "n-house-card";
-  const cardBaseClass = "n-house-card__card";
+  const baseClass = 'n-house-card';
+  const cardBaseClass = 'n-house-card__card';
 
   return (
     <div
-      className={clsx(
-        baseClass,
-        `${baseClass}--${card.type}`,
-        active && `${baseClass}--active`,
-        className,
-      )}
+      className={clsx(baseClass, `${baseClass}--${card.type}`, active && `${baseClass}--active`, className)}
       id={id}
     >
       <div className="n-house-card__sidewalk">
-        {card.type === "candy" && candyLeftover > 0 && (
+        {card.type === 'candy' && candyLeftover > 0 && (
           <Tooltip
             color="hotPink"
             title={
@@ -77,12 +72,7 @@ export function HouseCard({
           </Tooltip>
         )}
       </div>
-      <ImageCard
-        id={card.key}
-        cardWidth={80}
-        className={clsx(cardBaseClass)}
-        preview={preview}
-      />
+      <ImageCard id={card.key} cardWidth={80} className={clsx(cardBaseClass)} preview={preview} />
 
       <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
 
@@ -90,7 +80,7 @@ export function HouseCard({
         <span
           className={clsx(
             `${baseClass}__active`,
-            getAnimationClass("heartBeat", { speed: "slow", infinite: true }),
+            getAnimationClass('heartBeat', { speed: 'slow', infinite: true }),
           )}
         />
       )}

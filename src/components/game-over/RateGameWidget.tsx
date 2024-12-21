@@ -1,23 +1,23 @@
-import clsx from "clsx";
-import { ReactNode, useState } from "react";
+import clsx from 'clsx';
+import { type ReactNode, useState } from 'react';
 // Ant Design Resources
-import { StarFilled } from "@ant-design/icons";
-import { Alert, Button, Input, Rate } from "antd";
+import { StarFilled } from '@ant-design/icons';
+import { Alert, Button, Input, Rate } from 'antd';
 // Hooks
-import { useCountdown } from "hooks/useCountdown";
-import { useCurrentUserContext } from "hooks/useCurrentUserContext";
-import { useGameActionRequest } from "hooks/useGameActionRequest";
-import { useGameMeta } from "hooks/useGameMeta";
-import { useGlobalState } from "hooks/useGlobalState";
-import { useLanguage } from "hooks/useLanguage";
-import { useLoading } from "hooks/useLoading";
+import { useCountdown } from 'hooks/useCountdown';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useGameActionRequest } from 'hooks/useGameActionRequest';
+import { useGameMeta } from 'hooks/useGameMeta';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Services
-import { GAME_API_COMMON_ACTIONS } from "services/adapters";
+import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { FixedMenuButton } from "components/buttons";
-import { Translate } from "components/language";
+import { FixedMenuButton } from 'components/buttons';
+import { Translate } from 'components/language';
 // Adapters
 
 const { TextArea } = Input;
@@ -55,19 +55,15 @@ type RateGameWidgetContentProps = {
   setHideWidget: React.Dispatch<React.SetStateAction<boolean>>;
 } & RateGameWidgetProps;
 
-function RateGameWidgetContent({
-  customText,
-  hideWidget,
-  setHideWidget,
-}: RateGameWidgetContentProps): JSX.Element {
+function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGameWidgetContentProps) {
   const { gameId } = useGameMeta();
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
-  const [userId] = useGlobalState("userId");
+  const [userId] = useGlobalState('userId');
   const { isAdmin } = useCurrentUserContext();
-  const [isAdminEnabled] = useGlobalState("isAdminEnabled");
+  const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [rating, setRating] = useState(0);
-  const [comments, setComments] = useState("");
+  const [comments, setComments] = useState('');
 
   const [thankYouMessage, setThankYouMessage] = useState(false);
 
@@ -78,15 +74,9 @@ function RateGameWidgetContent({
   });
 
   const onSendRating = useGameActionRequest({
-    actionName: "rating",
-    successMessage: translate(
-      "Obrigado por avaliar o jogo",
-      "Thanks for rating the game",
-    ),
-    errorMessage: translate(
-      "Envio de avaliação falhou",
-      "Rating submission has failed",
-    ),
+    actionName: 'rating',
+    successMessage: translate('Obrigado por avaliar o jogo', 'Thanks for rating the game'),
+    errorMessage: translate('Envio de avaliação falhou', 'Rating submission has failed'),
     onBeforeCall: () => setThankYouMessage(true),
     onAfterCall: start,
   });
@@ -109,17 +99,13 @@ function RateGameWidgetContent({
   return (
     <div
       className={clsx(
-        "rate-game-widget",
-        thankYouMessage && "rate-game-widget--thank-you",
-        getAnimationClass(hideWidget ? "bounceOut" : "bounceIn"),
+        'rate-game-widget',
+        thankYouMessage && 'rate-game-widget--thank-you',
+        getAnimationClass(hideWidget ? 'bounceOut' : 'bounceIn'),
       )}
     >
       {thankYouMessage ? (
-        <Alert
-          message={translate("Obrigado", "Thank you")}
-          type="success"
-          showIcon
-        />
+        <Alert message={translate('Obrigado', 'Thank you')} type="success" showIcon />
       ) : (
         <>
           <h3>
@@ -129,19 +115,11 @@ function RateGameWidgetContent({
           <p>
             <Translate pt="Comentários" en="Comments" custom={customText} />
           </p>
-          <TextArea
-            onChange={(e) => setComments(e.target.value)}
-            disabled={isLoading}
-          />
-          <Button
-            type="primary"
-            disabled={!rating || isLoading}
-            onClick={onSubmit}
-            size="small"
-          >
+          <TextArea onChange={(e) => setComments(e.target.value)} disabled={isLoading} />
+          <Button type="primary" disabled={!rating || isLoading} onClick={onSubmit} size="small">
             <Translate pt="Enviar" en="Send" />
           </Button>
-          <p style={{ marginTop: "1rem" }}>
+          <p style={{ marginTop: '1rem' }}>
             <Button ghost onClick={() => setHideWidget(true)} size="small">
               <Translate pt="Hide" en="Hide" />
             </Button>

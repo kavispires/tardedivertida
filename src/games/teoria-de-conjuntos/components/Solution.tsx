@@ -6,7 +6,7 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 // Internal
-import { Solutions } from '../utils/types';
+import type { Solutions } from '../utils/types';
 import { countWordProperties } from '../utils/helper';
 import { CircleHighlight } from './Highlights';
 import { YesNoSwitch } from './YesNoSwitch';
@@ -119,38 +119,38 @@ function WordHints({ word }: { word: string }) {
   const getCheckIcon = (value: boolean) => (value ? '✅' : '❌');
 
   const hints = [
-    <>
+    <Fragment key="1">
       <Translate en="Letters" pt="Letras" />: {hintsObj.letters}
-    </>,
+    </Fragment>,
 
-    <>
+    <Fragment key="2">
       <Translate en="Vowels" pt="Vogais" />: {hintsObj.vowels}
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key="3">
       <Translate en="Consonants" pt="Consoantes" />: {hintsObj.consonants}
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key="4">
       <Translate en="Number of words" pt="Número de palavras" />: {hintsObj.numberOfWords}
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key="5">
       <Translate en="Repeated vowels" pt="Repetição de vogais" />: {getCheckIcon(hintsObj.hasRepeatedVowels)}
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key="6">
       <Translate en="Repeated consonants" pt="Repetição de consoantes" />:{' '}
       {getCheckIcon(hintsObj.hasRepeatedConsonants)}
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key="7">
       <Translate en="Consecutive vowels" pt="Vogais consecutivas" />: {hintsObj.consecutiveVowels}
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key="8">
       <Translate en="Consecutive consonants" pt="Consoantes consecutivas" />: {hintsObj.consecutiveConsonants}
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key="9">
       <Translate en="Hyphen" pt="Hífen" />: {getCheckIcon(hintsObj.hasHyphen)}
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key="10">
       <Translate en="Accents" pt="Acentos" />: {getCheckIcon(hintsObj.hasAccents)}
-    </>,
+    </Fragment>,
   ];
 
   return (

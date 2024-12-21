@@ -1,4 +1,4 @@
-export function MapBlueprintIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function MapBlueprintIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#d6faff" d="m474.5 95.5-60 409h30c33.14 0 60-26.86 60-60z"></path>

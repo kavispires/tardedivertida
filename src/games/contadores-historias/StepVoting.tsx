@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';

@@ -1,12 +1,12 @@
 // Internal
-import { DailyAquiOEntry } from '../games/AquiO/utils/types';
-import { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
-import { DailyPicacoEntry } from '../games/Picaco/utils/types';
-import { DailyControleDeEstoqueEntry } from '../games/ControleDeEstoque/utils/types';
-import { DailyFilmacoEntry } from '../games/Filmaco/utils/types';
-import { DailyPalavreadoEntry } from '../games/Palavreado/utils/types';
-import { DailyTeoriaDeConjuntosEntry } from '../games/TeoriaDeConjuntos/utils/types';
-import { DailyComunicacaoAlienigenaEntry } from '../games/ComunicacaoAlienigena/utils/types';
+import type { DailyAquiOEntry } from '../games/AquiO/utils/types';
+import type { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
+import type { DailyPicacoEntry } from '../games/Picaco/utils/types';
+import type { DailyControleDeEstoqueEntry } from '../games/ControleDeEstoque/utils/types';
+import type { DailyFilmacoEntry } from '../games/Filmaco/utils/types';
+import type { DailyPalavreadoEntry } from '../games/Palavreado/utils/types';
+import type { DailyTeoriaDeConjuntosEntry } from '../games/TeoriaDeConjuntos/utils/types';
+import type { DailyComunicacaoAlienigenaEntry } from '../games/ComunicacaoAlienigena/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 

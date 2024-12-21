@@ -19,6 +19,7 @@ export function CardSelection({ onSendChosenSide, cards }: CardSelectionProps) {
         {cards.map((card) => (
           <button
             key={`card-button-${card.id}`}
+            type="button"
             className="o-card-selection__button"
             onClick={() => onSendChosenSide(card.id)}
           >

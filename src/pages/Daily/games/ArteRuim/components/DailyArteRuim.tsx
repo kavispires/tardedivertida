@@ -1,25 +1,25 @@
-import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { useMemo } from 'react';
+import { Keyboard } from "pages/Daily/components/Keyboard";
+import { useMemo, useState } from "react";
 // Ant Design Resources
-import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Space } from 'antd';
+import { BarChartOutlined } from "@ant-design/icons";
+import { Button, Layout, Modal, Space } from "antd";
 // Types
-import { Me } from 'types/user';
+import type { Me } from "types/user";
 // Icons
-import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
+import { DailyArtGameIcon } from "icons/DailyArtGameIcon";
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate, Translate } from "components/language";
 // Internal
-import { getInitialState } from '../utils/helpers';
-import { SETTINGS } from '../utils/settings';
-import { DailyArteRuimEntry } from '../utils/types';
-import { useArteRuimEngine } from '../utils/useArteRuimEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
-import { DrawingCarousel } from './DrawingCarousel';
-import { Prompt } from './Prompt';
-import { ResultsModalContent } from './ResultsModalContent';
-import { Rules } from './Rules';
+import { getInitialState } from "../utils/helpers";
+import { SETTINGS } from "../utils/settings";
+import type { DailyArteRuimEntry } from "../utils/types";
+import { useArteRuimEngine } from "../utils/useArteRuimEngine";
+import { Header } from "../../../components/Header";
+import { Menu } from "../../../components/Menu";
+import { DrawingCarousel } from "./DrawingCarousel";
+import { Prompt } from "./Prompt";
+import { ResultsModalContent } from "./ResultsModalContent";
+import { Rules } from "./Rules";
 
 type DailyArteRuimProps = {
   data: DailyArteRuimEntry;
@@ -27,10 +27,18 @@ type DailyArteRuimProps = {
 };
 
 export function DailyArteRuim({ data }: DailyArteRuimProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
 
-  const { hearts, guesses, showResultModal, setShowResultModal, isWin, isComplete, guessLetter, solution } =
-    useArteRuimEngine(data, initialState);
+  const {
+    hearts,
+    guesses,
+    showResultModal,
+    setShowResultModal,
+    isWin,
+    isComplete,
+    guessLetter,
+    solution,
+  } = useArteRuimEngine(data, initialState);
 
   return (
     <Layout className="app">
@@ -50,8 +58,16 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
         <Prompt text={data.text} guesses={guesses} />
 
         {isComplete && (
-          <Space className="results-container" direction="vertical" align="center">
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
+          <Space
+            className="results-container"
+            direction="vertical"
+            align="center"
+          >
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
           </Space>
@@ -71,7 +87,11 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
           />
         </Modal>
 
-        <Keyboard lettersState={guesses} onLetterClick={guessLetter} disabled={isComplete} />
+        <Keyboard
+          lettersState={guesses}
+          onLetterClick={guessLetter}
+          disabled={isComplete}
+        />
       </Layout.Content>
     </Layout>
   );

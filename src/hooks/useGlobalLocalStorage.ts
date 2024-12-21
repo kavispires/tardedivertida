@@ -1,8 +1,8 @@
-import { isEqual } from "lodash";
-import { createGlobalState } from "react-hooks-global-state";
-import { useEffectOnce } from "react-use";
+import { isEqual } from 'lodash';
+import { createGlobalState } from 'react-hooks-global-state';
+import { useEffectOnce } from 'react-use';
 
-const APP_NAME = "TD";
+const APP_NAME = 'TD';
 
 type LocalStorageState = {
   username: string;
@@ -18,10 +18,10 @@ type LocalStorageState = {
 };
 
 const initialState: LocalStorageState = {
-  username: "",
-  avatarId: "",
+  username: '',
+  avatarId: '',
   blurEnabled: false,
-  language: "en",
+  language: 'en',
   volume: 0.5,
   cache: {},
   cacheAlternative: {},
@@ -47,9 +47,7 @@ export const getKey = (property: string) => `${APP_NAME}_${property}`;
  * @param property - The property to be stored in the local storage.
  * @returns A tuple containing the current value and a setter function to update the value.
  */
-export function useGlobalLocalStorage<K extends keyof LocalStorageState>(
-  property: K,
-) {
+export function useGlobalLocalStorage<K extends keyof LocalStorageState>(property: K) {
   const [value, setGlobalState] = useGlobalState(property);
 
   const updateValue = (newValue: LocalStorageState[K] | null) => {
@@ -66,9 +64,7 @@ export function useGlobalLocalStorage<K extends keyof LocalStorageState>(
   useEffectOnce(() => {
     const localStorageKey = getKey(property);
     const localStorageValue = window.localStorage.getItem(localStorageKey);
-    const parsedValue = localStorageValue
-      ? JSON.parse(localStorageValue)
-      : null;
+    const parsedValue = localStorageValue ? JSON.parse(localStorageValue) : null;
     if (
       parsedValue !== undefined &&
       !isEqual(parsedValue, value) &&

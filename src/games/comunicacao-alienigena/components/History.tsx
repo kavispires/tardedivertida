@@ -1,7 +1,7 @@
 // Ant Design Resources
-import { Collapse, CollapseProps } from 'antd';
+import { Collapse, type CollapseProps } from 'antd';
 // Types
-import { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';

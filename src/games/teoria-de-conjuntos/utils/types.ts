@@ -1,7 +1,7 @@
 // Types
-import { DiagramTopic } from 'types/tdr';
+import type { DiagramTopic } from 'types/tdr';
 // Internal
-import { OUTCOME } from './constants';
+import type { OUTCOME } from './constants';
 
 export type SubmitJudgePayload = {
   judgeId: PlayerId;

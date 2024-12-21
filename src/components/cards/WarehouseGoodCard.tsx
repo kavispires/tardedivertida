@@ -42,7 +42,7 @@ const BASE = 64;
  */
 export const getSource = (str: string) => {
   const match = str.match(/\d+/);
-  const numId = match ? parseInt(match[0], 10) : 0;
+  const numId = match ? Number.parseInt(match[0], 10) : 0;
   const goodId = `good-${numId}`;
   const sourceId = Math.ceil(numId / BASE) * BASE;
   const source = `warehouse-goods-${sourceId}`;
@@ -67,9 +67,9 @@ export function WarehouseGoodCard({
   return (
     <div className={clsx('warehouse-good-card', className)} style={{ width: `${width}px`, height, padding }}>
       <Sprite source={source} id={goodId} width={width} title={title} padding={padding} />
-      {Boolean(text) && (
+      {!!text && (
         <span className="warehouse-good-card__text">
-          <DualTranslate>{text!}</DualTranslate>
+          <DualTranslate>{text}</DualTranslate>
         </span>
       )}
     </div>

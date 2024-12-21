@@ -1,4 +1,4 @@
-export function BooksIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function BooksIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#ecf4ff" d="M479.5 425.5l-19.7 19.7h-431V336.9h433l17.7 13.6a48.4 48.4 0 000 75z"></path>

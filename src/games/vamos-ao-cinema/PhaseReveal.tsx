@@ -1,30 +1,30 @@
 // Types
-import type { PhaseProps } from 'types/game';
+import type { PhaseProps } from "types/game";
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from "hooks/useStep";
+import { useUser } from "hooks/useUser";
+import { useWhichPlayerIsThe } from "hooks/useWhichPlayerIsThe";
 // Utils
-import { PHASES } from 'utils/phases';
+import { PHASES } from "utils/phases";
 // Icons
-import { MovieTheaterIcon } from 'icons/MovieTheaterIcon';
-import { ScaredIcon } from 'icons/ScaredIcon';
-import { TomatoIcon } from 'icons/TomatoIcon';
+import { MovieTheaterIcon } from "icons/MovieTheaterIcon";
+import { ScaredIcon } from "icons/ScaredIcon";
+import { TomatoIcon } from "icons/TomatoIcon";
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from "components/language";
+import { PhaseAnnouncement, PhaseContainer } from "components/phases";
+import { StepSwitcher } from "components/steps";
+import { Instruction } from "components/text";
 // Internal
-import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
-import { getAnnouncementKey } from './utils/helpers';
-import { MovieHighlight } from './components/MovieHighlight';
-import { StepReveal } from './StepReveal';
+import { useOnSubmitMoviePosterAPIRequest } from "./utils/api-requests";
+import { getAnnouncementKey } from "./utils/helpers";
+import { MovieHighlight } from "./components/MovieHighlight";
+import { StepReveal } from "./StepReveal";
 
 export function PhaseReveal({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
-  const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
+  const [activePlayer] = useWhichPlayerIsThe("activePlayerId", state, players);
 
   const onSubmitPoster = useOnSubmitMoviePosterAPIRequest(setStep);
 
@@ -51,7 +51,10 @@ export function PhaseReveal({ players, state }: PhaseProps) {
       <PhaseAnnouncement
         icon={<MovieTheaterIcon />}
         title={
-          <Translate pt="Até que enfim podemos assistir ao filme!" en="Finally! We can watch a movie!" />
+          <Translate
+            pt="Até que enfim podemos assistir ao filme!"
+            en="Finally! We can watch a movie!"
+          />
         }
         currentRound={state?.round?.current}
         type="overlay"
@@ -68,7 +71,10 @@ export function PhaseReveal({ players, state }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.REVEAL}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PHASES.VAMOS_AO_CINEMA.REVEAL}
+    >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal
@@ -77,7 +83,9 @@ export function PhaseReveal({ players, state }: PhaseProps) {
           goodReview={state.goodReview}
           badReview={state.badReview}
           movies={state.movies}
-          announcement={announcements[getAnnouncementKey(state.outcome, state.mistakes)]}
+          announcement={
+            announcements[getAnnouncementKey(state.outcome, state.mistakes)]
+          }
           onEliminateMovie={() => {}}
           activePlayer={activePlayer}
           eliminatedMovies={state.eliminatedMovies}
@@ -92,9 +100,6 @@ export function PhaseReveal({ players, state }: PhaseProps) {
           onSubmitPoster={onSubmitPoster}
           posters={state.posters}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

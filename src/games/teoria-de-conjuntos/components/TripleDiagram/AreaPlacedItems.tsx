@@ -1,4 +1,4 @@
-import { DiagramArea } from 'games/teoria-de-conjuntos/utils/types';
+import type { DiagramArea } from 'games/teoria-de-conjuntos/utils/types';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar } from 'antd';

@@ -1,12 +1,6 @@
-import { orderBy } from "lodash";
+import { orderBy } from 'lodash';
 // Internal
-import type {
-  Bet,
-  Bracket,
-  BracketTier,
-  ContenderByTier,
-  FightingContender,
-} from "./type";
+import type { Bet, Bracket, BracketTier, ContenderByTier, FightingContender } from './type';
 
 /**
  * Finds the contender for each of the players bets and selected contender
@@ -15,18 +9,12 @@ import type {
  * @param selectedContenderId
  * @returns
  */
-export const findBetContenders = (
-  brackets: Bracket[],
-  bets: Bet,
-  selectedContenderId: CardId,
-) => {
+export const findBetContenders = (brackets: Bracket[], bets: Bet, selectedContenderId: CardId) => {
   return {
     quarterCard: brackets.find((bracket) => bracket.id === bets?.quarter),
     semiCard: brackets.find((bracket) => bracket.id === bets?.semi),
     finalCard: brackets.find((bracket) => bracket.id === bets?.final),
-    selectedCard: brackets.find(
-      (bracket) => bracket.id === selectedContenderId,
-    ),
+    selectedCard: brackets.find((bracket) => bracket.id === selectedContenderId),
   };
 };
 
@@ -59,15 +47,13 @@ export const getSmartBetContenderOptions = (
   language: Language,
 ): FightingContender[] => {
   const allContenders = orderBy(
-    brackets.filter((entry) => entry.tier === "quarter"),
+    brackets.filter((entry) => entry.tier === 'quarter'),
     `name.${language}`,
   );
 
   // For semi: Eliminate any contender in the same side (top or bottom) of the selected winner
-  if (tier === "semi" && bets.final) {
-    const finalContender = allContenders.find(
-      (entry) => entry.id === bets.final,
-    );
+  if (tier === 'semi' && bets.final) {
+    const finalContender = allContenders.find((entry) => entry.id === bets.final);
 
     if (!finalContender) return allContenders;
 
@@ -80,24 +66,18 @@ export const getSmartBetContenderOptions = (
   }
 
   // For quarter: eliminate any contender that would go against semi and final
-  if (tier === "quarter" && bets.final && bets.semi) {
-    const finalContender = allContenders.find(
-      (entry) => entry.id === bets.final,
-    );
+  if (tier === 'quarter' && bets.final && bets.semi) {
+    const finalContender = allContenders.find((entry) => entry.id === bets.final);
     if (!finalContender) return allContenders;
 
     const semiContender = allContenders.find((entry) => entry.id === bets.semi);
     if (!semiContender) return allContenders;
 
     const opposingFinalContenderPosition =
-      finalContender.position % 2 === 0
-        ? finalContender.position + 1
-        : finalContender.position - 1;
+      finalContender.position % 2 === 0 ? finalContender.position + 1 : finalContender.position - 1;
 
     const opposingSemiContenderPosition =
-      semiContender.position % 2 === 0
-        ? semiContender.position + 1
-        : semiContender.position - 1;
+      semiContender.position % 2 === 0 ? semiContender.position + 1 : semiContender.position - 1;
 
     const forbiddenPositions = [
       finalContender.position,

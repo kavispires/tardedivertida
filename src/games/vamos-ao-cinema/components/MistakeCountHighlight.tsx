@@ -1,7 +1,7 @@
 // Icons
 import { ScaredIcon } from 'icons/ScaredIcon';
 // Components
-import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function MistakeCountHighlight({ children, iconSize, className }: HighlightProps) {
   return (

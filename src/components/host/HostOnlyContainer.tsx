@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { RocketOutlined } from '@ant-design/icons';
-import { Space, SpaceProps } from 'antd';
+import { Space, type SpaceProps } from 'antd';
 // Hooks
 import { useHost } from 'hooks/useHost';
 // Sass

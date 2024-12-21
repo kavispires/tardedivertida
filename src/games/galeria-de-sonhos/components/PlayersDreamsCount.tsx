@@ -1,30 +1,23 @@
-import clsx from "clsx";
-import { useMemo } from "react";
+import clsx from 'clsx';
+import { useMemo } from 'react';
 // Ant Design Resources
-import { Tooltip } from "antd";
+import { Tooltip } from 'antd';
 // Types
-import type { GamePlayers } from "types/player";
+import type { GamePlayers } from 'types/player';
 // Utils
-import {
-  getAnimationClass,
-  getAvatarColorById,
-  sortPlayers,
-} from "utils/helpers";
+import { getAnimationClass, getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
-import { Avatar } from "components/avatars";
-import { Translate } from "components/language";
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 // Internal
-import type { CardInHand } from "../utils/types";
+import type { CardInHand } from '../utils/types';
 
 type PlayersDreamsCountProps = {
   players: GamePlayers;
   playerInNightmareId?: PlayerId;
 };
 
-export function PlayersDreamsCount({
-  players,
-  playerInNightmareId,
-}: PlayersDreamsCountProps) {
+export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDreamsCountProps) {
   const sortedPlayers = useMemo(() => sortPlayers(players), [players]);
 
   return (
@@ -37,23 +30,19 @@ export function PlayersDreamsCount({
           const cards: CardInHand[] = Object.values(player.cards);
           const cardsLeft = cards.filter((card) => !card.used);
           const isPlayerInNightmare = player.id === playerInNightmareId;
-          const showTooltip =
-            isPlayerInNightmare && (!player.fallen || cardsLeft.length > 0);
+          const showTooltip = isPlayerInNightmare && (!player.fallen || cardsLeft.length > 0);
 
           return (
             <span
               key={`player-dream-count-${player.id}`}
               className={clsx(
-                "g-players-dreams-count__player",
+                'g-players-dreams-count__player',
                 isPlayerInNightmare &&
                   !player.fallen &&
-                  `g-players-dreams-count__player--nightmare ${getAnimationClass(
-                    "pulse",
-                    {
-                      speed: "faster",
-                      repeat: 3,
-                    },
-                  )}`,
+                  `g-players-dreams-count__player--nightmare ${getAnimationClass('pulse', {
+                    speed: 'faster',
+                    repeat: 3,
+                  })}`,
               )}
               style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
             >
@@ -61,13 +50,12 @@ export function PlayersDreamsCount({
                 title={
                   showTooltip ? (
                     <div
-                      className={getAnimationClass("tada", {
-                        speed: "fast",
+                      className={getAnimationClass('tada', {
+                        speed: 'fast',
                         infinite: true,
                       })}
                     >
-                      {player.name}{" "}
-                      <Translate pt="tá em pesadelo!" en="is in a nightmare" />
+                      {player.name} <Translate pt="tá em pesadelo!" en="is in a nightmare" />
                     </div>
                   ) : undefined
                 }
@@ -79,8 +67,8 @@ export function PlayersDreamsCount({
 
                 <div
                   className={clsx(
-                    "g-players-dreams-count__count",
-                    player.fallen && "g-players-dreams-count__count--fallen",
+                    'g-players-dreams-count__count',
+                    player.fallen && 'g-players-dreams-count__count--fallen',
                   )}
                 >
                   {cardsLeft.length}

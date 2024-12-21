@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Switch, SwitchProps } from 'antd';
+import { Switch, type SwitchProps } from 'antd';
 // Components
 import { Translate } from 'components/language';
 

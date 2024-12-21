@@ -72,10 +72,12 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
       ranking={ranking}
       gainedPointsDescriptions={[
         <Translate
+          key="1"
           pt={<>Pontos por já estar no Time Vencedor.</>}
           en={<>Points for already being on the Winning Team.</>}
         />,
         <Translate
+          key="2"
           pt={<>Pontos por entrar no Time Vencedor.</>}
           en={<>Points for joining the Winning Team.</>}
         />,

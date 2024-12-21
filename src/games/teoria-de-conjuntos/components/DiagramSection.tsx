@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 // Ant Design Resources
 import { Alert, Divider, Flex } from "antd";
 // Types
-import { Item } from "types/tdr";
+import type { Item } from "types/tdr";
 // Utils
 import { getAnimationClass } from "utils/helpers";
 // Components
@@ -11,7 +11,7 @@ import { ItemCard } from "components/cards/ItemCard";
 import { Translate } from "components/language";
 import { Instruction, Title } from "components/text";
 // Internal
-import { DiagramArea } from "../utils/types";
+import type { DiagramArea } from "../utils/types";
 import { SelectedAreasCircles } from "./SelectedAreasCircles";
 import { TripleDiagram } from "./TripleDiagram/TripleDiagram";
 import { TripleDiagramClickableAreas } from "./TripleDiagram/TripleDiagramClickableAreas";
@@ -239,7 +239,7 @@ function SelectedAreaItems({
           />
         )}
       </Flex>
-      <Divider style={{ margin: `6px 0` }} />
+      <Divider style={{ margin: "6px 0" }} />
     </>
   );
 }

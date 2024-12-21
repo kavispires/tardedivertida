@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { MetricHighlight, MetricHighlightProps } from 'components/metrics/MetricHighlight';
+import { MetricHighlight, type MetricHighlightProps } from 'components/metrics/MetricHighlight';
 
 const padTime = (value: number) => (value < 10 ? `0${value}` : value);
 

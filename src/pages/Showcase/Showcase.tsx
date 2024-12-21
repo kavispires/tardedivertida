@@ -60,6 +60,7 @@ function Showcase() {
     }
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setList(filterGames(GAME_LIST, filters));
     const queryString = Object.keys(filters)

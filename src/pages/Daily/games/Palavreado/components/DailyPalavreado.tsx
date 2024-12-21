@@ -1,24 +1,24 @@
-import { Region, TextRegion } from 'pages/Daily/components/Region';
-import { useMemo } from 'react';
+import { Region, TextRegion } from "pages/Daily/components/Region";
+import { useMemo, useState } from "react";
 // Ant Design Resources
-import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
+import { BarChartOutlined } from "@ant-design/icons";
+import { Button, Divider, Flex, Layout, Modal, Space, Typography } from "antd";
 // Types
-import { Me } from 'types/user';
+import type { Me } from "types/user";
 // Icons
-import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
+import { DailyWordGameIcon } from "icons/DailyWordGameIcon";
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate, Translate } from "components/language";
 // Internal
-import { getInitialState } from '../utils/helpers';
-import { SETTINGS } from '../utils/settings';
-import { DailyPalavreadoEntry } from '../utils/types';
-import { usePalavreadoEngine } from '../utils/usePalavreadoEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
-import { Board } from './Board';
-import { ResultsModalContent } from './ResultsModalContent';
-import { Rules } from './Rules';
+import { getInitialState } from "../utils/helpers";
+import { SETTINGS } from "../utils/settings";
+import type { DailyPalavreadoEntry } from "../utils/types";
+import { usePalavreadoEngine } from "../utils/usePalavreadoEngine";
+import { Header } from "../../../components/Header";
+import { Menu } from "../../../components/Menu";
+import { Board } from "./Board";
+import { ResultsModalContent } from "./ResultsModalContent";
+import { Rules } from "./Rules";
 
 type DailyPalavreadoProps = {
   data: DailyPalavreadoEntry;
@@ -26,7 +26,7 @@ type DailyPalavreadoProps = {
 };
 
 export function DailyPalavreado({ data }: DailyPalavreadoProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
   const {
     hearts,
     selection,
@@ -50,7 +50,12 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>
-        <Menu hearts={hearts} total={Math.max(SETTINGS.HEARTS, size)} openRules={true} rules={<Rules />} />
+        <Menu
+          hearts={hearts}
+          total={Math.max(SETTINGS.HEARTS, size)}
+          openRules={true}
+          rules={<Rules />}
+        />
 
         <Region>
           <Typography.Text strong className="palavreado-word">
@@ -68,11 +73,20 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
         <Region>
           {isComplete ? (
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
           ) : (
-            <Button type="primary" onClick={submitGrid} disabled={isComplete} block>
+            <Button
+              type="primary"
+              onClick={submitGrid}
+              disabled={isComplete}
+              block
+            >
               <Translate pt="Enviar" en="Submit" />
             </Button>
           )}
@@ -108,18 +122,19 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
                 <Translate
                   pt={
                     <>
-                      Posições que já foram testadas com a letra específica aparecem assim (borda preta
-                      pontilhada).
+                      Posições que já foram testadas com a letra específica
+                      aparecem assim (borda preta pontilhada).
                       <br />
                       Evite enviar com letras assim, elas continuarão erradas.
                     </>
                   }
                   en={
                     <>
-                      Positions that have already been tested with a specific letter appear like this (dotted
-                      black border).
+                      Positions that have already been tested with a specific
+                      letter appear like this (dotted black border).
                       <br />
-                      Avoid submitting with letters like this, they will remain wrong.
+                      Avoid submitting with letters like this, they will remain
+                      wrong.
                     </>
                   }
                 />

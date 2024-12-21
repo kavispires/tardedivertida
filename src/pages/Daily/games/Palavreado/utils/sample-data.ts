@@ -1,5 +1,5 @@
 // Internal
-import { DailyPalavreadoEntry } from './types';
+import type { DailyPalavreadoEntry } from './types';
 
 const defaultValue: Pick<DailyPalavreadoEntry, 'id' | 'number' | 'language' | 'type'> = {
   id: '2023/10/31',

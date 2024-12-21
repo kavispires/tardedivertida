@@ -16,7 +16,7 @@ import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import { Status, THistoryEntry } from './utils/types';
+import type { Status, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';

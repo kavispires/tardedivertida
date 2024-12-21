@@ -1,13 +1,13 @@
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 // Ant Design Resources
-import { Button, ButtonProps, Space } from 'antd';
+import { Button, type ButtonProps, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { SEPARATOR } from 'utils/constants';
 
 type ControlledInputWritingProps = {
-  onSubmit: Function;
+  onSubmit: GenericComponent;
   valueKey: string;
   inputQuantity?: number;
   restrictMax?: boolean;

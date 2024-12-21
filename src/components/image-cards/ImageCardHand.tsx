@@ -1,14 +1,14 @@
-import { ImageCard, ImageCardButton } from ".";
-import clsx from "clsx";
-import { LegacyRef, ReactNode } from "react";
+import { ImageCard, ImageCardButton } from '.';
+import clsx from 'clsx';
+import type { LegacyRef, ReactNode } from 'react';
 // Ant Design Resources
-import { GetProps, Image } from "antd";
+import { type GetProps, Image } from 'antd';
 // Hooks
-import { useCardWidthByContainerRef } from "hooks/useCardWidth";
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Sass
-import "./ImageCardHand.scss";
+import './ImageCardHand.scss';
 
 type ImageCardHandProps = {
   /**
@@ -66,7 +66,7 @@ type ImageCardHandProps = {
   /**
    * The Image group preview object
    */
-  imageGroupPreview?: GetProps<typeof Image.PreviewGroup>["preview"];
+  imageGroupPreview?: GetProps<typeof Image.PreviewGroup>['preview'];
 };
 
 export function ImageCardHand({
@@ -74,38 +74,32 @@ export function ImageCardHand({
   onSelectCard,
   selectButtonText,
   selectButtonIcon,
-  className = "",
-  selectButtonClass = "",
+  className = '',
+  selectButtonClass = '',
   sizeRatio = 8,
   cardSize,
   minCardSize = 80,
   disabledSelectButton = false,
   selectedCards = {},
-  cardClassName = "",
+  cardClassName = '',
   preview = true,
   imageGroupPreview,
 }: ImageCardHandProps) {
   // Prefers cardSize otherwise calculates width based on screen and ratio
-  const [cardWidth, containerRef] = useCardWidthByContainerRef(
-    Math.max(sizeRatio, 6),
-    {
-      minWidth: minCardSize,
-    },
-  );
+  const [cardWidth, containerRef] = useCardWidthByContainerRef(Math.max(sizeRatio, 6), {
+    minWidth: minCardSize,
+  });
 
   return (
     <Image.PreviewGroup preview={imageGroupPreview}>
-      <div
-        className={clsx("image-card-hand", className)}
-        ref={containerRef as LegacyRef<HTMLDivElement>}
-      >
+      <div className={clsx('image-card-hand', className)} ref={containerRef as LegacyRef<HTMLDivElement>}>
         {hand.map((cardId, index) => {
           return (
             <div
               key={`hand-${cardId}`}
               className={clsx(
-                "image-card-hand__card-container",
-                getAnimationClass("slideInUp", {
+                'image-card-hand__card-container',
+                getAnimationClass('slideInUp', {
                   delay: index,
                 }),
               )}
@@ -121,10 +115,7 @@ export function ImageCardHand({
                 <ImageCard
                   id={cardId}
                   cardWidth={cardSize || cardWidth}
-                  className={clsx(
-                    selectedCards[cardId] && "image-card-hand__selected",
-                    cardClassName,
-                  )}
+                  className={clsx(selectedCards[cardId] && 'image-card-hand__selected', cardClassName)}
                   preview={preview}
                 />
               </ImageCardButton>

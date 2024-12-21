@@ -1,4 +1,4 @@
-export function DailyArtGameIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function DailyArtGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#e08ea2" d="M7.5 52.53h495.04v404.98H7.5z"></path>

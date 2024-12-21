@@ -1,13 +1,13 @@
 // Ant Design Resources
 import { Progress, Space, Typography } from 'antd';
 // Types
-import { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 // Internal
-import { FinalGalleryEntry } from '../utils/types';
+import type { FinalGalleryEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';
 
 type FinalGalleryItemProps = {

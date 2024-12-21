@@ -1,7 +1,4 @@
-export function CircleIcon({
-  mainColor,
-  ...props
-}: React.SVGProps<SVGSVGElement> & { mainColor?: string }): JSX.Element {
+export function CircleIcon({ mainColor, ...props }: React.SVGProps<SVGSVGElement> & { mainColor?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path

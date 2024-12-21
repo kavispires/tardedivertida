@@ -1,8 +1,8 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Types
-import { GamePlayer, GamePlayers } from "types/player";
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { ImageCardBack } from "components/image-cards";
+import { ImageCardBack } from 'components/image-cards';
 
 type TableFaceDownProps = {
   players: GamePlayers;
@@ -10,14 +10,13 @@ type TableFaceDownProps = {
 };
 
 export function TableFaceDown({ players, user }: TableFaceDownProps) {
-  const baseClass = "c-table-face-down-card";
+  const baseClass = 'c-table-face-down-card';
 
   return (
     <div className="c-table-face-down">
       {Object.values(players).map((player, index) => {
         const isHidden = !player.cardId;
-        const hiddenClassModifier =
-          player.id === user.id ? "hidden-user" : "hidden";
+        const hiddenClassModifier = player.id === user.id ? 'hidden-user' : 'hidden';
 
         return (
           <ImageCardBack
