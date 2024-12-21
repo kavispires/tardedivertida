@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Image, ImageProps } from 'antd';
+import { Image, type ImageProps } from 'antd';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
@@ -87,7 +87,7 @@ export const ImageCard = ({
         baseClass,
         isBlurred && `${baseClass}--blur`,
         square && `${baseClass}--square`,
-        className
+        className,
       )}
       style={{ height: square ? `${cardWidth}px` : undefined }}
     >
@@ -102,7 +102,7 @@ export const ImageCard = ({
             : {
                 ...previewConfig,
                 maskClassName: clsx(`${baseClass}__preview-mask`, previewConfig?.maskClassName),
-                src: Boolean(previewImageId)
+                src: previewImageId
                   ? `${baseUrl}/${previewImageId.replace(/-/g, '/')}.${fileExtension}`
                   : previewConfig?.src,
               }

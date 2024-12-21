@@ -1,5 +1,5 @@
 // Internal
-import { Direction } from './types';
+import type { Direction } from './types';
 
 export const LABIRINTO_SECRETO_ACTIONS = {
   SUBMIT_MAP: 'SUBMIT_MAP',

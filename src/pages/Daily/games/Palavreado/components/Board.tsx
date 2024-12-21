@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Internal
-import { PalavreadoLetter } from '../utils/types';
+import type { PalavreadoLetter } from '../utils/types';
 
 type BoardProps = {
   letters: PalavreadoLetter[];
@@ -30,14 +30,14 @@ export function Board({ letters, onLetterSelection, selection, swap, guesses, si
         return (
           <button
             key={`${letter}-${index}`}
+            type="button"
             className={clsx(
               'palavreado-board__tile',
               swap.includes(index) && getAnimationClass('zoomIn', { speed: 'faster' }),
               !locked && selection !== index && 'palavreado-board__tile--button',
               selection === index && 'palavreado-board__tile--selected',
               `palavreado-board__tile--${state}`,
-
-              previousWrongPlacement && `palavreado-board__tile--place-guessed`
+              previousWrongPlacement && 'palavreado-board__tile--place-guessed',
             )}
             onClick={() => (!locked ? onLetterSelection(index) : null)}
           >

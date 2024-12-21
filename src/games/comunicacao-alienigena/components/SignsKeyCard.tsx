@@ -35,6 +35,7 @@ export function SignsKeyCard({ signs, startingAttributes = [], phase }: SignsKey
     });
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (phase === PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK && startingAttributes.length && isEmpty(cache)) {
       setCache((prev) => {
@@ -47,7 +48,7 @@ export function SignsKeyCard({ signs, startingAttributes = [], phase }: SignsKey
         return copy;
       });
     }
-  }, [startingAttributes, phase]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [startingAttributes, phase]);
 
   return (
     <Space direction="vertical">

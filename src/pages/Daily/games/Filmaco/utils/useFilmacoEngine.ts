@@ -6,7 +6,7 @@ import { removeDuplicates } from 'utils/helpers';
 // Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
+import type { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
 
 export function useFilmacoEngine(data: DailyFilmacoEntry, initialState: GameState) {
   const { state, setState } = useDailyGameState<GameState>(initialState);

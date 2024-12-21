@@ -15,7 +15,7 @@ export const mockSelectCards = (cards: TextCard[]): CardId[] =>
 
 const glue2Words = (word1: string, word2: string) => {
   return `${word1.substring(0, Math.round(word1.length / 2))}${word2.substring(
-    Math.round(word2.length / 2)
+    Math.round(word2.length / 2),
   )}`;
 };
 
@@ -23,19 +23,19 @@ export const mockClues = (clover: CloverObject, leaves: Leaves, rotations: Numbe
   return [
     glue2Words(
       getWord(clover, leaves, rotations, 'A', 'top'),
-      getWord(clover, leaves, rotations, 'B', 'top')
+      getWord(clover, leaves, rotations, 'B', 'top'),
     ),
     glue2Words(
       getWord(clover, leaves, rotations, 'B', 'right'),
-      getWord(clover, leaves, rotations, 'C', 'right')
+      getWord(clover, leaves, rotations, 'C', 'right'),
     ),
     glue2Words(
       getWord(clover, leaves, rotations, 'C', 'bottom'),
-      getWord(clover, leaves, rotations, 'D', 'bottom')
+      getWord(clover, leaves, rotations, 'D', 'bottom'),
     ),
     glue2Words(
       getWord(clover, leaves, rotations, 'D', 'left'),
-      getWord(clover, leaves, rotations, 'A', 'left')
+      getWord(clover, leaves, rotations, 'A', 'left'),
     ),
   ];
 };

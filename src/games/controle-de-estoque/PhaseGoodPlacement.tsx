@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-import { BossIdeaCard } from 'types/tdr';
+import type { BossIdeaCard } from 'types/tdr';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';

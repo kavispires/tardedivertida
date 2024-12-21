@@ -62,7 +62,7 @@ export function StepGuessing({
     'player',
     true,
     Object.keys(players).length,
-    {}
+    {},
   );
   const [choseRandomly, setChoseRandomly] = useState(false);
 
@@ -76,7 +76,7 @@ export function StepGuessing({
     const characterKeys = shuffle(
       Object.keys(characters)
         .map((cardId: CardId) => getEntryId(['char', cardId]))
-        .filter((key: string) => !usedCharacters.includes(key))
+        .filter((key: string) => !usedCharacters.includes(key)),
     );
     const newVotes = { ...votes };
     playerKeys.forEach((playerKey: string, index: number) => {
@@ -90,7 +90,9 @@ export function StepGuessing({
 
   const selectOwnCard = useCallback(() => {
     if (user.character) {
-      return { [getEntryId(['player', user.id])]: getEntryId(['char', user.character.id]) };
+      return {
+        [getEntryId(['player', user.id])]: getEntryId(['char', user.character.id]),
+      };
     }
   }, [user]);
 

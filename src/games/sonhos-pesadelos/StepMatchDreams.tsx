@@ -35,7 +35,7 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
     'dream',
     true,
-    dreams.length
+    dreams.length,
   );
 
   // Auto-select own clue

@@ -1,5 +1,5 @@
-import { AliasToken } from 'antd/es/theme/internal';
-import { ReactNode, useEffect, useMemo } from 'react';
+import type { AliasToken } from 'antd/es/theme/internal';
+import { type ReactNode, useEffect, useMemo } from 'react';
 // Ant Design Resources
 import { ConfigProvider } from 'antd';
 // Hooks
@@ -42,11 +42,12 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   useIdleRedirect();
 
   // Update session language to match the game
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only update then receiving the game language
   useEffect(() => {
     if (language !== gameMeta.language) {
       setLanguage(gameMeta.language);
     }
-  }, [gameMeta.language]); // eslint-disable-line
+  }, [gameMeta.language]);
 
   if (!userId || !players[userId]) {
     return (

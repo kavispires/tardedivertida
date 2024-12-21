@@ -17,7 +17,7 @@ export function useOnSubmitPagesAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Cartas enviadas com sucesso', 'Cards submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application failed to send your card'
+      'Oops, the application failed to send your card',
     ),
   });
 
@@ -37,7 +37,7 @@ export function useOnSubmitDoorAPIRequest() {
     successMessage: translate('Porta enviada com sucesso', 'Door submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua porta',
-      'Oops, the application failed to send your door'
+      'Oops, the application failed to send your door',
     ),
   });
 
@@ -56,11 +56,11 @@ export function useOnMakeReady(setStep: UseStep['setStep']) {
     onSuccess: () => setStep(3),
     successMessage: translate(
       'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players'
+      'Done! Now wait for the other players',
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar confirmar sua porta',
-      'Oops, the application failed to confirm your door'
+      'Oops, the application failed to confirm your door',
     ),
   });
 }

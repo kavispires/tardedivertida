@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { Instruction } from './Instruction';
 
-describe('shared/Instruction', function () {
-  it('yields children', async function () {
+describe('shared/Instruction', () => {
+  it('yields children', async () => {
     render(
       <Instruction>
         <div data-testid="element">Hello</div>
-      </Instruction>
+      </Instruction>,
     );
 
     const component = await screen.findByTestId('instruction');
@@ -17,11 +17,11 @@ describe('shared/Instruction', function () {
     expect(element).toBeInTheDocument();
   });
 
-  it('accepts a `contained` argument that adds a background color', async function () {
+  it('accepts a `contained` argument that adds a background color', async () => {
     render(
       <Instruction contained>
         <div>Hello</div>
-      </Instruction>
+      </Instruction>,
     );
 
     const component = await screen.findByTestId('instruction');
@@ -31,11 +31,11 @@ describe('shared/Instruction', function () {
     expect(component).toHaveClass('instruction--contained');
   });
 
-  it('accepts a `white` argument that reverses the background color', async function () {
+  it('accepts a `white` argument that reverses the background color', async () => {
     render(
       <Instruction contained white>
         <div>Hello</div>
-      </Instruction>
+      </Instruction>,
     );
 
     const component = await screen.findByTestId('instruction');
@@ -46,11 +46,11 @@ describe('shared/Instruction', function () {
     expect(component).toHaveClass('instruction--white');
   });
 
-  it('accepts a `className` argument', async function () {
+  it('accepts a `className` argument', async () => {
     render(
       <Instruction className="world">
         <div>Hello</div>
-      </Instruction>
+      </Instruction>,
     );
 
     const component = await screen.findByTestId('instruction');

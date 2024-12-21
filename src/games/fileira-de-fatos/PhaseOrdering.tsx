@@ -76,9 +76,6 @@ export function PhaseOrdering({ players, state }: PhaseProps) {
             announcement={announcement}
           />
         </ViewOr>
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

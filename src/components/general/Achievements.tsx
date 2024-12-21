@@ -73,7 +73,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
                 'achievements-entry',
                 getAnimationClass('flipInY', {
                   delay: index < achievements.length / 2 ? index : achievements.length - 1 - index,
-                })
+                }),
               )}
             >
               <div className="achievement__medal">

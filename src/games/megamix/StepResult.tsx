@@ -1,5 +1,5 @@
 import { memoize } from 'lodash';
-import { LegacyRef, useMemo } from 'react';
+import { type LegacyRef, useMemo } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
@@ -198,5 +198,5 @@ const getPosition = memoize(
       left: `${areaSize * left + buffer}px`,
     };
   },
-  (index, side, width) => `${index}-${side}-${width}`
+  (index, side, width) => `${index}-${side}-${width}`,
 );

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 // Internal
-import { AquiODisc } from '../utils/types';
+import type { AquiODisc } from '../utils/types';
 
 type DiscProps = {
   disc: AquiODisc;

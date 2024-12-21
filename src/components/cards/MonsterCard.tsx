@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
-import { Button, Space, SpaceProps } from 'antd';
+import { Button, Space, type SpaceProps } from 'antd';
 // Types
-import { type MonsterImage } from 'types/tdr';
+import type { MonsterImage } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -44,7 +44,7 @@ export function MonsterCard({ currentMonster, showControls = true, cardWidth, ..
         cardWidth={cardWidth || defaultCardWidth}
         className={clsx(
           baseClass,
-          monsterOrientation === 'vertical' ? `${baseClass}--vertical` : `${baseClass}--horizontal`
+          monsterOrientation === 'vertical' ? `${baseClass}--vertical` : `${baseClass}--horizontal`,
         )}
       />
       {showControls && (

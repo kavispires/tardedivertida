@@ -16,7 +16,7 @@ export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Respostas submetidas com sucesso', 'Answers submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
-      'Oops, the application found an error while trying to submit your answers'
+      'Oops, the application found an error while trying to submit your answers',
     ),
   });
 
@@ -37,7 +37,7 @@ export function useOnNextEvaluationGroupAPIRequest() {
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      'Oops, the application found an error while trying to submit your action',
     ),
   });
 
@@ -57,7 +57,7 @@ export function useOnRejectAnswersAPIRequest() {
     successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action'
+      'Oops, the application found an error while trying to submit your action',
     ),
   });
 

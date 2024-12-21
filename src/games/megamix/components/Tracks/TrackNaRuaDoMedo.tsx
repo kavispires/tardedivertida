@@ -30,7 +30,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
     onSelect(
       track.variant === 'kids'
         ? mockSelection(['0', '1'])
-        : mockSelection(track.data.options.map((h: StreetCard) => h.id))
+        : mockSelection(track.data.options.map((h: StreetCard) => h.id)),
     );
   });
 

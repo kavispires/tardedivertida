@@ -2,7 +2,7 @@ import { capitalize } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { FilterOutlined } from '@ant-design/icons';
-import { InputNumber, Select, Space, TreeDataNode, TreeSelect } from 'antd';
+import { InputNumber, Select, Space, type TreeDataNode, TreeSelect } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -39,8 +39,9 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
         <Select.Option value="best">Best with</Select.Option>
       </Select>
       <div className="hub-filters__entry">
-        <label>Players</label>
+        <label htmlFor="players-input">Players</label>
         <InputNumber
+          id="players-input"
           min={2}
           max={12}
           size="small"
@@ -49,8 +50,9 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
         />
       </div>
       <div className="hub-filters__entry">
-        <label>Duration</label>
+        <label htmlFor="duration">Duration</label>
         <InputNumber
+          id="duration"
           min={15}
           step={15}
           size="small"
@@ -59,7 +61,7 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
         />
       </div>
       <div className="hub-filters__entry">
-        <label>Tags</label>
+        <label htmlFor="tags">Tags</label>
         <TagTreeSelect value={undefined} onTreeSelectChange={setTagFilters} />
       </div>
     </Space>
@@ -71,7 +73,7 @@ function TagTreeSelect({ value, onTreeSelectChange }: any) {
 
   const onChange = (tags: string[]) => {
     onTreeSelectChange(
-      tags
+      tags,
       // .map((tag) => {
       //   if (tag.includes(SEPARATOR)) {
       //     return tag.split(SEPARATOR);
@@ -101,9 +103,9 @@ function TagTreeSelect({ value, onTreeSelectChange }: any) {
           });
 
           return acc;
-        }, {})
+        }, {}),
       ),
-    [dualTranslate]
+    [dualTranslate],
   );
 
   return (

@@ -1,4 +1,4 @@
-import { ReactNode, useMemo, useState } from 'react';
+import { type ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
@@ -28,7 +28,7 @@ type StepSelectPagesProps = {
 export function StepWaitPageSelection({ possessed, players, trap }: StepSelectPagesProps) {
   const showTrap = useMemo(
     () => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION),
-    [trap]
+    [trap],
   );
 
   return (

@@ -1,30 +1,30 @@
 // Types
-import { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Internal
 import * as utils from './helpers';
 
-describe('/utils', function () {
-  describe('getGameIdFromLocation', function () {
+describe('/utils', () => {
+  describe('getGameIdFromLocation', () => {
     const location = {
       pathname: '/ABCD',
     };
 
-    it('gets gameId from the history object', function () {
+    it('gets gameId from the history object', () => {
       expect(utils.getGameIdFromLocation(location)).toBe('ABCD');
     });
 
-    it('gets gameId from the history object with an empty pathname', function () {
+    it('gets gameId from the history object with an empty pathname', () => {
       location.pathname = '';
       expect(utils.getGameIdFromLocation(location)).toBe('');
     });
 
-    it('gets empty string if history is not provided', function () {
+    it('gets empty string if history is not provided', () => {
       expect(utils.getGameIdFromLocation()).toBe('');
     });
   });
 
-  describe('getRandomItem', function () {
-    it('gets random item from list', function () {
+  describe('getRandomItem', () => {
+    it('gets random item from list', () => {
       const sampleArray = ['A', 'B', 'C', 'D'];
       const result = utils.getRandomItem(sampleArray);
       expect(typeof result === 'string').toBeTruthy();
@@ -32,8 +32,8 @@ describe('/utils', function () {
     });
   });
 
-  describe('isValidGameId', function () {
-    it('checks if gameId is valid', function () {
+  describe('isValidGameId', () => {
+    it('checks if gameId is valid', () => {
       expect(utils.isValidGameId('ABCD')).toBeTruthy();
       expect(utils.isValidGameId('1234')).toBeTruthy();
       expect(utils.isValidGameId('ABC')).toBeFalsy();
@@ -42,8 +42,8 @@ describe('/utils', function () {
     });
   });
 
-  describe('getColorFromIndex', function () {
-    it('gets color based on given index', function () {
+  describe('getColorFromIndex', () => {
+    it('gets color based on given index', () => {
       expect(utils.getColorFromIndex(0)).toBe('red');
       expect(utils.getColorFromIndex(1)).toBe('blue');
       expect(utils.getColorFromIndex(2)).toBe('green');
@@ -64,8 +64,8 @@ describe('/utils', function () {
     });
   });
 
-  describe('getColorFromLetter', function () {
-    it('gets color based on given letter', function () {
+  describe('getColorFromLetter', () => {
+    it('gets color based on given letter', () => {
       expect(utils.getColorFromLetter('A')).toBe('red');
       expect(utils.getColorFromLetter('B')).toBe('blue');
       expect(utils.getColorFromLetter('C')).toBe('green');
@@ -95,7 +95,7 @@ describe('/utils', function () {
     });
   });
 
-  describe('getPlayersFromIds', function () {
+  describe('getPlayersFromIds', () => {
     const players: GamePlayers = {
       _adam: {
         id: '_adam',
@@ -113,7 +113,7 @@ describe('/utils', function () {
       },
     };
 
-    it('gets players objects from list of ids', function () {
+    it('gets players objects from list of ids', () => {
       expect(utils.getPlayersFromIds(['_bob'], players)).toStrictEqual([
         {
           id: '_bob',
@@ -125,21 +125,21 @@ describe('/utils', function () {
       ]);
     });
 
-    it('gets players names from list of ids', function () {
+    it('gets players names from list of ids', () => {
       expect(utils.getPlayersFromIds(['_bob'], players, true)).toStrictEqual(['Bob']);
     });
   });
 
-  describe('pluralize', function () {
-    it('pluralizes word', function () {
+  describe('pluralize', () => {
+    it('pluralizes word', () => {
       expect(utils.pluralize(1, 'mouse', 'mice')).toBe('mouse');
       expect(utils.pluralize(2, 'mouse', 'mice')).toBe('mice');
       expect(utils.pluralize(0, 'mouse', 'mice')).toBe('mice');
     });
   });
 
-  describe('truncateRecommended', function () {
-    it('truncates recommended player count correctly', function () {
+  describe('truncateRecommended', () => {
+    it('truncates recommended player count correctly', () => {
       expect(utils.truncateRecommended([1])).toBe('1');
       expect(utils.truncateRecommended([1, 2])).toBe('1-2');
       expect(utils.truncateRecommended([1, 2, 3])).toBe('1-3');

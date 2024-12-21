@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 // Types
 import type { GameState } from 'types/game';
 import type { GamePlayers } from 'types/player';

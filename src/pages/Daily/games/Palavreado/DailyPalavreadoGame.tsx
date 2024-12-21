@@ -17,7 +17,7 @@ export function DailyPalavreadoGame() {
   if (challengeQuery.isLoading) {
     return <DailyLoading />;
   }
-  const dailyData = challengeQuery?.data?.['palavreado'];
+  const dailyData = challengeQuery?.data?.palavreado;
 
   if (challengeQuery.isError || !dailyData) {
     return <DailyError />;

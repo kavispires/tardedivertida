@@ -16,7 +16,7 @@ export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Carta enviada com sucesso!', 'Card send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application failed to submit the card'
+      'Oops, the application failed to submit the card',
     ),
   });
 
@@ -37,11 +37,11 @@ export function useOnSubmitDrawingAPIRequest(setStep: UseStep['setStep']) {
     onError: () => setStep(1),
     successMessage: translate(
       'Acabou o tempo! Aguarde enquanto os outros participantes desenham',
-      "Time's up! Wait for the other players to finish their art"
+      "Time's up! Wait for the other players to finish their art",
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
-      'Oops, the application failed to send your art'
+      'Oops, the application failed to send your art',
     ),
   });
 
@@ -63,7 +63,7 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Resposta enviado com sucesso!', 'Guess submitted successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
-      'Oops, the application failed to submit your guess'
+      'Oops, the application failed to submit your guess',
     ),
   });
 

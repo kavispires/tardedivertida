@@ -21,7 +21,7 @@ export function StepWaitClover({ activeCloverPlayer, clover, leaves }: StepWaitC
   const { mode, rotation, rotations, onLeafRotate, onRotateClover, usedLeavesIds } = useCloverState(
     'view',
     clover,
-    leaves
+    leaves,
   );
 
   return (

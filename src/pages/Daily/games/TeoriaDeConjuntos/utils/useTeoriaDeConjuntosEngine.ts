@@ -10,7 +10,7 @@ import { deepCopy } from 'utils/helpers';
 // Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import { DailyTeoriaDeConjuntosEntry, GameState, Guess, TeoriaDeConjuntosLocalToday, TThing } from './types';
+import type { DailyTeoriaDeConjuntosEntry, GameState, Guess, TeoriaDeConjuntosLocalToday, TThing, } from './types';
 
 export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, initialState: GameState) {
   const { message } = App.useApp();
@@ -68,23 +68,23 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
     setState((prevState) => {
       const copy = deepCopy(prevState);
 
-      if (state.activeThing) {
+      if (state.activeThing && state.activeArea) {
         // Remove thing from hand
         copy.hand = copy.hand.filter((thing) => thing.id !== state.activeThing?.id);
 
-        let guess: Guess = {
+        const guess: Guess = {
           thingId: state.activeThing.id,
-          sectionId: state.activeArea!,
-          result: state.activeArea!,
+          sectionId: state.activeArea,
+          result: state.activeArea,
         };
 
         // Add to the appropriate area
         if (state.activeThing.rule === 1) {
-          copy.rule1Things.push(state.activeThing!);
+          copy.rule1Things.push(state.activeThing);
         } else if (state.activeThing.rule === 2) {
-          copy.rule2Things.push(state.activeThing!);
+          copy.rule2Things.push(state.activeThing);
         } else if (state.activeThing.rule === 0) {
-          copy.intersectingThings.push(state.activeThing!);
+          copy.intersectingThings.push(state.activeThing);
         }
 
         // If incorrect, add from the deck and lose a heart
@@ -93,7 +93,10 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
           copy.hearts -= 1;
           localStateUpdateHearts -= 1;
           if (copy.deck.length > 0) {
-            copy.hand.push(copy.deck.pop()!);
+            const thing = copy.deck.pop();
+            if (thing) {
+              copy.hand.push(thing);
+            }
           }
         }
 

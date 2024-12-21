@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type BookProps = {
   children?: [ReactNode] | [ReactNode, ReactNode] | [ReactNode, ReactNode, ReactNode];
@@ -84,19 +84,19 @@ export function Book({ children }: BookProps) {
       ></path>
 
       <foreignObject x="185" y="63" width="150" height="225">
-        {Boolean(children && children[0]) && children![0]}
+        {children?.[0]}
       </foreignObject>
 
       <foreignObject x="387" y="63" width="150" height="225">
-        {Boolean(children && children[1]) && children![1]}
+        {children?.[1]}
       </foreignObject>
 
-      {Boolean(children && children[2]) && (
+      {!!children?.[2] && (
         <path fill="#fff" d="M554.14 61.53s69.5-28 171.81-12v251.06s-117-6.94-171.81 12z"></path>
       )}
 
       <foreignObject x="566" y="63" width="150" height="225">
-        {Boolean(children && children[2]) && children![2]}
+        {!!children?.[2] && children[2]}
       </foreignObject>
     </svg>
   );

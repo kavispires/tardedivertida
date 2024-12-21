@@ -10,7 +10,7 @@ type CardsProps = {
   suggestions: Suggestion[];
   readOnly: boolean;
   players: GamePlayers;
-  onSetValidation: Function;
+  onSetValidation: GenericFunction;
   isLoading: boolean;
   myRecommendation: Suggestion[];
 };
@@ -43,6 +43,7 @@ export function Cards({
         return (
           <button
             key={`${suggestionEntry.suggestion}-${index}`}
+            type="button"
             className="u-word-compare-suggestions-step__suggestion-button"
             onClick={() => onSetValidation(index, suggestionEntry)}
             disabled={isLoading}

@@ -65,13 +65,15 @@ export function StepReviewCrime({
           index={selections.reasonForEvidence}
           onSelectValue={(payload) => updateSelection({ reasonForEvidence: payload.value })}
         />
-        <SceneTile
-          tile={locationTile!}
-          index={selections.locationIndex}
-          onSelectValue={(payload) =>
-            updateSelection({ locationTile: payload.tileId, locationIndex: payload.value })
-          }
-        />
+        {!!locationTile && (
+          <SceneTile
+            tile={locationTile}
+            index={selections.locationIndex}
+            onSelectValue={(payload) =>
+              updateSelection({ locationTile: payload.tileId, locationIndex: payload.value })
+            }
+          />
+        )}
       </div>
 
       <Space className="space-container" align="center">

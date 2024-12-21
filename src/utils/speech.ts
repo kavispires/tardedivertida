@@ -11,7 +11,7 @@ export function speak(
   text: DualLanguageValue,
   language: Language,
   volume: number,
-  onEnd: GenericFunction = () => {}
+  onEnd: GenericFunction = () => {},
 ): void {
   const utterance = new SpeechSynthesisUtterance(text[language]);
   utterance.lang = language === 'pt' ? 'pt-BR' : 'en-US';
@@ -52,11 +52,11 @@ export function getRandomWelcomeMessage(name: string): DualLanguageValue {
       en: `Welcome, ${name}!`,
     },
     {
-      pt: `Olha ele, ou ela, ou elix, aqui!`,
-      en: `Look at you! Ready to play!`,
+      pt: 'Olha ele, ou ela, ou elix, aqui!',
+      en: 'Look at you! Ready to play!',
     },
     {
-      pt: `Eba! Você entrou`,
+      pt: 'Eba! Você entrou',
       en: `Yay, you're in!`,
     },
     {
@@ -72,7 +72,7 @@ export function getRandomWelcomeMessage(name: string): DualLanguageValue {
       en: `You are here, ${name}!`,
     },
     {
-      pt: `O jogo vai ser muito mais sensual agora que você entrou`,
+      pt: 'O jogo vai ser muito mais sensual agora que você entrou',
       en: `The game will be so much better now that you're here!`,
     },
     {
@@ -127,40 +127,40 @@ export function getRandomPositiveReadyMessage(name: string): DualLanguageValue {
       en: `Done! Now wait for the other players. Good luck, ${name}`,
     },
     {
-      pt: `Pronto! Agora é so esperar esses manés`,
-      en: `Done and Ready to play! Were you born ready?`,
+      pt: 'Pronto! Agora é so esperar esses manés',
+      en: 'Done and Ready to play! Were you born ready?',
     },
     {
-      pt: `Pronto! Cá entre nós, estou torcendo por você!`,
-      en: `Done! And can I tell you a secret? I'm rooting for you!`,
+      pt: 'Pronto! Cá entre nós, estou torcendo por você!',
+      en: 'Done! And can I tell you a secret? I’m rooting for you!',
     },
     {
       pt: `Pronto! Que comece a diversão! Não se esqueça de respirar, ${name}!`,
       en: `Ready! Let the fun begin! Don't forget to breathe, ${name}!`,
     },
     {
-      pt: `Pronto! Agora é só esperar esses lagartixas chegarem!`,
-      en: `Ready! Now just waiting for those slowpokes to show up!`,
+      pt: 'Pronto! Agora é só esperar esses lagartixas chegarem!',
+      en: 'Ready! Now just waiting for those slowpokes to show up!',
     },
     {
-      pt: `Pronto! Se você estiver tão empolgado quanto eu, vamos arrebentar!`,
+      pt: 'Pronto! Se você estiver tão empolgado quanto eu, vamos arrebentar!',
       en: `Ready! If you're as excited as I am, we’re going to crush it!`,
     },
     {
-      pt: `Pronto! Espero que você tenha trazido suas habilidades secretas!`,
-      en: `Ready! I hope you brought your secret skills with you!`,
+      pt: 'Pronto! Espero que você tenha trazido suas habilidades secretas!',
+      en: 'Ready! I hope you brought your secret skills with you!',
     },
     {
-      pt: `Pronto! Estou mais ansioso que criança na véspera de Natal!`,
-      en: `Ready! I'm more excited than a kid on Christmas Eve!`,
+      pt: 'Pronto! Estou mais ansioso que criança na véspera de Natal!',
+      en: 'Ready! I’m more excited than a kid on Christmas Eve!',
     },
     {
       pt: `Pronto! Hora de mostrar quem manda! Boa sorte, ${name}!`,
-      en: `Ready! Time to show who's boss! Good luck, ${name}!`,
+      en: `Ready! Time to show who’s boss! Good luck, ${name}!`,
     },
     {
-      pt: `Pronto! Prepare-se para a aventura mais épica da sua vida!`,
-      en: `Ready! Get ready for the most epic adventure of your life!`,
+      pt: 'Pronto! Prepare-se para a aventura mais épica da sua vida!',
+      en: 'Ready! Get ready for the most epic adventure of your life!',
     },
   ];
 
@@ -174,36 +174,36 @@ export function getRandomNeutralReadyMessage(name: string): DualLanguageValue {
       en: `Now all you have left is to pray ${name} because the game is starting anyway!`,
     },
     {
-      pt: `Tudo bem. Não se preocupe em vencer, já que as chances são bem baixas.`,
-      en: `It's alright. Don't worry too much about winning, there's very little chance anyway.`,
+      pt: 'Tudo bem. Não se preocupe em vencer, já que as chances são bem baixas.',
+      en: "It’s alright. Don't worry too much about winning, there’s very little chance anyway.",
     },
     {
-      pt: `Ok, ok, ok. Respire fundo, e vamos lá!`,
-      en: `Okay, okay okay. Take deep breaths and let's go!`,
+      pt: 'Ok, ok, ok. Respire fundo, e vamos lá!',
+      en: 'Okay, okay okay. Take deep breaths and let’s go!',
     },
     {
       pt: `Relaxa, ${name}! O importante é se divertir... e perder!`,
       en: `Relax, ${name}! The important thing is to have fun... and lose!`,
     },
     {
-      pt: `Não se preocupe, a confusão faz parte do jogo!`,
-      en: `Don’t worry, confusion is part of the game!`,
+      pt: 'Não se preocupe, a confusão faz parte do jogo!',
+      en: 'Don’t worry, confusion is part of the game!',
     },
     {
-      pt: `Ok, sem regras, só instinto! Vamos ver no que dá!`,
-      en: `Okay, no rules, just instincts! Let’s see how this goes!`,
+      pt: 'Ok, sem regras, só instinto! Vamos ver no que dá!',
+      en: 'Okay, no rules, just instincts! Let’s see how this goes!',
     },
     {
-      pt: `Quem precisa de regras? O jogo vai ficar mais interessante assim!`,
-      en: `Who needs rules? The game will be way more interesting this way!`,
+      pt: 'Quem precisa de regras? O jogo vai ficar mais interessante assim!',
+      en: 'Who needs rules? The game will be way more interesting this way!',
     },
     {
-      pt: `Não tenha medo! O pior que pode acontecer é... bem, vamos descobrir!`,
-      en: `Don’t be scared! The worst that can happen is... well, let’s find out!`,
+      pt: 'Não tenha medo! O pior que pode acontecer é... bem, vamos descobrir!',
+      en: 'Don’t be scared! The worst that can happen is... well, let’s find out!',
     },
     {
-      pt: `Vai ser divertido! E se não for, pelo menos temos histórias!`,
-      en: `It’ll be fun! And if not, at least we’ll have stories to tell!`,
+      pt: 'Vai ser divertido! E se não for, pelo menos temos histórias!',
+      en: 'It’ll be fun! And if not, at least we’ll have stories to tell!',
     },
     {
       pt: `A única regra é... não há regras! Vamos nessa, ${name}!`,
@@ -221,12 +221,12 @@ export function getRandomNegativeReadyMessage(name: string): DualLanguageValue {
       en: `Oh ${name}, you are screwed because the game is starting anyway!`,
     },
     {
-      pt: `Que carai, eim. As regras foram explicadas super bem. Agora vai assim mesmo!`,
-      en: `W.T.F, the rules were so clear! Well, the game is starting anyway`,
+      pt: 'Que carai, eim. As regras foram explicadas super bem. Agora vai assim mesmo!',
+      en: 'W.T.F, the rules were so clear! Well, the game is starting anyway',
     },
     {
-      pt: `Segura o tchan, amarra o tchan, segura o tchan-tchan-tchan-tchan-tchan. Estou cantando pra esquecer que você vai me decepcionar`,
-      en: `Oh my... let's hope for the best!`,
+      pt: 'Segura o tchan, amarra o tchan, segura o tchan-tchan-tchan-tchan-tchan. Estou cantando pra esquecer que você vai me decepcionar',
+      en: 'Oh my... let’s hope for the best!',
     },
     {
       pt: `Olha só, ${name}. Se não entendeu as regras, é melhor segurar o choro!`,
@@ -245,12 +245,12 @@ export function getRandomNegativeReadyMessage(name: string): DualLanguageValue {
       en: `Yikes, ${name}, who needs rules when you can have a good dose of chaos?`,
     },
     {
-      pt: `Se você não entendeu nada, é melhor pedir ajuda a alguém... ou não!`,
-      en: `If you didn’t get anything, you might want to ask for help... or not!`,
+      pt: 'Se você não entendeu nada, é melhor pedir ajuda a alguém... ou não!',
+      en: 'If you didn’t get anything, you might want to ask for help... or not!',
     },
     {
-      pt: `Espero que você seja bom em improvisar, porque as regras não ajudaram!`,
-      en: `I hope you’re good at improvising because the rules didn’t help!`,
+      pt: 'Espero que você seja bom em improvisar, porque as regras não ajudaram!',
+      en: 'I hope you’re good at improvising because the rules didn’t help!',
     },
     {
       pt: `Que lindo, ${name}. Você entrou na aventura sem saber o que está fazendo!`,

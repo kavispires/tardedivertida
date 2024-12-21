@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -103,7 +103,7 @@ export function StepGuessing({
     isLocked,
     user,
     activePlayerGuesses,
-    lastGuessHistory
+    lastGuessHistory,
   );
 
   return (
@@ -207,7 +207,7 @@ const getActiveStuff = (
   isLocked: boolean,
   user: GamePlayer,
   activePlayerGuesses: any,
-  lastGuessHistory: GuessHistoryEntry
+  lastGuessHistory: GuessHistoryEntry,
 ): { activeWeaponId: string; activeEvidenceId: string } => {
   if (isOwnCrime) {
     return {

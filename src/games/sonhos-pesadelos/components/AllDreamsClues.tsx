@@ -38,7 +38,7 @@ export function AllDreamsClues({ dreams, activeItem, onActivateItem, votes, play
             className={clsx(
               liButtonBaseClass,
               isActive && `${liButtonBaseClass}--active`,
-              isUsed && `${liButtonBaseClass}--used`
+              isUsed && `${liButtonBaseClass}--used`,
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >

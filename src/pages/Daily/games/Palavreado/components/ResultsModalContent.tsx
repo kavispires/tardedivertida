@@ -13,7 +13,7 @@ import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import { SETTINGS } from '../utils/settings';
-import { PalavreadoLetter } from '../utils/types';
+import type { PalavreadoLetter } from '../utils/types';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
@@ -114,7 +114,7 @@ function writeResult({
         default:
           return '⬜️';
       }
-    })
+    }),
   );
 
   return [

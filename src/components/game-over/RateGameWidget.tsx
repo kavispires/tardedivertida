@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 // Ant Design Resources
 import { StarFilled } from '@ant-design/icons';
 import { Alert, Button, Input, Rate } from 'antd';
@@ -55,11 +55,7 @@ type RateGameWidgetContentProps = {
   setHideWidget: React.Dispatch<React.SetStateAction<boolean>>;
 } & RateGameWidgetProps;
 
-function RateGameWidgetContent({
-  customText,
-  hideWidget,
-  setHideWidget,
-}: RateGameWidgetContentProps): JSX.Element {
+function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGameWidgetContentProps) {
   const { gameId } = useGameMeta();
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
@@ -105,7 +101,7 @@ function RateGameWidgetContent({
       className={clsx(
         'rate-game-widget',
         thankYouMessage && 'rate-game-widget--thank-you',
-        getAnimationClass(hideWidget ? 'bounceOut' : 'bounceIn')
+        getAnimationClass(hideWidget ? 'bounceOut' : 'bounceIn'),
       )}
     >
       {thankYouMessage ? (

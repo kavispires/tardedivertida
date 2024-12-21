@@ -1,15 +1,10 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
-// Types
+import type { ReactNode } from 'react';
 import type { GamePlayer } from 'types/player';
-// Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
 import { AVATARS } from 'utils/avatars';
-// Internal
 import { Avatar } from './Avatar';
-// Sass
 import './AvatarCard.scss';
 
 type AvatarCardProps = {
@@ -81,7 +76,7 @@ export const AvatarCard = ({
         uppercase && `${baseClass}--uppercase`,
         `${baseClass}--${size}`,
         withRoundCorners && `${baseClass}--round-corners`,
-        className
+        className,
       )}
       style={{ backgroundColor: avatar?.color, width: sizes.width }}
     >

@@ -1,4 +1,4 @@
-export function SketchIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function SketchIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#e3e4e2" d="M32 56h376v408H32z"></path>

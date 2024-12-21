@@ -26,7 +26,7 @@ import { VoteCrimesHediondos } from './Votes/VoteCrimesHediondos';
 export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
   const playersList = useMemo(
     () => orderBy(Object.values(props.players), ['data.value', 'name'], ['asc', 'asc']),
-    [props.players]
+    [props.players],
   );
 
   const VotesComponent =

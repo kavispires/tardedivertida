@@ -23,8 +23,8 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Cartas que não era do robô" en="Cards that were not from the robot" />,
-        <Translate pt="Escolheu cartas do robô" en="Chose cards from the robot" />,
+        <Translate key="1" pt="Cartas que não era do robô" en="Cards that were not from the robot" />,
+        <Translate key="2" pt="Escolheu cartas do robô" en="Chose cards from the robot" />,
       ]}
     >
       <Flex justify="center">

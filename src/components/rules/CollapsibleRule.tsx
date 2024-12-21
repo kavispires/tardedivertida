@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
-import { Collapse, CollapseProps } from 'antd';
+import { Collapse, type CollapseProps } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
@@ -15,7 +15,7 @@ type CollapsibleRuleProps = {
    */
   title?: ReactNode;
 };
-export function CollapsibleRule({ children, title }: CollapsibleRuleProps): JSX.Element {
+export function CollapsibleRule({ children, title }: CollapsibleRuleProps) {
   const panels: CollapseProps['items'] = [
     {
       key: '1',

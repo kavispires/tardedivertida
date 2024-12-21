@@ -47,12 +47,16 @@ export function StepEvaluation({
 }: StepEvaluationProps) {
   const { isLoading } = useLoading();
 
-  const canvasWidth = useCardWidth(5, { gap: 16, minWidth: 150, maxWidth: 500 });
+  const canvasWidth = useCardWidth(5, {
+    gap: 16,
+    minWidth: 150,
+    maxWidth: 500,
+  });
   const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
   const { votes, setVotes, activeItem, activateItem, resetVoting, isVotingComplete } = useVotingMatch(
     'drawing',
     true,
-    drawings.length || 2
+    drawings.length || 2,
   );
   const [choseRandomly, setChoseRandomly] = useState(false);
 
@@ -66,7 +70,7 @@ export function StepEvaluation({
     let cardsKeys = shuffle(
       cards
         .map((e: ArteRuimCard, index: number) => getEntryId(['card', e.id, LETTERS[index]]))
-        .filter((key: string) => !usedCards.includes(key))
+        .filter((key: string) => !usedCards.includes(key)),
     );
     // For level 5 specifically, if there are less cards than drawings
     cardsKeys =
@@ -85,12 +89,13 @@ export function StepEvaluation({
     setVotes(newVotes);
   }, [cards, drawings, votes, setVotes]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!canvasSize) {
       // Round to increments of 50
       setCanvasSize(Math.floor(canvasWidth / 50) * 50);
     }
-  }, [canvasSize, canvasWidth]); // eslint-disable-line
+  }, [canvasSize, canvasWidth]);
 
   const selectOwnDrawing = useCallback(() => {
     const playersDrawing = (drawings ?? []).find((drawing: ArteRuimDrawing) => drawing.playerId === user.id);

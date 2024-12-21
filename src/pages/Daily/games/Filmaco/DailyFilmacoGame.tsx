@@ -18,7 +18,7 @@ export function DailyFilmacoGame() {
     return <DailyLoading />;
   }
 
-  const dailyData = challengeQuery?.data?.['filmaco'];
+  const dailyData = challengeQuery?.data?.filmaco;
 
   if (challengeQuery.isError || !dailyData) {
     return <DailyError />;

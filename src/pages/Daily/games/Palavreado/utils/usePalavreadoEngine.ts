@@ -5,7 +5,7 @@ import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 // Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
+import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
 
 export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: GameState) {
   const size = data.keyword.length;
@@ -36,9 +36,13 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     }
 
     setState((prev) => {
+      if (prev.selection === null) {
+        return prev;
+      }
+
       const copyLetters = cloneDeep(state.letters);
-      const temp = copyLetters[prev.selection!];
-      copyLetters[prev.selection!] = copyLetters[index];
+      const temp = copyLetters[prev.selection];
+      copyLetters[prev.selection] = copyLetters[index];
       copyLetters[index] = temp;
 
       updateLocalStorage({
@@ -49,7 +53,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
         ...prev,
         letters: copyLetters,
         selection: null,
-        swap: [prev.selection!, index],
+        swap: [prev.selection, index],
         swaps: prev.swaps + 1,
       };
     });

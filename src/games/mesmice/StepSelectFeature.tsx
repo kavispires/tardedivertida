@@ -16,7 +16,7 @@ import { XIcon } from 'icons/XIcon';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Step, StepProps } from 'components/steps';
+import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
@@ -60,12 +60,14 @@ export function StepSelectFeature({
 
   const listOfFeatures = useMemo(
     () => orderBy(Object.values(features), [`title.${language}`, 'level']),
-    [features, language]
+    [features, language],
   );
 
   useMock(() => {
     if (!isUserTheActivePlayer) {
-      onEliminate({ featureId: mockFeatureSelection(listOfFeatures, history, activePlayer.target) });
+      onEliminate({
+        featureId: mockFeatureSelection(listOfFeatures, history, activePlayer.target),
+      });
     }
   });
 
@@ -86,8 +88,7 @@ export function StepSelectFeature({
             pt={
               <>
                 Seu objeto é o objeto da vez, aguarde enquanto os outros jogadores eliminam características.
-                <br />
-                O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
+                <br />O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
                 <br />A característica mais votada será eliminada.
               </>
             }
@@ -109,8 +110,7 @@ export function StepSelectFeature({
               <>
                 Das características abaixo, <strong>selecione</strong> a que menos combina com os dois objetos
                 que <AvatarName player={activePlayer} /> escolheu e que escreveu.
-                <br />
-                O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
+                <br />O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
                 <br />
                 Discuta com os outros jogadores para chegar a um consenso, mas a decisão final é sua.
                 <br />A característica mais votada será eliminada.
@@ -138,7 +138,9 @@ export function StepSelectFeature({
           <ActivePlayerObjectClue activePlayer={activePlayer} item={item} clue={clue} />
           <div
             className="features-container"
-            style={{ gridTemplateColumns: `repeat(${listOfFeatures.length / 2}, 1fr)` }}
+            style={{
+              gridTemplateColumns: `repeat(${listOfFeatures.length / 2}, 1fr)`,
+            }}
           >
             {listOfFeatures.map((feature) => (
               <Popconfirm

@@ -1,5 +1,5 @@
 // Types
-import { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/achievements';
 
 const ACHIEVEMENTS = {
   BEST_CLUES: 'BEST_CLUES',

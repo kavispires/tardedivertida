@@ -1,5 +1,5 @@
 // Types
-import { SpectrumCard } from 'types/tdr';
+import type { SpectrumCard } from 'types/tdr';
 // Utils
 import { getRandomItem } from 'utils/helpers';
 
@@ -24,5 +24,5 @@ export const mockHint = (card: SpectrumCard, target: number): string => {
     return `${card.right}:${Math.abs(target)}`;
   }
 
-  return `0:0`;
+  return '0:0';
 };

@@ -44,12 +44,13 @@ export function StepVote({
   });
   const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!canvasSize) {
       // Round to increments of 50
       setCanvasSize(Math.floor(canvasWidth / 50) * 50);
     }
-  }, [canvasSize, canvasWidth]); // eslint-disable-line
+  }, [canvasSize, canvasWidth]);
 
   return (
     <Step announcement={announcement}>

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useEffect, useRef } from 'react';
+import { type ReactNode, useEffect, useRef } from 'react';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Sass
@@ -54,8 +54,8 @@ function MouseFollowingContentInternal({
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (divRef.current) {
-        divRef.current.style.left = e.clientX + 16 + 'px';
-        divRef.current.style.top = e.clientY + 16 + 'px';
+        divRef.current.style.left = `${e.clientX + 16}px`;
+        divRef.current.style.top = `${e.clientY + 16}px`;
       }
     };
 
@@ -73,7 +73,7 @@ function MouseFollowingContentInternal({
         'mouse-following-content',
         contained && 'mouse-following-content--contained',
         getAnimationClass('bounceIn'),
-        className
+        className,
       )}
     >
       {children}

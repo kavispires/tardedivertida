@@ -36,7 +36,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                   'g-table-item',
                   getAnimationClass('flipInY', {
                     delay: index,
-                  })
+                  }),
                 )}
                 style={{ width: `${cardWidth + 8}px` }}
               >

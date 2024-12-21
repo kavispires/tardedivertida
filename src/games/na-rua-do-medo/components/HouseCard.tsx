@@ -80,7 +80,7 @@ export function HouseCard({
         <span
           className={clsx(
             `${baseClass}__active`,
-            getAnimationClass('heartBeat', { speed: 'slow', infinite: true })
+            getAnimationClass('heartBeat', { speed: 'slow', infinite: true }),
           )}
         />
       )}

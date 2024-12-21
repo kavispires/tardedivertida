@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import { TextCard } from 'types/tdr';
+import type { TextCard } from 'types/tdr';
 // Icons
 import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 // Components

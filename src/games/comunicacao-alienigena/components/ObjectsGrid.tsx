@@ -35,7 +35,7 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, 
             className={clsx(
               'objects-grid__item',
               (showTypes || item.offered) && `objects-grid__item--${item.type}`,
-              activeObjects?.includes(item.id) && `objects-grid__item--ask`
+              activeObjects?.includes(item.id) && 'objects-grid__item--ask',
             )}
           >
             <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>

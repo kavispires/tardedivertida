@@ -14,7 +14,7 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { TextCardWithType } from './utils/types';
+import type { TextCardWithType } from './utils/types';
 
 type StepSelectWordsProps = {
   user: GamePlayer;

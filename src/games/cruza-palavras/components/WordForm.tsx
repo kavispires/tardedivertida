@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 // Ant Design Resources
-import { Button, Input, InputRef, Space } from 'antd';
+import { Button, Input, type InputRef, Space } from 'antd';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
@@ -22,7 +22,7 @@ export function WordForm({ x, y, onSubmit, disabled, index }: WordFormProps) {
     setClue(e.target.value);
   };
 
-  useEffect(() => textInput && textInput.current!.focus(), []);
+  useEffect(() => textInput?.current?.focus(), []);
 
   // DEV: Submit made-up words
   useMock(() => {

@@ -35,11 +35,12 @@ export function PhaseBookPossession({ players, state }: PhaseProps) {
 
   const onSubmitPages = useOnSubmitPagesAPIRequest(setStep);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (state.trap === TRAPS.DELAYING_DOORS || state.trap === TRAPS.VANISHING_DOORS) {
       setCache({ doors: [] });
     }
-  }, [state.trap]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [state.trap]);
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION}>

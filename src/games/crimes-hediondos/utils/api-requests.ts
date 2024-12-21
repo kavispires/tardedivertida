@@ -4,7 +4,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Internal
 import { CRIMES_HEDIONDOS_ACTIONS } from './constants';
-import { SubmitCrimePayload, SubmitGuessesPayload, SubmitMarkPayload } from './types';
+import type { SubmitCrimePayload, SubmitGuessesPayload, SubmitMarkPayload } from './types';
 
 export function useOnSubmitCrimeAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
@@ -16,7 +16,7 @@ export function useOnSubmitCrimeAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Crime enviado com sucesso', 'Crime submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu crime',
-      'Oops, the application failed to send your crime'
+      'Oops, the application failed to send your crime',
     ),
   });
 
@@ -37,11 +37,11 @@ export function useOnSubmitMarkAPIRequest(setStep: UseStep['setStep']) {
     onError: () => setStep(2),
     successMessage: translate(
       'Nova informação enviadas com sucesso',
-      'New information submitted successfully'
+      'New information submitted successfully',
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a nova informação',
-      'Oops, the application failed to send the new information'
+      'Oops, the application failed to send the new information',
     ),
   });
 
@@ -63,7 +63,7 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Respostas enviadas com sucesso', 'Guesses submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
-      'Oops, the application failed to send your guesses'
+      'Oops, the application failed to send your guesses',
     ),
   });
 

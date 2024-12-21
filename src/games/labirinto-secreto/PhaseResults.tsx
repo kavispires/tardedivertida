@@ -26,7 +26,7 @@ export function PhaseResults({ players, state }: PhaseProps) {
   const { step, goToPreviousStep, goToNextStep } = useStep();
   const gallery = useMemo(
     () => sortPlayers(players).filter((player) => player.map.some((segment: MapSegment) => segment.active)),
-    [players]
+    [players],
   );
 
   const slideShowConfig = useSlideShow({

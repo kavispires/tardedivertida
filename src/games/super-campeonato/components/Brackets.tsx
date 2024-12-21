@@ -40,7 +40,7 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
       semi: [],
       final: [],
       winner: [],
-    }
+    },
   );
   return (
     <div className="w-brackets-container">

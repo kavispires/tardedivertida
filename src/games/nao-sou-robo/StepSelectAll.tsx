@@ -61,7 +61,11 @@ export function StepSelectAll({
 
   const playerCount = Object.keys(players).length;
 
-  useMock(() => onSubmitCaptcha({ guess: mockGuess(shuffledOptions, playerCount, user.cardId) }));
+  useMock(() =>
+    onSubmitCaptcha({
+      guess: mockGuess(shuffledOptions, playerCount, user.cardId),
+    }),
+  );
 
   const toggleCard = (cardId: string) => {
     if (length + 1 === playerCount && scrollToSubmitRef.current) {
@@ -128,7 +132,7 @@ export function StepSelectAll({
                     'n-table-item',
                     getAnimationClass('zoomIn', {
                       delay: index,
-                    })
+                    }),
                   )}
                   style={{ width: `${cardWidth + 8}px` }}
                 >

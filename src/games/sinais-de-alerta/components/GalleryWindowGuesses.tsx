@@ -5,7 +5,7 @@ import { CrownFilled, MessageFilled } from '@ant-design/icons';
 import { Avatar as AntAvatar, Flex, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-import { TextCard } from 'types/tdr';
+import type { TextCard } from 'types/tdr';
 // Utils
 import { getContrastColor, getPlayersFromIds } from 'utils/helpers';
 // Icons
@@ -40,7 +40,7 @@ export function GalleryWindowGuesses({
             cards,
             playerStayEntry.subjectId,
             playerStayEntry.descriptorId,
-            gameLanguage
+            gameLanguage,
           );
           const isSubjectCorrect = galleryEntry.subjectId === playerStayEntry.subjectId;
           const isDescriptorCorrect = galleryEntry.descriptorId === playerStayEntry.descriptorId;
@@ -57,9 +57,9 @@ export function GalleryWindowGuesses({
           };
         }),
         ['correctness', 'count', 'id'],
-        ['desc', 'desc', 'asc']
+        ['desc', 'desc', 'asc'],
       ),
-    [cards, galleryEntry, gameLanguage]
+    [cards, galleryEntry, gameLanguage],
   );
 
   return (
@@ -73,7 +73,10 @@ export function GalleryWindowGuesses({
             keyboard={entry.subjectCorrect}
             style={
               entry.subjectCorrect && entry.correctness === 1
-                ? { backgroundColor: artistColor, color: getContrastColor(artistColor) }
+                ? {
+                    backgroundColor: artistColor,
+                    color: getContrastColor(artistColor),
+                  }
                 : { color: 'inherit', backgroundColor: 'inherit' }
             }
           >
@@ -86,7 +89,10 @@ export function GalleryWindowGuesses({
             keyboard={entry.descriptorCorrect}
             style={
               entry.descriptorCorrect && entry.correctness === 1
-                ? { backgroundColor: artistColor, color: getContrastColor(artistColor) }
+                ? {
+                    backgroundColor: artistColor,
+                    color: getContrastColor(artistColor),
+                  }
                 : { color: 'inherit', backgroundColor: 'inherit' }
             }
           >
@@ -100,7 +106,10 @@ export function GalleryWindowGuesses({
               className="sda-gallery__speech-bubble"
               style={
                 entry.correctness === 2
-                  ? { backgroundColor: artistColor, color: getContrastColor(artistColor) }
+                  ? {
+                      backgroundColor: artistColor,
+                      color: getContrastColor(artistColor),
+                    }
                   : {}
               }
             >

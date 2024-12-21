@@ -9,7 +9,7 @@ import { getRandomItem } from 'utils/helpers';
  */
 const DEV_NAMES: string[] =
   'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Oli,Pat,Quinn,Roy,Sam,Tim,Una,Vic,Will,Xavier,Yara,Zoe'.split(
-    ','
+    ',',
   );
 
 const cacheNames: BooleanDictionary = {};
@@ -27,7 +27,7 @@ let cacheMockedPlayers: GamePlayers = {};
 const getRandomUniqueItemFromList = (
   source: string[],
   used: string[] = [],
-  cache: BooleanDictionary = {}
+  cache: BooleanDictionary = {},
 ) => {
   let randomItem = '';
   let tries = 0;
@@ -57,8 +57,8 @@ export function mockPlayerName(used?: string[]): string {
  */
 export function mockPlayers(
   players: GamePlayers,
-  quantity: number = 10,
-  properties: PlainObject | GenericFunction = {}
+  quantity = 10,
+  properties: PlainObject | GenericFunction = {},
 ): GamePlayers {
   if (Object.keys(cacheMockedPlayers).length === quantity) {
     return {

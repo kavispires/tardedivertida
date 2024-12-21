@@ -6,7 +6,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { print } from 'utils/helpers';
 // Internal
 import DEMO from './demo.json';
-import { DailyComunicacaoAlienigenaEntry } from './types';
+import type { DailyComunicacaoAlienigenaEntry } from './types';
 // Services
 
 export const useComunicacaoAlienigenaDemo = () => {

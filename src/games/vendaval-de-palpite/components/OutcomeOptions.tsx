@@ -7,7 +7,7 @@ import { Instruction } from 'components/text';
 
 type OutcomeOptionsProps = {
   outcome?: string;
-  onSubmitOutcome: Function;
+  onSubmitOutcome: GenericFunction;
   finalAnswersLeft: number;
 };
 

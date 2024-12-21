@@ -41,12 +41,13 @@ export function EvaluationGroup({
   const [groupId, setGroupId] = useState<string>('');
   const [rejections, setRejections] = useState<BooleanDictionary>({});
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     if (groupId !== answersGroup.id) {
       setRejections({});
       setGroupId(answersGroup.id);
     }
-  }, [answersGroup.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [answersGroup.id]);
 
   const updateRejection = (answerId: string, isRejected: boolean) => {
     setRejections((prev) => {
@@ -84,7 +85,7 @@ export function EvaluationGroup({
                 <span
                   className={clsx(
                     'evaluation-entry__answer-text',
-                    answer.autoRejected && 'evaluation-entry__answer-text--rejected'
+                    answer.autoRejected && 'evaluation-entry__answer-text--rejected',
                   )}
                 >
                   <Tooltip title={answer.answer}>{answer.answer}</Tooltip>

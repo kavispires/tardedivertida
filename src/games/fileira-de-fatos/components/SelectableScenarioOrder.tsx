@@ -58,7 +58,7 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
   };
 
   const onSubmit = () => {
-    const orderedScenarios = selection.map((card) => card!.id);
+    const orderedScenarios = selection.map((card) => card?.id ?? '');
     onSubmitOrder({ order: orderedScenarios });
   };
 

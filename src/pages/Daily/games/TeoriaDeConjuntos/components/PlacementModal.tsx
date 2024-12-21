@@ -5,7 +5,7 @@ import { Flex, Modal } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // Internal
-import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
+import type { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
 import { Thing } from './Thing';
 
 type PlacementModalProps = Pick<

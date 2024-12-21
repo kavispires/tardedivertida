@@ -52,7 +52,11 @@ export function StepTweetSelection({
       <ul className="p-tweets-card">
         {currentTweets.map((tweet) => (
           <li className="p-tweets-card__item" key={tweet.id}>
-            <button onClick={() => onSubmitTweet({ tweetId: tweet.id })} className="p-tweet p-tweet--button">
+            <button
+              type="button"
+              onClick={() => onSubmitTweet({ tweetId: tweet.id })}
+              className="p-tweet p-tweet--button"
+            >
               {tweet.text}
             </button>
           </li>

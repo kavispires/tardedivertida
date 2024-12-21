@@ -16,7 +16,7 @@ export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Palavra enviada com sucesso', 'Word submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra',
-      'Oops, the application failed to send your word'
+      'Oops, the application failed to send your word',
     ),
   });
 
@@ -38,7 +38,7 @@ export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Cartas enviadas com sucesso', 'Cards submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas cartas',
-      'Oops, the application failed to send your cards'
+      'Oops, the application failed to send your cards',
     ),
   });
 
@@ -59,7 +59,7 @@ export function useOnPlayCardAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application failed to send your card'
+      'Oops, the application failed to send your card',
     ),
   });
 

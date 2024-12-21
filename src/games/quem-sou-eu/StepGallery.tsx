@@ -5,7 +5,7 @@ import type { GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';

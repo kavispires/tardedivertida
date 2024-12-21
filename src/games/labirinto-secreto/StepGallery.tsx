@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components

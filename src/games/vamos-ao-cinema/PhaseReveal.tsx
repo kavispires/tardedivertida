@@ -92,9 +92,6 @@ export function PhaseReveal({ players, state }: PhaseProps) {
           onSubmitPoster={onSubmitPoster}
           posters={state.posters}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

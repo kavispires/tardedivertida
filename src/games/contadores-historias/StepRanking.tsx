@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import { GameRanking, GameRound } from 'types/game';
-import { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRanking, GameRound } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
@@ -29,18 +29,18 @@ type StepRankingProps = {
 
 const getGainedPointsText = (
   outcome: Outcome,
-  translate: (pt: string, en: string, custom?: string | undefined) => string
+  translate: (pt: string, en: string, custom?: string | undefined) => string,
 ) => {
   switch (outcome) {
     case 'EVERYBODY_GOT':
       return translate(
         'Pontos porque o Contador de Histórias foi muito obscuro',
-        'Points because the Storyteller was too vague'
+        'Points because the Storyteller was too vague',
       );
     case 'NOBODY_GOT':
       return translate(
         'Pontos porque o Contador de Histórias foi óbvio',
-        'Points because the Storyteller was too obvious'
+        'Points because the Storyteller was too obvious',
       );
     default:
       return translate('Pontos por acertar', 'Points for getting it right');

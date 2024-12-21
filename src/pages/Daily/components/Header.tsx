@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 // Ant Design Resources
 import { Layout, Typography } from 'antd';
 // Components
@@ -18,6 +18,7 @@ export function Header({ icon, children, localStorageKey }: HeaderProps) {
   return (
     <Layout.Header className="daily-header">
       <button
+        type="button"
         onClick={localStorageKey ? () => setCount((prev) => prev + 1) : undefined}
         className="invisible-secret-button daily-header"
       >

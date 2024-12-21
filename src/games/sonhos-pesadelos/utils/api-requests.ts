@@ -16,7 +16,7 @@ export function useOnSubmitDreamAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Sonho submetido com sucesso', 'Dream submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu sonho',
-      'Oops, the application found an error while trying to submit your dream'
+      'Oops, the application found an error while trying to submit your dream',
     ),
   });
 
@@ -38,7 +38,7 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Votos submetidos com sucesso', 'Votes submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-      'Oops, the application found an error while trying to submit your votes'
+      'Oops, the application found an error while trying to submit your votes',
     ),
   });
 

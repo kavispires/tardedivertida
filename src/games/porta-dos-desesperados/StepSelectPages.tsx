@@ -47,7 +47,7 @@ export function StepSelectPages({
 
   const showTrap = useMemo(
     () => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION),
-    [trap]
+    [trap],
   );
 
   // DEV Only

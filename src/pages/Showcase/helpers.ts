@@ -3,7 +3,7 @@ import type { GameInfo } from 'types/game-info';
 
 export const filterGames = (list: GameInfo[], filters: PlainObject) => {
   return list.filter((game) => {
-    let result: boolean[] = [];
+    const result: boolean[] = [];
     // Availability
     if (doesExist(filters.availability)) {
       const res = ['beta', 'stable'].includes(game.release);
@@ -81,7 +81,7 @@ export const evaluateCustomTag = (
   filters: PlainObject,
   game: GameInfo,
   tagName: string,
-  result: boolean[]
+  result: boolean[],
 ) => {
   if (doesExist(filters[tagName])) {
     const res = game.tags.includes(filters[tagName]);

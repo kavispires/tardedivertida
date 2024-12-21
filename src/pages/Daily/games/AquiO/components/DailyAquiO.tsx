@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { Button, Divider, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
@@ -12,7 +12,7 @@ import { DualTranslate, Translate } from 'components/language';
 import { TimerBar } from 'components/timers';
 // Internal
 import { SETTINGS } from '../utils/settings';
-import { DailyAquiOEntry } from '../utils/types';
+import type { DailyAquiOEntry } from '../utils/types';
 import { useAquiOEngine } from '../utils/useAquiOEngine';
 import { getInitialState } from '../utils/helpers';
 import { Header } from '../../../components/Header';
@@ -30,7 +30,7 @@ type DailyAquiOProps = {
 };
 
 export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyAquiOProps) {
-  const initialState = useMemo(() => getInitialState(data, isRandomGame), [isRandomGame]); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data, isRandomGame));
 
   const {
     hearts,

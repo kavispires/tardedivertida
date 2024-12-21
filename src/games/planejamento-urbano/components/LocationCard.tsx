@@ -21,7 +21,7 @@ import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { DualTranslate } from 'components/language';
 // Internal
-import { CityLocationsDict } from '../utils/types';
+import type { CityLocationsDict } from '../utils/types';
 
 type LocationCardProps = {
   locationId: string;

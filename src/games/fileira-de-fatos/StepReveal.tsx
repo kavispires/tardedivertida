@@ -41,9 +41,9 @@ export function StepReveal({
           acc[scenario.id] = scenario;
           return acc;
         },
-        {} as Record<CardId, TextCard>
+        {} as Record<CardId, TextCard>,
       ),
-    [scenarios]
+    [scenarios],
   );
 
   const result = (activePlayer.currentOrder ?? []).map((id: CardId) => scenarioDictionary[id]);

@@ -35,9 +35,10 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
   });
 
   // Updated volume
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     controls.volume(volume);
-  }, [volume]); // eslint-disable-line
+  }, [volume]);
 
   const { seconds, start, isRunning } = useCountdown({
     duration: 33,
@@ -47,7 +48,7 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
         {
           [seed.card.id]: JSON.stringify(lines),
         },
-        true
+        true,
       );
     },
   });

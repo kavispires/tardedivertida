@@ -15,7 +15,7 @@ export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Dados enviados com sucesso', 'Data submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seus dados',
-      'Oops, the application found an error while trying to submit your data'
+      'Oops, the application found an error while trying to submit your data',
     ),
   });
 
@@ -36,7 +36,7 @@ export function useOnSubmitTrackAnswerAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Tarefa enviada com sucesso', 'Track submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua tarefa',
-      'Oops, the application found an error while trying to submit your task'
+      'Oops, the application found an error while trying to submit your task',
     ),
   });
 

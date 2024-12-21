@@ -1,9 +1,9 @@
 import { orderBy } from 'lodash';
-import { ReactNode, useMemo, useState } from 'react';
+import { type ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Layout, Row, Divider, Space, Switch } from 'antd';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -42,7 +42,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
   const alphabetizedPlayableGames = useMemo(
     () => orderBy(Object.values(playableGames), `title.${language}`),
-    [language]
+    [language],
   );
 
   return (
@@ -138,7 +138,7 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
           icon={<TrophyIcon />}
           precision={0}
           suffix={today ? '' : '%'}
-          disabled={!Boolean(user.statistics.winnableGames)}
+          disabled={!user.statistics.winnableGames}
         />
 
         <StatisticCard
@@ -147,7 +147,7 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
           icon={<SkullIcon />}
           precision={0}
           suffix={today ? '' : '%'}
-          disabled={!Boolean(user.statistics.winnableGames)}
+          disabled={!user.statistics.winnableGames}
         />
         {!today && (
           <StatisticCard

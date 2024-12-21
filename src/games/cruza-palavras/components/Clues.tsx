@@ -18,7 +18,7 @@ export function Clues({ clues, onSelectClue, active, guesses }: CluesProps) {
         const isMatched = Boolean(guesses[getClueKey(clueObj)]);
         return (
           <li key={`${clueObj.coordinate}-${clueObj.clue}`} className="x-clue-card-li">
-            <button className="x-clue-card-button" onClick={() => onSelectClue(clueObj)}>
+            <button type="button" className="x-clue-card-button" onClick={() => onSelectClue(clueObj)}>
               <ClueCard
                 isMatched={isMatched}
                 isSelected={isSelected}

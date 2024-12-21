@@ -1,12 +1,12 @@
-const SVG = ``;
+const SVG = '';
 
 function renameSvgGlyphIds(svgCode) {
-  let svgXml = new DOMParser().parseFromString(svgCode, 'text/xml');
-  let symbols = svgXml.getElementsByTagName('symbol');
+  const svgXml = new DOMParser().parseFromString(svgCode, 'text/xml');
+  const symbols = svgXml.getElementsByTagName('symbol');
 
   let count = 1;
-  for (let symbol of symbols) {
-    let symbolId = symbol.getAttribute('id');
+  for (const symbol of symbols) {
+    const symbolId = symbol.getAttribute('id');
     if (!symbolId || !symbolId.startsWith('glyph-')) {
       continue;
     }

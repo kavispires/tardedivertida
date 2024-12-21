@@ -47,7 +47,7 @@ export function SelectableGroupedItemsBoard({
           <li key={`group-${index}`}>
             <ul
               className="h-grouped-items-board__group"
-              style={Boolean(activeColor) ? { borderColor: activeColor } : {}}
+              style={activeColor ? { borderColor: activeColor } : {}}
             >
               {group.map((itemId) => (
                 <li key={itemId}>

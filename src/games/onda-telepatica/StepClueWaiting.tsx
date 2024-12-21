@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-import { SpectrumCard } from 'types/tdr';
+import type { SpectrumCard } from 'types/tdr';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -36,7 +36,7 @@ export function StepClueWaiting({
         instruction=""
       >
         <Instruction contained>
-          {Boolean(!currentCategoryId) ? (
+          {!currentCategoryId || !card ? (
             <p>
               <Translate
                 pt={
@@ -62,22 +62,22 @@ export function StepClueWaiting({
                 <Translate pt={'escolheu:'} en={'chose:'} />
               </p>
               <Space className="space-container" align="center">
-                <OpposingIdeasCard left={card!.left} right={card!.right} />
+                <OpposingIdeasCard left={card.left} right={card.right} />
               </Space>
               <p>
                 <Translate
                   pt={
                     <>
                       Agora, é uma boa ideia pra discutir com o grupo em voz alta o que vocês acham ser super
-                      pra esquerda <TextHighlight>{card!.left}</TextHighlight> e super pra direita{' '}
-                      <TextHighlight>{card!.right}</TextHighlight>. Isso ajuda o medium!
+                      pra esquerda <TextHighlight>{card.left}</TextHighlight> e super pra direita{' '}
+                      <TextHighlight>{card.right}</TextHighlight>. Isso ajuda o medium!
                     </>
                   }
                   en={
                     <>
                       Now it's a good idea to discuss with the group out loud what you guys think it's extreme
-                      left <TextHighlight>{card!.left}</TextHighlight> and extreme right{' '}
-                      <TextHighlight>{card!.right}</TextHighlight>. This might help the psychic!
+                      left <TextHighlight>{card.left}</TextHighlight> and extreme right{' '}
+                      <TextHighlight>{card.right}</TextHighlight>. This might help the psychic!
                     </>
                   }
                 />

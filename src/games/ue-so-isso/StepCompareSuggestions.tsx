@@ -76,8 +76,8 @@ export function StepCompareSuggestions({
           translate('Você controla!', 'You control!'),
           translate('Siga as instruções na página', 'Follow the instructions on the page'),
           controller.id,
-          3
-        )
+          3,
+        ),
       );
       setWasMessageShown(true);
     }

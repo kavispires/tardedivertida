@@ -1,10 +1,8 @@
 import clsx from 'clsx';
-import { CSSProperties, ReactNode, useRef, useState } from 'react';
+import { type CSSProperties, type ReactNode, useRef, useState } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
-// Ant Design Resources
 import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
 import { Button, Flex, Space } from 'antd';
-// Components
 import { Translate } from 'components/language';
 
 type DrawingCanvasProps = {
@@ -37,11 +35,11 @@ type DrawingCanvasProps = {
    */
   height?: number;
   /**
-   *
+   * If the canvas will be read frequently, it will be rendered in a different way
    */
   willReadFrequently?: boolean;
   /**
-   *
+   * Custom style for the canvas
    */
   style?: CSSProperties;
   /**
@@ -233,14 +231,18 @@ export const DrawingCanvas = ({
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
         className={clsx('drawing-canvas', className)}
-        style={{ width: `${width}px`, height: `${height || width}px`, ...style }}
+        style={{
+          width: `${width}px`,
+          height: `${height || width}px`,
+          ...style,
+        }}
         willReadFrequently={willReadFrequently}
         id="drawing-canvas"
       >
         <Layer>
-          {lines.map((line, i) => (
+          {lines.map((line) => (
             <Line
-              key={i}
+              key={String(line)}
               points={line}
               stroke="#222222"
               strokeWidth={strokeWidthBySize}

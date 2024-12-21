@@ -19,7 +19,7 @@ export function useIdleRedirect() {
       notification.warning({
         message: translate(
           'Página parada por um longo tempo, redirecionando...',
-          'The page has been idle for too long, redirecting...'
+          'The page has been idle for too long, redirecting...',
         ),
         duration: 5,
         onClose: () => navigate('/'),

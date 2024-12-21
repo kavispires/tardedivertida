@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Fragment, ReactNode, useMemo } from 'react';
+import { Fragment, type ReactNode, useMemo } from 'react';
 // Ant Design Resources
 import { BackwardFilled } from '@ant-design/icons';
 // Types
@@ -60,8 +60,8 @@ export function TableOrder({
   size,
 }: TableOrderProps) {
   const orderedList = useMemo(
-    () => (Boolean(reorderByUser) ? reorder(order, reorderByUser!) : order),
-    [reorderByUser, order]
+    () => (reorderByUser ? reorder(order, reorderByUser) : order),
+    [reorderByUser, order],
   );
   const doublePlayerCount = orderedList.length * 2;
 

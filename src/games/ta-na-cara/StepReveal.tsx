@@ -99,32 +99,30 @@ export function StepReveal({
             />
           </>
 
-          <>
-            <Translate
-              pt={
-                <>
-                  A identidade de <AvatarName player={targetedPlayer} /> permanecerá desconhecida. Jogadores
-                  podem tentar adivinhar novamente na próxima rodada.
-                </>
-              }
-              en={
-                <>
-                  The identity remains unknown for <AvatarName player={targetedPlayer} />. Players may try
-                  again next round.
-                </>
-              }
-            />
-          </>
+          <Translate
+            pt={
+              <>
+                A identidade de <AvatarName player={targetedPlayer} /> permanecerá desconhecida. Jogadores
+                podem tentar adivinhar novamente na próxima rodada.
+              </>
+            }
+            en={
+              <>
+                The identity remains unknown for <AvatarName player={targetedPlayer} />. Players may try again
+                next round.
+              </>
+            }
+          />
         </ViewOr>
       </Instruction>
 
       <Space className="space-container">
-        {Boolean(result) && (
+        {!!result && (
           <PlayerBoard
-            player={result!}
+            player={result}
             cardWidth={100}
             questionsDict={questionsDict}
-            userCharacterId={result!.characterId}
+            userCharacterId={result.characterId}
           />
         )}
       </Space>

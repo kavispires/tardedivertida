@@ -32,6 +32,7 @@ import { Title } from 'components/text';
 // Internal
 import { RulesCarousel } from '../rules';
 import { AutoNextPhase } from '../general/AutoNextPhase';
+import { useEffectOnce } from 'react-use';
 
 type PhaseRulesProps = {
   players: GamePlayers;
@@ -46,28 +47,29 @@ export function PhaseRules({ players }: PhaseRulesProps) {
   const [volume] = useGlobalLocalStorage('volume');
   const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
 
-  useEffect(() => {
+  useEffectOnce(() => {
     setIsAdminEnabled(true);
-  }, []); // eslint-disable-line
+  });
 
   const gameId = useGameId();
   // TODO: check if this is working
   const queryClient = useQueryClient();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only gameId is necessary
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
-  }, [gameId]); // eslint-disable-line
+  }, [gameId]);
 
   const errorMessage = translate(
     'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-    'Oh no! The application found an error when trying to continue'
+    'Oh no! The application found an error when trying to continue',
   );
 
   const onBeReady = useGameActionRequest({
     actionName: 'be-ready',
     successMessage: translate(
       'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players'
+      'Done! Now wait for the other players',
     ),
     errorMessage,
     onSuccess: () => {
@@ -79,7 +81,7 @@ export function PhaseRules({ players }: PhaseRulesProps) {
     actionName: 'be-ready',
     successMessage: translate(
       'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players'
+      'Done! Now wait for the other players',
     ),
     errorMessage,
     onSuccess: () => {
@@ -91,7 +93,7 @@ export function PhaseRules({ players }: PhaseRulesProps) {
     actionName: 'be-ready',
     successMessage: translate(
       'Vixi, se fudeu então, porque o jogo vai começar!',
-      'Sorry, you are screwed because the game is starting anyway!'
+      'Sorry, you are screwed because the game is starting anyway!',
     ),
     errorMessage,
     onSuccess: () => {

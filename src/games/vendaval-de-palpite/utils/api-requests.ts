@@ -23,7 +23,7 @@ export function useOnSubmitBossPlayerAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Chefe enviado com sucesso!', 'Boss submitted successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o chefe',
-      'Oops, the application failed to send the boss player'
+      'Oops, the application failed to send the boss player',
     ),
   });
 
@@ -45,7 +45,7 @@ export function useOnSubmitSecretWordAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Palavra Secreta enviada com sucesso!', 'Secret word sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar palavra secreta',
-      'Oops, the application failed to send your secret word'
+      'Oops, the application failed to send your secret word',
     ),
   });
 
@@ -67,7 +67,7 @@ export function useOnSubmitPlayerCluesAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Dica enviada com sucesso!', 'Clue sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar dica',
-      'Oops, the application failed to send clue'
+      'Oops, the application failed to send clue',
     ),
   });
 
@@ -89,7 +89,7 @@ export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Avaliação enviada com sucesso!', 'Evaluation sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar avaliação',
-      'Oops, the application failed to send evaluation'
+      'Oops, the application failed to send evaluation',
     ),
   });
 
@@ -111,7 +111,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar resultado',
-      'Oops, the application failed to send outcome'
+      'Oops, the application failed to send outcome',
     ),
   });
 
@@ -133,7 +133,7 @@ export function useOnSubmitHelpAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Ajuda enviada com sucesso!', 'Help sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar ajuda',
-      'Oops, the application failed to send help'
+      'Oops, the application failed to send help',
     ),
   });
 

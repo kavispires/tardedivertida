@@ -126,7 +126,7 @@ export function Forest({
                           key={`tree-${tree.id}`}
                           className={clsx(
                             'forest__tree-container forest__tree-button',
-                            isPathForward && disabled && 'forest__tree-button--disabled'
+                            isPathForward && disabled && 'forest__tree-button--disabled',
                           )}
                           onClick={() => {
                             if ((isClickable && !disabled) || (isClickable && disabled && !isPathForward)) {
@@ -145,7 +145,7 @@ export function Forest({
                             className={clsx(
                               isPathForward && !disabled && 'forest__tree--clickable',
                               isSelected && 'forest__tree--selected',
-                              isActive && 'forest__tree--active'
+                              isActive && 'forest__tree--active',
                             )}
                             width={treeWidth}
                           />
@@ -155,10 +155,10 @@ export function Forest({
                                 className={clsx(
                                   `forest__arrow-from-line forest__arrow-from-line--${getDirection(
                                     selection[selectionIndex - 1],
-                                    tree.id
+                                    tree.id,
                                   )}`,
                                   isSelected && 'forest__tree--selected',
-                                  isActive && 'forest__tree--active'
+                                  isActive && 'forest__tree--active',
                                 )}
                               />
                               <IconAvatar
@@ -167,35 +167,35 @@ export function Forest({
                                 className={clsx(
                                   `forest__arrow-to forest__arrow-to--${getDirection(
                                     selection[selectionIndex - 1],
-                                    tree.id
-                                  )}`
+                                    tree.id,
+                                  )}`,
                                 )}
                               />
                             </>
                           )}
 
                           {isPathForward && !disabled && (
-                            <>
-                              <IconAvatar
-                                icon={<ArrowIcon />}
-                                size="large"
-                                className={clsx(
-                                  `forest__arrow-to forest__arrow-to--${getDirection(
-                                    selection[selection.length - 1] ?? activeTree,
-                                    tree.id
-                                  )}`
-                                )}
-                              />
-                            </>
+                            <IconAvatar
+                              icon={<ArrowIcon />}
+                              size="large"
+                              className={clsx(
+                                `forest__arrow-to forest__arrow-to--${getDirection(
+                                  selection[selection.length - 1] ?? activeTree,
+                                  tree.id,
+                                )}`,
+                              )}
+                            />
                           )}
 
                           <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
                             <div className="forest__players">
-                              <PlayerPositions
-                                players={players!}
-                                playerIds={playerMapping?.[tree.id] ?? []}
-                                user={user}
-                              />
+                              {!!players && (
+                                <PlayerPositions
+                                  players={players}
+                                  playerIds={playerMapping?.[tree.id] ?? []}
+                                  user={user}
+                                />
+                              )}
                             </div>
                           </ViewIf>
                         </div>
@@ -218,11 +218,13 @@ export function Forest({
 
                       <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
                         <div className="forest__players">
-                          <PlayerPositions
-                            players={players!}
-                            playerIds={playerMapping?.[tree.id] ?? []}
-                            user={user}
-                          />
+                          {!!players && (
+                            <PlayerPositions
+                              players={players}
+                              playerIds={playerMapping?.[tree.id] ?? []}
+                              user={user}
+                            />
+                          )}
                         </div>
                       </ViewIf>
                     </div>

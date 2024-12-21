@@ -17,7 +17,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
-import { Item, RequestHistoryEntry } from './utils/types';
+import type { Item, RequestHistoryEntry } from './utils/types';
 import { ITEM_TYPES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 
@@ -29,8 +29,9 @@ export function PhaseReveal({ players, state }: PhaseProps) {
   const items: Item[] = state.items ?? [];
   const latestRequest: RequestHistoryEntry | null = state.requestHistory?.[0] ?? null;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: all we need is the latestRequest
   const icon = useMemo(() => {
-    if (latestRequest && latestRequest.offers) {
+    if (latestRequest?.offers) {
       let hasCurse = false;
       let hasAsk = false;
 
@@ -56,7 +57,7 @@ export function PhaseReveal({ players, state }: PhaseProps) {
       }
       return <AlienNeutralIcon />;
     }
-  }, [latestRequest]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [latestRequest]);
 
   const announcement = (
     <PhaseAnnouncement

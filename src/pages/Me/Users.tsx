@@ -76,7 +76,7 @@ function Users() {
     queryKey: ['users'],
     queryFn: async () => {
       const querySnapshot = await getDocs(
-        query(collection(firestore, 'users'), where('isGuest', '!=', true))
+        query(collection(firestore, 'users'), where('isGuest', '!=', true)),
       );
       const result: any[] = [];
       querySnapshot.forEach((doc) => result.push(doc.data()));
@@ -133,7 +133,7 @@ function Users() {
 
   const mergedUser = useMemo(
     () => merge(cloneDeep(selectedUserO ?? {}), cloneDeep(selectedUserD ?? {})),
-    [selectedUserO, selectedUserD]
+    [selectedUserO, selectedUserD],
   );
 
   console.log(data);

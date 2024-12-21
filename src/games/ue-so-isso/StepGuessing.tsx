@@ -59,9 +59,7 @@ export function StepGuessing({
             <>
               <strong>Write</strong> your guess below.
               <br />
-              If you get it right, the group wins <PointsHighlight type="positive">
-                2 points
-              </PointsHighlight>{' '}
+              If you get it right, the group wins <PointsHighlight type="positive">2 points</PointsHighlight>{' '}
               but if you get it wrong, the group loses{' '}
               <PointsHighlight type="negative">1 point</PointsHighlight>.
               <br />

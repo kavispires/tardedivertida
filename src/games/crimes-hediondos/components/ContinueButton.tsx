@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, ButtonProps } from 'antd';
+import { Button, type ButtonProps } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // State

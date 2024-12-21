@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Types
-import { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Icons
 import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
@@ -12,7 +12,7 @@ import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Instruction, RuleInstruction, TextHighlight } from 'components/text';
 // Internal
 import { OUTCOME } from '../utils/constants';
-import { Robot } from '../utils/types';
+import type { Robot } from '../utils/types';
 import { EnergyHighlight } from './Highlights';
 
 type FinalOutcomeProps = {

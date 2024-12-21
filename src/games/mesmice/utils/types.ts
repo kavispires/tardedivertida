@@ -1,5 +1,5 @@
 // Types
-import { Item, ObjectFeatureCard } from 'types/tdr';
+import type { Item, ObjectFeatureCard } from 'types/tdr';
 
 export enum Phase {
   CLUE_WRITING = 'CLUE_WRITING',

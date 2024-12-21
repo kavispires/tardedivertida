@@ -94,7 +94,7 @@ export function StepWordSelection({
         {words.map((word) => {
           return (
             <li className="u-word-card__word" key={word.id}>
-              <button className="u-word-card__button" onClick={() => onSelectWord(word.id)}>
+              <button type="button" className="u-word-card__button" onClick={() => onSelectWord(word.id)}>
                 <span className="u-word-card__text">{word.text}</span>
                 <span className="u-word-card__icon">
                   {Boolean(selectedWords[word.id]) && <CheckCircleFilled />}

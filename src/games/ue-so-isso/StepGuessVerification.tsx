@@ -55,8 +55,8 @@ export function StepGuessVerification({
           translate('Você controla!', 'You control!'),
           translate('Selecione se o adivinhador acertou ou não', 'Select if the guesser got it right or not'),
           controller.id,
-          3
-        )
+          3,
+        ),
       );
     }
   }, [isUserTheController, controller.id, translate, isLoading, message]);

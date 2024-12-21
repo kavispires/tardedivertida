@@ -7,7 +7,7 @@ import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { CollapsibleRule } from 'components/rules';
-import { THistoryEntry } from '../utils/types';
+import type { THistoryEntry } from '../utils/types';
 
 type QuestionsHistoryProps = {
   history: THistoryEntry[];

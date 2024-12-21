@@ -10,7 +10,7 @@ type VotingRulesProps = {
   isUserTheStoryTeller: boolean;
 };
 
-export function VotingRules({ isUserTheStoryTeller }: VotingRulesProps): JSX.Element {
+export function VotingRules({ isUserTheStoryTeller }: VotingRulesProps) {
   return (
     <Translate
       pt={
@@ -84,9 +84,7 @@ export function ScoringRules({ storyteller }: ScoringRulesProps) {
             Each vote your card receives grants you <PointsHighlight>1</PointsHighlight> points (except{' '}
             {<Avatar id={storyteller.avatarId} size="small" />}).
             <br />
-            But if all players vote correctly or incorrectly, they get <PointsHighlight>
-              2
-            </PointsHighlight>{' '}
+            But if all players vote correctly or incorrectly, they get <PointsHighlight>2</PointsHighlight>{' '}
             points each and the Storyteller gets nothing.
           </>
         }

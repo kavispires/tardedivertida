@@ -78,5 +78,5 @@ export const TripleDiagramClickableAreas = forwardRef<SVGSVGElement, TripleDiagr
         {/* Fake contain items */}
       </svg>
     );
-  }
+  },
 );

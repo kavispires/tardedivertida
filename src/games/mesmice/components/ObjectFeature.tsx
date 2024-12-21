@@ -21,7 +21,7 @@ export function ObjectFeature({ feature, width = 48, highlight = false, classNam
       <div className={clsx('feature-card', highlight && 'feature-card--highlighted', className)}>
         <div className="category-icon" style={{ width: `${width}px`, height: `${width}px` }}>
           <svg viewBox="0 0 512 512" style={{ width: `${width}px`, height: `${width}px` }}>
-            <use href={featuresIcons + `#${feature.id}`}></use>
+            <use href={`${featuresIcons}#${feature.id}`}></use>
           </svg>
         </div>
         <span className="feature-card__name">

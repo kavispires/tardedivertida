@@ -16,8 +16,7 @@ export function mockSeeding(seeds: SeedEntry[]) {
         data.prompt = getRandomItem(seed.prompts);
         break;
       case 'labirinto-secreto':
-        const ids = getIds(seed.cards);
-        data[seed.tree.id] = getRandomItem(ids);
+        data[seed.tree.id] = getRandomItem(getIds(seed.cards));
         break;
       case 'mente-coletiva':
         data.answers = [mockClue(), mockClue('low')];

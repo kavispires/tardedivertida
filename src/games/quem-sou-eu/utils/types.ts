@@ -1,5 +1,5 @@
 // Types
-import { ContenderCard } from 'types/tdr';
+import type { ContenderCard } from 'types/tdr';
 
 export type SubmitCharactersPayload = {
   characters: CardId[];

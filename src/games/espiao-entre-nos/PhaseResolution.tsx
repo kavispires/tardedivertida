@@ -31,7 +31,7 @@ export function PhaseResolution({ state, players }: PhaseProps) {
 
   const resolutionStatus = useMemo(
     () => determineView(state.resolution, isUserTheSpy, state.timeRemaining, state.locations),
-    [state.resolution, isUserTheSpy, state.timeRemaining, state.locations]
+    [state.resolution, isUserTheSpy, state.timeRemaining, state.locations],
   );
 
   return (

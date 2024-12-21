@@ -26,12 +26,13 @@ export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapPr
       {userMap.map((segment, index) => {
         const { treeId, passed } = segment;
         const tree = forest[treeId];
+        const mapLocation = newMap?.[index];
         return (
-          <div className="map-builder__segment">
-            {Boolean(newMap?.[index]) && (
+          <div key={treeId} className="map-builder__segment">
+            {!!mapLocation && (
               <div className="map-builder__card map-builder__card--new">
-                {newMap?.[index]!.text}
-                {newMap?.[index]?.negate && (
+                {mapLocation.text}
+                {mapLocation?.negate && (
                   <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
                 )}
               </div>

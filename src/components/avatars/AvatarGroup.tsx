@@ -1,9 +1,6 @@
 import { orderBy } from 'lodash';
-// Ant Design Resources
-import { Avatar as AntAvatar, AvatarProps, Tooltip } from 'antd';
-// Types
+import { Avatar as AntAvatar, type AvatarProps, Tooltip } from 'antd';
 import type { GamePlayer } from 'types/player';
-// Internal
 import { Avatar } from './Avatar';
 
 type AvatarGroupProps = {

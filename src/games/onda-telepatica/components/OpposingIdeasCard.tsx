@@ -37,7 +37,7 @@ export function OpposingIdeasCard({ left, right, className = '', setNeedle }: Op
           cardSideClass,
           `${cardSideClass}--left`,
           `${cardSideClass}--L${leftColor}`,
-          isButton && `${cardSideClass}--button`
+          isButton && `${cardSideClass}--button`,
         )}
         onClick={() => onSetNeedle(-1)}
       >
@@ -51,7 +51,7 @@ export function OpposingIdeasCard({ left, right, className = '', setNeedle }: Op
           cardSideClass,
           `${cardSideClass}--right`,
           `${cardSideClass}--R${rightColor}`,
-          isButton && `${cardSideClass}--button`
+          isButton && `${cardSideClass}--button`,
         )}
         onClick={() => onSetNeedle(1)}
       >

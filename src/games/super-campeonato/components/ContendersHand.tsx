@@ -22,9 +22,9 @@ export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
       <ul className="w-contenders-hand">
         {contenders.map((contender) => (
           <li key={contender.id} className="w-contenders-hand__entry">
-            {Boolean(onSelect) && (
+            {!!onSelect && (
               <Button
-                onClick={() => onSelect!(contender.id)}
+                onClick={() => onSelect(contender.id)}
                 shape="round"
                 ghost
                 className="w-contenders-hand__button"

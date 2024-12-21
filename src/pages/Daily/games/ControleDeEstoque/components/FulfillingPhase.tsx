@@ -7,7 +7,7 @@ import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 // Internal
 import { PHASES } from '../utils/settings';
-import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 import { FulfillmentBoard } from './FulfillmentBoard';
 import { Orders } from './Orders';
 

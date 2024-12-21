@@ -1,4 +1,4 @@
-export function ColorPaletteIcon(props: React.SVGProps<SVGSVGElement>): JSX.Element {
+export function ColorPaletteIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#01d0fb" d="M260.43 298.5l-47-3-96 82.32 80.32 105.6 100.5-90.45 13.3-32.75z"></path>

@@ -1,7 +1,7 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, type ReactNode, useContext } from 'react';
 import { useTitle } from 'react-use';
 // Types
-import { GameInfo } from 'types/game-info';
+import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

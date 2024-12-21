@@ -3,7 +3,7 @@ import { loadLocalToday } from 'pages/Daily/utils';
 import { deepCopy } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import { DailyTeoriaDeConjuntosEntry, GameState, TeoriaDeConjuntosLocalToday } from './types';
+import type { DailyTeoriaDeConjuntosEntry, GameState, TeoriaDeConjuntosLocalToday } from './types';
 
 export const DEFAULT_LOCAL_TODAY: TeoriaDeConjuntosLocalToday = {
   id: '',
@@ -67,7 +67,10 @@ export const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState =>
 
       if (activeThing.rule !== guess.sectionId) {
         if (state.deck.length > 0) {
-          state.hand.push(state.deck.pop()!);
+          const thing = state.deck.pop();
+          if (thing) {
+            state.hand.push(thing);
+          }
         }
       } else {
         if (state.hand.length === 0) {

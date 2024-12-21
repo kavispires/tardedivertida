@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Col, Row } from 'antd';
 // Types
-import { PhaseProps } from 'types/game';
+import type { PhaseProps } from 'types/game';
 // Icons
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
@@ -36,9 +36,10 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                 <div className="u-gallery-entry__word">{entry.text}</div>
                 {orderBy(entry.suggestions, 'invalid').map((suggestion) => (
                   <div
+                    key={suggestion.playerId}
                     className={clsx(
                       'u-gallery-entry__suggestion',
-                      suggestion.invalid && 'u-gallery-entry__suggestion--invalid'
+                      suggestion.invalid && 'u-gallery-entry__suggestion--invalid',
                     )}
                   >
                     <Avatar id={players[suggestion.playerId].avatarId} size="small" /> {suggestion.suggestion}

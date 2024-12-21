@@ -6,9 +6,9 @@ import { useLanguage } from 'hooks/useLanguage';
 // Services
 import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
 // Internal
-import { DrawingToSave } from '../games/Picaco/utils/types';
+import type { DrawingToSave } from '../games/Picaco/utils/types';
 
-export function useDailySaveDrawings(onSuccess: Function) {
+export function useDailySaveDrawings(onSuccess: GenericFunction) {
   const { translate } = useLanguage();
   const { notification } = App.useApp();
 
@@ -31,7 +31,7 @@ export function useDailySaveDrawings(onSuccess: Function) {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar salvar desenhos',
-          'Oops, the application failed when trying to save drawings'
+          'Oops, the application failed when trying to save drawings',
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',

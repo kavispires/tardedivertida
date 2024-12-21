@@ -60,7 +60,6 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
     }
   }, [
     player,
-    currentUser.id,
     setStep,
     setUserId,
     setUsername,
@@ -83,7 +82,7 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
     {
       left: [],
       right: [],
-    }
+    },
   );
 
   return (
@@ -129,7 +128,11 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
       </div>
 
       <AdminMenuDrawer
-        state={{ phase: 'LOBBY', round: { current: 0, total: 0, forceLastRound: false }, players: {} }}
+        state={{
+          phase: 'LOBBY',
+          round: { current: 0, total: 0, forceLastRound: false },
+          players: {},
+        }}
         players={players}
       />
       <CloudBackground />

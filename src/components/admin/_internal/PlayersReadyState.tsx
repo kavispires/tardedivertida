@@ -31,7 +31,7 @@ export function PlayersReadyState({ players }: PlayersReadyStateProps) {
     {
       readyPlayers: [],
       pendingPlayers: [],
-    }
+    },
   );
 
   return (

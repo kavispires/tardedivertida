@@ -22,9 +22,9 @@ import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { City, CityLocationsDict } from './utils/types';
+import type { City, CityLocationsDict } from './utils/types';
 import { getConeColor } from './utils/helpers';
-import { useOnSubmitPlacingAPIRequest, useOnUpdatePlacementAPIRequest } from './utils/api-requests';
+import type { useOnSubmitPlacingAPIRequest, useOnUpdatePlacementAPIRequest } from './utils/api-requests';
 import { mockAction } from './utils/mocks';
 import { CityMap } from './components/CityMap';
 import { ConeHighlight } from './components/Highlights';
@@ -106,7 +106,9 @@ export function StepPlaceLocations({
 
   useMock(() => {
     if (isTheController) {
-      onSubmitConstruction({ evaluations: mockAction(placements, availableProjectsIds) });
+      onSubmitConstruction({
+        evaluations: mockAction(placements, availableProjectsIds),
+      });
     }
   });
 
@@ -134,8 +136,8 @@ export function StepPlaceLocations({
           pt={
             <>
               No mapa, existem <ConeHighlight>{placements} cones</ConeHighlight> representando onde as
-              terrenos onde os projetos podem ser feitos. <br />
-              O objetivo é fazer as construções de acordo com o que
+              terrenos onde os projetos podem ser feitos. <br />O objetivo é fazer as construções de acordo
+              com o que
               <AvatarName player={activePlayer} /> planejou.
               <br />
               <AvatarName player={controller} addressUser /> é o pedreiro e controlará as decisões do grupo.

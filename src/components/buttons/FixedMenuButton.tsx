@@ -1,9 +1,7 @@
 import clsx from 'clsx';
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { useEffectOnce } from 'react-use';
-// Ant Design Resources
-import { Button, ButtonProps, Popover } from 'antd';
-// Sass
+import { Button, type ButtonProps, Popover } from 'antd';
 import './FixedMenuButton.scss';
 
 type FixedMenuButtonDefaultProps = {

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Alert, Button, Divider, Modal } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { UseStep } from 'hooks/useStep';
+import type { UseStep } from 'hooks/useStep';
 // Services
 import { signInAsGuest } from 'services/firebase';
 // Components

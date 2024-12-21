@@ -2,7 +2,7 @@
 import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
 // Internal
 import { useLanguage } from './useLanguage';
-import { useGameActionRequest, UseGameActionRequestArgs } from './useGameActionRequest';
+import { useGameActionRequest, type UseGameActionRequestArgs } from './useGameActionRequest';
 
 type UseOnMakeMeReady = Omit<UseGameActionRequestArgs, 'actionName'>;
 
@@ -17,7 +17,7 @@ export function useOnMakeMeReady(args: UseOnMakeMeReady) {
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar marcar você como pronto',
       'Oops, the application found an error while trying to set you ready',
-      errorMessage
+      errorMessage,
     ),
     ...rest,
   });

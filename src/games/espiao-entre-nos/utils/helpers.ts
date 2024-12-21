@@ -1,11 +1,11 @@
 // Internal
-import { Location, Resolution, ResolutionStatus } from './types';
+import type { Location, Resolution, ResolutionStatus } from './types';
 
 export const determineView = (
   resolution: Resolution,
   isUserTheSpy: boolean,
   timeRemaining: number,
-  locations: Location[]
+  locations: Location[],
 ): ResolutionStatus => {
   const guess = locations.find((location: Location) => location.id === resolution?.guess) ?? {};
 

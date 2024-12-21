@@ -33,16 +33,16 @@ export function ClueCard({
       className={clsx(
         'x-clue-card',
         isSelected && 'x-clue-card--selected',
-        !Boolean(color) && `color-border--${colorClass}`
+        !color && `color-border--${colorClass}`,
       )}
       style={{ borderColor: color }}
     >
       <span
-        className={clsx('x-clue-card__icon', !Boolean(color) && `color-background--${colorClass}`)}
+        className={clsx('x-clue-card__icon', !color && `color-background--${colorClass}`)}
         style={{ backgroundColor: color }}
       >
         {isMatched ? (
-          Boolean(player) ? (
+          player ? (
             <Avatar id={player?.avatarId} />
           ) : (
             <CheckCircleFilled />

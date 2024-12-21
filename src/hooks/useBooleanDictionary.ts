@@ -1,4 +1,4 @@
-import { Dispatch, useState } from 'react';
+import { type Dispatch, useState } from 'react';
 
 type UseBooleanDictionaryReturnValue = {
   /**
@@ -36,7 +36,7 @@ type UseBooleanDictionaryReturnValue = {
  */
 export function useBooleanDictionary(
   initialState: BooleanDictionary,
-  validation?: BooleanFunction
+  validation?: BooleanFunction,
 ): UseBooleanDictionaryReturnValue {
   const [dict, setDict] = useState(initialState);
 

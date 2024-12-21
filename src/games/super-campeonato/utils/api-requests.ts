@@ -21,7 +21,7 @@ export function useOnSubmitChallengeAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Desafio enviado com sucesso!', 'Challenge send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o desafio',
-      'Oops, the application failed to submit the challenge'
+      'Oops, the application failed to submit the challenge',
     ),
   });
 
@@ -43,7 +43,7 @@ export function useOnSubmitContenderAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Competidor enviado com sucesso!', 'Contender send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o competidor',
-      'Oops, the application failed to submit the contender'
+      'Oops, the application failed to submit the contender',
     ),
   });
 
@@ -65,7 +65,7 @@ export function useOnSubmitBetsAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Apostas enviadas com sucesso!', 'Bets send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar apostas',
-      'Oops, the application failed to submit bets'
+      'Oops, the application failed to submit bets',
     ),
   });
 
@@ -87,7 +87,7 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar votos',
-      'Oops, the application failed to submit votes'
+      'Oops, the application failed to submit votes',
     ),
   });
 

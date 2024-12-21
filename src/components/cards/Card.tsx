@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Utils
 import { getColorFromLetter } from 'utils/helpers';
 // Sass
@@ -42,8 +42,8 @@ export const Card = ({
         typeof children === 'string'
           ? children[0].toUpperCase()
           : header !== 'Carta'
-          ? header[0].toUpperCase()
-          : 'X'
+            ? header[0].toUpperCase()
+            : 'X',
       )
     : color;
 

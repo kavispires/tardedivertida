@@ -64,13 +64,13 @@ export function Corridor({
         }
         return acc;
       }, {}),
-    [players]
+    [players],
   );
 
   // Trap: Blind Door
   const blindDoor = useMemo(
     () => (trap === TRAPS.BLIND_DOOR && !disableTrap ? random(0, doors.length - 1) : undefined),
-    [trap, doors.length, disableTrap]
+    [trap, doors.length, disableTrap],
   );
 
   // Trap: Vanishing doors OR Delaying Doors
@@ -99,7 +99,7 @@ export function Corridor({
               className={clsx(
                 'i-door',
                 answerDoorId === doorId && 'i-door--answer',
-                getAnimationClass('zoomIn', { delay: animationDelayIndex })
+                getAnimationClass('zoomIn', { delay: animationDelayIndex }),
               )}
             >
               <DoorFrame
@@ -121,7 +121,7 @@ export function Corridor({
                     getAnimationClass(sample(['swing', 'wobble', 'rubberBand']), {
                       infinite: true,
                       delay: random(0, 10) / 2,
-                    })
+                    }),
                 )}
               >
                 {isConcealed || blindDoor === index ? (
@@ -140,9 +140,9 @@ export function Corridor({
               <div className="i-door__options">
                 <ImageBlurButton cardId={doorId} />
 
-                {Boolean(onSubmitDoor) && (
+                {!!onSubmitDoor && (
                   <Button
-                    onClick={() => onSubmitDoor!({ doorId })}
+                    onClick={() => onSubmitDoor({ doorId })}
                     size="small"
                     disabled={disabled || isLoading || user?.ready || user?.doorId === doorId}
                     shape="round"
@@ -153,7 +153,7 @@ export function Corridor({
                 )}
 
                 <AntAvatar.Group maxCount={7} size="small" className="i-door__votes">
-                  {Boolean(voteMap[doorId] && !hideVotes) ? (
+                  {voteMap[doorId] && !hideVotes ? (
                     <>
                       {voteMap[doorId].map((playerId) => (
                         <Avatar

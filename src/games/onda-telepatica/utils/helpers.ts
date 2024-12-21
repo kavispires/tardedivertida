@@ -14,7 +14,7 @@ export const getBracketClass = (
   showNeedle: boolean,
   needle: number,
   showTarget: boolean,
-  target: number
+  target: number,
 ): string => {
   const baseBracketClass = 'o-dial-numbers';
   const modifier = num % 2 === 0 ? 'even' : 'odd';
@@ -23,7 +23,7 @@ export const getBracketClass = (
     baseBracketClass,
     `${baseBracketClass}--${modifier}`,
     showNeedle && needle === num && `${baseBracketClass}--active`,
-    showTarget && target === num && `${baseBracketClass}--target`
+    showTarget && target === num && `${baseBracketClass}--target`,
   );
 };
 

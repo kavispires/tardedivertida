@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
-import { Space, SpaceProps } from 'antd';
+import { Space, type SpaceProps } from 'antd';
 // Components
-import { Title, TitleProps } from 'components/text';
+import { Title, type TitleProps } from 'components/text';
 // Sass
 import './Container.scss';
 
@@ -49,7 +49,7 @@ export function Container({
         className={clsx(
           'container-wrapper__children',
           contained && 'container-wrapper__children--contained',
-          childrenClassName
+          childrenClassName,
         )}
         {...restChildrenContainerProps}
       >

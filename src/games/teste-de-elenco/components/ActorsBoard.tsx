@@ -20,7 +20,12 @@ type ActorsBoardProps = {
 };
 
 export function ActorsBoard({ actors, user, onSubmitActor, selection }: ActorsBoardProps) {
-  const cardWidth = useCardWidth(4, { gap: 16, minWidth: 80, maxWidth: 150, margin: 16 });
+  const cardWidth = useCardWidth(4, {
+    gap: 16,
+    minWidth: 80,
+    maxWidth: 150,
+    margin: 16,
+  });
   const { isLoading } = useLoading();
   const { language, translate } = useLanguage();
 
@@ -35,7 +40,7 @@ export function ActorsBoard({ actors, user, onSubmitActor, selection }: ActorsBo
             key={actor.id}
             title={translate(
               `Tem certeza que quer escolher ${name}?`,
-              `Are you sure you want to choose ${name}?`
+              `Are you sure you want to choose ${name}?`,
             )}
             onConfirm={() => onSubmitActor({ actorId: actor.id })}
             okText={translate('Sim', 'Yes')}

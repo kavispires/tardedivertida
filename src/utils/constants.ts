@@ -1,5 +1,5 @@
 // Types
-import { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/player';
 
 /**
  * List of urls residing in the public folder

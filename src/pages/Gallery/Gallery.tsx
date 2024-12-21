@@ -23,15 +23,14 @@ function Gallery() {
         Accept: 'application/json',
       },
     })
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson) {
+      .then((response) => response.json())
+      .then((myJson) => {
         setData(myJson);
         setIsLoading(false);
       });
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     getData();
   }, []);
@@ -59,7 +58,7 @@ function Gallery() {
         return acc;
       }, []),
       ['text', 'playerId'],
-      ['asc', 'asc']
+      ['asc', 'asc'],
     );
     setDataSource(sortedDataSource);
   }, [data]);
@@ -76,6 +75,7 @@ function Gallery() {
         {dataSource.map((entry) => {
           return (
             <Card
+              key={entry.id}
               cover={<CanvasSVG drawing={entry.drawing} className="gallery__card-drawing" />}
               className="gallery__card"
             >

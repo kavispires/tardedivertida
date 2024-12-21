@@ -1,11 +1,11 @@
 // Types
-import { GameRound } from 'types/game';
+import type { GameRound } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Instruction } from 'components/text';
 
-export function WelcomeMessage(): JSX.Element {
+export function WelcomeMessage() {
   return (
     <Instruction contained>
       <Translate
@@ -14,9 +14,9 @@ export function WelcomeMessage(): JSX.Element {
             Bem-vindo à Convenção Anual de Serial Killers!
             <br />
             Você e os outros serial killers decidiram fazer um jogo de adivinhação.
-            <br />
-            O objetivo é todos darem dicas sobre as circunstâncias que seus últimos crimes aconteceram para
-            ajudar os outros jogadores a descobrirem qual arma e qual objeto foram usados durante o crime.
+            <br />O objetivo é todos darem dicas sobre as circunstâncias que seus últimos crimes aconteceram
+            para ajudar os outros jogadores a descobrirem qual arma e qual objeto foram usados durante o
+            crime.
             <br />
             Prontos para aterrorizar?
           </>
@@ -38,7 +38,7 @@ export function WelcomeMessage(): JSX.Element {
   );
 }
 
-export function GuessMessage(): JSX.Element {
+export function GuessMessage() {
   return (
     <Instruction contained>
       <Translate
@@ -67,7 +67,7 @@ export function GuessMessage(): JSX.Element {
   );
 }
 
-export function ScoringMessage({ round }: { round: GameRound }): JSX.Element {
+export function ScoringMessage({ round }: { round: GameRound }) {
   const points = round.total - round.current + 1;
   return (
     <Instruction contained>
@@ -102,7 +102,7 @@ export function ScoringMessage({ round }: { round: GameRound }): JSX.Element {
   );
 }
 
-export function GenericMessage(): JSX.Element {
+export function GenericMessage() {
   return (
     <Instruction contained>
       <Translate

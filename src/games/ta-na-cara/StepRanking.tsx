@@ -23,8 +23,8 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Adivinhou corretamente" en="Correct guess" />,
-        <Translate pt="Era o alvo e foi adivinhado corretamente" en="Was guessed correctly" />,
+        <Translate key="1" pt="Adivinhou corretamente" en="Correct guess" />,
+        <Translate key="2" pt="Era o alvo e foi adivinhado corretamente" en="Was guessed correctly" />,
       ]}
     >
       <Space className="space-container" align="center">

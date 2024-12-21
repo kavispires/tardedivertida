@@ -1,5 +1,5 @@
 // Types
-import { MovieCard } from 'types/tdr';
+import type { MovieCard } from 'types/tdr';
 // Icons
 import { FilmReelIcon } from 'icons/FilmReelIcon';
 // Components

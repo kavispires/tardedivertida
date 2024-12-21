@@ -1,4 +1,4 @@
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { useEffect } from 'react';
 // Services
@@ -20,6 +20,7 @@ export function useFirestoreDocument(docPath: string, subscribe = false): UseQue
     },
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (subscribe) {
       const unsubscribe = onSnapshot(docRef, () => {
@@ -28,7 +29,7 @@ export function useFirestoreDocument(docPath: string, subscribe = false): UseQue
 
       return () => unsubscribe();
     }
-  }, [subscribe]); // eslint-disable-line
+  }, [subscribe]);
 
   return query;
 }

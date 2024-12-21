@@ -58,35 +58,51 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
     if (localStorageKey) {
       localStorage.setItem(composeLocalTodayKey(localStorageKey), yesterday);
       return;
-    } else {
-      keys.forEach((key) => {
-        localStorage.setItem(composeLocalTodayKey(key.KEY), yesterday);
-        localStorage.setItem(composeLocalPlayedKey(key.KEY), yesterday);
-      });
     }
+    keys.forEach((key) => {
+      localStorage.setItem(composeLocalTodayKey(key.KEY), yesterday);
+      localStorage.setItem(composeLocalPlayedKey(key.KEY), yesterday);
+    });
+
     navigate('/diario');
+  };
+
+  const onLog = () => {
+    if (localStorageKey) {
+      const value = JSON.parse(localStorage.getItem(composeLocalTodayKey(localStorageKey)) ?? '{}');
+      if (isDevEnv) {
+        console.log(value);
+      } else {
+        alert(JSON.stringify(value, null, 2));
+      }
+    }
   };
 
   return (
     <Flex justify="center" gap={12}>
-      <Popconfirm
-        title={
-          <Translate
-            pt="Tem certeza que quer resetar o jogo?"
-            en="Are you sure you want to reset the game?"
-          />
-        }
-        onConfirm={onReset}
-      >
-        <Button size="large" type="dashed" icon={<BugOutlined />}>
-          <Translate pt="Resetar LS" en="Reset LS" />
+      <Button.Group>
+        <Popconfirm
+          title={
+            <Translate
+              pt="Tem certeza que quer resetar o jogo?"
+              en="Are you sure you want to reset the game?"
+            />
+          }
+          onConfirm={onReset}
+        >
+          <Button size="large" type="dashed" icon={<BugOutlined />}>
+            <Translate pt="Resetar LS" en="Reset LS" />
+          </Button>
+        </Popconfirm>
+        {isDevEnv && (
+          <Button size="large" type="dashed" onClick={onDayBefore} icon={<BugOutlined />}>
+            Yesterday LS
+          </Button>
+        )}
+        <Button size="large" type="dashed" onClick={onLog}>
+          Log
         </Button>
-      </Popconfirm>
-      {isDevEnv && (
-        <Button size="large" type="dashed" onClick={onDayBefore} icon={<BugOutlined />}>
-          Yesterday LS
-        </Button>
-      )}
+      </Button.Group>
     </Flex>
   );
 }

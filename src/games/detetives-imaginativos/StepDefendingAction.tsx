@@ -53,12 +53,12 @@ export function StepDefendingAction({
           translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices"),
           translate(
             'Aperte o botão Concluir Defesa quando terminar',
-            "Press the button End Defense when you're done"
+            "Press the button End Defense when you're done",
           ),
 
           currentPlayer?.id,
-          4
-        )
+          4,
+        ),
       );
       setWasMessageDisplayed(true);
     }

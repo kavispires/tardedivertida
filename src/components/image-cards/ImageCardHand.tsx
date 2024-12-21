@@ -1,8 +1,8 @@
 import { ImageCard, ImageCardButton } from '.';
 import clsx from 'clsx';
-import { LegacyRef, ReactNode } from 'react';
+import type { LegacyRef, ReactNode } from 'react';
 // Ant Design Resources
-import { GetProps, Image } from 'antd';
+import { type GetProps, Image } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Utils
@@ -101,7 +101,7 @@ export function ImageCardHand({
                 'image-card-hand__card-container',
                 getAnimationClass('slideInUp', {
                   delay: index,
-                })
+                }),
               )}
             >
               <ImageCardButton

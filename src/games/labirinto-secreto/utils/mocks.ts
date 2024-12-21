@@ -15,12 +15,12 @@ export const mockNewMap = (hand: ExtendedTextCard): ExtendedTextCard[] => {
 export const mockFollowedPath = (
   fullMap: MapSegment[],
   currentMap: MapSegment[],
-  increaseChances: boolean = false,
-  previousMistakes: TreeId[] = []
+  increaseChances = false,
+  previousMistakes: TreeId[] = [],
 ) => {
   const usedTrees = union(
     fullMap.filter((segment: MapSegment) => segment.passed).map((segment: MapSegment) => segment.treeId),
-    previousMistakes
+    previousMistakes,
   );
 
   return currentMap.map((segment) => {

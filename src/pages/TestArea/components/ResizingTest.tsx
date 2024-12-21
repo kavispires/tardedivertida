@@ -9,7 +9,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
-import { TestStepProps } from '../TestArea';
+import type { TestStepProps } from '../TestArea';
 
 export function ResizingTest({ onResult, step }: TestStepProps) {
   const [canvasSize] = useGlobalLocalStorage('canvasSize');

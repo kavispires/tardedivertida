@@ -51,6 +51,7 @@ export function StepResolution({
     autoStart: true,
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (timeLeft === 7) {
       setStep(1);
@@ -65,7 +66,7 @@ export function StepResolution({
     if (timeLeft === 1) {
       setPastureIndex(2);
     }
-  }, [timeLeft]); // eslint-disable-line
+  }, [timeLeft]);
 
   return (
     <Step fullWidth announcement={announcement}>

@@ -59,9 +59,7 @@ export function StepWaitingForGuess({
             <>
               {guesser.name} has a single chance to guess the secret word!
               <br />
-              If they get it right, the group wins <PointsHighlight type="positive">
-                2 points
-              </PointsHighlight>{' '}
+              If they get it right, the group wins <PointsHighlight type="positive">2 points</PointsHighlight>{' '}
               but if they get it wrong, the group loses{' '}
               <PointsHighlight type="negative">1 points</PointsHighlight>.
               <br />

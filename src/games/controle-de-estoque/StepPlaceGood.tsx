@@ -1,23 +1,26 @@
+import clsx from 'clsx';
+// Ant Design Resources
+import { Divider } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
+import type { BossIdeaCard } from 'types/tdr';
 // Hooks
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
+// Icons
+import { BossIdeaIcon } from 'icons/BossIdeaIcon';
+import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
+import { AvatarName, IconAvatar } from 'components/avatars';
+import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
-import { BossIdeaCard } from 'types/tdr';
-import { Good, PlaceGoodPayload, WarehouseSlot } from './utils/types';
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { Warehouse } from './components/Warehouse';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import clsx from 'clsx';
+// Internal
+import type { Good, PlaceGoodPayload, WarehouseSlot } from './utils/types';
 import { BOSS_IDEAS_IDS } from './utils/constants';
-import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
+import { Warehouse } from './components/Warehouse';
 import { StockingProgress } from './components/StockingProgress';
-import { Divider } from 'antd';
-import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 
 type StepPlaceGoodProps = {
   players: GamePlayers;
@@ -92,7 +95,7 @@ export function StepPlaceGood({
             width={cardWidth}
             className={clsx(
               bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS',
-              bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM && 'warehouse-good--EYE_EXAM'
+              bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM && 'warehouse-good--EYE_EXAM',
             )}
           />
         </Instruction>
@@ -104,7 +107,7 @@ export function StepPlaceGood({
           width={cardWidth}
           goodClassName={clsx(
             bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS',
-            bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM && 'warehouse-good--EYE_EXAM'
+            bossIdea.id === BOSS_IDEAS_IDS.EYE_EXAM && 'warehouse-good--EYE_EXAM',
           )}
         />
       </Step>

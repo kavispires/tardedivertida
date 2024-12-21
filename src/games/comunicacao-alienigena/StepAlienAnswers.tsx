@@ -21,7 +21,7 @@ import { RuleInstruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from './utils/types';
-import { OfferingsStatus } from './utils/types';
+import type { OfferingsStatus } from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
@@ -154,11 +154,13 @@ export function StepAlienAnswers({
           <Translate pt={<>O Alienígena respondeu:</>} en={<>The Alien answered:</>} />
         </RuleInstruction>
 
-        <AlienViewBoard
-          request={alienResponse!}
-          isAlienBot={isAlienBot}
-          className={getAnimationClass('fadeIn')}
-        />
+        {!!alienResponse && (
+          <AlienViewBoard
+            request={alienResponse}
+            isAlienBot={isAlienBot}
+            className={getAnimationClass('fadeIn')}
+          />
+        )}
 
         <HumanContent user={user}>
           <Space className="space-container">

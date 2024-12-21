@@ -58,7 +58,7 @@ export const Medal = ({ id = 'star', className = '', width = 64, ...props }: Med
 
       {/* symbol */}
       <svg viewBox="0 0 512 512">
-        <use href={medals + `#${id}`}></use>
+        <use href={`${medals}#${id}`}></use>
       </svg>
     </svg>
   );

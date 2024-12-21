@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import { GamePlayer } from 'types/player';
-import { Item } from 'types/tdr';
+import type { GamePlayer } from 'types/player';
+import type { Item } from 'types/tdr';
 // Icons
 import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { ArrowIcon } from 'icons/ArrowIcon';
@@ -20,7 +20,7 @@ import { PhaseAnnouncement } from 'components/phases';
 import { Instruction } from 'components/text';
 // Internal
 import { OUTCOME } from '../utils/constants';
-import { Guess } from '../utils/types';
+import type { Guess } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 
 type AnnouncementProps = {

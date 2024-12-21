@@ -131,7 +131,7 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
                   icon={<TrophyIcon />}
                   precision={0}
                   suffix="%"
-                  disabled={!Boolean(game.plays)}
+                  disabled={!game.plays}
                 />
               )}
 
@@ -142,7 +142,7 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
                   icon={<SkullIcon />}
                   precision={0}
                   suffix="%"
-                  disabled={!Boolean(game.plays)}
+                  disabled={!game.plays}
                 />
               )}
 
@@ -179,7 +179,7 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
                   title={<Translate pt="Total de Medalhas" en="Total Achievements" />}
                   value={Object.keys(game.achievements).length}
                   icon={<SealOfApprovalIcon />}
-                  suffix={`/${Object.keys(achievements!).length}`}
+                  suffix={`/${Object.keys(achievements ?? {}).length}`}
                 />
               )}
             </Row>
@@ -198,7 +198,7 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
               <Title level={4} size="xx-small">
                 <Translate pt="Medalhas" en="Achievements" />
               </Title>
-              <UserAchievements reference={achievements!} achievements={game?.achievements ?? {}} />
+              <UserAchievements reference={achievements ?? {}} achievements={game?.achievements ?? {}} />
             </>
           )}
         </Col>

@@ -1,14 +1,14 @@
 // Ant Design Resources
-import { StepProps } from 'antd';
+import type { StepProps } from 'antd';
 // Types
-import { GameRound } from 'types/game';
-import { MovieCard } from 'types/tdr';
+import type { GameRound } from 'types/game';
+import type { MovieCard } from 'types/tdr';
 // Internal
-import { SeedEntry } from './types';
+import type { SeedEntry } from './types';
 
 export const buildSeedingSteps = (
   seeds: SeedEntry[],
-  translate: (pt: string, en: string, custom?: string | undefined) => string
+  translate: (pt: string, en: string, custom?: string | undefined) => string,
 ): StepProps[] => {
   return seeds.map((seed) => {
     switch (seed.type) {

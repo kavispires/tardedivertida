@@ -21,7 +21,7 @@ export function CategoryIcon({ category, width = 35, className = '' }: CategoryI
   return (
     <div className={clsx('category-icon', className)} style={{ width: `${width}px`, height: `${width}px` }}>
       <svg viewBox="0 0 512 512" style={{ width: `${width}px`, height: `${width}px` }}>
-        <use href={categories + `#${category}`}></use>
+        <use href={`${categories}#${category}`}></use>
       </svg>
     </div>
   );

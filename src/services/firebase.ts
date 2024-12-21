@@ -1,21 +1,21 @@
 import { USE_FIRESTORE_EMULATOR, USE_FUNCTIONS_EMULATOR } from 'dev-configs';
 import { getAnalytics } from 'firebase/analytics';
-import { FirebaseApp, initializeApp } from 'firebase/app';
+import { type FirebaseApp, initializeApp } from 'firebase/app';
 import {
-  Auth,
+  type Auth,
   createUserWithEmailAndPassword,
   EmailAuthProvider,
   getAuth,
   linkWithCredential,
   signInAnonymously,
   signInWithEmailAndPassword,
-  UserCredential,
+  type UserCredential,
   sendPasswordResetEmail,
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import { getFirestore, connectFirestoreEmulator, Firestore } from 'firebase/firestore';
-import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/functions';
+import { getFirestore, connectFirestoreEmulator, type Firestore } from 'firebase/firestore';
+import { getFunctions, connectFunctionsEmulator, type Functions } from 'firebase/functions';
 // Ant Design Resources
 import { message, notification } from 'antd';
 // Hooks
@@ -130,7 +130,10 @@ export function resetPassword(email: string): Promise<void> {
  * @returns - the user credential
  */
 export function convertGuestoToUser(email: string, password: string): Promise<UserCredential> {
-  return linkWithCredential(auth.currentUser!, EmailAuthProvider.credential(email, password));
+  if (!auth.currentUser) {
+    throw new Error('No current user to convert');
+  }
+  return linkWithCredential(auth.currentUser, EmailAuthProvider.credential(email, password));
 }
 
 /**

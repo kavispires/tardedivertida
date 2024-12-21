@@ -12,7 +12,7 @@ export function Notes() {
       className="e-notes"
       placeholder={translate(
         'Escreva anotações aqui se quiser, mas cuidado com o teclado fazendo muito barulho',
-        "Write your notes here, but don't make too much noise with those key strokes"
+        "Write your notes here, but don't make too much noise with those key strokes",
       )}
     />
   );

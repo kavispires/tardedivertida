@@ -60,8 +60,12 @@ type PlayersBetEntryProps = {
 function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntryProps) {
   const { quarterCard, semiCard, finalCard, selectedCard } = useMemo(
     () => findBetContenders(brackets, player.bets, player.selectedContenderId),
-    [brackets, player.bets, player.selectedContenderId]
+    [brackets, player.bets, player.selectedContenderId],
   );
+
+  if (!quarterCard || !semiCard || !finalCard) {
+    return null;
+  }
 
   return (
     <li
@@ -76,39 +80,39 @@ function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntr
       <div
         className={clsx(
           'w-players-bets__square',
-          contendersByTiers.winner[finalCard!.id] && 'w-players-bets__square--win'
+          contendersByTiers.winner[finalCard.id] && 'w-players-bets__square--win',
         )}
       >
         <CharacterCard
           size={50}
-          overlayColor={contendersByTiers.winner[finalCard!.id] ? 'yellow' : 'gray'}
-          character={finalCard!}
+          overlayColor={contendersByTiers.winner[finalCard.id] ? 'yellow' : 'gray'}
+          character={finalCard}
           hideName
         />
       </div>
       <div
         className={clsx(
           'w-players-bets__square',
-          contendersByTiers.final[semiCard!.id] && 'w-players-bets__square--win'
+          contendersByTiers.final[semiCard.id] && 'w-players-bets__square--win',
         )}
       >
         <CharacterCard
           size={50}
-          overlayColor={contendersByTiers.final[semiCard!.id] ? 'yellow' : 'gray'}
-          character={semiCard!}
+          overlayColor={contendersByTiers.final[semiCard.id] ? 'yellow' : 'gray'}
+          character={semiCard}
           hideName
         />
       </div>
       <div
         className={clsx(
           'w-players-bets__square',
-          contendersByTiers.semi[quarterCard!.id] && 'w-players-bets__square--win'
+          contendersByTiers.semi[quarterCard.id] && 'w-players-bets__square--win',
         )}
       >
         <CharacterCard
           size={50}
-          overlayColor={contendersByTiers.semi[quarterCard!.id] ? 'yellow' : 'gray'}
-          character={quarterCard!}
+          overlayColor={contendersByTiers.semi[quarterCard.id] ? 'yellow' : 'gray'}
+          character={quarterCard}
           hideName
         />
       </div>
@@ -116,13 +120,13 @@ function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntr
         <div
           className={clsx(
             'w-players-bets__square',
-            contendersByTiers.winner[selectedCard!.id] && 'w-players-bets__square--win'
+            contendersByTiers.winner[selectedCard.id] && 'w-players-bets__square--win',
           )}
         >
           <CharacterCard
             size={50}
-            overlayColor={contendersByTiers.winner[selectedCard!.id] ? 'yellow' : 'gray'}
-            character={selectedCard!}
+            overlayColor={contendersByTiers.winner[selectedCard.id] ? 'yellow' : 'gray'}
+            character={selectedCard}
             hideName
           />
         </div>

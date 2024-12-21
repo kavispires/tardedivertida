@@ -23,7 +23,7 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-      'Oops, the application failed to send your votes'
+      'Oops, the application failed to send your votes',
     ),
   });
 
@@ -45,7 +45,7 @@ export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Dicas enviada com sucesso!', 'Suggestions sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
-      'Oops, the application failed to send your suggestions'
+      'Oops, the application failed to send your suggestions',
     ),
   });
 
@@ -67,7 +67,7 @@ export function useOnSubmitValidationsAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Validação enviada com sucesso!', 'Validation sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões',
-      'Oops, the application failed to send the validation'
+      'Oops, the application failed to send the validation',
     ),
   });
 
@@ -87,7 +87,7 @@ export function useOnValidateSuggestionAPIRequest() {
     successMessage: translate('Atualizado!', 'Updated!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update'
+      'Oops, the application failed to update',
     ),
   });
 
@@ -109,7 +109,7 @@ export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
     successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
-      'Oops, the application failed to submit the outcome'
+      'Oops, the application failed to submit the outcome',
     ),
   });
 
@@ -129,7 +129,7 @@ export function useOnSendGuessAPIRequest() {
     successMessage: translate('Chute enviado!', 'Guess sent!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update'
+      'Oops, the application failed to update',
     ),
   });
 

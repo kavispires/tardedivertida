@@ -92,9 +92,8 @@ export function ComparingRules() {
         pt={
           <>
             Hora de comparar respostas!
-            <br />
-            O jogo agrupará todas as respostas iguais, mas agora vocês tem a chance de adicionar palavras que
-            o jogo não agrupou por conta de erro gramatical, acento ou plural.
+            <br />O jogo agrupará todas as respostas iguais, mas agora vocês tem a chance de adicionar
+            palavras que o jogo não agrupou por conta de erro gramatical, acento ou plural.
             <br />
             Lembre-se gêneros são considerados diferentes <code>príncipe ≠ princesa</code>, assim como geral
             vs específico <code>caminhão ≠ caminhão de mudança</code>.

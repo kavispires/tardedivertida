@@ -44,11 +44,11 @@ export const getSmartBetContenderOptions = (
   brackets: Bracket[],
   tier: BracketTier,
   bets: Bet,
-  language: Language
+  language: Language,
 ): FightingContender[] => {
   const allContenders = orderBy(
     brackets.filter((entry) => entry.tier === 'quarter'),
-    `name.${language}`
+    `name.${language}`,
   );
 
   // For semi: Eliminate any contender in the same side (top or bottom) of the selected winner

@@ -40,7 +40,7 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
         className={clsx(
           points === 3 && 'p-tweet-comment__correct',
           points === 1 && 'p-tweet-comment__almost',
-          points === 0 && 'p-tweet-comment__incorrect'
+          points === 0 && 'p-tweet-comment__incorrect',
         )}
       >
         <Translate pt={<>{likes} jogadores</>} en={<>{likes} players</>} />

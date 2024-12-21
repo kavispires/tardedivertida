@@ -34,7 +34,7 @@ export function Dial({
       className={clsx(
         `${baseClass}`,
         animate && `${baseClass}--animated`,
-        Boolean(setNeedle) && `${baseClass}--clickable`
+        Boolean(setNeedle) && `${baseClass}--clickable`,
       )}
     >
       <svg

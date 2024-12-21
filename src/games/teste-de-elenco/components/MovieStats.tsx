@@ -39,13 +39,11 @@ export function MovieStats({ movie }: MovieStatsProps) {
         </div>
       </Tooltip>
       {summary.isLGBTQA && (
-        <>
-          <Tooltip title={<Translate pt="LGBTQIA+" en="LGBTQIA+" />}>
-            <div>
-              <MetricHighlight icon={<RainbowIcon />}>100%</MetricHighlight>
-            </div>
-          </Tooltip>
-        </>
+        <Tooltip title={<Translate pt="LGBTQIA+" en="LGBTQIA+" />}>
+          <div>
+            <MetricHighlight icon={<RainbowIcon />}>100%</MetricHighlight>
+          </div>
+        </Tooltip>
       )}
     </div>
   );

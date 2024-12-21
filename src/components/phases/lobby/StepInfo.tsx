@@ -9,7 +9,7 @@ import type { GamePlayers } from 'types/player';
 import { useAddPlayer } from 'hooks/useAddPlayer';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
-import { UseStep } from 'hooks/useStep';
+import type { UseStep } from 'hooks/useStep';
 // Utils
 import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
@@ -33,7 +33,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
   const info = useGameInfoContext();
   const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
-    currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)
+    currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS),
   );
 
   const [name, setName] = useState((currentUser?.names ?? []).at(-1) ?? '');
@@ -41,6 +41,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
   const [lsUsername] = useLocalStorage('avatarId', '');
 
   // Load username and avatar from localStorage if any
+  // biome-ignore lint/correctness/useExhaustiveDependencies: This is only necessary if the account is a for a guest
   useEffect(() => {
     if (isGuest) {
       if (lsAvatarId) {
@@ -51,13 +52,15 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
         setName(lsUsername ?? '');
       }
     }
-  }, [isGuest]); // eslint-disable-line
+  }, [isGuest]);
 
   const { isPending, mutate } = useAddPlayer(name, selectedAvatar, isGuest, () => setStep(2));
 
   const hasPlayedBefore = Boolean(currentUser.games?.[info.gameName]);
 
-  const nameOptions = (currentUser?.names ?? []).map((name) => ({ value: name }));
+  const nameOptions = (currentUser?.names ?? []).map((name) => ({
+    value: name,
+  }));
 
   return (
     <>

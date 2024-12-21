@@ -42,14 +42,19 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                   `g-players-dreams-count__player--nightmare ${getAnimationClass('pulse', {
                     speed: 'faster',
                     repeat: 3,
-                  })}`
+                  })}`,
               )}
               style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
             >
               <Tooltip
                 title={
                   showTooltip ? (
-                    <div className={getAnimationClass('tada', { speed: 'fast', infinite: true })}>
+                    <div
+                      className={getAnimationClass('tada', {
+                        speed: 'fast',
+                        infinite: true,
+                      })}
+                    >
                       {player.name} <Translate pt="tá em pesadelo!" en="is in a nightmare" />
                     </div>
                   ) : undefined
@@ -63,7 +68,7 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                 <div
                   className={clsx(
                     'g-players-dreams-count__count',
-                    player.fallen && 'g-players-dreams-count__count--fallen'
+                    player.fallen && 'g-players-dreams-count__count--fallen',
                   )}
                 >
                   {cardsLeft.length}

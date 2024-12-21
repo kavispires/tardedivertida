@@ -53,6 +53,7 @@ export function StepCategorySelection({
         {currentCategories.map((card) => (
           <button
             key={`card-button-${card.id}`}
+            type="button"
             className="o-card-selection__button"
             onClick={() => onSendChosenSide({ categoryId: card.id })}
             disabled={isLoading}

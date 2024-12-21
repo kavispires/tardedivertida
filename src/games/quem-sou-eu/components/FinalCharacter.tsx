@@ -34,7 +34,7 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
             key={`pos-${character.id}-${id}-${index}`}
           >
             <IconAvatar icon={<YesIcon />} size="small" />
-            {Boolean(id) ? (
+            {id ? (
               <GlyphCard width={glyphWidth} id={id} />
             ) : (
               <div
@@ -52,7 +52,7 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
             key={`neg-${character.id}-${id}-${index}`}
           >
             <IconAvatar icon={<NoIcon />} size="small" />
-            {Boolean(id) ? (
+            {id ? (
               <GlyphCard width={glyphWidth} id={id} />
             ) : (
               <div

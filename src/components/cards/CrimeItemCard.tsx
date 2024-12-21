@@ -71,7 +71,7 @@ export function CrimeItemCard({
           <div
             className={clsx(
               'crime-item-card__item-container',
-              `crime-item-card__item-container--${item.type}`
+              `crime-item-card__item-container--${item.type}`,
             )}
           >
             <ItemCard id={item.itemId} width={cardWidth * 0.85} className="crime-item-card__item" />

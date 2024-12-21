@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { PlusCircleFilled } from '@ant-design/icons';
-import { Button, ButtonProps, Space } from 'antd';
+import { Button, type ButtonProps, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';

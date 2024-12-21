@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash';
 // Types
-import { CrimesHediondosCard } from 'types/tdr';
+import type { CrimesHediondosCard } from 'types/tdr';
 // Utils
 import { getLastItem } from 'utils/helpers';
 // Internal
@@ -23,7 +23,7 @@ export const splitWeaponsAndEvidence = (items: ItemsDict, language: Language): S
     {
       weapons: [],
       evidences: [],
-    }
+    },
   );
 
   const sortedWeapons = orderBy(weapons, [`name.${language}`], ['asc']);

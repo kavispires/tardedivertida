@@ -42,7 +42,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
 
   const currentAlbumEntry = album[currentEntry];
   const currentAlbumLastPageIndex = (currentAlbumEntry?.slides?.length || 0) - 1;
-  const isLastAlbum = !Boolean(album[currentEntry + 1]);
+  const isLastAlbum = !album[currentEntry + 1];
 
   // Control Functions
   const onPrevAlbum = () => {
@@ -67,6 +67,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
     }
   }, [areControlsLocked]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (isRunning && timeLeft < totalTime && timeLeft % SLIDE_DURATION === 0) {
       // If next page exists, go for it, otherwise, next album
@@ -76,7 +77,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
         onNextAlbum();
       }
     }
-  }, [timeLeft, isRunning, currentAlbumLastPageIndex]); // eslint-disable-line
+  }, [timeLeft, isRunning, currentAlbumLastPageIndex]);
 
   return (
     <Step className="l-step-album">

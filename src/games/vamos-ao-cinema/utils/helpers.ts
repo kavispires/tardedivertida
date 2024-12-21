@@ -1,5 +1,5 @@
 // Types
-import { MovieCard } from 'types/tdr';
+import type { MovieCard } from 'types/tdr';
 
 export const getMovieTitle = (movies: MovieCard[], letter: string) => {
   return {

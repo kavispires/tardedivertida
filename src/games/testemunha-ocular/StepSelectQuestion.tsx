@@ -10,7 +10,7 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { Question, Status, THistoryEntry } from './utils/types';
+import type { Question, Status, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
@@ -52,6 +52,7 @@ export function StepSelectQuestion({
           return (
             <button
               key={id}
+              type="button"
               className="t-select-question__button"
               onClick={() => onSelectQuestion({ questionId: id })}
               disabled={isLoading}

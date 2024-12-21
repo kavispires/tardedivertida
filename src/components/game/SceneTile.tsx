@@ -44,7 +44,7 @@ export function SceneTile({ tile, index, onSelectValue }: SceneTileProps) {
                 className={clsx(
                   'scene-tile__button',
                   `scene-tile__button--${tile.type}`,
-                  isInative && 'scene-tile__button--inactive'
+                  isInative && 'scene-tile__button--inactive',
                 )}
                 icon={isActive ? <CheckCircleFilled className="scene-tile__icon" /> : undefined}
                 onClick={onSelectValue ? () => onSelectValue({ tileId: tile.id, value: i }) : () => {}}

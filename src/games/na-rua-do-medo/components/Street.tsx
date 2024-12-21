@@ -14,6 +14,7 @@ type StreetProps = {
 };
 
 export function Street({ street, currentCard, candySidewalk }: StreetProps) {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const streetEl = document.getElementById('street');
     const currentCardEl = document.getElementById('current-card');

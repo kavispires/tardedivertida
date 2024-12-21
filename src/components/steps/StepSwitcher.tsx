@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -31,7 +31,7 @@ type StepSwitcherProps = {
   /**
    * The content of the component
    */
-  children: JSX.Element[] | JSX.Element;
+  children: ReactNode[] | ReactNode;
   /**
    * The current step
    */
@@ -85,7 +85,7 @@ export function StepSwitcher({ children, step, conditions, players, waitingRoom 
   }
 
   if (conditions?.[step] ?? true) {
-    return content[step];
+    return <>{content[step]}</>;
   }
 
   return <div></div>;

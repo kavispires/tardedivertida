@@ -51,6 +51,7 @@ export function StepInvestigation({
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
   const { notification } = App.useApp();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (outcome?.type === 'VOTE_FAIL') {
       notification.info({
@@ -59,7 +60,7 @@ export function StepInvestigation({
         duration: 10,
       });
     }
-  }, [outcome?.type]); // eslint-disable-line
+  }, [outcome?.type]);
 
   const hideAccusationSelect = () => {
     setAccusationSelectVisible(false);

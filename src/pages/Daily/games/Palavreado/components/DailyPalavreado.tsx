@@ -1,10 +1,10 @@
 import { Region, TextRegion } from 'pages/Daily/components/Region';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Icons
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 // Components
@@ -12,7 +12,7 @@ import { DualTranslate, Translate } from 'components/language';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { DailyPalavreadoEntry } from '../utils/types';
+import type { DailyPalavreadoEntry } from '../utils/types';
 import { usePalavreadoEngine } from '../utils/usePalavreadoEngine';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -26,7 +26,7 @@ type DailyPalavreadoProps = {
 };
 
 export function DailyPalavreado({ data }: DailyPalavreadoProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
   const {
     hearts,
     selection,

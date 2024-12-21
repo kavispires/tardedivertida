@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { BugFilled } from '@ant-design/icons';
-import { Button, ButtonProps } from 'antd';
+import { Button, type ButtonProps } from 'antd';
 // Internal
 import { DebugOnly } from './DebugOnly';
 

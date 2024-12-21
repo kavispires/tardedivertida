@@ -4,12 +4,13 @@ export function useShowResultModal(condition: boolean, onUpdate?: GenericFunctio
   const [showResultModal, setShowResultModal] = useState(false);
 
   // Controls auto result modal
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (condition) {
       setShowResultModal(true);
       onUpdate?.();
     }
-  }, [condition]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [condition]);
 
   return { showResultModal, setShowResultModal };
 }

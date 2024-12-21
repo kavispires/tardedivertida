@@ -9,7 +9,7 @@ import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { City, CityLocationsDict } from './utils/types';
+import type { City, CityLocationsDict } from './utils/types';
 import { CityMap } from './components/CityMap';
 // Hooks
 

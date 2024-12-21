@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { useEffect } from 'react';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Flex, Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Internal
-import { LettersDictionary } from '../utils/types';
+import type { LettersDictionary } from '../utils/types';
 
 const NUMBERS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 const FIRST_ROW = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
@@ -29,9 +29,12 @@ export function Keyboard({
   onEnterClick,
   withNumbers,
 }: KeyboardProps) {
-  const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30 });
+  const width = useCardWidth(FIRST_ROW.length + 2, {
+    margin: 16,
+    maxWidth: 30,
+  });
 
-  useEffect(() => {
+  useEffectOnce(() => {
     const handleKeyUp = (event: KeyboardEvent) => {
       const key = event.key;
       if (disabled) return;
@@ -54,7 +57,7 @@ export function Keyboard({
     window.addEventListener('keyup', handleKeyUp);
 
     return () => window.removeEventListener('keyup', handleKeyUp);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  });
 
   return (
     <Space direction="vertical" align="center" className="daily-keyboard" size="small">
@@ -142,7 +145,10 @@ type KeyProps = {
 
 function Key({ letter, state, onLetterClick, disabled }: KeyProps) {
   const baseClassName = 'daily-keyboard__key';
-  const width = useCardWidth(FIRST_ROW.length + 2, { margin: 16, maxWidth: 30 });
+  const width = useCardWidth(FIRST_ROW.length + 2, {
+    margin: 16,
+    maxWidth: 30,
+  });
 
   return (
     <button

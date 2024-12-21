@@ -40,7 +40,7 @@ function WordGridHeaderContender({ cell }: WordGridHeaderProps) {
   const baseUrl = useTDBaseUrl('images');
   const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
 
-  const imageURL = cell.id!.replace(/-/g, '/');
+  const imageURL = cell.id?.replace(/-/g, '/');
 
   const isBlurred = shouldBeBlurred(cell.id);
   return (
@@ -65,8 +65,8 @@ function WordGridHeaderImage({ cell }: WordGridHeaderProps) {
 
   return (
     <div className="w-contender" style={{ width: `${cardWidth}px` }}>
-      <ImageBlurButtonContainer cardId={cell.id!}>
-        <ImageCard id={cell.id!} cardWidth={cardWidth} />
+      <ImageBlurButtonContainer cardId={cell.id ?? ''}>
+        <ImageCard id={cell.id ?? ''} cardWidth={cardWidth} />
       </ImageBlurButtonContainer>
     </div>
   );
@@ -76,9 +76,9 @@ function WordGridHeaderItem({ cell }: WordGridHeaderProps) {
   const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
   return (
     <div className="w-contender" style={{ width: `${cardWidth}px` }}>
-      <ImageBlurButtonContainer cardId={cell.id!}>
+      <ImageBlurButtonContainer cardId={cell.id ?? ''}>
         <ItemCard
-          id={cell.id!}
+          id={cell.id ?? ''}
           text={{ pt: cell.text, en: cell.text }}
           width={cardWidth}
           className="transparent-gradient"

@@ -4,7 +4,7 @@ import { CandyIcon } from 'icons/CandyIcon';
 import { TabletIcon } from 'icons/TabletIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function CandyHighlight({ children, type }: HighlightProps) {
   return (

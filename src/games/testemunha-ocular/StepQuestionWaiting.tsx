@@ -9,7 +9,7 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal
-import { Status, THistoryEntry } from './utils/types';
+import type { Status, THistoryEntry } from './utils/types';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
 import { Summary } from './components/Summary';

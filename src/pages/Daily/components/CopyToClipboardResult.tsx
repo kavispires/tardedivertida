@@ -23,8 +23,8 @@ export function CopyToClipboardResult({ result, rows = 4 }: CopyToClipboardResul
       message.info(
         translate(
           `Copiado para a área de transferência: ${state.value}`,
-          `Copied to clipboard: ${state.value}`
-        )
+          `Copied to clipboard: ${state.value}`,
+        ),
       );
     }
   }, [state, message, translate]);

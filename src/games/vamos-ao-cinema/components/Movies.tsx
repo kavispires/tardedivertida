@@ -226,7 +226,7 @@ function MovieButton({
       disabled={isLoading || user.ready || isEliminated}
       className={clsx(
         entry.letter === user.movieId && 'movie-button--selected',
-        getAnimationClass('bounceIn')
+        getAnimationClass('bounceIn'),
       )}
     >
       <ButtonLabel

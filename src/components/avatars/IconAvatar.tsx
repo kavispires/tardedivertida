@@ -1,8 +1,7 @@
 import { memoize } from 'lodash';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { isIOS, isSafari } from 'react-device-detect';
-// Ant Design Resources
-import { Avatar, AvatarProps } from 'antd';
+import { Avatar, type AvatarProps } from 'antd';
 
 interface IconAvatarProps extends AvatarProps {
   /**

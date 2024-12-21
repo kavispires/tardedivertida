@@ -11,7 +11,7 @@ import { inNSeconds } from 'utils/helpers';
 // Internal
 import { DEFAULT_LOCAL_TODAY, getDiscs } from './helpers';
 import { SETTINGS } from './settings';
-import { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
+import type { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
 
 const DURATION = 60;
 
@@ -34,7 +34,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
 
   const result = useMemo(
     () => intersectionBy(discA?.items ?? [], discB?.items ?? [], 'itemId')?.[0]?.itemId,
-    [discA, discB]
+    [discA, discB],
   );
 
   // TIMER
@@ -84,6 +84,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
   const isLose = state.hearts <= 0;
   const isComplete = (isWin || isLose || timesUp || state.attempts > 0) && !isRunning;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we only need isWin and isLose
   useEffect(() => {
     if (isWin || isLose) {
       pause();
@@ -94,7 +95,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
         });
       }
     }
-  }, [isWin, isLose]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isWin, isLose]);
 
   useMarkAsPlayed({
     key: SETTINGS.KEY,

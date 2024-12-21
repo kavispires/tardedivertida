@@ -1,10 +1,10 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { Button, Divider, Layout, Space } from 'antd';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -20,7 +20,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { DailyPicacoEntry } from '../utils/types';
+import type { DailyPicacoEntry } from '../utils/types';
 import { usePicacoEngine } from '../utils/usePicacoEngine';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -33,7 +33,7 @@ type DailyPicacoProps = {
 };
 
 export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
   const { cardNumber, card, onNextCard, isPlaying, isIdle, isSaving, alreadyPlayed, onStart } =
     usePicacoEngine(data, currentUser, initialState);
 

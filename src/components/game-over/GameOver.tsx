@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
@@ -163,7 +163,7 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
             </div>
           )}
 
-          {!Boolean(state.winners) && !Boolean(state.team) && !Boolean(state.group) && (
+          {!state.winners && !state.team && !state.group && (
             <div className="game-over__text">
               <GameOverText />
             </div>

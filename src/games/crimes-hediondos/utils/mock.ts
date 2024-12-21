@@ -53,7 +53,7 @@ export const mockGuesses = (groupedItems: GroupedItems, players: GamePlayers, us
               acc[`${entry.weaponId}${SEPARATOR}${entry.evidenceId}`] = true;
               return acc;
             },
-            {}
+            {},
           );
           let pair = `${getRandomItem(weapons)}${SEPARATOR}${getRandomItem(evidences)}`;
 

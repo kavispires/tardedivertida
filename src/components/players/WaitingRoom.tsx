@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -46,7 +46,7 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
       {icon ?? <WaitingRoomIcon style={{ width: '6rem' }} />}
       <div className="waiting-room__content">
         <Instruction>
-          {Boolean(instruction) ? (
+          {instruction ? (
             instruction
           ) : (
             <Translate pt="Vamos aguardar os outros jogadores!" en="Please wait for the other players!" />

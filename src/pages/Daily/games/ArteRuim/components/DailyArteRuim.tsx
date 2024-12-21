@@ -1,10 +1,10 @@
 import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
 import { Button, Layout, Modal, Space } from 'antd';
 // Types
-import { Me } from 'types/user';
+import type { Me } from 'types/user';
 // Icons
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 // Components
@@ -12,7 +12,7 @@ import { DualTranslate, Translate } from 'components/language';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
-import { DailyArteRuimEntry } from '../utils/types';
+import type { DailyArteRuimEntry } from '../utils/types';
 import { useArteRuimEngine } from '../utils/useArteRuimEngine';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
@@ -27,7 +27,7 @@ type DailyArteRuimProps = {
 };
 
 export function DailyArteRuim({ data }: DailyArteRuimProps) {
-  const initialState = useMemo(() => getInitialState(data), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [initialState] = useState(getInitialState(data));
 
   const { hearts, guesses, showResultModal, setShowResultModal, isWin, isComplete, guessLetter, solution } =
     useArteRuimEngine(data, initialState);

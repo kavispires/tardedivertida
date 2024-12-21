@@ -1,12 +1,12 @@
+import { useMemo } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
+import { StatusBar } from 'components/general/StatusBar';
 import { Translate } from 'components/language';
 // Internal
 import type { Robot } from '../utils/types';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';
-import { StatusBar } from 'components/general/StatusBar';
-import { useMemo } from 'react';
 
 type SummaryProps = {
   user: GamePlayer;
@@ -36,7 +36,7 @@ export function Summary({ user, robot }: SummaryProps) {
         ),
       },
     ],
-    [user, robot]
+    [user, robot],
   );
 
   if (!user || !robot) return <></>;

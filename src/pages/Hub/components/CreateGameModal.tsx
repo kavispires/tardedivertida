@@ -58,7 +58,7 @@ const latestGameBeforeNewOne = (latestGameIds: NumberDictionary) => {
 };
 
 const getOptionsDefaultValues = (
-  options: GameInfo['options']
+  options: GameInfo['options'],
 ): Record<string, boolean | string | string[]> => {
   return (
     options?.reduce((acc: Record<string, boolean | string | string[]>, option) => {
@@ -98,7 +98,7 @@ type CreateGameModalProps = {
   setOpen: (open: boolean) => void;
 };
 
-function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX.Element {
+function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
   const { message, notification } = App.useApp();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -157,7 +157,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
         message: translate(
           'Aplicativo encontrou um erro ao tentar criar o jogo',
           'The application found an error while trying to create a game',
-          language
+          language,
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
@@ -175,7 +175,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
       navigate(`/${gameId}`);
     } else {
       message.info(
-        translate('Péra! O jogo ainda não foi inicializado.', 'Wait! The game has not been created')
+        translate('Péra! O jogo ainda não foi inicializado.', 'Wait! The game has not been created'),
       );
     }
   };
@@ -248,7 +248,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps): JSX
           />
         )}
 
-        {Boolean(gameId) ? (
+        {gameId ? (
           <div>
             <Title className="center">
               <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}

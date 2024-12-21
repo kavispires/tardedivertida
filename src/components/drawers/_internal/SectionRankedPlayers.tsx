@@ -23,7 +23,7 @@ export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
 
   const rankedPlayers = useMemo(
     () => orderBy(Object.values(players), ['score', 'name'], ['desc', 'asc']),
-    [players]
+    [players],
   );
   return (
     <ul>

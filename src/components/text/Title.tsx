@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Components
@@ -65,7 +65,7 @@ export const Title = ({
         `title--align-${align}`,
         `title--${color}`,
         white && 'title--white',
-        className
+        className,
       )}
     >
       {Boolean(icon) && <span className="title__icon">{icon}</span>}

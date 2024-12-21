@@ -180,7 +180,7 @@ export function LetterCell({ data }: CellProps) {
 
 function WritingCell({ data, answer, toggleLock = () => {}, updateAnswer }: CellProps) {
   const { id } = data as Cell;
-  const isLocked = ((answer ?? {})?.timestamp ?? 0) > 0;
+  const isLocked = (answer?.timestamp ?? 0) > 0;
 
   return (
     <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__writing')}>

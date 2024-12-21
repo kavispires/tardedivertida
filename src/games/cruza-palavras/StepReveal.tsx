@@ -49,7 +49,7 @@ function PlayersInCell({ cellPlayers, players }: PlayersInCellProps) {
           >
             <AvatarName player={players[playerId]} size="small" />
           </li>
-        ) : undefined
+        ) : undefined,
       )}
     </ul>
   );
@@ -67,14 +67,14 @@ function ResultCell({ cell, clues, players, playerPerVotedCell, colorCodedCluesP
   const clue = clues.find((c) => c.coordinate === cell.index);
   const cellPlayers = playerPerVotedCell[cell.index] ?? [];
 
-  if (clue) {
+  if (clue?.playerId) {
     return (
       <div>
         <ClueCard
           isMatched
           clue={clue.clue}
-          color={colorCodedCluesPerPlayer[clue.playerId!]}
-          player={players[clue.playerId!]}
+          color={colorCodedCluesPerPlayer[clue.playerId]}
+          player={players[clue.playerId]}
         />
         {Boolean(cellPlayers.length) && <PlayersInCell cellPlayers={cellPlayers} players={players} />}
       </div>
@@ -154,7 +154,7 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersList
 
         return acc;
       },
-      []
+      [],
     );
   });
 
@@ -207,7 +207,9 @@ export function StepReveal({
   }, {});
 
   const colorCodedCluesPerPlayer = clues.reduce((acc: PlainObject, clue) => {
-    acc[clue.playerId!] = AVATARS[players[clue.playerId!].avatarId].color;
+    if (clue.playerId) {
+      acc[clue.playerId] = AVATARS[players[clue.playerId].avatarId].color;
+    }
     return acc;
   }, {});
 
@@ -265,7 +267,12 @@ export function StepReveal({
         gridType={gridType}
         user={user}
         CellComponent={ResultCell}
-        cellComponentProps={{ clues, players, playerPerVotedCell, colorCodedCluesPerPlayer }}
+        cellComponentProps={{
+          clues,
+          players,
+          playerPerVotedCell,
+          colorCodedCluesPerPlayer,
+        }}
       />
 
       <Space className="space-container" align="center">

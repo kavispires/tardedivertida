@@ -40,18 +40,19 @@ export function PhaseCardPlay({ players, state, meta }: PhaseProps) {
   const [playerInNightmare, isThePlayerInNightmare] = useWhichPlayerIsThe(
     'playerInNightmareId',
     state,
-    players
+    players,
   );
 
   const [lastTurnCount, setLastTurnCount] = useState('');
 
   const onPlayCard = useOnPlayCardAPIRequest(setStep);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (lastTurnCount && state.turnCount !== lastTurnCount) {
       setStep(GO_TO_SEE_CARD_STEP);
     }
-  }, [state.turnCount]); // eslint-disable-line
+  }, [state.turnCount]);
 
   useEffect(() => {
     if (!state.activePlayerId) {

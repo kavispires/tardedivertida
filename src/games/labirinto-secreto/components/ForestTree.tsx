@@ -54,7 +54,7 @@ export function ForestTree({
         isSegment && showPath && 'forest__tree--segment',
         isPassed && 'forest__tree--passed',
         isCurrentTree && 'forest__tree--current',
-        className
+        className,
       )}
     >
       <TreeImage
@@ -93,7 +93,7 @@ export function ForestTree({
               `forest__arrow-line forest__arrow-line--${segment.direction}`,
               isSegment && showPath && 'forest__tree--segment',
               isPassed && 'forest__tree--passed',
-              isCurrentTree && 'forest__tree--current'
+              isCurrentTree && 'forest__tree--current',
             )}
           />
           <IconAvatar

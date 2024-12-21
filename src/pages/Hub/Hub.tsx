@@ -30,12 +30,12 @@ function Hub() {
   const gameList = useMemo(
     () =>
       Object.values(GAME_LIST).filter((game) => {
-        let result = [];
+        const result = [];
 
         // Check player count
         if (numberFilters.players) {
           result.push(
-            game.playerCount.min <= numberFilters.players && game.playerCount.max >= numberFilters.players
+            game.playerCount.min <= numberFilters.players && game.playerCount.max >= numberFilters.players,
           );
 
           if (numberFilters.bestWith) {
@@ -66,7 +66,7 @@ function Hub() {
           if (numberFilters.players) {
             result.push(
               numberFilters.duration >= duration.customTime - 10 &&
-                numberFilters.duration <= duration.customTime + 10
+                numberFilters.duration <= duration.customTime + 10,
             );
           } else {
             result.push(numberFilters.duration >= duration.min && numberFilters.duration <= duration.max);
@@ -75,7 +75,7 @@ function Hub() {
 
         return result.every(Boolean);
       }),
-    [tagFilters, numberFilters]
+    [tagFilters, numberFilters],
   );
 
   const { availableGames, comingSoonGames, devGames } = useMemo(() => {
@@ -88,7 +88,7 @@ function Hub() {
           devGames: GameInfo[];
           comingSoonGames: GameInfo[];
         },
-        game
+        game,
       ) => {
         if (['stable'].includes(game.release)) {
           acc.availableGames.push(game);
@@ -103,7 +103,7 @@ function Hub() {
         availableGames: [],
         devGames: [],
         comingSoonGames: [],
-      }
+      },
     );
   }, [gameList, language]);
   return (
