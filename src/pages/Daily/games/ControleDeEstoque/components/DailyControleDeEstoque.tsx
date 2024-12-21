@@ -1,36 +1,28 @@
-import { Region, TextRegion } from "pages/Daily/components/Region";
-import { useMemo, useState } from "react";
-import { useMeasure } from "react-use";
+import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { useMemo, useState } from 'react';
+import { useMeasure } from 'react-use';
 // Ant Design Resources
-import {
-  Button,
-  Divider,
-  Layout,
-  Modal,
-  Popconfirm,
-  Tooltip,
-  Typography,
-} from "antd";
+import { Button, Divider, Layout, Modal, Popconfirm, Tooltip, Typography } from 'antd';
 // Types
-import type { Me } from "types/user";
+import type { Me } from 'types/user';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { DailyWarehouseGameIcon } from "icons/DailyWarehouseGameIcon";
+import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 // Components
-import { DualTranslate, Translate } from "components/language";
+import { DualTranslate, Translate } from 'components/language';
 // Internal
-import { getInitialState } from "../utils/helpers";
-import { PHASES, SETTINGS } from "../utils/settings";
-import type { DailyControleDeEstoqueEntry } from "../utils/types";
-import { useControleDeEstoqueEngine } from "../utils/useControleDeEstoqueEngine";
-import { Header } from "../../../components/Header";
-import { Menu } from "../../../components/Menu";
-import { FulfillingPhase } from "./FulfillingPhase";
-import { PreloadItems } from "./PreloadItems";
-import { ResultsModalContent } from "./ResultsModalContent";
-import { Rules } from "./Rules";
-import { StockingPhase } from "./StockingPhase";
+import { getInitialState } from '../utils/helpers';
+import { PHASES, SETTINGS } from '../utils/settings';
+import type { DailyControleDeEstoqueEntry } from '../utils/types';
+import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
+import { FulfillingPhase } from './FulfillingPhase';
+import { PreloadItems } from './PreloadItems';
+import { ResultsModalContent } from './ResultsModalContent';
+import { Rules } from './Rules';
+import { StockingPhase } from './StockingPhase';
 
 type DailyControleDeEstoqueProps = {
   data: DailyControleDeEstoqueEntry;
@@ -77,12 +69,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
-        <Menu
-          hearts={hearts}
-          total={SETTINGS.HEARTS}
-          openRules={true}
-          rules={<Rules />}
-        />
+        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
 
         <PreloadItems goods={data.goods} />
 
@@ -102,10 +89,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
           />
         )}
 
-        <div
-          key={latestAttempt}
-          className={shouldShakeScreen ? getAnimationClass("shakeX") : ""}
-        >
+        <div key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
           {phase !== PHASES.STOCKING && (
             <FulfillingPhase
               phase={phase}
@@ -126,10 +110,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
 
         <TextRegion direction="horizontal" split={<Divider type="vertical" />}>
           {evaluations.map((attempt, index) => (
-            <Tooltip
-              key={`${attempt}-${index}`}
-              title={<Translate pt="Acertos" en="Correct" />}
-            >
+            <Tooltip key={`${attempt}-${index}`} title={<Translate pt="Acertos" en="Correct" />}>
               <span>{attempt.filter(Boolean).length} 📫</span>
             </Tooltip>
           ))}
@@ -153,18 +134,8 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
 
       <Region>
         <Popconfirm
-          title={
-            <Translate
-              pt="Deseja mesmo recomeçar o jogo?"
-              en="Do you really want to reset the game?"
-            />
-          }
-          description={
-            <Translate
-              pt="Você perderá um coração."
-              en="You will lose a heart."
-            />
-          }
+          title={<Translate pt="Deseja mesmo recomeçar o jogo?" en="Do you really want to reset the game?" />}
+          description={<Translate pt="Você perderá um coração." en="You will lose a heart." />}
           onConfirm={reset}
         >
           <Button type="primary" danger disabled={hearts <= 0}>

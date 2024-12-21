@@ -1,9 +1,9 @@
-import clsx from "clsx";
-import HighlighterImport from "react-highlight-words";
+import clsx from 'clsx';
+import HighlighterImport from 'react-highlight-words';
 // Components
-import { Translate } from "components/language";
+import { Translate } from 'components/language';
 // Sass
-import "./MovieReviewCard.scss";
+import './MovieReviewCard.scss';
 
 // TODO: Type just doesn't work, I believe it's because the library is too old
 const Highlighter = HighlighterImport as any;
@@ -12,7 +12,7 @@ type MovieReviewCardProps = {
   /**
    * The type of review
    */
-  type: "positive" | "negative";
+  type: 'positive' | 'negative';
   /**
    * The review itself
    */
@@ -27,31 +27,23 @@ type MovieReviewCardProps = {
   className?: string;
 };
 
-export const MovieReviewCard = ({
-  type,
-  text,
-  highlights = [],
-  className = "",
-}: MovieReviewCardProps) => {
-  const baseClass = "movie-review-card";
+export const MovieReviewCard = ({ type, text, highlights = [], className = '' }: MovieReviewCardProps) => {
+  const baseClass = 'movie-review-card';
 
   return (
     <div className={clsx(baseClass, `${baseClass}--${type}`, className)}>
       <span className={`${baseClass}__header`}>
-        {type === "positive" ? (
+        {type === 'positive' ? (
           <Translate pt="Crítica Positiva" en="Positive Review" />
         ) : (
           <Translate pt="Crítica Negativa" en="Negative Review" />
         )}
-        {type === "positive" ? " 👏" : " 🤮"}
+        {type === 'positive' ? ' 👏' : ' 🤮'}
       </span>
       <div className={`${baseClass}__content`}>
         <Highlighter
           className={`${baseClass}__text`}
-          highlightClassName={clsx(
-            `${baseClass}__text-highlight`,
-            `${baseClass}__text-highlight--${type}`,
-          )}
+          highlightClassName={clsx(`${baseClass}__text-highlight`, `${baseClass}__text-highlight--${type}`)}
           searchWords={highlights}
           autoEscape={true}
           textToHighlight={text}

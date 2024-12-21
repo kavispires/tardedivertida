@@ -1,27 +1,15 @@
-import { chunk, cloneDeep } from "lodash";
-import { useDailyGameState } from "pages/Daily/hooks/useDailyGameState";
-import {
-  useDailyLocalToday,
-  useMarkAsPlayed,
-} from "pages/Daily/hooks/useDailyLocalToday";
-import { useShowResultModal } from "pages/Daily/hooks/useShowResultModal";
+import { chunk, cloneDeep } from 'lodash';
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 // Internal
-import { DEFAULT_LOCAL_TODAY } from "./helpers";
-import { SETTINGS } from "./settings";
-import type {
-  DailyPalavreadoEntry,
-  GameState,
-  PalavreadoLetter,
-  PalavreadoLocalToday,
-} from "./types";
+import { DEFAULT_LOCAL_TODAY } from './helpers';
+import { SETTINGS } from './settings';
+import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
 
-export function usePalavreadoEngine(
-  data: DailyPalavreadoEntry,
-  initialState: GameState,
-) {
+export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: GameState) {
   const size = data.keyword.length;
-  const { state, setState, updateState } =
-    useDailyGameState<GameState>(initialState);
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
   const { updateLocalStorage } = useDailyLocalToday<PalavreadoLocalToday>({
     key: SETTINGS.KEY,
@@ -72,33 +60,27 @@ export function usePalavreadoEngine(
   };
 
   const submitGrid = () => {
-    const answer = data.words.join("");
+    const answer = data.words.join('');
 
     setState((prev) => {
       // Evaluate letters and mark any correct letter as correct and locked
       const copyLetters = cloneDeep(state.letters);
       copyLetters.map((letter, index) => {
-        if (letter.state === "idle" && letter.letter === answer[index]) {
-          letter.state = String(
-            Math.floor(index / size),
-          ) as PalavreadoLetter["state"];
+        if (letter.state === 'idle' && letter.letter === answer[index]) {
+          letter.state = String(Math.floor(index / size)) as PalavreadoLetter['state'];
           letter.locked = true;
         }
         return letter;
       });
 
       // Generate the guessed words from the letter
-      const generatedWords = chunk(copyLetters, size).map((lg) =>
-        lg.map((l) => l.letter).join(""),
-      );
+      const generatedWords = chunk(copyLetters, size).map((lg) => lg.map((l) => l.letter).join(''));
 
       // Evaluate if any of the words match the words in the data
       generatedWords.forEach((word, wordIndex) => {
         if (data.words[wordIndex] === word) {
-          word.split("").forEach((_, i) => {
-            copyLetters[wordIndex * size + i].state = String(
-              wordIndex,
-            ) as PalavreadoLetter["state"];
+          word.split('').forEach((_, i) => {
+            copyLetters[wordIndex * size + i].state = String(wordIndex) as PalavreadoLetter['state'];
             copyLetters[wordIndex * size + i].locked = true;
           });
         }
@@ -137,8 +119,7 @@ export function usePalavreadoEngine(
   });
 
   // RESULTS MODAL
-  const { showResultModal, setShowResultModal } =
-    useShowResultModal(isComplete);
+  const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
 
   return {
     hearts: state.hearts,

@@ -1,4 +1,4 @@
-const svg = "";
+const svg = '';
 
 export function extractIdsFromString(htmlString: string): string[] {
   const regex = /id="([\w-]+)"/g;

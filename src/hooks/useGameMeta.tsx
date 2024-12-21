@@ -1,18 +1,18 @@
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 // Ant Design Resources
-import { App } from "antd";
+import { App } from 'antd';
 // Types
-import type { GameMeta } from "types/game";
+import type { GameMeta } from 'types/game';
 // Services
-import { GAME_API_COMMON_ACTIONS, GAME_API } from "services/adapters";
+import { GAME_API_COMMON_ACTIONS, GAME_API } from 'services/adapters';
 // Utils
-import { print } from "utils/helpers";
+import { print } from 'utils/helpers';
 // Internal
-import { useLanguage } from "./useLanguage";
-import { useLoading } from "./useLoading";
-import { useGameId } from "./useGameId";
-import { useError } from "./useError";
+import { useLanguage } from './useLanguage';
+import { useLoading } from './useLoading';
+import { useGameId } from './useGameId';
+import { useError } from './useError';
 // API
 
 /**
@@ -28,10 +28,10 @@ export function useGameMeta(): GameMeta {
 
   // Game gameID
   const query = useQuery({
-    queryKey: ["meta", gameId],
+    queryKey: ['meta', gameId],
     queryFn: async () => {
-      setLoader("load", true);
-      console.count("Fetching game meta...");
+      setLoader('load', true);
+      console.count('Fetching game meta...');
 
       const response = await GAME_API.run({
         action: GAME_API_COMMON_ACTIONS.LOAD_GAME,
@@ -40,8 +40,8 @@ export function useGameMeta(): GameMeta {
       const data = response.data as GameMeta;
 
       print({ meta: data });
-      setLanguage(data?.language ?? "pt");
-      setLoader("load", false);
+      setLanguage(data?.language ?? 'pt');
+      setLoader('load', false);
       return response;
     },
     enabled: Boolean(gameId),
@@ -51,13 +51,13 @@ export function useGameMeta(): GameMeta {
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!query.isError && query.isSuccess) {
-      setError("meta", "");
+      setError('meta', '');
     }
     if (query.isError) {
       console.error(query.error);
-      setError("meta", JSON.stringify(query.error.message));
+      setError('meta', JSON.stringify(query.error.message));
       notification.error({
-        message: "Failed to load game",
+        message: 'Failed to load game',
         description: JSON.stringify(query.error.message),
       });
     }
@@ -65,17 +65,17 @@ export function useGameMeta(): GameMeta {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    setLoader("load", query.isLoading);
+    setLoader('load', query.isLoading);
   }, [query.isLoading]);
 
   return (query.data?.data ?? {
-    gameId: "",
-    gameName: "",
+    gameId: '',
+    gameName: '',
     createdAt: 0,
-    createdBy: "",
+    createdBy: '',
     isComplete: false,
     isLocked: false,
-    language: "en",
+    language: 'en',
     max: 0,
     min: 0,
     replay: 0,

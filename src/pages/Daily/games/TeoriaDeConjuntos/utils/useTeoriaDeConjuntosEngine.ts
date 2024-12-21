@@ -1,41 +1,27 @@
-import { useDailyGameState } from "pages/Daily/hooks/useDailyGameState";
-import {
-  useDailyLocalToday,
-  useMarkAsPlayed,
-} from "pages/Daily/hooks/useDailyLocalToday";
-import { useShowResultModal } from "pages/Daily/hooks/useShowResultModal";
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 // Ant Design Resources
-import { App } from "antd";
+import { App } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { deepCopy } from "utils/helpers";
+import { deepCopy } from 'utils/helpers';
 // Internal
-import { DEFAULT_LOCAL_TODAY } from "./helpers";
-import { SETTINGS } from "./settings";
-import type {
-  DailyTeoriaDeConjuntosEntry,
-  GameState,
-  Guess,
-  TeoriaDeConjuntosLocalToday,
-  TThing,
-} from "./types";
+import { DEFAULT_LOCAL_TODAY } from './helpers';
+import { SETTINGS } from './settings';
+import type { DailyTeoriaDeConjuntosEntry, GameState, Guess, TeoriaDeConjuntosLocalToday, TThing, } from './types';
 
-export function useTeoriaDeConjuntosEngine(
-  data: DailyTeoriaDeConjuntosEntry,
-  initialState: GameState,
-) {
+export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, initialState: GameState) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
-  const { state, setState, updateState } =
-    useDailyGameState<GameState>(initialState);
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } =
-    useDailyLocalToday<TeoriaDeConjuntosLocalToday>({
-      key: SETTINGS.KEY,
-      gameId: data.id,
-      defaultValue: DEFAULT_LOCAL_TODAY,
-    });
+  const { updateLocalStorage } = useDailyLocalToday<TeoriaDeConjuntosLocalToday>({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: DEFAULT_LOCAL_TODAY,
+  });
 
   // CONDITIONS
   const isWin = state.win;
@@ -48,8 +34,7 @@ export function useTeoriaDeConjuntosEngine(
   });
 
   // RESULTS MODAL
-  const { showResultModal, setShowResultModal } =
-    useShowResultModal(isComplete);
+  const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
 
   const onSelectThing = (thing: TThing) => {
     updateState({ activeThing: thing });
@@ -68,12 +53,12 @@ export function useTeoriaDeConjuntosEngine(
     if (state.activeThing?.rule === state.activeArea) {
       isCorrect = true;
       message.success({
-        content: translate("Correto!", "Correct!"),
+        content: translate('Correto!', 'Correct!'),
       });
     } else {
       isCorrect = false;
       message.error({
-        content: translate("Incorreto!", "Incorrect!"),
+        content: translate('Incorreto!', 'Incorrect!'),
       });
     }
 
@@ -85,9 +70,7 @@ export function useTeoriaDeConjuntosEngine(
 
       if (state.activeThing && state.activeArea) {
         // Remove thing from hand
-        copy.hand = copy.hand.filter(
-          (thing) => thing.id !== state.activeThing?.id,
-        );
+        copy.hand = copy.hand.filter((thing) => thing.id !== state.activeThing?.id);
 
         const guess: Guess = {
           thingId: state.activeThing.id,

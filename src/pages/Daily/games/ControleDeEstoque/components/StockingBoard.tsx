@@ -1,28 +1,21 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { ShippingBoxIcon } from "icons/ShippingBoxIcon";
+import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 // Components
-import { WarehouseGoodCard } from "components/cards/WarehouseGoodCard";
+import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 // Internal
-import type { useControleDeEstoqueEngine } from "../utils/useControleDeEstoqueEngine";
+import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 
 type StockingBoardProps = {
-  warehouse: ReturnType<typeof useControleDeEstoqueEngine>["warehouse"];
-  onPlaceGood: ReturnType<typeof useControleDeEstoqueEngine>["onPlaceGood"];
-  lastPlacedGoodId: ReturnType<
-    typeof useControleDeEstoqueEngine
-  >["lastPlacedGoodId"];
+  warehouse: ReturnType<typeof useControleDeEstoqueEngine>['warehouse'];
+  onPlaceGood: ReturnType<typeof useControleDeEstoqueEngine>['onPlaceGood'];
+  lastPlacedGoodId: ReturnType<typeof useControleDeEstoqueEngine>['lastPlacedGoodId'];
   width: number;
 };
 
-export function StockingBoard({
-  warehouse,
-  onPlaceGood,
-  width,
-  lastPlacedGoodId,
-}: StockingBoardProps) {
+export function StockingBoard({ warehouse, onPlaceGood, width, lastPlacedGoodId }: StockingBoardProps) {
   const size = { width, height: width };
 
   return (
@@ -30,11 +23,7 @@ export function StockingBoard({
       {warehouse.map((goodId, index) => {
         if (!goodId) {
           return (
-            <div
-              key={index}
-              className={clsx("shelves-board__empty-shelf")}
-              style={size}
-            >
+            <div key={index} className={clsx('shelves-board__empty-shelf')} style={size}>
               <button
                 type="button"
                 className="shelves-board__empty-shelf-button"
@@ -50,10 +39,7 @@ export function StockingBoard({
           return (
             <div
               key={index}
-              className={clsx(
-                "shelves-board__shelf",
-                getAnimationClass("flipInY"),
-              )}
+              className={clsx('shelves-board__shelf', getAnimationClass('flipInY'))}
               style={size}
             >
               <ShippingBoxIcon width={width - 12} />
@@ -62,16 +48,12 @@ export function StockingBoard({
         }
 
         return (
-          <div
-            key={index}
-            className={clsx("shelves-board__shelf")}
-            style={size}
-          >
+          <div key={index} className={clsx('shelves-board__shelf')} style={size}>
             <WarehouseGoodCard
               id={goodId}
               padding={1}
               width={width - 12}
-              className={getAnimationClass("bounce")}
+              className={getAnimationClass('bounce')}
             />
           </div>
         );

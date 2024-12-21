@@ -1,33 +1,33 @@
-import clsx from "clsx";
-import { Region, TextRegion } from "pages/Daily/components/Region";
-import { useMemo, useState } from "react";
-import { useMeasure } from "react-use";
+import clsx from 'clsx';
+import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { useMemo, useState } from 'react';
+import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { BarChartOutlined } from "@ant-design/icons";
-import { Button, Layout, Modal, Rate, Tooltip, Typography } from "antd";
+import { BarChartOutlined } from '@ant-design/icons';
+import { Button, Layout, Modal, Rate, Tooltip, Typography } from 'antd';
 // Types
-import type { Me } from "types/user";
+import type { Me } from 'types/user';
 // Utils
-import { getAnimationClass } from "utils/helpers";
+import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { DailyDiagramGameIcon } from "icons/DailyDiagramGameIcon";
+import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 // Components
-import { TransparentButton } from "components/buttons";
-import { DualTranslate, Translate } from "components/language";
+import { TransparentButton } from 'components/buttons';
+import { DualTranslate, Translate } from 'components/language';
 // Internal
-import { getInitialState } from "../utils/helpers";
-import { SETTINGS } from "../utils/settings";
-import type { DailyTeoriaDeConjuntosEntry } from "../utils/types";
-import { useTeoriaDeConjuntosEngine } from "../utils/useTeoriaDeConjuntosEngine";
-import { Header } from "../../../components/Header";
-import { Menu } from "../../../components/Menu";
-import { Diagram } from "./Diagram";
-import { InDiagramThings } from "./InDiagramThings";
-import { PlacementModal } from "./PlacementModal";
-import { ResultsModalContent } from "./ResultsModalContent";
-import { Rules } from "./Rules";
-import { RulesHints } from "./RulesHints";
-import { Thing } from "./Thing";
+import { getInitialState } from '../utils/helpers';
+import { SETTINGS } from '../utils/settings';
+import type { DailyTeoriaDeConjuntosEntry } from '../utils/types';
+import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
+import { Header } from '../../../components/Header';
+import { Menu } from '../../../components/Menu';
+import { Diagram } from './Diagram';
+import { InDiagramThings } from './InDiagramThings';
+import { PlacementModal } from './PlacementModal';
+import { ResultsModalContent } from './ResultsModalContent';
+import { Rules } from './Rules';
+import { RulesHints } from './RulesHints';
+import { Thing } from './Thing';
 
 type DailyTeoriaDeConjuntosProps = {
   data: DailyTeoriaDeConjuntosEntry;
@@ -67,12 +67,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
-        <Menu
-          hearts={hearts}
-          total={SETTINGS.HEARTS}
-          openRules={true}
-          rules={<Rules />}
-        />
+        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
 
         <Region>
           <Typography.Text strong className="teoria-de-conjuntos-title">
@@ -90,11 +85,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
               isComplete ? (
                 <InDiagramThings things={rule1Things} width={thingWidth} />
               ) : (
-                <TransparentButton
-                  onClick={() => onSelectArea(1)}
-                  disabled={isComplete}
-                  hoverType="none"
-                >
+                <TransparentButton onClick={() => onSelectArea(1)} disabled={isComplete} hoverType="none">
                   <InDiagramThings things={rule1Things} width={thingWidth} />
                 </TransparentButton>
               )
@@ -103,31 +94,17 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
               isComplete ? (
                 <InDiagramThings things={rule2Things} width={thingWidth} />
               ) : (
-                <TransparentButton
-                  onClick={() => onSelectArea(2)}
-                  disabled={isComplete}
-                  hoverType="none"
-                >
+                <TransparentButton onClick={() => onSelectArea(2)} disabled={isComplete} hoverType="none">
                   <InDiagramThings things={rule2Things} width={thingWidth} />
                 </TransparentButton>
               )
             }
             intersectionChildren={
               isComplete ? (
-                <InDiagramThings
-                  things={intersectingThings}
-                  width={thingWidth}
-                />
+                <InDiagramThings things={intersectingThings} width={thingWidth} />
               ) : (
-                <TransparentButton
-                  onClick={() => onSelectArea(0)}
-                  disabled={isComplete}
-                  hoverType="none"
-                >
-                  <InDiagramThings
-                    things={intersectingThings}
-                    width={thingWidth}
-                  />
+                <TransparentButton onClick={() => onSelectArea(0)} disabled={isComplete} hoverType="none">
+                  <InDiagramThings things={intersectingThings} width={thingWidth} />
                 </TransparentButton>
               )
             }
@@ -136,10 +113,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
 
         {isComplete ? (
           <TextRegion>
-            <Translate
-              pt="Você já completou o desafio!"
-              en="You have already completed the challenge!"
-            />
+            <Translate pt="Você já completou o desafio!" en="You have already completed the challenge!" />
           </TextRegion>
         ) : (
           <TextRegion>
@@ -152,11 +126,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
 
         {isComplete && (
           <Region>
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
+            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
           </Region>
@@ -166,7 +136,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
           {hand.map((thing) => (
             <TransparentButton
               key={thing.id}
-              className={clsx("thing-button", getAnimationClass("heartBeat"))}
+              className={clsx('thing-button', getAnimationClass('heartBeat'))}
               activeClass="thing-button__active"
               onClick={() => onSelectThing(thing)}
               active={thing.id === activeThing?.id}

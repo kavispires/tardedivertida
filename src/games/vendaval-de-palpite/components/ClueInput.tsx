@@ -1,11 +1,11 @@
-import clsx from "clsx";
-import { useEffect, useState } from "react";
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Input, Switch } from "antd";
+import { Input, Switch } from 'antd';
 // Hooks
-import { useLanguage } from "hooks/useLanguage";
+import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { Translate } from "components/language";
+import { Translate } from 'components/language';
 
 type ClueInputProps = {
   id: string;
@@ -33,13 +33,11 @@ export function ClueInput({
   }, [isGuess]);
 
   return (
-    <div className={clsx("v-clue-input", isGuess && "v-clue-input--guess")}>
+    <div className={clsx('v-clue-input', isGuess && 'v-clue-input--guess')}>
       <div className="v-clue-input__inner">
         <Input
           placeholder={
-            disabled
-              ? translate("Acabou o tempo", "Time's up")
-              : translate("Escreva dica aqui", "Write here")
+            disabled ? translate('Acabou o tempo', "Time's up") : translate('Escreva dica aqui', 'Write here')
           }
           key={id}
           id={id}

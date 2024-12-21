@@ -1,23 +1,17 @@
-import { loadLocalToday } from "pages/Daily/utils";
+import { loadLocalToday } from 'pages/Daily/utils';
 // Utils
-import { deepCopy } from "utils/helpers";
+import { deepCopy } from 'utils/helpers';
 // Internal
-import { SETTINGS } from "./settings";
-import type {
-  DailyTeoriaDeConjuntosEntry,
-  GameState,
-  TeoriaDeConjuntosLocalToday,
-} from "./types";
+import { SETTINGS } from './settings';
+import type { DailyTeoriaDeConjuntosEntry, GameState, TeoriaDeConjuntosLocalToday } from './types';
 
 export const DEFAULT_LOCAL_TODAY: TeoriaDeConjuntosLocalToday = {
-  id: "",
+  id: '',
   guesses: [],
   hearts: SETTINGS.HEARTS,
 };
 
-export const getInitialState = (
-  data: DailyTeoriaDeConjuntosEntry,
-): GameState => {
+export const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,

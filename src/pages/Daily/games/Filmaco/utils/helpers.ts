@@ -1,13 +1,13 @@
-import { loadLocalToday } from "pages/Daily/utils";
-import type { LettersDictionary } from "pages/Daily/utils/types";
+import { loadLocalToday } from 'pages/Daily/utils';
+import type { LettersDictionary } from 'pages/Daily/utils/types';
 // Utils
-import { deepCopy, stringRemoveAccents } from "utils/helpers";
+import { deepCopy, stringRemoveAccents } from 'utils/helpers';
 // Internal
-import { SETTINGS } from "./settings";
-import type { DailyFilmacoEntry, FilmacoLocalToday, GameState } from "./types";
+import { SETTINGS } from './settings';
+import type { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
 
 export const DEFAULT_LOCAL_TODAY: FilmacoLocalToday = {
-  id: "",
+  id: '',
   letters: [],
   number: 0,
 };
@@ -33,22 +33,19 @@ export const getInitialState = (data: DailyFilmacoEntry): GameState => {
   if (localToday) {
     let hearts = SETTINGS.HEARTS;
     let solution = { ...state.solution };
-    const guesses = localToday.letters.reduce(
-      (acc: LettersDictionary, letter) => {
-        const isCorrect = state.solution[letter] !== undefined;
-        if (state.solution[letter] !== undefined) {
-          solution = { ...solution, [letter]: true };
-        }
-        acc[letter] = {
-          letter: letter,
-          state: isCorrect ? "correct" : "incorrect",
-          disabled: true,
-        };
-        hearts = isCorrect ? hearts : hearts - 1;
-        return acc;
-      },
-      {},
-    );
+    const guesses = localToday.letters.reduce((acc: LettersDictionary, letter) => {
+      const isCorrect = state.solution[letter] !== undefined;
+      if (state.solution[letter] !== undefined) {
+        solution = { ...solution, [letter]: true };
+      }
+      acc[letter] = {
+        letter: letter,
+        state: isCorrect ? 'correct' : 'incorrect',
+        disabled: true,
+      };
+      hearts = isCorrect ? hearts : hearts - 1;
+      return acc;
+    }, {});
 
     state.guesses = guesses;
     state.hearts = hearts;
@@ -63,12 +60,9 @@ export const getInitialState = (data: DailyFilmacoEntry): GameState => {
  * @param text - The word to extract the letters from.
  * @returns An object with each letter in the word as a key and a boolean value indicating if the letter has been found.
  */
-export function getLettersInWord(
-  text: string,
-  allowNumbers?: boolean,
-): BooleanDictionary {
+export function getLettersInWord(text: string, allowNumbers?: boolean): BooleanDictionary {
   const cleanedUpText = stringRemoveAccents(text).toLowerCase();
-  const letters = cleanedUpText.split("");
+  const letters = cleanedUpText.split('');
   const lettersInWord: BooleanDictionary = {};
 
   letters.forEach((letter) => {

@@ -1,9 +1,9 @@
-import { useEffectOnce } from "react-use";
+import { useEffectOnce } from 'react-use';
 // Internal
-import { useGlobalState } from "./useGlobalState";
+import { useGlobalState } from './useGlobalState';
 
 export function useTemporarilyHidePlayersBar(ignore = false) {
-  const [, setShowPlayersBar] = useGlobalState("showPlayersBar");
+  const [, setShowPlayersBar] = useGlobalState('showPlayersBar');
 
   useEffectOnce(() => {
     setShowPlayersBar(ignore);

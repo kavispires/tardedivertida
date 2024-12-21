@@ -1,21 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { BugOutlined } from "@ant-design/icons";
-import { App, Button, Flex, Popconfirm } from "antd";
+import { BugOutlined } from '@ant-design/icons';
+import { App, Button, Flex, Popconfirm } from 'antd';
 // Utils
-import { isDevEnv } from "utils/helpers";
+import { isDevEnv } from 'utils/helpers';
 // Components
-import { Translate } from "components/language";
+import { Translate } from 'components/language';
 // Internal
-import { SETTINGS as AQUI_O } from "../games/AquiO/utils/settings";
-import { SETTINGS as ARTE_RUIM } from "../games/ArteRuim/utils/settings";
-import { SETTINGS as ARTISTA } from "../games/Picaco/utils/settings";
-import { SETTINGS as CONTROLE_DE_ESTOQUE } from "../games/ControleDeEstoque/utils/settings";
-import { SETTINGS as FILMACO } from "../games/Filmaco/utils/settings";
-import { SETTINGS as PALAVREADO } from "../games/Palavreado/utils/settings";
-import { SETTINGS as TEORIA_DE_CONJUNTOS } from "../games/TeoriaDeConjuntos/utils/settings";
-import { SETTINGS as COMUNICACAO_ALIENIGENA } from "../games/ComunicacaoAlienigena/utils/settings";
-import { composeLocalPlayedKey, composeLocalTodayKey } from "../utils";
+import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
+import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
+import { SETTINGS as ARTISTA } from '../games/Picaco/utils/settings';
+import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
+import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
+import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
+import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
+import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
+import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
 
 const keys = [
   AQUI_O,
@@ -32,9 +32,7 @@ type DevResetLocalStorageButtonProps = {
   localStorageKey?: string;
 };
 
-export function DevResetLocalStorageButton({
-  localStorageKey,
-}: DevResetLocalStorageButtonProps) {
+export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalStorageButtonProps) {
   const { message } = App.useApp();
   const navigate = useNavigate();
 
@@ -48,15 +46,13 @@ export function DevResetLocalStorageButton({
         localStorage.removeItem(composeLocalPlayedKey(key.KEY));
       });
     }
-    message.success(
-      <Translate pt="LS resetado corretamente" en="LS reset successfully" />,
-    );
-    navigate("/diario");
+    message.success(<Translate pt="LS resetado corretamente" en="LS reset successfully" />);
+    navigate('/diario');
   };
 
   const onDayBefore = () => {
     const yesterday = JSON.stringify({
-      id: "2023-10-30",
+      id: '2023-10-30',
       number: -1,
     });
     if (localStorageKey) {
@@ -68,14 +64,12 @@ export function DevResetLocalStorageButton({
       localStorage.setItem(composeLocalPlayedKey(key.KEY), yesterday);
     });
 
-    navigate("/diario");
+    navigate('/diario');
   };
 
   const onLog = () => {
     if (localStorageKey) {
-      const value = JSON.parse(
-        localStorage.getItem(composeLocalTodayKey(localStorageKey)) ?? "{}",
-      );
+      const value = JSON.parse(localStorage.getItem(composeLocalTodayKey(localStorageKey)) ?? '{}');
       if (isDevEnv) {
         console.log(value);
       } else {
@@ -101,12 +95,7 @@ export function DevResetLocalStorageButton({
           </Button>
         </Popconfirm>
         {isDevEnv && (
-          <Button
-            size="large"
-            type="dashed"
-            onClick={onDayBefore}
-            icon={<BugOutlined />}
-          >
+          <Button size="large" type="dashed" onClick={onDayBefore} icon={<BugOutlined />}>
             Yesterday LS
           </Button>
         )}
