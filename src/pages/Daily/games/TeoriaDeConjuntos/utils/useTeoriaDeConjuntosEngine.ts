@@ -62,13 +62,13 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
       });
     }
 
-    let localStateUpdate = state.guesses;
+    let localStateUpdateGuesses = state.guesses;
     let localStateUpdateHearts = state.hearts;
 
     setState((prevState) => {
       const copy = deepCopy(prevState);
 
-      if (state.activeThing && state.activeArea) {
+      if (state.activeThing && state.activeArea !== null) {
         // Remove thing from hand
         copy.hand = copy.hand.filter((thing) => thing.id !== state.activeThing?.id);
 
@@ -102,7 +102,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
 
         // Add guess
         copy.guesses.push(guess);
-        localStateUpdate = deepCopy(copy.guesses);
+        localStateUpdateGuesses = deepCopy(copy.guesses);
 
         // Remove active things
         copy.activeThing = null;
@@ -119,7 +119,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
 
     // Update local today
     updateLocalStorage({
-      guesses: localStateUpdate,
+      guesses: localStateUpdateGuesses,
       hearts: localStateUpdateHearts,
     });
   };
