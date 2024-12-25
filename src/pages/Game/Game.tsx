@@ -143,14 +143,14 @@ const SessionPLanejamentoUrbano = lazy(
 
 function Game() {
   const { translate } = useLanguage();
-  const { loaders } = useLoading();
+  const { isKeyLoading } = useLoading();
 
   const { gameId, gameName, createdAt } = useGameMeta();
 
   const isGameStale = useIsGameStale(createdAt);
 
   // Deffer to load screen if any major API call is running
-  if (!gameId || loaders.meta) {
+  if (!gameId || isKeyLoading('meta')) {
     return <LoadingPage />;
   }
 
