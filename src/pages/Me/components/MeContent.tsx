@@ -21,6 +21,7 @@ import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
 import { Avatar, IconAvatar } from 'components/avatars';
+import { PageLayout } from 'components/general/PageLayout';
 import { LanguageSwitch, Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
@@ -46,7 +47,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
   );
 
   return (
-    <Layout className="me__container">
+    <PageLayout className="me__container">
       <Layout.Content className="container me__content">
         {additionalContent}
 
@@ -87,7 +88,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
         <GameCheckCard info={alphabetizedPlayableGames} games={user.games} />
       </Layout.Content>
-    </Layout>
+    </PageLayout>
   );
 }
 
