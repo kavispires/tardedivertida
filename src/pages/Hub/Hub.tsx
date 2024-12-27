@@ -15,6 +15,7 @@ import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
 import GAME_LIST from 'utils/info';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
+import { PageLayout } from 'components/general/PageLayout';
 import { LanguageSwitch, Translate } from 'components/language';
 // Internal
 import { GameCard } from './components/GameCard';
@@ -107,7 +108,7 @@ function Hub() {
     );
   }, [gameList, language]);
   return (
-    <Layout className="dev-layout">
+    <PageLayout className="dev-layout">
       <DevHeader
         title={
           <>
@@ -160,7 +161,7 @@ function Hub() {
         </Typography.Title>
         <RowOfGames games={comingSoonGames} />
       </Layout.Content>
-    </Layout>
+    </PageLayout>
   );
 }
 

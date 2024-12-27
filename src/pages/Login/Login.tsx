@@ -6,10 +6,10 @@ import { Layout, Button, Form, Input, Alert, Image } from 'antd';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Services
 import { signIn } from 'services/firebase';
+// Components
+import { PageLayout } from 'components/general/PageLayout';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg';
-// API
-// Image
 
 const layout = {
   labelCol: { span: 8 },
@@ -60,7 +60,7 @@ function Login() {
   }, [isAuthenticated, navigate, currentUser.id, isAdmin]);
 
   return (
-    <Layout.Content className="login">
+    <PageLayout className="login">
       <div className="login__content">
         <div className="login__logo">
           <Image src={logo} preview={false} />
@@ -96,7 +96,7 @@ function Login() {
           </div>
         </Form>
       </div>
-    </Layout.Content>
+    </PageLayout>
   );
 }
 

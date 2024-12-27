@@ -12,6 +12,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { AdminButton } from 'components/admin';
+import { PageLayout } from 'components/general/PageLayout';
 import { LanguageSwitch, Translate } from 'components/language';
 import { Title } from 'components/text';
 // Images
@@ -39,7 +40,7 @@ function Home() {
   };
 
   return (
-    <Layout className="home">
+    <PageLayout className="home">
       <div className="home__logo-container">
         <Image
           src={logo}
@@ -118,7 +119,7 @@ function Home() {
         <span></span>
         <span></span>
       </div>
-    </Layout>
+    </PageLayout>
   );
 }
 

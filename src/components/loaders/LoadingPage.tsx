@@ -1,12 +1,12 @@
-// Ant Design Resources
-import { Layout } from 'antd';
 // Icons
 import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
+// Components
+import { LoadingPageLayout } from 'components/general/PageLayout';
 
 export function LoadingPage() {
   return (
-    <Layout.Content className="loading-page">
+    <LoadingPageLayout className="loading-page">
       <AnimatedVideoConferenceIcon style={{ width: '120px' }} />
-    </Layout.Content>
+    </LoadingPageLayout>
   );
 }

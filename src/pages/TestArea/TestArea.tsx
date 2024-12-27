@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Layout, Space, Steps } from 'antd';
 // Components
+import { PageLayout } from 'components/general/PageLayout';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
@@ -104,7 +105,7 @@ function TestArea() {
   const Content = steps[current].content;
 
   return (
-    <Layout.Content className="container">
+    <PageLayout className="container">
       <Space className="space-container full-width" direction="vertical">
         <Title level={1} size="large">
           <Translate pt="Área de Teste" en="Test Area" />
@@ -116,7 +117,7 @@ function TestArea() {
 
         <Results results={results} steps={steps} activeStep={current} />
       </Space>
-    </Layout.Content>
+    </PageLayout>
   );
 }
 
