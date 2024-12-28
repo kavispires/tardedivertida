@@ -129,6 +129,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
           const secondItem = pairs[firstItemIndex + 1];
           const selectedFirstItem = selectedPairs[firstItemIndex];
           const selectedSecondItem = selectedPairs[firstItemIndex + 1];
+          const placeholder = { ...pool[0], value: { id: pool[0].id, name: { pt: '?', en: '?' } } };
 
           return (
             <Space
@@ -145,7 +146,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
                     <ItemEntry itemEntry={selectedFirstItem} />
                   </TransparentButton>
                 ) : (
-                  <ItemEntry itemEntry={pool[0]} className="pairs-grid__empty-slot" />
+                  <ItemEntry itemEntry={placeholder} className="pairs-grid__empty-slot" />
                 )}
               </div>
               <div className="pairs-grid__slot">
@@ -157,7 +158,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
                     <ItemEntry itemEntry={selectedSecondItem} />
                   </TransparentButton>
                 ) : (
-                  <ItemEntry itemEntry={pool[0]} className="pairs-grid__empty-slot" />
+                  <ItemEntry itemEntry={placeholder} className="pairs-grid__empty-slot" />
                 )}
               </div>
             </Space>
