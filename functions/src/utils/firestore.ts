@@ -217,7 +217,7 @@ export const saveGame = async (
 ) => {
   try {
     if (saveContent?.set?.state && !isEmpty(saveContent?.set?.state)) {
-      await sessionRef.doc('state').set({ ...saveContent.set.state, updatedAt: Date.now() } ?? {});
+      await sessionRef.doc('state').set({ ...(saveContent.set.state ?? {}), updatedAt: Date.now() });
     }
   } catch (error) {
     throwException(error, 'set game state');
@@ -281,7 +281,7 @@ export const triggerSetupPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
   await sessionRef.doc('state').update({ phase: 'SETUP', updatedAt: Date.now() });
-  // await utils.wait();
+  await utils.helpers.devSimulateWait(2000);
   return true;
 };
 
@@ -289,7 +289,7 @@ export const triggerWaitPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
   await sessionRef.doc('state').update({ phase: 'WAIT', updatedAt: Date.now() });
-  await utils.helpers.wait(2000);
+  await utils.helpers.devSimulateWait(2000);
   return true;
 };
 
@@ -302,6 +302,7 @@ export const triggerWaitPhase = async (
  * @param args.shouldReady
  * @param args.change
  * @param args.nextPhaseFunction
+ * @param args.shouldGoToNextPhase
  * @returns
  */
 export const updatePlayer = async ({
@@ -312,6 +313,7 @@ export const updatePlayer = async ({
   shouldReady,
   change,
   nextPhaseFunction,
+  shouldGoToNextPhase,
 }: UpdatePlayerArgs) => {
   const sessionRef = getSessionRef(gameName, gameId);
 
@@ -332,11 +334,11 @@ export const updatePlayer = async ({
     // TODO: log error
     return throwException(error, actionText);
   }
-  if (shouldReady && nextPhaseFunction) {
+  if ((shouldReady || shouldGoToNextPhase) && nextPhaseFunction) {
     const { state } = await utils.firestore.getStateReferences<DefaultState>(gameName, gameId, actionText);
     const players = state?.players ?? {};
     // If all players are ready, trigger next phase
-    if (utils.players.isEverybodyReady(players)) {
+    if (shouldGoToNextPhase || utils.players.isEverybodyReady(players)) {
       return nextPhaseFunction(gameName, gameId, state);
     }
   }

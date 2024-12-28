@@ -1,0 +1,106 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "D",
+  "gameName": "comunicacao-duo",
+  "version": "0.0.3",
+  "release": "dev",
+  "available": true,
+  "title": {
+    "pt": "Comunicação Alienígena Duo",
+    "en": "Alien Communication Duo"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "teuD semanedoC",
+  "appearance": {
+    "clouds": "cloud",
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "dark"
+  },
+  "summary": {
+    "en": "Attempt to communicate with another alien using their language.",
+    "pt": "Tente se comunicar com outro alienígena usando a língua dele."
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 3,
+    "max": 6
+  },
+  "tags": ["cooperative", "writing", "brain-burner"],
+  "duration": {
+    "base": 5,
+    "perPlayer": 15
+  },
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "deckType",
+      "label": "Items Type",
+      "description": "Determines the type of conversation.",
+      "kind": "radio",
+      "values": [
+        {
+          "label": "Items",
+          "value": "items"
+        },
+        {
+          "label": "Image Cards",
+          "value": "images"
+        },
+        {
+          "label": "Characters/Celebrities",
+          "value": "contenders",
+          "disabled": true
+        },
+        {
+          "label": "Suspects",
+          "value": "suspects",
+          "disabled": true
+        },
+        {
+          "label": "Text",
+          "value": "text",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "key": "clueInputType",
+      "kind": "radio",
+      "label": "Clue Input",
+      "description": "Determine how to write clues",
+      "values": [
+        {
+          "label": "Alien Keyboard",
+          "value": "alien-keyboard"
+        },
+        {
+          "label": "Writing",
+          "value": "text"
+        }
+      ]
+    }
+  ]
+}

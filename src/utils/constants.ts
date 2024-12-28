@@ -253,6 +253,7 @@ export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
   BOMBA_RELOGIO: 'bomba-relogio',
   COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',
+  COMUNICACAO_DUO: 'comunicacao-duo',
   CONTADORES_HISTORIAS: 'contadores-historias',
   CONTROLE_DE_ESTOQUE: 'controle-de-estoque',
   CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores',

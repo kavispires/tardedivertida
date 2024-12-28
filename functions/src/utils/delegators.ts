@@ -2,6 +2,7 @@ import { GAME_NAMES } from './constants';
 import * as adedanhxEngine from '../engine/adedanhx';
 import * as arteRuimEngine from '../engine/arte-ruim';
 import * as comunicacaoAlienigenaEngine from '../engine/comunicacao-alienigena';
+import * as comunicacaoDuoEngine from '../engine/comunicacao-duo';
 import * as contadoresHistoriasEngine from '../engine/contadores-historias';
 import * as controleDeEstoqueEngine from '../engine/controle-de-estoque';
 import * as crimesHediondosEngine from '../engine/crimes-hediondos';
@@ -41,6 +42,7 @@ const engines = {
   [GAME_NAMES.ADEDANHX]: adedanhxEngine,
   [GAME_NAMES.ARTE_RUIM]: arteRuimEngine,
   [GAME_NAMES.COMUNICACAO_ALIENIGENA]: comunicacaoAlienigenaEngine,
+  [GAME_NAMES.COMUNICACAO_DUO]: comunicacaoDuoEngine,
   [GAME_NAMES.CONTADORES_HISTORIAS]: contadoresHistoriasEngine,
   [GAME_NAMES.CONTROLE_DE_ESTOQUE]: controleDeEstoqueEngine,
   [GAME_NAMES.CRIMES_HEDIONDOS]: crimesHediondosEngine,

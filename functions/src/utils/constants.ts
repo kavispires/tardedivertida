@@ -26,6 +26,11 @@ const GAMES = [
     key: 'COMUNICACAO_ALIENIGENA',
   },
   {
+    name: 'comunicacao-duo',
+    code: 'D',
+    key: 'COMUNICACAO_DUO'
+  },
+  {
     name: 'contadores-historias',
     code: 'C',
     key: 'CONTADORES_HISTORIAS',

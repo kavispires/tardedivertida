@@ -154,6 +154,7 @@ export const getRoundsToEndGame = (currentRound: number, totalRounds: number): n
  * @param {string|string[]} properties
  * @param {string|string[]} orders
  * @returns {object[]}
+ * @deprecated use lodash orderBy
  */
 export const orderBy = <T>(list: T[], properties: string | string[], orders: string | string[]): T[] => {
   function sortBy(_key: string, _cb: any) {
@@ -211,10 +212,14 @@ export const flattenArray = <T>(twoDimensionalArray: T[][]): T[] =>
  * Function to simulate calls when developing
  * @param duration
  */
-export const wait = async (duration = 3000) => {
+export const devSimulateWait = async (duration = 3000) => {
   if (isEmulatingEnvironment()) {
     await new Promise((resolve) => setTimeout(resolve, duration));
   }
+};
+
+export const forceWait = async (duration = 0) => {
+  await new Promise((resolve) => setTimeout(resolve, duration));
 };
 
 /**
