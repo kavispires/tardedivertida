@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Image } from 'antd';
 // Hooks
@@ -62,9 +63,25 @@ type GameStripProps = {
    *
    */
   stripWidth?: number | string;
+  /**
+   * any additional content
+   */
+  children?: ReactNode;
+  /**
+   * Show logo
+   */
+  showLogo?: boolean;
 };
 
-export function GameStrip({ gameName, width, title, stripWidth = '100%', className }: GameStripProps) {
+export function GameStrip({
+  gameName,
+  width,
+  title,
+  stripWidth = '100%',
+  className,
+  children,
+  showLogo = true,
+}: GameStripProps) {
   const { language, dualTranslate } = useLanguage();
 
   const logoHeight = width / 1.5; // Logo width/height ratio is 1.5
@@ -103,12 +120,15 @@ export function GameStrip({ gameName, width, title, stripWidth = '100%', classNa
           transform: 'translate(-50%, -50%)',
           width: `${width}px`,
           height: `${logoHeight}px`,
+          opacity: showLogo ? 1 : 0,
+          transition: 'opacity 0.5s',
         }}
         animate={{
           transform: ['translate(-50%, -50%)', 'translate(-50%, -45%)', 'translate(-50%, -50%)'],
           transition: { duration: 7, repeat: Number.POSITIVE_INFINITY },
         }}
       />
+      {children}
     </div>
   );
 }

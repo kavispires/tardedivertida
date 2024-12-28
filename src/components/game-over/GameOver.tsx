@@ -1,10 +1,10 @@
-import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { type ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { ArrowRightOutlined } from '@ant-design/icons';
-import { Button, Image, Progress, Space } from 'antd';
+import { Button, Progress, Space } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 import type { GamePlayer } from 'types/player';
@@ -13,10 +13,9 @@ import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { AVATARS } from 'utils/avatars';
-import { PUBLIC_URL } from 'utils/constants';
-import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
+import { GameStrip } from 'components/general/GameBanner';
 import { HostOnlyButton } from 'components/host';
 import { Translate } from 'components/language';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
@@ -45,13 +44,13 @@ type GameOverProps = {
   /**
    * Custom rate widget text
    */
-  rateWidgetCustomText?: any;
+  rateWidgetCustomText?: ReactNode;
 } & Pick<StepProps, 'announcement'>;
 
 export function GameOver({ state, children, className, rateWidgetCustomText, announcement }: GameOverProps) {
   const info = useGameInfoContext();
-  const { language, dualTranslate } = useLanguage();
-  const [showGameBanner, setShowGameBanner] = useState(false);
+  const { language } = useLanguage();
+  const [hideGameOver, setShowGameBanner] = useState(false);
 
   const navigate = useNavigate();
 
@@ -65,18 +64,27 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
 
   return (
     <Step className={className} announcement={announcement} fullWidth>
-      <div className="game-over__title">
-        {showGameBanner ? (
-          <Image
-            src={`${PUBLIC_URL.BANNERS}${info.gameName}-${language}.jpg`}
-            fallback={`${PUBLIC_URL.RULES}game-rule-not-found.jpg`}
-            alt={dualTranslate(info.title)}
-            preview={false}
-            className={clsx(getAnimationClass('bounceInDown'), 'round-corners margin')}
-          />
-        ) : (
-          <img src={gameOverTitle} alt="Game Over" className={getAnimationClass('bounceInDown')} />
-        )}
+      <div className="game-over__banner">
+        <GameStrip
+          gameName={info.gameName}
+          width={400}
+          title={info.title}
+          stripWidth={window.innerWidth - 16}
+          showLogo={hideGameOver}
+        >
+          {!hideGameOver && (
+            <motion.img
+              src={gameOverTitle}
+              alt="Game Over"
+              className="game-over__title"
+              style={{ width: 400, transform: 'translate(-50%, -50%)' }}
+              initial={{ opacity: 0, scale: 0.5, transform: 'translate(-50%, -50%)' }}
+              animate={{ opacity: 1, scale: 1, transform: 'translate(-50%, -50%)' }}
+              transition={{ delay: 4, duration: 2 }}
+              exit={{ opacity: 0, scale: 0, transform: 'translate(-50%, -50%)' }}
+            />
+          )}
+        </GameStrip>
       </div>
 
       {hasWinnerContent && state?.group?.outcome !== 'NON_WINNABLE_GAME' && (
