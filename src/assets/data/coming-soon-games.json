@@ -110,16 +110,16 @@
     },
     "tags": ["competitive"]
   },
-  "nada-a-declarar": {
+  "barrados-na-alfandega": {
     "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "?",
-    "gameName": "nada-a-declarar",
+    "gameCode": "B",
+    "gameName": "barrados-na-alfandega",
     "version": "0.0.0",
     "release": "planned",
     "available": false,
     "title": {
-      "pt": "Nada a Declarar",
-      "en": "Customs Clearance"
+      "pt": "Barrados Na Alfândega",
+      "en": "Stuck On Customs"
     },
     "popularName": {
       "pt": "",
@@ -147,10 +147,10 @@
     },
     "tags": ["competitive"]
   },
-  "comunicacao-alienigena-duo": {
+  "comunicacao-duo": {
     "$schema": "../../utils/game-info.schema.json",
     "gameCode": "?",
-    "gameName": "comunicacao-alienigena-duo",
+    "gameName": "comunicacao-duo",
     "version": "0.0.0",
     "release": "planned",
     "available": false,
