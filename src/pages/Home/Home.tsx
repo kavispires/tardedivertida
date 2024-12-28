@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTitle } from 'react-use';
 // Ant Design Resources
-import { Button, Flex, Image, Input, Layout, Space } from 'antd';
+import { Button, Flex, Image, Input, Space } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { resetGlobalState } from 'hooks/useGlobalState';

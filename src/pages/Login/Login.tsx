@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { Layout, Button, Form, Input, Alert, Image } from 'antd';
+import { Button, Form, Input, Alert, Image } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Services

@@ -1,5 +1,5 @@
 import { Region, TextRegion } from 'pages/Daily/components/Region';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';

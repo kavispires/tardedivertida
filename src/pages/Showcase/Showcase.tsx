@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffectOnce, useTitle, useWindowSize } from 'react-use';
 // Ant Design Resources
 import { FilterFilled } from '@ant-design/icons';
-import { Avatar, Image, Layout, Modal, Space } from 'antd';
+import { Avatar, Image, Modal, Space } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
