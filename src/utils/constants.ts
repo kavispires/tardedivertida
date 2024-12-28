@@ -13,6 +13,8 @@ export const PUBLIC_URL = {
   RULES: `${process.env.PUBLIC_URL}/images/rules/`,
   ROOT: `${process.env.PUBLIC_URL}/images/`,
   RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
+  LOGOS: `${process.env.PUBLIC_URL}/images/logos/`,
+  STRIPS: `${process.env.PUBLIC_URL}/images/strips/`,
 };
 
 /**

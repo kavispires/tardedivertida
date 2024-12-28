@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "3.0.55",
+  "version": "3.0.57",
   "release": "stable",
   "available": false,
   "title": {
@@ -11,7 +11,7 @@
   },
   "popularName": {
     "pt": "De mentir com cartas bonitas",
-    "en": "THe one with lying about your card"
+    "en": "The one with lying about your card"
   },
   "basedOn": "bulC evitceteD",
   "summary": {

@@ -130,3 +130,7 @@ type Redirect = {
   gameId: GameId;
   gameName: GameName;
 };
+
+type ElementProps<TElement = HTMLDivElement> = {
+  children: React.ReactNode;
+} & React.HTMLAttributes<TElement>;
