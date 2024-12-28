@@ -80,7 +80,6 @@ export const buildGrid = (
     // Add hard topics
     if (hardTopics.length < hardTopicsQuantity && [4, 5].includes(shuffledTopics[i].level)) {
       hardTopics.push(shuffledTopics[i]);
-      continue;
     }
   }
 
