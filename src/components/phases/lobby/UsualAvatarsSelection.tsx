@@ -16,32 +16,21 @@ export function UsualAvatarsSelection({ avatarsIds, setSelectedAvatar }: UsualAv
     <div className="lobby-usual-avatar-selection">
       <div className="lobby-usual-avatar-selection__title">
         <small>
-          <Translate pt="Seus avatars mais usados" en="Your favorite avatars" />
+          <Translate pt="Seus avatars mais usados" en="Frequently used avatars" />
         </small>
       </div>
       <ul className="lobby-usual-avatar-selection__list">
         {avatarsIds.map((avatarId) => (
-          <UsualAvatarOption key={avatarId} setSelectedAvatar={setSelectedAvatar} avatarId={avatarId} />
+          <TransparentButton key={avatarId} onClick={() => setSelectedAvatar(avatarId)}>
+            <svg viewBox="0 0 100 100" className="lobby-usual-avatar-selection__avatar">
+              <use href={`${avatars}#avatar-${avatarId}`}></use>
+              <title>
+                <DualTranslate>{AVATARS[avatarId].description}</DualTranslate>
+              </title>
+            </svg>
+          </TransparentButton>
         ))}
       </ul>
     </div>
-  );
-}
-
-type UsualAvatarOptionProps = {
-  setSelectedAvatar: GenericFunction;
-  avatarId: string;
-};
-
-export function UsualAvatarOption({ avatarId, setSelectedAvatar }: UsualAvatarOptionProps) {
-  return (
-    <TransparentButton onClick={() => setSelectedAvatar(avatarId)}>
-      <svg viewBox="0 0 100 100" className="lobby-usual-avatar-selection__avatar">
-        <use href={`${avatars}#avatar-${avatarId}`}></use>
-        <title>
-          <DualTranslate>{AVATARS[avatarId].description}</DualTranslate>
-        </title>
-      </svg>
-    </TransparentButton>
   );
 }

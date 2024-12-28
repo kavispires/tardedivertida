@@ -1,9 +1,11 @@
-import { orderBy } from 'lodash';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
+// Ant Design Resources
+import { Alert, Typography } from 'antd';
 // Types
 import type { GameMeta } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { resetGlobalState, useGlobalState } from 'hooks/useGlobalState';
@@ -12,25 +14,25 @@ import { useStep } from 'hooks/useStep';
 import { PHASES } from 'utils/phases';
 // Components
 import { AdminMenuDrawer } from 'components/admin';
-import { AvatarEntry } from 'components/avatars';
+import { GameStrip } from 'components/general/GameBanner';
+import { DualTranslate, Translate } from 'components/language';
 import { PhaseContainer } from 'components/phases';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
 import { CloudBackground } from './lobby/CloudBackground';
 import { StepJoin } from './lobby/StepJoin';
-import { LobbyStep } from './lobby/LobbyStep';
 import { StepInfo } from './lobby/StepInfo';
 import { StepWaiting } from './lobby/StepWaiting';
+import { JoinedPlayers } from './lobby/JoinedPlayers';
+import { LobbyRules } from './lobby/LobbyRules';
 // Sass
 import './PhaseLobby.scss';
+
+const Paragraph = motion(Typography.Paragraph);
 
 type PhaseLobbyProps = {
   players: GamePlayers;
   meta: GameMeta;
-};
-
-type SplitPlayers = {
-  left: GamePlayer[];
-  right: GamePlayer[];
 };
 
 export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
@@ -41,6 +43,7 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [localUsername] = useLocalStorage('username', '');
   const [localAvatarId] = useLocalStorage('avatarId', '');
+  const info = useGameInfoContext();
 
   const player = players?.[currentUser.id];
 
@@ -69,73 +72,65 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
     localAvatarId,
   ]);
 
-  const { left, right } = orderBy(Object.values(players), 'updatedAt').reduce(
-    (acc: SplitPlayers, player, index) => {
-      if (index % 2 === 0) {
-        acc.left.push(player);
-      } else {
-        acc.right.push(player);
-      }
-
-      return acc;
-    },
-    {
-      left: [],
-      right: [],
-    },
-  );
-
   return (
-    <PhaseContainer phase="LOBBY" allowedPhase={PHASES.DEFAULT.LOBBY}>
-      <div className="lobby">
-        <div className="lobby__seating-area-left">
-          {left.map((player, index) => (
-            <div
-              className="lobby__seat"
-              key={player.name}
-              style={{
-                transform: `translate(${100 - 10 * index}%`,
-                top: `${100 - 10 * index}%`,
-                left: `${60 - 30 * (index % 3)}%`,
-              }}
-            >
-              <AvatarEntry player={player} animate />
+    <PhaseContainer phase="LOBBY" allowedPhase={PHASES.DEFAULT.LOBBY} className="lobby">
+      <AnimatePresence>
+        <motion.div className="lobby-step" layout>
+          <motion.div className="lobby-step__card">
+            <GameStrip
+              width={340}
+              title={info?.title}
+              gameName={info?.gameName}
+              className="lobby-step__banner"
+            />
+            <div className="lobby-step__content">
+              <Paragraph className="lobby-step__summary" layoutId="lobby-step-summary">
+                <DualTranslate>{info.summary}</DualTranslate>
+              </Paragraph>
+
+              {meta.isLocked ? (
+                <>
+                  <Typography.Title className="lobby-step__title">
+                    <Translate pt="Esse jogo está trancado" en="This session is locked" />
+                  </Typography.Title>
+
+                  <Alert
+                    type="warning"
+                    showIcon
+                    message={
+                      <Translate
+                        pt="O jogo já foi iniciado e novos jogadores não podem ser adicionados"
+                        en="The game has started and new players cannot be added at this time"
+                      />
+                    }
+                  />
+                </>
+              ) : (
+                <>
+                  {step === 0 && <StepJoin setStep={setStep} />}
+                  {step === 1 && <StepInfo players={players} setStep={setStep} />}
+                  {step === 2 && <StepWaiting players={players} />}
+                </>
+              )}
             </div>
-          ))}
-        </div>
+          </motion.div>
+          <div className="lobby-step__waiting">
+            {step === 2 && <LobbyRules />}
 
-        <div className="lobby__seating-area-right">
-          {right.map((player, index) => (
-            <div
-              className="lobby__seat"
-              key={player.name}
-              style={{
-                transform: `translate(${100 - 10 * index}%`,
-                top: `${100 - 10 * index}%`,
-                right: `${80 - 30 * (index % 3)}%`,
-              }}
-            >
-              <AvatarEntry player={player} animate />
-            </div>
-          ))}
-        </div>
+            <JoinedPlayers players={players} orientation={step === 1 ? 'vertical' : 'horizontal'} />
+          </div>
+        </motion.div>
 
-        <LobbyStep isLocked={meta.isLocked}>
-          {step === 0 && <StepJoin setStep={setStep} />}
-          {step === 1 && <StepInfo players={players} setStep={setStep} />}
-          {step === 2 && <StepWaiting players={players} />}
-        </LobbyStep>
-      </div>
-
-      <AdminMenuDrawer
-        state={{
-          phase: 'LOBBY',
-          round: { current: 0, total: 0, forceLastRound: false },
-          players: {},
-        }}
-        players={players}
-      />
-      <CloudBackground />
+        <AdminMenuDrawer
+          state={{
+            phase: 'LOBBY',
+            round: { current: 0, total: 0, forceLastRound: false },
+            players: {},
+          }}
+          players={players}
+        />
+        <CloudBackground />
+      </AnimatePresence>
     </PhaseContainer>
   );
 }
