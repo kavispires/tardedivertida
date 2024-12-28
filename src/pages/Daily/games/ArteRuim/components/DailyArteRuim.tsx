@@ -1,5 +1,5 @@
 import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
 import { Button, Layout, Modal, Space } from 'antd';

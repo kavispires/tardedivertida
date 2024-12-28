@@ -1,11 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { doc, updateDoc } from 'firebase/firestore';
 import { type CSSProperties, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources
-import { Button, Layout, Space } from 'antd';
-// Services
-import { firestore } from 'services/firebase';
+import { Layout } from 'antd';
 // Components
 import { PageLayout } from 'components/general/PageLayout';
 // Internal
