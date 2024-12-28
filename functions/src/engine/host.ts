@@ -5,7 +5,7 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
-import { CallableRequest, FirebaseAuth } from '../types/reference';
+import type { CallableRequest, FirebaseAuth } from '../types/reference';
 
 export type CreateGamePayload = {
   gameName: string;
@@ -60,7 +60,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   if (tempGame.exists) {
     return utils.firebase.throwException(
       `the generated game id ${gameId} belongs to an existing session`,
-      actionText
+      actionText,
     );
   }
 
@@ -124,7 +124,7 @@ const lockGame = async (data: BasicGamePayload) => {
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const players = state?.players ?? {};
@@ -137,14 +137,14 @@ const lockGame = async (data: BasicGamePayload) => {
   if (numPlayers < playerCounts.MIN) {
     utils.firebase.throwException(
       `Game ${gameId} has an insufficient number of players: Minimum ${playerCounts.MIN} players, but has ${numPlayers}`,
-      actionText
+      actionText,
     );
   }
 
   if (numPlayers > playerCounts.MAX) {
     utils.firebase.throwException(
       `Game ${gameId} has more players than it supports: Maximum ${playerCounts.MAX} players, but has ${numPlayers}`,
-      actionText
+      actionText,
     );
   }
 
@@ -288,7 +288,7 @@ const playAgain = async (data: BasicGamePayload) => {
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const players = state?.players ?? {};

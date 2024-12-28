@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MOVIES_PER_ROUND, TOTAL_REVIEW_CARDS, TOTAL_ROUNDS } from './constants';
 // Types
-import { MovieCard, MovieReviewCard } from '../../types/tdr';
+import type { MovieCard, MovieReviewCard } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';
@@ -27,7 +27,7 @@ export const getCards = async (language: string): Promise<ResourceData> => {
   const movies: Record<string, MovieCard> = utils.game.filterOutByIds(allMovies, usedMoviesAndReviews);
   const reviews: Record<string, MovieReviewCard> = utils.game.filterOutByIds(
     allReviews,
-    usedMoviesAndReviews
+    usedMoviesAndReviews,
   );
 
   // If not the minimum cards needed, reset and use all
@@ -55,7 +55,7 @@ export const getCards = async (language: string): Promise<ResourceData> => {
 export const saveData = async (
   movies: MovieCard[],
   goodReviews: MovieReviewCard[],
-  badReviews: MovieReviewCard[]
+  badReviews: MovieReviewCard[],
 ): Promise<void> => {
   const usedMovies = utils.helpers.buildIdDictionary(movies);
   const usedGoodReviews = utils.helpers.buildIdDictionary(goodReviews);

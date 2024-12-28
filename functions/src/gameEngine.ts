@@ -1,5 +1,5 @@
 import { COMMON_ACTIONS } from './engine/common';
-import { CallableRequest } from './types/reference';
+import type { CallableRequest } from './types/reference';
 import utils from './utils';
 import { getEngine } from './utils/delegators';
 

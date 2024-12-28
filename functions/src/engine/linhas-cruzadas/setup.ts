@@ -24,17 +24,17 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const { gameOrder, playerCount } = utils.players.buildGameOrder(players);
 
   const expressionsDeck = utils.game.getRandomItems(
     resourceData.allExpressions,
-    playerCount * (store.options.singleWordOnly ? 0 : 2)
+    playerCount * (store.options.singleWordOnly ? 0 : 2),
   );
   const wordsDeck = utils.game.getRandomItems(
     resourceData.allWords,
-    playerCount * (store.options.singleWordOnly ? 4 : 2)
+    playerCount * (store.options.singleWordOnly ? 4 : 2),
   );
 
   const achievements = utils.achievements.setup(players, store, {
@@ -67,7 +67,7 @@ export const prepareSetupPhase = async (
 export const preparePromptSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -89,7 +89,7 @@ export const preparePromptSelectionPhase = async (
 export const prepareDrawingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   let album = store.album;
   let isFirstSlide = false;
@@ -143,7 +143,7 @@ export const prepareDrawingPhase = async (
 export const prepareNamingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const album = addSlideToAlbum(store.album, players);
 
@@ -179,7 +179,7 @@ export const prepareNamingPhase = async (
 export const preparePresentationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const album = addSlideToAlbum(store.album, players);
   utils.players.unReadyPlayers(players);
@@ -215,7 +215,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const achievements = getAchievements(store);
 

@@ -1,5 +1,5 @@
 // Types
-import { NamingPromptCard } from '../../types/tdr';
+import type { NamingPromptCard } from '../../types/tdr';
 import type { SonhosPesadelosCards, ThemeDeck } from './types';
 // Constants
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, THEMES_PER_ROUND } from './constants';
@@ -96,7 +96,7 @@ export const determineDreamsNightmaresAndThemes = (
   players: Players,
   themesDeck: ThemeDeck,
   table: ImageCardId[],
-  currentRound: number
+  currentRound: number,
 ) => {
   const roundThemesDeck: NamingPromptCard[] = themesDeck[currentRound];
 

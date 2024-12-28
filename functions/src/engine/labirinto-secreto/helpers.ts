@@ -1,5 +1,12 @@
 // Types
-import { Direction, FirebaseStoreData, LabirintoSecretoAchievement, MapSegment, Point, Tree } from './types';
+import type {
+  Direction,
+  FirebaseStoreData,
+  LabirintoSecretoAchievement,
+  MapSegment,
+  Point,
+  Tree,
+} from './types';
 // Constants
 import {
   CARDS_PER_PLAYER,
@@ -15,7 +22,7 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 
 export const determineGameOver = (players: Players) => {
   // After 5 rounds or all paths are completed
@@ -36,7 +43,7 @@ export const determineNextPhase = (
   round: Round,
   isGameOver?: boolean,
   turnOrder?: TurnOrder,
-  activePlayerId?: PlayerId
+  activePlayerId?: PlayerId,
 ): string => {
   const { RULES, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS, GAME_OVER } = LABIRINTO_SECRETO_PHASES;
   const order = [RULES, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS];
@@ -297,7 +304,7 @@ export const getRankingAndProcessScoring = (players: Players, store: FirebaseSto
     if (!getIsPlayerMapComplete(activePlayer)) {
       // Get only active segments (not passed and with clues)
       const currentMap = activePlayer.map.filter(
-        (segment: MapSegment) => !segment.passed && segment.clues.length > 0
+        (segment: MapSegment) => !segment.passed && segment.clues.length > 0,
       );
 
       // Build an empty array of with the same length as the current map
@@ -389,7 +396,7 @@ export const updateMaps = (players: Players) => {
         }
         return lastIndex;
       },
-      0
+      0,
     );
 
     // Remove players from anywhere on the map and add them to the furthest player point
@@ -426,7 +433,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most and Fewest adjectives
   const { most: mostAdjectives, least: leastAdjectives } = utils.achievements.getMostAndLeastOf(
     store,
-    'adjectives'
+    'adjectives',
   );
   if (mostAdjectives) {
     achievements.push({

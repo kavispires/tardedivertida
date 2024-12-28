@@ -1,5 +1,5 @@
 // Types
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 import type {
   CurrentSuggestions,
   FirebaseStoreData,
@@ -26,7 +26,7 @@ export const determineNextPhase = (
   currentPhase: string,
   round: Round,
   group: GroupProgress,
-  currentOutcome?: Outcome
+  currentOutcome?: Outcome,
 ): string => {
   const { RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER } =
     UE_SO_ISSO_PHASES;
@@ -170,7 +170,7 @@ export const groupSuggestions = (players: Players): CurrentSuggestions => {
         const suggestion = sug.toLowerCase();
         const similarKey =
           Object.keys(acc).find(
-            (key) => utils.helpers.stringRemoveAccents(key) === utils.helpers.stringRemoveAccents(suggestion)
+            (key) => utils.helpers.stringRemoveAccents(key) === utils.helpers.stringRemoveAccents(suggestion),
           ) ?? suggestion;
         if (acc[similarKey] === undefined) {
           acc[similarKey] = [];
@@ -263,10 +263,10 @@ export function countAchievements(store: FirebaseStoreData) {
   // Get mean values
   Object.keys(store.achievements).forEach((playerId) => {
     store.achievements[playerId].correctGuesses = utils.game.calculateAverage(
-      store.achievements[playerId].correctGuesses ?? []
+      store.achievements[playerId].correctGuesses ?? [],
     );
     store.achievements[playerId].wrongGuesses = utils.game.calculateAverage(
-      store.achievements[playerId].wrongGuesses ?? []
+      store.achievements[playerId].wrongGuesses ?? [],
     );
   });
 }
@@ -281,7 +281,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Worst Clue Giver: most eliminated clues
   const { most: mostEliminatedClues, least: fewestEliminatedClues } = utils.achievements.getMostAndLeastOf(
     store,
-    'eliminatedClues'
+    'eliminatedClues',
   );
   if (mostEliminatedClues) {
     achievements.push({
@@ -334,7 +334,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     store,
     'correctGuesses',
     [],
-    (v) => v > 0
+    (v) => v > 0,
   );
   if (correctGuesses) {
     achievements.push({
@@ -349,7 +349,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     store,
     'wrongGuesses',
     [],
-    (v) => v > 0
+    (v) => v > 0,
   );
   if (wrongGuesses) {
     achievements.push({

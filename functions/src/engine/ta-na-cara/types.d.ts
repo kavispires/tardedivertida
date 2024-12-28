@@ -1,5 +1,5 @@
-import { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
-import { TA_NA_CARA_ACTIONS } from './constants';
+import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { TA_NA_CARA_ACTIONS } from './constants';
 
 export type TaNaCaraOptions = {
   /**

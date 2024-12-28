@@ -1,4 +1,4 @@
-import { NA_RUA_DO_MEDO_ACHIEVEMENTS, NA_RUA_DO_MEDO_ACTIONS } from './constants';
+import type { NA_RUA_DO_MEDO_ACHIEVEMENTS, NA_RUA_DO_MEDO_ACTIONS } from './constants';
 
 export type NoRuaDoMedoOptions = {
   shortGame: boolean;

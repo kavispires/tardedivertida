@@ -2,7 +2,7 @@
 import { TDR_RESOURCES } from '../../utils/constants';
 import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 // Types
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 import type { LabirintoSecretoGameOptions, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
@@ -17,7 +17,7 @@ import utils from '../../utils';
 export const getData = async (
   language: Language,
   playerCount: number,
-  options: LabirintoSecretoGameOptions
+  options: LabirintoSecretoGameOptions,
 ): Promise<ResourceData> => {
   // Get Adjectives
   const adjectivesPerPlayer = playerCount * CARDS_PER_PLAYER + 1;
@@ -51,7 +51,7 @@ export const getData = async (
 
 // TODO: Add to game over
 export const saveData = async (
-  usedAdjectives: BooleanDictionary
+  usedAdjectives: BooleanDictionary,
   // usedTreeCards: BooleanDictionary,
 ) => {
   await utils.tdr.saveUsedAdjectives(usedAdjectives);

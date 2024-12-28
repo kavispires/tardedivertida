@@ -1,5 +1,5 @@
 // Types
-import { MovieCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { MovieCard, TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';

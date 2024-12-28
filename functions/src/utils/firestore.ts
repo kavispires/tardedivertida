@@ -53,7 +53,7 @@ export function getUserRef(): FirebaseFirestore.CollectionReference<FirebaseFire
  * @returns firebase public reference
  */
 export function getDailyRef(
-  documentName: string
+  documentName: string,
 ): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
   return getFirestore().collection(documentName);
 }
@@ -66,7 +66,7 @@ export function getDailyRef(
  */
 export function getSessionRef(
   gameName: string,
-  gameId: string
+  gameId: string,
 ): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
   return getFirestore().collection('games').doc(gameName).collection(gameId);
 }
@@ -94,7 +94,7 @@ export function incrementValue(value = 1) {
  */
 export async function getMetaDoc(
   gameId: string,
-  actionText: string
+  actionText: string,
 ): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
   const metaRef = getMetaRef();
   const gameDoc = await metaRef.doc(gameId).get();
@@ -102,7 +102,7 @@ export async function getMetaDoc(
   if (!gameDoc.exists) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to ${actionText}: game ${gameId} does not exist`
+      `Failed to ${actionText}: game ${gameId} does not exist`,
     );
   }
 
@@ -121,7 +121,7 @@ export async function getSessionDoc(
   gameName: string,
   gameId: string,
   docName: string,
-  actionText: string
+  actionText: string,
 ): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
   const sessionRef = getSessionRef(gameName, gameId);
   const gameDoc = await sessionRef.doc(docName).get();
@@ -129,7 +129,7 @@ export async function getSessionDoc(
   if (!gameDoc.exists) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to ${actionText}: game ${gameName}/${gameId}/${docName} does not exist`
+      `Failed to ${actionText}: game ${gameName}/${gameId}/${docName} does not exist`,
     );
   }
 
@@ -146,7 +146,7 @@ export async function getSessionDoc(
 export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
   gameName: GameName,
   gameId: GameId,
-  actionText: string
+  actionText: string,
 ): Promise<{
   sessionRef: FirebaseFirestore.CollectionReference;
   stateDoc: FirebaseFirestore.DocumentSnapshot;
@@ -180,7 +180,7 @@ export const getStateAndStoreReferences = async <
   gameName: GameName,
   gameId: GameId,
   actionText: string,
-  previousState?: A
+  previousState?: A,
 ): Promise<{
   sessionRef: FirebaseFirestore.CollectionReference;
   stateDoc: FirebaseFirestore.DocumentSnapshot;
@@ -213,7 +213,7 @@ export const getStateAndStoreReferences = async <
  */
 export const saveGame = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
-  saveContent: SaveGamePayload
+  saveContent: SaveGamePayload,
 ) => {
   try {
     if (saveContent?.set?.state && !isEmpty(saveContent?.set?.state)) {
@@ -278,7 +278,7 @@ export const markGameAsComplete = async (gameId: GameId) => {
  * @returns
  */
 export const triggerSetupPhase = async (
-  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
   await sessionRef.doc('state').update({ phase: 'SETUP', updatedAt: Date.now() });
   // await utils.wait();
@@ -286,7 +286,7 @@ export const triggerSetupPhase = async (
 };
 
 export const triggerWaitPhase = async (
-  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
   await sessionRef.doc('state').update({ phase: 'WAIT', updatedAt: Date.now() });
   await utils.helpers.wait(2000);

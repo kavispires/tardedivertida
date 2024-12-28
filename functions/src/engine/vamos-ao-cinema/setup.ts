@@ -2,7 +2,7 @@
 import { MOVIES_PER_ROUND, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
-import { MovieReviewCard } from '../../types/tdr';
+import type { MovieReviewCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
@@ -26,7 +26,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder } = utils.players.buildGameOrder(players);
@@ -36,7 +36,7 @@ export const prepareSetupPhase = async (
 
   const movieDeck = utils.game.getRandomItems(
     Object.values(additionalData.movies),
-    TOTAL_ROUNDS * MOVIES_PER_ROUND
+    TOTAL_ROUNDS * MOVIES_PER_ROUND,
   );
 
   const [good, bad] = utils.game.shuffle(Object.values(additionalData.reviews)).reduce(
@@ -45,7 +45,7 @@ export const prepareSetupPhase = async (
 
       return acc;
     },
-    [[], []]
+    [[], []],
   );
 
   const goodReviewsDeck = utils.game.getRandomItems(good, TOTAL_ROUNDS);
@@ -90,7 +90,7 @@ export const prepareSetupPhase = async (
 export const prepareMovieSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -134,14 +134,14 @@ export const prepareMovieSelectionPhase = async (
 export const prepareMovieEliminationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Get or build turnOrder
   const turnOrder =
     state.turnOrder ??
     utils.players.reorderGameOrder(
       store.gameOrder,
-      utils.players.getActivePlayer(store.gameOrder, state.round.current)
+      utils.players.getActivePlayer(store.gameOrder, state.round.current),
     );
 
   const activePlayerId = utils.players.getNextPlayer(turnOrder, state.activePlayerId);
@@ -164,7 +164,7 @@ export const prepareMovieEliminationPhase = async (
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -244,7 +244,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   await utils.firestore.markGameAsComplete(gameId);
 

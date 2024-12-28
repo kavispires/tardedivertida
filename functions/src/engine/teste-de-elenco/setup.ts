@@ -16,7 +16,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Get needed actors
   const actors = utils.game.getRandomItems(additionalData.allActors, TOTAL_ACTORS);
@@ -76,7 +76,7 @@ export const prepareSetupPhase = async (
 export const prepareMovieGenreSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const genres = Object.values(GENRES).map((genre) => ({
     key: genre.id,
@@ -108,7 +108,7 @@ export const prepareMovieGenreSelectionPhase = async (
 export const prepareActorSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -149,7 +149,7 @@ export const prepareActorSelectionPhase = async (
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const { outcome, ranking } = determineCast(players, state, store);
 
@@ -178,7 +178,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

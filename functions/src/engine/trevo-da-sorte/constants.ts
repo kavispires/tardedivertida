@@ -1,4 +1,4 @@
-import { Position } from './types';
+import type { Position } from './types';
 
 export const TREVO_DA_SORTE_PHASES = {
   LOBBY: 'LOBBY',

@@ -6,7 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 import { buildRanking, getAchievements } from './helpers';
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 // Internal
 
 /**
@@ -19,7 +19,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const { gameOrder, playerIds: turnOrder } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
 
@@ -59,7 +59,7 @@ export const prepareSetupPhase = async (
 export const prepareScenarioOrderingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -94,7 +94,7 @@ export const prepareScenarioOrderingPhase = async (
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const ranking = buildRanking(players, state.activePlayerId, state.roundType, store);
 
@@ -129,7 +129,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

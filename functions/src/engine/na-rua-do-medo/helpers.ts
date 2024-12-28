@@ -84,7 +84,7 @@ export const buildDecks = (isShortGame: boolean): Decks => {
         type: 'horror',
         value: 0,
       }));
-    })
+    }),
   );
 
   // 2. Build jackpot deck: based on game length
@@ -124,7 +124,7 @@ export const buildDecks = (isShortGame: boolean): Decks => {
 export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number): HouseCard[] => {
   // Remove last used horror, if any
   const horrorDeckWithoutAnyUsedHorrors = store.horrorDeck.filter(
-    (horror: HouseCard) => !store.usedHorrorIds.includes(horror.id)
+    (horror: HouseCard) => !store.usedHorrorIds.includes(horror.id),
   );
 
   // Add jackpots up to the current level
@@ -171,7 +171,7 @@ export const shareCandy = (players: Players, currentCard?: HouseCard): CandyStat
  */
 export const dealNewCard = (
   store: FirebaseStoreData,
-  players: Players
+  players: Players,
 ): { currentCard: HouseCard; candyStatus: CandyStatus } => {
   // Deal card
   const currentCard = store.streetDeck.pop();
@@ -204,7 +204,7 @@ export const parseDecisions = (
   players: Players,
   candySidewalk: CandyStatus[],
   street: HouseCard[],
-  store: FirebaseStoreData
+  store: FirebaseStoreData,
 ): ParsedDecisions => {
   const { claimedJackpotIds } = store;
   const monsterCount = countMonsters(street);
@@ -234,7 +234,7 @@ export const parseDecisions = (
         // Achievement: facing monsters
         utils.achievements.increase(store, player.id, 'facingMonsters', monsterCount);
         break;
-      case DECISIONS.CONTINUE:
+      // case DECISIONS.CONTINUE:
       default:
         continuingPlayers.push(player);
         continuingPlayerIds.push(player.id);
@@ -297,29 +297,28 @@ export const parseDecisions = (
         leftover: 0,
         perPlayer: 0,
       };
-    } else {
-      if (leftover >= card.value) {
-        leftover -= card.value;
-        return {
-          leftover: card.value,
-          perPlayer: 0,
-        };
-      }
-
-      if (leftover > 0) {
-        const leftoverCopy = leftover;
-        leftover = 0;
-        return {
-          leftover: leftoverCopy,
-          perPlayer: 0,
-        };
-      }
-
+    }
+    if (leftover >= card.value) {
+      leftover -= card.value;
       return {
-        leftover,
+        leftover: card.value,
         perPlayer: 0,
       };
     }
+
+    if (leftover > 0) {
+      const leftoverCopy = leftover;
+      leftover = 0;
+      return {
+        leftover: leftoverCopy,
+        perPlayer: 0,
+      };
+    }
+
+    return {
+      leftover,
+      perPlayer: 0,
+    };
   });
 
   return {
@@ -340,7 +339,7 @@ export const checkIfIsPanic = (horrorCount: NumberDictionary, newHorrorKey: stri
 export const determineOutcome = (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Outcome => {
   if (state.phase === NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT) {
     return {
@@ -413,7 +412,10 @@ export const sendPlayersHome = (players: Players): PlayerId[] => {
 };
 
 export const getTotalCandyInSidewalk = (candySidewalk: CandyStatus[]): number => {
-  return candySidewalk.reduce((total, candyObj): number => (total += candyObj.leftover), 0);
+  return candySidewalk.reduce((total, candyObj): number => {
+    total += candyObj.leftover;
+    return total;
+  }, 0);
 };
 
 export const resetHorrorCount = (horrorCount: NumberDictionary): NumberDictionary => {

@@ -22,7 +22,7 @@ export const generateGameId = (
   gameCode: GameCode,
   language: Language,
   usedIds: string[] = [],
-  length = 4
+  length = 4,
 ): string => {
   if (!gameCode) throw Error('Missing game code');
 
@@ -62,6 +62,7 @@ export const generateGameId = (
  * @returns
  */
 export function stringRemoveAccents(str: string): string {
+  // biome-ignore lint/suspicious/noMisleadingCharacterClass: <explanation>
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 

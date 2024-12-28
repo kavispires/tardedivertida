@@ -1,5 +1,5 @@
 // Types
-import { TestimonyQuestionCard } from '../../types/tdr';
+import type { TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
@@ -25,7 +25,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
 
   // Filter out used cards
   const availableCards = Object.values(utils.game.filterOutByIds(allCards, usedCards)).filter((card) =>
-    options.nsfw ? card : !card.nsfw
+    options.nsfw ? card : !card.nsfw,
   );
 
   // If not the minimum cards needed, reset and use all

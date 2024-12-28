@@ -1,4 +1,4 @@
-import { Level5Type } from './types';
+import type { Level5Type } from './types';
 
 export const ARTE_RUIM_PHASES = {
   LOBBY: 'LOBBY',

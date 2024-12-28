@@ -36,7 +36,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: QuemSouEuOptions
+  options: QuemSouEuOptions,
 ): QuemSouEuInitialState => {
   return utils.helpers.getDefaultInitialState<QuemSouEuInitialState>({
     gameId,
@@ -60,7 +60,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -79,7 +79,7 @@ export const getNextPhase = async (
     const additionalData = await getResourceData(
       store.language,
       utils.players.getPlayerCount(players),
-      store.options
+      store.options,
     );
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firestore.saveGame(sessionRef, newPhase);

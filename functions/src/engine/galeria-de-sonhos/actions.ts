@@ -9,7 +9,7 @@ export const handleSubmitWord = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  wordId: string
+  wordId: string,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -25,7 +25,7 @@ export const handleSubmitCards = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  cardsIds: string[]
+  cardsIds: string[],
 ) => {
   const cards = cardsIds.reduce((acc: PlainObject, cardId) => {
     acc[cardId] = {
@@ -52,7 +52,7 @@ export const handlePlayCard = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  cardId: string
+  cardId: string,
 ) => {
   const actionText = 'play a card';
 
@@ -60,7 +60,7 @@ export const handlePlayCard = async (
   const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const playersList = utils.players.getListOfPlayers(players);

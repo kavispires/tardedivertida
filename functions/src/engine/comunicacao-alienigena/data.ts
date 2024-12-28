@@ -1,8 +1,8 @@
 // Constants
 import { ATTRIBUTES, AVAILABLE_SIGNS, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
 // Type
-import { AlienItem, ItemAttribute } from '../../types/tdr';
-import { Item, Sign, ResourceData, ComunicacaoAlienigenaOptions } from './types';
+import type { AlienItem, ItemAttribute } from '../../types/tdr';
+import type { Item, Sign, ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Helpers
 import utils from '../../utils';
 import { calculateAttributeUsage, getItems } from './helpers';
@@ -21,7 +21,7 @@ import { TDR_RESOURCES } from '../../utils/constants';
 export const getResourceData = async (
   language: Language,
   playerCount: number,
-  options: ComunicacaoAlienigenaOptions
+  options: ComunicacaoAlienigenaOptions,
 ): Promise<ResourceData> => {
   const isBotAlien = !!options.botAlien;
   const allowNSFW = !!options.nsfw;
@@ -31,11 +31,11 @@ export const getResourceData = async (
   // If not bot alien, use new libraries
   if (!isBotAlien) {
     const itemAttributesResponse: Collection<ItemAttribute> = await resourceUtils.fetchResource(
-      TDR_RESOURCES.ITEMS_ATTRIBUTES
+      TDR_RESOURCES.ITEMS_ATTRIBUTES,
     );
     const itemAttributes = utils.game.getRandomItems(
       Object.values(itemAttributesResponse).filter((attribute) => attribute.default),
-      TOTAL_ITEMS
+      TOTAL_ITEMS,
     );
 
     const fakeAttributesForAliemItemKnowledge = itemAttributes.reduce((acc: PlainObject, attribute) => {
@@ -64,7 +64,7 @@ export const getResourceData = async (
 
     const signIds = utils.game.getRandomItems(
       utils.game.makeArray(Object.values(itemAttributesResponse).length),
-      TOTAL_SIGNS
+      TOTAL_SIGNS,
     );
 
     // Get random list of attributes and signs, then alphabetically order them
@@ -76,7 +76,7 @@ export const getResourceData = async (
         description: itemAttributesResponse[attributeObj.id].description,
       })),
       `attribute.${language}`,
-      'asc'
+      'asc',
     );
 
     const startingAttributes = utils.game.getRandomItems(signs, isEasyGame ? 3 : 1);
@@ -124,7 +124,7 @@ export const getResourceData = async (
       signId: String(signIds[index]),
     })),
     `attribute.${language}`,
-    'asc'
+    'asc',
   );
 
   const startingAttributes = utils.game.getRandomItems(signs, isEasyGame ? 3 : 1);

@@ -34,7 +34,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Build forest
   const forest = buildForest(resourceData.forestCards, !!store?.options?.itemTreeType);
@@ -85,7 +85,7 @@ export const prepareSetupPhase = async (
 export const prepareMapBuildingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -117,7 +117,7 @@ export const prepareMapBuildingPhase = async (
 export const preparePathFollowingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const listOfPlayers = utils.players.getListOfPlayers(players);
   // Build game order based oh the players updated time
@@ -184,7 +184,7 @@ export const preparePathFollowingPhase = async (
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const ranking = getRankingAndProcessScoring(players, store);
   utils.players.unReadyPlayers(players);
@@ -206,7 +206,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

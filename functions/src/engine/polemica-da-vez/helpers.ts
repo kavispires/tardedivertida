@@ -58,7 +58,7 @@ export const buildDeck = (allTweets): Decks => {
     {
       deck: [],
       customDeck: [],
-    }
+    },
   );
 
   return {

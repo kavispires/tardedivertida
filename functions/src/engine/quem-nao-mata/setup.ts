@@ -9,7 +9,7 @@ import utils from '../../utils';
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.removePropertiesFromPlayers(players, ['vote']);
   utils.players.unReadyPlayers(players);
@@ -31,7 +31,7 @@ export const prepareSetupPhase = async (
 export const prepareTargetingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.removePropertiesFromPlayers(players, ['target']);
   utils.players.unReadyPlayers(players);
@@ -58,7 +58,7 @@ export const prepareTargetingPhase = async (
 export const prepareStandoffPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // TODO: Resolve votes
 
@@ -75,7 +75,7 @@ export const prepareStandoffPhase = async (
 export const prepareDuelPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Save
   return {
@@ -90,7 +90,7 @@ export const prepareDuelPhase = async (
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Save
   return {
@@ -107,7 +107,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Save
   const winners = utils.players.determineWinners(players);

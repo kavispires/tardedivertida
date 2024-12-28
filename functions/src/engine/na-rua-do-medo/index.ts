@@ -34,7 +34,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: NoRuaDoMedoOptions
+  options: NoRuaDoMedoOptions,
 ): NoRuaDoMedoInitialState => {
   return utils.helpers.getDefaultInitialState<NoRuaDoMedoInitialState>({
     gameId,
@@ -69,7 +69,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,

@@ -35,7 +35,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: SinaisDeAlertaOptions
+  options: SinaisDeAlertaOptions,
 ): SinaisDeAlertaInitialState => {
   return utils.helpers.getDefaultInitialState<SinaisDeAlertaInitialState>({
     gameId,
@@ -62,7 +62,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,

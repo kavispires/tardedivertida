@@ -34,7 +34,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
-  version: string
+  version: string,
 ): EspiaoEntreNosInitialState => {
   return utils.helpers.getDefaultInitialState<EspiaoEntreNosInitialState>({
     gameId,
@@ -61,7 +61,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,

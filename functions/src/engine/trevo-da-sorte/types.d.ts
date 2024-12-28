@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { TREVO_DA_SORTE_ACTIONS } from './constants';
+import type { TextCard } from '../../types/tdr';
+import type { TREVO_DA_SORTE_ACTIONS } from './constants';
 
 export type TrevoDaSorteOptions = {
   hardGame: boolean;

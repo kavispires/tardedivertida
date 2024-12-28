@@ -9,7 +9,7 @@ export const handleSubmitGenre = async (
   playerId: PlayerId,
   genre: string,
   movieTitle: string,
-  propsIds: CardId[]
+  propsIds: CardId[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -30,7 +30,7 @@ export const handleSubmitActor = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  actorId: CardId
+  actorId: CardId,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

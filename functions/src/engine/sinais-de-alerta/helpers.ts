@@ -1,7 +1,7 @@
 // Types
 // Constants
 import { SINAIS_DE_ALERTA_ACHIEVEMENTS, SINAIS_DE_ALERTA_PHASES, TABLE_CARDS } from './constants';
-import {
+import type {
   DrawingEntry,
   FinalGalleryEntry,
   FirebaseStoreData,
@@ -11,7 +11,7 @@ import {
 } from './types';
 // Helpers
 import utils from '../../utils';
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 
 /**
  * Determine the next phase based on the current one
@@ -81,7 +81,7 @@ const getTitle = (
   cards: Collection<TextCard>,
   descriptorId: CardId,
   subjectId: CardId,
-  language: Language
+  language: Language,
 ) => {
   if (language === 'pt') {
     return `${cards[subjectId].text} ${cards[descriptorId].text}`;
@@ -94,7 +94,7 @@ export const evaluateAnswers = (
   drawings: DrawingEntry[],
   players: Players,
   cards: Collection<TextCard>,
-  store: FirebaseStoreData
+  store: FirebaseStoreData,
 ) => {
   const { language } = store;
   // Gained Points: [guesses, drawing]
@@ -237,7 +237,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Guesses: Subject
   const { most: mostSubjectGuesses, least: fewestSubjectGuesses } = utils.achievements.getMostAndLeastOf(
     store,
-    'subjectGuesses'
+    'subjectGuesses',
   );
   if (mostSubjectGuesses) {
     achievements.push({
@@ -257,7 +257,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Best drawings: Descriptor
   const { most: bestDescriptor, least: worstDescriptor } = utils.achievements.getMostAndLeastOf(
     store,
-    'descriptorDrawings'
+    'descriptorDrawings',
   );
   if (bestDescriptor) {
     achievements.push({
@@ -277,7 +277,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Best drawings: Subject
   const { most: bestSubject, least: worstSubject } = utils.achievements.getMostAndLeastOf(
     store,
-    'subjectDrawings'
+    'subjectDrawings',
   );
   if (bestSubject) {
     achievements.push({

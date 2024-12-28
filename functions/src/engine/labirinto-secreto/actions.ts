@@ -1,5 +1,5 @@
 // Types
-import { ExtendedTextCard } from './types';
+import type { ExtendedTextCard } from './types';
 // Helpers
 import utils from '../../utils';
 // Internal functions
@@ -9,7 +9,7 @@ export const handleSubmitMap = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  newMap: (ExtendedTextCard | null)[]
+  newMap: (ExtendedTextCard | null)[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -28,7 +28,7 @@ export const handleSubmitPath = async (
   playerId: PlayerId,
   pathId: PlayerId,
   guess: CardId[],
-  choseRandomly?: boolean
+  choseRandomly?: boolean,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

@@ -1,5 +1,5 @@
 // Types
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import {
@@ -39,7 +39,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  allWords: TextCard[]
+  allWords: TextCard[],
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder } = utils.players.buildGameOrder(players);
@@ -48,7 +48,7 @@ export const prepareSetupPhase = async (
   const deck = buildDeck(
     allWords,
     MAX_ROUNDS,
-    store.options.fewerCards ? WORDS_PER_CARD - 2 : WORDS_PER_CARD
+    store.options.fewerCards ? WORDS_PER_CARD - 2 : WORDS_PER_CARD,
   );
 
   const achievements = utils.achievements.setup(players, store, {
@@ -95,7 +95,7 @@ export const prepareSetupPhase = async (
 export const prepareWordSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const round = utils.helpers.increaseRound(state.round);
 
@@ -136,7 +136,7 @@ export const prepareWordSelectionPhase = async (
 export const prepareSuggestPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const currentWords = tallyVotes(store.currentWords, players);
 
@@ -172,7 +172,7 @@ export const prepareSuggestPhase = async (
 export const prepareComparePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const currentSuggestions = groupSuggestions(players);
 
@@ -198,7 +198,7 @@ export const prepareComparePhase = async (
 export const prepareGuessPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.readyPlayers(players, state.guesserId);
 
@@ -217,7 +217,7 @@ export const prepareGuessPhase = async (
 export const prepareVerifyGuessPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.readyPlayers(players, state.controllerId);
 
@@ -254,7 +254,7 @@ export const prepareVerifyGuessPhase = async (
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const pastSuggestions = [
     ...store.pastSuggestions,
@@ -324,7 +324,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Count points if any:
   players[state.guesserId].score += state.group.score;

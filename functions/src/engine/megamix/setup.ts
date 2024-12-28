@@ -9,7 +9,7 @@ import {
   getRanking,
   handleSeedingData,
 } from './helpers';
-import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 
 /**
  * Setup
@@ -21,7 +21,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   utils.players.addPropertiesToPlayers(players, { team: ['L'] });
 
@@ -57,7 +57,7 @@ export const prepareSetupPhase = async (
 export const prepareSeedingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -65,7 +65,7 @@ export const prepareSeedingPhase = async (
   const clubbers = utils.game.shuffle(
     Array(AVATAR_SPRITE_LIBRARIES.CLUBBERS)
       .fill(0)
-      .map((e, i) => String(e + i))
+      .map((e, i) => String(e + i)),
   );
 
   // Prepare seeds
@@ -88,7 +88,7 @@ export const prepareSeedingPhase = async (
 export const prepareTrackPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -146,7 +146,7 @@ export const prepareTrackPhase = async (
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const scoring = getMostVotes(players, 'value');
 
@@ -181,7 +181,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winningPlayers = utils.players
     .getListOfPlayers(players)

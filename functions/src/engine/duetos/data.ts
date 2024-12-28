@@ -2,8 +2,8 @@
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
-import { DuetosOptions, Gallery, ResourceData } from './types';
+import type { ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
+import type { DuetosOptions, Gallery, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
@@ -24,7 +24,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   }
   if (options?.specialRounds.includes('avatars')) {
     specialDeckTypes.push(
-      utils.game.getRandomItem(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes'])
+      utils.game.getRandomItem(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes']),
     );
   }
   if (options?.specialRounds.includes('sprites')) {
@@ -71,7 +71,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   if (specialDeckTypes.includes('superHeroes')) {
     superHeroes = utils.game.getRandomItems(
       utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES),
-      quantityNeeded
+      quantityNeeded,
     );
   }
 
@@ -79,7 +79,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   if (specialDeckTypes.includes('clubbers')) {
     clubbers = utils.game.getRandomItems(
       utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS),
-      quantityNeeded
+      quantityNeeded,
     );
   }
 
@@ -87,7 +87,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   if (specialDeckTypes.includes('costumes')) {
     costumes = utils.game.getRandomItems(
       utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES),
-      quantityNeeded
+      quantityNeeded,
     );
   }
 
@@ -101,7 +101,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
     const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
     suspects = utils.game.getRandomItems(
       utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects)),
-      quantityNeeded
+      quantityNeeded,
     );
   }
 

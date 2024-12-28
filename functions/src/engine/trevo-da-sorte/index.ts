@@ -2,7 +2,7 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { PLAYER_COUNTS, TREVO_DA_SORTE_ACTIONS, TREVO_DA_SORTE_PHASES } from './constants';
 // Types
-import {
+import type {
   FirebaseStateData,
   FirebaseStoreData,
   TrevoDaSorteInitialState,
@@ -36,7 +36,7 @@ export const getInitialState = (
   uid: string,
   language: string,
   version: string,
-  options: TrevoDaSorteOptions
+  options: TrevoDaSorteOptions,
 ): TrevoDaSorteInitialState => {
   return utils.helpers.getDefaultInitialState<TrevoDaSorteInitialState>({
     gameId,
@@ -60,7 +60,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,

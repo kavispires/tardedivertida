@@ -36,7 +36,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: CrimesHediondosOptions
+  options: CrimesHediondosOptions,
 ): CrimesHediondosInitialState => {
   return utils.helpers.getDefaultInitialState<CrimesHediondosInitialState>({
     gameId,
@@ -71,7 +71,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -140,7 +140,7 @@ export const submitAction = async (data: CrimesHediondosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(
         data,
         ['weaponId', 'evidenceId', 'causeOfDeath', 'reasonForEvidence', 'locationTile', 'locationIndex'],
-        'submit crime'
+        'submit crime',
       );
       return handleSubmitCrime(gameName, gameId, playerId, data);
     case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_MARK:

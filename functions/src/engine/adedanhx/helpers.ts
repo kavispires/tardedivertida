@@ -1,6 +1,6 @@
 // Types
-import { TopicCard } from '../../types/tdr';
-import {
+import type { TopicCard } from '../../types/tdr';
+import type {
   AdedanhxAchievement,
   AnswerEvaluationEntry,
   AnswerGridEntry,
@@ -45,7 +45,7 @@ export const buildGrid = (
   topicsQuantity: number,
   lettersQuantity: number,
   roundsCount: number,
-  allowNSFW: boolean
+  allowNSFW: boolean,
 ) => {
   const shuffledTopics = utils.game.shuffle(allTopics).filter((topic) => allowNSFW || !topic.nsfw);
   const easyTopics: TopicCard[] = [];
@@ -140,7 +140,6 @@ export const buildGrid = (
     // Add hard letters
     if (hardLetters.length < hardLettersQuantity && shuffledLetters[i].level === 3) {
       hardLetters.push(shuffledLetters[i]);
-      continue;
     }
   }
 
@@ -173,7 +172,7 @@ export const getCurrentGrid = (
   letters: LetterEntry[],
   currentRound: number,
   topicsQuantity: number,
-  lettersQuantity: number
+  lettersQuantity: number,
 ) => {
   const roundIndex = currentRound - 1;
   const startTopicIndex = roundIndex * topicsQuantity;
@@ -194,7 +193,7 @@ export const groupAnswers = (
   players: Players,
   topics: TopicCard[],
   letters: LetterEntry[],
-  store: FirebaseStoreData
+  store: FirebaseStoreData,
 ) => {
   const result: GroupAnswerEvaluationEntry[] = [];
 
@@ -297,7 +296,7 @@ function isAccent(word: string): boolean {
 export const evaluateAnswers = (
   players: Players,
   answersGroups: GroupAnswerEvaluationEntry[],
-  store: FirebaseStoreData
+  store: FirebaseStoreData,
 ) => {
   const playerCount = utils.players.getPlayerCount(players);
   const acceptableRejections = playerCount > 4 ? 2 : 1;
@@ -391,7 +390,7 @@ export const storeGalleryData = (
   store: FirebaseStoreData,
   topics: TopicCard[],
   letters: LetterEntry[],
-  answersGrid: Record<string, AnswerGridEntry>
+  answersGrid: Record<string, AnswerGridEntry>,
 ) => {
   const { topAnswers, noAnswers } = store;
 
@@ -449,7 +448,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most first answers
   const { most: mostFirstAnswers, least: fewestFirstAnswers } = utils.achievements.getMostAndLeastOf(
     store,
-    'first'
+    'first',
   );
 
   if (mostFirstAnswers) {

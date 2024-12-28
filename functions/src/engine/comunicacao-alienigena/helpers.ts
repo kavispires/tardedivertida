@@ -7,10 +7,10 @@ import {
   ITEM_TYPES,
   TOTAL_ITEMS,
 } from './constants';
-import { AlienItem } from '../../types/tdr';
+import type { AlienItem } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
-import {
+import type {
   ComunicacaoAlienigenaAchievement,
   ComunicacaoAlienigenaState,
   ComunicacaoAlienigenaStore,
@@ -30,7 +30,7 @@ import { SEPARATOR } from '../../utils/constants';
  */
 export const determineNextPhase = (
   state: ComunicacaoAlienigenaState,
-  store: ComunicacaoAlienigenaStore
+  store: ComunicacaoAlienigenaStore,
 ): string => {
   const {
     RULES,
@@ -160,7 +160,7 @@ export const determineAlienResponse = (
   currentInquiry: string[],
   store: ComunicacaoAlienigenaStore,
   signs: Sign[],
-  intention: string
+  intention: string,
 ) => {
   // Step 1: Calculate total weight of attributes in the current inquiry
   const totalWeights = calculateTotalWeights(currentInquiry, store.botAlienItemKnowledge);
@@ -220,7 +220,7 @@ const getBestMatch = (
   totalWeights: NumberDictionary,
   attempt: number,
   unique: boolean,
-  intention: string
+  intention: string,
 ) => {
   // Step 2: Sort attributes by total weight and priority order
   const sortedAttributes = Object.entries(totalWeights)
@@ -300,7 +300,7 @@ const getBestMatch = (
 export const calculateTotalWeights = (
   itemIds: ItemId[],
   botAlienItemKnowledge: Record<string, AlienItem>,
-  anyValue?: boolean
+  anyValue?: boolean,
 ) => {
   const totalWeights: NumberDictionary = {};
 
@@ -418,7 +418,7 @@ export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: 
 
       return acc;
     },
-    {}
+    {},
   );
 
   // Step 2: Sort items by the number of occurrences in the bot's knowledge
@@ -429,7 +429,7 @@ export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: 
   // Step 3: Get needed items that haven't been offered and sort them by priority
   const neededItems = sortArrayByPriority(
     items.filter((item) => !item.offered && item.type === 'ITEM').map((e) => e.id),
-    itemsWithInformation
+    itemsWithInformation,
   ).map((id) => store.botAlienItemKnowledge[id]);
 
   // Step 4: Get cursed items that haven't been offered and shuffle them
@@ -509,11 +509,11 @@ function sortItemAttributesBySpecificWeight(item: AlienItem, knownSigns: SignKey
       const weight = item.attributes[attr];
       if (weight && weight < 0) {
         return `!${attr}`;
-      } else if (weight && weight === 5) {
-        return `+${attr}`;
-      } else {
-        return attr;
       }
+      if (weight && weight === 5) {
+        return `+${attr}`;
+      }
+      return attr;
     })
     .slice(0, 5);
 }
@@ -579,7 +579,7 @@ export const getAchievements = (
   store: FirebaseStoreData,
   hasBot: boolean,
   playerCount: number,
-  alienId: PlayerId
+  alienId: PlayerId,
 ) => {
   const achievements: Achievement<ComunicacaoAlienigenaAchievement>[] = [];
 
@@ -594,7 +594,7 @@ export const getAchievements = (
   const { most: mostObjects, least: fewestObjects } = utils.achievements.getMostAndLeastOf(
     store,
     'objectInquiries',
-    ineligiblePlayers
+    ineligiblePlayers,
   );
   // Most Objects: used the most number of objects during inquiries
   if (mostObjects && validAchievement) {

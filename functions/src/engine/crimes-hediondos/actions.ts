@@ -2,13 +2,13 @@
 import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
-import { Guesses } from './types';
+import type { Guesses } from './types';
 
 export const handleSubmitCrime = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  data: PlainObject
+  data: PlainObject,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -32,7 +32,7 @@ export const handleSubmitMark = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  sceneIndex: number
+  sceneIndex: number,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -49,7 +49,7 @@ export const handleSubmitGuesses = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  guesses: Guesses
+  guesses: Guesses,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

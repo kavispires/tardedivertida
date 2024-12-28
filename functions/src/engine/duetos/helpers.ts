@@ -1,9 +1,9 @@
 // Types
-import { Item } from '../../types/tdr';
+import type { Item } from '../../types/tdr';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { DUETOS_ACHIEVEMENTS, DUETOS_PHASES } from './constants';
-import { DuetosAchievement, FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types';
+import type { DuetosAchievement, FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types';
 // Utils
 import utils from '../../utils';
 

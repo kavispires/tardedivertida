@@ -1,6 +1,6 @@
 import utils from '../utils';
 import { DATA_DOCUMENTS } from '../utils/constants';
-import { PastCategories } from './onda-telepatica/types';
+import type { PastCategories } from './onda-telepatica/types';
 
 /**
  * Gets document from data in firestore
@@ -64,7 +64,7 @@ export const updateDataFirebaseDoc = async (documentName: string, data: any): Pr
 export const updateDataCollectionRecursively = async (
   prefix: 'drawings' | 'monsterDrawings',
   language: Language,
-  data: any
+  data: any,
 ): Promise<boolean> => {
   // Get suffix counts
   const documentPrefix = prefix === 'drawings' ? `${prefix}${language.toUpperCase()}` : `${prefix}`;
@@ -101,7 +101,7 @@ export const updateDataCollectionRecursively = async (
 export const updateCardDataCollection = async (
   type: 'cards' | 'imageCards',
   language: Language,
-  data: Record<CardId | ImageCardId, string[]>
+  data: Record<CardId | ImageCardId, string[]>,
 ): Promise<boolean> => {
   const documentName = `${type}Clues${language.toUpperCase()}`;
 
@@ -130,7 +130,7 @@ type OpposingIdeaClue = Record<CardId, Record<string | number, any>>;
 // TODO: Delete after its run once
 export const updateOpposingIdeasClues = async (pastCategories: PastCategories) => {
   const previouslySavedCategories: OpposingIdeaClue = await getDataFirebaseDocData(
-    DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES
+    DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES,
   );
 
   Object.keys(previouslySavedCategories).forEach((cardId) => {
@@ -163,7 +163,7 @@ export const updateOpposingIdeasClues = async (pastCategories: PastCategories) =
 
 export const updateImageCardsRelationships = async (relationships: ImageCardRelationship) => {
   const previouslySavedRelationships: ImageCardRelationship = await getDataFirebaseDocData(
-    DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS
+    DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS,
   );
 
   const parsedRelationships: ImageCardRelationship = {};

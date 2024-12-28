@@ -1,5 +1,5 @@
-import { BossIdeaCard } from '../../types/tdr';
-import { CONTROLE_DE_ESTOQUE_ACHIEVEMENTS, CONTROLE_DE_ESTOQUE_ACTIONS } from './constants';
+import type { BossIdeaCard } from '../../types/tdr';
+import type { CONTROLE_DE_ESTOQUE_ACHIEVEMENTS, CONTROLE_DE_ESTOQUE_ACTIONS } from './constants';
 
 export type ResourceData = {
   allBossIdeas: Collection<BossIdeaCard>;

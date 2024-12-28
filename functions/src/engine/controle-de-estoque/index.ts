@@ -40,7 +40,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
-  version: string
+  version: string,
 ): ControleDeEstoqueInitialState => {
   return utils.helpers.getDefaultInitialState<ControleDeEstoqueInitialState>({
     gameId,
@@ -63,7 +63,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -132,7 +132,7 @@ export const submitAction = async (data: ControleDeEstoqueSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(
         data,
         ['goodId', 'newWarehouseSlot'],
-        'submit place good'
+        'submit place good',
       );
       return handlePlaceGood(
         gameName,
@@ -141,7 +141,7 @@ export const submitAction = async (data: ControleDeEstoqueSubmitAction) => {
         data.goodId,
         data.newWarehouseSlot,
         data.previousWarehouseSlot,
-        data.concealed
+        data.concealed,
       );
     // case CONTROLE_DE_ESTOQUE_ACTIONS.NEXT_EVALUATION_GROUP:
     //   return handleNextEvaluationGroup(gameName, gameId, playerId);

@@ -1,5 +1,9 @@
-import { AlienItem } from '../../types/tdr';
-import { COMUNICACAO_ALIENIGENA_ACHIEVEMENTS, COMUNICACAO_ALIENIGENA_ACTIONS, ITEM_TYPES } from './constants';
+import type { AlienItem } from '../../types/tdr';
+import type {
+  COMUNICACAO_ALIENIGENA_ACHIEVEMENTS,
+  COMUNICACAO_ALIENIGENA_ACTIONS,
+  ITEM_TYPES,
+} from './constants';
 
 export type ComunicacaoAlienigenaOptions = {
   /**

@@ -35,7 +35,7 @@ export const getInitialState = (
   uid: string,
   language: string,
   version: string,
-  options: TesteDeElencoOptions
+  options: TesteDeElencoOptions,
 ): TesteDeElencoInitialState => {
   return utils.helpers.getDefaultInitialState<TesteDeElencoInitialState>({
     gameId,
@@ -59,7 +59,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,

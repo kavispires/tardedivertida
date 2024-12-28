@@ -28,7 +28,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const achievements = utils.achievements.setup(players, store, {
     clues: 0,
@@ -72,7 +72,7 @@ export const prepareSetupPhase = async (
 export const prepareWordsSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -92,7 +92,7 @@ export const prepareWordsSelectionPhase = async (
 export const prepareClueWritingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   if (state.phase === CRUZA_PALAVRAS_PHASES.WORDS_SELECTION) {
     const deckDict: BooleanDictionary = {};
@@ -173,7 +173,7 @@ export const prepareClueWritingPhase = async (
 export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -207,7 +207,7 @@ export const prepareGuessingPhase = async (
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Gather votes
   const { ranking, whoGotNoPoints } = buildRanking(players, state.clues, store);
@@ -235,7 +235,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
