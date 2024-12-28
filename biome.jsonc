@@ -36,6 +36,10 @@
       "complexity": {
         "noForEach": "off"
       },
+      "correctness": {
+        "noUnusedImports": "warn",
+        "noUnusedVariables": "warn"
+      },
       "security": {
         "noDangerouslySetInnerHtml": "warn"
       },
