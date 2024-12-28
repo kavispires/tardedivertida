@@ -1,4 +1,4 @@
-import { CallableRequest, FirebaseAuth } from '../types/reference';
+import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';

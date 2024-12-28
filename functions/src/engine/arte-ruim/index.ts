@@ -35,7 +35,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: ArteRuimGameOptions
+  options: ArteRuimGameOptions,
 ): ArteRuimInitialState => {
   return utils.helpers.getDefaultInitialState<ArteRuimInitialState>({
     gameId,
@@ -71,7 +71,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -92,7 +92,7 @@ export const getNextPhase = async (
     const data = await getCards(
       store.language,
       utils.players.getPlayerCount(players),
-      store.options as ArteRuimGameOptions
+      store.options as ArteRuimGameOptions,
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firestore.saveGame(sessionRef, newPhase);

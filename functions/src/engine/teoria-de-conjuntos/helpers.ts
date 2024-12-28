@@ -1,5 +1,5 @@
 import { OUTCOME, TEORIA_DE_CONJUNTOS_ACHIEVEMENTS, TEORIA_DE_CONJUNTOS_PHASES } from './constants';
-import { DiagramArea, FirebaseStoreData, Guess, TeoriaDeConjuntosAchievement } from './types';
+import type { DiagramArea, FirebaseStoreData, Guess, TeoriaDeConjuntosAchievement } from './types';
 // Utils
 import utils from '../../utils';
 
@@ -14,7 +14,7 @@ export const determineNextPhase = (
   round: Round,
   currentGuess: Partial<Guess>,
   turnOrder: PlayerId[] = [],
-  activePlayerId: PlayerId
+  activePlayerId: PlayerId = '',
 ): string => {
   const { RULES, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER } = TEORIA_DE_CONJUNTOS_PHASES;
   const order = [RULES, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER];
@@ -55,23 +55,23 @@ export const createVennDiagram = (hasContextArea: boolean): Collection<DiagramAr
   };
 
   // Always include 'A' and 'W'
-  areas['A'] = { ...area, key: 'A' };
-  areas['W'] = { ...area, key: 'W' };
+  areas.A = { ...area, key: 'A' };
+  areas.W = { ...area, key: 'W' };
   // Intersection
-  areas['AW'] = { ...area, key: 'AW' };
+  areas.AW = { ...area, key: 'AW' };
 
   // Include 'C' if hasContextArea is true
   if (hasContextArea) {
-    areas['C'] = { ...area, key: 'C' };
+    areas.C = { ...area, key: 'C' };
 
     // Intersections
-    areas['AC'] = { ...area, key: 'AC' };
-    areas['WC'] = { ...area, key: 'WC' };
-    areas['AWC'] = { ...area, key: 'AWC' };
+    areas.AC = { ...area, key: 'AC' };
+    areas.WC = { ...area, key: 'WC' };
+    areas.AWC = { ...area, key: 'AWC' };
   }
 
   // Outside area
-  areas['O'] = { ...area, key: 'O' };
+  areas.O = { ...area, key: 'O' };
 
   return areas;
 };

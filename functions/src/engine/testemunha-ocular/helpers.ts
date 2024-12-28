@@ -1,9 +1,9 @@
-import { TestimonyQuestionCard } from '../../types/tdr';
+import type { TestimonyQuestionCard } from '../../types/tdr';
 // Constants
 import { MAX_ROUNDS, TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
-import { FirebaseStoreData, TestemunhaOcularAchievement } from './types';
+import type { FirebaseStoreData, TestemunhaOcularAchievement } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -18,7 +18,7 @@ export const determineNextPhase = (
   currentPhase: string,
   round: Round,
   lose?: boolean,
-  win?: boolean
+  win?: boolean,
 ): string => {
   const { RULES, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, GAME_OVER } =
     TESTEMUNHA_OCULAR_PHASES;
@@ -70,7 +70,7 @@ export const getQuestionerId = (turnOrder: PlayerId[], questionerIndex: number):
  */
 export const getQuestions = (
   questions: TestimonyQuestionCard[],
-  questionIndex: number
+  questionIndex: number,
 ): TestimonyQuestionCard[] => {
   return [questions[questionIndex], questions[questionIndex + 1]];
 };
@@ -85,7 +85,7 @@ export const getQuestions = (
 export const calculateScore = (
   currentScore: number,
   currentRound: number,
-  eliminatedSuspectsCount: number
+  eliminatedSuspectsCount: number,
 ): number => {
   if (currentRound === 0) return 0;
 
@@ -113,7 +113,7 @@ export const getAchievements = (store: FirebaseStoreData, witnessId: PlayerId) =
   const { most: mostReleases, least: fewerReleases } = utils.achievements.getMostAndLeastOfAverage(
     store,
     'releases',
-    [witnessId]
+    [witnessId],
   );
   if (mostReleases) {
     achievements.push({

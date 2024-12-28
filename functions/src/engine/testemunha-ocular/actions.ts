@@ -1,7 +1,7 @@
 // Utils
 import utils from '../../utils';
 import { getNextPhase } from './index';
-import { FirebaseStateData } from './types';
+import type { FirebaseStateData } from './types';
 
 /**
  * Handles an extra action within the game by saving the card to the store and transitioning to the next phase.
@@ -16,14 +16,14 @@ export const handleExtraAction = async (
   gameName: GameName,
   gameId: GameId,
   actionText: string,
-  additionalPayload: PlainObject
+  additionalPayload: PlainObject,
 ) => {
   // Save card to store
   try {
     const { state } = await utils.firestore.getStateReferences<FirebaseStateData>(
       gameName,
       gameId,
-      actionText
+      actionText,
     );
 
     return getNextPhase(gameName, gameId, state, additionalPayload);
@@ -55,12 +55,12 @@ export const handleElimination = async (
   gameName: GameName,
   gameId: GameId,
   actionText: string,
-  additionalPayload: PlainObject
+  additionalPayload: PlainObject,
 ) => {
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   let shouldGoToNextPhase = false;

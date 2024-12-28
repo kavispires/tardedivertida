@@ -9,7 +9,7 @@ import {
   TOTAL_ROUNDS,
 } from './constants';
 // Types
-import {
+import type {
   Crime,
   CrimesHediondosAchievement,
   FirebaseStoreData,
@@ -20,7 +20,7 @@ import {
   GuessHistoryEntry,
   WrongGroups,
 } from './types';
-import { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
+import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 
@@ -81,7 +81,7 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
       reasonForEvidenceTile: {},
       locationTiles: [],
       sceneTiles: [],
-    }
+    },
   );
 
   result.sceneTiles = utils.game.getRandomItems(result.sceneTiles, SCENE_TILES_COUNT);
@@ -126,7 +126,7 @@ export const dealItemGroups = (players: Players) => {
 export const buildCrimes = (
   players: Players,
   causeOfDeathTile: CrimeSceneTile,
-  reasonForEvidenceTile: CrimeSceneTile
+  reasonForEvidenceTile: CrimeSceneTile,
 ): Crime[] => {
   return utils.players.getListOfPlayers(players, true).map((player) => {
     return {
@@ -154,7 +154,7 @@ export const buildScenes = (
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
   locationTiles: CrimeSceneTile[],
-  players: Players
+  players: Players,
 ): BuiltScenes => {
   const locationsUsedByPlayers = utils.players
     .getListOfPlayers(players, true)
@@ -168,7 +168,9 @@ export const buildScenes = (
     [reasonForEvidenceTile.id]: reasonForEvidenceTile,
   };
 
-  locations.forEach((location) => (scenes[location.id] = location));
+  locations.forEach((location) => {
+    scenes[location.id] = location;
+  });
 
   return { scenes, order };
 };
@@ -185,13 +187,13 @@ export const updateOrCreateGuessHistory = (
   players: Players,
   groupedItems: GroupedItems,
   store: FirebaseStoreData,
-  currentRound: number
+  currentRound: number,
 ): PlainObject => {
   const results: PlainObject = {};
   // Each history entry shows the
   utils.players.getListOfPlayers(players, true).forEach((player) => {
-    const history: GuessHistory = { ...player.history } ?? {};
-    const wrongGroups: WrongGroups = { ...player.wrongGroups } ?? {};
+    const history: GuessHistory = { ...(player.history ?? {}) };
+    const wrongGroups: WrongGroups = { ...(player.wrongGroups ?? {}) };
     const result: StringDictionary = {};
     // Count correct crimes
     player.correctCrimes = 0;
@@ -297,7 +299,7 @@ const getCrimeGuessStatus = (crime: Crime, guess: Guess, groupedItems: GroupedIt
   // Check if the quadrant is wrong
   const crimeGroup = groupedItems[crime.itemGroupIndex];
   const isAnyGuessesItemThere = crimeGroup.some((itemId) =>
-    [guess.weaponId, guess.evidenceId].includes(itemId)
+    [guess.weaponId, guess.evidenceId].includes(itemId),
   );
 
   return isAnyGuessesItemThere ? GUESS_STATUS.WRONG : GUESS_STATUS.WRONG_GROUP;
@@ -393,7 +395,7 @@ export const mockCrimeForBots = (
   items: Record<string, CrimesHediondosCard>,
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
-  locationTiles: CrimeSceneTile[]
+  locationTiles: CrimeSceneTile[],
 ) => {
   // TODO: Use tags logic for location
 
@@ -413,7 +415,7 @@ export const mockCrimeForBots = (
     bot.reasonForEvidence = botSmartSceneMarking(
       reasonForEvidenceTile,
       items[bot.weaponId],
-      items[bot.evidenceId]
+      items[bot.evidenceId],
     );
     bot.locationTile = utils.game.getRandomItem(locationTiles).id;
     bot.locationIndex = utils.game.getRandomItem(options);
@@ -436,7 +438,7 @@ export const mockGuessingForBots = (players: Players) => {
 export const mockSceneMarkForBots = (
   players: Players,
   scene: CrimeSceneTile,
-  items: Record<string, CrimesHediondosCard>
+  items: Record<string, CrimesHediondosCard>,
 ) => {
   utils.players.getListOfBots(players).forEach((bot) => {
     bot.sceneIndex = botSmartSceneMarking(scene, items[bot.weaponId], items[bot.evidenceId]);
@@ -446,7 +448,7 @@ export const mockSceneMarkForBots = (
 const botSmartSceneMarking = (
   scene: CrimeSceneTile,
   weapon: CrimesHediondosCard,
-  evidence: CrimesHediondosCard
+  evidence: CrimesHediondosCard,
 ): number => {
   // If no tags is available for the scene, choose randomly
   const sceneTags = scene?.tags ?? {};
@@ -572,7 +574,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Selected Weapons
   const { most: mostWeapons, least: leastWeapons } = utils.achievements.getMostAndLeastUniqueItemsOf(
     store,
-    'weapons'
+    'weapons',
   );
   if (mostWeapons) {
     achievements.push({
@@ -594,7 +596,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Selected Evidence
   const { most: mostEvidence, least: leastEvidence } = utils.achievements.getMostAndLeastUniqueItemsOf(
     store,
-    'evidence'
+    'evidence',
   );
   if (mostEvidence) {
     achievements.push({

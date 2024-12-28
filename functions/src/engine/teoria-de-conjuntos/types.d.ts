@@ -1,5 +1,5 @@
-import { DiagramTopic, Item } from '../../types/tdr';
-import { OUTCOME, TEORIA_DE_CONJUNTOS_ACHIEVEMENTS, TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
+import type { DiagramTopic, Item } from '../../types/tdr';
+import type { OUTCOME, TEORIA_DE_CONJUNTOS_ACHIEVEMENTS, TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
 
 export type TeoriaDeConjuntosOptions = {
   /**

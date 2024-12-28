@@ -2,7 +2,7 @@
 import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
-import { CloverLeaf, Guess, GuessPayload } from './types';
+import type { CloverLeaf, Guess, GuessPayload } from './types';
 
 /**
  *
@@ -16,7 +16,7 @@ export const handleSubmitBadWords = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  cardsIds: CardId[]
+  cardsIds: CardId[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -41,7 +41,7 @@ export const handleSubmitClues = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  clues: CloverLeaf[]
+  clues: CloverLeaf[],
 ) => {
   const update = {
     'clover.leaves.A': clues[0],
@@ -74,7 +74,7 @@ export const handleSubmitGuess = async (
   gameId: GameId,
   playerId: PlayerId,
   guesses: GuessPayload,
-  activeCloverId: PlayerId
+  activeCloverId: PlayerId,
 ) => {
   const guess: Guess = {
     cloverId: activeCloverId,

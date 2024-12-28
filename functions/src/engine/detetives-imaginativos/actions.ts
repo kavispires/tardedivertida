@@ -3,7 +3,7 @@ import { HAND_LIMIT } from './constants';
 // Utils
 import utils from '../../utils';
 import { getNextPhase } from './index';
-import { FirebaseStateData } from './types';
+import type { FirebaseStateData } from './types';
 
 /**
  *
@@ -17,14 +17,14 @@ export const handlePlayCard = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  cardId: string
+  cardId: string,
 ) => {
   const actionText = 'play a card';
 
   const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   if (state.currentPlayerId !== playerId) {
@@ -92,7 +92,7 @@ export const handleDefend = async (gameName: GameName, gameId: GameId, playerId:
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   if (state.currentPlayerId !== playerId) {
@@ -130,7 +130,7 @@ export const handleSubmitVote = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  vote: PlayerId
+  vote: PlayerId,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -155,7 +155,7 @@ export const handleSubmitClue = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  clue: string
+  clue: string,
 ) => {
   return await utils.firestore.updateStore({
     gameName,

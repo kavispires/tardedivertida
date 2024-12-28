@@ -1,7 +1,7 @@
 // Constants
 import { RETRATO_FALADO_ACHIEVEMENTS, RETRATO_FALADO_PHASES } from './constants';
 // Types
-import { MonsterImage } from '../../types/tdr';
+import type { MonsterImage } from '../../types/tdr';
 import type { AllMonsters, FirebaseStoreData, MonsterSketch, RetratoFaladoAchievement } from './types';
 // Helpers
 import utils from '../../utils';
@@ -50,7 +50,7 @@ export const buildDeck = (allMonsters: AllMonsters, playerCount: number) => {
 export const gatherSketches = (
   players: Players,
   currentMonster: MonsterImage,
-  witnessId: PlayerId
+  witnessId: PlayerId,
 ): MonsterSketch[] => {
   const gathering = utils.players.getListOfPlayers(players).reduce((acc: MonsterSketch[], player: Player) => {
     if (player.id !== witnessId) {
@@ -104,7 +104,7 @@ export const buildRanking = (players: Players, witnessId: PlayerId, store: Fireb
       if (voteCount === max) acc.push(playerId);
       return acc;
     },
-    []
+    [],
   );
   let mostVoted: PlayerId | null = null;
 
@@ -182,7 +182,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most and fewest group votes
   const { most: mostGroupVotes, least: fewestGroupVotes } = utils.achievements.getMostAndLeastOf(
     store,
-    'groupVote'
+    'groupVote',
   );
   if (mostGroupVotes) {
     achievements.push({

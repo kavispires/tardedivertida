@@ -1,5 +1,5 @@
 // Types
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 import type {
   ClueEntry,
   CruzaPalavrasAchievement,
@@ -25,7 +25,7 @@ import { getListOfPlayers } from '../../utils/players-utils';
 export const determineNextPhase = (
   currentPhase: string,
   round: Round,
-  options?: CruzaPalavrasOptions
+  options?: CruzaPalavrasOptions,
 ): string => {
   const { RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
   const order = [RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
@@ -57,9 +57,9 @@ export const determineNextPhase = (
  * @returns
  */
 export const checkForAvailableCells = (
-  grid: GridCell[] = [],
+  grid: GridCell[],
   playerCount: number,
-  largerGridCount: number
+  largerGridCount: number,
 ): boolean => {
   const availableCells = grid.filter((cell) => cell.available);
   return availableCells.length >= playerCount + largerGridCount;
@@ -69,7 +69,7 @@ export const buildGrid = (
   words: Deck,
   playersClues: TextCard[],
   wordsPerCoordinate: number,
-  shouldUsePlayersClues: boolean
+  shouldUsePlayersClues: boolean,
 ): GridCell[] => {
   const playersCluesDeck = utils.game.shuffle(playersClues);
   const currentDeck =
@@ -248,7 +248,7 @@ export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): 
 export const getPlayerClues = (players: Players): ClueEntry[] => {
   return utils.players.getListOfPlayers(players).map((player) => {
     const index = player.coordinates.findIndex(
-      (coordinate) => coordinate.coordinate === player.currentClueCoordinate
+      (coordinate) => coordinate.coordinate === player.currentClueCoordinate,
     );
     player.coordinates[index].used = true;
     const coordinate = player.coordinates[index].coordinate;

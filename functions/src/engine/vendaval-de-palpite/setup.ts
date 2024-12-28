@@ -18,7 +18,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Save
   return {
@@ -57,7 +57,7 @@ export const prepareBossPlayerSelection = async (): Promise<SaveGamePayload> => 
 export const prepareSecretWordSelection = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayer(players, state.bossId);
 
@@ -81,7 +81,7 @@ export const prepareSecretWordSelection = async (
 export const preparePlayersClues = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players, state.bossId);
 
@@ -115,7 +115,7 @@ export const prepareClueEvaluations = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.readyPlayers(players, state.bossId);
 
@@ -127,7 +127,7 @@ export const prepareClueEvaluations = async (
     clues,
     latestBoardEntry,
     state.finalAnswersLeft,
-    state.secretWord
+    state.secretWord,
   );
 
   if (['WIN', 'FAIL'].includes(outcome)) {
@@ -160,7 +160,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   /**
    * Players win if

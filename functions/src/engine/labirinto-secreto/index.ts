@@ -35,7 +35,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: LabirintoSecretoGameOptions
+  options: LabirintoSecretoGameOptions,
 ): LabirintoSecretoInitialState => {
   return utils.helpers.getDefaultInitialState<LabirintoSecretoInitialState>({
     gameId,
@@ -66,7 +66,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -81,7 +81,7 @@ export const getNextPhase = async (
     state?.round,
     isGameOver,
     state?.turnOrder ?? [],
-    state?.activePlayerId
+    state?.activePlayerId,
   );
 
   // RULES -> SETUP
@@ -142,7 +142,7 @@ export const submitAction = async (data: LabirintoSecretoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(
         data,
         ['pathId', 'guess', 'choseRandomly'],
-        'submit guess'
+        'submit guess',
       );
       return handleSubmitPath(gameName, gameId, playerId, data.pathId, data.guess, data.choseRandomly);
     default:

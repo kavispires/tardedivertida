@@ -1,5 +1,5 @@
 // Types
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 import type { AllWords, FirebaseStoreData, GaleriaDeSonhosAchievement, ImageCard, PlayerCard } from './types';
 // Constants
 import { GALERIA_DE_SONHOS_ACHIEVEMENTS, GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
@@ -35,7 +35,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 const replaceTableCards = (
   table: ImageCard[],
   newEntries: ImageCard[],
-  startingIndex: number
+  startingIndex: number,
 ): ImageCard[] => {
   for (let i = 0; i < newEntries.length; i++) {
     table[i + startingIndex] = newEntries[i];
@@ -46,7 +46,7 @@ const replaceTableCards = (
 export const buildTable = (
   deck: ImageCard[],
   table: ImageCard[],
-  currentRound: number
+  currentRound: number,
 ): [ImageCard[], ImageCard[]] => {
   if (currentRound === 1) {
     // Add 15 cards to table
@@ -300,7 +300,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most visits: visited the most number of cards
   const { most: mostDreamCount, least: fewestDreamCount } = utils.achievements.getMostAndLeastOf(
     store,
-    'dreamCount'
+    'dreamCount',
   );
   if (mostDreamCount) {
     achievements.push({

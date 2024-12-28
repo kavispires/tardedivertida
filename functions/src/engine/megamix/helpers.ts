@@ -3,7 +3,7 @@ import { cloneDeep, orderBy } from 'lodash';
 import utils from '../../utils';
 import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import { buildDecks } from '../na-rua-do-medo/helpers';
-import { HouseCard } from '../na-rua-do-medo/types';
+import type { HouseCard } from '../na-rua-do-medo/types';
 import {
   MEGAMIX_ACHIEVEMENTS,
   MEGAMIX_PHASES,
@@ -13,7 +13,7 @@ import {
   TOTAL_ROUNDS,
   WINNING_CONDITION,
 } from './constants';
-import {
+import type {
   AvailableTrack,
   FirebaseStoreData,
   MegamixAchievement,
@@ -21,7 +21,7 @@ import {
   Track,
   TrackCandidate,
 } from './types';
-import { CrimeSceneTile, DatingCandidateCard, MovieReviewCard, TextCard } from '../../types/tdr';
+import type { CrimeSceneTile, DatingCandidateCard, MovieReviewCard, TextCard } from '../../types/tdr';
 
 /**
  * Get the next phase based on the current one
@@ -56,7 +56,7 @@ export const distributeSeeds = (
   tracks: Track[],
   players: Players,
   clubberIds: string[],
-  partyMode: boolean
+  partyMode: boolean,
 ) => {
   const individualSeeds: any[] = [];
   const groupSeeds: any[] = [];
@@ -266,7 +266,7 @@ export const distributeSeeds = (
 
   const clubbers = utils.game.sliceIntoChunks(
     clubberIds,
-    Math.min(Math.floor(clubberIds.length / playersList.length), 5)
+    Math.min(Math.floor(clubberIds.length / playersList.length), 5),
   );
 
   playersList.forEach((player, index) => {
@@ -291,7 +291,7 @@ export const handleSeedingData = (
   tracks: Track[],
   players: Players,
   partyMode: boolean,
-  language: Language
+  language: Language,
 ) => {
   tracks.forEach((track) => {
     switch (track.game) {
@@ -382,7 +382,7 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
       weaponSceneTiles: [],
       evidenceSceneTiles: [],
       sceneTiles: [],
-    }
+    },
   );
 
   result.weaponSceneTiles = utils.game.shuffle(result.weaponSceneTiles);
@@ -515,7 +515,7 @@ export const getMostMatching = (players: Players, property: string, acceptance =
         winningUniqueValues.push(key);
       }
       return acc;
-    }, [])
+    }, []),
   );
 
   const winningTeam: string[] = [];
@@ -808,7 +808,7 @@ const buildPartyOptions = (players: Players, language: Language) => {
         }
         if (
           !options[key].some(
-            (a) => utils.helpers.stringRemoveAccents(a) === utils.helpers.stringRemoveAccents(answer)
+            (a) => utils.helpers.stringRemoveAccents(a) === utils.helpers.stringRemoveAccents(answer),
           )
         ) {
           options[key].push(answer);
@@ -836,7 +836,7 @@ const buildPartyOptions = (players: Players, language: Language) => {
             utils.game.shuffle([
               option.playerId,
               ...utils.game.getRandomItems(utils.players.getListOfPlayersIds(players), 2),
-            ])
+            ]),
           ),
         },
       },
@@ -921,7 +921,7 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
 
       return acc;
     },
-    [[], [], []]
+    [[], [], []],
   );
   const horrorDeck = decks.horrorDeck.reduce((acc: HouseCard[], monster) => {
     if (!acc.some((m) => m.key === monster.key)) {
@@ -973,7 +973,7 @@ export const getMovieReviews = (reviews: MovieReviewCard[]) => {
 
       return acc;
     },
-    [[], []]
+    [[], []],
   );
 
   return {
@@ -988,13 +988,13 @@ export const calculateAllAchievements = (players: Players, store: FirebaseStoreD
       store,
       player.id,
       'longestVIP',
-      utils.game.calculateLongestRun(player.team, 'W')
+      utils.game.calculateLongestRun(player.team, 'W'),
     );
     utils.achievements.increase(
       store,
       player.id,
       'longestLoser',
-      utils.game.calculateLongestRun(player.team, 'L')
+      utils.game.calculateLongestRun(player.team, 'L'),
     );
 
     player.team.forEach((team: string, index: number) => {
@@ -1063,7 +1063,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Longest words
   const { most: switchedMost, least: switchedLeast } = utils.achievements.getMostAndLeastOf(
     store,
-    'switchedTeam'
+    'switchedTeam',
   );
   if (switchedMost) {
     achievements.push({

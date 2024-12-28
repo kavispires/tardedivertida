@@ -40,7 +40,7 @@ export const determinePhaseOrder = (
   leaderId: PlayerId,
   gameOrder: PlayerId[],
   players: Players,
-  repeat?: boolean
+  repeat?: boolean,
 ): PlayerId[] => {
   const result: PlayerId[] = [];
   const playerIds = utils.players.getListOfPlayers(players);
@@ -80,7 +80,7 @@ export const calculateRanking = (
   players: Players,
   impostorVotes: number,
   impostorId: PlayerId,
-  leaderId: PlayerId
+  leaderId: PlayerId,
 ): PlainObject => {
   // Gained points: [player vote, being impostor/leader]
   const scores = new utils.players.Scores(players, [0, 0]);

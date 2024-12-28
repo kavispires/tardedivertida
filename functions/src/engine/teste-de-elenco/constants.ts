@@ -1,4 +1,4 @@
-import { MovieRole, MovieGenre } from './types';
+import type { MovieRole, MovieGenre } from './types';
 
 export const TESTE_DE_ELENCO_PHASES = {
   LOBBY: 'LOBBY',

@@ -1,4 +1,4 @@
-import { CONTADORES_HISTORIAS_ACHIEVEMENTS, CONTADORES_HISTORIAS_ACTIONS } from './constants';
+import type { CONTADORES_HISTORIAS_ACHIEVEMENTS, CONTADORES_HISTORIAS_ACTIONS } from './constants';
 
 export type ContadoresHistoriasOptions = {
   /**

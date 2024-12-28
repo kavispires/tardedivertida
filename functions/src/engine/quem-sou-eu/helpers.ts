@@ -2,7 +2,7 @@
 import { QUEM_SOU_EU_ACHIEVEMENTS, QUEM_SOU_EU_PHASES } from './constants';
 // Helpers
 import utils from '../../utils';
-import { FirebaseStoreData, QuemSouEuAchievement } from './types';
+import type { FirebaseStoreData, QuemSouEuAchievement } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -160,7 +160,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
 
   const { most: mostPositive, least: leastPositive } = utils.achievements.getMostAndLeastOf(
     store,
-    'positive'
+    'positive',
   );
 
   // Most positive: selected the most number of glyphs in the positive side during the game
@@ -183,7 +183,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
 
   const { most: mostNegative, least: leastNegative } = utils.achievements.getMostAndLeastOf(
     store,
-    'negative'
+    'negative',
   );
 
   // Most negative: selected the most number of glyphs in the negative side during the game

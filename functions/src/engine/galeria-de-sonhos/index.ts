@@ -41,7 +41,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: GaleriaDeSonhosOptions
+  options: GaleriaDeSonhosOptions,
 ): GaleriaDeSonhosInitialState => {
   return utils.helpers.getDefaultInitialState<GaleriaDeSonhosInitialState>({
     gameId,
@@ -78,7 +78,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,

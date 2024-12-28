@@ -53,7 +53,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: ComunicacaoAlienigenaOptions
+  options: ComunicacaoAlienigenaOptions,
 ): ComunicacaoAlienigenaInitialState => {
   return utils.helpers.getDefaultInitialState<ComunicacaoAlienigenaInitialState>({
     gameId,
@@ -86,7 +86,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -96,7 +96,7 @@ export const getNextPhase = async (
   // Determine next phase
   const nextPhase = determineNextPhase(
     state as ComunicacaoAlienigenaState,
-    store as ComunicacaoAlienigenaStore
+    store as ComunicacaoAlienigenaStore,
   );
 
   // RULES -> SETUP
@@ -108,7 +108,7 @@ export const getNextPhase = async (
     const additionalData = await getResourceData(
       store.language,
       utils.players.getPlayerCount(players),
-      store.options ?? {}
+      store.options ?? {},
     );
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
@@ -194,7 +194,7 @@ export const submitAction = async (data: ComunicacaoAlienigenaSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(
         data,
         ['alienRequest', 'intention'],
-        'submit alienRequest'
+        'submit alienRequest',
       );
       return handleSubmitAlienRequest(gameName, gameId, playerId, data.alienRequest, data.intention);
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_OFFERING:

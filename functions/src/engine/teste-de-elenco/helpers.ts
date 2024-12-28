@@ -2,7 +2,7 @@
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
-import {
+import type {
   ActingRole,
   FirebaseStateData,
   FirebaseStoreData,
@@ -10,7 +10,7 @@ import {
   MovieGenre,
   TesteDeElencoAchievement,
 } from './types';
-import { Item } from '../../types/tdr';
+import type { Item } from '../../types/tdr';
 
 /**
  * Determine the next phase based on the current one
@@ -49,14 +49,14 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
  * @returns
  */
 const determineMovieVotes = (
-  players: Players
+  players: Players,
 ): { genre: MovieGenre; movieTitle: string; selectedProps: string[] } => {
   const genreVotes = utils.players.getRankedVotes(players, 'genre', true);
   const genreKey = utils.game.getRandomItem(genreVotes).value;
   const genre = GENRES[genreKey];
 
   const movieTitle = utils.game.getRandomItem(
-    utils.players.getRankedVotes(players, 'movieTitle', true)
+    utils.players.getRankedVotes(players, 'movieTitle', true),
   ).value;
 
   const selectedProps = utils.players.getListOfPlayers(players).reduce((acc: string[], player) => {
@@ -93,7 +93,7 @@ export const buildMovie = (players: Players, store: FirebaseStoreData, movieProp
 
   genre.roles.forEach((role) => {
     const candidates = utils.helpers.buildDictionaryFromList(
-      new Array(role.pool).fill(0).map(() => store.actors.pop())
+      new Array(role.pool).fill(0).map(() => store.actors.pop()),
     );
     movie.roles[role.id] = {
       id: role.id,

@@ -1,5 +1,5 @@
-import { Item, ObjectFeatureCard } from '../../types/tdr';
-import { MESMICE_ACHIEVEMENTS, MESMICE_ACTIONS, OUTCOME } from './constants';
+import type { Item, ObjectFeatureCard } from '../../types/tdr';
+import type { MESMICE_ACHIEVEMENTS, MESMICE_ACTIONS, OUTCOME } from './constants';
 
 export type MesmiceOptions = {
   /**

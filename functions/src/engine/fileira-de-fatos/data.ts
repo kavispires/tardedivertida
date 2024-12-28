@@ -4,7 +4,7 @@ import { TDR_RESOURCES } from '../../utils/constants';
 import type { ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 
 /**
  * Get scenarios resource based on the game's language

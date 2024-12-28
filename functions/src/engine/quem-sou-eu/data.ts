@@ -2,12 +2,12 @@
 import { GLOBAL_USED_DOCUMENTS, DATA_DOCUMENTS } from '../../utils/constants';
 import { CHARACTERS_PER_PLAYER, EXTRA_CHARACTERS, MINIMUM_CHARACTERS } from './constants';
 // Type
-import { QuemSouEuOptions, ResourceData } from './types';
+import type { QuemSouEuOptions, ResourceData } from './types';
 // Helpers
 import * as globalUtils from '../global';
 import * as collectionUtils from '../collections';
 import utils from '../../utils';
-import { ContenderCard } from '../../types/tdr';
+import type { ContenderCard } from '../../types/tdr';
 
 /**
  * Get characters based on the game's language
@@ -18,7 +18,7 @@ import { ContenderCard } from '../../types/tdr';
 export const getResourceData = async (
   language: Language,
   playerCount: number,
-  options: QuemSouEuOptions
+  options: QuemSouEuOptions,
 ): Promise<ResourceData> => {
   const allowNSFW = !!options.nsfw;
   const imageCardsMode = !!options.imageCardsMode;

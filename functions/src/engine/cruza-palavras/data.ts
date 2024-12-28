@@ -6,7 +6,7 @@ import utils from '../../utils';
 import * as resourceUtils from '../resource';
 
 import { TDR_RESOURCES } from '../../utils/constants';
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 
 /**
  * Get words resource based on the game's language
@@ -34,7 +34,7 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
       language,
       allowNSFW,
       options.contenderDecks,
-      quantityNeeded
+      quantityNeeded,
     );
 
     const deck = contenders.map((entry) => {

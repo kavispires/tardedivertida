@@ -17,13 +17,13 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  allTweets: PlainObject
+  allTweets: PlainObject,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   // Determine turn order
   const { gameOrder, playerIds } = utils.players.buildGameOrder(
     players,
-    store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined
+    store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined,
   );
   const totalRounds = store.options.fixedRounds ? gameOrder.length : MAX_ROUNDS;
 
@@ -64,7 +64,7 @@ export const prepareSetupPhase = async (
 export const prepareTweetSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
   const activePlayerId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
@@ -106,7 +106,7 @@ export const prepareTweetSelectionPhase = async (
 export const prepareReactPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Modify players
   utils.players.unReadyPlayers(players);
@@ -136,7 +136,7 @@ export const prepareReactPhase = async (
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Gather all reactions
   const totalLikes = countLikes(players, store);
@@ -174,7 +174,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

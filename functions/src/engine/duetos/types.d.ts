@@ -1,5 +1,5 @@
-import { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
-import { DUETOS_ACHIEVEMENTS, DUETOS_ACTIONS } from './constants';
+import type { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
+import type { DUETOS_ACHIEVEMENTS, DUETOS_ACTIONS } from './constants';
 
 export type DuetosOptions = {
   /**

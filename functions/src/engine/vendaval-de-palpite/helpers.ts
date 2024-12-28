@@ -47,7 +47,7 @@ export const gatherClues = (
   clues: Clues,
   board: Board,
   players: Players,
-  currentRound: number
+  currentRound: number,
 ): { clues: Clues; board: Board } => {
   let newBoardEntry: Clue[] = [];
 
@@ -80,7 +80,7 @@ export const gatherClues = (
 
   // Remove duplicated clues
   newBoardEntry = newBoardEntry.filter(
-    (entry, index, self) => index === self.findIndex((c) => c.clue === entry.clue)
+    (entry, index, self) => index === self.findIndex((c) => c.clue === entry.clue),
   );
 
   // Sort alphabetically
@@ -95,7 +95,7 @@ export const verifyGuesses = (
   clues: Clues,
   latestBoardEntry: BoardEntry,
   finalAnswersLeft: number,
-  secretWord: string
+  secretWord: string,
 ): { outcome: string; finalAnswersLeft: number } => {
   const newAnswerCount = latestBoardEntry.clues.filter((clueId) => clues[clueId].isGuess).length;
   const newAnswersLeft = finalAnswersLeft - newAnswerCount;
@@ -110,7 +110,8 @@ export const verifyGuesses = (
 
   // FAIL if player wrote answer in regular clue
   const someoneGotItWrong = latestBoardEntry.clues.some(
-    (clueId) => clues[clueId].clue.trim().toUpperCase() === secretWord.toUpperCase() && !clues[clueId].isGuess
+    (clueId) =>
+      clues[clueId].clue.trim().toUpperCase() === secretWord.toUpperCase() && !clues[clueId].isGuess,
   );
   if (someoneGotItWrong) {
     return {
@@ -121,7 +122,7 @@ export const verifyGuesses = (
 
   // WIN if one of the answers is the secret word
   const someoneGotIt = latestBoardEntry.clues.some(
-    (clueId) => clues[clueId].clue.trim().toUpperCase() === secretWord.toUpperCase() && clues[clueId].isGuess
+    (clueId) => clues[clueId].clue.trim().toUpperCase() === secretWord.toUpperCase() && clues[clueId].isGuess,
   );
   if (someoneGotIt) {
     return {

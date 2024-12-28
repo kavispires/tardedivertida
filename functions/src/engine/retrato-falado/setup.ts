@@ -18,7 +18,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
   const { gameOrder, playerCount } = utils.players.buildGameOrder(players);
@@ -55,7 +55,7 @@ export const prepareSetupPhase = async (
 export const prepareCompositeSketchPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const witnessId = state.gameOrder[state.round.current];
   const deck = [...store.deck];
@@ -85,7 +85,7 @@ export const prepareCompositeSketchPhase = async (
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const currentMonster = { ...state.currentMonster };
   if (store.currentOrientation) {
@@ -113,13 +113,13 @@ export const prepareEvaluationPhase = async (
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Create ranking
   const { ranking, mostVotes, witnessVote, mostVoted, votes } = buildRanking(players, state.witnessId, store);
 
   const selectedSketches = state.sketches.filter(
-    (sketch: MonsterSketch) => sketch.playerId && mostVotes.includes(sketch.playerId)
+    (sketch: MonsterSketch) => sketch.playerId && mostVotes.includes(sketch.playerId),
   );
 
   await saveData(state.sketches, store.language);
@@ -150,7 +150,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

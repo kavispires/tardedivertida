@@ -1,5 +1,5 @@
-import { Item, MovieCard, SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
-import { TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_ACTIONS } from './constants';
+import type { Item, MovieCard, SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_ACTIONS } from './constants';
 
 export type TesteDeElencoOptions = {
   /**

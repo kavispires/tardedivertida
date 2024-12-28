@@ -1,4 +1,4 @@
-import { MovieCard } from '../../types/tdr';
+import type { MovieCard } from '../../types/tdr';
 import {
   MAX_MISTAKES,
   MOVIE_POSTERS_COUNT,
@@ -6,7 +6,7 @@ import {
   TOTAL_MOVIE_OPTIONS,
   VAMOS_AO_CINEMA_PHASES,
 } from './constants';
-import { FirebaseStateData } from './types';
+import type { FirebaseStateData } from './types';
 import { LETTERS } from '../../utils/constants';
 import { makeArray } from '../../utils/game-utils';
 import utils from '../../utils';
@@ -115,7 +115,7 @@ const getMostFrequentElementFromList = (list: string[]) => {
   let item = '';
   for (let i = 0; i < list.length; i++) {
     for (let j = i; j < list.length; j++) {
-      if (list[i] == list[j]) m++;
+      if (list[i] === list[j]) m++;
       if (mf < m) {
         mf = m;
         item = list[i];
@@ -129,7 +129,7 @@ const getMostFrequentElementFromList = (list: string[]) => {
 export const getFinalMovies = (
   movies: Record<string, FinalMovie>,
   players: Players,
-  posters: Record<number, ImageCardId[]>
+  posters: Record<number, ImageCardId[]>,
 ): FinalMovie[] => {
   const finalMovies: FinalMovie[] = [];
 

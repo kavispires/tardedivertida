@@ -1,10 +1,10 @@
-import { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCard } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';
-import { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
+import type { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
 
 /**
  * When active player chooses the round's question
@@ -18,7 +18,7 @@ export const handleSubmitQuestion = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  questionId: string
+  questionId: string,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -44,7 +44,7 @@ export const handleSubmitCustomQuestion = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  customQuestion: GroupQuestionCard
+  customQuestion: GroupQuestionCard,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -70,7 +70,7 @@ export const handleSubmitAnswers = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  answers: StringDictionary
+  answers: StringDictionary,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -95,14 +95,14 @@ export const handleNextAnswers = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  allowedList: string[]
+  allowedList: string[],
 ) => {
   const actionText = 'advance answers';
 
   const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const answerGroup = state.answersList[0];
@@ -168,14 +168,14 @@ export const handleAddAnswer = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  answer: AnswerEntry
+  answer: AnswerEntry,
 ) => {
   const actionText = 'add answer';
 
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const answersList = [...(state.answersList as AnswerGroupEntry[])];

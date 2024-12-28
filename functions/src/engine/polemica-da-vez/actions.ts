@@ -17,7 +17,7 @@ export const handleSubmitTweet = async (
   gameId: GameId,
   playerId: PlayerId,
   tweetId: string,
-  customTweet?: string
+  customTweet?: string,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -46,7 +46,7 @@ export const handleSubmitReaction = async (
   gameId: GameId,
   playerId: PlayerId,
   reaction: boolean,
-  likesGuess: number
+  likesGuess: number,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

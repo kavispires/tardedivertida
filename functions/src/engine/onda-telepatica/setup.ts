@@ -19,12 +19,12 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder, playerIds } = utils.players.buildGameOrder(
     players,
-    store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined
+    store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined,
   );
   const totalRounds = store.options.fixedRounds ? gameOrder.length : MAX_ROUNDS;
   // Build deck
@@ -63,7 +63,7 @@ export const prepareSetupPhase = async (
 export const prepareDialCluePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
   const psychicId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
@@ -96,7 +96,7 @@ export const prepareDialCluePhase = async (
 export const prepareGuessPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -107,7 +107,7 @@ export const prepareGuessPhase = async (
   });
 
   const selectedCategory = store.deck.find(
-    (category: CategoryCard) => category.id === state.currentCategoryId
+    (category: CategoryCard) => category.id === state.currentCategoryId,
   );
 
   const currentCategory = {
@@ -136,7 +136,7 @@ export const prepareGuessPhase = async (
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Gather votes
   const ranking = buildRanking(players, state.currentCategory, state.psychicId, store);
@@ -162,7 +162,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

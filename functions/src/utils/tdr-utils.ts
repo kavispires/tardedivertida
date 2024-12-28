@@ -2,7 +2,7 @@ import { every, some } from 'lodash';
 
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
-import { AlienItem, ContenderCard, Item, TextCard } from '../types/tdr';
+import type { AlienItem, ContenderCard, Item, TextCard } from '../types/tdr';
 import utils from './';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firestoreUtils from './firestore';
@@ -23,7 +23,7 @@ export const getItems = async (
     deckFiltering: 'AND',
     decks: [],
     filters: [],
-  }
+  },
 ): Promise<Item[]> => {
   const itemsObj: Collection<Item> = await fetchResource(TDR_RESOURCES.ITEMS);
 
@@ -154,7 +154,7 @@ export const getAlienItems = async (
     decks: [],
     filters: [],
     balanceAttributes: false,
-  }
+  },
 ): Promise<AlienItem[]> => {
   const allAlienItemsObj: Collection<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
 
@@ -197,7 +197,7 @@ export const getAlienItems = async (
     }
 
     // Handle decks
-    if (options.decks && options.decks.length) {
+    if (options.decks?.length) {
       if (!alienItemUtils.onlyItemsWithinDecks(options?.decks ?? [])(item)) {
         delete allAlienItemsObj[item.id];
         return;
@@ -345,7 +345,7 @@ export const getContenders = async (
   language: Language,
   allowNSFW: boolean,
   decks: string[],
-  quantity?: number
+  quantity?: number,
 ): Promise<ContenderCard[]> => {
   const contendersResponse: Collection<ContenderCard> = await fetchResource(TDR_RESOURCES.CONTENDERS);
 
@@ -391,7 +391,7 @@ export const getContenders = async (
   // Get used items deck
   const usedContenders: BooleanDictionary = await getGlobalFirebaseDocData(
     GLOBAL_USED_DOCUMENTS.CONTENDERS,
-    {}
+    {},
   );
 
   const cardQuantity = quantity + 5;
@@ -437,7 +437,7 @@ export const getAdjectives = async (language: Language, quantity?: number): Prom
   // Get used WORDS deck
   const usedAdjectives: BooleanDictionary = await getGlobalFirebaseDocData(
     GLOBAL_USED_DOCUMENTS.ADJECTIVES,
-    {}
+    {},
   );
 
   // Filter out used WORDS

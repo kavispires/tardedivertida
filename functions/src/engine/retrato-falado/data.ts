@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
-import { MonsterImage } from '../../types/tdr';
+import type { MonsterImage } from '../../types/tdr';
 import type { MonsterSketch, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';

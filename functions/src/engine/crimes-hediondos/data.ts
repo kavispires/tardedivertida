@@ -1,7 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
-import { CrimesHediondosCard } from '../../types/tdr';
+import type { CrimesHediondosCard } from '../../types/tdr';
 import type { CrimesHediondosOptions, ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
@@ -14,12 +14,12 @@ import { CARDS_PER_GAME } from './constants';
 export const getData = async (options: CrimesHediondosOptions): Promise<ResourceData> => {
   // Get weapon cards
   const allWeapons: Collection<CrimesHediondosCard> = await resourceUtils.fetchResource(
-    TDR_RESOURCES.CRIME_WEAPONS
+    TDR_RESOURCES.CRIME_WEAPONS,
   );
 
   // Get evidence cards
   const allEvidence: Collection<CrimesHediondosCard> = await resourceUtils.fetchResource(
-    TDR_RESOURCES.CRIME_EVIDENCE
+    TDR_RESOURCES.CRIME_EVIDENCE,
   );
 
   // Get scene tiles

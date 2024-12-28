@@ -15,7 +15,7 @@ export const handleSubmitCategory = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  categoryId: string
+  categoryId: string,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -40,7 +40,7 @@ export const handleSubmitClue = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  clue: string
+  clue: string,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -66,7 +66,7 @@ export const handleSubmitGuess = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  guess: number | boolean
+  guess: number | boolean,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

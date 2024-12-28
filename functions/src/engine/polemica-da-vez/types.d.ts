@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { POLEMICA_DA_VEZ_ACHIEVEMENTS, POLEMICA_DA_VEZ_ACTIONS } from './constants';
+import type { TextCard } from '../../types/tdr';
+import type { POLEMICA_DA_VEZ_ACHIEVEMENTS, POLEMICA_DA_VEZ_ACTIONS } from './constants';
 
 export type PolemicaDaVezOptions = {
   fixedRounds: boolean;

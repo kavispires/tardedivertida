@@ -42,7 +42,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: SuperCampeonatoOptions
+  options: SuperCampeonatoOptions,
 ): SuperCampeonatoInitialState => {
   return utils.helpers.getDefaultInitialState<SuperCampeonatoInitialState>({
     gameId,
@@ -68,7 +68,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -80,7 +80,7 @@ export const getNextPhase = async (
     state?.phase,
     state.round,
     state?.tier,
-    store.options?.autoContenders ?? false
+    store.options?.autoContenders ?? false,
   );
 
   // RULES -> SETUP
@@ -92,7 +92,7 @@ export const getNextPhase = async (
     const additionalData = await getResourceData(
       store.language,
       utils.players.getPlayerCount(players),
-      store.options
+      store.options,
     );
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firestore.saveGame(sessionRef, newPhase);

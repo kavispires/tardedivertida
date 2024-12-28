@@ -13,6 +13,7 @@ import { deepCopy } from './helpers';
 export function generatePlayerId(playerName: PlayerName): PlayerId {
   return `_${playerName
     .normalize('NFD')
+    // biome-ignore lint/suspicious/noMisleadingCharacterClass: <explanation>
     .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
     .toLowerCase()}`;
 }
@@ -29,7 +30,7 @@ export const createPlayer = (
   name: PlayerName,
   avatarId: PlayerAvatarId,
   players: Players = {},
-  isGuest?: boolean
+  isGuest?: boolean,
 ): Player => {
   const playerList = getListOfPlayers(players, true);
   const usedAvatars = playerList.map((player) => player.avatarId);
@@ -69,7 +70,7 @@ export const readyPlayer = (players: Players, playerId: PlayerId): Players => {
  */
 export const readyPlayers = (players: Players, butThisOne: PlayerId = ''): Players => {
   for (const playerKey in players) {
-    players[playerKey].ready = playerKey === butThisOne ? false : true;
+    players[playerKey].ready = playerKey !== butThisOne;
   }
   return players;
 };
@@ -238,7 +239,7 @@ export const distributeNumberIds = (
   startingId: number,
   endingId: number,
   propertyName: string,
-  includeBots = false
+  includeBots = false,
 ) => {
   const ids = shuffle(new Array(startingId + endingId + 1).fill(0).map((e, i) => e + i));
   // Add sheep id
@@ -258,7 +259,7 @@ export const dealItemsToPlayers = (
   players: Players,
   list: unknown[],
   quantityPerPlayer = 1,
-  propertyName: string
+  propertyName: string,
 ) => {
   const playersList = getListOfPlayers(players);
   if (list.length < playersList.length * quantityPerPlayer) {
@@ -293,7 +294,7 @@ export const dealItemsToPlayers = (
 export const addBots = (
   players: Players,
   quantity: 1 | 2 | 3 | 4 | 5,
-  defaultProperties: Record<string, any> = {}
+  defaultProperties: Record<string, any> = {},
 ) => {
   const names = ['A-bot', 'B-bop', 'C-am', 'D-Doo', 'E-max'];
   const avatarIds = ['A', 'B', 'C', 'D', 'E'];
@@ -323,7 +324,7 @@ export const addBots = (
 export const getListOfPlayers = (
   players: Players,
   includeBots = false,
-  butThese: PlayerId[] = []
+  butThese: PlayerId[] = [],
 ): Player[] => {
   const options = Object.values(players).filter((player) => !butThese.includes(player.id));
   if (includeBots) return options;
@@ -340,7 +341,7 @@ export const getListOfPlayers = (
 export const getListOfPlayersIds = (
   players: Players,
   includeBots = false,
-  butThese: PlayerId[] = []
+  butThese: PlayerId[] = [],
 ): PlayerId[] => {
   return getListOfPlayers(players, includeBots, butThese).map((player) => player.id);
 };
@@ -376,7 +377,7 @@ export const buildGameOrder = (
   players: Players,
   doublingThreshold = 0,
   includeBots = false,
-  excludePlayersIds: PlayerId[] = []
+  excludePlayersIds: PlayerId[] = [],
 ): { gameOrder: PlayerId[]; playerIds: PlayerId[]; playerCount: number } => {
   const playerIds = shuffle(getListOfPlayersIds(players, includeBots, excludePlayersIds));
   const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
@@ -463,7 +464,9 @@ export class Scores {
   rank(players: Players): NewScore[] {
     // Add the new score to the player
     if (players) {
-      getListOfPlayers(players, true).forEach((player) => (player.score = this.scores[player.id].newScore));
+      getListOfPlayers(players, true).forEach((player) => {
+        player.score = this.scores[player.id].newScore;
+      });
     }
 
     return Object.values(this.scores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
@@ -580,7 +583,7 @@ export const getRankedVotes = (players: Players, property: string, winnerOnly = 
 export const getWinningRankedVote = (
   rankedVotes: MostVotesResult[],
   turnOrder: PlayerId[],
-  activePlayerId: PlayerId
+  activePlayerId: PlayerId,
 ): MostVotesResult => {
   // If there is only one entry in rankedVotes, that's the winner
   if (rankedVotes.length === 1) {

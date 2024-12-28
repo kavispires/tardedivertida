@@ -7,7 +7,7 @@ export const handleSubmitPages = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  pageIds: ImageCardId[]
+  pageIds: ImageCardId[],
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -24,7 +24,7 @@ export const handleSubmitDoor = async (
   gameId: GameId,
   playerId: PlayerId,
   doorId: ImageCardId,
-  ready?: boolean
+  ready?: boolean,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

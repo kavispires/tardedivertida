@@ -1,5 +1,5 @@
 // Types
-import { ControleDeEstoqueState, ControleDeEstoqueStore, Good, WarehouseSlot } from './types';
+import type { ControleDeEstoqueState, ControleDeEstoqueStore, Good, WarehouseSlot } from './types';
 // Constants
 import { CONTROLE_DE_ESTOQUE_PHASES, WAREHOUSE_SIZE } from './constants';
 import { LETTERS } from '../../utils/constants';
@@ -15,7 +15,7 @@ import utils from '../../utils';
 export const determineNextPhase = (
   currentPhase: string,
   round: Round,
-  state: ControleDeEstoqueState
+  state: ControleDeEstoqueState,
 ): string => {
   const { RULES, SETUP, GOOD_PLACEMENT, PLACEMENT_CONFIRMATION, FULFILLMENT, RESULTS, GAME_OVER } =
     CONTROLE_DE_ESTOQUE_PHASES;
@@ -148,7 +148,7 @@ export const buildRanking = (
   players: Players,
   goodsDict: Collection<Good>,
   warehouseGrid: Collection<WarehouseSlot>,
-  store: ControleDeEstoqueStore
+  store: ControleDeEstoqueStore,
 ) => {
   // Gained Points: [correct order, wrong order, out of stock]
   const scores = new utils.players.Scores(players, [0, 0, 0]);

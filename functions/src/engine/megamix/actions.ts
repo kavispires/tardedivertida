@@ -7,7 +7,7 @@ export const handleSubmitSeeds = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  data: PlainObject
+  data: PlainObject,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -24,7 +24,7 @@ export const handleSubmitTrackAnswer = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  data: PlainObject
+  data: PlainObject,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

@@ -1,7 +1,7 @@
 // Utils
-import { CallableRequest, FirebaseAuth } from '../types/reference';
+import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
-import { FirebaseUserDB } from '../utils/user';
+import type { FirebaseUserDB } from '../utils/user';
 
 type OptionalDailyGetterPayload = {
   date?: string; // Format YYYY-MM-DD

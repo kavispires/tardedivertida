@@ -15,7 +15,7 @@ export const handleSubmitCard = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  cardId: CardId
+  cardId: CardId,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -42,7 +42,7 @@ export const handleSubmitCardGuess = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  guess: CardId[]
+  guess: CardId[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

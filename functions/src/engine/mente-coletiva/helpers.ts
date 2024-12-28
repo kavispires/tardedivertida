@@ -8,7 +8,7 @@ import {
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Types
-import { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCard } from '../../types/tdr';
 import type {
   AllQuestions,
   AnswerEntry,
@@ -258,7 +258,7 @@ export const buildPastureChange = (players: Players, lowestScores: PlayerId[], h
       name: player.name,
       level: player.level,
       sheepId: player.sheepId,
-    }))
+    })),
   );
 
   // Second change, the ones that should animate
@@ -266,14 +266,14 @@ export const buildPastureChange = (players: Players, lowestScores: PlayerId[], h
     change[0].map((player) => ({
       ...player,
       ...determineAnimation(player.id, lowestScores, highestScores, player.level),
-    }))
+    })),
   );
 
   change.push(
     change[0].map((player) => ({
       ...player,
       level: getNewLevel(player.id, lowestScores, highestScores, player.level),
-    }))
+    })),
   );
 
   return change;
@@ -306,7 +306,7 @@ const determineAnimation = (
   playerId: PlayerId,
   lowestScores: PlayerId[],
   highestScores: PlayerId[],
-  level: number
+  level: number,
 ): SheepAnimation => {
   const isLowest = lowestScores.includes(playerId);
   const isHighest = highestScores.includes(playerId);
@@ -341,7 +341,7 @@ const getNewLevel = (
   playerId: PlayerId,
   lowestScores: PlayerId[],
   highestScores: PlayerId[],
-  level: number
+  level: number,
 ): number => {
   const isLowest = lowestScores.includes(playerId);
   const isHighest = highestScores.includes(playerId);
@@ -379,7 +379,7 @@ export const determineGameOver = (players: Players, isShortPasture: boolean) => 
     .getListOfPlayers(players)
     .some(
       (player) =>
-        player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD)
+        player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD),
     );
 };
 
@@ -397,7 +397,7 @@ export const shouldSaveSheep = (
   pastureSize: number,
   pastureChange: PastureChangeEntry[][],
   lastRound?: boolean,
-  usedSave?: boolean
+  usedSave?: boolean,
 ) => {
   if (lastRound || usedSave || !isGameOver) return false;
 
@@ -470,7 +470,7 @@ export const getAchievements = (players: Players, store: FirebaseStoreData) => {
 
   // Most lonely: it's the only one alone in a pasture
   const loners = pasturesCount.filter(
-    (pastureCount, index, arr) => pastureCount.length === 1 && index !== arr.length - 1
+    (pastureCount, index, arr) => pastureCount.length === 1 && index !== arr.length - 1,
   );
   if (loners.length === 1) {
     achievements.push({
@@ -491,14 +491,14 @@ export const getAchievements = (players: Players, store: FirebaseStoreData) => {
 export const calculateSheepTravelDistance = (
   store: PlainObject,
   players: Players,
-  pastureChange: PastureChangeEntry[][]
+  pastureChange: PastureChangeEntry[][],
 ) => {
   pastureChange[0].forEach((pastureChangeEntry, index) => {
     utils.achievements.increase(
       store,
       pastureChangeEntry.id,
       'distance',
-      pastureChange[2][index].level - pastureChangeEntry.level
+      pastureChange[2][index].level - pastureChangeEntry.level,
     );
   });
 };
@@ -518,7 +518,7 @@ export function isLevelDifferenceGreaterThanOne(players: Players): boolean {
 
 export function getMostFrequentAnswers(
   answersList: AnswerGroupEntry[],
-  question: GroupQuestionCard
+  question: GroupQuestionCard,
 ): GalleryEntry {
   const result: GalleryEntry = {
     question,

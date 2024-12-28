@@ -40,7 +40,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: PortaDosDesesperadosOptions
+  options: PortaDosDesesperadosOptions,
 ): PortaDosDesesperadosInitialState => {
   return utils.helpers.getDefaultInitialState<PortaDosDesesperadosInitialState>({
     gameId,
@@ -83,7 +83,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -97,7 +97,7 @@ export const getNextPhase = async (
     state?.outcome,
     state?.winCondition,
     state?.currentCorridor,
-    state?.magic
+    state?.magic,
   );
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver);
