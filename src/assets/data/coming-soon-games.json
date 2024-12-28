@@ -146,42 +146,5 @@
       "max": 6
     },
     "tags": ["competitive"]
-  },
-  "comunicacao-duo": {
-    "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "?",
-    "gameName": "comunicacao-duo",
-    "version": "0.0.0",
-    "release": "planned",
-    "available": false,
-    "title": {
-      "pt": "Comunicação Alienígena Duo",
-      "en": "Alien Communication Duo"
-    },
-    "popularName": {
-      "pt": "",
-      "en": ""
-    },
-    "basedOn": "?????",
-    "appearance": {
-      "clouds": "cloud",
-      "primaryColor": "",
-      "backgroundColor": "",
-      "colorScheme": "light"
-    },
-    "summary": {
-      "pt": "???",
-      "en": "???"
-    },
-    "rules": {
-      "pt": ["TBD"],
-      "en": ["TBD"]
-    },
-    "playerCount": {
-      "recommended": [4, 5, 6],
-      "min": 3,
-      "max": 6
-    },
-    "tags": ["cooperative"]
   }
 }

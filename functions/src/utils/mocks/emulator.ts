@@ -62,7 +62,7 @@ export const feedEmulatorUser = async () => {
 
   const emulateUser = {
     avatars: {
-      0: 1,
+      0: 43,
     },
     blurredImages: {},
     daily: {},

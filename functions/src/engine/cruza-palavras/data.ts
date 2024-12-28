@@ -4,7 +4,6 @@ import type { CruzaPalavrasOptions, PastClues, ResourceData } from './types';
 import * as dataUtils from '../collections';
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
-
 import { TDR_RESOURCES } from '../../utils/constants';
 import type { TextCard } from '../../types/tdr';
 
