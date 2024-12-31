@@ -1,5 +1,5 @@
-import { MovieCard, MovieReviewCard } from '../../types/tdr';
-import { VAMOS_AO_CINEMA_ACTIONS } from './constants';
+import type { MovieCard, MovieReviewCard } from '../../types/tdr';
+import type { VAMOS_AO_CINEMA_ACTIONS } from './constants';
 
 export type VamosAoCinemaOptions = {
   fixedRounds: boolean;

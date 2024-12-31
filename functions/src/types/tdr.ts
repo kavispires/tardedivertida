@@ -731,7 +731,7 @@ export type Item = {
 /**
  * Item Atributes Values
  */
-export type ItemAtributesValues = {
+export type ItemAttributesValues = {
   /**
    * Unique identifier for the item
    */
@@ -799,6 +799,14 @@ export type ItemAttribute = {
    * Use for attributes that only accept yes/no (unclear) values (-3, -1, 5)
    */
   limited?: boolean;
+  /**
+   * Flag indicating another attribute that is directly the opposite of this one
+   */
+  oppositeId?: boolean;
+  /**
+   * Keywords string to help with search
+   */
+  keywords: DualLanguageValue;
 };
 
 export type ItemGroup = {

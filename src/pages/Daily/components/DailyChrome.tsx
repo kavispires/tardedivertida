@@ -4,6 +4,7 @@ import { Layout } from 'antd';
 // Icons
 import { CalendarIcon } from 'icons/CalendarIcon';
 // Components
+import { PageLayout } from 'components/general/PageLayout';
 import { Translate } from 'components/language';
 // Internal
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
@@ -21,7 +22,7 @@ export function DailyChrome({ children }: DailyChromeProps) {
   const [count, setCount] = useState(0);
 
   return (
-    <Layout className="app">
+    <PageLayout className="app">
       <Header icon={<CalendarIcon />} localStorageKey="">
         <button
           type="button"
@@ -38,6 +39,6 @@ export function DailyChrome({ children }: DailyChromeProps) {
           <DevResetLocalStorageButton />
         </Footer>
       )}
-    </Layout>
+    </PageLayout>
   );
 }

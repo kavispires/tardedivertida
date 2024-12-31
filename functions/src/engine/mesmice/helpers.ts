@@ -1,5 +1,5 @@
 import { MESMICE_ACHIEVEMENTS, MESMICE_PHASES, OUTCOME } from './constants';
-import {
+import type {
   ExtendedObjectFeatureCard,
   FirebaseStoreData,
   MesmiceAchievements,
@@ -18,7 +18,7 @@ export const determineNextPhase = (
   currentPhase: string,
   round: Round,
   outcome: Outcome,
-  playerCount: number
+  playerCount: number,
 ): string => {
   const { RULES, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER } = MESMICE_PHASES;
   const order = [RULES, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER];
@@ -60,7 +60,7 @@ export const determineNextPhase = (
 export const determineOutcome = (
   playersChoice: string,
   target: string,
-  features: ExtendedObjectFeatureCard[]
+  features: ExtendedObjectFeatureCard[],
 ): string => {
   if (playersChoice === target) {
     return OUTCOME.LOSE;
@@ -131,7 +131,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most and Least Community Votes
   const { most: mostCommunityVotes, least: leastCommunityVotes } = utils.achievements.getMostAndLeastOf(
     store,
-    'communityVotes'
+    'communityVotes',
   );
 
   if (mostCommunityVotes) {
@@ -167,7 +167,9 @@ export const getAchievements = (store: FirebaseStoreData) => {
 export const calculateFinalGroupScore = (gallery: MesmiceGalleryEntry[], groupScore: number) => {
   const goal = gallery.reduce((acc, entry) => {
     let count = 0;
-    entry.history.forEach((result) => (count += result.score));
+    entry.history.forEach((result) => {
+      count += result.score;
+    });
 
     return acc + count;
   }, 0);

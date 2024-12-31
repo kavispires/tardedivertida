@@ -1,7 +1,7 @@
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
-import { FirebaseAuth } from '../types/reference';
+import type { FirebaseAuth } from '../types/reference';
 
 type LoadGamePayload = {
   gameId: GameId;
@@ -57,7 +57,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const players = state?.players ?? {};
@@ -80,7 +80,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   if (numPlayers === playerCounts.MAX) {
     utils.firebase.throwException(
       `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${playerCounts.MIN}`,
-      actionText
+      actionText,
     );
   }
 
@@ -98,7 +98,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
       cleanPlayerName,
       `${playerAvatarId}`,
       players,
-      isGuest
+      isGuest,
     );
     const path = `players.${playerId}`;
     await sessionRef.doc('state').update({
@@ -127,7 +127,7 @@ const makeMeReady = async (data: Payload) => {
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const players = state?.players ?? {};

@@ -1,7 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Types
-import { ArteRuimCard, ArteRuimGroup, ArteRuimPair, TextCard } from '../../types/tdr';
+import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair, TextCard } from '../../types/tdr';
 import type { ResourceData, ArteRuimDrawing, ArteRuimGameOptions, Level5Type } from './types';
 // Helpers
 import * as globalUtils from '../global';
@@ -24,7 +24,7 @@ const getFinalLevel = async (language: string, playerCount: number, options: Art
   // Regular level 5 uses pairs
   if (!options.specialLevels) {
     const allCardPairsResponse: Collection<ArteRuimPair> = await resourceUtils.fetchResource(
-      `${TDR_RESOURCES.ARTE_RUIM_PAIRS}-${language}`
+      `${TDR_RESOURCES.ARTE_RUIM_PAIRS}-${language}`,
     );
     const shuffledLevel5Deck = utils.game.shuffle(Object.values(allCardPairsResponse));
     return {
@@ -82,7 +82,7 @@ const getFinalLevel = async (language: string, playerCount: number, options: Art
 export const getCards = async (
   language: string,
   playerCount: number,
-  options: ArteRuimGameOptions
+  options: ArteRuimGameOptions,
 ): Promise<ResourceData> => {
   // Get regular cards
   const allCardsResponse = await resourceUtils.fetchResource(`${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`);
@@ -109,7 +109,7 @@ export const getCards = async (
   // Get level 4 cards (if not basic levels only)
   const allCardsGroupResponse = needsLevel4
     ? await resourceUtils.fetchResource<Collection<ArteRuimGroup>>(
-        `${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`
+        `${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`,
       )
     : {};
   const cardsGroups: ArteRuimGroup[] = Object.values(allCardsGroupResponse);
@@ -130,7 +130,7 @@ export const getCards = async (
   // Get used deck
   const usedCardsIds: BooleanDictionary = await globalUtils.getGlobalFirebaseDocData(
     GLOBAL_USED_DOCUMENTS.ARTE_RUIM,
-    {}
+    {},
   );
 
   const settings = getGameSettings(options);
@@ -139,7 +139,7 @@ export const getCards = async (
     cardsByLevel,
     usedCardsIds,
     settings.LEVELS,
-    playerCount
+    playerCount,
   );
 
   if (resetUsedCards) {

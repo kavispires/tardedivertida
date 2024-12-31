@@ -4,7 +4,7 @@ import { DATA_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import type { FinalGalleryEntry, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 import * as globalUtils from '../global';
 
 /**

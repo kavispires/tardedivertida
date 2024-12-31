@@ -1,7 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
-import { NamingPromptCard } from '../../types/tdr';
+import type { NamingPromptCard } from '../../types/tdr';
 import type { ResourceData, SonhosPesadelosCards } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
@@ -30,7 +30,7 @@ export const getInspirationThemes = async (language: string): Promise<ResourceDa
       2: [],
       3: [],
       4: [],
-    }
+    },
   );
 
   return {

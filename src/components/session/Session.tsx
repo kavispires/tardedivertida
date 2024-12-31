@@ -13,6 +13,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { AdminMenuDrawer } from 'components/admin';
 import { GameInfoDrawer } from 'components/drawers';
 import { AutoNextPhase } from 'components/general/AutoNextPhase';
+import { PageLayout } from 'components/general/PageLayout';
 import { PhaseLobby } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';
@@ -63,15 +64,17 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   const ActiveComponent: any = getActiveComponent(state);
 
   return (
-    <GameInfoProvider gameCollection={gameCollection}>
-      <SessionConfigWrapper>
-        <GameInfoDrawer players={players} state={state} userId={userId} />
-        <RedirectSession state={state} />
-        <ActiveComponent players={players} state={state} meta={gameMeta} />
-        <AutoNextPhase players={players} />
-        <AdminMenuDrawer state={state} players={players} />
-      </SessionConfigWrapper>
-    </GameInfoProvider>
+    <PageLayout>
+      <GameInfoProvider gameCollection={gameCollection}>
+        <SessionConfigWrapper>
+          <GameInfoDrawer players={players} state={state} userId={userId} />
+          <RedirectSession state={state} />
+          <ActiveComponent players={players} state={state} meta={gameMeta} />
+          <AutoNextPhase players={players} />
+          <AdminMenuDrawer state={state} players={players} />
+        </SessionConfigWrapper>
+      </GameInfoProvider>
+    </PageLayout>
   );
 }
 

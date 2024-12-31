@@ -66,8 +66,8 @@ export function HostNextPhaseButton({
 }: HostNextPhaseButtonProps) {
   const isHost = useHost();
   const { translate } = useLanguage();
-  const { loaders } = useLoading();
-  const isLoading = loaders['go-to-next-phase'];
+  const { isKeyLoading } = useLoading();
+  const isLoading = isKeyLoading('go-to-next-phase');
 
   const onGoToNextPhase = useHostActionRequest({
     actionName: 'go-to-next-phase',

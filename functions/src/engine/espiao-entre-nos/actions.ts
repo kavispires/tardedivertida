@@ -15,7 +15,7 @@ export const handleLastQuestioner = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  lastPlayerId: PlayerId
+  lastPlayerId: PlayerId,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -39,7 +39,7 @@ export const handleGuessLocation = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  locationId: string
+  locationId: string,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -63,7 +63,7 @@ export const handleMakeAccusation = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  targetId: PlayerId
+  targetId: PlayerId,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -91,7 +91,7 @@ export const handleSubmitVote = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  vote: PlayerId
+  vote: PlayerId,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

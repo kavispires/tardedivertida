@@ -35,7 +35,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: MegamixGameOptions
+  options: MegamixGameOptions,
 ): MegamixInitialState => {
   return utils.helpers.getDefaultInitialState<MegamixInitialState>({
     gameId,
@@ -68,7 +68,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -87,7 +87,7 @@ export const getNextPhase = async (
     const data = await getData(
       store.language,
       store.options as MegamixGameOptions,
-      utils.players.getPlayerCount(players)
+      utils.players.getPlayerCount(players),
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firestore.saveGame(sessionRef, newPhase);

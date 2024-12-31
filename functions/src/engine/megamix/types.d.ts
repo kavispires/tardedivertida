@@ -1,4 +1,4 @@
-import { MEGAMIX_ACHIEVEMENTS, MEGAMIX_ACTIONS } from './constants';
+import type { MEGAMIX_ACHIEVEMENTS, MEGAMIX_ACTIONS } from './constants';
 
 export type MegamixGameOptions = {
   /**

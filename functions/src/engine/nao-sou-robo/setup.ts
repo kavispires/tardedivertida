@@ -1,5 +1,5 @@
 // Types
-import { CaptchaCard, FirebaseStateData, FirebaseStoreData, ResourceData, Robot } from './types';
+import type { CaptchaCard, FirebaseStateData, FirebaseStoreData, ResourceData, Robot } from './types';
 // Constants
 import {
   MAX_ROUNDS,
@@ -25,7 +25,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const achievements = utils.achievements.setup(players, store, {
     robot: 0,
@@ -96,7 +96,7 @@ export const prepareSetupPhase = async (
 export const prepareCardSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, ['guess', 'cardId']);
@@ -125,7 +125,7 @@ export const prepareCardSelectionPhase = async (
 export const prepareAreYouARobotPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -172,7 +172,7 @@ export const prepareAreYouARobotPhase = async (
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -181,7 +181,7 @@ export const prepareResultsPhase = async (
     state.robot,
     state.options,
     state.captcha,
-    store
+    store,
   );
 
   const gallery = store.gallery ?? [];
@@ -210,7 +210,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = state.outcome === OUTCOME.ROBOT_WINS ? [] : utils.players.determineWinners(players);
 

@@ -2,7 +2,7 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
 // Types
-import { AlienItem } from '../../types/tdr';
+import type { AlienItem } from '../../types/tdr';
 import type {
   ComunicacaoAlienigenaStore,
   FirebaseStateData,
@@ -35,7 +35,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const hasBot = checkIsBot(store);
 
@@ -103,7 +103,7 @@ export const prepareSetupPhase = async (
 export const prepareAlienSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Save
   return {
@@ -119,7 +119,7 @@ export const prepareAlienSelectionPhase = async (
 export const prepareAlienSeedingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players, state.alienId);
@@ -191,7 +191,7 @@ export const prepareAlienSeedingPhase = async (
 export const prepareHumanAskPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const storeUpdate: PlainObject = {};
   if (state.shouldPerformSeeding) {
@@ -255,7 +255,7 @@ export const prepareHumanAskPhase = async (
 export const prepareAlienAnswerPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const hasBot = checkIsBot(store);
 
@@ -278,7 +278,7 @@ export const prepareAlienAnswerPhase = async (
         currentInquiry,
         store as ComunicacaoAlienigenaStore,
         state.signs,
-        currentIntention
+        currentIntention,
       )
     : utils.firestore.deleteValue();
 
@@ -324,7 +324,7 @@ export const prepareAlienAnswerPhase = async (
 export const prepareAlienRequestPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready alien player
   utils.players.unReadyPlayer(players, state.alienId);
@@ -358,7 +358,7 @@ export const prepareAlienRequestPhase = async (
 export const prepareOfferingsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready alien player
   utils.players.unReadyPlayers(players, state.alienId);
@@ -412,7 +412,7 @@ export const prepareOfferingsPhase = async (
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const round = utils.helpers.increaseRound(state.round);
   const status: OfferingsStatus = {
@@ -496,7 +496,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
   const hasBot = checkIsBot(store);
@@ -508,7 +508,7 @@ export const prepareGameOverPhase = async (
     store,
     hasBot,
     utils.players.getListOfPlayers(players).length,
-    state.alienId
+    state.alienId,
   );
 
   await utils.firestore.markGameAsComplete(gameId);

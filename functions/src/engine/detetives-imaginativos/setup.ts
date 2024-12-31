@@ -19,7 +19,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  data: ResourceData
+  data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
   const { gameOrder, playerIds } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
@@ -61,7 +61,7 @@ export const prepareSetupPhase = async (
 export const prepareSecretCluePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Make sure everybody has 6 cards in hand
   players = utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
@@ -71,7 +71,7 @@ export const prepareSecretCluePhase = async (
   const leaderId = store.gameOrder[state.round.current];
   // Determine the impostor
   const impostorId = utils.game.shuffle(
-    utils.players.getListOfPlayersIds(players).filter((playerId) => playerId !== leaderId)
+    utils.players.getListOfPlayersIds(players).filter((playerId) => playerId !== leaderId),
   )[0];
 
   utils.players.unReadyPlayer(players, leaderId);
@@ -93,7 +93,7 @@ export const prepareSecretCluePhase = async (
 export const prepareCardPlayPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Build phase order (from leader forward once)
   const phaseOrder = determinePhaseOrder(state.leaderId, store.gameOrder, players, true);
@@ -116,7 +116,7 @@ export const prepareCardPlayPhase = async (
 export const prepareDefensePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Build phase order (from leader forward once)
   const phaseOrder = determinePhaseOrder(state.leaderId, store.gameOrder, players);
@@ -162,7 +162,7 @@ export const prepareDefensePhase = async (
 export const prepareVotingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   const newPlayers = utils.players.unReadyPlayers(players, state.leaderId);
@@ -182,7 +182,7 @@ export const prepareVotingPhase = async (
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Check how many votes impostor got
   const impostorVotes = countImpostorVotes(players, state.impostorId);
@@ -206,7 +206,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
   const gallery = utils.helpers.deepCopy(store.usedCards);

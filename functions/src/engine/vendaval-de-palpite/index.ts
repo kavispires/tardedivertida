@@ -46,7 +46,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
-  version: string
+  version: string,
 ): VendavalDePalpiteInitialState => {
   return utils.helpers.getDefaultInitialState<VendavalDePalpiteInitialState>({
     gameId,
@@ -69,7 +69,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -141,7 +141,7 @@ export const submitAction = async (data: VendavalDePalpiteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(
         data,
         ['secretWord', 'categories'],
-        'submit secret word and categories'
+        'submit secret word and categories',
       );
       return handleSubmitSecretWord(gameName, gameId, playerId, data.secretWord, data.categories);
     case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_CLUES:

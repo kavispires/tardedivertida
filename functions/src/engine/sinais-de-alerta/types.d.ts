@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { SINAIS_DE_ALERTA_ACHIEVEMENTS, SINAIS_DE_ALERTA_ACTIONS } from './constants';
+import type { TextCard } from '../../types/tdr';
+import type { SINAIS_DE_ALERTA_ACHIEVEMENTS, SINAIS_DE_ALERTA_ACTIONS } from './constants';
 
 export type SinaisDeAlertaOptions = {
   /**

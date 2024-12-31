@@ -8,7 +8,7 @@ import {
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
-import { SpyLocation } from '../../types/tdr';
+import type { SpyLocation } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
@@ -30,7 +30,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
   const { gameOrder } = utils.players.buildGameOrder(players);
@@ -63,12 +63,12 @@ export const prepareSetupPhase = async (
 export const prepareAssignmentPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Use only 25 locations
   const availableLocations: SpyLocation[] = utils.game.getRandomItems(
     store.allLocations,
-    LOCATIONS_USED_IN_A_ROUND
+    LOCATIONS_USED_IN_A_ROUND,
   );
 
   const locations = utils.helpers.orderBy(
@@ -77,7 +77,7 @@ export const prepareAssignmentPhase = async (
       name: location.name,
     })),
     'name',
-    'asc'
+    'asc',
   );
 
   const currentLocation = utils.game.getRandomItem(availableLocations);
@@ -114,7 +114,7 @@ export const prepareInvestigationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  outcome: Outcome
+  outcome: Outcome,
 ): Promise<SaveGamePayload> => {
   const timerUpdate: PlainObject = {};
 
@@ -146,7 +146,7 @@ export const prepareInvestigationPhase = async (
 export const prepareAssessmentPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Pause Timer
   const timeRemaining = calculateTimeRemaining(state.timer.timeRemaining, state.timer.updatedAt);
@@ -186,7 +186,7 @@ export const prepareFinalAssessmentPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  outcome: Outcome
+  outcome: Outcome,
 ): Promise<SaveGamePayload> => {
   const playerOrder =
     state?.finalAssessment?.playerOrder ??
@@ -219,7 +219,7 @@ export const prepareFinalAssessmentPhase = async (
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const resolutionType = store.guess ? RESOLUTIONS.SPY_GUESS : RESOLUTIONS.SPY_FOUND;
   const isSpyGuess = resolutionType === RESOLUTIONS.SPY_GUESS;
@@ -244,7 +244,7 @@ export const prepareResolutionPhase = async (
     isSpyGuess,
     resolution.isSpyWin,
     state.currentSpyId,
-    store.targetId ?? state.targetId
+    store.targetId ?? state.targetId,
   );
 
   // Save
@@ -267,7 +267,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

@@ -1,42 +1,46 @@
-import { useEffect, useState } from 'react';
-import { createGlobalState } from 'react-hooks-global-state';
+import { useState, useCallback } from 'react';
 
-type InitialState = {
-  loaders: BooleanDictionary;
-};
+interface LoadingState {
+  [key: string]: boolean;
+}
 
-const initialState: InitialState = {
-  loaders: {},
-};
+let globalLoadingState: LoadingState = {};
+let listeners: Array<(state: LoadingState) => void> = [];
 
-// Keep loading global state consistent even with multiple uses of useLoading
-const { useGlobalState: useLoadersState } = createGlobalState(initialState);
-
-type UseLoading = {
-  isLoading: boolean;
-  setLoader: (key: string, value: boolean) => void;
-  loaders: BooleanDictionary;
+const setGlobalLoadingState = (newState: LoadingState) => {
+  globalLoadingState = { ...globalLoadingState, ...newState };
+  listeners.forEach((listener) => listener(globalLoadingState));
 };
 
 /**
- * Aggregate loading states into a single object, and single isLoading state
- * @returns
+ * Global hook to manage loading state.
+ * @returns An object containing:
+ * - `isLoading` {boolean}: A boolean indicating if any loading state is true.
+ * - `setLoader` {Function}: A function to set the loading state for a specific key.
+ * - `isKeyLoading` {Function}: A function to check if a specific key is loading.
  */
-export function useLoading(): UseLoading {
-  const [isLoading, setLoading] = useState(false);
-  const [loaders, setLoaders] = useLoadersState('loaders');
+export const useLoading = () => {
+  const [loadingState, setLoadingState] = useState(globalLoadingState);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    setLoading(Object.values(loaders).some((v) => v));
-  }, [loaders, setLoading]);
+  const setLoader = useCallback((key: string, isLoading: boolean) => {
+    setGlobalLoadingState({ [key]: isLoading });
+  }, []);
 
-  const setLoader = (key: string, value: boolean) => {
-    setLoaders((values) => ({
-      ...values,
-      [key]: value,
-    }));
-  };
+  const isLoading = Object.values(loadingState).some((value) => value);
 
-  return { isLoading, setLoader, loaders };
-}
+  const isKeyLoading = (key: string) => !!loadingState[key];
+
+  const listener = useCallback((state: LoadingState) => {
+    setLoadingState(state);
+  }, []);
+
+  // Subscribe to changes
+  useState(() => {
+    listeners.push(listener);
+    return () => {
+      listeners = listeners.filter((l) => l !== listener);
+    };
+  });
+
+  return { isLoading, setLoader, isKeyLoading };
+};

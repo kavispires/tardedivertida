@@ -1,5 +1,5 @@
-import { ArteRuimCard, TextCard } from '../../types/tdr';
-import { LINHAS_CRUZADAS_ACHIEVEMENTS, LINHAS_CRUZADAS_ACTIONS } from './constants';
+import type { ArteRuimCard, TextCard } from '../../types/tdr';
+import type { LINHAS_CRUZADAS_ACHIEVEMENTS, LINHAS_CRUZADAS_ACTIONS } from './constants';
 
 export type LinhasCruzadasOptions = {
   singleWordOnly: boolean;

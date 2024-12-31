@@ -1,5 +1,5 @@
-import { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
-import { TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
+import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
 export type TestemunhaOcularOptions = {
   /**

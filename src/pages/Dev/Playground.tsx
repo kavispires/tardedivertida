@@ -1,14 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import { doc, updateDoc } from 'firebase/firestore';
 import { type CSSProperties, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources
-import { Button, Space } from 'antd';
-// Services
-import { firestore } from 'services/firebase';
+import { Layout } from 'antd';
+// Components
+import { PageLayout } from 'components/general/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';
-
 // import { Image, Layout } from 'antd';
 // Resources
 
@@ -38,11 +35,12 @@ function Playground() {
   const [lines, setLines] = useState<any>([]);
 
   return (
-    <div>
+    <PageLayout>
       <DevHeader title="Playground" />
-
-      <Space>{}</Space>
-    </div>
+      <Layout.Content className="dev-content">
+        <div>playground content</div>
+      </Layout.Content>
+    </PageLayout>
   );
 }
 

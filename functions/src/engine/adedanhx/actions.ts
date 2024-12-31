@@ -2,14 +2,14 @@
 import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
-import { FirebaseStateData } from './types';
+import type { FirebaseStateData } from './types';
 
 export const handleSubmitAnswers = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   answers: StringDictionary,
-  stop?: boolean
+  stop?: boolean,
 ) => {
   if (stop) {
     await utils.firestore.updateState({
@@ -38,7 +38,7 @@ export const handleNextEvaluationGroup = async (gameName: GameName, gameId: Game
   const { state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   // If it's the last answer, go to the next phase
@@ -63,7 +63,7 @@ export const handleSubmitRejectAnswers = async (
   gameId: GameId,
   playerId: PlayerId,
 
-  evaluations: string[]
+  evaluations: string[],
 ) => {
   const change = evaluations.reduce((acc: BooleanDictionary, evaluation) => {
     acc[`evaluations.${evaluation}`] = true;

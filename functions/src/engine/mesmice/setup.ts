@@ -2,7 +2,7 @@
 import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
-import { Item, ObjectFeatureCard } from '../../types/tdr';
+import type { Item, ObjectFeatureCard } from '../../types/tdr';
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
@@ -19,7 +19,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const achievements = utils.achievements.setup(players, store, {
     safeVotes: 0,
@@ -57,7 +57,7 @@ export const prepareSetupPhase = async (
 export const prepareClueWritingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.removePropertiesFromPlayers(players, ['selectedItemId', 'selectedItem', 'clue', 'items']);
 
@@ -80,7 +80,7 @@ export const prepareClueWritingPhase = async (
       state: {
         phase: MESMICE_PHASES.CLUE_WRITING,
         features: utils.helpers.buildDictionaryFromList(
-          features.map((feature: ObjectFeatureCard) => ({ ...feature, eliminated: false }))
+          features.map((feature: ObjectFeatureCard) => ({ ...feature, eliminated: false })),
         ),
         players,
         outcome: OUTCOME.NEW,
@@ -93,7 +93,7 @@ export const prepareClueWritingPhase = async (
 export const prepareObjectFeatureEliminationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.removePropertiesFromPlayers(players, ['selectedFeatureId']);
 
@@ -113,7 +113,7 @@ export const prepareObjectFeatureEliminationPhase = async (
     const activePlayer = players[activePlayerId];
     stateUpdate.activePlayerId = activePlayerId;
     stateUpdate.item = activePlayer.items.find(
-      (item: Partial<Item>) => item.id === activePlayer.selectedItemId
+      (item: Partial<Item>) => item.id === activePlayer.selectedItemId,
     );
     stateUpdate.clue = activePlayer.clue;
     stateUpdate.target = activePlayer.target;
@@ -165,7 +165,7 @@ export const prepareObjectFeatureEliminationPhase = async (
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -259,7 +259,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Adjust scores to reduce 1 por every time the target was selected by a player
   utils.players.getListOfPlayers(players).forEach((player) => {

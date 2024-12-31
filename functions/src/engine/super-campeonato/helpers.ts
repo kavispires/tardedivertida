@@ -6,7 +6,7 @@ import {
   SUPER_CAMPEONATO_PHASES,
   TOTAL_ROUNDS,
 } from './constants';
-import { ContenderCard, TextCard } from '../../types/tdr';
+import type { ContenderCard, TextCard } from '../../types/tdr';
 import type {
   Bracket,
   BracketTier,
@@ -28,7 +28,7 @@ export const determineNextPhase = (
   currentPhase: string,
   round: Round,
   tier?: string,
-  autoContenders?: boolean
+  autoContenders?: boolean,
 ): string => {
   const { RULES, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE, RESULTS, GAME_OVER } =
     SUPER_CAMPEONATO_PHASES;
@@ -83,14 +83,14 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
   }
 
   const usedContenders = utils.helpers.flattenArray<ContenderCard>(
-    utils.players.getListOfPlayers(players).map((player) => player.contenders)
+    utils.players.getListOfPlayers(players).map((player) => player.contenders),
   );
 
   const selectedContenders = utils.game.getRandomUniqueObjects<ContenderCard>(
     contendersDeck,
     usedContenders,
     quantityNeeded,
-    'id'
+    'id',
   );
 
   return selectedContenders.map((contender) => ({
@@ -320,7 +320,7 @@ export const getPastBattle = (brackets: Bracket[], challenge: TextCard) => {
   });
 
   const sortedWins: [CardId, number][] = Object.entries(winsByContender).sort(
-    ([, winsA], [, winsB]) => winsB - winsA
+    ([, winsA], [, winsB]) => winsB - winsA,
   );
 
   const reversedBrackets = [...brackets].reverse();
@@ -400,7 +400,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Quarter Bets
   const { most: bestQuarterBets, least: worstQuarterBets } = utils.achievements.getMostAndLeastOf(
     store,
-    'quarterBets'
+    'quarterBets',
   );
   if (bestQuarterBets) {
     achievements.push({
@@ -421,7 +421,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Semi Bets
   const { most: bestSemiBets, least: worstSemiBets } = utils.achievements.getMostAndLeastOf(
     store,
-    'semiBets'
+    'semiBets',
   );
   if (bestSemiBets) {
     achievements.push({
@@ -441,7 +441,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Final Bets
   const { most: bestFinalBets, least: worstFinalBets } = utils.achievements.getMostAndLeastOf(
     store,
-    'finalBets'
+    'finalBets',
   );
   if (bestFinalBets) {
     achievements.push({
@@ -461,7 +461,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Overall Bets
   const { most: bestOverallBets, least: worstOverallBets } = utils.achievements.getMostAndLeastOf(
     store,
-    'bets'
+    'bets',
   );
   if (bestOverallBets) {
     achievements.push({
@@ -481,7 +481,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Quarter Contenders
   const { most: bestQuarterContenders, least: worstQuarterContenders } = utils.achievements.getMostAndLeastOf(
     store,
-    'quarterContender'
+    'quarterContender',
   );
   if (bestQuarterContenders) {
     achievements.push({
@@ -501,7 +501,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Semi Contenders
   const { most: bestSemiContenders, least: worstSemiContenders } = utils.achievements.getMostAndLeastOf(
     store,
-    'semiContender'
+    'semiContender',
   );
   if (bestSemiContenders) {
     achievements.push({
@@ -521,7 +521,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Final Contenders
   const { most: bestFinalContenders, least: worstFinalContenders } = utils.achievements.getMostAndLeastOf(
     store,
-    'finalContender'
+    'finalContender',
   );
   if (bestFinalContenders) {
     achievements.push({
@@ -541,7 +541,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most Contenders
   const { most: bestContenders, least: worstContenders } = utils.achievements.getMostAndLeastOf(
     store,
-    'contender'
+    'contender',
   );
   if (bestContenders) {
     achievements.push({

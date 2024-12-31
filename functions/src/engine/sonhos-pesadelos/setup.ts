@@ -24,7 +24,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  data: ResourceData
+  data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Distribute themes for each round
   const themesDeck = getThemeDeck(data.cards);
@@ -52,7 +52,7 @@ export const prepareSetupPhase = async (
 export const prepareDreamTellingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const round = utils.helpers.increaseRound(state?.round);
 
@@ -86,7 +86,7 @@ export const prepareDreamTellingPhase = async (
 export const prepareMatchingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -111,7 +111,7 @@ export const prepareMatchingPhase = async (
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const gallery = buildGallery(players, state.table);
   const ranking = buildRanking(players);
@@ -135,7 +135,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

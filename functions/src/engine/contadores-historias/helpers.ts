@@ -49,7 +49,7 @@ export const buildTableDeck = (allCards: ImageCardId[], quantity: number): Image
 export const getTableCards = (
   tableDeck: ImageCardId[],
   deckIndex: number,
-  quantity: number
+  quantity: number,
 ): ImageCardId[] => {
   return Array(quantity)
     .fill(1)
@@ -117,7 +117,7 @@ export const getRanking = (
   players: Players,
   outcome: string,
   storytellerId: PlayerId,
-  store: FirebaseStoreData
+  store: FirebaseStoreData,
 ): NewScore[] => {
   // Gained points: [points depending on outcome, votes on card]
   const scores = new utils.players.Scores(players, [0, 0]);
@@ -162,7 +162,7 @@ export const getRanking = (
   table
     .filter((tableEntry) => tableEntry.playerId === NPC)
     .forEach((tableEntry) =>
-      tableEntry.votes.forEach((playerId) => utils.achievements.increase(store, playerId, 'tableVotes', 1))
+      tableEntry.votes.forEach((playerId) => utils.achievements.increase(store, playerId, 'tableVotes', 1)),
     );
 
   return scores.rank(players);
@@ -172,7 +172,7 @@ export const scoreRound = (
   players: Players,
   table: Table,
   storyteller: PlayerId,
-  store: FirebaseStoreData
+  store: FirebaseStoreData,
 ) => {
   const { solutionIndex, cardIndexDictionary } = buildCardIndex(table);
 
@@ -203,7 +203,7 @@ export const scoreRound = (
 export const determineGameOver = (
   players: Players,
   options: ContadoresHistoriasOptions,
-  round: Round
+  round: Round,
 ): boolean => {
   if (!options.fixedRounds) {
     return utils.players

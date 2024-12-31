@@ -77,7 +77,7 @@ export function useGameActionRequest({
       await onSuccess();
       message.success(successMessage);
     },
-    onError: (e: any) => {
+    onError: (e: Error) => {
       notification.error({
         message: errorMessage,
         description: JSON.stringify(e?.message),

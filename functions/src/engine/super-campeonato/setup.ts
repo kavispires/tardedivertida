@@ -36,7 +36,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const playerCount = utils.players.getPlayerCount(players);
   const options = { ...store.options };
@@ -101,7 +101,7 @@ export const prepareSetupPhase = async (
 export const prepareChallengeSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -140,7 +140,7 @@ export const prepareChallengeSelectionPhase = async (
 export const prepareContenderSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -162,7 +162,7 @@ export const prepareContenderSelectionPhase = async (
 export const prepareBetsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -197,7 +197,7 @@ export const prepareBetsPhase = async (
 export const prepareBattlePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -222,7 +222,7 @@ export const prepareBattlePhase = async (
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Gather votes
   const brackets = updateBracketsWithVotes(players, state.brackets);
@@ -284,7 +284,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

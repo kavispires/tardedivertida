@@ -1,8 +1,8 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { TextCard } from '../../types/tdr';
-import { PastBattles, ResourceData, SuperCampeonatoOptions } from './types';
+import type { TextCard } from '../../types/tdr';
+import type { PastBattles, ResourceData, SuperCampeonatoOptions } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
@@ -19,7 +19,7 @@ import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER, CONTENDERS_PER_ROUND } from
 export const getResourceData = async (
   language: Language,
   playerCount: number,
-  options: SuperCampeonatoOptions
+  options: SuperCampeonatoOptions,
 ): Promise<ResourceData> => {
   const challengesResourceName = `${TDR_RESOURCES.CHALLENGES}-${language}`;
   // Get full challenges deck
@@ -30,7 +30,7 @@ export const getResourceData = async (
   // Filter out used cards
   let availableChallenges: Record<string, TextCard> = utils.game.filterOutByIds(
     challengesResponse,
-    usedChallenges
+    usedChallenges,
   );
 
   // If not the minimum cards needed, reset and use all
@@ -44,7 +44,7 @@ export const getResourceData = async (
     language,
     !!options.nsfw,
     options.contenderDecks,
-    Math.max(playerCount, CONTENDERS_PER_ROUND) * CONTENDERS_PER_PLAYER
+    Math.max(playerCount, CONTENDERS_PER_ROUND) * CONTENDERS_PER_PLAYER,
   );
 
   return {

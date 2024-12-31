@@ -4,7 +4,7 @@ import { HAND_LIMIT } from './constants';
 import utils from '../../utils';
 // Internal
 import { getNextPhase } from './index';
-import { FirebaseStateData } from './types';
+import type { FirebaseStateData } from './types';
 
 /**
  *
@@ -19,13 +19,13 @@ export const handleSubmitStory = async (
   gameId: GameId,
   playerId: PlayerId,
   story: string,
-  cardId: string
+  cardId: string,
 ) => {
   // Get 'players' from given game session
   const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    'submit story'
+    'submit story',
   );
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
@@ -66,13 +66,13 @@ export const handlePlayCard = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  cardId: string
+  cardId: string,
 ) => {
   const actionText = 'play a card';
   const { state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   if (state.storytellerId === playerId) {
@@ -108,7 +108,7 @@ export const handleSubmitVote = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  vote: PlayerId
+  vote: PlayerId,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

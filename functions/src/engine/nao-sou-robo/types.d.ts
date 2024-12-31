@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { NAO_SOU_ROBO_ACHIEVEMENTS, NAO_SOU_ROBO_ACTIONS } from './constants';
+import type { TextCard } from '../../types/tdr';
+import type { NAO_SOU_ROBO_ACHIEVEMENTS, NAO_SOU_ROBO_ACTIONS } from './constants';
 
 export interface NaoSouRoboOptions {
   [key: string]: boolean;

@@ -2,8 +2,8 @@
 import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER } from './constants';
 import { TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { DiagramTopic, Item } from '../../types/tdr';
-import { TeoriaDeConjuntosOptions, ResourceData, TopicsByDiagramType } from './types';
+import type { DiagramTopic, Item } from '../../types/tdr';
+import type { TeoriaDeConjuntosOptions, ResourceData, TopicsByDiagramType } from './types';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
@@ -18,7 +18,7 @@ import * as resourceUtils from '../resource';
 export const getResourceData = async (
   language: Language,
   playerCount: number,
-  options: TeoriaDeConjuntosOptions
+  options: TeoriaDeConjuntosOptions,
 ): Promise<ResourceData> => {
   const allowNSFW = !!options.nsfw;
 
@@ -64,7 +64,7 @@ export const getResourceData = async (
 
       return acc;
     },
-    { attribute: [], word: [], context: [] }
+    { attribute: [], word: [], context: [] },
   );
 
   const examples = {

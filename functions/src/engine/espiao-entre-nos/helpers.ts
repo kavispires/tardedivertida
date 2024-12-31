@@ -105,7 +105,7 @@ export const calculateTimeRemaining = (timeRemaining: number, timerUpdatedAt: nu
 export const checkOutcome = (
   state: FirebaseStateData,
   store: FirebaseStoreData,
-  players: Players
+  players: Players,
 ): Outcome => {
   const timeRemaining = calculateTimeRemaining(state?.timer?.timeRemaining, Date.now());
   const isFinalAssessment = Boolean(state.finalAssessment) || timeRemaining <= 0;
@@ -168,7 +168,7 @@ export const calculateScore = (
   isSpyGuess: boolean,
   isSpyWin: boolean,
   currentSpyId: PlayerId,
-  accuserId: PlayerId
+  accuserId: PlayerId,
 ) => {
   // Calculate Points
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -196,7 +196,7 @@ export const calculateScore = (
 
 export const determineFinalAssessmentPlayerOrder = (
   lastPlayerId: PlayerId,
-  gameOrder: PlayerId[]
+  gameOrder: PlayerId[],
 ): PlayerId[] => {
   const lastPlayerIndex = gameOrder.indexOf(lastPlayerId);
 

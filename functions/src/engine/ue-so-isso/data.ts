@@ -1,5 +1,5 @@
 // Types
-import { PastSuggestion } from './types';
+import type { PastSuggestion } from './types';
 // Helpers
 import * as dataUtils from '../collections';
 import utils from '../../utils';

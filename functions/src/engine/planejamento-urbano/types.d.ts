@@ -1,6 +1,6 @@
-import { CityLocation } from '../../types/tdr';
-import { GridMapType } from '../../utils/tool-kits/grid-map';
-import { PLANEJAMENTO_URBANO_ACHIEVEMENTS, PLANEJAMENTO_URBANO_ACTIONS } from './constants';
+import type { CityLocation } from '../../types/tdr';
+import type { GridMapType } from '../../utils/tool-kits/grid-map';
+import type { PLANEJAMENTO_URBANO_ACHIEVEMENTS, PLANEJAMENTO_URBANO_ACTIONS } from './constants';
 
 export type PlanejamentoUrbanoOptions = {
   /**

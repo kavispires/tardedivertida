@@ -1,5 +1,5 @@
 // Types
-import { TextCard } from '../../types/tdr';
+import type { TextCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { CARDS_PER_PLAYER, TREVO_DA_SORTE_PHASES } from './constants';
@@ -19,7 +19,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  allWords: TextCard[]
+  allWords: TextCard[],
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder, playerCount } = utils.players.buildGameOrder(players);
@@ -47,7 +47,7 @@ export const prepareSetupPhase = async (
 export const prepareWordSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
   // Deal cards to players
@@ -67,7 +67,7 @@ export const prepareWordSelectionPhase = async (
 export const prepareCloverWritingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -93,7 +93,7 @@ export const prepareCloverWritingPhase = async (
 export const prepareCloverGuessingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const gameOrder = state?.gameOrder ?? [];
 
@@ -126,7 +126,7 @@ export const prepareCloverGuessingPhase = async (
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.readyPlayers(players);
 
@@ -149,7 +149,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

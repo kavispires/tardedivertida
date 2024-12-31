@@ -9,7 +9,7 @@ export const handleSubmitDecision = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  decision: Decisions
+  decision: Decisions,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

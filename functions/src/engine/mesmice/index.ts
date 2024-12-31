@@ -35,7 +35,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: MesmiceOptions
+  options: MesmiceOptions,
 ): MesmiceInitialState => {
   return utils.helpers.getDefaultInitialState<MesmiceInitialState>({
     gameId,
@@ -59,7 +59,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -73,7 +73,7 @@ export const getNextPhase = async (
     state?.phase,
     state?.round,
     state?.outcome ?? OUTCOME.NEW,
-    playerCount
+    playerCount,
   );
 
   // RULES -> SETUP

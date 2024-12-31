@@ -18,6 +18,7 @@ import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Medal } from 'components/general/Medal';
+import { PageLayout } from 'components/general/PageLayout';
 // Internal
 import { MEDALS_IDS } from './utils/constants';
 import { DevHeader } from './DevHeader';
@@ -110,7 +111,7 @@ function SpritesPage() {
   }?.[active.key] ?? <Content type={active.key} />;
 
   return (
-    <Layout className="dev-layout">
+    <PageLayout className="dev-layout">
       <DevHeader
         title={
           <Select
@@ -133,7 +134,7 @@ function SpritesPage() {
         }
       />
       <Layout.Content className="dev-content">{activeContent}</Layout.Content>
-    </Layout>
+    </PageLayout>
   );
 }
 

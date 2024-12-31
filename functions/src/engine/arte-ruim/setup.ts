@@ -1,6 +1,6 @@
 // Types
 import type { ResourceData, FirebaseStateData, FirebaseStoreData, ArteRuimGameOptions } from './types';
-import { ArteRuimCard } from '../../types/tdr';
+import type { ArteRuimCard } from '../../types/tdr';
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD } from './constants';
@@ -29,7 +29,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Get number of cards per level
   const playerCount = utils.players.getPlayerCount(players);
@@ -50,7 +50,7 @@ export const prepareSetupPhase = async (
     chooseForMe: 0,
   });
 
-  const threshold = options.forPoints ? GAME_OVER_SCORE_THRESHOLD?.[playerCount] ?? 100 : 0;
+  const threshold = options.forPoints ? (GAME_OVER_SCORE_THRESHOLD?.[playerCount] ?? 100) : 0;
 
   // Save
   return {
@@ -77,7 +77,7 @@ export const prepareSetupPhase = async (
 export const prepareDrawPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -110,7 +110,7 @@ export const prepareDrawPhase = async (
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -124,7 +124,7 @@ export const prepareEvaluationPhase = async (
 
   // Shuffle drawings
   const shuffledDrawings = utils.game.shuffle(
-    utils.players.getListOfPlayers(players).map((player) => player.currentCard)
+    utils.players.getListOfPlayers(players).map((player) => player.currentCard),
   );
 
   return {
@@ -143,7 +143,7 @@ export const prepareEvaluationPhase = async (
 export const prepareGalleryPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -183,14 +183,14 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
   const finalGallery = utils.helpers.orderBy(
     utils.helpers.deepCopy(store.pastDrawings),
     'successRate',
-    'desc'
+    'desc',
   );
 
   const achievements = getAchievements(store);

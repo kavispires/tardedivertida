@@ -2,7 +2,7 @@
 import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
-import { ClueId } from './types';
+import type { ClueId } from './types';
 
 /**
  *
@@ -16,7 +16,7 @@ export const handleSubmitBossPlayer = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  bossId: string
+  bossId: string,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -44,7 +44,7 @@ export const handleSubmitSecretWord = async (
   gameId: GameId,
   playerId: PlayerId,
   secretWord: string,
-  categories: string[]
+  categories: string[],
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -73,7 +73,7 @@ export const handleSubmitPlayerClues = async (
   gameId: GameId,
   playerId: PlayerId,
   clues: string[],
-  guesses?: string[]
+  guesses?: string[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -98,7 +98,7 @@ export const handleSubmitEvaluation = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  evaluation: Record<ClueId, boolean>
+  evaluation: Record<ClueId, boolean>,
 ) => {
   // Count trues
   const trues = Object.values(evaluation).filter((result) => result).length;
@@ -129,7 +129,7 @@ export const handleSubmitOutcome = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  outcome: string
+  outcome: string,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -155,7 +155,7 @@ export const handleSubmitHelp = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  clueId: ClueId
+  clueId: ClueId,
 ) => {
   return await utils.firestore.updateState({
     gameName,

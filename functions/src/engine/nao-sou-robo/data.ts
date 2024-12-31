@@ -2,8 +2,8 @@
 import { DECK_PER_PLAYER, MAX_ROUNDS, MIN_ROUND_CARDS } from './constants';
 import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { TextCard } from '../../types/tdr';
-import { GalleryEntry, ResourceData } from './types';
+import type { TextCard } from '../../types/tdr';
+import type { GalleryEntry, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
 import * as dataUtils from '../collections';
@@ -25,13 +25,13 @@ export const getResourceData = async (language: Language, playerCount: number): 
 
   // Colors
   const allColors: Collection<TextCard> = await resourceUtils.fetchResource(
-    `${TDR_RESOURCES.COLORS}-${language}`
+    `${TDR_RESOURCES.COLORS}-${language}`,
   );
   const colors = utils.game.getRandomItems(Object.values(allColors), quantityNeeded);
 
   // Emotions
   const allEmotions: Collection<TextCard> = await resourceUtils.fetchResource(
-    `${TDR_RESOURCES.EMOTIONS}-${language}`
+    `${TDR_RESOURCES.EMOTIONS}-${language}`,
   );
   const emotions = utils.game.getRandomItems(Object.values(allEmotions), quantityNeeded);
 

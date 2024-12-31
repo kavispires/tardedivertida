@@ -1,5 +1,5 @@
 // Types
-import { TestimonyQuestionCard } from '../../types/tdr';
+import type { TestimonyQuestionCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcularEntry } from './types';
 // Constants
 import {
@@ -31,17 +31,17 @@ import { orderBy } from 'lodash';
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Build suspects grid
   const isHarderGame = store.options?.harderGame ?? false;
   const suspects = orderBy(
     utils.game.getRandomItems(
       additionalData.allSuspects,
-      SUSPECT_COUNT + (isHarderGame ? HARD_MODE_EXTRA_SUSPECT_COUNT : 0)
+      SUSPECT_COUNT + (isHarderGame ? HARD_MODE_EXTRA_SUSPECT_COUNT : 0),
     ),
     [`name.${store.language}`],
-    ['asc']
+    ['asc'],
   );
 
   const perpetrator = utils.game.getRandomItem(suspects);
@@ -107,7 +107,7 @@ export const prepareQuestionSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalPayload: PlainObject
+  additionalPayload: PlainObject,
 ): Promise<SaveGamePayload> => {
   const witnessId = additionalPayload?.witnessId ?? state.witnessId;
 
@@ -186,7 +186,7 @@ export const prepareQuestioningPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalPayload: PlainObject
+  additionalPayload: PlainObject,
 ): Promise<SaveGamePayload> => {
   const question = store.deck.find((card: TestimonyQuestionCard) => card.id === additionalPayload.questionId);
 
@@ -209,7 +209,7 @@ export const prepareTrialPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalPayload: PlainObject
+  additionalPayload: PlainObject,
 ): Promise<SaveGamePayload> => {
   const testimony = additionalPayload?.testimony ?? state.testimony;
 
@@ -239,7 +239,7 @@ export const prepareGameOverPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalPayload: PlainObject
+  additionalPayload: PlainObject,
 ): Promise<SaveGamePayload> => {
   await utils.firestore.markGameAsComplete(gameId);
 

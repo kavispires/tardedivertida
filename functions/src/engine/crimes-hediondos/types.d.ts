@@ -1,5 +1,5 @@
-import { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
-import { CRIMES_HEDIONDOS_ACHIEVEMENTS, CRIMES_HEDIONDOS_ACTIONS } from './constants';
+import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
+import type { CRIMES_HEDIONDOS_ACHIEVEMENTS, CRIMES_HEDIONDOS_ACTIONS } from './constants';
 
 export type CrimesHediondosOptions = {
   /**

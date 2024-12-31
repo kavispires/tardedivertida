@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
-import { SpectrumCard } from '../../types/tdr';
+import type { SpectrumCard } from '../../types/tdr';
 import type { PastCategories, ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';
@@ -25,7 +25,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
   // Filter out used cards
   const availableCategories: Record<string, SpectrumCard> = utils.game.filterOutByIds(
     allCategories,
-    usedCategories
+    usedCategories,
   );
 
   // If not the minimum cards needed, reset and use all
@@ -50,6 +50,6 @@ export const saveData = async (pastCategories: PastCategories): Promise<void> =>
   const usedOndaTelepaticaCategories = utils.helpers.buildIdDictionary(pastCategories);
   await globalUtils.updateGlobalFirebaseDoc(
     GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS,
-    usedOndaTelepaticaCategories
+    usedOndaTelepaticaCategories,
   );
 };

@@ -42,7 +42,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: MenteColetivaOptions
+  options: MenteColetivaOptions,
 ): MenteColetivaInitialState => {
   return utils.helpers.getDefaultInitialState<MenteColetivaInitialState>({
     gameId,
@@ -70,7 +70,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,

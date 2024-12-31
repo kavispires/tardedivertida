@@ -13,7 +13,6 @@ import { PHASES } from 'utils/phases';
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 // Components
 import { AvatarName } from 'components/avatars';
-import { DevSetState } from 'components/debug/DevSetState';
 import { DualTranslate, Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
@@ -22,9 +21,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { DAYS_OF_THE_WEEK } from './utils/constants';
 import { useOnPlaceGoodAPIRequest } from './utils/api-requests';
-import { demo } from './utils/demo';
 import { StepPlaceGood } from './StepPlaceGood';
-// Icons
 
 export function PhaseGoodPlacement({ players, state }: PhaseProps) {
   const user = useUser(players, state);

@@ -31,7 +31,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Gather topics and letters for the entire game 5x4 grid
   const { allTopics, allLetters } = resourceData;
@@ -43,7 +43,7 @@ export const prepareSetupPhase = async (
     Number(options.columnSize ?? TOPICS_PER_ROUND),
     Number(options.rowSize ?? LETTERS_PER_ROUND),
     roundsCount,
-    !!options.nsfw
+    !!options.nsfw,
   );
 
   const achievements = utils.achievements.setup(players, store, {
@@ -79,7 +79,7 @@ export const prepareSetupPhase = async (
 export const prepareAnsweringPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -94,7 +94,7 @@ export const prepareAnsweringPhase = async (
     store.letters,
     round.current,
     Number(options.columnSize ?? TOPICS_PER_ROUND),
-    Number(options.rowSize ?? LETTERS_PER_ROUND)
+    Number(options.rowSize ?? LETTERS_PER_ROUND),
   );
 
   // Save
@@ -115,7 +115,7 @@ export const prepareAnsweringPhase = async (
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -148,7 +148,7 @@ export const prepareEvaluationPhase = async (
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Gather votes
   const { answersGrid, ranking } = evaluateAnswers(players, state.answersGroups, store);
@@ -178,7 +178,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

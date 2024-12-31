@@ -23,6 +23,9 @@ const SessionComunicacaoAlienigena = lazy(
       'games/comunicacao-alienigena/SessionComunicacaoAlienigena' /* webpackChunkName: "comunicacao-alienigena" */
     ),
 );
+const SessionComunicacaoDuo = lazy(
+  () => import('games/comunicacao-duo/SessionComunicacaoDuo' /* webpackChunkName: "comunicacao-duo" */),
+);
 const SessionContadoresHistorias = lazy(
   () =>
     import(
@@ -143,14 +146,14 @@ const SessionPLanejamentoUrbano = lazy(
 
 function Game() {
   const { translate } = useLanguage();
-  const { loaders } = useLoading();
+  const { isKeyLoading } = useLoading();
 
   const { gameId, gameName, createdAt } = useGameMeta();
 
   const isGameStale = useIsGameStale(createdAt);
 
   // Deffer to load screen if any major API call is running
-  if (!gameId || loaders.meta) {
+  if (!gameId || isKeyLoading('meta')) {
     return <LoadingPage />;
   }
 
@@ -184,6 +187,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionComunicacaoAlienigena />
+          </Suspense>
+        );
+      case GAME_COLLECTION.COMUNICACAO_DUO:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionComunicacaoDuo />
           </Suspense>
         );
       case GAME_COLLECTION.CONTADORES_HISTORIAS:

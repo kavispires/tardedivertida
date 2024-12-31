@@ -4,7 +4,7 @@ import { CITY_BOUNDS_SIZE, PLANEJAMENTO_URBANO_PHASES, TOTAL_ROUNDS } from './co
 import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-import { CityLocation } from '../../types/tdr';
+import type { CityLocation } from '../../types/tdr';
 import { GAME_NAMES, LETTERS } from '../../utils/constants';
 import { orderBy } from 'lodash';
 
@@ -21,7 +21,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const allowNSFW = store.options.nsfw;
   const { allCityLocations } = resourceData;
@@ -42,7 +42,7 @@ export const prepareSetupPhase = async (
 
   // Get all available locations
   const allLocations = utils.game.shuffle(
-    Object.values(allCityLocations).filter((l) => (allowNSFW || !l.nsfw) && !usedCityLocations[l.id])
+    Object.values(allCityLocations).filter((l) => (allowNSFW || !l.nsfw) && !usedCityLocations[l.id]),
   );
 
   // Get 4 locations around the city hall
@@ -95,7 +95,7 @@ export const prepareSetupPhase = async (
 export const preparePlanningPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const deck = store.deck;
   const placements: number = state.placements;
@@ -126,7 +126,7 @@ export const preparePlanningPhase = async (
     city,
     'orthogonal',
     'available',
-    'used'
+    'used',
   );
   const selectedIds = utils.game.getRandomItems(availableOrthogonalCellsIds, placements);
   const coneCellIds: Record<string, string> = {};
@@ -137,7 +137,7 @@ export const preparePlanningPhase = async (
 
   // Get N new locations from the deck
   const availableProjectsIds = Array.from({ length: placements }, () => deck.pop()).filter(
-    Boolean
+    Boolean,
   ) as CardId[];
 
   // Save
@@ -165,7 +165,7 @@ export const preparePlanningPhase = async (
 export const preparePlacingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const activePlayerId = state.activePlayerId;
   const controllerId = state.controllerId;
@@ -191,7 +191,7 @@ export const preparePlacingPhase = async (
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -253,19 +253,19 @@ export const prepareResolutionPhase = async (
     city,
     'orthogonal',
     'available',
-    'used'
+    'used',
   );
   const availableDiagonalCellsIds = utils.toolKits.gridMapUtils.getAllAdjacentIds(
     city,
     'diagonal',
     'available',
-    'used'
+    'used',
   );
   const availableReservedCellsIds = utils.toolKits.gridMapUtils.getAllAdjacentIds(
     city,
     'diagonal',
     'available',
-    'reserved'
+    'reserved',
   );
 
   const onlyDiagonal = [...availableDiagonalCellsIds, ...availableReservedCellsIds];
@@ -314,7 +314,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const city: City = state.city;
   // If there are pending sites, resolve them

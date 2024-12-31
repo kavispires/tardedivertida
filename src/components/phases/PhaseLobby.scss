@@ -1,44 +1,21 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .lobby {
   flex: 1;
   display: grid;
-  gap: get-unit(1);
-  width: 100%;
-  grid-template-columns: 10vw [left] 1fr [center] auto [right] 1fr 10vw;
-  grid-template-rows: repeat(5, auto);
-  z-index: 3;
-
-  &__seating-area-left {
-    grid-column: left;
-    grid-row: 2 / span 1;
-    min-height: 500px;
-    position: relative;
-  }
-
-  &__seating-area-right {
-    grid-column: right;
-    grid-row: 2 / span 1;
-    min-height: 500px;
-    position: relative;
-  }
-
-  &__seat {
-    position: absolute;
-  }
+  place-items: center;
 }
 
 .lobby-step {
-  grid-column: center;
-  grid-row: row -7 / row 6;
-  justify-self: center;
-  width: 300px;
-  @include vertical-centered-container;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 720px);
+  gap: get-unit(2);
   margin: get-unit(8 0);
-  transition: all 500ms;
+  z-index: 3;
 
   &__card {
-    background-color: get-color('white');
+    background-color: get-color("white");
+    width: 360px;
     @include box-shadow;
     padding: get-unit(3);
     border-radius: $border-radius;
@@ -54,20 +31,16 @@
 
   &__title {
     text-align: center;
+    margin-top: 0 !important;
   }
 
   &__summary {
     text-align: center;
-    color: get-color('black', 3);
+    color: get-color("black", 3);
   }
 
   &__content {
     width: 100%;
-  }
-
-  &__space-buttons {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
   }
 
   &__avatar-selection {
@@ -79,13 +52,7 @@
     margin: 0 auto;
   }
 
-  &__avatar-nav-button {
-    height: 100px;
-    flex: 1;
-  }
-
   &__description {
-    text-transform: capitalize;
     text-align: center;
   }
 
@@ -96,7 +63,7 @@
 
   &__settings {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
     margin: get-unit(4 0);
   }
 
@@ -109,15 +76,42 @@
   &__switch-label {
     font-size: 0.95em;
   }
-}
 
-.lobby-banner {
-  max-width: 360px;
-  border-radius: get-unit(2);
+  &__waiting {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  &__rules {
+    background-color: get-color("white");
+    min-width: 360px;
+    height: 100%;
+    flex: 1;
+    @include box-shadow;
+    padding: get-unit(3);
+    border-radius: $border-radius;
+    gap: get-unit(2);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: get-unit(10);
+  }
+
+  &__rule-list {
+    max-height: 75vh;
+  }
+
+  &__rule {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: get-unit(2);
+    margin-bottom: get-unit(2);
+  }
 }
 
 .lobby-avatar {
-  width: 200px;
+  width: 120px;
   border-radius: get-unit(2);
   margin: get-unit(0 2);
 }
@@ -185,7 +179,7 @@
 }
 
 .lobby-usual-avatar-selection {
-  border: 2px solid get-color('gray', 3, 0.5);
+  border: 1px solid get-color("gray", 3, 0.5);
   border-radius: $border-radius;
   display: flex;
   flex-direction: column;
@@ -204,5 +198,64 @@
     width: 40px;
     border-radius: $border-radius;
     margin: get-unit(0 1);
+  }
+}
+
+.avatar-selection-options {
+  width: 360px;
+  max-width: 90vw;
+  max-height: 70vh;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: get-unit(1);
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: $border-radius;
+    margin: 0;
+    border: 2px solid transparent;
+
+    &--selected {
+      border: 2px solid get-color("pink");
+    }
+    &--used {
+      filter: grayscale(100%);
+      opacity: 0.1;
+    }
+  }
+
+  &__avatar-svg {
+    width: 44px;
+    border-radius: $border-radius;
+  }
+}
+
+.joined-players {
+  display: flex;
+  flex-direction: column;
+  gap: get-unit(1);
+  margin: get-unit(2);
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &__player {
+    display: flex;
+    align-items: center;
+    gap: get-unit(1);
+  }
+
+  &__avatar-name {
+    background-color: get-color("white");
+    padding: get-unit(1 4 1 6);
+    margin-left: get-unit(-5);
+    border-radius: get-unit(0 4 4 0);
+
+    white-space: nowrap;
+    z-index: -1;
   }
 }

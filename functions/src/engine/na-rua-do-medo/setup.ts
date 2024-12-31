@@ -28,7 +28,7 @@ import {
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const { horrorDeck, jackpotDeck, candyDeck, horrorCount } = buildDecks(store.options?.shortGame ?? false);
 
@@ -85,7 +85,7 @@ export const prepareTrickOrTreatPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  outcome: Outcome
+  outcome: Outcome,
 ): Promise<SaveGamePayload> => {
   // If new round
   if (outcome.status === OUTCOME_STATUS.NEW_STREET) {
@@ -167,7 +167,7 @@ export const prepareTrickOrTreatPhase = async (
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const {
     street,
@@ -211,7 +211,7 @@ export const prepareStreetEndPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  outcome: Outcome
+  outcome: Outcome,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -271,7 +271,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   tallyCandyAsScore(players);
   const winners = utils.players.determineWinners(players);

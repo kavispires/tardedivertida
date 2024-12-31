@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import * as functions from 'firebase-functions/v2';
 
-import { GenericCallableFunction } from '../types/reference';
+import type { GenericCallableFunction } from '../types/reference';
 import utils from '../utils';
 
 export const isEmulatingFunctions = () => !!process.env.FUNCTIONS_EMULATOR;
@@ -22,7 +22,7 @@ export const throwException = (error: any, action: string) => {
 
 export const apiDelegator = (
   request: functions.https.CallableRequest<ActionPayload>,
-  actions: Record<string, GenericCallableFunction>
+  actions: Record<string, GenericCallableFunction>,
 ) => {
   const uid = request.auth?.uid;
   const action = request.data?.action;
@@ -65,7 +65,7 @@ export function validateActionPayload(
   gameId: GameId,
   gameName: GameName,
   action: string,
-  actionText: string
+  actionText: string,
 ) {
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
@@ -83,7 +83,7 @@ export function validateSubmitActionPayload(
   gameId: GameId,
   gameName: GameName,
   playerId: PlayerId,
-  action: string
+  action: string,
 ) {
   const actionText = 'submit action';
   verifyPayload(gameId, 'gameId', actionText);

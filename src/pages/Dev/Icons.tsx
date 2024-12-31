@@ -8,6 +8,7 @@ import * as icons from 'icons/collection';
 import { collectionByCategory, collectionByGame, collectionUnassigned } from 'icons/collectionByGame';
 // Components
 import { TransparentButton } from 'components/buttons';
+import { PageLayout } from 'components/general/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';
 
@@ -29,7 +30,7 @@ function IconsPage() {
   const iconEntries = Object.entries(icons);
 
   return (
-    <Layout className="dev-layout">
+    <PageLayout className="dev-layout">
       <DevHeader
         title="Icons"
         subTitle={`(${iconEntries.length})`}
@@ -49,7 +50,7 @@ function IconsPage() {
           <IconsByCategoryView iconEntries={iconEntries} copyToClipboard={copyToClipboard} />
         )}
       </Layout.Content>
-    </Layout>
+    </PageLayout>
   );
 }
 

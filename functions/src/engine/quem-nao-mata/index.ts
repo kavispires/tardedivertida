@@ -33,7 +33,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language,
-  version: string
+  version: string,
 ): QuemNaoMataInitialState => {
   return utils.helpers.getDefaultInitialState<QuemNaoMataInitialState>({
     gameId,
@@ -63,7 +63,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,

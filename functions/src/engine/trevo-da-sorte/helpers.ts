@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { Clover, Guess, Guesses, Leaf, LeafGuess, LeafId, Leaves } from './types';
+import type { TextCard } from '../../types/tdr';
+import type { Clover, Guess, Guesses, Leaf, LeafGuess, LeafId, Leaves } from './types';
 // Constants
 import { LEAF_SIZE, ROTATIONS, TREVO_DA_SORTE_PHASES } from './constants';
 // Helpers
@@ -14,7 +14,7 @@ import { getRandomItems } from '../../utils/game-utils';
 export const determineNextPhase = (
   currentPhase: string,
   gameOrder?: PlayerId[],
-  activeCloverId?: PlayerId
+  activeCloverId?: PlayerId,
 ): string => {
   const { RULES, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER } =
     TREVO_DA_SORTE_PHASES;
@@ -41,7 +41,7 @@ export const determineNextPhase = (
 export const buildLeaves = (players: Players, gameMode: string) => {
   utils.players.getListOfPlayers(players).forEach((player) => {
     const selectedWords: TextCard[] = utils.game.shuffle(
-      player.hand.filter((card: TextCard) => !player.badWordsIds.includes(card.id))
+      player.hand.filter((card: TextCard) => !player.badWordsIds.includes(card.id)),
     );
 
     const wordChunks = utils.game.sliceIntoChunks(selectedWords, LEAF_SIZE);

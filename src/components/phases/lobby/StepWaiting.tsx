@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App, Space, Typography } from 'antd';
@@ -13,12 +13,15 @@ import { useLoading } from 'hooks/useLoading';
 // Services
 import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { AVATARS } from 'utils/avatars';
 // Components
 import { HostButton, HostOnlyContainer } from 'components/host';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 // Images
 import avatars from 'assets/images/avatars.svg';
+
+const Title = motion(Typography.Title);
+const Paragraph = motion(Typography.Paragraph);
 
 type StepWaitingProps = {
   players: GamePlayers;
@@ -54,7 +57,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
         );
       }
     },
-    onError: (e: any) => {
+    onError: (e: Error) => {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
@@ -83,32 +86,44 @@ export function StepWaiting({ players }: StepWaitingProps) {
 
   return (
     <>
-      <h1 className={clsx('lobby-step__title', getAnimationClass('tada'))}>
-        {username || translate('Fulano', 'Unknown')}
-      </h1>
+      <Title level={2} className="lobby-step__title" layoutId="lobby-step-title">
+        <Translate pt="Pronto!" en="Ready!" />
+      </Title>
 
-      <Space className="space-container">
-        <svg viewBox="0 0 100 100" className="lobby-avatar">
+      <Space className="space-container" direction="vertical">
+        <motion.svg viewBox="0 0 100 100" className="lobby-avatar" layoutId="avatar">
           <use href={`${avatars}#avatar-${userAvatarId}`}></use>
-        </svg>
+        </motion.svg>
+
+        <div className="lobby-step__description">
+          <small>
+            {username || translate('Fulano', 'Unknown')},{' '}
+            <DualTranslate>{AVATARS[userAvatarId].description}</DualTranslate>
+          </small>
+        </div>
       </Space>
 
-      <h3 className="lobby-heading">
-        <Translate pt="Aguarde os outros jogadores entrarem." en="Please, wait while other players join..." />
-      </h3>
-      <HostOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
-        <Typography.Text className="center padding">
-          <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
-        </Typography.Text>
-        <HostButton
-          onClick={() => mutate()}
-          disabled={isLoading || numPlayers < gameMeta.min}
-          loading={isLoading}
-          block
-        >
-          <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
-        </HostButton>
-      </HostOnlyContainer>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <Paragraph className="lobby-heading">
+          <Translate
+            pt="Aguarde os outros jogadores entrarem."
+            en="Please, wait while other players join..."
+          />
+        </Paragraph>
+        <HostOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
+          <Typography.Text className="center padding">
+            <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
+          </Typography.Text>
+          <HostButton
+            onClick={() => mutate()}
+            disabled={isLoading || numPlayers < gameMeta.min}
+            loading={isLoading}
+            block
+          >
+            <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
+          </HostButton>
+        </HostOnlyContainer>
+      </motion.div>
     </>
   );
 }

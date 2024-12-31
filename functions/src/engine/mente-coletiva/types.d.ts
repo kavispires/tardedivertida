@@ -1,5 +1,5 @@
-import { GroupQuestionCard } from '../../types/tdr';
-import { MENTE_COLETIVA_ACHIEVEMENTS, MENTE_COLETIVA_ACTIONS } from './constants';
+import type { GroupQuestionCard } from '../../types/tdr';
+import type { MENTE_COLETIVA_ACHIEVEMENTS, MENTE_COLETIVA_ACTIONS } from './constants';
 
 export type MenteColetivaOptions = {
   shortPasture: boolean;

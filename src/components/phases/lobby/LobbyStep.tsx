@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 // Ant Design Resources
-import { Alert } from 'antd';
+import { Alert, Typography } from 'antd';
 // Components
 import { GameBanner } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
@@ -11,6 +11,12 @@ type LobbyStepProps = {
   isLocked: boolean;
 };
 
+/**
+ *
+ * @deprecated - delete, unused
+ * @param param0
+ * @returns
+ */
 export function LobbyStep({ children, isLocked }: LobbyStepProps) {
   const info = useGameInfoContext();
 
@@ -21,9 +27,9 @@ export function LobbyStep({ children, isLocked }: LobbyStepProps) {
         <div className="lobby-step__content">
           {isLocked ? (
             <>
-              <h1 className="lobby-step__title">
+              <Typography.Title className="lobby-step__title">
                 <Translate pt="Esse jogo está trancado" en="This session is locked" />
-              </h1>
+              </Typography.Title>
 
               <Alert
                 type="warning"

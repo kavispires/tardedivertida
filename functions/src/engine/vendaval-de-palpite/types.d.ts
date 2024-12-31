@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { VENDAVAL_DE_PALPITE_ACTIONS } from './constants';
+import type { TextCard } from '../../types/tdr';
+import type { VENDAVAL_DE_PALPITE_ACTIONS } from './constants';
 
 export type ResourceData = {
   words: TextCard[];

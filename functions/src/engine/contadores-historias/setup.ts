@@ -25,7 +25,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  data: ResourceData
+  data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
   const { gameOrder } = utils.players.buildGameOrder(players);
@@ -79,7 +79,7 @@ export const prepareSetupPhase = async (
 export const prepareStoryPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Make sure everybody has 6 cards in hand
   players = utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
@@ -110,7 +110,7 @@ export const prepareStoryPhase = async (
 export const prepareCardPlayPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players to play cards
   utils.players.unReadyPlayers(players, state.storytellerId);
@@ -134,7 +134,7 @@ export const prepareCardPlayPhase = async (
 export const prepareVotingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const tableCardsCount = TABLE_CARDS_BY_PLAYER_COUNT[utils.players.getPlayerCount(players)];
 
@@ -164,7 +164,7 @@ export const prepareVotingPhase = async (
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Gather votes
   const { ranking, outcome, table } = scoreRound(players, state.table, state.storytellerId, store);
@@ -200,7 +200,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

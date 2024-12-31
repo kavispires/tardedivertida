@@ -24,7 +24,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Get number of cards per level
   const playerCount = utils.players.getPlayerCount(players);
@@ -66,7 +66,7 @@ export const prepareSetupPhase = async (
 export const prepareDrawingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -102,7 +102,7 @@ export const prepareDrawingPhase = async (
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -139,7 +139,7 @@ export const prepareEvaluationPhase = async (
 export const prepareGalleryPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -167,7 +167,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

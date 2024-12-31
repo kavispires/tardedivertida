@@ -7,6 +7,7 @@ import { Layout, App } from 'antd';
 import * as icons from 'icons/collection';
 // Components
 import { TransparentButton } from 'components/buttons';
+import { PageLayout } from 'components/general/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';
 
@@ -59,7 +60,7 @@ function ColorsPage() {
 
   const iconEntries = Object.entries(icons);
   return (
-    <Layout className="dev-layout">
+    <PageLayout className="dev-layout">
       <DevHeader title="Colors" subTitle={`(${iconEntries.length})`} />
       <Layout.Content className="dev-content">
         <ul style={styles}>
@@ -84,7 +85,7 @@ function ColorsPage() {
           ))}
         </ul>
       </Layout.Content>
-    </Layout>
+    </PageLayout>
   );
 }
 

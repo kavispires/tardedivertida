@@ -3,7 +3,7 @@ import { CONTROLE_DE_ESTOQUE_PHASES, OUT_OF_STOCK_GOODS, MIN_ROUNDS, TOTAL_GOODS
 import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Good, ResourceData, WarehouseSlot } from './types';
-import { BossIdeaCard } from '../../types/tdr';
+import type { BossIdeaCard } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -24,7 +24,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const achievements = utils.achievements.setup(players, store, {
     attempts: 0,
@@ -48,7 +48,7 @@ export const prepareSetupPhase = async (
       };
       return good;
     }),
-    'id'
+    'id',
   );
 
   // Build grid and make center slot available to start the game
@@ -64,7 +64,7 @@ export const prepareSetupPhase = async (
       };
       return slot;
     }),
-    'id'
+    'id',
   );
 
   // Calculate rounds and distribute goods
@@ -77,8 +77,8 @@ export const prepareSetupPhase = async (
   bossIdeas.push(
     ...utils.game.getRandomItems(
       Object.values(resourceData.allBossIdeas).filter((idea) => idea.id !== 'FIRST_DAY'),
-      totalRounds - 1
-    )
+      totalRounds - 1,
+    ),
   );
 
   // Distribute the goods for each round as equal as possible
@@ -115,7 +115,7 @@ export const prepareSetupPhase = async (
 export const prepareGoodPlacementPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Start game if it is the first round or all rounds goods have been placed
   if (!state.roundGoods || state.roundsGoodIndex >= state.roundGoods.length - 1) {
@@ -193,7 +193,7 @@ export const prepareGoodPlacementPhase = async (
 export const preparePlacementConfirmationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players, state.supervisorId);
 
@@ -212,7 +212,7 @@ export const preparePlacementConfirmationPhase = async (
 export const prepareFulfillmentPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -241,7 +241,7 @@ export const prepareFulfillmentPhase = async (
     players,
     utils.game.shuffle(availableOrders),
     Math.floor(availableOrders.length / utils.players.getPlayerCount(players)),
-    'orders'
+    'orders',
   );
 
   utils.players.removePropertiesFromPlayers(players, ['fulfillments']);
@@ -263,7 +263,7 @@ export const prepareFulfillmentPhase = async (
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -289,7 +289,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

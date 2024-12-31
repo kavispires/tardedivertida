@@ -105,6 +105,13 @@ export const collectionByGame: Record<string, string[]> = {
     'OfferingIcon',
     'UfoIcon',
   ],
+  'comunicacao-duo': [
+    'AlienHeartEyesIcon',
+    'AlienStarEyesIcon',
+    'AlienNeutralIcon',
+    'MysteryBoxIcon',
+    'QuestionIcon',
+  ],
   'contadores-de-historias': ['FairyTaleIcon', 'SealIcon'],
   'controle-de-estoque': ['BossIdeaIcon', 'MysteryBoxIcon', 'ShippingBoxIcon', 'OnlineOrderIcon'],
   'crimes-hediondos': [
