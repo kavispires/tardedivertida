@@ -1,23 +1,22 @@
+// Ant Design Resources
+import { Button, Flex, Space } from 'antd';
 // Types
+import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
+import { AlienKeyboard } from 'components/alien/AlienKeyboard';
+import { AlienText } from 'components/alien/AlienText';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import type { DeckEntry, HistoryEntry, SubmitDeliveryPayload, Summary } from './utils/types';
-import { AvatarName } from 'components/avatars';
-import { Board } from './components/Board';
-import { AlienKeyboard } from 'components/alien/AlienKeyboard';
-import { AlienText } from 'components/alien/AlienText';
-import { useState } from 'react';
-import { Button, Flex, InputNumber, Space } from 'antd';
 import { ViewIf } from 'components/views';
-import { STATUS } from './utils/constants';
+// Internal
+import type { DeckEntry, HistoryEntry, SubmitDeliveryPayload, Summary } from './utils/types';
+import { Board } from './components/Board';
 import { SummaryBox } from './components/SummaryBox';
-import type { GameRound } from 'types/game';
-import { TranslationOutlined } from '@ant-design/icons';
+import { History } from './components/History';
 
 type StepDeliverProps = {
   players: GamePlayers;
@@ -43,9 +42,7 @@ export function StepDeliver({
   announcement,
   deckType,
   deck,
-  status,
   history,
-  requester,
   isTheRequester,
   summary,
   clueInputType,
@@ -145,6 +142,15 @@ export function StepDeliver({
           <AlienKeyboard value={''} onChange={() => {}} disabled />
         </Space>
       </ViewIf>
+
+      <History
+        history={history}
+        players={players}
+        deck={deck}
+        deckType={deckType}
+        clueInputType={clueInputType}
+        userSide={user.side}
+      />
     </Step>
   );
 }

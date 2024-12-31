@@ -21,16 +21,10 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
     return (
       <div
         key={`cd-board-entry-${entry.data.id}`}
-        className={clsx(
-          'cd-board-entry',
-          `cd-board-entry--${entry.affiliation[sideIndex]}`,
-          // (showTypes || item.offered) && `objects-grid__item--${item.type}`,
-          // activeObjects?.includes(item.id) && 'objects-grid__item--ask',
-        )}
+        className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
         <ItemCard
           id={`${entry.data.id}`}
-          // className={clsx(item.offered && 'objects-grid__item-offered')}
           title={entry.data.name ? dualTranslate(entry.data.name) : undefined}
         />
       </div>

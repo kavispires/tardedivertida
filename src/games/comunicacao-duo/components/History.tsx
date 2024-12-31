@@ -1,0 +1,87 @@
+import { keyBy } from 'lodash';
+import { useMemo } from 'react';
+// Ant Design Resources
+import { Collapse, Table, type TableProps, type CollapseProps, Flex } from 'antd';
+// Types
+import type { GamePlayers } from 'types/player';
+// Components
+import { AlienText } from 'components/alien/AlienText';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+// Internal
+import type { DeckEntry, HistoryEntry } from '../utils/types';
+import { HistoryDeliverableEntry } from './HistoryDeliverableEntry';
+
+type HistoryProps = {
+  players: GamePlayers;
+  history: HistoryEntry[];
+  clueInputType: string;
+  deck: DeckEntry[];
+  deckType: string;
+  userSide: string;
+};
+
+export function History({ history, players, deck, deckType, clueInputType, userSide }: HistoryProps) {
+  const deckDict = useMemo(() => keyBy(deck, 'id'), [deck]);
+
+  console.log(history);
+  const columns: TableProps<HistoryEntry>['columns'] = [
+    {
+      key: 'player',
+      title: <Translate pt="Jogador" en="Player" />,
+      dataIndex: 'requesterId',
+      render: (requesterId) => <AvatarName player={players[requesterId]} />,
+    },
+    {
+      key: 'clue',
+      title: <Translate pt="Pedido" en="Dica" />,
+      dataIndex: 'clue',
+      render: (clue) => {
+        if (clueInputType === 'alien-keyboard') {
+          return <AlienText value={clue} withTranslation />;
+        }
+        return clue;
+      },
+    },
+    {
+      key: 'quantity',
+      title: <Translate pt="Quantidade" en="Quantity" />,
+      dataIndex: 'quantity',
+      // render: (objectIds) => <Objects objectIds={objectIds} />,
+    },
+    {
+      key: 'deliverables',
+      title: <Translate pt="Itens" en="Items" />,
+      dataIndex: 'deliverables',
+      render: (deliverables: string[]) => {
+        return (
+          <Flex wrap="wrap" gap={8}>
+            {deliverables.map((deliverableId) => (
+              <HistoryDeliverableEntry
+                key={deliverableId}
+                deliverable={deckDict[deliverableId]}
+                deckType={deckType}
+                userSide={userSide}
+              />
+            ))}
+          </Flex>
+        );
+      },
+    },
+  ];
+
+  const panels: CollapseProps['items'] = [
+    {
+      key: 'history',
+      label: <Translate pt="Histórico de Perguntas" en="Inquiry History" />,
+      children: <Table dataSource={history} columns={columns} pagination={false} />,
+    },
+  ];
+
+  return (
+    <Instruction contained>
+      <Collapse items={panels} />
+    </Instruction>
+  );
+}

@@ -17,7 +17,6 @@ import { Instruction } from 'components/text';
 import { STATUS } from './utils/constants';
 import { useOnSubmitRequestAPIRequest } from './utils/api-requests';
 import { StepAsk } from './StepAsk';
-// Icons
 
 export function PhaseAskingForSomething({ players, state }: PhaseProps) {
   const user = useUser(players, state);
@@ -30,12 +29,21 @@ export function PhaseAskingForSomething({ players, state }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<QuestionIcon />}
-      title={<Translate pt="Peça algo" en="Ask for something" />}
+      title={
+        isTheRequester ? (
+          <Translate pt="Peça algo" en="Ask for something" />
+        ) : (
+          <Translate pt="O outro jogador pede algo" en="The other player asks for something" />
+        )
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate pt={<>?</>} en={<>?</>} />
+        <Translate
+          pt={<>Cada alienígena deve dar dicar para todos os itens marcados com sua cor</>}
+          en={<>Each alien must give clues for all items marked with their color</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
