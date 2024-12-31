@@ -5,7 +5,7 @@ import { getListOfPlayers } from './players-utils';
 /**
  * Prints content to console if emulating environment
  */
-export const print = (content: any) => {
+export const print = (content: unknown) => {
   if (isEmulatingEnvironment()) {
     console.log(JSON.stringify(content, null, 2));
   }

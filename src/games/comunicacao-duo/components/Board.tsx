@@ -112,7 +112,13 @@ export function Board({
         }
 
         return (
-          <div key={entry.id} className="cd-board-entry-entry-wrapper">
+          <div
+            key={entry.id}
+            className={clsx(
+              'cd-board-entry-entry-wrapper',
+              disabledTaboo && onClick && 'cd-board-entry-entry-wrapper--not-allowed',
+            )}
+          >
             {disabledTaboo && (
               <div className="cd-board-entry-taboo">
                 <Tooltip
@@ -182,9 +188,14 @@ function NeutralDeliveriesWrapper({
   }
 
   return (
-    <div className="cd-board-entry-neutral">
+    <div
+      className={clsx(
+        'cd-board-entry-neutral',
+        entry.deliveredBy?.includes(userId) && 'cd-board-entry-neutral--not-allowed',
+      )}
+    >
       {entry.deliveredBy?.includes(userId) && (
-        <span className={clsx(animateEntries.includes(entry.id) && getAnimationClass('slideInDown'))}>
+        <span className={clsx(animateEntries.includes(entry.id) && getAnimationClass('tada'))}>
           <IconAvatar
             className={clsx('cd-board-entry-neutral-item', `cd-board-entry-neutral-item--${userSide}`)}
             icon={<AlienNeutralIcon color={userSide === 'A' ? 'teal' : 'orange'} />}
@@ -192,7 +203,7 @@ function NeutralDeliveriesWrapper({
         </span>
       )}
       {!entry.deliveredBy?.includes(userId) && (
-        <span className={clsx(animateEntries.includes(entry.id) && getAnimationClass('slideInDown'))}>
+        <span className={clsx(animateEntries.includes(entry.id) && getAnimationClass('tada'))}>
           <IconAvatar
             className={clsx(
               'cd-board-entry-neutral-item',

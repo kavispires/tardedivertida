@@ -140,7 +140,7 @@ export const DECK: DeckEntry[] = [
     data: null,
   },
   {
-    id: '15',
+    id: 'entry-15',
     affiliation: [AFFILIATIONS.NONE, AFFILIATIONS.NONE],
     status: DECK_ENTRY_STATUS.IDLE,
     data: null,

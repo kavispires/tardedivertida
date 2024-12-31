@@ -7,6 +7,7 @@ import utils from '../../utils';
 // Internal
 import { countDeliverablesLeft } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
+import { print } from '../../utils/helpers';
 
 /**
  * Setup
@@ -141,7 +142,7 @@ export const prepareVerificationPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const answererId = utils.players.getNextPlayer(state.turnOrder, state.requesterId);
+  const answererId = utils.players.getNextPlayer(Object.keys(players), state.requesterId);
   utils.players.unReadyPlayers(players);
 
   if (players[answererId].stopDelivery) {
@@ -175,6 +176,8 @@ export const prepareVerificationPhase = async (
   const deckEntryIndex = deck.findIndex((entry: DeckEntry) => entry.id === delivery);
 
   if (deckEntryIndex === -1) {
+    print(deck);
+    print({ delivery });
     throw new Error('Deck entry not found');
   }
 
@@ -194,11 +197,12 @@ export const prepareVerificationPhase = async (
     deck[deckEntryIndex].status =
       deck[deckEntryIndex].affiliation[sideIndex] === AFFILIATIONS.A ? AFFILIATIONS.A : AFFILIATIONS.B;
   }
+
   if (isTaboo) {
     deck[deckEntryIndex].status = AFFILIATIONS.TABOO;
   }
 
-  if (deck[deckEntryIndex].deliveredBy?.length === 2) {
+  if (!isCorrect && deck[deckEntryIndex].deliveredBy?.length === 2) {
     deck[deckEntryIndex].status = AFFILIATIONS.NONE;
   }
 
@@ -223,20 +227,29 @@ export const prepareVerificationPhase = async (
         },
       };
     }
+
+    const properDeliverablesLeft = {
+      [AFFILIATIONS.A]: summary.deliverablesLeftForA,
+      [AFFILIATIONS.B]: summary.deliverablesLeftForB,
+    };
+
     // If all delivered for the current player, update turnOrder to always be the other player
-    if (
-      (requesterSide === AFFILIATIONS.A && summary.deliverablesLeftForA === 0) ||
-      (requesterSide === AFFILIATIONS.B && summary.deliverablesLeftForB === 0)
-    ) {
+    if (properDeliverablesLeft[requesterSide] === 0) {
       stateUpdate.turnOrder = [answererId];
     }
+
+    // If the requesterSide is done, force Ask something
+
     // Else To go DeliveringSomething again
     return {
       update: {
         state: {
           phase: COMUNICACAO_DUO_PHASES.VERIFICATION,
           players,
-          nextPhase: COMUNICACAO_DUO_PHASES.DELIVER_SOMETHING,
+          nextPhase:
+            properDeliverablesLeft[requesterSide] === 0
+              ? COMUNICACAO_DUO_PHASES.ASKING_FOR_SOMETHING
+              : COMUNICACAO_DUO_PHASES.DELIVER_SOMETHING,
           status: STATUS.CONTINUE,
           ...stateUpdate,
         },
@@ -280,7 +293,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = state.status !== STATUS.WIN ? [] : utils.players.determineWinners(players);
 
   // const achievements = getAchievements(store);
   const achievements = [];
@@ -297,7 +310,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  utils.players.cleanup(players, ['side']);
 
   return {
     update: {
@@ -315,6 +328,7 @@ export const prepareGameOverPhase = async (
         deckType: state.deckType,
         clueInputType: state.clueInputType,
         status: state.status,
+        summary: state.summary,
         deck: state.deck,
       },
     },
