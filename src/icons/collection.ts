@@ -8,6 +8,8 @@ export * from './AlienAngry2Icon';
 export * from './AlienAngry3Icon';
 export * from './AlienHappyIcon';
 export * from './AlienNeutralIcon';
+export * from './AlienHeartEyesIcon';
+export * from './AlienStarEyesIcon';
 export * from './AngryMayorIcon';
 export * from './AnimatedClockIcon';
 export * from './AnimatedGearIcon';
