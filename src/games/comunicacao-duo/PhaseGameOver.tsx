@@ -8,7 +8,8 @@ import { useUser } from 'hooks/useUser';
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { Title } from 'components/text';
+import { Translate } from 'components/language';
+import { Instruction, Title } from 'components/text';
 // Internal
 import { STATUS } from './utils/constants';
 import { Board } from './components/Board';
@@ -26,11 +27,39 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<TheEndIcon />}>
       {/* <Achievements players={players} achievements={state.achievements} reference={achievementsReference} /> */}
 
-      <Space className="space-container">
-        {state.status === STATUS.WIN ? (
-          <Title level={3}>Vocês venceram!</Title>
-        ) : (
-          <Title level={3}>Vocês perderam!</Title>
+      <Space className="space-container" direction="vertical">
+        {state.status === STATUS.WIN && (
+          <>
+            <Title level={3}>
+              <Translate pt="Vocês venceram!" en="You won!" />
+            </Title>
+            <Instruction contained>
+              <Translate pt="Vocês comunicaram todos os items" en="You communicated all items" />
+            </Instruction>
+          </>
+        )}
+        {state.status === STATUS.LOSE && (
+          <>
+            <Title level={3}>
+              <Translate pt="Vocês perderam!" en="You lost!" />
+            </Title>
+            <Instruction contained>
+              <Translate pt="Alguém clicou em  um tabu" en="Someone selected a taboo" />
+            </Instruction>
+          </>
+        )}
+        {state.status === STATUS.CONTINUE && (
+          <>
+            <Title level={3}>
+              <Translate pt="Vocês perderam!" en="You lost!" />
+            </Title>
+            <Instruction contained>
+              <Translate
+                pt="As rodadas acabaram antes que vocês comunicassem todos os itens"
+                en="The rounds ended before you communicated all items"
+              />
+            </Instruction>
+          </>
         )}
       </Space>
 
