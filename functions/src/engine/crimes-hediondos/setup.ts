@@ -31,11 +31,11 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData
+  resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Build scene decks
   const { causeOfDeathTile, reasonForEvidenceTile, locationTiles, sceneTiles } = parseTiles(
-    resourceData.allScenes
+    resourceData.allScenes,
   );
 
   const achievements = utils.achievements.setup(players, store, {
@@ -70,7 +70,7 @@ export const prepareSetupPhase = async (
 export const prepareCrimeSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Group weapons
   const { groupedItems, items } = groupItems(store.weapons, store.evidence);
@@ -89,7 +89,7 @@ export const prepareCrimeSelectionPhase = async (
     items,
     state.causeOfDeathTile,
     state.reasonForEvidenceTile,
-    state.locationTiles
+    state.locationTiles,
   );
 
   return {
@@ -108,7 +108,7 @@ export const prepareCrimeSelectionPhase = async (
 export const prepareSceneMarkingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Set new scene to scenes
   const newScene = store.scenes.pop();
@@ -149,7 +149,7 @@ export const prepareSceneMarkingPhase = async (
 export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -160,7 +160,7 @@ export const prepareGuessingPhase = async (
       state.causeOfDeathTile,
       state.reasonForEvidenceTile,
       state.locationTiles,
-      players
+      players,
     );
     // Gather answers and build crimes
     const crimes = buildCrimes(players, state.causeOfDeathTile, state.reasonForEvidenceTile);
@@ -209,7 +209,7 @@ export const prepareGuessingPhase = async (
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Update or create guess history
   const results = updateOrCreateGuessHistory(
@@ -217,7 +217,7 @@ export const prepareRevealPhase = async (
     players,
     state.groupedItems,
     store,
-    state.round.current
+    state.round.current,
   );
 
   // Reveal stuff
@@ -244,14 +244,14 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
 
   const winningPlayers = state.winners.map((playerId: PlayerId) => players[playerId]);
 
   const winners = utils.players.determineWinners(
-    Object.keys(winningPlayers).length > 0 ? winningPlayers : players
+    Object.keys(winningPlayers).length > 0 ? winningPlayers : players,
   );
 
   const achievements = getAchievements(store);

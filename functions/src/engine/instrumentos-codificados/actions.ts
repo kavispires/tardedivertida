@@ -1,7 +1,7 @@
 // Helpers
 import utils from '../../utils';
 import { getNextPhase } from './index';
-import { FirebaseStateData } from './types';
+import type { FirebaseStateData } from './types';
 
 export const handleSubmitHint = async (
   gameName: GameName,
@@ -9,7 +9,7 @@ export const handleSubmitHint = async (
   playerId: PlayerId,
   hint: string,
   targetId: PlayerId,
-  position: number
+  position: number,
 ) => {
   const currentHint = {
     targetId,
@@ -32,14 +32,14 @@ export const handleSubmitConclusions = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  conclusions: PlainObject
+  conclusions: PlainObject,
 ) => {
   const actionText = 'submit conclusions';
 
   const { players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const updatedConclusions = {
@@ -62,14 +62,14 @@ export const handleSubmitCode = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  code: string
+  code: string,
 ) => {
   const actionText = 'submit conclusions';
 
   const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
-    actionText
+    actionText,
   );
 
   const updatedPlayers = utils.players.readyPlayer(players, playerId);

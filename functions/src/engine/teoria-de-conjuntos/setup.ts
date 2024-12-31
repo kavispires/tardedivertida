@@ -10,7 +10,7 @@ import type { FirebaseStateData, FirebaseStoreData, Guess, ResourceData } from '
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import { Item } from '../../types/tdr';
+import type { Item } from '../../types/tdr';
 import { createVennDiagram, getAchievements } from './helpers';
 import { cloneDeep } from 'lodash';
 
@@ -23,7 +23,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Make deck dictionary
   const deckIds: CardId[] = [];
@@ -93,7 +93,7 @@ export const prepareSetupPhase = async (
 export const prepareJudgeSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const achievements = utils.achievements.setup(players, store, {
     attributeCircle: 0,
@@ -123,7 +123,7 @@ export const prepareItemPlacementPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  currentGuess: Partial<Guess>
+  currentGuess: Partial<Guess>,
 ): Promise<SaveGamePayload> => {
   const { items, diagrams, judgeId } = state;
   const { deck, deckIds } = store;
@@ -178,7 +178,7 @@ export const prepareItemPlacementPhase = async (
       store,
       state.activePlayerId,
       'wrong',
-      currentGuess.outcome === OUTCOME.CONTINUE ? 0 : 1
+      currentGuess.outcome === OUTCOME.CONTINUE ? 0 : 1,
     );
   }
 
@@ -229,7 +229,7 @@ export const prepareItemPlacementPhase = async (
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.readyPlayers(players, state.judgeId);
 
@@ -272,7 +272,7 @@ export const prepareGameOverPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  currentGuess: Partial<Guess>
+  currentGuess: Partial<Guess>,
 ): Promise<SaveGamePayload> => {
   // Cleanup resolution first
   const { items, diagrams } = state;
@@ -307,7 +307,7 @@ export const prepareGameOverPhase = async (
       store,
       state.activePlayerId,
       'wrong',
-      currentGuess.outcome === OUTCOME.CONTINUE || currentGuess.outcome === OUTCOME.WIN ? 0 : 1
+      currentGuess.outcome === OUTCOME.CONTINUE || currentGuess.outcome === OUTCOME.WIN ? 0 : 1,
     );
   }
 

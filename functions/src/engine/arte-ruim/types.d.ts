@@ -1,5 +1,5 @@
-import { ArteRuimCard, ArteRuimGroup } from '../../types/tdr';
-import { ARTE_RUIM_ACHIEVEMENTS, ARTE_RUIM_ACTIONS } from './constants';
+import type { ArteRuimCard, ArteRuimGroup } from '../../types/tdr';
+import type { ARTE_RUIM_ACHIEVEMENTS, ARTE_RUIM_ACTIONS } from './constants';
 
 export type ArteRuimGameOptions = {
   /**

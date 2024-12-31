@@ -10,17 +10,11 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { DualTranslate } from 'components/language';
 import { PhaseContainer } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
 // Internal
-import { DAYS_OF_THE_WEEK } from './utils/constants';
 import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from './utils/api-requests';
-import { StepPlaceGood } from './StepPlaceGood';
 import { StepConfirmGood } from './StepConfirmGood';
-// Icons
 
 export function PhasePlacementConfirmation({ players, state }: PhaseProps) {
   const user = useUser(players, state);

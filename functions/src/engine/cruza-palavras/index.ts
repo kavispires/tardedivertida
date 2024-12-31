@@ -36,7 +36,7 @@ export const getInitialState = (
   uid: string,
   language: Language,
   version: string,
-  options: CruzaPalavrasOptions
+  options: CruzaPalavrasOptions,
 ): CruzaPalavrasInitialState => {
   return utils.helpers.getDefaultInitialState<CruzaPalavrasInitialState>({
     gameId,
@@ -62,7 +62,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  currentState?: FirebaseStateData
+  currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -134,7 +134,7 @@ export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(
         data,
         ['clue', 'currentClueCoordinate'],
-        'submit category'
+        'submit category',
       );
       return handleSubmitClue(gameName, gameId, playerId, data.clue, data.currentClueCoordinate);
     case CRUZA_PALAVRAS_ACTIONS.SUBMIT_GUESSES:

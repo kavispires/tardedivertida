@@ -14,7 +14,7 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import { FirebaseStoreData, PortaDosDesesperadosAchievement, Trap } from './types';
+import type { FirebaseStoreData, PortaDosDesesperadosAchievement, Trap } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -56,7 +56,7 @@ export const determineGameOver = (
   outcome: string,
   winCondition: string,
   currentCorridor: number,
-  magic: number
+  magic: number,
 ): boolean => {
   // Any other phase makes the game continues
   if (currentPhase !== PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION) return false;
@@ -130,7 +130,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Possession
   const { most: mostPossessed, least: leastPossessed } = utils.achievements.getMostAndLeastOf(
     store,
-    'possessions'
+    'possessions',
   );
   if (mostPossessed) {
     achievements.push({
@@ -170,7 +170,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Possession Duration
   const { most: longestPossession, least: shortestPossession } = utils.achievements.getMostAndLeastOf(
     store,
-    'possessionDuration'
+    'possessionDuration',
   );
   if (longestPossession) {
     achievements.push({
@@ -247,7 +247,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Door Duration
   const { most: longestDecision, least: shortestDecision } = utils.achievements.getMostAndLeastOf(
     store,
-    'doorDuration'
+    'doorDuration',
   );
   if (longestDecision) {
     achievements.push({
@@ -287,7 +287,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
 export function mergeVisitedDoorsRelationships(
   relationships: ImageCardRelationship,
   visitedDoors: ImageCardId[],
-  bookPages: ImageCardId[]
+  bookPages: ImageCardId[],
 ) {
   bookPages.forEach((pageId) => {
     if (relationships[pageId] === undefined) {

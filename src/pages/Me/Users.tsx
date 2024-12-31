@@ -8,6 +8,8 @@ import { App, Button, Input, Select, Space, Typography } from 'antd';
 // Services
 import { USER_API, USER_API_ACTIONS } from 'services/adapters';
 import { firestore } from 'services/firebase';
+// Components
+import { PageLayout } from 'components/general/PageLayout';
 // Sass
 import './Me.scss';
 // Components
@@ -139,7 +141,7 @@ function Users() {
   console.log(data);
 
   return (
-    <div>
+    <PageLayout>
       <Typography.Title>Users</Typography.Title>
       {usersQuery.isLoading && <Typography.Paragraph>Loading...</Typography.Paragraph>}
       <Space className="margin" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
@@ -192,7 +194,7 @@ function Users() {
           Merge Users "{selectedUserO.id}" into "{selectedUserD.id}"
         </Button>
       </Space>
-    </div>
+    </PageLayout>
   );
 }
 

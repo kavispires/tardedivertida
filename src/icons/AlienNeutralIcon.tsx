@@ -2,12 +2,13 @@ export function AlienNeutralIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path
-        fill="#00f2a6"
+        fill={props.color ?? '#05e39c'}
         d="M310.09 480.69l113.58-124.05C546.1 222.95 451.25 7.5 269.97 7.5h-27.93C60.77 7.5-34.08 222.95 88.34 356.64l113.58 124.05c29.07 31.75 79.1 31.75 108.17 0z"
       ></path>
       <path
-        fill="#05e39c"
+        fill="000000"
         d="M295.82 9.01c129.22 53.22 180.74 227.47 75.27 342.65L234.17 501.2c26.15 8.12 55.97 1.29 75.92-20.5l113.58-124.05C540.13 229.46 459.96 28.3 295.81 9.01z"
+        opacity=".1"
       ></path>
       <path
         fill="#3e5959"

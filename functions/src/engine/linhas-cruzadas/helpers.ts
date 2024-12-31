@@ -11,7 +11,7 @@ import type {
 import { LINHAS_CRUZADAS_ACHIEVEMENTS, LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
-import { ArteRuimCard, TextCard } from '../../types/tdr';
+import type { ArteRuimCard, TextCard } from '../../types/tdr';
 
 /**
  * Determine the next phase based on the current one
@@ -49,7 +49,7 @@ export const dealPromptOptions = (
   players: Players,
   expressionDeck: ArteRuimCard[],
   wordsDeck: TextCard[],
-  options: LinhasCruzadasOptions
+  options: LinhasCruzadasOptions,
 ) => {
   const playerCount = utils.players.getPlayerCount(players);
 
@@ -59,7 +59,7 @@ export const dealPromptOptions = (
       player.prompts = utils.game.shuffle(
         Array(dealCardEveryNTimes)
           .fill(0)
-          .map((e, i) => wordsDeck[e + index + i * playerCount])
+          .map((e, i) => wordsDeck[e + index + i * playerCount]),
       );
     });
   } else {
@@ -118,7 +118,7 @@ export const assignSlideToPlayers = (
   album: Album,
   players: Players,
   gameOrder: GameOrder,
-  isFirstSlide = false
+  isFirstSlide = false,
 ) => {
   gameOrder.forEach((playerId) => {
     const player = players[playerId];
@@ -159,7 +159,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Drawing
   const { most: quickestDrawer, least: slowestDrawer } = utils.achievements.getMostAndLeastOf(
     store,
-    'drawingDuration'
+    'drawingDuration',
   );
   if (quickestDrawer) {
     achievements.push({
@@ -179,7 +179,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Writing
   const { most: quickestWriting, least: slowestWriting } = utils.achievements.getMostAndLeastOf(
     store,
-    'writingDuration'
+    'writingDuration',
   );
   if (quickestWriting) {
     achievements.push({
@@ -198,7 +198,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
 
   const { most: randomPromptSelection } = utils.achievements.getMostAndLeastOf(
     store,
-    'randomPromptSelection'
+    'randomPromptSelection',
   );
   if (randomPromptSelection) {
     achievements.push({

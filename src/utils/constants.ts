@@ -13,6 +13,8 @@ export const PUBLIC_URL = {
   RULES: `${process.env.PUBLIC_URL}/images/rules/`,
   ROOT: `${process.env.PUBLIC_URL}/images/`,
   RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
+  LOGOS: `${process.env.PUBLIC_URL}/images/logos/`,
+  STRIPS: `${process.env.PUBLIC_URL}/images/strips/`,
 };
 
 /**
@@ -251,6 +253,7 @@ export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
   BOMBA_RELOGIO: 'bomba-relogio',
   COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',
+  COMUNICACAO_DUO: 'comunicacao-duo',
   CONTADORES_HISTORIAS: 'contadores-historias',
   CONTROLE_DE_ESTOQUE: 'controle-de-estoque',
   CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores',

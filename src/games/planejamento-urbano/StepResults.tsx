@@ -88,9 +88,11 @@ export function StepResults({
           />
         ))}
         {correctProjects.length === 0 && (
-          <Typography.Text>
-            <Translate pt="Nenhum projeto construído corretamente" en="No project built correctly" />
-          </Typography.Text>
+          <RuleInstruction type="alert">
+            <Typography.Text>
+              <Translate pt="Nenhum projeto construído corretamente" en="No project built correctly" />
+            </Typography.Text>
+          </RuleInstruction>
         )}
       </Container>
 
@@ -111,8 +113,8 @@ export function StepResults({
       {incorrectProjects.length > 0 && (
         <RuleInstruction type="event">
           <Translate
-            pt="Quando um projeto não foi construído corretamente, o prefeito coloca o projeto em uma localização diagonal aleatória, fazendo o jogo ficar mais difícil."
-            en="When a project was not built correctly, the mayor places the project in a random diagonal location, making the game more difficult."
+            pt="Quando um projeto não é construído corretamente, o prefeito coloca o projeto em uma localização diagonal aleatória, fazendo o jogo ficar mais difícil."
+            en="When a project is not built correctly, the mayor places the project in a random diagonal location, making the game more difficult."
           />
         </RuleInstruction>
       )}

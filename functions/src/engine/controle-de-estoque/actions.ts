@@ -11,7 +11,7 @@ export const handlePlaceGood = async (
   goodId: string,
   newWarehouseSlot: number,
   previousWarehouseSlot?: number | null,
-  concealed?: boolean
+  concealed?: boolean,
 ) => {
   const goodsUpdate = {
     [`goodsDict.${goodId}.slot`]: newWarehouseSlot,
@@ -44,7 +44,7 @@ export const handleFulfillOrders = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  fulfillments: Record<string, number> // goodId: slotId
+  fulfillments: Record<string, number>, // goodId: slotId
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

@@ -53,7 +53,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
 export const determineGameOver = (
   players: Players,
   options: OndaTelepaticaOptions,
-  round: Round
+  round: Round,
 ): boolean => {
   if (!options.fixedRounds) {
     return utils.players
@@ -115,7 +115,7 @@ export const buildRanking = (
   players: Players,
   currentCategory: CategoryCard,
   psychicId: PlayerId,
-  store: PlainObject
+  store: PlainObject,
 ) => {
   // Gained Points [correct guesses, psychic points]
   const scores = new utils.players.Scores(players, [0, 0]);

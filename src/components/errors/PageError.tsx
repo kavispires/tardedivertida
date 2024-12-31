@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { Alert } from 'antd';
 // Components
+import { PageLayout } from 'components/general/PageLayout';
 import { Translate } from 'components/language';
 
 type PageErrorProps = {
@@ -11,7 +12,7 @@ type PageErrorProps = {
 
 export function PageError({ message, description }: PageErrorProps) {
   return (
-    <div className="container container--center">
+    <PageLayout className="container container--center">
       <Alert
         message={
           <Translate pt="Algo errado não está certo" en="Something wrong is not right" custom={message} />
@@ -32,6 +33,6 @@ export function PageError({ message, description }: PageErrorProps) {
         type="error"
         showIcon
       />
-    </div>
+    </PageLayout>
   );
 }

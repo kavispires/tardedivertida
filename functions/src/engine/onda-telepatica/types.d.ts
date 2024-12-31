@@ -1,5 +1,5 @@
-import { SpectrumCard } from '../../types/tdr';
-import { ONDA_TELEPATICA_ACHIEVEMENTS, ONDA_TELEPATICA_ACTIONS } from './constants';
+import type { SpectrumCard } from '../../types/tdr';
+import type { ONDA_TELEPATICA_ACHIEVEMENTS, ONDA_TELEPATICA_ACTIONS } from './constants';
 
 export type OndaTelepaticaOptions = {
   fixedRounds: boolean;

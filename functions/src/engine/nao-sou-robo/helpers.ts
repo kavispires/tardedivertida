@@ -9,7 +9,14 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import { Captcha, CaptchaCard, FirebaseStoreData, GalleryEntry, NaoSouRoboAchievement, Robot } from './types';
+import type {
+  Captcha,
+  CaptchaCard,
+  FirebaseStoreData,
+  GalleryEntry,
+  NaoSouRoboAchievement,
+  Robot,
+} from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -49,7 +56,7 @@ export const calculateResults = (
   robot: Robot,
   options: Collection<CaptchaCard>,
   captcha: Captcha,
-  store: FirebaseStoreData
+  store: FirebaseStoreData,
 ) => {
   // Gained Points: [correct, botVotes]
   const scores = new utils.players.Scores(players, [0, 0]);
@@ -89,7 +96,7 @@ export const calculateResults = (
         store,
         option.players[0],
         option.bot ? 'aloneIncorrect' : 'aloneCorrect',
-        1
+        1,
       );
     }
 
@@ -126,11 +133,13 @@ export const calculateResults = (
     .map((player) => player.id);
 
   const maxBeats = Math.max(
-    ...listOfPlayers.map((player) => player.beat.reduce((acc: number, e: boolean) => acc + Number(e), 0))
+    ...listOfPlayers.map((player) => player.beat.reduce((acc: number, e: boolean) => acc + Number(e), 0)),
   );
 
   const maxSuspicion = Math.max(
-    ...listOfPlayers.map((player) => player.suspicion.reduce((acc: number, e: boolean) => acc + Number(e), 0))
+    ...listOfPlayers.map((player) =>
+      player.suspicion.reduce((acc: number, e: boolean) => acc + Number(e), 0),
+    ),
   );
 
   const result: GalleryEntry = {

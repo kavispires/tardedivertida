@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffectOnce, useTitle, useWindowSize } from 'react-use';
 // Ant Design Resources
 import { FilterFilled } from '@ant-design/icons';
-import { Avatar, Image, Layout, Modal, Space } from 'antd';
+import { Avatar, Image, Modal, Space } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -17,6 +17,7 @@ import { getAnimationClass } from 'utils/helpers';
 import GAMES from 'utils/info';
 // Components
 import { TransparentButton } from 'components/buttons';
+import { PageLayout } from 'components/general/PageLayout';
 import { Translate } from 'components/language';
 // Internal
 import { FiltersDrawer } from './components/FilterDrawers';
@@ -74,7 +75,7 @@ function Showcase() {
   }, [filters, language, setSearchParams, setLanguage]);
 
   return (
-    <Layout.Content className="showcase">
+    <PageLayout className="showcase">
       <ul className="showcase-list" style={{ gridTemplateColumns: `repeat(${width > 450 ? 4 : 2}, 1fr)` }}>
         <li className={clsx('showcase-entry showcase-entry--title', getAnimationClass('zoomIn'))}>
           <TransparentButton
@@ -135,7 +136,7 @@ function Showcase() {
           <GameDetailsContent game={GAMES[showModal]} />
         </Modal>
       )}
-    </Layout.Content>
+    </PageLayout>
   );
 }
 

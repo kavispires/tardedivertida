@@ -1,7 +1,7 @@
 // Utils
 import utils from '../../utils';
 import { FILEIRA_DE_FATOS_ACHIEVEMENTS, FILEIRA_DE_FATOS_PHASES } from './constants';
-import { FileiraDeFatosAchievement, FirebaseStoreData } from './types';
+import type { FileiraDeFatosAchievement, FirebaseStoreData } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -32,7 +32,7 @@ export const buildRanking = (
   players: Players,
   activePlayerId: PlayerId,
   roundType: string,
-  store: FirebaseStoreData
+  store: FirebaseStoreData,
 ) => {
   // Gained Points [correct guesses, penalty, perfect kill bonus]
   const scores = new utils.players.Scores(players, [0, 0, 0]);

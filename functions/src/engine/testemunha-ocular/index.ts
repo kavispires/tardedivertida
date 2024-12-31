@@ -36,7 +36,7 @@ export const getInitialState = (
   uid: string,
   language: string,
   version: string,
-  options: TestemunhaOcularOptions
+  options: TestemunhaOcularOptions,
 ): TestemunhaOcularInitialState => {
   return utils.helpers.getDefaultInitialState<TestemunhaOcularInitialState>({
     gameId,
@@ -65,7 +65,7 @@ export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData,
-  additionalPayload?: PlainObject
+  additionalPayload?: PlainObject,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -77,7 +77,7 @@ export const getNextPhase = async (
     state?.phase,
     state?.round,
     additionalPayload?.lose,
-    additionalPayload?.win
+    additionalPayload?.win,
   );
 
   // RULES -> SETUP

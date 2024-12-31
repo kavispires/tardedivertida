@@ -8,7 +8,7 @@
   "files": {
     "ignoreUnknown": true,
     "include": ["src/**"],
-    "ignore": ["functions/**"]
+    "ignore": ["node_modules/**", "dist/**", "coverage/**", "public/**", "build/**", "out/**", "lib/**"]
   },
   "formatter": {
     "enabled": true,
@@ -35,6 +35,10 @@
       },
       "complexity": {
         "noForEach": "off"
+      },
+      "correctness": {
+        "noUnusedImports": "warn",
+        "noUnusedVariables": "warn"
       },
       "security": {
         "noDangerouslySetInnerHtml": "warn"

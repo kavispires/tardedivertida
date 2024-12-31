@@ -85,7 +85,7 @@ export const getRandomUniqueObjects = <T>(
   list: T[],
   used: T[],
   quantity: number,
-  byPropertyName = 'id'
+  byPropertyName = 'id',
 ): T[] => {
   const usedIdDict = buildIdDictionary(used as PlainObject[]);
   const availableList = list.filter((entry) => !usedIdDict[entry[byPropertyName]]);
@@ -208,7 +208,7 @@ export const dealList = <T>(
   quantity = 1,
   propertyName = 'hand',
   recursive = false,
-  includeBots = false
+  includeBots = false,
 ): Players => {
   const playerIds = getListOfPlayersIds(players, includeBots);
   // Ensure there are enough cards
@@ -349,7 +349,7 @@ export function calculateAverage(values: number[], round = false): number {
  */
 export function calculateLongestRun(
   values: (string | number | boolean)[],
-  target: string | number | boolean
+  target: string | number | boolean,
 ): number {
   let currentStreak = 0;
   let longestStreak = 0;

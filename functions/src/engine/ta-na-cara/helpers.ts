@@ -1,5 +1,5 @@
 import { DUMMY_ID, TA_NA_CARA_PHASES } from './constants';
-import { CharacterFace, TaNaCaraState, TaNaCaraStore } from './types';
+import type { CharacterFace, TaNaCaraState, TaNaCaraStore } from './types';
 // Helpers
 import utils from '../../utils';
 
@@ -40,7 +40,7 @@ export const buildRankingAndOutcome = (
   players: Players,
   targetId: PlayerId,
   points: number,
-  charactersDict: Collection<CharacterFace>
+  charactersDict: Collection<CharacterFace>,
 ) => {
   // Gained Points [correct guess, guesses on your character]
   const scores = new utils.players.Scores(players, [0, 0]);
@@ -103,7 +103,7 @@ export const buildRankingAndOutcome = (
 const assignNewCharacterToPlayer = (
   players: Players,
   playerId: PlayerId,
-  charactersDict: Collection<CharacterFace>
+  charactersDict: Collection<CharacterFace>,
 ) => {
   // Erase answers
   players[playerId].answers = [];

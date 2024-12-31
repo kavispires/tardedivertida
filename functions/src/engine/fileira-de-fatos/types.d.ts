@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { FILEIRA_DE_FATOS_ACHIEVEMENTS, FILEIRA_DE_FATOS_ACTIONS } from './constants';
+import type { TextCard } from '../../types/tdr';
+import type { FILEIRA_DE_FATOS_ACHIEVEMENTS, FILEIRA_DE_FATOS_ACTIONS } from './constants';
 
 export type FileiraDeFatosOptions = {
   /**

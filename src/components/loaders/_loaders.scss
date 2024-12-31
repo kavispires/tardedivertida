@@ -16,6 +16,7 @@
   display: block;
   width: 100vw;
   height: 3px;
+  z-index: 1;
   background: linear-gradient(
     90deg,
     #ffd33d,
@@ -46,4 +47,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: transparent;
 }

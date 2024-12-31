@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
 // Types
-import { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCard } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Helpers
 import * as globalUtils from '../global';
@@ -24,7 +24,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
   // Filter out used cards
   const availableQuestions: Record<string, GroupQuestionCard> = utils.game.filterOutByIds(
     allQuestions,
-    usedQuestions
+    usedQuestions,
   );
 
   // If not the minimum cards needed, reset and use all
@@ -52,6 +52,6 @@ export const saveData = async (pastQuestions: string[]) => {
   const usedMenteColetivaQuestions = utils.helpers.buildIdDictionary(pastQuestionsObj);
   await globalUtils.updateGlobalFirebaseDoc(
     GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS,
-    usedMenteColetivaQuestions
+    usedMenteColetivaQuestions,
   );
 };

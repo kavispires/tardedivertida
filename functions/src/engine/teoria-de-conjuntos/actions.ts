@@ -2,8 +2,8 @@
 import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
-import { ItemId } from '../comunicacao-alienigena/types';
-import { Guess } from './types';
+import type { ItemId } from '../comunicacao-alienigena/types';
+import type { Guess } from './types';
 import { OUTCOME } from './constants';
 
 /**
@@ -20,7 +20,7 @@ export const handleSubmitJudge = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  judgeId: PlayerId
+  judgeId: PlayerId,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -40,7 +40,7 @@ export const handleSubmitItemDiagram = async (
   gameId: GameId,
   playerId: PlayerId,
   itemId: ItemId,
-  position: string
+  position: string,
 ) => {
   const currentGuess: Guess = {
     itemId,
@@ -65,7 +65,7 @@ export const handleSubmitEvaluation = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  evaluation: string
+  evaluation: string,
 ) => {
   return await utils.firestore.updateState({
     gameName,

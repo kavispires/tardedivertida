@@ -35,7 +35,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  data: ResourceData
+  data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
   const { gameOrder, playerCount: pC } = utils.players.buildGameOrder(players);
@@ -64,7 +64,7 @@ export const prepareSetupPhase = async (
   // Use the other two decks as book pages
   const pagesDeck = utils.game.getRandomItems(
     [...imageCardsParts[1], ...imageCardsParts[2]],
-    PAGES_PER_ROUND * MAX_ROUNDS
+    PAGES_PER_ROUND * MAX_ROUNDS,
   );
 
   const magic = MAGIC_UNITS_PER_PLAYER_COUNT[playerCount];
@@ -96,7 +96,7 @@ export const prepareSetupPhase = async (
 export const prepareBookPossessionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const round = utils.helpers.increaseRound(state.round);
   const possessedId = utils.players.getActivePlayer(state.gameOrder, round.current);
@@ -117,7 +117,7 @@ export const prepareBookPossessionPhase = async (
         doors: state.doors,
         newDoorIndex: store.doorsDeckIndex,
         answerDoorId: utils.game.getRandomItem(
-          state.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId)
+          state.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId),
         ),
       };
 
@@ -153,7 +153,7 @@ export const prepareBookPossessionPhase = async (
 export const prepareDoorChoicePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players, state.possessedId);
@@ -167,7 +167,7 @@ export const prepareDoorChoicePhase = async (
     store,
     state.possessedId,
     'possessionDuration',
-    state.updatedAt - (players[state.possessedId].updatedAt ?? 0)
+    state.updatedAt - (players[state.possessedId].updatedAt ?? 0),
   );
 
   if (state.trap === TRAPS.RANDOM_INTERJECTION) {
@@ -198,7 +198,7 @@ export const prepareDoorChoicePhase = async (
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const doorPlayerDict: Collection<PlayerId[]> = {};
   // Gather all players door choices
@@ -225,7 +225,7 @@ export const prepareResolutionPhase = async (
     store.relationships = mergeVisitedDoorsRelationships(
       store.relationships ?? {},
       visitedDoors,
-      state.selectedPagesIds
+      state.selectedPagesIds,
     );
   }
 
@@ -315,7 +315,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = state.winCondition === WIN_CONDITION.WIN ? utils.players.determineWinners(players) : [];
   const currentCorridor =

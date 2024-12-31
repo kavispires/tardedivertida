@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useGlobalState } from 'hooks/useGlobalState';
+// Internal
 import { AdminButton, AdminOnlyContainer } from './index';
 
 type AdminOnlyButtonProps = {
@@ -14,10 +14,6 @@ type AdminOnlyButtonProps = {
 };
 
 export function AdminOnlyButton({ onClick, label }: AdminOnlyButtonProps) {
-  const [isAdminEnabled] = useGlobalState('isAdminEnabled');
-
-  if (!isAdminEnabled) return <span></span>;
-
   return (
     <AdminOnlyContainer>
       <AdminButton onClick={onClick}>{label}</AdminButton>

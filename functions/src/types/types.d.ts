@@ -248,6 +248,7 @@ interface UpdatePlayerArgs {
   shouldReady: boolean;
   change: PlainObject;
   nextPhaseFunction?: any;
+  shouldGoToNextPhase?: boolean;
 }
 
 interface UpdateStoreArgs {

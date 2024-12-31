@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 
   // Intercepts image preview to make then look like cards
   .ant-image-preview-img {
@@ -70,10 +70,14 @@ body {
   width: 100%;
 }
 
+.border-radius {
+  border-radius: $border-radius;
+}
+
 .admin-container {
   background-color: rgba($color: red, $alpha: 0.5);
   padding: get-unit(2);
-  border: 1px solid get-color('red');
+  border: 1px solid get-color("red");
   border-radius: $border-radius;
 }
 
@@ -159,7 +163,7 @@ body {
 }
 
 .border {
-  border: 1px solid get-color('black');
+  border: 1px solid get-color("black");
 }
 
 .transparent.transparent {
@@ -168,7 +172,7 @@ body {
 
 // Mostly use in items with dark background
 .transparent-gradient.transparent-gradient {
-  background: radial-gradient(get-color('gray', 3, 0.5), transparent);
+  background: radial-gradient(get-color("gray", 3, 0.5), transparent);
 }
 
 .inline {

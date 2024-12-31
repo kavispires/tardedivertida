@@ -1,5 +1,5 @@
 // Types
-import { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../types/tdr';
+import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../types/tdr';
 import type {
   ArteRuimDrawing,
   FirebaseStoreData,
@@ -102,7 +102,7 @@ export const getAvailableCards = (
   cardsByLevel: CardsByLevel,
   usedCardsIds: BooleanDictionary,
   roundLevels: number[],
-  playerCount: number
+  playerCount: number,
 ): {
   cards: CardsByLevel;
   resetUsedCards: boolean;
@@ -163,7 +163,7 @@ export const getAvailableCards = (
 export const getEnoughUnusedLevel4Cards = (
   deck: ArteRuimGroup[],
   usedCards: PlainObject,
-  cardsNeeded: number
+  cardsNeeded: number,
 ): string[] => {
   let tries = 0;
   const discarded: string[] = [];
@@ -201,7 +201,7 @@ export const buildDeck = (
   resourceData: ResourceData,
   playerCount: number,
   options: ArteRuimGameOptions,
-  levels: number[]
+  levels: number[],
 ): ArteRuimCard[] => {
   const cardsPerRound = determineNumberOfCards(playerCount);
   const cardsNeeded = levels.length * cardsPerRound;
@@ -361,7 +361,7 @@ export const buildGallery = (
   drawings: ArteRuimDrawing[],
   players: Players,
   store: PlainObject,
-  tableCardsIds: CardId[]
+  tableCardsIds: CardId[],
 ) =>
   drawings.map((drawingEntry) => {
     const playerCount = utils.players.getPlayerCount(players);
@@ -525,7 +525,7 @@ export const buildPastDrawingsDict = (drawings, publicDrawings) => {
         createdAt: Date.now(),
         drawing: drawing.drawing,
         successRate: drawing.successRate,
-      })
+      }),
     );
   });
 
@@ -623,7 +623,7 @@ export function determineLevelType(
   level: number,
   specialLevels: string[],
   levels: number[],
-  currentRound: number
+  currentRound: number,
 ) {
   const levelTypes = {
     1: 'easy',

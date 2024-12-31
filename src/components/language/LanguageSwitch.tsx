@@ -13,9 +13,8 @@ import './LanguageSwitch.scss';
 export function LanguageSwitch() {
   const [language, setLanguage] = useGlobalLocalStorage('language');
 
-  const onSwitchClick = (e: any) => {
-    const value = e ? 'pt' : 'en';
-    setLanguage(value);
+  const onSwitchClick = (checked: boolean) => {
+    setLanguage(checked ? 'pt' : 'en');
   };
 
   return (

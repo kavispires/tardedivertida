@@ -1,5 +1,5 @@
 // Types
-import { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import {
@@ -41,7 +41,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder } = utils.players.buildGameOrder(players);
@@ -86,7 +86,7 @@ export const prepareSetupPhase = async (
 export const prepareQuestionSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
   const activePlayerId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
@@ -124,7 +124,7 @@ export const prepareQuestionSelectionPhase = async (
 export const prepareEverybodyWritesPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Modify players
   utils.players.unReadyPlayers(players);
@@ -157,7 +157,7 @@ export const prepareEverybodyWritesPhase = async (
 export const prepareComparePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const allAnswers = gatherAllAnswers(players);
   const answersList = buildListOfAnswers(allAnswers);
@@ -189,7 +189,7 @@ export const prepareComparePhase = async (
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Add up score
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -220,7 +220,7 @@ export const prepareResolutionPhase = async (
     threshold,
     pastureChange,
     state?.round.forceLastRound,
-    state?.usedSave
+    state?.usedSave,
   );
 
   if (shouldSave) {
@@ -256,7 +256,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const farthestPasturePosition = utils.players.getListOfPlayers(players).reduce((acc, player) => {
     if (player.level > acc) {

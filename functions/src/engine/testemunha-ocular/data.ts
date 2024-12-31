@@ -1,5 +1,5 @@
 // Types
-import { TestimonyQuestionCard } from '../../types/tdr';
+import type { TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularEntry, TestemunhaOcularOptions } from './types';
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
@@ -17,7 +17,7 @@ import * as dataUtils from '../collections';
  */
 export const getQuestionsAndSuspects = async (
   language: string,
-  options: TestemunhaOcularOptions
+  options: TestemunhaOcularOptions,
 ): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
@@ -30,7 +30,7 @@ export const getQuestionsAndSuspects = async (
   // Filter out used cards
   // Filter out used cards
   const availableCards = Object.values(utils.game.filterOutByIds(allCards, usedCards)).filter((card) =>
-    options.nsfw ? card : !card.nsfw
+    options.nsfw ? card : !card.nsfw,
   );
 
   // If not the minimum cards needed, reset and use all

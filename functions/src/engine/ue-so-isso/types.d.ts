@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { OUTCOME, UE_SO_ISSO_ACHIEVEMENTS, UE_SO_ISSO_ACTIONS } from './constants';
+import type { TextCard } from '../../types/tdr';
+import type { OUTCOME, UE_SO_ISSO_ACHIEVEMENTS, UE_SO_ISSO_ACTIONS } from './constants';
 
 export type UeSoIssoGameOptions = {
   /**

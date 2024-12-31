@@ -8,7 +8,7 @@ export const handleSubmitObject = async (
   gameId: GameId,
   playerId: PlayerId,
   itemId: CardId,
-  clue: string
+  clue: string,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -25,7 +25,7 @@ export const handleSubmitFeature = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  featureId: CardId
+  featureId: CardId,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

@@ -1,5 +1,5 @@
-import { TextCard } from '../../types/tdr';
-import { DIRECTIONS, LABIRINTO_SECRETO_ACHIEVEMENTS, LABIRINTO_SECRETO_ACTIONS } from './constants';
+import type { TextCard } from '../../types/tdr';
+import type { DIRECTIONS, LABIRINTO_SECRETO_ACHIEVEMENTS, LABIRINTO_SECRETO_ACTIONS } from './constants';
 
 export type LabirintoSecretoGameOptions = {
   /**

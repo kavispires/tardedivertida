@@ -1,6 +1,6 @@
 import { throwException } from './firebase';
 import { shuffle } from './game-utils';
-import { SuspectCard } from '../types/tdr';
+import type { SuspectCard } from '../types/tdr';
 import { fetchResource } from '../engine/resource';
 
 const deckCache = {};
@@ -26,7 +26,7 @@ export const getImageCards = async (quantity: number): Promise<ImageCardId[]> =>
   if (quantity > totalCards) {
     throwException(
       `${quantity} image cards were requested but the game only has ${totalCards} available`,
-      'get image cards'
+      'get image cards',
     );
   }
 
@@ -66,7 +66,7 @@ export const getImageCardsDecks = async (quantity: number): Promise<ImageCardId[
   if (quantity > totalCards) {
     throwException(
       `${quantity} image cards were requested but the game only has ${totalCards} available`,
-      'get image cards decks'
+      'get image cards decks',
     );
   }
 
@@ -88,7 +88,7 @@ export const getImageCardsDecks = async (quantity: number): Promise<ImageCardId[
 
 export const modifySuspectIdsByOptions = (
   suspects: SuspectCard[],
-  options?: SuspectCardsOptions
+  options?: SuspectCardsOptions,
 ): SuspectCard[] => {
   let deckType = 'ct';
 

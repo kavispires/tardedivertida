@@ -14,7 +14,7 @@ import { PageError } from 'components/errors';
 import ErrorBoundary from 'components/errors/ErrorBoundary';
 import { LoadingBar, LoadingPage } from 'components/loaders';
 // Internal
-import { routes } from './Routes';
+import { AnimatedRoutes } from './Routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,7 +65,7 @@ function AppLayout() {
       <HashRouter>
         {isError && <PageError description={Object.values(errors).join(', ')} />}
         {isLoading && <LoadingPage />}
-        {!isError && !isLoading && routes}
+        {!isError && !isLoading && <AnimatedRoutes />}
       </HashRouter>
     </Layout>
   );

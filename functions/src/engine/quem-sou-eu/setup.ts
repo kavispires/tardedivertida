@@ -17,7 +17,7 @@ import utils from '../../utils';
 // Internal
 import { buildGallery, buildRanking, getAchievements } from './helpers';
 import { saveData } from './data';
-import { ContenderCard } from '../../types/tdr';
+import type { ContenderCard } from '../../types/tdr';
 
 /**
  * Setup
@@ -29,7 +29,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const playerCount = utils.players.getPlayerCount(players);
@@ -51,7 +51,7 @@ export const prepareSetupPhase = async (
     player.availableCharacters = utils.game.dealItems(deck, CHARACTERS_PER_PLAYER);
     if (imageCardsMode) {
       player.selectedCharacters = utils.game.shuffle(
-        player.availableCharacters.map((c: ContenderCard) => c.id)
+        player.availableCharacters.map((c: ContenderCard) => c.id),
       );
     }
   });
@@ -91,7 +91,7 @@ export const prepareSetupPhase = async (
 export const prepareCharacterFilteringPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -110,7 +110,7 @@ export const prepareCharacterFilteringPhase = async (
 export const prepareCharacterDescriptionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const round = utils.helpers.increaseRound(state.round);
   // Unready players
@@ -178,7 +178,7 @@ export const prepareCharacterDescriptionPhase = async (
 export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -236,7 +236,7 @@ export const prepareGuessingPhase = async (
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const gallery = buildGallery(store, players, state.round.current);
   const ranking = buildRanking(players, state.round.current);
@@ -277,7 +277,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

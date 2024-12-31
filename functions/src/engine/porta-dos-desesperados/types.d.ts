@@ -1,4 +1,4 @@
-import { PORTA_DOS_DESESPERADOS_ACHIEVEMENTS, PORTA_DOS_DESESPERADOS_ACTIONS, TRAPS } from './constants';
+import type { PORTA_DOS_DESESPERADOS_ACHIEVEMENTS, PORTA_DOS_DESESPERADOS_ACTIONS, TRAPS } from './constants';
 
 export type PortaDosDesesperadosOptions = {
   /**

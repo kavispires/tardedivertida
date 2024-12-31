@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Alert, Button, Divider, Modal } from 'antd';
+import { Alert, Button, Divider, Modal, Typography } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import type { UseStep } from 'hooks/useStep';
@@ -10,8 +11,9 @@ import { signInAsGuest } from 'services/firebase';
 // Components
 import { SignIn, SignInWithGoogle } from 'components/auth/SignIn';
 import { SignUp } from 'components/auth/SignUp';
-import { DualTranslate, Translate } from 'components/language';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { Translate } from 'components/language';
+
+const Title = motion(Typography.Title);
 
 type StepJoinProps = {
   setStep: UseStep['setStep'];
@@ -19,7 +21,6 @@ type StepJoinProps = {
 
 export function StepJoin({ setStep }: StepJoinProps) {
   const { isAuthenticated } = useCurrentUserContext();
-  const info = useGameInfoContext();
 
   const { isPending, mutate, isError, error } = useMutation({
     mutationKey: ['sign-in-anon'],
@@ -35,27 +36,23 @@ export function StepJoin({ setStep }: StepJoinProps) {
 
   return (
     <>
-      <h1 className="lobby-step__title">
+      <Title level={2} className="lobby-step__title" layoutId="lobby-step-title">
         <Translate pt="Bem-vindo!" en="Welcome" />
-      </h1>
+      </Title>
 
-      {Boolean(info?.summary) && (
-        <p className="lobby-step__summary">
-          <DualTranslate>{info.summary}</DualTranslate>
-        </p>
-      )}
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <SignInWithGoogle onSuccess={() => setStep(1)} block size="large" />
 
-      <SignInWithGoogle onSuccess={() => setStep(1)} block size="middle" />
+        {isError && <Alert message="Error" description={JSON.stringify(error)} type="error" showIcon />}
 
-      {isError && <Alert message="Error" description={JSON.stringify(error)} type="error" showIcon />}
+        <Divider>
+          <Translate pt="ou" en="or" />
+        </Divider>
 
-      <Divider>
-        <Translate pt="ou" en="or" />
-      </Divider>
-
-      <Button type="primary" block disabled={isAuthenticated} onClick={() => mutate()} loading={isPending}>
-        <Translate pt="Entrar como visitante" en="Join as a Guest" />
-      </Button>
+        <Button type="primary" block disabled={isAuthenticated} onClick={() => mutate()} loading={isPending}>
+          <Translate pt="Entrar como visitante" en="Join as a Guest" />
+        </Button>
+      </motion.div>
     </>
   );
 }

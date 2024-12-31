@@ -1,5 +1,6 @@
+import { AnimatePresence } from 'framer-motion';
 import { lazy, Suspense, type ReactNode } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
@@ -96,70 +97,75 @@ function AdminProtectedRoute({ children }: { children: ReactNode }) {
   return isAdmin ? <>{children}</> : <Navigate to="/login" />;
 }
 
-export const routes = (
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/me" element={<LazyMe />} />
-    <Route path="/eu" element={<LazyMe />} />
-    <Route path="/diario/*" element={<LazyDiario />} />
-    <Route path="/daily/*" element={<LazyDaily />} />
+export const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/me" element={<LazyMe />} />
+        <Route path="/eu" element={<LazyMe />} />
+        <Route path="/diario/*" element={<LazyDiario />} />
+        <Route path="/daily/*" element={<LazyDaily />} />
 
-    <Route
-      path="/hub"
-      element={
-        <AdminProtectedRoute>
-          <LazyHub />
-        </AdminProtectedRoute>
-      }
-    />
-    <Route
-      path="/dev/icons"
-      element={
-        <AdminProtectedRoute>
-          <LazyDevIcons />
-        </AdminProtectedRoute>
-      }
-    />
-    <Route
-      path="/dev/colors"
-      element={
-        <AdminProtectedRoute>
-          <LazyDevColors />
-        </AdminProtectedRoute>
-      }
-    />
-    <Route
-      path="/dev/sprites"
-      element={
-        <AdminProtectedRoute>
-          <LazyDevSprites />
-        </AdminProtectedRoute>
-      }
-    />
-    <Route
-      path="/dev/playground"
-      element={
-        <AdminProtectedRoute>
-          <LazyDevPlayground />
-        </AdminProtectedRoute>
-      }
-    />
+        <Route
+          path="/hub"
+          element={
+            <AdminProtectedRoute>
+              <LazyHub />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/dev/icons"
+          element={
+            <AdminProtectedRoute>
+              <LazyDevIcons />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/dev/colors"
+          element={
+            <AdminProtectedRoute>
+              <LazyDevColors />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/dev/sprites"
+          element={
+            <AdminProtectedRoute>
+              <LazyDevSprites />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/dev/playground"
+          element={
+            <AdminProtectedRoute>
+              <LazyDevPlayground />
+            </AdminProtectedRoute>
+          }
+        />
 
-    <Route
-      path="/dev/users"
-      element={
-        <AdminProtectedRoute>
-          <LazyUsers />
-        </AdminProtectedRoute>
-      }
-    />
+        <Route
+          path="/dev/users"
+          element={
+            <AdminProtectedRoute>
+              <LazyUsers />
+            </AdminProtectedRoute>
+          }
+        />
 
-    <Route path="/test" element={<LazyTestArea />} />
-    <Route path="/teste" element={<LazyTestArea />} />
-    <Route path="/showcase" element={<LazyShowcase />} />
-    <Route path="/vitrine" element={<LazyShowcase />} />
+        <Route path="/test" element={<LazyTestArea />} />
+        <Route path="/teste" element={<LazyTestArea />} />
+        <Route path="/showcase" element={<LazyShowcase />} />
+        <Route path="/vitrine" element={<LazyShowcase />} />
 
-    <Route path="*" element={<LazyGame />} />
-  </Routes>
-);
+        <Route path="*" element={<LazyGame />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};

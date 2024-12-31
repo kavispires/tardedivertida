@@ -6,7 +6,7 @@ import type { ResourceData } from './types';
 import * as resourceUtils from '../resource';
 import { GOODS_LIBRARY_COUNT } from './constants';
 import utils from '../../utils';
-import { BossIdeaCard } from '../../types/tdr';
+import type { BossIdeaCard } from '../../types/tdr';
 
 /**
  * Get data
@@ -15,7 +15,7 @@ import { BossIdeaCard } from '../../types/tdr';
 export const getData = async (): Promise<ResourceData> => {
   // Get full deck
   const allBossIdeas: Collection<BossIdeaCard> = await resourceUtils.fetchResource(
-    TDR_RESOURCES.WAREHOUSE_BOSS_IDEAS
+    TDR_RESOURCES.WAREHOUSE_BOSS_IDEAS,
   );
 
   const goodsIds = utils.game.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`);

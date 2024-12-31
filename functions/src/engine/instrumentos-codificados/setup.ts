@@ -24,7 +24,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  cards: PlainObject
+  cards: PlainObject,
 ): Promise<SaveGamePayload> => {
   // Get 5 (4 regular rounds + 1 order round) themes
   const themes = utils.game.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
@@ -66,7 +66,7 @@ export const prepareSetupPhase = async (
 export const prepareHintGivingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -89,7 +89,7 @@ export const prepareHintGivingPhase = async (
 export const prepareHintReceivingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -108,7 +108,7 @@ export const prepareHintReceivingPhase = async (
 export const prepareGuessTheCodePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -127,7 +127,7 @@ export const prepareGuessTheCodePhase = async (
 export const prepareSolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -147,7 +147,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

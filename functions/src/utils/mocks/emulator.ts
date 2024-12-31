@@ -44,7 +44,7 @@ export const feedEmulatorDB = async () => {
   await utils.firestore.getPublicRef().doc('diario').set({ '2023-10-31': true });
 
   const usedEntries = Object.values(GLOBAL_USED_DOCUMENTS).map((usedEntryName) =>
-    utils.firestore.getGlobalRef().doc(usedEntryName).set(sample)
+    utils.firestore.getGlobalRef().doc(usedEntryName).set(sample),
   );
   await Promise.all(usedEntries);
 };
@@ -62,7 +62,7 @@ export const feedEmulatorUser = async () => {
 
   const emulateUser = {
     avatars: {
-      0: 1,
+      0: 43,
     },
     blurredImages: {},
     daily: {},
@@ -227,10 +227,10 @@ export const feedEmulatorDaily = async () => {
       title: 'Demo',
     },
     'teoria-de-conjuntos': JSON.parse(
-      '{"id":"2023-10-31","type":"teoria-de-conjuntos","number":0,"title":"Contagem vs Gramática","level":1,"rule1":{"id":"ddr-46-pt","text":"é monossílaba","level":1,"thing":{"id":"37","name":"spray"}},"rule2":{"id":"ddr-37-pt","text":"tem acento","level":1,"thing":{"id":"812","name":"balão"}},"intersectingThing":{"id":"1381","name":"pó"},"things":[{"id":"2439","name":"noz","rule":1},{"id":"1256","name":"cronômetro","rule":2},{"id":"1897","name":"pé","rule":0},{"id":"550","name":"trem","rule":1},{"id":"1364","name":"chalé","rule":2},{"id":"328","name":"gol","rule":1},{"id":"1153","name":"fax","rule":1},{"id":"234","name":"ladrão","rule":2}]}'
+      '{"id":"2023-10-31","type":"teoria-de-conjuntos","number":0,"title":"Contagem vs Gramática","level":1,"rule1":{"id":"ddr-46-pt","text":"é monossílaba","level":1,"thing":{"id":"37","name":"spray"}},"rule2":{"id":"ddr-37-pt","text":"tem acento","level":1,"thing":{"id":"812","name":"balão"}},"intersectingThing":{"id":"1381","name":"pó"},"things":[{"id":"2439","name":"noz","rule":1},{"id":"1256","name":"cronômetro","rule":2},{"id":"1897","name":"pé","rule":0},{"id":"550","name":"trem","rule":1},{"id":"1364","name":"chalé","rule":2},{"id":"328","name":"gol","rule":1},{"id":"1153","name":"fax","rule":1},{"id":"234","name":"ladrão","rule":2}]}',
     ),
     'comunicacao-alienigena': JSON.parse(
-      '{"id":"2024-00-00","setId":"big-con-odo","number":0,"type":"comunicação-alienígena","attributes":[{"id":"odo","name":"Cheiro","description":"cheiro, odor, aroma","spriteId":"31","itemsIds":["2548","2613","95"]},{"id":"con","name":"Construção","description":"construção, estrutura, arquitetura, housing","spriteId":"29","itemsIds":["1805","1561"]},{"id":"big","name":"Grande","description":"tamanho, magnitude","spriteId":"25","itemsIds":["106","116","51"]}],"requests":[{"spritesIds":["29","25"],"itemId":"1577"},{"spritesIds":["31","25"],"itemId":"46"},{"spritesIds":["31","29","25"],"itemId":"1824"},{"spritesIds":["31","29"],"itemId":"893"}],"solution":"1577-46-1824-893","itemsIds":["1577","893","1824","185","46","2626","2633"],"valid":true}'
+      '{"id":"2024-00-00","setId":"big-con-odo","number":0,"type":"comunicação-alienígena","attributes":[{"id":"odo","name":"Cheiro","description":"cheiro, odor, aroma","spriteId":"31","itemsIds":["2548","2613","95"]},{"id":"con","name":"Construção","description":"construção, estrutura, arquitetura, housing","spriteId":"29","itemsIds":["1805","1561"]},{"id":"big","name":"Grande","description":"tamanho, magnitude","spriteId":"25","itemsIds":["106","116","51"]}],"requests":[{"spritesIds":["29","25"],"itemId":"1577"},{"spritesIds":["31","25"],"itemId":"46"},{"spritesIds":["31","29","25"],"itemId":"1824"},{"spritesIds":["31","29"],"itemId":"893"}],"solution":"1577-46-1824-893","itemsIds":["1577","893","1824","185","46","2626","2633"],"valid":true}',
     ),
   };
 

@@ -22,7 +22,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ResourceData
+  additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
   const { gameOrder: turnOrder, playerCount } = utils.players.buildGameOrder(players);
@@ -41,7 +41,7 @@ export const prepareSetupPhase = async (
 
   const gameQuestions = utils.game.getRandomItems(
     additionalData.allCards,
-    playerCount * QUESTIONS_PER_PLAYER
+    playerCount * QUESTIONS_PER_PLAYER,
   );
 
   const questionsDict = utils.helpers.buildDictionaryFromList(gameQuestions, 'id');
@@ -92,7 +92,7 @@ export const prepareSetupPhase = async (
 export const preparePromptPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const activePlayerId = utils.players.getNextPlayer(state.turnOrder, state.activePlayerId);
 
@@ -125,11 +125,11 @@ export const preparePromptPhase = async (
 export const prepareAnsweringPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Mark question as used for the current player
   players[state.activePlayerId].questions = players[state.activePlayerId].questions.filter(
-    (cardId: CardId) => cardId !== store.currentQuestionId
+    (cardId: CardId) => cardId !== store.currentQuestionId,
   );
 
   // Unready players
@@ -150,7 +150,7 @@ export const prepareAnsweringPhase = async (
 export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players, store.currentTargetId);
@@ -175,7 +175,7 @@ export const prepareGuessingPhase = async (
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const charactersDict = state.charactersDict;
   // Calculate scores and correct guesses and assign, build ranking
@@ -183,7 +183,7 @@ export const prepareRevealPhase = async (
     players,
     state.targetId,
     state.points,
-    state.charactersDict
+    state.charactersDict,
   );
 
   // If a player can't have a character, trigger game over
@@ -223,7 +223,7 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 

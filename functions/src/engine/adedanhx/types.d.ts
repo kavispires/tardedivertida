@@ -1,5 +1,5 @@
-import { TopicCard } from '../../types/tdr';
-import { ADEDANHX_ACHIEVEMENTS, ADEDANHX_ACTIONS } from './constants';
+import type { TopicCard } from '../../types/tdr';
+import type { ADEDANHX_ACHIEVEMENTS, ADEDANHX_ACTIONS } from './constants';
 
 export type AdedanhxOptions = {
   /**

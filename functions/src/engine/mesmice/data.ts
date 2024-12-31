@@ -1,7 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
-import { ObjectFeatureCard } from '../../types/tdr';
+import type { ObjectFeatureCard } from '../../types/tdr';
 import type { MesmiceOptions, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
@@ -16,7 +16,7 @@ import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } f
 export const getData = async (
   language: string,
   options: MesmiceOptions,
-  playerCount: number
+  playerCount: number,
 ): Promise<ResourceData> => {
   const allowNSFW = !!options.nsfw;
   const complexity = options.complexMode ? GAME_COMPLEXITY.MORE : GAME_COMPLEXITY.NORMAL;
@@ -33,7 +33,7 @@ export const getData = async (
 
   // Get full deck of features
   const allObjectFeatures: Collection<ObjectFeatureCard> = await resourceUtils.fetchResource(
-    TDR_RESOURCES.OBJECT_FEATURES
+    TDR_RESOURCES.OBJECT_FEATURES,
   );
 
   const featuresByLevel: {
@@ -51,7 +51,7 @@ export const getData = async (
       2: [],
       3: [],
       4: [],
-    }
+    },
   );
 
   function getObjectFeatures() {
@@ -60,7 +60,7 @@ export const getData = async (
     Object.keys(counts).forEach((level) => {
       const levelFeatures = utils.game.getRandomItems<ObjectFeatureCard>(
         featuresByLevel[level],
-        counts[level]
+        counts[level],
       );
       features.push(...levelFeatures);
     });
