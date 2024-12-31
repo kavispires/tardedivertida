@@ -1,1 +1,190 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
+
+.background {
+  background: linear-gradient(-45deg, #526257, #af836a);
+  background-size: 1000% 1000%;
+}
+
+.cd-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: get-unit(2);
+  @include contained;
+  background: get-color("white", 5, 0.85);
+}
+
+.cd-board-entry {
+  border-radius: get-unit(3);
+  border: get-unit(2) solid get-color("white");
+  position: relative;
+
+  &--A {
+    border-color: get-color("teal", 4);
+    border-style: dashed;
+
+    .item-card {
+      background: get-color("teal", 3);
+    }
+  }
+
+  &--B {
+    border-color: get-color("orange", 4);
+    border-style: dashed;
+
+    .item-card {
+      background: get-color("orange", 3);
+    }
+  }
+
+  &--TABOO {
+    border-color: get-color("gray", 9);
+    border-style: dotted;
+
+    .item-card {
+      background: get-color("gray", 7);
+    }
+  }
+
+  &--NONE {
+    border-color: get-color("brown", 2);
+
+    .item-card {
+      background: get-color("yellow", 1);
+    }
+  }
+
+  &--ask {
+    .item-card {
+      background-color: get-color("pink");
+    }
+  }
+}
+
+.cd-board-entry-entry-wrapper {
+  position: relative;
+}
+
+.cd-summary {
+  display: grid;
+  gap: get-unit(2);
+  @include contained;
+  background: get-color("white", 5, 0.85);
+
+  &__entry {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: get-unit(2);
+    padding: get-unit(2);
+    border-radius: $border-radius;
+    background: get-color("white", 5, 0.85);
+  }
+
+  &__number {
+    font-size: 1.1rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: $border-radius;
+    font-weight: bold;
+    padding: get-unit(2);
+    color: get-color("black", 9);
+    display: grid;
+    place-items: center;
+    background: get-color("yellow", 1);
+
+    &--left {
+      background: linear-gradient(45deg, get-color("orange", 3), get-color("teal", 3));
+    }
+
+    &--A {
+      background: get-color("teal", 3);
+    }
+
+    &--B {
+      background: get-color("orange", 3);
+    }
+  }
+}
+
+.cd-clue-quantity {
+  display: grid;
+  place-items: center;
+  background: get-color("white", 5);
+  padding: get-unit(2);
+  font-size: 2rem;
+  width: 3rem;
+  border-radius: $border-radius;
+  flex: 1;
+  aspect-ratio: 1/1;
+}
+
+.cd-board-entry-cover {
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+
+  &:hover {
+    .cd-board-entry-cover__alien:not(.cd-board-entry-cover__alien--open) {
+      transform: rotateX(20deg);
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &__alien {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    place-items: center;
+    background: get-color("black", 9, 0.5);
+    border-radius: $border-radius;
+    font-size: 2rem;
+    color: get-color("white");
+    z-index: 2;
+    transform-origin: top;
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+    padding: get-unit(3);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+
+    &--A {
+      background: get-color("teal", 5);
+    }
+
+    &--B {
+      background: get-color("orange", 5);
+    }
+
+    &--open {
+      transform: rotateX(75deg);
+      pointer-events: none;
+      box-shadow: 0 50px 30px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.cd-board-entry-neutral-item {
+  position: absolute;
+  z-index: 2;
+
+  &--A {
+    top: get-unit(-1);
+    left: get-unit(-1);
+    rotate: -30deg;
+  }
+
+  &--B {
+    top: get-unit(-1);
+    right: get-unit(-1);
+    rotate: 30deg;
+  }
+}
+
+.cd-board-entry-taboo {
+  position: absolute;
+  z-index: 2;
+  top: get-unit(-1);
+  right: get-unit(-1);
+}

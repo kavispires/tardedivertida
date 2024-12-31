@@ -7,47 +7,51 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { QuestionIcon } from 'icons/QuestionIcon';
+import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
+import { AlienText } from 'components/alien/AlienText';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { STATUS } from './utils/constants';
-import { useOnSubmitRequestAPIRequest } from './utils/api-requests';
-import { StepAsk } from './StepAsk';
+import { useOnStopDeliveryAPIRequest, useOnSubmitDeliveryAPIRequest } from './utils/api-requests';
+import { StepDeliver } from './StepDeliver';
 // Icons
 
-export function PhaseAskingForSomething({ players, state }: PhaseProps) {
+export function PhaseDeliveringSomething({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step } = useStep();
-  const [requester, isTheRequester] =
-    state.status === STATUS.IDLE ? [user, true] : useWhichPlayerIsThe('requesterId', state, players);
+  const [requester, isTheRequester] = useWhichPlayerIsThe('requesterId', state, players);
 
-  const onSubmitRequest = useOnSubmitRequestAPIRequest();
+  const onSubmitDelivery = useOnSubmitDeliveryAPIRequest();
+  const onStopDelivery = useOnStopDeliveryAPIRequest();
+
+  const latestHistoryEntry = state.history[state.history.length - 1];
+  const hasADelivery = latestHistoryEntry.deliverables.length > 0;
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<QuestionIcon />}
-      title={<Translate pt="Peça algo" en="Ask for something" />}
+      icon={<MysteryBoxIcon />}
+      title={<Translate pt="Por favor, me vê aí..." en="Please give me..." />}
       currentRound={state?.round?.current}
       type="overlay"
+      duration={3}
     >
       <Instruction>
-        <Translate pt={<>?</>} en={<>?</>} />
+        <AlienText value={state.clue ?? ''} />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_DUO.ASKING_FOR_SOMETHING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_DUO.DELIVER_SOMETHING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <StepAsk
+        <StepDeliver
           user={user}
           players={players}
-          announcement={announcement}
+          announcement={hasADelivery ? undefined : announcement}
           deckType={state.deckType}
           deck={state.deck}
           status={state.status}
@@ -56,7 +60,10 @@ export function PhaseAskingForSomething({ players, state }: PhaseProps) {
           isTheRequester={isTheRequester}
           summary={state.summary}
           clueInputType={state.clueInputType}
-          onSubmitRequest={onSubmitRequest}
+          clue={state.clue}
+          clueQuantity={state.clueQuantity}
+          onSubmitDelivery={onSubmitDelivery}
+          onStopDelivery={onStopDelivery}
           round={state.round}
         />
       </StepSwitcher>
