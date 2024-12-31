@@ -1,22 +1,26 @@
+import { useMemo } from 'react';
+// Ant Design Resources
+import { Flex, Space } from 'antd';
 // Types
+import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
-// Hooks
+// Utils
+import { PHASES } from 'utils/phases';
 // Components
+import { AlienKeyboard } from 'components/alien/AlienKeyboard';
+import { AlienText } from 'components/alien/AlienText';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
-import type { DeckEntry, HistoryEntry, Summary } from './utils/types';
-import { Board } from './components/Board';
-import { AlienKeyboard } from 'components/alien/AlienKeyboard';
-import { AlienText } from 'components/alien/AlienText';
-import { useMemo } from 'react';
-import { Flex, Space } from 'antd';
 import { ViewIf } from 'components/views';
+// Internal
+import type { DeckEntry, HistoryEntry, Summary } from './utils/types';
 import { STATUS } from './utils/constants';
+import { Board } from './components/Board';
 import { SummaryBox } from './components/SummaryBox';
-import type { GameRound } from 'types/game';
-import { HostNextPhaseButton } from 'components/host';
-import { PHASES } from 'utils/phases';
+import { History } from './components/History';
+// Hooks
 
 type StepDeliverProps = {
   players: GamePlayers;
@@ -50,10 +54,6 @@ export function StepVerification({
   nextPhase,
 }: StepDeliverProps) {
   const results = useMemo(() => {
-    const latestHistoryEntry = history[history.length - 1];
-    const latestDeliverableId = latestHistoryEntry.deliverables[latestHistoryEntry.deliverables.length - 1];
-    const latestDeliverable = deck.find((entry) => entry.id === latestDeliverableId);
-
     // Delivered nothing / skipped
     if (status === STATUS.CONTINUE && !entryIdToAnimate) {
       return {
@@ -125,7 +125,7 @@ export function StepVerification({
         </>
       ),
     };
-  }, [history, status, deck, entryIdToAnimate, nextPhase]);
+  }, [status, entryIdToAnimate, nextPhase]);
 
   return (
     <Step fullWidth>
@@ -159,7 +159,16 @@ export function StepVerification({
         </Space>
       </ViewIf>
 
-      <HostNextPhaseButton round={round} autoTriggerTime={7} />
+      <History
+        history={history}
+        players={players}
+        deck={deck}
+        deckType={deckType}
+        clueInputType={clueInputType}
+        userSide={user.side}
+      />
+
+      <HostNextPhaseButton round={round} autoTriggerTime={3} />
     </Step>
   );
 }

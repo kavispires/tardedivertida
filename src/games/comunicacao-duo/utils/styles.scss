@@ -188,3 +188,49 @@
   top: get-unit(-1);
   right: get-unit(-1);
 }
+
+.cd-history-entry {
+  border-radius: get-unit(3);
+  border: get-unit(1) solid get-color("white");
+
+  &--A {
+    border-color: get-color("teal", 4);
+    border-style: dashed;
+
+    .item-card {
+      background: get-color("teal", 3);
+    }
+  }
+
+  &--B {
+    border-color: get-color("orange", 4);
+    border-style: dashed;
+
+    .item-card {
+      background: get-color("orange", 3);
+    }
+  }
+
+  &--TABOO {
+    border-color: get-color("gray", 9);
+    border-style: dotted;
+
+    .item-card {
+      background: get-color("gray", 7);
+    }
+  }
+
+  &--NONE {
+    border-color: get-color("brown", 2);
+
+    .item-card {
+      background: get-color("yellow", 1);
+    }
+  }
+
+  &--ask {
+    .item-card {
+      background-color: get-color("pink");
+    }
+  }
+}

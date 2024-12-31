@@ -19,6 +19,7 @@ import type { DeckEntry, HistoryEntry, SubmitRequestPayload, Summary } from './u
 import { STATUS } from './utils/constants';
 import { Board } from './components/Board';
 import { SummaryBox } from './components/SummaryBox';
+import { History } from './components/History';
 
 type StepAskProps = {
   players: GamePlayers;
@@ -130,6 +131,15 @@ export function StepAsk({
           <AlienKeyboard value={sentence} onChange={setSentence} disabled={!isTheRequester || user.ready} />
         </Space>
       </ViewIf>
+
+      <History
+        history={history}
+        players={players}
+        deck={deck}
+        deckType={deckType}
+        clueInputType={clueInputType}
+        userSide={user.side}
+      />
     </Step>
   );
 }
