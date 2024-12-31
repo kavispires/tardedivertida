@@ -23,6 +23,9 @@ const SessionComunicacaoAlienigena = lazy(
       'games/comunicacao-alienigena/SessionComunicacaoAlienigena' /* webpackChunkName: "comunicacao-alienigena" */
     ),
 );
+const SessionComunicacaoDuo = lazy(
+  () => import('games/comunicacao-duo/SessionComunicacaoDuo' /* webpackChunkName: "comunicacao-duo" */),
+);
 const SessionContadoresHistorias = lazy(
   () =>
     import(
@@ -184,6 +187,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionComunicacaoAlienigena />
+          </Suspense>
+        );
+      case GAME_COLLECTION.COMUNICACAO_DUO:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionComunicacaoDuo />
           </Suspense>
         );
       case GAME_COLLECTION.CONTADORES_HISTORIAS:

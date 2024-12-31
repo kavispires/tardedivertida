@@ -1,0 +1,51 @@
+@use "styles/sass" as *;
+
+.alien-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: get-color("white");
+  padding: get-unit(2);
+  min-width: 300px;
+  border-radius: $border-radius;
+  min-height: 56px;
+
+  &__character {
+    border: 4px solid transparent;
+    border-radius: $border-radius;
+
+    &--not {
+      border-top-color: get-color("black");
+    }
+
+    &--very {
+      border-bottom-color: get-color("black");
+    }
+
+    &--sorta {
+      border-bottom-color: get-color("gray");
+      border-top-color: get-color("gray");
+      border-style: dotted;
+    }
+  }
+}
+
+.alien-text-translation {
+  margin-top: get-unit(1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: get-color("white");
+  padding: get-unit(2);
+  min-width: 300px;
+  border-radius: $border-radius;
+  gap: 1ch;
+
+  &__text {
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: get-color("blue");
+    }
+  }
+}
