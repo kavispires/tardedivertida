@@ -22,7 +22,7 @@ import './Home.scss';
 
 function Home() {
   useTitle('Tarde Divertida');
-  const { isAdmin, isAuthenticated } = useCurrentUserContext();
+  const { isAuthenticated } = useCurrentUserContext();
   const { language } = useLanguage();
 
   const [showInput, setShowInput] = useState(isAuthenticated);

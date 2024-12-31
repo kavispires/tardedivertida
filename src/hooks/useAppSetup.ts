@@ -17,7 +17,6 @@ export function useAppSetup() {
   const { setLanguage } = useLanguage();
   const [localUsername] = useLocalStorage<string>('username');
   const [localAvatarId] = useLocalStorage<string>('avatarId');
-  const [localLanguage] = useGlobalLocalStorage('language');
 
   const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
   const cardWidth = useCardWidth(5, {
@@ -30,7 +29,7 @@ export function useAppSetup() {
   useEffectOnce(() => {
     setUsername(localUsername ?? '');
     setUserAvatarId(localAvatarId ?? '');
-    setLanguage(localLanguage);
+    setLanguage(JSON.parse(localStorage.getItem('TD_language') || '"en"') || 'en');
 
     if (canvasSize === 50) {
       setCanvasSize(cardWidth);
