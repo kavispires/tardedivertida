@@ -33,7 +33,13 @@ export function PhaseDeliveringSomething({ players, state }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<MysteryBoxIcon />}
-      title={<Translate pt="Por favor, me vê aí..." en="Please give me..." />}
+      title={
+        isTheRequester ? (
+          <Translate pt="Você pediu!" en="You asked for" />
+        ) : (
+          <Translate pt="Por favor, me vê aí..." en="Please give me..." />
+        )
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}

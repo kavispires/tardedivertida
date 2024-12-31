@@ -25,7 +25,6 @@ type HistoryProps = {
 export function History({ history, players, deck, deckType, clueInputType, userSide }: HistoryProps) {
   const deckDict = useMemo(() => keyBy(deck, 'id'), [deck]);
 
-  console.log(history);
   const columns: TableProps<HistoryEntry>['columns'] = [
     {
       key: 'player',
@@ -48,7 +47,6 @@ export function History({ history, players, deck, deckType, clueInputType, userS
       key: 'quantity',
       title: <Translate pt="Quantidade" en="Quantity" />,
       dataIndex: 'quantity',
-      // render: (objectIds) => <Objects objectIds={objectIds} />,
     },
     {
       key: 'deliverables',
