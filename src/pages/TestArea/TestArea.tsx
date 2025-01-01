@@ -2,8 +2,8 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Space, Steps } from 'antd';
 // Components
-import { PageLayout } from 'components/general/PageLayout';
 import { Translate } from 'components/language';
+import { PageLayout } from 'components/layout/PageLayout';
 import { Title } from 'components/text';
 // Internal
 import { LanguageTest } from './components/LanguageTest';

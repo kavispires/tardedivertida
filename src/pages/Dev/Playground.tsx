@@ -3,7 +3,7 @@ import { useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout } from 'antd';
 // Components
-import { PageLayout } from 'components/general/PageLayout';
+import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';
 // import { Image, Layout } from 'antd';

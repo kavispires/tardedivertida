@@ -7,7 +7,7 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Services
 import { signIn } from 'services/firebase';
 // Components
-import { PageLayout } from 'components/general/PageLayout';
+import { PageLayout } from 'components/layout/PageLayout';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg';
 

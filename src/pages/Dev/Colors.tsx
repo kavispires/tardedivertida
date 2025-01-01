@@ -7,7 +7,7 @@ import { Layout, App } from 'antd';
 import * as icons from 'icons/collection';
 // Components
 import { TransparentButton } from 'components/buttons';
-import { PageLayout } from 'components/general/PageLayout';
+import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';
 

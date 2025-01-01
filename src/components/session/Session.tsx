@@ -13,7 +13,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { AdminMenuDrawer } from 'components/admin';
 import { GameInfoDrawer } from 'components/drawers';
 import { AutoNextPhase } from 'components/general/AutoNextPhase';
-import { PageLayout } from 'components/general/PageLayout';
+import { PageLayout } from 'components/layout/PageLayout';
 import { PhaseLobby } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';

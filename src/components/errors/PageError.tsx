@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { Alert } from 'antd';
 // Components
-import { PageLayout } from 'components/general/PageLayout';
 import { Translate } from 'components/language';
+import { PageLayout } from 'components/layout/PageLayout';
 
 type PageErrorProps = {
   message?: string;
