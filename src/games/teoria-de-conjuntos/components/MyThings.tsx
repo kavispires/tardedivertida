@@ -5,8 +5,8 @@ import { Flex, Tag, Tooltip } from 'antd';
 import type { Item } from 'types/tdr';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { ViewOr } from 'components/views';
 
 type MyThingsProps = {

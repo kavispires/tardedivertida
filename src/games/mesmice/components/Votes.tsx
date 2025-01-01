@@ -5,8 +5,8 @@ import type { MostVotesResult } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Components
 import { Avatar } from 'components/avatars';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 // Internal
 import type { ExtendedObjectFeatureCard } from '../utils/types';
 import { ObjectFeature } from './ObjectFeature';

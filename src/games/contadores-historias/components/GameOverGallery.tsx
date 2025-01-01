@@ -3,9 +3,9 @@ import { Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Container } from 'components/general/Container';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 // Ant Design Resources

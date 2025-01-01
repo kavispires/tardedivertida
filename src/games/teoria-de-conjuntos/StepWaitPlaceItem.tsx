@@ -8,8 +8,8 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';

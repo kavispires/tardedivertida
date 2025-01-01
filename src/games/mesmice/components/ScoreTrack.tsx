@@ -5,8 +5,8 @@ import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { HistoryEntry } from '../utils/types';

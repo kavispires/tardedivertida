@@ -7,8 +7,8 @@ import { CrownIcon } from 'icons/CrownIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 // Internal
 import type { FinalGalleryEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';

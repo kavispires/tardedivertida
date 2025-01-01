@@ -9,8 +9,8 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import { DiagramSection } from './components/DiagramSection';

@@ -6,8 +6,8 @@ import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Instruction, RuleInstruction, TextHighlight } from 'components/text';
 // Internal

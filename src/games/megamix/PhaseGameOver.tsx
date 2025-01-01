@@ -10,8 +10,8 @@ import { CrownIcon } from 'icons/CrownIcon';
 import { Avatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { Container } from 'components/general/Container';
 import { DualTranslate, Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { Instruction } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';

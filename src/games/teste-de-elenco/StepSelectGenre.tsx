@@ -16,8 +16,8 @@ import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Container } from 'components/general/Container';
 import { DualTranslate, Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
