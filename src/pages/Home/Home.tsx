@@ -12,8 +12,8 @@ import { useLanguage } from 'hooks/useLanguage';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { AdminButton } from 'components/admin';
-import { PageLayout } from 'components/general/PageLayout';
 import { LanguageSwitch, Translate } from 'components/language';
+import { PageLayout } from 'components/layout/PageLayout';
 import { Title } from 'components/text';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg';

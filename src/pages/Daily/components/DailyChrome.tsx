@@ -4,8 +4,8 @@ import { Layout } from 'antd';
 // Icons
 import { CalendarIcon } from 'icons/CalendarIcon';
 // Components
-import { PageLayout } from 'components/general/PageLayout';
 import { Translate } from 'components/language';
+import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';

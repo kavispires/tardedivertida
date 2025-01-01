@@ -9,7 +9,7 @@ import { App, Button, Input, Select, Space, Typography } from 'antd';
 import { USER_API, USER_API_ACTIONS } from 'services/adapters';
 import { firestore } from 'services/firebase';
 // Components
-import { PageLayout } from 'components/general/PageLayout';
+import { PageLayout } from 'components/layout/PageLayout';
 // Sass
 import './Me.scss';
 // Components

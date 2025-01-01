@@ -18,7 +18,7 @@ import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Medal } from 'components/general/Medal';
-import { PageLayout } from 'components/general/PageLayout';
+import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { MEDALS_IDS } from './utils/constants';
 import { DevHeader } from './DevHeader';

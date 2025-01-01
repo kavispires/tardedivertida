@@ -15,8 +15,8 @@ import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
 import GAME_LIST from 'utils/info';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
-import { PageLayout } from 'components/general/PageLayout';
 import { LanguageSwitch, Translate } from 'components/language';
+import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { GameCard } from './components/GameCard';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';

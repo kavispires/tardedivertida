@@ -6,8 +6,8 @@ import { getAnimation } from 'utils/animations';
 // Icons
 import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
 // Components
-import { LoadingPageLayout } from 'components/general/PageLayout';
 import { DualTranslate } from 'components/language';
+import { LoadingPageLayout } from 'components/layout/PageLayout';
 
 const Text = motion(Typography.Text);
 

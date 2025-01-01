@@ -21,8 +21,8 @@ import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
 import { Avatar, IconAvatar } from 'components/avatars';
-import { PageLayout } from 'components/general/PageLayout';
 import { LanguageSwitch, Translate } from 'components/language';
+import { PageLayout } from 'components/layout/PageLayout';
 import { Title } from 'components/text';
 // Internal
 import { availableGamesCount, durationToHours, playableGames, timestampToDate } from '../utils';

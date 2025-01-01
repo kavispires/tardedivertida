@@ -17,8 +17,8 @@ import { getAnimationClass } from 'utils/helpers';
 import GAMES from 'utils/info';
 // Components
 import { TransparentButton } from 'components/buttons';
-import { PageLayout } from 'components/general/PageLayout';
 import { Translate } from 'components/language';
+import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { FiltersDrawer } from './components/FilterDrawers';
 import { GameDetailsContent } from './components/GameDetailsContent';
