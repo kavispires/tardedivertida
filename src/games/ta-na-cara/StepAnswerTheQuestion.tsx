@@ -14,7 +14,7 @@ import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
@@ -55,9 +55,9 @@ export function StepAnswerTheQuestion({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Responda:" en="Please answer:" />
-      </Title>
+      </StepTitle>
 
       <div className="answer-board">
         <PlayerBoard

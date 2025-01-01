@@ -6,7 +6,7 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { OnSubmitOrder } from './utils/types';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
@@ -28,7 +28,7 @@ export function StepOrderScenarios({
 }: StepOrderScenariosProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -41,7 +41,7 @@ export function StepOrderScenarios({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

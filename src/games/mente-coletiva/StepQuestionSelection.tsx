@@ -9,7 +9,7 @@ import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { Question } from './utils/types';
 import { mockSelectQuestion } from './utils/mock';
@@ -48,9 +48,9 @@ export function StepQuestionSelection({
 
   return (
     <Step fullWidth className="m-step" announcement={announcement}>
-      <Title size="small">
+      <StepTitle>
         <Translate pt="Selecione uma das perguntas" en="Select one of the questions" />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<GamePremiseRules activePlayer={activePlayer} />} />
 

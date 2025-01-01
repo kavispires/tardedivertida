@@ -20,7 +20,7 @@ import { DualTranslate, Translate } from 'components/language';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { DiagramArea, DiagramExamples, Solutions, SubmitItemPlacementPayload } from './utils/types';
 import { mockDiagramSelection } from './utils/mock';
@@ -87,7 +87,7 @@ export function StepPlaceItem({
   return (
     <Step fullWidth announcement={announcement}>
       <div ref={ref} style={{ width: '100%' }} />
-      <Title>
+      <StepTitle>
         {isJudge ? (
           <Translate
             pt={<>Como Juiz, coloque uma coisa no diagrama para ajudar os outros jogadores</>}
@@ -99,7 +99,7 @@ export function StepPlaceItem({
             en={<>Select an item and an area of the diagram where you think it could fit</>}
           />
         )}
-      </Title>
+      </StepTitle>
 
       <RoundAlert round={round} />
 

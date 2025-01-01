@@ -15,7 +15,7 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, Results, ScenesDict } from './utils/types';
 import { isEntryLocked } from './utils/helpers';
@@ -68,9 +68,9 @@ export function StepReveal({
 
   return (
     <Step announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Resultado" en="Results" />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<ScoringMessage round={round} />} />
       <RuleInstruction type="rule">

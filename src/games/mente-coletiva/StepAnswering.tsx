@@ -15,7 +15,7 @@ import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 import { TimedTimerClock } from 'components/timers';
 // Internal
 import type { Question } from './utils/types';
@@ -72,7 +72,7 @@ export function StepAnswering({
   return (
     <Step fullWidth announcement={announcement}>
       <div className="m-step__contained-content">
-        <Title level={3} size="small">
+        <StepTitle size="small">
           <Translate pt="Responda a pergunta" en="Answer the question" />
           {Boolean(timedAnswers) && (
             <TimedTimerClock
@@ -86,7 +86,7 @@ export function StepAnswering({
             />
           )}
           :
-        </Title>
+        </StepTitle>
 
         <GroupQuestionCard question={currentQuestion} />
 

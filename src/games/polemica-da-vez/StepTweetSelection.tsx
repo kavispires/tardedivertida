@@ -9,7 +9,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { ScoringRules } from './components/RulesBlobs';
 
@@ -41,9 +41,9 @@ export function StepTweetSelection({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Selecione um assunto" en="Select one tweet" />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <ScoringRules round={round} isFixedRounds={isFixedRounds} />

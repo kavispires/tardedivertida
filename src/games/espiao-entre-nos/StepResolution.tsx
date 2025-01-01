@@ -8,7 +8,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { HostButton, HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { ResolutionStatus } from './utils/types';
 
@@ -32,8 +32,7 @@ export function StepResolution({
 
   return (
     <Step className="e-phase-step">
-      <Title
-        level={2}
+      <StepTitle
         className={clsx('e-phase-title', !resolutionStatus.isPlayerVictory && 'e-phase-title--fail')}
       >
         {resolutionStatus.isPlayerVictory ? (
@@ -41,7 +40,7 @@ export function StepResolution({
         ) : (
           <Translate pt="Missão Fracassada" en="Mission Failed" />
         )}
-      </Title>
+      </StepTitle>
 
       {resolutionStatus.wasAnAccusationAttempt && target && (
         <Instruction className="e-phase-instruction">

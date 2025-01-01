@@ -12,7 +12,7 @@ import { Container } from 'components/general/Container';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
 import type { ActingRole } from './utils/types';
 import { RoleBoard } from './components/RoleBoard';
@@ -47,9 +47,9 @@ export function StepResult({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="x-small">
+      <StepTitle>
         <Translate pt="Resultado" en="Results" />
-      </Title>
+      </StepTitle>
 
       <RoleBoard activeRole={activeRole} instruction="RESULT" outcome={outcome}>
         {outcome === 'CAST' && activeRole.actor ? (

@@ -10,7 +10,7 @@ import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { DeckEntry, HistoryEntry, SubmitDeliveryPayload, Summary } from './utils/types';
@@ -62,7 +62,7 @@ export function StepDeliver({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
+      <StepTitle size="small" wait={isTheRequester}>
         {!isTheRequester ? (
           <Translate pt={<>Dê um item</>} en={<>Give an item</>} />
         ) : (
@@ -71,7 +71,7 @@ export function StepDeliver({
             en={<>Wait for the other player to answer with something</>}
           />
         )}
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type={isTheRequester ? 'wait' : 'action'}>
         {isTheRequester ? (

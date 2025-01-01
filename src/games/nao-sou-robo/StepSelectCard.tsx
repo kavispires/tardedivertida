@@ -13,20 +13,14 @@ import { getAnimationClass } from 'utils/helpers';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Captcha, Robot, SubmitRobotCardPayload } from './utils/types';
 import { mockCardPick } from './utils/mock';
 import { CaptchaTopic } from './components/CaptchaTopic';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';
-import {
-  CaptchaHighlight,
-  EnergyHighlight,
-  EventHighlight,
-  RobotHighlight,
-  SuspicionHighlight,
-} from './components/Highlights';
+import { CaptchaHighlight, EnergyHighlight, EventHighlight, RobotHighlight, SuspicionHighlight, } from './components/Highlights';
 
 type StepSelectCardProps = {
   players: GamePlayers;
@@ -54,9 +48,9 @@ export function StepSelectCard({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate pt={<>Vamos (tentar) comprar o ingresso!</>} en={<>Let's (try to) buy the tickets!</>} />
-      </Title>
+      </StepTitle>
 
       <FloatingPlayerStats user={user} robot={robot} />
 

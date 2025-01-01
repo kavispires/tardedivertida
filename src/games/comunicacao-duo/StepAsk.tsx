@@ -12,7 +12,7 @@ import { AlienText } from 'components/alien/AlienText';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { DeckEntry, HistoryEntry, SubmitRequestPayload, Summary } from './utils/types';
@@ -61,7 +61,7 @@ export function StepAsk({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
+      <StepTitle size="small" wait={isTheRequester}>
         {isTheRequester ? (
           <Translate pt={<>Peça algo!</>} en={<>Ask for something!</>} />
         ) : (
@@ -78,7 +78,7 @@ export function StepAsk({
             }
           />
         )}
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         {status === STATUS.IDLE ? (

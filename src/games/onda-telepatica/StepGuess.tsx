@@ -7,7 +7,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { CurrentCategory } from './utils/types';
 import { mockGuess } from './utils/mock';
@@ -51,9 +51,9 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
 
   return (
     <Step className="o-dial-guess-selection" announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Hora de brilhar telepaticamente!" en="Time to shine telepathically!" />
-      </Title>
+      </StepTitle>
       <Prompt currentCategory={currentCategory} />
       <Dial
         card={currentCategory}

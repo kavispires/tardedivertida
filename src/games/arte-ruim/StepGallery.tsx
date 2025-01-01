@@ -12,7 +12,7 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { ArteRuimCard } from './utils/types';
 import type { ArteRuimWindow } from './utils/types';
@@ -40,9 +40,9 @@ export function StepGallery({ gallery, players, cards, slideShowConfig }: StepGa
 
   return (
     <Step fullWidth>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate pt="Galeria de Arte" en="Art Gallery" />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<ScoringRules />} />
 

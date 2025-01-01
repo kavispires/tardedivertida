@@ -4,7 +4,7 @@ import type { TextCard } from 'types/tdr';
 // Components
 import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { Bet, Bracket, BracketTier } from './utils/type';
 import { Brackets } from './components/Brackets';
@@ -35,9 +35,9 @@ export function StepBattle({
 }: StepBattleProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <TierTitle tier={tier} />
-      </Title>
+      </StepTitle>
 
       <Challenge challenge={challenge} />
 

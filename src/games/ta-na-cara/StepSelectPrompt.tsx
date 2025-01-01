@@ -6,7 +6,7 @@ import { useMock } from 'hooks/useMock';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { mockPromptDecision } from './utils/mock';
@@ -46,9 +46,9 @@ export function StepSelectPrompt({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt={<>Selecione uma das opções</>} en={<>Select one of the options</>} />
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <Translate

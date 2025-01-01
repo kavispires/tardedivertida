@@ -3,7 +3,7 @@ import type { TextCard } from 'types/tdr';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { OnSubmitOrder } from './utils/types';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
@@ -23,9 +23,9 @@ export function StepJudgeScenarios({
 }: StepJudgeScenariosProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt={<>Você é o juiz da rodada!</>} en={<>You are the round's judge!</>} />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

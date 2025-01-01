@@ -15,7 +15,7 @@ import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { CurrentCategory } from './utils/types';
 import { countDifferentGuesses, getGuessResultClass, getPoints } from './utils/helpers';
@@ -70,9 +70,9 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title level={2} className="o-step-reveal-title" size="small">
+      <StepTitle level={2} className="o-step-reveal-title" size="small">
         <Sentence currentCategory={currentCategory} />
-      </Title>
+      </StepTitle>
 
       <Dial card={currentCategory} target={currentCategory.target} showTarget animate />
 

@@ -1,18 +1,17 @@
 // Types
 import type { GamePlayer } from 'types/player';
 import type { SuspectCard } from 'types/tdr';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Status, THistoryEntry } from './utils/types';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
 import { Summary } from './components/Summary';
+// Icons
 
 type StepQuestionWaitingProps = {
   suspects: SuspectCard[];
@@ -36,11 +35,9 @@ export function StepQuestionWaiting({
 }: StepQuestionWaitingProps) {
   return (
     <Step announcement={announcement}>
-      <Title size="medium">
-        <IconAvatar icon={<AnimatedClockIcon />} size="large" />
-        <br />
+      <StepTitle wait>
         <Translate pt={<>Examine os suspeitos</>} en={<>Examine the suspects</>} />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="wait">
         <Translate
           pt={

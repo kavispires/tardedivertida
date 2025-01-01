@@ -19,7 +19,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { Container } from 'components/general/Container';
 import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { MovieGenreOption, SubmitMovieGenrePayload } from './utils/types';
 import { Icons } from './utils/helpers';
@@ -56,9 +56,9 @@ export function StepSelectGenre({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate en={<>Let's customize the movie!</>} pt={<>Vamos personalizar o filme!</>} />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <MovieGenreRules />

@@ -1,16 +1,15 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { City, CityLocationsDict } from './utils/types';
 import { CityMap } from './components/CityMap';
+// Icons
 // Hooks
 
 type StepWaitForPlanningProps = {
@@ -31,8 +30,7 @@ export function StepWaitForPlanning({
 }: StepWaitForPlanningProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
-        <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
+      <StepTitle size="small" wait>
         <Translate
           pt={
             <>
@@ -45,7 +43,7 @@ export function StepWaitForPlanning({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="wait">
         <Translate

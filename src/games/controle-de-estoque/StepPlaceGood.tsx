@@ -11,11 +11,11 @@ import { useLoading } from 'hooks/useLoading';
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Good, PlaceGoodPayload, WarehouseSlot } from './utils/types';
 import { BOSS_IDEAS_IDS } from './utils/constants';
@@ -70,9 +70,9 @@ export function StepPlaceGood({
   if (isUserTheSupervisor) {
     return (
       <Step fullWidth announcement={announcement} ref={ref}>
-        <Title>
-          <IconAvatar icon={<BossIdeaIcon />} /> <DualTranslate>{bossIdea.title}</DualTranslate>
-        </Title>
+        <StepTitle icon={<BossIdeaIcon />}>
+          <DualTranslate>{bossIdea.title}</DualTranslate>
+        </StepTitle>
 
         <RuleInstruction type="lore">
           <strong>
@@ -116,9 +116,9 @@ export function StepPlaceGood({
 
   return (
     <Step fullWidth announcement={announcement} ref={ref}>
-      <Title>
-        <IconAvatar icon={<BossIdeaIcon />} /> <DualTranslate>{bossIdea.title}</DualTranslate>
-      </Title>
+      <StepTitle icon={<BossIdeaIcon />}>
+        <DualTranslate>{bossIdea.title}</DualTranslate>
+      </StepTitle>
 
       <RuleInstruction type="lore">
         <strong>

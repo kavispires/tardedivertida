@@ -12,7 +12,7 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, StepTitle, TextHighlight, Title } from 'components/text';
 // Internal
 import type { Suggestion } from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
@@ -40,7 +40,7 @@ export function StepResult({
   const isPass = group.attempts.at(-1) === 'PASS';
   return (
     <Step fullWidth announcement={announcement}>
-      <Title className={getAnimationClass('heartBeat')}>
+      <StepTitle className={getAnimationClass('heartBeat')}>
         {isPass ? (
           <Translate
             pt={
@@ -70,7 +70,7 @@ export function StepResult({
             }
           />
         )}
-      </Title>
+      </StepTitle>
 
       <Card word={secretWord.text} />
 

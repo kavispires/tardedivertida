@@ -11,7 +11,7 @@ import { TimedButton } from 'components/buttons';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { Bet, Bracket } from './utils/type';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
@@ -38,9 +38,9 @@ export function StepWinner({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Vencedor" en="Winner" />
-      </Title>
+      </StepTitle>
 
       <Challenge challenge={challenge} />
 

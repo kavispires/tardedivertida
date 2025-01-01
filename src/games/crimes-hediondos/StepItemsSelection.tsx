@@ -13,7 +13,7 @@ import { TransparentButton } from 'components/buttons';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { GroupedItems, ItemsDict } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
@@ -65,9 +65,9 @@ export function StepItemsSelection({
 
   return (
     <Step announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt={

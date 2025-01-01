@@ -11,7 +11,7 @@ import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { getReference } from './utils/helpers';
 import { Scenarios } from './components/Scenarios';
@@ -50,7 +50,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -63,7 +63,7 @@ export function StepReveal({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

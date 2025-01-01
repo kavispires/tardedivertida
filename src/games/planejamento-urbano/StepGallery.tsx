@@ -17,7 +17,7 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { City, CityLocationsDict, GalleryEntry } from './utils/types';
 import { getConeColor } from './utils/helpers';
@@ -51,9 +51,9 @@ export function StepGallery({
 
   return (
     <Step fullWidth>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate pt="Construções" en="Constructions" />
-      </Title>
+      </StepTitle>
 
       <SlideShow
         config={slideShowConfig}

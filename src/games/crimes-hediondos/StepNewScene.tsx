@@ -4,13 +4,11 @@ import { Button, Collapse, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { SceneTile } from 'components/game/SceneTile';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Crime, GroupedItems, ItemsDict, SceneTilePayload, ScenesDict } from './utils/types';
 import { CrimeSummary } from './components/CrimeSummary';
@@ -38,7 +36,6 @@ export function StepNewScene({
   scenesOrder,
   announcement,
 }: StepNewSceneProps) {
-  const { language } = useLanguage();
   const [sceneMarkIndex, setSceneMarkIndex] = useState<number>();
 
   const onSelectItem = (payload: SceneTilePayload) => {
@@ -49,7 +46,9 @@ export function StepNewScene({
 
   return (
     <Step announcement={announcement}>
-      <Title size="medium">{sceneTile.description[language]}</Title>
+      <StepTitle>
+        <DualTranslate>{sceneTile.description}</DualTranslate>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt={

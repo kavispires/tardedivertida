@@ -16,7 +16,7 @@ import { Container } from 'components/general/Container';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { Robot, RobotGalleryEntry } from './utils/types';
 import { CaptchaTopic } from './components/CaptchaTopic';
@@ -37,9 +37,9 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate pt="Resultado" en="Results" />
-      </Title>
+      </StepTitle>
 
       <FloatingPlayerStats user={user} robot={robot} />
 

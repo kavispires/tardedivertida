@@ -13,7 +13,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { Dream } from './utils/types';
 import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';
@@ -61,9 +61,9 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
 
   return (
     <Step fullWidth className="s-tell-dream-step">
-      <Title>
+      <StepTitle>
         <Translate pt="Adivinhação" en="Match the Pairs" />
-      </Title>
+      </StepTitle>
       <Instruction contained>
         <Translate
           pt="Clique em uma carta e então uma botão da imagem correspondente ou vice e versa. Aperte enviar quando terminar te combinar todas as dicas."

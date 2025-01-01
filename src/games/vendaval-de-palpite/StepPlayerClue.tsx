@@ -15,7 +15,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { ControlledInputWriting } from 'components/input';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 import { TimerBar } from 'components/timers';
 // Internal
 import type { Clues, BoardObject } from './utils/types';
@@ -98,9 +98,9 @@ export function StepPlayerClue({
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Escreva palpites" en="Write Ideas" />
-      </Title>
+      </StepTitle>
 
       <CategoryCard categories={categories} />
 

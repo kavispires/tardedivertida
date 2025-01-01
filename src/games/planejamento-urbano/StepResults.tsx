@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { CityLocationsDict, GalleryEntry } from './utils/types';
 import { LocationCard } from './components/LocationCard';
@@ -52,9 +52,9 @@ export function StepResults({
 
   return (
     <Step fullWidth>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate pt="Resultado" en="Summary" />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="scoring">
         <Translate

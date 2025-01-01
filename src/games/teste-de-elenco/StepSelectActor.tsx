@@ -8,7 +8,7 @@ import { getRandomItem } from 'utils/helpers';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { ActingRole, FeatureFilm, SubmitMovieActorPayload } from './utils/types';
 import { ActorsBoard } from './components/ActorsBoard';
@@ -42,9 +42,9 @@ export function StepSelectActor({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="x-small">
+      <StepTitle>
         <Translate pt={<>Selecione um ator!</>} en={<>Cast a role:</>} />
-      </Title>
+      </StepTitle>
 
       <RoleBoard activeRole={activeRole} instruction="SELECT" movie={movie}>
         <CastSummary movie={movie} />

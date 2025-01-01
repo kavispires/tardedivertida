@@ -13,7 +13,7 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
 import type { Status, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
@@ -61,7 +61,7 @@ export function StepSuspectElimination({
 
   return (
     <Step announcement={announcement}>
-      <Title level={3} size="medium">
+      <StepTitle>
         <AvatarName player={witness} addressUser />
         <Translate en="answered" pt="respondeu" />{' '}
         {testimony ? (
@@ -76,7 +76,7 @@ export function StepSuspectElimination({
           icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
         />{' '}
         <Translate en="to the question" pt="para a pergunta:" />
-      </Title>
+      </StepTitle>
 
       <Space className="space-container" align="center">
         <Card

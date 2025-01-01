@@ -4,7 +4,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Tree } from './utils/types';
 import { Forest } from './components/Forest';
@@ -21,12 +21,12 @@ export function StepPathWaiting({ players, announcement, forest, activePlayer }:
   const playerCount = Object.keys(players).length;
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={<>Os jogadores estão seguindo o seu mapa!</>}
           en={<>Players are following your map!</>}
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="wait">
         <Translate

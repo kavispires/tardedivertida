@@ -10,7 +10,7 @@ import { PHASES } from 'utils/phases';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
@@ -45,12 +45,12 @@ export function StepWaitDoorSelection({
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate
           pt="Aguarde enquanto os outros jogadores selecionam as portas"
           en="Wait while the players select doors"
         />
-      </Title>
+      </StepTitle>
 
       {showTrap && <TrapPopupRule trap={trap} />}
 

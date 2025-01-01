@@ -28,7 +28,7 @@ const GAMES = [
   {
     name: 'comunicacao-duo',
     code: 'D',
-    key: 'COMUNICACAO_DUO'
+    key: 'COMUNICACAO_DUO',
   },
   {
     name: 'contadores-historias',

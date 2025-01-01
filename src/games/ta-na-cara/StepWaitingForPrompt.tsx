@@ -1,13 +1,11 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';
@@ -38,8 +36,7 @@ export function StepWaitingForPrompt({
 }: StepWaitingForPromptProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
-        <IconAvatar icon={<AnimatedClockIcon />} />
+      <StepTitle wait>
         <Translate
           pt={
             <>
@@ -52,7 +49,7 @@ export function StepWaitingForPrompt({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <Translate

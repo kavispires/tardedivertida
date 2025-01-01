@@ -8,7 +8,7 @@ import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { CloverObject, Leaves } from './utils/types';
 import { mockClues } from './utils/mock';
@@ -52,9 +52,9 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Escreva as dicas" en="Write clues" />
-      </Title>
+      </StepTitle>
 
       <WritingRules />
 

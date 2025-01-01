@@ -17,7 +17,7 @@ import { TransparentButton } from 'components/buttons';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Characters } from './utils/types';
 import { prepareGlyphs } from './utils/helpers';
@@ -74,12 +74,12 @@ export function StepSelectGlyphs({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={<>Descreva seu personagem com ícones</>}
           en={<>Describe your character with glyphs</>}
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

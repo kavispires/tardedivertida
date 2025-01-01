@@ -12,7 +12,7 @@ import { AlienText } from 'components/alien/AlienText';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { DeckEntry, HistoryEntry, Summary } from './utils/types';
@@ -129,9 +129,9 @@ export function StepVerification({
 
   return (
     <Step fullWidth>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate en="Results" pt="Resultado" />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="event">
         <Translate en={results.en} pt={results.pt} />

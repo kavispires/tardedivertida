@@ -15,7 +15,7 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { Characters, GalleryEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
@@ -58,9 +58,9 @@ export function StepGallery({
 
   return (
     <Step className="l-step-album">
-      <Title>
+      <StepTitle>
         <Translate pt="Galeria" en="Gallery" />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<ScoringRules currentRound={round.current} />} />
 

@@ -10,7 +10,7 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle, Title } from 'components/text';
 // Internal
 import type { CandySidewalk, StreetCard } from './utils/types';
 import { PlayerStats } from './components/PlayerStats';
@@ -47,9 +47,9 @@ export function StepResult({
 
   return (
     <Step fullWidth>
-      <Title size="medium" className={clsx('n-title', getAnimationClass('fadeIn'))} level={2}>
+      <StepTitle className={clsx('n-title', getAnimationClass('fadeIn'))} level={2}>
         <Translate pt="Decisões" en="Decisions" />:
-      </Title>
+      </StepTitle>
 
       <Title size="small" level={3} className={clsx('n-subtitle', getAnimationClass('fadeIn', { delay: 1 }))}>
         {goingHomePlayerIds.length === 0 && (

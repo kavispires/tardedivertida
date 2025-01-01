@@ -12,7 +12,7 @@ import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
@@ -65,13 +65,13 @@ export function StepHumanAsks({
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step fullWidth announcement={isUserTheCurrentHuman ? announcement : undefined}>
-      <Title>
+      <StepTitle>
         {isUserTheCurrentHuman ? (
           <Translate pt={<>Pergunte ao Alienígena!</>} en={<>Ask the Alien!</>} />
         ) : (
           <Translate pt={<>Perguntas ao Alienígena</>} en={<>Asking the Alien</>} />
         )}
-      </Title>
+      </StepTitle>
 
       {isAlienBot && <BotPopupRule />}
 

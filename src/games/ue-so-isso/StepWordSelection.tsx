@@ -10,7 +10,7 @@ import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;
@@ -52,7 +52,7 @@ export function StepWordSelection({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -65,7 +65,7 @@ export function StepWordSelection({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

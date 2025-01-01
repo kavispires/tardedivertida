@@ -8,7 +8,7 @@ import { Card } from 'components/cards';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { mockPlayCard } from './utils/mock';
@@ -49,11 +49,11 @@ export function StepPlayCard({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Card header={storyteller.name} className="c-story-card" randomColor>
           {story}
         </Card>
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type={isUserTheStoryTeller ? 'wait' : 'action'}>
         <ViewOr condition={isUserTheStoryTeller}>

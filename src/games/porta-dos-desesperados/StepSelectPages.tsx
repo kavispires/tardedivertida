@@ -15,7 +15,7 @@ import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageBlurButton, ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal
 import { TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
@@ -57,7 +57,7 @@ export function StepSelectPages({
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -70,7 +70,7 @@ export function StepSelectPages({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       {showTrap && <TrapPopupRule trap={trap} />}
 

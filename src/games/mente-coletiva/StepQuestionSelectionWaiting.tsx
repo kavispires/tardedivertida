@@ -1,14 +1,13 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { Pasture } from './components/Pasture';
+// Icons
 
 type StepQuestionSelectionWaitingProps = {
   activePlayer: GamePlayer;
@@ -26,9 +25,9 @@ export function StepQuestionSelectionWaiting({
 }: StepQuestionSelectionWaitingProps) {
   return (
     <Step fullWidth className="m-step" announcement={announcement}>
-      <Title icon={<IconAvatar icon={<AnimatedClockIcon />} size="large" />}>
+      <StepTitle wait>
         <Translate pt="Aguarde..." en="Please wait..." />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="wait">
         <AvatarName player={activePlayer} addressUser />{' '}

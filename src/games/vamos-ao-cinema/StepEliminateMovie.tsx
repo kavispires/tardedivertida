@@ -11,7 +11,7 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
@@ -47,7 +47,7 @@ export function StepEliminateMovie({
 }: StepEliminateMovieProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title className={getAnimationClass('tada')}>
+      <StepTitle className={getAnimationClass('tada')}>
         {isActivePlayer ? (
           <Translate
             pt={<>Elimine um filme que você acha que ninguém quer ver</>}
@@ -67,7 +67,7 @@ export function StepEliminateMovie({
             }
           />
         )}
-      </Title>
+      </StepTitle>
 
       <Reviews goodReview={goodReview} badReview={badReview} />
 

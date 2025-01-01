@@ -6,7 +6,7 @@ import { useMock } from 'hooks/useMock';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { ObjectCardObj } from './utils/types';
 import { mockObjectIdSelection } from './utils/mock';
@@ -26,9 +26,9 @@ export function StepSelectObject({ user, announcement, onSelectObject }: StepSel
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt={<>Escolha um objeto</>} en={<>Select an object</>} />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

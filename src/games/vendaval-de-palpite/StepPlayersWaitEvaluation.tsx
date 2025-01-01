@@ -6,7 +6,7 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 import { Avatar, AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { Clues, BoardObject } from './utils/types';
 import { Board } from './components/Board';
@@ -32,9 +32,9 @@ export function StepPlayersWaitEvaluation({
 }: StepPlayersWaitEvaluationProps) {
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Avaliação" en="Avaliação" />
-      </Title>
+      </StepTitle>
 
       <CategoryCard categories={categories} />
 

@@ -11,7 +11,6 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { BrickWallIcon } from 'icons/BrickWallIcon';
 import { ConeIcon } from 'icons/ConeIcon';
 // Components
@@ -20,7 +19,7 @@ import { FloatingHandDrawer } from 'components/general/FloatingHand';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { City, CityLocationsDict } from './utils/types';
 import { getConeColor } from './utils/helpers';
@@ -114,22 +113,19 @@ export function StepPlaceLocations({
 
   return (
     <Step fullWidth announcement={announcement}>
-      {isTheActivePlayer ? (
-        <Title size="small">
-          <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
+      <StepTitle size="small" wait={isTheActivePlayer}>
+        {isTheActivePlayer ? (
           <Translate
             pt={<>Aguarde enquanto os jogadores discutem e decidem onde cada projeto deve ir</>}
             en={<>Wait while the players discuss and decide where each project should go</>}
           />
-        </Title>
-      ) : (
-        <Title size="small">
+        ) : (
           <Translate
             pt={<>Discutam e decidam onde cada projeto deve ir</>}
             en={<>Discuss and decide where each project should go</>}
           />
-        </Title>
-      )}
+        )}
+      </StepTitle>
 
       <RuleInstruction type={isTheActivePlayer ? 'wait' : 'action'}>
         <Translate

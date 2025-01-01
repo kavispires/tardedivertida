@@ -21,7 +21,7 @@ import { IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Track } from './utils/types';
 import { useColorizeBackground } from './utils/useColorizeBackground';
@@ -73,9 +73,9 @@ export function StepResult({
 
   return (
     <Step announcement={announcement}>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate pt="Resultado" en="Results" />: <TrackTitle track={track} />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="event">
         <IconAvatar icon={<DJIcon />} size="large" />

@@ -10,7 +10,7 @@ import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { Book } from './components/Book';
@@ -46,9 +46,9 @@ export function StepResults({
   const doorsLeft = TOTAL_DOORS - currentCorridor + (outcome === OUTCOME.SUCCESS ? 0 : 1);
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <OutcomeTitle outcome={outcome} />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="event">
         <OutcomeInstruction outcome={outcome} />

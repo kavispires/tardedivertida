@@ -9,7 +9,7 @@ import { useLoading } from 'hooks/useLoading';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 import { View, ViewSwitch } from 'components/views';
 // Internal
 import type { Location } from './utils/types';
@@ -44,12 +44,12 @@ export function StepVoting({
 
   return (
     <Step className="e-phase-step">
-      <Title level={2} className="e-phase-title">
+      <StepTitle className="e-phase-title">
         <Translate
           pt={`${accuser.name} está acusando ${target.name} de ser o espião. Concorda?`}
           en={`${accuser.name} is accusing ${target.name} to be the spy. Do you agree?`}
         />
-      </Title>
+      </StepTitle>
 
       <ViewSwitch cases={[isUserTheAccuser, isUserTheTarget, true]}>
         <View key="accuser">

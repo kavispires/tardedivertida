@@ -9,7 +9,7 @@ import type { UseStep } from 'hooks/useStep';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { AdedanhxGrid, AnswerGridEntry, GroupAnswerEvaluationEntry } from './utils/types';
 import { AnswersGrid } from './components/Grid';
@@ -34,9 +34,9 @@ export function StepResultGrid({
 }: StepResultGridProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt={<>Resultado</>} en={<>Results</>} />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <ScoringRule />

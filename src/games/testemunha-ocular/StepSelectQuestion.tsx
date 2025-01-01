@@ -8,7 +8,7 @@ import { LETTERS } from 'utils/constants';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Question, Status, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
@@ -37,9 +37,9 @@ export function StepSelectQuestion({
 }: StepSelectQuestionProps) {
   return (
     <Step announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Selecione uma pergunta" en="Select a question" />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt="A testemunha responderá a pergunta sobre o  sobre criminoso. A pergunta que você não escolher será descartada."

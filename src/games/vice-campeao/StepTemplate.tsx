@@ -5,7 +5,7 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 
 type StepTemplateProps = {
   players: GamePlayers;
@@ -17,9 +17,9 @@ export function StepTemplate({ players, user, announcement }: StepTemplateProps)
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt={<>?</>} en={<>?</>} />
-      </Title>
+      </StepTitle>
 
       {isLoading}
       <Instruction contained>

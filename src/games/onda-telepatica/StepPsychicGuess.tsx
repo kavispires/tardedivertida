@@ -8,7 +8,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
 import type { CurrentCategory } from './utils/types';
 import { Dial } from './components/Dial';
@@ -33,12 +33,12 @@ export function StepPsychicGuess({
 
   return (
     <Step className="o-dial-guess-selection" announcement={announcement}>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate
           pt="Quantos jogadores vão ganhar pontos com sua dica?"
           en="How many players will get points with your clue?"
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

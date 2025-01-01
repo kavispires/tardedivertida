@@ -8,7 +8,7 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';
@@ -36,13 +36,13 @@ export function StepWaitingForGuesses({
 }: StepWaitingForGuessesProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <IconAvatar icon={<AnimatedClockIcon />} />
         <Translate
           pt={<>Aguarde enquanto os jogadores tentam adivinhar quem você é</>}
           en={<>Please wait while the other players try to guess who you are</>}
         />
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <Translate

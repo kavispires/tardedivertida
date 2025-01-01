@@ -18,7 +18,7 @@ import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 import { TimerClock } from 'components/timers';
 // Internal
 import type { AdedanhxGrid, Answer, SubmitGridAnswersPayload } from './utils/types';
@@ -86,10 +86,10 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
 
   return (
     <Step fullWidth>
-      <Title>
+      <StepTitle>
         <Translate pt={<>Complete a grade</>} en={<>Complete the grid</>} />{' '}
         <TimerClock seconds={seconds} minutes={minutes} iconSize="large" className="timer" />
-      </Title>
+      </StepTitle>
 
       {stoppedBy && <StopAnnouncement stopper={players[stoppedBy]} onSubmit={onSubmit} />}
 

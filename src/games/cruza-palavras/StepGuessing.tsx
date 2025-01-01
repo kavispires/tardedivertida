@@ -9,7 +9,7 @@ import { shuffle } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Clue, Grid, GridType } from './utils/types';
 import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
@@ -129,9 +129,9 @@ export function StepGuessing({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Decifre as dicas!" en="Guess the cells!" />
-      </Title>
+      </StepTitle>
 
       <Clues clues={clues} onSelectClue={onSelectClue} active={active} guesses={guesses} />
 

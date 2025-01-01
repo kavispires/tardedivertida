@@ -10,7 +10,7 @@ import { useStep } from 'hooks/useStep';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { SeedEntry } from './utils/types';
 import { buildSeedingSteps } from './utils/helpers';
@@ -51,13 +51,13 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="x-small">
+      <StepTitle size="small">
         {seeds.length > 1 ? (
           <Translate pt="Termine todas suas obrigações" en="Finish all your chores" />
         ) : (
           <Translate pt="Hora de se arrumar" en="Time to get ready" />
         )}
-      </Title>
+      </StepTitle>
       <div className="full-width container center">
         <Steps current={currentStep} items={items} />
         {/* DEV only */}

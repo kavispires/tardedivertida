@@ -11,7 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import { mockDream } from './utils/mock';
 import { DreamBoard } from './components/DreamBoard';
@@ -41,7 +41,7 @@ export function StepTellDream({ players, table, user, onSubmitDream }: StepTellD
 
   return (
     <Step fullWidth className="s-tell-dream-step">
-      <Title>
+      <StepTitle>
         <Card
           header={translate('Tema do Sonho', 'Dream Theme')}
           className="s-theme-card"
@@ -51,7 +51,7 @@ export function StepTellDream({ players, table, user, onSubmitDream }: StepTellD
         >
           {user.theme.text}
         </Card>
-      </Title>
+      </StepTitle>
       <Instruction contained>
         <Translate
           pt="Dentro do tema acima, escreva sua dica no campo abaixo. Lembre-se que seu sonho é a carta de borda amarela e seu pesadelo é a carta de borda roxa."

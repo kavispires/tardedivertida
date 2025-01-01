@@ -16,7 +16,7 @@ import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal
 import type { CandySidewalk, StreetCard } from './utils/types';
 import { mockPlayerDecision } from './utils/mock';
@@ -70,9 +70,9 @@ export function StepMakeDecision({
 
   return (
     <Step fullWidth className="n-step-trick-or-treat">
-      <Title size="medium" className={clsx('n-title', getAnimationClass('tada'))} level={2}>
+      <StepTitle className={clsx('n-title', getAnimationClass('tada'))} level={2}>
         <Translate pt="Continua ou Volta pra Casa?" en="Next House or Go Home?" />
-      </Title>
+      </StepTitle>
 
       <Title size="small" level={3} className="n-subtitle">
         {currentCard.type === 'candy' && (

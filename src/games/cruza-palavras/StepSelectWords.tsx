@@ -12,7 +12,7 @@ import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { TextCardWithType } from './utils/types';
 
@@ -32,9 +32,9 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Quais cartas deveriam estar no jogo?" en="What cards should be in the game?" />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

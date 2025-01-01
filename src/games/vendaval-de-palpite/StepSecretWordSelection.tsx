@@ -11,7 +11,7 @@ import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, Title, StepTitle } from 'components/text';
 
 type StepSecretWordSelectionProps = {
   words: TextCard[];
@@ -50,9 +50,9 @@ export function StepSecretWordSelection({
 
   return (
     <Step key={1}>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="A Palavra Secreta" en="The Secret Word" />
-      </Title>
+      </StepTitle>
       <Instruction contained>
         <Translate
           pt="Escolha a palavra secreta para os outros jogadores tentarem adivinhar e então selecione uma ou duas categorias que melhor se encaixam com a palavra escolhida"

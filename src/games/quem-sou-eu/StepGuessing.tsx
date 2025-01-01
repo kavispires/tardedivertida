@@ -19,7 +19,7 @@ import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { RibbonGroup } from 'components/ribbons';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Characters } from './utils/types';
 import { getRibbons, prepareGuesses } from './utils/helpers';
@@ -113,9 +113,9 @@ export function StepGuessing({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt={<>Pareie os cada personagem com um jogador</>} en={<>Pair player and characters</>} />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

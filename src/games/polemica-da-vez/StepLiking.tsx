@@ -17,7 +17,7 @@ import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { Tweet } from './components/Tweet';
 
@@ -52,9 +52,9 @@ export function StepLiking({
 
   return (
     <Step fullWidth className="p-step" announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="O que você acha da polêmica da vez?" en="What do you think of this trending topic?" />
-      </Title>
+      </StepTitle>
 
       <div className="p-reaction-buttons">
         <Tweet tweet={customTweet ?? currentTweet?.text} className="p-reaction-buttons__tweet" />

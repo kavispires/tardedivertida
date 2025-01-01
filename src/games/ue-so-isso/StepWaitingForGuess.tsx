@@ -9,7 +9,7 @@ import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Suggestion } from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
@@ -28,7 +28,7 @@ export function StepWaitingForGuess({
 }: StepWaitingForGuessProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -41,7 +41,7 @@ export function StepWaitingForGuess({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="wait">
         <Translate

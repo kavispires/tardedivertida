@@ -20,7 +20,7 @@ import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { ImageCardObj } from './utils/types';
 import { BotsRules, CardPlayRules } from './components/RulesBlobs';
@@ -84,9 +84,9 @@ export function StepPlayDream({
 
   return (
     <Step fullWidth>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate pt="Bingo dos Sonhos" en="Dream Bingo" />
-      </Title>
+      </StepTitle>
       <Card header={translate('Tema', 'Theme')} color="purple">
         {word.text}
       </Card>

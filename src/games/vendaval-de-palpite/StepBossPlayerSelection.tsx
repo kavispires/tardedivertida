@@ -5,14 +5,12 @@ import type { GamePlayers } from 'types/player';
 // Hooks
 import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarCard, IconAvatar } from 'components/avatars';
+import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 
 type StepBossPlayerSelectionProps = {
   players: GamePlayers;
@@ -25,11 +23,9 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
 
   return (
     <Step key={1}>
-      <Title>
-        <IconAvatar icon={<AnimatedClockIcon />} size="large" />
-        <br />
+      <StepTitle wait>
         <Translate pt="Quem quer ser o Chefe?" en="Who wants to be the Boss?" />
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <Space>

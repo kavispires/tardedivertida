@@ -16,7 +16,7 @@ import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { Instruction, TextHighlight, StepTitle } from 'components/text';
 import { TimedTimerClock } from 'components/timers';
 import { ViewOr } from 'components/views';
 // Internal
@@ -86,7 +86,7 @@ export function StepPlayCardAction({
 
   return (
     <>
-      <Title>
+      <StepTitle>
         {isUserTheImpostor ? (
           <>
             <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
@@ -100,7 +100,7 @@ export function StepPlayCardAction({
             <Translate pt="A pista secreta é" en="The secret clue is" /> <TextHighlight>{clue}</TextHighlight>
           </>
         )}
-      </Title>
+      </StepTitle>
 
       <Instruction>
         <ViewOr condition={isUserTheImpostor}>

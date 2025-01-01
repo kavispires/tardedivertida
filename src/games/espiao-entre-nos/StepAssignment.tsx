@@ -6,7 +6,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { Location } from './utils/types';
 import { EspiaoEntreNosCard as Card } from './components/Card';
@@ -24,9 +24,9 @@ export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignment
 
   return (
     <Step className="e-phase-step">
-      <Title level={2} className="e-phase-title">
+      <StepTitle className="e-phase-title">
         <Translate pt="Você está no(a)..." en="We are in/at/on..." />
-      </Title>
+      </StepTitle>
 
       <Card location={user.location} role={user.role} />
 

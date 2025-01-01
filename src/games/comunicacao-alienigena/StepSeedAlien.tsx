@@ -3,24 +3,22 @@ import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Item } from './utils/types';
 import { BotPopupRule } from './components/BotPopupRules';
 import { HumanSeedingSteps } from './components/HumanSeedingSteps';
 
 type StepSeedAlienProps = {
   onSubmitSeeds: GenericFunction;
   user: GamePlayer;
-  items: Item[];
 } & Pick<StepProps, 'announcement'>;
 
-export function StepSeedAlien({ user, announcement, onSubmitSeeds, items }: StepSeedAlienProps) {
+export function StepSeedAlien({ user, announcement, onSubmitSeeds }: StepSeedAlienProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Análise de Objetos" en="Objects analyses" />
-      </Title>
+      </StepTitle>
 
       <BotPopupRule />
 

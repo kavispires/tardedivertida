@@ -6,7 +6,7 @@ import type { CrimeSceneTile } from 'types/tdr';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { ItemsDict, SceneTilePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';
@@ -39,9 +39,9 @@ export function StepCauseOfDeathSelection({
 
   return (
     <Step announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Como foi seu último crime?" en="How was your last crime?" />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt={

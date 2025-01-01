@@ -8,7 +8,7 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { CandySidewalk, StreetCard } from './utils/types';
 import { PlayerStats } from './components/PlayerStats';
@@ -50,7 +50,7 @@ export function StepStreetEnd({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         {isDoubleHorror ? (
           <Translate
             pt={<>Um segundo {monsterName} surgiu do nada!</>}
@@ -59,7 +59,7 @@ export function StepStreetEnd({
         ) : (
           <Translate pt="Todo mundo voltou pra casa..." en="Everybody went back home for now..." />
         )}
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<CardCountExplanation />} />
 

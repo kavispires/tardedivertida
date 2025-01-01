@@ -13,7 +13,7 @@ import { CanvasResizer, CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import type { Sketch } from './utils/types';
@@ -54,9 +54,9 @@ export function StepVote({
 
   return (
     <Step announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Vote!" en="Vote!" />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt="Vote no desenho que mais se aproxima do monstro."
