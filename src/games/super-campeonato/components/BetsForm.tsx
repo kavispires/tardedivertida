@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -13,6 +13,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Instruction } from 'components/text';
 // Internal
@@ -87,12 +88,12 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             betTier={TIER_BY_STEP[step]}
           />
 
-          <Space className="space-container">
+          <SpaceContainer>
             <ResetBetsButton onConfirm={resetBets} />
             <Button onClick={() => setStep(step + 1)} disabled={Boolean(!bets.final)} type="primary">
               <Translate pt="Próximo" en="Next" />
             </Button>
-          </Space>
+          </SpaceContainer>
         </Instruction>
       )}
       {step === 1 && (
@@ -131,12 +132,12 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             betTier={TIER_BY_STEP[step]}
           />
 
-          <Space className="space-container">
+          <SpaceContainer>
             <ResetBetsButton onConfirm={resetBets} />
             <Button onClick={() => setStep(step + 1)} disabled={Boolean(!bets.semi)} type="primary">
               <Translate pt="Próximo" en="Next" />
             </Button>
-          </Space>
+          </SpaceContainer>
         </Instruction>
       )}
       {step === 2 && (
@@ -175,12 +176,12 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             betTier={TIER_BY_STEP[step]}
           />
 
-          <Space className="space-container">
+          <SpaceContainer>
             <ResetBetsButton onConfirm={resetBets} />
             <Button onClick={() => onSubmitBets(bets)} type="primary" disabled={Boolean(!bets.quarter)}>
               <Translate pt="Enviar Apostas" en="Submit Bets" />
             </Button>
-          </Space>
+          </SpaceContainer>
         </Instruction>
       )}
     </div>

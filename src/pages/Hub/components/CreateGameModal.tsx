@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
-import { Image, Modal, Button, Divider, Space, Alert, App } from 'antd';
+import { Image, Modal, Button, Divider, Alert, App } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -18,11 +18,11 @@ import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Loading } from 'components/loaders';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { GameCustomizations } from './GameCustomizations';
-// Adapters
 
 const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) => {
   const now = Date.now();
@@ -301,11 +301,11 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
             </Instruction>
           </div>
         ) : (
-          <Space className="space-container" align="center">
+          <SpaceContainer align="center">
             <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
               <Translate pt="Criar Jogo" en="Create Game" />
             </Button>
-          </Space>
+          </SpaceContainer>
         )}
       </>
     </Modal>

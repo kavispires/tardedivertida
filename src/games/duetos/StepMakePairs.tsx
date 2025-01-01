@@ -12,6 +12,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -180,7 +181,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
         })}
       </Space>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button
           size="large"
           type="primary"
@@ -190,7 +191,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
         >
           <Translate pt="Enviar Pares" en="Submit Pairs" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

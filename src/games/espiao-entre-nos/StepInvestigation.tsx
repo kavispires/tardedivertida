@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { App, Space } from 'antd';
+import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -9,6 +9,7 @@ import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 // Internal
@@ -87,7 +88,7 @@ export function StepInvestigation({
       </div>
 
       {isAccusationSelectVisible && (
-        <Space className="space-container" align="center">
+        <SpaceContainer>
           {isUserTheSpy && <LocationSelect locations={locations} onSend={onGuessLocation} />}|
           {!user?.usedAccusation ? (
             <PlayerSelect players={players} onSend={onMakeAccusation} />
@@ -96,7 +97,7 @@ export function StepInvestigation({
               <Translate pt="Você já usou sua chance de acusar" en="You already used your accusation" />
             </Instruction>
           )}
-        </Space>
+        </SpaceContainer>
       )}
 
       <Instruction className="e-lists">

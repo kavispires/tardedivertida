@@ -1,8 +1,7 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { LanguageButtons } from 'components/language/LanguageButtons';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -10,7 +9,7 @@ import type { TestStepProps } from '../TestArea';
 
 export function LanguageTest({ onResult, step }: TestStepProps) {
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Mudança de Idioma" en="Language Switch" />
       </Title>
@@ -31,6 +30,6 @@ export function LanguageTest({ onResult, step }: TestStepProps) {
           en: 'Are you seeing the page in the selected language?',
         }}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

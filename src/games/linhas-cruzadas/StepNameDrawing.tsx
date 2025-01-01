@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -11,6 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { AvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 // Internal
@@ -74,11 +75,11 @@ export function StepNameDrawing({
         onPressEnter={onSubmitTitle}
       />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button type="primary" onClick={onSubmitTitle} size="large" disabled={!title}>
           <Translate pt="Enviar" en="Submit name" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

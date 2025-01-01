@@ -1,7 +1,7 @@
 import { Fragment, useMemo } from 'react';
 // Ant Design Resources
 import { CaretRightOutlined } from '@ant-design/icons';
-import { Divider, Space } from 'antd';
+import { Divider } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -15,6 +15,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
@@ -54,9 +55,9 @@ export function PhaseGameOver({ players, state }: PhaseProps) {
         )}
       </Title>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <MagicCandlesIcon style={{ width: '4rem' }} />
-      </Space>
+      </SpaceContainer>
 
       <RuleInstruction type="lore">
         {isVictory ? (
@@ -77,7 +78,7 @@ export function PhaseGameOver({ players, state }: PhaseProps) {
           <Translate pt="O corredor" en="The Corridor" />
         </Title>
         {
-          <Space wrap className="space-container">
+          <SpaceContainer wrap>
             {doors.map((doorId: ImageCardId, index, arr) => (
               <Fragment key={doorId || index}>
                 <DoorFrame width={doorWidth}>
@@ -86,7 +87,7 @@ export function PhaseGameOver({ players, state }: PhaseProps) {
                 {index < arr.length - 1 && <CaretRightOutlined />}
               </Fragment>
             ))}
-          </Space>
+          </SpaceContainer>
         }
       </>
     </GameOverWrapper>

@@ -16,6 +16,7 @@ import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TextHighlight } from 'components/text';
 // Internal
 import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
@@ -86,7 +87,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
   return (
     <>
-      <Space className="space-container map-builder" wrap>
+      <SpaceContainer className="map-builder" wrap>
         {map.map((segment, index) => {
           if (segment.passed) {
             return <></>;
@@ -155,7 +156,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
             </div>
           );
         })}
-      </Space>
+      </SpaceContainer>
 
       {possibleTreeIds.length > 0 && (
         <Space className="contained" wrap>
@@ -175,7 +176,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       )}
 
       <Container title={<Translate pt="Cartas" en="Hand" />} contained>
-        {(user.hand ?? []).map((card: ExtendedTextCard, index: number) => (
+        {(user.hand ?? []).map((card: ExtendedTextCard) => (
           <TransparentButton
             onClick={() => onSetCard(card)}
             key={card.id}
@@ -195,7 +196,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         </Button>
       </Container>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button
           type="primary"
           size="large"
@@ -204,7 +205,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         >
           <Translate pt="Enviar Mapa" en="Submit Map" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </>
   );
 }

@@ -2,7 +2,7 @@ import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { Button, Divider, Layout, Space } from 'antd';
+import { Button, Divider, Layout } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Utils
@@ -15,6 +15,7 @@ import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
 // Internal
@@ -65,7 +66,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
           )}
 
           {!alreadyPlayed && !isSaving && (
-            <Space className="space-container">
+            <SpaceContainer>
               <Card
                 key={isPlaying ? card.id : 'none'}
                 header={isPlaying ? `#${cardNumber}` : '?'}
@@ -81,14 +82,14 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
                   card.text
                 )}
               </Card>
-            </Space>
+            </SpaceContainer>
           )}
         </div>
 
         {isPlaying && (
-          <Space className="space-container">
+          <SpaceContainer>
             <Canvas key={card.id} maxWidth={maxWidth} onNextCard={onNextCard} />
-          </Space>
+          </SpaceContainer>
         )}
 
         {isSaving && (
@@ -99,8 +100,8 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
         )}
 
         {isIdle && !alreadyPlayed && (
-          <Space className="space-container">
-            <Space direction="vertical" className="space-container">
+          <SpaceContainer>
+            <SpaceContainer vertical>
               <Instruction contained>
                 <Translate
                   pt={
@@ -127,8 +128,8 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
               <Button type="primary" size="large" onClick={onStart} disabled={alreadyPlayed}>
                 {isSaving ? <Translate pt="Salvando" en="Saving" /> : <Translate pt="Começar" en="Start" />}
               </Button>
-            </Space>
-          </Space>
+            </SpaceContainer>
+          </SpaceContainer>
         )}
       </Layout.Content>
     </Layout>

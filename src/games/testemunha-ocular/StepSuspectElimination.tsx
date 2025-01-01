@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { SuspectCard } from 'types/tdr';
@@ -12,6 +12,7 @@ import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
@@ -78,7 +79,7 @@ export function StepSuspectElimination({
         <Translate en="to the question" pt="para a pergunta:" />
       </StepTitle>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Card
           header={translate('O suspeito...', 'The perpetrator...')}
           color={testimony ? 'green' : 'red'}
@@ -88,7 +89,7 @@ export function StepSuspectElimination({
           {testimony ? '' : translate('não ', 'does not ')}
           {question.answer}
         </Card>
-      </Space>
+      </SpaceContainer>
 
       {isUserTheQuestioner ? (
         <RuleInstruction type="action">

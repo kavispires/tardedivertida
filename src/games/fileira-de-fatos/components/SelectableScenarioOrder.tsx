@@ -2,7 +2,7 @@ import { findLastIndex } from 'lodash';
 import { useState } from 'react';
 // Ant Design Resources
 import { RiseOutlined, UndoOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
@@ -12,6 +12,7 @@ import { useLoading } from 'hooks/useLoading';
 import { TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { OnSubmitOrder } from '../utils/types';
@@ -63,7 +64,7 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
   };
 
   return (
-    <Space className="space-container" direction="vertical">
+    <SpaceContainer vertical>
       <Scenarios scenarios={selection} reference={reference} />
 
       <RuleInstruction type="rule">
@@ -86,7 +87,7 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
         ))}
       </div>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button
           size="large"
           onClick={onRemoveScenario}
@@ -109,7 +110,7 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
         >
           <Translate pt="Enviar" en="Submit" />
         </Button>
-      </Space>
-    </Space>
+      </SpaceContainer>
+    </SpaceContainer>
   );
 }

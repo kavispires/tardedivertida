@@ -1,6 +1,4 @@
 import { useMemo } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Icons
@@ -9,6 +7,7 @@ import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
 import { ObjectCard } from './ObjectCard';
@@ -28,7 +27,7 @@ export function PlayerObjectClueFeature({ user, features }: PlayerObjectClueFeat
   if (!selectedObject || !user.target) return <></>;
 
   return (
-    <Space className="space-container">
+    <SpaceContainer>
       <ObjectCard item={selectedObject} />
       <div>
         <IconAvatar icon={<BoxPlusIcon />} size="small" />
@@ -38,6 +37,6 @@ export function PlayerObjectClueFeature({ user, features }: PlayerObjectClueFeat
         <IconAvatar icon={<BoxEqualIcon />} size="small" />
       </div>
       <ObjectFeature feature={features[user.target]} width={72} />
-    </Space>
+    </SpaceContainer>
   );
 }

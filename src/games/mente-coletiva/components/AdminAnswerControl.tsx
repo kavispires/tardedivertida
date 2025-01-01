@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -12,6 +12,7 @@ import { Avatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { AllowedList, Answer, AnswerGroupObject } from '../utils/types';
 
@@ -88,7 +89,7 @@ export function AdminAnswerControl({
           />
         </p>
       )}
-      <Space className="space-container" wrap align="center">
+      <SpaceContainer wrap>
         {filteredAnswers.map((answer) => {
           return (
             <Button
@@ -104,7 +105,7 @@ export function AdminAnswerControl({
             </Button>
           );
         })}
-      </Space>
+      </SpaceContainer>
     </HostOnlyContainer>
   );
 }

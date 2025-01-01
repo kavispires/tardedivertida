@@ -10,6 +10,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { Item, OfferingsStatus, Sign } from '../utils/types';
 import { HumanSignBoard } from './HumanSignBoard';
@@ -42,7 +43,7 @@ export function HumanInquiry({
   } = useBooleanDictionary({}, (d) => Object.keys(d).length < 5);
 
   return (
-    <Space className="space-container" direction="vertical">
+    <SpaceContainer vertical>
       <Space>
         <Select
           className="intention-select"
@@ -80,6 +81,6 @@ export function HumanInquiry({
         />
         <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
       </Space>
-    </Space>
+    </SpaceContainer>
   );
 }

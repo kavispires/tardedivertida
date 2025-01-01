@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -9,6 +9,7 @@ import { shuffle } from 'utils/helpers';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 // Internal
@@ -55,11 +56,11 @@ export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptPr
         })}
       </div>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button onClick={onRandomSelect} disabled={isLoading} ghost>
           <Translate pt="Escolha pra mim" en="Select for me" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

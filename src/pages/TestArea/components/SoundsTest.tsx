@@ -1,7 +1,7 @@
 import { delay } from 'lodash';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useLanguage } from 'hooks/useLanguage';
@@ -12,6 +12,7 @@ import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
 import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
 import { Speak } from 'components/audio/Speak';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -34,7 +35,7 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
   };
 
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Sons" en="Sounds" />
       </Title>
@@ -46,7 +47,7 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
         />
       </Instruction>
 
-      <Space wrap className="space-container full-width" direction="vertical">
+      <SpaceContainer wrap className="full-width" vertical>
         <Button onClick={() => onStartAudio('arte-ruim')} disabled={Boolean(showAudio)}>
           <Translate pt="Som 1" en="Sound 1" />
         </Button>
@@ -81,7 +82,7 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
             }}
           />
         )}
-      </Space>
+      </SpaceContainer>
 
       <DecisionButtons
         step={step}
@@ -91,6 +92,6 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
           en: 'Were you able to hear all 4 sounds?',
         }}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
-import { Button, Collapse, Space } from 'antd';
+import { Button, Collapse } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -12,6 +12,7 @@ import { getAnimationClass, getLastItem } from 'utils/helpers';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
@@ -111,7 +112,7 @@ export function StepReveal({
         />
       </Instruction>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Collapse
           items={[
             {
@@ -128,7 +129,7 @@ export function StepReveal({
             },
           ]}
         />
-      </Space>
+      </SpaceContainer>
 
       <PlayersCards
         user={user}
@@ -174,7 +175,7 @@ export function StepReveal({
         </div>
       )}
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         {isFirstRunThrough ? (
           <TimedButton
             onClick={onSeeRanking}
@@ -189,7 +190,7 @@ export function StepReveal({
             <Translate pt="Ver Ranking" en="See Ranking" />
           </Button>
         )}
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

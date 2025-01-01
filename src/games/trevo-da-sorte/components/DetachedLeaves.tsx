@@ -1,9 +1,8 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Components
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction } from 'components/text';
 // Internal
 import type { Leaves, LeafId, LeafEvent } from '../utils/types';
@@ -34,7 +33,7 @@ export function DetachedLeaves({
 
   return (
     <Instruction contained>
-      <Space className="space-container" align="center" wrap>
+      <SpaceContainer align="center" wrap>
         {availableLeaves.map((leaf) => {
           return (
             <div className="y-leaf-loose" key={leaf.id}>
@@ -49,7 +48,7 @@ export function DetachedLeaves({
             </div>
           );
         })}
-      </Space>
+      </SpaceContainer>
     </Instruction>
   );
 }

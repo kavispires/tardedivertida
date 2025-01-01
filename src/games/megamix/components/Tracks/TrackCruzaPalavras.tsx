@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { PlusCircleFilled } from '@ant-design/icons';
-import { Button, type ButtonProps, Space } from 'antd';
+import { Button, type ButtonProps } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -8,6 +8,7 @@ import { useMock } from 'hooks/useMock';
 import { Avatar } from 'components/avatars';
 import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
@@ -15,7 +16,7 @@ import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackCruzaPalavras = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSelect = (position: number) => {
@@ -55,11 +56,11 @@ export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: Track
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Avatar id="A" size="large" /> <SpeechBubble shadow>{track.data.clue.text}</SpeechBubble>
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <SpreadsheetGrid columns={3} rows={3} topLeftCorner>
           <SpreadsheetCell header>{track.data.cards[0].text}</SpreadsheetCell>
           <SpreadsheetCell header>{track.data.cards[1].text}</SpreadsheetCell>
@@ -78,7 +79,7 @@ export const TrackCruzaPalavras = ({ track, round, onSubmitAnswer, user }: Track
             <CellPlusButton onClick={() => onSelect(3)} disabled={user.ready} loading={isLoading} />
           </SpreadsheetCell>
         </SpreadsheetGrid>
-      </Space>
+      </SpaceContainer>
     </>
   );
 };

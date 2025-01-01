@@ -10,13 +10,14 @@ import { StreetIcon } from 'icons/StreetIcon';
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { StreetCard, TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSelect = (value: string) => {
@@ -57,7 +58,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
           />
         </RuleInstruction>
 
-        <Space className="space-container" direction="vertical">
+        <SpaceContainer vertical>
           <TransparentButton
             className="n-street"
             disabled={user.ready || isLoading}
@@ -88,7 +89,7 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
               ))}
             </div>
           </TransparentButton>
-        </Space>
+        </SpaceContainer>
       </>
     );
   }
@@ -114,9 +115,9 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         {track.data.options.map((house: StreetCard) => (
-          <Space direction="vertical" key={house.id} className="space-container n-street-house">
+          <SpaceContainer vertical key={house.id} className="n-street-house">
             <HouseCard card={house} candyLeftover={0} preview={false} />
             <Button
               shape="round"
@@ -127,9 +128,9 @@ export const TrackNaRuaDoMedo = ({ track, round, onSubmitAnswer, user }: TrackPr
             >
               <Translate pt="Selecionar" en="Select" />
             </Button>
-          </Space>
+          </SpaceContainer>
         ))}
-      </Space>
+      </SpaceContainer>
     </>
   );
 };

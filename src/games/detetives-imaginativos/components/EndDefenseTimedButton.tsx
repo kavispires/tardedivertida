@@ -1,8 +1,7 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type EndDefenseTimedButtonProps = {
   onFinishDefenseClick: GenericFunction;
@@ -11,7 +10,7 @@ type EndDefenseTimedButtonProps = {
 
 export function EndDefenseTimedButton({ onFinishDefenseClick, isLoading }: EndDefenseTimedButtonProps) {
   return (
-    <Space className="space-container" align="center">
+    <SpaceContainer align="center">
       <TimedButton
         duration={40}
         type="primary"
@@ -23,6 +22,6 @@ export function EndDefenseTimedButton({ onFinishDefenseClick, isLoading }: EndDe
       >
         <Translate pt="Concluir Defesa" en="End Defense" />
       </TimedButton>
-    </Space>
+    </SpaceContainer>
   );
 }

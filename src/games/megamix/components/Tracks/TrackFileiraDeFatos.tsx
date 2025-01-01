@@ -12,6 +12,7 @@ import { LETTERS } from 'utils/constants';
 import { TransparentButton } from 'components/buttons';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -42,7 +43,7 @@ const reference = [
   },
 ];
 
-export const TrackFileiraDeFatos = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackFileiraDeFatos = ({ track, onSubmitAnswer }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const width = useCardWidth(8, {
@@ -71,7 +72,7 @@ export const TrackFileiraDeFatos = ({ track, round, onSubmitAnswer, user, player
           <Translate pt="Qual das situações é a pior?" en="Which of the following situations is the worst?" />
         </RuleInstruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           {track.data.scenarios.map((entry: TextCard, index: number) => (
             <TransparentButton
               key={`position-${entry.text}`}
@@ -89,7 +90,7 @@ export const TrackFileiraDeFatos = ({ track, round, onSubmitAnswer, user, player
               </div>
             </TransparentButton>
           ))}
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

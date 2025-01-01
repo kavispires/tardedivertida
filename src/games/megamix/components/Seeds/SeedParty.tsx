@@ -5,6 +5,7 @@ import { Button, Input, Space } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryParty } from '../../utils/types';
@@ -28,7 +29,7 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
         <Translate pt="Responda as perguntas a seguir" en="Answer the following prompts" />
       </Title>
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer vertical>
         <RuleInstruction type="rule">
           <Translate
             pt={
@@ -77,7 +78,7 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
         >
           <Translate pt="Enviar" en="Submit" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </div>
   );
 }

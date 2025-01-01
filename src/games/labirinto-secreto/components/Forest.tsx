@@ -4,7 +4,7 @@ import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
 import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
-import { Button, Flex, Space } from 'antd';
+import { Button, Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -19,6 +19,7 @@ import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { AvatarGroup } from 'components/avatars/AvatarGroup';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { ViewIf } from 'components/views';
 // Internal
 import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
@@ -61,9 +62,9 @@ export function Forest({
 
   if (!forest || !map || map.length === 0 || !screenWidth) {
     return (
-      <Space direction="vertical" className="space-container">
+      <SpaceContainer vertical>
         <IconAvatar icon={<AnimatedProcessingIcon />} size="large" />
-      </Space>
+      </SpaceContainer>
     );
   }
 
@@ -133,7 +134,6 @@ export function Forest({
                               onSelectTree(tree.id);
                             }
                           }}
-                          role="button"
                         >
                           <ForestTree
                             segment={segment}

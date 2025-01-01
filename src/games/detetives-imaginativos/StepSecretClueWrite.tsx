@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -9,6 +9,7 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, TextHighlight, StepTitle } from 'components/text';
@@ -81,7 +82,7 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
         </ul>
       </Instruction>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Input
           className="uppercase-input"
           placeholder={translate('Escreva sua pista aqui', 'Write your clue here')}
@@ -92,7 +93,7 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
         <Button type="primary" disabled={isLoading || clue.length < 1} onClick={onButtonClick}>
           <Translate pt="Enviar pista secreta" en="Send secret clue" />
         </Button>
-      </Space>
+      </SpaceContainer>
 
       <ImageCardHand hand={user.hand} sizeRatio={user.hand?.length} />
     </Step>

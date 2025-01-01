@@ -14,6 +14,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
@@ -105,18 +106,18 @@ export function StepReveal({
       </ViewIf>
 
       <Instruction contained>
-        <Space className="space-container" wrap>
+        <SpaceContainer wrap>
           {Boolean(latestRequest) &&
             latestRequest.offers.map((entry, index) => {
               return (
-                <Space key={`offer-${index}`} direction="vertical" className="space-container">
+                <SpaceContainer key={`offer-${index}`} vertical>
                   <ItemCard id={`${entry.objectId}`} className={''} width={50} />
                   <AvatarName player={players[entry.playerId]} />
                   <ItemResolution itemId={entry.objectId} items={items} />
-                </Space>
+                </SpaceContainer>
               );
             })}
-        </Space>
+        </SpaceContainer>
       </Instruction>
 
       <AlienContent user={user}>

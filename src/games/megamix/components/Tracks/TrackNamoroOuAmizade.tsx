@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { DatingCandidateImageCard } from 'types/tdr';
 // Hooks
@@ -7,6 +7,7 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -14,7 +15,7 @@ import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 import { Candidate } from '../Candidate';
 
-export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackNamoroOuAmizade = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSelect = (value: string) => {
@@ -49,7 +50,7 @@ export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: Tra
       <div className="noa-candidates">
         {track.data.heads.map((head: DatingCandidateImageCard, index: number) => {
           return (
-            <Space className="space-container" direction="vertical" key={head.id}>
+            <SpaceContainer vertical key={head.id}>
               <Candidate
                 head={head}
                 body={track.data.bodies[index]}
@@ -67,7 +68,7 @@ export const TrackNamoroOuAmizade = ({ track, round, onSubmitAnswer, user }: Tra
               >
                 <Translate pt="Esse" en="This one" />
               </Button>
-            </Space>
+            </SpaceContainer>
           );
         })}
       </div>

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Space, Switch, Tooltip } from 'antd';
+import { Button, Switch, Tooltip } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
@@ -15,6 +15,7 @@ import { NoIcon } from 'icons/NoIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { TimedTimerBar } from 'components/timers';
 // Internal
@@ -63,8 +64,8 @@ export function EvaluationGroup({
 
   return (
     <div>
-      <div className="space-container evaluation-entry">
-        <div className="space-container evaluation-entry__side">
+      <div className="div-container evaluation-entry">
+        <div className="div-container evaluation-entry__side">
           <span className={clsx(getAnimationClass('flipInY'))} key={answersGroup.topic.id}>
             <CategoryCell data={answersGroup.topic} updateAnswer={NOOP} />
           </span>
@@ -74,10 +75,10 @@ export function EvaluationGroup({
           </span>
         </div>
         <div
-          className={clsx('space-container evaluation-entry__side', getAnimationClass('fadeIn'))}
+          className={clsx('div-container evaluation-entry__side', getAnimationClass('fadeIn'))}
           key={answersGroup.id}
         >
-          {answersGroup.answers.map((answer, index) => {
+          {answersGroup.answers.map((answer) => {
             return (
               <div className="evaluation-entry__player" key={answer.playerId}>
                 <TimeHighlight>{ANSWERING_TIME - answer.timestamp}"</TimeHighlight>{' '}
@@ -112,7 +113,7 @@ export function EvaluationGroup({
               </div>
             );
           })}
-          <Space className="space-container evaluation-entry__reject-button">
+          <SpaceContainer className="evaluation-entry__reject-button">
             <Button
               type="primary"
               shape="round"
@@ -123,12 +124,12 @@ export function EvaluationGroup({
             >
               <Translate pt="Rejeitar respostas" en="Reject wrong answers" />
             </Button>
-          </Space>
+          </SpaceContainer>
         </div>
       </div>
-      <Space className="space-container" key={answersGroup.id}>
+      <SpaceContainer key={answersGroup.id}>
         <TimedTimerBar duration={timer} onExpire={NOOP} className="margin" />
-      </Space>
+      </SpaceContainer>
     </div>
   );
 }

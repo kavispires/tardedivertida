@@ -1,7 +1,7 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 // Ant Design Resources
-import { Space, Typography } from 'antd';
+import { Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
@@ -10,6 +10,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
@@ -40,7 +41,7 @@ export function ResultsModalContent({
   });
 
   return (
-    <Space direction="vertical" className="space-container">
+    <SpaceContainer vertical>
       <Typography.Title level={2} className="center">
         {isWin ? (
           <>
@@ -71,7 +72,7 @@ export function ResultsModalContent({
       <CopyToClipboardResult result={result} rows={6} />
 
       <NextGameSuggestion />
-    </Space>
+    </SpaceContainer>
   );
 }
 

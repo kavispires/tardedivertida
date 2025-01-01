@@ -1,14 +1,14 @@
 import { random } from 'lodash';
-// Ant Design Resources
-import { Space } from 'antd';
 // Components
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';
+
 
 const hand = Array(8)
   .fill(0)
@@ -16,7 +16,7 @@ const hand = Array(8)
 
 export function FloatingHandTest({ onResult, step }: TestStepProps) {
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Mão de Cartas" en="Hand of Cards" />
       </Title>
@@ -39,6 +39,6 @@ export function FloatingHandTest({ onResult, step }: TestStepProps) {
       <FloatingHand>
         <ImageCardHand sizeRatio={8} hand={hand} />
       </FloatingHand>
-    </Space>
+    </SpaceContainer>
   );
 }

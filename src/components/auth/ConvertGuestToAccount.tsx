@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Form, Image, Modal, Space } from 'antd';
+import { Button, Form, Image, Modal } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Services
@@ -11,13 +11,12 @@ import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { SignUpForm } from './SignUp';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg';
-// API
-// Image
 
 type ConvertGuestToAccountProps = {
   onSuccess: GenericFunction;
@@ -88,11 +87,11 @@ export function ConvertGuestToAccountModal() {
           />
         </p>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <Button type="primary" onClick={() => setOpen(true)}>
             <Translate pt="Converter Perfil" en="Convert to Account" />
           </Button>
-        </Space>
+        </SpaceContainer>
       </Instruction>
     </div>
   );

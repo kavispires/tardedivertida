@@ -1,11 +1,12 @@
 // Ant Design Resources
-import { Button, Popconfirm, Space } from 'antd';
+import { Button, Popconfirm } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';
@@ -60,11 +61,11 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
 
       <PopoverRule content={<WritingRules />} />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Button type="default" size="large" onClick={onRandomizeLeafRotations} disabled={isLoading}>
           <Translate pt="Chacoalhar cartas" en="Randomize rotations" />
         </Button>
-      </Space>
+      </SpaceContainer>
 
       <Clover
         mode={mode}
@@ -77,7 +78,7 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
         onLeafRotate={onLeafRotate}
       />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Popconfirm
           title={<ConfirmClues clover={clover} leaves={leaves} clues={clues} rotations={rotations} />}
           disabled={!areCluesComplete || isLoading}
@@ -98,7 +99,7 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
             Mock clues
           </Button>
         </DebugOnly>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

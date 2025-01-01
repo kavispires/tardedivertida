@@ -8,6 +8,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
 import { SuspectCard } from 'components/cards/SuspectCard';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { ActingRole } from '../utils/types';
 
@@ -30,12 +31,12 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
   }
 
   return (
-    <Space className="actors-board space-container" wrap>
+    <SpaceContainer className="actors-board" wrap>
       {nonSelectedActors.map((actor) => {
         return (
           <Space key={actor.id} className="actors-board__actor" direction="vertical">
             <SuspectCard suspect={actor} width={cardWidth} />
-            <Space className="space-container">
+            <SpaceContainer>
               <AntAvatar.Group max={{ count: 5 }}>
                 {(playersSelections[actor.id] ?? []).map((playerId) => (
                   <Avatar
@@ -44,10 +45,10 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
                   />
                 ))}
               </AntAvatar.Group>
-            </Space>
+            </SpaceContainer>
           </Space>
         );
       })}
-    </Space>
+    </SpaceContainer>
   );
 }

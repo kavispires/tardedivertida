@@ -5,6 +5,7 @@ import { Button, Space } from 'antd';
 import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { RuleInstruction } from 'components/text';
 // Internal
@@ -33,7 +34,7 @@ export function HumanOffering({
   const [offeringId, setSelected] = useState('');
 
   return (
-    <Space className="space-container" direction="vertical">
+    <SpaceContainer vertical>
       <RuleInstruction type="action">
         <Translate
           pt={
@@ -83,6 +84,6 @@ export function HumanOffering({
         />
         <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
       </Space>
-    </Space>
+    </SpaceContainer>
   );
 }

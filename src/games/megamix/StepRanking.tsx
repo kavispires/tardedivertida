@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GameRound, GameRanking } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -10,6 +10,7 @@ import { BouncerIcon } from 'icons/BouncerIcon';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -41,11 +42,11 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
 
   const actions = (
     <>
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button onClick={goToPreviousStep}>
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
-      </Space>
+      </SpaceContainer>
       <HostNextPhaseButton round={round} />
     </>
   );
@@ -57,9 +58,9 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
           <Translate pt="Ranking" en="Ranking" />?
         </StepTitle>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <BouncerIcon width="120" />
-        </Space>
+        </SpaceContainer>
         {innerContent}
         {actions}
       </Step>

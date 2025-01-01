@@ -4,7 +4,7 @@ import { createRef } from 'react';
 import { useKeyPressEvent } from 'react-use';
 // Ant Design Resources
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
-import { Typography, Image, Carousel, Button, Space } from 'antd';
+import { Typography, Image, Carousel, Button } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -13,6 +13,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type RulesCarouselProps = {
   info: GameInfo;
@@ -70,14 +71,14 @@ export function RulesCarousel({
           </div>
         ))}
       </Carousel>
-      <Space className={clsx('space-container', actionsClassName)}>
+      <SpaceContainer className={actionsClassName}>
         <Button type="default" ghost onClick={() => ref.current?.prev()} size="small">
           <DoubleLeftOutlined /> <Translate pt="Regra Anterior" en="Previous Rule" />
         </Button>
         <Button type="default" ghost onClick={() => ref.current?.next()} size="small">
           <Translate pt="Próxima Regra" en="Next Rule" /> <DoubleRightOutlined />
         </Button>
-      </Space>
+      </SpaceContainer>
     </div>
   );
 }

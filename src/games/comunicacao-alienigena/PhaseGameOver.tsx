@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -9,6 +7,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { ViewIf } from 'components/views';
 // Internal
 import achievementsReference from './utils/achievements';
@@ -24,15 +23,15 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <ViewIf condition={state.items && state.signs && state.inquiryHistory && state.requestHistory}>
-        <Space className="space-container" wrap>
+        <SpaceContainer wrap>
           <ObjectsGrid items={state.items} showTypes showAll status={state.status} />
-          <Space className="space-container" wrap direction="vertical">
+          <SpaceContainer wrap vertical>
             <SignsKeyCard signs={state.signs} />
             <ViewIf condition={!isUserAlien}>
               <HumanSignBoard signs={state.signs} startingAttributes={state.startingAttributes} />
             </ViewIf>
-          </Space>
-        </Space>
+          </SpaceContainer>
+        </SpaceContainer>
 
         <History
           inquiryHistory={state.inquiryHistory}

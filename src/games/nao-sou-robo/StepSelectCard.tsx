@@ -12,6 +12,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -106,7 +107,7 @@ export function StepSelectCard({
             />
           </RuleInstruction>
 
-          <Space direction="vertical" className="space-container contained">
+          <SpaceContainer vertical contained>
             <Flex justify="center">
               <CaptchaTopic captcha={captcha} />
             </Flex>
@@ -135,11 +136,11 @@ export function StepSelectCard({
               sizeRatio={user.hand?.length}
               className="hand"
             />
-          </Space>
+          </SpaceContainer>
         </Flex>
       ) : (
         <Space direction="vertical" className="contained">
-          <Space className="space-container">
+          <SpaceContainer>
             <Typography.Text strong>
               <Translate pt="Ingressos" en="Tickets" />{' '}
             </Typography.Text>
@@ -152,7 +153,7 @@ export function StepSelectCard({
             >
               <Translate pt="Adicionar ao carrinho" en="Add tickets to cart" />
             </Button>
-          </Space>
+          </SpaceContainer>
         </Space>
       )}
     </Step>

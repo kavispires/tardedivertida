@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -15,6 +13,7 @@ import { TransparentButton } from 'components/buttons';
 import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
@@ -207,7 +206,7 @@ export function StepReveal({
             <Translate pt="Vote no poster do filme" en="Vote for the movie poster" />
             :
             <br />
-            <Space className="space-container" wrap>
+            <SpaceContainer wrap>
               {posters.map((posterId) => (
                 <TransparentButton
                   key={posterId}
@@ -222,7 +221,7 @@ export function StepReveal({
                   <ImageCard id={posterId} cardWidth={posterWidth} preview={false} />
                 </TransparentButton>
               ))}
-            </Space>
+            </SpaceContainer>
           </Instruction>
         </div>
       </ViewIf>

@@ -1,11 +1,10 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { CanvasResizer } from 'components/canvas';
 import { ImageCardBack } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -15,7 +14,7 @@ export function ResizingTest({ onResult, step }: TestStepProps) {
   const [canvasSize] = useGlobalLocalStorage('canvasSize');
 
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Redimensionador" en="Resizer" />
       </Title>
@@ -28,9 +27,9 @@ export function ResizingTest({ onResult, step }: TestStepProps) {
       </Instruction>
 
       <CanvasResizer />
-      <Space wrap className="space-container full-width">
+      <SpaceContainer wrap className="full-width">
         <ImageCardBack cardWidth={canvasSize ?? 50} />
-      </Space>
+      </SpaceContainer>
 
       <DecisionButtons
         step={step}
@@ -40,6 +39,6 @@ export function ResizingTest({ onResult, step }: TestStepProps) {
           en: 'Were you able to resize without any major issues?',
         }}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

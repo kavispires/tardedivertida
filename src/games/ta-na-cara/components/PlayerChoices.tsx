@@ -12,6 +12,7 @@ import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction } from 'components/text';
 // Internal
 import type { QuestionsDictionary } from '../utils/types';
@@ -81,7 +82,7 @@ export function PlayerChoices({
           />
         </strong>
       </p>
-      <Space wrap className="space-container">
+      <SpaceContainer wrap>
         {sortPlayers(players)
           .filter((player) => player.id !== user.id)
           .map((player) => {
@@ -95,7 +96,7 @@ export function PlayerChoices({
               </TransparentButton>
             );
           })}
-      </Space>
+      </SpaceContainer>
     </Instruction>
   );
 }

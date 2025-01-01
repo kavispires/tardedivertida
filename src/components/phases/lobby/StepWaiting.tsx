@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 // Ant Design Resources
-import { App, Space, Typography } from 'antd';
+import { App, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -17,6 +17,7 @@ import { AVATARS } from 'utils/avatars';
 // Components
 import { HostButton, HostOnlyContainer } from 'components/host';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Images
 import avatars from 'assets/images/avatars.svg';
 
@@ -90,7 +91,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
         <Translate pt="Pronto!" en="Ready!" />
       </Title>
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer vertical>
         <motion.svg viewBox="0 0 100 100" className="lobby-avatar" layoutId="avatar">
           <use href={`${avatars}#avatar-${userAvatarId}`}></use>
         </motion.svg>
@@ -101,7 +102,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
             <DualTranslate>{AVATARS[userAvatarId].description}</DualTranslate>
           </small>
         </div>
-      </Space>
+      </SpaceContainer>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
         <Paragraph className="lobby-heading">

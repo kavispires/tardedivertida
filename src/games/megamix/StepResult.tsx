@@ -1,9 +1,9 @@
 import { memoize } from 'lodash';
-import { type LegacyRef, useMemo } from 'react';
+import { type Ref, useMemo } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -20,6 +20,7 @@ import { VIPLineIcon } from 'icons/VIPLineIcon';
 import { IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -104,7 +105,7 @@ export function StepResult({
         )}
       </RuleInstruction>
 
-      <div className="results" ref={resultRef as LegacyRef<HTMLDivElement>}>
+      <div className="results" ref={resultRef as Ref<HTMLDivElement>}>
         <div className="results__vip" id="area-w">
           <span className="results__icon">
             <IconAvatar icon={<VIPLineIcon />} size="large" />
@@ -113,7 +114,7 @@ export function StepResult({
             <Translate pt="Área VIP" en="VIP Lounge" />
           </span>
         </div>
-        <div className="results__values" ref={ref as LegacyRef<HTMLDivElement>}>
+        <div className="results__values" ref={ref as Ref<HTMLDivElement>}>
           <ResultValueDelegator
             track={track}
             winningValues={winningValues}
@@ -155,7 +156,7 @@ export function StepResult({
         })}
       </div>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         {isFirstRunThrough ? (
           <TimedButton onClick={onSeeRanking} onExpire={onSeeRanking} duration={20} icon={<TrophyOutlined />}>
             <Translate pt="Ver Ranking" en="See Ranking" />
@@ -165,7 +166,7 @@ export function StepResult({
             <Translate pt="Ver Ranking" en="See Ranking" />
           </Button>
         )}
-      </Space>
+      </SpaceContainer>
 
       <VotesDelegator
         track={track}

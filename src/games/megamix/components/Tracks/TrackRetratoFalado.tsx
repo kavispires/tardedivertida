@@ -8,13 +8,14 @@ import { useMock } from 'hooks/useMock';
 import { CanvasSVG } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackRetratoFalado = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackRetratoFalado = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const cardWidth = useCardWidth(5, { minWidth: 250, maxWidth: 270 });
   const { isLoading } = useLoading();
 
@@ -52,16 +53,16 @@ export const TrackRetratoFalado = ({ track, round, onSubmitAnswer, user, players
           />
         </RuleInstruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <MonsterCard currentMonster={track.data.card} showControls cardWidth={200} />
-        </Space>
+        </SpaceContainer>
 
         <div className="a-drawings">
           {track.data.options.map((entry: PlainObject) => (
             <div className="a-drawings__entry" key={entry.playerId}>
               <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
 
-              <Space className="space-container">
+              <SpaceContainer>
                 <Button
                   shape="round"
                   type="primary"
@@ -71,7 +72,7 @@ export const TrackRetratoFalado = ({ track, round, onSubmitAnswer, user, players
                 >
                   <Translate pt="Selecionar" en="Select" />
                 </Button>
-              </Space>
+              </SpaceContainer>
             </div>
           ))}
         </div>

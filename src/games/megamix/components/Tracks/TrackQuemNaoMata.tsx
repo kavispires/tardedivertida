@@ -12,6 +12,7 @@ import { ShooterIcon } from 'icons/ShooterIcon';
 import { Avatar } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -48,7 +49,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
           />
         </RuleInstruction>
 
-        <Space className="space-container" wrap>
+        <SpaceContainer wrap>
           {sortPlayers(players).map((player, index, arr) => {
             return (
               <div key={player.id} className="qnm-shooter">
@@ -69,7 +70,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
               </div>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
@@ -11,6 +9,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { IconAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
@@ -23,7 +22,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       announcementIcon={state.outcome === 'WIN' ? <TrophyIcon /> : <TheEndIcon />}
       rateWidgetCustomText={<Translate pt="Sugira palavras-secretas" en="Suggest secret words" />}
     >
-      <Space className="space-container" direction="vertical" align="center">
+      <SpaceContainer direction="vertical" align="center">
         {state.outcome === 'WIN' ? (
           <>
             <IconAvatar icon={<QualitySealIcon />} size={100} shape="square" />
@@ -35,7 +34,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             <Translate pt="DERROTA" en="LOSE" />
           </>
         )}
-      </Space>
+      </SpaceContainer>
       <CategoryWordGroup categories={state.categories} secretWord={state.secretWord} showSecretWord />
       <Board players={players} clues={state.clues} board={state.board} />
     </GameOverWrapper>

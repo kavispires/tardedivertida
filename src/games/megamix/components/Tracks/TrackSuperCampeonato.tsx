@@ -11,13 +11,14 @@ import { Card } from 'components/cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { ImageBlurButtonContainer } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackSuperCampeonato = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(6, { minWidth: 200, maxWidth: 270 });
@@ -39,13 +40,13 @@ export const TrackSuperCampeonato = ({ track, round, onSubmitAnswer, user, playe
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Card header={translate('Desafio', 'Challenge')} color="purple">
           {track.data.challenge.text}
         </Card>
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container center">
+      <SpaceContainer>
         {track.data.contenders.map((contender: FightingContender, index: number) => {
           return (
             <Space direction="vertical" key={contender.id}>
@@ -72,7 +73,7 @@ export const TrackSuperCampeonato = ({ track, round, onSubmitAnswer, user, playe
             </Space>
           );
         })}
-      </Space>
+      </SpaceContainer>
     </>
   );
 };

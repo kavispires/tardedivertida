@@ -1,6 +1,4 @@
 import { useMemo } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
@@ -10,6 +8,7 @@ import type { UseStep } from 'hooks/useStep';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -95,11 +94,11 @@ export function StepReveal({
         roundType={roundType}
       />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <TimedButton duration={40} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

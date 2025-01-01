@@ -6,13 +6,14 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Tweet } from 'components/game/SocialProfile';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackPolemicaDaVez = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackPolemicaDaVez = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSelect = (value: number) => {
@@ -59,7 +60,7 @@ export const TrackPolemicaDaVez = ({ track, round, onSubmitAnswer, user }: Track
           {track.data.card.text}
         </Tweet>
 
-        <Space className="space-container">
+        <SpaceContainer>
           {track.data.options.map((option: number) => {
             return (
               <Button
@@ -74,7 +75,7 @@ export const TrackPolemicaDaVez = ({ track, round, onSubmitAnswer, user }: Track
               </Button>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

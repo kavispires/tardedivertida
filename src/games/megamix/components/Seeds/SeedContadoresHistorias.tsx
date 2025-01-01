@@ -1,10 +1,11 @@
 import moment from 'moment';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Components
 import { Avatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryContadoresHistorias } from '../../utils/types';
@@ -27,7 +28,7 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
         />
       </Title>
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer direction="vertical">
         <SVGPhone>
           <div className="ff-phone">
             <div className="ff-phone__contact">
@@ -60,7 +61,7 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
           />
         </Instruction>
 
-        <Space className="space-container" wrap>
+        <SpaceContainer wrap>
           {seed.prompts.map((prompt) => (
             <Button
               key={prompt.id}
@@ -71,8 +72,8 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
               {prompt.text}
             </Button>
           ))}
-        </Space>
-      </Space>
+        </SpaceContainer>
+      </SpaceContainer>
     </div>
   );
 }

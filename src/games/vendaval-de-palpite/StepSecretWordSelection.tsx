@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled } from '@ant-design/icons';
-import { Button, App, Space } from 'antd';
+import { Button, App } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
@@ -10,6 +10,7 @@ import { useLoading } from 'hooks/useLoading';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Instruction, Title, StepTitle } from 'components/text';
 
@@ -60,7 +61,7 @@ export function StepSecretWordSelection({
         />
       </Instruction>
 
-      <Space wrap className="space-container" align="center">
+      <SpaceContainer wrap>
         {words.map((word) => {
           return (
             <TransparentButton
@@ -73,14 +74,14 @@ export function StepSecretWordSelection({
             </TransparentButton>
           );
         })}
-      </Space>
+      </SpaceContainer>
 
       <Title level={3} size="x-small">
         <Translate pt="Categorias" en="Categories" />
       </Title>
 
       <Instruction contained>
-        <Space wrap className="space-container" align="center">
+        <SpaceContainer wrap>
           {categories.map((category) => {
             return (
               <Button
@@ -93,7 +94,7 @@ export function StepSecretWordSelection({
               </Button>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </Instruction>
 
       <Button

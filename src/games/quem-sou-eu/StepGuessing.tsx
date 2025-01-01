@@ -3,7 +3,7 @@ import { shuffle } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -17,6 +17,7 @@ import { getEntryId, sortPlayers } from 'utils/helpers';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RibbonGroup } from 'components/ribbons';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -184,7 +185,7 @@ export function StepGuessing({
         </div>
       </div>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button
           size="large"
           type="primary"
@@ -196,7 +197,7 @@ export function StepGuessing({
         <Button size="large" onClick={() => onGuessForMe()} disabled={isLoading || user.ready}>
           <Translate pt={<>Desistir</>} en={<>Guess for me</>} />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

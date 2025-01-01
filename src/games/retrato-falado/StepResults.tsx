@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { MonsterImage } from 'types/tdr';
@@ -12,6 +10,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -187,7 +186,7 @@ export function StepResults({
         <Translate pt="Outros desenhos" en="Other sketches" />
       </StepTitle>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <MonsterSketches
           sketches={otherSketches}
           players={players}
@@ -195,7 +194,7 @@ export function StepResults({
           canvasWidth={canvasWidth / 1.5}
           votes={votes}
         />
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

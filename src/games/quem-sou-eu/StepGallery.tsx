@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
@@ -12,6 +10,7 @@ import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
@@ -74,10 +73,10 @@ export function StepGallery({
           <div className="q-gallery__player" style={{ backgroundColor: currentColor }}>
             <AvatarName player={currentPlayer} size="large" />
           </div>
-          <Space className="space-container" direction="vertical">
+          <SpaceContainer vertical>
             <Card character={characters[characterId]} width={characterWidth} imageCardMode={imageCardMode} />
             <PlayerGlyphs player={currentPlayer} glyphWidth={glyphWidth} />
-          </Space>
+          </SpaceContainer>
         </div>
 
         <GalleryGuesses

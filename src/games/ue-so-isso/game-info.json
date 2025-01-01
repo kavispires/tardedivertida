@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.1.46",
+  "version": "3.1.49",
   "release": "stable",
   "available": true,
   "title": {

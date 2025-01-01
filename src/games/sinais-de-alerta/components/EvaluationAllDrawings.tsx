@@ -42,7 +42,7 @@ export function EvaluationAllDrawings({
   return (
     <Container
       title={<Translate pt="Desenhos" en="Drawings" />}
-      contentProps={{ className: 'space-container' }}
+      contentProps={{ className: 'div-container' }}
       className="contained"
     >
       {drawings.map((drawing) => {

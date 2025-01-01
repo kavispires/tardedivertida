@@ -9,13 +9,14 @@ import { useMock } from 'hooks/useMock';
 import { DoorFrame } from 'components/game/DoorFrame';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackPortaDosDesesperados = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const doorWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });
   const { isLoading } = useLoading();
 
@@ -65,10 +66,10 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
         </Image.PreviewGroup>
       </Space>
       <Image.PreviewGroup>
-        <Space className="space-container">
+        <SpaceContainer>
           {track.data.doors.map((cardId: ImageCardId) => {
             return (
-              <Space className="space-container" direction="vertical" key={cardId}>
+              <SpaceContainer vertical key={cardId}>
                 <ImageBlurButtonContainer cardId={cardId}>
                   <DoorFrame width={doorWidth}>
                     <ImageCard id={cardId} cardWidth={150} />
@@ -83,10 +84,10 @@ export const TrackPortaDosDesesperados = ({ track, round, onSubmitAnswer, user, 
                 >
                   <Translate pt="Esse é a saída" en="This is the exit" />
                 </Button>
-              </Space>
+              </SpaceContainer>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </Image.PreviewGroup>
     </>
   );

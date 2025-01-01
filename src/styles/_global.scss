@@ -50,7 +50,7 @@ body {
   text-align: center;
 }
 
-.margin {
+.margin.margin {
   margin: get-unit(2);
 }
 
@@ -107,7 +107,8 @@ body {
   border-radius: get-unit(2);
 }
 
-.space-container {
+// Formally space-container / deprecated
+.div-container {
   margin: get-unit(2 0);
   width: 100%;
   justify-content: center;

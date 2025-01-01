@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
@@ -11,6 +9,7 @@ import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
@@ -20,21 +19,13 @@ import { ActorsSelections } from './components/ActorsSelections';
 import { ReleasedActors } from './components/ReleasedActors';
 
 type StepResultProps = {
-  user: GamePlayer;
   activeRole: ActingRole;
   outcome: string;
   players: GamePlayers;
   goToNextStep: UseStep['goToNextStep'];
 } & Pick<StepProps, 'announcement'>;
 
-export function StepResult({
-  user,
-  announcement,
-  activeRole,
-  goToNextStep,
-  outcome,
-  players,
-}: StepResultProps) {
+export function StepResult({ announcement, activeRole, goToNextStep, outcome, players }: StepResultProps) {
   const playersSelections = useMemo(() => {
     return Object.values(players).reduce((acc: Record<CardId, PlayerId[]>, player) => {
       if (acc[player.actorId] === undefined) {
@@ -101,11 +92,11 @@ export function StepResult({
         playersSelections={playersSelections}
       />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <TimedButton duration={25} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
-      </Space>
+      </SpaceContainer>
 
       <Container
         title={

@@ -1,7 +1,7 @@
 import { sampleSize } from 'lodash';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { Item } from 'types/tdr';
@@ -18,6 +18,7 @@ import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -144,7 +145,7 @@ export function StepSelectGenre({
         })}
       </Container>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button
           size="large"
           type="primary"
@@ -156,7 +157,7 @@ export function StepSelectGenre({
         >
           <Translate en="Submit" pt="Enviar" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

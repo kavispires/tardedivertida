@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { CloudUploadOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
@@ -9,6 +9,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -76,11 +77,11 @@ export function StepReviewCrime({
         )}
       </div>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Button type="primary" size="large" onClick={onSubmitCrime} icon={<CloudUploadOutlined />}>
           <Translate pt="Enviar" en="Submit" />
         </Button>
-      </Space>
+      </SpaceContainer>
 
       <ReadyPlayersBar
         players={players}

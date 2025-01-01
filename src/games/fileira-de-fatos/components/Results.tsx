@@ -14,6 +14,7 @@ import { StarIcon } from 'icons/StarIcon';
 // Components
 import { Avatar, AvatarName, AvatarStrip, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type ResultsProps = {
   players: GamePlayers;
@@ -34,7 +35,7 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
   const listOfPLayers = sortPlayers(players).filter((player) => player.id !== activePlayerId);
 
   return (
-    <Space className="space-container" direction="vertical">
+    <SpaceContainer vertical>
       {listOfPLayers.map((player) => (
         <Space className="scenarios-results" key={player.id}>
           <AvatarStrip player={player} />
@@ -83,7 +84,7 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
           <AvatarStrip player={player} />
         </Space>
       ))}
-    </Space>
+    </SpaceContainer>
   );
 }
 

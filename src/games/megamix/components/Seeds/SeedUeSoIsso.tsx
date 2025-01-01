@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import moment from 'moment';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -10,6 +10,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Internal
 import type { SeedEntryUeSoIsso } from '../../utils/types';
@@ -35,7 +36,7 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
         />
       </Title>
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer vertical>
         <SVGPhone>
           <div className="ff-phone">
             <div className="ff-phone__contact">
@@ -74,7 +75,7 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
         <Button block onClick={() => updateData({ singleClue: value }, true)} type="primary">
           <Translate pt="Enviar" en="Submit" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { FlagFilled, HeartFilled, MessageFilled } from '@ant-design/icons';
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
@@ -10,6 +10,7 @@ import { SixPackIcon } from 'icons/SixPackIcon';
 import { Avatar } from 'components/avatars';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Internal
 import type { SeedEntryMenteColetiva } from '../../utils/types';
@@ -34,7 +35,7 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
         />
       </Title>
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer vertical>
         <SVGPhone>
           <div className="tt-phone">
             <div className="tt-phone__header">
@@ -59,7 +60,7 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
             </div>
           </div>
         </SVGPhone>
-        <Space className="space-container">
+        <SpaceContainer>
           <Input
             onChange={(e) => setValue1(e.target.value)}
             size="large"
@@ -70,7 +71,7 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
             size="large"
             placeholder={translate('Resposta 2', 'Answer 2')}
           />
-        </Space>
+        </SpaceContainer>
         <Button
           block
           onClick={() => updateData({ answers: [value1, value2] }, true)}
@@ -78,7 +79,7 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
         >
           <Translate pt="Enviar" en="Submit" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </div>
   );
 }

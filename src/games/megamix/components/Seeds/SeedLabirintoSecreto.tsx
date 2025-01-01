@@ -9,6 +9,7 @@ import { BikiniModelIcon } from 'icons/BikiniModelIcon';
 // Components
 import { SocialProfile } from 'components/game/SocialProfile';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, TextHighlight, Title } from 'components/text';
 // Internal
 import type { SeedEntryLabirintoSecreto } from '../../utils/types';
@@ -66,7 +67,7 @@ export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSe
           </div>
         </div>
 
-        <Space className="space-container" wrap>
+        <SpaceContainer wrap>
           {seed.cards.map((card) => (
             <Button
               key={card.id}
@@ -76,7 +77,7 @@ export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSe
               {card.text}
             </Button>
           ))}
-        </Space>
+        </SpaceContainer>
       </Space>
     </div>
   );

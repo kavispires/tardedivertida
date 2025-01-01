@@ -1,7 +1,7 @@
 import { has } from 'lodash';
 import type { ReactNode } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
+// Components
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { Track } from '../utils/types';
 
@@ -14,11 +14,7 @@ export function SpaceResultCheckWrapper({ task, paths, children }: SpaceResultCh
   const okToProceed = paths.every((path) => has(task, path));
 
   if (okToProceed) {
-    return (
-      <Space className="space-container" align="center" wrap>
-        {children}
-      </Space>
-    );
+    return <SpaceContainer wrap>{children}</SpaceContainer>;
   }
 
   return <></>;

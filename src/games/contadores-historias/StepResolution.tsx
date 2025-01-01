@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar as AntAvatar, Space } from 'antd';
+import { Avatar as AntAvatar } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
@@ -11,6 +11,7 @@ import { Avatar, AvatarName, AvatarNPC } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { ImageBlurButton, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
@@ -122,11 +123,11 @@ export function StepResolution({
           );
         })}
       </ul>
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <TimedButton onClick={goToNextStep} onExpire={goToNextStep} duration={20}>
           <Translate pt="Continuar" en="Continue" />
         </TimedButton>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

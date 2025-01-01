@@ -1,5 +1,5 @@
-// Ant Design Resources
-import { Space } from 'antd';
+// Components
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { MapSegment, Tree } from '../utils/types';
 import { MapEntry } from './MapEntry';
@@ -20,9 +20,9 @@ export function PlayerMap({ map = [], selectedTrees = [], fullMap = false }: Pla
   const currentMap = fullMap ? map : map.filter((segment) => segment.active);
 
   return (
-    <Space
+    <SpaceContainer
       wrap
-      className="space-container player-map"
+      className="player-map"
       style={{ gridTemplateColumns: `repeat(${currentMap.length}, 100px)` }}
     >
       {currentMap.map((segment, index, arr) => {
@@ -39,6 +39,6 @@ export function PlayerMap({ map = [], selectedTrees = [], fullMap = false }: Pla
           />
         );
       })}
-    </Space>
+    </SpaceContainer>
   );
 }

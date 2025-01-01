@@ -20,20 +20,14 @@ type PlayerMapResultsSummaryProps = {
   players: GamePlayers;
   forest: Tree[];
   currentPlayer: GamePlayer;
-  user: GamePlayer;
 };
 
-export function PlayerMapResultsSummary({
-  players,
-  forest,
-  currentPlayer,
-  user,
-}: PlayerMapResultsSummaryProps) {
+export function PlayerMapResultsSummary({ players, forest, currentPlayer }: PlayerMapResultsSummaryProps) {
   const currentMap: MapSegment[] = currentPlayer.map.filter((segment: MapSegment) => segment.active);
 
   return (
     <div
-      className="space-container player-map"
+      className="div-container player-map"
       style={{ gridTemplateColumns: `repeat(${currentMap.length}, 120px)` }}
     >
       {currentMap.map((segment, index, arr) => {

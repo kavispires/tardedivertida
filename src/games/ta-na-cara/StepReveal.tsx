@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
@@ -10,6 +8,7 @@ import { pluralize } from 'utils/helpers';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
@@ -116,16 +115,16 @@ export function StepReveal({
         </ViewOr>
       </Instruction>
 
-      <Space className="space-container">
-        {!!result && (
+      {!!result && (
+        <SpaceContainer>
           <PlayerBoard
             player={result}
             cardWidth={100}
             questionsDict={questionsDict}
             userCharacterId={result.characterId}
           />
-        )}
-      </Space>
+        </SpaceContainer>
+      )}
 
       <CharactersBoard
         charactersDict={charactersDict}
@@ -133,11 +132,11 @@ export function StepReveal({
         userCharacterId={user.cardId}
       />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <TimedButton duration={isCorrect ? 15 : 7} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
-      </Space>
+      </SpaceContainer>
 
       <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
     </Step>

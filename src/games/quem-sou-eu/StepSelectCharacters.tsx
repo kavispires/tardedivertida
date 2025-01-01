@@ -12,6 +12,7 @@ import { useMock } from 'hooks/useMock';
 import { TransparentButton } from 'components/buttons';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -93,7 +94,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         ))}
       </Space>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Badge count={count}>
           <Button
             size="large"
@@ -113,7 +114,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         >
           <Translate pt={<>Escolha pra mim</>} en={<>Choose for me</>} />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

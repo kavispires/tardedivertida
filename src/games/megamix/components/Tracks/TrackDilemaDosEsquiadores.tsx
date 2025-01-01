@@ -14,6 +14,7 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -87,7 +88,7 @@ export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: Track
           />
         </RuleInstruction>
 
-        <Space className="space-container" direction="vertical">
+        <SpaceContainer vertical>
           <div className="dd-animated-skiier">
             <IconAvatar
               icon={<SkiingIcon />}
@@ -99,7 +100,7 @@ export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: Track
             {track.data.dilemma.prompt}
           </Card>
 
-          <Space className="space-container">
+          <SpaceContainer>
             <div className="dd-buttons">
               <TransparentButton
                 onClick={() => onSelect(track.data.dilemma.left)}
@@ -122,8 +123,8 @@ export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: Track
                 <span className="dd-button__text">{track.data.dilemma.right}</span>
               </TransparentButton>
             </div>
-          </Space>
-        </Space>
+          </SpaceContainer>
+        </SpaceContainer>
       </Space>
     </>
   );

@@ -8,6 +8,7 @@ import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -40,7 +41,7 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
       <Card hideHeader>"{track.data.card.text}"</Card>
 
       <Space direction="vertical" align="center" className="contained margin">
-        <Space className="space-container">
+        <SpaceContainer>
           {track.data.card.options.map((playerId: PlayerId) => {
             const player = players[playerId];
             return (
@@ -53,7 +54,7 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
               </TransparentButton>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

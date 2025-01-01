@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -16,6 +16,7 @@ import { StopIcon } from 'icons/StopIcon';
 import { IconAvatar } from 'components/avatars';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
@@ -123,7 +124,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
           pt="Se você acabar todas as células antes do tempo você pode apertar stop para finalizar a rodada."
           en="If you finish all the cells before the time you can press stop to end the round."
         />
-        <Space className="space-container">
+        <SpaceContainer>
           <DevButton ghost onClick={() => setAnswers(mockAnswers(answers, grid.xHeaders, grid.yHeaders))}>
             Mock Answers
           </DevButton>
@@ -144,7 +145,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
           >
             <Translate pt="STOP!" en="STOP!" />
           </Button>
-        </Space>
+        </SpaceContainer>
       </Instruction>
     </Step>
   );

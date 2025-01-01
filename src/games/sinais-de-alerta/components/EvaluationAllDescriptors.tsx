@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Icons
@@ -8,6 +6,7 @@ import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type EvaluationAllDescriptorsProps = {
   cards: Dictionary<TextCard>;
@@ -25,7 +24,7 @@ export function EvaluationAllDescriptors({
   matchedItems,
 }: EvaluationAllDescriptorsProps) {
   return (
-    <Space size="small" wrap className="space-container">
+    <SpaceContainer size="small" wrap>
       {descriptorsIds.map((descriptorId) => (
         <TransparentButton
           key={descriptorId}
@@ -39,6 +38,6 @@ export function EvaluationAllDescriptors({
           <Card hideHeader>{cards[descriptorId].text}</Card>
         </TransparentButton>
       ))}
-    </Space>
+    </SpaceContainer>
   );
 }

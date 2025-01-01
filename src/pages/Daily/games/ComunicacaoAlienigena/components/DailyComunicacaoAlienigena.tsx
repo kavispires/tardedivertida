@@ -17,6 +17,7 @@ import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
@@ -187,7 +188,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             <Translate pt="Entregue essas coisas:" en="Deliver these things:" />
           </Typography.Text>
 
-          <Space wrap className="space-container">
+          <SpaceContainer wrap>
             {data.itemsIds.map((itemId) => (
               <TransparentButton
                 key={itemId}
@@ -198,7 +199,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                 <ItemCard id={itemId} width={width} padding={0} />
               </TransparentButton>
             ))}
-          </Space>
+          </SpaceContainer>
         </Region>
 
         {previousGuesses.length > 0 && (
@@ -207,8 +208,8 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
               <Translate pt="Tentativas anteriores" en="Previous Guesses:" />
             </Typography.Text>
             <Space direction="vertical" className="previous-guesses">
-              {previousGuesses.map((guess, index) => (
-                <Space key={index}>
+              {previousGuesses.map((guess) => (
+                <Space key={String(guess)}>
                   {guess.map((itemId) => (
                     <ItemCard
                       key={itemId}

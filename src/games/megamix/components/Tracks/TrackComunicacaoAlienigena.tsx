@@ -13,6 +13,7 @@ import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
@@ -20,7 +21,7 @@ import type { AlienSign, TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSelect = (value: string) => {
@@ -57,10 +58,10 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
           />
         </RuleInstruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <IconAvatar icon={<AlienIcon />} size="large" />{' '}
           <SpeechBubble shadow>
-            <Space className="space-container">
+            <SpaceContainer>
               {track.data.attributes.map((attribute: AlienSign, index: number) => {
                 return (
                   <span key={attribute.id}>
@@ -69,9 +70,9 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
                   </span>
                 );
               })}
-            </Space>
+            </SpaceContainer>
           </SpeechBubble>
-        </Space>
+        </SpaceContainer>
 
         <RuleInstruction type="action">
           <Translate
@@ -80,7 +81,7 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
           />
         </RuleInstruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           {track.data.items.map((item: Item) => {
             return (
               <TransparentButton
@@ -92,7 +93,7 @@ export const TrackComunicacaoAlienigena = ({ track, round, onSubmitAnswer, user,
               </TransparentButton>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

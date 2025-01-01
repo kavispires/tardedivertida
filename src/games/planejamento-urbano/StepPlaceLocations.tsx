@@ -1,7 +1,7 @@
 import { invert } from 'lodash';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Flex, Select, Space } from 'antd';
+import { Button, Flex, Select } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -17,6 +17,7 @@ import { ConeIcon } from 'icons/ConeIcon';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { FloatingHandDrawer } from 'components/general/FloatingHand';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -152,7 +153,7 @@ export function StepPlaceLocations({
       </RuleInstruction>
 
       {isTheController && (
-        <Space className="space-container">
+        <SpaceContainer>
           <Button
             type="primary"
             size="large"
@@ -161,7 +162,7 @@ export function StepPlaceLocations({
           >
             <Translate pt="Confirmar Seleções" en="Confirm Selections" />
           </Button>
-        </Space>
+        </SpaceContainer>
       )}
 
       {!isTheController && (

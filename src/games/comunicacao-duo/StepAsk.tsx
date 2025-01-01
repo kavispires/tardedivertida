@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Flex, InputNumber, Space } from 'antd';
+import { Button, Flex, InputNumber } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -11,6 +11,7 @@ import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
@@ -109,7 +110,7 @@ export function StepAsk({
           </RuleInstruction>
         </ViewIf>
 
-        <Space className="space-container" direction="vertical">
+        <SpaceContainer vertical>
           <ViewIf condition={isTheRequester}>
             <Flex gap={8} align="center">
               <AlienText value={sentence} withTranslation />
@@ -129,7 +130,7 @@ export function StepAsk({
             </Flex>
           </ViewIf>
           <AlienKeyboard value={sentence} onChange={setSentence} disabled={!isTheRequester || user.ready} />
-        </Space>
+        </SpaceContainer>
       </ViewIf>
 
       <History

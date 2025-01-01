@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Image, Space } from 'antd';
+import { Button, Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -8,6 +8,7 @@ import { useMock } from 'hooks/useMock';
 import { BookPages } from 'components/game/BookPages';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -32,7 +33,7 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
   return (
     <>
       <MinigameTitle title={{ pt: 'Contadores de Histórias', en: 'Storytellers' }} />
-      <Space direction="vertical" align="center" className="space-container contained margin">
+      <SpaceContainer className="margin" vertical contained>
         <RuleInstruction type="action">
           <Translate
             pt="A dica abaixo se relaciona à uma das images, qual das cartas é correta?"
@@ -43,18 +44,18 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
         <BookPages
           className="c-book-pages"
           leftPage={
-            <Space className="space-container" direction="vertical" align="center">
+            <SpaceContainer vertical>
               <ImageCard id="back-question" cardWidth={100} />
-            </Space>
+            </SpaceContainer>
           }
           rightPage={<div className="c-book-content">{track.data?.prompt ?? track.data?.options ?? '?'}</div>}
         />
 
         <Image.PreviewGroup>
-          <Space className="space-container">
+          <SpaceContainer>
             {track.data.cards.map((cardId: ImageCardId) => {
               return (
-                <Space key={cardId} className="space-container" direction="vertical">
+                <SpaceContainer key={cardId} vertical>
                   <ImageBlurButtonContainer cardId={cardId}>
                     <ImageCard id={cardId} cardWidth={cardWidth} />
                   </ImageBlurButtonContainer>
@@ -67,12 +68,12 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
                   >
                     <Translate pt="Selecionar" en="Select" />
                   </Button>
-                </Space>
+                </SpaceContainer>
               );
             })}
-          </Space>
+          </SpaceContainer>
         </Image.PreviewGroup>
-      </Space>
+      </SpaceContainer>
     </>
   );
 };

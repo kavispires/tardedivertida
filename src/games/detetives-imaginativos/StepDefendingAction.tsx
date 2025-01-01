@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { App, Space } from 'antd';
+import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -10,6 +10,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { Instruction, TextHighlight, StepTitle } from 'components/text';
@@ -90,9 +91,9 @@ export function StepDefendingAction({
 
       <EndDefenseTimedButton onFinishDefenseClick={onFinishDefenseClick} isLoading={isLoading} />
 
-      <Space className="space-container" align="center" wrap>
+      <SpaceContainer align="center" wrap>
         <TableFocus table={table} currentPlayer={currentPlayer} />
-      </Space>
+      </SpaceContainer>
 
       <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
 

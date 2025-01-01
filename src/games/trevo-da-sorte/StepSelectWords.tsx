@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
@@ -12,6 +12,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Instruction, StepTitle } from 'components/text';
 // Internal
@@ -72,7 +73,7 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
         ))}
       </ul>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Button type="primary" size="large" onClick={onSubmit} disabled={!isComplete || isLoading}>
           <Translate
             pt={<>Enviar Palavras ({selectedCount} de 6)</>}
@@ -83,7 +84,7 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
         <Button size="large" onClick={onSubmitMock}>
           <Translate pt="Selecione pra mim" en="Select for me" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

@@ -1,13 +1,14 @@
 import { useState, useCallback } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -142,7 +143,7 @@ export function StepGuessing({
         />
       </RuleInstruction>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Button
           size="large"
           type="primary"
@@ -154,7 +155,7 @@ export function StepGuessing({
         <Button size="large" type="dashed" onClick={randomGuessThem}>
           <Translate pt="Desistir" en="Give up" />
         </Button>
-      </Space>
+      </SpaceContainer>
 
       <WordGrid
         grid={grid}

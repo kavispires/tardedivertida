@@ -7,13 +7,14 @@ import { useMock } from 'hooks/useMock';
 import { MovieCard } from 'components/cards/MovieCard';
 import { MovieReviewCard } from 'components/cards/MovieReviewCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackVamosAoCinema = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackVamosAoCinema = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSelect = (value: string) => {
@@ -47,7 +48,7 @@ export const TrackVamosAoCinema = ({ track, round, onSubmitAnswer, user }: Track
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <MovieReviewCard
           type="positive"
           text={track.data.reviews.good.text}
@@ -59,14 +60,14 @@ export const TrackVamosAoCinema = ({ track, round, onSubmitAnswer, user }: Track
           text={track.data.reviews.bad.text}
           highlights={track.data.reviews.bad.highlights}
         />
-      </Space>
+      </SpaceContainer>
 
       <Space className="v-movies">
-        <Space className="space-container" direction="vertical">
+        <SpaceContainer vertical>
           <MovieCard movie={track.data.movies[0]} disableSuffix prefixColor="Khaki" />
           <MovieCard movie={track.data.movies[1]} prefixColor="aquamarine" suffixColor="Khaki" />
           <MovieCard movie={track.data.movies[2]} disablePrefix suffixColor="aquamarine" />
-        </Space>
+        </SpaceContainer>
         <div className="v-movie-buttons">
           <Button
             shape="circle"
@@ -111,11 +112,11 @@ export const TrackVamosAoCinema = ({ track, round, onSubmitAnswer, user }: Track
             D
           </Button>
         </div>
-        <Space className="space-container" direction="vertical">
+        <SpaceContainer vertical>
           <MovieCard movie={track.data.movies[3]} disableSuffix prefixColor="LightGreen" />
           <MovieCard movie={track.data.movies[4]} prefixColor="Plum" suffixColor="LightGreen" />
           <MovieCard movie={track.data.movies[5]} disablePrefix suffixColor="Plum" />
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

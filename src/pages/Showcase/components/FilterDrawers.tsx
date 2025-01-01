@@ -1,10 +1,11 @@
 import { useWindowSize } from 'react-use';
 // Ant Design Resources
-import { Button, Divider, Drawer, Space } from 'antd';
+import { Button, Divider, Drawer } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { CustomFilterOptions } from './CustomFilterOptions';
 import { FilterOptions } from './FilterOptions';
@@ -42,14 +43,14 @@ export function FiltersDrawer({
       onClose={() => setShowFilters(false)}
       width={Math.min(width / 1.1, 600)}
       footer={
-        <Space className="space-container" align="center">
+        <SpaceContainer align="center">
           <Button onClick={() => setFilters({})}>
             <Translate pt="Limpar filtros" en="Clear filters" />
           </Button>
           <Button type="primary" onClick={() => setShowFilters(false)}>
             OK
           </Button>
-        </Space>
+        </SpaceContainer>
       }
     >
       <FilterEntry

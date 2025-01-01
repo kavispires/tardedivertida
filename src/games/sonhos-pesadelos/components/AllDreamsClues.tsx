@@ -1,6 +1,4 @@
 import clsx from 'clsx';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -9,6 +7,7 @@ import { getColorFromLetter, getEntryId } from 'utils/helpers';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { Dream } from '../utils/types';
 
@@ -24,7 +23,7 @@ export function AllDreamsClues({ dreams, activeItem, onActivateItem, votes, play
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
-    <Space className="space-container">
+    <SpaceContainer>
       {dreams.map(({ id, dream }, index) => {
         const player = players[id];
         const letter = LETTERS[index];
@@ -55,6 +54,6 @@ export function AllDreamsClues({ dreams, activeItem, onActivateItem, votes, play
           </TransparentButton>
         );
       })}
-    </Space>
+    </SpaceContainer>
   );
 }

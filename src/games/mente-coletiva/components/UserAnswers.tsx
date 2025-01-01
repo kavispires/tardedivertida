@@ -1,12 +1,13 @@
 // Ant Design Resources
 import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { RuleInstruction } from 'components/text';
 
@@ -50,7 +51,7 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
           />
         </RuleInstruction>
 
-        <Space className="space-container m-user-answers" align="center">
+        <SpaceContainer className="m-user-answers">
           {Object.entries(answers).map(([key, answerObj]: any) => {
             return (
               <Button
@@ -64,7 +65,7 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
               </Button>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </div>
     </div>
   );

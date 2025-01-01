@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -18,7 +17,6 @@ import { StepRanking } from './StepRanking';
 import { StepResult } from './StepResult';
 
 export function PhaseResult({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   const activeRole = state.movie.roles[state.activeRoleId];
@@ -50,7 +48,6 @@ export function PhaseResult({ players, state }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult
-          user={user}
           activeRole={activeRole}
           outcome={state.outcome}
           players={players}

@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Icons
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
@@ -7,6 +5,7 @@ import { BoxMinusIcon } from 'icons/BoxMinusIcon';
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 const getActiveIcon = (value?: boolean, active?: boolean) => {
   if (value) return BoxCheckMarkIcon;
@@ -29,7 +28,7 @@ type ResultsProps = {
 };
 export function Results({ steps, results, activeStep }: ResultsProps) {
   return (
-    <Space className="space-container full-width" wrap>
+    <SpaceContainer className="full-width" wrap>
       {steps.map((_, index) => {
         const ActiveIcon = getActiveIcon(results[index], activeStep === index);
         return (
@@ -40,6 +39,6 @@ export function Results({ steps, results, activeStep }: ResultsProps) {
           />
         );
       })}
-    </Space>
+    </SpaceContainer>
   );
 }

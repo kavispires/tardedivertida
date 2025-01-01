@@ -1,12 +1,10 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Card } from 'components/cards';
-// Ant Design resources
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type ChallengeProps = {
   challenge: TextCard;
@@ -15,10 +13,10 @@ type ChallengeProps = {
 export function Challenge({ challenge }: ChallengeProps) {
   const { translate } = useLanguage();
   return (
-    <Space className="space-container" align="center">
+    <SpaceContainer>
       <Card header={translate('Desafio', 'Challenge')} color="purple">
         {challenge.text}
       </Card>
-    </Space>
+    </SpaceContainer>
   );
 }

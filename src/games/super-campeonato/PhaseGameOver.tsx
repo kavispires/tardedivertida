@@ -12,11 +12,11 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Internal
 import type { PastBattles } from './utils/type';
 import { achievementsReference } from './utils/achievements';
-// Ant Design resources
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   const pastBattles: PastBattles = state.pastBattles;
@@ -28,9 +28,9 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         <Translate pt="Campeão Ultimate" en="Ultimate Champion" />
       </Title>
 
-      <Space className="space-container margin" align="center">
+      <SpaceContainer className="margin">
         <CharacterCard size={200} overlayColor="yellow" character={state.finalWinner} />
-      </Space>
+      </SpaceContainer>
 
       <Divider />
 
@@ -42,7 +42,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         <Translate pt="Resumo das Batalhas" en="Battles Summary" />
       </Title>
 
-      <Space className="space-container margin" align="center">
+      <SpaceContainer className="margin">
         {pastBattles.map((battle) => {
           return (
             <Space direction="vertical" key={battle.challenge.id} align="center" className="final-gallery">
@@ -61,7 +61,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             </Space>
           );
         })}
-      </Space>
+      </SpaceContainer>
     </GameOverWrapper>
   );
 }

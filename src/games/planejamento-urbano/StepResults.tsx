@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Button, Space, Typography } from 'antd';
+import { Button, Typography } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
@@ -10,6 +10,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { Step } from 'components/steps';
@@ -145,11 +146,11 @@ export function StepResults({
 
       <TurnOrder players={players} activePlayerId={controllerId} order={gameOrder} />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button onClick={onGoBack}>
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
-      </Space>
+      </SpaceContainer>
       <HostNextPhaseButton round={round} />
     </Step>
   );

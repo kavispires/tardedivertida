@@ -1,6 +1,4 @@
 import { orderBy } from 'lodash';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
@@ -8,6 +6,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { FinalCharacterEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';
@@ -18,7 +17,7 @@ export function PhaseGameOver({ state, players, meta }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <Space className="space-container" wrap>
+      <SpaceContainer wrap>
         {orderBy(state.gallery, `name.${meta.language}`).map((entry: FinalCharacterEntry) => (
           <FinalCharacter
             players={players}
@@ -28,7 +27,7 @@ export function PhaseGameOver({ state, players, meta }: PhaseProps) {
             imageCardsMode={!!meta.options?.imageCardsMode}
           />
         ))}
-      </Space>
+      </SpaceContainer>
     </GameOverWrapper>
   );
 }

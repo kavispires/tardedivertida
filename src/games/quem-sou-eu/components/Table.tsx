@@ -1,10 +1,9 @@
 import clsx from 'clsx';
-// Ant Design Resources
-import { Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { Characters } from '../utils/types';
 import { Card } from './Card';
@@ -35,19 +34,19 @@ export function Table({
 
   if (!showAll) {
     return (
-      <Space className="space-container q-table">
+      <SpaceContainer className="q-table">
         <CharacterCard
           character={characters[playerCharacterId]}
           size={width}
           className="q-character-player"
         />
-      </Space>
+      </SpaceContainer>
     );
   }
 
   return (
-    <Space className="space-container q-table" wrap>
-      <Space className="space-container" wrap>
+    <SpaceContainer className="q-table" wrap>
+      <SpaceContainer wrap>
         {topKeys.map((key) => (
           <Card
             character={characters[key]}
@@ -57,8 +56,8 @@ export function Table({
             className={clsx(key === playerCharacterId && 'q-character-player')}
           />
         ))}
-      </Space>
-      <Space className="space-container" wrap>
+      </SpaceContainer>
+      <SpaceContainer wrap>
         {bottomKeys.map((key) => (
           <Card
             character={characters[key]}
@@ -68,7 +67,7 @@ export function Table({
             className={clsx(key === playerCharacterId && 'q-character-player')}
           />
         ))}
-      </Space>
-    </Space>
+      </SpaceContainer>
+    </SpaceContainer>
   );
 }

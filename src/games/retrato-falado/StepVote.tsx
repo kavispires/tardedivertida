@@ -11,6 +11,7 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { CanvasResizer, CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -103,7 +104,7 @@ export function StepVote({
 
       <CanvasResizer />
 
-      <Space className="space-container" align="center" wrap>
+      <SpaceContainer wrap>
         {sketches.map((sketchObj) => {
           const player = players[sketchObj.playerId];
           const ownDrawing = sketchObj.playerId === user.id;
@@ -131,11 +132,11 @@ export function StepVote({
             </Space>
           );
         })}
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <MonsterCard currentMonster={currentMonster} />
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

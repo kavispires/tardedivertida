@@ -1,9 +1,9 @@
 import { has } from 'lodash';
 import type { ReactNode } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
+// Components
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type SpacePlayerCheckWrapperProps = {
   playersList: GamePlayer[];
@@ -18,11 +18,7 @@ export function SpacePlayerCheckWrapper({ playersList, paths, children }: SpaceP
   });
 
   if (okToProceed) {
-    return (
-      <Space className="space-container" align="center" wrap>
-        {children}
-      </Space>
-    );
+    return <SpaceContainer wrap>{children}</SpaceContainer>;
   }
 
   return <></>;

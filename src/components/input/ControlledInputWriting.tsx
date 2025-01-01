@@ -64,7 +64,7 @@ export function ControlledInputWriting({
 
   return (
     <div className="full-width">
-      <Space align="center" className="full-width padding space-container" wrap direction="horizontal">
+      <Space align="center" className="full-width padding div-container" wrap direction="horizontal">
         {Array(inputQuantity)
           .fill(0)
           .map((entry, index) => {
@@ -82,7 +82,7 @@ export function ControlledInputWriting({
           })}
       </Space>
 
-      <Space align="center" className="full-width padding space-container">
+      <Space align="center" className="full-width padding div-container">
         <Button
           type="primary"
           onClick={() => onSubmit({ [valueKey]: valuesCount })}

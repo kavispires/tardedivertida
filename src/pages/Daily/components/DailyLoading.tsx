@@ -1,8 +1,7 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Loading } from 'components/loaders';
 // Internal
 import { DailyChrome } from './DailyChrome';
@@ -12,9 +11,9 @@ export function DailyLoading() {
   return (
     <DailyChrome>
       <div className="daily-loading">
-        <Space className="space-container">
+        <SpaceContainer>
           <Loading message={translate('Carregando desafio...', 'Loading challenge...')} margin />
-        </Space>
+        </SpaceContainer>
       </div>
     </DailyChrome>
   );

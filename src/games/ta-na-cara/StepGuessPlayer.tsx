@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
@@ -9,6 +7,7 @@ import { pluralize } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -80,14 +79,14 @@ export function StepGuessPlayer({
         />
       </Instruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <PlayerBoard
           player={targetedPlayer}
           cardWidth={100}
           questionsDict={questionsDict}
           history={user.history?.[targetedPlayer.id]}
         />
-      </Space>
+      </SpaceContainer>
 
       <CharactersBoard
         charactersDict={charactersDict}

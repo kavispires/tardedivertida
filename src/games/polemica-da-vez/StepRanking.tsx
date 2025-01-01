@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GameRound, GameRanking } from 'types/game';
 import type { GamePlayers } from 'types/player';
@@ -8,6 +8,7 @@ import type { UseStep } from 'hooks/useStep';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { StepRankingWrapper } from 'components/ranking';
 
 type StepRankingProps = {
@@ -15,10 +16,9 @@ type StepRankingProps = {
   round: GameRound;
   ranking: GameRanking;
   goToPreviousStep: UseStep['goToPreviousStep'];
-  isLastRound?: boolean;
 };
 
-export function StepRanking({ players, ranking, goToPreviousStep, round, isLastRound }: StepRankingProps) {
+export function StepRanking({ players, ranking, goToPreviousStep, round }: StepRankingProps) {
   return (
     <StepRankingWrapper
       players={players}
@@ -27,11 +27,11 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, isLastR
         <Translate key="1" pt="Escolha correta ou próxima" en="Correct or close guess" />,
       ]}
     >
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Button onClick={goToPreviousStep}>
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
-      </Space>
+      </SpaceContainer>
       <HostNextPhaseButton round={round} />
     </StepRankingWrapper>
   );

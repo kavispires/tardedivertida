@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -13,6 +13,7 @@ import { InvestigationIcon } from 'icons/InvestigationIcon';
 import { DebugOnly } from 'components/debug';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -139,11 +140,11 @@ export function StepGuessing({
       </RuleInstruction>
 
       <DebugOnly dev>
-        <Space className="space-container" align="center">
+        <SpaceContainer>
           <Button type="dashed" ghost onClick={() => setGuesses(mockGuesses(groupedItems, players, user))}>
             <Translate pt="Seleção Aleatória Semi-inteligente" en="Semi-intelligent Random Selection" />
           </Button>
-        </Space>
+        </SpaceContainer>
       </DebugOnly>
 
       <PlayersCards
@@ -156,7 +157,7 @@ export function StepGuessing({
       />
 
       {isAllComplete && (
-        <Space className="space-container" align="center">
+        <SpaceContainer align="center">
           <Button
             size="large"
             type="primary"
@@ -165,7 +166,7 @@ export function StepGuessing({
           >
             <Translate pt="Enviar Respostas" en="Send Guesses" />
           </Button>
-        </Space>
+        </SpaceContainer>
       )}
 
       <SelectableGroupedItemsBoard

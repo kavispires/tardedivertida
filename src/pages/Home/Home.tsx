@@ -14,6 +14,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { AdminButton } from 'components/admin';
 import { LanguageSwitch, Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg';
@@ -51,22 +52,22 @@ function Home() {
         />
 
         <Space className={clsx('home__input', showInput && getAnimationClass('fadeIn'))} direction="vertical">
-          <Space className="space-container">
+          <SpaceContainer>
             <LanguageSwitch />
-          </Space>
+          </SpaceContainer>
 
           <Title level={2} size="xx-small" colorScheme="dark">
             <Translate pt="Digite o código do jogo" en="Enter the game code" />
           </Title>
 
-          <Space className="space-container">
+          <SpaceContainer>
             <Input.OTP
               length={4}
               formatter={(str) => str.toUpperCase()}
               onChange={(e) => setGameId(e)}
               size="large"
             />
-          </Space>
+          </SpaceContainer>
           {gameId.length === 4 && (
             <Button
               size="large"

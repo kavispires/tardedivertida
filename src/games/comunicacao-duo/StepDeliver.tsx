@@ -9,6 +9,7 @@ import { useLoading } from 'hooks/useLoading';
 import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
@@ -138,9 +139,9 @@ export function StepDeliver({
       </Flex>
 
       <ViewIf condition={clueInputType === 'alien-keyboard'}>
-        <Space className="space-container" direction="vertical">
+        <SpaceContainer>
           <AlienKeyboard value={''} onChange={() => {}} disabled />
-        </Space>
+        </SpaceContainer>
       </ViewIf>
 
       <History

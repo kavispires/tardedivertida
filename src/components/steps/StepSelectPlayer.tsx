@@ -12,13 +12,7 @@ import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import {
-  Instruction,
-  RuleInstruction,
-  type RuleInstructionProps,
-  Title,
-  type TitleProps,
-} from 'components/text';
+import { Instruction, RuleInstruction, type RuleInstructionProps, Title, type TitleProps, } from 'components/text';
 
 type StepSelectPlayerProps = {
   players: GamePlayers;
@@ -44,7 +38,7 @@ export function StepSelectPlayer({
       <RuleInstruction {...ruleInstructionProps} />
 
       <Instruction contained>
-        <Flex className="space-container" gap={8} wrap="wrap">
+        <Flex className="div-container" gap={8} wrap="wrap">
           {sortPlayers(players).map((player) => {
             if (isHost) {
               return (
