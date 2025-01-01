@@ -1,15 +1,17 @@
-import type { TitleProps as AntdTitleProps } from 'antd/es/typography/Title';
+import type { TitleProps } from 'antd/es/typography/Title';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Ant Design Resources
-import { Typography } from 'antd';
+import { type AvatarProps, Typography } from 'antd';
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
-import './Title.scss';
+import './StepTitle.scss';
 
-export type TitleProps = Omit<AntdTitleProps, 'level'> & {
+export type StepTitleProps = {
   /**
    * The content of the component
    */
@@ -19,49 +21,45 @@ export type TitleProps = Omit<AntdTitleProps, 'level'> & {
    */
   colorScheme?: ColorScheme;
   /**
-   * Icon prefixing the title
-   */
-  icon?: ReactNode;
-  /**
    * Optional custom class name
    */
   className?: string;
   /**
-   * The heading level (@default: 2)
-   */
-  level?: AntdTitleProps['level'];
-  /**
    * The size of the title (@default: medium)
    */
-  size?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+  size?: AvatarProps['size'];
   /**
-   * The alignment of the text (@default: center)
+   * Icon prefixing the title
    */
-  align?: 'left' | 'right' | 'center';
-};
+  icon?: ReactNode;
+  /**
+   * Adds animated clock icon to the title (overrides icon)
+   */
+  wait?: boolean;
+} & TitleProps;
 
-export const Title = ({
-  children,
+export const StepTitle = ({
   colorScheme,
+  children,
   icon,
   className,
-  level = 2,
-  size = 'medium',
-  align = 'center',
+  size = 'default',
+  wait,
+  level,
   ...props
-}: TitleProps) => {
+}: StepTitleProps) => {
   const appearance = useGameAppearance();
   const color = colorScheme ?? appearance.colorScheme ?? 'light';
 
   return (
     <Typography.Title
-      level={level}
-      className={clsx('title', `title--${size}`, `title--align-${align}`, `title--${color}`, className)}
+      level={level ?? 2}
+      className={clsx('step-title', `step-title--${size}`, `step-title--${color}`, className)}
       {...props}
     >
-      {Boolean(icon) && (
+      {(!!icon || wait) && (
         <span className="title__icon">
-          <IconAvatar icon={icon} />
+          <IconAvatar size={size} icon={wait ? <AnimatedClockIcon /> : icon} />
         </span>
       )}
       {children}
