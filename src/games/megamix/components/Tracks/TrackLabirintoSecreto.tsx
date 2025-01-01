@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 // Ant Design Resources
 import { RightSquareOutlined } from '@ant-design/icons';
-import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -14,13 +13,14 @@ import { TreeTwoIcon } from 'icons/TreeTwoIcon';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction, TextHighlight } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackLabirintoSecreto = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSelect = (value: number) => {
@@ -77,7 +77,7 @@ export const TrackLabirintoSecreto = ({ track, round, onSubmitAnswer, user }: Tr
         </div>
       </div>
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer vertical>
         <TransparentButton
           className="cm-clues__clue"
           disabled={user.ready || isLoading}
@@ -126,7 +126,7 @@ export const TrackLabirintoSecreto = ({ track, round, onSubmitAnswer, user }: Tr
             );
           })}
         </TransparentButton>
-      </Space>
+      </SpaceContainer>
     </>
   );
 };

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Space, Steps } from 'antd';
+import { Steps } from 'antd';
 // Components
 import { Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Internal
 import { LanguageTest } from './components/LanguageTest';
@@ -106,7 +107,7 @@ function TestArea() {
 
   return (
     <PageLayout className="container">
-      <Space className="space-container full-width" direction="vertical">
+      <SpaceContainer className="full-width" vertical>
         <Title level={1} size="large">
           <Translate pt="Área de Teste" en="Test Area" />
         </Title>
@@ -116,7 +117,7 @@ function TestArea() {
         <Content onResult={setResult} step={current} results={results} />
 
         <Results results={results} steps={steps} activeStep={current} />
-      </Space>
+      </SpaceContainer>
     </PageLayout>
   );
 }

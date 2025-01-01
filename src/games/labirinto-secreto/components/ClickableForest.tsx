@@ -1,7 +1,7 @@
 import { findLast } from 'lodash';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -12,6 +12,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 // Internal
 import type { MapSegment, OnSubmitPathGuessFunction, Tree, TreeId } from '../utils/types';
@@ -76,7 +77,7 @@ export function ClickableForest({
   });
 
   return (
-    <Space direction="vertical" className="space-container">
+    <SpaceContainer vertical>
       <PlayerMap map={map} selectedTrees={selectedTrees} />
 
       <MouseFollowingContent active={Boolean(currentSegment)}>
@@ -120,6 +121,6 @@ export function ClickableForest({
         playerMapping={userMapping}
         players={players}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

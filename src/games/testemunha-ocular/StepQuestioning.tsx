@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar, Button, Flex, Space } from 'antd';
+import { Avatar, Button, Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { SuspectCard } from 'types/tdr';
@@ -12,6 +12,7 @@ import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 import { AvatarName } from 'components/avatars';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
@@ -120,7 +121,7 @@ export function StepQuestioning({
       </ViewIf>
 
       <ViewIf condition={!isUserTheWitness}>
-        <Space className="space-container" align="center" direction="vertical">
+        <SpaceContainer align="center" direction="vertical">
           <Card
             header={translate('O suspeito...', 'The perpetrator...')}
             randomColor
@@ -129,7 +130,7 @@ export function StepQuestioning({
           >
             {question.question}
           </Card>
-        </Space>
+        </SpaceContainer>
 
         <RuleInstruction type="wait">
           <Translate pt="Aguarde a testemunha responder." en="Wait for the witness to answer." />

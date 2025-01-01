@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Types
 import type { SpectrumCard } from 'types/tdr';
 // Hooks
@@ -9,6 +9,7 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -79,7 +80,7 @@ export function StepClueWriting({
         <ClueWritingRules />
       </RuleInstruction>
       {!!card && <Dial target={target} card={card} showTarget />}
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Input
           onChange={onChangeInput}
           onPressEnter={onSubmitClue}
@@ -89,7 +90,7 @@ export function StepClueWriting({
         <Button type="primary" onClick={onSubmitClue} disabled={isLoading} loading={isLoading} size="large">
           <Translate pt="Enviar" en="Send" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

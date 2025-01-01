@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 import { mockClue } from 'mock/clues';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -12,6 +12,7 @@ import { useMock } from 'hooks/useMock';
 import type { UseStep } from 'hooks/useStep';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -125,23 +126,23 @@ export function StepWriteClue({
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Input
           size="large"
           placeholder={translate('Escreva seu objeto aqui', 'Write your object here')}
           onChange={(e) => setClue(e.target.value)}
           onPressEnter={handleSubmitClue}
         />
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button onClick={goToPreviousStep}>
           <Translate pt="Voltar" en="Back" />
         </Button>
         <Button type="primary" onClick={handleSubmitClue} disabled={isLoading}>
           <Translate pt="Enviar" en="Submit" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

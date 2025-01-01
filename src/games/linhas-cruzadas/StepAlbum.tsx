@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -9,6 +9,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 // Internal
@@ -98,7 +99,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
           }}
         />
       </div>
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button disabled={areControlsLocked || currentEntry === 0} onClick={onPrevAlbum}>
           Prev Album
         </Button>
@@ -114,7 +115,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
         <Button disabled={areControlsLocked || isLastAlbum} onClick={onNextAlbum}>
           Next Album
         </Button>
-      </Space>
+      </SpaceContainer>
       <HostNextPhaseButton autoTriggerTime={0} />
     </Step>
   );

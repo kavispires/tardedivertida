@@ -13,6 +13,7 @@ import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -117,11 +118,11 @@ export function StepAlienAnswers({
         />
       </RuleInstruction>
 
-      <Space className="space-container" wrap>
+      <SpaceContainer wrap>
         {currentInquiry.map((itemId) => (
           <ItemCard key={`inquiry-${itemId}`} id={itemId} />
         ))}
-      </Space>
+      </SpaceContainer>
 
       <ViewIf condition={!hasAlienResponse}>
         <AlienContent user={user}>
@@ -162,7 +163,7 @@ export function StepAlienAnswers({
         )}
 
         <HumanContent user={user}>
-          <Space className="space-container">
+          <SpaceContainer>
             <Button
               type="primary"
               size="large"
@@ -171,7 +172,7 @@ export function StepAlienAnswers({
             >
               <Translate pt="Anotei o símbolo e estou pronto" en="I have noted the symbol and I'm ready" />
             </Button>
-          </Space>
+          </SpaceContainer>
         </HumanContent>
       </ViewIf>
 

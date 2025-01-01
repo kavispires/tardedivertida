@@ -17,6 +17,7 @@ import { getEntryId, shuffle } from 'utils/helpers';
 // Components
 import { CanvasResizer } from 'components/canvas';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -157,7 +158,7 @@ export function StepEvaluation({
       </RuleInstruction>
 
       <Space direction="vertical">
-        <Space className="space-container" align="center" wrap>
+        <SpaceContainer wrap>
           <Button
             type="default"
             icon={<ThunderboltOutlined />}
@@ -183,7 +184,7 @@ export function StepEvaluation({
           >
             <Translate pt="Enviar sua avaliação" en="Send evaluation" />
           </Button>
-        </Space>
+        </SpaceContainer>
 
         <EvaluationAllDrawings
           drawings={drawings ?? []}

@@ -1,11 +1,10 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { SpectrumCard } from 'types/tdr';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { WaitingRoom } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
@@ -61,9 +60,9 @@ export function StepClueWaiting({
                 <AvatarName player={psychic} />
                 <Translate pt={'escolheu:'} en={'chose:'} />
               </p>
-              <Space className="space-container" align="center">
+              <SpaceContainer align="center">
                 <OpposingIdeasCard left={card.left} right={card.right} />
-              </Space>
+              </SpaceContainer>
               <p>
                 <Translate
                   pt={

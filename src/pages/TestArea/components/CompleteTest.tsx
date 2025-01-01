@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
-import { Button, Input, Space, App } from 'antd';
+import { Button, Input, App } from 'antd';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { TestStepProps } from '../TestArea';
@@ -21,7 +22,7 @@ export function CompleteTest({ results }: TestStepProps) {
   const result = `Tarde Divertida Test:\n${(results ?? []).map((r) => (r ? '✅' : '❌')).join('')}`;
 
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Pronto!" en="Done!" />
       </Title>
@@ -33,12 +34,12 @@ export function CompleteTest({ results }: TestStepProps) {
         />
       </Instruction>
 
-      <Space wrap className="space-container full-width" direction="vertical">
+      <SpaceContainer wrap className="full-width" vertical>
         <Input.TextArea readOnly value={result} cols={30}></Input.TextArea>
         <Button type="primary" onClick={() => copyToClipboard(result)}>
           <Translate pt="Copiar" en="Copy" />
         </Button>
-      </Space>
-    </Space>
+      </SpaceContainer>
+    </SpaceContainer>
   );
 }

@@ -1,11 +1,12 @@
 // Ant Design Resources
-import { Progress, Space, Typography } from 'antd';
+import { Progress, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { FinalGalleryEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';
@@ -21,7 +22,7 @@ export function FinalGalleryItem({ entry, players, width }: FinalGalleryItemProp
   const playerColor = getAvatarColorById(player.avatarId);
 
   return (
-    <Space direction="vertical" className="space-container contained">
+    <SpaceContainer vertical contained>
       <AvatarName player={player} />
       <WarningDrawing drawing={entry.drawing} width={width} />
       <Typography.Text code className="uppercase">
@@ -34,6 +35,6 @@ export function FinalGalleryItem({ entry, players, width }: FinalGalleryItemProp
         style={{ width: width }}
         strokeColor={playerColor}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

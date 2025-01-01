@@ -1,19 +1,18 @@
 import { useState } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Components
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';
 
 export function DrawingTest({ onResult, step }: TestStepProps) {
-  const [lines, setLines] = useState<any>([]);
+  const [lines, setLines] = useState<CanvasLine[]>([]);
 
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Desenho" en="Desenho" />
       </Title>
@@ -25,9 +24,9 @@ export function DrawingTest({ onResult, step }: TestStepProps) {
         />
       </Instruction>
 
-      <Space wrap className="space-container full-width">
+      <SpaceContainer wrap className="full-width">
         <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
-      </Space>
+      </SpaceContainer>
 
       <DecisionButtons
         step={step}
@@ -37,6 +36,6 @@ export function DrawingTest({ onResult, step }: TestStepProps) {
           pt: 'Você conseguiu desenhar sem muitos problemas?',
         }}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Flex, Space } from 'antd';
+import { Flex } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -11,6 +11,7 @@ import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
@@ -154,9 +155,9 @@ export function StepVerification({
       </Flex>
 
       <ViewIf condition={clueInputType === 'alien-keyboard'}>
-        <Space className="space-container" direction="vertical">
+        <SpaceContainer>
           <AlienKeyboard value={''} onChange={() => {}} disabled />
-        </Space>
+        </SpaceContainer>
       </ViewIf>
 
       <History

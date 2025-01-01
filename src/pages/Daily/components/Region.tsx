@@ -1,17 +1,14 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Space, type SpaceProps } from 'antd';
+// Components
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 export function Region({ className, align, direction, children, ...props }: SpaceProps) {
   return (
-    <Space
-      className={clsx('space-container', className)}
-      direction={direction ?? 'vertical'}
-      align={align ?? 'center'}
-      {...props}
-    >
+    <SpaceContainer direction={direction ?? 'vertical'} align={align ?? 'center'} {...props}>
       {children}
-    </Space>
+    </SpaceContainer>
   );
 }
 

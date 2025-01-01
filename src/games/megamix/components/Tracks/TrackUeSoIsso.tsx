@@ -12,13 +12,14 @@ import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackUeSoIsso = ({ track, onSubmitAnswer }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSubmitClue = (value: string) => {
@@ -53,17 +54,17 @@ export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: T
           />
         </RuleInstruction>
 
-        <Space className="space-container" wrap>
+        <SpaceContainer wrap>
           {track.data.options.map((option: string) => (
             <SuggestionEasel id={option} key={option} value={option} />
           ))}
-        </Space>
+        </SpaceContainer>
 
         <RuleInstruction type="action">
           <Translate pt="Qual você acha que é a palavra secreta?" en="Which one is the secret word?" />
         </RuleInstruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           {track.data.cards.map((card: TextCard, index: number) => (
             <TransparentButton key={card.id} disabled={isLoading} onClick={() => onSubmitClue(card.text)}>
               <Card header={LETTERS[index]} randomColor>
@@ -71,7 +72,7 @@ export const TrackUeSoIsso = ({ track, round, onSubmitAnswer, user, players }: T
               </Card>
             </TransparentButton>
           ))}
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

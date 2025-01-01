@@ -1,6 +1,5 @@
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
-import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
@@ -10,6 +9,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { TimedButton } from 'components/buttons';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
@@ -44,15 +44,15 @@ export function StepWinner({
 
       <Challenge challenge={challenge} />
 
-      <Space className="space-container margin" align="center">
+      <SpaceContainer className="margin">
         <CharacterCard size={200} overlayColor="yellow" character={brackets[brackets.length - 1]} />
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container " align="center">
+      <SpaceContainer>
         <TimedButton duration={7} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
-      </Space>
+      </SpaceContainer>
 
       <BetsFloatingHand bets={bets} brackets={brackets} selectedContenderId={selectedContenderId} />
     </Step>

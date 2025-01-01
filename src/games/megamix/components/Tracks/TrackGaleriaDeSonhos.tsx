@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Image, Space } from 'antd';
+import { Button, Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -9,6 +9,7 @@ import { useMock } from 'hooks/useMock';
 import { Card } from 'components/cards';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { RuleInstruction } from 'components/text';
 // Internal
@@ -16,7 +17,7 @@ import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const cardWidth = useCardWidth(8, { gap: 8, minWidth: 150, maxWidth: 350, margin: 8 });
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
@@ -56,10 +57,10 @@ export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: Tra
       </Card>
 
       <Image.PreviewGroup>
-        <Space className="space-container">
+        <SpaceContainer>
           {track.data.cards.map((cardId: ImageCardId) => {
             return (
-              <Space key={cardId} className="space-container" direction="vertical">
+              <SpaceContainer key={cardId} vertical>
                 <ImageBlurButtonContainer cardId={cardId}>
                   <ImageCard id={cardId} cardWidth={cardWidth} />
                 </ImageBlurButtonContainer>
@@ -72,10 +73,10 @@ export const TrackGaleriaDeSonhos = ({ track, round, onSubmitAnswer, user }: Tra
                 >
                   <Translate pt="Selecionar" en="Select" />
                 </Button>
-              </Space>
+              </SpaceContainer>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </Image.PreviewGroup>
     </>
   );

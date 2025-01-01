@@ -1,11 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Slider, Space } from 'antd';
+import { Button, Slider } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -71,7 +72,7 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
         onChange={setNeedle}
         value={needle}
       />
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button
           type="primary"
           onClick={() => onSendGuess({ guess: needle })}
@@ -82,7 +83,7 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
           <Translate pt="Enviar" en="Submit" />: {needle < 0 ? currentCategory.left : currentCategory.right} »{' '}
           {Math.abs(needle)}
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

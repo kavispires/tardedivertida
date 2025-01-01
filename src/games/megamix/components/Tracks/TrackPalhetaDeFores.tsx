@@ -9,13 +9,14 @@ import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackPalhetaDeCores = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackPalhetaDeCores = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
@@ -45,7 +46,7 @@ export const TrackPalhetaDeCores = ({ track, round, onSubmitAnswer, user }: Trac
           <CharacterCard character={track.data.card} className="grayscale" size={200} />
         </Card>
 
-        <Space className="space-container k-palette" wrap>
+        <SpaceContainer className="k-palette" wrap>
           {track.data.palette.map((color: string) => {
             return (
               <TransparentButton
@@ -58,7 +59,7 @@ export const TrackPalhetaDeCores = ({ track, round, onSubmitAnswer, user }: Trac
               </TransparentButton>
             );
           })}
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

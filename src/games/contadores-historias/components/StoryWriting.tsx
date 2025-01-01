@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -10,6 +10,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
@@ -78,7 +79,7 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
         />
       </div>
 
-      <Space className="space-container c-input-container" align="center" wrap>
+      <SpaceContainer className="c-input-container" wrap>
         <Input
           placeholder={translate('Escreva aqui', 'Write your clue here')}
           onChange={(e) => setStory(e.target.value)}
@@ -93,7 +94,7 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
         >
           <Translate pt="Enviar pista secreta e carta" en="Send secret clue and card" />
         </Button>
-      </Space>
+      </SpaceContainer>
 
       <ImageCardHand
         hand={user.hand}

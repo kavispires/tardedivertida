@@ -1,6 +1,5 @@
 // Ant Design Resources
 import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
-import { Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
@@ -12,6 +11,7 @@ import { sortPlayers } from 'utils/helpers';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
@@ -74,11 +74,11 @@ export function StepResolution({
         </ul>
       </div>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <TimedButton duration={20} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { Button, Space, Switch } from 'antd';
+import { Button, Switch } from 'antd';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction } from 'components/text';
 // Internal
 import type { Clues, BoardEntry } from '../utils/types';
@@ -68,11 +69,11 @@ export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: 
           );
         })}
 
-        <Space className="space-container">
+        <SpaceContainer>
           <Button type="primary" size="large" onClick={() => onSubmitEvaluation({ evaluation })}>
             <Translate pt="Enviar avaliação" en="Submit evaluation" />
           </Button>
-        </Space>
+        </SpaceContainer>
       </ul>
     </>
   );

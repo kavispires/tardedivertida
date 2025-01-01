@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -13,6 +13,7 @@ import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -50,11 +51,11 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
         {track.data.question.question}
       </Card>
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer direction="vertical">
         <SuspectCard suspect={track.data.suspect} width={cardWidth} />
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button
           size="large"
           icon={<IconAvatar icon={<SpeechBubbleDeclinedIcon />} />}
@@ -74,7 +75,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
         >
           <Translate en="YES" pt="SIM" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </>
   );
 };

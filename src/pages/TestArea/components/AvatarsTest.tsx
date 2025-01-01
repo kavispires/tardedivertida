@@ -1,7 +1,5 @@
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 import { random } from 'lodash';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
@@ -10,6 +8,7 @@ import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -27,7 +26,7 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
   };
 
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Avatares" en="Avatars" />
       </Title>
@@ -39,18 +38,18 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
         />
       </Instruction>
 
-      <Space wrap className="space-container full-width" direction="vertical">
+      <SpaceContainer wrap className="full-width" vertical>
         <AvatarCard player={player} />
         <AvatarStrip player={player} />
         <AvatarName player={player} />
-      </Space>
+      </SpaceContainer>
 
-      <Space wrap className="space-container full-width">
+      <SpaceContainer wrap className="full-width" vertical>
         <SuperHeroAvatar avatarId={player.avatarId} id={superHeroId} />
         <CostumeAvatar avatarId={player.avatarId} id={superHeroId} />
         <ClubberAvatar avatarId={player.avatarId} id={superHeroId} />
         <SheepAvatar id={player.avatarId} sheepId={superHeroId} animate />
-      </Space>
+      </SpaceContainer>
 
       <DecisionButtons
         step={step}
@@ -60,6 +59,6 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
           en: 'Are you able to see all 7 avatars (counting the square ones only with the icon)?',
         }}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

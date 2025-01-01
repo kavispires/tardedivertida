@@ -11,6 +11,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { PalavreadoLetter } from '../utils/types';
@@ -48,7 +49,7 @@ export function ResultsModalContent({
   });
 
   return (
-    <Space direction="vertical" className="space-container">
+    <SpaceContainer vertical>
       <Typography.Title level={2} className="center">
         {isWin ? (
           <>
@@ -77,7 +78,7 @@ export function ResultsModalContent({
       <CopyToClipboardResult result={result} rows={size + 2} />
 
       <NextGameSuggestion />
-    </Space>
+    </SpaceContainer>
   );
 }
 

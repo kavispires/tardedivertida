@@ -1,6 +1,5 @@
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
-import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
@@ -8,6 +7,7 @@ import type { UseStep } from 'hooks/useStep';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -44,11 +44,11 @@ export function StepResultGrid({
 
       <AnswersGrid grid={grid} answersGrid={answersGrid} answersGroups={answersGroups} players={players} />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <TimedButton duration={25} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

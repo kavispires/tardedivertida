@@ -12,6 +12,7 @@ import { shuffle } from 'utils/helpers';
 import { TransparentButton } from 'components/buttons';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -109,7 +110,7 @@ export function StepItemsSelection({
         ))}
       </ul>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button onClick={onRandomSelect} size="large">
           <Translate pt="Selecionar aleatoriamente" en="Random picks" />
         </Button>
@@ -118,7 +119,7 @@ export function StepItemsSelection({
           disabled={!weaponId || !evidenceId}
           onClick={() => updateSelections({ weaponId, evidenceId })}
         />
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

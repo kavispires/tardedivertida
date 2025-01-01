@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { TextCard } from 'types/tdr';
@@ -11,6 +9,7 @@ import { LETTERS } from 'utils/constants';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -99,7 +98,7 @@ export function StepSelectChallenge({
         )}
       </RuleInstruction>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         {challenges.map((challenge, index) => {
           return (
             <TransparentButton
@@ -112,7 +111,7 @@ export function StepSelectChallenge({
             </TransparentButton>
           );
         })}
-      </Space>
+      </SpaceContainer>
 
       {round.current < 5 && userContenders.length > 1 && <ContendersHand contenders={userContenders} />}
     </Step>

@@ -16,6 +16,7 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Card } from 'components/cards';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
@@ -54,7 +55,7 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
           {track.data.question.question}
         </Card>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <Avatar id="A" size="large" />{' '}
           <SpeechBubble shadow size="small">
             {track.data.answer ? (
@@ -69,7 +70,7 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
               icon={track.data.answer ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
             />
           </SpeechBubble>
-        </Space>
+        </SpaceContainer>
 
         <RuleInstruction type="action">
           <Translate
@@ -79,10 +80,10 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
         </RuleInstruction>
 
         <Image.PreviewGroup>
-          <Space className="space-container">
+          <SpaceContainer>
             {track.data.suspects.map((suspect: SuspectCardType) => {
               return (
-                <Space className="space-container" direction="vertical" key={suspect.id}>
+                <SpaceContainer vertical key={suspect.id}>
                   <SuspectCard suspect={suspect} width={cardWidth} />
 
                   <Button
@@ -94,10 +95,10 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
                   >
                     <Translate pt="Selecionar" en="Select" />
                   </Button>
-                </Space>
+                </SpaceContainer>
               );
             })}
-          </Space>
+          </SpaceContainer>
         </Image.PreviewGroup>
       </Space>
     </>

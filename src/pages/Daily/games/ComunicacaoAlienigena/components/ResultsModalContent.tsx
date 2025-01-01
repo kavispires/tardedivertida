@@ -12,6 +12,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { IconAvatar } from 'components/avatars';
 import { SignCard } from 'components/cards/SignCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyComunicacaoAlienigenaEntry } from '../utils/types';
@@ -52,7 +53,7 @@ export function ResultsModalContent({
   );
 
   return (
-    <Space direction="vertical" className="space-container">
+    <SpaceContainer vertical>
       <Typography.Title level={2} className="center">
         {win ? (
           <>
@@ -90,7 +91,7 @@ export function ResultsModalContent({
       <CopyToClipboardResult result={result} rows={3} />
 
       <NextGameSuggestion />
-    </Space>
+    </SpaceContainer>
   );
 }
 
@@ -113,7 +114,7 @@ function writeResult({
 
   const indexEmojis = ['🟤', '🟡', '🔵', '🟣'];
 
-  const result = guesses.map((guess, index) => {
+  const result = guesses.map((guess) => {
     const guessItems = guess.split('-');
     return guessItems
       .map((item, i) => {

@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
@@ -7,6 +5,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players';
 import { Instruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
@@ -53,9 +52,9 @@ export function StepDefendingWaiting({
         )}
       </Instruction>
 
-      <Space className="space-container" align="center" wrap>
+      <SpaceContainer align="center" wrap>
         <TableFocus table={table} currentPlayer={currentPlayer} />
-      </Space>
+      </SpaceContainer>
 
       <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
 

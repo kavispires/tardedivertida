@@ -1,16 +1,21 @@
 import { useMutation } from '@tanstack/react-query';
 import type { UserCredential } from 'firebase/auth';
 import { useState } from 'react';
+// Ant Design Resources
 import { Button, Form, Input, Alert, Image, App, Switch, Space, type ButtonProps } from 'antd';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Services
 import { resetPassword, signIn, signInWithGoogle } from 'services/firebase';
+// Icons
 import { GoogleIcon } from 'icons/GoogleIcon';
+// Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
+// Images
 import logo from 'assets/images/tarde-divertida-logo.svg';
-// API
-// Image
 
 type SignInProps = {
   onSuccess: GenericFunction;
@@ -25,13 +30,13 @@ export function SignIn({ onSuccess }: SignInProps) {
         <Image src={logo} preview={false} />
       </div>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Switch
           checkedChildren={<Translate pt="E-mail e senha" en="Email and Password" />}
           unCheckedChildren="Google"
           onChange={(checked) => setView(checked ? 'email' : 'google')}
         />
-      </Space>
+      </SpaceContainer>
 
       {view === 'google' ? (
         <SignInWithGoogle onSuccess={onSuccess} />
@@ -53,12 +58,7 @@ export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & Bu
   };
 
   return (
-    <Space
-      className="space-container"
-      direction="vertical"
-      align="center"
-      classNames={{ item: 'full-width' }}
-    >
+    <Space className="div-container" direction="vertical" align="center" classNames={{ item: 'full-width' }}>
       <>
         {isError && (
           <Alert

@@ -15,6 +15,7 @@ import { AvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { messageContent } from 'components/pop-up';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
@@ -89,12 +90,12 @@ export function StepGuessVerification({
         />
       </RuleInstruction>
 
-      <Space className="u-word-guess-phase__suggestions space-container">
+      <SpaceContainer className="u-word-guess-phase__suggestions">
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
           return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
         })}
-      </Space>
+      </SpaceContainer>
 
       <ViewIf condition={isUserTheController}>
         <RuleInstruction type="action">

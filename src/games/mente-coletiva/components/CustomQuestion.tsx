@@ -6,6 +6,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 
 type CustomQuestionProps = {
@@ -22,9 +23,9 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
 
   return (
     <>
-      <Space className="space-container">
+      <SpaceContainer>
         <Translate pt="OU" en="OR" />
-      </Space>
+      </SpaceContainer>
       <Space className="contained center" direction="vertical">
         <Title size="xx-small">
           <Translate pt="Crie uma pergunta" en="Write custom question" />:

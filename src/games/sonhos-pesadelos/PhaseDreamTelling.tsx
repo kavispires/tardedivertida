@@ -53,7 +53,7 @@ export function PhaseDreamTelling({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <StepTellDream players={players} table={state.table} onSubmitDream={onSubmitDream} user={user} />
+        <StepTellDream table={state.table} onSubmitDream={onSubmitDream} user={user} />
       </StepSwitcher>
     </PhaseContainer>
   );

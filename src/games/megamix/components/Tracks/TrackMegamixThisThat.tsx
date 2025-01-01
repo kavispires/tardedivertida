@@ -8,6 +8,7 @@ import { useMock } from 'hooks/useMock';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -36,7 +37,7 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
         <Translate pt="Selecione qual você prefere:" en="Select which one you prefer:" />
       </RuleInstruction>
       <Space direction="vertical" align="center" className="contained margin">
-        <Space className="space-container">
+        <SpaceContainer>
           <TransparentButton onClick={() => onSelect(0)} disabled={isLoading || user.ready}>
             <Card header={translate('Isso', 'This')} color="red">
               {track.data.card.options[0]}
@@ -48,7 +49,7 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
               {track.data.card.options[1]}
             </Card>
           </TransparentButton>
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

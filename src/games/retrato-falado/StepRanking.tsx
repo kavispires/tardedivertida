@@ -1,17 +1,18 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
+import type { GameRanking, GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { StepRankingWrapper } from 'components/ranking';
 
 type StepRankingProps = {
-  ranking: any;
+  ranking: GameRanking;
   players: GamePlayers;
   round: GameRound;
   goToPreviousStep: UseStep['goToPreviousStep'];
@@ -28,11 +29,11 @@ export function StepRanking({ ranking, players, round, goToPreviousStep }: StepR
         <Translate key="3" pt="Pontos da testemunha" en="Witness points" />,
       ]}
     >
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button onClick={goToPreviousStep}>
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
-      </Space>
+      </SpaceContainer>
       <HostNextPhaseButton round={round} />
     </StepRankingWrapper>
   );

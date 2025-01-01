@@ -1,12 +1,11 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
-// Types
-import type { GamePlayers } from 'types/player';
+import { Button } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
@@ -16,15 +15,9 @@ import { Dial } from './components/Dial';
 type StepPsychicGuessProps = {
   currentCategory: CurrentCategory;
   onSendGuess: GenericFunction;
-  players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;
 
-export function StepPsychicGuess({
-  currentCategory,
-  onSendGuess,
-  players,
-  announcement,
-}: StepPsychicGuessProps) {
+export function StepPsychicGuess({ currentCategory, onSendGuess, announcement }: StepPsychicGuessProps) {
   const { isLoading } = useLoading();
 
   useMock(() => {
@@ -71,7 +64,7 @@ export function StepPsychicGuess({
         />
       </RuleInstruction>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button
           type="primary"
           onClick={() => onSendGuess({ guess: false })}
@@ -90,7 +83,7 @@ export function StepPsychicGuess({
         >
           <Translate pt="A metade ou mais" en="Half or more" />
         </Button>
-      </Space>
+      </SpaceContainer>
 
       <Dial card={currentCategory} target={currentCategory.target} showTarget />
     </Step>

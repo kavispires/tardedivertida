@@ -13,6 +13,7 @@ import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
@@ -54,11 +55,11 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
           </Typography.Text>
         </Region>
 
-        <Space className="space-container" wrap>
+        <SpaceContainer wrap>
           {data.itemsIds.map((itemId, index) => (
             <ItemCard key={`${itemId}-${index}`} id={itemId} width={width} />
           ))}
-        </Space>
+        </SpaceContainer>
 
         <Prompt text={data.title} guesses={guesses} />
 

@@ -14,6 +14,7 @@ import { useMock } from 'hooks/useMock';
 import { CanvasResizer } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -151,7 +152,7 @@ export function StepEvaluate({
       </RuleInstruction>
 
       <Space direction="vertical">
-        <Space className="space-container" align="center" wrap>
+        <SpaceContainer wrap>
           <Button type="default" icon={<ThunderboltOutlined />} onClick={resetGuesses} disabled={isLoading}>
             <Translate pt="Limpar seleções" en="Clear selections" />
           </Button>
@@ -177,7 +178,7 @@ export function StepEvaluate({
           >
             <Translate pt="Enviar sua avaliação" en="Send evaluation" />
           </Button>
-        </Space>
+        </SpaceContainer>
 
         <EvaluationAllDrawings
           players={players}

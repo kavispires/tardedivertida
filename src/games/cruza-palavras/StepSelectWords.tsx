@@ -1,6 +1,6 @@
 import { sampleSize } from 'lodash';
 // Ant Design Resources
-import { Badge, Button, Space } from 'antd';
+import { Badge, Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -11,6 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -55,7 +56,7 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Badge count={length}>
           <Button
             type="primary"
@@ -66,9 +67,9 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
             <Translate pt="Enviar cartas" en="Submit cards" />
           </Button>
         </Badge>
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container max-width" wrap>
+      <SpaceContainer className="max-width" wrap>
         {deck.map((card) => {
           return (
             <TransparentButton
@@ -80,7 +81,7 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
             </TransparentButton>
           );
         })}
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

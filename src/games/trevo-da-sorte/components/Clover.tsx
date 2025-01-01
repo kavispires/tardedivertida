@@ -124,7 +124,7 @@ export function Clover({
           );
         })}
       </div>
-      <div className="controls space-container center">
+      <div className="controls div-container center">
         <Button icon={<RotateLeftOutlined />} onClick={() => onRotate(-1)} />
         <Button icon={<RotateRightOutlined />} onClick={() => onRotate(1)} />
       </div>

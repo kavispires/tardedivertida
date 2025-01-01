@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -7,13 +7,14 @@ import { useMock } from 'hooks/useMock';
 import { Card } from 'components/cards';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackMenteColetiva = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackMenteColetiva = ({ track, onSubmitAnswer }: TrackProps) => {
   const { isLoading } = useLoading();
 
   const onSubmit = (answer: string) => {
@@ -30,7 +31,7 @@ export const TrackMenteColetiva = ({ track, round, onSubmitAnswer, user }: Track
   return (
     <>
       <MinigameTitle title={{ pt: 'Mente Coletiva', en: 'Herd Mind' }} />
-      <Space direction="vertical" align="center" className="space-container contained margin">
+      <SpaceContainer vertical contained className="margin">
         <RuleInstruction type="action">
           <Translate
             pt="Qual das respostas provavelmente viria na sua cabeça primeiro ao ver a pergunta?"
@@ -38,20 +39,20 @@ export const TrackMenteColetiva = ({ track, round, onSubmitAnswer, user }: Track
           />
         </RuleInstruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <Card className="m-question-wrapper" color="yellow">
             <GroupQuestionCard question={track.data.question} overrideNumber={2} />
           </Card>
-        </Space>
+        </SpaceContainer>
 
-        <Space className="space-container" wrap>
+        <SpaceContainer wrap>
           {track.data.options.map((option: string) => (
             <Button key={option} onClick={() => onSubmit(option)} size="large" disabled={isLoading}>
               {option}
             </Button>
           ))}
-        </Space>
-      </Space>
+        </SpaceContainer>
+      </SpaceContainer>
     </>
   );
 };

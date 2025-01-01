@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { EarthIcon } from 'icons/EarthIcon';
@@ -7,6 +5,7 @@ import { HeartIcon } from 'icons/HeartIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -14,7 +13,7 @@ import type { TestStepProps } from '../TestArea';
 
 export function IconsTest({ onResult, step }: TestStepProps) {
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Ícones" en="Icons" />
       </Title>
@@ -23,13 +22,13 @@ export function IconsTest({ onResult, step }: TestStepProps) {
         <Translate pt="Há 3 ícones abaixo" en="There are 3 icons below" />
       </Instruction>
 
-      <Space wrap className="space-container full-width">
+      <SpaceContainer wrap className="full-width" vertical>
         <IconAvatar icon={<EarthIcon />} className="letter-blank" />
         <AnimatedClockIcon style={{ width: '50px' }} />
         <div style={{ width: '75px', height: '75px', backgroundColor: 'hotpink', padding: 12 }}>
           <HeartIcon />
         </div>
-      </Space>
+      </SpaceContainer>
 
       <DecisionButtons
         step={step}
@@ -39,6 +38,6 @@ export function IconsTest({ onResult, step }: TestStepProps) {
           pt: 'Você conseguiu ver o ícone da Terra, um ícone de Relógio animado e um ícone de Coração?',
         }}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

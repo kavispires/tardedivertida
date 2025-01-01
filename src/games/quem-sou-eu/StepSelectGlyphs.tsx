@@ -16,6 +16,7 @@ import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -140,7 +141,7 @@ export function StepSelectGlyphs({
         imageCardMode={imageCardMode}
       />
 
-      <Space className="space-container q-selections">
+      <SpaceContainer className="q-selections">
         <div className="q-selections__section q-selections__section--positive">
           {SELECTIONS_PLACEHOLDER.map((entry) => {
             const id = positiveSelections[entry];
@@ -193,7 +194,7 @@ export function StepSelectGlyphs({
             );
           })}
         </div>
-      </Space>
+      </SpaceContainer>
 
       <Space className="glyphs" wrap>
         {glyphs.map((glyphId: string) => (
@@ -218,7 +219,7 @@ export function StepSelectGlyphs({
         ))}
       </Space>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button
           size="large"
           type="primary"
@@ -229,7 +230,7 @@ export function StepSelectGlyphs({
         >
           <Translate pt={<>Enviar ícones</>} en={<>Submit glyphs</>} />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

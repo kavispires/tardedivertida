@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 // Ant Design Resources
 import { AimOutlined } from '@ant-design/icons';
-import { Button, Flex, Space, Tag, Tooltip } from 'antd';
+import { Button, Flex, Tag, Tooltip } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -17,6 +17,7 @@ import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -105,7 +106,7 @@ export function StepPlaceItem({
 
       <DiagramRules examples={examples} />
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Button
           type="primary"
           size="large"
@@ -128,7 +129,7 @@ export function StepPlaceItem({
           <span style={{ marginRight: '6px' }}>=</span>
           <SelectedAreasCircles selectedArea={selectedArea} />
         </Button>
-      </Space>
+      </SpaceContainer>
 
       <MouseFollowingContent
         active={Boolean(selectedItemId) && (!selectedArea || selectedItemId !== previouslySelectedItemId)}

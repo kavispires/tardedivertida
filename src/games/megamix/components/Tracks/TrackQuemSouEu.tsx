@@ -12,6 +12,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -50,11 +51,11 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <PlayerGlyphs player={botPlayer} glyphWidth={50} />
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container center">
+      <SpaceContainer>
         {track.data.contenders.map((contender: FightingContender) => {
           return (
             <Space direction="vertical" key={contender.id}>
@@ -76,7 +77,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
             </Space>
           );
         })}
-      </Space>
+      </SpaceContainer>
     </>
   );
 };

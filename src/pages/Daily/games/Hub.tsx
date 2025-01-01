@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
-import { Space, Typography } from 'antd';
+import { Typography } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -16,6 +16,7 @@ import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { LanguageSwitch, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { DailyChrome } from '../components/DailyChrome';
 import { PlayedWrapper } from '../components/PlayedWrapper';
@@ -39,9 +40,9 @@ export function Hub() {
         <Typography.Title level={5}>
           <Translate pt="Escolha um jogo" en="Choose a game" />
         </Typography.Title>
-        <Space className="space-container">
+        <SpaceContainer>
           <LanguageSwitch />
-        </Space>
+        </SpaceContainer>
 
         <div className="hub-list">
           <PlayedWrapper lsKey={ARTE_RUIM.KEY}>

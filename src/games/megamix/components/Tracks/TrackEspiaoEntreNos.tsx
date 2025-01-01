@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -8,13 +8,14 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction, TextHighlight } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockText } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackEspiaoEntreNos = ({ track, round, onSubmitAnswer, user }: TrackProps) => {
+export const TrackEspiaoEntreNos = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [answer, setAnswer] = useState('');
@@ -56,9 +57,9 @@ export const TrackEspiaoEntreNos = ({ track, round, onSubmitAnswer, user }: Trac
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Card>{track.data.question}</Card>
-      </Space>
+      </SpaceContainer>
 
       <RuleInstruction type="action">
         <Translate
@@ -67,7 +68,7 @@ export const TrackEspiaoEntreNos = ({ track, round, onSubmitAnswer, user }: Trac
         />
       </RuleInstruction>
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer vertical>
         <Input
           onChange={(e) => setAnswer(e.target.value)}
           placeholder={translate('Escreva aqui', 'Answer here')}
@@ -83,7 +84,7 @@ export const TrackEspiaoEntreNos = ({ track, round, onSubmitAnswer, user }: Trac
         >
           <Translate pt="Selecionar" en="Select" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </>
   );
 };

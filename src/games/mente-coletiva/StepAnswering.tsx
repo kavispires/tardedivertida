@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -13,6 +13,7 @@ import { getEntryId } from 'utils/helpers';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
@@ -113,7 +114,7 @@ export function StepAnswering({
               );
             })}
         </ol>
-        <Space className="space-container" align="center">
+        <SpaceContainer>
           <Button
             type="primary"
             disabled={isDisabled || isLoading}
@@ -128,7 +129,7 @@ export function StepAnswering({
           >
             Mock Answers
           </DevButton>
-        </Space>
+        </SpaceContainer>
       </div>
 
       <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />

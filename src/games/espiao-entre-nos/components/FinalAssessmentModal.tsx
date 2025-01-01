@@ -1,9 +1,10 @@
 // Ant Design Resources
-import { Modal, Space } from 'antd';
+import { Modal } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { FinalAssessment } from '../utils/types';
 import { PlayerSelect } from './PlayerSelect';
@@ -36,9 +37,9 @@ export function FinalAssessmentModal({
         en="There's no time to think, just choose someone"
       />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <PlayerSelect players={players} onSend={onMakeAccusation} isFinalAssessment />
-      </Space>
+      </SpaceContainer>
     </Modal>
   );
 }

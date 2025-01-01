@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -14,6 +14,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { TransparentButton } from 'components/buttons';
 import { CharacterCard, type OverlayColor } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
@@ -21,7 +22,6 @@ import type { Bet, Bracket, BracketTier } from '../utils/type';
 import { useBracketVoting } from '../utils/useBracketVoting';
 import { mockVotes } from '../utils/mock';
 import { TierContenders } from './TierContenders';
-// Ant Design resources
 
 type VotingProps = {
   brackets: Bracket[];
@@ -95,11 +95,11 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
           ))}
         </ul>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <Button type="primary" size="large" onClick={() => onSubmitVotes({ votes })} disabled={!isComplete}>
             <Translate pt="Enviar votos" en="Submit votes" />
           </Button>
-        </Space>
+        </SpaceContainer>
       </div>
     </StepSwitcher>
   );

@@ -7,6 +7,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
@@ -35,7 +36,7 @@ export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackPr
           {track.data.card.question}
         </Card>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <TransparentButton onClick={() => onSelect(0)} disabled={isLoading || user.ready}>
             <Card header="A" color="red">
               {track.data.card.options[0]}
@@ -53,7 +54,7 @@ export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackPr
               {track.data.card.options[2]}
             </Card>
           </TransparentButton>
-        </Space>
+        </SpaceContainer>
       </Space>
     </>
   );

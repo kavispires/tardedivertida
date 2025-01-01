@@ -1,9 +1,10 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Components
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { ALIEN_CANVAS } from '../utils/constants';
 
@@ -16,7 +17,7 @@ export function AlienWritingBoard({ onSubmit, disabled }: HumanSignBoardProps) {
   const [lines, setLines] = useState<CanvasLine[]>([]);
 
   return (
-    <Space className="space-container" direction="vertical">
+    <SpaceContainer vertical>
       <DrawingCanvas
         lines={lines}
         setLines={setLines}
@@ -34,6 +35,6 @@ export function AlienWritingBoard({ onSubmit, disabled }: HumanSignBoardProps) {
       >
         <Translate pt="Enviar" en="Submit" />
       </Button>
-    </Space>
+    </SpaceContainer>
   );
 }

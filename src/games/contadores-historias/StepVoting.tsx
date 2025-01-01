@@ -11,6 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { Card } from 'components/cards';
 import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -62,11 +63,11 @@ export function StepVoting({
         <Translate pt="Qual carta é a ilustração correta?" en="What card is the correct one?" />
       </StepTitle>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Card header={storyteller.name} className="c-story-card" color="yellow">
           {story}
         </Card>
-      </Space>
+      </SpaceContainer>
 
       <PopoverRule content={<VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />} />
 

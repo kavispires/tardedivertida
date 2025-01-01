@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -11,6 +11,7 @@ import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 import { DrawingCanvas } from 'components/canvas';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { TimedTimerBar } from 'components/timers';
 // Internal
@@ -24,7 +25,7 @@ type StepTimedDrawingProps = {
 };
 
 export function StepTimedDrawing({ currentPrompt, onSubmitDrawing, players }: StepTimedDrawingProps) {
-  const [lines, setLines] = useState<any>([]);
+  const [lines, setLines] = useState<CanvasLine[]>([]);
   const [isTimesUp, setTimesUp] = useState(false);
 
   const onExpire = () => {
@@ -50,11 +51,11 @@ export function StepTimedDrawing({ currentPrompt, onSubmitDrawing, players }: St
       ) : (
         <DrawingCanvas lines={lines} setLines={setLines} showControls />
       )}
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button type="primary" onClick={() => onSubmit()} size="large">
           <Translate pt="Enviar desenho" en="Submit drawing" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

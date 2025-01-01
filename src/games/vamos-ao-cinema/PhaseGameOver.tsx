@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Progress, Space } from 'antd';
+import { Progress } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -10,13 +10,14 @@ import { FlagIcon } from 'icons/FlagIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TextHighlight, Title } from 'components/text';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer direction="vertical">
         <Title size="xx-small">
           <Translate pt="Pontuação" en="Score" />
         </Title>
@@ -27,16 +28,16 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
           <Title level={4} size="x-small">
             <Translate pt="Filmes" en="Movies" />
           </Title>
-          <Space className="space-container" wrap>
+          <SpaceContainer wrap>
             {state.finalMovies.map((movie: PlainObject) => (
-              <Space direction="vertical" key={movie.id} className="space-container">
+              <SpaceContainer vertical key={movie.id}>
                 <ImageCard id={movie.posterId} cardWidth={posterWidth} preview={false} />
                 <TextHighlight>{movie.title}</TextHighlight>
-              </Space>
+              </SpaceContainer>
             ))}
-          </Space>
+          </SpaceContainer>
         </div>
-      </Space>
+      </SpaceContainer>
     </GameOverWrapper>
   );
 }

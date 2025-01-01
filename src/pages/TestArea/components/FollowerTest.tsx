@@ -1,7 +1,7 @@
 import { random } from 'lodash';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Icons
@@ -9,6 +9,7 @@ import { EarthIcon } from 'icons/EarthIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { Instruction, Title } from 'components/text';
 // Internal
@@ -38,7 +39,7 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
     });
   };
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Seguidor do mouse" en="Mouse Follower" />
       </Title>
@@ -47,7 +48,7 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
         <Translate pt="Mova o mouse ou dedo pela tela" en="Move the mouse or finger across the screen" />
       </Instruction>
 
-      <Space wrap direction="vertical" className="space-container full-width" style={{ height: 150 }}>
+      <SpaceContainer vertical wrap className="full-width" style={{ height: 150 }}>
         <MouseFollowingContent active={contentType === 'div'}>
           <div
             style={{
@@ -94,7 +95,7 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
             />
           </p>
         )}
-      </Space>
+      </SpaceContainer>
 
       <DecisionButtons
         step={step}
@@ -104,6 +105,6 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
           en: "Follow the instructions above, if at any point it doesn't work, press the red no",
         }}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

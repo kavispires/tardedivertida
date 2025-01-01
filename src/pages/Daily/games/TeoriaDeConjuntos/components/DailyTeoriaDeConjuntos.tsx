@@ -173,7 +173,6 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
             isWin={isWin}
             hearts={hearts}
             guesses={guesses}
-            title={data.title}
             data={data}
           />
         </Modal>

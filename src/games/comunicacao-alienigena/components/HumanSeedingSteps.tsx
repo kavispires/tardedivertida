@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Flex, Space, Steps, Switch } from 'antd';
+import { Button, Flex, Steps, Switch } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -14,6 +14,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { Card } from 'components/cards';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { Seed } from '../utils/types';
@@ -85,12 +86,12 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
   };
 
   return (
-    <Space className="space-container contained seeding-container" direction="vertical" wrap>
+    <SpaceContainer className="contained seeding-container" direction="vertical" wrap>
       <div className="seeding-container__stepper">
         <Steps progressDot current={currentStep} items={steps} />
       </div>
 
-      <Space wrap direction="vertical">
+      <SpaceContainer vertical>
         <Title level={3} size="xx-small">
           <Translate pt="Análise" en="Analysis" />
         </Title>
@@ -101,7 +102,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
           />
         </Instruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <Card
             className={clsx('attribute-card', getAnimationClass('tada'))}
             key={seed.attribute.key}
@@ -109,7 +110,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
           >
             <DualTranslate>{seed.attribute.attribute}</DualTranslate>
           </Card>
-        </Space>
+        </SpaceContainer>
 
         <Flex justify="center" gap="middle" wrap="wrap">
           {seed.items.map((item) => {
@@ -135,7 +136,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
           />
         </Instruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           {currentStep < seeders.length - 1 && (
             <Button size="large" onClick={onGoToPreviousAttribute} disabled={isLoading || currentStep === 0}>
               <Translate pt="Atributo anterior" en="Previous attribute" />
@@ -150,8 +151,8 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
               <Translate pt="Enviar análises" en="Submit Analyses" />
             </Button>
           )}
-        </Space>
-      </Space>
-    </Space>
+        </SpaceContainer>
+      </SpaceContainer>
+    </SpaceContainer>
   );
 }

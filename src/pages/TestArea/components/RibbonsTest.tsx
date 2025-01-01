@@ -1,13 +1,12 @@
 import { random } from 'lodash';
 import { useState } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RibbonGroup } from 'components/ribbons';
 import { Instruction, Title } from 'components/text';
 // Internal
@@ -24,7 +23,7 @@ export function RibbonsTest({ onResult, step }: TestStepProps) {
   };
 
   return (
-    <Space className="space-container full-width" direction="vertical">
+    <SpaceContainer className="full-width" vertical>
       <Title level={2} size="small">
         <Translate pt="Bandeirinhas e Seleções" en="Ribbons and Selections" />
       </Title>
@@ -36,12 +35,12 @@ export function RibbonsTest({ onResult, step }: TestStepProps) {
         />
       </Instruction>
 
-      <Space wrap className="space-container full-width" direction="vertical">
+      <SpaceContainer wrap className="full-width" vertical>
         <TransparentButton onClick={onAddRibbon} style={{ position: 'relative' }}>
           <RibbonGroup labels={ribbons} />
           <ImageCard id={imageId} preview={false} />
         </TransparentButton>
-      </Space>
+      </SpaceContainer>
 
       <DecisionButtons
         step={step}
@@ -51,6 +50,6 @@ export function RibbonsTest({ onResult, step }: TestStepProps) {
           en: 'Are you able to add a ribbon?',
         }}
       />
-    </Space>
+    </SpaceContainer>
   );
 }

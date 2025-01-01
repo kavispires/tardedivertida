@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -8,6 +8,7 @@ import { useLoading } from 'hooks/useLoading';
 import { AvatarName } from 'components/avatars';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';
@@ -101,7 +102,7 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
         usedLeavesIds={usedLeavesIds}
       />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer align="center">
         <Button type="primary" size="large" onClick={submitClover} disabled={!isCloverComplete || isLoading}>
           <Translate pt="Enviar adivinhação" en="Submit guess" />
         </Button>
@@ -109,7 +110,7 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
         <DevButton size="large" onClick={onSubmitMock}>
           Mock guesses
         </DevButton>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

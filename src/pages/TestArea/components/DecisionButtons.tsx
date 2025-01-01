@@ -1,7 +1,8 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction } from 'components/text';
 
 type DecisionButtonsProps = {
@@ -16,14 +17,14 @@ export function DecisionButtons({ step, onClick, prompt }: DecisionButtonsProps)
       <Instruction>
         <DualTranslate>{prompt}</DualTranslate>
       </Instruction>
-      <Space wrap className="space-container" align="center">
+      <SpaceContainer wrap>
         <Button type="primary" size="large" onClick={() => onClick(step, true)}>
           <Translate pt="Sim" en="Yes" />
         </Button>
         <Button type="primary" danger size="large" onClick={() => onClick(step, false)}>
           <Translate pt="Não" en="No" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </div>
   );
 }

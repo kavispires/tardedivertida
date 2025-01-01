@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Flex, Space } from 'antd';
+import { Flex } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -9,6 +9,7 @@ import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { STATUS } from './utils/constants';
@@ -27,7 +28,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<TheEndIcon />}>
       {/* <Achievements players={players} achievements={state.achievements} reference={achievementsReference} /> */}
 
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer vertical>
         {state.status === STATUS.WIN && (
           <>
             <Title level={3}>
@@ -61,7 +62,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             </Instruction>
           </>
         )}
-      </Space>
+      </SpaceContainer>
 
       <Flex gap={8} align="center">
         <Board deck={state.deck} deckType={state.deckType} userId={user.id} userSide={user.side} />

@@ -74,7 +74,7 @@ export function StepGallery({ players, gallery, user, forest, slideShowConfig }:
         />
       </RuleInstruction>
 
-      <PlayerMapResultsSummary players={players} forest={forest} currentPlayer={currentPlayer} user={user} />
+      <PlayerMapResultsSummary players={players} forest={forest} currentPlayer={currentPlayer} />
 
       <div>
         <Forest

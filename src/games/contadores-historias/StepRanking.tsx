@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { GameRanking, GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -10,6 +10,7 @@ import type { UseStep } from 'hooks/useStep';
 import { AvatarName } from 'components/avatars';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
@@ -115,9 +116,9 @@ export function StepRanking({
     >
       <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button onClick={goToPreviousStep}>{translate('Voltar para Solução', 'Back to Solution')}</Button>
-      </Space>
+      </SpaceContainer>
 
       <HostNextPhaseButton round={round} />
     </StepRankingWrapper>

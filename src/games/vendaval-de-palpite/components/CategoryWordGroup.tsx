@@ -1,5 +1,5 @@
-// Ant Design Resources
-import { Space } from 'antd';
+// Components
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { CategoryCard } from './CategoryCard';
 import { SecretWordCard } from './SecretWordCard';
@@ -12,9 +12,9 @@ type CategoryWordGroupProps = {
 
 export function CategoryWordGroup({ categories, secretWord, showSecretWord }: CategoryWordGroupProps) {
   return (
-    <Space className="full-width space-container">
+    <SpaceContainer fullWidth>
       <CategoryCard categories={categories} />
       {showSecretWord && <SecretWordCard secretWord={secretWord} />}
-    </Space>
+    </SpaceContainer>
   );
 }

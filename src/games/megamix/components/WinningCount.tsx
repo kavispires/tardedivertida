@@ -1,6 +1,5 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Components
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 
 type WinningCountProps = {
@@ -10,9 +9,9 @@ type WinningCountProps = {
 
 export function WinningCount({ winners, total }: WinningCountProps) {
   return (
-    <Space className="space-container">
+    <SpaceContainer>
       <PlayersHighlight>{winners}</PlayersHighlight> <span>vs</span>{' '}
       <PlayersHighlight className="grayscale">{total - winners}</PlayersHighlight>
-    </Space>
+    </SpaceContainer>
   );
 }

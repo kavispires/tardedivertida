@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Image, Space } from 'antd';
+import { Button, Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -12,13 +12,14 @@ import { AVATARS, BOTS_LIST } from 'utils/avatars';
 import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const cardWidth = useCardWidth(7, { minWidth: 200, maxWidth: 270 });
   const { language } = useLanguage();
   const { isLoading } = useLoading();
@@ -96,7 +97,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
         </RuleInstruction>
 
         <Image.PreviewGroup>
-          <Space className="space-container">
+          <SpaceContainer>
             {track.data.cards.map((cardId: ImageCardId) => {
               return (
                 <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
@@ -115,7 +116,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                     />
                   </ImageBlurButtonContainer>
 
-                  <Space className="space-container">
+                  <SpaceContainer>
                     <Button
                       shape="round"
                       type="primary"
@@ -129,11 +130,11 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                     >
                       <Translate pt="Selecionar" en="Select" />
                     </Button>
-                  </Space>
+                  </SpaceContainer>
                 </div>
               );
             })}
-          </Space>
+          </SpaceContainer>
         </Image.PreviewGroup>
       </>
     );
@@ -189,7 +190,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                     {bot.name}, {AVATARS[bot.avatarId].description[language]}
                   </span>
                 </div>
-                <Space className="space-container">
+                <SpaceContainer>
                   <Button
                     shape="round"
                     type="primary"
@@ -203,7 +204,7 @@ export const TrackDetetivesImaginativos = ({ track, round, onSubmitAnswer, user,
                   >
                     <Translate pt="Esse é o impostor" en="This is the impostor" />
                   </Button>
-                </Space>
+                </SpaceContainer>
               </div>
             );
           })}

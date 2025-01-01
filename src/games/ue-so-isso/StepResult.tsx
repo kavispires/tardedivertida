@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
@@ -10,6 +8,7 @@ import { AvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight, Title } from 'components/text';
@@ -107,12 +106,12 @@ export function StepResult({
         <Translate pt="Dicas válidas" en="Valid clues" />
       </Title>
 
-      <Space className="space-container" wrap>
+      <SpaceContainer wrap>
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
           return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
         })}
-      </Space>
+      </SpaceContainer>
 
       {validSuggestions.length !== suggestions.length && (
         <div className="u-margin">
@@ -120,12 +119,12 @@ export function StepResult({
             <Translate pt="Todas as dicas" en="All clues" />
           </Title>
 
-          <Space className="space-container u-all-suggestions" wrap>
+          <SpaceContainer className="u-all-suggestions" wrap>
             {suggestions.map((suggestionEntry, index) => {
               const id = `all-${suggestionEntry.suggestion}-${index}`;
               return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
             })}
-          </Space>
+          </SpaceContainer>
         </div>
       )}
 

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "comunicacao-duo",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "release": "beta",
   "available": true,
   "title": {

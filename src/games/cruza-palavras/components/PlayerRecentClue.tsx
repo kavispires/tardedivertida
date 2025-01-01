@@ -1,9 +1,8 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TextHighlight, Title } from 'components/text';
 // Internal
 import type { GridCell } from '../utils/types';
@@ -21,7 +20,7 @@ export function PlayerRecentClue({ user, grid }: PlayerRecentClueProps) {
   }
 
   return (
-    <Space className="space-container" direction="vertical">
+    <SpaceContainer direction="vertical">
       <Title size="xx-small">
         <Translate pt="Sua dica" en="Your clue" />
       </Title>
@@ -29,6 +28,6 @@ export function PlayerRecentClue({ user, grid }: PlayerRecentClueProps) {
         <TextHighlight>{cell.xText}</TextHighlight> + <TextHighlight>{cell.yText}</TextHighlight> ={' '}
         <TextHighlight>{user.clue}</TextHighlight>
       </span>
-    </Space>
+    </SpaceContainer>
   );
 }

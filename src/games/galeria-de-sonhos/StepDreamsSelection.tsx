@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { RobotOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
@@ -9,6 +9,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { TextHighlight, Title } from 'components/text';
@@ -68,7 +69,7 @@ export function StepDreamsSelection({
         />
       )}
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button
           type="primary"
           size="large"
@@ -77,7 +78,7 @@ export function StepDreamsSelection({
         >
           <Translate pt={`Visitar ${selectedCount} sonhos`} en={`Visit ${selectedCount} dreams`} />
         </Button>
-      </Space>
+      </SpaceContainer>
       <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
     </Step>
   );

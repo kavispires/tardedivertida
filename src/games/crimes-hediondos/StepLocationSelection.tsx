@@ -1,6 +1,4 @@
 import { useState } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
@@ -10,12 +8,14 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
+
 
 type StepLocationSelectionProps = {
   user: GamePlayer;
@@ -95,14 +95,14 @@ export function StepLocationSelection({
         ))}
       </div>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <ResetButton goToStep={goToStep} />
 
         <ContinueButton
           disabled={location?.tileId === undefined}
           onClick={() => updateSelections({ locationTile: location?.tileId, locationIndex: location?.value })}
         />
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

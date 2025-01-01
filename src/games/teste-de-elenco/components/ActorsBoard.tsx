@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Popconfirm, Space } from 'antd';
+import { Popconfirm } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -9,6 +9,7 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { SuspectCard } from 'components/cards/SuspectCard';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { ActingRole, SubmitMovieActorPayload } from '../utils/types';
 
@@ -30,7 +31,7 @@ export function ActorsBoard({ actors, user, onSubmitActor, selection }: ActorsBo
   const { language, translate } = useLanguage();
 
   return (
-    <Space className="actors-board space-container" wrap>
+    <SpaceContainer className="actors-board" wrap>
       {selection.map((actorId) => {
         const actor = actors[actorId];
         const name = actor.name[language];
@@ -56,6 +57,6 @@ export function ActorsBoard({ actors, user, onSubmitActor, selection }: ActorsBo
           </Popconfirm>
         );
       })}
-    </Space>
+    </SpaceContainer>
   );
 }

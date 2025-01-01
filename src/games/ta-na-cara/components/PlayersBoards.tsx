@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
@@ -12,6 +10,7 @@ import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { AvatarCard, IconAvatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 // Internal
 import type { QuestionsDictionary } from '../utils/types';
@@ -28,7 +27,7 @@ export function PlayersBoards({ players, user, questionsDict }: PlayersBoardsPro
   const cardWidth = useCardWidth(10, { gap: 16, minWidth: 80, maxWidth: 100, margin: 16 });
 
   return (
-    <Space wrap className="players-boards space-container">
+    <SpaceContainer wrap className="players-boards">
       {playersList.map((player) => (
         <PlayerBoard
           key={player.id}
@@ -39,7 +38,7 @@ export function PlayersBoards({ players, user, questionsDict }: PlayersBoardsPro
           history={user.history?.[player.id]}
         />
       ))}
-    </Space>
+    </SpaceContainer>
   );
 }
 

@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Utils
@@ -8,6 +6,7 @@ import { LETTERS } from 'utils/constants';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 
@@ -41,7 +40,7 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
         />
       </RuleInstruction>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         {words.map((word, index) => {
           return (
             <TransparentButton key={word.id} onClick={() => onSubmitWord({ wordId: word.id })}>
@@ -51,7 +50,7 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
             </TransparentButton>
           );
         })}
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

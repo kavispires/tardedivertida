@@ -1,9 +1,8 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';
@@ -22,7 +21,7 @@ export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapPr
   const userMap: MapSegment[] = (map ?? []).filter((segment: MapSegment) => !segment.passed);
 
   return (
-    <Space wrap className="space-container">
+    <SpaceContainer wrap>
       {userMap.map((segment, index) => {
         const { treeId, passed } = segment;
         const tree = forest[treeId];
@@ -52,6 +51,6 @@ export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapPr
           </div>
         );
       })}
-    </Space>
+    </SpaceContainer>
   );
 }

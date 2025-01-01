@@ -57,7 +57,6 @@ export function PhaseGuess({ players, state }: PhaseProps) {
           <StepPsychicGuess
             currentCategory={state.currentCategory}
             onSendGuess={onSendGuess}
-            players={players}
             announcement={announcement}
           />
           <StepGuess

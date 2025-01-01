@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { CloseCircleFilled } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
@@ -14,6 +14,7 @@ import { PHASES } from 'utils/phases';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageBlurButton, ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal
@@ -74,7 +75,7 @@ export function StepSelectPages({
 
       {showTrap && <TrapPopupRule trap={trap} />}
 
-      <Space className="space-container">
+      <SpaceContainer>
         <DoorFrame width={200}>
           <ImageCard
             id={answerDoorId}
@@ -87,7 +88,7 @@ export function StepSelectPages({
         </DoorFrame>
 
         <ImageBlurButton cardId={answerDoorId} />
-      </Space>
+      </SpaceContainer>
 
       <RuleInstruction type="action">
         <Translate

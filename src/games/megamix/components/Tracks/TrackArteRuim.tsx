@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
@@ -14,13 +14,14 @@ import { TransparentButton } from 'components/buttons';
 import { CanvasSVG } from 'components/canvas';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const cardWidth = useCardWidth(5, {
     minWidth: 250,
     maxWidth: 270,
@@ -71,11 +72,11 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
           />
         </RuleInstruction>
 
-        <Space className="space-container">
+        <SpaceContainer>
           <CanvasSVG drawing={track.data.option.drawing} width={cardWidth} className="a-drawing" />
-        </Space>
+        </SpaceContainer>
 
-        <Space className="space-container">
+        <SpaceContainer>
           {track.data.cards.map((card: TextCard, index: number) => (
             <TransparentButton
               key={card.id}
@@ -91,7 +92,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
               </Card>
             </TransparentButton>
           ))}
-        </Space>
+        </SpaceContainer>
       </>
     );
   }
@@ -122,18 +123,18 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
         />
       </RuleInstruction>
 
-      <Space className="space-container">
+      <SpaceContainer>
         <Card header="A" color={getColorFromIndex(0)}>
           {track.data.cards[1].text}
         </Card>
-      </Space>
+      </SpaceContainer>
 
       <div className="a-drawings">
         {track.data.options.map((entry: PlainObject) => (
           <div key={String(entry)} className="a-drawings__entry">
             <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
 
-            <Space className="space-container">
+            <SpaceContainer>
               <Button
                 shape="round"
                 type="primary"
@@ -143,7 +144,7 @@ export const TrackArteRuim = ({ track, round, onSubmitAnswer, user, players }: T
               >
                 <Translate pt="Selecionar" en="Select" />
               </Button>
-            </Space>
+            </SpaceContainer>
           </div>
         ))}
       </div>

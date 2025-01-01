@@ -1,12 +1,13 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Collapse, Space } from 'antd';
+import { Button, Collapse } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
 // Components
 import { SceneTile } from 'components/game/SceneTile';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -99,7 +100,7 @@ export function StepNewScene({
 
       <SceneTile tile={sceneTile} onSelectValue={onSelectItem} index={sceneMarkIndex} />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button
           type="primary"
           size="large"
@@ -108,7 +109,7 @@ export function StepNewScene({
         >
           <Translate pt="Enviar" en="Send" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

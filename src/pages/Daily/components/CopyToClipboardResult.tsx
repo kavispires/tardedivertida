@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
-import { App, Input, Space, Typography } from 'antd';
+import { App, Input, Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type CopyToClipboardResultProps = {
   result: string;
@@ -30,7 +31,7 @@ export function CopyToClipboardResult({ result, rows = 4 }: CopyToClipboardResul
   }, [state, message, translate]);
 
   return (
-    <Space direction="vertical" className="space-container full-width">
+    <SpaceContainer vertical fullWidth>
       <TransparentButton onClick={() => copyToClipboard(result)}>
         <Input.TextArea value={result} readOnly cols={30} rows={rows} />
       </TransparentButton>
@@ -41,6 +42,6 @@ export function CopyToClipboardResult({ result, rows = 4 }: CopyToClipboardResul
           en="Click the field above to copy and share it with friends"
         />
       </Typography.Paragraph>
-    </Space>
+    </SpaceContainer>
   );
 }

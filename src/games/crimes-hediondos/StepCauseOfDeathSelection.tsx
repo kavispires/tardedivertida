@@ -1,10 +1,9 @@
 import { useState } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { CrimeSceneTile } from 'types/tdr';
 // Components
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -59,7 +58,7 @@ export function StepCauseOfDeathSelection({
         />
       </RuleInstruction>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <SelectedItems
           items={items}
           weaponId={selections.weaponId}
@@ -68,16 +67,16 @@ export function StepCauseOfDeathSelection({
         />
 
         <SceneTile tile={causeOfDeathTile} onSelectValue={onSelectItem} index={causeOfDeathIndex} />
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <ResetButton goToStep={goToStep} />
 
         <ContinueButton
           disabled={causeOfDeathIndex === undefined}
           onClick={() => updateSelections({ causeOfDeath: causeOfDeathIndex })}
         />
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

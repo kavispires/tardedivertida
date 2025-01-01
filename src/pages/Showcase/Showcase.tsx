@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffectOnce, useTitle, useWindowSize } from 'react-use';
 // Ant Design Resources
 import { FilterFilled } from '@ant-design/icons';
-import { Avatar, Image, Modal, Space } from 'antd';
+import { Avatar, Image, Modal } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -19,6 +19,7 @@ import GAMES from 'utils/info';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { FiltersDrawer } from './components/FilterDrawers';
 import { GameDetailsContent } from './components/GameDetailsContent';
@@ -86,9 +87,9 @@ function Showcase() {
             <h1 className="showcase-title">
               <Translate pt="Vitrine" en="Showcase" />
             </h1>
-            <Space className="space-container showcase-menu" align="center">
+            <SpaceContainer className="showcase-menu">
               <Avatar icon={<FilterFilled />} shape="circle" size="small" />
-            </Space>
+            </SpaceContainer>
           </TransparentButton>
         </li>
 

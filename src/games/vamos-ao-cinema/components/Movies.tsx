@@ -15,6 +15,7 @@ import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
 import { MovieCard } from 'components/cards/MovieCard';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type MoviesProps = {
   movies: MovieCardType[];
@@ -104,7 +105,7 @@ export function Movies({
 
   return (
     <Space className="movies">
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer direction="vertical">
         {leftMovies.map((movie, index, arr) => (
           <div key={movie.id} className="movie-container">
             <PlayersSelections
@@ -124,7 +125,7 @@ export function Movies({
             />
           </div>
         ))}
-      </Space>
+      </SpaceContainer>
       <div className="movie-buttons">
         {fakeMoviesLeft.map((entry) => (
           <MovieButton
@@ -153,7 +154,7 @@ export function Movies({
           />
         ))}
       </div>
-      <Space className="space-container" direction="vertical">
+      <SpaceContainer direction="vertical">
         {rightMovies.map((movie, index, arr) => (
           <div key={movie.id} className="movie-container">
             <PlayersSelections
@@ -173,7 +174,7 @@ export function Movies({
             />
           </div>
         ))}
-      </Space>
+      </SpaceContainer>
     </Space>
   );
 }

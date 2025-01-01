@@ -3,7 +3,7 @@ import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
-import { Flex, Space, Typography } from 'antd';
+import { Flex, Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -17,6 +17,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
@@ -91,7 +92,7 @@ export function ResultsModalContent({
   const worse = maxProgress > progress;
 
   return (
-    <Space direction="vertical" className="space-container">
+    <SpaceContainer vertical>
       <Typography.Title level={2} className="center">
         {title}
       </Typography.Title>
@@ -157,7 +158,7 @@ export function ResultsModalContent({
       )}
 
       <NextGameSuggestion />
-    </Space>
+    </SpaceContainer>
   );
 }
 

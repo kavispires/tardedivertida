@@ -1,9 +1,8 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Types
 import type { MovieReviewCard as MovieReviewCardType } from 'types/tdr';
 // Components
 import { MovieReviewCard } from 'components/cards/MovieReviewCard';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type ReviewsProps = {
   goodReview: MovieReviewCardType;
@@ -12,10 +11,10 @@ type ReviewsProps = {
 
 export function Reviews({ goodReview, badReview }: ReviewsProps) {
   return (
-    <Space className="space-container">
+    <SpaceContainer>
       <MovieReviewCard type="positive" text={goodReview.text} highlights={goodReview.highlights} />
 
       <MovieReviewCard type="negative" text={badReview.text} highlights={badReview.highlights} />
-    </Space>
+    </SpaceContainer>
   );
 }

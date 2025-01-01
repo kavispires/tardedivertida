@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -10,6 +10,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Instruction, StepTitle } from 'components/text';
 // Internal
@@ -17,13 +18,12 @@ import { mockDream } from './utils/mock';
 import { DreamBoard } from './components/DreamBoard';
 
 type StepTellDreamProps = {
-  players: GamePlayers;
   table: ImageCardId[];
   user: GamePlayer;
   onSubmitDream: GenericFunction;
 };
 
-export function StepTellDream({ players, table, user, onSubmitDream }: StepTellDreamProps) {
+export function StepTellDream({ table, user, onSubmitDream }: StepTellDreamProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [dream, setDream] = useState('');
@@ -61,20 +61,20 @@ export function StepTellDream({ players, table, user, onSubmitDream }: StepTellD
 
       <DreamBoard table={table} user={user} />
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Input
           size="large"
           onPressEnter={onSubmitDreamsClick}
           onChange={(e) => setDream(e.target.value)}
           placeholder={translate('Escreva aqui', 'Write here')}
         />
-      </Space>
+      </SpaceContainer>
 
-      <Space className="space-container" align="center">
+      <SpaceContainer>
         <Button type="primary" disabled={isLoading || !dream} onClick={onSubmitDreamsClick}>
           <Translate pt="Enviar Sonho" en="Submit Dream" />
         </Button>
-      </Space>
+      </SpaceContainer>
     </Step>
   );
 }

@@ -9,6 +9,7 @@ import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimerBar } from 'components/timers';
 // Internal
 import { SETTINGS } from '../utils/settings';
@@ -70,7 +71,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
       <Layout.Content ref={contentRef}>
         <div ref={headerRef}>
           <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
-          <Space className="space-container">
+          <SpaceContainer>
             <Typography.Text strong>
               {data.title[language]} | <Translate pt="Disco" en="Disc" /> {discIndex}/{SETTINGS.GOAL}
               {!isRandomGame && (
@@ -80,14 +81,14 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
                 </>
               )}
             </Typography.Text>
-          </Space>
+          </SpaceContainer>
 
           <div className="full-width padding">
             <TimerBar value={timeLeft} total={60} />
           </div>
         </div>
 
-        <Space className="space-container" direction="vertical">
+        <SpaceContainer direction="vertical">
           {!isPlaying && (
             <>
               <Button
@@ -139,7 +140,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
           )}
 
           {isPlaying && (
-            <Space className="space-container" direction="vertical">
+            <SpaceContainer direction="vertical">
               <Disc
                 disc={discA}
                 onSelect={onSelect}
@@ -155,7 +156,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
                 className={getAnimationClass('zoomIn', { speed: 'fast' })}
               />
               <DevResult result={result} />
-            </Space>
+            </SpaceContainer>
           )}
 
           <Modal
@@ -178,7 +179,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
               maxProgress={maxProgress}
             />
           </Modal>
-        </Space>
+        </SpaceContainer>
       </Layout.Content>
     </Layout>
   );
