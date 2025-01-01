@@ -1,19 +1,17 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { CardEntry } from './utils/types';
 import { Table } from './components/Table';
 import { VotingOptions } from './components/VotingOptions';
+// Icons
 
 type StepVotingProps = {
   isLoading: boolean;
@@ -37,13 +35,9 @@ export function StepVoting({
 }: StepVotingProps) {
   return (
     <Step announcement={announcement}>
-      <Title>
-        {isLoading ? (
-          <IconAvatar icon={<AnimatedClockIcon />} size="large" />
-        ) : (
-          <Translate pt="Quem é o impostor?" en="Who is the impostor?" />
-        )}
-      </Title>
+      <StepTitle wait={isLoading}>
+        {!isLoading && <Translate pt="Quem é o impostor?" en="Who is the impostor?" />}
+      </StepTitle>
       <Instruction contained>
         <ViewIf condition={isUserTheLeader}>
           <Translate

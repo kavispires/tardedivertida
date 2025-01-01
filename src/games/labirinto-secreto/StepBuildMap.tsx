@@ -10,7 +10,7 @@ import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { OnSubmitMapFunction, Tree } from './utils/types';
 import { buildPlayerMappingForLatestTree } from './utils/helpers';
@@ -44,13 +44,13 @@ export function StepBuildMap({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         {currentRound === 1 ? (
           <Translate pt="Construa o seu mapa" en="Build your map" />
         ) : (
           <Translate pt="Expanda seu mapa" en="Expand your map" />
         )}
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

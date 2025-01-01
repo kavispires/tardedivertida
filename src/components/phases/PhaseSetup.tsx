@@ -6,7 +6,8 @@ import { PHASES } from 'utils/phases';
 import { AnimatedGearIcon } from 'icons/AnimatedGearIcon';
 // Components
 import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { Instruction } from 'components/text';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
 
@@ -18,9 +19,9 @@ export function PhaseSetup({ state }: PhaseSetupProps) {
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
       <div className="phase-announcement">
-        <Title colorScheme="light">
+        <StepTitle colorScheme="light">
           <Translate pt="Preparando o jogo..." en="Setting up..." />
-        </Title>
+        </StepTitle>
 
         <AnimatedGearIcon className="phase-announcement__icon" />
 

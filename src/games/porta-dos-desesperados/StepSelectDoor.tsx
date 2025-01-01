@@ -16,7 +16,7 @@ import { AvatarName } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { useDancingDoors } from './utils/useTrapHooks';
 import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
@@ -95,9 +95,9 @@ export function StepSelectDoor({
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Selecione a porta correta" en="Select the correct door" />
-      </Title>
+      </StepTitle>
 
       {showTrap && <TrapPopupRule trap={trap} />}
 

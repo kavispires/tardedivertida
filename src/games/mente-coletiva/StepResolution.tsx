@@ -15,7 +15,7 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
 import { Step, type StepProps, StepSwitcher } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import { Pasture } from './components/Pasture';
 import { RoundType } from './components/RoundType';
@@ -70,9 +70,9 @@ export function StepResolution({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title level={2}>
+      <StepTitle>
         <Translate pt="Resultado" en="Results" />
-      </Title>
+      </StepTitle>
 
       {step === 0 && <RoundType roundType={roundType} />}
 

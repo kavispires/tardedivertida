@@ -5,7 +5,7 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { OnSubmitPathGuessFunction, Tree } from './utils/types';
 import { ClickableForest } from './components/ClickableForest';
@@ -32,7 +32,7 @@ export function StepFollowPath({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -46,7 +46,7 @@ export function StepFollowPath({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

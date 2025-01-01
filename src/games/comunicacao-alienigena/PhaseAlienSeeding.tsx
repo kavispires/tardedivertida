@@ -39,12 +39,7 @@ export function PhaseAlienSeeding({ players, state }: PhaseProps) {
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SEEDING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <StepSeedAlien
-          onSubmitSeeds={onSubmitSeeds}
-          announcement={announcement}
-          user={user}
-          items={state.items}
-        />
+        <StepSeedAlien onSubmitSeeds={onSubmitSeeds} announcement={announcement} user={user} />
       </StepSwitcher>
     </PhaseContainer>
   );

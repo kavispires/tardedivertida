@@ -13,7 +13,7 @@ import { useMock } from 'hooks/useMock';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import { WORST_TO_REMOVE } from './utils/constants';
 import { mockSelectCards } from './utils/mock';
@@ -48,9 +48,9 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="As Palavras do Trevo" en="The Clover Words" />
-      </Title>
+      </StepTitle>
       <Instruction contained>
         <Translate
           pt={`Elimine ${WORST_TO_REMOVE} palavras que você NÃO quer no jogo`}

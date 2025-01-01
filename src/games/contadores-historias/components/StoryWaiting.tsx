@@ -1,15 +1,14 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TableOrder } from 'components/players/TableOrder';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
+// Icons
 
 type StoryWaitingProps = {
   storyteller: GamePlayer;
@@ -21,10 +20,9 @@ type StoryWaitingProps = {
 export function StoryWaiting({ storyteller, user, players, gameOrder, announcement }: StoryWaitingProps) {
   return (
     <Step fullWidth className="c-story-waiting" announcement={announcement}>
-      <Title>
-        <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
+      <StepTitle wait>
         <Translate pt="Aguarde..." en="Please wait..." />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="wait">
         <AvatarName player={storyteller} />{' '}
         <Translate

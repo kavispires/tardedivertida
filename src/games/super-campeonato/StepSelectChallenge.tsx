@@ -13,7 +13,7 @@ import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { FightingContender } from './utils/type';
 import { mockSelectChallenge } from './utils/mock';
@@ -39,9 +39,9 @@ export function StepSelectChallenge({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Selecione o desafio da rodada" en="Select the theme for the round" />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

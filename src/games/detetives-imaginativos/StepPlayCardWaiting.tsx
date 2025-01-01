@@ -12,7 +12,7 @@ import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { Instruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
 import type { CardEntry } from './utils/types';
 import { Table } from './components/Table';
@@ -44,7 +44,7 @@ export function StepPlayCardWaiting({
 
   return (
     <>
-      <Title>
+      <StepTitle>
         {isUserTheImpostor ? (
           <>
             <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
@@ -58,7 +58,7 @@ export function StepPlayCardWaiting({
             <Translate pt="A pista secreta é" en="The secret clue is" /> <TextHighlight>{clue}</TextHighlight>
           </>
         )}
-      </Title>
+      </StepTitle>
 
       <Instruction>
         <>

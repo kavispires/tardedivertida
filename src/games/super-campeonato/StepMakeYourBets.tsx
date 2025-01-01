@@ -6,7 +6,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { Bracket } from './utils/type';
 import { mockBets } from './utils/mock';
@@ -34,9 +34,9 @@ export function StepMakeYourBets({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Faça suas apostas!" en="Make your bets!" />
-      </Title>
+      </StepTitle>
 
       <Challenge challenge={challenge} />
 

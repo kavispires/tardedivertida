@@ -8,7 +8,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { Instruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
 import type { CardEntry } from './utils/types';
 import { TableFocus } from './components/TableFocus';
@@ -35,10 +35,10 @@ export function StepDefendingWaiting({
 }: StepDefendingWaitingProps) {
   return (
     <>
-      <Title>
+      <StepTitle>
         <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
         <TextHighlight>{clue}</TextHighlight>
-      </Title>
+      </StepTitle>
       <Instruction contained>
         <AvatarName key={currentPlayer.id} player={currentPlayer} className={getAnimationClass('tada')} />,{' '}
         <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />

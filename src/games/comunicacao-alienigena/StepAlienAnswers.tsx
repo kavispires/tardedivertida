@@ -8,16 +8,14 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from './utils/types';
@@ -31,6 +29,7 @@ import { History } from './components/History';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
+// Icons
 
 type StepAlienAnswersProps = {
   players: GamePlayers;
@@ -82,7 +81,7 @@ export function StepAlienAnswers({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title icon={hasAlienResponse ? null : <IconAvatar icon={<AnimatedClockIcon />} size="large" />}>
+      <StepTitle wait={!hasAlienResponse}>
         <Translate
           pt={
             <>
@@ -95,7 +94,7 @@ export function StepAlienAnswers({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<Status status={status} />} />
 

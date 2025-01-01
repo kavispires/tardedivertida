@@ -4,7 +4,7 @@ import type { GamePlayer } from 'types/player';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { CloverObject, Leaves } from './utils/types';
 import { useCloverState } from './utils/useCloverState';
@@ -26,7 +26,7 @@ export function StepWaitClover({ activeCloverPlayer, clover, leaves }: StepWaitC
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -40,7 +40,7 @@ export function StepWaitClover({ activeCloverPlayer, clover, leaves }: StepWaitC
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <Translate

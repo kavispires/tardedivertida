@@ -12,7 +12,7 @@ import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { ControlledInputWriting } from 'components/input';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { mockSuggestions } from './utils/mock';
 import { WritingRules } from './components/RulesBlobs';
@@ -43,7 +43,7 @@ export function StepSuggestion({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -56,7 +56,7 @@ export function StepSuggestion({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <WritingRules />
 

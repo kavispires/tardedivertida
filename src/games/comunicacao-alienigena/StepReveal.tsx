@@ -17,7 +17,7 @@ import { Translate } from 'components/language';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
@@ -69,9 +69,9 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt={<>Resultado</>} en={<>Results</>} />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<Status status={status} />} />
 

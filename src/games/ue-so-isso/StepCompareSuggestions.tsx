@@ -17,7 +17,7 @@ import { Translate } from 'components/language';
 import { messageContent } from 'components/pop-up';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { Suggestion } from './utils/types';
@@ -87,9 +87,9 @@ export function StepCompareSuggestions({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Comparem as Dicas" en="Compare Clues" />
-      </Title>
+      </StepTitle>
 
       <Card word={secretWord.text} />
 

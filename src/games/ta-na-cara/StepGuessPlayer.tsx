@@ -12,7 +12,7 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { mockGuess } from './utils/mock';
@@ -51,9 +51,9 @@ export function StepGuessPlayer({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Quem é esse jogador?" en="Who is this player?" />
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <Translate

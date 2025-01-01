@@ -9,7 +9,7 @@ import { getAvatarColorById } from 'utils/helpers';
 import { Translate } from 'components/language';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { GalleryEntry } from './utils/types';
 import { GalleryDreamDisplay } from './components/GalleryDreamDisplay';
@@ -30,9 +30,9 @@ export function StepResults({ players, gallery, slideShowConfig, correctGuessPoi
 
   return (
     <Step fullWidth className="s-results-step">
-      <Title>
+      <StepTitle>
         <Translate pt="Resultado" en="Results" />
-      </Title>
+      </StepTitle>
 
       <SlideShow config={slideShowConfig} barColor={getAvatarColorById(activePlayer.avatarId)}>
         <GalleryDreamDisplay entry={galleryEntry} activePlayer={activePlayer} />

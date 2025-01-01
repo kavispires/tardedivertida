@@ -13,7 +13,7 @@ import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Good, PlaceGoodPayload, WarehouseSlot } from './utils/types';
 import { BOSS_IDEAS_IDS } from './utils/constants';
@@ -75,12 +75,12 @@ export function StepConfirmGood({
   if (isUserTheSupervisor) {
     return (
       <Step fullWidth ref={ref}>
-        <Title size="x-small">
+        <StepTitle size="small">
           <Translate
             pt={<>Estão todos de acordo com esse local?</>}
             en={<>Is everyone okay with this location?</>}
           />
-        </Title>
+        </StepTitle>
 
         <RuleInstruction type="lore">
           <strong>
@@ -115,12 +115,12 @@ export function StepConfirmGood({
 
   return (
     <Step fullWidth ref={ref}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={<>Concorda com o local escolhido?</>}
           en={<>Do you agree with the chosen location?</>}
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="lore">
         <strong>

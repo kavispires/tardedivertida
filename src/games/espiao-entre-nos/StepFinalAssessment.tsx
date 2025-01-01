@@ -9,7 +9,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { FinalAssessment, Location, Outcome } from './utils/types';
 import { FinalAssessmentInstruction } from './components/RulesBlobs';
@@ -55,9 +55,9 @@ export function StepFinalAssessment({
 
   return (
     <Step>
-      <Title level={2} className="e-phase-title">
+      <StepTitle className="e-phase-title">
         <Translate pt="Última Chance!" en="Last chance!" />
-      </Title>
+      </StepTitle>
 
       <FinalAssessmentModal
         isModalVisible={isUserTheAccuser}

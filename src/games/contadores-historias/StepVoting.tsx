@@ -13,7 +13,7 @@ import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { TableEntry } from './utils/types';
 import { mockVote } from './utils/mock';
@@ -58,12 +58,16 @@ export function StepVoting({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Qual carta é a ilustração correta?" en="What card is the correct one?" />
+      </StepTitle>
+
+      <Space className="space-container">
         <Card header={storyteller.name} className="c-story-card" color="yellow">
           {story}
         </Card>
-      </Title>
+      </Space>
+
       <PopoverRule content={<VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />} />
 
       <RuleInstruction type={isUserTheStoryTeller ? 'wait' : 'action'}>

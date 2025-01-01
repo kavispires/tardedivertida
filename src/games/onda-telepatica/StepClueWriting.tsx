@@ -10,7 +10,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { mockHint } from './utils/mock';
 import { Dial } from './components/Dial';
@@ -52,9 +52,9 @@ export function StepClueWriting({
 
   return (
     <Step fullWidth>
-      <Title>
+      <StepTitle>
         <Translate pt="Escreva sua dica" en="Write your clue" />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt={

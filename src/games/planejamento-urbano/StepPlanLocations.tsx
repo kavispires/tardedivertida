@@ -18,7 +18,7 @@ import { FloatingHandDrawer } from 'components/general/FloatingHand';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { City, CityLocationsDict } from './utils/types';
 import { getConeColor } from './utils/helpers';
@@ -81,12 +81,12 @@ export function StepPlanLocations({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate
           pt={<>Decida onde as {placements} novos projetos devem ser construídos</>}
           en={<>Decide where the {placements} new projects should be built</>}
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

@@ -11,7 +11,7 @@ import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal
 import type { DuetosGalleryEntry, Item, LefOutEntry } from './utils/types';
 import { Pair } from './components/Pair';
@@ -30,9 +30,9 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
+      <StepTitle>
         <Translate pt="Resultado" en="Results" />
-      </Title>
+      </StepTitle>
       <Title size="xx-small">
         <Translate pt="Pares Vencedores" en="Winnings Pairs" />
       </Title>

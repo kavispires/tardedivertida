@@ -10,7 +10,7 @@ import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
@@ -57,9 +57,9 @@ export function StepHumansOffer({
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt={<>Ofereça um objeto</>} en={<>Offer an object</>} />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<Status status={status} />} />
 

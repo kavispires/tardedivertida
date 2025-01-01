@@ -1,15 +1,13 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 
 type StepSecretClueWaitingProps = {
   leader: GamePlayer;
@@ -27,10 +25,9 @@ export function StepSecretClueWaiting({
 }: StepSecretClueWaitingProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
-        <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
+      <StepTitle wait>
         <Translate pt="Aguarde..." en="Please wait..." />
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <AvatarName player={leader} addressUser />{' '}

@@ -19,7 +19,7 @@ import { CanvasResizer } from 'components/canvas';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { ArteRuimCard, ArteRuimDrawing } from './utils/types';
 import { prepareVotes } from './utils/helpers';
@@ -125,9 +125,9 @@ export function StepEvaluation({
     <Step announcement={announcement} fullWidth>
       <PopoverRule content={<EvaluationRules />} />
       <CanvasResizer />
-      <Title>
+      <StepTitle>
         <Translate pt="Adivinhação" en="Match the Pairs" />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

@@ -14,7 +14,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
@@ -55,7 +55,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="medium">
+      <StepTitle>
         <ViewOr condition={isCorrect}>
           <Translate
             pt={
@@ -72,7 +72,7 @@ export function StepReveal({
 
           <Translate pt="Vixi, ninguém acertou" en="Oh no! Nobody got it right" />
         </ViewOr>
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <ViewOr condition={isCorrect}>

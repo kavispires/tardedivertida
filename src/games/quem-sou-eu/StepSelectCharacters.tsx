@@ -14,7 +14,7 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { mockSelectCharacters } from './utils/mock';
 
@@ -45,7 +45,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -58,7 +58,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

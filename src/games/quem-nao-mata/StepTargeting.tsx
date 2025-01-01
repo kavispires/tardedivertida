@@ -12,7 +12,7 @@ import { useLoading } from 'hooks/useLoading';
 import { Translate } from 'components/language';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 import { TimedTimerBar } from 'components/timers';
 // Internal
 import type { Message } from './utils/types';
@@ -90,9 +90,9 @@ export function StepTargeting({
   return (
     <Step fullWidth className="q-target-grid">
       <div className="q-target-content">
-        <Title size="small">
+        <StepTitle size="small">
           <Translate pt="Escolha seu alvo!" en="Choose your target!" />
-        </Title>
+        </StepTitle>
         <TimedTimerBar duration={90} steps={18} onExpire={timeExpireDisableVoting} />
 
         <Button shape={'round'} size="small" onClick={popRule} icon={<ReadOutlined />}>

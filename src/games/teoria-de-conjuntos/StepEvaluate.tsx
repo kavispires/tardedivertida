@@ -11,7 +11,7 @@ import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { DiagramArea, DiagramExamples, Guess, Solutions, SubmitEvaluationPayload } from './utils/types';
 import { getPlayerItemsLeft } from './utils/helper';
@@ -64,7 +64,7 @@ export function StepEvaluate({
   return (
     <Step fullWidth announcement={announcement}>
       <div ref={ref} style={{ width: '100%' }} />
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -78,7 +78,7 @@ export function StepEvaluate({
           }
         />{' '}
         <IconAvatar icon={<AnimatedClockIcon />} />
-      </Title>
+      </StepTitle>
 
       <RoundAlert round={round} />
 

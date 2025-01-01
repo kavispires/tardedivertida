@@ -6,7 +6,7 @@ import { useLoading } from 'hooks/useLoading';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Grid, GridType } from './utils/types';
 import { WordGrid } from './components/WordGrid';
@@ -40,9 +40,9 @@ export function StepClueWriting({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Escreva sua dica" en="Write your clue" />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<WritingCluesRule playerCount={Object.keys(players).length} />} />
 

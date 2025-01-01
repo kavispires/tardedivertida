@@ -4,7 +4,7 @@ import type { GamePlayers } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { Clues, BoardObject } from './utils/types';
 import { Board } from './components/Board';
@@ -42,9 +42,9 @@ export function StepBossEvaluation({
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate pt="Avaliação" en="Avaliação" />
-      </Title>
+      </StepTitle>
 
       <CategoryWordGroup categories={categories} secretWord={secretWord} showSecretWord />
 

@@ -13,7 +13,7 @@ import { ImageBlurButton, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { TableEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
@@ -44,9 +44,9 @@ export function StepResolution({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Solução" en="Solution" />
-      </Title>
+      </StepTitle>
       <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
 
       <div className="c-story-book">

@@ -12,7 +12,7 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { useColorizeBackground } from './utils/useColorizeBackground';
 
@@ -53,9 +53,9 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
   if (ranking.length === 0) {
     return (
       <Step>
-        <Title size="small">
+        <StepTitle size="small">
           <Translate pt="Ranking" en="Ranking" />?
-        </Title>
+        </StepTitle>
 
         <Space className="space-container">
           <BouncerIcon width="120" />

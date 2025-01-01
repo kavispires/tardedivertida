@@ -19,7 +19,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import { Reviews } from './components/Reviews';
@@ -81,7 +81,7 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small" className={getAnimationClass('slideInDown')}>
+      <StepTitle size="small" className={getAnimationClass('slideInDown')}>
         <Translate
           pt={
             <>
@@ -96,7 +96,7 @@ export function StepReveal({
         />
         :
         <MovieHighlight movies={movies} movieId={currentMovieId} />
-      </Title>
+      </StepTitle>
 
       <Reviews goodReview={goodReview} badReview={badReview} />
 

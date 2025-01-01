@@ -7,7 +7,7 @@ import type { CrimeSceneTile } from 'types/tdr';
 import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { ItemsDict, SceneTilePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';
@@ -39,9 +39,9 @@ export function StepReasonForEvidence({
 
   return (
     <Step announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="O que tinha no seu último crime?" en="What was in your last crime?" />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt={

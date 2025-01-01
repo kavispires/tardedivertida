@@ -17,7 +17,7 @@ import { HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
 import { messageContent } from 'components/pop-up';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { Suggestion } from './utils/types';
@@ -63,10 +63,10 @@ export function StepGuessVerification({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title className={getAnimationClass('heartBeat')}>
+      <StepTitle className={getAnimationClass('heartBeat')}>
         <AvatarName player={guesser} addressUser /> <Translate pt="disse" en="said" />{' '}
         <TextHighlight>{guess}</TextHighlight>
-      </Title>
+      </StepTitle>
 
       <Card word={secretWord.text} />
 

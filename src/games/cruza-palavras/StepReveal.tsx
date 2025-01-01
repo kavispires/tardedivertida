@@ -19,7 +19,7 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal
 import type { Clue, Grid, GridType } from './utils/types';
 import { WordGrid } from './components/WordGrid';
@@ -235,9 +235,9 @@ export function StepReveal({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Resultado" en="Results" />
-      </Title>
+      </StepTitle>
 
       <PopoverRule content={<ScoringRule playerCount={playerCount} />} />
 

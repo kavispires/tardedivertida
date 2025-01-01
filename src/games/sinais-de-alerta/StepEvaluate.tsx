@@ -16,7 +16,7 @@ import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { DrawingEntry } from './utils/types';
 import { useGuessing } from './utils/useGuessing';
@@ -115,11 +115,12 @@ export function StepEvaluate({
 
   return (
     <Step announcement={announcement} fullWidth>
+      <StepTitle>
+        <Translate pt="Adivinhação" en="Match the Pairs" />
+      </StepTitle>
+
       <PopoverRule content={<EvaluationRules />} />
       <CanvasResizer />
-      <Title>
-        <Translate pt="Adivinhação" en="Match the Pairs" />
-      </Title>
 
       <RuleInstruction type="action">
         <Translate

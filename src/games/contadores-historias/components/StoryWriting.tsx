@@ -11,7 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import { mockStory } from '../utils/mock';
 import { BookPages } from '../../../components/game/BookPages';
@@ -42,9 +42,9 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
 
   return (
     <Step fullWidth className="c-story-writing" announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Escreva uma história" en="Tell us a story" />
-      </Title>
+      </StepTitle>
       <div className="c-story-book">
         <BookPages
           leftPage={

@@ -21,7 +21,7 @@ import { Translate } from 'components/language';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
 import type { Captcha, CaptchaCard, Robot, SubmitRobotGuessPayload } from './utils/types';
@@ -76,9 +76,9 @@ export function StepSelectAll({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title size="small">
+      <StepTitle size="small">
         <Translate pt={<>Você é um robô?</>} en={<>Are you a robot?</>} />
-      </Title>
+      </StepTitle>
 
       <FloatingPlayerStats user={user} robot={robot} />
 

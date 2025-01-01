@@ -4,7 +4,7 @@ import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
@@ -29,12 +29,12 @@ export function StepSelectMovie({
 }: StepSelectMovieProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={<>Selecione um filme que caiba às duas críticas abaixo</>}
           en={<>Select a movie that fits both reviews</>}
         />
-      </Title>
+      </StepTitle>
 
       <Reviews goodReview={goodReview} badReview={badReview} />
 

@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 import { Button, Layout, Space } from 'antd';
@@ -18,21 +19,15 @@ import { useUser } from 'hooks/useUser';
 // Services
 import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
 // Utils
-import {
-  getRandomNegativeReadyMessage,
-  getRandomNeutralReadyMessage,
-  getRandomPositiveReadyMessage,
-  speak,
-} from 'utils/speech';
+import { getRandomNegativeReadyMessage, getRandomNeutralReadyMessage, getRandomPositiveReadyMessage, speak, } from 'utils/speech';
 // Components
 import { Translate } from 'components/language';
 import { LoadingPage } from 'components/loaders';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { RulesCarousel } from '../rules';
 import { AutoNextPhase } from '../general/AutoNextPhase';
-import { useEffectOnce } from 'react-use';
 
 type PhaseRulesProps = {
   players: GamePlayers;
@@ -110,9 +105,9 @@ export function PhaseRules({ players }: PhaseRulesProps) {
 
   return (
     <Layout.Content className="phase-rules">
-      <Title>
+      <StepTitle>
         <Translate pt="Regras do Jogo" en="Game Rules" />
-      </Title>
+      </StepTitle>
 
       <RulesCarousel
         info={info}

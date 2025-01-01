@@ -10,7 +10,7 @@ import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { CloverObject, Leaves } from './utils/types';
 import { mockGuesses } from './utils/mock';
@@ -55,7 +55,7 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
 
   return (
     <Step fullWidth>
-      <Title size="medium">
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -69,7 +69,7 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <GuessingRules />
 

@@ -18,7 +18,7 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './utils/types';
@@ -79,9 +79,9 @@ export function StepResult({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Resultado" en="Result" />
-      </Title>
+      </StepTitle>
 
       <GroupScore groupScore={groupScore} playerScore={user.score} />
 

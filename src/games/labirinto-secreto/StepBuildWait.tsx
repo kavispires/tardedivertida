@@ -3,7 +3,7 @@ import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import type { Tree } from './utils/types';
 import { Forest } from './components/Forest';
@@ -16,12 +16,12 @@ type StepBuildWaitProps = {
 export function StepBuildWait({ user, announcement, forest }: StepBuildWaitProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt="Todos os jogadores já descobriam seu mapa completamente"
           en="All players have discovered your map completely"
         />
-      </Title>
+      </StepTitle>
 
       <Instruction contained>
         <Translate

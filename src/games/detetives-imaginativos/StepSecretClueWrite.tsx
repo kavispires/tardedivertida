@@ -11,7 +11,7 @@ import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { Instruction, TextHighlight, StepTitle } from 'components/text';
 
 type SecretClueWriteProps = {
   onSubmitClue: GenericFunction;
@@ -37,9 +37,9 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Escreva a Pista!" en="Write a Clue!" />
-      </Title>
+      </StepTitle>
       <Instruction contained>
         <ul>
           <li>

@@ -13,7 +13,7 @@ import { sortPlayers } from 'utils/helpers';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import { Tweet } from './components/Tweet';
 import { TweetComment } from './components/TweetComment';
@@ -38,9 +38,9 @@ export function StepResolution({
 
   return (
     <Step fullWidth className="p-step" announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Resultado" en="Results" />
-      </Title>
+      </StepTitle>
 
       <div className="p-tweet-container">
         <div className="p-tweet">

@@ -12,7 +12,7 @@ import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Title } from 'components/text';
+import { StepTitle } from 'components/text';
 // Internal
 import type { DiagramArea, DiagramExamples, Solutions } from './utils/types';
 import { getPlayerItemsLeft } from './utils/helper';
@@ -55,7 +55,7 @@ export function StepWaitPlaceItem({
   return (
     <Step fullWidth announcement={announcement}>
       <div ref={ref} style={{ width: '100%' }} />
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -69,7 +69,7 @@ export function StepWaitPlaceItem({
           }
         />{' '}
         <IconAvatar icon={<AnimatedClockIcon />} />
-      </Title>
+      </StepTitle>
 
       <RoundAlert round={round} />
 

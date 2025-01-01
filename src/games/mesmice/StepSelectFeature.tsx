@@ -10,23 +10,17 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { mockFeatureSelection } from './utils/mock';
-import type {
-  ExtendedObjectFeatureCard,
-  HistoryEntry,
-  ObjectCardObj,
-  SubmitFeaturePayload,
-} from './utils/types';
+import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj, SubmitFeaturePayload, } from './utils/types';
 import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
 import { ScoreTrack } from './components/ScoreTrack';
 import { GroupScore } from './components/GroupScore';
@@ -73,12 +67,12 @@ export function StepSelectFeature({
 
   return (
     <Step fullWidth>
-      <Title icon={isUserTheActivePlayer && <IconAvatar icon={<AnimatedClockIcon />} size="large" />}>
+      <StepTitle wait={isUserTheActivePlayer}>
         <Translate
           pt={<>Qual característica menos combina os dois objetos?</>}
           en={<>Which feature least connects the two objects?</>}
         />
-      </Title>
+      </StepTitle>
 
       <GroupScore groupScore={groupScore} playerScore={user.score} />
 

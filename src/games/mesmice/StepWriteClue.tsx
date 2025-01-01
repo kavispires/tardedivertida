@@ -13,7 +13,7 @@ import type { UseStep } from 'hooks/useStep';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { ExtendedObjectFeatureCard, ObjectCardObj, SubmitObjectPayload } from './utils/types';
 import { ObjectFeature } from './components/ObjectFeature';
@@ -58,9 +58,9 @@ export function StepWriteClue({
 
   return (
     <Step fullWidth>
-      <Title>
+      <StepTitle>
         <Translate pt={<>Escreva sua dica</>} en={<>Write Your Clue</>} />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

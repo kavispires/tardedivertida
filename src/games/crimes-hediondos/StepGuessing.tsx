@@ -14,7 +14,7 @@ import { DebugOnly } from 'components/debug';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Crime, GroupedItems, GuessHistoryEntry, ItemsDict, ScenesDict } from './utils/types';
 import { mockGuesses } from './utils/mock';
@@ -108,9 +108,9 @@ export function StepGuessing({
 
   return (
     <Step announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Quais foram os crimes?" en="What were the crimes?" />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="action">
         <Translate

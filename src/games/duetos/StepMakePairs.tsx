@@ -14,7 +14,7 @@ import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Item, SubmitPairsPayload } from './utils/types';
 import { mockPairs } from './utils/mock';
@@ -73,12 +73,12 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={<>Agrupe os itens em {pairsCount} pares</>}
           en={<>Group the items into {pairsCount} pairs</>}
         />
-      </Title>
+      </StepTitle>
 
       {isLoading}
       <RuleInstruction type="rule">

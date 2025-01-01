@@ -13,7 +13,7 @@ import { HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
 import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from './utils/types';
 import { EvaluationGroup } from './components/EvaluationGroup';
@@ -50,7 +50,7 @@ export function StepEvaluateGroup({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -69,7 +69,7 @@ export function StepEvaluateGroup({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate

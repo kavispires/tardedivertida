@@ -10,7 +10,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { Translate } from 'components/language';
 import { useGameAppearance } from 'components/session/GameInfoContext';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, StepTitle } from 'components/text';
 // Internal
 import { RankingBoard } from './RankingBoard';
 
@@ -61,7 +61,7 @@ export function StepRankingWrapper({
 
   return (
     <Step>
-      <Title colorScheme={scheme}>{title ?? 'Ranking'}</Title>
+      <StepTitle colorScheme={scheme}>{title ?? 'Ranking'}</StepTitle>
 
       {subtitle}
 

@@ -11,7 +11,7 @@ import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { ItemsDict } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';
@@ -44,9 +44,9 @@ export function StepReviewCrime({
 
   return (
     <Step announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Seu crime tá bom?" en="Is your crime alright?" />
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate pt={<>Revise seu crime.</>} en={<>Recap your crime.</>} />

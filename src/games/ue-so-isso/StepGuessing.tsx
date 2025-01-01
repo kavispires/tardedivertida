@@ -9,7 +9,7 @@ import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Suggestion } from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
@@ -31,9 +31,9 @@ export function StepGuessing({
 }: StepGuessingProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Hora de brilhar" en="Time to shine" />, <AvatarName player={guesser} />!
-      </Title>
+      </StepTitle>
       <RuleInstruction type="rule">
         <Translate
           pt="Você tem uma única chance de adivinhar a palavra secreta!"

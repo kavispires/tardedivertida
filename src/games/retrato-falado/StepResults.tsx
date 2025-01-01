@@ -14,7 +14,7 @@ import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Sketch } from './utils/types';
 import { MonsterSketches } from './components/MonsterSketches';
@@ -85,7 +85,7 @@ export function StepResults({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>
+      <StepTitle>
         {mostVoted ? (
           <Translate pt="O retrato mais votado foi..." en="The sketch who got the most votes was..." />
         ) : (
@@ -94,7 +94,7 @@ export function StepResults({
             pt="Os retratos que mais receberam votos foram..."
           />
         )}
-      </Title>
+      </StepTitle>
 
       <RuleInstruction type="event">
         {Boolean(mostVoted) && mostVotes.length > 1 && (
@@ -183,9 +183,9 @@ export function StepResults({
         <Translate pt="Ver Ranking" en="See Ranking" />
       </TimedButton>
 
-      <Title level={3} className="r-other-sketches-title">
+      <StepTitle level={3} className="r-other-sketches-title">
         <Translate pt="Outros desenhos" en="Other sketches" />
-      </Title>
+      </StepTitle>
 
       <Space className="space-container" align="center">
         <MonsterSketches

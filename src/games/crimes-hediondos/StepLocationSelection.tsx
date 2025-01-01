@@ -11,7 +11,7 @@ import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
@@ -48,9 +48,9 @@ export function StepLocationSelection({
 
   return (
     <Step announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate pt="Onde foi o crime?" en="Where was the crime?" />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt={

@@ -9,7 +9,7 @@ import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 
@@ -31,12 +31,12 @@ export function StepCategorySelection({
 
   return (
     <Step className="o-card-selection" announcement={announcement}>
-      <Title>
+      <StepTitle>
         <Translate
           pt="Medium, selecione uma das duas categorias"
           en="Psychic, select one of the two categories"
         />
-      </Title>
+      </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt="Como medium, seu objetivo é ajudar as pessoas escolherem a posição correta do medidor de ondas telepáticas. Primeiro, escolha uma das duas cartas que você acredita ser capaz de criar uma boa dica."
