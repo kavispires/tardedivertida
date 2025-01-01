@@ -8,9 +8,9 @@ import type { UseStep } from 'hooks/useStep';
 // Components
 import { TimedButton } from 'components/buttons';
 import { SuspectCard } from 'components/cards/SuspectCard';
-import { Container } from 'components/general/Container';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal

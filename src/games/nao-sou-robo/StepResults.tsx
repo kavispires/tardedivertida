@@ -12,9 +12,9 @@ import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
-import { Container } from 'components/general/Container';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal

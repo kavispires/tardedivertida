@@ -7,9 +7,9 @@ import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Container } from 'components/general/Container';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { Step } from 'components/steps';

@@ -14,8 +14,8 @@ import { NoIcon } from 'icons/NoIcon';
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { TextHighlight } from 'components/text';
 // Internal
 import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';

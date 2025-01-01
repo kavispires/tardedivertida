@@ -10,8 +10,8 @@ import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
-import { Container } from 'components/general/Container';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 // Internal
 import type { DrawingEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';

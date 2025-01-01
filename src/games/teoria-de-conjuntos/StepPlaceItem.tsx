@@ -15,8 +15,8 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Container } from 'components/general/Container';
 import { DualTranslate, Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
