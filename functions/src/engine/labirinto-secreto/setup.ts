@@ -23,6 +23,7 @@ import {
   getRankingAndProcessScoring,
   updateMaps,
 } from './helpers';
+import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -32,7 +33,7 @@ import {
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -124,7 +125,7 @@ export const preparePathFollowingPhase = async (
   let turnOrder = state.turnOrder;
   if (!turnOrder) {
     const notCompletePlayers = getPlayersWhoHaveNotCompletedTheirMaps(players);
-    turnOrder = utils.helpers.orderBy(notCompletePlayers, 'updatedAt', 'asc').map((p) => p.id);
+    turnOrder = orderBy(notCompletePlayers, 'updatedAt', 'asc').map((p) => p.id);
   }
 
   // Get active player
@@ -183,7 +184,7 @@ export const preparePathFollowingPhase = async (
 
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   const ranking = getRankingAndProcessScoring(players, store);

@@ -6,6 +6,7 @@ import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
+import { orderBy } from 'lodash';
 
 export type CreateGamePayload = {
   gameName: string;
@@ -149,9 +150,9 @@ const lockGame = async (data: BasicGamePayload) => {
   }
 
   // Update meta with players Ids
-  const listOfPlayers = utils.helpers
-    .orderBy(utils.players.getListOfPlayers(players), ['name'], 'asc')
-    .map((player) => player.id);
+  const listOfPlayers = orderBy(utils.players.getListOfPlayers(players), ['name'], 'asc').map(
+    (player) => player.id,
+  );
 
   try {
     // Set info with players object and isLocked

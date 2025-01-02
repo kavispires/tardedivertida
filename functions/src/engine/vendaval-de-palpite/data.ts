@@ -5,6 +5,7 @@ import type { ResourceData } from './types';
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
 import { TOTAL_WORDS_NEEDED } from './constants';
+import { orderBy } from 'lodash';
 
 /**
  * Get word cards and categories resource based on the game's language
@@ -18,7 +19,7 @@ export const getData = async (language: Language): Promise<ResourceData> => {
   const categories = await resourceUtils.fetchResource(categoriesResourceName);
 
   return {
-    categories: utils.helpers.orderBy(Object.values(categories), ['text'], ['asc']),
+    categories: orderBy(Object.values(categories), ['text'], ['asc']),
     words,
   };
 };

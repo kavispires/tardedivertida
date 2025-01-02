@@ -18,6 +18,7 @@ import {
   getTheTwoLevel5Cards,
 } from './helpers';
 import { saveUsedCards } from './data';
+import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -109,7 +110,7 @@ export const prepareDrawPhase = async (
 
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
@@ -187,11 +188,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const finalGallery = utils.helpers.orderBy(
-    utils.helpers.deepCopy(store.pastDrawings),
-    'successRate',
-    'desc',
-  );
+  const finalGallery = orderBy(utils.helpers.deepCopy(store.pastDrawings), 'successRate', 'desc');
 
   const achievements = getAchievements(store);
 

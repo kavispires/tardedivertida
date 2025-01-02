@@ -13,6 +13,7 @@ import type { DrawingEntry, FirebaseStateData, FirebaseStoreData, ResourceData }
 import utils from '../../utils';
 import { dealCardsToPlayers, evaluateAnswers, getAchievements } from './helpers';
 import { saveDrawings } from './data';
+import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -22,7 +23,7 @@ import { saveDrawings } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -100,7 +101,7 @@ export const prepareDrawingPhase = async (
 };
 
 export const prepareEvaluationPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -171,7 +172,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const finalGallery = utils.helpers.orderBy(utils.helpers.deepCopy(store.pastDrawings), 'accuracy', 'desc');
+  const finalGallery = orderBy(utils.helpers.deepCopy(store.pastDrawings), 'accuracy', 'desc');
 
   const achievements = getAchievements(store);
 
@@ -203,7 +204,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         players,
         winners,
-        gallery: utils.helpers.orderBy(finalGallery, 'accuracy', 'desc'),
+        gallery: orderBy(finalGallery, 'accuracy', 'desc'),
         achievements,
       },
     },

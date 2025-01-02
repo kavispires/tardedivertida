@@ -39,7 +39,7 @@ import { saveData } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -123,7 +123,7 @@ export const prepareQuestionSelectionPhase = async (
 
 export const prepareEverybodyWritesPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Modify players
@@ -205,7 +205,7 @@ export const prepareResolutionPhase = async (
 
   const highestScores = determineHighestScores(ranking, state.roundType);
 
-  const pastureChange = buildPastureChange(players, lowestScores, highestScores);
+  const pastureChange = buildPastureChange(players, lowestScores, highestScores ?? []);
 
   // Fixed up level based on pastureChange
   updateLevelsForPlayers(players, pastureChange[2]);
@@ -229,7 +229,7 @@ export const prepareResolutionPhase = async (
   }
 
   // Calculate distance
-  calculateSheepTravelDistance(store, players, pastureChange);
+  calculateSheepTravelDistance(store, pastureChange);
 
   // Unready players
   utils.players.unReadyPlayers(players);

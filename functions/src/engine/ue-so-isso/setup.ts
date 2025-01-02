@@ -28,6 +28,7 @@ import {
   validateSuggestions,
 } from './helpers';
 import { saveData } from './data';
+import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -37,7 +38,7 @@ import { saveData } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   allWords: TextCard[],
 ): Promise<SaveGamePayload> => {
@@ -170,7 +171,7 @@ export const prepareSuggestPhase = async (
 };
 
 export const prepareComparePhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -215,7 +216,7 @@ export const prepareGuessPhase = async (
 };
 
 export const prepareVerifyGuessPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -260,7 +261,7 @@ export const prepareResultPhase = async (
     ...store.pastSuggestions,
     {
       ...state.secretWord,
-      suggestions: utils.helpers.orderBy(state.suggestions, ['invalid'], ['asc']),
+      suggestions: orderBy(state.suggestions, ['invalid'], ['asc']),
       guesserId: state.guesserId,
     },
   ];

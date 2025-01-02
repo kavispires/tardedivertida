@@ -5,7 +5,7 @@ import type { SonhosPesadelosCards, ThemeDeck } from './types';
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, THEMES_PER_ROUND } from './constants';
 // Helpers
 import utils from '../../utils';
-import { orderBy } from '../../utils/helpers';
+import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -103,7 +103,7 @@ export const determineDreamsNightmaresAndThemes = (
   const shuffledThemes: NamingPromptCard[] = utils.game.shuffle(roundThemesDeck).slice(0, 3);
   const shuffledImageCards: ImageCardId[] = utils.game.shuffle(table);
 
-  const dictionaryPair: any = [];
+  const dictionaryPair: [NamingPromptCard, ImageCardId][] = [];
   shuffledThemes.forEach((theme) => {
     shuffledImageCards.forEach((imageCardId) => {
       dictionaryPair.push([theme, imageCardId]);
