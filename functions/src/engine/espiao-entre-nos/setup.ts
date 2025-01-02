@@ -19,6 +19,7 @@ import {
   determineFinalAssessmentPlayerOrder,
   distributeRoles,
 } from './helpers';
+import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -27,8 +28,8 @@ import {
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -71,7 +72,7 @@ export const prepareAssignmentPhase = async (
     LOCATIONS_USED_IN_A_ROUND,
   );
 
-  const locations = utils.helpers.orderBy(
+  const locations = orderBy(
     availableLocations.map((location) => ({
       id: location.id,
       name: location.name,
@@ -111,7 +112,7 @@ export const prepareAssignmentPhase = async (
 };
 
 export const prepareInvestigationPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
   outcome: Outcome,

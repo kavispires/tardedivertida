@@ -22,6 +22,7 @@ import type {
 } from './types';
 // Utils
 import utils from '../../utils';
+import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -166,7 +167,7 @@ export const buildListOfAnswers = (allAnswers: AnswerEntry[]): AnswerGroupEntry[
   }
 
   // Sort by most matches
-  return utils.helpers.orderBy(Object.values(groupedAnswers), ['score', 'answer'], ['desc', 'asc']);
+  return orderBy(Object.values(groupedAnswers), ['score', 'answer'], ['desc', 'asc']);
 };
 
 /**
@@ -195,7 +196,7 @@ export const buildRanking = (players: Players, store: PlainObject): RankingEntry
  * @returns
  */
 export const determineLowestScores = (ranking: RankingEntry[], roundType: number) => {
-  const scores = ranking.reduce((acc: any[], entry) => {
+  const scores = ranking.reduce((acc: PlayerId[][], entry) => {
     if (acc[entry.newScore] === undefined) {
       acc[entry.newScore] = [];
     }
@@ -229,7 +230,7 @@ export const determineLowestScores = (ranking: RankingEntry[], roundType: number
 export const determineHighestScores = (ranking: RankingEntry[], roundType: number) => {
   if (roundType > 0) return [];
 
-  const scores = ranking.reduce((acc: any, entry) => {
+  const scores = ranking.reduce((acc: PlayerId[][], entry) => {
     if (acc[entry.newScore] === undefined) {
       acc[entry.newScore] = [];
     }
@@ -237,7 +238,7 @@ export const determineHighestScores = (ranking: RankingEntry[], roundType: numbe
     return acc;
   }, []);
 
-  return scores.pop();
+  return scores.pop() ?? [];
 };
 
 /**
@@ -485,14 +486,9 @@ export const getAchievements = (players: Players, store: FirebaseStoreData) => {
 
 /**
  * Adds the distance the sheep moved during the pasture change (for achievement)
- * @param players
  * @param pastureChange
  */
-export const calculateSheepTravelDistance = (
-  store: PlainObject,
-  players: Players,
-  pastureChange: PastureChangeEntry[][],
-) => {
+export const calculateSheepTravelDistance = (store: PlainObject, pastureChange: PastureChangeEntry[][]) => {
   pastureChange[0].forEach((pastureChangeEntry, index) => {
     utils.achievements.increase(
       store,

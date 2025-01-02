@@ -9,6 +9,7 @@ import { calculateAttributeUsage, getItems } from './helpers';
 import { alienItemUtils } from '../../utils/tdr-utils';
 import * as resourceUtils from '../resource';
 import { TDR_RESOURCES } from '../../utils/constants';
+import { orderBy } from 'lodash';
 
 /**
  * Get characters based on the game's language
@@ -68,7 +69,7 @@ export const getResourceData = async (
     );
 
     // Get random list of attributes and signs, then alphabetically order them
-    const signs: Sign[] = utils.helpers.orderBy(
+    const signs: Sign[] = orderBy(
       itemAttributes.map((attributeObj, index) => ({
         attribute: itemAttributesResponse[attributeObj.id].name,
         key: itemAttributesResponse[attributeObj.id].id,
@@ -117,7 +118,7 @@ export const getResourceData = async (
   const signIds = utils.game.getRandomItems(utils.game.makeArray(AVAILABLE_SIGNS), TOTAL_SIGNS);
 
   // Get random list of attributes and signs, then alphabetically order them
-  const signs: Sign[] = utils.helpers.orderBy(
+  const signs: Sign[] = orderBy(
     selectedAttributesKeys.map((key, index) => ({
       attribute: ATTRIBUTES[key].name,
       key: ATTRIBUTES[key].id,

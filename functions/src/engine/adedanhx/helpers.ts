@@ -13,6 +13,7 @@ import { ADEDANHX_ACHIEVEMENTS, ADEDANHX_PHASES } from './constants';
 import { SEPARATOR } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
+import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -233,7 +234,7 @@ export const groupAnswers = (
           id,
           topic,
           letter,
-          answers: utils.helpers.orderBy(answers, ['timestamp'], ['desc']),
+          answers: orderBy(answers, ['timestamp'], ['desc']),
           points: topic.level,
         });
       }

@@ -17,6 +17,7 @@ import type {
   NaoSouRoboAchievement,
   Robot,
 } from './types';
+import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -144,7 +145,7 @@ export const calculateResults = (
 
   const result: GalleryEntry = {
     ...captcha,
-    options: utils.helpers.orderBy(Object.values(options), ['bot', 'players.length'], ['desc', 'desc']),
+    options: orderBy(Object.values(options), ['bot', 'players.length'], ['desc', 'desc']),
     outcome,
     beaters: playersWhoBeatThisRound,
     score: maxBeats,

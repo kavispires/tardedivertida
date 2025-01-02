@@ -4,6 +4,7 @@ import type { Board, BoardEntry, Clue, Clues } from './types';
 import { VENDAVAL_DE_PALPITE_PHASES } from './constants';
 // Utilities
 import utils from '../../utils';
+import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -84,7 +85,7 @@ export const gatherClues = (
   );
 
   // Sort alphabetically
-  const sortedCluesIds = utils.helpers.orderBy(newBoardEntry, ['clue'], ['asc']).map((clue) => clue.id);
+  const sortedCluesIds = orderBy(newBoardEntry, ['clue'], ['asc']).map((clue) => clue.id);
 
   board[currentRound] = { clues: sortedCluesIds };
 
