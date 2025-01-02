@@ -97,7 +97,9 @@ export const prepareClueWritingPhase = async (
   if (state.phase === CRUZA_PALAVRAS_PHASES.WORDS_SELECTION) {
     const deckDict: BooleanDictionary = {};
     utils.players.getListOfPlayers(players).forEach((player) => {
-      player.selectedWordsIds.forEach((wordId: string) => (deckDict[wordId] = true));
+      player.selectedWordsIds.forEach((wordId: string) => {
+        deckDict[wordId] = true;
+      });
     });
 
     const originalDeck: Deck = store.deck;
@@ -131,7 +133,7 @@ export const prepareClueWritingPhase = async (
 
   // Build grid if rounds 1 or if there is not enough available cells for all players
   const largerGridAvailability = store?.options?.largerGrid ? 2 : 0;
-  const shouldBuildGrid = !checkForAvailableCells(state.grid, playerCount, largerGridAvailability);
+  const shouldBuildGrid = !checkForAvailableCells(state.grid ?? [], playerCount, largerGridAvailability);
 
   const grid = shouldBuildGrid
     ? buildGrid(store.deck, store.playersClues, coordinateLength, shouldBuildGrid)

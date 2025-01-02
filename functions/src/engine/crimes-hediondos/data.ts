@@ -33,9 +33,11 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
       return useOriginalImages ? !weapon.itemExclusive : !!weapon.itemId;
     })
     .map((weapon) => {
+      // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
       delete weapon.itemExclusive;
 
       if (useOriginalImages) {
+        // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
         delete weapon.itemId;
       }
       return weapon;
@@ -46,9 +48,11 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
       return useOriginalImages ? !evidence.itemExclusive : !!evidence.itemId;
     })
     .map((evidence) => {
+      // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
       delete evidence.itemExclusive;
 
       if (useOriginalImages) {
+        // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
         delete evidence.itemId;
       }
       return evidence;

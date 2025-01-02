@@ -181,12 +181,16 @@ export const sliceInParts = <T>(list: T[], numParts = 1): T[][] => {
   if (list.length % numParts === 0) {
     const partSize = Math.floor(list.length / numParts);
     while (i < list.length) {
-      res.push(list.slice(i, (i += partSize)));
+      const end = i + partSize;
+      res.push(list.slice(i, end));
+      i = end;
     }
   } else {
     while (i < list.length) {
       const partSize = Math.ceil((list.length - i) / numParts--);
-      res.push(list.slice(i, (i += partSize)));
+      const end = i + partSize;
+      res.push(list.slice(i, end));
+      i = end;
     }
   }
 

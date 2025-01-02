@@ -7,7 +7,7 @@ import utils from '../utils';
  * @returns
  */
 export const getPublicFirebaseDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
-  let response;
+  let response: Promise<any>;
 
   if (utils.firebase.isEmulatingEnvironment()) {
     return fallback;

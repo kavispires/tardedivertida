@@ -188,7 +188,7 @@ export const groupSuggestions = (players: Players): CurrentSuggestions => {
  * @returns
  */
 export const validateSuggestions = (currentSuggestions: CurrentSuggestions): PlayerSuggestion[] => {
-  return Object.entries(currentSuggestions).reduce((acc: any, suggestionEntry) => {
+  return Object.entries(currentSuggestions).reduce((acc: PlayerSuggestion[], suggestionEntry) => {
     const [suggestion, playersSug] = suggestionEntry;
 
     if (playersSug.length > 1) {
@@ -200,7 +200,8 @@ export const validateSuggestions = (currentSuggestions: CurrentSuggestions): Pla
         };
       });
 
-      return [...acc, ...res];
+      res.forEach((item) => acc.push(item));
+      return acc;
     }
 
     acc.push({

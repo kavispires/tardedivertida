@@ -61,7 +61,7 @@ const determineMovieVotes = (
 
   const selectedProps = utils.players.getListOfPlayers(players).reduce((acc: string[], player) => {
     if (player.selectedProps) {
-      acc = utils.game.removeDuplicates([...acc, ...player.selectedProps]);
+      return utils.game.removeDuplicates(acc.concat(player.selectedProps));
     }
     return acc;
   }, []);
@@ -159,8 +159,7 @@ export const determineCast = (players: Players, state: FirebaseStateData, store:
     activeRole.traits.push(store.traits.pop());
     activeRole.selection = votes.map((vote) => vote.value);
     activeRole.directors = votes.reduce((acc: PlayerId[], vote) => {
-      acc = [...acc, ...vote.votes];
-      return acc;
+      return acc.concat(vote.votes);
     }, []);
     votes.forEach((vote) => {
       scores.addMultiple(vote.votes, vote.votes.length, 0);
