@@ -7,7 +7,7 @@ import utils from './';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
-import { buildIdDictionary } from './helpers';
+import { buildBooleanDictionary } from './helpers';
 import { updateDataFirebaseDoc } from '../engine/collections';
 
 export const getItems = async (
@@ -130,7 +130,7 @@ export const itemUtils = {
  * @returns
  */
 export const saveUsedItems = async (items: Item[]) => {
-  const itemsIdsDict = buildIdDictionary(items);
+  const itemsIdsDict = buildBooleanDictionary(items);
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ITEMS, itemsIdsDict);
 };
 
@@ -292,7 +292,7 @@ export const alienItemUtils = {
  * @returns
  */
 export const saveUsedAlienItems = async (items: AlienItem[]) => {
-  const itemsIdsDict = buildIdDictionary(items);
+  const itemsIdsDict = buildBooleanDictionary(items);
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, itemsIdsDict);
 };
 

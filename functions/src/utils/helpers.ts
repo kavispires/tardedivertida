@@ -181,30 +181,25 @@ export const devSimulateWait = async (duration = 3000) => {
   }
 };
 
+/**
+ * Pauses the execution for a specified duration.
+ * @param [duration=0] - The duration to wait in milliseconds. Defaults to 0 if not provided.
+ * @returns A promise that resolves after the specified duration.
+ */
 export const forceWait = async (duration = 0) => {
   await new Promise((resolve) => setTimeout(resolve, duration));
 };
 
 /**
- * Creates a dictionary with used card ids
- * @param dataList
- * @returns
+ * Builds a BooleanDictionary from a list of strings or objects with an 'id' property.
+ * @param list - Array of strings or objects with 'id' property
+ * @param key - Optional key to extract from objects (defaults to 'id')
+ * @returns BooleanDictionary
  */
-export const buildIdDictionary = (dataList: PlainObject[]): BooleanDictionary => {
-  return dataList.reduce((acc, entry) => {
-    acc[entry.id] = true;
-    return acc;
-  }, {});
-};
-
-/**
- * Builds BooleanDictionary from list of strings
- * @param list
- * @returns
- */
-export const buildBooleanDictionary = (list: string[]): BooleanDictionary => {
-  return list.reduce((acc, entry) => {
-    acc[entry] = true;
+export const buildBooleanDictionary = <T>(list: T[], key = 'id'): BooleanDictionary => {
+  return list.reduce((acc: BooleanDictionary, entry) => {
+    const value = typeof entry === 'string' ? entry : entry[key];
+    acc[value] = true;
     return acc;
   }, {});
 };

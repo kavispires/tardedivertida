@@ -21,7 +21,7 @@ export const getWords = async (language: Language) => {
  */
 export const saveData = async (pastSuggestions: PastSuggestion[], language: Language) => {
   // Save used cards
-  const usedIds = utils.helpers.buildIdDictionary(pastSuggestions);
+  const usedIds = utils.helpers.buildBooleanDictionary(pastSuggestions);
   await utils.tdr.saveUsedSingleWords(usedIds);
 
   // Save card clues data

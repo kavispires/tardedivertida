@@ -47,7 +47,7 @@ export const saveData = async (pastCategories: PastCategories): Promise<void> =>
   await dataUtils.updateOpposingIdeasClues(pastCategories);
 
   // Save usedTestemunhaOcularCards to global
-  const usedOndaTelepaticaCategories = utils.helpers.buildIdDictionary(pastCategories);
+  const usedOndaTelepaticaCategories = utils.helpers.buildBooleanDictionary(pastCategories);
   await globalUtils.updateGlobalFirebaseDoc(
     GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS,
     usedOndaTelepaticaCategories,

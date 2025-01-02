@@ -162,7 +162,7 @@ export const getCards = async (
 export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: Language) => {
   const onlyARPDEntries = pastDrawings.filter((entry) => entry.id.includes('a-'));
   // Save usedArteRuimCards to global
-  const usedArteRuimCards = utils.helpers.buildIdDictionary(onlyARPDEntries);
+  const usedArteRuimCards = utils.helpers.buildBooleanDictionary(onlyARPDEntries);
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
 
   // Save drawings to public gallery

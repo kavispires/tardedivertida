@@ -49,7 +49,7 @@ export const saveData = async (pastQuestions: string[]) => {
   }, []);
 
   // Save usedMenteColetivaQuestions to global
-  const usedMenteColetivaQuestions = utils.helpers.buildIdDictionary(pastQuestionsObj);
+  const usedMenteColetivaQuestions = utils.helpers.buildBooleanDictionary(pastQuestionsObj);
   await globalUtils.updateGlobalFirebaseDoc(
     GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS,
     usedMenteColetivaQuestions,

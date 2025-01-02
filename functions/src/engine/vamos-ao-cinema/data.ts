@@ -57,9 +57,9 @@ export const saveData = async (
   goodReviews: MovieReviewCard[],
   badReviews: MovieReviewCard[],
 ): Promise<void> => {
-  const usedMovies = utils.helpers.buildIdDictionary(movies);
-  const usedGoodReviews = utils.helpers.buildIdDictionary(goodReviews);
-  const usedBadReviews = utils.helpers.buildIdDictionary(badReviews);
+  const usedMovies = utils.helpers.buildBooleanDictionary(movies);
+  const usedGoodReviews = utils.helpers.buildBooleanDictionary(goodReviews);
+  const usedBadReviews = utils.helpers.buildBooleanDictionary(badReviews);
 
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.MOVIES, {
     ...usedMovies,
