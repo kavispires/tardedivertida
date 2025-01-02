@@ -88,7 +88,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt={<>Complete a grade</>} en={<>Complete the grid</>} />{' '}
+        <Translate pt="Complete a grade" en="Complete the grid" />{' '}
         <TimerClock seconds={seconds} minutes={minutes} iconSize="large" className="timer" />
       </StepTitle>
 

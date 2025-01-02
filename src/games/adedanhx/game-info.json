@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Adedanhx",
     "en": "Stop-ish!"
@@ -19,10 +19,11 @@
     "en": "Be the first to fill the table with words that start with the drawn letters!"
   },
   "appearance": {
-    "clouds": "letter-clouds",
+    "clouds": "boxed-letters-clouds",
+    "cloudsAnimationType": "orbit",
     "primaryColor": "#3653ad",
     "surfaceColor": "#fafaff",
-    "backgroundColor": "",
+    "backgroundColor": "rgba(207, 215, 225, 0.7)",
     "colorScheme": "light"
   },
   "rules": {

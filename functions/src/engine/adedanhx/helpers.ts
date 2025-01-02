@@ -67,44 +67,54 @@ export const buildGrid = (
     }
 
     // Add easy topics
-    if (easyTopics.length < easyTopicsQuantity && [1, 2].includes(shuffledTopics[i].level)) {
+    if (
+      easyTopics.length < easyTopicsQuantity &&
+      [1, 2].includes(shuffledTopics[i].level) &&
+      !easyTopics.some((t) => t.category === shuffledTopics[i].category)
+    ) {
       easyTopics.push(shuffledTopics[i]);
       continue;
     }
 
     // Add medium topics
-    if (mediumTopics.length < mediumTopicsQuantity && [2, 3, 4].includes(shuffledTopics[i].level)) {
+    if (
+      mediumTopics.length < mediumTopicsQuantity &&
+      [2, 3, 4].includes(shuffledTopics[i].level) &&
+      !mediumTopics.some((t) => t.category === shuffledTopics[i].category)
+    ) {
       mediumTopics.push(shuffledTopics[i]);
       continue;
     }
 
     // Add hard topics
-    if (hardTopics.length < hardTopicsQuantity && [4, 5].includes(shuffledTopics[i].level)) {
+    if (
+      hardTopics.length < hardTopicsQuantity &&
+      [4, 5].includes(shuffledTopics[i].level) &&
+      !hardTopics.some((t) => t.category === shuffledTopics[i].category)
+    ) {
       hardTopics.push(shuffledTopics[i]);
     }
   }
 
   // Distribute topics
-  const topics: TopicCard[] = utils.game
-    .makeArray(topicsQuantity * roundsCount)
-    .map((_: any, index: number) => {
-      const position = index % topicsQuantity;
-      let topic: TopicCard | undefined = undefined;
-      if (position === 0 || position === 1) {
-        topic = easyTopics.pop();
-      }
-      if (position === 2 || position === 3) {
-        topic = mediumTopics.pop();
-      }
-      if (position === 4) {
-        topic = hardTopics.pop();
-      }
+  const topics: TopicCard[] = utils.game.makeArray(topicsQuantity * roundsCount).map((_, index: number) => {
+    const position = index % topicsQuantity;
+    let topic: TopicCard | undefined = undefined;
+    if (position === 0 || position === 1) {
+      topic = easyTopics.pop();
+    }
+    if (position === 2 || position === 3) {
+      topic = mediumTopics.pop();
+    }
+    if (position === 4) {
+      topic = hardTopics.pop();
+    }
 
-      if (topic) {
-        return topic;
-      }
-      return shuffledTopics.pop() as TopicCard;
-    });
+    if (topic) {
+      return topic;
+    }
+    return shuffledTopics.pop() as TopicCard;
+  });
 
   // Distribute letters
   const shuffledLetters = utils.game.shuffle(allLetters);
@@ -145,7 +155,7 @@ export const buildGrid = (
 
   const letters: LetterEntry[] = utils.game
     .makeArray(lettersQuantity * roundsCount)
-    .map((_: any, index: number) => {
+    .map((_, index: number) => {
       const position = index % lettersQuantity;
       let letter: LetterEntry | undefined = undefined;
       if (position === 0 || position === 1) {
@@ -177,11 +187,11 @@ export const getCurrentGrid = (
   const roundIndex = currentRound - 1;
   const startTopicIndex = roundIndex * topicsQuantity;
   const endTopicIndex = startTopicIndex + topicsQuantity;
-  const xHeaders = topics.slice(startTopicIndex, endTopicIndex);
+  const xHeaders = orderBy(topics.slice(startTopicIndex, endTopicIndex), ['level', 'label'], ['asc', 'asc']);
 
   const startLetters = roundIndex * lettersQuantity;
   const endLetters = startLetters + lettersQuantity;
-  const yHeaders = letters.slice(startLetters, endLetters);
+  const yHeaders = orderBy(letters.slice(startLetters, endLetters), ['level', 'letters'], ['asc', 'asc']);
 
   return {
     xHeaders,
@@ -308,7 +318,9 @@ export const evaluateAnswers = (
       if (rejections[answerId] === undefined) {
         rejections[answerId] = 0;
       }
-      rejections[answerId] += 1;
+      if (player.evaluations[answerId]) {
+        rejections[answerId] += 1;
+      }
 
       if (rejections[answerId] >= acceptableRejections) {
         const [groupId] = answerId.split(SEPARATOR);

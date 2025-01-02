@@ -1,3 +1,4 @@
+import { USE_MOCKS } from 'dev-configs';
 import { camelCase, memoize, orderBy, startCase } from 'lodash';
 // Types
 import type { GameInfo } from 'types/game-info';
@@ -77,6 +78,7 @@ export const inNTime = (time: number): Date => {
  * Flag indicating if the environment is for development
  */
 export const isDevEnv: boolean = process.env.NODE_ENV === 'development';
+export const isDevMocking = isDevEnv && USE_MOCKS;
 // export const isDevEnv = false;
 
 const methods = {

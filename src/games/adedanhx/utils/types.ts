@@ -7,7 +7,7 @@ export type SubmitGridAnswersPayload = {
 };
 
 export type SubmitRejectedAnswers = {
-  evaluations: string[];
+  evaluations: BooleanDictionary;
 };
 
 export type LetterEntry = {
