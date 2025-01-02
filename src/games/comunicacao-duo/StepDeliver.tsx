@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Flex, Space } from 'antd';
+import { Button, Flex } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';

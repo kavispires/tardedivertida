@@ -7,7 +7,7 @@ import utils from '../utils';
  * @returns
  */
 export const getGlobalFirebaseDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
-  let response;
+  let response: Promise<any>;
 
   try {
     response = (await utils.firestore.getGlobalRef().doc(documentName)?.get())?.data() ?? fallback;

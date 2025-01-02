@@ -1,7 +1,7 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 // Ant Design Resources
-import { Space, Typography } from 'antd';
+import { Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons

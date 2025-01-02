@@ -258,7 +258,7 @@ export const distributeNumberIds = (
 export const dealItemsToPlayers = (
   players: Players,
   list: unknown[],
-  quantityPerPlayer = 1,
+  quantityPerPlayer: number,
   propertyName: string,
 ) => {
   const playersList = getListOfPlayers(players);

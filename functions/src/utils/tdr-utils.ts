@@ -36,7 +36,7 @@ export const getItems = async (
     }
 
     // Handle decks
-    if (options.decks && options.decks.length) {
+    if (options.decks?.length) {
       const selectorFunction =
         options.deckFiltering === 'AND'
           ? itemUtils.onlyItemsWithinDecks
@@ -118,6 +118,7 @@ export const itemUtils = {
    * Removes the prop decks from the item
    */
   cleanupDecks: (item: Item): Item => {
+    // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
     delete item.decks;
     return item;
   },

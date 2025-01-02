@@ -206,7 +206,7 @@ export const increaseRound = (round: Round, total?: number, current?: number): R
  * @returns
  */
 export const flattenArray = <T>(twoDimensionalArray: T[][]): T[] =>
-  twoDimensionalArray.reduce((acc, arr) => [...acc, ...arr], []);
+  twoDimensionalArray.reduce((acc, arr) => acc.concat(arr), []);
 
 /**
  * Function to simulate calls when developing

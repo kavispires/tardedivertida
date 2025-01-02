@@ -9,7 +9,6 @@ import { Instruction, Title } from 'components/text';
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';
 
-
 const hand = Array(8)
   .fill(0)
   .map((_, i) => `td-d${random(1, 10)}-${random(1, 168)}`);

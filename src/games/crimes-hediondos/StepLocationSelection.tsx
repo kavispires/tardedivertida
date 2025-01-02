@@ -16,7 +16,6 @@ import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
 
-
 type StepLocationSelectionProps = {
   user: GamePlayer;
   items: ItemsDict;

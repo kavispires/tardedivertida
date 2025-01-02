@@ -58,6 +58,7 @@ export const buildTable = (
   const startingIndexByRound = [0, 0, 10, 5, 0];
   const newTable = replaceTableCards(table, newImages, startingIndexByRound[currentRound]);
   const newCleanTable = newTable.map((card) => {
+    // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
     delete card.matchedPlayers;
     card.used = false;
     return card;

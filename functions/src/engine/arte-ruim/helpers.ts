@@ -182,7 +182,9 @@ export const getEnoughUnusedLevel4Cards = (
       if (cards.some((cardId) => usedCards[cardId]) && cards.some((cardId) => reserved[cardId])) {
         cards.forEach((cardId) => discarded.push(cardId));
       } else {
-        cards.forEach((cardId) => (reserved[cardId] = true));
+        cards.forEach((cardId) => {
+          reserved[cardId] = true;
+        });
       }
     }
   }

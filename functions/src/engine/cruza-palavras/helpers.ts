@@ -57,7 +57,7 @@ export const determineNextPhase = (
  * @returns
  */
 export const checkForAvailableCells = (
-  grid: GridCell[] = [],
+  grid: GridCell[],
   playerCount: number,
   largerGridCount: number,
 ): boolean => {
