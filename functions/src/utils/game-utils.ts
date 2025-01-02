@@ -1,4 +1,4 @@
-import { buildIdDictionary } from './helpers';
+import { buildBooleanDictionary } from './helpers';
 import { getListOfPlayersIds } from './players-utils';
 
 // Shuffling
@@ -87,7 +87,7 @@ export const getRandomUniqueObjects = <T>(
   quantity: number,
   byPropertyName = 'id',
 ): T[] => {
-  const usedIdDict = buildIdDictionary(used as PlainObject[]);
+  const usedIdDict = buildBooleanDictionary(used as PlainObject[]);
   const availableList = list.filter((entry) => !usedIdDict[entry[byPropertyName]]);
   return getRandomItems(availableList, quantity);
 };
