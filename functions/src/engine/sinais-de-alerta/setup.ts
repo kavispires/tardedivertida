@@ -13,7 +13,7 @@ import type { DrawingEntry, FirebaseStateData, FirebaseStoreData, ResourceData }
 import utils from '../../utils';
 import { dealCardsToPlayers, evaluateAnswers, getAchievements } from './helpers';
 import { saveDrawings } from './data';
-import { orderBy } from 'lodash';
+import { cloneDeep, orderBy } from 'lodash';
 
 /**
  * Setup
@@ -172,7 +172,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const finalGallery = orderBy(utils.helpers.deepCopy(store.pastDrawings), 'accuracy', 'desc');
+  const finalGallery = orderBy(cloneDeep(store.pastDrawings), 'accuracy', 'desc');
 
   const achievements = getAchievements(store);
 

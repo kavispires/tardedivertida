@@ -1,9 +1,9 @@
 // Constants
+import { cloneDeep } from 'lodash';
 import { AVATAR_IDS } from './constants';
 import { throwException } from './firebase';
 // Utils
 import { getRandomUniqueItem, shuffle } from './game-utils';
-import { deepCopy } from './helpers';
 
 /**
  * Generates a player id based of their name
@@ -299,7 +299,7 @@ export const addBots = (
   const names = ['A-bot', 'B-bop', 'C-am', 'D-Doo', 'E-max'];
   const avatarIds = ['A', 'B', 'C', 'D', 'E'];
   const bots: Player[] = new Array(quantity).fill(0).map((n, i) => ({
-    ...deepCopy({
+    ...cloneDeep({
       ...createPlayer(generatePlayerId(names[n + i]), names[i], avatarIds[i]),
       ...defaultProperties,
       type: 'bot',

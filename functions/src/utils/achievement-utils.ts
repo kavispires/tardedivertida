@@ -1,5 +1,5 @@
+import { cloneDeep } from 'lodash';
 import { calculateAverage, removeDuplicates } from './game-utils';
-import { deepCopy } from './helpers';
 import { getListOfPlayers } from './players-utils';
 
 interface StoreAchievement {
@@ -27,7 +27,7 @@ type AchievementResult = {
 export const setup = (players: Players, store: PlainObject, properties: PlainObject) => {
   store.achievements = {};
   getListOfPlayers(players).forEach((player) => {
-    store.achievements[player.id] = { ...deepCopy(properties), playerId: player.id };
+    store.achievements[player.id] = { ...cloneDeep(properties), playerId: player.id };
   });
 
   return store.achievements;

@@ -8,6 +8,7 @@ import utils from '../../utils';
 // Internal
 import { calculateRanking, countImpostorVotes, determinePhaseOrder } from './helpers';
 import { saveData } from './data';
+import { cloneDeep } from 'lodash';
 
 /**
  * Setup
@@ -16,8 +17,8 @@ import { saveData } from './data';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
   data: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -160,7 +161,7 @@ export const prepareDefensePhase = async (
 };
 
 export const prepareVotingPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -180,7 +181,7 @@ export const prepareVotingPhase = async (
 };
 
 export const prepareRevealPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -209,7 +210,7 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
-  const gallery = utils.helpers.deepCopy(store.usedCards);
+  const gallery = cloneDeep(store.usedCards);
 
   await utils.firestore.markGameAsComplete(gameId);
 
