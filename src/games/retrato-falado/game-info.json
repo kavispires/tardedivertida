@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "retrato-falado",
-  "version": "2.1.32",
+  "version": "2.1.33",
   "release": "stable",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Retrato Falado Monstruoso",
     "en": "Monster Sketch"
