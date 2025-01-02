@@ -103,8 +103,10 @@ export function PhaseRules({ players }: PhaseRulesProps) {
     return <LoadingPage />;
   }
 
+  const backgroundColor = info.appearance?.backgroundColor;
+
   return (
-    <Layout.Content className="phase-rules">
+    <Layout.Content className="phase-rules" style={backgroundColor ? { backgroundColor } : {}}>
       <StepTitle>
         <Translate pt="Regras do Jogo" en="Game Rules" />
       </StepTitle>

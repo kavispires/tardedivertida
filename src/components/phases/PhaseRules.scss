@@ -1,14 +1,12 @@
 .phase-rules {
-  border-radius: $border-radius;
-  margin: get-unit(4 8);
-  padding: get-unit(4);
+  padding: get-unit(8 8);
 
   &__carousel {
     background-color: rgba($color: #000, $alpha: 0.2);
   }
 
   &__rule .rules-carousel__rule-text {
-    color: get-color('white');
+    color: get-color("white");
   }
 
   &__actions {
@@ -21,7 +19,7 @@
   }
 
   &__rule-actions-ready {
-    background-color: get-color('green');
+    background-color: get-color("green");
     font-style: italic;
   }
 }
