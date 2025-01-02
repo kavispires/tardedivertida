@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "0.9.37",
+  "version": "0.9.38",
   "release": "stable",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Fileira De Fatos",
     "en": "Facts Lineup"
