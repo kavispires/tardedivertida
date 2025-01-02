@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 // Ant Design Resources
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Popover } from 'antd';
@@ -6,11 +7,13 @@ import { Button, Popover } from 'antd';
 import type { Achievement, AchievementReference } from 'types/achievements';
 import type { GamePlayers } from 'types/player';
 // Utils
+import { getAnimation } from 'utils/animations';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { Container } from 'components/layout/Container';
+import { Instruction } from 'components/text';
 // Internal
 import { Medal } from './Medal';
 
@@ -37,10 +40,14 @@ const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
 export function Achievements({ players, achievements, reference, colorScheme }: AchievementsProps) {
   return (
-    <div className={clsx('achievements', getAnimationClass('fadeIn'))}>
-      <Title size="small" level={3} colorScheme={colorScheme}>
-        <Translate pt="Medalhas" en="Achievements" />
-      </Title>
+    <Container
+      title={<Translate pt="Medalhas" en="Achievements" />}
+      titleProps={{
+        colorScheme,
+        size: 'small',
+      }}
+      className={clsx('achievements', getAnimationClass('fadeIn'))}
+    >
       {achievements.length === 0 && (
         <Instruction contained>
           <Translate
@@ -61,20 +68,18 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
           />
         </Instruction>
       )}
-
       <ul className="achievements-list">
         {achievements.map((achievement, index) => {
           const { icon = 'star', ...achievementObj } = reference[achievement.type] ?? {};
           const player = players[achievement.playerId];
           return (
-            <li
+            <motion.li
               key={`achievement-${achievement.type}`}
-              className={clsx(
-                'achievements-entry',
-                getAnimationClass('flipInY', {
-                  delay: index < achievements.length / 2 ? index : achievements.length - 1 - index,
-                }),
-              )}
+              className={'achievements-entry'}
+              {...getAnimation('flipInY', {
+                duration: 3,
+                delay: (index < achievements.length / 2 ? index : achievements.length - 1 - index) + 2.5,
+              })}
             >
               <div className="achievement__medal">
                 <Medal id={icon} />
@@ -90,20 +95,20 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
                 <div className="achievement__description">
                   <Popover
                     content={
-                      <>
+                      <span>
                         <DualTranslate>{achievementObj.description ?? unknownText}</DualTranslate> (
-                        {achievement.value})
-                      </>
+                        {String(achievement.value)})
+                      </span>
                     }
                   >
                     <Button icon={<QuestionCircleOutlined />} shape="circle" type="text" size="small" />
                   </Popover>
                 </div>
               )}
-            </li>
+            </motion.li>
           );
         })}
       </ul>
-    </div>
+    </Container>
   );
 }
