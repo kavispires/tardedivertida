@@ -6,7 +6,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
-import { isDevEnv, pluralize } from 'utils/helpers';
+import { isDevMocking, pluralize } from 'utils/helpers';
 // Components
 import { TimedButton } from 'components/buttons';
 import { HostOnlyContainer } from 'components/host';
@@ -43,7 +43,7 @@ export function StepEvaluateGroup({
   // How long to wait to enable the button to give type to players to evaluate
   const waitDuration = useMemo(() => {
     // Dev
-    if (isDevEnv) return 2;
+    if (isDevMocking) return 2;
     // When only 2 or less answers left
     return Math.min(answersGroup.answers.length * 3, 12);
   }, [answersGroup.answers.length]);

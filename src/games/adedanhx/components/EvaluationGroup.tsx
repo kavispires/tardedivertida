@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { isEqual } from 'lodash';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
@@ -117,12 +118,11 @@ export function EvaluationGroup({
             <Button
               type="primary"
               shape="round"
-              className="button"
-              onClick={() => onSubmitRejections({ evaluations: Object.keys(rejections) })}
+              onClick={() => onSubmitRejections({ evaluations: rejections })}
               loading={isLoading}
-              disabled={Object.keys(rejections).length === 0 || user?.evaluations[answersGroup.id]}
+              disabled={isEqual(rejections, user.evaluations)}
             >
-              <Translate pt="Rejeitar respostas" en="Reject wrong answers" />
+              <Translate pt="Atualizar rejeições" en="Reject wrong answers" />
             </Button>
           </SpaceContainer>
         </div>

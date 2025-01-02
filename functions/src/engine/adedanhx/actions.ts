@@ -62,11 +62,10 @@ export const handleSubmitRejectAnswers = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-
-  evaluations: string[],
+  evaluations: BooleanDictionary,
 ) => {
-  const change = evaluations.reduce((acc: BooleanDictionary, evaluation) => {
-    acc[`evaluations.${evaluation}`] = true;
+  const change = Object.keys(evaluations).reduce((acc: BooleanDictionary, evaluationKey) => {
+    acc[`evaluations.${evaluationKey}`] = evaluations[evaluationKey];
     return acc;
   }, {});
 
