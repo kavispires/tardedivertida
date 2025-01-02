@@ -210,13 +210,6 @@ export const buildBooleanDictionary = (list: string[]): BooleanDictionary => {
 };
 
 /**
- * Creates a copy of given object
- * @param obj
- * @returns
- */
-export const deepCopy = <T>(obj: T): T => JSON.parse(JSON.stringify(obj));
-
-/**
  * Generates dictionary of given list of objects
  * @param list
  * @param keyProperty the property that will be the key of the dictionary

@@ -20,6 +20,7 @@ import {
   groupAnswers,
   storeGalleryData,
 } from './helpers';
+import { cloneDeep } from 'lodash';
 
 /**
  * Setup
@@ -29,7 +30,7 @@ import {
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -196,8 +197,8 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  const topAnswers = utils.helpers.deepCopy(store.topAnswers);
-  const noAnswers = utils.helpers.deepCopy(store.noAnswers);
+  const topAnswers = cloneDeep(store.topAnswers);
+  const noAnswers = cloneDeep(store.noAnswers);
 
   // Save data
   // await saveData(store.language, store.pastClues, store.options.imageGrid);

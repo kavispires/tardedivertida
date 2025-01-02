@@ -18,7 +18,7 @@ import {
   getTheTwoLevel5Cards,
 } from './helpers';
 import { saveUsedCards } from './data';
-import { orderBy } from 'lodash';
+import { cloneDeep, orderBy } from 'lodash';
 
 /**
  * Setup
@@ -188,7 +188,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const finalGallery = orderBy(utils.helpers.deepCopy(store.pastDrawings), 'successRate', 'desc');
+  const finalGallery = orderBy(cloneDeep(store.pastDrawings), 'successRate', 'desc');
 
   const achievements = getAchievements(store);
 
