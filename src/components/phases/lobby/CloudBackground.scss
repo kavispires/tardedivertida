@@ -1,0 +1,23 @@
+@use "styles/sass" as *;
+
+.cloud-background {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+
+  // The cloud itself
+  &__cloud {
+    position: absolute;
+    width: 300px;
+    background-repeat: no-repeat;
+    height: 300px;
+    min-height: 300px;
+  }
+}

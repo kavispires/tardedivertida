@@ -13,6 +13,7 @@ export type GameInfo = {
   summary: DualLanguageValue;
   appearance: {
     clouds: string;
+    cloudsAnimationType?: string;
     colorScheme: ColorScheme;
     primaryColor: string;
     surfaceColor?: string;

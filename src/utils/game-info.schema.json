@@ -45,9 +45,13 @@
           "type": "string",
           "enum": ["light", "dark"]
         },
-        "clouds": { "type": "string" }
+        "clouds": { "type": "string" },
+        "cloudsAnimationType": {
+          "type": "string",
+          "enum": ["flow", "rising", "falling", "orbit"]
+        }
       },
-      "required": ["primaryColor", "clouds", "backgroundColor", "colorScheme"]
+      "required": ["primaryColor", "clouds", "cloudsAnimationType", "backgroundColor", "colorScheme"]
     },
     "rules": {
       "type": "object",
