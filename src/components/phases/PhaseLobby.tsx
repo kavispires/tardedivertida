@@ -84,7 +84,7 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
               className="lobby-step__banner"
             />
             <div className="lobby-step__content">
-              <Paragraph className="lobby-step__summary" layoutId="lobby-step-summary">
+              <Paragraph className="lobby-step__summary italic" layoutId="lobby-step-summary">
                 <DualTranslate>{info.summary}</DualTranslate>
               </Paragraph>
 

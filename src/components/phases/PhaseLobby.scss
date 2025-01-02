@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: 360px minmax(0, 720px);
   gap: get-unit(2);
-  margin: get-unit(8 0);
+  margin: get-unit(0);
   z-index: 3;
 
   &__card {
@@ -119,63 +119,6 @@
 .lobby-heading {
   text-align: center;
   margin: get-unit(2 1);
-}
-
-.cloud-background {
-  bottom: 0;
-  left: 0;
-  padding-top: 50px;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1;
-  height: 100vh;
-  height: 100dvh;
-
-  // ANIMATION
-
-  &__animation-0 {
-    animation: animateCloud 35s linear infinite;
-    transform: scale(0.35) translateY(75vh);
-  }
-
-  &__animation-1 {
-    animation: animateCloud 20s linear infinite;
-    transform: scale(0.3) translateY(250vh);
-  }
-
-  &__animation-2 {
-    animation: animateCloud 30s linear infinite;
-    transform: scale(0.35) translateY(100vh);
-  }
-
-  &__animation-3 {
-    animation: animateCloud 18s linear infinite;
-    transform: scale(0.4) translateY(10vh);
-  }
-
-  &__animation-4 {
-    animation: animateCloud 25s linear infinite;
-    transform: scale(0.55) translateY(100vh);
-  }
-
-  // The cloud itself
-  &__cloud {
-    position: absolute;
-    width: 300px;
-    background-repeat: no-repeat;
-    height: 400px;
-    min-height: 300px;
-  }
-}
-
-@keyframes animateCloud {
-  0% {
-    margin-left: -1000px;
-  }
-  100% {
-    margin-left: 100%;
-  }
 }
 
 .lobby-usual-avatar-selection {
