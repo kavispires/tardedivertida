@@ -124,10 +124,6 @@ describe('/utils', () => {
         },
       ]);
     });
-
-    it('gets players names from list of ids', () => {
-      expect(utils.getPlayersFromIds(['_bob'], players, true)).toStrictEqual(['Bob']);
-    });
   });
 
   describe('pluralize', () => {

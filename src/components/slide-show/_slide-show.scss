@@ -4,13 +4,13 @@
   gap: get-unit(1);
   padding: get-unit(2);
   border-radius: $border-radius;
-  background-color: get-color('white', 4);
+  background-color: get-color("white", 4);
 
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
-    'left right'
-    'controls controls';
+    "left right"
+    "controls controls";
 
   &__left {
     grid-area: left;
@@ -35,7 +35,7 @@
     width: 100%;
     height: get-unit(2);
     margin: get-unit(0 0 4 0);
-    background-color: get-color('gray', 1);
+    background-color: get-color("gray", 1);
     border-radius: get-unit(2);
     flex-grow: 1;
     position: relative;
@@ -55,7 +55,7 @@
   }
 
   &__controls-timer-bar-node {
-    background-color: get-color('gray', 2);
+    background-color: get-color("gray", 2);
     height: get-unit(2);
     min-width: get-unit(5);
     border-radius: $border-radius;
@@ -64,12 +64,53 @@
   &__controls-timer-bar-pill {
     height: get-unit(2);
     border-radius: get-unit(2);
-    background-color: get-color('gray');
+    background-color: get-color("gray");
     display: block;
     transition: all 1s;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 35;
+  }
+}
+
+.slide-show-composable {
+  &__label {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: get-unit(1);
+
+    @include lg {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__bubble-value {
+    background-color: get-color("white");
+    box-shadow: 0 3px 5px 2px rgba($color: #000, $alpha: 0.5);
+    padding: get-unit(2 4);
+    text-transform: uppercase;
+    border-radius: 1.5em;
+
+    @include lg {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__bubble-icon {
+    margin-right: get-unit(2);
+    color: get-color("gray");
+  }
+
+  &__players {
+    transform: translateY(get-unit(-1));
+    display: flex;
+    align-items: center;
+  }
+
+  &__players-names {
+    margin-left: get-unit(2);
+    color: get-color("gray");
   }
 }

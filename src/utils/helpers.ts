@@ -177,22 +177,23 @@ export const getColorFromLetter = (letter: string): string => {
 };
 
 /**
- * Get given players from list of ids
- * @param  playerIds
- * @param players
- * @param justNames if true, only return names
- * @returns
+ * Retrieves an array of GamePlayer objects based on an array of player IDs.
+ * @param playerIds - An array of player IDs to look up.
+ * @param players - An object containing all players, indexed by their IDs.
+ * @returns An array of GamePlayer objects corresponding to the provided player IDs.
  */
-export const getPlayersFromIds = (
-  playerIds: PlayerId[],
-  players: GamePlayers,
-  justNames = false,
-): (GamePlayer | PlayerName)[] => {
-  return playerIds.map((playerId) => {
-    const player = players[playerId];
-    if (justNames) return player.name;
-    return player;
-  });
+export const getPlayersFromIds = (playerIds: PlayerId[], players: GamePlayers): GamePlayer[] => {
+  return playerIds.map((playerId) => players[playerId]);
+};
+
+/**
+ * Retrieves the names of players based on their IDs.
+ * @param playerIds - An array of player IDs.
+ * @param players - An object containing player information, where the key is the player ID and the value is the player details.
+ * @returns An array of player names corresponding to the provided player IDs.
+ */
+export const getPlayerNamesFromIds = (playerIds: PlayerId[], players: GamePlayers): string[] => {
+  return playerIds.map((playerId) => players[playerId].name);
 };
 
 /**
