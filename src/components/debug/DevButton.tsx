@@ -8,10 +8,10 @@ import { DebugOnly } from './DebugOnly';
  * Button only available during dev only
  * @returns
  */
-export function DevButton({ children, type, ...rest }: ButtonProps) {
+export function DevButton({ children, ghost, type, ...rest }: ButtonProps) {
   return (
     <DebugOnly devOnly>
-      <Button icon={<BugFilled />} type={type ?? 'primary'} {...rest}>
+      <Button icon={<BugFilled />} ghost={ghost ?? true} type={type ?? 'primary'} {...rest}>
         {children}
       </Button>
     </DebugOnly>

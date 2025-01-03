@@ -1,21 +1,21 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input, InputNumber, Select, Space } from 'antd';
+import { Divider, Input, InputNumber, Select, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
+// Internal
+import type { SubmitCustomQuestionPayload } from '../utils/types';
 
 type CustomQuestionProps = {
-  onSubmit: GenericFunction;
+  onSubmit: (payload: SubmitCustomQuestionPayload) => void;
   userId: PlayerId;
 };
 
 export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
-  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [questionType, setQuestionType] = useState(translate('Cite', 'What are'));
   const [questionNumber, setQuestionNumber] = useState<number>(3);
@@ -23,9 +23,10 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
 
   return (
     <>
-      <SpaceContainer>
+      <Divider>
         <Translate pt="OU" en="OR" />
-      </SpaceContainer>
+      </Divider>
+
       <Space className="contained center" direction="vertical">
         <Title size="xx-small">
           <Translate pt="Crie uma pergunta" en="Write custom question" />:
@@ -52,7 +53,7 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
         <div className="m-custom-question-sample">
           "{questionType} {questionNumber} {questionText || '...'}"
         </div>
-        <Button
+        <SendButton
           onClick={() =>
             onSubmit({
               customQuestion: {
@@ -64,10 +65,9 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
             })
           }
           disabled={!questionText}
-          loading={isLoading}
         >
           <Translate pt="Enviar pergunta personalizada" en="Submit custom question" />
-        </Button>
+        </SendButton>
       </Space>
     </>
   );

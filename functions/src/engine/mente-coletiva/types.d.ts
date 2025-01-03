@@ -36,24 +36,12 @@ export interface MenteColetivaStore extends DefaultStore {
   pastQuestions: PastQuestions[];
   currentQuestion?: GroupQuestionCard;
   gallery?: GalleryEntry[];
-  [key: string]: any;
 }
 
 export interface MenteColetivaState extends DefaultState {
   gameOrder?: PlayerId[];
   roundType?: string;
   activePlayerId?: PlayerId;
-  currentQuestions?: any;
-  currentQuestion?: any;
-  answersList?: any;
-  allAnswers?: any;
-  ranking?: any;
-  pastureChangeStr?: string;
-  usedSave?: any;
-  announceSave?: any;
-  winners?: any;
-  losers?: any;
-  [key: string]: any;
 }
 
 export interface MenteColetivaInitialState extends InitialState {
@@ -76,6 +64,13 @@ export interface AnswerGroupEntry {
   score: number;
   entries: AnswerEntry[];
 }
+
+export type ExtendedPlayerAnswerEntry = {
+  answer: string;
+  parsedAnswer: string;
+  isLocked: boolean;
+  score: number;
+};
 
 export interface MenteColetivaSubmitAction extends Payload {
   action: keyof typeof MENTE_COLETIVA_ACTIONS;

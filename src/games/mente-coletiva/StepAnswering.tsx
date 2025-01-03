@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Input } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -10,6 +10,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getEntryId } from 'utils/helpers';
 // Components
+import { SendButton } from 'components/buttons';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
@@ -19,14 +20,14 @@ import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 import { TimedTimerClock } from 'components/timers';
 // Internal
-import type { Question } from './utils/types';
+import type { Question, SubmitAnswersPayload } from './utils/types';
 import { mockAnswers } from './utils/mock';
 import { Pasture } from './components/Pasture';
 import { AnsweringRules } from './components/RulesBlobs';
 
 type StepAnsweringProps = {
   currentQuestion: Question;
-  onSubmitAnswers: GenericFunction;
+  onSubmitAnswers: (payload: SubmitAnswersPayload) => void;
   players: GamePlayers;
   roundType: number;
   user: GamePlayer;
@@ -53,7 +54,7 @@ export function StepAnswering({
     // onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
   }, []);
 
-  const onWriteAnswer = (e: any) => {
+  const onWriteAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAnswers((s) => ({
       ...s,
       [e.target.id]: e.target.value.toUpperCase().trim(),
@@ -115,20 +116,15 @@ export function StepAnswering({
             })}
         </ol>
         <SpaceContainer>
-          <Button
-            type="primary"
-            disabled={isDisabled || isLoading}
-            onClick={() => onSubmitAnswers({ answers })}
-          >
-            <Translate pt="Enviar respostas" en="Submit answers" />
-          </Button>
-
           <DevButton
-            ghost
             onClick={() => onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) })}
           >
             Mock Answers
           </DevButton>
+
+          <SendButton type="primary" disabled={isDisabled} onClick={() => onSubmitAnswers({ answers })}>
+            <Translate pt="Enviar respostas" en="Submit answers" />
+          </SendButton>
         </SpaceContainer>
       </div>
 

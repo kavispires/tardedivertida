@@ -94,7 +94,7 @@ export const handleSubmitAnswers = async (
 export const handleNextAnswers = async (
   gameName: GameName,
   gameId: GameId,
-  playerId: PlayerId,
+  _playerId: PlayerId,
   allowedList: string[],
 ) => {
   const actionText = 'advance answers';
@@ -167,7 +167,7 @@ export const handleNextAnswers = async (
 export const handleAddAnswer = async (
   gameName: GameName,
   gameId: GameId,
-  playerId: PlayerId,
+  _playerId: PlayerId,
   answer: AnswerEntry,
 ) => {
   const actionText = 'add answer';
