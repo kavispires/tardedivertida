@@ -10,7 +10,14 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 // Internal
-import type { AllowedList, Answer, AnswerGroupObject, Question } from './utils/types';
+import type {
+  AddAnswerPayload,
+  AllowedList,
+  Answer,
+  AnswerGroupObject,
+  NextAnswersPayload,
+  Question,
+} from './utils/types';
 import { AdminAnswerControl } from './components/AdminAnswerControl';
 import { AnswerGroup } from './components/AnswerGroup';
 import { UserAnswers } from './components/UserAnswers';
@@ -22,8 +29,8 @@ type StepCompareProps = {
   players: GamePlayers;
   user: GamePlayer;
   allAnswers: Answer[];
-  onAddAnswer: GenericFunction;
-  onNextAnswer: GenericFunction;
+  onAddAnswer: (payload: AddAnswerPayload) => void;
+  onNextAnswer: (payload: NextAnswersPayload) => void;
   remainingGroupsCount: number;
   allowedList: AllowedList;
   setAllowedList: GenericFunction;

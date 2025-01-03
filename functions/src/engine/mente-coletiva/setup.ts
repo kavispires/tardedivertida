@@ -1,6 +1,6 @@
 // Types
 import type { GroupQuestionCard } from '../../types/tdr';
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { ExtendedPlayerAnswerEntry, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import {
   MENTE_COLETIVA_PHASES,
@@ -52,7 +52,7 @@ export const prepareSetupPhase = async (
   // Add level to players
   utils.players.addPropertiesToPlayers(players, {
     level: 0,
-    answers: [],
+    answers: {},
   });
 
   utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.SHEEP - 1, 'sheepId');
@@ -94,7 +94,7 @@ export const prepareQuestionSelectionPhase = async (
   // Modify player
   utils.players.addPropertiesToPlayers(players, {
     score: 0,
-    answers: [],
+    answers: {},
   });
   utils.players.unReadyPlayer(players, activePlayerId);
 
@@ -117,6 +117,7 @@ export const prepareQuestionSelectionPhase = async (
         activePlayerId,
         currentQuestions,
       },
+      stateCleanup: ['ranking', 'pastureChangeStr'],
     },
   };
 };
@@ -193,7 +194,7 @@ export const prepareResolutionPhase = async (
 ): Promise<SaveGamePayload> => {
   // Add up score
   utils.players.getListOfPlayers(players).forEach((player) => {
-    Object.values(player.answers).forEach((playerAnswer: any) => {
+    Object.values<ExtendedPlayerAnswerEntry>(player.answers).forEach((playerAnswer) => {
       player.score += playerAnswer.score;
     });
   });
@@ -248,6 +249,7 @@ export const prepareResolutionPhase = async (
         usedSave: Boolean(state?.usedSave) || shouldSave,
         announceSave: shouldSave,
       },
+      stateCleanup: ['currentQuestion', 'answersList', 'allAnswers'],
     },
   };
 };

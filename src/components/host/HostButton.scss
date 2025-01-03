@@ -3,7 +3,7 @@
 .host-button.host-button {
   background: get-color("orange");
   border: 1px solid get-color("orange", 2);
-  color: get-color("orange", 2);
+  color: get-color("orange", 1);
 
   &.host-button.host-button:not(:disabled):hover {
     background: get-color("orange", 3);

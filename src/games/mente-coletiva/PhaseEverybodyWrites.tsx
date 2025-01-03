@@ -11,6 +11,7 @@ import { WritingIcon } from 'icons/WritingIcon';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { AnsweringRules } from './components/RulesBlobs';
@@ -36,7 +37,13 @@ export function PhaseEverybodyWrites({ state, players, meta }: PhaseProps) {
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.EVERYBODY_WRITES}>
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{
+          content: <Instruction contained>{Object.values(user?.answers ?? {}).join(', ')}</Instruction>,
+        }}
+      >
         {/* Step 0 */}
         <StepAnswering
           announcement={announcement}

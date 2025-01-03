@@ -29,11 +29,14 @@ export type SubmitQuestionPayload = {
 };
 
 export type SubmitCustomQuestionPayload = {
-  question: Question;
+  customQuestion: Question;
 };
 
 export type SubmitAnswersPayload = {
-  answers: string[];
+  answers: StringDictionary;
+};
+
+export type SubmitNextAnswersPayload = {
   allowedList: PlainObject;
 };
 

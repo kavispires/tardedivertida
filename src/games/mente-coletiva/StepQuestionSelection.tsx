@@ -11,7 +11,7 @@ import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
-import type { Question } from './utils/types';
+import type { Question, SubmitCustomQuestionPayload, SubmitQuestionPayload } from './utils/types';
 import { mockSelectQuestion } from './utils/mock';
 import { Pasture } from './components/Pasture';
 import { GamePremiseRules } from './components/RulesBlobs';
@@ -20,8 +20,8 @@ import { CustomQuestion } from './components/CustomQuestion';
 type StepQuestionSelectionProps = {
   activePlayer: GamePlayer;
   currentQuestions: Question[];
-  onSubmitQuestion: GenericFunction;
-  onSubmitCustomQuestion: GenericFunction;
+  onSubmitQuestion: (payload: SubmitQuestionPayload) => void;
+  onSubmitCustomQuestion: (payload: SubmitCustomQuestionPayload) => void;
   players: GamePlayers;
   roundType: number;
   pastureSize: number;

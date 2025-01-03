@@ -24,7 +24,7 @@ type AnswerGroupProps = {
   answerGroup: AnswerGroupObject;
   players: GamePlayers;
   remainingGroupsCount: number;
-  allowUserAnswer: GenericFunction;
+  allowUserAnswer: (isAllowed: boolean, answerId: string) => void;
 };
 
 export function AnswerGroup({

@@ -1,8 +1,6 @@
 import { useMemo, useState } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Hooks
-import { useLoading } from 'hooks/useLoading';
 // Utils
 import { isDevMocking, pluralize } from 'utils/helpers';
 // Components
@@ -33,8 +31,6 @@ export function StepEvaluateGroup({
   onNextGroup,
   onSubmitRejections,
 }: StepEvaluateGroupProps) {
-  const { isLoading } = useLoading();
-
   const answersGroup = answersGroups[answersGroupIndex];
 
   // How long to wait to enable the button to give type to players to evaluate

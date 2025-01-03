@@ -49,6 +49,7 @@ type GenericFunction = (...args: any) => void;
  * @deprecated
  */
 type BooleanFunction = (...args: any) => boolean;
+
 type ButtonEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
 // Language

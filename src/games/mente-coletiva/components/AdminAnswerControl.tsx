@@ -14,14 +14,20 @@ import { HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
-import type { AllowedList, Answer, AnswerGroupObject } from '../utils/types';
+import type {
+  AddAnswerPayload,
+  AllowedList,
+  Answer,
+  AnswerGroupObject,
+  NextAnswersPayload,
+} from '../utils/types';
 
 type AdminAnswerControlProps = {
   allAnswers: Answer[];
   allowedList: AllowedList;
   answerGroup: AnswerGroupObject;
-  onAddAnswer: GenericFunction;
-  onNextAnswer: GenericFunction;
+  onAddAnswer: (payload: AddAnswerPayload) => void;
+  onNextAnswer: (payload: NextAnswersPayload) => void;
   players: GamePlayers;
   remainingGroupsCount: number;
 };
