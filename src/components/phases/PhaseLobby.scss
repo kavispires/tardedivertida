@@ -85,7 +85,7 @@
   }
 
   &__rules {
-    background-color: get-color("white");
+    background-color: get-color("white", 5, 0.9);
     min-width: 360px;
     height: 100%;
     flex: 1;

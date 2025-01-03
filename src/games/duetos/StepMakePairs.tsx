@@ -11,6 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { TransparentButton } from 'components/buttons';
+import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -130,7 +131,10 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
           const secondItem = pairs[firstItemIndex + 1];
           const selectedFirstItem = selectedPairs[firstItemIndex];
           const selectedSecondItem = selectedPairs[firstItemIndex + 1];
-          const placeholder = { ...pool[0], value: { id: pool[0].id, name: { pt: '?', en: '?' } } };
+          const placeholder =
+            pool[0].type === 'alien-item'
+              ? { ...pool[0], value: { id: pool[0].id, name: { pt: '?', en: '?' } } }
+              : pool[0];
 
           return (
             <Space
@@ -167,6 +171,19 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
         })}
       </Space>
 
+      <SpaceContainer>
+        <DevButton onClick={() => setPairs(mockPairs(pool))}>Mock Pairs</DevButton>
+        <Button
+          size="large"
+          type="primary"
+          disabled={user.ready || !isComplete}
+          loading={isLoading}
+          onClick={() => onSubmitPairs({ pairs: pairs.map((v) => String(v)) })}
+        >
+          <Translate pt="Enviar Pares" en="Submit Pairs" />
+        </Button>
+      </SpaceContainer>
+
       <Space wrap className={clsx('options-grid', `options-grid--${pool.length}`)}>
         {pool.map((entry) => {
           const selected = pairs.includes(entry.id);
@@ -180,18 +197,6 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
           );
         })}
       </Space>
-
-      <SpaceContainer>
-        <Button
-          size="large"
-          type="primary"
-          disabled={user.ready || !isComplete}
-          loading={isLoading}
-          onClick={() => onSubmitPairs({ pairs: pairs.map((v) => String(v)) })}
-        >
-          <Translate pt="Enviar Pares" en="Submit Pairs" />
-        </Button>
-      </SpaceContainer>
     </Step>
   );
 }

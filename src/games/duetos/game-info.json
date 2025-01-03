@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.54",
+  "version": "1.1.55",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -20,18 +20,23 @@
   },
   "appearance": {
     "clouds": "socks-clouds",
+    "cloudsAnimationType": "falling",
     "primaryColor": "#5891e0",
     "backgroundColor": "rgba(209, 221, 237, 0.75)",
     "colorScheme": "light"
   },
   "rules": {
-    "pt": [
-      "Coloque os itens em pares e tente ganhe pontos por cada par que seja igual a de outros jogadores!",
-      "Você ganha pontos igual a quantos jogadores fizeram o par do mesmo jeito.Ao final de 5 rodadas quem tiver mais pontos ganha!"
-    ],
     "en": [
-      "Pair the items and try to score points for each pair that is the same as other players!",
-      "You score points equal to how many players made the pair the same way. At the end of 5 rounds whoever has the most points wins!"
+      "Let's pair stuff?",
+      "Each round a collection of things will be shown to you and you have to make pairs!",
+      "You get points equal to how many players made the same pair as you",
+      "After 5 rounds, the player with the most points wins"
+    ],
+    "pt": [
+      "Vamos parear as coisas?",
+      "A cada rodada uma coleção de coisas será mostrada e você tem que fazer pares!",
+      "Você ganha pontos iguais a quantos jogadores fizeram o mesmo par que você",
+      "Depois de 5 rodadas, o jogador com mais pontos vence"
     ]
   },
   "duration": {

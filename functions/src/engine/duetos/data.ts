@@ -7,6 +7,7 @@ import type { DuetosOptions, Gallery, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
+import { isEmpty } from 'lodash';
 
 /**
  * Get characters based on the game's language
@@ -136,6 +137,10 @@ export const savedData = async (gallery: Gallery): Promise<boolean> => {
     acc[item.pairId] = true;
     return acc;
   }, {});
+
+  if (isEmpty(dataDict)) {
+    return false;
+  }
 
   return await utils.tdr.savePairs(dataDict);
 };

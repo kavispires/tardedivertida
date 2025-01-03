@@ -62,7 +62,7 @@ export function RulesCarousel({
                   ? `${PUBLIC_URL.BANNERS}${info.gameName}-${language}.jpg`
                   : `${PUBLIC_URL.RULES}game-rule-${info.gameName}-${index}.jpg`
               }
-              fallback={`${PUBLIC_URL.RULES}game-rule-not-found.jpg`}
+              fallback={`${PUBLIC_URL.RULES}no-rules.jpg`}
               alt={rule}
             />
             <Typography.Paragraph className={clsx('rules-carousel__rule-text', ruleClassName)}>
