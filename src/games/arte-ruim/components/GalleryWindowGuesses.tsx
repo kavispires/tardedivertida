@@ -1,17 +1,14 @@
 import { orderBy } from 'lodash';
-// Ant Design Resources
-import { CrownFilled, MessageFilled } from '@ant-design/icons';
-import { Avatar as AntAvatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-// Utils
-import { getPlayersFromIds } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SlideShowBubbleValue, SlideShowLabel, SlideShowPlayersList } from 'components/slide-show';
 // Internal
 import type { ArteRuimCard } from '../utils/types';
 import type { PlayersSay } from '../utils/types';
+// Ant Design Resources
+// Utils
 
 type GalleryWindowGuessesProps = {
   playersSay: PlayersSay;
@@ -44,36 +41,18 @@ export function GalleryWindowGuesses({
 
   return (
     <div className="a-gallery__guesses">
-      <div className="a-gallery__label">
+      <SlideShowLabel>
         <Translate pt="Participantes votaram" en="Players voted" />
-      </div>
+      </SlideShowLabel>
+
       {entries.map((entry, index) => {
         return (
           <div key={`guess-${entry.cardId}-${index}`} className="a-gallery__guess">
-            <div
-              className="a-gallery__speech-bubble"
-              style={entry.isCorrect ? { backgroundColor: artistColor, color: 'white' } : {}}
-            >
-              {entry.isCorrect ? (
-                <CrownFilled className="a-gallery__speech-bubble-icon" style={{ color: 'white' }} />
-              ) : (
-                <MessageFilled className="a-gallery__speech-bubble-icon" />
-              )}
+            <SlideShowBubbleValue winner={entry.isCorrect} backgroundColor={artistColor}>
               {entry.card?.text}
-            </div>
-            <div className="a-gallery__players">
-              <AntAvatar.Group>
-                {entry.playersIds.map((playerId) => (
-                  <Avatar
-                    id={players[playerId].avatarId}
-                    key={`guess-avatar-${players[playerId].avatarId}`}
-                  />
-                ))}
-              </AntAvatar.Group>
-              <span className="a-gallery__players-names">
-                {getPlayersFromIds(entry.playersIds, players, true).join(', ')}
-              </span>
-            </div>
+            </SlideShowBubbleValue>
+
+            <SlideShowPlayersList players={players} playersIds={entry.playersIds} />
           </div>
         );
       })}

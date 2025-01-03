@@ -6,7 +6,7 @@ import { Avatar as AntAvatar, Space, Typography } from 'antd';
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
-import { getPlayersFromIds } from 'utils/helpers';
+import { getPlayerNamesFromIds } from 'utils/helpers';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
@@ -87,7 +87,7 @@ export function GalleryGuesses({
                   ))}
                 </AntAvatar.Group>
                 <span className="q-gallery__players-names">
-                  {getPlayersFromIds(entry.playersIds, players, true).join(', ')}
+                  {getPlayerNamesFromIds(entry.playersIds, players).join(', ')}
                 </span>
               </div>
             </div>
@@ -110,7 +110,7 @@ export function GalleryGuesses({
               </AntAvatar.Group>
               <StarPoints quantity={round.current} keyPrefix={`guessers-points-${currentPlayer.id}`} />
               <span className="q-gallery__players-names">
-                {getPlayersFromIds(correctGuesses, players, true).join(', ')}
+                {getPlayerNamesFromIds(correctGuesses, players).join(', ')}
               </span>
             </div>
             <div className="q-gallery__player-points">

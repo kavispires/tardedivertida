@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
-import { getPlayersFromIds } from 'utils/helpers';
+import { getPlayerNamesFromIds } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
@@ -17,7 +17,7 @@ export function FinalAssessmentInstruction({ finalAssessment, players }: FinalAs
   const { playerOrder, playerOrderIndex } = finalAssessment;
   const player = players[playerOrder[playerOrderIndex]];
 
-  const playerOrderNames = getPlayersFromIds(playerOrder, players, true).join(', ');
+  const playerOrderNames = getPlayerNamesFromIds(playerOrder, players).join(', ');
 
   return (
     <Instruction className="e-phase-instruction">

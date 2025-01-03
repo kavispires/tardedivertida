@@ -25,7 +25,7 @@ type StepDrawProps = {
 export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, announcement }: StepDrawProps) {
   const { translate } = useLanguage();
   const { isDebugEnabled } = useDevFeatures();
-  const [lines, setLines] = useState<any>([]);
+  const [lines, setLines] = useState<CanvasLine[]>([]);
   const [isTimesUp, setTimesUp] = useState(false);
 
   const { seconds, start, isRunning } = useCountdown({

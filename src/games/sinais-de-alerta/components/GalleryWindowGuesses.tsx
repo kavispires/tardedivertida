@@ -7,7 +7,7 @@ import { Avatar as AntAvatar, Flex, Typography } from 'antd';
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
 // Utils
-import { getContrastColor, getPlayersFromIds } from 'utils/helpers';
+import { getContrastColor, getPlayerNamesFromIds } from 'utils/helpers';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
@@ -143,7 +143,7 @@ export function GalleryWindowGuesses({
                 ))}
               </AntAvatar.Group>
               <span className="sda-gallery__players-names">
-                {getPlayersFromIds(entry.playersIds, players, true).join(', ')}
+                {getPlayerNamesFromIds(entry.playersIds, players).join(', ')}
               </span>
             </div>
           </div>
