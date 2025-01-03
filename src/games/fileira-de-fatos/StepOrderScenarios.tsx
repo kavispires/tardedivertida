@@ -8,7 +8,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { OnSubmitOrder } from './utils/types';
+import type { SubmitScenarioOrderPayload } from './utils/types';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 
@@ -16,7 +16,7 @@ type StepOrderScenariosProps = {
   activePlayer: GamePlayer;
   scenarios: TextCard[];
   roundType: string;
-  onSubmitOrder: OnSubmitOrder;
+  onSubmitOrder: (payload: SubmitScenarioOrderPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepOrderScenarios({

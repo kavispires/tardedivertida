@@ -1,21 +1,20 @@
 import { findLastIndex } from 'lodash';
 import { useState } from 'react';
 // Ant Design Resources
-import { RiseOutlined, UndoOutlined } from '@ant-design/icons';
+import { UndoOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
-import type { OnSubmitOrder } from '../utils/types';
+import type { SubmitScenarioOrderPayload } from '../utils/types';
 import { getReference } from '../utils/helpers';
 import { mockOrder } from '../utils/mock';
 import { Scenarios } from './Scenarios';
@@ -23,11 +22,10 @@ import { Scenarios } from './Scenarios';
 type SelectableScenarioOrderProps = {
   scenarios: TextCard[];
   kind: 'positive' | 'negative';
-  onSubmitOrder: OnSubmitOrder;
+  onSubmitOrder: (payload: SubmitScenarioOrderPayload) => void;
 };
 
 export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: SelectableScenarioOrderProps) {
-  const { isLoading } = useLoading();
   const width = useCardWidth(8, {
     gap: 16,
     minWidth: 100,
@@ -67,7 +65,7 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
     <SpaceContainer vertical>
       <Scenarios scenarios={selection} reference={reference} />
 
-      <RuleInstruction type="rule">
+      <RuleInstruction type="action">
         <Translate
           pt="Você deve escolher os cenários em ordem do menos pior para o pior. Você pode desfazer a seleção, se precisar. Quando estiver pronto(a), clique em 'Enviar'."
           en="You must choose the scenarios in order from the least bad to the worst. You may undo your selection if needed. When you're ready, click 'Submit'."
@@ -97,19 +95,13 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
           <Translate pt="Desfazer" en="Undo" />
         </Button>
 
-        <DevButton size="large" type="dashed" ghost onClick={() => setSelection(mockOrder(scenarios))}>
+        <DevButton size="large" type="dashed" onClick={() => setSelection(mockOrder(scenarios))}>
           Auto-select
         </DevButton>
 
-        <Button
-          size="large"
-          type="primary"
-          onClick={onSubmit}
-          icon={<RiseOutlined />}
-          disabled={selection.some((entry) => entry === null) || isLoading}
-        >
+        <SendButton size="large" onClick={onSubmit} disabled={selection.some((entry) => entry === null)}>
           <Translate pt="Enviar" en="Submit" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </SpaceContainer>
   );

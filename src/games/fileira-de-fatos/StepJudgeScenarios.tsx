@@ -5,14 +5,14 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { OnSubmitOrder } from './utils/types';
+import type { SubmitScenarioOrderPayload } from './utils/types';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 
 type StepJudgeScenariosProps = {
   scenarios: TextCard[];
   roundType: string;
-  onSubmitOrder: OnSubmitOrder;
+  onSubmitOrder: (payload: SubmitScenarioOrderPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepJudgeScenarios({
