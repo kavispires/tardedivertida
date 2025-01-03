@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "4.0.11",
+  "version": "4.1.0",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "book-clouds",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#1890ff",
     "backgroundColor": "rgba(140, 225, 225, 0.7)",
     "colorScheme": "light"
