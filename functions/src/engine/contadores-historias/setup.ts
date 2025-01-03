@@ -23,7 +23,7 @@ import { saveData } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   data: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -38,7 +38,7 @@ export const prepareSetupPhase = async (
   const tableDeck = buildTableDeck(data.cards, 2 * CARDS_PER_PLAYER);
 
   // Split cards equally between players
-  players = utils.game.dealList(data.cards, players, CARDS_PER_PLAYER, 'deck');
+  utils.game.dealList(data.cards, players, CARDS_PER_PLAYER, 'deck');
 
   const achievements = utils.achievements.setup(players, store, {
     playerVotes: 0,
@@ -77,19 +77,19 @@ export const prepareSetupPhase = async (
  * @returns
  */
 export const prepareStoryPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // Make sure everybody has 6 cards in hand
-  players = utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
-  players = utils.players.removePropertiesFromPlayers(players, ['vote', 'cardId']);
+  // Make sure everybody has the hand limit cards in hand
+  utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
+  utils.players.removePropertiesFromPlayers(players, ['vote', 'cardId', 'story']);
 
   // Determine active player based on current round
   const storytellerId = utils.players.getActivePlayer(state.gameOrder, state.round.current + 1);
   const nextStorytellerId = utils.players.getActivePlayer(state.gameOrder, state.round.current + 2);
 
-  utils.players.unReadyPlayer(players, storytellerId);
+  utils.players.readyPlayers(players, storytellerId);
 
   // Save
   return {
@@ -102,30 +102,36 @@ export const prepareStoryPhase = async (
         nextStorytellerId,
       },
       stateCleanup: ['outcome', 'ranking', 'table', 'story'],
-      storeCleanup: ['currentTableDictionary', 'story', 'solutionCardId'],
+      storeCleanup: ['currentTableDictionary'],
     },
   };
 };
 
 export const prepareCardPlayPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players to play cards
   utils.players.unReadyPlayers(players, state.storytellerId);
 
-  // Add card solution to storyteller
-  players[state.storytellerId].cardId = store.solutionCardId;
-  players[state.storytellerId].vote = store.solutionCardId;
+  const storyteller = players[state.storytellerId];
+
+  // Add card solution as the storyteller's vote
+  storyteller.vote = players[state.storytellerId].cardId;
+  // Discard storyteller's card
+  utils.playerHand.discardPlayerCard(players, storyteller.cardId, state.storytellerId, HAND_LIMIT);
 
   // Save
   return {
     update: {
+      store: {
+        solutionCardId: storyteller.cardId,
+      },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.CARD_PLAY,
         players,
-        story: store.story,
+        story: storyteller.story,
       },
     },
   };
@@ -137,6 +143,11 @@ export const prepareVotingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   const tableCardsCount = TABLE_CARDS_BY_PLAYER_COUNT[utils.players.getPlayerCount(players)];
+
+  // Remove cards from player's hands and refill hands
+  utils.players.getListOfPlayers(players, false, [state.storytellerId]).forEach((player) => {
+    utils.playerHand.discardPlayerCard(players, player.cardId, player.id, HAND_LIMIT);
+  });
 
   // Get N cards from tableDeck
   const tableCards = getTableCards(store.tableDeck, store.tableDeckIndex, tableCardsCount);
@@ -171,7 +182,7 @@ export const prepareResolutionPhase = async (
 
   const { usedCards = [] } = store;
   usedCards.push({
-    story: store.story,
+    story: state.story,
     cardId: store.solutionCardId,
     language: store.language,
   });

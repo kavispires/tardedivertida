@@ -18,10 +18,10 @@ export function mockPlayCard(hand: string[]) {
   };
 }
 
-export function mockVote(table: TableEntry[], hand: string[]) {
+export function mockVote(table: TableEntry[], playerCardId: string) {
   return {
     vote: getRandomItem(
-      table.map((tableEntry) => tableEntry.cardId).filter((cardId) => !hand.includes(cardId)),
+      table.map((tableEntry) => tableEntry.cardId).filter((cardId) => playerCardId !== cardId),
     ),
   };
 }

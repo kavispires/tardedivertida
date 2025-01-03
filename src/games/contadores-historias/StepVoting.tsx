@@ -15,6 +15,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
+import { TimedTimerBar } from 'components/timers';
 // Internal
 import type { TableEntry } from './utils/types';
 import { mockVote } from './utils/mock';
@@ -43,7 +44,7 @@ export function StepVoting({
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 8), { minWidth: 150 });
 
-  const hasPlayedCardAlready = Boolean(user.vote);
+  const isEverybodyReady = Object.values(players).every((player) => player.ready);
 
   const onSelectCard = (vote: string) => {
     onSubmitVote({
@@ -53,7 +54,7 @@ export function StepVoting({
 
   useMock(() => {
     if (!isUserTheStoryTeller) {
-      onSubmitVote(mockVote(table, user?.hand));
+      onSubmitVote(mockVote(table, user.cardId));
     }
   }, [user?.hand]);
 
@@ -75,6 +76,8 @@ export function StepVoting({
         <VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />
       </RuleInstruction>
 
+      {isEverybodyReady && <TimedTimerBar duration={15} onExpire={() => {}} />}
+
       <Space className="c-game-table" wrap>
         {table.map((cardEntry) => {
           const isUserCard = cardEntry.playerId === user.id;
@@ -83,7 +86,7 @@ export function StepVoting({
             <div key={`hand-${cardEntry.cardId}`} className="c-game-table__card-container">
               <ImageCardButton
                 id={cardEntry.cardId}
-                onClick={!hasPlayedCardAlready ? onSelectCard : undefined}
+                onClick={!isUserTheStoryTeller ? onSelectCard : undefined}
                 disabled={isLoading || isUserCard}
                 buttonText={
                   isUserCard ? <Translate pt="Sua" en="Yours" /> : <Translate pt="Votar" en="Vote" />
@@ -92,7 +95,7 @@ export function StepVoting({
                 <ImageCard
                   id={cardEntry.cardId}
                   cardWidth={cardWidth}
-                  className={clsx(isUserVote && 'c-game-table--vote')}
+                  className={clsx(isUserVote ? 'c-game-table--vote' : 'c-game-table--idle')}
                 />
               </ImageCardButton>
             </div>

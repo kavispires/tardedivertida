@@ -1,12 +1,13 @@
 import { ImageCard, ImageCardButton } from '.';
 import clsx from 'clsx';
-import type { LegacyRef, ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import type { ReactNode, Ref } from 'react';
 // Ant Design Resources
-import { type GetProps, Image } from 'antd';
+import { type GetProps, Image, Space } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
 // Sass
 import './ImageCardHand.scss';
 
@@ -78,7 +79,7 @@ export function ImageCardHand({
   selectButtonClass = '',
   sizeRatio = 8,
   cardSize,
-  minCardSize = 80,
+  minCardSize = 110,
   disabledSelectButton = false,
   selectedCards = {},
   cardClassName = '',
@@ -92,17 +93,13 @@ export function ImageCardHand({
 
   return (
     <Image.PreviewGroup preview={imageGroupPreview}>
-      <div className={clsx('image-card-hand', className)} ref={containerRef as LegacyRef<HTMLDivElement>}>
+      <Space className={clsx('image-card-hand', className)} ref={containerRef as Ref<HTMLDivElement>}>
         {hand.map((cardId, index) => {
           return (
-            <div
+            <motion.div
               key={`hand-${cardId}`}
-              className={clsx(
-                'image-card-hand__card-container',
-                getAnimationClass('slideInUp', {
-                  delay: index,
-                }),
-              )}
+              className="image-card-hand__card-container"
+              {...getAnimation('slideInUp', { delay: index / 10, ease: 'easeOut', duration: 0.5 })}
             >
               <ImageCardButton
                 onClick={onSelectCard}
@@ -119,10 +116,10 @@ export function ImageCardHand({
                   preview={preview}
                 />
               </ImageCardButton>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </Space>
     </Image.PreviewGroup>
   );
 }

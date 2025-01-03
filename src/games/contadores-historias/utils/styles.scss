@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .c-story-book {
   width: 700px;
@@ -18,19 +18,19 @@
   }
 
   &__solution {
-    font-family: 'Dancing Script', cursive;
+    font-family: "Dancing Script", cursive;
     font-size: 0.75rem;
     padding: get-unit(3 2 2 4);
   }
 
   &__story {
     font-size: 1rem;
-    color: get-color('blue', 8);
+    color: get-color("blue", 8);
     margin: get-unit(3);
   }
 
   &__nobody {
-    color: get-color('red');
+    color: get-color("red");
     margin: get-unit(3);
   }
 
@@ -119,7 +119,7 @@
   margin: 0.5em auto;
 
   .card__text {
-    font-family: 'Dancing Script', cursive;
+    font-family: "Dancing Script", cursive;
     text-transform: none;
     font-size: 1.5rem;
   }
@@ -136,7 +136,7 @@
   color: white;
   background: linear-gradient(160deg, rgb(86, 63, 42) 0%, rgb(71, 42, 18) 33%, rgb(55, 37, 37) 78%);
   border-radius: $border-radius;
-  border: get-color('brown', 7) get-unit(1) groove;
+  border: get-color("brown", 7) get-unit(1) groove;
   @include box-shadow;
 
   &__card-container {
@@ -147,7 +147,11 @@
   }
 
   &--vote {
-    border: 2px solid get-color('yellow');
+    border: 2px solid get-color("yellow");
+  }
+
+  &--idle {
+    border: 2px solid transparent;
   }
 }
 
@@ -195,9 +199,9 @@
 
   &__label {
     text-align: center;
-    font-family: 'Dancing Script', cursive;
+    font-family: "Dancing Script", cursive;
     padding: get-unit(1);
-    background-color: get-color('white', 6);
+    background-color: get-color("white", 6);
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -7,7 +7,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Icons
-import { RotationIcon } from 'icons/RotationIcon';
+import { TableIcon } from 'icons/TableIcon';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -97,7 +97,7 @@ export function TableOrder({
         })}
         <li className="table-order__center">
           <div className="table-order__center-container">
-            <RotationIcon style={{ width: '3rem', transform: 'scaleX(-1)' }} />
+            <TableIcon style={{ width: '3rem', transform: 'scaleX(-1)' }} />
             <header className="table-order__title">
               <Translate en="Player Order" pt="Ordem dos Jogadores" custom={title} />
             </header>

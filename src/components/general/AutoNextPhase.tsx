@@ -5,6 +5,9 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 
 type AutoNextPhaseProps = {
+  /**
+   * Game players objects
+   */
   players: GamePlayers;
 };
 
