@@ -20,7 +20,12 @@ import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { mockFeatureSelection } from './utils/mock';
-import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj, SubmitFeaturePayload, } from './utils/types';
+import type {
+  ExtendedObjectFeatureCard,
+  HistoryEntry,
+  ObjectCardObj,
+  SubmitFeaturePayload,
+} from './utils/types';
 import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
 import { ScoreTrack } from './components/ScoreTrack';
 import { GroupScore } from './components/GroupScore';

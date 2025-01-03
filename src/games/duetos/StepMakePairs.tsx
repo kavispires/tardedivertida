@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -10,7 +10,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -173,15 +173,13 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
 
       <SpaceContainer>
         <DevButton onClick={() => setPairs(mockPairs(pool))}>Mock Pairs</DevButton>
-        <Button
+        <SendButton
           size="large"
-          type="primary"
           disabled={user.ready || !isComplete}
-          loading={isLoading}
           onClick={() => onSubmitPairs({ pairs: pairs.map((v) => String(v)) })}
         >
           <Translate pt="Enviar Pares" en="Submit Pairs" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
 
       <Space wrap className={clsx('options-grid', `options-grid--${pool.length}`)}>

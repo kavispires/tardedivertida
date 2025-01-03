@@ -14,7 +14,17 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 import { Translate } from 'components/language';
 // Internal
 import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
-import type { CloverMode, Leaves, LeafIndex, LeafId, LeafPosition, LeafLocks, CloverLeaf, Guesses, CloverObject, } from '../utils/types';
+import type {
+  CloverMode,
+  Leaves,
+  LeafIndex,
+  LeafId,
+  LeafPosition,
+  LeafLocks,
+  CloverLeaf,
+  Guesses,
+  CloverObject,
+} from '../utils/types';
 import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
