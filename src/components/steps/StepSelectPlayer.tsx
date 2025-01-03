@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
@@ -12,18 +13,12 @@ import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import {
-  Instruction,
-  RuleInstruction,
-  type RuleInstructionProps,
-  Title,
-  type TitleProps,
-} from 'components/text';
+import { Instruction, RuleInstruction, StepTitle, type RuleInstructionProps } from 'components/text';
 
 type StepSelectPlayerProps = {
   players: GamePlayers;
   onSubmitPlayer: (playerId: PlayerId) => void;
-  titleProps: TitleProps;
+  titleProps: ComponentProps<typeof StepTitle>;
   ruleInstructionProps: RuleInstructionProps;
 } & Pick<StepProps, 'announcement'>;
 
@@ -39,7 +34,7 @@ export function StepSelectPlayer({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title {...titleProps} />
+      <StepTitle wait {...titleProps} />
 
       <RuleInstruction {...ruleInstructionProps} />
 

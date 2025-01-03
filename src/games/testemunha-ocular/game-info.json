@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "4.0.15",
+  "version": "4.0.16",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Testemunha Ocular",
     "en": "Eye Witness"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "eye-cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#7d8388",
     "backgroundColor": "rgba(46, 33, 13, 0.75)",
     "colorScheme": "dark"

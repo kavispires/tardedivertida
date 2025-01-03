@@ -5,10 +5,8 @@ import { useStep } from 'hooks/useStep';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -52,14 +50,6 @@ function PhaseWitnessSelection({ state, players }: PhaseProps) {
     </PhaseAnnouncement>
   );
 
-  const title = (
-    <>
-      <IconAvatar icon={<AnimatedClockIcon />} size="large" />
-      <br />
-      <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
-    </>
-  );
-
   const ruleInstruction = (
     <Translate
       pt={
@@ -93,7 +83,9 @@ function PhaseWitnessSelection({ state, players }: PhaseProps) {
           players={players}
           announcement={announcement}
           titleProps={{
-            children: <>{title}</>,
+            children: (
+              <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
+            ),
           }}
           ruleInstructionProps={{
             children: <>{ruleInstruction}</>,

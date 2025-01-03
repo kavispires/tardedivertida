@@ -14,10 +14,10 @@ import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import type { Status, THistoryEntry } from './utils/types';
+import type { Status, SubmitTestimonyPayload, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
@@ -29,7 +29,7 @@ type StepQuestioningProps = {
   isUserTheWitness: boolean;
   witness: GamePlayer;
   isLoading: boolean;
-  onAnswer: GenericFunction;
+  onAnswer: (payload: SubmitTestimonyPayload) => void;
   question: GamePlayer;
   history: THistoryEntry[];
   status: Status;
@@ -52,7 +52,7 @@ export function StepQuestioning({
 
   return (
     <Step announcement={announcement}>
-      <Title level={3} size="medium">
+      <StepTitle>
         <Translate
           pt={
             <>
@@ -65,7 +65,7 @@ export function StepQuestioning({
             </>
           }
         />
-      </Title>
+      </StepTitle>
 
       <ViewIf condition={isUserTheWitness}>
         <Flex align="center" className="margin">

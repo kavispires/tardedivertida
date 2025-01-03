@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { SuspectCard } from 'types/tdr';
@@ -10,13 +8,14 @@ import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { AvatarName, IconAvatar } from 'components/avatars';
+import { SendButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
-import type { Status, THistoryEntry } from './utils/types';
+import type { EliminatePayload, Status, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
@@ -30,8 +29,7 @@ type StepSuspectEliminationProps = {
   isUserTheQuestioner: boolean;
   witness: GamePlayer;
   questioner: GamePlayer;
-  isLoading: boolean;
-  onEliminate: GenericFunction;
+  onEliminate: (payload: EliminatePayload) => void;
   question: GamePlayer;
   testimony: boolean;
   history: THistoryEntry[];
@@ -46,7 +44,6 @@ export function StepSuspectElimination({
   isUserTheWitness,
   isUserTheQuestioner,
   witness,
-  isLoading,
   onEliminate,
   question,
   testimony,
@@ -63,20 +60,22 @@ export function StepSuspectElimination({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <AvatarName player={witness} addressUser />
-        <Translate en="answered" pt="respondeu" />{' '}
-        {testimony ? (
-          <Translate en="YES" pt="SIM" />
-        ) : (
-          <>
-            <Translate en="NO" pt="NÃO" />
-          </>
-        )}{' '}
-        <IconAvatar
-          size="large"
-          icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
-        />{' '}
-        <Translate en="to the question" pt="para a pergunta:" />
+        <span>
+          <AvatarName player={witness} addressUser />
+          <Translate en="answered" pt="respondeu" />{' '}
+          {testimony ? (
+            <Translate en="YES" pt="SIM" />
+          ) : (
+            <>
+              <Translate en="NO" pt="NÃO" />
+            </>
+          )}{' '}
+          <IconAvatar
+            size="large"
+            icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
+          />{' '}
+          <Translate en="to the question" pt="para a pergunta:" />
+        </span>
       </StepTitle>
 
       <SpaceContainer align="center">
@@ -104,12 +103,12 @@ export function StepSuspectElimination({
           </TextHighlight>
           <br />
           {Boolean(eliminatedSuspects?.length && isUserTheQuestioner) && (
-            <Button type="primary" onClick={onPass} disabled={isLoading}>
+            <SendButton onClick={onPass}>
               <Translate
                 pt="Parar de eliminar e ir para a próxima pergunta"
                 en="Stop releasing suspects and go to next question"
               />
-            </Button>
+            </SendButton>
           )}
         </RuleInstruction>
       ) : (

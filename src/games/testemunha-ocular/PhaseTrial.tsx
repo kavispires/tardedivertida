@@ -1,7 +1,6 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Utils
@@ -19,7 +18,6 @@ import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
 import { StepSuspectElimination } from './StepSuspectElimination';
 
 function PhaseTrial({ state, players }: PhaseProps) {
-  const { isLoading } = useLoading();
   const { step } = useStep(0);
 
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -69,7 +67,6 @@ function PhaseTrial({ state, players }: PhaseProps) {
           perpetrator={state.perpetrator}
           isUserTheWitness={isUserTheWitness}
           witness={witness}
-          isLoading={isLoading}
           onEliminate={onEliminate}
           question={state.question}
           eliminatedSuspects={state.eliminatedSuspects}

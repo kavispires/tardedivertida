@@ -1,25 +1,12 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .background {
   background: linear-gradient(-45deg, #676666, rgba(46, 33, 13, 0.75), rgba(37, 29, 16));
   background-size: 1000% 1000%;
 }
 
-.t-select-question {
-  &__button {
-    border: none;
-    background: none;
-    transition: 500ms transform;
-    cursor: pointer;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-}
-
 .t-suspects-table {
-  background-color: get-color('brown');
+  background-color: get-color("brown");
   border-radius: get-unit(2);
 
   display: grid;
@@ -44,14 +31,14 @@
   }
 
   &__suspect-name {
-    font-family: 'Architects Daughter', cursive;
+    font-family: "Architects Daughter", cursive;
     position: absolute;
     bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
     font-size: 1rem;
-    background: get-color('white');
+    background: get-color("white");
     padding: get-unit(1 2);
     border-radius: $border-radius;
   }
@@ -80,7 +67,7 @@
 
     &:hover {
       transform: scale(1.25);
-      color: get-color('white');
+      color: get-color("white");
     }
   }
 
