@@ -1,27 +1,69 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { RocketOutlined } from '@ant-design/icons';
-import { Button, type ButtonProps } from 'antd';
-// Hooks
-import { useLoading } from 'hooks/useLoading';
 // Sass
 import './HostButton.scss';
+import { useCountdown } from 'hooks/useCountdown';
+import { SendButton } from 'components/buttons';
+import type { ComponentProps } from 'react';
 
 /**
  * Host Button (orange with rocket icon)
  * Important: This button is NOT guarded by HostOnlyContainer, and it must be wrapped by it.
  */
-export function HostButton({ onClick, icon, disabled, className = '', ...rest }: ButtonProps) {
-  const { isLoading } = useLoading();
-
+export function HostButton({
+  icon,
+  ghost = true,
+  className = '',
+  ...rest
+}: ComponentProps<typeof SendButton>) {
   return (
-    <Button
+    <SendButton
       icon={icon ?? <RocketOutlined />}
-      ghost
-      onClick={onClick}
-      disabled={disabled || isLoading}
+      ghost={ghost}
       className={clsx('host-button', className)}
       {...rest}
     />
+  );
+}
+
+type HostTimedButtonProps = ComponentProps<typeof SendButton> & {
+  /**
+   * Duration to call onExpire in seconds
+   */
+  duration?: number;
+  /**
+   * Function to be called when the time expires
+   */
+  onExpire?: () => void;
+  /**
+   * Flag indicating if the timer should be hidden (this cancels the onExpire function)
+   */
+  hideTimer?: boolean;
+};
+
+/**
+ * Timed Host Button (orange with rocket icon)
+ * Important: This button is NOT  guarded by HostOnlyContainer, and it must be wrapped by it.
+ */
+export function HostTimedButton({
+  duration = 10,
+  onExpire,
+  hideTimer,
+  children,
+  ...rest
+}: HostTimedButtonProps) {
+  const { timeLeft } = useCountdown({
+    duration,
+    autoStart: true,
+    onExpire,
+    disabled: hideTimer,
+  });
+
+  return (
+    <HostButton {...rest}>
+      {children}
+      {!hideTimer && <span className="host-button-timer">{timeLeft}</span>}
+    </HostButton>
   );
 }

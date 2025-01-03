@@ -38,8 +38,16 @@ type ArrayDictionary<T = string> = {
 };
 
 // Function compositions
+
 type GenericComponent = (...args: any) => any;
+
+/**
+ * @deprecated
+ */
 type GenericFunction = (...args: any) => void;
+/**
+ * @deprecated
+ */
 type BooleanFunction = (...args: any) => boolean;
 type ButtonEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 

@@ -171,7 +171,7 @@ const rateGame = async (data: ExtendedPayload, auth: FirebaseAuth) => {
           [`${path}.comments`]: data.ratings.comments,
         });
       return true;
-    } catch (e) {
+    } catch (_e) {
       // do nothing, let it try save it to the ratings public doc
     }
   }
@@ -185,7 +185,7 @@ const rateGame = async (data: ExtendedPayload, auth: FirebaseAuth) => {
       .update({
         [gameId]: data.ratings,
       });
-  } catch (e) {
+  } catch (_e) {
     try {
       await utils.firestore
         .getPublicRef()
