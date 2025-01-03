@@ -104,6 +104,7 @@ sort_imports() {
   git diff --name-only --cached | grep -E '^src/.*\.(ts|tsx)$' | while read -r file; do
     node ./scripts/sort-imports.js "$file"
     # npx prettier --write "$file"
+    npx biome check --write "$file"
     git add "$file"
     echo "   ➕ Sorted and re-added $file to staging."
   done

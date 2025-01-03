@@ -12,7 +12,7 @@ interface TimedButtonProps extends ButtonProps {
   /**
    * Function to be called when the time expires
    */
-  onExpire?: GenericFunction;
+  onExpire?: () => void;
   /**
    * Flag indicating if the timer should be hidden (this cancels the onExpire function)
    */

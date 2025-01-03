@@ -1,20 +1,22 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .host-button.host-button {
-  background: get-color('orange');
+  background: get-color("orange");
+  border: 1px solid get-color("orange", 2);
+  color: get-color("orange", 2);
 
-  &:hover:hover {
-    border-color: get-color('orange');
-    color: get-color('orange');
-    background: get-color('white');
+  &.host-button.host-button:not(:disabled):hover {
+    background: get-color("orange", 3);
+    border: 1px solid get-color("orange", 7);
+    color: get-color("orange", 7);
   }
 }
 
 .host-button-timer {
   margin-right: get-unit(1);
   padding: get-unit(0 2);
-  background: get-color('white', 5, 0.5);
+  background: get-color("white", 5, 0.5);
   border-radius: $border-radius;
-  color: get-color('white');
+  color: get-color("white");
   display: inline-block;
 }
