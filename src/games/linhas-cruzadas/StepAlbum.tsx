@@ -100,22 +100,25 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
         />
       </div>
       <SpaceContainer>
-        <Button disabled={areControlsLocked || currentEntry === 0} onClick={onPrevAlbum}>
-          Prev Album
-        </Button>
-        <Button disabled={areControlsLocked || currentPage === 0} onClick={onPrevPage}>
-          Prev Page
-        </Button>
-        <Button
-          disabled={areControlsLocked || currentPage === currentAlbumLastPageIndex}
-          onClick={onNextPage}
-        >
-          Next Page
-        </Button>
-        <Button disabled={areControlsLocked || isLastAlbum} onClick={onNextAlbum}>
-          Next Album
-        </Button>
+        <Button.Group>
+          <Button disabled={areControlsLocked || currentEntry === 0} onClick={onPrevAlbum}>
+            <Translate pt="Álbum Anterior" en="Previous Album" />
+          </Button>
+          <Button disabled={areControlsLocked || currentPage === 0} onClick={onPrevPage}>
+            <Translate pt="Página Anterior" en="Previous Page" />
+          </Button>
+          <Button
+            disabled={areControlsLocked || currentPage === currentAlbumLastPageIndex}
+            onClick={onNextPage}
+          >
+            <Translate pt="Próxima Página" en="Next Page" />
+          </Button>
+          <Button disabled={areControlsLocked || isLastAlbum} onClick={onNextAlbum}>
+            <Translate pt="Próximo Álbum" en="Next Album" />
+          </Button>
+        </Button.Group>
       </SpaceContainer>
+
       <HostNextPhaseButton autoTriggerTime={0} />
     </Step>
   );

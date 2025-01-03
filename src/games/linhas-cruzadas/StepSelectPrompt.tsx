@@ -1,17 +1,17 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { RedoOutlined } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
 import type { PromptCard, SubmitPromptPayload } from './utils/types';
 
@@ -35,12 +35,12 @@ export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptPr
       <Title>
         <Translate pt="Seleção de Carta" en="Card Selection" />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
           pt="Selecione uma das cartas abaixo a ser usada no jogo"
           en="Select one of the cards below to be used in the game"
         />
-      </Instruction>
+      </RuleInstruction>
 
       <div className="l-cards">
         {prompts.map((prompt) => {
@@ -57,9 +57,9 @@ export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptPr
       </div>
 
       <SpaceContainer>
-        <Button onClick={onRandomSelect} disabled={isLoading} ghost>
+        <SendButton onClick={onRandomSelect} icon={<RedoOutlined />} type="dashed">
           <Translate pt="Escolha pra mim" en="Select for me" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </Step>
   );

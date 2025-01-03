@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.59",
+  "version": "1.2.60",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Linhas Cruzadas",
     "en": "Mis...communication"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "phone-cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#D36135",
     "surfaceColor": "#FAE3C6",
     "backgroundColor": "rgba(253, 246, 236, 0.85)",
