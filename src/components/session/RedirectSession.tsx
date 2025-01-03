@@ -22,6 +22,7 @@ export function RedirectSession({ state }: RedirectSessionProps) {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState<boolean | null>(null);
+  const [isLoading, setLoading] = useState(false);
 
   const hideModal = () => {
     setOpen(false);
@@ -50,8 +51,10 @@ export function RedirectSession({ state }: RedirectSessionProps) {
           open={open ?? true}
           onCancel={hideModal}
           onOk={() => {
+            setLoading(true);
             navigate(`/${redirect.gameId}`);
           }}
+          okButtonProps={{ loading: isLoading }}
           okText={<Translate pt="Quero participar!" en="Take me there!" />}
           cancelText={<Translate pt="Cancelar" en="Cancel" />}
         >
