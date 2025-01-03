@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Input } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -8,6 +8,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
+import { SendButton } from 'components/buttons';
 import { ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -58,8 +59,8 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
               <ul>
                 <li>
                   <Translate
-                    pt="Selecione uma carta abaixo e escreva algo sobre ela."
-                    en="Select a card below and write something about it."
+                    pt="Selecione uma carta abaixo e escreva algo sobre ela. "
+                    en="Select a card below and write something about it. "
                   />
 
                   <Translate
@@ -86,14 +87,9 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
           onPressEnter={onButtonClick}
           size="large"
         />
-        <Button
-          type="primary"
-          disabled={isLoading || story.length < 1 || !cardId}
-          onClick={onButtonClick}
-          size="large"
-        >
-          <Translate pt="Enviar pista secreta e carta" en="Send secret clue and card" />
-        </Button>
+        <SendButton disabled={story.length < 1 || !cardId} onClick={onButtonClick} size="large">
+          <Translate pt="Enviar história e carta" en="Send secret clue and card" />
+        </SendButton>
       </SpaceContainer>
 
       <ImageCardHand

@@ -15,7 +15,11 @@ import type { DiagramArea } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 import { TripleDiagram } from './TripleDiagram/TripleDiagram';
 import { TripleDiagramClickableAreas } from './TripleDiagram/TripleDiagramClickableAreas';
-import { AreaPlacedItems, calculateProportionalValues, getCenterPointInArea, } from './TripleDiagram/AreaPlacedItems';
+import {
+  AreaPlacedItems,
+  calculateProportionalValues,
+  getCenterPointInArea,
+} from './TripleDiagram/AreaPlacedItems';
 
 type DiagramSectionProps = {
   width: number;

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { ClearOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -15,6 +15,7 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 import { LETTERS } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
 // Components
+import { SendButton } from 'components/buttons';
 import { CanvasResizer } from 'components/canvas';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -161,7 +162,7 @@ export function StepEvaluation({
         <SpaceContainer wrap>
           <Button
             type="default"
-            icon={<ThunderboltOutlined />}
+            icon={<ClearOutlined />}
             onClick={() => resetVoting(selectOwnDrawing())}
             disabled={isLoading}
           >
@@ -175,15 +176,12 @@ export function StepEvaluation({
           >
             <Translate pt="Chutar restantes" en="Guess for me" />
           </Button>
-          <Button
-            type="primary"
+          <SendButton
             onClick={() => onSubmitVoting({ votes: prepareVotes(votes), choseRandomly })}
-            disabled={isLoading || !isVotingComplete}
-            icon={<CloudUploadOutlined />}
-            loading={isLoading}
+            disabled={!isVotingComplete}
           >
             <Translate pt="Enviar sua avaliação" en="Send evaluation" />
-          </Button>
+          </SendButton>
         </SpaceContainer>
 
         <EvaluationAllDrawings

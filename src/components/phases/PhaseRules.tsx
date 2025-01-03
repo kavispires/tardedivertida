@@ -19,7 +19,12 @@ import { useUser } from 'hooks/useUser';
 // Services
 import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
 // Utils
-import { getRandomNegativeReadyMessage, getRandomNeutralReadyMessage, getRandomPositiveReadyMessage, speak, } from 'utils/speech';
+import {
+  getRandomNegativeReadyMessage,
+  getRandomNeutralReadyMessage,
+  getRandomPositiveReadyMessage,
+  speak,
+} from 'utils/speech';
 // Components
 import { Translate } from 'components/language';
 import { LoadingPage } from 'components/loaders';

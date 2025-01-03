@@ -2,7 +2,12 @@ import { orderBy } from 'lodash';
 import debounce from 'lodash/debounce';
 import { useCallback, useMemo, useState } from 'react';
 // Ant Design Resources
-import { DashOutlined, StepBackwardOutlined, VerticalAlignBottomOutlined, VerticalAlignTopOutlined, } from '@ant-design/icons';
+import {
+  DashOutlined,
+  StepBackwardOutlined,
+  VerticalAlignBottomOutlined,
+  VerticalAlignTopOutlined,
+} from '@ant-design/icons';
 import { Input, Spin, Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

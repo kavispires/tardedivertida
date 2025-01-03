@@ -10,7 +10,13 @@ import { deepCopy } from 'utils/helpers';
 // Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import type { DailyTeoriaDeConjuntosEntry, GameState, Guess, TeoriaDeConjuntosLocalToday, TThing, } from './types';
+import type {
+  DailyTeoriaDeConjuntosEntry,
+  GameState,
+  Guess,
+  TeoriaDeConjuntosLocalToday,
+  TThing,
+} from './types';
 
 export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, initialState: GameState) {
   const { message } = App.useApp();

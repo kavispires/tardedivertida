@@ -1,6 +1,4 @@
 import { useMemo, useState } from 'react';
-// Ant Design Resources
-import { RocketFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -8,8 +6,7 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { isDevMocking, pluralize } from 'utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons';
-import { HostOnlyContainer } from 'components/host';
+import { HostOnlyContainer, HostTimedButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
@@ -116,10 +113,9 @@ export function StepEvaluateGroup({
         timer={answersGroupIndex === 0 ? 15 : waitDuration}
       />
 
-      <VIPNextGroup
+      <HostNextGroup
         key={answersGroupIndex}
         onNextGroup={onNextGroup}
-        isLoading={isLoading}
         duration={answersGroupIndex === 0 ? 15 : waitDuration}
         players={players}
       />
@@ -127,14 +123,13 @@ export function StepEvaluateGroup({
   );
 }
 
-type VIPNextGroupProps = {
+type HostNextGroupProps = {
   onNextGroup: () => void;
-  isLoading: boolean;
   duration: number;
   players: GamePlayers;
 };
 
-function VIPNextGroup({ onNextGroup, isLoading, duration, players }: VIPNextGroupProps) {
+function HostNextGroup({ onNextGroup, duration, players }: HostNextGroupProps) {
   const [disableButton, setDisableButton] = useState(true);
 
   const rejections = useMemo(() => Object.values(players).filter((p) => p.ready).length, [players]);
@@ -144,16 +139,14 @@ function VIPNextGroup({ onNextGroup, isLoading, duration, players }: VIPNextGrou
       <span>
         <Translate pt="Rejeições" en="Rejections" />: <TextHighlight>{rejections}</TextHighlight>
       </span>
-      <TimedButton
+      <HostTimedButton
         onClick={onNextGroup}
-        disabled={disableButton || isLoading}
-        type="primary"
+        disabled={disableButton}
         duration={duration}
-        icon={<RocketFilled />}
         onExpire={() => setDisableButton(false)}
       >
         <Translate pt="Confirmar e ir paro o próximo grupo" en="Confirm and go to next answer" />
-      </TimedButton>
+      </HostTimedButton>
     </HostOnlyContainer>
   );
 }
