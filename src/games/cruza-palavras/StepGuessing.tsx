@@ -7,12 +7,13 @@ import type { GamePlayer } from 'types/player';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Clue, Grid, GridType } from './utils/types';
+import type { Clue, Grid, GridType, SubmitGuessesPayload } from './utils/types';
 import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
 import { WordGrid } from './components/WordGrid';
 import { SelectableCell } from './components/SelectableCell';
@@ -23,7 +24,7 @@ type StepGuessingProps = {
   gridType: GridType;
   user: GamePlayer;
   clues: Clue[];
-  onSubmitGuesses: GenericFunction;
+  onSubmitGuesses: (payload: SubmitGuessesPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
@@ -34,18 +35,21 @@ export function StepGuessing({
   onSubmitGuesses,
   announcement,
 }: StepGuessingProps) {
-  const [active, setActive] = useState(null);
-  const [guesses, setGuesses] = useState<any>({});
+  const [active, setActive] = useState<Clue | number | null>(null);
+  const [guesses, setGuesses] = useState<NumberDictionary>({});
   const [choseRandomly, setChoseRandomly] = useState(false);
 
-  const onSelectClue = useCallback(
-    (clueIndex: any) => {
+  const onActivateClue = useCallback(
+    (newActiveClue: Clue) => {
       if (!active || isClue(active)) {
-        setActive(clueIndex);
-      } else {
-        setGuesses((state: any) => ({
-          ...state,
-          [getClueKey(clueIndex)]: active,
+        setActive(newActiveClue);
+        return;
+      }
+
+      if (typeof active === 'number') {
+        setGuesses((prev) => ({
+          ...prev,
+          [getClueKey(newActiveClue)]: active,
         }));
         setActive(null);
       }
@@ -54,19 +58,19 @@ export function StepGuessing({
   );
 
   const onSelectCell = useCallback(
-    (cellCoordinate: any) => {
+    (cellCoordinate: number) => {
       if (!isClue(active)) {
         setActive(cellCoordinate);
       } else {
-        setGuesses((state: any) => {
-          const newState = Object.entries(state).reduce((acc: PlainObject, [key, value]) => {
+        setGuesses((prev) => {
+          const newState = Object.entries(prev).reduce((acc: PlainObject, [key, value]) => {
             if (key && value && value !== cellCoordinate) {
               acc[key] = value;
             }
             return acc;
           }, {});
 
-          if (active) {
+          if (active && typeof active !== 'number') {
             newState[getClueKey(active)] = cellCoordinate;
           }
 
@@ -101,7 +105,7 @@ export function StepGuessing({
     const playersOwnClue = clues.find((clue) => clue.playerId === user.id);
 
     setGuesses({
-      [getClueKey(playersOwnClue)]: playersOwnClue?.coordinate,
+      [getClueKey(playersOwnClue)]: playersOwnClue?.coordinate ?? -1,
     });
   });
 
@@ -134,7 +138,7 @@ export function StepGuessing({
         <Translate pt="Decifre as dicas!" en="Guess the cells!" />
       </StepTitle>
 
-      <Clues clues={clues} onSelectClue={onSelectClue} active={active} guesses={guesses} />
+      <Clues clues={clues} onActivateClue={onActivateClue} active={active} guesses={guesses} />
 
       <RuleInstruction type="action">
         <Translate
@@ -144,17 +148,16 @@ export function StepGuessing({
       </RuleInstruction>
 
       <SpaceContainer align="center">
-        <Button
+        <Button size="large" type="dashed" onClick={randomGuessThem}>
+          <Translate pt="Desistir" en="Give up" />
+        </Button>
+        <SendButton
           size="large"
-          type="primary"
           onClick={prepareSubmitGuesses}
           disabled={Object.keys(guesses).length !== clues.length}
         >
           <Translate pt="Enviar respostas" en="Send guesses" />
-        </Button>
-        <Button size="large" type="dashed" onClick={randomGuessThem}>
-          <Translate pt="Desistir" en="Give up" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
 
       <WordGrid

@@ -49,8 +49,8 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.WORST_GUESSER]: {
     icon: 'x',
     title: {
-      pt: 'Pior Adivinhador',
-      en: 'Worst Guesser',
+      pt: 'Adivinhador Mais Confuso',
+      en: 'Most Confused Guesser',
     },
     description: {
       pt: 'Errou as dicas mais vezes',

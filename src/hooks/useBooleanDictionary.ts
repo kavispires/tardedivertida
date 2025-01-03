@@ -36,7 +36,7 @@ type UseBooleanDictionaryReturnValue = {
  */
 export function useBooleanDictionary(
   initialState: BooleanDictionary,
-  validation?: BooleanFunction,
+  validation?: (...args: any[]) => boolean,
 ): UseBooleanDictionaryReturnValue {
   const [dict, setDict] = useState(initialState);
 

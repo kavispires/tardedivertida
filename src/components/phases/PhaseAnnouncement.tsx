@@ -164,7 +164,7 @@ export function PhaseAnnouncement({
           {children}
 
           {withoutTimer ? (
-            <Button type="primary" onClick={onContinue} autoFocus>
+            <Button type="primary" onClick={onContinue} autoFocus className="mt-2">
               <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
             </Button>
           ) : (
@@ -175,6 +175,7 @@ export function PhaseAnnouncement({
               onExpire={onContinue}
               disabled={unskippable}
               autoFocus
+              className="mt-2"
             >
               <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
             </TimedButton>

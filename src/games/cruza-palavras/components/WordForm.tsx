@@ -1,16 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { type ChangeEvent, useEffect, useRef, useState } from 'react';
 // Ant Design Resources
-import { Button, Input, type InputRef, Space } from 'antd';
+import { Input, type InputRef, Space } from 'antd';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
+// Internal
+import type { SubmitCluePayload } from '../utils/types';
 
 type WordFormProps = {
   x: string;
   y: string;
   index: number;
-  onSubmit: GenericFunction;
+  onSubmit: (payload: SubmitCluePayload) => void;
   disabled?: boolean;
 };
 
@@ -18,7 +21,7 @@ export function WordForm({ x, y, onSubmit, disabled, index }: WordFormProps) {
   const [clue, setClue] = useState('');
   const textInput = useRef<InputRef | null>(null);
 
-  const onChange = (e: any) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setClue(e.target.value);
   };
 
@@ -26,7 +29,10 @@ export function WordForm({ x, y, onSubmit, disabled, index }: WordFormProps) {
 
   // DEV: Submit made-up words
   useMock(() => {
-    onSubmit({ clue: `${x.substring(0, x.length / 2)}${y.substring(y.length / 2)}`, coordinate: index });
+    onSubmit({
+      clue: `${x.substring(0, x.length / 2)}${y.substring(y.length / 2)}`,
+      currentClueCoordinate: index,
+    });
   }, []);
 
   return (
@@ -35,15 +41,14 @@ export function WordForm({ x, y, onSubmit, disabled, index }: WordFormProps) {
         ref={textInput}
         placeholder={`${x} + ${y}`}
         onChange={onChange}
-        onPressEnter={() => onSubmit({ clue, coordinate: index })}
+        onPressEnter={() => onSubmit({ clue, currentClueCoordinate: index })}
       />
-      <Button
-        type="primary"
-        onClick={() => onSubmit({ clue, coordinate: index })}
+      <SendButton
+        onClick={() => onSubmit({ clue, currentClueCoordinate: index })}
         disabled={disabled || !clue.length}
       >
         <Translate pt="Enviar" en="Submit" />
-      </Button>
+      </SendButton>
     </Space>
   );
 }

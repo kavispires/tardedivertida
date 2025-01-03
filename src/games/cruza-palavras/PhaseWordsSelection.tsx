@@ -13,7 +13,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitWordsAPIRequest } from './utils/api-requests';
-import { WritingCluesRule } from './components/RulesBlobs';
 import { StepSelectWords } from './StepSelectWords';
 
 export function PhaseWordsSelection({ players, state }: PhaseProps) {
@@ -29,9 +28,7 @@ export function PhaseWordsSelection({ players, state }: PhaseProps) {
       title={<Translate pt="Preparação da Grade" en="Grid Setup" />}
       currentRound={state?.round?.current}
       type="overlay"
-    >
-      <WritingCluesRule playerCount={Object.keys(players).length} />
-    </PhaseAnnouncement>
+    />
   );
 
   return (

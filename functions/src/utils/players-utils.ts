@@ -117,7 +117,7 @@ export const addPropertiesToPlayers = (players: Players, properties: PlainObject
   for (const playerId in players) {
     players[playerId] = {
       ...players[playerId],
-      ...properties,
+      ...cloneDeep(properties),
       updatedAt: Date.now(),
     };
   }

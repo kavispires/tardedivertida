@@ -8,7 +8,7 @@ import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Grid, GridType } from './utils/types';
+import type { Grid, GridType, SubmitCluePayload } from './utils/types';
 import { WordGrid } from './components/WordGrid';
 import { WritingCell } from './components/WritingCell';
 import { WritingCluesRule } from './components/RulesBlobs';
@@ -17,7 +17,7 @@ type StepClueWritingProps = {
   grid: Grid;
   gridType: GridType;
   user: GamePlayer;
-  onSubmitClue: GenericFunction;
+  onSubmitClue: (payload: SubmitCluePayload) => void;
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;
 
@@ -31,10 +31,10 @@ export function StepClueWriting({
 }: StepClueWritingProps) {
   const { isLoading } = useLoading();
 
-  const onSubmitClueClick = (payload: { clue: string; coordinate: number }) => {
+  const onSubmitClueClick = (payload: SubmitCluePayload) => {
     onSubmitClue({
       clue: payload.clue.trim().toLowerCase(),
-      currentClueCoordinate: payload.coordinate,
+      currentClueCoordinate: payload.currentClueCoordinate,
     });
   };
 
@@ -52,6 +52,8 @@ export function StepClueWriting({
             <>
               Clique em um dos ícones na grade e escreva sua dica.
               <br />
+              Você só precisa escrever a dica para uma das coordenadas.
+              <br />
               Sua dica deve conter apenas <strong>uma palavra única</strong>.
               <br />
               Você <strong>NÃO</strong> pode usar nenhuma palavra que esteja na grade.
@@ -60,6 +62,8 @@ export function StepClueWriting({
           en={
             <>
               Click on the icon on either of the table cell and write your clue.
+              <br />
+              You only need to write the clue for one of the coordinates.
               <br />
               Your clue must be a <strong>single-word</strong> clue.
               <br />
