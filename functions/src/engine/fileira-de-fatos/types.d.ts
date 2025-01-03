@@ -3,9 +3,9 @@ import type { FILEIRA_DE_FATOS_ACHIEVEMENTS, FILEIRA_DE_FATOS_ACTIONS } from './
 
 export type FileiraDeFatosOptions = {
   /**
-   * Uses positive scenarios
+   * Allow nsfw content
    */
-  positive: boolean;
+  nsfw: boolean;
 };
 
 export type ResourceData = {

@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "0.9.38",
+  "version": "1.0.1",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Fileira De Fatos",
     "en": "Facts Lineup"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "line-cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#ab0d17",
     "backgroundColor": "rgba(74, 57, 49, 0.85)",
     "colorScheme": "dark"
@@ -50,5 +51,23 @@
     "base": 5,
     "perPlayer": 4
   },
-  "tags": ["competitive", "same-time", "guessing", "achievements"]
+  "tags": ["competitive", "same-time", "guessing", "achievements"],
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW scenarios",
+      "description": "Allow NSFW scenarios",
+      "values": [
+        {
+          "label": "No",
+          "value": false
+        },
+        {
+          "label": "Yes",
+          "value": true
+        }
+      ]
+    }
+  ]
 }

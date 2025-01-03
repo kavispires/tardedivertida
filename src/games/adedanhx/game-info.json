@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "2.0.23",
+  "version": "2.0.24",
   "release": "stable",
   "available": true,
   "title": {
@@ -59,8 +59,8 @@
     {
       "key": "nsfw",
       "kind": "switch",
-      "label": "NSFW questions",
-      "description": "Allow NSFW questions",
+      "label": "NSFW topics",
+      "description": "Allow NSFW topics",
       "values": [
         {
           "label": "No",

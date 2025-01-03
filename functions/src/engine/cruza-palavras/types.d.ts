@@ -51,7 +51,6 @@ export type CruzaPalavrasAchievement = keyof typeof CRUZA_PALAVRAS_ACHIEVEMENTS;
 export interface CruzaPalavrasStore extends DefaultStore<CruzaPalavrasOptions> {
   deck: Deck;
   pastClues: PastClues;
-  [key: string]: any;
 }
 
 export interface CruzaPalavrasState extends DefaultState {
