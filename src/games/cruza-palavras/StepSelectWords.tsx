@@ -5,31 +5,38 @@ import { Badge, Button } from 'antd';
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { TextCardWithType } from './utils/types';
+import type { SubmitWordsPayload, TextCardWithType } from './utils/types';
 
 type StepSelectWordsProps = {
   user: GamePlayer;
   deck: TextCardWithType[];
-  onSubmitWords: GenericFunction;
+  onSubmitWords: (payload: SubmitWordsPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectWords({ deck, onSubmitWords, user, announcement }: StepSelectWordsProps) {
-  const { isLoading } = useLoading();
-  const { updateDict, length, keys } = useBooleanDictionary({});
+  const { updateDict, length, keys, setDict } = useBooleanDictionary({});
 
   useMock(() => {
     onSubmitWords({ words: sampleSize(deck, 12).map((c) => c.id) });
   });
+
+  const onRandomSelection = () => {
+    setDict(
+      sampleSize(deck, 10).reduce((acc: BooleanDictionary, c) => {
+        acc[c.id] = true;
+        return acc;
+      }, {}),
+    );
+  };
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -57,15 +64,17 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
       </RuleInstruction>
 
       <SpaceContainer>
+        <Button onClick={onRandomSelection} size="large">
+          <Translate pt="Selecione pra mim" en="Select for me" />
+        </Button>
         <Badge count={length}>
-          <Button
-            type="primary"
-            onClick={() => onSubmitWords({ words: deck })}
+          <SendButton
+            onClick={() => onSubmitWords({ words: keys })}
             size="large"
-            disabled={length < 10 || isLoading || user.ready}
+            disabled={length < 10 || user.ready}
           >
             <Translate pt="Enviar cartas" en="Submit cards" />
-          </Button>
+          </SendButton>
         </Badge>
       </SpaceContainer>
 

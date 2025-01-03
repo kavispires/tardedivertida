@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import type { ElementType } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
 // Internal
@@ -9,7 +10,7 @@ type WordGridProps = {
   grid: Grid;
   gridType: GridType;
   user: GamePlayer;
-  CellComponent: any;
+  CellComponent: ElementType;
   cellComponentProps: any;
 };
 

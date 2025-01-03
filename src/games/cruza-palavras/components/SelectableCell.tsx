@@ -12,11 +12,11 @@ import { ClueCard } from './ClueCard';
 import { PreviousClue } from './PreviousClue';
 
 type SelectableCellProps = {
-  onSelectCell: GenericFunction;
-  onClearCell: GenericFunction;
+  onSelectCell: (cellCoordinate: number) => void;
+  onClearCell: (clueKey: string) => void;
   cell: GridCell;
-  active: any;
-  guesses: any;
+  active: Clue | number | null;
+  guesses: NumberDictionary;
   clues: Clue[];
   user: GamePlayer;
 };
@@ -41,7 +41,7 @@ export function SelectableCell({
     const clueIndexColor = clues.findIndex((c) => c.clue === clue && c.playerId === playerId);
     return (
       <Button
-        onClick={user.id !== playerId ? () => onClearCell(clueKey) : () => {}}
+        onClick={user.id !== playerId && clueKey ? () => onClearCell(clueKey) : () => {}}
         type="text"
         style={{ height: 'auto' }}
       >

@@ -5,20 +5,20 @@ import { ClueCard } from './ClueCard';
 
 type CluesProps = {
   clues: Clue[];
-  onSelectClue: GenericFunction;
-  active: any;
+  onActivateClue: (clue: Clue) => void;
+  active: Clue | number | null;
   guesses: PlainObject;
 };
 
-export function Clues({ clues, onSelectClue, active, guesses }: CluesProps) {
+export function Clues({ clues, onActivateClue, active, guesses }: CluesProps) {
   return (
     <ul className="x-clue-cards">
       {clues.map((clueObj, index: number) => {
-        const isSelected = clueObj.coordinate === active?.coordinate;
+        const isSelected = typeof active !== 'number' && clueObj.coordinate === active?.coordinate;
         const isMatched = Boolean(guesses[getClueKey(clueObj)]);
         return (
           <li key={`${clueObj.coordinate}-${clueObj.clue}`} className="x-clue-card-li">
-            <button type="button" className="x-clue-card-button" onClick={() => onSelectClue(clueObj)}>
+            <button type="button" className="x-clue-card-button" onClick={() => onActivateClue(clueObj)}>
               <ClueCard
                 isMatched={isMatched}
                 isSelected={isSelected}

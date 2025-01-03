@@ -6,12 +6,12 @@ import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 // Internal
-import type { GridCell } from '../utils/types';
+import type { GridCell, SubmitCluePayload } from '../utils/types';
 import { PreviousClue } from './PreviousClue';
 import { WordForm } from './WordForm';
 
 type WritingCellProps = {
-  onSubmitClue: GenericFunction;
+  onSubmitClue: (payload: SubmitCluePayload) => void;
   cell: GridCell;
   disabled?: boolean;
   user: GamePlayer;

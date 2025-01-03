@@ -49,22 +49,6 @@ export const determineNextPhase = (
   return CLUE_WRITING;
 };
 
-/**
- * Determine if there are enough cells for the players
- * @param grid
- * @param playerCount
- * @param largerGridCount
- * @returns
- */
-export const checkForAvailableCells = (
-  grid: GridCell[],
-  playerCount: number,
-  largerGridCount: number,
-): boolean => {
-  const availableCells = grid.filter((cell) => cell.available);
-  return availableCells.length >= playerCount + largerGridCount;
-};
-
 export const buildGrid = (
   words: Deck,
   playersClues: TextCard[],
@@ -98,7 +82,7 @@ export const buildGrid = (
     }
   }
 
-  const cells: any[] = [];
+  const cells: GridCell[] = [];
 
   x.forEach((xObj, xIndex) => {
     y.forEach((yObj, yIndex) => {
@@ -153,25 +137,6 @@ export const buildGrid = (
   return cells;
 };
 
-// const parseCoordinates = (coord: string): number[] => coord.split(SEPARATOR).map(Number);
-
-const writeCoordinates = (x: number, y: number): string => `${x}${SEPARATOR}${y}`;
-
-/**
- *
- * @param coordinatesLength
- * @returns
- */
-export const buildCoordinates = (coordinatesLength: number): string[] => {
-  const availableCoordinates: string[] = [];
-  for (let x = 0; x < coordinatesLength; x++) {
-    for (let y = 0; y < coordinatesLength; y++) {
-      availableCoordinates.push(writeCoordinates(x, y));
-    }
-  }
-  return availableCoordinates;
-};
-
 /**
  * Distribute the available coordinates among players, returning a list of modified grid
  * @param players - this function modifies players
@@ -179,7 +144,7 @@ export const buildCoordinates = (coordinatesLength: number): string[] => {
  * @returns the modified grid
  */
 export const distributeCoordinates = (players: Players, grid: GridCell[]): GridCell[] => {
-  const available = grid.filter((entry: GridCell) => entry.available);
+  const available = grid.filter((entry) => entry.available && !entry.playerId);
   const shuffledCoordinates = utils.game.shuffle(available);
 
   const distribute = (player: Player, cell: GridCell) => {
@@ -210,9 +175,11 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
   // If possible to give players a second card, do so
   if (shuffledCoordinates.length >= listOfPlayers.length) {
     listOfPlayers.forEach((player) => {
-      const cell = shuffledCoordinates.pop();
-      if (cell) {
-        distribute(player, cell);
+      if (player.coordinates.length < 2) {
+        const cell = shuffledCoordinates.pop();
+        if (cell) {
+          distribute(player, cell);
+        }
       }
     });
   }

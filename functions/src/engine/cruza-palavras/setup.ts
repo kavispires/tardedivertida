@@ -2,14 +2,13 @@
 import { CRUZA_PALAVRAS_PHASES, WORDS_PER_COORDINATE } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
-import type { Deck, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { Deck, FirebaseStateData, FirebaseStoreData, GridCell, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
 import {
   buildGrid,
   buildRanking,
-  checkForAvailableCells,
   distributeCoordinates,
   getAchievements,
   getPlayerClues,
@@ -26,7 +25,7 @@ import { saveData } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -50,6 +49,9 @@ export const prepareSetupPhase = async (
       items: 'items',
     }?.[store?.options?.gridType ?? 'words'] || 'words';
 
+  const gridSize =
+    WORDS_PER_COORDINATE[utils.players.getPlayerCount(players)] + (store?.options?.largerGrid ? 1 : 0);
+
   // Save
   return {
     update: {
@@ -57,13 +59,13 @@ export const prepareSetupPhase = async (
         deck: resourceData.deck,
         playersClues: [],
         availableCoordinates: {},
-        gridRebuilds: 0,
         pastClues: {},
         achievements,
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.SETUP,
         gameType,
+        gridSize,
       },
     },
   };
@@ -71,7 +73,7 @@ export const prepareSetupPhase = async (
 
 export const prepareWordsSelectionPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
@@ -94,6 +96,9 @@ export const prepareClueWritingPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
+  const gridSize = state.gridSize ?? 15;
+
+  // If coming from the word selection, create the deck of selections
   if (state.phase === CRUZA_PALAVRAS_PHASES.WORDS_SELECTION) {
     const deckDict: BooleanDictionary = {};
     utils.players.getListOfPlayers(players).forEach((player) => {
@@ -104,7 +109,7 @@ export const prepareClueWritingPhase = async (
 
     const originalDeck: Deck = store.deck;
 
-    while (Object.keys(deckDict).length < 15) {
+    while (Object.keys(deckDict).length < gridSize) {
       const cardId = utils.game.getRandomItem(originalDeck).id;
       deckDict[cardId] = true;
     }
@@ -127,27 +132,14 @@ export const prepareClueWritingPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
 
   const round = utils.helpers.increaseRound(state.round);
-  const playerCount = utils.players.getPlayerCount(players);
-  const largerGridCount = store?.options?.largerGrid ? 1 : 0;
-  const coordinateLength = WORDS_PER_COORDINATE[playerCount] + store.gridRebuilds + largerGridCount;
 
-  // Build grid if rounds 1 or if there is not enough available cells for all players
-  const largerGridAvailability = store?.options?.largerGrid ? 2 : 0;
-  const shouldBuildGrid = !checkForAvailableCells(state.grid ?? [], playerCount, largerGridAvailability);
-
-  const grid = shouldBuildGrid
-    ? buildGrid(store.deck, store.playersClues, coordinateLength, shouldBuildGrid)
-    : state.grid;
-
-  // Remove clues before the distribution of coordinates
-  if (shouldBuildGrid) {
-    utils.players.removePropertiesFromPlayers(players, [
-      'clue',
-      'guesses',
-      'coordinate',
-      'currentClueCoordinate',
-    ]);
+  let gridType: string = state.gameType;
+  let grid: GridCell[] = state.grid ?? buildGrid(store.deck, store.playersClues, gridSize, false);
+  // Build/Rebuild grid on round 1 and 4
+  if (round.current === 1 || round.current === 4) {
+    grid = buildGrid(store.deck, store.playersClues, gridSize, round.current === 4);
     utils.players.addPropertiesToPlayers(players, { coordinates: [] });
+    gridType = round.current === 4 ? 'words' : gridType;
   }
 
   const updatedGrid = distributeCoordinates(players, grid);
@@ -158,13 +150,13 @@ export const prepareClueWritingPhase = async (
   return {
     update: {
       store: {
-        playersClues: shouldBuildGrid ? [] : store.playersClues,
-        gridRebuilds: shouldBuildGrid ? store.gridRebuilds + 1 : store.gridRebuilds,
+        playersClues: round.current === 4 ? [] : store.playersClues,
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.CLUE_WRITING,
         round,
         grid: updatedGrid,
+        gridType,
         players,
       },
       stateCleanup: ['clues', 'ranking', 'whoGotNoPoints', 'deck'],

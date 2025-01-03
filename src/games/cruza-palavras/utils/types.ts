@@ -24,6 +24,12 @@ export type GridCell = {
 export type Grid = GridCell[];
 export type GridType = 'words' | 'contenders' | 'images' | 'items';
 
+export type ResultPlayerCell = {
+  playerId: PlayerId;
+  isCorrect?: boolean;
+  color?: string;
+};
+
 export type SubmitWordsPayload = {
   words: string[];
 };
