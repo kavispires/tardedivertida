@@ -22,7 +22,7 @@ import { GAME_NAMES } from '../../utils/constants';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -66,7 +66,7 @@ export const prepareSetupPhase = async (
 
 export const preparePromptSelectionPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players

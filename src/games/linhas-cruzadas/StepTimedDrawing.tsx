@@ -1,6 +1,4 @@
 import { useState } from 'react';
-// Ant Design Resources
-import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -8,6 +6,7 @@ import { AVATARS } from 'utils/avatars';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
+import { SendButton } from 'components/buttons';
 import { DrawingCanvas } from 'components/canvas';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
@@ -15,12 +14,12 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { TimedTimerBar } from 'components/timers';
 // Internal
-import type { Prompt } from './utils/types';
+import type { Prompt, SubmitDrawingPayload } from './utils/types';
 import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 
 type StepTimedDrawingProps = {
   currentPrompt: Prompt;
-  onSubmitDrawing: GenericFunction;
+  onSubmitDrawing: (payload: SubmitDrawingPayload) => void;
   players: GamePlayers;
 };
 
@@ -52,9 +51,9 @@ export function StepTimedDrawing({ currentPrompt, onSubmitDrawing, players }: St
         <DrawingCanvas lines={lines} setLines={setLines} showControls />
       )}
       <SpaceContainer>
-        <Button type="primary" onClick={() => onSubmit()} size="large">
+        <SendButton onClick={() => onSubmit()} size="large">
           <Translate pt="Enviar desenho" en="Submit drawing" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </Step>
   );

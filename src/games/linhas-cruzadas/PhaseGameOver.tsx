@@ -2,6 +2,8 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+// Utils
+import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
@@ -24,7 +26,10 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       <ul className="l-album-strips">
         {state.album.map((albumEntry: AlbumEntry) => (
           <li key={`album-strip-${albumEntry.id}`} className="l-album-strip-entry">
-            <div className="l-album-strip-entry__author">
+            <div
+              className="l-album-strip-entry__author"
+              style={{ backgroundColor: getAvatarColorById(players[albumEntry.id].avatarId) }}
+            >
               <AvatarName player={players[albumEntry.id]} />
             </div>
             <ul

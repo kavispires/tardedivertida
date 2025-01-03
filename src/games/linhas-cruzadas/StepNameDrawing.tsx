@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Input } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -9,17 +9,18 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
 import { AvatarName } from 'components/avatars';
+import { SendButton } from 'components/buttons';
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { RuleInstruction, Title } from 'components/text';
 // Internal
-import type { Prompt } from './utils/types';
+import type { Prompt, SubmitGuessPayload } from './utils/types';
 
 type StepNameDrawingProps = {
   currentPrompt: Prompt;
-  onSubmitGuess: GenericFunction;
+  onSubmitGuess: (payload: SubmitGuessPayload) => void;
   players: GamePlayers;
   // for mock
   user: GamePlayer;
@@ -38,7 +39,7 @@ export function StepNameDrawing({
 
   const author = players[currentPrompt.author];
 
-  const onTitleChange = (e: any) => setTitle(e.target.value);
+  const onTitleChange = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
 
   const onSubmitTitle = () => onSubmitGuess({ guess: title });
 
@@ -50,7 +51,7 @@ export function StepNameDrawing({
       <Title>
         <Translate pt="O que é isso?" en="What is this?" />
       </Title>
-      <Instruction contained>
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
@@ -63,7 +64,7 @@ export function StepNameDrawing({
             </>
           }
         />
-      </Instruction>
+      </RuleInstruction>
 
       <CanvasSVG drawing={currentPrompt.content} className="l-drawing" width={300} />
 
@@ -76,9 +77,9 @@ export function StepNameDrawing({
       />
 
       <SpaceContainer>
-        <Button type="primary" onClick={onSubmitTitle} size="large" disabled={!title}>
+        <SendButton onClick={onSubmitTitle} size="large" disabled={!title}>
           <Translate pt="Enviar" en="Submit name" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </Step>
   );
