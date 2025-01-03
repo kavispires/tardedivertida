@@ -17,7 +17,7 @@ import { savedData } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -172,6 +172,7 @@ export const prepareGameOverPhase = async (
   });
 
   const gallery = store.gallery.filter((item) => item.players.length > 2 && item.pair.every(Boolean));
+  utils.helpers.print(gallery);
 
   // Save data (pairs)
   await savedData(gallery ?? []);

@@ -5,7 +5,8 @@ import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '../utils';
 import { isEmpty } from 'lodash';
-import { throwException } from './firebase';
+import { isEmulatingEnvironment, throwException } from './firebase';
+import { print } from './helpers';
 
 /**
  * Get Firebase session for the data collection (used to save bot/seed data)
@@ -215,6 +216,14 @@ export const saveGame = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
   saveContent: SaveGamePayload,
 ) => {
+  if (isEmulatingEnvironment()) {
+    const undefinedValues = verifyUndefinedValues(saveContent);
+    if (undefinedValues) {
+      print('Undefined values');
+      print(undefinedValues);
+    }
+  }
+
   try {
     if (saveContent?.set?.state && !isEmpty(saveContent?.set?.state)) {
       await sessionRef.doc('state').set({ ...(saveContent.set.state ?? {}), updatedAt: Date.now() });
@@ -428,3 +437,27 @@ export const cleanupStore = (store: PlainObject, keepKeys: string[]): string[] =
   const keys = ['language', 'options', 'turnOrder', 'gameOrder', 'createdAt', 'achievements', ...keepKeys];
   return Object.keys(store).filter((key) => !keys.includes(key));
 };
+
+type UndefinedParts<T> = {
+  [K in keyof T]?: T[K] extends object ? UndefinedParts<T[K]> : T[K];
+};
+
+function verifyUndefinedValues<T extends object>(obj: T) {
+  let hasUndefined = false;
+  const result: UndefinedParts<T> = {};
+
+  for (const key in obj) {
+    if (obj[key] === undefined) {
+      result[key] = undefined;
+      hasUndefined = true;
+    } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+      const nestedResult = verifyUndefinedValues(obj[key] as object);
+      if (nestedResult !== null) {
+        result[key] = nestedResult as T[typeof key];
+        hasUndefined = true;
+      }
+    }
+  }
+
+  return hasUndefined ? result : null;
+}
