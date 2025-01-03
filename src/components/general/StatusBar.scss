@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .status-bar {
   display: grid;
@@ -6,18 +6,18 @@
   border-radius: $border-radius;
   place-items: center;
   padding: get-unit(2);
-  margin: get-unit(4 2);
-  border: 2px solid get-color('white', 5, 0.5);
+  margin: get-unit(8 2);
+  border: 2px solid get-color("white", 5, 0.5);
   position: relative;
 
   & .ant-divider {
-    border: 1px solid get-color('white', 5, 0.5);
+    border: 1px solid get-color("white", 5, 0.5);
   }
 
   &__title {
     position: absolute;
-    top: -1.5rem;
-    background: get-color('white', 5, 0.5);
+    top: -1.45rem;
+    background: get-color("white", 5, 0.5);
     border-radius: $border-radius $border-radius 0 0;
     padding: get-unit(0 2);
     font-size: 0.85rem;

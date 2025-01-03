@@ -206,7 +206,7 @@ export const prepareQuestioningPhase = async (
 };
 
 export const prepareTrialPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
   additionalPayload: PlainObject,

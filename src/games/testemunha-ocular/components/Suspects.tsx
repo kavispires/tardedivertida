@@ -14,7 +14,7 @@ import { DualTranslate } from 'components/language';
 type SuspectsProps = {
   suspects: SuspectCard[];
   perpetrator?: SuspectCard;
-  onCardClick?: GenericFunction;
+  onCardClick?: (suspectId: string) => void;
   eliminatedSuspects?: string[];
 };
 
