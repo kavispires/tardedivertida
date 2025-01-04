@@ -1,37 +1,37 @@
 // Ant Design Resources
-import { Button, Popover, Space, Tooltip } from 'antd';
+import { Popover, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Characters } from './utils/types';
+import type { Characters, SubmitGlyphsPayload } from './utils/types';
 import { prepareGlyphs } from './utils/helpers';
 import { mockGlyphs } from './utils/mock';
+import type { ROUND_TYPE } from './utils/constants';
 import { Table } from './components/Table';
 import { NegativeHighlight, PositiveHighlight } from './components/Highlights';
 
 type StepSelectGlyphsProps = {
   user: GamePlayer;
-  onSelectGlyphs: GenericFunction;
+  onSelectGlyphs: (payload: SubmitGlyphsPayload) => void;
   characters: Characters;
   tableOrder: CardId[];
-  roundType: 'SHOW' | 'HIDE';
+  roundType: (typeof ROUND_TYPE)[keyof typeof ROUND_TYPE];
   imageCardMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
@@ -46,7 +46,6 @@ export function StepSelectGlyphs({
   roundType,
   imageCardMode,
 }: StepSelectGlyphsProps) {
-  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const glyphWidth = useCardWidth(20, {
     gap: 16,
@@ -220,16 +219,13 @@ export function StepSelectGlyphs({
       </Space>
 
       <SpaceContainer>
-        <Button
+        <SendButton
           size="large"
-          type="primary"
           onClick={() => onSelectGlyphs({ glyphs: prepareGlyphs(positiveSelection, negativeSelection) })}
-          disabled={
-            isLoading || user.ready || (positiveSelections.length < 1 && negativeSelections.length < 1)
-          }
+          disabled={user.ready || (positiveSelections.length < 1 && negativeSelections.length < 1)}
         >
           <Translate pt={<>Enviar ícones</>} en={<>Submit glyphs</>} />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </Step>
   );
@@ -237,8 +233,8 @@ export function StepSelectGlyphs({
 
 type PopoverGlyphProps = {
   id: CardId;
-  updatePositive: GenericFunction;
-  updateNegative: GenericFunction;
+  updatePositive: (key: string) => void;
+  updateNegative: (key: string) => void;
   disablePositive: boolean;
   disableNegative: boolean;
 };
