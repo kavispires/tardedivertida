@@ -105,6 +105,7 @@ export function StepGuessing({
   // biome-ignore lint/correctness/useExhaustiveDependencies: Hook should be called only if the user character changes
   useEffect(() => {
     const selection = selectOwnCard();
+
     if (selection) {
       setVotes((s) => ({ ...s, ...selection }));
     }
