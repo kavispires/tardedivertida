@@ -493,6 +493,15 @@ export const sortPlayers = memoize(
 );
 
 /**
+ * Verify if all players are ready
+ * @param players
+ * @returns
+ */
+export const isEverybodyReady = (players: GamePlayers): boolean => {
+  return Object.values(players).every((player) => player.ready);
+};
+
+/**
  * Calculate a game average duration
  * @param game
  * @param numPlayers
