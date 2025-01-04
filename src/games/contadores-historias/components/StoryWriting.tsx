@@ -16,11 +16,12 @@ import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
 import { mockStory } from '../utils/mock';
+import type { SubmitStoryPayload } from '../utils/types';
 import { BookPages } from '../../../components/game/BookPages';
 
 type StoryWritingProps = {
   user: GamePlayer;
-  onSubmitStory: GenericFunction;
+  onSubmitStory: (payload: SubmitStoryPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StoryWriting({ user, onSubmitStory, announcement }: StoryWritingProps) {
