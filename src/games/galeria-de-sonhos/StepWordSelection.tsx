@@ -9,9 +9,11 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
+// Internal
+import type { SubmitWordPayload } from './utils/types';
 
 type StepWordSelectionProps = {
-  onSubmitWord: GenericFunction;
+  onSubmitWord: (payload: SubmitWordPayload) => void;
   words: TextCard[];
 };
 

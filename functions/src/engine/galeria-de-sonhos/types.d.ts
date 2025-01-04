@@ -35,7 +35,7 @@ export type PlayerCard = {
   score: number;
 };
 
-type ImageCardMatch = {
+export type ImageCardMatch = {
   id: CardId;
   used: boolean;
   text: string;
@@ -47,7 +47,6 @@ export interface GaleriaDeSonhosStore extends DefaultStore {
   deck: TextCard[];
   gameOrder: GameOrder;
   withBots?: boolean;
-  [key: string]: any;
 }
 
 export interface GaleriaDeSonhosState extends DefaultState {

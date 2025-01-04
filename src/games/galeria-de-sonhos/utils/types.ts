@@ -8,7 +8,7 @@ export type SubmitWordPayload = {
 };
 
 export type SubmitCardsPayload = {
-  cards: string[];
+  cardsIds: string[];
 };
 
 export type PlayCardPayload = {

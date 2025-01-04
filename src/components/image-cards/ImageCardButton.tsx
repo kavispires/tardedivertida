@@ -40,7 +40,7 @@ type ImageCardButtonProps = {
   /**
    * The function to be called when the button is clicked
    */
-  onClick?: (...args: any) => void;
+  onClick?: (cardId: CardId) => void;
   /**
    * Disables the button (default: false)
    */
@@ -53,6 +53,10 @@ type ImageCardButtonProps = {
    * The props for the button
    */
   buttonProps?: Omit<ButtonProps, 'onClick' | 'disabled'>;
+  /**
+   * Hides button
+   */
+  hideButton?: boolean;
 };
 
 export function ImageCardButton({
@@ -66,6 +70,7 @@ export function ImageCardButton({
   disabled = false,
   buttonText,
   buttonProps = {},
+  hideButton = false,
 }: ImageCardButtonProps) {
   const isTop = buttonPosition === 'top';
 
@@ -73,28 +78,29 @@ export function ImageCardButton({
 
   const { className: buttonClassName, ...restButtonProps } = buttonProps;
 
-  const button = onClick ? (
-    <Button
-      shape="round"
-      size="small"
-      ghost={over}
-      className={clsx(
-        'image-card-button__button',
-        over && 'image-card-button__button--over',
-        over && `image-card-button__button--over-${buttonPosition}`,
-        buttonClassName,
-      )}
-      onClick={() => onClick(id)}
-      disabled={disabled}
-      {...restButtonProps}
-    >
-      {iconComponent}
-      {buttonText ?? <Translate pt="Selecionar" en="Select" />}
-      {iconComponent}
-    </Button>
-  ) : (
-    <></>
-  );
+  const button =
+    !hideButton && onClick ? (
+      <Button
+        shape="round"
+        size="small"
+        ghost={over}
+        className={clsx(
+          'image-card-button__button',
+          over && 'image-card-button__button--over',
+          over && `image-card-button__button--over-${buttonPosition}`,
+          buttonClassName,
+        )}
+        onClick={() => onClick(id)}
+        disabled={disabled}
+        {...restButtonProps}
+      >
+        {iconComponent}
+        {buttonText ?? <Translate pt="Selecionar" en="Select" />}
+        {iconComponent}
+      </Button>
+    ) : (
+      <></>
+    );
 
   return (
     <div className={clsx('image-card-button', className)}>

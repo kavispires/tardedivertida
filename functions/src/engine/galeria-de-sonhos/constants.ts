@@ -38,6 +38,6 @@ export const TOTAL_ROUNDS = 4;
 
 export const TABLE_DECK_TOTAL = 30;
 
-export const WORD_DECK_TOTAL = 6;
+export const WORD_DECK_TOTAL = 7;
 
 export const INITIAL_TABLE_SIZE = 15;
