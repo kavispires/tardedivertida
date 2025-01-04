@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { CloseCircleFilled } from '@ant-design/icons';
-import { Button } from 'antd';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
@@ -11,6 +10,7 @@ import { useMock } from 'hooks/useMock';
 import { getAnimationClass } from 'utils/helpers';
 import { PHASES } from 'utils/phases';
 // Components
+import { SendButton } from 'components/buttons';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageBlurButton, ImageCard, ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -21,6 +21,7 @@ import { Instruction, RuleInstruction, StepTitle, Title } from 'components/text'
 import { TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockPageSelection } from './utils/mock';
+import type { SubmitPagesPayload } from './utils/types';
 import { TrapPopupRule } from './components/RulesBlobs';
 import { BookHighlight, DoorHighlight } from './components/Highlights';
 import { DoorFrame } from '../../components/game/DoorFrame';
@@ -30,7 +31,7 @@ type StepSelectPagesProps = {
   currentCorridor: number;
   answerDoorId: CardId;
   trap: string;
-  onSubmitPages: GenericFunction;
+  onSubmitPages: (payload: SubmitPagesPayload) => void;
 };
 
 export function StepSelectPages({
@@ -131,7 +132,7 @@ export function StepSelectPages({
       </RuleInstruction>
 
       {isSelectionComplete && (
-        <Button
+        <SendButton
           type="primary"
           size="large"
           loading={isLoading}
@@ -140,7 +141,7 @@ export function StepSelectPages({
           className={getAnimationClass('tada')}
         >
           <Translate pt="Enviar Páginas" en="Submit Pages" />
-        </Button>
+        </SendButton>
       )}
 
       <Instruction contained>

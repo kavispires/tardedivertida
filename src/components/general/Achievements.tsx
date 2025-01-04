@@ -77,7 +77,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
               key={`achievement-${achievement.type}`}
               className={'achievements-entry'}
               {...getAnimation('flipInY', {
-                duration: 3,
+                duration: 2,
                 delay: (index < achievements.length / 2 ? index : achievements.length - 1 - index) + 2.5,
               })}
             >
