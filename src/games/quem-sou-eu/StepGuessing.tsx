@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { shuffle } from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
 // Ant Design Resources
+import { ThunderboltOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
@@ -194,7 +195,13 @@ export function StepGuessing({
         >
           <Translate pt={<>Enviar pares</>} en={<>Submit guesses</>} />
         </SendButton>
-        <Button size="large" type="dashed" onClick={() => onGuessForMe()} disabled={isLoading || user.ready}>
+        <Button
+          size="large"
+          type="dashed"
+          onClick={() => onGuessForMe()}
+          disabled={isLoading || user.ready}
+          icon={<ThunderboltOutlined />}
+        >
           <Translate pt={<>Desistir</>} en={<>Guess for me</>} />
         </Button>
       </SpaceContainer>

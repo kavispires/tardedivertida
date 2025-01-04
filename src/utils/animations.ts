@@ -298,7 +298,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
           'perspective(400px)',
         ],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -321,7 +321,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
           'perspective(400px)',
         ],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -338,7 +338,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
         opacity: [0, 1, 1, 1],
         transform: ['translate3d(-100%, 0, 0) skewX(30deg)', 'skewX(-20deg)', 'skewX(5deg)', 'translateZ(0)'],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -354,7 +354,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
       animate: {
         transform: ['translate3d(0, 100%, 0)', 'translateZ(0)'],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -370,7 +370,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
       animate: {
         transform: ['translate3d(0, -100%, 0)', 'translateZ(0)'],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -386,7 +386,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
       animate: {
         transform: ['translate3d(-100%, 0, 0)', 'translateZ(0)'],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -402,7 +402,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
       animate: {
         transform: ['translate3d(100%, 0, 0)', 'translateZ(0)'],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -419,7 +419,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
         opacity: [0, 1],
         transform: ['scale3d(0.3, 0.3, 0.3)', 'scale3d(1, 1, 1)'],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -455,7 +455,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
         opacity: [1, 0, 0],
         transform: ['scale3d(1, 1, 1)', 'scale3d(0.3, 0.3, 0.3)', 'scale3d(0.3, 0.3, 0.3)'],
         transition: {
-          ease: ease ?? 'ease-in',
+          ease: ease ?? 'easeIn',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,

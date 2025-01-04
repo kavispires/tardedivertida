@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
+import { ThunderboltOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
@@ -148,7 +149,7 @@ export function StepGuessing({
       </RuleInstruction>
 
       <SpaceContainer align="center">
-        <Button size="large" type="dashed" onClick={randomGuessThem}>
+        <Button size="large" type="dashed" onClick={randomGuessThem} icon={<ThunderboltOutlined />}>
           <Translate pt="Desistir" en="Give up" />
         </Button>
         <SendButton
