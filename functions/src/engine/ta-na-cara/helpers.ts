@@ -32,7 +32,7 @@ export const determineNextPhase = (state: TaNaCaraState, store: TaNaCaraStore): 
   if (currentPhaseIndex > -1) {
     return order[currentPhaseIndex + 1];
   }
-  console.warn('Missing phase check');
+  utils.helpers.warnMissingPhase(currentPhase);
   return PROMPT;
 };
 

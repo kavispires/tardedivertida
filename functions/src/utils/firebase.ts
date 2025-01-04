@@ -48,7 +48,7 @@ export const apiDelegator = (
  * @param propertyName
  * @param action
  */
-export function verifyPayload(property?: any, propertyName = 'unknown property', action = 'function') {
+export function verifyPayload(property?: unknown, propertyName = 'unknown property', action = 'function') {
   if (property === undefined || property === null) {
     throw new functions.https.HttpsError('internal', `Failed to ${action}: a ${propertyName} is required`);
   }

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.42",
+  "version": "4.0.43",
   "release": "stable",
   "available": false,
   "title": {
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "doors-clouds",
+    "cloudsAnimationType": "rising",
     "primaryColor": "#4B2142",
     "backgroundColor": "rgba(163, 119, 136, 0.85)",
     "colorScheme": "light"

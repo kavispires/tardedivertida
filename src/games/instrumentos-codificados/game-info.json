@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "ι",
   "gameName": "instrumentos-codificados",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "release": "cancelled",
   "available": false,
   "title": {

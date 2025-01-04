@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "release": "beta",
   "available": false,
   "title": {
