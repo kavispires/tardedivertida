@@ -3,7 +3,7 @@ export type SubmitDrawingPayload = {
 };
 
 export type SubmitEvaluationPayload = {
-  guesses: Dictionary<CardId>;
+  guesses: ArrayDictionary<CardId>;
   choseRandomly: boolean;
 };
 

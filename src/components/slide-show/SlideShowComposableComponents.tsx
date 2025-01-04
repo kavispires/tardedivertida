@@ -7,7 +7,7 @@ import { Avatar as AntAvatar, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
-import { getPlayerNamesFromIds } from 'utils/helpers';
+import { getContrastColor, getPlayerNamesFromIds } from 'utils/helpers';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
@@ -34,6 +34,10 @@ type SlideShowBubbleProps = {
    * The background color of the bubble.
    */
   backgroundColor?: string;
+  /**
+   * Extra content to be displayed on the right
+   */
+  extra?: ReactNode;
 } & ElementPropsWithChildren;
 
 /**
@@ -46,24 +50,27 @@ export function SlideShowBubbleValue({
   winner,
   backgroundColor,
   className,
+  extra,
   ...props
 }: SlideShowBubbleProps) {
   return (
     <div
       className={clsx('slide-show-composable__bubble-value', className)}
-      style={winner && backgroundColor ? { backgroundColor, color: 'white' } : {}}
+      style={winner && backgroundColor ? { backgroundColor, color: getContrastColor(backgroundColor) } : {}}
       {...props}
     >
       {winner ? (
         <CrownFilled
           className="slide-show-composable__bubble-icon"
-          style={backgroundColor ? { color: 'white' } : {}}
+          style={backgroundColor ? { color: getContrastColor(backgroundColor) } : {}}
         />
       ) : (
         <MessageFilled className="slide-show-composable__bubble-icon" />
       )}
 
-      {children}
+      <span>{children}</span>
+
+      <span>{extra}</span>
     </div>
   );
 }

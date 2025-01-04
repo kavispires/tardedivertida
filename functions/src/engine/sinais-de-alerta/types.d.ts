@@ -51,7 +51,6 @@ export type FinalGalleryEntry = {
 export interface SinaisDeAlertaStore extends DefaultStore {
   subjectsDeck: TextCard[];
   descriptorsDeck: TextCard[];
-  [key: string]: any;
 }
 
 export interface SinaisDeAlertaState extends DefaultState {

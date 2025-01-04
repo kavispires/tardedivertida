@@ -1,18 +1,18 @@
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { CrownFilled, MessageFilled } from '@ant-design/icons';
-import { Avatar as AntAvatar, Flex, Typography } from 'antd';
+import { Flex, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
 // Utils
-import { getContrastColor, getPlayerNamesFromIds } from 'utils/helpers';
+import { getContrastColor } from 'utils/helpers';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { SlideShowBubbleValue, SlideShowLabel, SlideShowPlayersList } from 'components/slide-show';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 import { getTitle } from '../utils/helpers';
@@ -64,9 +64,9 @@ export function GalleryWindowGuesses({
 
   return (
     <div className="sda-gallery__guesses">
-      <div className="sda-gallery__label">
+      <SlideShowLabel>
         <Translate pt="Participantes votaram" en="Players voted" />
-      </div>
+      </SlideShowLabel>
       {entries.map((entry, index) => {
         const subjectName = (
           <Typography.Text
@@ -102,23 +102,15 @@ export function GalleryWindowGuesses({
 
         return (
           <div key={`guess-${entry.id}-${index}`} className="sda-gallery__guess">
-            <div
-              className="sda-gallery__speech-bubble"
-              style={
-                entry.correctness === 2
-                  ? {
-                      backgroundColor: artistColor,
-                      color: getContrastColor(artistColor),
-                    }
-                  : {}
+            <SlideShowBubbleValue
+              winner={entry.correctness === 2}
+              backgroundColor={artistColor}
+              extra={
+                <Flex align="center" gap={3}>
+                  <IconAvatar icon={<StarIcon />} size="small" /> {entry.score}
+                </Flex>
               }
             >
-              {entry.correctness === 2 ? (
-                <CrownFilled className="sda-gallery__speech-bubble-icon" style={{ color: 'white' }} />
-              ) : (
-                <MessageFilled className="sda-gallery__speech-bubble-icon" />
-              )}
-
               {gameLanguage === 'pt' ? (
                 <span>
                   {subjectName} {descriptorName}
@@ -128,24 +120,9 @@ export function GalleryWindowGuesses({
                   {descriptorName} {subjectName}
                 </span>
               )}
+            </SlideShowBubbleValue>
 
-              <Flex align="center" gap={3}>
-                <IconAvatar icon={<StarIcon />} size="small" /> {entry.score}
-              </Flex>
-            </div>
-            <div className="sda-gallery__players">
-              <AntAvatar.Group>
-                {entry.playersIds.map((playerId) => (
-                  <Avatar
-                    id={players[playerId].avatarId}
-                    key={`guess-avatar-${players[playerId].avatarId}`}
-                  />
-                ))}
-              </AntAvatar.Group>
-              <span className="sda-gallery__players-names">
-                {getPlayerNamesFromIds(entry.playersIds, players).join(', ')}
-              </span>
-            </div>
+            <SlideShowPlayersList playersIds={entry.playersIds} players={players} />
           </div>
         );
       })}

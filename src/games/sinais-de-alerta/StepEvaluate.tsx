@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { ClearOutlined, CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -11,6 +11,7 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
+import { SendButton } from 'components/buttons';
 import { CanvasResizer } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
@@ -19,7 +20,7 @@ import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { DrawingEntry } from './utils/types';
+import type { DrawingEntry, SubmitEvaluationPayload } from './utils/types';
 import { useGuessing } from './utils/useGuessing';
 import { EvaluationRules } from './components/RulesBlobs';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
@@ -29,7 +30,7 @@ import { EvaluationAllDescriptors } from './components/EvaluationAllDescriptors'
 type StepEvaluateProps = {
   user: GamePlayer;
   players: GamePlayers;
-  onSubmitGuesses: GenericFunction;
+  onSubmitGuesses: (payload: SubmitEvaluationPayload) => void;
   cards: Dictionary<TextCard>;
   drawings: DrawingEntry[];
   subjectsIds: CardId[];
@@ -153,7 +154,7 @@ export function StepEvaluate({
 
       <Space direction="vertical">
         <SpaceContainer wrap>
-          <Button type="default" icon={<ThunderboltOutlined />} onClick={resetGuesses} disabled={isLoading}>
+          <Button type="default" icon={<ClearOutlined />} onClick={resetGuesses} disabled={isLoading}>
             <Translate pt="Limpar seleções" en="Clear selections" />
           </Button>
           <Button
@@ -164,8 +165,7 @@ export function StepEvaluate({
           >
             <Translate pt="Chutar restantes" en="Guess for me" />
           </Button>
-          <Button
-            type="primary"
+          <SendButton
             onClick={() =>
               onSubmitGuesses({
                 guesses: prepareGuesses(drawings, subjectGuesses, descriptorGuesses),
@@ -174,10 +174,9 @@ export function StepEvaluate({
             }
             disabled={!isComplete}
             icon={<CloudUploadOutlined />}
-            loading={isLoading}
           >
             <Translate pt="Enviar sua avaliação" en="Send evaluation" />
-          </Button>
+          </SendButton>
         </SpaceContainer>
 
         <EvaluationAllDrawings
