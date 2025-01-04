@@ -65,7 +65,7 @@ export const determineNextPhase = (
   if (currentPhaseIndex > -1) {
     return order[currentPhaseIndex + 1];
   }
-  console.warn('Missing phase check');
+  utils.helpers.warnMissingPhase(currentPhase);
   return MAP_BUILDING;
 };
 

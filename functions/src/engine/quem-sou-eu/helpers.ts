@@ -29,7 +29,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, imageCard
   if (currentPhaseIndex > -1) {
     return order[currentPhaseIndex + 1];
   }
-  console.warn('Missing phase check');
+  utils.helpers.warnMissingPhase(currentPhase);
   return CHARACTER_DESCRIPTION;
 };
 

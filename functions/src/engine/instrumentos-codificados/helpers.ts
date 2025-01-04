@@ -27,7 +27,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   if (currentPhaseIndex > -1) {
     return order[currentPhaseIndex + 1];
   }
-  console.warn('Missing phase check');
+  utils.helpers.warnMissingPhase(currentPhase);
   return HINT_GIVING;
 };
 

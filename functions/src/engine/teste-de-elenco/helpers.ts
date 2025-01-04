@@ -39,7 +39,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
   if (currentPhaseIndex > -1) {
     return order[currentPhaseIndex + 1];
   }
-  console.warn('Missing phase check');
+  utils.helpers.warnMissingPhase(currentPhase);
   return ACTOR_SELECTION;
 };
 

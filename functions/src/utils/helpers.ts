@@ -7,8 +7,14 @@ import { getListOfPlayers } from './players-utils';
  */
 export const print = (content: unknown) => {
   if (isEmulatingEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: on purpose
     console.log(JSON.stringify(content, null, 2));
   }
+};
+
+export const warnMissingPhase = (phase: string) => {
+  // biome-ignore lint/suspicious/noConsole: on purpose
+  console.warn(`Missing phase check to follow ${phase}`);
 };
 
 /**
@@ -166,14 +172,12 @@ export const increaseRound = (round: Round, total?: number, current?: number): R
 /**
  * Flattens a two dimensional array
  * @param twoDimensionalArray
- * @returns
  */
 export const flattenArray = <T>(twoDimensionalArray: T[][]): T[] =>
   twoDimensionalArray.reduce((acc, arr) => acc.concat(arr), []);
 
 /**
  * Function to simulate calls when developing
- * @param duration
  */
 export const devSimulateWait = async (duration = 3000) => {
   if (isEmulatingEnvironment()) {
