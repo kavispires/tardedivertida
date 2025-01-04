@@ -87,6 +87,8 @@
   }
 
   &__bubble-value {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     background-color: get-color("white");
     box-shadow: 0 3px 5px 2px rgba($color: #000, $alpha: 0.5);
     padding: get-unit(2 4);

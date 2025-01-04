@@ -17,12 +17,13 @@ import { DevButton } from 'components/debug';
 import { Step, type StepProps } from 'components/steps';
 // Internal
 import { getTitle } from './utils/helpers';
+import type { SubmitDrawingPayload } from './utils/types';
 import { WarningSignBackgroundMask } from './components/WarningSignBackgroundMask';
 
 type StepDrawProps = {
   user: GamePlayer;
   cards: Dictionary<TextCard>;
-  onSubmitDrawing: GenericFunction;
+  onSubmitDrawing: (payload: SubmitDrawingPayload) => void;
   startDrawingTimer: boolean;
   gameLanguage: Language;
   timeLimit: number;
@@ -39,7 +40,7 @@ export function StepDraw({
 }: StepDrawProps) {
   const { translate } = useLanguage();
 
-  const [lines, setLines] = useState<any>([]);
+  const [lines, setLines] = useState<CanvasLine[]>([]);
   const [isTimesUp, setTimesUp] = useState(false);
 
   const { seconds, start, isRunning } = useCountdown({

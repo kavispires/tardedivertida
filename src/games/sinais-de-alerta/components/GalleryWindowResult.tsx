@@ -1,22 +1,17 @@
 // Ant Design Resources
-import { CrownFilled } from '@ant-design/icons';
-import { Divider, Typography } from 'antd';
+import { Typography } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
-// Icons
-import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { SlideShowBubbleValue, SlideShowLabel, SlideShowNoWins } from 'components/slide-show';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 import { getTitle } from '../utils/helpers';
-// Utils
 
 type GalleryWindowResultProps = {
   cards: Dictionary<TextCard>;
-
   galleryEntry: GalleryEntry;
   gameLanguage: Language;
 };
@@ -24,30 +19,28 @@ type GalleryWindowResultProps = {
 export function GalleryWindowResult({ cards, galleryEntry, gameLanguage }: GalleryWindowResultProps) {
   return (
     <div className="sda-gallery__result">
-      <Divider className="m-0" />
       {galleryEntry.correctness !== 2 && (
         <>
-          <div className="sda-gallery__label">
+          <SlideShowLabel>
             <Translate pt="E o título correto da placa é" en="And the warning sign title is" />
-          </div>
-          <div className="sda-gallery__speech-bubble mb-4">
-            <CrownFilled className="sda-gallery__speech-bubble-icon" />
+          </SlideShowLabel>
+
+          <SlideShowBubbleValue winner>
             {getTitle(cards, galleryEntry.subjectId, galleryEntry.descriptorId, gameLanguage)}
-          </div>
+          </SlideShowBubbleValue>
 
           {galleryEntry.artistScore === 0 && (
-            <Typography.Paragraph className="color-red">
-              <IconAvatar icon={<GarbageIcon />} size="small" shape="square" />
+            <SlideShowNoWins>
               <Translate
-                pt="Nossa, ninguém acertou. Esse desenho deve ter sido muito ruim."
-                en="Wow, nobody got it. It must have been a very crappy drawing. Shame..."
+                pt="Esse desenho deve ter sido muito ruim."
+                en="It must have been a very crappy drawing. Shame..."
               />
-            </Typography.Paragraph>
+            </SlideShowNoWins>
           )}
         </>
       )}
 
-      <Typography.Paragraph>
+      <Typography.Paragraph className="mt-2">
         <Translate pt="O criador ganhou" en="The creator earned" />:{' '}
         <PointsHighlight>{galleryEntry.artistScore}</PointsHighlight> pontos
       </Typography.Paragraph>

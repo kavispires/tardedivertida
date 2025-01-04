@@ -22,7 +22,7 @@ export function GameCustomizations({
   onChangeOptions,
   selectedOptions,
 }: GameCustomizationsProps) {
-  if (!options) {
+  if (!options || options.length === 0) {
     return (
       <div className="create-game-modal-options create-game-modal-options__no-options">
         <Typography.Text>

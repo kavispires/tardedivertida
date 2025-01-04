@@ -2,31 +2,32 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Sinais de Alerta",
     "en": "Warning Signs"
   },
   "popularName": {
     "pt": "Jogo das placas",
-    "en": ""
+    "en": "Signs drawing game"
   },
   "basedOn": "sngiS noituaC",
   "summary": {
-    "pt": "TBD",
-    "en": "TBD"
+    "pt": "Desenhe placas de sinalização para o governo e tente adivinhar as dos outros",
+    "en": "Draw signaling signs for the government and try to guess the others'"
   },
   "appearance": {
     "clouds": "warning-signs-clouds",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#005377",
     "backgroundColor": "rgba(251, 206, 116, 0.85)",
     "colorScheme": "light"
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 10,
+    "perPlayer": 2
   },
   "rules": {
     "pt": [

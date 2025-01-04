@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .sda-card {
   z-index: 15;
@@ -15,11 +15,6 @@
 .sda-alert-sign {
   position: relative;
   z-index: 0;
-  // position: absolute;
-  // z-index: 10;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
 
   &__mask {
     display: block;
@@ -46,7 +41,7 @@
     right: -3rem;
     font-size: 3em;
     width: 2em;
-    background-color: get-color('white');
+    background-color: get-color("white");
     border-radius: 50%;
     border: 10px solid #fbb903;
     aspect-ratio: 1 / 1;
@@ -84,11 +79,11 @@
   }
 
   &--active {
-    background-color: get-color('white');
+    background-color: get-color("white");
     background: radial-gradient(
       circle closest-side,
-      get-color('white') 0%,
-      get-color('white') 80%,
+      get-color("white") 0%,
+      get-color("white") 80%,
       transparent 100%
     );
   }
@@ -98,13 +93,13 @@
   &__canvas {
     display: flex;
     justify-content: center;
-    background-color: get-color('white', 6);
+    background-color: get-color("white", 6);
     background: linear-gradient(
       to right,
-      get-color('white', 4) 0%,
-      get-color('white', 5) 88%,
-      get-color('white', 8) 96%,
-      get-color('white', 9) 100%
+      get-color("white", 4) 0%,
+      get-color("white", 5) 88%,
+      get-color("white", 8) 96%,
+      get-color("white", 9) 100%
     );
     padding: get-unit(2);
     align-items: center;
@@ -115,16 +110,16 @@
     display: grid;
     grid-template-rows: 90px auto 165px auto;
     grid-template-areas:
-      'credits'
-      'guesses'
-      'result'
-      'controls';
+      "credits"
+      "guesses"
+      "result"
+      "controls";
     background: linear-gradient(
       to left,
-      get-color('white', 4) 0%,
-      get-color('white', 5) 88%,
-      get-color('white', 8) 96%,
-      get-color('white', 9) 100%
+      get-color("white", 4) 0%,
+      get-color("white", 5) 88%,
+      get-color("white", 8) 96%,
+      get-color("white", 9) 100%
     );
   }
 
@@ -133,21 +128,6 @@
 
     border-radius: get-unit(2);
     padding: get-unit(2 3);
-  }
-
-  &__label {
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: get-unit(1);
-
-    @include lg {
-      font-size: 0.75rem;
-    }
-  }
-
-  &__artist-name {
-    text-transform: uppercase;
   }
 
   &__guesses {
@@ -163,52 +143,10 @@
     margin-top: get-unit(1);
   }
 
-  &__speech-bubble {
-    background-color: get-color('white');
-    box-shadow: 0 3px 5px 2px rgba($color: #000, $alpha: 0.5);
-    padding: get-unit(2 4);
-    text-transform: uppercase;
-    border-radius: 1.5em;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-
-    @include lg {
-      font-size: 0.75rem;
-    }
-  }
-
-  &__speech-bubble-icon {
-    margin-right: get-unit(2);
-    color: get-color('gray');
-  }
-
-  &__players {
-    transform: translateY(get-unit(-1));
-    display: flex;
-    align-items: center;
-  }
-
-  &__players-names {
-    margin-left: get-unit(2);
-    color: get-color('gray');
-  }
-
   &__result {
     grid-area: result;
     border-radius: get-unit(2);
     padding: get-unit(2 3);
-  }
-
-  &__artist-points {
-    display: flex;
-    align-items: center;
-  }
-
-  &__no-wins {
-    color: get-color('red');
-    font-size: 1.2rem;
-    padding-top: get-unit(2);
-    display: block;
   }
 }
 
