@@ -8,8 +8,6 @@ import { Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
 // Internal
 import type { GalleryEntry } from '../utils/types';
-// Ant Design Resources
-// Utils
 
 type GameOverGalleryProps = {
   gallery: GalleryEntry[];

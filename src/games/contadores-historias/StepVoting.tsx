@@ -7,6 +7,8 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+// Utils
+import { isEverybodyReady } from 'utils/helpers';
 // Components
 import { Card } from 'components/cards';
 import { ImageCard, ImageCardButton } from 'components/image-cards';
@@ -17,7 +19,7 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { TimedTimerBar } from 'components/timers';
 // Internal
-import type { TableEntry } from './utils/types';
+import type { SubmitVotePayload, TableEntry } from './utils/types';
 import { mockVote } from './utils/mock';
 import { VotingRules } from './components/RulesBlobs';
 
@@ -25,7 +27,7 @@ type StepVotingProps = {
   players: GamePlayers;
   story: string;
   user: GamePlayer;
-  onSubmitVote: GenericFunction;
+  onSubmitVote: (payload: SubmitVotePayload) => void;
   storyteller: GamePlayer;
   table: TableEntry[];
   isUserTheStoryTeller: boolean;
@@ -44,7 +46,7 @@ export function StepVoting({
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 8), { minWidth: 150 });
 
-  const isEverybodyReady = Object.values(players).every((player) => player.ready);
+  const everybodyReady = isEverybodyReady(players);
 
   const onSelectCard = (vote: string) => {
     onSubmitVote({
@@ -76,7 +78,7 @@ export function StepVoting({
         <VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />
       </RuleInstruction>
 
-      {isEverybodyReady && <TimedTimerBar duration={15} onExpire={() => {}} />}
+      {everybodyReady && <TimedTimerBar duration={15} onExpire={() => {}} />}
 
       <Space className="c-game-table" wrap>
         {table.map((cardEntry) => {

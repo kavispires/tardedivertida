@@ -12,13 +12,14 @@ import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { mockPlayCard } from './utils/mock';
+import type { PlayCardPayload } from './utils/types';
 import { TableFaceDown } from './components/TableFaceDown';
 
 type StepPlayCardProps = {
   players: GamePlayers;
   story: string;
   user: GamePlayer;
-  onPlayCard: GenericFunction;
+  onPlayCard: (payload: PlayCardPayload) => void;
   storyteller: GamePlayer;
   isUserTheStoryTeller: boolean;
 } & Pick<StepProps, 'announcement'>;
