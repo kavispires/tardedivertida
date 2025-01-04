@@ -3,27 +3,28 @@ import { random, sample } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { RadarChartOutlined } from '@ant-design/icons';
-import { Avatar as AntAvatar, Button, Image } from 'antd';
+import { Avatar as AntAvatar, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
+import { SendButton } from 'components/buttons';
 import { DoorFrame } from 'components/game/DoorFrame';
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-cards';
 import { Translate } from 'components/language';
 // Internal
 import { TRAPS } from '../utils/constants';
+import type { SubmitDoorPayload } from '../utils/types';
 
 type CorridorProps = {
   doors: CardId[];
   trap: string;
-  onSubmitDoor?: GenericFunction;
+  onSubmitDoor?: (payload: SubmitDoorPayload) => void;
   answerDoorId?: CardId;
   players: GamePlayers;
   user?: GamePlayer;
@@ -50,7 +51,6 @@ export function Corridor({
     margin: 8,
   });
 
-  const { isLoading } = useLoading();
   const { cache } = useCache();
 
   const voteMap = useMemo(
@@ -141,15 +141,17 @@ export function Corridor({
                 <ImageBlurButton cardId={doorId} />
 
                 {!!onSubmitDoor && (
-                  <Button
+                  <SendButton
                     onClick={() => onSubmitDoor({ doorId })}
                     size="small"
-                    disabled={disabled || isLoading || user?.ready || user?.doorId === doorId}
+                    type="default"
+                    disabled={disabled || user?.ready || user?.doorId === doorId}
                     shape="round"
                     ghost
+                    icon={''}
                   >
                     <Translate pt="Selecionar" en="Select" />
-                  </Button>
+                  </SendButton>
                 )}
 
                 <AntAvatar.Group maxCount={7} size="small" className="i-door__votes">

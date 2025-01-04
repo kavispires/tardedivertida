@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { RadarChartOutlined } from '@ant-design/icons';
-import { Button, Image, Space } from 'antd';
+import { Image, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -13,6 +13,7 @@ import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 import { PHASES } from 'utils/phases';
 // Components
 import { AvatarName } from 'components/avatars';
+import { SendButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -22,6 +23,7 @@ import { useDancingDoors } from './utils/useTrapHooks';
 import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockDoorSelection } from './utils/mock';
+import type { SubmitDoorPayload } from './utils/types';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
@@ -33,8 +35,8 @@ type StepSelectPagesProps = {
   pages: CardId[];
   currentCorridor: number;
   trap: string;
-  onSubmitDoor: GenericFunction;
-  onConfirmDoor: GenericFunction;
+  onSubmitDoor: (payload: SubmitDoorPayload) => void;
+  onConfirmDoor: () => void;
   players: GamePlayers;
   user: GamePlayer;
   possessed: GamePlayer;
@@ -188,15 +190,13 @@ export function StepSelectDoor({
       </RuleInstruction>
 
       {Boolean(user.doorId) && (
-        <Button
-          type="primary"
+        <SendButton
           size="large"
-          loading={isLoading}
           disabled={!user.doorId || user.ready || isButtonDisabled || shouldRestrainDoorConfirmation}
           onClick={() => onConfirmDoor()}
         >
           <Translate pt="Confirmar Porta" en="Confirm Door" />
-        </Button>
+        </SendButton>
       )}
 
       <Corridor

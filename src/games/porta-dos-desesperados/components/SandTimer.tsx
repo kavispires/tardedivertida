@@ -12,13 +12,14 @@ import { MagicHourGlassIcon } from 'icons/MagicHourGlassIcon';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
+import type { SubmitDoorPayload } from '../utils/types';
 
 type SandTimerProps = {
   trap: string;
   doors: string[];
-  onDisableButtons: GenericComponent;
-  onSubmitDoor: GenericComponent;
-  onMakeReady: GenericFunction;
+  onDisableButtons: () => void;
+  onSubmitDoor: (payload: SubmitDoorPayload) => void;
+  onMakeReady: () => void;
   user: GamePlayer;
 };
 
