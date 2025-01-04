@@ -40,6 +40,7 @@ export function StepGallery({
   imageCardMode,
 }: StepGalleryProps) {
   useTemporarilyHidePlayersBar();
+
   const glyphWidth = useCardWidth(20, {
     gap: 16,
     minWidth: 45,

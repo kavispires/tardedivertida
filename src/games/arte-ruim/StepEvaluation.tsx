@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { ClearOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
@@ -112,12 +111,13 @@ export function StepEvaluation({
   }, [user, drawings, cards]);
 
   // Auto-select the players own drawing and word
-  useEffectOnce(() => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Hook should be called only if the user character changes
+  useEffect(() => {
     const selection = selectOwnDrawing();
     if (selection) {
-      setVotes((s: any) => ({ ...s, ...selection }));
+      setVotes((s) => ({ ...s, ...selection }));
     }
-  });
+  }, [user?.id]);
 
   useMock(() => {
     onGuessForMe();

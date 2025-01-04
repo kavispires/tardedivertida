@@ -16,10 +16,6 @@ const deleteDuplicate = (votes: PlainObject, target: string) => {
   }
 };
 
-type Votes = {
-  [key: string]: string;
-};
-
 /**
  * Keeps track of an object with votes following the schema:
  * {<typeSEPARATORid...>: <typeSEPARATORid...>
@@ -32,22 +28,13 @@ export function useVotingMatch(
   keyType: string,
   allowDuplicates = true,
   completeCount?: number,
-  initialState: Votes = {},
-): {
-  votes: Votes;
-  setVotes: React.Dispatch<any>;
-  activeItem: string;
-  activateItem: (entryId: string) => void;
-  isVotingComplete: boolean;
-  resetVoting: (newInitialState: Votes) => void;
-  getEntryId: (arr: string[]) => string;
-  isItemActive: (entryId: string) => boolean;
-} {
-  const [votes, setVotes]: [Votes, React.Dispatch<any>] = useState({
+  initialState: StringDictionary = {},
+) {
+  const [votes, setVotes] = useState<StringDictionary>({
     ...initialState,
   });
-  const [activeItem, setActiveItem]: [string, React.Dispatch<any>] = useState('');
-  const [isVotingComplete, setIsVotingComplete]: [boolean, React.Dispatch<any>] = useState(false);
+  const [activeItem, setActiveItem] = useState<string>('');
+  const [isVotingComplete, setIsVotingComplete] = useState<boolean>(false);
 
   const activateItem = useCallback(
     (entryId: string) => {
@@ -65,7 +52,7 @@ export function useVotingMatch(
 
       // When new item type is a key
       if (type === keyType) {
-        setVotes((prevVotes: Votes) => {
+        setVotes((prevVotes: StringDictionary) => {
           const copy = { ...prevVotes };
           // Find and clear any previous vote if uniqueOnly
           if (!allowDuplicates) {
@@ -81,7 +68,7 @@ export function useVotingMatch(
       }
 
       // When new item is a value
-      setVotes((prevVotes: Votes) => {
+      setVotes((prevVotes: StringDictionary) => {
         const copy = { ...prevVotes };
         // Find and clear any previous vote if uniqueOnly
         if (!allowDuplicates) {
@@ -99,7 +86,7 @@ export function useVotingMatch(
     [activeItem, keyType, allowDuplicates],
   );
 
-  const resetVoting = (newInitialState: Votes) => {
+  const resetVoting = (newInitialState: StringDictionary) => {
     setVotes(newInitialState ?? initialState);
     setActiveItem('');
   };

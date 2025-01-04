@@ -5,3 +5,8 @@ export const QUEM_SOU_EU_ACTIONS = {
 } as const;
 
 export const SLIDE_DURATION = 10;
+
+export const ROUND_TYPE = {
+  SHOW: 'SHOW',
+  HIDE: 'HIDE',
+} as const;

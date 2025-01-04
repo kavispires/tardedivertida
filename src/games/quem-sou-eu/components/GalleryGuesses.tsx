@@ -1,21 +1,22 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { CrownFilled, MessageFilled } from '@ant-design/icons';
-import { Avatar as AntAvatar, Space, Typography } from 'antd';
+import { Space } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Utils
-import { getPlayerNamesFromIds } from 'utils/helpers';
-// Icons
-import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { StarPoints } from 'components/points';
+import {
+  SlideShowBubbleValue,
+  SlideShowLabel,
+  SlideShowNoWins,
+  SlideShowPlayersList,
+} from 'components/slide-show';
 // Internal
 import type { Characters } from '../utils/types';
+// Icons
 
 type GalleryGuessesProps = {
   players: GamePlayers;
@@ -56,80 +57,54 @@ export function GalleryGuesses({
   return (
     <Space className="q-gallery__info-container" direction="vertical">
       <Space className="q-gallery__votes" direction="vertical">
-        <div className="q-gallery__label">
+        <SlideShowLabel>
           <Translate pt="Jogadores votaram" en="Players voted" />
-        </div>
+        </SlideShowLabel>
+
         {entries.map((entry, index) => {
           return (
             <div key={`guess-${entry.cardId}-${index}`} className="q-gallery__guess">
-              <div
-                className="q-gallery__speech-bubble"
-                style={entry.isCorrect ? { backgroundColor: currentColor, color: 'white' } : {}}
-              >
-                {entry.isCorrect ? (
-                  <CrownFilled className="q-gallery__speech-bubble-icon" style={{ color: 'white' }} />
-                ) : (
-                  <MessageFilled className="q-gallery__speech-bubble-icon" />
-                )}
+              <SlideShowBubbleValue winner={entry.isCorrect} backgroundColor={currentColor}>
                 {imageCardMode ? (
                   <ImageCard id={entry.character.id} cardWidth={35} className="inline" />
                 ) : (
                   <DualTranslate>{entry.character.name}</DualTranslate>
                 )}
-              </div>
-              <div className="q-gallery__players">
-                <AntAvatar.Group>
-                  {entry.playersIds.map((playerId) => (
-                    <Avatar
-                      id={players[playerId].avatarId}
-                      key={`guess-avatar-${players[playerId].avatarId}`}
-                    />
-                  ))}
-                </AntAvatar.Group>
-                <span className="q-gallery__players-names">
-                  {getPlayerNamesFromIds(entry.playersIds, players).join(', ')}
-                </span>
-              </div>
+              </SlideShowBubbleValue>
+              <SlideShowPlayersList playersIds={entry.playersIds} players={players} />
             </div>
           );
         })}
       </Space>
 
       <Space className="q-gallery__votes" direction="vertical">
-        <div className="q-gallery__label">
+        <SlideShowLabel>
           <Translate pt="Pontos" en="Points" />
-        </div>
+        </SlideShowLabel>
 
         {correctGuesses.length ? (
           <>
             <div className="q-gallery__players">
-              <AntAvatar.Group>
-                {correctGuesses.map((playerId) => {
-                  return <Avatar key={`correct-guess-avatar-${playerId}`} id={players[playerId].avatarId} />;
-                })}
-              </AntAvatar.Group>
-              <StarPoints quantity={round.current} keyPrefix={`guessers-points-${currentPlayer.id}`} />
-              <span className="q-gallery__players-names">
-                {getPlayerNamesFromIds(correctGuesses, players).join(', ')}
-              </span>
+              <SlideShowPlayersList playersIds={correctGuesses} players={players}>
+                <StarPoints quantity={round.current} keyPrefix={`guessers-points-${currentPlayer.id}`} />
+              </SlideShowPlayersList>
             </div>
             <div className="q-gallery__player-points">
-              <Avatar id={currentPlayer.avatarId} />{' '}
-              <StarPoints
-                quantity={playersPoints?.[currentPlayer.id]}
-                keyPrefix={`artist-points-${currentPlayer.id}`}
-              />{' '}
-              <span className="q-gallery__players-names">{currentPlayer.name}</span>
+              <SlideShowPlayersList playersIds={[currentPlayer.id]} players={players}>
+                <StarPoints
+                  quantity={playersPoints?.[currentPlayer.id]}
+                  keyPrefix={`artist-points-${currentPlayer.id}`}
+                />
+              </SlideShowPlayersList>
             </div>
           </>
         ) : (
-          <Typography.Text className="q-gallery__no-wins">
-            <IconAvatar icon={<GarbageIcon />} size="large" shape="square" />
+          <SlideShowNoWins>
             <Translate
-              pt="Nossa, ninguém acertou. Esses ícones devem ter sido uma bosta heim."
-              en="Wow, nobody got it. You must have chosen terrible glyphs. Shame..."
+              pt="Esses ícones devem ter sido uma bosta, heim."
+              en="It must have been a very crappy glyphs. What a shame..."
             />
-          </Typography.Text>
+          </SlideShowNoWins>
         )}
       </Space>
     </Space>

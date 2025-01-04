@@ -1,14 +1,18 @@
+import type { TextProps } from 'antd/es/typography/Text';
 import clsx from 'clsx';
-import { useMemo } from 'react';
+import { type ReactNode, useMemo } from 'react';
 // Ant Design Resources
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar as AntAvatar, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
 import { getPlayerNamesFromIds } from 'utils/helpers';
+// Icons
+import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { Avatar } from 'components/avatars';
+import { Avatar, IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language';
 
 /**
  * A functional component that renders a label for the slide show.
@@ -100,5 +104,28 @@ export function SlideShowPlayersList({
       {children}
       <span className="slide-show-composable__players-names">{selectedPlayersNames}</span>
     </div>
+  );
+}
+
+type SlideShowNoWinsProps = TextProps & {
+  /**
+   * Custom icon to replace the garbage icon.
+   */
+  icon?: ReactNode;
+};
+
+/**
+ * SlideShowNoWins displays a message indicating that no one won in the slide show.
+ */
+export function SlideShowNoWins({ children, icon, className, ...props }: SlideShowNoWinsProps) {
+  return (
+    <Typography.Text className={clsx('slide-show-composable__no-wins', className)} {...props}>
+      <IconAvatar icon={icon ?? <GarbageIcon />} size="large" shape="square" />
+      <div>
+        <Translate pt="Nossa, ninguém acertou." en="Wow, nobody got it." />
+        <br />
+        {children}
+      </div>
+    </Typography.Text>
   );
 }

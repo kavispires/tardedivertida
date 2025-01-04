@@ -27,7 +27,7 @@ import type { ContenderCard } from '../../types/tdr';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -89,8 +89,8 @@ export const prepareSetupPhase = async (
 };
 
 export const prepareCharacterFilteringPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
@@ -130,9 +130,17 @@ export const prepareCharacterDescriptionPhase = async (
       player.glyphs.push(glyphs[(startingIndex + i) % glyphs.length]);
     }
 
+    if (player.selectedCharacters) {
+      player.availableCharacters = utils.game.shuffle(
+        player.availableCharacters.filter((c: Character) => player.selectedCharacters.includes(c.id)),
+      );
+
+      // biome-ignore lint/performance/noDelete: <explanation>
+      delete player.selectedCharacters;
+    }
+
     // Deal character
-    const characterId = player.selectedCharacters[round.current - 1];
-    const character = player.availableCharacters.find((c: Character) => c.id === characterId);
+    const character = player.availableCharacters[round.current - 1];
 
     if (character) {
       player.character = character;
@@ -177,7 +185,7 @@ export const prepareCharacterDescriptionPhase = async (
 
 export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players

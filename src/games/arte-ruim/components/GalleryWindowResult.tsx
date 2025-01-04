@@ -1,16 +1,16 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Icons
-import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
-import { SlideShowBubbleValue, SlideShowLabel, SlideShowPlayersList } from 'components/slide-show';
+import {
+  SlideShowBubbleValue,
+  SlideShowLabel,
+  SlideShowNoWins,
+  SlideShowPlayersList,
+} from 'components/slide-show';
 // Internal
 import type { PlayersSay } from '../utils/types';
-// Ant Design Resources
-// Utils
 
 type GalleryWindowResultProps = {
   playerArtist: GamePlayer;
@@ -51,25 +51,12 @@ export function GalleryWindowResult({
           </SlideShowPlayersList>
         </>
       ) : (
-        <div className="a-gallery__no-wins">
-          <IconAvatar icon={<GarbageIcon />} size="large" shape="square" />
+        <SlideShowNoWins>
           <Translate
-            pt={
-              <>
-                Nossa, ninguém acertou.
-                <br />
-                Esse desenho deve ter sido muito ruim.
-              </>
-            }
-            en={
-              <>
-                Wow, nobody got it.
-                <br />
-                It must have been a very crappy drawing. Shame...
-              </>
-            }
+            pt="Esse desenho deve ter sido muito ruim."
+            en="It must have been a very crappy drawing. Shame..."
           />
-        </div>
+        </SlideShowNoWins>
       )}
     </div>
   );
