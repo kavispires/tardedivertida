@@ -255,15 +255,6 @@
     display: flex;
     align-items: center;
   }
-
-  &__no-wins {
-    display: flex;
-    gap: get-unit(2);
-    align-items: center;
-    color: get-color("red");
-    font-size: 1.1rem;
-    padding-top: get-unit(6);
-  }
 }
 
 .a-evaluated-drawings {

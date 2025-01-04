@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { shuffle } from 'lodash';
-import { useCallback, useState } from 'react';
-import { useEffectOnce } from 'react-use';
+import { useCallback, useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
@@ -15,14 +14,14 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getEntryId, sortPlayers } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { RibbonGroup } from 'components/ribbons';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Characters } from './utils/types';
+import type { Characters, SubmitGuessesPayload } from './utils/types';
 import { getRibbons, prepareGuesses } from './utils/helpers';
 import { ScoringRules } from './components/RulesBlobs';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
@@ -31,7 +30,7 @@ import { Card } from './components/Card';
 type StepGuessingProps = {
   user: GamePlayer;
   players: GamePlayers;
-  onSubmitGuesses: GenericFunction;
+  onSubmitGuesses: (payload: SubmitGuessesPayload) => void;
   characters: Characters;
   tableOrder: CardId[];
   round: GameRound;
@@ -103,12 +102,14 @@ export function StepGuessing({
   });
 
   // Auto-select the players own drawing and word
-  useEffectOnce(() => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Hook should be called only if the user character changes
+  useEffect(() => {
     const selection = selectOwnCard();
+
     if (selection) {
-      setVotes((s: any) => ({ ...s, ...selection }));
+      setVotes((s) => ({ ...s, ...selection }));
     }
-  });
+  }, [user?.character?.id]);
 
   const ribbons = getRibbons(players, votes);
 
@@ -186,15 +187,14 @@ export function StepGuessing({
       </div>
 
       <SpaceContainer>
-        <Button
+        <SendButton
           size="large"
-          type="primary"
           onClick={() => onSubmitGuesses({ guesses: prepareGuesses(votes), choseRandomly })}
-          disabled={isLoading || user.ready || !isVotingComplete}
+          disabled={user.ready || !isVotingComplete}
         >
           <Translate pt={<>Enviar pares</>} en={<>Submit guesses</>} />
-        </Button>
-        <Button size="large" onClick={() => onGuessForMe()} disabled={isLoading || user.ready}>
+        </SendButton>
+        <Button size="large" type="dashed" onClick={() => onGuessForMe()} disabled={isLoading || user.ready}>
           <Translate pt={<>Desistir</>} en={<>Guess for me</>} />
         </Button>
       </SpaceContainer>

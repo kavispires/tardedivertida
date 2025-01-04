@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Badge, Button, Space } from 'antd';
+import { Badge, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { ContenderCard } from 'types/tdr';
@@ -9,7 +9,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -18,10 +18,11 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { mockSelectCharacters } from './utils/mock';
+import type { SubmitCharactersPayload } from './utils/types';
 
 type StepSelectCharactersProps = {
   user: GamePlayer;
-  onSelectCharacters: GenericFunction;
+  onSelectCharacters: (payload: SubmitCharactersPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectCharacters({ user, announcement, onSelectCharacters }: StepSelectCharactersProps) {
@@ -95,25 +96,25 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
       </Space>
 
       <SpaceContainer>
-        <Badge count={count}>
-          <Button
-            size="large"
-            type="primary"
-            onClick={() => onSelectCharacters({ characters: selectedCharacters })}
-            loading={isLoading}
-            disabled={user.ready || count !== 6}
-          >
-            <Translate pt="Enviar cartas" en="Submit cards" />
-          </Button>
-        </Badge>
-        <Button
+        <SendButton
           size="large"
+          type="dashed"
           onClick={() => onSelectCharacters({ characters: mockSelectCharacters(availableCharacters) })}
           loading={isLoading}
           disabled={isLoading || user.ready}
         >
           <Translate pt={<>Escolha pra mim</>} en={<>Choose for me</>} />
-        </Button>
+        </SendButton>
+        <Badge count={count}>
+          <SendButton
+            size="large"
+            onClick={() => onSelectCharacters({ characters: selectedCharacters })}
+            loading={isLoading}
+            disabled={user.ready || count !== 6}
+          >
+            <Translate pt="Enviar cartas" en="Submit cards" />
+          </SendButton>
+        </Badge>
       </SpaceContainer>
     </Step>
   );
