@@ -113,4 +113,13 @@
     margin-left: get-unit(2);
     color: get-color("gray");
   }
+
+  &__no-wins {
+    display: flex;
+    gap: get-unit(2);
+    align-items: center;
+    color: get-color("red", 4);
+    font-size: 0.9rem;
+    padding-top: get-unit(6);
+  }
 }
