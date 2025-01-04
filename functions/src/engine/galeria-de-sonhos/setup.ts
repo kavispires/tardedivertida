@@ -27,7 +27,7 @@ import { saveData } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -52,6 +52,8 @@ export const prepareSetupPhase = async (
     falls: 0,
   });
 
+  const minimumSelection = store.options?.hardMode ? 4 : 1;
+
   // Save
   return {
     update: {
@@ -67,6 +69,7 @@ export const prepareSetupPhase = async (
         phase: GALERIA_DE_SONHOS_PHASES.SETUP,
         players,
         gameOrder,
+        minimumSelection,
       },
     },
   };
@@ -87,7 +90,7 @@ export const prepareWordSelectionPhase = async (
   const round = utils.helpers.increaseRound(state.round);
 
   // Make sure everybody has 6 cards in hand
-  players = utils.players.removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip', 'inNightmare']);
+  utils.players.removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip', 'inNightmare']);
 
   // Determine active player based on current round
   const scoutId = utils.players.getActivePlayer(store.gameOrder, round.current);

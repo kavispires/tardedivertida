@@ -71,7 +71,7 @@ export const buildDeck = (allWords: AllWords): TextCard[] => {
 };
 
 export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] => {
-  const selectedWords = wordsDeck.splice(0, 2);
+  const selectedWords = wordsDeck.splice(0, 3);
   return [wordsDeck, selectedWords];
 };
 

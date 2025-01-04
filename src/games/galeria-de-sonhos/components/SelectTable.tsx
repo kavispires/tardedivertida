@@ -1,22 +1,22 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 // Ant Design Resources
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
 // Components
 import { ImageCard, ImageCardButton } from 'components/image-cards';
 import { Translate } from 'components/language';
 // Internal
 import type { ImageCardObj } from '../utils/types';
 import { BORDER_TOTAL_SIZE } from '../utils/constants';
-// Design Resources
 
 type SelectTableProps = {
   table: ImageCardObj[];
-  onSelectCard: GenericFunction;
+  onSelectCard: (cardId: string) => void;
   selectedCards: BooleanDictionary;
 };
 
@@ -30,15 +30,11 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
             const isSelected = selectedCards[card.id];
 
             return (
-              <li
+              <motion.li
                 key={`g-table-${card.id}`}
-                className={clsx(
-                  'g-table-item',
-                  getAnimationClass('flipInY', {
-                    delay: index,
-                  }),
-                )}
+                className="g-table-item"
                 style={{ width: `${cardWidth + 8}px` }}
+                {...getAnimation('flipInY', { delay: index * 0.25 })}
               >
                 <ImageCardButton
                   id={card.id}
@@ -60,7 +56,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                     className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
                   />
                 </ImageCardButton>
-              </li>
+              </motion.li>
             );
           })}
         </ul>

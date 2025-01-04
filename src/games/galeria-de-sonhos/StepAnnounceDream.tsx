@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Alert, Divider, Space } from 'antd';
@@ -9,7 +9,8 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
+import { getAvatarColorById, isEverybodyReady } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
@@ -74,7 +75,7 @@ export function StepAnnounceDream({
 
   return (
     <Step fullWidth>
-      <div className={clsx('g-dream-result', getAnimationClass('fadeIn', { speed: 'slow' }))}>
+      <motion.div className="g-dream-result" {...getAnimation('fadeIn', { speed: 'slow' })}>
         <header
           className="g-dream-result__header"
           style={{
@@ -203,13 +204,13 @@ export function StepAnnounceDream({
             </>
           )}
         </footer>
-      </div>
+      </motion.div>
 
       {gameOrder.length > 1 && (
         <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
       )}
 
-      {(latest.isPhaseOver || latest.cardsLeft === 0) && (
+      {(latest.isPhaseOver || latest.cardsLeft === 0) && isEverybodyReady(players) && (
         <HostNextPhaseButton autoTriggerTime={15}>Ranking</HostNextPhaseButton>
       )}
     </Step>

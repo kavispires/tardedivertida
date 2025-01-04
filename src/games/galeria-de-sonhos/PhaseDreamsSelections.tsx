@@ -32,7 +32,7 @@ export function PhaseDreamsSelections({ players, state, meta }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <DreamSelectionRules hardModeEnabled={Boolean(meta.options?.hardMode)} />
+      <DreamSelectionRules minimumSelection={state.minimumSelection} />
       <ImageCardPreloadHand hand={state.table.map((entry: ImageCardObj) => entry.id)} />
     </PhaseAnnouncement>
   );
@@ -46,7 +46,7 @@ export function PhaseDreamsSelections({ players, state, meta }: PhaseProps) {
           word={state.word}
           onSubmitCards={onSubmitCards}
           botEnabled={Boolean(meta.options?.withBots)}
-          hardModeEnabled={Boolean(meta.options?.hardMode)}
+          minimumSelection={state.minimumSelection}
           announcement={announcement}
         />
       </StepSwitcher>

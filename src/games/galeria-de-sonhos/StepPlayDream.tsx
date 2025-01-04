@@ -22,7 +22,7 @@ import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { ImageCardObj } from './utils/types';
+import type { ImageCardObj, PlayCardPayload } from './utils/types';
 import { BotsRules, CardPlayRules } from './components/RulesBlobs';
 import { PlayTable } from './components/PlayTable';
 import { PlayersDreamsCount } from './components/PlayersDreamsCount';
@@ -30,14 +30,14 @@ import { PlayersDreamsCount } from './components/PlayersDreamsCount';
 type StepDreamsSelectionProps = {
   table: ImageCardObj[];
   word: TextCard;
-  onPlayCard: GenericFunction;
+  onPlayCard: (payload: PlayCardPayload) => void;
   user: GamePlayer;
   activePlayer: GamePlayer;
   isActivePlayer: boolean;
   isLoading?: boolean;
   players: GamePlayers;
   gameOrder: GameOrder;
-  setLastTurnCount: GenericFunction;
+  setLastTurnCount: React.Dispatch<React.SetStateAction<string>>;
   playerInNightmareId?: PlayerId;
   botEnabled?: boolean;
 };

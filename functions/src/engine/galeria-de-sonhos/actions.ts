@@ -68,7 +68,7 @@ export const handlePlayCard = async (
   // Group each players in a dictionary of cardIds and players array
   const cardCache: Collection<PlayerId[]> = {};
   playersList.forEach((player) => {
-    Object.values(player.cards).forEach((card: any) => {
+    Object.values<PlayerCard>(player.cards).forEach((card) => {
       if (cardCache[card.cardId] === undefined) {
         cardCache[card.cardId] = [];
       }
@@ -112,7 +112,8 @@ export const handlePlayCard = async (
   // Mark players as fallen if all their cards were just used
   playersList.forEach((player: Player) => {
     const isPlayerComplete =
-      playersWhoGotPoints.includes(player.id) && Object.values(player.cards).every((card: any) => card.used);
+      playersWhoGotPoints.includes(player.id) &&
+      Object.values<PlayerCard>(player.cards).every((card) => card.used);
     if (isPlayerComplete) {
       player.skip = true;
       completedPlayers.push(player.id);
@@ -171,8 +172,10 @@ export const handlePlayCard = async (
 
     const cardsLeftToMatch = utils.players.getListOfPlayers(players).reduce((acc, player) => {
       if (player.id !== leftOverPlayerId) {
+        let sum = acc;
         const cards: PlayerCard[] = Object.values(player.cards);
-        acc += cards.filter((card) => !card.used).length;
+        sum += cards.filter((card) => !card.used).length;
+        return sum;
       }
       return acc;
     }, 0);

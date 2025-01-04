@@ -1,20 +1,19 @@
 // Ant Design Resources
 import { RobotOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useMock } from 'hooks/useMock';
 // Components
-import { FixedMenuButton } from 'components/buttons';
+import { FixedMenuButton, SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { TextHighlight, Title } from 'components/text';
 // Internal
-import type { ImageCardObj } from './utils/types';
+import type { ImageCardObj, SubmitCardsPayload } from './utils/types';
 import { mockDreamSelection } from './utils/mock';
 import { BotsRules, DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
 import { SelectTable } from './components/SelectTable';
@@ -26,9 +25,9 @@ const validateSelectedCards = (v: BooleanDictionary) => {
 type StepDreamsSelectionProps = {
   table: ImageCardObj[];
   word: TextCard;
-  onSubmitCards: GenericFunction;
+  onSubmitCards: (payload: SubmitCardsPayload) => void;
   botEnabled: boolean;
-  hardModeEnabled: boolean;
+  minimumSelection: number;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepDreamsSelection({
@@ -37,7 +36,7 @@ export function StepDreamsSelection({
   onSubmitCards,
   botEnabled,
   announcement,
-  hardModeEnabled,
+  minimumSelection,
 }: StepDreamsSelectionProps) {
   const {
     dict: selectedCards,
@@ -46,7 +45,7 @@ export function StepDreamsSelection({
   } = useBooleanDictionary({}, validateSelectedCards);
 
   useMock(() => {
-    onSubmitCards({ cardsIds: mockDreamSelection(table, hardModeEnabled) });
+    onSubmitCards({ cardsIds: mockDreamSelection(table, minimumSelection) });
   }, []);
 
   return (
@@ -55,7 +54,7 @@ export function StepDreamsSelection({
         <Translate pt="Visite sonhos relacionados a " en="Visit dreams related to " />
         <TextHighlight>{word.text}</TextHighlight>
       </Title>
-      <DreamSelectionRules contained hardModeEnabled={hardModeEnabled} />
+      <DreamSelectionRules contained minimumSelection={minimumSelection} />
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
 
@@ -70,14 +69,13 @@ export function StepDreamsSelection({
       )}
 
       <SpaceContainer>
-        <Button
-          type="primary"
+        <SendButton
           size="large"
-          disabled={selectedCount < (hardModeEnabled ? 4 : 1) || selectedCount > 10}
+          disabled={selectedCount < minimumSelection || selectedCount > 10}
           onClick={() => onSubmitCards({ cardsIds: Object.keys(selectedCards) })}
         >
           <Translate pt={`Visitar ${selectedCount} sonhos`} en={`Visit ${selectedCount} dreams`} />
-        </Button>
+        </SendButton>
       </SpaceContainer>
       <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
     </Step>
