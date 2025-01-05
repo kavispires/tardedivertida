@@ -129,8 +129,8 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
           }}
           players={players}
         />
-        <CloudBackground />
       </AnimatePresence>
+      <CloudBackground />
     </PhaseContainer>
   );
 }

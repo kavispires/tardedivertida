@@ -16,7 +16,7 @@ import { saveData } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {

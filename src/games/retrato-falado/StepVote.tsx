@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 // Ant Design Resources
 import { CheckSquareOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { MonsterImage } from 'types/tdr';
@@ -9,7 +9,9 @@ import type { MonsterImage } from 'types/tdr';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
+import { SendButton } from 'components/buttons';
 import { CanvasResizer, CanvasSVG } from 'components/canvas';
+import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -17,13 +19,12 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
-import type { Sketch } from './utils/types';
-import { MonsterCard } from '../../components/cards/MonsterCard';
+import type { Sketch, SubmitVotePayload } from './utils/types';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
   currentMonster: MonsterImage;
-  onSubmitVote: GenericFunction;
+  onSubmitVote: (payload: SubmitVotePayload) => void;
   sketches: Sketch[];
   user: GamePlayer;
   players: GamePlayers;
@@ -116,8 +117,7 @@ export function StepVote({
                 drawing={sketchObj.sketch}
                 className="r-sketch"
               />
-              <Button
-                type="primary"
+              <SendButton
                 onClick={() => onSubmitVote({ vote: player.id })}
                 disabled={ownDrawing}
                 className="r-vote-button"
@@ -128,7 +128,7 @@ export function StepVote({
                 ) : (
                   <Translate pt="Vote neste" en="Vote for this one" />
                 )}
-              </Button>
+              </SendButton>
             </Space>
           );
         })}

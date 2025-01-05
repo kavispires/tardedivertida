@@ -2,13 +2,13 @@
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { DrawingCanvas } from 'components/canvas';
+import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
 import { RuleInstruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
 // Internal
 import { TIMES } from '../utils/constants';
-import { MonsterCard } from '../../../components/cards/MonsterCard';
 
 type ViewSketchingProps = {
   isUserTheWitness: boolean;
