@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
+import { ImageCard } from 'components/image-cards';
 // Internal
 import { SIDES } from '../utils/constants';
 import type { DeckEntry } from '../utils/types';
@@ -27,6 +28,17 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
           id={`${entry.data.id}`}
           title={entry.data.name ? dualTranslate(entry.data.name) : undefined}
         />
+      </div>
+    );
+  }
+
+  if (deckType === 'images') {
+    return (
+      <div
+        key={`cd-board-entry-${entry.data.id}`}
+        className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
+      >
+        <ImageCard id={entry.data.id} cardWidth={72} className="board-entry-image-card" />
       </div>
     );
   }

@@ -28,11 +28,6 @@ type PhaseContainerProps = {
    * If the container should take the full screen
    */
   fullScreen?: boolean;
-  /**
-   * If the container should be white
-   * @deprecated
-   */
-  white?: boolean;
 };
 
 /**
@@ -46,7 +41,6 @@ export function PhaseContainer({
   children,
   className = '',
   fullScreen = false,
-  white = false,
 }: PhaseContainerProps) {
   const appearance = useGameAppearance();
   const { translate } = useLanguage();
@@ -67,12 +61,7 @@ export function PhaseContainer({
 
   return (
     <main
-      className={clsx(
-        baseClass,
-        fullScreen && `${baseClass}--full-screen`,
-        white && `${baseClass}--white`,
-        className,
-      )}
+      className={clsx(baseClass, fullScreen && `${baseClass}--full-screen`, className)}
       id="screen"
       ref={screenRef}
       style={backgroundColorOverlay ? { backgroundColor: backgroundColorOverlay } : {}}

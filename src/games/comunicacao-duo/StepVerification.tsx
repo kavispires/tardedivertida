@@ -13,15 +13,14 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
+import { ViewIf, ViewOr } from 'components/views';
 // Internal
 import type { DeckEntry, HistoryEntry, Summary } from './utils/types';
 import { STATUS } from './utils/constants';
 import { Board } from './components/Board';
 import { SummaryBox } from './components/SummaryBox';
 import { History } from './components/History';
-// Hooks
 
 type StepDeliverProps = {
   players: GamePlayers;
@@ -84,12 +83,12 @@ export function StepVerification({
       return {
         en: (
           <>
-            Nooooo, a <strong>taboo</strong> item has been selected!
+            Nooooo, a <TextHighlight>taboo</TextHighlight> item has been selected!
           </>
         ),
         pt: (
           <>
-            Nãããão, um item <strong>taboo</strong> foi selecionado!
+            Nãããão, um item <TextHighlight>taboo</TextHighlight> foi selecionado!
           </>
         ),
       };
@@ -101,12 +100,12 @@ export function StepVerification({
         return {
           en: (
             <>
-              <strong>Blank!</strong> All done fir this round, let's try another clue.
+              <TextHighlight>Neutral!</TextHighlight> All done fir this round, let's try another clue.
             </>
           ),
           pt: (
             <>
-              <strong>Bege!</strong> Vamos para a próxima rodada.
+              <TextHighlight>Neutral!</TextHighlight> Vamos para a próxima rodada.
             </>
           ),
         };
@@ -117,12 +116,12 @@ export function StepVerification({
     return {
       en: (
         <>
-          <strong>Correct!</strong> Want to try one more item?
+          <TextHighlight>Correct!</TextHighlight> Want to try one more item?
         </>
       ),
       pt: (
         <>
-          <strong>Correto!</strong> Quer tentar outro item?
+          <TextHighlight>Correto!</TextHighlight> Quer tentar outro item?
         </>
       ),
     };
@@ -138,9 +137,14 @@ export function StepVerification({
         <Translate en={results.en} pt={results.pt} />
       </RuleInstruction>
 
+      <HostNextPhaseButton round={round} autoTriggerTime={3} withWaitingTimeBar />
+
       <Flex gap={8} align="center" className="mb-4">
         <div className="cd-clue-quantity">{clueQuantity}</div>
-        <AlienText value={clue} withTranslation />
+        <ViewOr condition={clueInputType === 'alien-keyboard'}>
+          <AlienText value={clue} withTranslation />
+          <TextHighlight style={{ fontSize: '1.5rem', background: 'white' }}>{clue}</TextHighlight>
+        </ViewOr>
       </Flex>
 
       <Flex gap={8} align="center">
@@ -168,8 +172,6 @@ export function StepVerification({
         clueInputType={clueInputType}
         userSide={user.side}
       />
-
-      <HostNextPhaseButton round={round} autoTriggerTime={3} />
     </Step>
   );
 }

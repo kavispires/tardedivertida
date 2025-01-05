@@ -54,14 +54,14 @@ if (runEmulators && window.location.hostname.includes(localHost)) {
   if (USE_FIRESTORE_EMULATOR) {
     // biome-ignore lint/suspicious/noConsole: on purpose
     console.log(`%cEmulating firestore to ${localHost}`, 'color:dodgerblue');
-    notification.warning({ message: `Emulating firestore to ${localHost}`, placement: 'bottomLeft' });
+    notification.warning({ message: `Emulating firestore to ${localHost}`, placement: 'topLeft' });
     connectFirestoreEmulator(firestore, localHost, 8091);
     setGlobalState('usingFirestoreEmulator', localHost);
   }
   if (USE_FUNCTIONS_EMULATOR) {
     // biome-ignore lint/suspicious/noConsole: on purpose
     console.log(`%cEmulating functions to ${localHost}`, 'color:cyan');
-    notification.warning({ message: `Emulating functions to ${localHost}`, placement: 'bottomLeft' });
+    notification.warning({ message: `Emulating functions to ${localHost}`, placement: 'topLeft' });
     connectFunctionsEmulator(functions, localHost, 5003);
     connectFunctionsEmulator(functions, 'localhost', 5003);
     setGlobalState('usingFunctionsEmulator', localHost);

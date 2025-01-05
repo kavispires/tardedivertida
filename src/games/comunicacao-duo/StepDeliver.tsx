@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Flex } from 'antd';
+import { Flex } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -8,11 +8,12 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
+import { ViewIf, ViewOr } from 'components/views';
 // Internal
 import type { DeckEntry, HistoryEntry, SubmitDeliveryPayload, Summary } from './utils/types';
 import { Board } from './components/Board';
@@ -115,15 +116,18 @@ export function StepDeliver({
             />
           )}
           <br />
-          <Button onClick={onStopDelivery} type="primary" loading={isLoading}>
+          <SendButton onClick={onStopDelivery} type="primary" loading={isLoading}>
             <Translate en="Stop" pt="Parar" />
-          </Button>
+          </SendButton>
         </RuleInstruction>
       </ViewIf>
 
       <Flex gap={8} align="center" className="mb-4">
         <div className="cd-clue-quantity">{clueQuantity}</div>
-        <AlienText value={clue} withTranslation />
+        <ViewOr condition={clueInputType === 'alien-keyboard'}>
+          <AlienText value={clue} withTranslation />
+          <TextHighlight style={{ fontSize: '1.5rem', background: 'white' }}>{clue}</TextHighlight>
+        </ViewOr>
       </Flex>
 
       <Flex gap={8} align="center">
