@@ -56,7 +56,7 @@ export const prepareSetupPhase = async (
 
 export const prepareClueWritingPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.removePropertiesFromPlayers(players, ['selectedItemId', 'selectedItem', 'clue', 'items']);

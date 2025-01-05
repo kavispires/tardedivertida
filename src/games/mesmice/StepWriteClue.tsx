@@ -11,6 +11,7 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import type { UseStep } from 'hooks/useStep';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
@@ -19,7 +20,6 @@ import { RuleInstruction, StepTitle } from 'components/text';
 import type { ExtendedObjectFeatureCard, ObjectCardObj, SubmitObjectPayload } from './utils/types';
 import { ObjectFeature } from './components/ObjectFeature';
 import { ObjectCard } from './components/ObjectCard';
-// Type
 
 type StepWriteClueProps = {
   user: GamePlayer;
@@ -136,12 +136,12 @@ export function StepWriteClue({
       </SpaceContainer>
 
       <SpaceContainer>
-        <Button onClick={goToPreviousStep}>
+        <Button onClick={goToPreviousStep} disabled={isLoading}>
           <Translate pt="Voltar" en="Back" />
         </Button>
-        <Button type="primary" onClick={handleSubmitClue} disabled={isLoading}>
+        <SendButton onClick={handleSubmitClue}>
           <Translate pt="Enviar" en="Submit" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </Step>
   );

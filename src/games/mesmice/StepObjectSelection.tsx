@@ -11,7 +11,6 @@ import { RuleInstruction, StepTitle } from 'components/text';
 import type { ObjectCardObj } from './utils/types';
 import { mockObjectIdSelection } from './utils/mock';
 import { ObjectCard } from './components/ObjectCard';
-// Type
 
 type StepSelectObjectProps = {
   user: GamePlayer;
