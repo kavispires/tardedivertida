@@ -4,10 +4,8 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
 import { TurnOrder } from 'components/players';
@@ -55,7 +53,7 @@ export function StepWaitPlaceItem({
   return (
     <Step fullWidth announcement={announcement}>
       <div ref={ref} style={{ width: '100%' }} />
-      <StepTitle>
+      <StepTitle wait>
         <Translate
           pt={
             <>
@@ -68,7 +66,6 @@ export function StepWaitPlaceItem({
             </>
           }
         />{' '}
-        <IconAvatar icon={<AnimatedClockIcon />} />
       </StepTitle>
 
       <RoundAlert round={round} />

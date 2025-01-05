@@ -192,7 +192,7 @@ function SelectedAreaItems({ areaKey, itemsIds, items, displayEmptyMessage }: Se
 
       <Flex justify="center" align="center" gap={6} wrap="wrap">
         {itemsIds.map((itemId) => (
-          <ItemCard key={itemId} id={itemId} width={100} text={items[itemId].name} />
+          <ItemCard key={itemId} id={itemId} width={84} text={items[itemId].name} />
         ))}
         {itemsIds.length === 0 && displayEmptyMessage && (
           <Alert

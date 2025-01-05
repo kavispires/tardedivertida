@@ -1,9 +1,11 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .selected-item {
+  display: inline-flex;
   text-transform: uppercase;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: bold;
+  transform: translateY(2px);
   margin: get-unit(0 2);
 }
 
@@ -44,7 +46,7 @@
     border-radius: 50%;
 
     &--selection {
-      background: get-color('brown', 3);
+      background: get-color("brown", 3);
     }
   }
 }
@@ -68,11 +70,16 @@
   font-size: 0.5em;
 }
 
-.bare-item {
+.placed-item-wrapper {
+  position: absolute;
+  transform-origin: center;
+}
+
+.bare-item.bare-item {
   padding: 0;
   border-radius: 0;
+  transform: translate(-25%, -25%);
   background: transparent;
-  transform: translate(-50%, -50%);
 }
 
 .clickable-areas {
@@ -82,14 +89,14 @@
 }
 
 .venn-word-hints {
-  border: 1px solid get-color('gray', 1, 0.5);
+  border: 1px solid get-color("gray", 1, 0.5);
   padding: get-unit(2);
   border-radius: $border-radius;
 
   div {
     padding: get-unit(0 2);
     border-radius: $border-radius;
-    background: get-color('gray', 1, 0.2);
+    background: get-color("gray", 1, 0.2);
     margin: get-unit(0 1);
   }
 }

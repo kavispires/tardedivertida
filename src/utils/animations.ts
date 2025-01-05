@@ -230,7 +230,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
           'scale3d(1, 1, 1)',
         ],
         transition: {
-          ease: ease ?? 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          ease: ease ?? 'easeInOut',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
@@ -248,7 +248,7 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
           'scale3d(0.3, 0.3, 0.3)',
         ],
         transition: {
-          ease: ease ?? 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          ease: ease ?? 'easeInOut',
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
