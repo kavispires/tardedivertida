@@ -23,10 +23,9 @@ export function Votes({ votes, players, features }: VotesProps) {
       <div className="voting-track" style={{ gridTemplateColumns: `repeat(${votes.length}, 1fr)` }}>
         {votes.map((entry, index) => (
           <div key={index} className="voting-track__item">
-            {/* <div className="voting-track__item-object"> */}
             <ObjectFeature feature={features[entry.value]} width={32} />
-            {/* </div> */}
-            <AntAvatar.Group maxCount={5}>
+
+            <AntAvatar.Group max={{ count: 5 }}>
               {entry.votes.map((playerId) => (
                 <Avatar
                   key={playerId}

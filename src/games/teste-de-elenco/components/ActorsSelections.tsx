@@ -29,7 +29,7 @@ export function ActorsSelections({ actors, players, selection, playersSelections
         return (
           <Space key={actor.id} className="actors-board__actor" direction="vertical">
             <SpaceContainer>
-              <AntAvatar.Group maxCount={7}>
+              <AntAvatar.Group max={{ count: 7 }}>
                 {playersSelections[actorId].map((playerId) => (
                   <Avatar
                     id={players[playerId].avatarId}

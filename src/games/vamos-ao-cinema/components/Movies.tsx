@@ -293,7 +293,7 @@ function PlayersSelections({
 
   return (
     <span className={clsx('movie-players', side === 'right' && 'movie-players--right')}>
-      <AntAvatar.Group maxCount={5}>
+      <AntAvatar.Group max={{ count: 5 }}>
         {moviePlayers.map((playerId) => (
           <Avatar id={players[playerId].avatarId} key={playerId} />
         ))}
