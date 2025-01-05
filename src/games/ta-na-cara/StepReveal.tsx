@@ -1,3 +1,5 @@
+// Ant Design Resources
+import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
@@ -133,7 +135,12 @@ export function StepReveal({
       />
 
       <SpaceContainer align="center">
-        <TimedButton duration={isCorrect ? 15 : 7} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton
+          duration={isCorrect ? 15 : 7}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </SpaceContainer>
