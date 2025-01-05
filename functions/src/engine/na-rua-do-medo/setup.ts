@@ -27,7 +27,7 @@ import {
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   const { horrorDeck, jackpotDeck, candyDeck, horrorCount } = buildDecks(store.options?.shortGame ?? false);
@@ -124,8 +124,7 @@ export const prepareTrickOrTreatPhase = async (
           totalCandyInSidewalk,
           candyPerPlayer: candyStatus.perPlayer,
           candyInHand: candyStatus.perPlayer,
-          // TODO: This should sort by name not id
-          continuingPlayerIds: utils.players.getListOfPlayersIds(players).sort(),
+          continuingPlayerIds: utils.players.getListOfPlayersIds(players),
           alreadyAtHomePlayerIds: [],
         },
         stateCleanup: ['isEverybodyHome', 'isDoubleHorror', 'cashedInCandy'],
@@ -197,9 +196,9 @@ export const prepareResultPhase = async (
         street,
         candySidewalk,
         totalCandyInSidewalk,
-        goingHomePlayerIds: goingHomePlayerIds.sort(),
-        continuingPlayerIds: continuingPlayerIds.sort(),
-        alreadyAtHomePlayerIds: alreadyAtHomePlayerIds.sort(),
+        goingHomePlayerIds: utils.players.sortPlayerIdsByName(goingHomePlayerIds, players),
+        continuingPlayerIds: utils.players.sortPlayerIdsByName(continuingPlayerIds, players),
+        alreadyAtHomePlayerIds: utils.players.sortPlayerIdsByName(alreadyAtHomePlayerIds, players),
         cashedInCandy,
       },
       stateCleanup: ['currentCard'],

@@ -1,8 +1,10 @@
 // Utils
 import { getRandomItem } from 'utils/helpers';
+// Internal
+import type { Decision } from './types';
 
-const MORE_CONTINUE = ['CONTINUE', 'CONTINUE', 'CONTINUE', 'CONTINUE', 'GO_HOME'];
-const MORE_HOME = ['GO_HOME', 'GO_HOME', 'CONTINUE', 'CONTINUE', 'CONTINUE'];
+const MORE_CONTINUE: Decision[] = ['CONTINUE', 'CONTINUE', 'CONTINUE', 'CONTINUE', 'GO_HOME'];
+const MORE_HOME: Decision[] = ['GO_HOME', 'GO_HOME', 'CONTINUE', 'CONTINUE', 'CONTINUE'];
 
 export const mockPlayerDecision = (horrorLength: number, hand: number) => {
   let decision = getRandomItem(MORE_CONTINUE);

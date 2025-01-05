@@ -1,5 +1,5 @@
 // Constants
-import { cloneDeep } from 'lodash';
+import { cloneDeep, orderBy } from 'lodash';
 import { AVATAR_IDS } from './constants';
 import { throwException } from './firebase';
 // Utils
@@ -294,7 +294,7 @@ export const dealItemsToPlayers = (
 export const addBots = (
   players: Players,
   quantity: 1 | 2 | 3 | 4 | 5,
-  defaultProperties: Record<string, any> = {},
+  defaultProperties: Record<string, unknown> = {},
 ) => {
   const names = ['A-bot', 'B-bop', 'C-am', 'D-Doo', 'E-max'];
   const avatarIds = ['A', 'B', 'C', 'D', 'E'];
@@ -332,18 +332,34 @@ export const getListOfPlayers = (
 };
 
 /**
- * Get list of players ids
- * @param players
- * @param includeBots
- * @param butThese
- * @returns
+ * Retrieves a list of player IDs from the given players object.
+ * @param players - The object containing player information.
+ * @param includeBots - A boolean indicating whether to include bot players in the list. Defaults to false.
+ * @param butThese - An array of player IDs to exclude from the list. Defaults to an empty array.
+ * @returns An array of player IDs, ordered by player name in ascending order.
  */
 export const getListOfPlayersIds = (
   players: Players,
   includeBots = false,
   butThese: PlayerId[] = [],
 ): PlayerId[] => {
-  return getListOfPlayers(players, includeBots, butThese).map((player) => player.id);
+  return orderBy(getListOfPlayers(players, includeBots, butThese), ['name'], ['asc']).map(
+    (player) => player.id,
+  );
+};
+
+/**
+ * Sorts an array of player IDs based on the players' names in ascending order.
+ * @param playerIds - An array of player IDs to be sorted.
+ * @param players - An object containing player information, where the key is the player ID and the value is the player object.
+ * @returns A new array of player IDs sorted by the players' names in ascending order.
+ */
+export const sortPlayerIdsByName = (playerIds: PlayerId[], players: Players): PlayerId[] => {
+  return orderBy(
+    playerIds.map((id) => players[id]),
+    ['name'],
+    ['asc'],
+  ).map((player) => player.id);
 };
 
 /**

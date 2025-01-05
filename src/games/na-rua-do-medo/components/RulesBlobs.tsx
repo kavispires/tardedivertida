@@ -18,7 +18,7 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
   const isThereAnyCandy = Boolean(user.hand + totalCandyInSidewalk);
 
   return (
-    <RuleInstruction type="action">
+    <RuleInstruction type={user.ready ? 'wait' : 'action'}>
       {isThereAnyCandy ? (
         <Translate
           pt={

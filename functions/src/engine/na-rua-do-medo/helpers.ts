@@ -135,7 +135,19 @@ export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number):
   // Add all candy values
   const streetDeck = [...store.candyDeck, ...horrorDeckWithoutAnyUsedHorrors, ...availableJackpots];
 
-  return utils.game.shuffle(streetDeck);
+  const shuffledStreet = utils.game.shuffle(streetDeck);
+
+  let tries = 0;
+  while (
+    tries < 20 &&
+    shuffledStreet.length > 0 &&
+    ['jackpot', 'horror'].includes(shuffledStreet[shuffledStreet.length - 1].type)
+  ) {
+    shuffledStreet.unshift(shuffledStreet.pop() as HouseCard);
+    tries++;
+  }
+
+  return shuffledStreet;
 };
 
 export const shareCandy = (players: Players, currentCard?: HouseCard): CandyStatus => {
@@ -413,8 +425,7 @@ export const sendPlayersHome = (players: Players): PlayerId[] => {
 
 export const getTotalCandyInSidewalk = (candySidewalk: CandyStatus[]): number => {
   return candySidewalk.reduce((total, candyObj): number => {
-    total += candyObj.leftover;
-    return total;
+    return total + candyObj.leftover;
   }, 0);
 };
 
@@ -432,11 +443,14 @@ export const tallyCandyAsScore = (players: Players) => {
   });
 };
 
-export const countMonsters = (street: HouseCard[]) =>
-  street.reduce((acc: number, entry) => {
-    if (entry.type === 'horror') acc += 1;
+export const countMonsters = (street: HouseCard[]) => {
+  return street.reduce((acc: number, entry) => {
+    if (entry.type === 'horror') {
+      return acc + 1;
+    }
     return acc;
   }, 0);
+};
 
 /**
  * Get achievements
