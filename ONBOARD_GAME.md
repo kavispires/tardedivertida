@@ -59,7 +59,7 @@ All file paths here are relative to `/src`.
 
 ## Achievements
 
-- Add achievements titles in `functions/src/engine/<>/constants.ts`
+- Add achievements titles in `functions/src/engine/.../constants.ts`
 - Add the type `export type ArteRuimAchievement = keyof typeof ARTE_RUIM_ACHIEVEMENTS;`
 - In the prepareSetupPhase add `utils.achievements.setup` with key trackers for each category
 - Add adders everywhere is necessary with the use of ''

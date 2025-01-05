@@ -1,6 +1,7 @@
 import ADEDANHX from 'games/adedanhx/utils/achievements';
 import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
+import COMUNICACAO_DUO from 'games/comunicacao-duo/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
 import CRIMES_HEDIONDOS from 'games/crimes-hediondos/utils/achievements';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
@@ -17,9 +18,10 @@ import POLEMICA_DA_VEZ from 'games/polemica-da-vez/utils/achievements';
 import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/utils/achievements';
 import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
 import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
-import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
 import SINAIS_DE_ALERTA from 'games/sinais-de-alerta/utils/achievements';
+import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
 import TESTE_DE_ELENCO from 'games/teste-de-elenco/utils/achievements';
+import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 // Types
 import type { AchievementReference } from 'types/achievements';
@@ -35,7 +37,6 @@ import type { AchievementReference } from 'types/achievements';
 // import QUEM_NAO_MATA from 'games/quem-nao-mata/utils/achievements';
 // import SONHOS_PESADELOS from 'games/sonhos-pesadelos/utils/achievements';
 // import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
-import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 // import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
 // import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 // import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/utils/achievements';
@@ -46,6 +47,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'bomba-relogio': null,
   'cinegrafistas-amadores': null,
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
+  'comunicacao-duo': COMUNICACAO_DUO,
   'contadores-historias': CONTADORES_HISTORIAS,
   'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
