@@ -3,7 +3,7 @@ import { useMemo, type ReactNode } from 'react';
 import { useToggle } from 'react-use';
 // Ant Design Resources
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Button, Tooltip } from 'antd';
+import { Button, Image, Popconfirm, Tooltip } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -53,91 +53,104 @@ export function Board({
   }, [deck, userSide, userIndex]);
 
   return (
-    <div className="cd-board">
-      {deck.map((entry) => {
-        const disabledTaboo =
-          entry.affiliation[userIndex] === AFFILIATIONS.TABOO && hasTheOtherPlayersTabooBeenSelected;
+    <Image.PreviewGroup>
+      <div className="cd-board">
+        {deck.map((entry) => {
+          const disabledTaboo =
+            entry.affiliation[userIndex] === AFFILIATIONS.TABOO && hasTheOtherPlayersTabooBeenSelected;
 
-        if (
-          onClick &&
-          entry.status === DECK_ENTRY_STATUS.IDLE &&
-          !entry.deliveredBy?.includes(userId) &&
-          !disabledTaboo
-        ) {
-          return (
-            <TransparentButton
-              key={entry.id}
-              onClick={() => onClick(entry)}
-              disabled={disabled}
-              className="cd-board-entry-entry-wrapper"
-            >
-              <NeutralDeliveriesWrapper
-                entry={entry}
-                userId={userId}
-                userSide={userSide}
-                animateEntries={animateEntries}
+          if (
+            onClick &&
+            entry.status === DECK_ENTRY_STATUS.IDLE &&
+            !entry.deliveredBy?.includes(userId) &&
+            !disabledTaboo
+          ) {
+            return (
+              <Popconfirm
+                key={entry.id}
+                title={
+                  <Translate
+                    en="Are you sure you want to deliver this item?"
+                    pt="Você tem certeza que deseja entregar este item?"
+                  />
+                }
+                trigger={deckType === 'images' ? 'hover' : 'click'}
+                onConfirm={() => onClick(entry)}
               >
-                <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
-              </NeutralDeliveriesWrapper>
-            </TransparentButton>
-          );
-        }
+                <TransparentButton
+                  key={entry.id}
+                  disabled={disabled}
+                  className="cd-board-entry-entry-wrapper"
+                >
+                  <NeutralDeliveriesWrapper
+                    entry={entry}
+                    userId={userId}
+                    userSide={userSide}
+                    animateEntries={animateEntries}
+                  >
+                    <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
+                  </NeutralDeliveriesWrapper>
+                </TransparentButton>
+              </Popconfirm>
+            );
+          }
 
-        if (entry.status === DECK_ENTRY_STATUS.A || entry.status === DECK_ENTRY_STATUS.B) {
-          return (
-            <span
-              key={entry.id}
-              className={clsx(animateEntries.includes(entry.id) && getAnimationClass('slideInDown'))}
-            >
-              <CoverAlienCard side={entry.status}>
-                <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
-              </CoverAlienCard>
-            </span>
-          );
-        }
-
-        if ((entry?.deliveredBy?.length ?? 0) > 0) {
-          return (
-            <div key={entry.id} className="cd-board-entry-entry-wrapper">
-              <NeutralDeliveriesWrapper
-                entry={entry}
-                userId={userId}
-                userSide={userSide}
-                animateEntries={animateEntries}
+          if (entry.status === DECK_ENTRY_STATUS.A || entry.status === DECK_ENTRY_STATUS.B) {
+            return (
+              <span
+                key={entry.id}
+                className={clsx(animateEntries.includes(entry.id) && getAnimationClass('slideInDown'))}
               >
-                <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
-              </NeutralDeliveriesWrapper>
+                <CoverAlienCard side={entry.status}>
+                  <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
+                </CoverAlienCard>
+              </span>
+            );
+          }
+
+          if ((entry?.deliveredBy?.length ?? 0) > 0) {
+            return (
+              <div key={entry.id} className="cd-board-entry-entry-wrapper">
+                <NeutralDeliveriesWrapper
+                  entry={entry}
+                  userId={userId}
+                  userSide={userSide}
+                  animateEntries={animateEntries}
+                >
+                  <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
+                </NeutralDeliveriesWrapper>
+              </div>
+            );
+          }
+
+          return (
+            <div
+              key={entry.id}
+              className={clsx(
+                'cd-board-entry-entry-wrapper',
+                disabledTaboo && onClick && 'cd-board-entry-entry-wrapper--not-allowed',
+              )}
+            >
+              {disabledTaboo && (
+                <div className="cd-board-entry-taboo">
+                  <Tooltip
+                    title={
+                      <Translate
+                        en="You already found the other player's item that matches one of your taboos so none of these other ones can be an item for the other player anymore."
+                        pt="Você já encontrou o item do outro jogador que corresponde a um dos seus tabus, então nenhum desses outros tabus seus pode ser um item para o outro jogador."
+                      />
+                    }
+                  >
+                    <Button shape="circle" size="small" icon={<CloseCircleOutlined />} />
+                  </Tooltip>
+                </div>
+              )}
+              <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
             </div>
           );
-        }
-
-        return (
-          <div
-            key={entry.id}
-            className={clsx(
-              'cd-board-entry-entry-wrapper',
-              disabledTaboo && onClick && 'cd-board-entry-entry-wrapper--not-allowed',
-            )}
-          >
-            {disabledTaboo && (
-              <div className="cd-board-entry-taboo">
-                <Tooltip
-                  title={
-                    <Translate
-                      en="You already found the other player's item that matches one of your taboos so none of these other ones can be an item for the other player anymore."
-                      pt="Você já encontrou o item do outro jogador que corresponde a um dos seus tabus, então nenhum desses outros tabus seus pode ser um item para o outro jogador."
-                    />
-                  }
-                >
-                  <Button shape="circle" size="small" icon={<CloseCircleOutlined />} />
-                </Tooltip>
-              </div>
-            )}
-            <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
-          </div>
-        );
-      })}
-    </div>
+        })}
+      </div>
+    </Image.PreviewGroup>
   );
 }
 

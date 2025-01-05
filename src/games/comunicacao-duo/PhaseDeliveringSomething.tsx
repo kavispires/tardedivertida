@@ -13,11 +13,11 @@ import { AlienText } from 'components/alien/AlienText';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Instruction, TextHighlight } from 'components/text';
+import { ViewOr } from 'components/views';
 // Internal
 import { useOnStopDeliveryAPIRequest, useOnSubmitDeliveryAPIRequest } from './utils/api-requests';
 import { StepDeliver } from './StepDeliver';
-// Icons
 
 export function PhaseDeliveringSomething({ players, state }: PhaseProps) {
   const user = useUser(players, state);
@@ -45,7 +45,11 @@ export function PhaseDeliveringSomething({ players, state }: PhaseProps) {
       duration={3}
     >
       <Instruction>
-        <AlienText value={state.clue ?? ''} />
+        <ViewOr condition={state.clueInputType === 'alien-keyboard'}>
+          <AlienText value={state.clue ?? ''} />
+
+          <TextHighlight style={{ fontSize: '1.5rem' }}>{state.clue}</TextHighlight>
+        </ViewOr>
       </Instruction>
     </PhaseAnnouncement>
   );

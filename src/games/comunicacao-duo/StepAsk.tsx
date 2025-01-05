@@ -1,10 +1,11 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Flex, InputNumber } from 'antd';
+import { Flex, Input, InputNumber } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
+import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { AlienKeyboard } from 'components/alien/AlienKeyboard';
@@ -56,6 +57,7 @@ export function StepAsk({
   const { isLoading } = useLoading();
   const [sentence, setSentence] = useState<string>('');
   const [clueQuantity, setQuantity] = useState<number>(1);
+  const { dualTranslate } = useLanguage();
 
   const onSubmit = () => {
     onSubmitRequest({ clue: sentence, clueQuantity });
@@ -131,6 +133,42 @@ export function StepAsk({
             </Flex>
           </ViewIf>
           <AlienKeyboard value={sentence} onChange={setSentence} disabled={!isTheRequester || user.ready} />
+        </SpaceContainer>
+      </ViewIf>
+
+      <ViewIf condition={clueInputType !== 'alien-keyboard' && isTheRequester}>
+        <RuleInstruction type="rule">
+          <Translate
+            en="You can ask for items by typing your request in the input box"
+            pt="Você pode pedir itens digitando seu pedido no campo de entrada"
+          />
+        </RuleInstruction>
+
+        <SpaceContainer vertical>
+          <Flex gap={8} align="center">
+            <Input
+              size="large"
+              value={sentence}
+              onChange={(e) => setSentence(e.target.value)}
+              placeholder={dualTranslate({
+                pt: 'Digite seu pedido aqui',
+                en: 'Type your request here',
+              })}
+            />
+            <strong>
+              <Translate en="Quantity" pt="Quantidade" />:
+            </strong>
+            <InputNumber
+              value={clueQuantity}
+              onChange={(v) => setQuantity(v ?? 1)}
+              min={0}
+              max={6}
+              size="large"
+            />
+          </Flex>
+          <SendButton size="large" loading={isLoading} disabled={!sentence} onClick={onSubmit}>
+            <Translate en="Submit" pt="Enviar" />
+          </SendButton>
         </SpaceContainer>
       </ViewIf>
 

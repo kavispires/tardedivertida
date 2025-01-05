@@ -1,25 +1,18 @@
 import clsx from 'clsx';
-import type { ReactNode } from 'react';
 // Sass
 import './TextHighlight.scss';
 
 type TextHighlightProps = {
   /**
-   * The text to be highlighted
-   */
-  children: ReactNode;
-  /**
-   * Optional custom class name
-   */
-  className?: string;
-  /**
    * If the highlight should be dark
    */
   dark?: boolean;
-};
+} & ElementPropsWithChildren;
 
-export function TextHighlight({ children, className, dark }: TextHighlightProps) {
+export function TextHighlight({ children, className, dark, ...props }: TextHighlightProps) {
   return (
-    <span className={clsx('text-highlight', dark && 'text-highlight--dark', className)}>{children}</span>
+    <span className={clsx('text-highlight', dark && 'text-highlight--dark', className)} {...props}>
+      {children}
+    </span>
   );
 }
