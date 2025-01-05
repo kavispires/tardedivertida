@@ -110,8 +110,8 @@ export function StepDeliver({
             />
           ) : (
             <Translate
-              en={`Você entregou ${latestHistoryEntry.deliverables?.length} essa rodada. You may stop now and skip to the next turn`}
-              pt={`You have delivered ${latestHistoryEntry.deliverables?.length} this round. Você pode parar agora e pular para a próxima rodada`}
+              en={`You have delivered ${latestHistoryEntry.deliverables?.length} things this round. You may stop now and skip to the next turn`}
+              pt={`Você entregou ${latestHistoryEntry.deliverables?.length} coisas essa rodada. Você pode parar agora e pular para a próxima rodada`}
             />
           )}
           <br />

@@ -56,7 +56,7 @@ export const increase = (store: PlainObject, playerId: PlayerId, property: strin
  * @param value
  * @returns the achievements
  */
-export const push = (store: PlainObject, playerId: PlayerId, property: string, value: any) => {
+export const push = (store: PlainObject, playerId: PlayerId, property: string, value: unknown) => {
   if (store.achievements[playerId] !== undefined) {
     store.achievements[playerId][property].push(value);
   }
@@ -76,11 +76,27 @@ export const insert = (
   store: PlainObject,
   playerId: PlayerId,
   property: string,
-  value: any,
+  value: unknown,
   index: number,
 ) => {
   if (store.achievements[playerId] !== undefined) {
     store.achievements[playerId][property][index] = value;
+  }
+  return store.achievements;
+};
+
+/**
+ * Adds a value to the last element of a specified property array for a given player in the store.
+ *
+ * @param store - The store object containing player achievements.
+ * @param playerId - The ID of the player whose achievement property will be updated.
+ * @param property - The property name of the achievement to be updated.
+ * @param value - The value to be added to the last element of the specified property array.
+ * @returns The updated achievements object from the store.
+ */
+export const addToLast = (store: PlainObject, playerId: PlayerId, property: string, value: number) => {
+  if (store.achievements[playerId] !== undefined) {
+    store.achievements[playerId][property][store.achievements[playerId][property].length - 1] += value;
   }
   return store.achievements;
 };
@@ -91,7 +107,7 @@ export const insert = (
  * @param property - the property to get the value from
  * @returns - the ResultAchievement object
  */
-const getValue = (achievement: StoreAchievement, property: string): ResultAchievement => {
+const _getValue = (achievement: StoreAchievement, property: string): ResultAchievement => {
   return {
     playerId: achievement.playerId,
     value: achievement[property] ?? 0,
@@ -136,8 +152,8 @@ export const getMostAndLeastOf = (
   });
 
   return {
-    most: most.length === 1 ? getValue(most[0], property) : null,
-    least: least.length === 1 ? getValue(least[0], property) : null,
+    most: most.length === 1 ? _getValue(most[0], property) : null,
+    least: least.length === 1 ? _getValue(least[0], property) : null,
   };
 };
 
@@ -182,8 +198,8 @@ export const getMostAndLeastOfAverage = (
   });
 
   return {
-    most: most.length === 1 ? getValue(most[0], property) : null,
-    least: least.length === 1 ? getValue(least[0], property) : null,
+    most: most.length === 1 ? _getValue(most[0], property) : null,
+    least: least.length === 1 ? _getValue(least[0], property) : null,
   };
 };
 
@@ -225,10 +241,20 @@ export const getEarliestAndLatestOccurrence = (
   return getMostAndLeastOf(store, property, ineligiblePlayers, (v) => v >= 0);
 };
 
+/**
+ * Retrieves the only achievement that exactly matches the specified property and value from the store,
+ * excluding any achievements associated with ineligible players.
+ *
+ * @param store - The store containing achievements.
+ * @param property - The property to match against.
+ * @param value - The value to match for the specified property.
+ * @param ineligiblePlayers - An optional array of player IDs to exclude from the search.
+ * @returns The achievement that exactly matches the specified property and value, or null if there is not exactly one match.
+ */
 export const getOnlyExactMatch = (
   store: PlainObject,
   property: string,
-  value: any,
+  value: unknown,
   ineligiblePlayers: PlayerId[] = [],
 ): ResultAchievement | null => {
   const eligibleAchievements = Object.values<StoreAchievement>(store.achievements).filter((achievement) => {
@@ -239,5 +265,47 @@ export const getOnlyExactMatch = (
     return achievement[property] === value;
   });
 
-  return achievements.length === 1 ? getValue(achievements[0], property) : null;
+  return achievements.length === 1 ? _getValue(achievements[0], property) : null;
+};
+
+/**
+ * Retrieves the highest and lowest occurrences of a specified property from a store of achievements,
+ * excluding ineligible players.
+ *
+ * @param store - The store containing achievements.
+ * @param property - The property to evaluate for highest and lowest occurrences.
+ * @param ineligiblePlayers - An optional array of player IDs to exclude from the evaluation.
+ * @returns An object containing the highest and lowest occurrences of the specified property.
+ *          If there are multiple achievements with the same highest or lowest value, the result will be null.
+ */
+export const getHighestAndLowestOccurrences = (
+  store: PlainObject,
+  property: string,
+  ineligiblePlayers: PlayerId[] = [],
+): AchievementResult => {
+  let highest: StoreAchievement[] = [];
+  let lowest: StoreAchievement[] = [];
+
+  const achievements = Object.values<StoreAchievement>(store.achievements).filter(
+    (a: any) => !ineligiblePlayers.includes(a.playerId),
+  );
+
+  achievements.forEach((achievement) => {
+    if (!highest[0] || highest[0][property] === achievement[property]) {
+      highest.push(achievement);
+    } else if (highest[0][property] < achievement[property]) {
+      highest = [achievement];
+    }
+
+    if (!lowest[0] || lowest[0][property] === achievement[property]) {
+      lowest.push(achievement);
+    } else if (lowest[0][property] > achievement[property]) {
+      lowest = [achievement];
+    }
+  });
+
+  return {
+    most: highest.length === 1 ? _getValue(highest[0], property) : null,
+    least: lowest.length === 1 ? _getValue(lowest[0], property) : null,
+  };
 };

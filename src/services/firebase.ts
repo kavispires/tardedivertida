@@ -52,12 +52,14 @@ const runEmulators = true;
 
 if (runEmulators && window.location.hostname.includes(localHost)) {
   if (USE_FIRESTORE_EMULATOR) {
+    // biome-ignore lint/suspicious/noConsole: on purpose
     console.log(`%cEmulating firestore to ${localHost}`, 'color:dodgerblue');
     notification.warning({ message: `Emulating firestore to ${localHost}`, placement: 'bottomLeft' });
     connectFirestoreEmulator(firestore, localHost, 8091);
     setGlobalState('usingFirestoreEmulator', localHost);
   }
   if (USE_FUNCTIONS_EMULATOR) {
+    // biome-ignore lint/suspicious/noConsole: on purpose
     console.log(`%cEmulating functions to ${localHost}`, 'color:cyan');
     notification.warning({ message: `Emulating functions to ${localHost}`, placement: 'bottomLeft' });
     connectFunctionsEmulator(functions, localHost, 5003);
@@ -145,6 +147,6 @@ export function convertGuestoToUser(email: string, password: string): Promise<Us
  */
 export const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
   return usingEmulators
-    ? `http://localhost:4000/firestore/data/games/${gameCollection}/${gameId}/state`
+    ? `http://127.0.0.1:4000/firestore/default/data/games/${gameCollection}/${gameId}/state`
     : `${process.env.REACT_APP_FIREBASE_URL}/~2Fgames~2F${gameCollection}~2F${gameId}~2Fstate`;
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Flex, InputNumber } from 'antd';
+import { Flex, InputNumber } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -10,6 +10,7 @@ import { useLoading } from 'hooks/useLoading';
 import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
 import { AvatarName } from 'components/avatars';
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
@@ -124,9 +125,9 @@ export function StepAsk({
                 max={6}
                 size="large"
               />
-              <Button type="primary" size="large" loading={isLoading} disabled={!sentence} onClick={onSubmit}>
+              <SendButton size="large" loading={isLoading} disabled={!sentence} onClick={onSubmit}>
                 <Translate en="Submit" pt="Enviar" />
-              </Button>
+              </SendButton>
             </Flex>
           </ViewIf>
           <AlienKeyboard value={sentence} onChange={setSentence} disabled={!isTheRequester || user.ready} />

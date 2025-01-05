@@ -1,7 +1,13 @@
-import type { DeckEntry, Summary } from './types';
+import type { ComunicacaoDuoAchievement, DeckEntry, FirebaseStoreData, Summary } from './types';
 import utils from '../../utils';
 // Constants
-import { COMUNICACAO_DUO_PHASES, AFFILIATIONS, DECK, DECK_ENTRY_STATUS } from './constants';
+import {
+  COMUNICACAO_DUO_PHASES,
+  AFFILIATIONS,
+  DECK,
+  DECK_ENTRY_STATUS,
+  COMUNICACAO_DUO_ACHIEVEMENTS,
+} from './constants';
 import type { Item } from '../../types/tdr';
 
 /**
@@ -34,7 +40,7 @@ export const determineNextPhase = (
   return ASKING_FOR_SOMETHING;
 };
 
-export const applyDataToDeck = (list: any[], type: string): DeckEntry[] => {
+export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
   return utils.game.shuffle(DECK).map((entry, index) => {
     if (type === 'images') {
       return {
@@ -47,7 +53,7 @@ export const applyDataToDeck = (list: any[], type: string): DeckEntry[] => {
     }
 
     if (type === 'items') {
-      const dataEntry: Item = list[index];
+      const dataEntry = list[index] as Item;
       return {
         ...entry,
         data: {
@@ -92,4 +98,104 @@ export const countDeliverablesLeft = (deck: DeckEntry[]): Summary => {
     deliverablesLeftForA,
     deliverablesLeftForB,
   };
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<ComunicacaoDuoAchievement>[] = [];
+
+  // Delivered taboo
+  const result = utils.achievements.getOnlyExactMatch(store, 'tabooDeliveries', 1);
+  if (result) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.DELIVERED_TABOO,
+      playerId: result.playerId,
+      value: result.value,
+    });
+  }
+
+  // Most and fewest requested at once
+  const { most: mostRequested, least: fewestRequested } = utils.achievements.getHighestAndLowestOccurrences(
+    store,
+    'clueQuantity',
+  );
+  if (mostRequested) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.MOST_REQUESTED_AT_ONCE,
+      playerId: mostRequested.playerId,
+      value: mostRequested.value,
+    });
+  }
+  if (fewestRequested) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.FEWEST_REQUESTED_AT_ONCE,
+      playerId: fewestRequested.playerId,
+      value: fewestRequested.value,
+    });
+  }
+
+  // Most and fewest delivered items at once
+  const { most: mostDelivered, least: fewestDelivered } = utils.achievements.getHighestAndLowestOccurrences(
+    store,
+    'deliveries',
+  );
+  if (mostDelivered) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.MOST_DELIVERED_AT_ONCE,
+      playerId: mostDelivered.playerId,
+      value: mostDelivered.value,
+    });
+  }
+  if (fewestDelivered) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.FEWEST_DELIVERED_AT_ONCE,
+      playerId: fewestDelivered.playerId,
+      value: fewestDelivered.value,
+    });
+  }
+
+  // Most and fewest correct deliveries
+  const { most: mostDeliveredItems, least: fewestDeliveredItems } = utils.achievements.getMostAndLeastOf(
+    store,
+    'correctDeliveries',
+  );
+  if (mostDeliveredItems) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.MOST_DELIVERED_ITEMS,
+      playerId: mostDeliveredItems.playerId,
+      value: mostDeliveredItems.value,
+    });
+  }
+  if (fewestDeliveredItems) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.FEWEST_DELIVERED_ITEMS,
+      playerId: fewestDeliveredItems.playerId,
+      value: fewestDeliveredItems.value,
+    });
+  }
+
+  // Most and fewest neutral deliveries
+  const { most: mostNeutral, least: fewestNeutral } = utils.achievements.getMostAndLeastOf(
+    store,
+    'neutralDeliveries',
+  );
+  if (mostNeutral) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.MOST_NEUTRAL_DELIVERIES,
+      playerId: mostNeutral.playerId,
+      value: mostNeutral.value,
+    });
+  }
+  if (fewestNeutral) {
+    achievements.push({
+      type: COMUNICACAO_DUO_ACHIEVEMENTS.FEWEST_NEUTRAL_DELIVERIES,
+      playerId: fewestNeutral.playerId,
+      value: fewestNeutral.value,
+    });
+  }
+
+  return achievements;
 };

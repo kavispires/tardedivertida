@@ -43,7 +43,7 @@ export function Board({
   const hasTheOtherPlayersTabooBeenSelected = useMemo(() => {
     // If any of your three taboo has been selected and it's the other player's affiliation.
     const otherPlayerIndex = userIndex === 0 ? 1 : 0;
-    const otherPlayerSide = userSide === 'A' ? 'B' : 'A';
+    const otherPlayerSide = getOtherSide(userSide);
     return deck.some(
       (entry) =>
         entry.affiliation[userIndex] === AFFILIATIONS.TABOO &&
@@ -153,14 +153,14 @@ function CoverAlienCard({ side, children }: CoverAlienCardProps) {
       <div
         className={clsx(
           'cd-board-entry-cover__alien',
-          `cd-board-entry-cover__alien--${side}`,
+          `cd-board-entry-cover__alien--${getOtherSide(side)}`,
           open && 'cd-board-entry-cover__alien--open',
         )}
       >
         {side === 'A' ? (
-          <AlienStarEyesIcon style={{ width: 36 }} />
-        ) : (
           <AlienHeartEyesIcon style={{ width: 36 }} />
+        ) : (
+          <AlienStarEyesIcon style={{ width: 36 }} />
         )}
       </div>
       {children}
@@ -187,6 +187,9 @@ function NeutralDeliveriesWrapper({
     return <>{children}</>;
   }
 
+  const haveIDelivered = entry.deliveredBy?.includes(userId);
+  const hasTheOtherPlayerDelivered = !!entry.deliveredBy?.filter((id) => id !== userId).length;
+
   return (
     <div
       className={clsx(
@@ -194,7 +197,7 @@ function NeutralDeliveriesWrapper({
         entry.deliveredBy?.includes(userId) && 'cd-board-entry-neutral--not-allowed',
       )}
     >
-      {entry.deliveredBy?.includes(userId) && (
+      {haveIDelivered && (
         <span className={clsx(animateEntries.includes(entry.id) && getAnimationClass('tada'))}>
           <IconAvatar
             className={clsx('cd-board-entry-neutral-item', `cd-board-entry-neutral-item--${userSide}`)}
@@ -202,12 +205,12 @@ function NeutralDeliveriesWrapper({
           />
         </span>
       )}
-      {!entry.deliveredBy?.includes(userId) && (
+      {hasTheOtherPlayerDelivered && (
         <span className={clsx(animateEntries.includes(entry.id) && getAnimationClass('tada'))}>
           <IconAvatar
             className={clsx(
               'cd-board-entry-neutral-item',
-              `cd-board-entry-neutral-item--${userSide === 'A' ? 'B' : 'A'}`,
+              `cd-board-entry-neutral-item--${getOtherSide(userSide)}`,
             )}
             icon={<AlienNeutralIcon color={userSide === 'A' ? 'orange' : 'teal'} />}
           />
@@ -217,3 +220,5 @@ function NeutralDeliveriesWrapper({
     </div>
   );
 }
+
+const getOtherSide = (side: string) => (side === 'A' ? 'B' : 'A');

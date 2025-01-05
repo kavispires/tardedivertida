@@ -5,7 +5,7 @@ import type { DeckEntry, FirebaseStateData, FirebaseStoreData, HistoryEntry, Res
 // Utils
 import utils from '../../utils';
 // Internal
-import { countDeliverablesLeft } from './helpers';
+import { countDeliverablesLeft, getAchievements } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 import { print } from '../../utils/helpers';
 
@@ -20,7 +20,14 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, store, {});
+  const achievements = utils.achievements.setup(players, store, {
+    clueQuantity: [],
+    deliveries: [],
+    correctDeliveries: 0,
+    neutralDeliveries: 0,
+    tabooDeliveries: 0,
+  });
+
   const deckType = store.options?.deckType ?? 'items';
   const clueInputType = store.options?.clueInputType ?? 'drawing';
 
@@ -88,7 +95,7 @@ export const prepareAskingForSomething = async (
 };
 
 export const prepareDeliveringSomethingPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -120,6 +127,12 @@ export const prepareDeliveringSomethingPhase = async (
       quantity: stateUpdate.clueQuantity,
       deliverables: [],
     });
+    // Achievement: most requested items at once
+    utils.achievements.push(store, stateUpdate.requesterId, 'clueQuantity', stateUpdate.clueQuantity);
+
+    // Achievement: The other player resets their deliveries
+    const answererId = utils.players.getNextPlayer(Object.keys(players), state.requesterId);
+    utils.achievements.push(store, answererId, 'deliveries', 0);
   }
   utils.players.unReadyPlayers(players, stateUpdate.requesterId);
 
@@ -127,6 +140,9 @@ export const prepareDeliveringSomethingPhase = async (
 
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: COMUNICACAO_DUO_PHASES.DELIVER_SOMETHING,
         players,
@@ -138,7 +154,7 @@ export const prepareDeliveringSomethingPhase = async (
 };
 
 export const prepareVerificationPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -213,10 +229,15 @@ export const prepareVerificationPhase = async (
 
   // If correct,
   if (isCorrect) {
+    utils.achievements.addToLast(store, answererId, 'deliveries', 1);
+    utils.achievements.increase(store, answererId, 'correctDeliveries', 1);
     // If all items delivered, end game: win
     if (summary.deliverablesLeft === 0) {
       return {
         update: {
+          store: {
+            achievements: store.achievements,
+          },
           state: {
             phase: COMUNICACAO_DUO_PHASES.VERIFICATION,
             players,
@@ -239,10 +260,12 @@ export const prepareVerificationPhase = async (
     }
 
     // If the requesterSide is done, force Ask something
-
     // Else To go DeliveringSomething again
     return {
       update: {
+        store: {
+          achievements: store.achievements,
+        },
         state: {
           phase: COMUNICACAO_DUO_PHASES.VERIFICATION,
           players,
@@ -260,8 +283,12 @@ export const prepareVerificationPhase = async (
   // If incorrect,
   // If it is an taboo, end game: lose
   if (isTaboo) {
+    utils.achievements.increase(store, answererId, 'tabooDeliveries', 1);
     return {
       update: {
+        store: {
+          achievements: store.achievements,
+        },
         state: {
           phase: COMUNICACAO_DUO_PHASES.VERIFICATION,
           players,
@@ -274,8 +301,12 @@ export const prepareVerificationPhase = async (
   }
 
   // Else To go AskingForSomething again
+  utils.achievements.increase(store, answererId, 'neutralDeliveries', 1);
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: COMUNICACAO_DUO_PHASES.VERIFICATION,
         players,
@@ -295,8 +326,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = state.status !== STATUS.WIN ? [] : utils.players.determineWinners(players);
 
-  // const achievements = getAchievements(store);
-  const achievements = [];
+  const achievements = getAchievements(store);
 
   await utils.firestore.markGameAsComplete(gameId);
 
