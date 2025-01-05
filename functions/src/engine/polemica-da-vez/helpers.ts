@@ -9,7 +9,13 @@ import {
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
-import type { Decks, FirebaseStoreData, PolemicaDaVezAchievement, PolemicaDaVezOptions } from './types';
+import type {
+  CustomTweet,
+  Decks,
+  FirebaseStoreData,
+  PolemicaDaVezAchievement,
+  PolemicaDaVezOptions,
+} from './types';
 // Utils
 import utils from '../../utils';
 
@@ -44,9 +50,9 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
  * @param allTweets
  * @returns
  */
-export const buildDeck = (allTweets): Decks => {
+export const buildDeck = (allTweets: CustomTweet[]): Decks => {
   const { deck, customDeck } = Object.values(allTweets).reduce(
-    (acc: Decks, item: any) => {
+    (acc: Decks, item) => {
       if (item?.custom) {
         acc.customDeck.push(item);
       } else {

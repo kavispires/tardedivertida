@@ -19,12 +19,13 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
+import type { SubmitReactionPayload } from './utils/types';
 import { Tweet } from './components/Tweet';
 
 type StepLikingProps = {
   currentTweet: TextCard;
   customTweet: string;
-  onSubmitReaction: GenericFunction;
+  onSubmitReaction: (payload: SubmitReactionPayload) => void;
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;
 
@@ -39,7 +40,7 @@ export function StepLiking({
   const [like, setLike] = useState<boolean | null>(null);
 
   const onSubmitReactions = (likes: number) => {
-    onSubmitReaction({ reaction: like, likesGuess: likes });
+    onSubmitReaction({ reaction: !!like, likesGuess: likes });
   };
 
   const countOptions = useMemo(

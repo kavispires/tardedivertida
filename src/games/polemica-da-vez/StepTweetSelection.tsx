@@ -1,22 +1,24 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Input } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
+import type { SubmitTweetPayload } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
 
 type StepTweetSelectionProps = {
   currentTweets: TextCard[];
   currentCustomTweet: TextCard;
-  onSubmitTweet: GenericFunction;
+  onSubmitTweet: (payload: SubmitTweetPayload) => void;
   round: GameRound;
   isFixedRounds: boolean;
 } & Pick<StepProps, 'announcement'>;
@@ -73,9 +75,9 @@ export function StepTweetSelection({
             onPressEnter={onSubmitCustomTweet}
           />
           {Boolean(customTweet) && (
-            <Button type="primary" onClick={onSubmitCustomTweet} className="p-custom-tweet__button">
+            <SendButton onClick={onSubmitCustomTweet} className="p-custom-tweet__button">
               <Translate pt="Enviar sugestão" en="Send suggestion" />
-            </Button>
+            </SendButton>
           )}
         </li>
       </ul>

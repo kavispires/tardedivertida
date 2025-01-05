@@ -2,7 +2,7 @@
 import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Types
-import type { FirebaseStateData, FirebaseStoreData } from './types';
+import type { CustomDeck, FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
 import { buildDeck, countLikes, getAchievements, getRanking } from './helpers';
@@ -15,9 +15,9 @@ import { buildDeck, countLikes, getAchievements, getRanking } from './helpers';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
-  allTweets: PlainObject,
+  allTweets: CustomDeck,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   // Determine turn order
@@ -105,7 +105,7 @@ export const prepareTweetSelectionPhase = async (
 
 export const prepareReactPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Modify players
