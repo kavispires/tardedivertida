@@ -9,6 +9,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Components
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
+import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -17,7 +18,6 @@ import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Sketch } from './utils/types';
 import { MonsterSketches } from './components/MonsterSketches';
-import { MonsterCard } from '../../components/cards/MonsterCard';
 
 type StepResultsProps = {
   currentMonster: MonsterImage;

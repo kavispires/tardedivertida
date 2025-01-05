@@ -9,6 +9,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { ViewSwitch } from 'components/views';
 // Internal
 import { TIMES, VIEWS } from './utils/constants';
+import type { SubmitOrientationPayload, SubmitSketchPayload } from './utils/types';
 import { ViewAnnouncement } from './components/ViewAnnouncement';
 import { ViewLastSeconds } from './components/ViewLastSeconds';
 import { ViewSketching } from './components/ViewSketching';
@@ -17,8 +18,8 @@ import { ViewWitnessing } from './components/ViewWitnessing';
 type StepTestimonialProps = {
   isUserTheWitness: boolean;
   currentMonster: MonsterImage;
-  onSubmitSketch: GenericFunction;
-  onSubmitOrientation: GenericFunction;
+  onSubmitSketch: (payload: SubmitSketchPayload) => void;
+  onSubmitOrientation: (payload: SubmitOrientationPayload) => void;
   witness: GamePlayer;
 };
 
@@ -31,7 +32,7 @@ export function StepTestimonial({
 }: StepTestimonialProps) {
   const [monsterOrientation] = useGlobalState('monsterOrientation');
   const [view, setView] = useState(VIEWS.WITNESSING);
-  const [lines, setLines] = useState<any>([]);
+  const [lines, setLines] = useState<CanvasLine[]>([]);
 
   const onEnd = () => {
     if (isUserTheWitness && monsterOrientation === 'horizontal') {
