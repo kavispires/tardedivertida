@@ -1,13 +1,12 @@
 import clsx from 'clsx';
 import { useMemo, useRef } from 'react';
 // Ant Design Resources
-import { Avatar, Button, Flex, Image } from 'antd';
+import { Avatar, Flex, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, shuffle } from 'utils/helpers';
@@ -15,7 +14,7 @@ import { getAnimationClass, shuffle } from 'utils/helpers';
 import { RobotIcon } from 'icons/RobotIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { CardHighlight } from 'components/metrics/CardHighlight';
@@ -49,7 +48,6 @@ export function StepSelectAll({
   robot,
 }: StepSelectAllProps) {
   const scrollToSubmitRef = useRef<HTMLButtonElement>(null);
-  const { isLoading } = useLoading();
   const { length, dict: selectedCards, updateDict, keys: selection } = useBooleanDictionary({});
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
 
@@ -122,18 +120,13 @@ export function StepSelectAll({
         </div>
         <Image.PreviewGroup>
           <ul className="n-table">
-            {shuffledOptions.map((cardId, index) => {
+            {shuffledOptions.map((cardId) => {
               const isSelected = selectedCards[cardId];
 
               return (
                 <li
                   key={`n-table-${cardId}`}
-                  className={clsx(
-                    'n-table-item',
-                    getAnimationClass('zoomIn', {
-                      delay: index,
-                    }),
-                  )}
+                  className={clsx('n-table-item', getAnimationClass('zoomIn'))}
                   style={{ width: `${cardWidth + 8}px` }}
                 >
                   <TransparentButton onClick={() => toggleCard(cardId)} hoverType="sepia">
@@ -178,16 +171,14 @@ export function StepSelectAll({
       </RuleInstruction>
 
       <Flex justify="center">
-        <Button
-          type="primary"
+        <SendButton
           size="large"
-          loading={isLoading}
           onClick={onSubmitCards}
           disabled={user.ready || length !== playerCount}
           ref={scrollToSubmitRef}
         >
           <Translate pt="Enviar Captcha" en="Submit Captcha" /> <Avatar size="small">{length}</Avatar>
-        </Button>
+        </SendButton>
       </Flex>
 
       <Summary user={user} robot={robot} />

@@ -6,6 +6,7 @@ import type { TextCard } from 'types/tdr';
 import { Card } from 'components/cards';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { GlyphCard } from 'components/cards/GlyphCard';
+import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 // Internal
 import type { Captcha } from '../utils/types';
 
@@ -28,6 +29,17 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
   if (captcha.roundType === 'emojis') {
     const values = captcha.values as number;
     return <EmojiCard key={values} id={String(values)} />;
+  }
+
+  if (captcha.roundType === 'warehouse-goods') {
+    const values = captcha.values as string[];
+    return (
+      <Space>
+        {values.map((id) => (
+          <WarehouseGoodCard key={id} id={id} />
+        ))}
+      </Space>
+    );
   }
 
   const values = captcha.values as TextCard;

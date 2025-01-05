@@ -219,7 +219,8 @@ export const saveGame = async (
   if (isEmulatingEnvironment()) {
     const undefinedValues = verifyUndefinedValues(saveContent);
     if (undefinedValues) {
-      print('Undefined values');
+      // biome-ignore lint/suspicious/noConsole: on purpose
+      console.warn('Undefined values');
       print(undefinedValues);
     }
   }

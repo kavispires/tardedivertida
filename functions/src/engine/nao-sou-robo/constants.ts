@@ -38,7 +38,9 @@ export const CARDS_PER_PLAYER = 8;
 
 export const DECK_PER_PLAYER = MAX_ROUNDS + CARDS_PER_PLAYER;
 
-export const ROUND_TYPES = ['colors', 'emotions', 'glyphs', 'words', 'emojis'];
+export const ROUND_TYPES = ['colors', 'emotions', 'glyphs', 'words', 'emojis', 'warehouse-goods', 'words'];
+
+export const GOODS_LIBRARY_COUNT = 256;
 
 export const MIN_ROUND_CARDS = 9;
 

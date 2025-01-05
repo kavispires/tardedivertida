@@ -245,6 +245,7 @@ export * from './TheEndIcon';
 export * from './ThiefIcon';
 export * from './ThinkingIcon';
 export * from './ThumbsUpIcon';
+export * from './TicketsIcon';
 export * from './TimedWritingIcon';
 export * from './TimerIcon';
 export * from './TogetherGameIcon';

@@ -2,6 +2,7 @@
 import type { CaptchaCard, FirebaseStateData, FirebaseStoreData, ResourceData, Robot } from './types';
 // Constants
 import {
+  GOODS_LIBRARY_COUNT,
   MAX_ROUNDS,
   MIN_ROUND_CARDS,
   NAO_SOU_ROBO_PHASES,
@@ -13,7 +14,6 @@ import { GAME_NAMES } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
 import { calculateResults, distributeCards, getAchievements } from './helpers';
-// import { saveData } from './data';
 
 /**
  * Setup
@@ -23,7 +23,7 @@ import { calculateResults, distributeCards, getAchievements } from './helpers';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -54,6 +54,21 @@ export const prepareSetupPhase = async (
       values.push(resourceData.glyphs.pop() as number);
       values.push(resourceData.glyphs.pop() as number);
       values.push(resourceData.glyphs.pop() as number);
+      acc[i + 1] = {
+        round: i + 1,
+        roundType,
+        values,
+      };
+    }
+
+    if (roundType === 'warehouse-goods') {
+      const goodsIds = utils.game.getRandomItems(
+        utils.game.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`),
+        2,
+      );
+      const values: string[] = [];
+      values.push(goodsIds.pop() as string);
+      values.push(goodsIds.pop() as string);
       acc[i + 1] = {
         round: i + 1,
         roundType,

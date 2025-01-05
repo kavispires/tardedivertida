@@ -1,8 +1,10 @@
 import { Fragment } from 'react';
+// Ant Design Resources
+import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { Avatar, AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type ListOfPlayersProps = {
@@ -26,6 +28,10 @@ type ListOfPlayersProps = {
    * Optional class name
    */
   className?: string;
+  /**
+   * Flag indicating if only the avatars should be listed
+   */
+  avatarsOnly?: boolean;
 };
 
 /**
@@ -33,9 +39,28 @@ type ListOfPlayersProps = {
  * @param props
  * @returns
  */
-export function ListOfPlayers({ players, list, namesOnly, prefix, className }: ListOfPlayersProps) {
+export function ListOfPlayers({
+  players,
+  list,
+  namesOnly,
+  prefix,
+  className,
+  avatarsOnly,
+}: ListOfPlayersProps) {
   if (namesOnly) {
     return <span className={className}>{list.map((playerId) => players[playerId].name).join(',')}</span>;
+  }
+
+  if (avatarsOnly) {
+    return (
+      <span className={className}>
+        {list.map((playerId) => (
+          <Tooltip key={playerId} title={players[playerId].name}>
+            <Avatar id={players[playerId].avatarId} />
+          </Tooltip>
+        ))}
+      </span>
+    );
   }
 
   return (
