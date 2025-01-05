@@ -1,6 +1,9 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
+// Ant Design Resources
+import { TrophyOutlined } from '@ant-design/icons';
+import { Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -12,6 +15,7 @@ import { getMeanDuration } from 'utils/helpers';
 import { Avatar, AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { StarPoints } from 'components/points';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
@@ -28,7 +32,7 @@ type SentenceProps = {
 
 function Sentence({ currentCategory }: SentenceProps) {
   return (
-    <>
+    <Flex wrap="wrap" align="center" justify="center">
       <Translate pt="O resultado para" en="The answer for" />{' '}
       <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
       <Translate pt="na escala" en="on the scale" />{' '}
@@ -36,7 +40,7 @@ function Sentence({ currentCategory }: SentenceProps) {
         {currentCategory.left}-{currentCategory.right}
       </strong>
       :
-    </>
+    </Flex>
   );
 }
 
@@ -118,9 +122,16 @@ export function StepReveal({
 
       <PopoverRule content={<ScoringRules />} />
 
-      <TimedButton duration={duration} onExpire={goToNextStep} onClick={goToNextStep}>
-        <Translate pt="Continuar" en="Continue" />
-      </TimedButton>
+      <SpaceContainer align="center">
+        <TimedButton
+          duration={duration}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
+          <Translate pt="Ver Ranking" en="See Ranking" />
+        </TimedButton>
+      </SpaceContainer>
     </Step>
   );
 }

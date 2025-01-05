@@ -10,7 +10,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { CurrentCategory } from './utils/types';
+import type { CurrentCategory, SubmitGuessPayload } from './utils/types';
 import { mockGuess } from './utils/mock';
 import { Dial } from './components/Dial';
 
@@ -39,7 +39,7 @@ function Prompt({ currentCategory }: PromptProps) {
 
 type StepGuessProps = {
   currentCategory: CurrentCategory;
-  onSendGuess: GenericFunction;
+  onSendGuess: (payload: SubmitGuessPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGuessProps) {

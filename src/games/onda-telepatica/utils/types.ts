@@ -15,5 +15,5 @@ export type SubmitCluePayload = {
 };
 
 export type SubmitGuessPayload = {
-  guess: string;
+  guess: number | boolean;
 };
