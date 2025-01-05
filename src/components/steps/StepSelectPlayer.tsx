@@ -39,7 +39,7 @@ export function StepSelectPlayer({
       <RuleInstruction {...ruleInstructionProps} />
 
       <Instruction contained>
-        <Flex className="div-container" gap={8} wrap="wrap">
+        <Flex className="div-container" wrap="wrap" gap={8}>
           {sortPlayers(players).map((player) => {
             if (isHost) {
               return (
@@ -48,12 +48,26 @@ export function StepSelectPlayer({
                   disabled={isLoading}
                   onClick={() => onSubmitPlayer(player.id)}
                 >
-                  <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
+                  <AvatarCard
+                    key={`p-a-${player.id}`}
+                    player={player}
+                    withName
+                    addressUser
+                    className="border-radius"
+                  />
                 </TransparentButton>
               );
             }
 
-            return <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />;
+            return (
+              <AvatarCard
+                key={`p-a-${player.id}`}
+                player={player}
+                withName
+                addressUser
+                className="border-radius"
+              />
+            );
           })}
         </Flex>
       </Instruction>

@@ -1,19 +1,18 @@
 import { useRef, useState } from 'react';
 // Ant Design Resources
 import { AimOutlined } from '@ant-design/icons';
-import { Button, Flex, Tag, Tooltip } from 'antd';
+import { Flex, Tag, Tooltip } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
@@ -62,7 +61,6 @@ export function StepPlaceItem({
   isJudge,
   solutions,
 }: StepPlaceItemProps) {
-  const { isLoading } = useLoading();
   const scrollToSubmitRef = useRef<HTMLButtonElement>(null);
 
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
@@ -107,10 +105,8 @@ export function StepPlaceItem({
       <DiagramRules examples={examples} />
 
       <SpaceContainer>
-        <Button
-          type="primary"
+        <SendButton
           size="large"
-          loading={isLoading}
           disabled={!selectedArea || !selectedItemId}
           onClick={() => {
             if (selectedArea && selectedItemId) {
@@ -122,13 +118,15 @@ export function StepPlaceItem({
           }}
           ref={scrollToSubmitRef}
         >
-          <Translate en="Submit" pt="Enviar" />
-          <span className="selected-item">
-            <DualTranslate>{selectedItem?.name}</DualTranslate>
-          </span>
-          <span style={{ marginRight: '6px' }}>=</span>
-          <SelectedAreasCircles selectedArea={selectedArea} />
-        </Button>
+          <Flex gap={4} align="center">
+            <Translate en="Submit" pt="Enviar" />
+            <span className="selected-item">
+              <DualTranslate>{selectedItem?.name}</DualTranslate>
+            </span>
+            <span style={{ marginRight: '6px' }}>=</span>
+            <SelectedAreasCircles selectedArea={selectedArea} />
+          </Flex>
+        </SendButton>
       </SpaceContainer>
 
       <MouseFollowingContent

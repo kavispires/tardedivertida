@@ -1,11 +1,13 @@
+import { motion } from 'framer-motion';
 import type { DiagramArea } from 'games/teoria-de-conjuntos/utils/types';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar } from 'antd';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
+// Utils
 
 const CONTAINER_BOX_WIDTH = 820;
 const CONTAINER_BOX_HEIGHT = 720;
@@ -56,76 +58,111 @@ export function getCenterPointInArea(containerWidth: number, areaKey: string) {
 
 const BOUNDARIES_BY_AREA: Record<string, Point[]> = {
   A: [
-    { x: 191, y: 218 },
-    { x: 222, y: 131 },
-    { x: 108, y: 288 },
-    { x: 154, y: 149 },
-    { x: 188, y: 292 },
-    { x: 296, y: 106 },
-    { x: 121, y: 217 },
-    { x: 259, y: 195 },
-    { x: 249, y: 263 },
-    { x: 138, y: 358 },
+    { x: 170, y: 214 },
+    { x: 146, y: 282 },
+    { x: 213, y: 155 },
+    { x: 84, y: 327 },
+    { x: 104, y: 180 },
+    { x: 224, y: 82 },
+    { x: 257, y: 209 },
+    { x: 303, y: 82 },
+    { x: 82, y: 250 },
+    { x: 149, y: 119 },
+    { x: 118, y: 400 },
+    { x: 215, y: 268 },
+    { x: 281, y: 144 },
+    { x: 160, y: 338 },
   ],
   W: [
-    { x: 637, y: 240 },
-    { x: 640, y: 166 },
-    { x: 625, y: 310 },
-    { x: 563, y: 246 },
-    { x: 513, y: 101 },
-    { x: 709, y: 232 },
-    { x: 601, y: 99 },
-    { x: 700, y: 305 },
-    { x: 553, y: 173 },
-    { x: 679, y: 374 },
+    { x: 650, y: 214 },
+    { x: 674, y: 282 },
+    { x: 607, y: 155 },
+    { x: 736, y: 327 },
+    { x: 716, y: 180 },
+    { x: 596, y: 82 },
+    { x: 563, y: 209 },
+    { x: 517, y: 82 },
+    { x: 738, y: 250 },
+    { x: 671, y: 119 },
+    { x: 702, y: 400 },
+    { x: 605, y: 268 },
+    { x: 539, y: 144 },
+    { x: 660, y: 338 },
   ],
   C: [
-    { x: 378, y: 601 },
-    { x: 444, y: 603 },
-    { x: 311, y: 569 },
-    { x: 511, y: 564 },
-    { x: 409, y: 530 },
-    { x: 302, y: 635 },
-    { x: 523, y: 630 },
-    { x: 243, y: 570 },
-    { x: 579, y: 563 },
-    { x: 413, y: 673 },
+    { x: 410, y: 619 },
+    { x: 340, y: 625 },
+    { x: 473, y: 625 },
+    { x: 410, y: 546 },
+    { x: 278, y: 573 },
+    { x: 535, y: 573 },
+    { x: 264, y: 636 },
+    { x: 549, y: 636 },
+    { x: 327, y: 688 },
+    { x: 410, y: 701 },
+    { x: 344, y: 563 },
+    { x: 468, y: 563 },
+    { x: 215, y: 565 },
+    { x: 598, y: 565 },
+    { x: 485, y: 688 },
   ],
   AW: [
-    { x: 405, y: 170 },
-    { x: 369, y: 225 },
-    { x: 440, y: 225 },
+    { x: 410, y: 172 },
+    { x: 358, y: 164 },
+    { x: 461, y: 164 },
+    { x: 410, y: 120 },
+    { x: 347, y: 225 },
+    { x: 410, y: 221 },
+    { x: 472, y: 224 },
   ],
   WC: [
-    { x: 544, y: 387 },
-    { x: 510, y: 450 },
-    { x: 580, y: 455 },
+    { x: 562, y: 438 },
+    { x: 556, y: 348 },
+    { x: 619, y: 467 },
+    { x: 486, y: 464 },
+    { x: 596, y: 398 },
+    { x: 526, y: 405 },
+    { x: 543, y: 486 },
   ],
   AC: [
-    { x: 281, y: 380 },
-    { x: 237, y: 446 },
-    { x: 312, y: 450 },
+    { x: 258, y: 438 },
+    { x: 264, y: 348 },
+    { x: 201, y: 467 },
+    { x: 334, y: 464 },
+    { x: 224, y: 398 },
+    { x: 294, y: 405 },
+    { x: 277, y: 486 },
   ],
   AWC: [
-    { x: 377, y: 337 },
-    { x: 431, y: 341 },
-    { x: 411, y: 396 },
+    { x: 410, y: 350 },
+    { x: 347, y: 317 },
+    { x: 472, y: 317 },
+    { x: 410, y: 290 },
+    { x: 358, y: 379 },
+    { x: 462, y: 379 },
+    { x: 410, y: 415 },
   ],
   O: [
-    { x: 710, y: 552 },
-    { x: 669, y: 654 },
-    { x: 614, y: 730 },
-    { x: 778, y: 480 },
-    { x: 759, y: 640 },
-    { x: 115, y: 570 },
-    { x: 42, y: 569 },
-    { x: 203, y: 728 },
-    { x: 54, y: 484 },
-    { x: 52, y: 644 },
-    { x: 86, y: 730 },
-    { x: 140, y: 659 },
-    { x: 776, y: 567 },
-    { x: 745, y: 724 },
+    { x: 783, y: 469 },
+    { x: 714, y: 532 },
+    { x: 783, y: 568 },
+    { x: 703, y: 604 },
+    { x: 772, y: 632 },
+    { x: 662, y: 668 },
+    { x: 733, y: 693 },
+    { x: 608, y: 728 },
+    { x: 680, y: 741 },
+    { x: 212, y: 728 },
+    { x: 140, y: 741 },
+    { x: 158, y: 668 },
+    { x: 87, y: 693 },
+    { x: 117, y: 604 },
+    { x: 48, y: 632 },
+    { x: 106, y: 532 },
+    { x: 37, y: 568 },
+    { x: 37, y: 469 },
+    { x: 36, y: 745 },
+    { x: 784, y: 745 },
   ],
 };
 
@@ -138,7 +175,7 @@ type AreaPlacedItemsProps = {
 export function AreaPlacedItems({ areaKey, diagramArea, containerWidth }: AreaPlacedItemsProps) {
   const boundaries = BOUNDARIES_BY_AREA[areaKey];
 
-  const itemWidth = containerWidth / 9;
+  const itemWidth = Math.round(containerWidth / 18);
 
   const { itemsIds } = diagramArea;
 
@@ -157,20 +194,28 @@ export function AreaPlacedItems({ areaKey, diagramArea, containerWidth }: AreaPl
         // If it's the last item, just render the number
         if (index === boundaries.length - 1 && itemsIds.length > boundaries.length) {
           return (
-            <span key={itemId} style={{ position: 'absolute', left: `${left - 12}px`, top: `${top - 12}px` }}>
-              <Avatar size={itemWidth / 2}>+ {itemsIds.length - boundaries.length + 1}</Avatar>
-            </span>
+            <motion.span
+              key={itemId}
+              className="placed-item-wrapper"
+              style={{ left: `${left}px`, top: `${top}px` }}
+              {...getAnimation('bounceIn', { delay: index * 0.1 })}
+            >
+              <Avatar size={itemWidth} style={{ transform: 'translate(-25%, -25%)' }}>
+                + {itemsIds.length - boundaries.length + 1}
+              </Avatar>
+            </motion.span>
           );
         }
 
         return (
-          <span
+          <motion.span
             key={itemId}
-            style={{ position: 'absolute', left: `${left + 12}px`, top: `${top + 12}px` }}
-            className={getAnimationClass('bounceIn', { delay: index * 0.5 })}
+            className="placed-item-wrapper"
+            style={{ left: `${left}px`, top: `${top}px` }}
+            {...getAnimation('bounceIn', { delay: index * 0.1 })}
           >
-            <ItemCard id={itemId} width={itemWidth} className="bare-item" />
-          </span>
+            <ItemCard id={itemId} width={itemWidth} className="bare-item" padding={0} />
+          </motion.span>
         );
       })
       .filter(Boolean);

@@ -4,10 +4,8 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-// Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -21,7 +19,6 @@ import { EvaluationModal } from './components/EvaluationModal';
 import { DiagramSection } from './components/DiagramSection';
 import { PlayerGuess } from './components/PlayerGuess';
 import { RoundAlert } from './components/RoundAlert';
-// Hooks
 
 type StepEvaluateProps = {
   players: GamePlayers;
@@ -64,7 +61,7 @@ export function StepEvaluate({
   return (
     <Step fullWidth announcement={announcement}>
       <div ref={ref} style={{ width: '100%' }} />
-      <StepTitle>
+      <StepTitle wait>
         <Translate
           pt={
             <>
@@ -76,8 +73,7 @@ export function StepEvaluate({
               <AvatarName player={judge} /> is evaluating the thing's position
             </>
           }
-        />{' '}
-        <IconAvatar icon={<AnimatedClockIcon />} />
+        />
       </StepTitle>
 
       <RoundAlert round={round} />

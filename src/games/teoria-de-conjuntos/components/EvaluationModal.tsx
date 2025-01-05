@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Divider, Flex, Modal, Typography } from 'antd';
+import { Divider, Flex, Modal, Typography } from 'antd';
 // Types
 import type { Item } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
 // Components
+import { SendButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 // Internal
@@ -24,7 +24,6 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
   const [areaC, setC] = useState('');
   const [areaW, setW] = useState('');
   const { dualTranslate } = useLanguage();
-  const { isLoading } = useLoading();
 
   const evaluation = [areaA, areaW, areaC].join('') || 'O';
 
@@ -63,9 +62,9 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
       <Divider />
 
       <Flex justify="center">
-        <Button type="primary" onClick={() => onSubmitEvaluation(evaluation)} loading={isLoading}>
+        <SendButton onClick={() => onSubmitEvaluation(evaluation)}>
           <Translate en="Submit" pt="Enviar" />
-        </Button>
+        </SendButton>
       </Flex>
     </Modal>
   );
