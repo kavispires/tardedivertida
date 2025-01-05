@@ -81,6 +81,6 @@ export const OUTCOME = {
 };
 
 export const SCORING = {
-  [GAME_DIFFICULTY.EASY]: [0, 0, 0, 1, 3],
-  [GAME_DIFFICULTY.HARD]: [0, 0, 0, 0, 1, 1, 2],
+  [GAME_DIFFICULTY.EASY]: [0, 1, 1, 2, 3],
+  [GAME_DIFFICULTY.HARD]: [0, 0, 1, 1, 1, 2, 2],
 };

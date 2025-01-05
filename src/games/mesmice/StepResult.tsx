@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
@@ -9,7 +10,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
@@ -28,7 +29,6 @@ import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';
 import { ScoreTrack } from './components/ScoreTrack';
 import { Votes } from './components/Votes';
 import { GroupScore } from './components/GroupScore';
-// Type
 
 type StepResultProps = {
   user: GamePlayer;
@@ -70,7 +70,7 @@ export function StepResult({
     () =>
       history.reduce((acc, entry) => {
         if (entry.pass) {
-          acc += entry.score;
+          return acc + entry.score;
         }
         return acc;
       }, 0),
@@ -146,11 +146,9 @@ export function StepResult({
             }}
           >
             {listOfFeatures.map((feature, index) => (
-              <div
-                className={clsx(
-                  'features-container__button',
-                  getAnimationClass('bounceIn', { delay: index }),
-                )}
+              <motion.div
+                className="features-container__button"
+                {...getAnimation('bounceIn', { delay: index * 0.5 })}
                 key={feature.id}
               >
                 <ObjectFeature
@@ -164,7 +162,7 @@ export function StepResult({
                 {feature.eliminated && (
                   <IconAvatar icon={<XIcon />} size="large" className="features-container__eliminated-x" />
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

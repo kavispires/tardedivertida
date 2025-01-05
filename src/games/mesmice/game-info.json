@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Jogo da Mesmice",
     "en": "Same But Different"
@@ -20,14 +20,29 @@
   },
   "appearance": {
     "clouds": "analysis-cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#2ba19b",
     "surfaceColor": "#f5fcfc",
     "backgroundColor": "rgba(255, 255, 255, 0.85)",
     "colorScheme": "light"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Em Jogo da Mesmice, jogadores tentam eliminar características que não se aplicam aos objetos da vez.",
+      "Cada rodada, um jogador recebe um objeto e uma característica (comprimento, movimento, uso) aleatórios e deve citar um objeto que conecta as duas coisas.",
+      "Após todos escreveram seus objetos, de um a um, os jogadores tem que eliminar as característica que não ou menos se aplicam à comparação.",
+      "A característica mais votada é eliminada até que apenas uma sobre.",
+      "O group ganha mais pontos quanto mais características eles eliminam corretamente.",
+      "O group ganha o jogo se alcançar pelo menos 70% de sucessos."
+    ],
+    "en": [
+      "In Same But Different, players try to eliminate features that do not apply to the objects of the round.",
+      "Each round, a player receives a random object and feature (length, movement, use) and must name an object that connects the two things.",
+      "After everyone writes their objects, one by one, players have to eliminate the feature that does not or least apply to the comparison.",
+      "The most voted feature is eliminated until only one remains.",
+      "The group earns more points the more features they eliminate correctly.",
+      "The group wins the game if they reach at least 70% of successes."
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],
