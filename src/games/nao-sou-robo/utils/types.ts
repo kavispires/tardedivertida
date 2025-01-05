@@ -19,7 +19,7 @@ export type Robot = {
 export type Captcha = {
   round: number;
   roundType: string;
-  values: TextCard | number | number[];
+  values: TextCard | number | number[] | string[];
 };
 
 export type CaptchaCard = {

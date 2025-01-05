@@ -2,15 +2,15 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "2.0.26",
+  "version": "2.0.28",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Eu Não Sou Um Robô",
     "en": "I'm Not A Robot"
   },
   "popularName": {
-    "pt": "Cartas bonitos contro o robô",
+    "pt": "Cartas bonitos contra o robô",
     "en": "Image cards against the bot"
   },
   "basedOn": "stuanorienO",
@@ -20,13 +20,30 @@
   },
   "appearance": {
     "clouds": "captcha-clouds",
+    "cloudsAnimationType": "falling",
     "primaryColor": "#313457",
     "backgroundColor": "rgba(138, 140, 158, 0.85)",
     "colorScheme": "light"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Você consegue provar que não é um robô?",
+      "Neste jogo, estamos tentando passar pelo captcha de um site de ingressos para um evento.",
+      "A cada rodada, todos os jogadores selecionaram cartas de imagens que correspondem a uma palavra-chave e o robô também selecionará!",
+      "Após todos colocarem uma carta, vocês tem que passar pelo captcha: selecionar todas as imagens relacionadas à palavra-chave.",
+      "Vocês ganham se um jogador passar por 3 captchas",
+      "Vocês perdem se um jogador falhar em 3 captchas",
+      "A cada carta-robô selecionada, o robô ganha um ponto e o jogo termina se o robô alcança seu gol para a revolução das máquinas."
+    ],
+    "en": [
+      "Can you prove you're not a robot?",
+      "In this game, we're trying to pass through the captcha of a ticket site for an event.",
+      "Each round, all players select image cards that correspond to a keyword and the bot also selects!",
+      "After everyone places a card, you have to pass the captcha by selecting all images related to the keyword.",
+      "You win if a player passes 3 captchas",
+      "You lose if a player fails 3 captchas",
+      "For each bot card selected, the bot scores a point and the game ends if the bot reaches its goal for the machine revolution."
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],

@@ -129,6 +129,7 @@ export const collectionByGame: Record<string, string[]> = {
   'nao-sou-robo': [
     'CaptchaIcon',
     'EventIcon',
+    'TicketsIcon',
     'RobotIcon',
     'EnergyIcon',
     'SealOfApprovalIcon',

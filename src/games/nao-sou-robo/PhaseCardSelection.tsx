@@ -6,7 +6,7 @@ import { useUser } from 'hooks/useUser';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
-import { EventIcon } from 'icons/EventIcon';
+import { TicketsIcon } from 'icons/TicketsIcon';
 // Components
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -25,7 +25,7 @@ export function PhaseCardSelection({ players, state }: PhaseProps) {
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<EventIcon />}
+      icon={<TicketsIcon />}
       title={<Translate pt="Tentativa de comprar ingressos" en="Attempt to buy tickets" />}
       currentRound={state?.round?.current}
       type="overlay"
