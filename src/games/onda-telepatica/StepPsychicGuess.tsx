@@ -1,25 +1,21 @@
-// Ant Design Resources
-import { Button } from 'antd';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
-import type { CurrentCategory } from './utils/types';
+import type { CurrentCategory, SubmitGuessPayload } from './utils/types';
 import { Dial } from './components/Dial';
 
 type StepPsychicGuessProps = {
   currentCategory: CurrentCategory;
-  onSendGuess: GenericFunction;
+  onSendGuess: (payload: SubmitGuessPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepPsychicGuess({ currentCategory, onSendGuess, announcement }: StepPsychicGuessProps) {
-  const { isLoading } = useLoading();
-
   useMock(() => {
     onSendGuess({ guess: false });
   }, []);
@@ -65,24 +61,12 @@ export function StepPsychicGuess({ currentCategory, onSendGuess, announcement }:
       </RuleInstruction>
 
       <SpaceContainer>
-        <Button
-          type="primary"
-          onClick={() => onSendGuess({ guess: false })}
-          size="large"
-          disabled={isLoading}
-          loading={isLoading}
-        >
+        <SendButton type="primary" onClick={() => onSendGuess({ guess: false })} size="large">
           <Translate pt="Menos da metade" en="Less than half" />
-        </Button>
-        <Button
-          type="primary"
-          onClick={() => onSendGuess({ guess: true })}
-          size="large"
-          disabled={isLoading}
-          loading={isLoading}
-        >
+        </SendButton>
+        <SendButton type="primary" onClick={() => onSendGuess({ guess: true })} size="large">
           <Translate pt="A metade ou mais" en="Half or more" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
 
       <Dial card={currentCategory} target={currentCategory.target} showTarget />

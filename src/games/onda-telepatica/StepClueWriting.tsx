@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Input } from 'antd';
 // Types
 import type { SpectrumCard } from 'types/tdr';
 // Hooks
@@ -8,12 +8,14 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { mockHint } from './utils/mock';
+import type { SubmitCluePayload } from './utils/types';
 import { Dial } from './components/Dial';
 import { ClueWritingRules } from './components/RulesBlobs';
 import { TargetSideHighlight, WavelengthHighlight } from './components/Highlights';
@@ -22,7 +24,7 @@ type StepClueWritingProps = {
   currentCategories: SpectrumCard[];
   currentCategoryId: string;
   target: number;
-  onSendClue: GenericFunction;
+  onSendClue: (payload: SubmitCluePayload) => void;
 };
 
 export function StepClueWriting({
@@ -35,7 +37,7 @@ export function StepClueWriting({
   const { isLoading } = useLoading();
   const [clue, setClue] = useState('');
 
-  const onChangeInput = (e: any) => {
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setClue(e.target.value);
   };
 
@@ -87,9 +89,9 @@ export function StepClueWriting({
           placeholder={translate('Escreva aqui', 'Write here')}
           size="large"
         />
-        <Button type="primary" onClick={onSubmitClue} disabled={isLoading} loading={isLoading} size="large">
+        <SendButton onClick={onSubmitClue} disabled={isLoading} loading={isLoading} size="large">
           <Translate pt="Enviar" en="Send" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </Step>
   );

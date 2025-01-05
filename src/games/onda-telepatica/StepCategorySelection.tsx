@@ -11,11 +11,12 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
+import type { SubmitCategoryPayload } from './utils/types';
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 
 type StepCategorySelectionProps = {
   currentCategories: SpectrumCard[];
-  onSendChosenSide: GenericFunction;
+  onSendChosenSide: (payload: SubmitCategoryPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepCategorySelection({

@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.59",
+  "version": "4.0.60",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Onda Telepática",
     "en": "Telepathic Waves"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "retro-cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#E1146D",
     "backgroundColor": "rgba(96, 82, 168, 0.75)",
     "colorScheme": "dark"
