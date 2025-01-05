@@ -1,8 +1,18 @@
 // Types
 import type { AchievementReference } from 'types/achievements';
 
+const ACHIEVEMENTS = {
+  BRAVEST: 'BRAVEST',
+  LUCKIEST: 'LUCKIEST',
+  CANDY_LOSER: 'CANDY_LOSER',
+  MOST_SCARED: 'MOST_SCARED',
+  MOST_HOUSES: 'MOST_HOUSES',
+  MOST_JACKPOTS: 'MOST_JACKPOTS',
+  MOST_SIDEWALK: 'MOST_SIDEWALK',
+};
+
 export const achievementsReference: AchievementReference = {
-  BRAVEST: {
+  [ACHIEVEMENTS.BRAVEST]: {
     icon: 'sword',
     title: {
       pt: 'Mais Corajoso',
@@ -13,7 +23,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Encounter the most number of monsters',
     },
   },
-  LUCKIEST: {
+  [ACHIEVEMENTS.LUCKIEST]: {
     icon: 'clover',
     title: {
       pt: 'Mais Sortudo',
@@ -24,7 +34,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Encounter the fewest monsters',
     },
   },
-  CANDY_LOSER: {
+  [ACHIEVEMENTS.CANDY_LOSER]: {
     icon: 'foot-prints',
     title: {
       pt: 'Mais Desesperado',
@@ -35,7 +45,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Lost the most number of candy for a double monster',
     },
   },
-  MOST_SCARED: {
+  [ACHIEVEMENTS.MOST_SCARED]: {
     icon: 'face-scared',
     title: {
       pt: 'Mais Assustado',
@@ -46,7 +56,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Visited the fewest houses',
     },
   },
-  MOST_HOUSES: {
+  [ACHIEVEMENTS.MOST_HOUSES]: {
     icon: 'house',
     title: {
       pt: 'Mais Andador',
@@ -57,7 +67,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Visited the most houses',
     },
   },
-  MOST_JACKPOTS: {
+  [ACHIEVEMENTS.MOST_JACKPOTS]: {
     icon: 'dollar',
     title: {
       pt: 'Mais Boladas',
@@ -68,7 +78,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Got the most jackpots',
     },
   },
-  MOST_SIDEWALK: {
+  [ACHIEVEMENTS.MOST_SIDEWALK]: {
     icon: 'candy',
     title: {
       pt: 'Mais Mendigo',

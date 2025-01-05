@@ -18,7 +18,7 @@ import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal
-import type { CandySidewalk, StreetCard } from './utils/types';
+import type { CandySidewalk, StreetCard, SubmitDecisionPayload } from './utils/types';
 import { mockPlayerDecision } from './utils/mock';
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
@@ -33,7 +33,7 @@ type StepMakeDecisionProps = {
   user: GamePlayer;
   street: StreetCard[];
   currentCard: StreetCard;
-  onSubmitDecision: GenericFunction;
+  onSubmitDecision: (payload: SubmitDecisionPayload) => void;
   continuingPlayerIds: PlayerId[];
   alreadyAtHomePlayerIds: PlayerId[];
   candySidewalk: CandySidewalk;
@@ -66,7 +66,7 @@ export function StepMakeDecision({
         decision: mockPlayerDecision(street.filter((card) => card.type === 'horror').length, user.hand),
       });
     }
-  }, [user.isTrickOrTreating, user.ready]);
+  });
 
   return (
     <Step fullWidth className="n-step-trick-or-treat">

@@ -15,7 +15,7 @@ import { useHost } from './useHost';
  * @param delay (default a random value between 3-6 seconds)
  * @returns
  */
-export function useMock(whatToDo: GenericFunction, requirements: any[] = [], delay?: number) {
+export function useMock(whatToDo: () => void, requirements: unknown[] = [], delay?: number) {
   const isHost = useHost();
   const [userId] = useGlobalState('userId');
   const [runOnce, setRunOnce] = useState(false);
