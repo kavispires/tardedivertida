@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
+import { CommentOutlined, LikeFilled, ShareAltOutlined, TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
@@ -75,7 +75,7 @@ export function StepResolution({
       </div>
 
       <SpaceContainer>
-        <TimedButton duration={20} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={20} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </SpaceContainer>

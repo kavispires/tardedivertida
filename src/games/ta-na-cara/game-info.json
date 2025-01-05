@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.60",
+  "version": "1.1.61",
   "release": "deprecated",
   "available": false,
   "title": {

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 // Ant Design Resources
+import { TrophyOutlined } from '@ant-design/icons';
 import { Avatar as AntAvatar, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
@@ -134,7 +135,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
         </>
       )}
       <SpaceContainer align="center">
-        <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </SpaceContainer>

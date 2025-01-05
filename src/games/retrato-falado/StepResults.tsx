@@ -1,3 +1,5 @@
+// Ant Design Resources
+import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { MonsterImage } from 'types/tdr';
@@ -178,7 +180,7 @@ export function StepResults({
         )}
       </RuleInstruction>
 
-      <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep}>
+      <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
         <Translate pt="Ver Ranking" en="See Ranking" />
       </TimedButton>
 

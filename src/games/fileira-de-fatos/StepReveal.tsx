@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+// Ant Design Resources
+import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
@@ -95,7 +97,7 @@ export function StepReveal({
       />
 
       <SpaceContainer>
-        <TimedButton duration={40} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={40} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </SpaceContainer>

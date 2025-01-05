@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+// Ant Design Resources
+import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -93,7 +95,7 @@ export function StepResult({ announcement, activeRole, goToNextStep, outcome, pl
       />
 
       <SpaceContainer align="center">
-        <TimedButton duration={25} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={25} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </SpaceContainer>

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
+import { TrophyOutlined } from '@ant-design/icons';
 import { Avatar as AntAvatar, Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -93,7 +94,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
       <Summary user={user} robot={robot} />
 
       <Flex justify="center">
-        <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Flex>
