@@ -14,7 +14,7 @@ type BracketContenderVotesProps = {
 
 export function BracketContenderVotes({ bracket, players }: BracketContenderVotesProps) {
   return (bracket.votes ?? []).length > 0 ? (
-    <AntAvatar.Group className="w-contender-votes" maxCount={3} size="small">
+    <AntAvatar.Group className="w-contender-votes" max={{ count: 3 }} size="small">
       {bracket.votes?.map((vote) => (
         <Avatar
           size="small"

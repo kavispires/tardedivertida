@@ -47,7 +47,7 @@ export function MonsterSketches({
             {(votes?.[player.id] ?? []).length > 0 && (
               <Space align="center">
                 <Translate pt="Votos:" en="Votes:" />
-                <AntAvatar.Group maxCount={5}>
+                <AntAvatar.Group max={{ count: 5 }}>
                   {(votes?.[player.id] ?? []).map((vote) => (
                     <Avatar key={`vote-${vote}`} id={players[vote].avatarId} size="small" />
                   ))}

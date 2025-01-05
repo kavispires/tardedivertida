@@ -154,7 +154,7 @@ export function Corridor({
                   </SendButton>
                 )}
 
-                <AntAvatar.Group maxCount={7} size="small" className="i-door__votes">
+                <AntAvatar.Group max={{ count: 7 }} size="small" className="i-door__votes">
                   {voteMap[doorId] && !hideVotes ? (
                     <>
                       {voteMap[doorId].map((playerId) => (
