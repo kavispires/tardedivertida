@@ -53,7 +53,7 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
           <ViewOr condition={isActionable}>
             <StepGuessVerification
               guesser={guesser}
-              guess={state.guess}
+              guess={state.guess || '?'}
               onSubmitOutcome={onSubmitOutcome}
               validSuggestions={state.validSuggestions}
               secretWord={state.secretWord}
@@ -64,7 +64,7 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
             />
 
             <Step announcement={announcement}>
-              <div>{/* // TODO: Why? */}</div>
+              <div>{/* Users will just see the announcement */}</div>
             </Step>
           </ViewOr>
         </ViewOr>

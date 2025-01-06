@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.1.54",
+  "version": "4.0.1",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "one-clouds",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#1B264F",
     "backgroundColor": "rgba(233, 185, 81, 0.5)",
     "colorScheme": "light"
@@ -77,7 +78,6 @@
       "kind": "switch",
       "label": "Timed",
       "description": "When coming up with clues",
-      "disabled": true,
       "values": [
         {
           "label": "No time limit",
@@ -94,7 +94,6 @@
       "kind": "switch",
       "label": "Hints",
       "description": "Answering will be timed and hints will be timely given",
-      "disabled": true,
       "values": [
         {
           "label": "No",

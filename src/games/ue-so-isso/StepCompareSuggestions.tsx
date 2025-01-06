@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { CloudUploadOutlined } from '@ant-design/icons';
-import { Button, App, Space } from 'antd';
+import { App } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { TextCard } from 'types/tdr';
 // Hooks
 import { useHost } from 'hooks/useHost';
 import { useLanguage } from 'hooks/useLanguage';
@@ -12,15 +10,22 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components
+import { SendButton } from 'components/buttons';
 import { HostButton, HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { messageContent } from 'components/pop-up';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import type { Suggestion } from './utils/types';
+import type {
+  SecretWord,
+  SubmitValidationsPayload,
+  Suggestion,
+  ValidateSuggestionPayload,
+} from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './components/RulesBlobs';
 import { Cards } from './components/Cards';
@@ -28,10 +33,10 @@ import { Cards } from './components/Cards';
 type StepCompareSuggestionsProps = {
   isUserTheController: boolean;
   controller: GamePlayer;
-  onValidateSuggestions: GenericFunction;
-  onUpdateSuggestions: GenericFunction;
+  onValidateSuggestions: (payload: SubmitValidationsPayload) => void;
+  onUpdateSuggestions: (payload: ValidateSuggestionPayload) => void;
   players: GamePlayers;
-  secretWord: TextCard;
+  secretWord: SecretWord;
   suggestions: Suggestion[];
 } & Pick<StepProps, 'announcement'>;
 
@@ -107,20 +112,18 @@ export function StepCompareSuggestions({
       />
 
       <ViewIf condition={isUserTheController}>
-        <Space className="u-word-compare-suggestions-step__submit">
-          <Button
-            icon={<CloudUploadOutlined />}
+        <SpaceContainer>
+          <SendButton
             type="primary"
             onClick={() =>
               onValidateSuggestions({
                 validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
               })
             }
-            disabled={isLoading}
           >
             <Translate pt="Confirmar dicas válidas" en="Confirm valid clues" />
-          </Button>
-        </Space>
+          </SendButton>
+        </SpaceContainer>
       </ViewIf>
 
       <ViewIf condition={!isUserTheController}>

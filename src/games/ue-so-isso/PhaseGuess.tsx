@@ -17,7 +17,7 @@ import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/
 import { StepGuessing } from './StepGuessing';
 import { StepWaitingForGuess } from './StepWaitingForGuess';
 
-export function PhaseGuess({ state, players }: PhaseProps) {
+export function PhaseGuess({ state, players, meta }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
@@ -42,10 +42,13 @@ export function PhaseGuess({ state, players }: PhaseProps) {
         <ViewOr condition={isUserTheGuesser}>
           <StepGuessing
             guesser={guesser}
+            secretWord={state.secretWord}
             onSubmitOutcome={onSubmitOutcome}
             onSendGuess={onSendGuess}
             validSuggestions={state.validSuggestions}
             announcement={announcement}
+            timerEnabled={Boolean(meta.options?.withTimer)}
+            hintsEnabled={Boolean(meta.options?.withHints)}
           />
 
           <StepWaitingForGuess
@@ -53,6 +56,8 @@ export function PhaseGuess({ state, players }: PhaseProps) {
             validSuggestions={state.validSuggestions}
             secretWord={state.secretWord}
             announcement={announcement}
+            timerEnabled={Boolean(meta.options?.withTimer)}
+            hintsEnabled={Boolean(meta.options?.withHints)}
           />
         </ViewOr>
       </StepSwitcher>

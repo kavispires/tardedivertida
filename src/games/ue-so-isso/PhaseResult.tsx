@@ -72,7 +72,7 @@ export function PhaseResult({ state, players }: PhaseProps) {
         {/* Step 0 */}
         <StepResult
           guesser={guesser}
-          guess={state.guess}
+          guess={state.guess || '?'}
           validSuggestions={state.validSuggestions}
           suggestions={state.suggestions}
           secretWord={state.secretWord}

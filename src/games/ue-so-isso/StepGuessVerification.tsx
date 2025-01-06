@@ -5,7 +5,6 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Button, App, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -21,7 +20,7 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import type { Suggestion } from './utils/types';
+import type { SecretWord, SubmitOutcomePayload, Suggestion } from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 
 type StepGuessVerificationProps = {
@@ -30,8 +29,8 @@ type StepGuessVerificationProps = {
   isLoading: boolean;
   isUserTheController: boolean;
   controller: GamePlayer;
-  secretWord: TextCard;
-  onSubmitOutcome: GenericFunction;
+  secretWord: SecretWord;
+  onSubmitOutcome: (payload: SubmitOutcomePayload) => void;
   validSuggestions: Suggestion[];
 } & Pick<StepProps, 'announcement'>;
 
