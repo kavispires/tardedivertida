@@ -1,8 +1,7 @@
 // Ant Design Resources
-import { CloudUploadOutlined } from '@ant-design/icons';
+import { SendOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { TextCard } from 'types/tdr';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
@@ -15,6 +14,7 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { mockSuggestions } from './utils/mock';
+import type { SecretWord, SubmitSuggestionsPayload } from './utils/types';
 import { WritingRules } from './components/RulesBlobs';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { WritingHighlight } from './components/Highlights';
@@ -22,8 +22,8 @@ import { WritingHighlight } from './components/Highlights';
 type StepSuggestionProps = {
   guesser: GamePlayer;
   isUserTheGuesser: boolean;
-  onSendSuggestions: GenericFunction;
-  secretWord: TextCard;
+  onSendSuggestions: (payload: SubmitSuggestionsPayload) => void;
+  secretWord: SecretWord;
   suggestionsNumber?: number;
 } & Pick<StepProps, 'announcement'>;
 
@@ -93,7 +93,7 @@ export function StepSuggestion({
           </>
         }
         submitButtonProps={{
-          icon: <CloudUploadOutlined />,
+          icon: <SendOutlined />,
           size: 'large',
         }}
       />

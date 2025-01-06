@@ -2,6 +2,7 @@
 import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
+import type { PlayerSuggestion } from './types';
 
 /**
  * Submit the chosen words for the round
@@ -90,7 +91,7 @@ export const handleSubmitValidation = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  validSuggestions: PlainObject,
+  validSuggestions: PlayerSuggestion[],
 ) => {
   return await utils.firestore.updateStore({
     gameName,

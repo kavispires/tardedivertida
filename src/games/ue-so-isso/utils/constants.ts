@@ -6,3 +6,5 @@ export const UE_SO_ISSO_ACTIONS = {
   SEND_GUESS: 'SEND_GUESS',
   SUBMIT_VALIDATION: 'SUBMIT_VALIDATION',
 } as const;
+
+export const GUESSING_DURATION = 120;

@@ -2,22 +2,28 @@
 import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { TextCard } from 'types/tdr';
+// Hooks
+import { useCountdown } from 'hooks/useCountdown';
 // Components
 import { AvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
+import { TimerBar } from 'components/timers';
 // Internal
-import type { Suggestion } from './utils/types';
+import type { SecretWord, Suggestion } from './utils/types';
+import { GUESSING_DURATION } from './utils/constants';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { Hint } from './components/Hint';
 
 type StepWaitingForGuessProps = {
   guesser: GamePlayer;
-  secretWord: TextCard;
+  secretWord: SecretWord;
   validSuggestions: Suggestion[];
+  timerEnabled: boolean;
+  hintsEnabled: boolean;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWaitingForGuess({
@@ -25,7 +31,15 @@ export function StepWaitingForGuess({
   secretWord,
   validSuggestions,
   announcement,
+  timerEnabled,
+  hintsEnabled,
 }: StepWaitingForGuessProps) {
+  const { timeLeft } = useCountdown({
+    duration: GUESSING_DURATION,
+    disabled: !timerEnabled,
+    onExpire: () => {},
+  });
+
   return (
     <Step fullWidth announcement={announcement}>
       <StepTitle>
@@ -42,6 +56,14 @@ export function StepWaitingForGuess({
           }
         />
       </StepTitle>
+      {timerEnabled && (
+        <TimerBar
+          value={timeLeft}
+          total={GUESSING_DURATION}
+          status={timeLeft < 15 ? 'exception' : 'active'}
+          size="small"
+        />
+      )}
 
       <RuleInstruction type="wait">
         <Translate
@@ -71,9 +93,14 @@ export function StepWaitingForGuess({
 
       <Card word={secretWord.text} />
 
-      <Instruction contained>
-        <Translate pt={<>{guesser.name} está pensando...</>} en={<>{guesser.name} is thinking...</>} />
-      </Instruction>
+      <Hint
+        isTheGuesser={false}
+        guesser={guesser}
+        secretWord={secretWord}
+        hintsEnabled={hintsEnabled}
+        showFirstHint={timeLeft < 60}
+        showSecondHint={timeLeft < 30}
+      />
 
       <Space className="u-word-guess-phase__suggestions">
         {validSuggestions.map((suggestionEntry, index) => {

@@ -23,7 +23,7 @@ export type SubmitSuggestionsPayload = {
 };
 
 export type SubmitValidationsPayload = {
-  suggestions: Suggestion[];
+  validSuggestions: Suggestion[];
 };
 
 export type ValidateSuggestionPayload = {
@@ -37,3 +37,12 @@ export type SubmitOutcomePayload = {
 export type SendGuessPayload = {
   guess: string;
 };
+
+export interface SecretWord {
+  id: string;
+  text: string;
+  // playerName?: PlayerName | null;
+  // uniqueSuggestions?: string[] | [];
+  // commonSuggestions?: string[] | [];
+  votes: 0;
+}

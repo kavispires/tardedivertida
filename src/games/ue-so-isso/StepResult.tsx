@@ -1,6 +1,5 @@
 // Types
 import type { GamePlayer } from 'types/player';
-import type { TextCard } from 'types/tdr';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -13,7 +12,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight, Title } from 'components/text';
 // Internal
-import type { Suggestion } from './utils/types';
+import type { SecretWord, Suggestion } from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { GroupProgress } from './components/GroupProgress';
 import { WrongGuessHighlight } from './components/Highlights';
@@ -21,7 +20,7 @@ import { WrongGuessHighlight } from './components/Highlights';
 type StepResultProps = {
   guess: string;
   guesser: GamePlayer;
-  secretWord: TextCard;
+  secretWord: SecretWord;
   validSuggestions: Suggestion[];
   suggestions: Suggestion[];
   group: GroupProgress;

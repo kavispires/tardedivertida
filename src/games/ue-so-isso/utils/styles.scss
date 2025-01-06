@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .u-word-selection-phase {
   &__guesser-name-announcement {
@@ -10,7 +10,7 @@
 }
 
 .u-word-card {
-  background-color: get-color('white');
+  background-color: get-color("white");
   font-size: 1.5em;
   min-width: 200px;
   width: 250px;
@@ -26,23 +26,23 @@
     border-radius: $border-radius;
 
     &:nth-child(1) {
-      border-color: get-color('pink');
+      border-color: get-color("pink");
     }
 
     &:nth-child(2) {
-      border-color: get-color('blue', 4);
+      border-color: get-color("blue", 4);
     }
 
     &:nth-child(3) {
-      border-color: get-color('orange', 4);
+      border-color: get-color("orange", 4);
     }
 
     &:nth-child(4) {
-      border-color: get-color('teal', 4);
+      border-color: get-color("teal", 4);
     }
 
     &:nth-child(5) {
-      border-color: get-color('purple');
+      border-color: get-color("purple");
     }
   }
 
@@ -55,7 +55,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: get-color('green', 3);
+      background-color: get-color("green", 3);
     }
   }
 
@@ -65,7 +65,7 @@
 
   &__icon {
     min-width: 1.5em;
-    color: get-color('green');
+    color: get-color("green");
   }
 }
 
@@ -126,14 +126,14 @@
 .u-suggestion-card {
   &__suggestion-avatar {
     margin-right: get-unit(3);
-    background-color: get-color('red');
+    background-color: get-color("red");
   }
 
   &__invalid {
-    border-color: get-color('red', 6);
-    color: get-color('red', 6);
+    border-color: get-color("red", 6);
+    color: get-color("red", 6);
     text-decoration: line-through;
-    background-color: get-color('red', 4);
+    background-color: get-color("red", 4);
   }
 }
 
@@ -167,10 +167,10 @@
   }
 
   & #{$self}__item {
-    border: 1px solid get-color('white');
+    border: 1px solid get-color("white");
     border-radius: $border-radius;
     padding: get-unit(1);
-    background: get-color('white', 5, 0.5);
+    background: get-color("white", 5, 0.5);
     margin: 0;
   }
 
@@ -187,15 +187,12 @@
   margin: get-unit(15 0);
 }
 
-.u-gallery {
-  width: 100%;
-}
-
 .u-gallery-entry {
-  background: get-color('white', 5, 0.95);
+  background: get-color("white", 5, 0.95);
   border-radius: $border-radius;
   text-align: center;
   padding: get-unit(2);
+  width: 100%;
 
   &__word {
     text-transform: uppercase;

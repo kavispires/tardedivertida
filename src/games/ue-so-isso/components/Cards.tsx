@@ -10,7 +10,7 @@ type CardsProps = {
   suggestions: Suggestion[];
   readOnly: boolean;
   players: GamePlayers;
-  onSetValidation: GenericFunction;
+  onSetValidation: (index: number, suggestion: Suggestion) => void;
   isLoading: boolean;
   myRecommendation: Suggestion[];
 };

@@ -11,10 +11,12 @@ import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
+// Internal
+import type { SubmitVotesPayload } from './utils/types';
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;
-  onSendSelectedWords: GenericFunction;
+  onSendSelectedWords: (payload: SubmitVotesPayload) => void;
   words: TextCard[];
   players: GamePlayers;
   turnOrder: TurnOrder;

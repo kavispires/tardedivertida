@@ -54,25 +54,12 @@ export interface UeSoIssoStore extends DefaultStore {
   usedWords?: UsedWords;
   currentWords?: TextCard[];
   currentSuggestions?: PlainObject[];
-  currentWord?: any;
-  guess?: any;
-  validSuggestions?: any;
-  outcome?: any;
 }
 
 export interface UeSoIssoState extends DefaultState {
   gameOrder?: PlayerId[];
   guesserId?: PlayerId;
   controllerId?: PlayerId;
-  groupScore?: any;
-  words?: any;
-  guess?: any;
-  secretWord?: any;
-  suggestions?: any;
-  validSuggestions?: any;
-  group?: any;
-
-  [key: string]: any;
 }
 
 export type UeSoIssoAchievement = keyof typeof UE_SO_ISSO_ACHIEVEMENTS;
