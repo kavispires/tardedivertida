@@ -1,7 +1,5 @@
 import { sampleSize } from 'lodash';
 import { useState } from 'react';
-// Ant Design Resources
-import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { Item } from 'types/tdr';
@@ -14,7 +12,7 @@ import { getRandomItem } from 'utils/helpers';
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
@@ -146,17 +144,15 @@ export function StepSelectGenre({
       </Container>
 
       <SpaceContainer>
-        <Button
+        <SendButton
           size="large"
-          type="primary"
           onClick={() =>
             onSubmitGenre({ genre: selectedGenre, movieTitle: selectedMovieTitle, propsIds: selectedProps })
           }
-          loading={isLoading}
           disabled={user.ready || !selectedGenre || !selectedMovieTitle || !selectedProps.length}
         >
           <Translate en="Submit" pt="Enviar" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </Step>
   );

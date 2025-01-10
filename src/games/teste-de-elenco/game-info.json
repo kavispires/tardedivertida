@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.30",
+  "version": "2.0.31",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Teste De Elenco",
     "en": "Re-Casting Call"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "acting-cloud",
+    "cloudsAnimationType": "orbit",
     "primaryColor": "#4F1271",
     "backgroundColor": "rgba(239, 217, 206, 0.75)",
     "colorScheme": "light"

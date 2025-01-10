@@ -14,7 +14,7 @@ import { buildMovie, determineCast, getAchievements, getNextRoleId } from './hel
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -74,8 +74,8 @@ export const prepareSetupPhase = async (
  * @returns
  */
 export const prepareMovieGenreSelectionPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   const genres = Object.values(GENRES).map((genre) => ({

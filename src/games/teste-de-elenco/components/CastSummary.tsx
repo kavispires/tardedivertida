@@ -1,3 +1,4 @@
+import type { ComponentType } from 'react';
 // Ant Design Resources
 import { CheckOutlined, QuestionOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
@@ -24,7 +25,7 @@ type CastSummaryProps = {
 };
 
 export function CastSummary({ movie }: CastSummaryProps) {
-  const icons: Record<string, any> = {
+  const icons: Record<string, ComponentType> = {
     main: StarIcon,
     anti: SkullIcon,
     supporting: SupportIcon,
