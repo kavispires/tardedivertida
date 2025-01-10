@@ -54,7 +54,6 @@ export interface ResourceData {
 export interface TesteDeElencoStore extends DefaultStore<TesteDeElencoOptions> {
   traits: string[];
   actors: SuspectCard[];
-  [key: string]: any;
 }
 
 export interface TesteDeElencoState extends DefaultState {
