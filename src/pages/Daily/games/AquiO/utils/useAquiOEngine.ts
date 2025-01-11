@@ -9,7 +9,7 @@ import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 // Internal
-import { DEFAULT_LOCAL_TODAY, getDiscs } from './helpers';
+import { checkWeekend, DEFAULT_LOCAL_TODAY, getDiscs } from './helpers';
 import { SETTINGS } from './settings';
 import type { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
 
@@ -63,7 +63,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
     });
     setState((prev) => ({
       ...prev,
-      discs: getDiscs(data, mode === 'challenge'),
+      discs: getDiscs(data, mode === 'challenge', checkWeekend(data.id)),
       discIndex: 0,
       attempts: prev.attempts + 1,
     }));

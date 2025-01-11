@@ -4,6 +4,7 @@ import { Image, Space, Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
+import { getAnimation } from 'utils/animations';
 import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { Translate } from 'components/language';
@@ -38,7 +39,13 @@ export function LobbyRules() {
       >
         <ul className="lobby-step__rule-list">
           {info.rules[language].map((rule, index) => (
-            <li key={rule} className="lobby-step__rule">
+            <motion.li
+              key={rule}
+              className="lobby-step__rule"
+              {...getAnimation('fadeIn', {
+                delay: 1 + index * 0.1,
+              })}
+            >
               {index > 0 && (
                 <Image
                   src={`${PUBLIC_URL.RULES}game-rule-${info.gameName}-${index}.jpg`}
@@ -48,7 +55,7 @@ export function LobbyRules() {
                 />
               )}
               <Typography.Paragraph style={{ marginBottom: 0 }}>{rule}</Typography.Paragraph>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </Image.PreviewGroup>

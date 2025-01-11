@@ -1,4 +1,5 @@
 import { chain, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
+import moment from 'moment';
 import { loadLocalToday } from 'pages/Daily/utils';
 // Utils
 import { SEPARATOR } from 'utils/constants';
@@ -48,7 +49,11 @@ export const getInitialState = (data: DailyAquiOEntry, isRandomGame: boolean): G
   return state;
 };
 
-export const getDiscs = (entry: DailyAquiOEntry, challengingGame?: boolean): AquiODisc[] => {
+export const getDiscs = (
+  entry: DailyAquiOEntry,
+  challengingGame?: boolean,
+  weekendGame?: boolean,
+): AquiODisc[] => {
   const allItems = shuffle(entry.itemsIds);
 
   const discs: AquiODisc[] = [];
@@ -56,7 +61,12 @@ export const getDiscs = (entry: DailyAquiOEntry, challengingGame?: boolean): Aqu
   for (let i = 0; i < 17; i++) {
     const previousCard = discs[i - 1];
 
-    const card = createCards(allItems, previousCard, challengingGame ? discs[i - 1]?.match : undefined);
+    const card = createCards(
+      allItems,
+      previousCard,
+      challengingGame ? discs[i - 1]?.match : undefined,
+      weekendGame,
+    );
     discs.push(card);
   }
 
@@ -66,9 +76,10 @@ export const getDiscs = (entry: DailyAquiOEntry, challengingGame?: boolean): Aqu
 const POSITIONS = Array(9)
   .fill(0)
   .map((_, i) => i);
-const SIZES = [100, 90, 110, 80, 105, 130, 120, 150];
+const SIZES = [100, 90, 110, 80, 105, 130, 120, 150, 115];
 
 const Z_INDEXES: NumberDictionary = {
+  85: 8,
   80: 7,
   90: 6,
   100: 5,
@@ -79,13 +90,18 @@ const Z_INDEXES: NumberDictionary = {
   150: 0,
 };
 
-function createCards(list: string[], previousCard?: AquiODisc, previousMatchId?: string): AquiODisc {
+function createCards(
+  list: string[],
+  previousCard?: AquiODisc,
+  previousMatchId?: string,
+  nineSpots?: boolean,
+): AquiODisc {
   const shuffledList = shuffle(list);
   const randomPositions = shuffle(POSITIONS);
   const randomSizes = shuffle(SIZES);
 
   if (!previousCard) {
-    const items = sampleSize(shuffledList, 8).map((itemId, i) => ({
+    const items = sampleSize(shuffledList, nineSpots ? 9 : 8).map((itemId, i) => ({
       itemId,
       position: randomPositions[i],
       size: randomSizes[i],
@@ -101,7 +117,10 @@ function createCards(list: string[], previousCard?: AquiODisc, previousMatchId?:
 
   const previousCardItems = previousCard.items.map((item) => item.itemId);
 
-  const newCardItems = chain(shuffledList).difference(previousCardItems).take(7).value();
+  const newCardItems = chain(shuffledList)
+    .difference(previousCardItems)
+    .take(nineSpots ? 8 : 7)
+    .value();
   const matchingItem =
     sample(previousCardItems.filter((item) => item !== previousMatchId)) ?? previousCardItems[0];
 
@@ -118,4 +137,9 @@ function createCards(list: string[], previousCard?: AquiODisc, previousMatchId?:
     items,
     match: matchingItem,
   };
+}
+
+export function checkWeekend(dateString: string): boolean {
+  const date = moment(dateString, 'YYYY-MM-DD');
+  return [6, 0].includes(date.day()); // 0 represents Sunday and 6 represents Saturday in moment.js
 }
