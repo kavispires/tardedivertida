@@ -133,6 +133,8 @@ export const feedEmulatorDaily = async () => {
         '20',
         '21',
         '22',
+        '23',
+        '24',
       ],
     },
     palavreado: {
