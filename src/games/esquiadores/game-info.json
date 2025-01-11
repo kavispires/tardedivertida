@@ -1,13 +1,13 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "EE",
-  "gameName": "dilema-dos-esquiadores",
+  "gameCode": "E",
+  "gameName": "esquiadores",
   "version": "0.0.4",
   "release": "planned",
   "available": false,
   "title": {
-    "pt": "Dilema dos Esquiadores",
-    "en": "Skiers' Dilemma"
+    "pt": "Esquiadores",
+    "en": "Ski Resort"
   },
   "popularName": {
     "pt": "",
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "cloud",
+    "cloudsAnimationType": "falling",
     "primaryColor": "",
     "backgroundColor": "",
     "colorScheme": "light"

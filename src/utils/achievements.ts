@@ -28,7 +28,7 @@ import type { AchievementReference } from 'types/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
 // import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
-// import DILEMA_DOS_ESQUIADORES from 'games/dilema-dos-esquiadores/utils/achievements';
+// import ESQUIADORES from 'games/esquiadores/utils/achievements';
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
 // import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
@@ -52,7 +52,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': null,
-  'dilema-dos-esquiadores': null,
+  esquiadores: null,
   duetos: DUETOS,
   'espiao-entre-nos': null,
   'fileira-de-fatos': FILEIRA_DE_FATOS,

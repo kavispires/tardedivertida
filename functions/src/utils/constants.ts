@@ -56,9 +56,9 @@ const GAMES = [
     key: 'DETETIVES_IMAGINATIVOS',
   },
   {
-    name: 'dilema-dos-esquiadores',
+    name: 'esquiadores',
     code: 'D',
-    key: 'DILEMA_DOS_ESQUIADORES',
+    key: 'ESQUIADORES',
   },
   {
     name: 'duetos',
