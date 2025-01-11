@@ -69,7 +69,7 @@ export const PHASES = {
     VOTING: 'VOTING',
     REVEAL: 'REVEAL',
   },
-  DILEMA_DOS_ESQUIADORES: {
+  ESQUIADORES: {
     UNKNOWN: 'UNKNOWN',
   },
   DUETOS: {

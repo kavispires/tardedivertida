@@ -1,10 +1,10 @@
 {
   "desenho-rapidao": {
     "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "ζ",
+    "gameCode": "?",
     "gameName": "desenho-rapidao",
     "version": "0.0.0",
-    "release": "planned",
+    "release": "cancelled",
     "available": false,
     "title": {
       "pt": "Desenho Rapidão",
@@ -17,6 +17,7 @@
     "basedOn": "hsaD eldooD",
     "appearance": {
       "clouds": "cloud",
+      "cloudsAnimationType": "flow",
       "primaryColor": "",
       "backgroundColor": "",
       "colorScheme": "light"
@@ -54,6 +55,7 @@
     "basedOn": "?????",
     "appearance": {
       "clouds": "cloud",
+      "cloudsAnimationType": "flow",
       "primaryColor": "",
       "backgroundColor": "",
       "colorScheme": "light"
@@ -75,7 +77,7 @@
   },
   "fofoca-quente": {
     "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "?",
+    "gameCode": "F",
     "gameName": "fofoca-quente",
     "version": "0.0.0",
     "release": "planned",
@@ -91,6 +93,7 @@
     "basedOn": "?????",
     "appearance": {
       "clouds": "cloud",
+      "cloudsAnimationType": "flow",
       "primaryColor": "",
       "backgroundColor": "",
       "colorScheme": "light"
@@ -128,6 +131,7 @@
     "basedOn": "?????",
     "appearance": {
       "clouds": "cloud",
+      "cloudsAnimationType": "flow",
       "primaryColor": "",
       "backgroundColor": "",
       "colorScheme": "light"

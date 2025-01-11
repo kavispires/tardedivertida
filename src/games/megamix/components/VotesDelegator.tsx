@@ -37,7 +37,7 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
       'crimes-hediondos': VoteCrimesHediondos,
       'cruza-palavras': VoteCruzaPalavras,
       'detetives-imaginativos': VoteImagesTrack,
-      'dilema-dos-esquiadores': VoteValue,
+      esquiadores: VoteValue,
       'espiao-entre-nos': VoteValue,
       'fileira-de-fatos': VoteValue,
       'galeria-de-sonhos': VoteImagesTrack,

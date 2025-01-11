@@ -18,7 +18,7 @@ function PhaseTemplate({ players, state }: PhaseProps) {
   const { step, goToNextStep } = useStep();
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DILEMA_DOS_ESQUIADORES.UNKNOWN}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ESQUIADORES.UNKNOWN}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

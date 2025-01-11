@@ -249,19 +249,16 @@ export const getData = async (
     });
   }
 
-  // OPINIONS_TRACKS: DILEMA_DOS_ESQUIADORES
-  const dilemaDosEsquiadoresTrack = getCandidateOnList(
-    customTrackCandidates,
-    GAME_NAMES.DILEMA_DOS_ESQUIADORES,
-  );
-  if (dilemaDosEsquiadoresTrack) {
+  // OPINIONS_TRACKS: ESQUIADORES
+  const esquiadoresTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.ESQUIADORES);
+  if (esquiadoresTrack) {
     const dilemmas: DilemmaCard[] = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.DILEMMAS}-${language}`),
     );
     const selectedDilemas = allowNSFW ? dilemmas : dilemmas.filter((dilemma) => !dilemma.nsfw);
 
     customTracks.push({
-      game: GAME_NAMES.DILEMA_DOS_ESQUIADORES,
+      game: GAME_NAMES.ESQUIADORES,
       data: {
         dilemma: utils.game.getRandomItem(selectedDilemas),
       },

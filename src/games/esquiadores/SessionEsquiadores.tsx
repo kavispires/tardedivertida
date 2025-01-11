@@ -20,7 +20,7 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.DILEMA_DOS_ESQUIADORES.UNKNOWN:
+    case PHASES.ESQUIADORES.UNKNOWN:
       return PhasePlaceholder;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;
@@ -29,7 +29,7 @@ function getActiveComponent(state: GameState) {
   }
 }
 
-function SessionDilemaDosEsquiadores() {
+function SessionEsquiadores() {
   return (
     <Session
       gameCollection={GAME_COLLECTION.DILEMAS_DOS_ESQUIADORES}
@@ -38,4 +38,4 @@ function SessionDilemaDosEsquiadores() {
   );
 }
 
-export default SessionDilemaDosEsquiadores;
+export default SessionEsquiadores;

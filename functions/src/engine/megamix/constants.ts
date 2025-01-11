@@ -114,7 +114,7 @@ export const OPINIONS_TRACKS: TrackCandidate[] = [
     weight: 1,
   },
   {
-    game: GAME_NAMES.DILEMA_DOS_ESQUIADORES,
+    game: GAME_NAMES.ESQUIADORES,
     type: 'opinions',
     nsfw: false,
     variant: 'default',

@@ -1,6 +1,6 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "ι",
+  "gameCode": "I",
   "gameName": "instrumentos-codificados",
   "version": "0.0.6",
   "release": "cancelled",
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "",
     "backgroundColor": "",
     "colorScheme": "light"

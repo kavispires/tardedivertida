@@ -21,7 +21,7 @@ import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) => {
+export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
@@ -67,7 +67,7 @@ export const TrackDilemaDosEsquiadores = ({ track, onSubmitAnswer, user }: Track
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Dilema do Esquiador', en: "Skiers' Dilemma" }} />
+      <MinigameTitle title={{ pt: 'O Esquiador', en: 'Ski Resorte' }} />
       <Space direction="vertical" align="center" className="contained margin">
         <RuleInstruction type="action">
           <Translate

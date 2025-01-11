@@ -13,7 +13,7 @@ import { TrackContadoresHistorias } from './components/Tracks/TrackContadoresHis
 import { TrackCrimesHediondos } from './components/Tracks/TrackCrimesHediondos';
 import { TrackCruzaPalavras } from './components/Tracks/TrackCruzaPalavras';
 import { TrackDetetivesImaginativos } from './components/Tracks/TrackDetetivesImaginativos';
-import { TrackDilemaDosEsquiadores } from './components/Tracks/TrackDilemaDosEsquiadores';
+import { TrackEsquiadores } from './components/Tracks/TrackEsquiadores';
 import { TrackEspiaoEntreNos } from './components/Tracks/TrackEspiaoEntreNos';
 import { TrackFileiraDeFatos } from './components/Tracks/TrackFileiraDeFatos';
 import { TrackGaleriaDeSonhos } from './components/Tracks/TrackGaleriaDeSonhos';
@@ -54,7 +54,7 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'crimes-hediondos': TrackCrimesHediondos,
       'cruza-palavras': TrackCruzaPalavras,
       'detetives-imaginativos': TrackDetetivesImaginativos,
-      'dilema-dos-esquiadores': TrackDilemaDosEsquiadores,
+      esquiadores: TrackEsquiadores,
       'espiao-entre-nos': TrackEspiaoEntreNos,
       'fileira-de-fatos': TrackFileiraDeFatos,
       'galeria-de-sonhos': TrackGaleriaDeSonhos,
