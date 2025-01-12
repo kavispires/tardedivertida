@@ -44,7 +44,7 @@ export const handleSubmitSeeds = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  seeds: Collection<number>,
+  seeds: Dictionary<number>,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

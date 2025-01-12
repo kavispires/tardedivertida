@@ -21,7 +21,7 @@ export type MovieRole = {
 
 export type ActingRole = {
   traits: string[];
-  candidates: Collection<SuspectCard>;
+  candidates: Dictionary<SuspectCard>;
   selection: ActorId[];
   actor?: ActorId;
   cast: boolean;
@@ -40,7 +40,7 @@ export type Movie = {
   movieTitle: string;
   movieProps: Item[];
   genre: DualLanguageValue;
-  roles: Collection<ActingRole>;
+  roles: Dictionary<ActingRole>;
   rolesOrder: string[];
 };
 

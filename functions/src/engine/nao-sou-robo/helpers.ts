@@ -55,7 +55,7 @@ export const distributeCards = (store: FirebaseStoreData, players: Players, card
 export const calculateResults = (
   players: Players,
   robot: Robot,
-  options: Collection<CaptchaCard>,
+  options: Dictionary<CaptchaCard>,
   captcha: Captcha,
   store: FirebaseStoreData,
 ) => {
