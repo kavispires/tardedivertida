@@ -1,7 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
-import type { CrimesHediondosCard } from '../../types/tdr';
+import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 import type { CrimesHediondosOptions, ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
@@ -13,17 +13,17 @@ import { CARDS_PER_GAME } from './constants';
  */
 export const getData = async (options: CrimesHediondosOptions): Promise<ResourceData> => {
   // Get weapon cards
-  const allWeapons: Collection<CrimesHediondosCard> = await resourceUtils.fetchResource(
+  const allWeapons = await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(
     TDR_RESOURCES.CRIME_WEAPONS,
   );
 
   // Get evidence cards
-  const allEvidence: Collection<CrimesHediondosCard> = await resourceUtils.fetchResource(
+  const allEvidence = await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(
     TDR_RESOURCES.CRIME_EVIDENCE,
   );
 
   // Get scene tiles
-  const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_SCENES);
+  const allScenes = await resourceUtils.fetchResource<Dictionary<CrimeSceneTile>>(TDR_RESOURCES.CRIME_SCENES);
 
   // Filter weapons and evidence
   const useOriginalImages = options.originalImages ?? false;
@@ -61,6 +61,6 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   return {
     weapons: utils.game.getRandomItems(listOfWeapons, CARDS_PER_GAME),
     evidence: utils.game.getRandomItems(listOfEvidence, CARDS_PER_GAME),
-    allScenes,
+    allScenes: Object.values(allScenes),
   };
 };

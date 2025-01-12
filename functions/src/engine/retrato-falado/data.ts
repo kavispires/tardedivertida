@@ -16,12 +16,14 @@ import * as dataUtils from '../collections';
  */
 export const getMonsterCards = async (): Promise<ResourceData> => {
   // Get images info
-  const allMonsters = await resourceUtils.fetchResource(TDR_RESOURCES.MONSTER_ORIENTATION);
+  const allMonsters = await resourceUtils.fetchResource<Dictionary<MonsterImage>>(
+    TDR_RESOURCES.MONSTER_ORIENTATION,
+  );
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MONSTERS, {});
 
   // Filter out used cards
-  const availableMonsters: Collection<MonsterImage> = utils.game.filterOutByIds(allMonsters, usedCards);
+  const availableMonsters = utils.game.filterOutByIds(allMonsters, usedCards);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableMonsters).length < PLAYER_COUNTS.MAX) {

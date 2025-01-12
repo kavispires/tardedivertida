@@ -48,7 +48,7 @@ export const getResourceData = async (
 
   const resourceName = `${TDR_RESOURCES.DIAGRAM_TOPICS}-${language}`;
   // Get full deck
-  const allCards: Collection<DiagramTopic> = await resourceUtils.fetchResource(resourceName);
+  const allCards = await resourceUtils.fetchResource<Dictionary<DiagramTopic>>(resourceName);
 
   const { attribute, word, context } = Object.values(allCards).reduce(
     (acc: TopicsByDiagramType, card) => {

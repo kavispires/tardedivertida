@@ -3,11 +3,11 @@ import { SCENARIOS_PER_ROUND, FILEIRA_DE_FATOS_PHASES, ROUND_TYPES } from './con
 import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { TextCard } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
-import { buildRanking, getAchievements } from './helpers';
-import type { TextCard } from '../../types/tdr';
 // Internal
+import { buildRanking, getAchievements } from './helpers';
 
 /**
  * Setup

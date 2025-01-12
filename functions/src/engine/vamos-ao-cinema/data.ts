@@ -16,19 +16,20 @@ import utils from '../../utils';
  */
 export const getCards = async (language: string): Promise<ResourceData> => {
   // Get full movies deck
-  const allMovies = await resourceUtils.fetchResource(`${TDR_RESOURCES.MOVIES}-${language}`);
+  const allMovies = await resourceUtils.fetchResource<Dictionary<MovieCard>>(
+    `${TDR_RESOURCES.MOVIES}-${language}`,
+  );
   // Get full movies deck
-  const allReviews = await resourceUtils.fetchResource(`${TDR_RESOURCES.MOVIE_REVIEWS}-${language}`);
+  const allReviews = await resourceUtils.fetchResource<Dictionary<MovieReviewCard>>(
+    `${TDR_RESOURCES.MOVIE_REVIEWS}-${language}`,
+  );
 
   // Get used deck
   const usedMoviesAndReviews = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MOVIES, {});
 
   // Filter out used cards
-  const movies: Record<string, MovieCard> = utils.game.filterOutByIds(allMovies, usedMoviesAndReviews);
-  const reviews: Record<string, MovieReviewCard> = utils.game.filterOutByIds(
-    allReviews,
-    usedMoviesAndReviews,
-  );
+  const movies = utils.game.filterOutByIds(allMovies, usedMoviesAndReviews);
+  const reviews = utils.game.filterOutByIds(allReviews, usedMoviesAndReviews);
 
   // If not the minimum cards needed, reset and use all
   if (
