@@ -92,5 +92,5 @@ export const getEngine = (gameName: string): Engine => {
     return engine;
   }
 
-  throw new Error(`Collection '${gameName}' initial state does not exist`);
+  throw new Error(`Dictionary '${gameName}' initial state does not exist`);
 };

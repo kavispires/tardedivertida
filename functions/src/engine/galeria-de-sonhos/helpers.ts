@@ -170,7 +170,7 @@ export const getMostVotedCards = (table: ImageCard[], word: TextCard): ImageCard
  */
 export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   const playersCount = utils.players.getListOfPlayers(players).length;
-  const cardMatches: Collection<PlayerId[]> = {};
+  const cardMatches: Dictionary<PlayerId[]> = {};
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     Object.keys(player.cards).forEach((cardId) => {
@@ -209,7 +209,7 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
 
     bot.cards = utils.game
       .getRandomItems(singleMatchedCardIds, Math.min(singleMatchedCardIds.length, playersCount))
-      .reduce((acc: Collection<PlayerCard>, cardId: CardId) => {
+      .reduce((acc: Dictionary<PlayerCard>, cardId: CardId) => {
         const entry: PlayerCard = {
           cardId,
           used: false,
@@ -227,7 +227,7 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   if (bots[1] && mostMatchedCards.length >= 1) {
     const bot = bots[1];
 
-    bot.cards = mostMatchedCards.reduce((acc: Collection<PlayerCard>, cardId: CardId) => {
+    bot.cards = mostMatchedCards.reduce((acc: Dictionary<PlayerCard>, cardId: CardId) => {
       const entry: PlayerCard = {
         cardId,
         used: false,
@@ -247,7 +247,7 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
 
     const selectedTable = utils.game.getRandomItems(table, 4);
 
-    bot.cards = selectedTable.reduce((acc: Collection<PlayerCard>, card: ImageCard) => {
+    bot.cards = selectedTable.reduce((acc: Dictionary<PlayerCard>, card: ImageCard) => {
       const entry: PlayerCard = {
         cardId: card.id,
         used: false,

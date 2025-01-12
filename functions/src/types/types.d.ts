@@ -46,11 +46,6 @@ type FirebaseContext = {
   [key: string]: any;
 };
 
-/**
- * @deprecated
- */
-type Collection<T> = Record<CardId, T>;
-
 type Dictionary<T> = Record<CardId, T>;
 
 /**

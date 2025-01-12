@@ -50,7 +50,7 @@ export const getResourceData = async (
  * @param contendersGlyphs
  * @returns
  */
-export const saveData = async (contendersGlyphs: Collection<BooleanDictionary>): Promise<boolean> => {
+export const saveData = async (contendersGlyphs: Dictionary<BooleanDictionary>): Promise<boolean> => {
   const contenderIds = Object.keys(contendersGlyphs).reduce((acc, id) => {
     acc[id] = true;
     return acc;
