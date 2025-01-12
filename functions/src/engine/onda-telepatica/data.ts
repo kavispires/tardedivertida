@@ -18,15 +18,12 @@ import utils from '../../utils';
 export const getCategories = async (language: string): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.SPECTRUMS}-${language}`;
   // Get full deck
-  const allCategories: Collection<SpectrumCard> = await resourceUtils.fetchResource(resourceName);
+  const allCategories = await resourceUtils.fetchResource<Dictionary<SpectrumCard>>(resourceName);
   // Get used deck
   const usedCategories = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 
   // Filter out used cards
-  const availableCategories: Record<string, SpectrumCard> = utils.game.filterOutByIds(
-    allCategories,
-    usedCategories,
-  );
+  const availableCategories = utils.game.filterOutByIds(allCategories, usedCategories);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCategories).length < PLAYER_COUNTS.MAX * 2) {

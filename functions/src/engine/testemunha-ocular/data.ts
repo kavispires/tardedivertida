@@ -1,5 +1,5 @@
 // Types
-import type { TestimonyQuestionCard } from '../../types/tdr';
+import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularEntry, TestemunhaOcularOptions } from './types';
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
@@ -21,11 +21,11 @@ export const getQuestionsAndSuspects = async (
 ): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
-  const allCards: Collection<TestimonyQuestionCard> = await resourceUtils.fetchResource(resourceName);
+  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(resourceName);
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
-  const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
+  const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
 
   // Filter out used cards
   // Filter out used cards
@@ -55,7 +55,7 @@ export const getQuestionsAndSuspects = async (
 export const saveData = async (pastQuestions: TestemunhaOcularEntry[]) => {
   const usedQuestionsIds: BooleanDictionary = {};
   const usedSuspectsIds: BooleanDictionary = {};
-  const suspectAnswers: Collection<Collection<boolean>> = {};
+  const suspectAnswers: Dictionary<Dictionary<boolean>> = {};
 
   pastQuestions.forEach((entry: PlainObject) => {
     usedQuestionsIds[entry.id] = true;

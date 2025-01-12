@@ -15,8 +15,8 @@ import { IMAGE_CARDS_PER_ROUND, TOTAL_ROUNDS } from './constants';
  */
 export const getInspirationThemes = async (language: string): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.NAMING_PROMPTS}-${language}`;
-  const cardsResponse = await resourceUtils.fetchResource(resourceName);
-  const cards: NamingPromptCard[] = Object.values(cardsResponse);
+  const cardsResponse = await resourceUtils.fetchResource<Dictionary<NamingPromptCard>>(resourceName);
+  const cards = Object.values(cardsResponse);
 
   // Get images
   const images = await utils.imageCards.getImageCards(TOTAL_ROUNDS * IMAGE_CARDS_PER_ROUND);

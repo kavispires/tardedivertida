@@ -23,15 +23,12 @@ export const getResourceData = async (
 ): Promise<ResourceData> => {
   const challengesResourceName = `${TDR_RESOURCES.CHALLENGES}-${language}`;
   // Get full challenges deck
-  const challengesResponse: Collection<TextCard> = await resourceUtils.fetchResource(challengesResourceName);
+  const challengesResponse = await resourceUtils.fetchResource<Dictionary<TextCard>>(challengesResourceName);
   // Get used challenges deck
   const usedChallenges = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.CHALLENGES, {});
 
   // Filter out used cards
-  let availableChallenges: Record<string, TextCard> = utils.game.filterOutByIds(
-    challengesResponse,
-    usedChallenges,
-  );
+  let availableChallenges = utils.game.filterOutByIds(challengesResponse, usedChallenges);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableChallenges).length < CHALLENGES_PER_GAME) {

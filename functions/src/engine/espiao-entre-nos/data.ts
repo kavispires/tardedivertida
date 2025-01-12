@@ -13,7 +13,7 @@ import * as resourceUtils from '../resource';
 export const getLocations = async (language: string): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.SPY_LOCATIONS}-${language}`;
   // Get full deck
-  const allLocations: Collection<Location> = await resourceUtils.fetchResource(resourceName);
+  const allLocations = await resourceUtils.fetchResource<Dictionary<Location>>(resourceName);
 
   return {
     allLocations: Object.values(allLocations),
