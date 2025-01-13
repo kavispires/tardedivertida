@@ -56,11 +56,6 @@ const GAMES = [
     key: 'DETETIVES_IMAGINATIVOS',
   },
   {
-    name: 'esquiadores',
-    code: 'D',
-    key: 'ESQUIADORES',
-  },
-  {
     name: 'duetos',
     code: 'D',
     key: 'DUETOS',
@@ -69,6 +64,11 @@ const GAMES = [
     name: 'espiao-entre-nos',
     code: 'E',
     key: 'ESPIAO_ENTRE_NOS',
+  },
+  {
+    name: 'esquiadores',
+    code: 'E',
+    key: 'ESQUIADORES',
   },
   {
     name: 'fileira-de-fatos',

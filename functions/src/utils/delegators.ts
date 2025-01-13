@@ -10,6 +10,7 @@ import * as cruzaPalavrasEngine from '../engine/cruza-palavras';
 import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
 import * as duetosEngine from '../engine/duetos';
 import * as espiaoEntreNosEngine from '../engine/espiao-entre-nos';
+import * as esquiaresEngine from '../engine/esquiadores';
 import * as fileiraDeFatosEngine from '../engine/fileira-de-fatos';
 import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
 import * as portadosDesesperadosEngine from '../engine/porta-dos-desesperados';
@@ -50,6 +51,7 @@ const engines = {
   [GAME_NAMES.DETETIVES_IMAGINATIVOS]: detetivesImaginativosEngine,
   [GAME_NAMES.DUETOS]: duetosEngine,
   [GAME_NAMES.ESPIAO_ENTRE_NOS]: espiaoEntreNosEngine,
+  [GAME_NAMES.ESQUIADORES]: esquiaresEngine,
   [GAME_NAMES.FILEIRA_DE_FATOS]: fileiraDeFatosEngine,
   [GAME_NAMES.GALERIA_DE_SONHOS]: galeriaDeSonhosEngine,
   [GAME_NAMES.LABIRINTO_SECRETO]: labirintoSecretoEngine,

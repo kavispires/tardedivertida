@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "0.0.4",
-  "release": "planned",
-  "available": false,
+  "version": "0.0.6",
+  "release": "dev",
+  "available": true,
   "title": {
     "pt": "Esquiadores",
     "en": "Ski Resort"
@@ -15,14 +15,14 @@
   },
   "basedOn": "ammeliD thgiR tfeL",
   "summary": {
-    "pt": "Jogadores apostam em o que os outros vão decidir em uma série de escolhas",
-    "en": "Players bet on what others are going to decide between a series of choices"
+    "pt": "Jogadores apostam em o que o esquiador vai decidir em uma série de escolhas",
+    "en": "Players bet on what the skier will decide in a series of choices"
   },
   "appearance": {
     "clouds": "cloud",
     "cloudsAnimationType": "falling",
     "primaryColor": "",
-    "backgroundColor": "",
+    "backgroundColor": "rgba(234, 235, 235, 0.95)",
     "colorScheme": "light"
   },
   "rules": {
@@ -38,5 +38,23 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "same-time", "betting", "voting"]
+  "tags": ["competitive", "same-time", "betting", "voting"],
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    }
+  ]
 }
