@@ -1,0 +1,170 @@
+@use "sass:math";
+@use "styles/sass" as *;
+
+$pyramid-rows: 3;
+
+.ski-mountain {
+  margin-top: get-unit(6);
+  // position: relative;
+
+  &__skier {
+    position: absolute;
+    z-index: 50;
+    transform: translateX(-50%, -50%);
+  }
+
+  &__skier-icon {
+    transition: transform 250ms ease-in-out;
+    &--left {
+      transform: scaleX(-100%);
+    }
+    &--right {
+      transform: scaleX(100%);
+    }
+  }
+
+  &__dilemmas {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    gap: get-unit(1);
+  }
+}
+
+.ski-mountain-entry {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 2;
+  background: get-color("white", 4);
+  border-radius: $border-radius;
+  padding: get-unit(1);
+
+  &__prompt {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__illustration {
+    background: get-color("white", 5);
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+
+  &__icon {
+    width: 36px;
+    position: absolute;
+  }
+
+  &__options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background: get-color("white", 6);
+    gap: get-unit(4);
+  }
+
+  &__option {
+    display: grid;
+    place-items: center;
+    background: get-color("white", 3);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: 2px dashed get-color("blue", 2);
+    border-radius: $border-radius;
+    padding: get-unit(1);
+
+    &--selected {
+      background: get-color("blue", 3);
+      color: get-color("white", 5);
+    }
+  }
+}
+
+.lodges {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: center;
+  gap: get-unit(1);
+  background: get-color("white", 4);
+  border-radius: $border-radius;
+  margin-top: get-unit(1);
+}
+
+.lodge {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, auto);
+  padding: get-unit(2);
+
+  &__icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__number {
+    position: absolute;
+    color: get-color("white", 5);
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 2em;
+    -webkit-text-stroke: 1px black;
+  }
+
+  &__players {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: get-unit(1);
+    padding: get-unit(1);
+  }
+
+  &__bets {
+    display: flex;
+    gap: get-unit(2);
+    justify-content: center;
+  }
+
+  &__bet {
+    margin-top: get-unit(1);
+  }
+}
+
+.skier-bets {
+  display: flex;
+  gap: get-unit(1);
+  justify-content: center;
+  background: get-color("white", 4);
+  width: 100%;
+}
+
+.lodge-results {
+  display: grid;
+  width: 100%;
+  gap: get-unit(2);
+}
+
+.lodge-result {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  @include contained;
+
+  &__selected {
+    place-self: center;
+    padding: get-unit(2);
+  }
+
+  &__players {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    max-height: 72px;
+    min-width: 200px;
+    gap: get-unit(1);
+    align-content: flex-start;
+  }
+}
