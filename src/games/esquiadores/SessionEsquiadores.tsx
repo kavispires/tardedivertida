@@ -8,6 +8,13 @@ import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
+import { PhaseBets } from './PhaseBets';
+import './utils/styles.scss';
+import { PhaseStartingResults } from './PhaseStartingResults';
+import { PhaseBoost } from './PhaseBoost';
+import { PhasePreliminaryResults } from './PhasePreliminaryResults';
+import { PhaseLastChance } from './PhaseLastChance';
+import { PhaseFinalResults } from './PhaseFinalResults';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -20,8 +27,18 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.ESQUIADORES.UNKNOWN:
-      return PhasePlaceholder;
+    case PHASES.ESQUIADORES.BETS:
+      return PhaseBets;
+    case PHASES.ESQUIADORES.STARTING_RESULTS:
+      return PhaseStartingResults;
+    case PHASES.ESQUIADORES.BOOSTS:
+      return PhaseBoost;
+    case PHASES.ESQUIADORES.PRELIMINARY_RESULTS:
+      return PhasePreliminaryResults;
+    case PHASES.ESQUIADORES.LAST_CHANGE:
+      return PhaseLastChance;
+    case PHASES.ESQUIADORES.FINAL_RESULTS:
+      return PhaseFinalResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;
     default:
@@ -30,12 +47,7 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionEsquiadores() {
-  return (
-    <Session
-      gameCollection={GAME_COLLECTION.DILEMAS_DOS_ESQUIADORES}
-      getActiveComponent={getActiveComponent}
-    />
-  );
+  return <Session gameCollection={GAME_COLLECTION.ESQUIADORES} getActiveComponent={getActiveComponent} />;
 }
 
 export default SessionEsquiadores;

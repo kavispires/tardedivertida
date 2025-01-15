@@ -137,11 +137,14 @@ const SessionMesmice = lazy(() => import('games/mesmice/SessionMesmice' /* webpa
 const SessionSinaisDeAlerta = lazy(
   () => import('games/sinais-de-alerta/SessionSinaisDeAlerta' /* webpackChunkName: "sinais-de-alerta" */),
 );
-const SessionPLanejamentoUrbano = lazy(
+const SessionPlanejamentoUrbano = lazy(
   () =>
     import(
       'games/planejamento-urbano/SessionPlanejamentoUrbano' /* webpackChunkName: "planejamento-urbano" */
     ),
+);
+const SessionEsquiadores = lazy(
+  () => import('games/esquiadores/SessionEsquiadores' /* webpackChunkName: "esquiadores" */),
 );
 
 function Game() {
@@ -231,6 +234,12 @@ function Game() {
             <SessionEspiaoEntreNos />
           </Suspense>
         );
+      case GAME_COLLECTION.ESQUIADORES:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionEsquiadores />
+          </Suspense>
+        );
       case GAME_COLLECTION.FILEIRA_DE_FATOS:
         return (
           <Suspense fallback={<LoadingPage />}>
@@ -300,7 +309,7 @@ function Game() {
       case GAME_COLLECTION.PLANEJAMENTO_URBANO:
         return (
           <Suspense fallback={<LoadingPage />}>
-            <SessionPLanejamentoUrbano />
+            <SessionPlanejamentoUrbano />
           </Suspense>
         );
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
@@ -401,7 +410,9 @@ function Game() {
         );
 
       default:
+        // biome-ignore lint/suspicious/noConsole: on purpose
         console.warn('Wrong game library provided');
+        return <PageError />;
     }
   }
 

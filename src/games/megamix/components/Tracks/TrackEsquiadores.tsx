@@ -38,7 +38,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
 
   const [mouseX, setMouseX] = useState<number | null>(null);
   const [direction, setDirection] = useState<'left' | 'right'>('left');
-
+  // TODO: Use useMouseDirection hook
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMouseX(e.clientX);
