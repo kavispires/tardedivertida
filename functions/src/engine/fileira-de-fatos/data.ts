@@ -17,7 +17,7 @@ export const getScenarios = async (
 ): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.SCENARIOS}-${language}`;
   // Get full deck
-  const allScenarios: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
+  const allScenarios = await resourceUtils.fetchResource<Dictionary<TextCard>>(resourceName);
 
   return {
     scenarios: Object.values(allScenarios).filter((scenario) => (options.nsfw ? true : !scenario.nsfw)),

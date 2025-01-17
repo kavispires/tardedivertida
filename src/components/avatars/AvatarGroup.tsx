@@ -24,7 +24,7 @@ export function AvatarGroup({
   tooltipPrefix = '',
   ...avatarProps
 }: AvatarGroupProps) {
-  const players = orderBy(list, [(v) => v.id === user?.id, 'name'], ['asc']);
+  const players = orderBy(list, [(v) => v.id === user?.id, 'name'], ['desc', 'asc']);
 
   return (
     <AntAvatar.Group max={{ count: maxCount }} size={size}>

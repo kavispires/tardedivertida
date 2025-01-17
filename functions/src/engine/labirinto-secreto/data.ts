@@ -41,7 +41,7 @@ export const getData = async (
 
   // Get cards
   const resourceName = `${TDR_RESOURCES.TREE_WORDS}-${language}`;
-  const allWords: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
+  const allWords = await resourceUtils.fetchResource<Dictionary<TextCard>>(resourceName);
 
   return {
     forestCards: utils.game.getRandomItems(Object.values(allWords), FOREST_HEIGHT * FOREST_WIDTH),

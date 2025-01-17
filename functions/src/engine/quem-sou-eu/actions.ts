@@ -24,7 +24,7 @@ export const handleSubmitGlyphs = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  glyphs: Collection<boolean>,
+  glyphs: Dictionary<boolean>,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

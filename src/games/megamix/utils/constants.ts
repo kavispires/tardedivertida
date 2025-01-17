@@ -28,9 +28,9 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Detetives Imaginativos',
     en: 'Detective Agency',
   },
-  'dilema-dos-esquiadores': {
-    pt: 'O Dilema do Esquiador',
-    en: "The Skier's Dilemma",
+  esquiadores: {
+    pt: 'Esquiadores',
+    en: 'Ski Resort',
   },
   'espiao-entre-nos': {
     pt: 'Espião Entre Nós',
@@ -147,7 +147,7 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     pt: 'Há um impostor entre a gente!',
     en: 'There is an impostor among us!',
   },
-  'dilema-dos-esquiadores': {
+  esquiadores: {
     pt: 'Escolha uma montanha para esquiar!',
     en: 'Choose a mountain to ski!',
   },

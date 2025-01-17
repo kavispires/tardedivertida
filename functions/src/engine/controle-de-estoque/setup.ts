@@ -217,7 +217,7 @@ export const prepareFulfillmentPhase = async (
   utils.players.unReadyPlayers(players);
 
   // When the fulfillment phases, rounds resets to 3 and disabled the entire warehouse
-  const warehouseGrid: Collection<WarehouseSlot> = state.warehouseGrid;
+  const warehouseGrid: Dictionary<WarehouseSlot> = state.warehouseGrid;
   const round: Round = state.round;
   if (state.roundsGoodIndex) {
     round.current = 0;
@@ -228,7 +228,7 @@ export const prepareFulfillmentPhase = async (
   }
   utils.helpers.increaseRound(round);
 
-  const availableOrders = Object.values<Collection<Good>>(state.goodsDict)
+  const availableOrders = Object.values<Dictionary<Good>>(state.goodsDict)
     .filter((good) => {
       if (typeof good.slot === 'number') {
         return warehouseGrid[good.slot].status !== 'correct';

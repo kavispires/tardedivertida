@@ -44,7 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
 export const dealCardsToPlayers = (players: Players, store: FirebaseStoreData) => {
   const playersArray = utils.players.getListOfPlayers(players);
 
-  const cards: Collection<TextCard> = {};
+  const cards: Dictionary<TextCard> = {};
 
   playersArray.forEach((player) => {
     const subject = store.subjectsDeck.pop();
@@ -78,7 +78,7 @@ const buildId = (descriptorId: CardId, subjectId: CardId, playerId: PlayerId) =>
   return `${descriptorId}-${subjectId}-${playerId}`;
 };
 const getTitle = (
-  cards: Collection<TextCard>,
+  cards: Dictionary<TextCard>,
   descriptorId: CardId,
   subjectId: CardId,
   language: Language,
@@ -93,7 +93,7 @@ const getTitle = (
 export const evaluateAnswers = (
   drawings: DrawingEntry[],
   players: Players,
-  cards: Collection<TextCard>,
+  cards: Dictionary<TextCard>,
   store: FirebaseStoreData,
 ) => {
   const { language } = store;
@@ -101,8 +101,8 @@ export const evaluateAnswers = (
   const scores = new utils.players.Scores(players, [0, 0]);
 
   // Guess: [playerId]: [descriptorId, subjectId]
-  const gallery: Collection<GalleryEntry> = {};
-  const finalGallery: Collection<FinalGalleryEntry> = {};
+  const gallery: Dictionary<GalleryEntry> = {};
+  const finalGallery: Dictionary<FinalGalleryEntry> = {};
   drawings.forEach((drawing) => {
     const newId = buildId(drawing.descriptorId, drawing.subjectId, drawing.playerId);
     const title = getTitle(cards, drawing.descriptorId, drawing.subjectId, language);
@@ -185,7 +185,7 @@ export const evaluateAnswers = (
 
   // Cleanup playersSay
   Object.values(gallery).forEach((entry) => {
-    const result: Collection<PlayersSay> = {};
+    const result: Dictionary<PlayersSay> = {};
     entry.playersSay.forEach((say) => {
       const key = `${say.descriptorId}-${say.subjectId}`;
       if (!result[key]) {

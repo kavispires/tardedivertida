@@ -46,8 +46,8 @@ export const determineNextPhase = (
   return ITEM_PLACEMENT;
 };
 
-export const createVennDiagram = (hasContextArea: boolean): Collection<DiagramArea> => {
-  const areas: Collection<DiagramArea> = {};
+export const createVennDiagram = (hasContextArea: boolean): Dictionary<DiagramArea> => {
+  const areas: Dictionary<DiagramArea> = {};
 
   const area: DiagramArea = {
     key: '',

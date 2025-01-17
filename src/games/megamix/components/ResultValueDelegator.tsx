@@ -31,7 +31,7 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
       'crimes-hediondos': ResultCrimesHediondos,
       'cruza-palavras': ResultCruzaPalavras,
       'detetives-imaginativos': ResultImage,
-      'dilema-dos-esquiadores': ResultText,
+      esquiadores: ResultText,
       'espiao-entre-nos': ResultText,
       'fileira-de-fatos': ResultText,
       'galeria-de-sonhos': ResultImage,

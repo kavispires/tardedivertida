@@ -27,13 +27,13 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Make deck dictionary
   const deckIds: CardId[] = [];
-  const deck = utils.game.shuffle(additionalData.items).reduce((acc: Collection<Item>, item) => {
+  const deck = utils.game.shuffle(additionalData.items).reduce((acc: Dictionary<Item>, item) => {
     acc[item.id] = item;
     deckIds.push(item.id);
     return acc;
   }, {});
 
-  const items: Collection<Item> = {};
+  const items: Dictionary<Item> = {};
 
   const playerCount = utils.players.getPlayerCount(players);
 

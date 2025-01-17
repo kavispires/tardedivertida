@@ -134,7 +134,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
           </SpaceContainer>
         </>
       )}
-      <SpaceContainer align="center">
+      <SpaceContainer>
         <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>

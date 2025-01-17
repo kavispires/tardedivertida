@@ -1,5 +1,5 @@
 // Types
-import type { TestimonyQuestionCard } from '../../types/tdr';
+import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
@@ -17,11 +17,11 @@ import * as resourceUtils from '../resource';
 export const getResourceData = async (language: string, options: TaNaCaraOptions): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
-  const allCards: Collection<TestimonyQuestionCard> = await resourceUtils.fetchResource(resourceName);
+  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(resourceName);
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
-  const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
+  const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
 
   // Filter out used cards
   const availableCards = Object.values(utils.game.filterOutByIds(allCards, usedCards)).filter((card) =>

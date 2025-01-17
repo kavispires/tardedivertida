@@ -31,7 +31,7 @@ export const prepareSetupPhase = async (
     origin: 'center',
   });
 
-  const usedCityLocations: Collection<CityLocation> = {};
+  const usedCityLocations: Dictionary<CityLocation> = {};
 
   // Set up city hall on the center
   const originId = utils.toolKits.gridMapUtils.getOriginId(city);

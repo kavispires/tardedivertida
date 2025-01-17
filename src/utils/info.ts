@@ -10,10 +10,10 @@ import CONTROLE_DE_ESTOQUE from 'games/controle-de-estoque/game-info.json';
 import CRIMES_HEDIONDOS from 'games/crimes-hediondos/game-info.json';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/game-info.json';
 import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/game-info.json';
-import DILEMA_DOS_ESQUIADORES from 'games/dilema-dos-esquiadores/game-info.json';
 import DUETOS from 'games/duetos/game-info.json';
 import ESCAPE_ROOM from 'games/escape-room/game-info.json';
 import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/game-info.json';
+import ESQUIADORES from 'games/esquiadores/game-info.json';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/game-info.json';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/game-info.json';
 import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/game-info.json';
@@ -64,7 +64,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': DETETIVES_IMAGINATIVOS,
-  'dilema-dos-esquiadores': DILEMA_DOS_ESQUIADORES,
+  esquiadores: ESQUIADORES,
   duetos: DUETOS,
   'escape-room': ESCAPE_ROOM,
   'espiao-entre-nos': ESPIAO_ENTRE_NOS,

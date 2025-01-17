@@ -13,7 +13,7 @@ import type { CityLocation } from '../../types/tdr';
  */
 export const getLocations = async (): Promise<ResourceData> => {
   // Get full deck
-  const allCityLocations: Collection<CityLocation> = await resourceUtils.fetchResource(
+  const allCityLocations = await resourceUtils.fetchResource<Dictionary<CityLocation>>(
     TDR_RESOURCES.CITY_LOCATIONS,
   );
 

@@ -15,10 +15,10 @@ import * as globalUtils from '../global';
  */
 export const getCards = async (language: string): Promise<ResourceData> => {
   const descriptorsName = `${TDR_RESOURCES.WARNING_SIGNS_DESCRIPTORS}-${language}`;
-  const allDescriptors = await resourceUtils.fetchResource<TextCard>(descriptorsName);
+  const allDescriptors = await resourceUtils.fetchResource<Dictionary<TextCard>>(descriptorsName);
 
   const subjectsName = `${TDR_RESOURCES.WARNING_SIGNS_SUBJECTS}-${language}`;
-  const allSubjects = await resourceUtils.fetchResource<TextCard>(subjectsName);
+  const allSubjects = await resourceUtils.fetchResource<Dictionary<TextCard>>(subjectsName);
 
   return { allDescriptors: Object.values(allDescriptors), allSubjects: Object.values(allSubjects) };
 };
@@ -35,7 +35,7 @@ export const saveDrawings = async (finalGallery: FinalGalleryEntry[], language: 
 
   try {
     globalUtils.updateGlobalFirebaseDoc(docName, finalGallery);
-  } catch (e) {
+  } catch (_e) {
     // Ignore
   }
 };

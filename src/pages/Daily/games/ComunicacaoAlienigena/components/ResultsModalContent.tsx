@@ -70,7 +70,7 @@ export function ResultsModalContent({
           <Translate pt="O alienígena abduziu todos os itens!" en="The alien abducted all items!" />
         ) : (
           <Translate
-            pt="O alienígena vai destruir a Terra porque você não estregou as coisas certas!"
+            pt="O alienígena vai destruir a Terra porque você não entregou as coisas certas!"
             en="The alien will destroy Earth because you didn't deliver the right items!"
           />
         )}

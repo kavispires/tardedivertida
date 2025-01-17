@@ -66,7 +66,7 @@ export const handlePlayCard = async (
   const playersList = utils.players.getListOfPlayers(players);
 
   // Group each players in a dictionary of cardIds and players array
-  const cardCache: Collection<PlayerId[]> = {};
+  const cardCache: Dictionary<PlayerId[]> = {};
   playersList.forEach((player) => {
     Object.values<PlayerCard>(player.cards).forEach((card) => {
       if (cardCache[card.cardId] === undefined) {
