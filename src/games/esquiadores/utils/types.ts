@@ -1,4 +1,7 @@
+// Types
+import type { Achievement } from 'types/achievements';
 import type { GameRanking } from 'types/game';
+import type { GamePlayer } from 'types/player';
 import type { DilemmaCard } from 'types/tdr';
 
 export type SubmitChoicesPayload = {
@@ -23,6 +26,12 @@ export type Lodge = {
   id: number;
   selected: boolean;
   playersIds: PlayerId[];
+};
+
+export type GalleryMountainEntry = {
+  id: string;
+  mountain: MountainDilemma[];
+  skierId: PlayerId;
 };
 
 export type PhaseBetsState = {
@@ -51,4 +60,10 @@ export type PhaseLastChancePhaseState = PhaseBetsState;
 
 export type PhaseFinalResultsState = PhaseBetsState & {
   ranking: GameRanking;
+};
+
+export type PhaseGameOverState = {
+  winners: GamePlayer[];
+  gallery: GalleryMountainEntry[];
+  achievements: Achievement[];
 };

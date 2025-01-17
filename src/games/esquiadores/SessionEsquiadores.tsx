@@ -6,15 +6,18 @@ import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
+// Internal
 import { PhaseBets } from './PhaseBets';
-import './utils/styles.scss';
 import { PhaseStartingResults } from './PhaseStartingResults';
 import { PhaseBoost } from './PhaseBoost';
 import { PhasePreliminaryResults } from './PhasePreliminaryResults';
 import { PhaseLastChance } from './PhaseLastChance';
 import { PhaseFinalResults } from './PhaseFinalResults';
+import { PhaseGameOver } from './PhaseGameOver';
+// Sass
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   // If phase is not defined, it is likely that the game is still loading
@@ -40,7 +43,7 @@ function getActiveComponent(state: GameState) {
     case PHASES.ESQUIADORES.FINAL_RESULTS:
       return PhaseFinalResults;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PageError;
   }

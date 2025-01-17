@@ -1,20 +1,22 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
+import { useMock } from 'hooks/useMock';
 // Components
 import { AvatarName } from 'components/avatars';
+import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
+// Internal
 import type { PhaseBetsState, SubmitBetsPayload } from './utils/types';
-import { ChipsHighlight } from './components/Highlights';
-import { TurnOrder } from 'components/players';
-import { Mountain } from './components/Mountain';
-import { Lodges } from './components/Lodges';
-import { useMock } from 'hooks/useMock';
 import { mockBets } from './utils/mock';
 import { BET_TYPES } from './utils/constants';
-import { DevButton } from 'components/debug';
+import { ChipsHighlight } from './components/Highlights';
+import { Mountain } from './components/Mountain';
+import { Lodges } from './components/Lodges';
 
 type StepMakeBetsProps = {
   players: GamePlayers;
@@ -102,14 +104,14 @@ export function StepMakeBets({
             <Translate
               pt={
                 <>
-                  <strong>ATENÇÃO:</strong> Já que {catchUp.join(', ')} estão em último, eles tem{' '}
-                  <ChipsHighlight>2 fichas</ChipsHighlight> a mais.
+                  <strong>ATENÇÃO:</strong> Já que {catchUp.map((pId) => players[pId].name).join(', ')}{' '}
+                  está(ão) em último, ele(s) tem <ChipsHighlight>2 fichas</ChipsHighlight> a mais.
                 </>
               }
               en={
                 <>
-                  <strong>ATTENTION:</strong> Since {catchUp.join(', ')} are last, they have{' '}
-                  <ChipsHighlight>2 more chips</ChipsHighlight>.
+                  <strong>ATTENTION:</strong> Since {catchUp.map((pId) => players[pId].name).join(', ')} are
+                  last, they have <ChipsHighlight>2 more chips</ChipsHighlight>.
                 </>
               }
             />
