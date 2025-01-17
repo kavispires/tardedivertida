@@ -1,6 +1,6 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "ι",
+  "gameCode": "?",
   "gameName": "template",
   "version": "0.0.6",
   "release": "planned",
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "",
     "backgroundColor": "",
     "colorScheme": "light"

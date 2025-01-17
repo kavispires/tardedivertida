@@ -1,5 +1,5 @@
 // Types
-import type { MovieCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { SuspectCard, MovieCard, TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
@@ -16,15 +16,17 @@ import { sampleSize } from 'lodash';
 export const getData = async (language: string, options: TesteDeElencoOptions): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
-  const allCards: Collection<TestimonyQuestionCard> = await resourceUtils.fetchResource(resourceName);
+  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(resourceName);
   // Get images info
-  const allSuspects = await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS);
+  const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
 
   // Filter out used cards
   const availableCards = Object.values(allCards).filter((card) => (options.nsfw ? card : !card.nsfw));
 
   // Get full movies deck
-  const allMovies = await resourceUtils.fetchResource<MovieCard>(`${TDR_RESOURCES.MOVIES}-${language}`);
+  const allMovies = await resourceUtils.fetchResource<Dictionary<MovieCard>>(
+    `${TDR_RESOURCES.MOVIES}-${language}`,
+  );
 
   const items = await utils.tdr.getItems(6, {
     allowNSFW: !!options.nsfw,

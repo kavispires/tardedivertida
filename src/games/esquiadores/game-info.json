@@ -1,0 +1,74 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "E",
+  "gameName": "esquiadores",
+  "version": "0.1.3",
+  "release": "beta",
+  "available": true,
+  "title": {
+    "pt": "Esquiadores",
+    "en": "Ski Resort"
+  },
+  "popularName": {
+    "pt": "o de apostar na cabana",
+    "en": "the bets on lodges one"
+  },
+  "basedOn": "ammeliD thgiR tfeL",
+  "summary": {
+    "pt": "Jogadores apostam em o que o esquiador vai decidir em uma série de escolhas",
+    "en": "Players bet on what the skier will decide in a series of choices"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "falling",
+    "primaryColor": "",
+    "backgroundColor": "rgba(234, 235, 235, 0.95)",
+    "colorScheme": "light"
+  },
+  "rules": {
+    "en": [
+      "In Ski Resort, players take turns being the skier",
+      "Each round the skier must decide between a series of dilemmas that form the mountain",
+      "The other layers will have certain number of chips to bet on each lodge by the end of the mountain the skier will end up",
+      "You get points for each chip you set on the correct lodge but you will have multiple chances to improve those odds",
+      "In the meantime, the skier is also betting on which players they will want to share points with",
+      "The games ends when all players have been the skier"
+    ],
+    "pt": [
+      "Em Esquiadores, os jogadores se revezam sendo o esquiador",
+      "A cada rodada o esquiador deve decidir entre uma série de dilemas que formam a montanha",
+      "Enquanto isso, os jogadores terão certa quantidade de fichas para apostar em cada cabana onde o esquiador vai terminar ao final da montanha",
+      "Você ganha pontos para cada ficha que você colocar na cabana correta",
+      "Enquanto isso, o esquiador também está apostando em quais jogadores eles vão querer compartilhar pontos",
+      "O jogo termina quando todos os jogadores tiverem sido o esquiador"
+    ]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["competitive", "same-time", "betting", "voting"],
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

@@ -4,10 +4,19 @@ import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constan
 import type {
   ArteRuimCard,
   ArteRuimGroup,
+  ChoiceCard,
+  CrimeSceneTile,
+  CrimesHediondosCard,
   DatingCandidateCard,
+  DatingCandidateImageCard,
   DilemmaCard,
+  GroupQuestionCard,
+  MonsterImage,
+  MovieCard,
   MovieReviewCard,
+  SpectrumCard,
   SuspectCard,
+  TestimonyQuestionCard,
   TextCard,
 } from '../../types/tdr';
 import type { MegamixGameOptions, ResourceData, Track, TrackCandidate } from './types';
@@ -122,7 +131,7 @@ export const getData = async (
   if (galeriaDeSonhosTrack) {
     const imageCardsDeck = await utils.imageCards.getImageCards(10);
     const themes = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.THEME_WORDS}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<TextCard>>(`${TDR_RESOURCES.THEME_WORDS}-${language}`),
     );
     customTracks.push({
       game: GAME_NAMES.GALERIA_DE_SONHOS,
@@ -155,8 +164,10 @@ export const getData = async (
   const contadoresHistoriasTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CONTADORES_HISTORIAS);
   if (contadoresHistoriasTrack) {
     const imageCardsDeck = await utils.imageCards.getImageCards(10);
-    const cards: ArteRuimCard[] = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`),
+    const cards = Object.values(
+      await resourceUtils.fetchResource<Dictionary<ArteRuimCard>>(
+        `${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`,
+      ),
     );
     customTracks.push({
       game: GAME_NAMES.CONTADORES_HISTORIAS,
@@ -172,7 +183,7 @@ export const getData = async (
   if (superCampeonatoTrack) {
     const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 2);
     const challenges = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.CHALLENGES}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<TextCard>>(`${TDR_RESOURCES.CHALLENGES}-${language}`),
     );
 
     customTracks.push({
@@ -226,8 +237,8 @@ export const getData = async (
   if (polemicaDaVezTrack) {
     type CustomTweet = TextCard & { custom?: boolean };
     const tweets = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.TWEETS}-${language}`),
-    ).filter((tweet) => !(tweet as CustomTweet).custom);
+      await resourceUtils.fetchResource<Dictionary<CustomTweet>>(`${TDR_RESOURCES.TWEETS}-${language}`),
+    ).filter((tweet) => !tweet.custom);
 
     customTracks.push({
       game: GAME_NAMES.POLEMICA_DA_VEZ,
@@ -240,7 +251,9 @@ export const getData = async (
   // OPINIONS_TRACKS: FILEIRA_DE_FATOS
   const fileiraDeFatosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.FILEIRA_DE_FATOS);
   if (fileiraDeFatosTrack) {
-    const allScenarios = await resourceUtils.fetchResource(`${TDR_RESOURCES.SCENARIOS}-${language}`);
+    const allScenarios = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+      `${TDR_RESOURCES.SCENARIOS}-${language}`,
+    );
     customTracks.push({
       game: GAME_NAMES.FILEIRA_DE_FATOS,
       data: {
@@ -249,19 +262,16 @@ export const getData = async (
     });
   }
 
-  // OPINIONS_TRACKS: DILEMA_DOS_ESQUIADORES
-  const dilemaDosEsquiadoresTrack = getCandidateOnList(
-    customTrackCandidates,
-    GAME_NAMES.DILEMA_DOS_ESQUIADORES,
-  );
-  if (dilemaDosEsquiadoresTrack) {
+  // OPINIONS_TRACKS: ESQUIADORES
+  const esquiadoresTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.ESQUIADORES);
+  if (esquiadoresTrack) {
     const dilemmas: DilemmaCard[] = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.DILEMMAS}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<DilemmaCard>>(`${TDR_RESOURCES.DILEMMAS}-${language}`),
     );
     const selectedDilemas = allowNSFW ? dilemmas : dilemmas.filter((dilemma) => !dilemma.nsfw);
 
     customTracks.push({
-      game: GAME_NAMES.DILEMA_DOS_ESQUIADORES,
+      game: GAME_NAMES.ESQUIADORES,
       data: {
         dilemma: utils.game.getRandomItem(selectedDilemas),
       },
@@ -272,7 +282,9 @@ export const getData = async (
   const arteRuimTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.ARTE_RUIM);
   if (arteRuimTrack) {
     const cardsGroups: ArteRuimGroup[] = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<ArteRuimGroup>>(
+        `${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`,
+      ),
     );
     const [arteGroup1, arteGroup2] = utils.game.getRandomItems(cardsGroups, 2);
     // VARIANT: CARDS
@@ -321,7 +333,9 @@ export const getData = async (
   // DRAWING_TRACKS: RETRATO_FALADO
   const retratoFaladoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.RETRATO_FALADO);
   if (retratoFaladoTrack) {
-    const monsters = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.MONSTER_ORIENTATION));
+    const monsters = Object.values(
+      await resourceUtils.fetchResource<Dictionary<MonsterImage>>(TDR_RESOURCES.MONSTER_ORIENTATION),
+    );
 
     customTracks.push({
       game: GAME_NAMES.RETRATO_FALADO,
@@ -360,9 +374,11 @@ export const getData = async (
   // WORDS_TRACKS: LABIRINTO_SECRETO
   const labirintoSecretoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.LABIRINTO_SECRETO);
   if (labirintoSecretoTrack) {
-    const trees = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.TREE_WORDS}-${language}`));
+    const trees = Object.values(
+      await resourceUtils.fetchResource<Dictionary<TextCard>>(`${TDR_RESOURCES.TREE_WORDS}-${language}`),
+    );
     const adjectives = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.ADJECTIVES}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<TextCard>>(`${TDR_RESOURCES.ADJECTIVES}-${language}`),
     );
 
     customTracks.push({
@@ -378,7 +394,9 @@ export const getData = async (
   const testemunhaOcularTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TESTEMUNHA_OCULAR);
   if (testemunhaOcularTrack) {
     const testimonyQuestions = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(
+        `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`,
+      ),
     );
     const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
     const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
@@ -399,7 +417,9 @@ export const getData = async (
   const taNaCaraTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TA_NA_CARA);
   if (taNaCaraTrack) {
     const testimonyQuestions = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(
+        `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`,
+      ),
     );
     const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
     const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
@@ -418,10 +438,20 @@ export const getData = async (
   // JUDGING_TRACKS: NAMORO_OU_AMIZADE
   const namoroOuAmizadeTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.NAMORO_OU_AMIZADE);
   if (namoroOuAmizadeTrack) {
-    const heads = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.DATING_CANDIDATE_HEADS));
-    const bodies = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.DATING_CANDIDATE_BODIES));
-    const candidatePersonalities: DatingCandidateCard[] = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.DATING_CANDIDATE}-${language}`),
+    const heads = Object.values(
+      await resourceUtils.fetchResource<Dictionary<DatingCandidateImageCard>>(
+        TDR_RESOURCES.DATING_CANDIDATE_HEADS,
+      ),
+    );
+    const bodies = Object.values(
+      await resourceUtils.fetchResource<Dictionary<DatingCandidateImageCard>>(
+        TDR_RESOURCES.DATING_CANDIDATE_BODIES,
+      ),
+    );
+    const candidatePersonalities = Object.values(
+      await resourceUtils.fetchResource<Dictionary<DatingCandidateCard>>(
+        `${TDR_RESOURCES.DATING_CANDIDATE}-${language}`,
+      ),
     );
     const selectedPersonalities = getCandidatePersonality(candidatePersonalities);
 
@@ -439,7 +469,7 @@ export const getData = async (
   const ondaTelepaticaTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.ONDA_TELEPATICA);
   if (ondaTelepaticaTrack) {
     const opposingIdeas = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.SPECTRUMS}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<SpectrumCard>>(`${TDR_RESOURCES.SPECTRUMS}-${language}`),
     );
 
     customTracks.push({
@@ -457,6 +487,7 @@ export const getData = async (
     GAME_NAMES.COMUNICACAO_ALIENIGENA,
   );
   if (comunicacaoAlienigenaTrack) {
+    // TODO: use tdr
     const attributes = {
       alive: { id: 'alive', name: { en: 'Alive', pt: 'Vivo' } },
       beautiful: { id: 'beautiful', name: { en: 'Beautiful', pt: 'Bonito' } },
@@ -511,7 +542,9 @@ export const getData = async (
   const menteColetivaTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.MENTE_COLETIVA);
   if (menteColetivaTrack) {
     const groupQuestions = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.GROUP_QUESTIONS}-${language}`),
+      await resourceUtils.fetchResource<Dictionary<GroupQuestionCard>>(
+        `${TDR_RESOURCES.GROUP_QUESTIONS}-${language}`,
+      ),
     );
 
     customTracks.push({
@@ -525,10 +558,16 @@ export const getData = async (
   // UNPOPULAR_TRACKS: CRIMES_HEDIONDOS
   const crimesHediondosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CRIMES_HEDIONDOS);
   if (crimesHediondosTrack) {
-    const allWeapons = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_WEAPONS);
-    const allEvidence = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_EVIDENCE);
-    const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_SCENES);
-    const crimes = parseCrimeTiles(allScenes);
+    const allWeapons = await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(
+      TDR_RESOURCES.CRIME_WEAPONS,
+    );
+    const allEvidence = await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(
+      TDR_RESOURCES.CRIME_EVIDENCE,
+    );
+    const allScenes = await resourceUtils.fetchResource<Dictionary<CrimeSceneTile>>(
+      TDR_RESOURCES.CRIME_SCENES,
+    );
+    const crimes = parseCrimeTiles(Object.values(allScenes));
 
     // VARIANT: WEAPON
     if (crimesHediondosTrack.variant === 'weapon') {
@@ -562,9 +601,13 @@ export const getData = async (
   // UNPOPULAR_TRACKS: VAMOS_AO_CINEMA
   const vamosAoCinemaTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.VAMOS_AO_CINEMA);
   if (vamosAoCinemaTrack) {
-    const movies = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.MOVIES}-${language}`));
-    const allReviews: MovieReviewCard[] = Object.values(
-      await resourceUtils.fetchResource(`${TDR_RESOURCES.MOVIE_REVIEWS}-${language}`),
+    const movies = Object.values(
+      await resourceUtils.fetchResource<Dictionary<MovieCard>>(`${TDR_RESOURCES.MOVIES}-${language}`),
+    );
+    const allReviews = Object.values(
+      await resourceUtils.fetchResource<Dictionary<MovieReviewCard>>(
+        `${TDR_RESOURCES.MOVIE_REVIEWS}-${language}`,
+      ),
     );
     const reviews = getMovieReviews(allReviews);
 
@@ -607,7 +650,7 @@ export const getData = async (
 
   // Get default megamix tracks
   const allChoices = Object.values(
-    await resourceUtils.fetchResource(`${TDR_RESOURCES.CHOICES}-${language}`),
+    await resourceUtils.fetchResource<Dictionary<ChoiceCard>>(`${TDR_RESOURCES.CHOICES}-${language}`),
   ) as PlainObject[];
   const shuffledChoices = utils.game.shuffle(allChoices);
 

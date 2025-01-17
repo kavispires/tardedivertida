@@ -10,7 +10,7 @@ export type PlanejamentoUrbanoOptions = {
 };
 
 export type ResourceData = {
-  allCityLocations: Collection<CityLocation>;
+  allCityLocations: Dictionary<CityLocation>;
 };
 
 export type GalleryEntry = {
@@ -46,7 +46,7 @@ export type City = GridMapType<Construction | Cone | null>;
 
 export interface PlanejamentoUrbanoState extends DefaultState {
   // placements?: number;
-  // cityLocationsDict?: Collection<CityLocation>;
+  // cityLocationsDict?: Dictionary<CityLocation>;
   // city?: Site[];
   // gameOrder?: PlayerId[];
   [key: string]: any;

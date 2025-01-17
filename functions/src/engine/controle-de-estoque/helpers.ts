@@ -57,7 +57,7 @@ export const determineNextPhase = (
  * slot is an object containing properties such as `amenityId`, `goodId`, and
  * `available`.
  */
-export const updateAvailableSlotsInWarehouse = (warehouseGrid: Collection<WarehouseSlot>) => {
+export const updateAvailableSlotsInWarehouse = (warehouseGrid: Dictionary<WarehouseSlot>) => {
   // The warehouse grid is a 7x7 grid, if an empty slot is adjacent
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
 
@@ -110,7 +110,7 @@ export const updateAvailableSlotsInWarehouse = (warehouseGrid: Collection<Wareho
  * A function that makes only edge slots available based on the absence of an amenity and good.
  * @param warehouseGrid - A 1D array of WarehouseSlot objects representing a 7x7 grid.
  */
-export const updateEdgeAvailability = (warehouseGrid: Collection<WarehouseSlot>) => {
+export const updateEdgeAvailability = (warehouseGrid: Dictionary<WarehouseSlot>) => {
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
 
   let availableCount = 0;
@@ -138,7 +138,7 @@ export const updateEdgeAvailability = (warehouseGrid: Collection<WarehouseSlot>)
   }
 };
 
-export const concealAllGoods = (goodsDict: Collection<Good>) => {
+export const concealAllGoods = (goodsDict: Dictionary<Good>) => {
   Object.values(goodsDict).forEach((good) => {
     good.exposed = false;
   });
@@ -146,15 +146,15 @@ export const concealAllGoods = (goodsDict: Collection<Good>) => {
 
 export const buildRanking = (
   players: Players,
-  goodsDict: Collection<Good>,
-  warehouseGrid: Collection<WarehouseSlot>,
+  goodsDict: Dictionary<Good>,
+  warehouseGrid: Dictionary<WarehouseSlot>,
   store: ControleDeEstoqueStore,
 ) => {
   // Gained Points: [correct order, wrong order, out of stock]
   const scores = new utils.players.Scores(players, [0, 0, 0]);
 
   // Dictionary of players and the corrected filled orders: PlayerId: OrderId[]
-  const gallery: Collection<string[]> = {};
+  const gallery: Dictionary<string[]> = {};
 
   // For each player, check their orders and fulfillments
   utils.players.getListOfPlayers(players).forEach((player) => {

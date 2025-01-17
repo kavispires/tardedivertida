@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources
 import { DatabaseFilled } from '@ant-design/icons';
-import { Typography, Layout, Divider, Row, Col } from 'antd';
+import { Typography, Layout, Divider, Row, Col, Tag } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -21,6 +21,18 @@ import { PageLayout } from 'components/layout/PageLayout';
 import { GameCard } from './components/GameCard';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters } from './components/Filters';
+
+const statsCountsArray = orderBy(
+  Object.entries(
+    Object.values(GAME_LIST).reduce((acc: Record<string, number>, game) => {
+      if (acc[game.gameCode] === undefined) {
+        acc[game.gameCode] = 0;
+      }
+      acc[game.gameCode]++;
+      return acc;
+    }, {}),
+  ).map(([gameCode, count]) => `${gameCode}: ${count}`),
+);
 
 function Hub() {
   useTitle('Hub - Tarde Divertida');
@@ -136,6 +148,11 @@ function Hub() {
             <Typography.Title level={2}>
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
+            <Typography.Paragraph>
+              {statsCountsArray.map((e) => (
+                <Tag key={e}>{e}</Tag>
+              ))}
+            </Typography.Paragraph>
             <RowOfGames games={devGames} />
             <Divider />
           </>

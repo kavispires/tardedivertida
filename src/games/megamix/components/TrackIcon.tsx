@@ -46,7 +46,7 @@ export const TrackIcon = ({ track }: TrackIconProps) => {
       'crimes-hediondos': CrimeSceneIcon,
       'cruza-palavras': CrossWordsIcon,
       'detetives-imaginativos': DetectiveIcon,
-      'dilema-dos-esquiadores': SkiingIcon,
+      esquiadores: SkiingIcon,
       'espiao-entre-nos': PassportIcon,
       'fileira-de-fatos': QueueIcon,
       'galeria-de-sonhos': DreamIcon,

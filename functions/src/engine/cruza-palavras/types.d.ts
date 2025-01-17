@@ -24,7 +24,7 @@ export type ResourceData = {
   deck: Deck;
 };
 
-export type PastClues = Collection<string[]>;
+export type PastClues = Dictionary<string[]>;
 
 export type ClueEntry = {
   playerId: PlayerId;

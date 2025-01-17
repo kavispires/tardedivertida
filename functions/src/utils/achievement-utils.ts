@@ -35,6 +35,7 @@ export const setup = (players: Players, store: PlainObject, properties: PlainObj
 
 /**
  * Adds a numeric value to given property in the achievements
+ * (Number Achievement)
  * @param store the store
  * @param playerId the player id
  * @param property the property to increase
@@ -50,6 +51,7 @@ export const increase = (store: PlainObject, playerId: PlayerId, property: strin
 
 /**
  * Pushes a value to the achievements property array
+ * (Array Achievement)
  * @param store
  * @param playerId
  * @param property
@@ -65,6 +67,7 @@ export const push = (store: PlainObject, playerId: PlayerId, property: string, v
 
 /**
  * Inserts a value in a specific array index
+ * (Array Achievement)
  * @param store
  * @param playerId
  * @param property
@@ -87,6 +90,7 @@ export const insert = (
 
 /**
  * Adds a value to the last element of a specified property array for a given player in the store.
+ * (Array Achievement)
  *
  * @param store - The store object containing player achievements.
  * @param playerId - The ID of the player whose achievement property will be updated.
@@ -116,6 +120,7 @@ const _getValue = (achievement: StoreAchievement, property: string): ResultAchie
 
 /**
  * Get most and least of certain value else return null
+ * (Number Achievement)
  * @param store
  * @param property
  * @param ineligiblePlayers player Ids that should not count for the achievement
@@ -126,13 +131,13 @@ export const getMostAndLeastOf = (
   store: PlainObject,
   property: string,
   ineligiblePlayers: PlayerId[] = [],
-  condition: (args: any) => boolean = () => true,
+  condition: (args) => boolean = () => true,
 ): AchievementResult => {
   let most: StoreAchievement[] = [];
   let least: StoreAchievement[] = [];
 
   const achievements = Object.values<StoreAchievement>(store.achievements).filter(
-    (a: any) => !ineligiblePlayers.includes(a.playerId),
+    (a) => !ineligiblePlayers.includes(a.playerId),
   );
 
   achievements.forEach((achievement) => {
@@ -159,6 +164,7 @@ export const getMostAndLeastOf = (
 
 /**
  * Get most and least of certain property based on the average of the array of values
+ * (Array Achievement)
  * @param store
  * @param property
  * @param ineligiblePlayers player Ids that should not count for the achievement
@@ -205,6 +211,7 @@ export const getMostAndLeastOfAverage = (
 
 /**
  * Get most and least of certain property based on the unique items of the array of values
+ * (Array Achievement)
  * @param store
  * @param property
  * @param ineligiblePlayers player Ids that should not count for the achievement
@@ -224,6 +231,7 @@ export const getMostAndLeastUniqueItemsOf = (
 
 /**
  * Get most (latest) and least (earliest) of certain property based on the unique items of the array of values
+ * (Array Achievement)
  * @param store
  * @param property
  * @param ineligiblePlayers player Ids that should not count for the achievement
@@ -287,7 +295,7 @@ export const getHighestAndLowestOccurrences = (
   let lowest: StoreAchievement[] = [];
 
   const achievements = Object.values<StoreAchievement>(store.achievements).filter(
-    (a: any) => !ineligiblePlayers.includes(a.playerId),
+    (a) => !ineligiblePlayers.includes(a.playerId),
   );
 
   achievements.forEach((achievement) => {

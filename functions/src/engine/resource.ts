@@ -7,7 +7,7 @@ import utils from '../utils';
  * @param resourceName
  * @returns
  */
-export const fetchResource = async <T = any>(resourceName: string): Promise<T | any> => {
+export const fetchResource = async <T>(resourceName: string): Promise<T> => {
   try {
     const response = await fetch(`${process.env.TD_RESOURCES}${resourceName}.json`);
     return response.json();

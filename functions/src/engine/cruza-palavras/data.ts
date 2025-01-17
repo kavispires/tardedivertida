@@ -1,11 +1,11 @@
 // Types
 import type { CruzaPalavrasOptions, PastClues, ResourceData } from './types';
+import type { TextCard } from '../../types/tdr';
 // Utils
 import * as dataUtils from '../collections';
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
 import { TDR_RESOURCES } from '../../utils/constants';
-import type { TextCard } from '../../types/tdr';
 
 /**
  * Get words resource based on the game's language
@@ -18,7 +18,7 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
 
   if (options?.gridType === 'properties') {
     const resourceName = `${TDR_RESOURCES.THINGS_QUALITIES}-${language}`;
-    const allCards: Collection<TextCard> = await resourceUtils.fetchResource(resourceName);
+    const allCards = await resourceUtils.fetchResource<Dictionary<TextCard>>(resourceName);
     // Does not need type because it is just text
     return { deck: utils.game.getRandomItems(Object.values(allCards), quantityNeeded) };
   }

@@ -25,7 +25,7 @@ export const getItems = async (
     filters: [],
   },
 ): Promise<Item[]> => {
-  const itemsObj: Collection<Item> = await fetchResource(TDR_RESOURCES.ITEMS);
+  const itemsObj: Dictionary<Item> = await fetchResource(TDR_RESOURCES.ITEMS);
 
   // Filter out items that don't match the options
   Object.values(itemsObj).forEach((item) => {
@@ -157,9 +157,9 @@ export const getAlienItems = async (
     balanceAttributes: false,
   },
 ): Promise<AlienItem[]> => {
-  const allAlienItemsObj: Collection<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
+  const allAlienItemsObj: Dictionary<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
 
-  function getWellWeightedItems(items: Collection<AlienItem>) {
+  function getWellWeightedItems(items: Dictionary<AlienItem>) {
     const attributeKeysWith5: Set<string> = new Set();
     const selectedItems: AlienItem[] = [];
     const leftOverItems: AlienItem[] = [];
@@ -305,7 +305,7 @@ export const saveUsedAlienItems = async (items: AlienItem[]) => {
 export const getSingleWords = async (language: Language, quantity?: number): Promise<TextCard[]> => {
   const resourceName = `${TDR_RESOURCES.SINGLE_WORDS}-${language}`;
   // Get full deck
-  const allWords: Collection<TextCard> = await fetchResource(resourceName);
+  const allWords: Dictionary<TextCard> = await fetchResource(resourceName);
 
   if (!quantity) {
     return Object.values(allWords);
@@ -348,15 +348,15 @@ export const getContenders = async (
   decks: string[],
   quantity?: number,
 ): Promise<ContenderCard[]> => {
-  const contendersResponse: Collection<ContenderCard> = await fetchResource(TDR_RESOURCES.CONTENDERS);
+  const contendersResponse: Dictionary<ContenderCard> = await fetchResource(TDR_RESOURCES.CONTENDERS);
 
-  const priorityDecks: Collection<ContenderCard> = {};
+  const priorityDecks: Dictionary<ContenderCard> = {};
   const includeSpecialDecks = decks.includes('special-td') || decks.includes('special-td-bg');
 
   // Get only contenders that match the language selected
   const languageContenders = Object.values(contendersResponse)
     .filter((c) => (c.exclusivity ? c.exclusivity === language : true && allowNSFW ? true : !c.nsfw))
-    .reduce((acc: Collection<ContenderCard>, entry) => {
+    .reduce((acc: Dictionary<ContenderCard>, entry) => {
       // Special Decks are held in a separate object
       if (
         includeSpecialDecks &&
@@ -429,7 +429,7 @@ export const getContenders = async (
 export const getAdjectives = async (language: Language, quantity?: number): Promise<TextCard[]> => {
   const resourceName = `${TDR_RESOURCES.ADJECTIVES}-${language}`;
   // Get full deck
-  const allAdjectives: Collection<TextCard> = await fetchResource(resourceName);
+  const allAdjectives: Dictionary<TextCard> = await fetchResource(resourceName);
 
   if (!quantity) {
     return gameUtils.shuffle(Object.values(allAdjectives));

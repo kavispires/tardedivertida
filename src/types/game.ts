@@ -3,11 +3,10 @@ import type { GamePlayers } from './player';
 
 export type GameState<TState = PlainObject, TPlayer = PlainObject> = {
   phase: string;
-  updatedAt?: DateMilliseconds;
   round: GameRound;
   players: GamePlayers<TPlayer>;
+  updatedAt?: DateMilliseconds;
   redirect?: Redirect;
-  [key: string]: any;
 } & TState;
 
 export type SessionProps = {

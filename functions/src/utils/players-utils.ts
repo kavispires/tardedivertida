@@ -1,9 +1,10 @@
 // Constants
-import { cloneDeep, orderBy } from 'lodash';
+import { cloneDeep, groupBy, orderBy } from 'lodash';
 import { AVATAR_IDS } from './constants';
 import { throwException } from './firebase';
 // Utils
 import { getRandomUniqueItem, shuffle } from './game-utils';
+import { print } from './helpers';
 
 /**
  * Generates a player id based of their name
@@ -169,16 +170,49 @@ export const isEverybodyReady = (players: Players): boolean => {
 };
 
 /**
+ * Orders a list of players by their score and optionally groups them by score.
+ *
+ * @param players - The list of players to be ordered.
+ * @param groupByScore - A boolean indicating whether to group players by their score. Defaults to false.
+ * @param resolveTiesBy - The property to use for resolving ties when players have the same score. Defaults to 'name'.
+ * @returns An array of players ordered by score. If groupByScore is true, returns an array of arrays, where each inner array contains players with the same score.
+ */
+export const orderPlayersByScore = (
+  players: Players,
+  groupByScore = false,
+  resolveTiesBy = 'name',
+): Player[][] => {
+  const listOfPlayers = orderBy(getListOfPlayers(players, true), ['score', resolveTiesBy], ['desc', 'asc']);
+
+  if (groupByScore) {
+    const groups = groupBy(listOfPlayers, 'score');
+    print(groups);
+    const sortedScoreValues = orderBy(Object.keys(groups), [(o) => Number(o)], ['desc']);
+    print(sortedScoreValues);
+    return sortedScoreValues.map((score) => groups[score]);
+  }
+
+  return listOfPlayers.map((player) => [player]);
+};
+
+/**
  * Determine winners based on who has the highest score
  * @param players
  * @returns array of winning players
  */
 export const determineWinners = (players: Players): Player[] => {
-  const listOfPlayers = getListOfPlayers(players, true);
-  const maxScore = Math.max(...listOfPlayers.map((player) => player.score));
-  return listOfPlayers.filter((player) => {
-    return player.score === maxScore;
-  });
+  const orderedScores = orderPlayersByScore(players, true);
+  return orderedScores[0];
+};
+
+/**
+ * Determine losers based on who has the lowest score
+ * @param players
+ * @returns array of losing players
+ */
+export const determineLosers = (players: Players): Player[] => {
+  const orderedScores = orderPlayersByScore(players, true);
+  return orderedScores[orderedScores.length - 1];
 };
 
 /**
@@ -477,7 +511,14 @@ export class Scores {
   /**
    * Returns sorted round's ranking
    */
-  rank(players: Players): NewScore[] {
+  rank(players: Players, round?: boolean): NewScore[] {
+    if (round) {
+      Object.keys(this.scores).forEach((playerId) => {
+        this.scores[playerId].newScore = Math.round(this.scores[playerId].newScore);
+        this.scores[playerId].gainedPoints = this.scores[playerId].gainedPoints.map((g) => Math.round(g));
+      });
+    }
+
     // Add the new score to the player
     if (players) {
       getListOfPlayers(players, true).forEach((player) => {

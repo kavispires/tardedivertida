@@ -124,7 +124,7 @@ export const prepareAlienSeedingPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players, state.alienId);
 
-  const botAlienItemKnowledge: Collection<AlienItem> = store.botAlienItemKnowledge;
+  const botAlienItemKnowledge: Dictionary<AlienItem> = store.botAlienItemKnowledge;
 
   // Tell alien about the starting attributes
   const startingAttributes: Sign[] = state.startingAttributes;

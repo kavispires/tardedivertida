@@ -27,11 +27,11 @@ export const getResourceData = async (
   const isBotAlien = !!options.botAlien;
   const allowNSFW = !!options.nsfw;
   const isEasyGame = !!options.easyMode;
-  let botAlienItemKnowledge: Collection<AlienItem> = {};
+  let botAlienItemKnowledge: Dictionary<AlienItem> = {};
 
   // If not bot alien, use new libraries
   if (!isBotAlien) {
-    const itemAttributesResponse: Collection<ItemAttribute> = await resourceUtils.fetchResource(
+    const itemAttributesResponse = await resourceUtils.fetchResource<Dictionary<ItemAttribute>>(
       TDR_RESOURCES.ITEMS_ATTRIBUTES,
     );
     const itemAttributes = utils.game.getRandomItems(

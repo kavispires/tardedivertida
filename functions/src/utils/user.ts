@@ -69,7 +69,7 @@ export interface FirebaseUserDB {
   ratings: Record<GameName, number>;
   games: Record<GameName, Record<GameId, GameUserEntry>>;
   blurredImages: Record<ImageCardId, true>;
-  daily: Collection<DailyEntry>;
+  daily: Dictionary<DailyEntry>;
 }
 
 interface FirebaseUIStatistics {

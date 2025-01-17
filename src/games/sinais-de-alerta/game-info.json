@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.25",
+  "version": "1.0.28",
   "release": "stable",
   "available": true,
   "title": {

@@ -32,7 +32,7 @@ export const getData = async (
   });
 
   // Get full deck of features
-  const allObjectFeatures: Collection<ObjectFeatureCard> = await resourceUtils.fetchResource(
+  const allObjectFeatures = await resourceUtils.fetchResource<Dictionary<ObjectFeatureCard>>(
     TDR_RESOURCES.OBJECT_FEATURES,
   );
 

@@ -46,7 +46,7 @@ type FirebaseContext = {
   [key: string]: any;
 };
 
-type Collection<T> = Record<CardId, T>;
+type Dictionary<T> = Record<CardId, T>;
 
 /**
  * Used to wrap HttpsCallable functions groups
