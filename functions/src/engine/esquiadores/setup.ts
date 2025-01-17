@@ -41,8 +41,9 @@ export const prepareSetupPhase = async (
     initial: 0,
     boost: 0,
     final: 0,
-    lodge: 0,
+    onlyLodge: 0,
     players: 0,
+    highestBet: [],
   });
 
   // Save
@@ -70,7 +71,6 @@ export const prepareBetsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // Unready players
   // Unready players
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, [
@@ -145,7 +145,7 @@ export const prepareBetsPhase = async (
 };
 
 export const prepareStartingResultsPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -218,7 +218,7 @@ export const prepareStartingResultsPhase = async (
 };
 
 export const prepareBoostsPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -252,7 +252,7 @@ export const prepareBoostsPhase = async (
 };
 
 export const preparePreliminaryResultsPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -289,7 +289,7 @@ export const preparePreliminaryResultsPhase = async (
 };
 
 export const prepareLastChangePhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -358,7 +358,11 @@ export const prepareResultsPhase = async (
   const animateTo = mountain[animateFrom].direction;
 
   const pastMountains = store.pastMountains ?? [];
-  pastMountains.push(mountain);
+  pastMountains.push({
+    id: `${state.round.current}`,
+    mountain,
+    skierId: activeSkierId,
+  });
 
   // Save
   return {

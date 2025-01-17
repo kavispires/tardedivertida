@@ -56,7 +56,7 @@ export function PhaseBets({ players, state }: PhaseProps<PhaseBetsState>) {
     >
       <Instruction>
         <Translate
-          pt="Distribua seus pontos de acordo com o que o esquiador"
+          pt="Distribua seus pontos de acordo com a opinião do esquiador"
           en="Distribute your points according to skier"
         />
       </Instruction>
