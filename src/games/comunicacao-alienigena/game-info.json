@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "4.1.55",
+  "version": "4.1.58",
   "release": "stable",
   "available": false,
   "title": {
@@ -14,13 +14,13 @@
     "en": "The one with the alien"
   },
   "basedOn": "tcatnoC tsriF",
-
   "summary": {
     "pt": "Será que um alienígena consegue se comunicar com os humanos?",
     "en": "Would the aliens be able to communicate with the humans?"
   },
   "appearance": {
     "clouds": "ufo-cloud",
+    "cloudsAnimationType": "rising",
     "primaryColor": "#566E21",
     "surfaceColor": "#EADEDA",
     "backgroundColor": "rgba(53, 32, 48, 0.75)",
@@ -86,22 +86,6 @@
         },
         {
           "label": "On",
-          "value": true
-        }
-      ]
-    },
-    {
-      "key": "easyMode",
-      "kind": "switch",
-      "label": "Difficulty",
-      "description": "Easy mode gives 3 starting known attributes instead of 1",
-      "values": [
-        {
-          "label": "Normal",
-          "value": false
-        },
-        {
-          "label": "Easy",
           "value": true
         }
       ]
