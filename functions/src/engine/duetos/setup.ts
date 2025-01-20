@@ -172,7 +172,6 @@ export const prepareGameOverPhase = async (
   });
 
   const gallery = store.gallery.filter((item) => item.players.length > 2 && item.pair.every(Boolean));
-  utils.helpers.print(gallery);
 
   // Save data (pairs)
   await savedData(gallery ?? []);
