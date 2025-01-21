@@ -10,7 +10,7 @@ import type {
   SubmitAlienRequestPayload,
   SubmitAlienResponsePayload,
   SubmitHumanInquiryPayload,
-  SubmitOfferingPayload,
+  SubmitOfferingsPayload,
   SubmitSeedingPayload,
 } from './types';
 
@@ -126,7 +126,7 @@ export function useOnSubmitAlienRequestAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitOfferingAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitOfferingsAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
@@ -140,9 +140,9 @@ export function useOnSubmitOfferingAPIRequest(setStep: UseStep['setStep']) {
     ),
   });
 
-  return (payload: SubmitOfferingPayload) => {
+  return (payload: SubmitOfferingsPayload) => {
     request({
-      action: COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_OFFERING,
+      action: COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_OFFERINGS,
       ...payload,
     });
   };

@@ -23,34 +23,6 @@ export type TextCard = {
 };
 
 /**
- * Alien Item
- * Used for: alien-items
- * @deprecated
- */
-export type AlienItem = {
-  /**
-   * Unique identifier for the card
-   */
-  id: string;
-  /**
-   * The name of the item
-   */
-  name: DualLanguageValue;
-  /**
-   * The dictionary of attribute keys and their values
-   */
-  attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;
-  /**
-   * Flag indicating if it's nsfw
-   */
-  nsfw?: boolean;
-  /**
-   * Any decks the item belongs to
-   */
-  decks?: string[];
-};
-
-/**
  * Arte Ruim Card
  * Used for: arte-ruim-cards
  */
@@ -738,7 +710,7 @@ export type ItemAttributesValues = {
    */
   id: ItemId;
   /**
-   * The dictionary of attribute keys and their values
+   * The dictionary of ItemAttribute id and their values
    */
   attributes: Record<string, -10 | -3 | -1 | 5 | 10 | number>;
   /**
@@ -750,10 +722,10 @@ export type ItemAttributesValues = {
    */
   updatedAt?: number;
   /**
-   * The alien message using prefixes and attribute keys
+   * The alien message using prefixes and attribute keys (only available if the item is complete)
    * (^) -10, (!) -3, (~) -1, (+) 5, (*) 10
    */
-  key?: string;
+  signature?: string;
   /**
    * The percentage of non-unclear attribute values
    */
@@ -803,7 +775,11 @@ export type ItemAttribute = {
   /**
    * Flag indicating another attribute that is directly the opposite of this one
    */
-  oppositeId?: boolean;
+  oppositeId?: string;
+  /**
+   * Flag indicating another attribute that might be related to this one and confusing in the same context
+   */
+  relatedId?: string;
   /**
    * Keywords string to help with search
    */
@@ -1066,4 +1042,71 @@ export type TeenageStudent = {
    * The teenager's height ("short", "medium", "tall")
    */
   height: string;
+};
+
+/**
+ * Represents an entry of a drawing.
+ */
+export type DrawingEntry = {
+  /**
+   * The unique identifier of the drawing entry (format: "<cardId>;;<artistId>;;<timestamp>").
+   */
+  id: string;
+  /**
+   * The drawing content (a stringified JSON array of points).
+   */
+  drawing: string;
+  /**
+   * The timestamp when the drawing was created, in milliseconds.
+   */
+  createdAt: DateMilliseconds;
+  /**
+   * The unique identifier of the artist who created the drawing.
+   */
+  artistId: string;
+};
+
+/**
+ * TDR Drawing Data
+ */
+export type DrawingData = {
+  /**
+   * The unique identifier of the card. (same as ArteRuimCard.id).
+   */
+  id: CardId;
+  /**
+   * The text of the card. (same as ArteRuimCard.text).
+   */
+  text: string;
+  /**
+   * The list of drawing entries for the card.
+   */
+  drawings: DrawingEntry[];
+  /**
+   * The timestamp when the drawing was last updated, in milliseconds.
+   */
+  updatedAt: DateMilliseconds;
+};
+
+/**
+ * Image Cards Descriptor
+ */
+export type ImageCardDescriptor = {
+  id: string;
+  /**
+   * List of keywords/tags related to the image
+   */
+  keywords: string[];
+  /**
+   * Flag indicating an outstanding card
+   */
+  favorite?: boolean;
+  /**
+   * List of triggers present in the image (credo)
+   */
+  triggers?: string[];
+  /**
+   * Card ids from the theme-words deck associated with the image
+   */
+  associatedDreams?: string[];
 };

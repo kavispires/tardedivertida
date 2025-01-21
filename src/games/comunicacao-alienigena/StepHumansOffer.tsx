@@ -12,7 +12,13 @@ import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
+import type {
+  InquiryHistoryEntry,
+  OfferingsStatus,
+  PhaseBasicState,
+  RequestHistoryEntry,
+  SubmitOfferingsPayload,
+} from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { AlienContent, HumanContent } from './components/Content';
@@ -21,20 +27,21 @@ import { History } from './components/History';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
+import { ItemsHighlight } from './components/Highlights';
 
 type StepHumansOfferProps = {
   players: GamePlayers;
-  onSubmitOffering: GenericFunction;
+  onSubmitOfferings: (payload: SubmitOfferingsPayload) => void;
   user: GamePlayer;
   alien: GamePlayer;
   isUserAlien: boolean;
-  items: Item[];
-  signs: Sign[];
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
+  startingAttributesIds: string[];
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
-  startingAttributes: Sign[];
   debugMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
@@ -42,16 +49,16 @@ export function StepHumansOffer({
   players,
   announcement,
   user,
-  onSubmitOffering,
+  onSubmitOfferings,
   status,
   items,
-  signs,
+  attributes,
+  startingAttributesIds,
   alien,
   isUserAlien,
   requestHistory,
   inquiryHistory,
   isAlienBot,
-  startingAttributes,
   debugMode,
 }: StepHumansOfferProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
@@ -66,7 +73,7 @@ export function StepHumansOffer({
       {isAlienBot && <BotPopupRule />}
 
       <HumanContent user={user}>
-        <RuleInstruction type="rule">
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -74,6 +81,10 @@ export function StepHumansOffer({
                 objeto ele(a) quer?
                 <br />
                 Um símbolo sublinhado significa "muito" e um símbolo sobrelinhado significa "não".
+                <br />
+                <strong>Selecione</strong> um objeto e aperte enviar. Lembre-se que que você tem que entregar{' '}
+                <ItemsHighlight type="negative">{status.needed}</ItemsHighlight>
+                objetos.
               </>
             }
             en={
@@ -82,6 +93,9 @@ export function StepHumansOffer({
                 want?
                 <br />
                 An underlined symbol means "very" and an overscore symbol means "not".
+                <br />
+                <strong>Select</strong> an object then press Submit. Remember that you must deliver{' '}
+                <ItemsHighlight type="negative">{status.needed}</ItemsHighlight> objects.
               </>
             }
           />
@@ -97,22 +111,27 @@ export function StepHumansOffer({
         </RuleInstruction>
       </AlienContent>
 
-      <AlienViewBoard request={requestHistory[0].request} isAlienBot={isAlienBot} />
+      <AlienViewBoard
+        request={requestHistory[0].request}
+        isAlienBot={isAlienBot}
+        attributes={attributes}
+        sentenceMode={isAlienBot}
+      />
 
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
-          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+          <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
           <HumanOffering
-            signs={signs}
-            startingAttributes={startingAttributes}
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
             items={items}
-            submitOffer={onSubmitOffering}
+            submitOffer={onSubmitOfferings}
             user={user}
             status={status}
           />
@@ -125,13 +144,13 @@ export function StepHumansOffer({
         players={players}
         items={items}
         isAlienBot={isAlienBot}
-        signs={signs}
+        attributes={attributes}
         showIntention={isDebugEnabled}
         debugMode={debugMode}
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
       </DebugOnly>
     </Step>
   );

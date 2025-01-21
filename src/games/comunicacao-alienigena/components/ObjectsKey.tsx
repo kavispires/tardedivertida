@@ -40,7 +40,10 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
           <Translate pt="O alienígena tem medo" en="Alien is afraid of it" />
         </span>
         <span>
-          Amaldiçoados: <Tag>{status.totalCurses}</Tag>
+          Amaldiçoados:{' '}
+          <Tag>
+            {Object.keys(status.curses).length}/{status.totalCurses}
+          </Tag>
         </span>
       </div>
       <div className="objects-key__entry">

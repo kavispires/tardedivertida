@@ -12,16 +12,16 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
-import type { Item, OfferingsStatus } from '../utils/types';
+import type { OfferingsStatus, PhaseBasicState } from '../utils/types';
 import { BADGE_INSTRUCTION } from '../utils/constants';
 import { ObjectsKey } from './ObjectsKey';
 // Hook
 
 type SelectableObjectsGridProps = {
   user: GamePlayer;
-  items: Item[];
+  items: PhaseBasicState['items'];
   selectedObjects: BooleanDictionary;
-  selectObject: GenericFunction;
+  selectObject: (id: string) => void;
   maxObjects?: number;
   hideKey?: boolean;
   showTypes?: boolean;
@@ -49,15 +49,15 @@ export function SelectableObjectsGrid({
       </Title>
       <div className="objects-grid">
         {items.map((item) =>
-          Boolean(item.offered) || (isAlienRequest && item.type !== 'ITEM') ? (
+          Boolean(item.offerings.length) || (isAlienRequest && item.type !== 'ITEM') ? (
             <div
               className={clsx('objects-grid__item', `objects-grid__item--${item.type}`)}
               key={`selectable-${item.id}`}
             >
-              <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
+              <Badge count={item.inquiries} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
                 <ItemCard
                   id={`${item.id}`}
-                  className={clsx(item.offered && 'objects-grid__item-offered')}
+                  className={clsx(item.offerings.length && 'objects-grid__item-offered')}
                   title={item.name ? dualTranslate(item.name) : undefined}
                 />
               </Badge>
@@ -67,7 +67,7 @@ export function SelectableObjectsGrid({
               key={`selectable-${item.id}`}
               className={clsx('objects-grid__button', showTypes && `objects-grid__button--${item.type}`)}
               disabled={
-                item.offered ||
+                item.offerings.length > 0 ||
                 (!selectedObjects[item.id] && Object.keys(selectedObjects).length === maxObjects) ||
                 isLoading ||
                 user.ready
@@ -76,10 +76,10 @@ export function SelectableObjectsGrid({
               activeClass={'objects-grid__button--active'}
               onClick={() => selectObject(item.id)}
             >
-              <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
+              <Badge count={item.inquiries} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
                 <ItemCard
                   id={`${item.id}`}
-                  className={clsx(item.offered && 'objects-grid__item-offered')}
+                  className={clsx(item.offerings.length && 'objects-grid__item-offered')}
                   title={item.name ? dualTranslate(item.name) : undefined}
                 />
               </Badge>

@@ -15,9 +15,10 @@ import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitHumanInquiryAPIRequest } from './utils/api-requests';
+import type { PhaseHumanAskState } from './utils/types';
 import { StepHumanAsks } from './StepHumanAsks';
 
-export function PhaseHumanAsk({ players, state }: PhaseProps) {
+export function PhaseHumanAsk({ players, state }: PhaseProps<PhaseHumanAskState>) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
   const [currentHuman, isUserTheCurrentHuman] = useWhichPlayerIsThe('humanId', state, players);
@@ -53,13 +54,13 @@ export function PhaseHumanAsk({ players, state }: PhaseProps) {
           currentHuman={currentHuman}
           isUserTheCurrentHuman={isUserTheCurrentHuman}
           items={state.items}
-          signs={state.signs}
+          attributes={state.attributes}
           announcement={announcement}
           status={state.status}
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
           isAlienBot={Boolean(state.alienBot)}
-          startingAttributes={state.startingAttributes}
+          startingAttributesIds={state.startingAttributesIds}
           debugMode={Boolean(state.debugMode)}
         />
       </StepSwitcher>

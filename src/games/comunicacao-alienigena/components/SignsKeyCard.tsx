@@ -15,15 +15,15 @@ import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
-import type { Sign } from '../utils/types';
+import type { PhaseBasicState } from '../utils/types';
 
 type SignsKeyCardProps = {
-  signs: Sign[];
-  startingAttributes?: Sign[];
+  attributes: PhaseBasicState['attributes'];
+  startingAttributesIds: string[];
   phase?: string;
 };
 
-export function SignsKeyCard({ signs, startingAttributes = [], phase }: SignsKeyCardProps) {
+export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: SignsKeyCardProps) {
   const { cache, setCache } = useCacheAlternative({ defaultValue: {} });
   const { language } = useLanguage();
 
@@ -37,18 +37,18 @@ export function SignsKeyCard({ signs, startingAttributes = [], phase }: SignsKey
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (phase === PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK && startingAttributes.length && isEmpty(cache)) {
+    if (phase === PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK && startingAttributesIds.length && isEmpty(cache)) {
       setCache((prev) => {
         const copy = { ...prev };
-        signs.forEach((sign) => {
-          if (startingAttributes.find((attr) => attr.signId === sign.signId)) {
-            copy[sign.signId] = true;
+        attributes.forEach((attribute) => {
+          if (startingAttributesIds.find((attributeId) => attributeId === attribute.id)) {
+            copy[attribute.id] = true;
           }
         });
         return copy;
       });
     }
-  }, [startingAttributes, phase]);
+  }, [startingAttributesIds, phase]);
 
   return (
     <Space direction="vertical">
@@ -67,31 +67,36 @@ export function SignsKeyCard({ signs, startingAttributes = [], phase }: SignsKey
           <Button type="text" style={{ color: 'white' }} icon={<InfoCircleOutlined />} shape="circle" />
         </Popover>
       </Title>
-      <div className="signs-grid">
-        {orderBy(signs, `attribute.${language}`).map((sign) => {
-          const isStarting = Boolean(startingAttributes.find((attr) => attr.signId === sign.signId));
+      <div className="attributes-grid">
+        {orderBy(attributes, `attribute.${language}`).map((attribute) => {
+          const isStarting = Boolean(
+            startingAttributesIds.find((attributeId) => attributeId === attribute.id),
+          );
           return (
             <div
-              className={clsx('signs-grid__item', Boolean(cache[sign.signId]) && 'signs-grid__item--used')}
-              key={sign.attribute[language]}
+              className={clsx(
+                'attributes-grid__item',
+                Boolean(cache[attribute.id]) && 'attributes-grid__item--used',
+              )}
+              key={attribute.name[language]}
             >
               <Popconfirm
                 title={
                   isStarting ? (
                     <Translate pt="Atributo inicial" en="Starting attribute" />
                   ) : (
-                    <Translate pt="Usado" en="Used" />
+                    <Translate pt="Usado?" en="Used?" />
                   )
                 }
                 description={
-                  sign.description ? (
-                    <span className="signs-grid__mini-description">
-                      <DualTranslate>{sign.description}</DualTranslate>
+                  attribute.description ? (
+                    <span className="attributes-grid__mini-description">
+                      <DualTranslate>{attribute.description}</DualTranslate>
                     </span>
                   ) : undefined
                 }
-                onConfirm={() => updateCache(sign.signId, true)}
-                onCancel={() => updateCache(sign.signId, false)}
+                onConfirm={() => updateCache(attribute.id, true)}
+                onCancel={() => updateCache(attribute.id, false)}
                 okText={<Translate pt="Sim" en="Yes" />}
                 cancelText={<Translate pt="Não" en="No" />}
                 okButtonProps={{
@@ -102,12 +107,12 @@ export function SignsKeyCard({ signs, startingAttributes = [], phase }: SignsKey
                 }}
               >
                 <TransparentButton>
-                  <DualTranslate>{sign.attribute}</DualTranslate>
+                  <DualTranslate>{attribute.name}</DualTranslate>
                   {isStarting && <CheckSquareOutlined />}
-                  {Boolean(cache[sign.signId]) && !isStarting && <CheckCircleFilled />}
+                  {Boolean(cache[attribute.id]) && !isStarting && <CheckCircleFilled />}
                 </TransparentButton>
               </Popconfirm>
-              <SignCard id={`${sign.signId}`} className="transparent" />
+              <SignCard id={`${attribute.spriteId}`} className="transparent" />
             </div>
           );
         })}

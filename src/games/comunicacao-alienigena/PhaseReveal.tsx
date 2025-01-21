@@ -17,16 +17,16 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
-import type { Item, RequestHistoryEntry } from './utils/types';
+import type { PhaseRevealState, RequestHistoryEntry } from './utils/types';
 import { ITEM_TYPES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ players, state }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
   const { step } = useStep();
-  const items: Item[] = state.items ?? [];
+  const items = state.items ?? [];
   const latestRequest: RequestHistoryEntry | null = state.requestHistory?.[0] ?? null;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: all we need is the latestRequest
@@ -74,13 +74,14 @@ export function PhaseReveal({ players, state }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal
+          announcement={announcement}
           players={players}
           user={user}
           alien={alien}
           isUserAlien={isUserAlien}
           items={state.items}
-          signs={state.signs}
-          announcement={announcement}
+          attributes={state.attributes}
+          startingAttributesIds={state.startingAttributesIds}
           status={state.status}
           wasCurseSelected={state.wasCurseSelected}
           curses={state.curses}
@@ -88,7 +89,6 @@ export function PhaseReveal({ players, state }: PhaseProps) {
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
           isAlienBot={Boolean(state.alienBot)}
-          startingAttributes={state.startingAttributes}
           debugMode={Boolean(state.debugMode)}
         />
       </StepSwitcher>

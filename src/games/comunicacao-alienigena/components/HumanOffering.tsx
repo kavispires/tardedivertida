@@ -1,48 +1,77 @@
-import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Badge, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
+// Hooks
+import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+// Utils
+import { pluralize } from 'utils/helpers';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { RuleInstruction } from 'components/text';
 // Internal
-import type { Item, OfferingsStatus, Sign } from '../utils/types';
+import type { OfferingsStatus, PhaseBasicState, SubmitOfferingsPayload } from '../utils/types';
 import { CurseItemHighlight, ItemsHighlight } from './Highlights';
 import { HumanSignBoard } from './HumanSignBoard';
 import { SelectableObjectsGrid } from './SelectableObjectsGrid';
 
 type HumanOfferingProps = {
-  signs: Sign[];
-  startingAttributes: Sign[];
-  items: Item[];
-  submitOffer: GenericFunction;
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
+  startingAttributesIds: string[];
+  submitOffer: (payload: SubmitOfferingsPayload) => void;
   user: GamePlayer;
   status: OfferingsStatus;
 };
 
 export function HumanOffering({
-  signs,
   items,
+  attributes,
   submitOffer,
   user,
   status,
-  startingAttributes,
+  startingAttributesIds,
 }: HumanOfferingProps) {
-  const [offeringId, setSelected] = useState('');
+  const {
+    dict: offerings,
+    updateDict: updateSelected,
+    keys: offeringsIds,
+  } = useBooleanDictionary({}, (d) => Object.keys(d).length <= 3);
 
   return (
     <SpaceContainer vertical>
-      <RuleInstruction type="action">
+      <Badge count={offeringsIds.length}>
+        <SendButton
+          size="large"
+          disabled={!offeringsIds.length}
+          onClick={() => submitOffer({ offeringsIds })}
+        >
+          <Translate
+            pt={`Enviar ${pluralize(offeringsIds.length, 'Objeto')}`}
+            en={`Submit  ${pluralize(offeringsIds.length, 'Object')}`}
+          />
+        </SendButton>
+      </Badge>
+
+      <Space className="boards-container" wrap>
+        <SelectableObjectsGrid
+          items={items}
+          selectedObjects={offerings}
+          selectObject={updateSelected}
+          user={user}
+          maxObjects={10}
+          status={status}
+        />
+        <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+      </Space>
+
+      <RuleInstruction type="rule">
         <Translate
           pt={
             <>
-              <strong>Selecione</strong> um objeto e aperte enviar. Lembre-se que que você tem que entregar{' '}
-              <ItemsHighlight type="negative">{status.needed}</ItemsHighlight>
-              objetos.
-              <br />
               Você já entregou{' '}
               <ItemsHighlight type="positive">
                 {status.found}/{status.needed}
@@ -54,9 +83,6 @@ export function HumanOffering({
           }
           en={
             <>
-              <strong>Select</strong> an object then press Submit. Remember that you must deliver{' '}
-              <ItemsHighlight type="negative">{status.needed}</ItemsHighlight> objects.
-              <br />
               You already delivered{' '}
               <ItemsHighlight type="positive">
                 {status.found}/{status.needed}
@@ -68,22 +94,6 @@ export function HumanOffering({
           }
         />
       </RuleInstruction>
-
-      <Button size="large" type="primary" disabled={!offeringId} onClick={() => submitOffer({ offeringId })}>
-        <Translate pt="Enviar Objeto" en="Submit Object" />
-      </Button>
-
-      <Space className="boards-container" wrap>
-        <SelectableObjectsGrid
-          items={items}
-          selectedObjects={{ [offeringId]: true }}
-          selectObject={setSelected}
-          user={user}
-          maxObjects={2}
-          status={status}
-        />
-        <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
-      </Space>
     </SpaceContainer>
   );
 }
