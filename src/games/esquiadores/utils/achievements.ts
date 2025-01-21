@@ -16,6 +16,8 @@ export const ACHIEVEMENTS = {
   MOST_PLAYER_BETS: 'MOST_PLAYER_BETS',
   FEWEST_PLAYER_BETS: 'FEWEST_PLAYER_BETS',
   HIGHEST_BET: 'HIGHEST_BET',
+  MOST_BET_ON_PLAYER: 'MOST_BET_ON_PLAYER',
+  LEAST_BET_ON_PLAYER: 'LEAST_BET_ON_PLAYER',
 };
 
 export const achievementsReference: AchievementReference = {
@@ -136,30 +138,30 @@ export const achievementsReference: AchievementReference = {
       pt: 'Amante de Cabanas',
     },
     description: {
-      en: 'Only placed bets on lodges during the game.',
-      pt: 'Apostou apenas nas cabanas durante o jogo.',
+      en: 'Was the only player to bet on a lodge more times during the game.',
+      pt: 'Foi o único jogador a apostar em uma cabana sozinho mais vezes durante o jogo',
     },
   },
   [ACHIEVEMENTS.MOST_PLAYER_BETS]: {
     icon: 'people',
     title: {
-      en: 'Most Bet Player',
-      pt: 'Jogador que Mais Apostou',
+      en: 'Least confident',
+      pt: 'Menos Confiante',
     },
     description: {
-      en: 'Placed the most bets during the game.',
-      pt: 'Apostou mais vezes durante o jogo.',
+      en: 'Place bets on the largest number of players as the skier.',
+      pt: 'Apostou no maior número de jogadores enquanto era o esquiador.',
     },
   },
   [ACHIEVEMENTS.FEWEST_PLAYER_BETS]: {
     icon: 'person',
     title: {
-      en: 'Fewest Bet Player',
-      pt: 'Jogador que Menos Apostou',
+      en: 'Most confident',
+      pt: 'Mais confiante',
     },
     description: {
-      en: 'Placed the fewest bets during the game.',
-      pt: 'Apostou menos vezes durante o jogo.',
+      en: 'Placed bets on the fewest number of players as the skier.',
+      pt: 'Apostou em menos jogadores enquanto era o esquiador.',
     },
   },
   [ACHIEVEMENTS.HIGHEST_BET]: {
@@ -171,6 +173,28 @@ export const achievementsReference: AchievementReference = {
     description: {
       en: 'Placed the highest bet during the game.',
       pt: 'Apostou a maior aposta durante o jogo.',
+    },
+  },
+  [ACHIEVEMENTS.MOST_BET_ON_PLAYER]: {
+    icon: 'heart',
+    title: {
+      en: 'Most Trusted',
+      pt: 'Mais Confiável',
+    },
+    description: {
+      en: 'Had the most bets placed on them during the game.',
+      pt: 'Teve mais apostas feitas nele durante o jogo.',
+    },
+  },
+  [ACHIEVEMENTS.LEAST_BET_ON_PLAYER]: {
+    icon: 'broken-heart',
+    title: {
+      en: 'Least Trusted',
+      pt: 'Menos Confiável',
+    },
+    description: {
+      en: 'Had the fewest bets placed on them during the game.',
+      pt: 'Teve menos apostas feitas nele durante o jogo.',
     },
   },
 };

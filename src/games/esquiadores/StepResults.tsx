@@ -1,20 +1,23 @@
+// Ant Design Resources
+import { UnorderedListOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
+import type { UseStep } from 'hooks/useStep';
 // Components
 import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
+// Internal
 import type { PhaseBetsState } from './utils/types';
-import { TurnOrder } from 'components/players';
+import { BET_TYPES } from './utils/constants';
 import { Mountain } from './components/Mountain';
 import { Lodges } from './components/Lodges';
-import { HostNextPhaseButton } from 'components/host';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TimedButton } from 'components/buttons';
-import { UnorderedListOutlined } from '@ant-design/icons';
-import type { UseStep } from 'hooks/useStep';
-import { BET_TYPES } from './utils/constants';
 
 type StepResultsProps = {
   players: GamePlayers;
@@ -102,7 +105,7 @@ export function StepResults({
       </RuleInstruction>
 
       {betType !== 'final' && (
-        <HostNextPhaseButton withWaitingTimeBar autoTriggerTime={20}>
+        <HostNextPhaseButton withWaitingTimeBar autoTriggerTime={15}>
           Next
         </HostNextPhaseButton>
       )}
@@ -121,7 +124,7 @@ export function StepResults({
       {betType === 'final' && (
         <SpaceContainer>
           <TimedButton
-            duration={20}
+            duration={12}
             onExpire={goToNextStep}
             onClick={goToNextStep}
             icon={<UnorderedListOutlined />}

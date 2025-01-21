@@ -1,19 +1,22 @@
+import { shuffle } from 'lodash';
+import { useMemo, useState } from 'react';
+// Ant Design Resources
+import { Button, Steps } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
+import { useMock } from 'hooks/useMock';
+import { useStep } from 'hooks/useStep';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
+// Internal
 import type { PhaseBetsState, SubmitChoicesPayload } from './utils/types';
-import { TurnOrder } from 'components/players';
 import { MountainIllustration } from './components/Mountain';
-import { Button, Steps } from 'antd';
-import { useStep } from 'hooks/useStep';
-import { useMemo, useState } from 'react';
-import { shuffle } from 'lodash';
-import { SendButton } from 'components/buttons';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { useMock } from 'hooks/useMock';
 
 type StepMakeChoicesProps = {
   players: GamePlayers;
@@ -112,7 +115,10 @@ export function StepMakeChoices({
 
       {currentDilemma && (
         <div className="ski-mountain-entry my-6">
-          <div className="ski-mountain-entry__prompt">{currentDilemma.dilemma.prompt}</div>
+          <div className="ski-mountain-entry__prompt">
+            {currentDilemma.dilemma.prompt}
+            {currentDilemma.id}
+          </div>
 
           <MountainIllustration spriteId={currentDilemma.spriteId} width={256} />
 

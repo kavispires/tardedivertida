@@ -112,18 +112,22 @@ export const calculateScores = (
   const skier = players[skierId];
   Object.keys(skier[SKIER_BET_TYPES.SKIERS_BETS]).forEach((playerId) => {
     const playerPoints = skierReferencePoints[playerId];
-    if (skier[SKIER_BET_TYPES.SKIERS_BETS][playerId]) {
+    const chips: number = skier[SKIER_BET_TYPES.SKIERS_BETS][playerId];
+    if (chips) {
       skierPlayersWithBets[playerId] = true;
-      const skierPoints = playerPoints * 0.1;
+      const skierPoints = playerPoints * 0.1 * chips;
       scores.add(skierId, skierPoints, 2);
+      utils.achievements.increase(store, playerId, 'betOn', chips);
     }
   });
   Object.keys(skier[SKIER_BET_TYPES.SKIERS_BOOST]).forEach((playerId) => {
     const playerPoints = skierReferencePoints[playerId];
-    if (skier[SKIER_BET_TYPES.SKIERS_BOOST][playerId]) {
+    const chips: number = skier[SKIER_BET_TYPES.SKIERS_BETS][playerId];
+    if (chips) {
       skierPlayersWithBets[playerId] = true;
-      const skierPoints = playerPoints * 0.1;
+      const skierPoints = playerPoints * 0.1 * chips;
       scores.add(skierId, skierPoints, 2);
+      utils.achievements.increase(store, playerId, 'betOn', chips);
     }
   });
 
@@ -363,6 +367,25 @@ export const getAchievements = (store: FirebaseStoreData) => {
       playerId: highestBet.playerId,
       type: ESQUIADORES_ACHIEVEMENTS.HIGHEST_BET,
       value: highestBet.value,
+    });
+  }
+
+  // Most/Least Bet On
+  const { most: mostBetOn, least: leastBetOn } = utils.achievements.getMostAndLeastOf(store, 'betOn');
+
+  if (mostBetOn) {
+    achievements.push({
+      playerId: mostBetOn.playerId,
+      type: ESQUIADORES_ACHIEVEMENTS.MOST_BET_ON_PLAYER,
+      value: mostBetOn.value,
+    });
+  }
+
+  if (leastBetOn) {
+    achievements.push({
+      playerId: leastBetOn.playerId,
+      type: ESQUIADORES_ACHIEVEMENTS.LEAST_BET_ON_PLAYER,
+      value: leastBetOn.value,
     });
   }
 
