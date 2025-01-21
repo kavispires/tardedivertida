@@ -8,14 +8,15 @@ import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 // Internal
-import type { Item, Offer, RequestHistoryEntry } from '../utils/types';
+import type { Offer, PhaseBasicState, RequestHistoryEntry } from '../utils/types';
 import { ItemResolution } from './ItemResolution';
 import { AlienViewBoard } from './AlienViewBoard';
 
 type RequestHistoryProps = {
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
   requestHistory: RequestHistoryEntry[];
   players: GamePlayers;
-  items: Item[];
   isAlienBot: boolean;
   showIntention?: boolean;
 };
@@ -24,6 +25,7 @@ export function RequestHistory({
   requestHistory,
   players,
   items,
+  attributes,
   isAlienBot,
   showIntention,
 }: RequestHistoryProps) {
@@ -34,7 +36,15 @@ export function RequestHistory({
       key: 'request',
       title: <Translate pt="Pedido" en="Request" />,
       dataIndex: 'request',
-      render: (answer) => <AlienViewBoard request={answer} isAlienBot={isAlienBot} size="small" />,
+      render: (answer) => (
+        <AlienViewBoard
+          request={answer}
+          isAlienBot={isAlienBot}
+          size="small"
+          attributes={attributes}
+          sentenceMode
+        />
+      ),
     },
     {
       key: 'offers',
@@ -63,7 +73,7 @@ export function RequestHistory({
 type OfferingsProps = {
   offers: Offer[];
   players: GamePlayers;
-  items: Item[];
+  items: PhaseBasicState['items'];
 };
 function Offerings({ offers, players, items }: OfferingsProps) {
   return (

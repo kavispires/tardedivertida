@@ -1,7 +1,7 @@
 {
   "name": "tardedivertida",
   "homepage": "http://www.kavispires.com/tardedivertida/",
-  "version": "48.11.5",
+  "version": "48.11.7",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.5.2",

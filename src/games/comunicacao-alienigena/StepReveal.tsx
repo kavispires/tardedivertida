@@ -21,7 +21,12 @@ import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
+import type {
+  InquiryHistoryEntry,
+  OfferingsStatus,
+  PhaseBasicState,
+  RequestHistoryEntry,
+} from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
@@ -37,8 +42,9 @@ type StepRevealProps = {
   user: GamePlayer;
   alien: GamePlayer;
   isUserAlien: boolean;
-  items: Item[];
-  signs: Sign[];
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
+  startingAttributesIds: string[];
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
@@ -46,7 +52,6 @@ type StepRevealProps = {
   curses: Record<CardId, PlayerId[]>;
   round: GameRound;
   isAlienBot: boolean;
-  startingAttributes: Sign[];
   debugMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
@@ -56,13 +61,13 @@ export function StepReveal({
   user,
   status,
   items,
-  signs,
+  attributes,
   isUserAlien,
   round,
   requestHistory,
   inquiryHistory,
   isAlienBot,
-  startingAttributes,
+  startingAttributesIds,
   debugMode,
 }: StepRevealProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
@@ -77,6 +82,15 @@ export function StepReveal({
       <PopoverRule content={<Status status={status} />} />
 
       {isAlienBot && <BotPopupRule />}
+
+      <ViewIf condition={Boolean(latestRequest)}>
+        <AlienViewBoard
+          request={latestRequest.request}
+          isAlienBot={isAlienBot}
+          attributes={attributes}
+          sentenceMode
+        />
+      </ViewIf>
 
       <RuleInstruction type="rule">
         <Translate
@@ -101,16 +115,12 @@ export function StepReveal({
         />
       </RuleInstruction>
 
-      <ViewIf condition={Boolean(latestRequest)}>
-        <AlienViewBoard request={latestRequest.request} isAlienBot={isAlienBot} />
-      </ViewIf>
-
       <Instruction contained>
         <SpaceContainer wrap>
           {Boolean(latestRequest) &&
-            latestRequest.offers.map((entry, index) => {
+            latestRequest.offers.map((entry) => {
               return (
-                <SpaceContainer key={`offer-${index}`} vertical>
+                <SpaceContainer key={`offer-${entry.playerId}-${entry.objectId}`} vertical>
                   <ItemCard id={`${entry.objectId}`} className={''} width={50} />
                   <AvatarName player={players[entry.playerId]} />
                   <ItemResolution itemId={entry.objectId} items={items} />
@@ -120,17 +130,19 @@ export function StepReveal({
         </SpaceContainer>
       </Instruction>
 
+      <HostNextPhaseButton round={round} withWaitingTimeBar />
+
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
-          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+          <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} status={status} />
-          <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
+          <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
         </Space>
       </HumanContent>
 
@@ -140,16 +152,14 @@ export function StepReveal({
         players={players}
         items={items}
         isAlienBot={isAlienBot}
-        signs={signs}
+        attributes={attributes}
         showIntention={isDebugEnabled}
         debugMode={debugMode}
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
       </DebugOnly>
-
-      <HostNextPhaseButton round={round} />
     </Step>
   );
 }

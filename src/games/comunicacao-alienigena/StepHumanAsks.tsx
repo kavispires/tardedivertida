@@ -15,7 +15,13 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
+import type {
+  InquiryHistoryEntry,
+  OfferingsStatus,
+  PhaseBasicState,
+  RequestHistoryEntry,
+  SubmitHumanInquiryPayload,
+} from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
@@ -25,22 +31,23 @@ import { History } from './components/History';
 import { Status } from './components/Status';
 import { BotPopupRule } from './components/BotPopupRules';
 import { ItemsHighlight } from './components/Highlights';
+import { InquirySuggestions } from './components/Suggestions';
 
 type StepHumanAsksProps = {
   players: GamePlayers;
-  onSubmitHumanInquiry: GenericFunction;
+  onSubmitHumanInquiry: (payload: SubmitHumanInquiryPayload) => void;
   user: GamePlayer;
   alien: GamePlayer;
   isUserAlien: boolean;
   currentHuman: GamePlayer;
   isUserTheCurrentHuman: boolean;
-  items: Item[];
-  signs: Sign[];
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
+  startingAttributesIds: string[];
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
-  startingAttributes: Sign[];
   debugMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
@@ -50,7 +57,7 @@ export function StepHumanAsks({
   players,
   onSubmitHumanInquiry,
   items,
-  signs,
+  attributes,
   alien,
   isUserAlien,
   currentHuman,
@@ -59,7 +66,7 @@ export function StepHumanAsks({
   inquiryHistory,
   status,
   isAlienBot,
-  startingAttributes,
+  startingAttributesIds,
   debugMode,
 }: StepHumanAsksProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
@@ -85,7 +92,12 @@ export function StepHumanAsks({
                 <>
                   Escolha um dos atributos que você deseja desvendar, então, selecione{' '}
                   <ItemsHighlight>1-5 itens</ItemsHighlight>
-                  relacionados a esse atributo para perguntar o alienígena qual é o símbolo dele.
+                  relacionados a esse atributo para que o alienígena diga qual é o símbolo correspondente.
+                  <InquirySuggestions
+                    items={items}
+                    attributes={attributes}
+                    startingAttributesIds={startingAttributesIds}
+                  />
                 </>
               }
               en={
@@ -122,8 +134,8 @@ export function StepHumanAsks({
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
           <SignsKeyCard
-            signs={signs}
-            startingAttributes={startingAttributes}
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
             phase={PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK}
           />
         </Space>
@@ -133,10 +145,10 @@ export function StepHumanAsks({
         <ViewIf condition={isUserTheCurrentHuman}>
           <HumanInquiry
             items={items}
-            signs={signs}
+            attributes={attributes}
             submitInquiry={onSubmitHumanInquiry}
             user={user}
-            startingAttributes={startingAttributes}
+            startingAttributesIds={startingAttributesIds}
             status={status}
           />
         </ViewIf>
@@ -144,7 +156,7 @@ export function StepHumanAsks({
         <ViewIf condition={!isUserTheCurrentHuman}>
           <Space className="boards-container" wrap>
             <ObjectsGrid items={items} showTypes={false} status={status} />
-            <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
+            <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
           </Space>
         </ViewIf>
       </HumanContent>
@@ -155,13 +167,13 @@ export function StepHumanAsks({
         players={players}
         items={items}
         isAlienBot={isAlienBot}
-        signs={signs}
+        attributes={attributes}
         showIntention={isDebugEnabled}
         debugMode={debugMode}
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
       </DebugOnly>
     </Step>
   );

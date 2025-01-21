@@ -15,13 +15,14 @@ import { Card } from 'components/cards';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction, Title } from 'components/text';
+import { Instruction, RuleInstruction, Title } from 'components/text';
+import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal
-import type { Seed } from '../utils/types';
+import type { Seed, SubmitSeedingPayload } from '../utils/types';
 
 type HumanSeedingStepsProps = {
-  user: GamePlayer;
-  onSubmitSeeds: GenericFunction;
+  onSubmitSeeds: (payload: SubmitSeedingPayload) => void;
+  user: GamePlayer<{ seeds?: Dictionary<Seed> }>;
 };
 
 export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProps) {
@@ -30,9 +31,9 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
   const [seeds, setSeeds] = useState<NumberDictionary>({});
   const { dict: selected, updateDict: updateSelected, setDict, reset } = useBooleanDictionary({});
 
-  const seeders = Object.values<Seed>(user.seeds);
+  const seeders = Object.values<Seed>(user?.seeds ?? {});
   const steps = seeders.map((seed) => ({
-    title: <DualTranslate>{seed.attribute.attribute}</DualTranslate>,
+    title: <DualTranslate>{seed.attribute.name}</DualTranslate>,
     description: seed.items.length ?? 0,
   }));
 
@@ -40,8 +41,10 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
 
   const onAddSeeds = () => {
     const values = seed.items.reduce((acc: NumberDictionary, item) => {
-      const key = `${item.id}${SEPARATOR}${seed.attribute.key}`;
-      acc[key] = selected[key] ? 3 : -3;
+      const key = `${item.id}${SEPARATOR}${seed.attribute.id}`;
+      acc[key] = selected[key]
+        ? alienAttributesUtils.ATTRIBUTE_VALUE_DICT.RELATED.value
+        : alienAttributesUtils.ATTRIBUTE_VALUE_DICT.UNRELATED.value;
       return acc;
     }, {});
 
@@ -60,7 +63,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
     const previousSeed = seeders[newStep];
 
     const values = seeders[newStep].items.reduce((acc: BooleanDictionary, item) => {
-      const key = `${item.id}${SEPARATOR}${previousSeed.attribute.key}`;
+      const key = `${item.id}${SEPARATOR}${previousSeed.attribute.id}`;
       if (seeds[key] === 3) {
         acc[key] = true;
       }
@@ -72,7 +75,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
 
   const onDoneSeeding = () => {
     const values = seed.items.reduce((acc: NumberDictionary, item) => {
-      const key = `${item.id}${SEPARATOR}${seed.attribute.key}`;
+      const key = `${item.id}${SEPARATOR}${seed.attribute.id}`;
       acc[key] = selected[key] ? 3 : -3;
       return acc;
     }, {});
@@ -92,32 +95,39 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
       </div>
 
       <SpaceContainer vertical>
-        <Title level={3} size="xx-small">
+        <Title level={3} size="xx-small" colorScheme="light">
           <Translate pt="Análise" en="Analysis" />
         </Title>
-        <Instruction>
+        <RuleInstruction type="action">
           <Translate
             pt="Ative o botão de todos os itens que possuem a característica:"
             en="Activate the switch of all items that have the attribute"
           />
-        </Instruction>
+        </RuleInstruction>
 
-        <SpaceContainer>
+        <SpaceContainer vertical>
           <Card
             className={clsx('attribute-card', getAnimationClass('tada'))}
-            key={seed.attribute.key}
+            key={seed.attribute.id}
             hideHeader
           >
-            <DualTranslate>{seed.attribute.attribute}</DualTranslate>
+            <Flex vertical>
+              <DualTranslate>{seed.attribute.name}</DualTranslate>
+              <small>
+                <em>
+                  <DualTranslate>{seed.attribute.description}</DualTranslate>
+                </em>
+              </small>
+            </Flex>
           </Card>
         </SpaceContainer>
 
         <Flex justify="center" gap="middle" wrap="wrap">
           {seed.items.map((item) => {
-            const key = `${item.id}${SEPARATOR}${seed.attribute.key}`;
+            const key = `${item.id}${SEPARATOR}${seed.attribute.id}`;
             return (
               <Flex vertical justify="center" align="center" gap="small" key={key}>
-                <ItemCard id={`${item.id}`} />
+                <ItemCard id={`${item.id}`} text={item.name} />
                 <Switch
                   checkedChildren={<Translate pt="Sim" en="Yes" />}
                   unCheckedChildren={<Translate pt="Não" en="No" />}

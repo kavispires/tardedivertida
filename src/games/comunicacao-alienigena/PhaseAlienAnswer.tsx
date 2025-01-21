@@ -14,9 +14,10 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnMakeReady, useOnSubmitAlienResponseAPIRequest } from './utils/api-requests';
+import type { PhaseAlienAnswerState } from './utils/types';
 import { StepAlienAnswers } from './StepAlienAnswers';
 
-export function PhaseAlienAnswer({ players, state }: PhaseProps) {
+export function PhaseAlienAnswer({ players, state }: PhaseProps<PhaseAlienAnswerState>) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
   const [currentHuman] = useWhichPlayerIsThe('humanId', state, players);
@@ -49,15 +50,16 @@ export function PhaseAlienAnswer({ players, state }: PhaseProps) {
           isUserAlien={isUserAlien}
           currentHuman={currentHuman}
           items={state.items}
-          signs={state.signs}
+          attributes={state.attributes}
           announcement={announcement}
           status={state.status}
           currentInquiry={state.currentInquiry}
           alienResponse={state.alienResponse}
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
+          suggestions={state.suggestions}
           isAlienBot={Boolean(state.alienBot)}
-          startingAttributes={state.startingAttributes}
+          startingAttributesIds={state.startingAttributesIds}
           debugMode={Boolean(state.debugMode)}
         />
       </StepSwitcher>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-// Ant Design Resources
-import { Button } from 'antd';
 // Components
+import { SendButton } from 'components/buttons';
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -9,7 +8,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { ALIEN_CANVAS } from '../utils/constants';
 
 type HumanSignBoardProps = {
-  onSubmit: GenericFunction;
+  onSubmit: (drawing: string) => void;
   disabled?: boolean;
 };
 
@@ -27,14 +26,13 @@ export function AlienWritingBoard({ onSubmit, disabled }: HumanSignBoardProps) {
         strokeWidth="large"
         className="alien-canvas"
       />
-      <Button
-        type="primary"
+      <SendButton
         size="large"
         disabled={disabled || lines.length < 1}
         onClick={() => onSubmit(JSON.stringify(lines))}
       >
         <Translate pt="Enviar" en="Submit" />
-      </Button>
+      </SendButton>
     </SpaceContainer>
   );
 }

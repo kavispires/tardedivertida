@@ -25,7 +25,7 @@ import {
   handleSubmitAlienRequest,
   handleSubmitAlienResponse,
   handleSubmitHumanInquiry,
-  handleSubmitOffering,
+  handleSubmitOfferings,
   handleSubmitSeeds,
 } from './actions';
 import {
@@ -197,9 +197,9 @@ export const submitAction = async (data: ComunicacaoAlienigenaSubmitAction) => {
         'submit alienRequest',
       );
       return handleSubmitAlienRequest(gameName, gameId, playerId, data.alienRequest, data.intention);
-    case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_OFFERING:
-      utils.firebase.validateSubmitActionProperties(data, ['offeringId'], 'submit offeringId');
-      return handleSubmitOffering(gameName, gameId, playerId, data.offeringId);
+    case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_OFFERINGS:
+      utils.firebase.validateSubmitActionProperties(data, ['offeringsIds'], 'submit offeringsIds');
+      return handleSubmitOfferings(gameName, gameId, playerId, data.offeringsIds);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }
