@@ -8,14 +8,14 @@ import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 // Internal
-import type { InquiryHistoryEntry, Sign } from '../utils/types';
+import type { InquiryHistoryEntry, PhaseBasicState } from '../utils/types';
 import { AlienViewBoard } from './AlienViewBoard';
 
 type InquiryHistoryProps = {
   inquiryHistory: InquiryHistoryEntry[];
   players: GamePlayers;
   isAlienBot?: boolean;
-  signs: Sign[];
+  attributes: PhaseBasicState['attributes'];
   showIntention?: boolean;
   debugMode: boolean;
 };
@@ -24,7 +24,7 @@ export function InquiryHistory({
   inquiryHistory,
   players,
   isAlienBot,
-  signs,
+  attributes,
   showIntention,
   debugMode,
 }: InquiryHistoryProps) {
@@ -47,7 +47,9 @@ export function InquiryHistory({
       key: 'answer',
       title: <Translate pt="Resposta" en="Answer" />,
       dataIndex: 'answer',
-      render: (answer) => <AlienViewBoard request={answer} isAlienBot={isAlienBot} size="small" />,
+      render: (answer) => (
+        <AlienViewBoard request={answer} isAlienBot={isAlienBot} size="small" attributes={attributes} />
+      ),
     },
   ];
 
@@ -56,16 +58,7 @@ export function InquiryHistory({
       key: 'intention',
       title: <Translate pt="Intenção" en="Intention" />,
       dataIndex: 'intention',
-      render: (intention) => <Intention signs={signs} intention={intention} />,
-    });
-  }
-
-  if (isAlienBot) {
-    columns.push({
-      key: 'confidence',
-      title: <Translate pt="Confiança" en="Confidence" />,
-      dataIndex: 'confidence',
-      render: (value) => <span>{value}%</span>,
+      render: (intention) => <Intention attributes={attributes} intention={intention} />,
     });
   }
   if (debugMode) {
@@ -73,6 +66,7 @@ export function InquiryHistory({
       key: 'assumption',
       title: <Translate pt="Suposição" en="Assumption" />,
       dataIndex: 'assumption',
+      render: (intention) => <Intention attributes={attributes} intention={intention} />,
     });
   }
 
@@ -94,16 +88,16 @@ function Objects({ objectIds }: Pick<InquiryHistoryEntry, 'objectIds'>) {
 }
 
 type IntentionProps = {
-  signs: Sign[];
-  intention: Pick<InquiryHistoryEntry, 'intention'>;
+  attributes: PhaseBasicState['attributes'];
+  intention: InquiryHistoryEntry['intention'];
 };
-function Intention({ signs, intention }: IntentionProps) {
-  const attribute = signs.find((sign) => sign.key === intention);
+function Intention({ attributes, intention }: IntentionProps) {
+  const attribute = attributes.find((attribute) => attribute.id === intention);
 
   return (
     <Space>
       {attribute ? (
-        <DualTranslate>{attribute.attribute}</DualTranslate>
+        <DualTranslate>{attribute.name}</DualTranslate>
       ) : (
         <Translate pt="Desconhecido" en="Unknown" />
       )}

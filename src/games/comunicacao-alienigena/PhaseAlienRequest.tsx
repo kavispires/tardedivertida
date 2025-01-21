@@ -45,12 +45,12 @@ export function PhaseAlienRequest({ players, state }: PhaseProps) {
           alien={alien}
           isUserAlien={isUserAlien}
           items={state.items}
-          signs={state.signs}
+          attributes={state.attributes}
           announcement={announcement}
           status={state.status}
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
-          startingAttributes={state.startingAttributes}
+          startingAttributesIds={state.startingAttributesIds}
           debugMode={Boolean(state.debugMode)}
         />
       </StepSwitcher>

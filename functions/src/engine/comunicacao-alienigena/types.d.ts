@@ -1,9 +1,5 @@
-import type { AlienItem } from '../../types/tdr';
-import type {
-  COMUNICACAO_ALIENIGENA_ACHIEVEMENTS,
-  COMUNICACAO_ALIENIGENA_ACTIONS,
-  ITEM_TYPES,
-} from './constants';
+import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
+import type { COMUNICACAO_ALIENIGENA_ACHIEVEMENTS, COMUNICACAO_ALIENIGENA_ACTIONS } from './constants';
 
 export type ComunicacaoAlienigenaOptions = {
   /**
@@ -15,10 +11,6 @@ export type ComunicacaoAlienigenaOptions = {
    */
   botAlien?: boolean;
   /**
-   * Enables easy mode (3 attributes in the beginning instead of 1)
-   */
-  easyMode?: boolean;
-  /**
    * Enables debug mode
    */
   debugMode?: boolean;
@@ -26,22 +18,12 @@ export type ComunicacaoAlienigenaOptions = {
 
 export type ItemId = string;
 export type SignId = string;
-export type SignKey = string;
+export type SpriteId = string;
 
 export interface ResourceData {
-  signs: Sign[];
-  items: Item[];
-  botAlienItemKnowledge: Record<string, AlienItem>;
-  startingAttributes: Sign[];
-}
-
-export interface Item {
-  id: ItemId;
-  type: keyof typeof ITEM_TYPES;
-  offerings: PlayerId[];
-  offered?: boolean;
-  inquired?: number;
-  name?: DualLanguageValue;
+  items: AlienItem[];
+  attributes: AlienAttribute[];
+  startingAttributesIds: SignId[];
 }
 
 export interface Offer {
@@ -49,32 +31,27 @@ export interface Offer {
   playerId: PlayerId;
 }
 
-export interface Sign {
-  /**
-   * Image id
-   */
-  signId: SignId;
-  /**
-   * Attribute key
-   */
-  key: SignKey;
-  /**
-   * Attribute name
-   */
-  attribute: DualLanguageValue;
-  /**
-   * Attribute description
-   */
-  description?: DualLanguageValue;
-}
-
 export interface InquiryHistoryEntry {
-  objectIds: CardId[];
+  /**
+   * Alien drawing or spritId
+   */
   answer: string;
+  /**
+   * The objects the player asked about
+   */
+  objectIds: CardId[];
+  /**
+   * The player who asked the question
+   */
   playerId: PlayerId;
-  intention?: SignKey;
-  assumption?: SignKey;
-  confidence?: number;
+  /**
+   * The attributeId the player intended to ask
+   */
+  intention: SignId;
+  /**
+   * The attribute Id the alien bot assumed
+   */
+  assumption?: SignId;
 }
 export interface RequestHistoryEntry {
   request: string;
@@ -95,12 +72,9 @@ export type ComunicacaoAlienigenaAchievement = keyof typeof COMUNICACAO_ALIENIGE
 
 export interface ComunicacaoAlienigenaStore extends DefaultStore<ComunicacaoAlienigenaOptions> {
   [key: string]: any;
-  botAlienItemKnowledge: Record<ItemId, AlienItem>;
-  botAlienSignKnowledge: Record<SignKey, ItemId[]>;
 }
 
 export interface ComunicacaoAlienigenaState extends DefaultState {
-  [key: string]: any;
   status?: OfferingsStatus;
   inquiryHistory?: InquiryHistoryEntry[];
   requestHistory?: RequestHistoryEntry[];

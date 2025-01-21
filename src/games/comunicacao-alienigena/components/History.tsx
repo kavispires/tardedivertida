@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/player';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 // Internal
-import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from '../utils/types';
+import type { InquiryHistoryEntry, PhaseBasicState, RequestHistoryEntry } from '../utils/types';
 import { InquiryHistory } from './InquiryHistory';
 import { RequestHistory } from './RequestHistory';
 
@@ -14,10 +14,10 @@ type HistoryProps = {
   inquiryHistory: InquiryHistoryEntry[];
   requestHistory: RequestHistoryEntry[];
   players: GamePlayers;
-  items: Item[];
   isAlienBot: boolean;
   showIntention?: boolean;
-  signs: Sign[];
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
   debugMode: boolean;
 };
 
@@ -28,7 +28,7 @@ export function History({
   items,
   isAlienBot,
   showIntention = false,
-  signs,
+  attributes,
   debugMode,
 }: HistoryProps) {
   const panels: CollapseProps['items'] = [
@@ -41,7 +41,7 @@ export function History({
             inquiryHistory={inquiryHistory}
             players={players}
             isAlienBot={isAlienBot}
-            signs={signs}
+            attributes={attributes}
             showIntention={showIntention}
             debugMode={debugMode}
           />
@@ -60,6 +60,7 @@ export function History({
             items={items}
             isAlienBot={isAlienBot}
             showIntention={showIntention || debugMode}
+            attributes={attributes}
           />
           {requestHistory.length === 0 && <Translate pt="Nenhum pedido ainda." en="No requests yet." />}
         </>

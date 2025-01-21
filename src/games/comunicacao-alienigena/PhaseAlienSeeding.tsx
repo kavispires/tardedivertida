@@ -14,9 +14,10 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitSeedingAPIRequest } from './utils/api-requests';
+import type { PhaseAlienSeedingState } from './utils/types';
 import { StepSeedAlien } from './StepSeedAlien';
 
-export function PhaseAlienSeeding({ players, state }: PhaseProps) {
+export function PhaseAlienSeeding({ players, state }: PhaseProps<PhaseAlienSeedingState>) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
 

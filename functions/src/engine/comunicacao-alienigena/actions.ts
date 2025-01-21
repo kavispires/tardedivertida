@@ -9,9 +9,9 @@ import { getNextPhase } from '.';
  * @async
  * @param gameName - The name of the game.
  * @param gameId - The ID of the game.
- * @param playerId - The ID of the player who is submitting the alien ID.
+ * @param playerId - The ID of the player who is submitting the action
  * @param alienId - The ID of the selected alien player.
- * @returns - A promise that resolves after the update is complete.
+ * @returns - it triggers the next state.
  */
 export const handleSubmitAlien = async (
   gameName: GameName,
@@ -34,11 +34,11 @@ export const handleSubmitAlien = async (
 
 /**
  * Submits the seeding performed by a player.
- * @param gameName
- * @param gameId
- * @param playerId
- * @param seeds
- * @returns
+ * @param gameName - The name of the game.
+ * @param gameId - The ID of the game.
+ * @param playerId - The ID of the player who is submitting the action
+ * @param seeds - The seeds submitted by the player.
+ * @returns - it triggers the next state when all players are ready.
  */
 export const handleSubmitSeeds = async (
   gameName: GameName,
@@ -61,11 +61,11 @@ export const handleSubmitSeeds = async (
 
 /**
  * Submits the selected objects by a given player.
- * @param gameName
- * @param gameId
- * @param playerId
- * @param objectsIds
- * @returns
+ * @param gameName - The name of the game.
+ * @param gameId - The ID of the game.
+ * @param playerId - The ID of the player who is submitting the action.
+ * @param objectsIds - The IDs of the objects selected by the player.
+ * @returns - it triggers the next state when all players are ready.
  */
 export const handleSubmitHumanInquiry = async (
   gameName: GameName,
@@ -85,6 +85,14 @@ export const handleSubmitHumanInquiry = async (
   });
 };
 
+/**
+ * Submits item response from the alien.
+ * @param gameName - The name of the game.
+ * @param gameId - The ID of the game.
+ * @param playerId - The ID of the player who is submitting the action.
+ * @param objectsIds - The IDs of the objects selected by the player.
+ * @returns - it updates the current state.
+ */
 export const handleSubmitAlienResponse = async (
   gameName: GameName,
   gameId: GameId,
@@ -102,6 +110,15 @@ export const handleSubmitAlienResponse = async (
   });
 };
 
+/**
+ * Submits the alien request.
+ ** @param gameName - The name of the game.
+ * @param gameId - The ID of the game.
+ * @param playerId - The ID of the player who is submitting the action.
+ * @param alienRequest - The alien request.
+ * @param intention - The intention of the alien.
+ * @returns - it triggers the next phase.
+ */
 export const handleSubmitAlienRequest = async (
   gameName: GameName,
   gameId: GameId,
@@ -122,19 +139,27 @@ export const handleSubmitAlienRequest = async (
   });
 };
 
-export const handleSubmitOffering = async (
+/**
+ * Submits the offerings of the players.
+ * @param gameName - The name of the game.
+ * @param gameId - The ID of the game.
+ * @param playerId - The ID of the player who is submitting the action.
+ * @param offeringsIds - The IDs of the offerings submitted by the player.
+ * @returns - it triggers the next state when all players are ready.
+ */
+export const handleSubmitOfferings = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  offeringId: CardId,
+  offeringsIds: CardId[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
-    actionText: 'submit offering',
+    actionText: 'submit offerings',
     shouldReady: true,
-    change: { offeringId },
+    change: { offeringsIds },
     nextPhaseFunction: getNextPhase,
   });
 };

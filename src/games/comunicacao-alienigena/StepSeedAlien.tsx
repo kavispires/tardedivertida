@@ -5,12 +5,13 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
+import type { Seed, SubmitSeedingPayload } from './utils/types';
 import { BotPopupRule } from './components/BotPopupRules';
 import { HumanSeedingSteps } from './components/HumanSeedingSteps';
 
 type StepSeedAlienProps = {
-  onSubmitSeeds: GenericFunction;
-  user: GamePlayer;
+  onSubmitSeeds: (payload: SubmitSeedingPayload) => void;
+  user: GamePlayer<{ seeds?: Dictionary<Seed> }>;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSeedAlien({ user, announcement, onSubmitSeeds }: StepSeedAlienProps) {

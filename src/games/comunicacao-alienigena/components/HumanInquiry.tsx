@@ -1,36 +1,40 @@
 import { orderBy } from 'lodash';
 import { useState } from 'react';
 // Ant Design Resources
-import { Badge, Button, Select, Space } from 'antd';
+import { Badge, Select, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
+import { SendButton } from 'components/buttons';
+import { DebugOnly, DevButton } from 'components/debug';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal
-import type { Item, OfferingsStatus, Sign } from '../utils/types';
+import type { OfferingsStatus, PhaseBasicState, SubmitHumanInquiryPayload } from '../utils/types';
 import { HumanSignBoard } from './HumanSignBoard';
 import { SelectableObjectsGrid } from './SelectableObjectsGrid';
 
 type HumanInquiryProps = {
-  signs: Sign[];
-  startingAttributes: Sign[];
-  items: Item[];
-  submitInquiry: GenericFunction;
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
+  startingAttributesIds: string[];
+  submitInquiry: (payload: SubmitHumanInquiryPayload) => void;
   user: GamePlayer;
   status: OfferingsStatus;
 };
 
 export function HumanInquiry({
-  signs,
+  attributes,
   items,
   submitInquiry,
   user,
-  startingAttributes,
+  startingAttributesIds,
   status,
 }: HumanInquiryProps) {
   const { isLoading } = useLoading();
@@ -54,22 +58,30 @@ export function HumanInquiry({
           <Select.Option value="">
             <Translate pt="Selecione um atributo" en="Select an attribute" />
           </Select.Option>
-          {orderBy(signs, `attribute.${language}`).map((sign) => (
-            <Select.Option key={`sign-${sign.key}`} value={sign.key}>
-              <DualTranslate>{sign.attribute}</DualTranslate>
+          {orderBy(attributes, `attribute.${language}`).map((attribute) => (
+            <Select.Option key={`attribute-${attribute.id}`} value={attribute.id}>
+              <DualTranslate>{attribute.name}</DualTranslate>
             </Select.Option>
           ))}
         </Select>
         <Badge count={objectsIds.length}>
-          <Button
+          <SendButton
             size="large"
             type="primary"
             disabled={!attribute || objectsIds.length < 1 || isLoading}
             onClick={() => submitInquiry({ objectsIds, intention: attribute })}
           >
             <Translate pt="Enviar Objetos" en="Submit Objects" />
-          </Button>
+          </SendButton>
         </Badge>
+        <DebugOnly devOnly>
+          <MockInquiryButton
+            items={items}
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
+            submitInquiry={submitInquiry}
+          />
+        </DebugOnly>
       </Space>
       <Space className="boards-container" wrap>
         <SelectableObjectsGrid
@@ -79,8 +91,35 @@ export function HumanInquiry({
           user={user}
           status={status}
         />
-        <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
+        <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
       </Space>
     </SpaceContainer>
+  );
+}
+
+export function MockInquiryButton({
+  items,
+  attributes,
+  startingAttributesIds,
+  submitInquiry,
+}: Pick<HumanInquiryProps, 'items' | 'attributes' | 'startingAttributesIds' | 'submitInquiry'>) {
+  const { cache } = useCache();
+
+  const onSubmitMockInquiry = () => {
+    const inquiry = alienAttributesUtils.getInquirySuggestions(items, attributes, [
+      ...startingAttributesIds,
+      ...Object.keys(cache),
+    ]);
+
+    submitInquiry({
+      objectsIds: inquiry[0].items.map((item) => item.id),
+      intention: inquiry[0].attribute.id,
+    });
+  };
+
+  return (
+    <DevButton onClick={onSubmitMockInquiry} size="large">
+      Submit Mock
+    </DevButton>
   );
 }

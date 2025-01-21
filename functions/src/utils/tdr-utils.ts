@@ -1,9 +1,7 @@
 import { every, some } from 'lodash';
-
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
-import type { AlienItem, ContenderCard, Item, TextCard } from '../types/tdr';
-import utils from './';
+import type { ContenderCard, Item, TextCard } from '../types/tdr';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
@@ -135,163 +133,11 @@ export const saveUsedItems = async (items: Item[]) => {
 };
 
 /**
- * Get alien items for given quantity and NSFW allowance otherwise it resets the used items and use all available
- * @param quantity
- * @param allowNSFW - indicates that NSFW items are allowed
- * @param decks - list of decks that items must be within
- * @param filters - list of filter functions to filter out items
- * @param balanceAttributes - indicates that item must have balanced attributes (for alien bot for example)
- * @returns
- */
-export const getAlienItems = async (
-  quantity: number,
-  options: {
-    allowNSFW: boolean;
-    decks?: string[];
-    filters?: ((item: AlienItem) => boolean)[];
-    balanceAttributes?: boolean;
-  } = {
-    allowNSFW: false,
-    decks: [],
-    filters: [],
-    balanceAttributes: false,
-  },
-): Promise<AlienItem[]> => {
-  const allAlienItemsObj: Dictionary<AlienItem> = await fetchResource(TDR_RESOURCES.ALIEN_ITEMS);
-
-  function getWellWeightedItems(items: Dictionary<AlienItem>) {
-    const attributeKeysWith5: Set<string> = new Set();
-    const selectedItems: AlienItem[] = [];
-    const leftOverItems: AlienItem[] = [];
-    const shuffledItems = gameUtils.shuffle(Object.values(items));
-
-    for (const item of shuffledItems) {
-      const attributeKeyWith5 = gameUtils
-        .shuffle(Object.keys(item.attributes))
-        .find((key) => item.attributes[key] === 5);
-
-      if (attributeKeyWith5 && !attributeKeysWith5.has(attributeKeyWith5)) {
-        selectedItems.push(item);
-        attributeKeysWith5.add(attributeKeyWith5);
-      } else {
-        leftOverItems.push(item);
-      }
-
-      if (selectedItems.length === quantity) {
-        break;
-      }
-    }
-
-    if (selectedItems.length < quantity) {
-      return selectedItems.concat(leftOverItems.slice(0, quantity - selectedItems.length));
-    }
-
-    return selectedItems;
-  }
-
-  // Filter out items that don't match the options
-  Object.values(allAlienItemsObj).forEach((item) => {
-    // Handle NSFW
-    if (!options.allowNSFW && item.nsfw) {
-      delete allAlienItemsObj[item.id];
-      return;
-    }
-
-    // Handle decks
-    if (options.decks?.length) {
-      if (!alienItemUtils.onlyItemsWithinDecks(options?.decks ?? [])(item)) {
-        delete allAlienItemsObj[item.id];
-        return;
-      }
-    }
-
-    // If filter is provided, filter out items that don't match the filter
-    if (options.filters) {
-      if (!every(options.filters, (filter) => filter(item))) {
-        delete allAlienItemsObj[item.id];
-        return;
-      }
-    }
-  });
-
-  // Get used items deck
-  const usedItems: BooleanDictionary = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, {});
-
-  // Filter out used items
-  let availableAlienItems = gameUtils.filterOutByIds(allAlienItemsObj, usedItems);
-
-  // If not the minimum items needed, reset and use all
-  if (Object.keys(availableAlienItems).length < quantity) {
-    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
-    availableAlienItems = allAlienItemsObj;
-  }
-
-  let list = Object.values(availableAlienItems);
-
-  // If there are enough safe items, return them
-  if (list.length >= quantity) {
-    return options.balanceAttributes
-      ? getWellWeightedItems(utils.helpers.buildDictionaryFromList(list))
-      : gameUtils.getRandomItems(list, quantity);
-  }
-
-  // If not the minimum items needed, reset and use all safe
-  await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
-
-  list = Object.values(allAlienItemsObj);
-  return options.balanceAttributes
-    ? getWellWeightedItems(utils.helpers.buildDictionaryFromList(list))
-    : gameUtils.getRandomItems(list, quantity);
-};
-
-export const alienItemUtils = {
-  /**
-   * Filter alien only if safe for work
-   */
-  onlySafeForWork: (item: AlienItem) => !item.nsfw,
-  /**
-   * Filter alien items by deck/tag
-   * @param deck
-   * @returns boolean
-   */
-  onlyItemsWithinDecks: (decks: string[]) => (item: AlienItem) => {
-    return every(decks, (deck) => (item.decks ?? []).includes(deck));
-  },
-  /**
-   * Filter alien items by deck/tag
-   */
-  notWithinDecks: (decks: string[]) => (item: AlienItem) => {
-    return !some(decks, (deck) => (item.decks ?? []).includes(deck));
-  },
-  onlyWithName: (language: Language) => (item: AlienItem) => Boolean(item.name[language].trim()),
-  /**
-   * Filter item only if it has at least 75% of attribute data
-   * @param item
-   * @returns
-   */
-  onlyWithAttributes: (item: AlienItem) => {
-    const totalAttributes = Object.keys(item.attributes).length;
-
-    let attributesWithWeights = 0;
-    Object.values(item.attributes).forEach((attribute) => {
-      if (attribute !== 0) {
-        attributesWithWeights++;
-      }
-    });
-
-    if (totalAttributes * 0.75 > attributesWithWeights) {
-      return false;
-    }
-    return true;
-  },
-};
-
-/**
  * Saves list of used alien items ids into the global used document
  * @param items
  * @returns
  */
-export const saveUsedAlienItems = async (items: AlienItem[]) => {
+export const saveUsedAlienItems = async (items: Item[]) => {
   const itemsIdsDict = buildBooleanDictionary(items);
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, itemsIdsDict);
 };

@@ -22,13 +22,16 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <ViewIf condition={state.items && state.signs && state.inquiryHistory && state.requestHistory}>
+      <ViewIf condition={state.items && state.attributes && state.inquiryHistory && state.requestHistory}>
         <SpaceContainer wrap>
           <ObjectsGrid items={state.items} showTypes showAll status={state.status} />
           <SpaceContainer wrap vertical>
-            <SignsKeyCard signs={state.signs} />
+            <SignsKeyCard attributes={state.attributes} startingAttributesIds={state.startingAttributesIds} />
             <ViewIf condition={!isUserAlien}>
-              <HumanSignBoard signs={state.signs} startingAttributes={state.startingAttributes} />
+              <HumanSignBoard
+                attributes={state.attributes}
+                startingAttributesIds={state.startingAttributesIds}
+              />
             </ViewIf>
           </SpaceContainer>
         </SpaceContainer>
@@ -41,7 +44,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
           isAlienBot={state.isAlienBot}
           showIntention
           debugMode={!!state.debugMode}
-          signs={state.signs}
+          attributes={state.attributes}
         />
       </ViewIf>
     </GameOverWrapper>

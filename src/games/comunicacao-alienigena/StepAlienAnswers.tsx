@@ -1,15 +1,15 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
+import { SendButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
@@ -19,7 +19,13 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import type { InquiryHistoryEntry, Item, RequestHistoryEntry, Sign } from './utils/types';
+import type {
+  InquiryHistoryEntry,
+  PhaseAlienAnswerState,
+  PhaseBasicState,
+  RequestHistoryEntry,
+  SubmitAlienResponsePayload,
+} from './utils/types';
 import type { OfferingsStatus } from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
@@ -30,25 +36,26 @@ import { History } from './components/History';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
-// Icons
+import { AnswerSuggestions } from './components/Suggestions';
 
 type StepAlienAnswersProps = {
   players: GamePlayers;
-  onSubmitAlienResponse: GenericFunction;
-  onConfirmNote: GenericFunction;
+  onSubmitAlienResponse: (payload: SubmitAlienResponsePayload) => void;
+  onConfirmNote: () => void;
   user: GamePlayer;
   alien: GamePlayer;
   isUserAlien: boolean;
   currentHuman: GamePlayer;
-  items: Item[];
-  signs: Sign[];
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
+  suggestions: PhaseAlienAnswerState['suggestions'];
+  startingAttributesIds: string[];
   status: OfferingsStatus;
   currentInquiry: CardId[];
   alienResponse?: string;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
-  startingAttributes: Sign[];
   debugMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
@@ -59,7 +66,7 @@ export function StepAlienAnswers({
   onSubmitAlienResponse,
   onConfirmNote,
   items,
-  signs,
+  attributes,
   alien,
   isUserAlien,
   currentHuman,
@@ -69,14 +76,12 @@ export function StepAlienAnswers({
   inquiryHistory,
   status,
   isAlienBot,
-  startingAttributes,
+  startingAttributesIds,
+  suggestions,
   debugMode,
 }: StepAlienAnswersProps) {
   const { isLoading } = useLoading();
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
-
-  // Dev Only
-  useMock(() => onConfirmNote());
 
   const hasAlienResponse = Boolean(alienResponse);
 
@@ -131,13 +136,15 @@ export function StepAlienAnswers({
               pt={
                 <>
                   Escreva um único símbolo que você acha que representa{' '}
-                  {pluralize(currentInquiry.length, 'o objeto', 'os objetos')} melhor.
+                  {pluralize(currentInquiry.length, 'o objeto', 'os objetos')} melhor.{' '}
+                  <AnswerSuggestions suggestions={suggestions} />
                 </>
               }
               en={
                 <>
                   Write a single symbol that you think represents the{' '}
-                  {pluralize(currentInquiry.length, 'object')} the best
+                  {pluralize(currentInquiry.length, 'object')} the best.{' '}
+                  <AnswerSuggestions suggestions={suggestions} />
                 </>
               }
             />
@@ -159,19 +166,15 @@ export function StepAlienAnswers({
             request={alienResponse}
             isAlienBot={isAlienBot}
             className={getAnimationClass('fadeIn')}
+            attributes={attributes}
           />
         )}
 
         <HumanContent user={user}>
           <SpaceContainer>
-            <Button
-              type="primary"
-              size="large"
-              onClick={() => onConfirmNote()}
-              disabled={isLoading || user.ready}
-            >
+            <SendButton size="large" onClick={() => onConfirmNote()} disabled={isLoading || user.ready}>
               <Translate pt="Anotei o símbolo e estou pronto" en="I have noted the symbol and I'm ready" />
-            </Button>
+            </SendButton>
           </SpaceContainer>
         </HumanContent>
       </ViewIf>
@@ -179,14 +182,14 @@ export function StepAlienAnswers({
       <AlienContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} status={status} />
-          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+          <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} status={status} />
-          <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
+          <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
         </Space>
       </HumanContent>
 
@@ -196,13 +199,13 @@ export function StepAlienAnswers({
         players={players}
         items={items}
         isAlienBot={isAlienBot}
-        signs={signs}
+        attributes={attributes}
         showIntention={isDebugEnabled}
         debugMode={debugMode}
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
       </DebugOnly>
     </Step>
   );

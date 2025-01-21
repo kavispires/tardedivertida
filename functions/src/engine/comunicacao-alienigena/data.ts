@@ -1,15 +1,16 @@
 // Constants
-import { ATTRIBUTES, AVAILABLE_SIGNS, TOTAL_ITEMS, TOTAL_SIGNS } from './constants';
+import { ITEM_TYPES, ITEMS_COUNT, TOTAL_ITEMS } from './constants';
 // Type
-import type { AlienItem, ItemAttribute } from '../../types/tdr';
-import type { Item, Sign, ResourceData, ComunicacaoAlienigenaOptions } from './types';
+import type { Item, ItemAttribute, ItemAttributesValues } from '../../types/tdr';
+import type { ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Helpers
 import utils from '../../utils';
-import { calculateAttributeUsage, getItems } from './helpers';
-import { alienItemUtils } from '../../utils/tdr-utils';
 import * as resourceUtils from '../resource';
 import { TDR_RESOURCES } from '../../utils/constants';
-import { orderBy } from 'lodash';
+import { orderBy, shuffle } from 'lodash';
+import { alienAttributesUtils } from '../../utils/tool-kits';
+import { makeArray } from '../../utils/game-utils';
+import type { AlienItem } from '../../utils/tool-kits/alien-attributes';
 
 /**
  * Get characters based on the game's language
@@ -24,117 +25,63 @@ export const getResourceData = async (
   playerCount: number,
   options: ComunicacaoAlienigenaOptions,
 ): Promise<ResourceData> => {
-  const isBotAlien = !!options.botAlien;
   const allowNSFW = !!options.nsfw;
-  const isEasyGame = !!options.easyMode;
-  let botAlienItemKnowledge: Dictionary<AlienItem> = {};
+  const botAlien = !!options.botAlien;
 
-  // If not bot alien, use new libraries
-  if (!isBotAlien) {
-    const itemAttributesResponse = await resourceUtils.fetchResource<Dictionary<ItemAttribute>>(
-      TDR_RESOURCES.ITEMS_ATTRIBUTES,
-    );
-    const itemAttributes = utils.game.getRandomItems(
-      Object.values(itemAttributesResponse).filter((attribute) => attribute.default),
-      TOTAL_ITEMS,
-    );
-
-    const fakeAttributesForAliemItemKnowledge = itemAttributes.reduce((acc: PlainObject, attribute) => {
-      acc[attribute.id] = 3;
-      return acc;
-    }, {});
-
-    const itemsSample = await utils.tdr.getItems(TOTAL_ITEMS, {
-      allowNSFW,
-      decks: ['alien'],
-      cleanUp: utils.tdr.itemUtils.cleanupDecks,
-    });
-
-    const selectedAlienItems: AlienItem[] = itemsSample.map((item) => ({
-      id: item.id,
-      name: item.name,
-      attributes: fakeAttributesForAliemItemKnowledge,
-    }));
-
-    const items: Item[] = getItems(playerCount).map((itemType, index) => ({
-      id: selectedAlienItems[index].id,
-      name: selectedAlienItems[index].name,
-      type: itemType,
-      offerings: [],
-    }));
-
-    const signIds = utils.game.getRandomItems(
-      utils.game.makeArray(Object.values(itemAttributesResponse).length),
-      TOTAL_SIGNS,
-    );
-
-    // Get random list of attributes and signs, then alphabetically order them
-    const signs: Sign[] = orderBy(
-      itemAttributes.map((attributeObj, index) => ({
-        attribute: itemAttributesResponse[attributeObj.id].name,
-        key: itemAttributesResponse[attributeObj.id].id,
-        signId: String(signIds[index]),
-        description: itemAttributesResponse[attributeObj.id].description,
-      })),
-      `attribute.${language}`,
-      'asc',
-    );
-
-    const startingAttributes = utils.game.getRandomItems(signs, isEasyGame ? 3 : 1);
-
-    return {
-      items,
-      signs,
-      botAlienItemKnowledge,
-      startingAttributes,
-    };
-  }
-
-  // Get the 25 needed items randomly
-  const selectedAlienItems = await utils.tdr.getAlienItems(TOTAL_ITEMS, {
-    allowNSFW,
-    filters: [alienItemUtils.notWithinDecks(['no-alien']), alienItemUtils.onlyWithAttributes],
-    balanceAttributes: isBotAlien,
-  });
-
-  const items: Item[] = getItems(playerCount).map((itemType, index) => ({
-    id: selectedAlienItems[index].id,
-    type: itemType,
-    offerings: [],
-  }));
-
-  const selectedAttributesKeys = utils.game.shuffle(calculateAttributeUsage(selectedAlienItems));
-
-  if (isBotAlien) {
-    // Cleanup items from attributes not belonging to the game
-    selectedAlienItems.forEach((item) => {
-      utils.game.getUniqueItems(selectedAttributesKeys, Object.keys(item.attributes)).forEach((attribute) => {
-        delete item.attributes[attribute];
-      });
-    });
-    botAlienItemKnowledge = utils.helpers.buildDictionaryFromList(selectedAlienItems, 'id');
-  }
-
-  const signIds = utils.game.getRandomItems(utils.game.makeArray(AVAILABLE_SIGNS), TOTAL_SIGNS);
-
-  // Get random list of attributes and signs, then alphabetically order them
-  const signs: Sign[] = orderBy(
-    selectedAttributesKeys.map((key, index) => ({
-      attribute: ATTRIBUTES[key].name,
-      key: ATTRIBUTES[key].id,
-      signId: String(signIds[index]),
-    })),
-    `attribute.${language}`,
-    'asc',
+  // Fetch data
+  const itemsResource = await resourceUtils.fetchResource<Dictionary<Item>>(TDR_RESOURCES.ITEMS);
+  const itemsAttributesResource = await resourceUtils.fetchResource<Dictionary<ItemAttribute>>(
+    TDR_RESOURCES.ITEMS_ATTRIBUTES,
+  );
+  const itemsAttributesValuesResource = await resourceUtils.fetchResource<Dictionary<ItemAttributesValues>>(
+    TDR_RESOURCES.ITEMS_ATTRIBUTE_VALUES,
   );
 
-  const startingAttributes = utils.game.getRandomItems(signs, isEasyGame ? 3 : 1);
+  const { items, attributes } = alienAttributesUtils.buildAlienGameGrids(
+    itemsResource,
+    Object.values(itemsAttributesValuesResource),
+    Object.values(itemsAttributesResource),
+    { nsfw: allowNSFW, itemsGridSize: TOTAL_ITEMS, reliability: botAlien ? 75 : 30 },
+  );
+
+  // Attributes: Randomize spriteIds
+  const sortedSprites = shuffle(utils.game.makeArray(Object.keys(itemsAttributesResource).length, 0));
+  attributes.forEach((attr, index) => {
+    attr.spriteId = `${sortedSprites[index]}`;
+  });
+
+  // Items: Distribute types
+  const counts = ITEMS_COUNT[playerCount];
+  const sortedTypes = shuffle([
+    ...makeArray(counts.answers).map(() => {
+      return ITEM_TYPES.ITEM;
+    }),
+    ...makeArray(counts.curses).map(() => {
+      return ITEM_TYPES.CURSE;
+    }),
+    ...makeArray(TOTAL_ITEMS - counts.answers - counts.curses).map(() => {
+      return ITEM_TYPES.BLANK;
+    }),
+  ]);
+  items.map((item, index) => {
+    item.type = sortedTypes[index] as AlienItem['type'];
+  });
+
+  // Get initial attributes
+  const startingAttributesIds = alienAttributesUtils.getInitialKnownAttributes(items, attributes);
+
+  // Mark starting attributes as known
+  startingAttributesIds.forEach((id) => {
+    const attr = attributes.find((a) => a.id === id);
+    if (attr) {
+      attr.known = true;
+    }
+  });
 
   return {
-    items,
-    signs,
-    botAlienItemKnowledge,
-    startingAttributes,
+    items: orderBy(items, [`name.${language}`], ['asc']),
+    attributes: orderBy(attributes, [`name.${language}`], ['asc']),
+    startingAttributesIds,
   };
 };
 

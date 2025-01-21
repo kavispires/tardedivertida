@@ -9,12 +9,12 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
-import type { Item, OfferingsStatus } from '../utils/types';
+import type { OfferingsStatus, PhaseBasicState } from '../utils/types';
 import { BADGE_INSTRUCTION } from '../utils/constants';
 import { ObjectsKey } from './ObjectsKey';
 
 type ObjectsGridProps = {
-  items: Item[];
+  items: PhaseBasicState['items'];
   showTypes?: boolean;
   activeObjects?: CardId[];
   showAll?: boolean;
@@ -34,24 +34,24 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, 
             key={`objects-grid-${item.id}`}
             className={clsx(
               'objects-grid__item',
-              (showTypes || item.offered) && `objects-grid__item--${item.type}`,
+              (showTypes || item.offerings.length > 0) && `objects-grid__item--${item.type}`,
               activeObjects?.includes(item.id) && 'objects-grid__item--ask',
             )}
           >
-            <Badge count={item.inquired} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
+            <Badge count={item.inquiries} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
               <ItemCard
                 id={`${item.id}`}
-                className={clsx(item.offered && 'objects-grid__item-offered')}
+                className={clsx(item.offerings.length > 0 && 'objects-grid__item-offered')}
                 title={item.name ? dualTranslate(item.name) : undefined}
               />
             </Badge>
 
-            {showAll && Boolean(item.offered) && item.type === 'ITEM' && (
+            {showAll && Boolean(item.offerings.length > 0) && item.type === 'ITEM' && (
               <span className="objects-grid__offered-icon objects-grid__offered-icon--correct">
                 <CheckCircleFilled />
               </span>
             )}
-            {showAll && Boolean(item.offered) && item.type !== 'ITEM' && (
+            {showAll && Boolean(item.offerings.length > 0) && item.type !== 'ITEM' && (
               <span className="objects-grid__offered-icon objects-grid__offered-icon--incorrect">
                 <CloseCircleFilled />
               </span>

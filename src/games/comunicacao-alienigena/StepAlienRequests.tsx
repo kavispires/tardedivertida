@@ -14,7 +14,12 @@ import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { InquiryHistoryEntry, Item, OfferingsStatus, RequestHistoryEntry, Sign } from './utils/types';
+import type {
+  InquiryHistoryEntry,
+  OfferingsStatus,
+  PhaseBasicState,
+  RequestHistoryEntry,
+} from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
@@ -30,12 +35,12 @@ type StepAlienRequestsProps = {
   user: GamePlayer;
   alien: GamePlayer;
   isUserAlien: boolean;
-  items: Item[];
-  signs: Sign[];
+  items: PhaseBasicState['items'];
+  attributes: PhaseBasicState['attributes'];
+  startingAttributesIds: string[];
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
-  startingAttributes: Sign[];
   debugMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
@@ -45,13 +50,13 @@ export function StepAlienRequests({
   user,
   onSubmitAlienRequest,
   items,
-  signs,
+  attributes,
   alien,
   isUserAlien,
   requestHistory,
   inquiryHistory,
   status,
-  startingAttributes,
+  startingAttributesIds,
   debugMode,
 }: StepAlienRequestsProps) {
   const { isLoading } = useLoading();
@@ -143,14 +148,14 @@ export function StepAlienRequests({
             isAlienRequest
             status={status}
           />
-          <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+          <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
         <Space className="boards-container" wrap>
           <ObjectsGrid items={items} status={status} />
-          <HumanSignBoard signs={signs} startingAttributes={startingAttributes} />
+          <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
         </Space>
       </HumanContent>
 
@@ -160,13 +165,13 @@ export function StepAlienRequests({
         players={players}
         items={items}
         isAlienBot={false}
-        signs={signs}
+        attributes={attributes}
         showIntention={isDebugEnabled}
         debugMode={debugMode}
       />
 
       <DebugOnly>
-        <SignsKeyCard signs={signs} startingAttributes={startingAttributes} />
+        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
       </DebugOnly>
     </Step>
   );
