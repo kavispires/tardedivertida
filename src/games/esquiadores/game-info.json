@@ -2,8 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "0.1.3",
-  "release": "beta",
+  "version": "1.0.0",
+  "release": "stable",
   "available": true,
   "title": {
     "pt": "Esquiadores",
@@ -19,7 +19,7 @@
     "en": "Players bet on what the skier will decide in a series of choices"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "snow-cloud",
     "cloudsAnimationType": "falling",
     "primaryColor": "",
     "backgroundColor": "rgba(234, 235, 235, 0.95)",

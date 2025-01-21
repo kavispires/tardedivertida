@@ -43,6 +43,7 @@ export const prepareSetupPhase = async (
     final: 0,
     onlyLodge: 0,
     players: 0,
+    betOn: 0,
     highestBet: [],
   });
 
@@ -160,7 +161,7 @@ export const prepareStartingResultsPhase = async (
 
   // Add skier selections to mountain
   const isGoingLeftLevel1 = choices[0] === 'left';
-  const isGoingLeftLevel2 = choices[1] === 'left';
+  const isGoingLeftLevel2 = choices[isGoingLeftLevel1 ? 1 : 2] === 'left';
   const isGoingLeftLevel3 = choices[2] === 'left';
   mountain[0].direction = choices[0] as MountainDilemma['direction'];
   mountain[1].selected = isGoingLeftLevel1;

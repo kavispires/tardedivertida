@@ -1,21 +1,27 @@
+import clsx from 'clsx';
+import { orderBy } from 'lodash';
+import { useMemo } from 'react';
+// Ant Design Resources
+import { LeftOutlined, TrophyOutlined } from '@ant-design/icons';
+import { Button, Flex } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
+import type { UseStep } from 'hooks/useStep';
+// Icons
+import { LodgeIcon } from 'icons/LodgeIcon';
+import { QualitySealIcon } from 'icons/QualitySealIcon';
+// Components
+import { AvatarName, IconAvatar } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { Container } from 'components/layout/Container';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';
-import type { GamePlayer, GamePlayers } from 'types/player';
+// Internal
 import type { Lodge } from './utils/types';
-import { useMemo } from 'react';
-import { orderBy } from 'lodash';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TimedButton } from 'components/buttons';
-import type { UseStep } from 'hooks/useStep';
-import { Button, Flex } from 'antd';
-import { LeftOutlined, TrophyOutlined } from '@ant-design/icons';
-import { LodgeIcon } from 'icons/LodgeIcon';
 import { LODGE_COLORS } from './utils/constants';
-import { AvatarName, IconAvatar } from 'components/avatars';
-import { QualitySealIcon } from 'icons/QualitySealIcon';
-import clsx from 'clsx';
-import { Container } from 'components/layout/Container';
 import { BettingChipValue } from './components/BettingChipValue';
 
 type StepBetsBreakdownProps = {
@@ -113,7 +119,7 @@ export function StepBetsBreakdown({
         <Button icon={<LeftOutlined />} onClick={goToPreviousStep}>
           <Translate pt="Ver Montanha" en="See Mountain" />
         </Button>
-        <TimedButton duration={40} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
+        <TimedButton duration={25} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </SpaceContainer>
