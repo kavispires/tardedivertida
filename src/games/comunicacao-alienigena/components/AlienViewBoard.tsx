@@ -1,29 +1,47 @@
 import clsx from 'clsx';
+import { keyBy } from 'lodash';
+import { useMemo } from 'react';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { SignCard } from 'components/cards/SignCard';
+import { type AlienAttribute, alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal
 import { ALIEN_CANVAS } from '../utils/constants';
 
 type AlienViewBoardProps = {
-  request: string | string[];
+  request: string;
   isAlienBot?: boolean;
   size?: 'normal' | 'small';
   className?: string;
+  sentenceMode?: boolean;
+  attributes: AlienAttribute[];
 };
 
-export function AlienViewBoard({ request, isAlienBot, size, className }: AlienViewBoardProps) {
+export function AlienViewBoard({
+  request,
+  isAlienBot,
+  size,
+  className,
+  sentenceMode,
+  attributes,
+}: AlienViewBoardProps) {
   const width = size === 'small' ? ALIEN_CANVAS.WIDTH / 2 : ALIEN_CANVAS.WIDTH;
   const height = size === 'small' ? ALIEN_CANVAS.HEIGHT / 2 : ALIEN_CANVAS.HEIGHT;
 
+  const sentence = useRequestSentence(sentenceMode ? request : '', attributes);
+
   if (isAlienBot) {
-    if (typeof request === 'string') {
+    if (sentenceMode && sentence.length === 0) {
+      return null;
+    }
+
+    if (!sentenceMode) {
       return (
         <div
           className={clsx('alien-canvas alien-canvas--small alien-canvas--bot', className)}
           style={{ width: `${width}px`, height: `${height}px` }}
         >
-          <SignCard id={`${request}`} width={75} className="transparent" />
+          <SignCard id={request} width={75} className="transparent" />
         </div>
       );
     }
@@ -33,17 +51,13 @@ export function AlienViewBoard({ request, isAlienBot, size, className }: AlienVi
         className={clsx('alien-canvas alien-canvas--small alien-canvas--bot', className)}
         style={size === 'small' ? undefined : { width: `${width}px`, height: `${height}px` }}
       >
-        {request.map((entry) => {
-          const isNegative = entry.startsWith('!');
-          const isVery = entry.startsWith('+');
-          const id = entry.substring(isNegative || isVery ? 1 : 0);
-
+        {sentence.map((entry) => {
           return (
             <SignCard
-              key={`request-${id}`}
-              id={id}
+              key={`request-${entry?.spriteId}`}
+              id={entry.spriteId}
               width={75}
-              className={clsx('bot-sign', isNegative && 'bot-sign--negative', isVery && 'bot-sign--very')}
+              className={clsx('bot-sign', `bot-sign--${entry.variant}`)}
             />
           );
         })}
@@ -61,4 +75,18 @@ export function AlienViewBoard({ request, isAlienBot, size, className }: AlienVi
       className={clsx('alien-canvas alien-canvas--small', className)}
     />
   );
+}
+
+function useRequestSentence(signature: string, alienAttributes: AlienAttribute[]) {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only signature matters
+  return useMemo(() => {
+    if (signature) {
+      const spritesDictionary = keyBy(alienAttributes, 'id');
+      return alienAttributesUtils.parseItemSignature(signature).map((entry) => {
+        entry.spriteId = spritesDictionary[entry.id].spriteId;
+        return entry;
+      });
+    }
+    return [];
+  }, [signature]);
 }

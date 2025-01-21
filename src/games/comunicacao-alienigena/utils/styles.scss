@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .background {
   background: linear-gradient(-45deg, #526257, #1c6c44, #d39673, #184728, #b33f62);
@@ -21,42 +21,42 @@
   grid-template-columns: repeat(5, 1fr);
   gap: get-unit(2);
   @include contained;
-  background: get-color('white', 5, 0.85);
+  background: get-color("white", 5, 0.85);
 
   &__item {
     border-radius: get-unit(3);
-    border: get-unit(2) solid get-color('white');
+    border: get-unit(2) solid get-color("white");
     position: relative;
 
     &--ITEM {
-      border-color: get-color('green', 4);
+      border-color: get-color("green", 4);
       border-style: dashed;
 
       .item-card {
-        background: get-color('green', 3);
+        background: get-color("green", 3);
       }
     }
 
     &--CURSE {
-      border-color: get-color('purple', 7);
+      border-color: get-color("purple", 7);
       border-style: dotted;
 
       .item-card {
-        background: get-color('purple', 4);
+        background: get-color("purple", 4);
       }
     }
 
     &--BLANK {
-      border-color: get-color('brown', 2);
+      border-color: get-color("brown", 2);
 
       .item-card {
-        background: get-color('yellow', 1);
+        background: get-color("yellow", 1);
       }
     }
 
     &--ask {
       .item-card {
-        background-color: get-color('pink');
+        background-color: get-color("pink");
       }
     }
   }
@@ -68,32 +68,32 @@
   &__button {
     &--ITEM {
       .item-card {
-        background: get-color('green', 3);
+        background: get-color("green", 3);
       }
     }
 
     &--CURSE {
       .item-card {
-        background: get-color('purple', 4);
+        background: get-color("purple", 4);
       }
     }
 
     &--BLANK {
       .item-card {
-        background: get-color('yellow', 1);
+        background: get-color("yellow", 1);
       }
     }
 
     &--ask {
       border-radius: $border-radius;
       .item-card {
-        background-color: get-color('pink');
+        background-color: get-color("pink");
       }
     }
 
     &--active {
       transform: rotate(30deg) scale(0.8);
-      background: get-color('pink');
+      background: get-color("pink");
     }
   }
 
@@ -103,30 +103,30 @@
 
   &__item-back {
     border-radius: get-unit(2);
-    border: 3px solid get-color('white');
+    border: 3px solid get-color("white");
     width: 75px;
     height: 75px;
 
     &--ITEM {
-      border-color: get-color('green', 3);
+      border-color: get-color("green", 3);
       border-style: double;
-      background: get-color('green', 4);
+      background: get-color("green", 4);
     }
 
     &--CURSE {
-      border-color: get-color('purple', 4);
+      border-color: get-color("purple", 4);
       border-style: dotted;
-      background: get-color('purple', 6);
+      background: get-color("purple", 6);
     }
 
     &--BLANK {
-      border-color: get-color('brown', 3);
-      background: get-color('brown', 4);
+      border-color: get-color("brown", 3);
+      background: get-color("brown", 4);
     }
 
     &--ask {
       transform: scale(0.8);
-      border-color: get-color('pink');
+      border-color: get-color("pink");
     }
   }
 
@@ -136,17 +136,17 @@
     right: get-unit(1);
 
     &--correct {
-      color: get-color('green', 5);
+      color: get-color("green", 5);
     }
 
     &--incorrect {
-      color: get-color('red', 7);
+      color: get-color("red", 7);
     }
   }
 }
 
 .objects-key {
-  background: get-color('white');
+  background: get-color("white");
   border-radius: $border-radius;
   padding: get-unit(4);
   display: flex;
@@ -162,28 +162,28 @@
     display: block;
     width: 1em;
     height: 1em;
-    border: 3px solid get-color('white');
+    border: 3px solid get-color("white");
 
     &--ITEM {
-      border-color: get-color('green', 6);
+      border-color: get-color("green", 6);
       border-style: double;
-      background: get-color('green', 3);
+      background: get-color("green", 3);
     }
 
     &--UNKNOWN {
-      border-color: get-color('white');
-      background: get-color('brown', 1);
+      border-color: get-color("white");
+      background: get-color("brown", 1);
     }
 
     &--CURSE {
-      border-color: get-color('purple', 7);
+      border-color: get-color("purple", 7);
       border-style: dotted;
-      background: get-color('purple', 4);
+      background: get-color("purple", 4);
     }
 
     &--BLANK {
-      border-color: get-color('brown', 3);
-      background: get-color('brown', 1);
+      border-color: get-color("brown", 3);
+      background: get-color("brown", 1);
     }
   }
 
@@ -192,41 +192,41 @@
   }
 }
 
-.signs-grid {
+.attributes-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: get-unit(2);
   margin-left: get-unit(2);
-  background: get-color('teal', 3);
+  background: get-color("teal", 3);
   border-radius: $border-radius;
   padding: get-unit(2);
 
   &__item {
     border-radius: $border-radius;
-    background: get-color('teal', 4);
+    background: get-color("teal", 4);
     display: grid;
     place-items: center;
   }
 
   &__item--used {
     font-weight: bold;
-    color: get-color('teal', 7);
-    outline: 2px solid get-color('teal', 7);
+    color: get-color("teal", 7);
+    outline: 2px solid get-color("teal", 7);
   }
 
   &__canvas {
-    background: get-color('white', 5, 0.1);
+    background: get-color("white", 5, 0.1);
   }
 
   &__mini-description {
     text-transform: capitalize;
-    color: get-color('black', 5, 0.5);
+    color: get-color("black", 5, 0.5);
     font-style: italic;
   }
 }
 
 .alien-canvas {
-  background: get-color('white', 5, 0.85);
+  background: get-color("white", 5, 0.85);
   border-radius: $border-radius;
   margin-bottom: get-unit(2);
 
@@ -246,12 +246,22 @@
   border-radius: $border-radius;
   background-color: transparent;
 
-  &--negative {
-    border-top: get-unit(2) solid get-color('black');
+  &--UNRELATED {
+    border-top: get-unit(2) solid get-color("gray", 6);
   }
 
-  &--very {
-    border-bottom: get-unit(2) solid get-color('black');
+  &--OPPOSITE {
+    border-top: get-unit(2) solid get-color("black");
+  }
+
+  &--DETERMINISTIC {
+    border-bottom: get-unit(2) solid get-color("black");
+  }
+
+  &--UNCLEAR {
+    border-bottom-color: get-color("gray");
+    border-top-color: get-color("gray");
+    border-style: dotted;
   }
 }
 
@@ -261,7 +271,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background: get-color('teal', 4);
+  background: get-color("teal", 4);
   border-radius: $border-radius;
   padding: get-unit(2);
   flex: 1;

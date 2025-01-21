@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
-import { useOnSubmitOfferingAPIRequest } from './utils/api-requests';
+import { useOnSubmitOfferingsAPIRequest } from './utils/api-requests';
 import { StepHumansOffer } from './StepHumansOffer';
 
 export function PhaseOfferings({ players, state }: PhaseProps) {
@@ -22,7 +22,7 @@ export function PhaseOfferings({ players, state }: PhaseProps) {
 
   const { step, setStep } = useStep();
 
-  const onSubmitOffering = useOnSubmitOfferingAPIRequest(setStep);
+  const onSubmitOfferings = useOnSubmitOfferingsAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
@@ -44,14 +44,14 @@ export function PhaseOfferings({ players, state }: PhaseProps) {
           alien={alien}
           isUserAlien={isUserAlien}
           items={state.items}
-          signs={state.signs}
+          attributes={state.attributes}
           announcement={announcement}
           status={state.status}
-          onSubmitOffering={onSubmitOffering}
+          onSubmitOfferings={onSubmitOfferings}
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
           isAlienBot={Boolean(state.alienBot)}
-          startingAttributes={state.startingAttributes}
+          startingAttributesIds={state.startingAttributesIds}
           debugMode={Boolean(state.debugMode)}
         />
       </StepSwitcher>

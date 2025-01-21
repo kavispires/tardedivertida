@@ -6,12 +6,12 @@ import { BoxOneIcon } from 'icons/BoxOneIcon';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language';
 // Internal
-import type { Item } from '../utils/types';
+import type { PhaseBasicState } from '../utils/types';
 import { ITEM_TYPES } from '../utils/constants';
 
 type ItemResolutionProps = {
   itemId: CardId;
-  items: Item[];
+  items: PhaseBasicState['items'];
 };
 
 export function ItemResolution({ itemId, items }: ItemResolutionProps) {
