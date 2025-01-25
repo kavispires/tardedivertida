@@ -466,6 +466,60 @@ export const AVATARS: AvatarDict = {
     color: '#ff4346',
     hue: 359,
   },
+  '50': {
+    id: '50',
+    description: {
+      pt: 'a lebre',
+      en: 'the hare',
+    },
+    color: '#d47b66',
+    hue: 12,
+  },
+  '51': {
+    id: '51',
+    description: {
+      pt: 'o camaleão',
+      en: 'the chameleon',
+    },
+    color: '#598252',
+    hue: 111,
+  },
+  '52': {
+    id: '52',
+    description: {
+      pt: 'o papagaio-do-mar',
+      en: 'the puffin',
+    },
+    color: '#3d7191',
+    hue: 202,
+  },
+  '53': {
+    id: '53',
+    description: {
+      pt: 'o falcão',
+      en: 'the falcon',
+    },
+    color: '#954aba',
+    hue: 280,
+  },
+  '54': {
+    id: '54',
+    description: {
+      pt: 'o panda-vermelho',
+      en: 'the red panda',
+    },
+    color: '#a33127',
+    hue: 5,
+  },
+  '55': {
+    id: '55',
+    description: {
+      pt: 'o castor',
+      en: 'the beaver',
+    },
+    color: '#ab7240',
+    hue: 28,
+  },
   A: {
     id: 'A',
     description: {
