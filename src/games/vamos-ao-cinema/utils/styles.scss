@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .background {
   background: linear-gradient(-45deg, #244997, #a81515, #3968ce, #ac1111);
@@ -39,10 +39,20 @@
   }
 }
 
+.movie-reviews {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: get-unit(3);
+  justify-items: stretch;
+  align-items: stretch;
+}
+
 .movie-button {
   $self: &;
+  cursor: pointer;
 
   &--selected {
-    outline: get-color('yellow') solid 5px;
+    outline: get-color("yellow") solid 5px;
   }
 }

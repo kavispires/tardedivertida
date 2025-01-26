@@ -1,12 +1,9 @@
 import clsx from 'clsx';
-import HighlighterImport from 'react-highlight-words';
 // Components
 import { Translate } from 'components/language';
+import { ParagraphHighlighter } from 'components/text/ParagraphHighlighter';
 // Sass
 import './MovieReviewCard.scss';
-
-// TODO: Type just doesn't work, I believe it's because the library is too old
-const Highlighter = HighlighterImport as any;
 
 type MovieReviewCardProps = {
   /**
@@ -41,12 +38,11 @@ export const MovieReviewCard = ({ type, text, highlights = [], className = '' }:
         {type === 'positive' ? ' 👏' : ' 🤮'}
       </span>
       <div className={`${baseClass}__content`}>
-        <Highlighter
+        <ParagraphHighlighter
+          text={text}
+          highlights={highlights}
           className={`${baseClass}__text`}
           highlightClassName={clsx(`${baseClass}__text-highlight`, `${baseClass}__text-highlight--${type}`)}
-          searchWords={highlights}
-          autoEscape={true}
-          textToHighlight={text}
         />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import type { MovieCard, MovieReviewCard } from '../../types/tdr';
-import type { VAMOS_AO_CINEMA_ACTIONS } from './constants';
+import type { VAMOS_AO_CINEMA_ACHIEVEMENTS, VAMOS_AO_CINEMA_ACTIONS } from './constants';
 
 export type VamosAoCinemaOptions = {
   fixedRounds: boolean;
@@ -29,9 +29,10 @@ export interface VamosAoCinemaStore extends DefaultStore {
   deckIndex?: number;
 }
 
+export type VamosAoCinemaAchievement = keyof typeof VAMOS_AO_CINEMA_ACHIEVEMENTS;
+
 export interface VamosAoCinemaState extends DefaultState {
   gameOrder?: PlayerId[];
-  [key: string]: any;
 }
 
 export interface VamosAoCinemaInitialState extends InitialState {
