@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "arte-ruim",
-  "version": "6.0.36",
+  "version": "6.0.37",
   "release": "stable",
   "available": true,
   "title": {
@@ -95,11 +95,11 @@
       "description": "Point threshold is determined by the number of players (30-100)",
       "values": [
         {
-          "label": "Points Goal",
+          "label": "Fixed Rounds",
           "value": false
         },
         {
-          "label": "Fixed Rounds",
+          "label": "Points Goal",
           "value": true
         }
       ]
