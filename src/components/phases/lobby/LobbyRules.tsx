@@ -7,6 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { getAnimation } from 'utils/animations';
 import { PUBLIC_URL } from 'utils/constants';
 // Components
+import { GameTags } from 'components/general/GameTags';
 import { Translate } from 'components/language';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 
@@ -24,6 +25,7 @@ export function LobbyRules() {
       <Typography.Title level={4} style={{ marginTop: 0 }}>
         <Translate pt="Revise as regras" en="Review the rules" />
       </Typography.Title>
+      <GameTags wrap size={[1, 10]} style={{ display: 'flex' }} gameCode={info.gameCode} tags={info.tags} />
       <Image.PreviewGroup
         fallback={`${PUBLIC_URL.RULES}no-rules.jpg`}
         preview={{
