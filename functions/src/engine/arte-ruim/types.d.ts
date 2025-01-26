@@ -51,11 +51,6 @@ export interface ArteRuimStore extends DefaultStore {
 }
 
 export interface ArteRuimState extends DefaultState {
-  drawings?: any;
-  gallery?: any;
-  cards?: any;
-  ranking?: any;
-  winners?: any;
   [key: string]: any;
 }
 
