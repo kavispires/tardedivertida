@@ -34,6 +34,11 @@ export const PLAYER_COUNTS = {
 
 export const TOTAL_ROUNDS = 15;
 
+export const SIDES = {
+  LOSER: 'L',
+  WINNER: 'W',
+};
+
 export const IMAGES_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.DETETIVES_IMAGINATIVOS,

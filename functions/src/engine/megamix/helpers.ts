@@ -10,6 +10,7 @@ import {
   PARTY_GAMES,
   PARTY_GAMES_NAMES,
   PARTY_TRACKS,
+  SIDES,
   TOTAL_ROUNDS,
   WINNING_CONDITION,
 } from './constants';
@@ -551,7 +552,7 @@ export const getRanking = (players: Players, scoring: MostScoring, currentRound:
   // Full on tie, nobody scores, everybody is kicked out
   if (scoring.scoringType === 'DRAW') {
     utils.players.getListOfPlayers(players).forEach((player) => {
-      player.team.push('L');
+      player.team.push(SIDES.LOSER);
     });
     return scores.rank(players);
   }
@@ -562,37 +563,37 @@ export const getRanking = (players: Players, scoring: MostScoring, currentRound:
       // Is on the new winning team
       if (scoring.winningTeam.includes(player.id)) {
         // Was in the winning team
-        if (previousTeam === 'W') {
+        if (previousTeam === SIDES.WINNER) {
           scores.add(player.id, 2, 0);
-          player.team.push('W');
+          player.team.push(SIDES.WINNER);
         } else {
-          player.team.push('L');
+          player.team.push(SIDES.LOSER);
         }
       } else {
         // Was in the winning team
-        if (previousTeam === 'W') {
-          player.team.push('L');
+        if (previousTeam === SIDES.WINNER) {
+          player.team.push(SIDES.LOSER);
         } else {
-          player.team.push('L');
+          player.team.push(SIDES.LOSER);
         }
       }
     } else {
       // Is on the new winning team
       if (scoring.winningTeam.includes(player.id)) {
         // Was in the winning team
-        if (previousTeam === 'W') {
+        if (previousTeam === SIDES.WINNER) {
           scores.add(player.id, 2, 0);
-          player.team.push('W');
+          player.team.push(SIDES.WINNER);
         } else {
           scores.add(player.id, 1, 1);
-          player.team.push('W');
+          player.team.push(SIDES.WINNER);
         }
       } else {
         // Was in the winning team
-        if (previousTeam === 'W') {
-          player.team.push('L');
+        if (previousTeam === SIDES.WINNER) {
+          player.team.push(SIDES.LOSER);
         } else {
-          player.team.push('L');
+          player.team.push(SIDES.LOSER);
         }
       }
     }
@@ -989,13 +990,13 @@ export const calculateAllAchievements = (players: Players, store: FirebaseStoreD
       store,
       player.id,
       'longestVIP',
-      utils.game.calculateLongestRun(player.team, 'W'),
+      utils.game.calculateLongestRun(player.team, SIDES.WINNER),
     );
     utils.achievements.increase(
       store,
       player.id,
       'longestLoser',
-      utils.game.calculateLongestRun(player.team, 'L'),
+      utils.game.calculateLongestRun(player.team, SIDES.LOSER),
     );
 
     player.team.forEach((team: string, index: number) => {
@@ -1003,10 +1004,10 @@ export const calculateAllAchievements = (players: Players, store: FirebaseStoreD
         if (team !== player.team[index - 1]) {
           utils.achievements.increase(store, player.id, 'switchedTeam', 1);
         }
-        if (team === 'W' && player.team[index - 1] === 'L') {
+        if (team === SIDES.WINNER && player.team[index - 1] === SIDES.LOSER) {
           utils.achievements.increase(store, player.id, 'joinedVIP', 1);
         }
-        if (team === 'L' && player.team[index - 1] === 'W') {
+        if (team === SIDES.LOSER && player.team[index - 1] === SIDES.WINNER) {
           utils.achievements.increase(store, player.id, 'leftVIP', 1);
         }
       }

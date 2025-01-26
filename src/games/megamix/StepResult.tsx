@@ -34,7 +34,7 @@ import { ClubberAvatar } from '../../components/avatars/ClubberAvatar';
 type StepResultProps = {
   user: GamePlayer;
   players: GamePlayers;
-  onSeeRanking: GenericFunction;
+  onSeeRanking: () => void;
   round: GameRound;
   isFirstRunThrough: boolean;
   track: Track;
