@@ -322,19 +322,27 @@ export const dealItemsToPlayers = (
 /**
  * Adds bots to the players object
  * @param players
+ * @param language - just to determine the robot's name
  * @param quantity 1-5
+ * @param defaultProperties any properties the bot should have from the get-go
  * @returns
  */
 export const addBots = (
   players: Players,
+  language: Language,
   quantity: 1 | 2 | 3 | 4 | 5,
   defaultProperties: Record<string, unknown> = {},
 ) => {
-  const names = ['A-bot', 'B-bop', 'C-am', 'D-Doo', 'E-max'];
+  const names = shuffle(
+    language === 'en'
+      ? ['Pixandra', 'Codey', 'Roborta', 'Techory', 'Pixandra', 'Digitany', 'Algorita', 'Bitney']
+      : ['Codevaldo', 'CPUgo', 'Roborval', 'Megabyteus', 'Pixélio', 'Techiane', 'Digivaldo'],
+  );
   const avatarIds = ['A', 'B', 'C', 'D', 'E'];
-  const bots: Player[] = new Array(quantity).fill(0).map((n, i) => ({
+  const ids = ['a-bot', 'b-bot', 'c-bot', 'd-bot', 'e-bot'];
+  const bots: Player[] = new Array(quantity).fill(0).map((_, i) => ({
     ...cloneDeep({
-      ...createPlayer(generatePlayerId(names[n + i]), names[i], avatarIds[i]),
+      ...createPlayer(generatePlayerId(ids[i]), names[i], avatarIds[i]),
       ...defaultProperties,
       type: 'bot',
       ready: true,

@@ -54,7 +54,7 @@ export const getInitialState = (
     onCreate: () => {
       const players: Players = {};
       if (options.withBots) {
-        utils.players.addBots(players, 2);
+        utils.players.addBots(players, language, 2);
       }
       return {
         players,
