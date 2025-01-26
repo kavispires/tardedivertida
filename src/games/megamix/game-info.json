@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.60",
+  "version": "4.0.61",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "vinyl-cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#6052a8",
     "backgroundColor": "",
     "colorScheme": "dark"
@@ -123,7 +124,7 @@
           "value": "images"
         },
         {
-          "label": "Characters (Who Am I, Ultimate Championship",
+          "label": "Characters (Who Am I, Ultimate Championship)",
           "value": "characters"
         },
         {

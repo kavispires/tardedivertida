@@ -1,6 +1,6 @@
 import utils from '../../utils';
 import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
-import { MEGAMIX_PHASES } from './constants';
+import { MEGAMIX_PHASES, SIDES } from './constants';
 import {
   calculateAllAchievements,
   distributeSeeds,
@@ -19,11 +19,11 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  utils.players.addPropertiesToPlayers(players, { team: ['L'] });
+  utils.players.addPropertiesToPlayers(players, { team: [SIDES.LOSER] });
 
   const achievements = utils.achievements.setup(players, store, {
     solitaryLoser: 0,
@@ -56,7 +56,7 @@ export const prepareSetupPhase = async (
 
 export const prepareSeedingPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);

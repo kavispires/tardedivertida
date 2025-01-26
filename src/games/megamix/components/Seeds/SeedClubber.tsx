@@ -1,6 +1,6 @@
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Button, Segmented } from 'antd';
+import { Segmented } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -8,18 +8,19 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
+import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Internal
-import type { SeedEntryClubberOutfit } from '../../utils/types';
-import { ClubberAvatar } from '../../../../components/avatars/ClubberAvatar';
+import type { SeedEntryClubberOutfit, SubmitAnswerPayload } from '../../utils/types';
 
 type SeedClubberProps = {
   seed: SeedEntryClubberOutfit;
   updateData: GenericComponent;
   user: GamePlayer;
-  onSubmitData: GenericFunction;
+  onSubmitData: (payload: SubmitAnswerPayload) => void;
   data: PlainObject;
 };
 
@@ -55,9 +56,9 @@ export function SeedClubber({ seed, updateData, user, data, onSubmitData }: Seed
           onChange={(clubberId) => updateData({ clubberId })}
         />
 
-        <Button onClick={() => onSubmitData({ data })} disabled={isLoading || user.ready}>
+        <SendButton onClick={() => onSubmitData({ data })} disabled={isLoading || user.ready}>
           <Translate pt="Confirmar roupa" en="Confirm outfit" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </div>
   );
