@@ -1,5 +1,5 @@
 // Constants
-import { MOVIES_PER_ROUND, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
+import { MOVIES_PER_ROUND, OUTCOME, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { MovieReviewCard } from '../../types/tdr';
@@ -8,6 +8,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 import utils from '../../utils';
 // Internal
 import {
+  getAchievements,
   getFinalMovieId,
   getFinalMovies,
   getMoviePosterIds,
@@ -24,7 +25,7 @@ import { saveData } from './data';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -58,6 +59,14 @@ export const prepareSetupPhase = async (
       return acc;
     }, {});
 
+  const achievements = utils.achievements.setup(players, store, {
+    group: 0,
+    solo: 0,
+    couple: 0,
+    bad: 0,
+    own: 0,
+  });
+
   // Save
   return {
     update: {
@@ -74,6 +83,7 @@ export const prepareSetupPhase = async (
         score: 0,
         finalMovies: {},
         moviePosters,
+        achievements,
       },
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.SETUP,
@@ -168,6 +178,7 @@ export const prepareRevealPhase = async (
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
+  const activePlayerId: PlayerId = state.activePlayerId;
 
   // Gather vote
   const { currentMovieId } = store;
@@ -180,6 +191,10 @@ export const prepareRevealPhase = async (
   const wasMistake = votedForSelectedMovie.length > 0;
   const mistakes = state.mistakes ?? [];
   if (wasMistake) {
+    utils.achievements.increase(store, activePlayerId, 'bad', 1);
+    votedForSelectedMovie.forEach((playerId) => {
+      utils.achievements.increase(store, playerId, 'own', 1);
+    });
     mistakes.push(currentMovieId);
   }
 
@@ -217,11 +232,34 @@ export const prepareRevealPhase = async (
     posterUpdate.posters = store.moviePosters[state.round.current - 1];
   }
 
+  if (outcome !== OUTCOME.CONTINUE) {
+    const playersPerMovie: Record<string, PlayerId[]> = {};
+    utils.players.getListOfPlayers(players).forEach((player) => {
+      if (!playersPerMovie[player.movieId]) {
+        playersPerMovie[player.movieId] = [];
+      }
+      playersPerMovie[player.movieId].push(player.id);
+    });
+    Object.values(playersPerMovie).forEach((playerIds) => {
+      if (playerIds.length === 0) {
+        utils.achievements.increase(store, playerIds[0], 'solo', 1);
+      } else if (playerIds.length === 2) {
+        utils.achievements.increase(store, playerIds[0], 'couple', 1);
+        utils.achievements.increase(store, playerIds[1], 'couple', 1);
+      } else {
+        playerIds.forEach((playerId) => {
+          utils.achievements.increase(store, playerId, 'group', 1);
+        });
+      }
+    });
+  }
+
   // Save
   return {
     update: {
       store: {
         ...storeUpdate,
+        achievements: store.achievements,
       },
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.REVEAL,
@@ -250,13 +288,15 @@ export const prepareGameOverPhase = async (
 
   const finalMovies = getFinalMovies(store.finalMovies, players, store.moviePosters);
 
+  const achievements = getAchievements(store);
+
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
     gameId,
     startedAt: store.createdAt,
     players,
     winners: [],
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -275,6 +315,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         groupScore: store.score + state.score,
+        achievements,
         finalMovies,
       },
     },

@@ -6,6 +6,7 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
+import type { SubmitMovieSelectionPayload } from './utils/types';
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
 
@@ -15,11 +16,10 @@ type StepSelectMovieProps = {
   goodReview: MovieReviewCard;
   badReview: MovieReviewCard;
   movies: MovieCard[];
-  onSelectMovie: GenericFunction;
+  onSelectMovie: (payload: SubmitMovieSelectionPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectMovie({
-  players,
   user,
   announcement,
   goodReview,

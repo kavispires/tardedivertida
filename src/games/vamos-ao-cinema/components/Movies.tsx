@@ -20,7 +20,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 type MoviesProps = {
   movies: MovieCardType[];
   user: GamePlayer;
-  onSelect?: GenericFunction;
+  onSelect?: (movieId: string) => void;
   eliminatedMovies?: CardId[];
   playerMovie?: CardId;
   mistakes?: CardId[];
@@ -186,7 +186,7 @@ type MovieButtonProps = {
   mistakes: CardId[];
   isLoading: boolean;
   user: GamePlayer;
-  onSelect: GenericFunction;
+  onSelect: (movieId: CardId) => void;
 };
 
 function MovieButton({

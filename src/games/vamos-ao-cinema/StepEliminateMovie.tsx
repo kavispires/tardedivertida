@@ -13,6 +13,7 @@ import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
+import type { SubmitMovieEliminationPayload } from './utils/types';
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
@@ -23,7 +24,7 @@ type StepEliminateMovieProps = {
   goodReview: MovieReviewCard;
   badReview: MovieReviewCard;
   movies: MovieCard[];
-  onEliminateMovie: GenericFunction;
+  onEliminateMovie: (payload: SubmitMovieEliminationPayload) => void;
   activePlayer: GamePlayer;
   isActivePlayer: boolean;
   eliminatedMovies: string[];

@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "1.3.62",
+  "version": "2.0.0",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Vamos Ao Cinema",
     "en": "Movie Night"
@@ -20,13 +20,28 @@
   },
   "appearance": {
     "clouds": "movies-clouds",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#0C7489",
     "backgroundColor": "rgba(119,48,78, 0.3)",
     "colorScheme": "dark"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Em \"Vamos Ao Cinema\", os jogadores são amigos que querem ir ao cinema.",
+      "A cada rodada, oito filmes e duas críticas, uma positiva e uma negativa, são reveladas e os jogadores tem que escolher secretamente o filme que eles acham que combina com essas críticas.",
+      "Então, de um em um, os jogadores eliminam os filmes que eles acham que ninguém escolheu.",
+      "Se o filme que um jogador escolheu é eliminado, os jogadores perdem um ponto, mas o jogo continua",
+      "Se um segundo filme é eliminado, a rodada é encerrada.",
+      "O jogo termina após 5 rodadas e os jogadores vencem se eles conseguirem pelo menos 75% dos pontos possíveis."
+    ],
+    "en": [
+      "In \"Movie Night\", players are friends who want to go to the movies.",
+      "Each round, eight movies and two reviews, one positive and one negative, are revealed and players have to secretly choose the movie they think fits these reviews.",
+      "Then, one by one, players eliminate the movies they think no one chose.",
+      "If the movie a player chose is eliminated, the players lose a point, but the game continues.",
+      "If a second movie is eliminated, the round ends.",
+      "The game ends after 5 rounds and players win if they get at least 75% of the possible points."
+    ]
   },
   "playerCount": {
     "best": 5,
@@ -38,5 +53,5 @@
     "base": 30,
     "perPlayer": 1
   },
-  "tags": ["cooperative", "turn-based", "guessing", "push-your-luck"]
+  "tags": ["cooperative", "turn-based", "guessing", "push-your-luck", "achievements"]
 }

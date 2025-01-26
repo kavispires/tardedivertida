@@ -99,6 +99,12 @@ export function StepReveal({
 
       <Reviews goodReview={goodReview} badReview={badReview} />
 
+      <HostNextPhaseButton
+        round={round}
+        autoTriggerTime={outcome !== 'DONE' ? 7 : undefined}
+        withWaitingTimeBar={outcome !== 'DONE'}
+      />
+
       <RuleInstruction type="event">
         <ViewIf condition={outcome === 'CONTINUE'}>
           <Translate
@@ -238,8 +244,6 @@ export function StepReveal({
       />
 
       <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />
-
-      <HostNextPhaseButton round={round} autoTriggerTime={outcome !== 'DONE' ? 7 : undefined} />
     </Step>
   );
 }

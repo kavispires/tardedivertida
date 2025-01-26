@@ -24,6 +24,7 @@ import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
 import TESTE_DE_ELENCO from 'games/teste-de-elenco/utils/achievements';
 import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
+import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 // Types
 import type { AchievementReference } from 'types/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
@@ -39,7 +40,6 @@ import type { AchievementReference } from 'types/achievements';
 // import SONHOS_PESADELOS from 'games/sonhos-pesadelos/utils/achievements';
 // import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
 // import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
-// import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 // import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/utils/achievements';
 
 export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = {
@@ -81,7 +81,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'teste-de-elenco': TESTE_DE_ELENCO,
   'trevo-da-sorte': null,
   'ue-so-isso': UE_SO_ISSO,
-  'vamos-ao-cinema': null,
+  'vamos-ao-cinema': VAMOS_AO_CINEMA,
   'vendaval-de-palpite': null,
 };
 
