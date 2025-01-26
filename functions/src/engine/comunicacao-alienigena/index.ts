@@ -69,7 +69,7 @@ export const getInitialState = (
     onCreate: () => {
       const players: Players = {};
       if (options.botAlien) {
-        utils.players.addBots(players, 1, { role: 'alien', avatarId: 'T', name: 'Alien-Bot' });
+        utils.players.addBots(players, language, 1, { role: 'alien', avatarId: 'T', name: 'Alien-Bot' });
       }
       return {
         players,
