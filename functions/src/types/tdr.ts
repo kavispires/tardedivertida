@@ -757,33 +757,37 @@ export type ItemAttribute = {
    */
   level: number;
   /**
-   * Present on the original game
-   */
-  default: boolean;
-  /**
-   * Priority value when sorting ties
+   * Priority value when sorting ties (opposite attributes share the same priority)
    */
   priority: number;
   /**
-   *
+   * The sprite id of the attribute
    */
   spriteId: string;
   /**
-   * Use for attributes that only accept yes/no (unclear) values (-3, -1, 5)
+   * Present on the original game
+   */
+  default?: boolean;
+  /**
+   * Used for attributes that only accept yes/no (unclear) values (-3, -1, 5)
    */
   limited?: boolean;
+  /**
+   * Used for attributes who are a subset of others or very specific
+   */
+  specific?: boolean;
   /**
    * Flag indicating another attribute that is directly the opposite of this one
    */
   oppositeId?: string;
   /**
-   * Flag indicating another attribute that might be related to this one and confusing in the same context
+   * Flag indicating another attribute that is a super set of this one and confusing in the same context
    */
   relatedId?: string;
   /**
    * Keywords string to help with search
    */
-  keywords: DualLanguageValue;
+  keywords: string;
 };
 
 export type ItemGroup = {
