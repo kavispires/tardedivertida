@@ -1,12 +1,17 @@
 import clsx from 'clsx';
+// Types
+import type { ContenderCard, SuspectCard as SuspectCardType, TextCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { ItemCard } from 'components/cards/ItemCard';
+import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 // Internal
 import { SIDES } from '../utils/constants';
 import type { DeckEntry } from '../utils/types';
+import { Card } from 'components/cards';
 
 type BoardEntryProps = {
   entry: DeckEntry;
@@ -43,5 +48,45 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
     );
   }
 
-  return <div className="cd-board-entry">{entry.id}</div>;
+  if (deckType === 'contenders') {
+    return (
+      <div
+        key={`cd-board-entry-${entry.data.id}`}
+        className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
+      >
+        <CharacterCard character={entry.data as ContenderCard} size={96} className="board-entry-image-card" />
+      </div>
+    );
+  }
+
+  if (deckType === 'suspects') {
+    return (
+      <div
+        key={`cd-board-entry-${entry.data.id}`}
+        className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
+      >
+        <SuspectCard suspect={entry.data as SuspectCardType} width={72} />
+      </div>
+    );
+  }
+
+  if (deckType === 'words') {
+    return (
+      <div
+        key={`cd-board-entry-${entry.data.id}`}
+        className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
+      >
+        <Card hideHeader>{(entry.data as TextCard).text}</Card>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      key={`cd-board-entry-${entry.id}`}
+      className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
+    >
+      {entry.id}
+    </div>
+  );
 }

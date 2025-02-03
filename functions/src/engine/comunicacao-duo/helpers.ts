@@ -8,7 +8,7 @@ import {
   DECK_ENTRY_STATUS,
   COMUNICACAO_DUO_ACHIEVEMENTS,
 } from './constants';
-import type { Item } from '../../types/tdr';
+import type { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
 
 /**
  * Determine the next phase based on the current one
@@ -64,7 +64,41 @@ export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
       };
     }
 
-    // TODO: Add support to suspects, contenders, and other types
+    if (type === 'words') {
+      const dataEntry = list[index] as TextCard;
+      return {
+        ...entry,
+        data: {
+          id: dataEntry.id,
+          type: 'word',
+          text: dataEntry.text,
+        },
+      };
+    }
+
+    if (type === 'contenders') {
+      const dataEntry = list[index] as ContenderCard;
+      return {
+        ...entry,
+        data: {
+          id: dataEntry.id,
+          type: 'contender',
+          name: dataEntry.name,
+        },
+      };
+    }
+
+    if (type === 'suspects') {
+      const dataEntry = list[index] as SuspectCard;
+      return {
+        ...entry,
+        data: {
+          id: dataEntry.id,
+          type: 'suspect',
+          name: dataEntry.name,
+        },
+      };
+    }
 
     return {
       ...entry,
