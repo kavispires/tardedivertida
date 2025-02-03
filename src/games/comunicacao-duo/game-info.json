@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "comunicacao-duo",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "release": "beta",
   "available": true,
   "title": {
@@ -79,8 +79,8 @@
           "value": "suspects"
         },
         {
-          "label": "Text",
-          "value": "text"
+          "label": "Words",
+          "value": "words"
         }
       ]
     },
