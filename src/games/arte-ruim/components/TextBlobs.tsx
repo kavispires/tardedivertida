@@ -83,7 +83,8 @@ export const GalleryRules = () => (
         <>
           Now we show each art, what players voted, and the final answer.
           <br />
-          You get <PointsHighlight type="positive">2</PointsHighlight> points if you selected the right card.
+          You get <PointsHighlight type="positive">2</PointsHighlight> points if you paired the correct card
+          and art.
           <br />
           When players selected the correct card for your artwork, you get{' '}
           <PointsHighlight type="positive">1</PointsHighlight> point for each match!

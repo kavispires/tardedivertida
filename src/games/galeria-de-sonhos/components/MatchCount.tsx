@@ -65,8 +65,9 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               <h2 className="g-announce-title">Vixi...</h2>
               <p>
                 Não sei o que dizer... Ninguém visitou esse sonho e{' '}
-                <AvatarName player={lastActivePlayer} size="small" addressUser /> está fora da rodada{' '}
-                <small>(as cartas restantes ainda contarão pontos para outros jogadores)</small>.{' '}
+                <AvatarName player={lastActivePlayer} size="small" addressUser /> está fora da rodada.
+                <br />
+                <small>(as cartas restantes ainda contarão pontos para outros jogadores)</small>{' '}
                 {isPlayerInNightmare && (
                   <>
                     <br />
@@ -83,8 +84,9 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               <h2 className="g-announce-title">Oops...</h2>
               <p>
                 I don't know what to say... no one has visited this dream and{' '}
-                <AvatarName player={lastActivePlayer} size="small" addressUser /> is/are out of the round{' '}
-                <small>(the remaining cards will still count towards scoring for other players)</small>.
+                <AvatarName player={lastActivePlayer} size="small" addressUser /> is/are out of the round.
+                <br />
+                <small>(the remaining cards will still count towards scoring for other players)</small>
                 {isPlayerInNightmare && (
                   <>
                     <br />
