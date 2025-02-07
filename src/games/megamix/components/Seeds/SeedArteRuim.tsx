@@ -25,7 +25,7 @@ type SeedArteRuimProps = {
 
 export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
   const { translate } = useLanguage();
-  const [lines, setLines] = useState<any>([]);
+  const [lines, setLines] = useState<CanvasLine[]>([]);
   const [isTimesUp, setTimesUp] = useState(false);
 
   const { seconds, start, isRunning } = useCountdown({
@@ -49,7 +49,7 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
 
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt="Para ajudar aliviar o estresse de ser sensual na balada, você resolveu se expressar artisticamente"
           en="To help relieve the stress of being incredibly hot in the club, you decided to express yourself through art"

@@ -29,7 +29,7 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
 
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt="Você recebeu o torpedo de um amigo e precisa responder antes de se arrumar"
           en="You received the following text message from a friend and you must answer it before leaving"

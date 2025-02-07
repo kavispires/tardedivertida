@@ -23,7 +23,7 @@ type SeedLabirintoSecretoProps = {
 export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSecretoProps) {
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt="Você decidiu postar uma foto piranhuda no Instagram antes de se arrumar..."
           en="You decided to post a thirst trap on Instagram before getting ready..."
