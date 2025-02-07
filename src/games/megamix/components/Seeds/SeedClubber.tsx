@@ -42,7 +42,7 @@ export function SeedClubber({ seed, updateData, user, data, onSubmitData }: Seed
   }));
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt="Escolha o que você vai usar pra balada"
           en="Choose what you want to wear for this party"

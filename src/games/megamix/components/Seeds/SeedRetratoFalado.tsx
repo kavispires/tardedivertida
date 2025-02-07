@@ -27,7 +27,7 @@ type SeedRetratoFaladoProps = {
 };
 
 export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) {
-  const [lines, setLines] = useState<any>([]);
+  const [lines, setLines] = useState<CanvasLine[]>([]);
   const [isTimesUp, setTimesUp] = useState(false);
   const [volume] = useGlobalLocalStorage('volume');
   const [audio, , controls] = useAudio({
@@ -61,7 +61,7 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
 
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt="De repente, você se lembra de um evento muito traumático na sua vida, uma monstro te atacou uma vez..."
           en="Suddenly you have a glimpse of memory from the day a monster attacked you..."

@@ -21,7 +21,7 @@ type SeedContadoresHistoriasProps = {
 export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHistoriasProps) {
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt="Sua mãe te mandou uma mensagem e você precisa responder antes de se arrumar"
           en="Your mom sent you a message and you must answer it before leaving"

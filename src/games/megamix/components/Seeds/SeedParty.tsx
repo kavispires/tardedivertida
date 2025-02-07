@@ -25,7 +25,7 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
 
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate pt="Responda as perguntas a seguir" en="Answer the following prompts" />
       </Title>
 

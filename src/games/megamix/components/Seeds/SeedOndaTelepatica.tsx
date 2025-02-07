@@ -22,7 +22,7 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
 
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt="Você ainda estuda e precisa terminar sua tarefa de casa..."
           en="You're still in school and needs to finish your homework..."

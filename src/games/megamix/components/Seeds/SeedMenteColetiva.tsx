@@ -28,7 +28,7 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
 
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt="Depois de ver alguns vídeos, você decidiu fazer esse teste no TikTok"
           en="After watching some videos, you decided to do this test on TikTok"

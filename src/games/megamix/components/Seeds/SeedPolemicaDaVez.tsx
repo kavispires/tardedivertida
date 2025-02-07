@@ -13,7 +13,7 @@ type SeedPolemicaDaVezProps = {
 export function SeedPolemicaDaVez({ seed, updateData }: SeedPolemicaDaVezProps) {
   return (
     <div className="seed-container">
-      <Title size="xx-small">
+      <Title size="xx-small" colorScheme="light">
         <Translate
           pt={
             <>
