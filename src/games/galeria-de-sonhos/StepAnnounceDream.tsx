@@ -10,7 +10,7 @@ import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimation } from 'utils/animations';
-import { getAvatarColorById, isEverybodyReady } from 'utils/helpers';
+import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
@@ -210,9 +210,7 @@ export function StepAnnounceDream({
         <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
       )}
 
-      {(latest.isPhaseOver || latest.cardsLeft === 0) && isEverybodyReady(players) && (
-        <HostNextPhaseButton autoTriggerTime={15}>Ranking</HostNextPhaseButton>
-      )}
+      {latest.isPhaseOver && <HostNextPhaseButton autoTriggerTime={15}>Ranking</HostNextPhaseButton>}
     </Step>
   );
 }
