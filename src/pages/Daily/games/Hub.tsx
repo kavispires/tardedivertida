@@ -1,25 +1,31 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
-import { Typography } from 'antd';
+import { MutedOutlined, SoundFilled } from '@ant-design/icons';
+import { Switch, Typography } from 'antd';
+// Hooks
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
 // Icons
 import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
+import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
+import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
+import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { LanguageSwitch, Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from 'components/avatars';
+import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
 // Internal
 import { DailyChrome } from '../components/DailyChrome';
-import { PlayedWrapper } from '../components/PlayedWrapper';
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
 import { SETTINGS as PICACO } from './Picaco/utils/settings';
@@ -29,121 +35,193 @@ import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { checkWasPlayedToday } from '../utils';
-// import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 // import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
-// import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 
 export function Hub() {
+  const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
+
   return (
     <DailyChrome>
-      <div className="hub">
+      <div className="menu menu--hub">
+        <LanguageSwitch />
+        <SoundFX />
+      </div>
+      <div className="hub" ref={ref}>
         <Typography.Title level={5}>
-          <Translate pt="Escolha um jogo" en="Choose a game" />
+          <Translate pt="Jogue" en="Play" />
         </Typography.Title>
-        <SpaceContainer>
-          <LanguageSwitch />
-        </SpaceContainer>
 
         <div className="hub-list">
-          <PlayedWrapper lsKey={ARTE_RUIM.KEY}>
-            <TransparentButton hoverType="sepia">
-              <Link to="/diario/arte-ruim" className="hub-item">
-                <DailyArtGameIcon style={{ width: 75 }} />
-                <Translate pt="Arte Ruim" en="Questionable Art" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
+          <GameButton
+            lsKey={ARTE_RUIM.KEY}
+            width={width}
+            href="arte-ruim"
+            Icon={DailyArtGameIcon}
+            name={{ pt: 'Arte Ruim', en: 'Art?' }}
+            color="rgba(158, 182, 244, 0.85)"
+            index={0}
+          />
 
-          <PlayedWrapper lsKey={AQUI_O.KEY}>
-            <TransparentButton hoverType="sepia">
-              <Link to="/diario/aqui-o" className="hub-item">
-                <DailyFindingGameIcon style={{ width: 75 }} />
-                <Translate pt="Aqui Ó" en="Find This" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
+          <GameButton
+            lsKey={AQUI_O.KEY}
+            width={width}
+            href="aqui-o"
+            Icon={DailyFindingGameIcon}
+            name={{ pt: 'Aqui Ó', en: 'Find This' }}
+            color="rgba(227, 167, 111, 0.85)"
+            index={1}
+          />
 
-          <PlayedWrapper lsKey={COMUNICACAO_ALIENIGENA.KEY}>
-            <TransparentButton
-              hoverType="sepia"
-              className={clsx(
-                !checkWasPlayedToday(COMUNICACAO_ALIENIGENA.KEY) && getAnimationClass('tada', { repeat: 3 }),
-              )}
-            >
-              <Link to="/diario/comunicacao-alienigena" className="hub-item">
-                <DailyAlienGameIcon style={{ width: 75 }} />
-                <Translate pt="Comunicação Alienígena" en="Alien Communication" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
+          <GameButton
+            lsKey={COMUNICACAO_ALIENIGENA.KEY}
+            width={width}
+            href="comunicacao-alienigena"
+            Icon={DailyAlienGameIcon}
+            name={{ pt: 'Alienígena', en: 'Alienish' }}
+            color="rgba(91, 220, 207, 0.85)"
+            index={2}
+          />
 
-          <PlayedWrapper lsKey={CONTROLE_DE_ESTOQUE.KEY}>
-            <TransparentButton hoverType="sepia">
-              <Link to="/diario/controle-de-estoque" className="hub-item">
-                <DailyWarehouseGameIcon style={{ width: 75 }} />
-                <Translate pt="Controle De Estoque" en="Warehouse" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
+          <GameButton
+            lsKey={TEORIA_DE_CONJUNTOS.KEY}
+            width={width}
+            href="teoria-de-conjuntos"
+            Icon={DailyDiagramGameIcon}
+            name={{ pt: 'Conjuntos', en: 'Diagram' }}
+            color="rgba(172, 128, 221, 0.85)"
+            index={3}
+          />
 
-          <PlayedWrapper lsKey={FILMACO.KEY}>
-            <TransparentButton hoverType="sepia">
-              <Link to="/diario/filmaco" className="hub-item">
-                <DailyMovieGameIcon style={{ width: 75 }} />
-                <Translate pt="Filmaço" en="Movicon" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
+          <GameButton
+            lsKey={CONTROLE_DE_ESTOQUE.KEY}
+            width={width}
+            href="controle-de-estoque"
+            Icon={DailyWarehouseGameIcon}
+            name={{ pt: 'Estoque', en: 'Warehouse' }}
+            color="rgba(255, 199, 59, 0.85)"
+            index={4}
+          />
 
-          <PlayedWrapper lsKey={PALAVREADO.KEY}>
-            <TransparentButton hoverType="sepia">
-              <Link to="/diario/palavreado" className="hub-item">
-                <DailyWordGameIcon style={{ width: 75 }} />
-                <Translate pt="Palavreado" en="Rewording" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
+          <GameButton
+            lsKey={FILMACO.KEY}
+            width={width}
+            href="filmaco"
+            Icon={DailyMovieGameIcon}
+            name={{ pt: 'Filmaço', en: 'Movicon' }}
+            color="rgba(85, 161, 255, 0.85)"
+            index={5}
+          />
 
-          <PlayedWrapper lsKey={PICACO.KEY}>
-            <TransparentButton hoverType="sepia">
-              <Link to="/diario/picaco" className="hub-item">
-                <DailyDrawingGameIcon style={{ width: 75 }} />
-                <Translate pt="Picaço!" en="Big Artist!" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
+          <GameButton
+            lsKey={PALAVREADO.KEY}
+            width={width}
+            href="palavreado"
+            Icon={DailyWordGameIcon}
+            name={{ pt: 'Palavreado', en: 'Rewording' }}
+            color="rgba(239, 83, 80, 0.85)"
+            index={6}
+          />
 
-          <PlayedWrapper lsKey={TEORIA_DE_CONJUNTOS.KEY}>
-            <TransparentButton hoverType="sepia">
-              <Link to="/diario/teoria-de-conjuntos" className="hub-item">
-                <DailyDiagramGameIcon style={{ width: 75 }} />
-                <Translate pt="Teoria de Conjuntos" en="Diagram Theory" />
-              </Link>
-            </TransparentButton>
-          </PlayedWrapper>
+          <GameButton
+            lsKey=""
+            width={width}
+            disabled
+            href=""
+            Icon={DailyGroupingGameIcon}
+            name={{ pt: 'Quartetos', en: 'Connect Four' }}
+            color="rgba(243, 145, 189, 0.85)"
+            index={7}
+          />
 
-          {/* <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario" className="hub-item">
-              <DailyGroupingGameIcon style={{ width: 75 }} />
-              <Translate pt="Quarteto" en="Connect Four" />
-            </Link>
-          </TransparentButton> */}
+          <GameButton
+            lsKey=""
+            width={width}
+            disabled
+            href=""
+            Icon={DailyImagesGameIcon}
+            name={{ pt: 'Portais', en: 'Doors' }}
+            color="rgba(255, 171, 145, 0.85)"
+            index={8}
+          />
 
-          {/* <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario" className="hub-item">
+          {/* <TransparentButton hoverType="sepia" className="hub-item" disabled className="hub-item-disabled">
+            <Link to="/diario" className="hub-link">
               <DailyCrimeGameIcon style={{ width: 75 }} />
               <Translate pt="Crime Hediondo" en="Horrible Crimes" />
             </Link>
           </TransparentButton> */}
+        </div>
+      </div>
+      <div className="hub">
+        <Typography.Title level={5}>
+          <Translate pt="Contribua" en="Contribute" />
+        </Typography.Title>
 
-          {/* <TransparentButton hoverType="sepia" disabled className="hub-item-disabled">
-            <Link to="/diario" className="hub-item">
-              <DailyImagesGameIcon style={{ width: 75 }} />
-              <Translate pt="Imagine" en="Imagine" />
-            </Link>
-          </TransparentButton> */}
+        <div className="hub-list">
+          <GameButton
+            lsKey={PICACO.KEY}
+            width={width}
+            href="picaco"
+            Icon={DailyDrawingGameIcon}
+            name={{ pt: 'Picaço!', en: 'Artist!' }}
+            color="rgba(237, 238, 240, 0.85)"
+            index={9}
+          />
         </div>
       </div>
     </DailyChrome>
+  );
+}
+
+type GameButtonProps = {
+  lsKey: string;
+  width: number;
+  disabled?: boolean;
+  href: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  name: DualLanguageValue;
+  color: string;
+  index: number;
+};
+
+function GameButton({ lsKey, width, disabled, href, Icon, name, color, index }: GameButtonProps) {
+  const wasPlayed = checkWasPlayedToday(lsKey);
+
+  return (
+    <div className="played-wrapper">
+      {wasPlayed && (
+        <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" className="played-wrapper__played" />
+      )}
+      <motion.button
+        className={clsx('transparent-button', 'hub-item', disabled && 'hub-item--disabled')}
+        style={{ width, height: width, backgroundColor: color }}
+        {...getAnimation('bounceIn', { delay: index * 0.05 })}
+        disabled={disabled}
+      >
+        <Link to={`/diario/${href}"`} className="hub-link">
+          <Icon style={{ width: width / 2 }} />
+          <DualTranslate>{name}</DualTranslate>
+        </Link>
+      </motion.button>
+    </div>
+  );
+}
+
+function SoundFX() {
+  const [_, setVolume] = useGlobalLocalStorage('volume');
+
+  const onSwitchClick = (checked: boolean) => {
+    setVolume(checked ? 0.5 : 0);
+  };
+
+  return (
+    <Switch
+      checkedChildren={<SoundFilled />}
+      unCheckedChildren={<MutedOutlined />}
+      // TODO: Implement sound effects
+      checked={false}
+      onClick={onSwitchClick}
+      disabled
+    />
   );
 }
