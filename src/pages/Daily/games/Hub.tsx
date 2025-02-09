@@ -200,7 +200,7 @@ function GameButton({ lsKey, width, disabled, href, Icon, name, color, index }: 
         {...getAnimation('bounceIn', { delay: index * 0.05 })}
         disabled={disabled}
       >
-        <Link to={`/diario/${href}"`} className="hub-link">
+        <Link to={`/diario/${href}`} className="hub-link">
           <Icon style={{ width: width / 2 }} />
           <DualTranslate>{name}</DualTranslate>
         </Link>
