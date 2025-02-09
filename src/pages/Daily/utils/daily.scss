@@ -41,7 +41,7 @@
   color: get-color("white");
 
   &--hub {
-    grid-template-columns: 1fr 1fr;
+    // grid-template-columns: 1fr 1fr;
     padding: get-unit(1);
   }
 }
@@ -264,4 +264,8 @@
     transform: translate(-25%, -50%);
     z-index: 20;
   }
+}
+
+.hub-time-left {
+  font-size: 0.85em;
 }
