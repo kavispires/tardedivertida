@@ -243,9 +243,9 @@ function TimeLeft() {
 
   return (
     <div className="hub-time-left">
-      <span key={hours}>{String(hours).padStart(2, '0')}</span>:
-      <span key={minutes}>{String(minutes).padStart(2, '0')}</span>:
-      <span key={seconds}>{String(seconds).padStart(2, '0')}</span>
+      <span key={`h${hours}`}>{String(hours).padStart(2, '0')}</span>:
+      <span key={`m${minutes}`}>{String(minutes).padStart(2, '0')}</span>:
+      <span key={`s${seconds}`}>{String(seconds).padStart(2, '0')}</span>
     </div>
   );
 }
