@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { MutedOutlined, SoundFilled } from '@ant-design/icons';
 import { Switch, Typography } from 'antd';
@@ -44,6 +45,7 @@ export function Hub() {
     <DailyChrome>
       <div className="menu menu--hub">
         <LanguageSwitch />
+        <TimeLeft />
         <SoundFX />
       </div>
       <div className="hub" ref={ref}>
@@ -223,5 +225,27 @@ function SoundFX() {
       onClick={onSwitchClick}
       disabled
     />
+  );
+}
+
+function TimeLeft() {
+  // Get the next midnight timestamp
+  const getNextMidnight = () => {
+    const midnight = new Date();
+    midnight.setHours(24, 0, 0, 0); // Set to midnight of the next day
+    return midnight;
+  };
+
+  const { seconds, minutes, hours, restart } = useTimer({
+    expiryTimestamp: getNextMidnight(),
+    onExpire: () => restart(getNextMidnight()), // Restart the timer when it reaches 0
+  });
+
+  return (
+    <div className="hub-time-left">
+      <span key={hours}>{String(hours).padStart(2, '0')}</span>:
+      <span key={minutes}>{String(minutes).padStart(2, '0')}</span>:
+      <span key={seconds}>{String(seconds).padStart(2, '0')}</span>
+    </div>
   );
 }
