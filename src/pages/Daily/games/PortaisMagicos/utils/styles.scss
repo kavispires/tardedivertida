@@ -1,0 +1,69 @@
+@use "styles/sass" as *;
+
+.passcode {
+  display: grid;
+  gap: get-unit(1);
+}
+
+.passcode-word-container {
+  display: grid;
+  grid-template-columns: 2em;
+  grid-template-rows: repeat(5, 2em);
+  background: get-color("white", 5, 0.15);
+  gap: get-unit(1);
+  position: relative;
+  place-items: center;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.passcode-word {
+  position: absolute;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 2em;
+  gap: get-unit(1);
+  grid-template-rows: repeat(5, 2em);
+  transition: transform 500ms;
+
+  &--pos-0 {
+    transform: translate(0%);
+  }
+
+  &--pos-1 {
+    transform: translateY(20%);
+  }
+
+  &--pos-2 {
+    transform: translateY(41%);
+  }
+}
+
+.passcode-letter {
+  display: grid;
+  place-items: center;
+  background: get-color("white");
+  width: 2em;
+  height: 2em;
+  border-radius: get-unit(1);
+
+  &--correct {
+    background-color: get-color("yellow");
+    color: get-color("white");
+  }
+}
+
+.passcode-letter-outline {
+  position: absolute;
+  border: get-unit(1) solid get-color("yellow");
+  width: 2em;
+  height: 2em;
+  border-radius: get-unit(1);
+  z-index: 15;
+}
+
+.result-passcode {
+  text-transform: uppercase;
+}

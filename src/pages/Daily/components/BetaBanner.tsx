@@ -18,3 +18,19 @@ export function BetaBanner() {
     />
   );
 }
+
+export function DemoBanner() {
+  return (
+    <Alert
+      message={
+        <Translate
+          pt="Você jogará uma demonstração. Favor dar feedback."
+          en="You will play a demo game. Please give feedback."
+        />
+      }
+      type="info"
+      showIcon
+      banner
+    />
+  );
+}

@@ -1,0 +1,115 @@
+import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { STATUSES } from 'pages/Daily/utils/constants';
+import { useEffect } from 'react';
+// Ant Design Resources
+import { App } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { deepCopy } from 'utils/helpers';
+// Internal
+import type { PortaisMagicosLocalToday, DailyPortaisMagicosEntry, GameState } from './types';
+import { SETTINGS } from './settings';
+
+export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialState: GameState) {
+  const { message } = App.useApp();
+  const { translate } = useLanguage();
+  const { state, setState } = useDailyGameState<GameState>(initialState);
+
+  const { updateLocalStorage } = useDailyLocalToday<PortaisMagicosLocalToday>({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: initialState,
+  });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
+
+  // ACTIONS
+  const onSlideWordPosition = (index: number) => {
+    setState(() => {
+      const copy = deepCopy(state);
+      // If it reaches the last index, it should go back to 0;
+      const wordsLength = data.corridors[copy.currentCorridorIndex].words[0].length;
+
+      const targetPosition =
+        copy.currentCorridorIndexes[index] >= wordsLength - 1 ? 0 : copy.currentCorridorIndexes[index] + 1;
+      copy.currentCorridorIndexes[index] = targetPosition;
+      return copy;
+    });
+  };
+
+  const onSubmitPasscode = () => {
+    setState((prev) => {
+      const copy = deepCopy(prev);
+      const wordsLength = data.corridors[copy.currentCorridorIndex].words[0].length;
+      const passcode = data.corridors[copy.currentCorridorIndex].passcode;
+
+      const newGuess = copy.currentCorridorIndexes
+        .map((pos, index) => data.corridors[copy.currentCorridorIndex].words[index][wordsLength - 1 - pos])
+        .join('');
+
+      copy.guesses[copy.currentCorridorIndex].push(newGuess);
+
+      const isCorrect = newGuess === passcode;
+      if (isCorrect) {
+        copy.currentCorridorIndex += 1;
+        message.success({
+          content: translate(`Você acertou: ${passcode.toUpperCase()}!`, `Correct: ${passcode}`),
+          duration: 3,
+        });
+      } else {
+        copy.hearts -= 1;
+        message.warning({
+          content: translate('Palavra-chave incorreta. Tente novamente!', 'Incorrect passcode. Try again!'),
+          duration: 3,
+        });
+      }
+
+      if (isCorrect && copy.currentCorridorIndex === data.corridors.length) {
+        copy.status = STATUSES.WIN;
+        copy.currentCorridorIndex = 2;
+      }
+
+      if (copy.hearts <= 0) {
+        copy.status = STATUSES.LOSE;
+      }
+
+      return copy;
+    });
+  };
+
+  // CONDITIONS
+  const isWin = state.status === STATUSES.WIN;
+  const isLose = state.status === STATUSES.LOSE;
+  const isComplete = isWin || isLose;
+
+  useMarkAsPlayed({
+    key: SETTINGS.KEY,
+    isComplete,
+  });
+
+  // RESULTS MODAL
+  const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);
+
+  // const isReady = state.selection.filter(Boolean).length === data.requests.length;
+
+  return {
+    hearts: state.hearts,
+    guesses: state.guesses,
+    currentCorridorIndex: state.currentCorridorIndex,
+    currentCorridor: data.corridors[state.currentCorridorIndex],
+    currentCorridorIndexes: state.currentCorridorIndexes,
+    showResultModal,
+    setShowResultModal,
+    isWin,
+    isLose,
+    isComplete,
+    onSlideWordPosition,
+    onSubmitPasscode,
+  };
+}
