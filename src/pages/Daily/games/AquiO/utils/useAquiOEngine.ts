@@ -2,6 +2,7 @@ import { intersectionBy } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 // Hooks
@@ -67,6 +68,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
       discIndex: 0,
       attempts: prev.attempts + 1,
     }));
+    playSFX('addCorrect');
 
     restart(inNSeconds(DURATION), true);
   };
@@ -74,8 +76,10 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
   const onSelect = (itemId: string) => {
     if (itemId === result) {
       setState((prev) => ({ ...prev, discIndex: prev.discIndex + 1 }));
+      playSFX('correct');
     } else {
       setState((prev) => ({ ...prev, hearts: prev.hearts - 1 }));
+      playSFX('wrong');
     }
   };
 
@@ -90,9 +94,12 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
       pause();
       setTimesUp(true);
       if (isWin) {
+        playSFX('win');
         updateLocalStorage({
           maxProgress: SETTINGS.GOAL,
         });
+      } else {
+        playSFX('lose');
       }
     }
   }, [isWin, isLose]);

@@ -2,6 +2,7 @@ import { chunk, cloneDeep } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 // Internal
 import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
@@ -24,6 +25,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
         selection: null,
         swap: [],
       });
+      playSFX('bubbleOut');
       return;
     }
 
@@ -32,6 +34,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
         selection: index,
         swap: [],
       });
+      playSFX('select');
       return;
     }
 
@@ -39,7 +42,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
       if (prev.selection === null) {
         return prev;
       }
-
+      playSFX('swap');
       const copyLetters = cloneDeep(state.letters);
       const temp = copyLetters[prev.selection];
       copyLetters[prev.selection] = copyLetters[index];
@@ -87,6 +90,12 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
       });
 
       const isAllCorrect = copyLetters.every((letter) => letter.locked);
+
+      if (isAllCorrect) {
+        playSFX('win');
+      } else {
+        playSFX('wrong');
+      }
 
       const guesses = generatedWords;
       const newBoardState = copyLetters.map((l) => l.letter);
