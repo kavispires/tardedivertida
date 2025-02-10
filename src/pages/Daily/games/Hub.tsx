@@ -35,6 +35,7 @@ import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
+import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
 import { checkWasPlayedToday } from '../utils';
 // import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 
@@ -136,10 +137,10 @@ export function Hub() {
           />
 
           <GameButton
-            lsKey=""
+            lsKey={PORTAIS_MAGICOS.KEY}
             width={width}
             disabled
-            href=""
+            href="portais-magicos"
             Icon={DailyImagesGameIcon}
             name={{ pt: 'Portais', en: 'Doors' }}
             color="rgba(255, 171, 145, 0.85)"
