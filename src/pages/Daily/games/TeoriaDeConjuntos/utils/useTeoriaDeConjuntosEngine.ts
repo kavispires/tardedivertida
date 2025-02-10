@@ -1,6 +1,7 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
@@ -43,12 +44,13 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
 
   const onSelectThing = (thing: TThing) => {
+    playSFX('select');
     updateState({ activeThing: thing });
   };
 
   const onSelectArea = (area: number | null) => {
     if (!state.activeThing) return;
-
+    playSFX('swap');
     updateState({ activeArea: area });
   };
 
@@ -58,11 +60,13 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
     let isCorrect = false;
     if (state.activeThing?.rule === state.activeArea) {
       isCorrect = true;
+      playSFX('correct');
       message.success({
         content: translate('Correto!', 'Correct!'),
       });
     } else {
       isCorrect = false;
+      playSFX('wrong');
       message.error({
         content: translate('Incorreto!', 'Incorrect!'),
       });
@@ -104,6 +108,9 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
               copy.hand.push(thing);
             }
           }
+          if (copy.hearts === 0) {
+            playSFX('lose');
+          }
         }
 
         // Add guess
@@ -117,6 +124,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
         // Check if all things are placed and update win state
         if (copy.hand.length === 0) {
           copy.win = true;
+          playSFX('win');
         }
       }
 

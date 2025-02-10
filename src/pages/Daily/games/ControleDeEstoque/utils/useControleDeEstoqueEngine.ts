@@ -1,6 +1,7 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
@@ -35,6 +36,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
 
         copy.warehouse[shelfIndex] = currentGood;
         copy.lastPlacedGoodId = currentGood;
+        playSFX('swap');
 
         if (copy.warehouse.every(Boolean)) {
           copy.phase = PHASES.FULFILLING;
@@ -51,6 +53,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
    * Selects an order to fulfill
    */
   const onSelectOrder = (order: string) => {
+    playSFX('bubbleIn');
     updateState({ activeOrder: order });
   };
 
@@ -59,6 +62,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
    * (assigns an order to a shelf)
    */
   const onFulfill = (shelfIndex: number) => {
+    playSFX('swap');
     setState((prev) => {
       const copy = deepCopy(prev);
       if (state.activeOrder) {
@@ -76,6 +80,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
    * Takes back an order from a shelf
    */
   const onTakeBack = (orderId: string) => {
+    playSFX('bubbleOut');
     setState((prev) => {
       const copy = deepCopy(prev);
       copy.fulfillments = copy.fulfillments.filter((fulfillment) => fulfillment.order !== orderId);
@@ -122,6 +127,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
         ),
         duration: 3,
       });
+      playSFX('wrong');
     }
 
     setState((prev) => {
@@ -132,8 +138,12 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
 
       if (isAllCorrect) {
         copy.win = true;
+        playSFX('win');
       } else {
         copy.hearts -= 1;
+        if (copy.hearts === 0) {
+          playSFX('lose');
+        }
       }
 
       return copy;

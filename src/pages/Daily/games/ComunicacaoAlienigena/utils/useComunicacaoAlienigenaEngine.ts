@@ -1,6 +1,7 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -48,6 +49,7 @@ export function useComunicacaoAlienigenaEngine(
         ...prev,
         selection: prev.selection.map((item) => (item === itemId ? null : item)),
       }));
+      playSFX('bubbleOut');
     } else {
       const firstNullIndex = state.slotIndex ?? state.selection.indexOf(null);
       if (firstNullIndex !== -1) {
@@ -60,6 +62,7 @@ export function useComunicacaoAlienigenaEngine(
             slotIndex: null,
           };
         });
+        playSFX('bubbleIn');
       }
     }
   };
@@ -76,6 +79,7 @@ export function useComunicacaoAlienigenaEngine(
         duration: 5,
       });
 
+      playSFX('wrong');
       return updateState({
         latestAttempt: Date.now(),
       });
@@ -100,8 +104,10 @@ export function useComunicacaoAlienigenaEngine(
       copy.guesses.push(newGuessString);
 
       if (isCorrect) {
+        playSFX('alienYay');
         copy.win = true;
       } else {
+        playSFX('alienBoo');
         copy.hearts -= 1;
       }
 
