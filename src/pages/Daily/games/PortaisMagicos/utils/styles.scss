@@ -67,3 +67,13 @@
 .result-passcode {
   text-transform: uppercase;
 }
+
+.corridor {
+  border-radius: get-unit(1);
+  background: linear-gradient(
+    0deg,
+    rgb(57, 37, 41) 5%,
+    rgba(152, 97, 108, 0.5) 30%,
+    rgba(152, 97, 108, 0) 50%
+  );
+}

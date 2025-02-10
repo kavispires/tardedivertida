@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { sample } from 'lodash';
 import { getSourceName, wait } from 'pages/Daily/utils';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -18,7 +19,7 @@ export const usePortaisMagicosDemo = () => {
     queryFn: async () => {
       console.count(`Fetching demo ${collectionName}...`);
       await wait(1250);
-      const responseData = DEMO[0] as DailyPortaisMagicosEntry;
+      const responseData = sample(DEMO) as DailyPortaisMagicosEntry;
       print({ [collectionName]: responseData }, 'table');
       return responseData;
     },

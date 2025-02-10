@@ -2,11 +2,11 @@ import { Region, TextRegion } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined, SendOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Space, Typography } from 'antd';
+import { Button, Layout, Modal, Space } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Icons
 import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 // Components
@@ -23,8 +23,6 @@ import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { Passcode } from './Passcode';
 import { Corridor } from './Corridor';
-// Utils
-// Icons
 
 type DailyPortaisMagicosProps = {
   data: DailyPortaisMagicosEntry;
@@ -47,7 +45,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
     onSlideWordPosition,
     onSubmitPasscode,
   } = usePortaisMagicosEngine(data, initialState);
-  const width = useCardWidth(3, { margin: 6, gap: 6, maxWidth: 300, minWidth: 55 });
+  const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 300, minWidth: 55 });
 
   const latestGuess = guesses[currentCorridorIndex][guesses[currentCorridorIndex].length - 1];
 
@@ -65,7 +63,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
       <Header icon={<DailyImagesGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content>
+      <Layout.Content ref={ref}>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -121,8 +119,12 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
           data.corridors.map((corridor, index) => {
             return (
               <Region key={corridor.passcode}>
-                <Corridor number={index + 1} imagesIds={corridor.imagesIds} width={width * 0.75} />
-                <Typography.Text keyboard>{corridor.passcode}</Typography.Text>
+                <Corridor
+                  number={index + 1}
+                  imagesIds={corridor.imagesIds}
+                  width={width * 0.75}
+                  passcode={corridor.passcode}
+                />
               </Region>
             );
           })}
@@ -144,12 +146,9 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
           <ResultsModalContent
             challenge={data.number}
             win={isWin}
-            lose={isLose}
-            hearts={hearts}
             corridors={data.corridors}
             guesses={guesses}
             currentCorridorIndex={currentCorridorIndex}
-            width={width}
           />
         </Modal>
       </Layout.Content>
