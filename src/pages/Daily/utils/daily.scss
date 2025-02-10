@@ -126,7 +126,7 @@
   }
 
   &--disabled {
-    opacity: 0.15;
+    opacity: 0.25 !important; // The animation overrides the opacity without important
     filter: grayscale(0.85);
     border-style: inset;
 

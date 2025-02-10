@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 // Ant Design Resources
-import { Avatar, Flex, Image } from 'antd';
+import { Avatar, Flex, Image, Typography } from 'antd';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Components
@@ -12,16 +12,25 @@ type CorridorProps = {
   number: number;
   imagesIds: string[];
   width: number;
+  passcode?: string;
 };
 
-export function Corridor({ number, imagesIds, width }: CorridorProps) {
+export function Corridor({ number, imagesIds, width, passcode }: CorridorProps) {
   return (
     <>
-      <Flex justify="center">
-        <Avatar>{number}</Avatar>
-      </Flex>
+      {passcode ? (
+        <Flex justify="center" gap={6}>
+          <Typography.Text keyboard>{passcode}</Typography.Text>
+        </Flex>
+      ) : (
+        <Flex justify="center" gap={6}>
+          <CorridorNumber number={number} corridorNumber={1} />
+          <CorridorNumber number={number} corridorNumber={2} />
+          <CorridorNumber number={number} corridorNumber={3} />
+        </Flex>
+      )}
       <Image.PreviewGroup>
-        <SpaceContainer>
+        <SpaceContainer className="corridor">
           {imagesIds.map((cardId, index) => (
             <DoorFrame key={cardId} width={width}>
               <motion.div {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}>
@@ -32,5 +41,16 @@ export function Corridor({ number, imagesIds, width }: CorridorProps) {
         </SpaceContainer>
       </Image.PreviewGroup>
     </>
+  );
+}
+
+function CorridorNumber({ number, corridorNumber }: { number: number; corridorNumber: number }) {
+  return (
+    <Avatar
+      style={corridorNumber === number ? { backgroundColor: 'gold', color: 'black' } : undefined}
+      size="small"
+    >
+      {corridorNumber}
+    </Avatar>
   );
 }

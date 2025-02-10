@@ -1,5 +1,5 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { getDailyName, getSourceName } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
@@ -20,23 +20,17 @@ import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult
 type ResultsModalContentProps = {
   challenge: number;
   win: boolean;
-  lose: boolean;
-  hearts: number;
   corridors: DailyPortaisMagicosEntry['corridors'];
   guesses: string[][];
   currentCorridorIndex: number;
-  width: number;
 };
 
 export function ResultsModalContent({
   challenge,
   win,
-  lose,
-  hearts,
   corridors,
   guesses,
   currentCorridorIndex,
-  width,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
@@ -45,12 +39,11 @@ export function ResultsModalContent({
       writeResult({
         game: dualTranslate(SETTINGS.NAME),
         challenge,
-        remainingHearts: hearts,
         guesses,
         win,
         language,
       }),
-    [challenge, dualTranslate, guesses, hearts, language, win],
+    [challenge, dualTranslate, guesses, language, win],
   );
 
   return (
@@ -80,7 +73,7 @@ export function ResultsModalContent({
         ))}
       </SpaceContainer>
 
-      <CopyToClipboardResult result={result} rows={3} />
+      <CopyToClipboardResult result={result} rows={4} />
 
       <NextGameSuggestion />
     </SpaceContainer>
@@ -90,36 +83,40 @@ export function ResultsModalContent({
 function writeResult({
   game,
   challenge,
-  remainingHearts,
   guesses,
   win,
   language,
 }: {
   game: string;
   challenge: number;
-  remainingHearts: number;
   guesses: string[][];
   win: boolean;
   language: Language;
 }) {
-  const indexEmojis = ['🔶', '💥'];
+  const lastPlayedIndex = guesses.filter((guess) => guess.length > 0).length - 1;
 
   const result = guesses
-    ?.map((guessBatch) => {
+    ?.map((guessBatch, index) => {
+      const isLastGuessingRound = lastPlayedIndex === index;
+
       const quantity = Math.max(guessBatch?.length ?? 0, 0);
-      return Array(quantity)
-        .map((item, i) => {
-          const guess = guessBatch[i];
-          const emoji = indexEmojis[i];
-          return '🔶';
-        })
+
+      const lostLives = Math.max(quantity - (isLastGuessingRound ? (win ? 1 : 0) : 1), 0);
+      // Lost lives
+      const lostHearts = Array(lostLives)
+        .fill(0)
+        .map(() => '🩶')
         .join('');
+
+      const correct = quantity - lostLives > 0 ? '🔶' : '💥';
+
+      return [lostHearts, correct].join('');
     })
-    .join('');
+    .join('\n');
 
   return [
     `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challenge}`,
-    writeHeartResultString(remainingHearts, SETTINGS.HEARTS),
+
     result,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}/portais-magicos`,
   ].join('\n');

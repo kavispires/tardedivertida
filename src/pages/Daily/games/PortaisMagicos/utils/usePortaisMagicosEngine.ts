@@ -16,7 +16,7 @@ import { SETTINGS } from './settings';
 export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialState: GameState) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
-  const { state, setState } = useDailyGameState<GameState>(initialState);
+  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
   const { updateLocalStorage } = useDailyLocalToday<PortaisMagicosLocalToday>({
     key: SETTINGS.KEY,
@@ -28,6 +28,13 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
   useEffect(() => {
     updateLocalStorage(state);
   }, [state]);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateState({
+      currentCorridorIndexes: data.corridors[state.currentCorridorIndex].words.map(() => 1),
+    });
+  }, [state.currentCorridorIndex]);
 
   // ACTIONS
   const onSlideWordPosition = (index: number) => {
