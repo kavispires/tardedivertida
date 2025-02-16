@@ -18,6 +18,7 @@ import { DailyTeoriaDeConjuntosGame } from './games/TeoriaDeConjuntos/DailyTeori
 import { getDailyName } from './utils';
 import { DailyContextProvider } from './hooks/useDailyChallenge';
 import { DailyComunicacaoAlienigenaGame } from './games/ComunicacaoAlienigena/DailyComunicacaoAlienigenaGame';
+import { DailyPortaisMagicosGame } from './games/PortaisMagicos/DailyPortaisMagicosGame';
 // Sass
 import './utils/daily.scss';
 
@@ -56,6 +57,7 @@ function DailyPage() {
       palavreado: DailyPalavreadoGame,
       picaco: DailyPicacoGame,
       'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
+      'portais-magicos': DailyPortaisMagicosGame,
       debug: DebugPage,
     }?.[subPath] ?? Hub;
 

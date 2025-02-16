@@ -1,6 +1,7 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 // Utils
 import { removeDuplicates } from 'utils/helpers';
 // Internal
@@ -38,6 +39,20 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
     const win = Object.values(solution)
       .filter((value) => value !== undefined)
       .every(Boolean);
+
+    if (isCorrect) {
+      if (win) {
+        playSFX('win');
+      } else {
+        playSFX('addCorrect');
+      }
+    } else {
+      if (state.hearts === 1) {
+        playSFX('lose');
+      } else {
+        playSFX('addWrong');
+      }
+    }
 
     setState((prev) => ({
       ...prev,

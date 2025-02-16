@@ -1,15 +1,17 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { MutedOutlined, SoundFilled } from '@ant-design/icons';
-import { Switch, Typography } from 'antd';
+import { Button, Flex, Switch, Typography } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Utils
 import { getAnimation } from 'utils/animations';
+import { isDevEnv } from 'utils/helpers';
 // Icons
 import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
@@ -26,6 +28,7 @@ import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { IconAvatar } from 'components/avatars';
 import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
 // Internal
+import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
 import { DailyChrome } from '../components/DailyChrome';
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
@@ -35,6 +38,7 @@ import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
+import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
 import { checkWasPlayedToday } from '../utils';
 // import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 
@@ -136,10 +140,10 @@ export function Hub() {
           />
 
           <GameButton
-            lsKey=""
+            lsKey={PORTAIS_MAGICOS.KEY}
             width={width}
             disabled
-            href=""
+            href="portais-magicos"
             Icon={DailyImagesGameIcon}
             name={{ pt: 'Portais', en: 'Doors' }}
             color="rgba(255, 171, 145, 0.85)"
@@ -170,6 +174,7 @@ export function Hub() {
             index={9}
           />
         </div>
+        <SFXTest />
       </div>
     </DailyChrome>
   );
@@ -199,8 +204,9 @@ function GameButton({ lsKey, width, disabled, href, Icon, name, color, index }: 
         style={{ width, height: width, backgroundColor: color }}
         {...getAnimation('bounceIn', { delay: index * 0.05 })}
         disabled={disabled}
+        onClick={() => playSFX('swap')}
       >
-        <Link to={`/diario/${href}"`} className="hub-link">
+        <Link to={`/diario/${href}`} className="hub-link">
           <Icon style={{ width: width / 2 }} />
           <DualTranslate>{name}</DualTranslate>
         </Link>
@@ -210,7 +216,11 @@ function GameButton({ lsKey, width, disabled, href, Icon, name, color, index }: 
 }
 
 function SoundFX() {
-  const [_, setVolume] = useGlobalLocalStorage('volume');
+  const [volume, setVolume] = useGlobalLocalStorage('volume');
+
+  useEffect(() => {
+    dailySoundEffects.volume(volume);
+  }, [volume]);
 
   const onSwitchClick = (checked: boolean) => {
     setVolume(checked ? 0.5 : 0);
@@ -220,10 +230,8 @@ function SoundFX() {
     <Switch
       checkedChildren={<SoundFilled />}
       unCheckedChildren={<MutedOutlined />}
-      // TODO: Implement sound effects
-      checked={false}
+      checked={!!volume}
       onClick={onSwitchClick}
-      disabled
     />
   );
 }
@@ -243,9 +251,24 @@ function TimeLeft() {
 
   return (
     <div className="hub-time-left">
-      <span key={hours}>{String(hours).padStart(2, '0')}</span>:
-      <span key={minutes}>{String(minutes).padStart(2, '0')}</span>:
-      <span key={seconds}>{String(seconds).padStart(2, '0')}</span>
+      <span key={`h${hours}`}>{String(hours).padStart(2, '0')}</span>:
+      <span key={`m${minutes}`}>{String(minutes).padStart(2, '0')}</span>:
+      <span key={`s${seconds}`}>{String(seconds).padStart(2, '0')}</span>
     </div>
   );
+}
+
+function SFXTest() {
+  if (isDevEnv) {
+    return (
+      <Flex wrap>
+        {SFXAllNames.map((name) => (
+          <Button key={name} onClick={() => dailySoundEffects.play(name)}>
+            {name}
+          </Button>
+        ))}
+      </Flex>
+    );
+  }
+  return null;
 }
