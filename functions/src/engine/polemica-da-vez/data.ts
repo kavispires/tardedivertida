@@ -10,6 +10,5 @@ import type { CustomDeck } from './types';
  * @returns
  */
 export const getTweets = async (language: string) => {
-  const resourceName = `${TDR_RESOURCES.TWEETS}-${language}`;
-  return await resourceUtils.fetchResource<CustomDeck>(resourceName);
+  return await resourceUtils.fetchResource<CustomDeck>(TDR_RESOURCES.TWEETS, language);
 };

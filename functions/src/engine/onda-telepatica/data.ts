@@ -16,9 +16,11 @@ import utils from '../../utils';
  * @returns
  */
 export const getCategories = async (language: string): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.SPECTRUMS}-${language}`;
   // Get full deck
-  const allCategories = await resourceUtils.fetchResource<Dictionary<SpectrumCard>>(resourceName);
+  const allCategories = await resourceUtils.fetchResource<Dictionary<SpectrumCard>>(
+    TDR_RESOURCES.SPECTRUMS,
+    language,
+  );
   // Get used deck
   const usedCategories = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 

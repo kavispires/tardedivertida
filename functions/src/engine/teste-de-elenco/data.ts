@@ -14,9 +14,11 @@ import { sampleSize } from 'lodash';
  * @returns
  */
 export const getData = async (language: string, options: TesteDeElencoOptions): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
-  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(resourceName);
+  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(
+    TDR_RESOURCES.TESTIMONY_QUESTIONS,
+    language,
+  );
   // Get images info
   const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
 
@@ -24,9 +26,7 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
   const availableCards = Object.values(allCards).filter((card) => (options.nsfw ? card : !card.nsfw));
 
   // Get full movies deck
-  const allMovies = await resourceUtils.fetchResource<Dictionary<MovieCard>>(
-    `${TDR_RESOURCES.MOVIES}-${language}`,
-  );
+  const allMovies = await resourceUtils.fetchResource<Dictionary<MovieCard>>(TDR_RESOURCES.MOVIES, language);
 
   const items = await utils.tdr.getItems(6, {
     allowNSFW: !!options.nsfw,
