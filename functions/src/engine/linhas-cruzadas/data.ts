@@ -12,12 +12,16 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getData = async (language: string): Promise<ResourceData> => {
-  const resourceNameLC = `${TDR_RESOURCES.DRAWING_WORDS}-${language}`;
-  const allWords = await resourceUtils.fetchResource<Dictionary<TextCard>>(resourceNameLC);
+  const allWords = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+    TDR_RESOURCES.DRAWING_WORDS,
+    language,
+  );
 
-  const resourceNameAR = `${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`;
   // Get full deck
-  const allExpressions = await resourceUtils.fetchResource<Dictionary<ArteRuimCard>>(resourceNameAR);
+  const allExpressions = await resourceUtils.fetchResource<Dictionary<ArteRuimCard>>(
+    TDR_RESOURCES.ARTE_RUIM_CARDS,
+    language,
+  );
 
   return {
     allWords: Object.values(allWords),

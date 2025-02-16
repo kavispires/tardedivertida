@@ -13,9 +13,8 @@ import { LETTERS_ENTRIES_BY_LANGUAGE } from './constants';
  * @returns
  */
 export const getTopics = async (language: string): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.TOPICS}-${language}`;
   // Get full deck
-  const allTopics = await resourceUtils.fetchResource<Dictionary<TopicCard>>(resourceName);
+  const allTopics = await resourceUtils.fetchResource<Dictionary<TopicCard>>(TDR_RESOURCES.TOPICS, language);
 
   return { allTopics: Object.values(allTopics), allLetters: LETTERS_ENTRIES_BY_LANGUAGE[language] };
 };

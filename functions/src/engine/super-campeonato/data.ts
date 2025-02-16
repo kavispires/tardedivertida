@@ -21,9 +21,11 @@ export const getResourceData = async (
   playerCount: number,
   options: SuperCampeonatoOptions,
 ): Promise<ResourceData> => {
-  const challengesResourceName = `${TDR_RESOURCES.CHALLENGES}-${language}`;
   // Get full challenges deck
-  const challengesResponse = await resourceUtils.fetchResource<Dictionary<TextCard>>(challengesResourceName);
+  const challengesResponse = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+    TDR_RESOURCES.CHALLENGES,
+    language,
+  );
   // Get used challenges deck
   const usedChallenges = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.CHALLENGES, {});
 

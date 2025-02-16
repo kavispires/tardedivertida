@@ -15,9 +15,11 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getResourceData = async (language: string, options: TaNaCaraOptions): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
-  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(resourceName);
+  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(
+    TDR_RESOURCES.TESTIMONY_QUESTIONS,
+    language,
+  );
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info

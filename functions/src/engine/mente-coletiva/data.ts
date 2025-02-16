@@ -15,9 +15,11 @@ import utils from '../../utils';
  * @returns
  */
 export const getQuestions = async (language: string): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.GROUP_QUESTIONS}-${language}`;
   // Get full deck
-  const allQuestions = await resourceUtils.fetchResource<Dictionary<GroupQuestionCard>>(resourceName);
+  const allQuestions = await resourceUtils.fetchResource<Dictionary<GroupQuestionCard>>(
+    TDR_RESOURCES.GROUP_QUESTIONS,
+    language,
+  );
   // Get used deck
   const usedQuestions = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, {});
 

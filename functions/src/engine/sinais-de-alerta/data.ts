@@ -14,11 +14,15 @@ import * as globalUtils from '../global';
  * @returns A promise that resolves to an object containing all the warning sign descriptions and subjects.
  */
 export const getCards = async (language: string): Promise<ResourceData> => {
-  const descriptorsName = `${TDR_RESOURCES.WARNING_SIGNS_DESCRIPTORS}-${language}`;
-  const allDescriptors = await resourceUtils.fetchResource<Dictionary<TextCard>>(descriptorsName);
+  const allDescriptors = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+    TDR_RESOURCES.WARNING_SIGNS_DESCRIPTORS,
+    language,
+  );
 
-  const subjectsName = `${TDR_RESOURCES.WARNING_SIGNS_SUBJECTS}-${language}`;
-  const allSubjects = await resourceUtils.fetchResource<Dictionary<TextCard>>(subjectsName);
+  const allSubjects = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+    TDR_RESOURCES.WARNING_SIGNS_SUBJECTS,
+    language,
+  );
 
   return { allDescriptors: Object.values(allDescriptors), allSubjects: Object.values(allSubjects) };
 };

@@ -17,8 +17,10 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
   const quantityNeeded = options?.gridType === 'imageCards' ? 15 : 30;
 
   if (options?.gridType === 'properties') {
-    const resourceName = `${TDR_RESOURCES.THINGS_QUALITIES}-${language}`;
-    const allCards = await resourceUtils.fetchResource<Dictionary<TextCard>>(resourceName);
+    const allCards = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+      TDR_RESOURCES.THINGS_QUALITIES,
+      language,
+    );
     // Does not need type because it is just text
     return { deck: utils.game.getRandomItems(Object.values(allCards), quantityNeeded) };
   }

@@ -24,14 +24,13 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const quantityNeeded = Math.ceil(MAX_ROUNDS / 3);
 
   // Colors
-  const allColors = await resourceUtils.fetchResource<Dictionary<TextCard>>(
-    `${TDR_RESOURCES.COLORS}-${language}`,
-  );
+  const allColors = await resourceUtils.fetchResource<Dictionary<TextCard>>(TDR_RESOURCES.COLORS, language);
   const colors = utils.game.getRandomItems(Object.values(allColors), quantityNeeded);
 
   // Emotions
   const allEmotions = await resourceUtils.fetchResource<Dictionary<TextCard>>(
-    `${TDR_RESOURCES.EMOTIONS}-${language}`,
+    TDR_RESOURCES.EMOTIONS,
+    language,
   );
   const emotions = utils.game.getRandomItems(Object.values(allEmotions), quantityNeeded);
 

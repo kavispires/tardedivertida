@@ -12,9 +12,11 @@ import type { DilemmaCard } from '../../types/tdr';
  * @returns
  */
 export const getDilemmas = async (language: string, options: EsquiadoresOptions): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.DILEMMAS}-${language}`;
   // Get full deck
-  const allDilemmas = await resourceUtils.fetchResource<Dictionary<DilemmaCard>>(resourceName);
+  const allDilemmas = await resourceUtils.fetchResource<Dictionary<DilemmaCard>>(
+    TDR_RESOURCES.DILEMMAS,
+    language,
+  );
 
   return {
     dilemmas: Object.values(allDilemmas).filter((scenario) => (options.nsfw ? true : !scenario.nsfw)),

@@ -15,9 +15,11 @@ export const getScenarios = async (
   language: string,
   options: FileiraDeFatosOptions,
 ): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.SCENARIOS}-${language}`;
   // Get full deck
-  const allScenarios = await resourceUtils.fetchResource<Dictionary<TextCard>>(resourceName);
+  const allScenarios = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+    TDR_RESOURCES.SCENARIOS,
+    language,
+  );
 
   return {
     scenarios: Object.values(allScenarios).filter((scenario) => (options.nsfw ? true : !scenario.nsfw)),

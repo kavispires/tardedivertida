@@ -149,9 +149,8 @@ export const saveUsedAlienItems = async (items: Item[]) => {
  * @returns
  */
 export const getSingleWords = async (language: Language, quantity?: number): Promise<TextCard[]> => {
-  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS}-${language}`;
   // Get full deck
-  const allWords: Dictionary<TextCard> = await fetchResource(resourceName);
+  const allWords: Dictionary<TextCard> = await fetchResource(TDR_RESOURCES.SINGLE_WORDS, language);
 
   if (!quantity) {
     return Object.values(allWords);
@@ -273,9 +272,8 @@ export const getContenders = async (
  * @returns
  */
 export const getAdjectives = async (language: Language, quantity?: number): Promise<TextCard[]> => {
-  const resourceName = `${TDR_RESOURCES.ADJECTIVES}-${language}`;
   // Get full deck
-  const allAdjectives: Dictionary<TextCard> = await fetchResource(resourceName);
+  const allAdjectives: Dictionary<TextCard> = await fetchResource(TDR_RESOURCES.ADJECTIVES, language);
 
   if (!quantity) {
     return gameUtils.shuffle(Object.values(allAdjectives));

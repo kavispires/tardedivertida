@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhos-pesadelos",
-  "version": "0.11.54",
+  "version": "0.11.55",
   "release": "deprecated",
   "available": false,
   "title": {
