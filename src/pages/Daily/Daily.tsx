@@ -47,17 +47,22 @@ function DailyPage() {
 
   const Outlet =
     {
+      // Hub
       '': Hub,
+      hub: Hub,
+      // Games
       'aqui-o': DailyAquiOGame,
       'arte-ruim': DailyArteRuimGame,
       'comunicacao-alienigena': DailyComunicacaoAlienigenaGame,
       'controle-de-estoque': DailyControleDeEstoqueGame,
       filmaco: DailyFilmacoGame,
-      hub: Hub,
       palavreado: DailyPalavreadoGame,
-      picaco: DailyPicacoGame,
       'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
+      // Contribute
+      picaco: DailyPicacoGame,
+      // Demos
       'portais-magicos': DailyPortaisMagicosGame,
+      // Dev
       debug: DebugPage,
     }?.[subPath] ?? Hub;
 

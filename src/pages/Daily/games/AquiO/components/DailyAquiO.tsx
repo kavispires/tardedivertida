@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { Button, Divider, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
+import { Button, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
 // Utils
 import { getAnimationClass, isDevEnv } from 'utils/helpers';
 // Icons
@@ -25,13 +25,10 @@ import { Rules } from './Rules';
 
 type DailyAquiOProps = {
   data: DailyAquiOEntry;
-  language: Language;
-  onToggleGame: () => void;
-  isRandomGame: boolean;
 };
 
-export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: DailyAquiOProps) {
-  const [initialState] = useState(getInitialState(data, isRandomGame));
+export function DailyAquiO({ data }: DailyAquiOProps) {
+  const [initialState] = useState(getInitialState(data));
 
   const {
     hearts,
@@ -52,7 +49,7 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
     isPlaying,
     attempts,
     maxProgress,
-  } = useAquiOEngine(data, initialState, isRandomGame);
+  } = useAquiOEngine(data, initialState);
 
   // UI state
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
@@ -73,13 +70,12 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
           <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
           <SpaceContainer>
             <Typography.Text strong>
-              {data.title[language]} | <Translate pt="Disco" en="Disc" /> {discIndex}/{SETTINGS.GOAL}
-              {!isRandomGame && (
-                <>
-                  {' '}
-                  | <Translate pt="Tentativa" en="Attempt" /> {attempts}
-                </>
-              )}
+              <DualTranslate>{SETTINGS.NAME}</DualTranslate> | <Translate pt="Disco" en="Disc" /> {discIndex}/
+              {SETTINGS.GOAL}
+              <>
+                {' '}
+                | <Translate pt="Tentativa" en="Attempt" /> {attempts}
+              </>
             </Typography.Text>
           </SpaceContainer>
 
@@ -91,20 +87,10 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
         <SpaceContainer direction="vertical">
           {!isPlaying && (
             <>
-              <Button
-                size="large"
-                onClick={onStart}
-                type="primary"
-                disabled={isRandomGame ? false : isWin || isLose}
-                icon="🔘"
-              >
+              <Button size="large" onClick={onStart} type="primary" disabled={isWin || isLose} icon="🔘">
                 <Translate pt="Começar" en="Start" />
                 &nbsp;
-                {isRandomGame ? (
-                  <DualTranslate>{data.title}</DualTranslate>
-                ) : (
-                  <Translate pt=" Diário" en=" Daily" />
-                )}
+                <Translate pt=" Diário" en=" Daily" />
               </Button>
               <PreloadItems items={data.itemsIds} />
 
@@ -121,20 +107,6 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
             <Space className="results-container" align="center" direction="vertical">
               <Button onClick={() => setShowResultModal(true)}>
                 <Translate pt="Ver Resultado" en="Show Results" />
-              </Button>
-            </Space>
-          )}
-
-          {(isRandomGame || isComplete) && !isPlaying && (
-            <Space className="results-container" align="center" direction="vertical">
-              <Divider />
-
-              <Button onClick={onToggleGame}>
-                {isRandomGame ? (
-                  <Translate pt="Jogar o Desafio Diário" en="Play the daily challenge" />
-                ) : (
-                  <Translate pt="Jogar com baralho aleatório" en="Play a random deck" />
-                )}
               </Button>
             </Space>
           )}
@@ -159,21 +131,14 @@ export function DailyAquiO({ data, language, onToggleGame, isRandomGame }: Daily
             </SpaceContainer>
           )}
 
-          <Modal
-            title={<Translate pt="Resultado" en="Results" />}
-            open={showResultModal}
-            onCancel={() => setShowResultModal(false)}
-            okButtonProps={{ hidden: true }}
-            cancelButtonProps={{ hidden: true }}
-          >
+          <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
             <ResultsModalContent
-              challengeTitle={data.title[language]}
               challengeNumber={data.number}
+              challengeTitle={data.title}
               hearts={hearts}
               attempts={attempts}
               progress={discIndex}
               itemsIds={data.itemsIds}
-              isRandomGame={isRandomGame}
               hardMode={mode === 'challenge'}
               lastMatch={result}
               maxProgress={maxProgress}

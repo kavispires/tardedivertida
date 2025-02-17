@@ -128,12 +128,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           </TextRegion>
         )}
 
-        <Modal
-          title={<Translate pt="Resultado" en="Results" />}
-          open={showResultModal}
-          onCancel={() => setShowResultModal(false)}
-          footer={null}
-        >
+        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
             challenge={data?.number}
             isWin={isWin}
