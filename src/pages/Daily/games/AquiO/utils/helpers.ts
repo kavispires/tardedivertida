@@ -23,7 +23,7 @@ export const DEFAULT_LOCAL_TODAY: AquiOLocalToday = {
  * @param isRandomGame - A boolean indicating if the game is random.
  * @returns The initial game state.
  */
-export const getInitialState = (data: DailyAquiOEntry, isRandomGame: boolean): GameState => {
+export const getInitialState = (data: DailyAquiOEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
@@ -39,12 +39,10 @@ export const getInitialState = (data: DailyAquiOEntry, isRandomGame: boolean): G
     maxProgress: 0,
   };
 
-  if (!isRandomGame) {
-    state.attempts = localToday.attempts ?? 0;
-    state.discIndex = localToday.maxProgress ?? 0;
-    state.maxProgress = localToday.maxProgress ?? 0;
-    state.hearts = localToday.hearts ?? SETTINGS.HEARTS;
-  }
+  state.attempts = localToday.attempts ?? 0;
+  state.discIndex = localToday.maxProgress ?? 0;
+  state.maxProgress = localToday.maxProgress ?? 0;
+  state.hearts = localToday.hearts ?? SETTINGS.HEARTS;
 
   return state;
 };

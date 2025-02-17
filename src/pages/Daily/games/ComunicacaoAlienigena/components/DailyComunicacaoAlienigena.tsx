@@ -225,12 +225,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           </Region>
         )}
 
-        <Modal
-          title={<Translate pt="Resultado" en="Results" />}
-          open={showResultModal}
-          onCancel={() => setShowResultModal(false)}
-          footer={null}
-        >
+        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
             challenge={data.number}
             win={isWin}

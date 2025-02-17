@@ -27,7 +27,7 @@ export function useDailySaveDrawings(onSuccess: GenericFunction) {
       });
       onSuccess();
     },
-    onError: (e: any) => {
+    onError: (e: Error) => {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar salvar desenhos',
@@ -36,6 +36,7 @@ export function useDailySaveDrawings(onSuccess: GenericFunction) {
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
+      // biome-ignore lint/suspicious/noConsole: on purpose
       console.error(e);
     },
   });

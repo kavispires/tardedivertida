@@ -16,7 +16,7 @@ import type { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
 
 const DURATION = 60;
 
-export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, isRandomGame: boolean) {
+export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
   const [timesUp, setTimesUp] = useState(false);
 
   const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
@@ -44,16 +44,15 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState, i
     autoStart: false,
     onExpire: () => {
       setTimesUp(true);
-      if (!isRandomGame) {
-        updateLocalStorage({
-          hardMode: mode === 'challenge',
-          hearts: state.hearts,
-          maxProgress: Math.max(state.discIndex, state.maxProgress),
-        });
-        updateState({
-          maxProgress: Math.max(state.discIndex, state.maxProgress),
-        });
-      }
+
+      updateLocalStorage({
+        hardMode: mode === 'challenge',
+        hearts: state.hearts,
+        maxProgress: Math.max(state.discIndex, state.maxProgress),
+      });
+      updateState({
+        maxProgress: Math.max(state.discIndex, state.maxProgress),
+      });
     },
   });
 

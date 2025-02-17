@@ -86,6 +86,8 @@ export const collectionByCategory: Record<string, string[]> = {
     'DailyWarehouseGameIcon',
     'DailyWordGameIcon',
     'DailyDiagramGameIcon',
+    'DailySuspectGame',
+    'DailyContributionGame',
   ],
   testPage: ['EarthIcon', 'HeartIcon'],
 };

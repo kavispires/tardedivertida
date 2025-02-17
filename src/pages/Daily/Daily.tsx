@@ -19,6 +19,7 @@ import { getDailyName } from './utils';
 import { DailyContextProvider } from './hooks/useDailyChallenge';
 import { DailyComunicacaoAlienigenaGame } from './games/ComunicacaoAlienigena/DailyComunicacaoAlienigenaGame';
 import { DailyPortaisMagicosGame } from './games/PortaisMagicos/DailyPortaisMagicosGame';
+import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
 // Sass
 import './utils/daily.scss';
 
@@ -47,17 +48,23 @@ function DailyPage() {
 
   const Outlet =
     {
+      // Hub
       '': Hub,
+      hub: Hub,
+      // Games
       'aqui-o': DailyAquiOGame,
       'arte-ruim': DailyArteRuimGame,
       'comunicacao-alienigena': DailyComunicacaoAlienigenaGame,
       'controle-de-estoque': DailyControleDeEstoqueGame,
       filmaco: DailyFilmacoGame,
-      hub: Hub,
       palavreado: DailyPalavreadoGame,
-      picaco: DailyPicacoGame,
       'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
+      // Contribute
+      picaco: DailyPicacoGame,
+      // Demos
       'portais-magicos': DailyPortaisMagicosGame,
+      quartetos: DailyQuartetosGame,
+      // Dev
       debug: DebugPage,
     }?.[subPath] ?? Hub;
 

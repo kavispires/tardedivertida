@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { MutedOutlined, SoundFilled } from '@ant-design/icons';
-import { Button, Flex, Switch, Typography } from 'antd';
+import { Button, Switch, Typography } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
@@ -15,12 +15,15 @@ import { isDevEnv } from 'utils/helpers';
 // Icons
 import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
+import { DailyContributionGame } from 'icons/DailyContributionGame';
+import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
+import { DailySuspectGame } from 'icons/DailySuspectGame';
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
@@ -39,8 +42,120 @@ import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
+import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
 import { checkWasPlayedToday } from '../utils';
-// import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
+
+type Entry = {
+  lsKey: string;
+  href: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  name: DualLanguageValue;
+  color: string;
+  disabled?: boolean;
+};
+
+const GAMES: Entry[] = [
+  {
+    lsKey: ARTE_RUIM.KEY,
+    href: 'arte-ruim',
+    Icon: DailyArtGameIcon,
+    name: { pt: 'Arte Ruim', en: 'Art?' },
+    color: 'rgba(158, 182, 244, 0.85)',
+  },
+  {
+    lsKey: AQUI_O.KEY,
+    href: 'aqui-o',
+    Icon: DailyFindingGameIcon,
+    name: { pt: 'Aqui Ó', en: 'Find This' },
+    color: 'rgba(227, 167, 111, 0.85)',
+  },
+  {
+    lsKey: COMUNICACAO_ALIENIGENA.KEY,
+    href: 'comunicacao-alienigena',
+    Icon: DailyAlienGameIcon,
+    name: { pt: 'Alienígena', en: 'Alienish' },
+    color: 'rgba(105, 218, 207, 0.85)',
+  },
+  {
+    lsKey: TEORIA_DE_CONJUNTOS.KEY,
+    href: 'teoria-de-conjuntos',
+    Icon: DailyDiagramGameIcon,
+    name: { pt: 'Conjuntos', en: 'Diagram' },
+    color: 'rgba(172, 128, 221, 0.85)',
+  },
+  {
+    lsKey: CONTROLE_DE_ESTOQUE.KEY,
+    href: 'controle-de-estoque',
+    Icon: DailyWarehouseGameIcon,
+    name: { pt: 'Estoque', en: 'Warehouse' },
+    color: 'rgba(255, 199, 59, 0.85)',
+  },
+  {
+    lsKey: FILMACO.KEY,
+    href: 'filmaco',
+    Icon: DailyMovieGameIcon,
+    name: { pt: 'Filmaço', en: 'Movicon' },
+    color: 'rgba(85, 161, 255, 0.85)',
+  },
+  {
+    lsKey: PALAVREADO.KEY,
+    href: 'palavreado',
+    Icon: DailyWordGameIcon,
+    name: { pt: 'Palavreado', en: 'Rewording' },
+    color: 'rgba(239, 83, 80, 0.85)',
+  },
+];
+
+const CONTRIBUTIONS: Entry[] = [
+  {
+    lsKey: PICACO.KEY,
+    href: 'picaco',
+    Icon: DailyDrawingGameIcon,
+    name: { pt: 'Picaço!', en: 'Artist!' },
+    color: 'rgba(234, 236, 241, 0.85)',
+  },
+  {
+    lsKey: '',
+    href: '',
+    Icon: DailyContributionGame,
+    name: { pt: 'Responda', en: 'Answer' },
+    color: 'rgba(240, 240, 228, 0.85)',
+    disabled: true,
+  },
+  {
+    lsKey: '',
+    href: '',
+    Icon: DailySuspectGame,
+    name: { pt: 'Suspeito?', en: 'Suspect?' },
+    color: 'rgba(242, 233, 236, 0.85)',
+    disabled: true,
+  },
+];
+
+const DEMOS: Entry[] = [
+  {
+    lsKey: PORTAIS_MAGICOS.KEY,
+    href: 'portais-magicos',
+    Icon: DailyImagesGameIcon,
+    name: { pt: 'Portais', en: 'Doors' },
+    color: 'rgba(255, 171, 145, 0.85)',
+  },
+  {
+    lsKey: QUARTETOS.KEY,
+    href: 'quartetos',
+    Icon: DailyGroupingGameIcon,
+    name: { pt: 'Quartetos', en: 'Connect' },
+    color: 'rgba(243, 145, 189, 0.85)',
+  },
+  {
+    lsKey: '',
+    href: '',
+    Icon: DailyCrimeGameIcon,
+    name: { pt: 'Crimes', en: 'Crimes' },
+    color: 'rgba(243, 232, 145, 0.85)',
+    disabled: true,
+  },
+];
 
 export function Hub() {
   const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
@@ -57,126 +172,55 @@ export function Hub() {
           <Translate pt="Jogue" en="Play" />
         </Typography.Title>
 
-        <div className="hub-list">
-          <GameButton
-            lsKey={ARTE_RUIM.KEY}
-            width={width}
-            href="arte-ruim"
-            Icon={DailyArtGameIcon}
-            name={{ pt: 'Arte Ruim', en: 'Art?' }}
-            color="rgba(158, 182, 244, 0.85)"
-            index={0}
-          />
-
-          <GameButton
-            lsKey={AQUI_O.KEY}
-            width={width}
-            href="aqui-o"
-            Icon={DailyFindingGameIcon}
-            name={{ pt: 'Aqui Ó', en: 'Find This' }}
-            color="rgba(227, 167, 111, 0.85)"
-            index={1}
-          />
-
-          <GameButton
-            lsKey={COMUNICACAO_ALIENIGENA.KEY}
-            width={width}
-            href="comunicacao-alienigena"
-            Icon={DailyAlienGameIcon}
-            name={{ pt: 'Alienígena', en: 'Alienish' }}
-            color="rgba(91, 220, 207, 0.85)"
-            index={2}
-          />
-
-          <GameButton
-            lsKey={TEORIA_DE_CONJUNTOS.KEY}
-            width={width}
-            href="teoria-de-conjuntos"
-            Icon={DailyDiagramGameIcon}
-            name={{ pt: 'Conjuntos', en: 'Diagram' }}
-            color="rgba(172, 128, 221, 0.85)"
-            index={3}
-          />
-
-          <GameButton
-            lsKey={CONTROLE_DE_ESTOQUE.KEY}
-            width={width}
-            href="controle-de-estoque"
-            Icon={DailyWarehouseGameIcon}
-            name={{ pt: 'Estoque', en: 'Warehouse' }}
-            color="rgba(255, 199, 59, 0.85)"
-            index={4}
-          />
-
-          <GameButton
-            lsKey={FILMACO.KEY}
-            width={width}
-            href="filmaco"
-            Icon={DailyMovieGameIcon}
-            name={{ pt: 'Filmaço', en: 'Movicon' }}
-            color="rgba(85, 161, 255, 0.85)"
-            index={5}
-          />
-
-          <GameButton
-            lsKey={PALAVREADO.KEY}
-            width={width}
-            href="palavreado"
-            Icon={DailyWordGameIcon}
-            name={{ pt: 'Palavreado', en: 'Rewording' }}
-            color="rgba(239, 83, 80, 0.85)"
-            index={6}
-          />
-
-          <GameButton
-            lsKey=""
-            width={width}
-            disabled
-            href=""
-            Icon={DailyGroupingGameIcon}
-            name={{ pt: 'Quartetos', en: 'Connect Four' }}
-            color="rgba(243, 145, 189, 0.85)"
-            index={7}
-          />
-
-          <GameButton
-            lsKey={PORTAIS_MAGICOS.KEY}
-            width={width}
-            disabled
-            href="portais-magicos"
-            Icon={DailyImagesGameIcon}
-            name={{ pt: 'Portais', en: 'Doors' }}
-            color="rgba(255, 171, 145, 0.85)"
-            index={8}
-          />
-
-          {/* <TransparentButton hoverType="sepia" className="hub-item" disabled className="hub-item-disabled">
-            <Link to="/diario" className="hub-link">
-              <DailyCrimeGameIcon style={{ width: 75 }} />
-              <Translate pt="Crime Hediondo" en="Horrible Crimes" />
-            </Link>
-          </TransparentButton> */}
-        </div>
+        <HubList list={GAMES} width={width} startingIndex={0} />
       </div>
       <div className="hub">
         <Typography.Title level={5}>
           <Translate pt="Contribua" en="Contribute" />
         </Typography.Title>
 
-        <div className="hub-list">
-          <GameButton
-            lsKey={PICACO.KEY}
-            width={width}
-            href="picaco"
-            Icon={DailyDrawingGameIcon}
-            name={{ pt: 'Picaço!', en: 'Artist!' }}
-            color="rgba(237, 238, 240, 0.85)"
-            index={9}
-          />
-        </div>
-        <SFXTest />
+        <HubList list={CONTRIBUTIONS} width={width} startingIndex={GAMES.length} />
       </div>
+
+      <div className="hub">
+        <Typography.Title level={5}>
+          <Translate pt="Demos" en="Demos" />
+        </Typography.Title>
+
+        <HubList list={DEMOS} width={width} startingIndex={GAMES.length + CONTRIBUTIONS.length} />
+      </div>
+      <SFXTest />
     </DailyChrome>
+  );
+}
+
+type HubListProps = {
+  list: Entry[];
+  width: number;
+  startingIndex: number;
+};
+
+function HubList({ list, width, startingIndex }: HubListProps) {
+  return (
+    <div className="hub-list">
+      {list.map(({ lsKey, href, Icon, name, color, disabled }, index) => (
+        <GameButton
+          key={lsKey}
+          lsKey={lsKey}
+          width={width}
+          href={href}
+          Icon={Icon}
+          name={name}
+          color={color}
+          disabled={disabled}
+          index={startingIndex + index}
+        />
+      ))}
+      {Array.from({ length: (3 - (list.length % 3)) % 3 }).map((_, index) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: non important
+        <div key={index} style={{ width }} className="hub-item-placeholder" />
+      ))}
+    </div>
   );
 }
 
@@ -261,13 +305,13 @@ function TimeLeft() {
 function SFXTest() {
   if (isDevEnv) {
     return (
-      <Flex wrap>
+      <div className="hub-list">
         {SFXAllNames.map((name) => (
           <Button key={name} onClick={() => dailySoundEffects.play(name)}>
             {name}
           </Button>
         ))}
-      </Flex>
+      </div>
     );
   }
   return null;
