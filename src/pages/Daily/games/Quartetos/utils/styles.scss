@@ -1,0 +1,51 @@
+@use "styles/sass" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: get-unit(2);
+}
+
+.grid-item {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: $border-radius;
+
+  &--selected {
+    background: rgba(111, 125, 133, 0.75);
+  }
+}
+
+.set-match {
+  border-radius: $border-radius;
+  padding: get-unit(0 2);
+
+  &--set-0 {
+    background: hsl(116, 62%, 75%);
+  }
+
+  &--set-1 {
+    background: hsl(51, 100%, 70%);
+  }
+
+  &--set-2 {
+    background: hsl(35, 100%, 70%);
+  }
+
+  &--set-3 {
+    background: hsl(281, 100%, 80%);
+  }
+}
+.set-title {
+  text-align: center;
+}
+
+.set-match-item {
+  border-radius: $border-radius;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.set-result-title {
+  text-align: center;
+  padding: get-unit(0 2);
+  border-radius: $border-radius;
+}

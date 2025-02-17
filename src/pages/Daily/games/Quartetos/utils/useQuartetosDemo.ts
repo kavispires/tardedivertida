@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { sample } from 'lodash';
 import { getSourceName, wait } from 'pages/Daily/utils';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -6,20 +7,20 @@ import { useLanguage } from 'hooks/useLanguage';
 import { print } from 'utils/helpers';
 // Internal
 import DEMO from './demo.json';
-import type { DailyComunicacaoAlienigenaEntry } from './types';
-// Services
+import type { DailyQuartetosEntry } from './types';
 
-export const useComunicacaoAlienigenaDemo = () => {
+export const useQuartetosDemo = () => {
   const { language } = useLanguage();
   const collectionName = getSourceName(language);
 
   // Load challenge
-  return useQuery<DailyComunicacaoAlienigenaEntry>({
-    queryKey: ['comunicacao-alienigena-demo'],
+  return useQuery<DailyQuartetosEntry>({
+    queryKey: ['quartetos-demo'],
     queryFn: async () => {
-      console.count(`Fetching ${collectionName}...`);
+      console.count(`Fetching demo ${collectionName}...`);
       await wait(1250);
-      const responseData = DEMO[1] as DailyComunicacaoAlienigenaEntry;
+      const responseData = sample(DEMO) as DailyQuartetosEntry;
+
       print({ [collectionName]: responseData }, 'table');
       return responseData;
     },
