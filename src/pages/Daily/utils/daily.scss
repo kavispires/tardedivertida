@@ -104,7 +104,6 @@
   display: grid;
   place-items: center;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: get-unit(6);
   font-size: 0.85em;
 }
@@ -141,6 +140,16 @@
       }
     }
   }
+}
+
+.hub-item-placeholder {
+  background: get-color("white", 5, 0.85);
+  width: 100%;
+  border: 3px outset get-color("white", 5, 0.3);
+  border-radius: get-unit(2);
+  aspect-ratio: 1 / 1;
+  transition: all 500ms ease-in-out;
+  opacity: 0.1;
 }
 
 .hub-link {
