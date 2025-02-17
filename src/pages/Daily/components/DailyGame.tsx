@@ -1,5 +1,6 @@
 import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
+import { useEffectOnce } from 'react-use';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -35,13 +36,19 @@ export function DailyGame({ gameName, GameComponent }: DailyGameProps) {
 type DemoGameProps = {
   GameComponent: React.ComponentType<{ data: any; currentUser: Me }>;
   useDailyHook: () => any;
+  lsKey: string;
 };
 
-export function DemoGame({ GameComponent, useDailyHook }: DemoGameProps) {
+export function DemoGame({ GameComponent, useDailyHook, lsKey }: DemoGameProps) {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
   const demo = useDailyHook();
+
+  // Reset local storage
+  useEffectOnce(() => {
+    lsKey && localStorage.removeItem(`TD_DAILY_${lsKey}_LOCAL_TODAY`);
+  });
 
   if (demo.isLoading) {
     return <DailyLoading />;

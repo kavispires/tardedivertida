@@ -1,0 +1,11 @@
+import { DemoGame } from 'pages/Daily/components/DailyGame';
+// Internal
+import { useQuartetosDemo } from './utils/useQuartetosDemo';
+import { SETTINGS } from './utils/settings';
+import { DailyQuartetos } from './components/DailyQuartetos';
+// Sass
+import './utils/styles.scss';
+
+export function DailyQuartetosGame() {
+  return <DemoGame GameComponent={DailyQuartetos} useDailyHook={useQuartetosDemo} lsKey={SETTINGS.KEY} />;
+}
