@@ -25,7 +25,7 @@ export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initial
 
   const onStart = () => updateState({ screen: 'playing' });
 
-  const onNextCard = async (drawing: any) => {
+  const onNextCard = async (drawing: CanvasLine[]) => {
     if (state.cardIndex < state.cards.length - 1) {
       return setState((prev) => ({
         ...prev,

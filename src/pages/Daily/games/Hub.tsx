@@ -42,6 +42,7 @@ import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
+import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
 import { checkWasPlayedToday } from '../utils';
 
 type Entry = {
@@ -140,19 +141,18 @@ const DEMOS: Entry[] = [
     color: 'rgba(255, 171, 145, 0.85)',
   },
   {
+    lsKey: QUARTETOS.KEY,
+    href: 'quartetos',
+    Icon: DailyGroupingGameIcon,
+    name: { pt: 'Quartetos', en: 'Connect' },
+    color: 'rgba(243, 145, 189, 0.85)',
+  },
+  {
     lsKey: '',
     href: '',
     Icon: DailyCrimeGameIcon,
     name: { pt: 'Crimes', en: 'Crimes' },
     color: 'rgba(243, 232, 145, 0.85)',
-    disabled: true,
-  },
-  {
-    lsKey: '',
-    href: '',
-    Icon: DailyGroupingGameIcon,
-    name: { pt: 'Quartetos', en: 'Connect' },
-    color: 'rgba(243, 145, 189, 0.85)',
     disabled: true,
   },
 ];

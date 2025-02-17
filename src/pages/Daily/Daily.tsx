@@ -19,6 +19,7 @@ import { getDailyName } from './utils';
 import { DailyContextProvider } from './hooks/useDailyChallenge';
 import { DailyComunicacaoAlienigenaGame } from './games/ComunicacaoAlienigena/DailyComunicacaoAlienigenaGame';
 import { DailyPortaisMagicosGame } from './games/PortaisMagicos/DailyPortaisMagicosGame';
+import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
 // Sass
 import './utils/daily.scss';
 
@@ -62,6 +63,7 @@ function DailyPage() {
       picaco: DailyPicacoGame,
       // Demos
       'portais-magicos': DailyPortaisMagicosGame,
+      quartetos: DailyQuartetosGame,
       // Dev
       debug: DebugPage,
     }?.[subPath] ?? Hub;

@@ -9,3 +9,13 @@ export function useDailyGameState<TState = PlainObject>(initialState: TState) {
 
   return { state, setState, updateState };
 }
+
+export function useDailySessionState<TState = PlainObject>(initialState: TState) {
+  const [session, setSession] = useState<TState>(initialState);
+
+  const updateSession = (newState: Partial<TState>) => {
+    setSession((prev) => ({ ...prev, ...newState }));
+  };
+
+  return { session, setSession, updateSession };
+}
