@@ -11,7 +11,7 @@ import type { DailyResponse } from '../utils/types';
 import { getSourceName, getToday } from '../utils';
 import { createContext, type ReactNode, useContext } from 'react';
 
-type DailyContextType = Pick<
+export type DailyContextType = Pick<
   UseQueryResult<DailyResponse, Error>,
   'isLoading' | 'data' | 'error' | 'isError' | 'isRefetching'
 >;
@@ -36,6 +36,7 @@ export const DailyContextProvider = ({ children }: DailyContextProviderProps) =>
   const query = useQuery<DailyResponse>({
     queryKey: [collectionName, language],
     queryFn: async () => {
+      // biome-ignore lint/suspicious/noConsole: debug purposes
       console.count(`Fetching ${collectionName}...`);
       const response = await DAILY_API.run({
         action: DAILY_API_ACTIONS.GET_DAILY,

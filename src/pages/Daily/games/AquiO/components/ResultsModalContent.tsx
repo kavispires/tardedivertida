@@ -50,12 +50,11 @@ const getTitle = (progress: number, remainingHearts: number) => {
 };
 
 type ResultsModalContentProps = {
-  challengeTitle: string;
+  challengeTitle: DualLanguageValue;
   challengeNumber: number;
   hearts: number;
   progress: number;
   itemsIds: string[];
-  isRandomGame: boolean;
   hardMode: boolean;
   lastMatch: string;
   maxProgress: number;
@@ -68,7 +67,6 @@ export function ResultsModalContent({
   hearts,
   progress,
   itemsIds,
-  isRandomGame,
   hardMode,
   lastMatch,
   maxProgress,
@@ -77,7 +75,7 @@ export function ResultsModalContent({
   const { language, dualTranslate } = useLanguage();
   const result = writeResult({
     game: dualTranslate(SETTINGS.NAME),
-    title: challengeTitle,
+    title: dualTranslate(challengeTitle),
     remainingHearts: hearts,
     totalHearts: SETTINGS.HEARTS,
     progress: Math.max(progress, maxProgress),
@@ -103,23 +101,22 @@ export function ResultsModalContent({
         />
         <br />
       </Typography.Paragraph>
-      {!isRandomGame && (
-        <Typography.Paragraph className="center">
-          <Translate
-            pt="Você pode tentar novamente até conseguir 15 ou até não ter mais corações."
-            en="You can try again until you reach 15 or until you run out of hearts."
-          />
-          {worse && (
-            <>
-              <br />
-              <Translate
-                pt={`Seu melhor hoje foi de ${maxProgress} discos. Tente novamente!`}
-                en={`Your best today was ${maxProgress} discs. Try again!`}
-              />
-            </>
-          )}
-        </Typography.Paragraph>
-      )}
+
+      <Typography.Paragraph className="center">
+        <Translate
+          pt="Você pode tentar novamente até conseguir 15 ou até não ter mais corações."
+          en="You can try again until you reach 15 or until you run out of hearts."
+        />
+        {worse && (
+          <>
+            <br />
+            <Translate
+              pt={`Seu melhor hoje foi de ${maxProgress} discos. Tente novamente!`}
+              en={`Your best today was ${maxProgress} discs. Try again!`}
+            />
+          </>
+        )}
+      </Typography.Paragraph>
 
       <Flex gap={6}>
         {!!lastMatch && (
@@ -146,16 +143,7 @@ export function ResultsModalContent({
             ))}
       </Flex>
 
-      {!isRandomGame ? (
-        <CopyToClipboardResult result={result} rows={3} />
-      ) : (
-        <Typography.Paragraph className="center">
-          <Translate
-            pt="Baralhos aleatórios não são compartilháveis, mas você pode jogar mais."
-            en="Random decks are not shareable, but you can play more."
-          />
-        </Typography.Paragraph>
-      )}
+      <CopyToClipboardResult result={result} rows={3} />
 
       <NextGameSuggestion />
     </SpaceContainer>
