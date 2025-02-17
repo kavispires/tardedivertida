@@ -15,6 +15,7 @@ import { isDevEnv } from 'utils/helpers';
 // Icons
 import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
+import { DailyContributionGame } from 'icons/DailyContributionGame';
 import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
@@ -22,6 +23,7 @@ import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
+import { DailySuspectGame } from 'icons/DailySuspectGame';
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
@@ -109,7 +111,23 @@ const CONTRIBUTIONS: Entry[] = [
     href: 'picaco',
     Icon: DailyDrawingGameIcon,
     name: { pt: 'Picaço!', en: 'Artist!' },
-    color: 'rgba(237, 238, 240, 0.85)',
+    color: 'rgba(234, 236, 241, 0.85)',
+  },
+  {
+    lsKey: '',
+    href: '',
+    Icon: DailyContributionGame,
+    name: { pt: 'Responda', en: 'Answer' },
+    color: 'rgba(240, 240, 228, 0.85)',
+    disabled: true,
+  },
+  {
+    lsKey: '',
+    href: '',
+    Icon: DailySuspectGame,
+    name: { pt: 'Suspeito?', en: 'Suspect?' },
+    color: 'rgba(242, 233, 236, 0.85)',
+    disabled: true,
   },
 ];
 
