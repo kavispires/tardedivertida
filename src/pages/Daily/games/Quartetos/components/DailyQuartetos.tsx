@@ -51,7 +51,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
     onSubmit,
     latestAttempt,
   } = useQuartetosEngine(data, initialState);
-  const [width, ref] = useCardWidthByContainerRef(4, { margin: 48, gap: 12, maxWidth: 300, minWidth: 55 });
+  const [width, ref] = useCardWidthByContainerRef(4, { margin: 48, gap: 12, maxWidth: 96, minWidth: 55 });
 
   const shouldShakeScreen = latestAttempt && !isComplete && guesses.length > 0;
 

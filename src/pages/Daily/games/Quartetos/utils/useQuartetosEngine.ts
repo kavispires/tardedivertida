@@ -37,6 +37,10 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
 
   // ACTIONS
   const onSelectItem = (itemId: string) => {
+    if (state.status !== STATUSES.IN_PROGRESS) {
+      return;
+    }
+
     if (!session.selection.includes(itemId) && session.selection.length === 4) {
       message.info(translate('Você sô pode selecionar 4 de cada vez', 'You can only select 4 at a time'));
       return;
@@ -69,6 +73,11 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
   const onSubmit = () => {
     // Verify guess
     const guessId = session.selection.join('-');
+
+    if (state.guesses.includes(guessId)) {
+      message.info(translate('Você já tentou essa combinação', 'You already tried this combination'));
+      return;
+    }
 
     const selectionId = orderBy(session.selection, (o) => Number(o)).join('-');
 
