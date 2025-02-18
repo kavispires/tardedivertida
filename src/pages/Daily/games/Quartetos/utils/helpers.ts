@@ -24,6 +24,8 @@ export const getInitialState = (data: DailyQuartetosEntry): GameState => {
     defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
   });
 
+  const useInitialGrid = localToday.grid.length === 0 && localToday.completeSets.length === 0;
+
   const state: GameState = {
     id: data.id,
     number: data.number,
@@ -31,7 +33,7 @@ export const getInitialState = (data: DailyQuartetosEntry): GameState => {
     hearts: localToday.hearts,
     matches: localToday.matches,
     guesses: localToday.guesses,
-    grid: localToday.grid.length > 0 ? localToday.grid : data.grid,
+    grid: useInitialGrid ? data.grid : localToday.grid,
     completeSets: localToday.completeSets,
   };
 
