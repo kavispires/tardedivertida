@@ -1,3 +1,4 @@
+import { shuffle } from 'lodash';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { Typography } from 'antd';
@@ -25,13 +26,8 @@ import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienige
 import { checkWasPlayedToday } from '../utils';
 
 const PRIORITY_LIST = [
-  COMUNICACAO_ALIENIGENA,
-  TEORIA_DE_CONJUNTOS,
   ARTE_RUIM,
-  FILMACO,
-  PALAVREADO,
-  AQUI_O,
-  CONTROLE_DE_ESTOQUE,
+  ...shuffle([COMUNICACAO_ALIENIGENA, TEORIA_DE_CONJUNTOS, FILMACO, PALAVREADO, AQUI_O, CONTROLE_DE_ESTOQUE]),
   ARTISTA,
 ];
 
