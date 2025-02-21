@@ -3,11 +3,11 @@ import type { DateKey } from 'pages/Daily/utils/types';
 export type GameState = {
   id: DateKey;
   number: number;
+  status: string;
   hearts: number;
   guesses: string[][];
   currentCorridorIndex: number;
   currentCorridorIndexes: number[];
-  status: string;
 };
 
 export type DailyPortaisMagicosEntry = {
@@ -21,8 +21,3 @@ export type DailyPortaisMagicosEntry = {
     words: string[];
   }[];
 };
-
-export type PortaisMagicosLocalToday = {
-  id: DateKey;
-  number: number;
-} & GameState;

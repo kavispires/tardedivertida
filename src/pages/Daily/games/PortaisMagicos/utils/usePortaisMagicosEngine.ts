@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
@@ -7,10 +8,8 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { deepCopy } from 'utils/helpers';
 // Internal
-import type { PortaisMagicosLocalToday, DailyPortaisMagicosEntry, GameState } from './types';
+import type { DailyPortaisMagicosEntry, GameState } from './types';
 import { SETTINGS } from './settings';
 
 export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialState: GameState) {
@@ -18,7 +17,7 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
   const { translate } = useLanguage();
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } = useDailyLocalToday<PortaisMagicosLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: initialState,
@@ -39,7 +38,7 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
   // ACTIONS
   const onSlideWordPosition = (index: number) => {
     setState(() => {
-      const copy = deepCopy(state);
+      const copy = cloneDeep(state);
       // If it reaches the last index, it should go back to 0;
       const wordsLength = data.corridors[copy.currentCorridorIndex].words[0].length;
 
@@ -52,7 +51,7 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
 
   const onSubmitPasscode = () => {
     setState((prev) => {
-      const copy = deepCopy(prev);
+      const copy = cloneDeep(prev);
       const wordsLength = data.corridors[copy.currentCorridorIndex].words[0].length;
       const passcode = data.corridors[copy.currentCorridorIndex].passcode;
 
@@ -102,8 +101,6 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
 
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);
-
-  // const isReady = state.selection.filter(Boolean).length === data.requests.length;
 
   return {
     hearts: state.hearts,
