@@ -70,7 +70,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
           <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
           <SpaceContainer>
             <Typography.Text strong>
-              <DualTranslate>{SETTINGS.NAME}</DualTranslate> | <Translate pt="Disco" en="Disc" /> {discIndex}/
+              <DualTranslate>{data.title}</DualTranslate> | <Translate pt="Disco" en="Disc" /> {discIndex}/
               {SETTINGS.GOAL}
               <>
                 {' '}
