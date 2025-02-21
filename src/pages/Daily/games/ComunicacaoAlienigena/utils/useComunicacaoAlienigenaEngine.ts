@@ -1,18 +1,16 @@
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { deepCopy } from 'utils/helpers';
 // Internal
-import type { ComunicacaoAlienigenaLocalToday, DailyComunicacaoAlienigenaEntry, GameState } from './types';
+import type { DailyComunicacaoAlienigenaEntry, GameState, SessionState } from './types';
 import { SETTINGS } from './settings';
-import { DEFAULT_LOCAL_TODAY } from './helpers';
 
 export function useComunicacaoAlienigenaEngine(
   data: DailyComunicacaoAlienigenaEntry,
@@ -20,41 +18,42 @@ export function useComunicacaoAlienigenaEngine(
 ) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
-  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
+  const { state, updateState } = useDailyGameState<GameState>(initialState);
+  const { session, setSession, updateSession } = useDailySessionState<SessionState>({
+    selection: [null, null, null, null],
+    slotIndex: null,
+    latestAttempt: null,
+  });
 
-  const { updateLocalStorage } = useDailyLocalToday<ComunicacaoAlienigenaLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
+    defaultValue: initialState,
   });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
 
   // ACTIONS
   const onSlotClick = (slotIndex: number) => {
-    setState((prev) => ({
-      ...prev,
+    updateSession({
       slotIndex,
-    }));
+    });
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    if (!state.win && state.guesses.some((guess) => guess === data.solution)) {
-      setState((prev) => ({ ...prev, win: true }));
-    }
-  }, [state.guesses, data.solution, state.win]);
-
   const onItemClick = (itemId: string) => {
-    if (state.selection.includes(itemId)) {
-      setState((prev) => ({
-        ...prev,
-        selection: prev.selection.map((item) => (item === itemId ? null : item)),
-      }));
+    if (session.selection.includes(itemId)) {
+      updateSession({
+        selection: session.selection.map((item) => (item === itemId ? null : item)),
+      });
       playSFX('bubbleOut');
     } else {
-      const firstNullIndex = state.slotIndex ?? state.selection.indexOf(null);
+      const firstNullIndex = session.slotIndex ?? session.selection.indexOf(null);
       if (firstNullIndex !== -1) {
-        setState((prev) => {
-          const newSelection = [...prev.selection];
+        setSession((prev) => {
+          const newSelection = [...session.selection];
           newSelection[firstNullIndex] = itemId;
           return {
             ...prev,
@@ -68,7 +67,7 @@ export function useComunicacaoAlienigenaEngine(
   };
 
   const submitGuess = () => {
-    const newGuessString = state.selection.join('-');
+    const newGuessString = session.selection.join('-');
 
     if (state.guesses.includes(newGuessString)) {
       message.warning({
@@ -80,14 +79,10 @@ export function useComunicacaoAlienigenaEngine(
       });
 
       playSFX('wrong');
-      return updateState({
+      return updateSession({
         latestAttempt: Date.now(),
       });
     }
-
-    updateLocalStorage({
-      guesses: [...state.guesses, newGuessString],
-    });
 
     const isCorrect = data.solution === newGuessString;
 
@@ -98,26 +93,34 @@ export function useComunicacaoAlienigenaEngine(
       });
     }
 
-    setState((prev) => {
-      const copy = deepCopy(prev);
-      copy.latestAttempt = Date.now();
-      copy.guesses.push(newGuessString);
+    let updatedStatus = state.status;
+    const updatedHearts = isCorrect ? state.hearts : state.hearts - 1;
 
-      if (isCorrect) {
-        playSFX('alienYay');
-        copy.win = true;
-      } else {
-        playSFX('alienBoo');
-        copy.hearts -= 1;
-      }
+    if (isCorrect) {
+      playSFX('alienYay');
+      updatedStatus = STATUSES.WIN;
+    } else {
+      playSFX('alienBoo');
+    }
 
-      return copy;
+    if (updatedHearts === 0) {
+      updatedStatus = STATUSES.LOSE;
+    }
+
+    updateState({
+      guesses: [...state.guesses, newGuessString],
+      hearts: updatedHearts,
+      status: updatedStatus,
+    });
+
+    updateSession({
+      latestAttempt: Date.now(),
     });
   };
 
   // CONDITIONS
-  const isWin = state.win;
-  const isLose = state.hearts <= 0;
+  const isWin = state.status === STATUSES.WIN;
+  const isLose = state.status === STATUSES.LOSE;
   const isComplete = isWin || isLose;
 
   useMarkAsPlayed({
@@ -128,14 +131,14 @@ export function useComunicacaoAlienigenaEngine(
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);
 
-  const isReady = state.selection.filter(Boolean).length === data.requests.length;
+  const isReady = session.selection.filter(Boolean).length === data.requests.length;
 
   return {
     hearts: state.hearts,
     guesses: state.guesses,
-    selection: state.selection,
-    latestAttempt: state.latestAttempt,
-    slotIndex: state.slotIndex,
+    selection: session.selection,
+    latestAttempt: session.latestAttempt,
+    slotIndex: session.slotIndex,
     showResultModal,
     setShowResultModal,
     isWin,

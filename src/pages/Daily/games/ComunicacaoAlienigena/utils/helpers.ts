@@ -1,36 +1,32 @@
+import { cloneDeep } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
-// Utils
-import { deepCopy } from 'utils/helpers';
+import { STATUSES } from 'pages/Daily/utils/constants';
 // Internal
 import { SETTINGS } from './settings';
-import type { ComunicacaoAlienigenaLocalToday, DailyComunicacaoAlienigenaEntry, GameState } from './types';
+import type { DailyComunicacaoAlienigenaEntry, GameState } from './types';
 
-export const DEFAULT_LOCAL_TODAY: ComunicacaoAlienigenaLocalToday = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
   guesses: [],
   number: 0,
+  hearts: SETTINGS.HEARTS,
+  status: STATUSES.IN_PROGRESS,
 };
 
 export const getInitialState = (data: DailyComunicacaoAlienigenaEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+    defaultValue: cloneDeep(DEFAULT_LOCAL_TODAY),
   });
 
   const state: GameState = {
-    hearts: SETTINGS.HEARTS,
-    guesses: [],
-    selection: [null, null, null, null],
-    latestAttempt: null,
-    win: false,
-    slotIndex: null,
+    id: data.id,
+    number: data.number,
+    status: localToday.status,
+    hearts: localToday.hearts,
+    guesses: localToday.guesses,
   };
-
-  if (localToday) {
-    state.hearts = SETTINGS.HEARTS - localToday.guesses.length;
-    state.guesses = localToday.guesses;
-  }
 
   return state;
 };
