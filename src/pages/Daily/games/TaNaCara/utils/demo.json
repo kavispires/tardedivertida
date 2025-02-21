@@ -1,0 +1,43 @@
+{
+  "id": "2025-00-00",
+  "number": 0,
+  "type": "ta-na-cara",
+  "testimonies": [
+    {
+      "testimonyId": "t-1-pt",
+      "question": "Ele(a) já foi para um jogo em um estádio?",
+      "nsfw": false,
+      "suspectsIds": ["us-ct-02", "us-ct-03", "us-ct-04"]
+    },
+    {
+      "testimonyId": "t-2-pt",
+      "question": "Ele(a) gosta de música clássica?",
+      "nsfw": false,
+      "suspectsIds": ["us-ct-12", "us-ct-13", "us-ct-14"]
+    },
+    {
+      "testimonyId": "t-3-pt",
+      "question": "Ele(a) acredita em alienígenas?",
+      "nsfw": false,
+      "suspectsIds": ["us-ct-08", "us-ct-09", "us-ct-10"]
+    },
+    {
+      "testimonyId": "t-10-pt",
+      "question": "Ele(a) já participou de um protesto?",
+      "nsfw": false,
+      "suspectsIds": ["us-ct-21", "us-ct-22", "us-ct-23"]
+    },
+    {
+      "testimonyId": "t-17-pt",
+      "question": "Ele(a) tem tatuagens?",
+      "nsfw": false,
+      "suspectsIds": ["us-ct-03", "us-ct-08", "us-ct-13"]
+    },
+    {
+      "testimonyId": "t-125-pt",
+      "question": "Ele(a) já pegou um porteiro ou faxineira do prédio?",
+      "nsfw": true,
+      "suspectsIds": ["us-ct-02", "us-ct-13", "us-ct-64"]
+    }
+  ]
+}
