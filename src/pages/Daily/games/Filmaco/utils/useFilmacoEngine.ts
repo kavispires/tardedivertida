@@ -1,22 +1,27 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
-// Utils
-import { removeDuplicates } from 'utils/helpers';
+import { useEffect } from 'react';
 // Internal
-import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import type { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
+import type { DailyFilmacoEntry, GameState } from './types';
 
 export function useFilmacoEngine(data: DailyFilmacoEntry, initialState: GameState) {
   const { state, setState } = useDailyGameState<GameState>(initialState);
 
-  const { localToday, updateLocalStorage } = useDailyLocalToday<FilmacoLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
+    defaultValue: initialState,
   });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
+
   // ACTIONS
   const guessLetter = (letter: string) => {
     // Ignore previously guessed letters
@@ -25,10 +30,6 @@ export function useFilmacoEngine(data: DailyFilmacoEntry, initialState: GameStat
     }
 
     const isCorrect = state.solution[letter] !== undefined;
-
-    updateLocalStorage({
-      letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
-    });
 
     const solution = { ...state.solution };
     if (isCorrect) {
@@ -39,15 +40,18 @@ export function useFilmacoEngine(data: DailyFilmacoEntry, initialState: GameStat
       .filter((value) => value !== undefined)
       .every(Boolean);
 
+    let updatedStatus = state.status;
     if (isCorrect) {
       if (win) {
         playSFX('win');
+        updatedStatus = STATUSES.WIN;
       } else {
         playSFX('addCorrect');
       }
     } else {
       if (state.hearts === 1) {
         playSFX('lose');
+        updatedStatus = STATUSES.LOSE;
       } else {
         playSFX('addWrong');
       }
@@ -65,14 +69,13 @@ export function useFilmacoEngine(data: DailyFilmacoEntry, initialState: GameStat
       },
       solution,
       hearts: isCorrect ? prev.hearts : prev.hearts - 1,
+      status: updatedStatus,
     }));
   };
 
   // CONDITIONS
-  const isWin = Object.values(state.solution)
-    .filter((value) => value !== undefined)
-    .every(Boolean);
-  const isLose = state.hearts <= 0;
+  const isWin = state.status === STATUSES.WIN;
+  const isLose = state.status === STATUSES.LOSE;
   const isComplete = isWin || isLose;
 
   useMarkAsPlayed({
