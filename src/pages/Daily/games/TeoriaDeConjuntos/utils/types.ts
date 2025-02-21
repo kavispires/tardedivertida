@@ -28,20 +28,19 @@ export type DailyTeoriaDeConjuntosEntry = {
 export type Guess = { thingId: string; sectionId: number; result: number | false };
 
 export type GameState = {
+  id: DateKey;
+  number: number;
   hearts: number;
-  win: boolean;
+  status: string;
   hand: TThing[];
   deck: TThing[];
   rule1Things: TThing[];
   rule2Things: TThing[];
   intersectingThings: TThing[];
-  activeThing: TThing | null;
-  activeArea: null | number;
   guesses: Guess[];
 };
 
-export type TeoriaDeConjuntosLocalToday = {
-  id: DateKey;
-  guesses: Guess[];
-  hearts: number;
+export type SessionState = {
+  activeThing: TThing | null;
+  activeArea: null | number;
 };
