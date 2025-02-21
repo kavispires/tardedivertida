@@ -1,45 +1,65 @@
 import { cloneDeep } from 'lodash';
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveTestimonies } from 'pages/Daily/hooks/useDailySave';
+import { useEffect } from 'react';
 // Internal
-import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import type { DailyTaNaCaraEntry, TaNaCaraLocalToday, GameState } from './types';
+import type { DailyTaNaCaraEntry, GameState, SessionState } from './types';
 
 export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameState) {
-  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
+  const { state, updateState } = useDailyGameState<GameState>(initialState);
 
-  const { updateLocalStorage } = useDailyLocalToday<TaNaCaraLocalToday>({
-    key: SETTINGS.KEY,
-    gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
+  const { session, setSession, updateSession } = useDailySessionState<SessionState>({
+    questionIndex: 0,
+    testimonies: data.testimonies.filter((t) => !t.nsfw),
+    answers: [
+      {
+        testimonyId: data.testimonies[0].testimonyId,
+        related: [],
+        unrelated: [...data.testimonies[0].suspectsIds],
+      },
+    ],
+    selections: [],
+    allowNSFW: false,
+    screen: 'idle',
   });
 
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: initialState,
+  });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
+
   const onToggleAllowNSFW = (checked: boolean) => {
-    updateState({
+    updateSession({
       allowNSFW: checked,
       testimonies: data.testimonies.filter((t) => (checked ? true : !t.nsfw)),
     });
   };
 
-  const question = data.testimonies[state.questionIndex];
-  const answer = state.answers[state.questionIndex];
+  const question = data.testimonies[session.questionIndex];
+  const answer = session.answers[session.questionIndex];
 
   const onStart = () => {
-    updateState({ screen: 'playing' });
+    updateSession({ screen: 'playing' });
   };
 
   const onNext = () => {
-    if (state.screen === 'idle') {
-      return updateState({ screen: 'playing' });
+    if (session.screen === 'idle') {
+      return updateSession({ screen: 'playing' });
     }
 
-    if (state.questionIndex === state.testimonies.length - 1) {
+    if (session.questionIndex === session.testimonies.length - 1) {
       return onComplete();
     }
 
-    setState((prev) => {
+    setSession((prev) => {
       const copy = cloneDeep(prev);
       const nextIndex = copy.questionIndex + 1;
       if (copy.answers[nextIndex] === undefined) {
@@ -55,13 +75,13 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   };
 
   const onPrevious = () => {
-    if (state.questionIndex > 0) {
-      return updateState({ questionIndex: state.questionIndex - 1 });
+    if (session.questionIndex > 0) {
+      return updateSession({ questionIndex: session.questionIndex - 1 });
     }
   };
 
   const onUpdateAnswer = (suspectId: string, isRelated: boolean) => {
-    setState((prev) => {
+    setSession((prev) => {
       const copy = cloneDeep(prev);
       const currentAnswer = copy.answers[copy.questionIndex];
 
@@ -79,12 +99,12 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   };
 
   const onComplete = () => {
-    mutation.mutate(state.answers);
+    mutation.mutate(session.answers);
   };
 
   const mutation = useDailySaveTestimonies(() => {
-    updateLocalStorage({ played: true });
-    updateState({ played: true, screen: 'idle' });
+    updateState({ played: true });
+    updateSession({ screen: 'idle' });
   });
 
   useMarkAsPlayed({
@@ -93,14 +113,14 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   });
 
   return {
-    questionIndex: state.questionIndex,
-    questionNumber: state.questionIndex + 1,
+    questionIndex: session.questionIndex,
+    questionNumber: session.questionIndex + 1,
     question,
     answer,
-    totalQuestions: state.testimonies.length,
-    isPlaying: state.screen === 'playing',
-    isIdle: state.screen === 'idle',
-    isSaving: state.screen === 'saving' || mutation.isPending,
+    totalQuestions: session.testimonies.length,
+    isPlaying: session.screen === 'playing',
+    isIdle: session.screen === 'idle',
+    isSaving: session.screen === 'saving' || mutation.isPending,
     alreadyPlayed: state.played,
     onToggleAllowNSFW,
     onStart,
