@@ -21,7 +21,7 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     selection: [],
-    latestAttempt: Date.now(),
+    latestAttempt: 0,
   });
 
   const { updateLocalStorage } = useDailyLocalToday<QuartetosLocalToday>({
