@@ -1,6 +1,6 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySaveDrawings';
+import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySave';
 import { wait } from 'pages/Daily/utils';
 // Types
 import type { Me } from 'types/user';

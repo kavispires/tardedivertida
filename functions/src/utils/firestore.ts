@@ -88,6 +88,14 @@ export function incrementValue(value = 1) {
 }
 
 /**
+ * Aids pushing a value to an array on an update
+ * @param value any
+ */
+export function pushValue(...value: unknown[]) {
+  return FieldValue.arrayUnion(...value);
+}
+
+/**
  * Get firebase doc verifying its existence
  * @param gameId
  * @param actionText

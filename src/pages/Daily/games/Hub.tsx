@@ -42,6 +42,7 @@ import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
+import { SETTINGS as TA_NA_CARA } from './TaNaCara/utils/settings';
 import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
 import { checkWasPlayedToday } from '../utils';
 
@@ -115,19 +116,19 @@ const CONTRIBUTIONS: Entry[] = [
     color: 'rgba(234, 236, 241, 0.85)',
   },
   {
-    lsKey: '',
-    href: '',
-    Icon: DailyContributionGame,
-    name: { pt: 'Responda', en: 'Answer' },
-    color: 'rgba(240, 240, 228, 0.85)',
+    lsKey: TA_NA_CARA.KEY,
+    href: 'ta-na-cara',
+    Icon: DailySuspectGame,
+    name: { pt: 'Tá Na Cara', en: 'In Your Face' },
+    color: 'rgba(242, 233, 236, 0.85)',
     disabled: true,
   },
   {
     lsKey: '',
     href: '',
-    Icon: DailySuspectGame,
-    name: { pt: 'Suspeito?', en: 'Suspect?' },
-    color: 'rgba(242, 233, 236, 0.85)',
+    Icon: DailyContributionGame,
+    name: { pt: 'Responda', en: 'Answer' },
+    color: 'rgba(240, 240, 228, 0.85)',
     disabled: true,
   },
 ];

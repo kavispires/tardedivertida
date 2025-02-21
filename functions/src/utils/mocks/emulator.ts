@@ -253,4 +253,6 @@ export const feedEmulatorDaily = async () => {
     drawingsPT: 2,
     drawingsEN: 3,
   });
+
+  await utils.firestore.getDailyRef('data').doc('testimonies').set({});
 };
