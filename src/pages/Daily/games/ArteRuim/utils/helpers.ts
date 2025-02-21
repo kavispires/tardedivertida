@@ -1,15 +1,19 @@
+import { cloneDeep, merge } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
-import type { LettersDictionary } from 'pages/Daily/utils/types';
+import { STATUSES } from 'pages/Daily/utils/constants';
 // Utils
-import { deepCopy, stringRemoveAccents } from 'utils/helpers';
+import { stringRemoveAccents } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import type { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
+import type { DailyArteRuimEntry, GameState } from './types';
 
-export const DEFAULT_LOCAL_TODAY: ArteRuimLocalToday = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
-  letters: [],
   number: 0,
+  status: STATUSES.IN_PROGRESS,
+  solution: {},
+  hearts: SETTINGS.HEARTS,
+  guesses: {},
 };
 
 /**
@@ -21,36 +25,19 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+    defaultValue: merge(cloneDeep(DEFAULT_LOCAL_TODAY), {
+      solution: getLettersInWord(data.text),
+    }),
   });
 
   const state: GameState = {
-    solution: getLettersInWord(data.text),
-    hearts: SETTINGS.HEARTS,
-    guesses: {},
-    win: false,
+    id: data.id,
+    number: data.number,
+    status: localToday.status,
+    solution: localToday.solution,
+    hearts: localToday.hearts,
+    guesses: localToday.guesses,
   };
-
-  let solution = { ...state.solution };
-  const guesses = localToday.letters.reduce((acc: LettersDictionary, letter) => {
-    const isCorrect = state.solution[letter] !== undefined;
-    if (state.solution[letter] !== undefined) {
-      solution = { ...solution, [letter]: true };
-    }
-    acc[letter] = {
-      letter: letter,
-      state: isCorrect ? 'correct' : 'incorrect',
-      disabled: true,
-    };
-    state.hearts = isCorrect ? state.hearts : state.hearts - 1;
-    return acc;
-  }, {});
-  state.solution = solution;
-
-  state.guesses = guesses;
-  state.win = Object.values(solution)
-    .filter((value) => value !== undefined)
-    .every(Boolean);
 
   return state;
 }
