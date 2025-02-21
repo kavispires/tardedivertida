@@ -229,7 +229,6 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           <ResultsModalContent
             challenge={data.number}
             win={isWin}
-            hearts={hearts}
             guesses={guesses}
             attributes={data.attributes}
             solution={data.solution}
