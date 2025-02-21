@@ -1,56 +1,68 @@
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { sampleSize } from 'lodash';
+import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySave';
 import { wait } from 'pages/Daily/utils';
+import { useEffect } from 'react';
 // Types
 import type { Me } from 'types/user';
 // Utils
 import { SEPARATOR } from 'utils/constants';
 import { removeDuplicates } from 'utils/helpers';
 // Internal
-import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import type { PicacoLocalToday, DailyPicacoEntry, DrawingToSave, GameState } from './types';
+import type { DailyPicacoEntry, DrawingToSave, GameState, SessionState } from './types';
 
 export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initialState: GameState) {
-  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
-
-  const { updateLocalStorage } = useDailyLocalToday<PicacoLocalToday>({
-    key: SETTINGS.KEY,
-    gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
+  const { state, updateState } = useDailyGameState<GameState>(initialState);
+  const { session, setSession, updateSession } = useDailySessionState<SessionState>({
+    cards: sampleSize(data.cards, SETTINGS.DRAWINGS),
+    drawings: [],
+    cardIndex: 0,
+    screen: 'idle',
   });
 
-  const card = state.cards[state.cardIndex];
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: initialState,
+  });
 
-  const onStart = () => updateState({ screen: 'playing' });
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
+
+  const card = session.cards[session.cardIndex];
+
+  const onStart = () => updateSession({ screen: 'playing' });
 
   const onNextCard = async (drawing: CanvasLine[]) => {
-    if (state.cardIndex < state.cards.length - 1) {
-      return setState((prev) => ({
+    if (session.cardIndex < session.cards.length - 1) {
+      return setSession((prev) => ({
         ...prev,
         drawings: [...prev.drawings, JSON.stringify(drawing)],
         cardIndex: prev.cardIndex + 1,
       }));
     }
 
-    if (state.cardIndex === state.cards.length - 1) {
-      updateState({ screen: 'saving' });
+    if (session.cardIndex === session.cards.length - 1) {
+      updateSession({ screen: 'saving' });
 
       // SAVE
       await wait(1000);
 
       onSaveDrawings({
-        ...state,
-        drawings: removeDuplicates([...state.drawings, JSON.stringify(drawing)]),
+        ...session,
+        drawings: removeDuplicates([...session.drawings, JSON.stringify(drawing)]),
         screen: 'saving',
       });
     }
   };
 
   const mutation = useDailySaveDrawings(() => {
-    updateLocalStorage({ played: true });
-    updateState({ played: true, screen: 'idle' });
+    updateState({ played: true });
+    updateSession({ screen: 'idle' });
   });
 
   useMarkAsPlayed({
@@ -58,7 +70,7 @@ export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initial
     isComplete: state.played,
   });
 
-  const onSaveDrawings = (stateToSave: GameState) => {
+  const onSaveDrawings = (stateToSave: SessionState) => {
     const toSave = stateToSave.drawings.reduce((acc: Dictionary<DrawingToSave>, drawing, index) => {
       if (drawing.length > 50) {
         const card = stateToSave.cards[index];
@@ -79,11 +91,11 @@ export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initial
   };
 
   return {
-    cardNumber: state.cardIndex + 1,
+    cardNumber: session.cardIndex + 1,
     card,
-    isPlaying: state.screen === 'playing',
-    isIdle: state.screen === 'idle',
-    isSaving: state.screen === 'saving' || mutation.isPending,
+    isPlaying: session.screen === 'playing',
+    isIdle: session.screen === 'idle',
+    isSaving: session.screen === 'saving' || mutation.isPending,
     alreadyPlayed: state.played,
     onStart,
     onNextCard,
