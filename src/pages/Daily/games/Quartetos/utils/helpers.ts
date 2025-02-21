@@ -1,12 +1,11 @@
+import { cloneDeep } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
-// Utils
-import { deepCopy } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import type { QuartetosLocalToday, DailyQuartetosEntry, GameState } from './types';
+import type { DailyQuartetosEntry, GameState } from './types';
 
-export const DEFAULT_LOCAL_TODAY: QuartetosLocalToday = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
   number: 0,
   status: STATUSES.IN_PROGRESS,
@@ -21,7 +20,7 @@ export const getInitialState = (data: DailyQuartetosEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+    defaultValue: cloneDeep(DEFAULT_LOCAL_TODAY),
   });
 
   const useInitialGrid = localToday.grid.length === 0 && localToday.completeSets.length === 0;

@@ -32,8 +32,3 @@ export type DailyQuartetosEntry = {
   difficulty: number;
   sets: QuartetosSet[];
 };
-
-export type QuartetosLocalToday = {
-  id: DateKey;
-  number: number;
-} & GameState;
