@@ -8,11 +8,16 @@ type TaNaCaraQuestion = {
 };
 
 export type GameState = {
+  id: DateKey;
+  number: number;
+  played: boolean;
+};
+
+export type SessionState = {
   testimonies: TaNaCaraQuestion[];
   answers: AnswerToSave[];
   selections: string[];
   questionIndex: number;
-  played: boolean;
   allowNSFW: boolean;
   screen: 'idle' | 'playing' | 'saving';
 };
@@ -22,12 +27,6 @@ export type DailyTaNaCaraEntry = {
   number: number;
   type: 'ta-na-cara';
   testimonies: TaNaCaraQuestion[];
-};
-
-export type TaNaCaraLocalToday = {
-  id: DateKey;
-  number: number;
-  played: boolean;
 };
 
 export type AnswerToSave = {
