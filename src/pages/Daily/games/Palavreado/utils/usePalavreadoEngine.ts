@@ -1,27 +1,38 @@
 import { chunk, cloneDeep } from 'lodash';
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { useEffect } from 'react';
 // Internal
-import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
+import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, SessionState } from './types';
 
 export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: GameState) {
   const size = data.keyword.length;
-  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
+  const { state, setState } = useDailyGameState<GameState>(initialState);
+  const { session, updateSession } = useDailySessionState<SessionState>({
+    swap: [],
+    selection: null,
+    latestAttempt: 0,
+  });
 
-  const { updateLocalStorage } = useDailyLocalToday<PalavreadoLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
+    defaultValue: initialState,
   });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
 
   // ACTIONS
   const selectLetter = (index: number) => {
-    if (state.selection === index) {
-      updateState({
+    if (session.selection === index) {
+      updateSession({
         selection: null,
         swap: [],
       });
@@ -29,8 +40,8 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
       return;
     }
 
-    if (state.selection === null) {
-      updateState({
+    if (session.selection === null) {
+      updateSession({
         selection: index,
         swap: [],
       });
@@ -39,24 +50,23 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     }
 
     setState((prev) => {
-      if (prev.selection === null) {
+      if (session.selection === null) {
         return prev;
       }
       playSFX('swap');
       const copyLetters = cloneDeep(state.letters);
-      const temp = copyLetters[prev.selection];
-      copyLetters[prev.selection] = copyLetters[index];
+      const temp = copyLetters[session.selection];
+      copyLetters[session.selection] = copyLetters[index];
       copyLetters[index] = temp;
 
-      updateLocalStorage({
-        swaps: prev.swaps + 1,
+      updateSession({
+        selection: null,
+        swap: [session.selection, index],
       });
 
       return {
         ...prev,
         letters: copyLetters,
-        selection: null,
-        swap: [prev.selection, index],
         swaps: prev.swaps + 1,
       };
     });
@@ -97,12 +107,21 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
         playSFX('wrong');
       }
 
+      const updatedHearts = isAllCorrect ? prev.hearts : prev.hearts - 1;
       const guesses = generatedWords;
       const newBoardState = copyLetters.map((l) => l.letter);
 
-      updateLocalStorage({
-        boardState: [...state.boardState, newBoardState],
-        swaps: prev.swaps,
+      let newStatus = prev.status;
+      if (isAllCorrect) {
+        newStatus = STATUSES.WIN;
+      }
+      if (updatedHearts === 0) {
+        newStatus = STATUSES.LOSE;
+      }
+
+      updateSession({
+        selection: null,
+        swap: [],
       });
 
       return {
@@ -110,16 +129,15 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
         guesses: [...prev.guesses, guesses],
         boardState: [...prev.boardState, newBoardState],
         letters: copyLetters,
-        selection: null,
-        swap: [],
-        hearts: isAllCorrect ? prev.hearts : prev.hearts - 1,
+        hearts: updatedHearts,
+        status: newStatus,
       };
     });
   };
 
   // CONDITIONS
-  const isWin = Object.values(state.letters).every((l) => l.locked);
-  const isLose = state.hearts <= 0;
+  const isWin = state.status === STATUSES.WIN;
+  const isLose = state.status === STATUSES.LOSE;
   const isComplete = isWin || isLose;
 
   useMarkAsPlayed({
@@ -134,9 +152,9 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     hearts: state.hearts,
     guesses: state.guesses,
     letters: state.letters,
-    selection: state.selection,
-    swap: state.swap,
     swaps: state.swaps,
+    selection: session.selection,
+    swap: session.swap,
     showResultModal,
     setShowResultModal,
     isWin,

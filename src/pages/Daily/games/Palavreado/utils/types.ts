@@ -1,14 +1,26 @@
 import type { DateKey } from 'pages/Daily/utils/types';
 
+export type PalavreadoLetter = {
+  letter: string;
+  state: 'idle' | 'correct' | '0' | '1' | '2' | '3' | '4';
+  locked: boolean;
+};
+
 export type GameState = {
+  id: DateKey;
+  number: number;
+  status: string;
   hearts: number;
-  selection: number | null; // indexes of letters
-  swap: number[]; // indexes of letters
   letters: PalavreadoLetter[];
   boardState: string[][];
   guesses: string[][]; // words guesses per heart
-  state: string;
   swaps: number;
+};
+
+export type SessionState = {
+  selection: number | null; // indexes of letters
+  swap: number[]; // indexes of letters
+  latestAttempt: number;
 };
 
 export type DailyPalavreadoEntry = {
@@ -19,18 +31,4 @@ export type DailyPalavreadoEntry = {
   keyword: string;
   letters: string[];
   words: string[];
-};
-
-export type PalavreadoLocalToday = {
-  id: string;
-  boardState: string[][];
-  number: number;
-  swaps: number;
-};
-
-export type PalavreadoLetter = {
-  letter: string;
-  // index: number;
-  state: 'idle' | 'correct' | '0' | '1' | '2' | '3' | '4';
-  locked: boolean;
 };

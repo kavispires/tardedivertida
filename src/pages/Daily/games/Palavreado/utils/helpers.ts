@@ -1,16 +1,19 @@
-import { chunk, cloneDeep } from 'lodash';
+import { cloneDeep, merge } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
-// Utils
-import { deepCopy } from 'utils/helpers';
+import { STATUSES } from 'pages/Daily/utils/constants';
 // Internal
 import { SETTINGS } from './settings';
-import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, PalavreadoLocalToday } from './types';
+import type { DailyPalavreadoEntry, GameState, PalavreadoLetter } from './types';
 
-export const DEFAULT_LOCAL_TODAY: PalavreadoLocalToday = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
-  boardState: [],
   number: 0,
+  status: STATUSES.IN_PROGRESS,
+  hearts: SETTINGS.HEARTS,
+  boardState: [],
   swaps: 0,
+  letters: [],
+  guesses: [],
 };
 
 export const getInitialState = (data: DailyPalavreadoEntry): GameState => {
@@ -19,52 +22,22 @@ export const getInitialState = (data: DailyPalavreadoEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+    defaultValue: merge(cloneDeep(DEFAULT_LOCAL_TODAY), {
+      letters: parseLetters(data.letters, size),
+      hearts: Math.max(SETTINGS.HEARTS, size),
+    }),
   });
 
   const state: GameState = {
-    selection: null,
-    swap: [],
-    letters: parseLetters(data.letters, size),
-    boardState: [],
-    guesses: [],
-    hearts: Math.max(SETTINGS.HEARTS, size),
-    state: '',
-    swaps: 0,
+    id: data.id,
+    number: data.number,
+    status: localToday.status,
+    letters: localToday.letters,
+    boardState: localToday.boardState,
+    guesses: localToday.guesses,
+    hearts: localToday.hearts,
+    swaps: localToday.swaps,
   };
-
-  if (localToday.boardState) {
-    const hearts = Math.max(SETTINGS.HEARTS, size) - localToday.boardState.length;
-
-    // Read state of the board and apply guesses
-    const lsGuesses = (localToday.boardState ?? []).map((board) => {
-      const guess = chunk(board, size);
-      return guess.map((g) => g.join(''));
-    });
-
-    // Apply latest board state
-    const latestBoardState = localToday.boardState[localToday.boardState.length - 1];
-    const copyLetters = cloneDeep(state.letters);
-    const answer = data.words.join('');
-    if (latestBoardState) {
-      copyLetters.forEach((letter, index) => {
-        letter.letter = latestBoardState[index];
-
-        if (letter.state === 'idle' && letter.letter === answer[index]) {
-          letter.state = String(Math.floor(index / size)) as PalavreadoLetter['state'];
-          letter.locked = true;
-        }
-
-        return letter;
-      });
-    }
-
-    state.hearts = hearts;
-    state.guesses = lsGuesses;
-    state.letters = copyLetters;
-    state.boardState = localToday.boardState ?? [];
-    state.swaps = localToday.swaps ?? 0;
-  }
 
   return state;
 };
@@ -89,19 +62,6 @@ export const parseLetters = (letters: string[], size: number): PalavreadoLetter[
     locked: indexes.includes(index),
   }));
 };
-
-// export const orderLettersByWord = (letters: PalavreadoLetter[], word: string): PalavreadoLetter[] => {
-//   const orderedLetters: PalavreadoLetter[] = [];
-//   const usedIndexes: number[] = [];
-//   word.split('').forEach((wordLetter) => {
-//     const foundLetter = letters.find((cl) => !usedIndexes.includes(cl.index) && cl.letter === wordLetter);
-//     if (foundLetter) {
-//       usedIndexes.push(foundLetter?.index);
-//       orderedLetters.push(foundLetter);
-//     }
-//   });
-//   return orderedLetters;
-// };
 
 export const calculateGuessValue = (word: string, guess: string): number => {
   let value = 0;
