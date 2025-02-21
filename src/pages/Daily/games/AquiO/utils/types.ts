@@ -1,23 +1,5 @@
 import type { DateKey } from 'pages/Daily/utils/types';
 
-export type AquiOLocalToday = {
-  id: DateKey;
-  number: number;
-  maxProgress: number;
-  attempts: number;
-  hardMode: boolean;
-  hearts: number;
-};
-
-export type GameState = {
-  hearts: number;
-  goal: number;
-  discs: AquiODisc[];
-  discIndex: number;
-  attempts: number;
-  maxProgress: number;
-};
-
 export type AquiOItem = {
   itemId: string;
   position: number;
@@ -49,3 +31,19 @@ export type DailyAquiOEntry = {
 export type DailyAquiOGame = {
   cards: AquiODisc[];
 } & DailyAquiOEntry;
+
+export type GameState = {
+  id: DateKey;
+  number: number;
+  status: string;
+  hearts: number;
+  goal: number;
+  discs: AquiODisc[];
+  attempts: number;
+  maxProgress: number;
+  hardMode: boolean;
+};
+
+export type SessionState = {
+  discIndex: number;
+};

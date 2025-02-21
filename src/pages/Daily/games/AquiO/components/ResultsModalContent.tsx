@@ -59,6 +59,8 @@ type ResultsModalContentProps = {
   lastMatch: string;
   maxProgress: number;
   attempts: number;
+  isWin: boolean;
+  isLose: boolean;
 };
 
 export function ResultsModalContent({
@@ -71,6 +73,8 @@ export function ResultsModalContent({
   lastMatch,
   maxProgress,
   attempts,
+  isWin,
+  isLose,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
   const result = writeResult({
@@ -88,32 +92,37 @@ export function ResultsModalContent({
 
   const title = getTitle(progress, hearts);
   const worse = maxProgress > progress;
+  const isComplete = isWin || isLose;
 
   return (
     <SpaceContainer vertical>
       <Typography.Title level={2} className="center">
         {title}
       </Typography.Title>
-      <Typography.Paragraph className="center">
-        <Translate
-          pt={`Você avançou ${progress} discos de ${SETTINGS.GOAL}.`}
-          en={`You advanced ${progress} discs out of ${SETTINGS.GOAL}.`}
-        />
-        <br />
-      </Typography.Paragraph>
+      {progress > 0 && (
+        <Typography.Paragraph className="center">
+          <Translate
+            pt={`Você avançou ${progress} discos de ${SETTINGS.GOAL}.`}
+            en={`You advanced ${progress} discs out of ${SETTINGS.GOAL}.`}
+          />
+        </Typography.Paragraph>
+      )}
 
       <Typography.Paragraph className="center">
-        <Translate
-          pt="Você pode tentar novamente até conseguir 15 ou até não ter mais corações."
-          en="You can try again until you reach 15 or until you run out of hearts."
-        />
-        {worse && (
+        {!isComplete && (
+          <Translate
+            pt="Você pode tentar novamente até conseguir 15 ou até não ter mais corações."
+            en="You can try again until you reach 15 or until you run out of hearts."
+          />
+        )}
+        {(worse || isComplete) && (
           <>
             <br />
             <Translate
-              pt={`Seu melhor hoje foi de ${maxProgress} discos. Tente novamente!`}
-              en={`Your best today was ${maxProgress} discs. Try again!`}
+              pt={`Seu melhor hoje foi de ${maxProgress} discos.`}
+              en={`Your best today was ${maxProgress} discs.`}
             />
+            {!isComplete && <Translate pt=" Tente novamente!" en=" Try again!" />}
           </>
         )}
       </Typography.Paragraph>

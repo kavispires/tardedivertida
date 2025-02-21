@@ -18,4 +18,5 @@ export const SETTINGS: GameSettings = {
   GOAL: 15,
   HEARTS: 3,
   TD_DAILY_AQUI_O_MODE: 'TD_AQUI_DAILY_O_MODE',
+  DURATION: 60,
 };
