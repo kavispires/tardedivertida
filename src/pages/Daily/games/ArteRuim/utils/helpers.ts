@@ -11,8 +11,8 @@ const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
   number: 0,
   status: STATUSES.IN_PROGRESS,
-  solution: {},
   hearts: SETTINGS.HEARTS,
+  solution: {},
   guesses: {},
 };
 
