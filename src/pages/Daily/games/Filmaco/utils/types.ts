@@ -1,6 +1,9 @@
 import type { DateKey, LettersDictionary } from 'pages/Daily/utils/types';
 
 export type GameState = {
+  id: DateKey;
+  number: number;
+  status: string;
   hearts: number;
   solution: BooleanDictionary;
   guesses: LettersDictionary;
@@ -14,10 +17,4 @@ export type DailyFilmacoEntry = {
   title: string;
   itemsIds: string[];
   year: number;
-};
-
-export type FilmacoLocalToday = {
-  id: DateKey;
-  number: number;
-  letters: string[];
 };
