@@ -23,7 +23,6 @@ type ResultsModalContentProps = {
   guesses: string[];
   attributes: DailyComunicacaoAlienigenaEntry['attributes'];
   win: boolean;
-  hearts: number;
   solution: string;
   width: number;
 };
@@ -33,7 +32,6 @@ export function ResultsModalContent({
   attributes,
   challenge,
   win,
-  hearts,
   solution,
   width,
 }: ResultsModalContentProps) {
@@ -44,12 +42,11 @@ export function ResultsModalContent({
       writeResult({
         game: dualTranslate(SETTINGS.NAME),
         challenge,
-        remainingHearts: hearts,
         guesses,
         solution,
         language,
       }),
-    [challenge, dualTranslate, guesses, hearts, language, solution],
+    [challenge, dualTranslate, guesses, language, solution],
   );
 
   return (
@@ -98,14 +95,12 @@ export function ResultsModalContent({
 function writeResult({
   game,
   challenge,
-  remainingHearts,
   guesses,
   solution,
   language,
 }: {
   game: string;
   challenge: number;
-  remainingHearts: number;
   guesses: string[];
   solution: string;
   language: Language;
@@ -133,7 +128,7 @@ function writeResult({
   });
 
   return [
-    `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challenge}`,
+    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
     ...result,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');

@@ -93,7 +93,7 @@ function writeResult({
   });
 
   return [
-    `${SETTINGS.ICON} TD ${game} #${challenge}`,
+    `${SETTINGS.EMOJI} TD ${game} #${challenge}`,
     `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')}`,
     cleanUpAttempts.join(' '),
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,

@@ -119,7 +119,7 @@ function writeResult({
   );
 
   return [
-    `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challenge}`,
+    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
     `${writeHeartResultString(remainingHearts, Math.max(SETTINGS.HEARTS, size), ' ')} (${swaps} trocas)`,
     cleanUpAttempts
       .map((row) => row.join(' ').trim())

@@ -1,6 +1,20 @@
-export const SETTINGS = {
+import type { GameSettings } from 'pages/Daily/utils/types';
+// Icons
+import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
+
+export const SETTINGS: GameSettings = {
+  KEY: 'PICACO',
+  ROUTE: 'picaco',
+  COLOR: 'rgba(234, 236, 241, 0.85)',
+  EMOJI: '🎨',
+  HUB_ICON: DailyDrawingGameIcon,
+  HUB_NAME: { pt: 'Picaço!', en: 'Big Artist' },
   NAME: { pt: 'Picaço!', en: 'Big Artist' },
+  TAGLINE: {
+    pt: 'Já desenhou hoje? Novas frases todos os dias!',
+    en: 'Already drawn today? New phrases every day!',
+  },
+  // Custom settings
   DURATION: 60,
   DRAWINGS: 6,
-  KEY: 'PICACO',
 };
