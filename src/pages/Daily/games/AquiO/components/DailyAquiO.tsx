@@ -42,7 +42,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
     onSelect,
     timeLeft,
     mode,
-    setMode,
+    onModeChange,
     discA,
     discB,
     result,
@@ -98,7 +98,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
                 unCheckedChildren={<Translate pt="Modo Normal" en="Normal Mode" />}
                 checkedChildren={<Translate pt="Modo Difícil" en="Challenge Mode" />}
                 value={mode === 'challenge'}
-                onChange={(checked) => setMode(checked ? 'challenge' : 'normal')}
+                onChange={(checked) => onModeChange(checked ? 'challenge' : 'normal')}
               />
             </>
           )}
@@ -142,6 +142,8 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
               hardMode={mode === 'challenge'}
               lastMatch={result}
               maxProgress={maxProgress}
+              isWin={isWin}
+              isLose={isLose}
             />
           </Modal>
         </SpaceContainer>

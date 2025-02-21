@@ -1,20 +1,23 @@
-import { chain, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
+import { chain, cloneDeep, merge, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
 import moment from 'moment';
 import { loadLocalToday } from 'pages/Daily/utils';
+import { STATUSES } from 'pages/Daily/utils/constants';
 // Utils
 import { SEPARATOR } from 'utils/constants';
-import { deepCopy } from 'utils/helpers';
 // Internal
-import type { AquiODisc, AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
+import type { AquiODisc, DailyAquiOEntry, GameState } from './types';
 import { SETTINGS } from './settings';
 
-export const DEFAULT_LOCAL_TODAY: AquiOLocalToday = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
   number: 0,
+  status: STATUSES.IN_PROGRESS,
   maxProgress: 0,
+  hearts: SETTINGS.HEARTS,
   hardMode: false,
   attempts: 0,
-  hearts: SETTINGS.HEARTS,
+  goal: SETTINGS.GOAL,
+  discs: [],
 };
 
 /**
@@ -27,22 +30,22 @@ export const getInitialState = (data: DailyAquiOEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+    defaultValue: merge(cloneDeep(DEFAULT_LOCAL_TODAY), {
+      hardMode: localStorage.getItem(SETTINGS.TD_DAILY_AQUI_O_MODE) === 'challenge',
+    }),
   });
 
   const state: GameState = {
-    hearts: SETTINGS.HEARTS,
-    goal: SETTINGS.GOAL,
-    discs: [],
-    discIndex: 0,
-    attempts: 0,
-    maxProgress: 0,
+    id: data.id,
+    number: data.number,
+    status: localToday.status,
+    hearts: localToday.hearts,
+    maxProgress: localToday.maxProgress,
+    goal: localToday.goal,
+    discs: localToday.discs,
+    hardMode: localToday.hardMode,
+    attempts: localToday.attempts,
   };
-
-  state.attempts = localToday.attempts ?? 0;
-  state.discIndex = localToday.maxProgress ?? 0;
-  state.maxProgress = localToday.maxProgress ?? 0;
-  state.hearts = localToday.hearts ?? SETTINGS.HEARTS;
 
   return state;
 };
