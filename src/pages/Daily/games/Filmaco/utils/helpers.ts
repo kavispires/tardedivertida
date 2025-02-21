@@ -7,7 +7,7 @@ import { stringRemoveAccents } from 'utils/helpers';
 import { SETTINGS } from './settings';
 import type { DailyFilmacoEntry, GameState } from './types';
 
-export const DEFAULT_LOCAL_TODAY: GameState = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
   number: 0,
   status: STATUSES.IN_PROGRESS,
