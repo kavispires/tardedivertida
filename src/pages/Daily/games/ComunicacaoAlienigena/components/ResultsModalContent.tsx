@@ -1,15 +1,20 @@
+import { motion } from 'framer-motion';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { Region } from 'pages/Daily/components/Region';
 import { getDailyName, getSourceName } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Space, Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAnimation } from 'utils/animations';
 // Icons
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -22,6 +27,7 @@ type ResultsModalContentProps = {
   challenge: number;
   guesses: string[];
   attributes: DailyComunicacaoAlienigenaEntry['attributes'];
+  requests: DailyComunicacaoAlienigenaEntry['requests'];
   win: boolean;
   solution: string;
   width: number;
@@ -30,6 +36,7 @@ type ResultsModalContentProps = {
 export function ResultsModalContent({
   guesses,
   attributes,
+  requests,
   challenge,
   win,
   solution,
@@ -72,6 +79,18 @@ export function ResultsModalContent({
           />
         )}
       </Typography.Paragraph>
+
+      <Region>
+        <Flex className="alien-requests" gap={8}>
+          {requests.map((request, index) => {
+            return (
+              <motion.div key={request.itemId} {...getAnimation('fadeIn', { delay: index * 0.2 })}>
+                <ItemCard id={request.itemId} width={width} padding={0} className="transparent" />
+              </motion.div>
+            );
+          })}
+        </Flex>
+      </Region>
 
       <Space direction="vertical">
         {attributes.map((attribute) => (
