@@ -64,10 +64,7 @@ const GAMES: Entry[] = [
 
 const CONTRIBUTIONS: Entry[] = [
   PICACO,
-  {
-    ...TA_NA_CARA,
-    disabled: true,
-  },
+  TA_NA_CARA,
   {
     ...COMING_SOON_ENTRY,
     HUB_ICON: DailyContributionGame,
