@@ -9,6 +9,7 @@ import type { DailyPalavreadoEntry } from '../games/Palavreado/utils/types';
 import type { DailyTeoriaDeConjuntosEntry } from '../games/TeoriaDeConjuntos/utils/types';
 import type { DailyComunicacaoAlienigenaEntry } from '../games/ComunicacaoAlienigena/utils/types';
 import type { DailyQuartetosEntry } from '../games/Quartetos/utils/types';
+import type { DailyTaNaCaraEntry } from '../games/TaNaCara/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
@@ -21,6 +22,7 @@ export type DailyResponse = {
   'controle-de-estoque'?: DailyControleDeEstoqueEntry;
   'teoria-de-conjuntos'?: DailyTeoriaDeConjuntosEntry;
   'comunicacao-alienigena'?: DailyComunicacaoAlienigenaEntry;
+  'ta-na-cara'?: DailyTaNaCaraEntry;
   quartetos?: DailyQuartetosEntry;
 };
 
