@@ -77,6 +77,7 @@ export * from './DailyDrawingGameIcon';
 export * from './DailyFindingGameIcon';
 export * from './DailyGroupingGameIcon';
 export * from './DailyImagesGameIcon';
+export * from './DailyJudgingGameIcon';
 export * from './DailyMovieGameIcon';
 export * from './DailySuspectGameIcon';
 export * from './DailyWarehouseGameIcon';
