@@ -1,22 +1,26 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
-// Utils
-import { removeDuplicates } from 'utils/helpers';
+import { useEffect } from 'react';
 // Internal
-import { DEFAULT_LOCAL_TODAY } from './helpers';
 import { SETTINGS } from './settings';
-import type { ArteRuimLocalToday, DailyArteRuimEntry, GameState } from './types';
+import type { DailyArteRuimEntry, GameState } from './types';
 
 export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameState) {
   const { state, setState } = useDailyGameState<GameState>(initialState);
 
-  const { localToday, updateLocalStorage } = useDailyLocalToday<ArteRuimLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
+    defaultValue: initialState,
   });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
 
   // ACTIONS
   const guessLetter = (letter: string) => {
@@ -27,10 +31,6 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
 
     const isCorrect = state.solution[letter] !== undefined;
 
-    updateLocalStorage({
-      letters: removeDuplicates([...(localToday?.letters ?? []), letter]),
-    });
-
     const solution = { ...state.solution };
     if (isCorrect) {
       solution[letter] = true;
@@ -40,15 +40,18 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
       .filter((value) => value !== undefined)
       .every(Boolean);
 
+    let updatedStatus = state.status;
     if (isCorrect) {
       if (win) {
         playSFX('win');
+        updatedStatus = STATUSES.WIN;
       } else {
         playSFX('addCorrect');
       }
     } else {
       if (state.hearts === 1) {
         playSFX('lose');
+        updatedStatus = STATUSES.LOSE;
       } else {
         playSFX('addWrong');
       }
@@ -66,13 +69,13 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
       },
       solution,
       hearts: isCorrect ? prev.hearts : prev.hearts - 1,
-      win,
+      status: updatedStatus,
     }));
   };
 
   // CONDITIONS
-  const isWin = state.win;
-  const isLose = state.hearts <= 0;
+  const isWin = state.status === STATUSES.WIN;
+  const isLose = state.status === STATUSES.LOSE;
   const isComplete = isWin || isLose;
 
   useMarkAsPlayed({

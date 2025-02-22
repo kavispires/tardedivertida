@@ -5,8 +5,6 @@ import { useMeasure } from 'react-use';
 import { Button, Divider, Layout, Modal, Popconfirm, Tooltip, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
-// Utils
-import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 // Components
@@ -56,8 +54,6 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
   } = useControleDeEstoqueEngine(data, initialState);
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
 
-  const shouldShakeScreen = latestAttempt && !isComplete;
-
   const shelfWidth = useMemo(() => {
     const totalWidth = contentMeasure.width / 5 - 16;
     return Math.min(Math.max(totalWidth, 48), 96);
@@ -89,24 +85,23 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
           />
         )}
 
-        <div key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
-          {phase !== PHASES.STOCKING && (
-            <FulfillingPhase
-              phase={phase}
-              warehouse={warehouse}
-              orders={orders}
-              activeOrder={activeOrder}
-              fulfillments={fulfillments}
-              shelfWidth={shelfWidth}
-              onSelectOrder={onSelectOrder}
-              onFulfill={onFulfill}
-              onTakeBack={onTakeBack}
-              onSubmit={onSubmit}
-              isComplete={isComplete}
-              setShowResultModal={setShowResultModal}
-            />
-          )}
-        </div>
+        {phase !== PHASES.STOCKING && (
+          <FulfillingPhase
+            phase={phase}
+            warehouse={warehouse}
+            orders={orders}
+            activeOrder={activeOrder}
+            fulfillments={fulfillments}
+            shelfWidth={shelfWidth}
+            onSelectOrder={onSelectOrder}
+            onFulfill={onFulfill}
+            onTakeBack={onTakeBack}
+            onSubmit={onSubmit}
+            isComplete={isComplete}
+            setShowResultModal={setShowResultModal}
+            latestAttempt={latestAttempt}
+          />
+        )}
 
         <TextRegion direction="horizontal" split={<Divider type="vertical" />}>
           {evaluations.map((attempt, index) => (

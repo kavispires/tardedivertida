@@ -234,6 +234,10 @@ export const feedEmulatorDaily = async () => {
     'comunicacao-alienigena': JSON.parse(
       '{"id":"2024-00-00","setId":"big-con-odo","number":0,"type":"comunicação-alienígena","attributes":[{"id":"odo","name":"Cheiro","description":"cheiro, odor, aroma","spriteId":"31","itemsIds":["2548","2613","95"]},{"id":"con","name":"Construção","description":"construção, estrutura, arquitetura, housing","spriteId":"29","itemsIds":["1805","1561"]},{"id":"big","name":"Grande","description":"tamanho, magnitude","spriteId":"25","itemsIds":["106","116","51"]}],"requests":[{"spritesIds":["29","25"],"itemId":"1577"},{"spritesIds":["31","25"],"itemId":"46"},{"spritesIds":["31","29","25"],"itemId":"1824"},{"spritesIds":["31","29"],"itemId":"893"}],"solution":"1577-46-1824-893","itemsIds":["1577","893","1824","185","46","2626","2633"],"valid":true}',
     ),
+    'ta-na-cara': JSON.parse(
+      `{"id":"2025-00-00","number":0,"type":"ta-na-cara","testimonies":[{"testimonyId":"t-1-pt","question":"Ele(a) já foi para um jogo em um estádio?","nsfw":false,"suspectsIds":["us-ct-02","us-ct-03","us-ct-04"]},{"testimonyId":"t-2-pt","question":"Ele(a) gosta de música clássica?","nsfw":false,"suspectsIds":["us-ct-12","us-ct-13","us-ct-14"]},{"testimonyId":"t-3-pt","question":"Ele(a) acredita em alienígenas?","nsfw":true,"suspectsIds":["us-ct-08","us-ct-09","us-ct-10"]}]}
+      `,
+    ),
   };
 
   await utils.firestore.getDailyRef('daily').doc('2023-10-31').set(dailyMock);
@@ -253,4 +257,6 @@ export const feedEmulatorDaily = async () => {
     drawingsPT: 2,
     drawingsEN: 3,
   });
+
+  await utils.firestore.getDailyRef('data').doc('testimonies').set({});
 };

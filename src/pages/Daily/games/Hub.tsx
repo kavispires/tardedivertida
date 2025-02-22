@@ -13,25 +13,15 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
 // Icons
-import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
-import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DailyContributionGame } from 'icons/DailyContributionGame';
 import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
-import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
-import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
-import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
-import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
-import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
-import { DailySuspectGame } from 'icons/DailySuspectGame';
-import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
-import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
 // Internal
 import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
+import type { GameSettings } from '../utils/types';
 import { DailyChrome } from '../components/DailyChrome';
 import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
@@ -42,117 +32,56 @@ import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
+import { SETTINGS as TA_NA_CARA } from './TaNaCara/utils/settings';
 import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
 import { checkWasPlayedToday } from '../utils';
 
-type Entry = {
-  lsKey: string;
-  href: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  name: DualLanguageValue;
-  color: string;
+type Entry = GameSettings & {
   disabled?: boolean;
 };
 
+const COMING_SOON_ENTRY: Entry = {
+  KEY: '',
+  ROUTE: '',
+  EMOJI: '',
+  COLOR: '',
+  HUB_ICON: DailyContributionGame,
+  HUB_NAME: { pt: '', en: '' },
+  NAME: { pt: '', en: '' },
+  TAGLINE: { pt: '', en: '' },
+  disabled: true,
+};
+
 const GAMES: Entry[] = [
-  {
-    lsKey: ARTE_RUIM.KEY,
-    href: 'arte-ruim',
-    Icon: DailyArtGameIcon,
-    name: { pt: 'Arte Ruim', en: 'Art?' },
-    color: 'rgba(158, 182, 244, 0.85)',
-  },
-  {
-    lsKey: AQUI_O.KEY,
-    href: 'aqui-o',
-    Icon: DailyFindingGameIcon,
-    name: { pt: 'Aqui Ó', en: 'Find This' },
-    color: 'rgba(227, 167, 111, 0.85)',
-  },
-  {
-    lsKey: COMUNICACAO_ALIENIGENA.KEY,
-    href: 'comunicacao-alienigena',
-    Icon: DailyAlienGameIcon,
-    name: { pt: 'Alienígena', en: 'Alienish' },
-    color: 'rgba(105, 218, 207, 0.85)',
-  },
-  {
-    lsKey: TEORIA_DE_CONJUNTOS.KEY,
-    href: 'teoria-de-conjuntos',
-    Icon: DailyDiagramGameIcon,
-    name: { pt: 'Conjuntos', en: 'Diagram' },
-    color: 'rgba(172, 128, 221, 0.85)',
-  },
-  {
-    lsKey: CONTROLE_DE_ESTOQUE.KEY,
-    href: 'controle-de-estoque',
-    Icon: DailyWarehouseGameIcon,
-    name: { pt: 'Estoque', en: 'Warehouse' },
-    color: 'rgba(255, 199, 59, 0.85)',
-  },
-  {
-    lsKey: FILMACO.KEY,
-    href: 'filmaco',
-    Icon: DailyMovieGameIcon,
-    name: { pt: 'Filmaço', en: 'Movicon' },
-    color: 'rgba(85, 161, 255, 0.85)',
-  },
-  {
-    lsKey: PALAVREADO.KEY,
-    href: 'palavreado',
-    Icon: DailyWordGameIcon,
-    name: { pt: 'Palavreado', en: 'Rewording' },
-    color: 'rgba(239, 83, 80, 0.85)',
-  },
+  ARTE_RUIM,
+  AQUI_O,
+  COMUNICACAO_ALIENIGENA,
+  TEORIA_DE_CONJUNTOS,
+  CONTROLE_DE_ESTOQUE,
+  FILMACO,
+  PALAVREADO,
 ];
 
 const CONTRIBUTIONS: Entry[] = [
+  PICACO,
+  TA_NA_CARA,
   {
-    lsKey: PICACO.KEY,
-    href: 'picaco',
-    Icon: DailyDrawingGameIcon,
-    name: { pt: 'Picaço!', en: 'Artist!' },
-    color: 'rgba(234, 236, 241, 0.85)',
-  },
-  {
-    lsKey: '',
-    href: '',
-    Icon: DailyContributionGame,
-    name: { pt: 'Responda', en: 'Answer' },
-    color: 'rgba(240, 240, 228, 0.85)',
-    disabled: true,
-  },
-  {
-    lsKey: '',
-    href: '',
-    Icon: DailySuspectGame,
-    name: { pt: 'Suspeito?', en: 'Suspect?' },
-    color: 'rgba(242, 233, 236, 0.85)',
+    ...COMING_SOON_ENTRY,
+    HUB_ICON: DailyContributionGame,
+    HUB_NAME: { pt: 'Responda', en: 'Answer' },
+    COLOR: 'rgba(240, 240, 228, 0.85)',
     disabled: true,
   },
 ];
 
 const DEMOS: Entry[] = [
+  PORTAIS_MAGICOS,
+  QUARTETOS,
   {
-    lsKey: PORTAIS_MAGICOS.KEY,
-    href: 'portais-magicos',
-    Icon: DailyImagesGameIcon,
-    name: { pt: 'Portais', en: 'Doors' },
-    color: 'rgba(255, 171, 145, 0.85)',
-  },
-  {
-    lsKey: QUARTETOS.KEY,
-    href: 'quartetos',
-    Icon: DailyGroupingGameIcon,
-    name: { pt: 'Quartetos', en: 'Connect' },
-    color: 'rgba(243, 145, 189, 0.85)',
-  },
-  {
-    lsKey: '',
-    href: '',
-    Icon: DailyCrimeGameIcon,
-    name: { pt: 'Crimes', en: 'Crimes' },
-    color: 'rgba(243, 232, 145, 0.85)',
+    ...COMING_SOON_ENTRY,
+    HUB_ICON: DailyCrimeGameIcon,
+    HUB_NAME: { pt: 'Crimes', en: 'Crimes' },
+    COLOR: 'rgba(243, 232, 145, 0.85)',
     disabled: true,
   },
 ];
@@ -195,7 +124,7 @@ export function Hub() {
 }
 
 type HubListProps = {
-  list: Entry[];
+  list: (GameSettings & { disabled?: boolean })[];
   width: number;
   startingIndex: number;
 };
@@ -203,15 +132,15 @@ type HubListProps = {
 function HubList({ list, width, startingIndex }: HubListProps) {
   return (
     <div className="hub-list">
-      {list.map(({ lsKey, href, Icon, name, color, disabled }, index) => (
+      {list.map(({ KEY, ROUTE, HUB_ICON, HUB_NAME, COLOR, disabled }, index) => (
         <GameButton
-          key={lsKey}
-          lsKey={lsKey}
+          key={KEY}
+          lsKey={KEY}
           width={width}
-          href={href}
-          Icon={Icon}
-          name={name}
-          color={color}
+          href={ROUTE}
+          Icon={HUB_ICON}
+          name={HUB_NAME}
+          color={COLOR}
           disabled={disabled}
           index={startingIndex + index}
         />

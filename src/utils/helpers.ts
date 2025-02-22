@@ -12,6 +12,7 @@ import { SEPARATOR } from './constants';
  * Creates a copy of given object
  * @param obj
  * @returns
+ * @deprecated use lodash cloneDeep instead
  */
 export const deepCopy = <T>(obj: T): T => JSON.parse(JSON.stringify(obj));
 

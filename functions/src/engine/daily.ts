@@ -1,5 +1,6 @@
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
+import { pushValue } from '../utils/firestore';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';
 
@@ -146,10 +147,46 @@ const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) =>
   return true;
 };
 
+type DailySaveTestimoniesPayload = {
+  answers: {
+    testimonyId: string;
+    related: string[];
+    unrelated: string[];
+  }[];
+};
+
+const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: FirebaseAuth) => {
+  const actionText = 'save suspects';
+  const uid = auth?.uid;
+
+  if (!uid) {
+    return utils.firebase.throwException('User not authenticated', actionText);
+  }
+
+  const testimonies = data.answers.reduce((acc, answer) => {
+    if (answer.related.length > 0) {
+      acc[`${answer.testimonyId}.related`] = pushValue(...answer.related);
+    }
+    if (answer.unrelated.length > 0) {
+      acc[`${answer.testimonyId}.unrelated`] = pushValue(...answer.unrelated);
+    }
+    return acc;
+  }, {});
+  try {
+    const docRef = utils.firestore.getDataRef().doc('testimonies');
+    await docRef.update(testimonies);
+  } catch (error) {
+    utils.firebase.throwException(error, actionText);
+  }
+
+  return true;
+};
+
 const DAILY_API_ACTIONS = {
   GET_DAILY: getDaily,
   SAVE_DAILY: saveDaily,
   SAVE_DRAWING: saveDrawing,
+  SAVE_TESTIMONIES: saveTestimonies,
 };
 
 /**

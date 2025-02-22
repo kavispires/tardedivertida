@@ -1,4 +1,4 @@
-import { difference, orderBy, shuffle } from 'lodash';
+import { cloneDeep, difference, orderBy, shuffle } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
@@ -9,10 +9,8 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { deepCopy } from 'utils/helpers';
 // Internal
-import type { QuartetosLocalToday, DailyQuartetosEntry, GameState, SessionState } from './types';
+import type { DailyQuartetosEntry, GameState, SessionState } from './types';
 import { SETTINGS } from './settings';
 
 export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: GameState) {
@@ -21,10 +19,10 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     selection: [],
-    latestAttempt: Date.now(),
+    latestAttempt: 0,
   });
 
-  const { updateLocalStorage } = useDailyLocalToday<QuartetosLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: initialState,
@@ -47,7 +45,7 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
     }
 
     setSession((prev) => {
-      const copy = deepCopy(prev);
+      const copy = cloneDeep(prev);
       const index = copy.selection.indexOf(itemId);
       if (index > -1) {
         playSFX('bubbleIn');
@@ -85,7 +83,7 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
     const isCorrect = data.sets.find((set) => set.id === selectionId);
 
     setState((prev) => {
-      const copy = deepCopy(prev);
+      const copy = cloneDeep(prev);
 
       const guesses = [...copy.guesses, guessId];
 

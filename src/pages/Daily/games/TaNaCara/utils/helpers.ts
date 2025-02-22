@@ -2,7 +2,7 @@ import { cloneDeep } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
 // Internal
 import { SETTINGS } from './settings';
-import type { DailyPicacoEntry, GameState } from './types';
+import type { DailyTaNaCaraEntry, GameState } from './types';
 
 const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
@@ -10,7 +10,7 @@ const DEFAULT_LOCAL_TODAY: GameState = {
   played: false,
 };
 
-export const getInitialState = (data: DailyPicacoEntry): GameState => {
+export const getInitialState = (data: DailyTaNaCaraEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,

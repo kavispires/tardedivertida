@@ -20,6 +20,7 @@ import { DailyContextProvider } from './hooks/useDailyChallenge';
 import { DailyComunicacaoAlienigenaGame } from './games/ComunicacaoAlienigena/DailyComunicacaoAlienigenaGame';
 import { DailyPortaisMagicosGame } from './games/PortaisMagicos/DailyPortaisMagicosGame';
 import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
+import { DailyTaNaCaraGame } from './games/TaNaCara/DailyTaNaCaraGame';
 // Sass
 import './utils/daily.scss';
 
@@ -64,6 +65,7 @@ function DailyPage() {
       // Demos
       'portais-magicos': DailyPortaisMagicosGame,
       quartetos: DailyQuartetosGame,
+      'ta-na-cara': DailyTaNaCaraGame,
       // Dev
       debug: DebugPage,
     }?.[subPath] ?? Hub;

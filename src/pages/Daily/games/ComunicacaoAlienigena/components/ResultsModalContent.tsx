@@ -1,15 +1,20 @@
+import { motion } from 'framer-motion';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { Region } from 'pages/Daily/components/Region';
 import { getDailyName, getSourceName } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Space, Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAnimation } from 'utils/animations';
 // Icons
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -22,8 +27,8 @@ type ResultsModalContentProps = {
   challenge: number;
   guesses: string[];
   attributes: DailyComunicacaoAlienigenaEntry['attributes'];
+  requests: DailyComunicacaoAlienigenaEntry['requests'];
   win: boolean;
-  hearts: number;
   solution: string;
   width: number;
 };
@@ -31,9 +36,9 @@ type ResultsModalContentProps = {
 export function ResultsModalContent({
   guesses,
   attributes,
+  requests,
   challenge,
   win,
-  hearts,
   solution,
   width,
 }: ResultsModalContentProps) {
@@ -44,12 +49,11 @@ export function ResultsModalContent({
       writeResult({
         game: dualTranslate(SETTINGS.NAME),
         challenge,
-        remainingHearts: hearts,
         guesses,
         solution,
         language,
       }),
-    [challenge, dualTranslate, guesses, hearts, language, solution],
+    [challenge, dualTranslate, guesses, language, solution],
   );
 
   return (
@@ -76,6 +80,18 @@ export function ResultsModalContent({
         )}
       </Typography.Paragraph>
 
+      <Region>
+        <Flex className="alien-requests" gap={8}>
+          {requests.map((request, index) => {
+            return (
+              <motion.div key={request.itemId} {...getAnimation('fadeIn', { delay: index * 0.2 })}>
+                <ItemCard id={request.itemId} width={width} padding={0} className="transparent" />
+              </motion.div>
+            );
+          })}
+        </Flex>
+      </Region>
+
       <Space direction="vertical">
         {attributes.map((attribute) => (
           <Flex key={attribute.id} gap={6}>
@@ -98,14 +114,12 @@ export function ResultsModalContent({
 function writeResult({
   game,
   challenge,
-  remainingHearts,
   guesses,
   solution,
   language,
 }: {
   game: string;
   challenge: number;
-  remainingHearts: number;
   guesses: string[];
   solution: string;
   language: Language;
@@ -133,7 +147,7 @@ function writeResult({
   });
 
   return [
-    `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challenge}`,
+    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
     ...result,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');

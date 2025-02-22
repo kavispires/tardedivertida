@@ -1,10 +1,12 @@
 import type { DateKey, LettersDictionary } from 'pages/Daily/utils/types';
 
 export type GameState = {
+  id: DateKey;
+  number: number;
+  status: string;
   hearts: number;
   solution: BooleanDictionary;
   guesses: LettersDictionary;
-  win: boolean;
 };
 
 export type DailyArteRuimEntry = {
@@ -16,10 +18,4 @@ export type DailyArteRuimEntry = {
   text: string;
   drawings: string[];
   dataIds: string[];
-};
-
-export type ArteRuimLocalToday = {
-  id: DateKey;
-  number: number;
-  letters: string[];
 };
