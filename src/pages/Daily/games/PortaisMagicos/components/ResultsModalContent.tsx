@@ -115,8 +115,7 @@ function writeResult({
     .join('\n');
 
   return [
-    `${SETTINGS.ICON} ${getDailyName(language)} ${game} #${challenge}`,
-
+    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
     result,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');

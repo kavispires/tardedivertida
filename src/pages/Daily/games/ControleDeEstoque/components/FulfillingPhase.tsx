@@ -2,6 +2,8 @@ import { Region, TextRegion } from 'pages/Daily/components/Region';
 // Ant Design Resources
 import { BarChartOutlined, WarningFilled } from '@ant-design/icons';
 import { Button } from 'antd';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
@@ -24,6 +26,7 @@ type FulfillingPhaseProps = {
   setShowResultModal: ReturnType<typeof useControleDeEstoqueEngine>['setShowResultModal'];
   isComplete: ReturnType<typeof useControleDeEstoqueEngine>['isComplete'];
   shelfWidth: number;
+  latestAttempt: ReturnType<typeof useControleDeEstoqueEngine>['latestAttempt'];
 };
 
 export function FulfillingPhase({
@@ -39,21 +42,25 @@ export function FulfillingPhase({
   shelfWidth,
   isComplete,
   setShowResultModal,
+  latestAttempt,
 }: FulfillingPhaseProps) {
   const isFulfilling = phase === PHASES.FULFILLING && !isComplete;
   const isDelivering = phase === PHASES.DELIVERING;
+  const shouldShakeScreen = latestAttempt && !isComplete;
 
   const board = (
     <Region>
-      <FulfillmentBoard
-        activeOrder={activeOrder}
-        warehouse={warehouse}
-        onFulfill={onFulfill}
-        onTakeBack={onTakeBack}
-        width={shelfWidth}
-        fulfillments={fulfillments}
-        reveal={isComplete}
-      />
+      <div key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
+        <FulfillmentBoard
+          activeOrder={activeOrder}
+          warehouse={warehouse}
+          onFulfill={onFulfill}
+          onTakeBack={onTakeBack}
+          width={shelfWidth}
+          fulfillments={fulfillments}
+          reveal={isComplete}
+        />
+      </div>
     </Region>
   );
 

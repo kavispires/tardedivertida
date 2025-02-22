@@ -14,12 +14,17 @@ type DailyAlienGameRequest = {
 };
 
 export type GameState = {
+  id: DateKey;
+  number: number;
+  status: string;
   hearts: number;
   guesses: string[];
+};
+
+export type SessionState = {
   selection: (string | null)[];
   slotIndex: number | null;
   latestAttempt: number | null;
-  win: boolean;
 };
 
 export type DailyComunicacaoAlienigenaEntry = {
@@ -32,10 +37,4 @@ export type DailyComunicacaoAlienigenaEntry = {
   solution: string;
   itemsIds: string[];
   valid: boolean;
-};
-
-export type ComunicacaoAlienigenaLocalToday = {
-  id: DateKey;
-  number: number;
-  guesses: string[];
 };

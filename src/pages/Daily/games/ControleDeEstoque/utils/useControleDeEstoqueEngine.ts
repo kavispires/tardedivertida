@@ -1,30 +1,42 @@
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { cloneDeep } from 'lodash';
+import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { deepCopy } from 'utils/helpers';
 // Internal
-import { DEFAULT_LOCAL_TODAY, getGuessString, getInitialState, validateAttempts } from './helpers';
+import { getGuessString, getInitialState, validateAttempts } from './helpers';
 import { PHASES, SETTINGS } from './settings';
-import type { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
+import type { DailyControleDeEstoqueEntry, GameState, SessionState } from './types';
+// Utils
 
 export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, initialState: GameState) {
   const { message } = App.useApp();
   const { translate } = useLanguage();
-  const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
+  const { state, setState } = useDailyGameState<GameState>(initialState);
 
-  const currentGood: string | undefined = data.goods[state.warehouse.filter(Boolean).length];
+  const { session, updateSession } = useDailySessionState<SessionState>({
+    latestAttempt: null,
+    activeOrder: null,
+  });
 
-  const { updateLocalStorage } = useDailyLocalToday<ControleDeEstoqueLocalToday>({
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
+    defaultValue: initialState,
   });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
+
+  const currentGood: string | undefined = data.goods[state.warehouse.filter(Boolean).length];
 
   /**
    * Places a good in the warehouse
@@ -32,7 +44,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
   const onPlaceGood = (shelfIndex: number) => {
     if (shelfIndex >= 0 && currentGood) {
       setState((prev) => {
-        const copy = deepCopy(prev);
+        const copy = cloneDeep(prev);
 
         copy.warehouse[shelfIndex] = currentGood;
         copy.lastPlacedGoodId = currentGood;
@@ -40,8 +52,6 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
 
         if (copy.warehouse.every(Boolean)) {
           copy.phase = PHASES.FULFILLING;
-
-          updateLocalStorage({ warehouse: copy.warehouse as string[] });
         }
 
         return copy;
@@ -54,7 +64,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
    */
   const onSelectOrder = (order: string) => {
     playSFX('bubbleIn');
-    updateState({ activeOrder: order });
+    updateSession({ activeOrder: order });
   };
 
   /**
@@ -64,13 +74,13 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
   const onFulfill = (shelfIndex: number) => {
     playSFX('swap');
     setState((prev) => {
-      const copy = deepCopy(prev);
-      if (state.activeOrder) {
+      const copy = cloneDeep(prev);
+      if (session.activeOrder) {
         copy.fulfillments.push({
-          order: state.activeOrder,
+          order: session.activeOrder,
           shelfIndex: shelfIndex,
         });
-        copy.activeOrder = null;
+        updateSession({ activeOrder: null });
       }
       return copy;
     });
@@ -82,9 +92,9 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
   const onTakeBack = (orderId: string) => {
     playSFX('bubbleOut');
     setState((prev) => {
-      const copy = deepCopy(prev);
+      const copy = cloneDeep(prev);
       copy.fulfillments = copy.fulfillments.filter((fulfillment) => fulfillment.order !== orderId);
-      copy.activeOrder = orderId;
+      updateSession({ activeOrder: orderId });
       return copy;
     });
   };
@@ -105,15 +115,10 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
         duration: 5,
       });
 
-      return updateState({
+      return updateSession({
         latestAttempt: Date.now(),
       });
     }
-
-    updateLocalStorage({
-      guesses: [...state.guesses, newGuessString],
-      warehouse: state.warehouse as string[],
-    });
 
     const attemptResult = validateAttempts(state.warehouse, state.fulfillments);
 
@@ -131,28 +136,29 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
     }
 
     setState((prev) => {
-      const copy = deepCopy(prev);
-      copy.latestAttempt = Date.now();
+      const copy = cloneDeep(prev);
+
       copy.evaluations.push(attemptResult);
       copy.guesses.push(newGuessString);
 
       if (isAllCorrect) {
-        copy.win = true;
+        copy.status = STATUSES.WIN;
         playSFX('win');
       } else {
         copy.hearts -= 1;
         if (copy.hearts === 0) {
           playSFX('lose');
+          copy.status = STATUSES.WIN;
         }
       }
-
+      updateSession({ latestAttempt: Date.now() });
       return copy;
     });
   };
 
   // CONDITIONS
-  const isWin = state.win;
-  const isLose = state.hearts <= 0;
+  const isWin = state.status === STATUSES.WIN;
+  const isLose = state.status === STATUSES.LOSE;
   const isComplete = isWin || isLose;
 
   useMarkAsPlayed({
@@ -164,17 +170,15 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
   const { showResultModal, setShowResultModal } = useShowResultModal(isComplete);
 
   const reset = () => {
-    updateLocalStorage({
+    const override: Partial<GameState> = {
       warehouse: Array(data.goods.length).fill(null),
       guesses: [],
       extraAttempts: state.extraAttempts + 1,
-    });
-    const resetState = getInitialState(data, true);
-    setState({
-      ...resetState,
-      extraAttempts: state.extraAttempts + 1,
       hearts: SETTINGS.HEARTS - state.extraAttempts - 1,
-    });
+    };
+
+    const resetState = getInitialState(data, override);
+    setState(resetState);
   };
 
   return {
@@ -185,10 +189,10 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
     lastPlacedGoodId: state.lastPlacedGoodId,
     guesses: state.guesses,
     evaluations: state.evaluations,
-    latestAttempt: state.latestAttempt,
     orders: data.orders,
     currentGood,
-    activeOrder: state.activeOrder,
+    latestAttempt: session.latestAttempt,
+    activeOrder: session.activeOrder,
     showResultModal,
     setShowResultModal,
     isWin,

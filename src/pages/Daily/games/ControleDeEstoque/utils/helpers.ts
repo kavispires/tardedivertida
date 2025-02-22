@@ -1,62 +1,52 @@
+import { cloneDeep, merge } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
+import { STATUSES } from 'pages/Daily/utils/constants';
 // Utils
 import { SEPARATOR } from 'utils/constants';
-import { deepCopy } from 'utils/helpers';
 // Internal
 import { PHASES, SETTINGS } from './settings';
-import type { ControleDeEstoqueLocalToday, DailyControleDeEstoqueEntry, GameState } from './types';
+import type { DailyControleDeEstoqueEntry, GameState } from './types';
 
-export const DEFAULT_LOCAL_TODAY: ControleDeEstoqueLocalToday = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
   number: 0,
+  status: STATUSES.IN_PROGRESS,
+  hearts: SETTINGS.HEARTS,
+  phase: PHASES.STOCKING,
   warehouse: [],
+  fulfillments: [],
+  lastPlacedGoodId: null,
   guesses: [],
+  evaluations: [],
   extraAttempts: 0,
 };
 
-export const getInitialState = (data: DailyControleDeEstoqueEntry, removeHeart?: boolean): GameState => {
+export const getInitialState = (
+  data: DailyControleDeEstoqueEntry,
+  override?: Partial<GameState>,
+): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+    defaultValue: merge(cloneDeep(DEFAULT_LOCAL_TODAY), {
+      warehouse: Array(data.goods.length).fill(null),
+    }),
   });
 
   const state: GameState = {
-    hearts: SETTINGS.HEARTS,
-    phase: PHASES.STOCKING,
-    warehouse: Array(data.goods.length).fill(null),
-    fulfillments: [],
-    lastPlacedGoodId: null,
-    latestAttempt: null,
-    win: false,
-    guesses: [],
-    evaluations: [],
-    activeOrder: null,
-    extraAttempts: 0,
+    id: data.id,
+    number: data.number,
+    status: localToday.status,
+    hearts: localToday.hearts,
+    phase: localToday.phase,
+    warehouse: localToday.warehouse,
+    fulfillments: localToday.fulfillments,
+    lastPlacedGoodId: localToday.lastPlacedGoodId,
+    guesses: localToday.guesses,
+    evaluations: localToday.evaluations,
+    extraAttempts: localToday.extraAttempts,
+    ...override,
   };
-
-  if (localToday.warehouse.length || localToday.extraAttempts) {
-    // Update phase
-    const warehouse =
-      localToday.warehouse.length > 0 ? localToday.warehouse : Array(data.goods.length).fill(null);
-    const guesses = localToday.warehouse.length > 0 ? (localToday.guesses ?? []) : [];
-
-    // Activate the last order attempt
-    const fulfillments = guesses.length > 0 ? parseGuessString(guesses[guesses.length - 1]) : [];
-    // Determine win
-    const attempts = validateAttempts(warehouse, fulfillments);
-    const extraAttempts = localToday.extraAttempts ?? 0;
-    const win = attempts.length > 0 && attempts.every(Boolean);
-
-    state.phase = warehouse.every(Boolean) ? PHASES.FULFILLING : PHASES.STOCKING;
-    state.warehouse = warehouse;
-    state.guesses = guesses;
-    state.evaluations = guesses.map((g) => validateAttempts(warehouse, parseGuessString(g)));
-    state.hearts = SETTINGS.HEARTS - guesses.length - extraAttempts - (removeHeart ? 1 : 0);
-    state.extraAttempts = extraAttempts;
-    state.fulfillments = fulfillments;
-    state.win = win;
-  }
 
   return state;
 };
@@ -93,16 +83,4 @@ export const validateAttempts = (
  */
 export const getGuessString = (fulfillments: GameState['fulfillments']) => {
   return fulfillments.map((f) => `${f.order}${SEPARATOR}${f.shelfIndex}`).join(',');
-};
-
-/**
- * Parses a guess string into an array of objects containing order and shelf index.
- * @param guessString - The guess string to be parsed.
- * @returns An array of objects containing order and shelf index.
- */
-const parseGuessString = (guessString: string) => {
-  return guessString.split(',').map((g) => {
-    const [order, shelfIndex] = g.split(SEPARATOR);
-    return { order, shelfIndex: Number(shelfIndex) };
-  });
 };

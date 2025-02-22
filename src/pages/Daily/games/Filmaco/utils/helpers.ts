@@ -1,15 +1,19 @@
+import { cloneDeep, merge } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
-import type { LettersDictionary } from 'pages/Daily/utils/types';
+import { STATUSES } from 'pages/Daily/utils/constants';
 // Utils
-import { deepCopy, stringRemoveAccents } from 'utils/helpers';
+import { stringRemoveAccents } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
-import type { DailyFilmacoEntry, FilmacoLocalToday, GameState } from './types';
+import type { DailyFilmacoEntry, GameState } from './types';
 
-export const DEFAULT_LOCAL_TODAY: FilmacoLocalToday = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
-  letters: [],
   number: 0,
+  status: STATUSES.IN_PROGRESS,
+  hearts: SETTINGS.HEARTS,
+  solution: {},
+  guesses: {},
 };
 
 /**
@@ -21,36 +25,19 @@ export const getInitialState = (data: DailyFilmacoEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+    defaultValue: merge(cloneDeep(DEFAULT_LOCAL_TODAY), {
+      solution: getLettersInWord(data.title, true),
+    }),
   });
 
   const state: GameState = {
-    solution: getLettersInWord(data.title, true),
-    hearts: SETTINGS.HEARTS,
-    guesses: {},
+    id: data.id,
+    number: data.number,
+    status: localToday.status,
+    solution: localToday.solution,
+    hearts: localToday.hearts,
+    guesses: localToday.guesses,
   };
-
-  if (localToday) {
-    let hearts = SETTINGS.HEARTS;
-    let solution = { ...state.solution };
-    const guesses = localToday.letters.reduce((acc: LettersDictionary, letter) => {
-      const isCorrect = state.solution[letter] !== undefined;
-      if (state.solution[letter] !== undefined) {
-        solution = { ...solution, [letter]: true };
-      }
-      acc[letter] = {
-        letter: letter,
-        state: isCorrect ? 'correct' : 'incorrect',
-        disabled: true,
-      };
-      hearts = isCorrect ? hearts : hearts - 1;
-      return acc;
-    }, {});
-
-    state.guesses = guesses;
-    state.hearts = hearts;
-    state.solution = solution;
-  }
 
   return state;
 };

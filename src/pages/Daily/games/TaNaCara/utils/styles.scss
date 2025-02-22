@@ -1,0 +1,16 @@
+@use 'styles/sass' as *;
+
+.artista-time-bar {
+  width: 100%;
+  max-width: 500px;
+  margin: get-unit(2 auto);
+}
+
+.info-screen {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}

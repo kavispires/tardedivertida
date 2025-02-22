@@ -1,87 +1,65 @@
+import { cloneDeep, merge } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
-// Utils
-import { deepCopy } from 'utils/helpers';
+import { STATUSES } from 'pages/Daily/utils/constants';
 // Internal
 import { SETTINGS } from './settings';
-import type { DailyTeoriaDeConjuntosEntry, GameState, TeoriaDeConjuntosLocalToday } from './types';
+import type { DailyTeoriaDeConjuntosEntry, GameState } from './types';
 
-export const DEFAULT_LOCAL_TODAY: TeoriaDeConjuntosLocalToday = {
+const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
-  guesses: [],
+  number: 0,
   hearts: SETTINGS.HEARTS,
+  status: STATUSES.IN_PROGRESS,
+  hand: [],
+  deck: [],
+  rule1Things: [],
+  rule2Things: [],
+  intersectingThings: [],
+  guesses: [],
 };
 
 export const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: deepCopy(DEFAULT_LOCAL_TODAY),
+    defaultValue: merge(cloneDeep(DEFAULT_LOCAL_TODAY), {
+      hand: data.things.slice(0, 4),
+      deck: data.things.slice(4),
+      rule1Things: [
+        {
+          id: data.rule1.thing.id,
+          name: data.rule1.thing.name,
+          rule: 1,
+        },
+      ],
+      rule2Things: [
+        {
+          id: data.rule2.thing.id,
+          name: data.rule2.thing.name,
+          rule: 2,
+        },
+      ],
+      intersectingThings: [
+        {
+          id: data.intersectingThing.id,
+          name: data.intersectingThing.name,
+        },
+      ],
+    }),
   });
 
   const state: GameState = {
-    hearts: SETTINGS.HEARTS,
-    win: false,
-    hand: data.things.slice(0, 4),
-    deck: data.things.slice(4),
-    rule1Things: [
-      {
-        id: data.rule1.thing.id,
-        name: data.rule1.thing.name,
-        rule: 1,
-      },
-    ],
-    rule2Things: [
-      {
-        id: data.rule2.thing.id,
-        name: data.rule2.thing.name,
-        rule: 2,
-      },
-    ],
-    intersectingThings: [
-      {
-        id: data.intersectingThing.id,
-        name: data.intersectingThing.name,
-      },
-    ],
-    activeThing: null,
-    activeArea: null,
-    guesses: [],
+    id: data.id,
+    number: data.number,
+    hearts: localToday.hearts,
+    status: localToday.status,
+    hand: localToday.hand,
+    deck: localToday.deck,
+    rule1Things: localToday.rule1Things,
+    rule2Things: localToday.rule2Things,
+    intersectingThings: localToday.intersectingThings,
+    guesses: localToday.guesses,
   };
-
-  // Apply local state
-  localToday.guesses.forEach((guess) => {
-    const activeThing = state.hand.find((t) => t.id === guess.thingId);
-
-    if (activeThing) {
-      // Remove it from hand
-      state.hand = state.hand.filter((t) => t.id !== guess.thingId);
-
-      // Place it correctly
-      if (activeThing.rule === 1) {
-        state.rule1Things.push(activeThing);
-      } else if (activeThing.rule === 2) {
-        state.rule2Things.push(activeThing);
-      } else if (activeThing.rule === 0) {
-        state.intersectingThings.push(activeThing);
-      }
-
-      if (activeThing.rule !== guess.sectionId) {
-        if (state.deck.length > 0) {
-          const thing = state.deck.pop();
-          if (thing) {
-            state.hand.push(thing);
-          }
-        }
-      } else {
-        if (state.hand.length === 0) {
-          state.win = true;
-        }
-      }
-    }
-  });
-
-  state.guesses = localToday.guesses ?? state.guesses ?? [];
-  state.hearts = localToday.hearts ?? state.hearts ?? SETTINGS.HEARTS;
 
   return state;
 };

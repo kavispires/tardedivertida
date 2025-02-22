@@ -1,7 +1,8 @@
 import { intersectionBy } from 'lodash';
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from 'react-use';
@@ -10,11 +11,9 @@ import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 // Internal
-import { checkWeekend, DEFAULT_LOCAL_TODAY, getDiscs } from './helpers';
+import { checkWeekend, getDiscs } from './helpers';
 import { SETTINGS } from './settings';
-import type { AquiOLocalToday, DailyAquiOEntry, GameState } from './types';
-
-const DURATION = 60;
+import type { DailyAquiOEntry, GameState, SessionState } from './types';
 
 export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
   const [timesUp, setTimesUp] = useState(false);
@@ -22,16 +21,24 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
   const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
 
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
-
-  const { updateLocalStorage } = useDailyLocalToday<AquiOLocalToday>({
-    key: SETTINGS.KEY,
-    gameId: data.id,
-    defaultValue: DEFAULT_LOCAL_TODAY,
+  const { session, setSession, updateSession } = useDailySessionState<SessionState>({
+    discIndex: 0,
   });
 
+  const { updateLocalStorage } = useDailyLocalToday<GameState>({
+    key: SETTINGS.KEY,
+    gameId: data.id,
+    defaultValue: initialState,
+  });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only state is important
+  useEffect(() => {
+    updateLocalStorage(state);
+  }, [state]);
+
   // ADDITIONAL STATE
-  const discA = state.discs[state.discIndex];
-  const discB = state.discs[state.discIndex + 1];
+  const discA = state.discs[session.discIndex];
+  const discB = state.discs[session.discIndex + 1];
 
   const result = useMemo(
     () => intersectionBy(discA?.items ?? [], discB?.items ?? [], 'itemId')?.[0]?.itemId,
@@ -40,68 +47,80 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
 
   // TIMER
   const { timeLeft, isRunning, restart, pause } = useCountdown({
-    duration: DURATION,
+    duration: SETTINGS.DURATION,
     autoStart: false,
     onExpire: () => {
       setTimesUp(true);
 
-      updateLocalStorage({
-        hardMode: mode === 'challenge',
-        hearts: state.hearts,
-        maxProgress: Math.max(state.discIndex, state.maxProgress),
-      });
       updateState({
-        maxProgress: Math.max(state.discIndex, state.maxProgress),
+        maxProgress: Math.max(session.discIndex, state.maxProgress),
       });
     },
   });
 
   // ACTIONS
   const onStart = () => {
-    updateLocalStorage({
-      attempts: state.attempts + 1,
-    });
     setState((prev) => ({
       ...prev,
       discs: getDiscs(data, mode === 'challenge', checkWeekend(data.id)),
-      discIndex: 0,
       attempts: prev.attempts + 1,
     }));
+    updateSession({ discIndex: 0 });
     playSFX('addCorrect');
 
-    restart(inNSeconds(DURATION), true);
+    restart(inNSeconds(SETTINGS.DURATION), true);
   };
 
   const onSelect = (itemId: string) => {
+    // If correct
     if (itemId === result) {
-      setState((prev) => ({ ...prev, discIndex: prev.discIndex + 1 }));
+      const nextDiscIndex = session.discIndex + 1;
+      // If it's win (last disc)
+      if (nextDiscIndex === SETTINGS.GOAL) {
+        updateState({
+          status: STATUSES.WIN,
+          maxProgress: SETTINGS.GOAL,
+        });
+        pause();
+        setTimesUp(true);
+        playSFX('win');
+        return;
+      }
+
+      // If not the last disc
+      setSession((prev) => ({ ...prev, discIndex: nextDiscIndex }));
+      updateState({
+        maxProgress: Math.max(nextDiscIndex, state.maxProgress),
+      });
       playSFX('correct');
-    } else {
-      setState((prev) => ({ ...prev, hearts: prev.hearts - 1 }));
-      playSFX('wrong');
+      return;
     }
+
+    // If last heart
+    if (state.hearts === 1) {
+      updateState({
+        status: STATUSES.LOSE,
+        hearts: 0,
+      });
+      pause();
+      setTimesUp(true);
+      playSFX('lose');
+      return;
+    }
+
+    setState((prev) => ({ ...prev, hearts: prev.hearts - 1 }));
+    playSFX('wrong');
+  };
+
+  const onModeChange = (newMode: 'normal' | 'challenge') => {
+    updateState({ hardMode: newMode === 'challenge' });
+    setMode(newMode);
   };
 
   // CONDITIONS
-  const isWin = state.discIndex === SETTINGS.GOAL;
-  const isLose = state.hearts <= 0;
+  const isWin = state.status === STATUSES.WIN;
+  const isLose = state.status === STATUSES.LOSE;
   const isComplete = (isWin || isLose || timesUp || state.attempts > 0) && !isRunning;
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we only need isWin and isLose
-  useEffect(() => {
-    if (isWin || isLose) {
-      pause();
-      setTimesUp(true);
-      if (isWin) {
-        playSFX('win');
-        updateLocalStorage({
-          maxProgress: SETTINGS.GOAL,
-        });
-      } else {
-        playSFX('lose');
-      }
-    }
-  }, [isWin, isLose]);
 
   useMarkAsPlayed({
     key: SETTINGS.KEY,
@@ -113,7 +132,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
 
   return {
     hearts: state.hearts,
-    discIndex: state.discIndex,
+    discIndex: session.discIndex,
     attempts: state.attempts,
     maxProgress: state.maxProgress,
     showResultModal,
@@ -125,7 +144,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
     onSelect,
     timeLeft,
     mode,
-    setMode,
+    onModeChange,
     discA,
     discB,
     result,

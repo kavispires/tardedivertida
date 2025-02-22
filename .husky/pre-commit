@@ -102,11 +102,14 @@ sort_imports() {
   echo "♻️ Sorting imports"
   # Find and sort the imports in .ts and .tsx files, then re-add them to the staging area
   git diff --name-only --cached | grep -E '^src/.*\.(ts|tsx)$' | while read -r file; do
-    node ./scripts/sort-imports.js "$file"
-    # npx prettier --write "$file"
-    npx biome check --staged --write "$file"
-    git add "$file"
-    echo "   ➕ Sorted and re-added $file to staging."
+    if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+      node ./scripts/sort-imports.js "$file"
+      npx biome check --staged --write "$file"
+      git add "$file"
+      echo "   ➕ Sorted and re-added $file to staging."
+    else
+      echo "   ➖ Skipping deleted file: $file"
+    fi
   done
   echo "✅ Done"
 }

@@ -185,7 +185,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
         <Region>
           <Typography.Text strong>
-            <Translate pt="Entregue essas coisas:" en="Deliver these things:" />
+            <Translate pt="Entregue as coisas corretas:" en="Deliver the correct things:" />
           </Typography.Text>
 
           <SpaceContainer wrap>
@@ -229,11 +229,11 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           <ResultsModalContent
             challenge={data.number}
             win={isWin}
-            hearts={hearts}
             guesses={guesses}
             attributes={data.attributes}
+            requests={data.requests}
             solution={data.solution}
-            width={width}
+            width={width * 0.65}
           />
         </Modal>
       </Layout.Content>
