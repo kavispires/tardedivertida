@@ -1,6 +1,5 @@
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
-import { pushValue } from '../utils/firestore';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';
 
@@ -155,6 +154,15 @@ type DailySaveTestimoniesPayload = {
   }[];
 };
 
+interface FirestoreTestimonyData {
+  [key: string]: string;
+}
+interface FirestoreParsedTestimonyData {
+  [key: string]: {
+    [key: string]: number[];
+  };
+}
+
 const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: FirebaseAuth) => {
   const actionText = 'save suspects';
   const uid = auth?.uid;
@@ -163,18 +171,42 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
     return utils.firebase.throwException('User not authenticated', actionText);
   }
 
-  const testimonies = data.answers.reduce((acc, answer) => {
-    if (answer.related.length > 0) {
-      acc[`${answer.testimonyId}.related`] = pushValue(...answer.related);
-    }
-    if (answer.unrelated.length > 0) {
-      acc[`${answer.testimonyId}.unrelated`] = pushValue(...answer.unrelated);
-    }
-    return acc;
-  }, {});
   try {
     const docRef = utils.firestore.getDataRef().doc('testimonies');
-    await docRef.update(testimonies);
+    const doc = await docRef.get();
+    const docData = doc.data() as FirestoreTestimonyData;
+    const parsedData = Object.keys(docData).reduce((acc: FirestoreParsedTestimonyData, testimonyId) => {
+      acc[testimonyId] = JSON.parse(docData[testimonyId]);
+      return acc;
+    }, {});
+
+    // Parse each data
+    data.answers.forEach((answer) => {
+      const testimonyId = answer.testimonyId;
+      if (!parsedData[testimonyId]) {
+        parsedData[testimonyId] = {};
+      }
+      answer.related.forEach((suspectId) => {
+        if (!parsedData[testimonyId][suspectId]) {
+          parsedData[testimonyId][suspectId] = [];
+        }
+        parsedData[testimonyId][suspectId].push(1);
+      });
+
+      answer.unrelated.forEach((suspectId) => {
+        if (!parsedData[testimonyId][suspectId]) {
+          parsedData[testimonyId][suspectId] = [];
+        }
+        parsedData[testimonyId][suspectId].push(0);
+      });
+    });
+
+    const stringifiedData = Object.keys(parsedData).reduce((acc: FirestoreTestimonyData, testimonyId) => {
+      acc[testimonyId] = JSON.stringify(parsedData[testimonyId]);
+      return acc;
+    }, {});
+
+    await docRef.update(stringifiedData);
   } catch (error) {
     utils.firebase.throwException(error, actionText);
   }
