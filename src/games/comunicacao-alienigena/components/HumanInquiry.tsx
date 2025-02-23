@@ -1,5 +1,5 @@
 import { orderBy } from 'lodash';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Badge, Select, Space } from 'antd';
 // Types
@@ -46,6 +46,11 @@ export function HumanInquiry({
     keys: objectsIds,
   } = useBooleanDictionary({}, (d) => Object.keys(d).length < 5);
 
+  const orderedAttributes = useMemo(
+    () => orderBy(attributes, `attribute.${language}`),
+    [attributes, language],
+  );
+
   return (
     <SpaceContainer vertical>
       <Space>
@@ -58,8 +63,14 @@ export function HumanInquiry({
           <Select.Option value="">
             <Translate pt="Selecione um atributo" en="Select an attribute" />
           </Select.Option>
-          {orderBy(attributes, `attribute.${language}`).map((attribute) => (
-            <Select.Option key={`attribute-${attribute.id}`} value={attribute.id}>
+          {orderedAttributes.map((attribute) => (
+            <Select.Option
+              key={`attribute-${attribute.id}`}
+              value={attribute.id}
+              style={{
+                textDecoration: startingAttributesIds.includes(attribute.id) ? 'line-through' : 'none',
+              }}
+            >
               <DualTranslate>{attribute.name}</DualTranslate>
             </Select.Option>
           ))}
