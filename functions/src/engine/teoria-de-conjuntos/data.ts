@@ -36,14 +36,29 @@ export const getResourceData = async (
           return true;
         }
         if (item.decks?.includes('manufactured') || item.decks?.includes('alien')) {
+          const aliases = language === 'en' ? item.aliasesEn : item.aliasesPt;
           // Only use single word items
-          return item.name[language].trim().split(' ').length === 1;
+          return (
+            item.name[language].trim().split(' ').length === 1 ||
+            !!aliases?.some((alias) => alias.trim().split(' ').length === 1)
+          );
         }
 
         return false;
       },
     ],
-    cleanUp: utils.tdr.itemUtils.cleanupDecks,
+    cleanUp: (item: Item) => {
+      const i = utils.tdr.itemUtils.cleanupDecks(item);
+      // If the name used is not a single word, use the first single word alias
+      if (i.name[language].trim().split(' ').length > 1) {
+        const aliases = language === 'en' ? item.aliasesEn : item.aliasesPt;
+        const alias = aliases?.find((alias) => alias.trim().split(' ').length === 1);
+        if (alias) {
+          i.name[language] = alias;
+        }
+      }
+      return i;
+    },
   });
 
   // Get full deck
