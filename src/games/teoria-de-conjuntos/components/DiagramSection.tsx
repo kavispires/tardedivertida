@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Alert, Divider, Flex } from 'antd';
+import { Alert, Divider, Flex, Popconfirm } from 'antd';
 // Types
 import type { Item } from 'types/tdr';
 // Utils
@@ -11,7 +11,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
-import type { DiagramArea } from '../utils/types';
+import type { DiagramArea, Reevaluation } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 import { TripleDiagram } from './TripleDiagram/TripleDiagram';
 import { TripleDiagramClickableAreas } from './TripleDiagram/TripleDiagramClickableAreas';
@@ -28,6 +28,7 @@ type DiagramSectionProps = {
   diagrams: Dictionary<DiagramArea>;
   currentItem?: Item;
   currentItemPosition?: string;
+  reevaluation?: Reevaluation;
 };
 
 export function DiagramSection({
@@ -37,6 +38,7 @@ export function DiagramSection({
   items,
   currentItem,
   currentItemPosition,
+  reevaluation,
 }: DiagramSectionProps) {
   const [selectedArea, setSelectedArea] = useState<string>('');
 
@@ -68,6 +70,7 @@ export function DiagramSection({
               items={items}
               selectedArea={selectedArea}
               maxHeight={containerSizes.height}
+              reevaluation={reevaluation}
             />
           </>
         )}
@@ -127,6 +130,7 @@ type SelectedAreaItemsSectionProps = {
   items: Dictionary<Item>;
   selectedArea: string;
   maxHeight: number;
+  reevaluation?: Reevaluation;
 };
 
 function SelectedAreaItemsSection({
@@ -134,6 +138,7 @@ function SelectedAreaItemsSection({
   items,
   diagrams,
   maxHeight,
+  reevaluation,
 }: SelectedAreaItemsSectionProps) {
   const { areaKeys, areasItems } = useMemo(() => {
     if (selectedArea.length > 1 || selectedArea === 'O') {
@@ -168,6 +173,7 @@ function SelectedAreaItemsSection({
           itemsIds={areasItems[index]}
           items={items}
           displayEmptyMessage={index === 0}
+          reevaluation={reevaluation}
         />
       ))}
     </Flex>
@@ -179,9 +185,16 @@ type SelectedAreaItemsProps = {
   itemsIds: string[];
   items: Dictionary<Item>;
   displayEmptyMessage: boolean;
+  reevaluation?: Reevaluation;
 };
 
-function SelectedAreaItems({ areaKey, itemsIds, items, displayEmptyMessage }: SelectedAreaItemsProps) {
+function SelectedAreaItems({
+  areaKey,
+  itemsIds,
+  items,
+  displayEmptyMessage,
+  reevaluation,
+}: SelectedAreaItemsProps) {
   if (itemsIds.length === 0 && !displayEmptyMessage) return <></>;
 
   return (
@@ -192,7 +205,17 @@ function SelectedAreaItems({ areaKey, itemsIds, items, displayEmptyMessage }: Se
 
       <Flex justify="center" align="center" gap={6} wrap="wrap">
         {itemsIds.map((itemId) => (
-          <ItemCard key={itemId} id={itemId} width={84} text={items[itemId].name} />
+          <Popconfirm
+            placement="right"
+            disabled={!reevaluation?.isJudge}
+            key={itemId}
+            title={<Translate pt="Quer reavaliar essa coisa?" en="Do you want to reevaluate this thing?" />}
+            onConfirm={() => reevaluation?.onOpenFixModal(itemId, areaKey)}
+          >
+            <div>
+              <ItemCard key={itemId} id={itemId} width={84} text={items[itemId].name} />
+            </div>
+          </Popconfirm>
         ))}
         {itemsIds.length === 0 && displayEmptyMessage && (
           <Alert

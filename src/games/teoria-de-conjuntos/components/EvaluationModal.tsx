@@ -17,9 +17,10 @@ type EvaluationModalProps = {
   item: Item;
   onSubmitEvaluation: (evaluation: string) => void;
   solutions: Solutions;
+  onCancel?: () => void;
 };
 
-export function EvaluationModal({ item, onSubmitEvaluation, solutions }: EvaluationModalProps) {
+export function EvaluationModal({ item, onSubmitEvaluation, solutions, onCancel }: EvaluationModalProps) {
   const [areaA, setA] = useState('');
   const [areaC, setC] = useState('');
   const [areaW, setW] = useState('');
@@ -31,8 +32,9 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions }: Evaluat
     <Modal
       title={<Translate en="Evaluate the item" pt="Avalie o item" />}
       open
+      onCancel={onCancel}
       footer={null}
-      closable={false}
+      closable={!!onCancel}
     >
       <Typography.Paragraph>
         <Translate

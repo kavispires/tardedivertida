@@ -16,6 +16,12 @@ export type SubmitEvaluationPayload = {
   evaluation: string;
 };
 
+export type SubmitEvaluationFixPayload = {
+  itemId: CardId;
+  currentArea: string;
+  newEvaluation: string;
+};
+
 export type Solutions = {
   attribute: DiagramTopic;
   word: DiagramTopic;
@@ -41,4 +47,9 @@ export type Guess = {
   suggestedArea: string;
   correctArea: string | null;
   outcome: Outcome | string;
+};
+
+export type Reevaluation = {
+  onOpenFixModal: (itemId: string, currentArea: string) => void;
+  isJudge: boolean;
 };
