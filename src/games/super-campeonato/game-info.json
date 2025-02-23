@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.46",
+  "version": "2.3.47",
   "release": "stable",
   "available": false,
   "title": {
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "trophy-clouds",
+    "cloudsAnimationType": "rising",
     "primaryColor": "#445E93",
     "backgroundColor": "rgba(188, 142, 12, 0.75)",
     "colorScheme": "light"
@@ -74,7 +75,7 @@
       "key": "contenderDecks",
       "kind": "checkbox",
       "label": "Contender Decks",
-      "description": "Choose the decks of contenders (base deck is always included)",
+      "description": "Base deck is always included. Recommended to choose 3+",
       "values": [
         { "value": "anime", "label": "Anime" },
         { "value": "art", "label": "Art" },

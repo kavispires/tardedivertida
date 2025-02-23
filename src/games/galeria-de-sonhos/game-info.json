@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.1.73",
+  "version": "4.1.74",
   "release": "stable",
   "available": true,
   "title": {
@@ -47,6 +47,7 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
+    "best": 5,
     "min": 2,
     "max": 10
   },
