@@ -3,7 +3,12 @@ import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Internal
-import type { SubmitEvaluationPayload, SubmitItemPlacementPayload, SubmitJudgePayload } from './types';
+import type {
+  SubmitEvaluationFixPayload,
+  SubmitEvaluationPayload,
+  SubmitItemPlacementPayload,
+  SubmitJudgePayload,
+} from './types';
 import { TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
 
 export function useOnSubmitJudgeAPIRequest(setStep: UseStep['setStep']) {
@@ -67,6 +72,26 @@ export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
   return (payload: SubmitEvaluationPayload) => {
     request({
       action: TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_EVALUATION,
+      ...payload,
+    });
+  };
+}
+
+export function useOnSubmitEvaluationFixAPIRequest() {
+  const { translate } = useLanguage();
+
+  const request = useGameActionRequest({
+    actionName: 'submit-evaluation-fix',
+    successMessage: translate('Re-avaliação submetida com sucesso', 'Reevaluation submitted successfully'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      'Oops, the application found an error while trying to submit your action',
+    ),
+  });
+
+  return (payload: SubmitEvaluationFixPayload) => {
+    request({
+      action: TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_EVALUATION_FIX,
       ...payload,
     });
   };

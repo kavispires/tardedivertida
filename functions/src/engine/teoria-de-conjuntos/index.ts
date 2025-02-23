@@ -18,7 +18,12 @@ import type {
 import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase, determineOutcome } from './helpers';
-import { handleSubmitEvaluation, handleSubmitItemDiagram, handleSubmitJudge } from './actions';
+import {
+  handleSubmitEvaluation,
+  handleSubmitEvaluationFix,
+  handleSubmitItemDiagram,
+  handleSubmitJudge,
+} from './actions';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
@@ -146,6 +151,20 @@ export const submitAction = async (data: TeoriaDeConjuntosSubmitAction) => {
     case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_EVALUATION:
       utils.firebase.validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.evaluation);
+    case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_EVALUATION_FIX:
+      utils.firebase.validateSubmitActionProperties(
+        data,
+        ['itemId', 'currentArea', 'newEvaluation'],
+        'submit evaluation fix',
+      );
+      return handleSubmitEvaluationFix(
+        gameName,
+        gameId,
+        playerId,
+        data.itemId,
+        data.currentArea,
+        data.newEvaluation,
+      );
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }

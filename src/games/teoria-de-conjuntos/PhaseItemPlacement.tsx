@@ -11,7 +11,7 @@ import { PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
 // Internal
-import { useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
+import { useOnSubmitEvaluationFixAPIRequest, useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
 import type { Guess } from './utils/types';
 import { Announcement } from './components/Announcement';
 import { StepPlaceItem } from './StepPlaceItem';
@@ -26,6 +26,7 @@ export function PhaseItemPlacement({ players, state }: PhaseProps) {
   const [previousActivePlayer] = useWhichPlayerIsThe('previousActivePlayerId', state, players);
 
   const onSubmitItemPlacement = useOnSubmitItemPlacementAPIRequest(setStep);
+  const onSubmitEvaluationFix = useOnSubmitEvaluationFixAPIRequest();
 
   const previousGuess: Guess | null = state.previousGuess;
 
@@ -55,6 +56,7 @@ export function PhaseItemPlacement({ players, state }: PhaseProps) {
             turnOrder={state.turnOrder}
             activePlayer={activePlayer}
             onSubmitItemPlacement={onSubmitItemPlacement}
+            onSubmitEvaluationFix={onSubmitEvaluationFix}
             announcement={announcement}
             targetItemCount={state.targetItemsCount}
             round={state.round}

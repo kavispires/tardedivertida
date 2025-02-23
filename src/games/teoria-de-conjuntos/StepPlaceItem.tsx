@@ -22,7 +22,13 @@ import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { DiagramArea, DiagramExamples, Solutions, SubmitItemPlacementPayload } from './utils/types';
+import type {
+  DiagramArea,
+  DiagramExamples,
+  Solutions,
+  SubmitEvaluationFixPayload,
+  SubmitItemPlacementPayload,
+} from './utils/types';
 import { mockDiagramSelection } from './utils/mock';
 import { getPlayerItemsLeft } from './utils/helper';
 import { DiagramRules } from './components/RulesBlobs';
@@ -30,6 +36,7 @@ import { SelectedAreasCircles } from './components/SelectedAreasCircles';
 import { DiagramSection } from './components/DiagramSection';
 import { RoundAlert } from './components/RoundAlert';
 import { Solution } from './components/Solution';
+import { EvaluationModal } from './components/EvaluationModal';
 
 type StepPlaceItemProps = {
   players: GamePlayers;
@@ -40,6 +47,7 @@ type StepPlaceItemProps = {
   turnOrder: GameOrder;
   activePlayer: GamePlayer;
   onSubmitItemPlacement: (payload: SubmitItemPlacementPayload) => void;
+  onSubmitEvaluationFix: (payload: SubmitEvaluationFixPayload) => void;
   targetItemCount: number;
   round: GameRound;
   isJudge: boolean;
@@ -56,6 +64,7 @@ export function StepPlaceItem({
   turnOrder,
   activePlayer,
   onSubmitItemPlacement,
+  onSubmitEvaluationFix,
   targetItemCount,
   round,
   isJudge,
@@ -83,6 +92,11 @@ export function StepPlaceItem({
     onSubmitItemPlacement(mockDiagramSelection(user.hand ?? [], diagrams));
   });
 
+  const [itemToFox, setItemToFix] = useState<{ itemId: string; currentArea: string } | null>(null);
+  const onOpenFixModal = (itemId: string, currentArea: string) => {
+    setItemToFix({ itemId, currentArea });
+  };
+
   return (
     <Step fullWidth announcement={announcement}>
       <div ref={ref} style={{ width: '100%' }} />
@@ -101,6 +115,22 @@ export function StepPlaceItem({
       </StepTitle>
 
       <RoundAlert round={round} />
+
+      {itemToFox && (
+        <EvaluationModal
+          item={items[itemToFox.itemId]}
+          onSubmitEvaluation={(newEvaluation: string) => {
+            onSubmitEvaluationFix({
+              newEvaluation,
+              itemId: itemToFox.itemId,
+              currentArea: itemToFox.currentArea,
+            });
+            setItemToFix(null);
+          }}
+          solutions={solutions}
+          onCancel={() => setItemToFix(null)}
+        />
+      )}
 
       <DiagramRules examples={examples} />
 
@@ -155,6 +185,10 @@ export function StepPlaceItem({
             : undefined
         }
         currentItemPosition={selectedArea ?? undefined}
+        reevaluation={{
+          onOpenFixModal,
+          isJudge,
+        }}
       />
 
       {isJudge ? (
