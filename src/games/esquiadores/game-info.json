@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "release": "stable",
   "available": true,
   "title": {
@@ -45,6 +45,7 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
+    "best": 5,
     "min": 2,
     "max": 10
   },

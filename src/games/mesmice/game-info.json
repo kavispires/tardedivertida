@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "release": "stable",
   "available": true,
   "title": {
@@ -45,7 +45,8 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [3, 4, 5, 6],
+    "best": 4,
     "min": 2,
     "max": 10
   },

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.35",
+  "version": "2.0.36",
   "release": "stable",
   "available": true,
   "title": {
@@ -43,6 +43,7 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
+    "best": 5,
     "min": 2,
     "max": 10
   },

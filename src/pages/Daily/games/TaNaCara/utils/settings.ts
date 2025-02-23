@@ -6,7 +6,7 @@ export const SETTINGS: GameSettings = {
   KEY: 'TA_NA_CARA',
   ROUTE: 'ta-na-cara',
   COLOR: 'rgba(242, 233, 236, 0.85)',
-  EMOJI: '🙎‍♂️',
+  EMOJI: '👤',
   HUB_ICON: DailyJudgingGameIcon,
   HUB_NAME: { pt: 'Tá Na Cara', en: 'In Your Face' },
   NAME: { pt: 'Tá Na Cara', en: 'In Your Face' },

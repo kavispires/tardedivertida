@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "2.0.31",
+  "version": "2.0.32",
   "release": "stable",
   "available": true,
   "title": {
@@ -109,7 +109,7 @@
       "key": "contenderDecks",
       "kind": "checkbox",
       "label": "Contender Decks",
-      "description": "Choose the decks of contenders (base deck is always included)",
+      "description": "Base deck is always included. Recommended to choose 3+",
       "values": [
         { "value": "anime", "label": "Anime" },
         { "value": "art", "label": "Art" },

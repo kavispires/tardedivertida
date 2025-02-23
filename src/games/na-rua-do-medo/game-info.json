@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.59",
+  "version": "3.1.60",
   "release": "stable",
   "available": true,
   "title": {
@@ -45,6 +45,7 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
+    "best": 5,
     "min": 3,
     "max": 10
   },

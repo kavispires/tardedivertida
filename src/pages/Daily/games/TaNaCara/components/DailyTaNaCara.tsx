@@ -174,7 +174,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                   <>
                     Selecione todos os personagem que você acha que se encaixam na pergunta.
                     <br />
-                    Se nenhum se encaixar, selecione "Nenhum".
+                    Se nenhum se encaixar, só não selecionar ninguém.
                     <br />
                     Considere talvez, como "sim".
                   </>

@@ -2,8 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "comunicacao-duo",
-  "version": "1.0.0",
-  "release": "beta",
+  "version": "1.0.1",
+  "release": "stable",
   "available": true,
   "title": {
     "pt": "Comunicação Alienígena Duo",
@@ -30,9 +30,10 @@
     "en": ["TBD"]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
-    "min": 3,
-    "max": 6
+    "recommended": [2],
+    "best": 2,
+    "min": 2,
+    "max": 2
   },
   "tags": ["cooperative", "writing", "brain-burner"],
   "duration": {
