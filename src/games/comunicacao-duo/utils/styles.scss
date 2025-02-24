@@ -20,6 +20,7 @@
 
   &--A {
     border-color: get-color("teal", 4);
+    background: get-color("teal", 3);
     border-style: dashed;
 
     .item-card {
@@ -29,6 +30,7 @@
 
   &--B {
     border-color: get-color("orange", 4);
+    background: get-color("orange", 3);
     border-style: dashed;
 
     .item-card {
@@ -38,6 +40,7 @@
 
   &--TABOO {
     border-color: get-color("gray", 9);
+    background: get-color("gray", 4);
     border-style: dotted;
 
     .item-card {
@@ -47,6 +50,7 @@
 
   &--NONE {
     border-color: get-color("brown", 2);
+    background: get-color("brown", 2);
 
     .item-card {
       background: get-color("yellow", 1);
