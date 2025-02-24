@@ -41,7 +41,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
           requestHistory={state.requestHistory}
           players={players}
           items={state.items}
-          isAlienBot={state.isAlienBot}
+          isAlienBot={state.alienBot}
           showIntention
           debugMode={!!state.debugMode}
           attributes={state.attributes}
