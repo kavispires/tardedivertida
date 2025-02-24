@@ -39,6 +39,7 @@ type StepDeliverProps = {
 } & Pick<StepProps, 'announcement'>;
 
 export function StepVerification({
+  announcement,
   players,
   user,
   deckType,
@@ -105,7 +106,7 @@ export function StepVerification({
           ),
           pt: (
             <>
-              <TextHighlight>Neutral!</TextHighlight> Vamos para a próxima rodada.
+              <TextHighlight>Neutro!</TextHighlight> Vamos para a próxima rodada.
             </>
           ),
         };
@@ -128,7 +129,7 @@ export function StepVerification({
   }, [status, entryIdToAnimate, nextPhase]);
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <StepTitle size="small">
         <Translate en="Results" pt="Resultado" />
       </StepTitle>
@@ -137,7 +138,11 @@ export function StepVerification({
         <Translate en={results.en} pt={results.pt} />
       </RuleInstruction>
 
-      <HostNextPhaseButton round={round} autoTriggerTime={3} withWaitingTimeBar />
+      <HostNextPhaseButton
+        round={round}
+        autoTriggerTime={status !== STATUS.CONTINUE ? 5 : 2}
+        withWaitingTimeBar
+      />
 
       <Flex gap={8} align="center" className="mb-4">
         <div className="cd-clue-quantity">{clueQuantity}</div>

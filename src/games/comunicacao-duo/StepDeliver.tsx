@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Flex } from 'antd';
+import { Flex, Tag } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -111,12 +111,22 @@ export function StepDeliver({
             />
           ) : (
             <Translate
-              en={`You have delivered ${latestHistoryEntry.deliverables?.length} things this round. You may stop now and skip to the next turn`}
-              pt={`Você entregou ${latestHistoryEntry.deliverables?.length} coisas essa rodada. Você pode parar agora e pular para a próxima rodada`}
+              en={
+                <>
+                  You have delivered <Tag>{latestHistoryEntry.deliverables?.length}</Tag>things this round.
+                  You may stop now and skip to the next turn
+                </>
+              }
+              pt={
+                <>
+                  Você entregou <Tag>{latestHistoryEntry.deliverables?.length}</Tag>coisas essa rodada. Você
+                  pode parar agora e pular para a próxima rodada
+                </>
+              }
             />
           )}
           <br />
-          <SendButton onClick={onStopDelivery} type="primary" loading={isLoading}>
+          <SendButton onClick={onStopDelivery} type="default" loading={isLoading} block>
             <Translate en="Stop" pt="Parar" />
           </SendButton>
         </RuleInstruction>
