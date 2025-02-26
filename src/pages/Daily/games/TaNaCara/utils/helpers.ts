@@ -1,5 +1,7 @@
 import { cloneDeep } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
+// Utils
+import { removeDuplicates } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTaNaCaraEntry, GameState } from './types';
@@ -32,6 +34,6 @@ export const getInitialState = (data: DailyTaNaCaraEntry): GameState => {
     id: data.id,
     number: data.number,
     played: localToday.played,
-    suspectsIds,
+    suspectsIds: removeDuplicates(suspectsIds),
   };
 };
