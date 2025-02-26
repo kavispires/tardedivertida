@@ -49,6 +49,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
     questionNumber,
     question,
     answer,
+    suspects,
     onToggleAllowNSFW,
     onNext,
     onPrevious,
@@ -70,6 +71,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
       </Header>
       <Layout.Content ref={ref}>
         <ImageCardPreloadHand hand={data?.testimonies?.[questionNumber]?.suspectsIds ?? []} />
+        <ImageCardPreloadHand hand={data?.suspectsIds ?? []} />
         <div>
           <Menu hearts={0} total={0} openRules rules={<Rules />} />
           {alreadyPlayed && (
@@ -87,8 +89,8 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
           <SpaceContainer vertical>
             <StepDots current={questionIndex} total={totalQuestions} />
             <Card hideHeader>{question.question}</Card>
-            <Flex gap={8}>
-              {question.suspectsIds.map((suspectId) => (
+            <Flex gap={8} wrap="wrap" justify="center">
+              {suspects.map((suspectId) => (
                 <Flex key={suspectId} vertical>
                   <SuspectCard
                     suspect={{
@@ -145,17 +147,30 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
               </Button>
             </Space.Compact>
 
-            {questionIndex === totalQuestions - 1 && (
-              <Button
-                className="mt-10"
-                icon={<SaveFilled />}
-                loading={isSaving}
-                onClick={onComplete}
-                type="primary"
-              >
-                <Translate pt="Cansei / Salvar" en="I'm done / save" />
-              </Button>
-            )}
+            {questionIndex > 4 ||
+              (questionIndex === totalQuestions - 1 && (
+                <>
+                  {questionIndex !== totalQuestions - 1 && (
+                    <Instruction contained>
+                      <Translate
+                        pt="Você já respondeu ao mínimo de perguntas suficientes, se quiser parar, aperte salvar."
+                        en="You've already answered the minimum amount of questions, if you want to stop, press save."
+                      />
+                    </Instruction>
+                  )}
+
+                  <Button
+                    className={questionIndex !== totalQuestions - 1 ? 'mb-10' : 'my-10'}
+                    icon={<SaveFilled />}
+                    loading={isSaving}
+                    onClick={onComplete}
+                    type="primary"
+                    size="large"
+                  >
+                    <Translate pt="Cansei / Salvar" en="I'm done / save" />
+                  </Button>
+                </>
+              ))}
           </SpaceContainer>
         )}
 
