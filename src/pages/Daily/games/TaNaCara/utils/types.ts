@@ -1,20 +1,25 @@
 import type { DateKey } from 'pages/Daily/utils/types';
 
-type TaNaCaraQuestion = {
+export type TaNaCaraQuestion = {
   testimonyId: string;
   question: string;
   nsfw?: boolean;
-  suspectsIds: string[];
+  /**
+   * @deprecated
+   */
+  suspectsIds?: string[];
 };
 
 export type GameState = {
   id: DateKey;
   number: number;
   played: boolean;
+  suspectsIds: string[];
 };
 
 export type SessionState = {
   testimonies: TaNaCaraQuestion[];
+  suspectsIds: string[][];
   answers: AnswerToSave[];
   selections: string[];
   questionIndex: number;
@@ -27,6 +32,7 @@ export type DailyTaNaCaraEntry = {
   number: number;
   type: 'ta-na-cara';
   testimonies: TaNaCaraQuestion[];
+  suspectsIds?: string[];
 };
 
 export type AnswerToSave = {

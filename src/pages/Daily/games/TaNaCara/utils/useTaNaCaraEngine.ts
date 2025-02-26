@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep, sampleSize } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveTestimonies } from 'pages/Daily/hooks/useDailySave';
@@ -13,11 +13,12 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     questionIndex: 0,
     testimonies: data.testimonies.filter((t) => !t.nsfw),
+    suspectsIds: data.testimonies.map(() => sampleSize(state.suspectsIds, 6)),
     answers: [
       {
         testimonyId: data.testimonies[0].testimonyId,
         related: [],
-        unrelated: [...data.testimonies[0].suspectsIds],
+        unrelated: [],
       },
     ],
     selections: [],
@@ -45,6 +46,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
 
   const question = data.testimonies[session.questionIndex];
   const answer = session.answers[session.questionIndex];
+  const suspects = session.suspectsIds[session.questionIndex];
 
   const onStart = () => {
     updateSession({ screen: 'playing' });
@@ -66,9 +68,16 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
         copy.answers.push({
           testimonyId: data.testimonies[nextIndex].testimonyId,
           related: [],
-          unrelated: [...data.testimonies[nextIndex].suspectsIds],
+          unrelated: [],
         });
       }
+      // Update unrelated for the previous question
+      if (copy.answers[copy.questionIndex]) {
+        copy.answers[copy.questionIndex].unrelated = suspects.filter(
+          (suspectId) => !copy.answers[copy.questionIndex].related.includes(suspectId),
+        );
+      }
+
       copy.questionIndex = nextIndex;
       return copy;
     });
@@ -99,6 +108,13 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   };
 
   const onComplete = () => {
+    // Update unrelated for the current question
+    if (session.answers[session.questionIndex]) {
+      session.answers[session.questionIndex].unrelated = suspects.filter(
+        (suspectId) => !session.answers[session.questionIndex].related.includes(suspectId),
+      );
+    }
+
     mutation.mutate(session.answers);
   };
 
@@ -117,6 +133,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     questionNumber: session.questionIndex + 1,
     question,
     answer,
+    suspects,
     totalQuestions: session.testimonies.length,
     isPlaying: session.screen === 'playing',
     isIdle: session.screen === 'idle',
