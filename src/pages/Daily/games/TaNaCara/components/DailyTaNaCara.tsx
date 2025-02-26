@@ -147,30 +147,29 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
               </Button>
             </Space.Compact>
 
-            {questionIndex > 4 ||
-              (questionIndex === totalQuestions - 1 && (
-                <>
-                  {questionIndex !== totalQuestions - 1 && (
-                    <Instruction contained>
-                      <Translate
-                        pt="Você já respondeu ao mínimo de perguntas suficientes, se quiser parar, aperte salvar."
-                        en="You've already answered the minimum amount of questions, if you want to stop, press save."
-                      />
-                    </Instruction>
-                  )}
+            {(questionIndex > 4 || questionIndex === totalQuestions - 1) && (
+              <>
+                {questionIndex !== totalQuestions - 1 && (
+                  <Instruction contained>
+                    <Translate
+                      pt="Você já respondeu ao mínimo de perguntas suficientes, se quiser parar, aperte salvar."
+                      en="You've already answered the minimum amount of questions, if you want to stop, press save."
+                    />
+                  </Instruction>
+                )}
 
-                  <Button
-                    className={questionIndex !== totalQuestions - 1 ? 'mb-10' : 'my-10'}
-                    icon={<SaveFilled />}
-                    loading={isSaving}
-                    onClick={onComplete}
-                    type="primary"
-                    size="large"
-                  >
-                    <Translate pt="Cansei / Salvar" en="I'm done / save" />
-                  </Button>
-                </>
-              ))}
+                <Button
+                  className={questionIndex !== totalQuestions - 1 ? 'mb-10' : 'my-10'}
+                  icon={<SaveFilled />}
+                  loading={isSaving}
+                  onClick={onComplete}
+                  type="primary"
+                  size="large"
+                >
+                  <Translate pt="Cansei / Salvar" en="I'm done / save" />
+                </Button>
+              </>
+            )}
           </SpaceContainer>
         )}
 
