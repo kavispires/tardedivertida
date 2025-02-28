@@ -10,7 +10,7 @@ export function Rules() {
         pt={
           <>
             <li>Contribua com o banco de dados do TD!</li>
-            <li>Você receberá rodadas de perguntas com três personagens.</li>
+            <li>Você receberá rodadas de perguntas com seis personagens.</li>
             <li>
               Para cara pergunta, selecione todos os personagens que você acha que se encaixam à pergunta.
             </li>
@@ -20,7 +20,7 @@ export function Rules() {
         en={
           <>
             <li>Contribute to TD's database!</li>
-            <li>You'll receive a round of questions and three characters.</li>
+            <li>You'll receive a round of questions and six characters.</li>
             <li>For each question, select all characters you think fit the question.</li>
             <li>Good luck!</li>
           </>

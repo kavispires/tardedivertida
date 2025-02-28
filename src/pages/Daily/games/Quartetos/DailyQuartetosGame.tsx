@@ -1,4 +1,4 @@
-import { DemoGame } from 'pages/Daily/components/DailyGame';
+import { DailyGameBetaRelease } from 'pages/Daily/components/DailyGame';
 // Internal
 import { useQuartetosDemo } from './utils/useQuartetosDemo';
 import { SETTINGS } from './utils/settings';
@@ -7,5 +7,12 @@ import { DailyQuartetos } from './components/DailyQuartetos';
 import './utils/styles.scss';
 
 export function DailyQuartetosGame() {
-  return <DemoGame GameComponent={DailyQuartetos} useDailyHook={useQuartetosDemo} lsKey={SETTINGS.KEY} />;
+  return (
+    <DailyGameBetaRelease
+      gameName="quartetos"
+      GameComponent={DailyQuartetos}
+      useDemoHook={useQuartetosDemo}
+      lsKey={SETTINGS.KEY}
+    />
+  );
 }
