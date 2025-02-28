@@ -1,7 +1,8 @@
 import { shuffle } from 'lodash';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
-import { Typography } from 'antd';
+import { Carousel, Typography } from 'antd';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
@@ -15,6 +16,7 @@ import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
 import { SETTINGS as PICACO } from '../games/Picaco/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
+import { SETTINGS as TA_NA_CARA } from '../games/TaNaCara/utils/settings';
 import { checkWasPlayedToday } from '../utils';
 
 const PRIORITY_LIST = [
@@ -22,54 +24,15 @@ const PRIORITY_LIST = [
   ...shuffle([COMUNICACAO_ALIENIGENA, TEORIA_DE_CONJUNTOS, FILMACO, PALAVREADO]),
   AQUI_O,
   CONTROLE_DE_ESTOQUE,
+  TA_NA_CARA,
   PICACO,
 ];
 
-const getNextGame = (): string => {
-  for (const game of PRIORITY_LIST) {
-    if (!checkWasPlayedToday(game.KEY)) {
-      return game.KEY;
-    }
-  }
-  return '';
+const getUnplayedGames = () => {
+  return PRIORITY_LIST.filter((game) => !checkWasPlayedToday(game.KEY)).map((settings) =>
+    NextSuggestionEntry({ settings }),
+  );
 };
-
-export function NextGameSuggestion() {
-  switch (getNextGame()) {
-    case AQUI_O.KEY:
-      return NextSuggestionEntry({ settings: AQUI_O });
-
-    case ARTE_RUIM.KEY:
-      return NextSuggestionEntry({ settings: ARTE_RUIM });
-
-    case COMUNICACAO_ALIENIGENA.KEY:
-      return NextSuggestionEntry({ settings: COMUNICACAO_ALIENIGENA });
-
-    case CONTROLE_DE_ESTOQUE.KEY:
-      return NextSuggestionEntry({ settings: CONTROLE_DE_ESTOQUE });
-
-    case FILMACO.KEY:
-      return NextSuggestionEntry({ settings: FILMACO });
-
-    case PALAVREADO.KEY:
-      return NextSuggestionEntry({ settings: PALAVREADO });
-
-    case PICACO.KEY:
-      return NextSuggestionEntry({ settings: PICACO });
-
-    case TEORIA_DE_CONJUNTOS.KEY:
-      return NextSuggestionEntry({ settings: TEORIA_DE_CONJUNTOS });
-
-    default:
-      return (
-        <Typography.Paragraph className="center" strong>
-          <Translate pt="Você já jogou todos os jogos de hoje!" en="You've played all today's games!" />
-          <br />
-          <Translate pt="Que eficiência!" en="How efficient!" />
-        </Typography.Paragraph>
-      );
-  }
-}
 
 function NextSuggestionEntry({ settings }: { settings: GameSettings }) {
   return (
@@ -82,3 +45,29 @@ function NextSuggestionEntry({ settings }: { settings: GameSettings }) {
     </Typography.Paragraph>
   );
 }
+
+export const NextGameSuggestion = () => {
+  const unplayedGames = useMemo(() => {
+    return getUnplayedGames();
+  }, []);
+
+  if (unplayedGames.length === 0) {
+    return (
+      <Typography.Paragraph className="center" strong>
+        <Translate pt="Você já jogou todos os jogos de hoje!" en="You've played all today's games!" />
+        <br />
+        <Translate pt="Que eficiência!" en="How efficient!" />
+      </Typography.Paragraph>
+    );
+  }
+
+  return (
+    <div style={{ width: '84vw', maxWidth: 500 }}>
+      <Carousel autoplay autoplaySpeed={6000} dots={false}>
+        {unplayedGames.map((entry, index) => (
+          <div key={index}>{entry}</div>
+        ))}
+      </Carousel>
+    </div>
+  );
+};
