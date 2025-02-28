@@ -8,6 +8,6 @@ import './utils/styles.scss';
 
 export function DailyPortaisMagicosGame() {
   return (
-    <DemoGame GameComponent={DailyPortaisMagicos} useDailyHook={usePortaisMagicosDemo} lsKey={SETTINGS.KEY} />
+    <DemoGame GameComponent={DailyPortaisMagicos} useDemoHook={usePortaisMagicosDemo} lsKey={SETTINGS.KEY} />
   );
 }

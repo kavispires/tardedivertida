@@ -19,10 +19,10 @@ export type DailyResponse = {
   artista?: DailyPicacoEntry;
   palavreado?: DailyPalavreadoEntry;
   filmaco?: DailyFilmacoEntry;
-  'controle-de-estoque'?: DailyControleDeEstoqueEntry;
-  'teoria-de-conjuntos'?: DailyTeoriaDeConjuntosEntry;
-  'comunicacao-alienigena'?: DailyComunicacaoAlienigenaEntry;
-  'ta-na-cara'?: DailyTaNaCaraEntry;
+  'controle-de-estoque': DailyControleDeEstoqueEntry;
+  'teoria-de-conjuntos': DailyTeoriaDeConjuntosEntry;
+  'comunicacao-alienigena': DailyComunicacaoAlienigenaEntry;
+  'ta-na-cara': DailyTaNaCaraEntry;
   quartetos?: DailyQuartetosEntry;
 };
 

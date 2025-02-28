@@ -34,7 +34,7 @@ import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienige
 import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
 import { SETTINGS as TA_NA_CARA } from './TaNaCara/utils/settings';
 import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
-import { checkWasPlayedToday } from '../utils';
+import { checkWasPlayedToday, getToday } from '../utils';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -60,6 +60,10 @@ const GAMES: Entry[] = [
   CONTROLE_DE_ESTOQUE,
   FILMACO,
   PALAVREADO,
+  {
+    ...QUARTETOS,
+    disabled: getToday() !== '2025-03-01',
+  },
 ];
 
 const CONTRIBUTIONS: Entry[] = [
@@ -76,11 +80,10 @@ const CONTRIBUTIONS: Entry[] = [
 
 const DEMOS: Entry[] = [
   PORTAIS_MAGICOS,
-  QUARTETOS,
   {
     ...COMING_SOON_ENTRY,
     HUB_ICON: DailyCrimeGameIcon,
-    HUB_NAME: { pt: 'Crimes', en: 'Crimes' },
+    HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
     COLOR: 'rgba(243, 232, 145, 0.85)',
     disabled: true,
   },

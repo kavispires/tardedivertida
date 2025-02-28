@@ -35,15 +35,15 @@ export function DailyGame({ gameName, GameComponent }: DailyGameProps) {
 
 type DemoGameProps = {
   GameComponent: React.ComponentType<{ data: any; currentUser: Me }>;
-  useDailyHook: () => any;
+  useDemoHook: () => any;
   lsKey: string;
 };
 
-export function DemoGame({ GameComponent, useDailyHook, lsKey }: DemoGameProps) {
+export function DemoGame({ GameComponent, useDemoHook, lsKey }: DemoGameProps) {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const demo = useDailyHook();
+  const demo = useDemoHook();
 
   // Reset local storage
   useEffectOnce(() => {
@@ -61,4 +61,35 @@ export function DemoGame({ GameComponent, useDailyHook, lsKey }: DemoGameProps) 
   }
 
   return <GameComponent key={demoData.id} data={demoData} currentUser={currentUser} />;
+}
+
+/**
+ * For temporary use during beta release of a game
+ */
+export function DailyGameBetaRelease({
+  gameName,
+  GameComponent,
+  useDemoHook,
+  lsKey,
+}: DailyGameProps & DemoGameProps) {
+  const { currentUser } = useCurrentUserContext();
+
+  // Load challenge
+  const challengeQuery = useDailyChallenge();
+
+  if (challengeQuery.isLoading) {
+    return <DailyLoading />;
+  }
+
+  const dailyData = challengeQuery?.data?.[gameName];
+
+  if (challengeQuery.isError) {
+    return <DailyError />;
+  }
+
+  if (!dailyData) {
+    return <DemoGame GameComponent={GameComponent} useDemoHook={useDemoHook} lsKey={lsKey} />;
+  }
+
+  return <GameComponent key={dailyData.id} data={dailyData} currentUser={currentUser} />;
 }
