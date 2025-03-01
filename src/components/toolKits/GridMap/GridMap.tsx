@@ -4,7 +4,7 @@ import { type ComponentProps, Fragment } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
 // Ant Design Resources
 import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Internal
 import type { GridMapType, GridMapCellType } from './grid-map';
 // Sass
@@ -98,7 +98,7 @@ type GridMapControlsProps = {
 function GridMapControls({ position }: GridMapControlsProps) {
   const { zoomIn, zoomOut, resetTransform } = useControls();
   return (
-    <Button.Group size="small" className={clsx('grid-map-controls', `grid-map-controls--${position}`)}>
+    <Space.Compact size="small" className={clsx('grid-map-controls', `grid-map-controls--${position}`)}>
       <Button onClick={() => zoomIn()}>
         <ZoomInOutlined />
       </Button>
@@ -108,6 +108,6 @@ function GridMapControls({ position }: GridMapControlsProps) {
       <Button onClick={() => resetTransform()}>
         <FullscreenExitOutlined />
       </Button>
-    </Button.Group>
+    </Space.Compact>
   );
 }
