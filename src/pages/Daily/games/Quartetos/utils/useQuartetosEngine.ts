@@ -98,6 +98,13 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
       // Update if win
       status = matches.length === data.sets.length ? STATUSES.WIN : status;
 
+      if (status === STATUSES.WIN) {
+        playSFX('win');
+      }
+      if (status === STATUSES.LOSE) {
+        playSFX('lose');
+      }
+
       return {
         ...copy,
         guesses,
@@ -108,7 +115,7 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
       };
     });
 
-    if (isCorrect) {
+    if (isCorrect && state.status !== STATUSES.WIN) {
       playSFX('correct');
       updateSession({ selection: [] });
     } else {
