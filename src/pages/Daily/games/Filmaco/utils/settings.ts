@@ -5,6 +5,7 @@ import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'FILMACO',
   ROUTE: 'filmaco',
+  RELEASE_DATE: '2024-05-30',
   COLOR: 'rgba(85, 161, 255, 0.85)',
   EMOJI: '🎬',
   HUB_ICON: DailyMovieGameIcon,

@@ -5,6 +5,7 @@ import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'PALAVREADO',
   ROUTE: 'palavreado',
+  RELEASE_DATE: '2024-05-10',
   COLOR: 'rgba(239, 83, 80, 0.85)',
   EMOJI: '🔤',
   HUB_ICON: DailyWordGameIcon,

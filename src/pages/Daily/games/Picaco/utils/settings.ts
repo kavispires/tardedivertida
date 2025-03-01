@@ -5,6 +5,7 @@ import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'PICACO',
   ROUTE: 'picaco',
+  RELEASE_DATE: '2024-04-30',
   COLOR: 'rgba(234, 236, 241, 0.85)',
   EMOJI: '🎨',
   HUB_ICON: DailyDrawingGameIcon,

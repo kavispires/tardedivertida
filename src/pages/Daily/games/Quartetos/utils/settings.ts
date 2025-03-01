@@ -5,6 +5,7 @@ import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'QUARTETOS',
   ROUTE: 'quartetos',
+  RELEASE_DATE: '2025-03-01',
   COLOR: 'rgba(243, 145, 189, 0.85)',
   EMOJI: '🗂',
   HUB_ICON: DailyGroupingGameIcon,
