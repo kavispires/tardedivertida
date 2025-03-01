@@ -2,6 +2,7 @@ import { cloneDeep, sampleSize } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveTestimonies } from 'pages/Daily/hooks/useDailySave';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 // Internal
 import { SETTINGS } from './settings';
@@ -90,6 +91,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   };
 
   const onUpdateAnswer = (suspectId: string, isRelated: boolean) => {
+    playSFX('swap');
     setSession((prev) => {
       const copy = cloneDeep(prev);
       const currentAnswer = copy.answers[copy.questionIndex];

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region } from 'pages/Daily/components/Region';
 import { StepDots } from 'pages/Daily/components/StepDots';
@@ -15,6 +16,8 @@ import { Button, Divider, Flex, Layout, Space, Switch } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+// Utils
+import { getAnimation } from 'utils/animations';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
@@ -40,6 +43,8 @@ type DailyTaNaCaraProps = {
   data: DailyTaNaCaraEntry;
   currentUser: Me;
 };
+
+const MotionFlex = motion(Flex);
 
 export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
   const [initialState] = useState(getInitialState(data));
@@ -90,8 +95,12 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             <StepDots current={questionIndex} total={totalQuestions} />
             <Card hideHeader>{question.question}</Card>
             <Flex gap={8} wrap="wrap" justify="center">
-              {suspects.map((suspectId) => (
-                <Flex key={suspectId} vertical>
+              {suspects.map((suspectId, index) => (
+                <MotionFlex
+                  key={`${questionIndex}-${suspectId}`}
+                  vertical
+                  {...getAnimation('flipInY', { delay: 0.1 * index })}
+                >
                   <SuspectCard
                     suspect={{
                       id: suspectId,
@@ -122,7 +131,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                       </>
                     }
                   />
-                </Flex>
+                </MotionFlex>
               ))}
             </Flex>
 
