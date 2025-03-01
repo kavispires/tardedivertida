@@ -85,7 +85,7 @@ export function DreamSelectionRules({ contained = false, minimumSelection = 1 })
       }
       en={
         <>
-          Now select cards that you think match the round's card.
+          Now select dreams (cards) that you think match the round's theme.
           <br />
           You must select at least <CardHighlight>{minimumSelection}</CardHighlight> card and a maximum of{' '}
           <CardHighlight>10</CardHighlight>.

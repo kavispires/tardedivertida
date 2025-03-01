@@ -1,5 +1,5 @@
 // Constants
-import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL } from './constants';
+import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL, TOTAL_ROUNDS } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { TextCard } from '../../types/tdr';
@@ -54,6 +54,12 @@ export const prepareSetupPhase = async (
 
   const minimumSelection = store.options?.hardMode ? 4 : 1;
 
+  const round: Round = {
+    current: 0,
+    total: TOTAL_ROUNDS,
+    forceLastRound: false,
+  };
+
   // Save
   return {
     update: {
@@ -70,6 +76,7 @@ export const prepareSetupPhase = async (
         players,
         gameOrder,
         minimumSelection,
+        round,
       },
     },
   };

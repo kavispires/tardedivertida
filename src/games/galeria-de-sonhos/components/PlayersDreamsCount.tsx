@@ -30,7 +30,7 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
           const cards: CardInHand[] = Object.values(player.cards);
           const cardsLeft = cards.filter((card) => !card.used);
           const isPlayerInNightmare = player.id === playerInNightmareId;
-          const showTooltip = isPlayerInNightmare && (!player.fallen || cardsLeft.length > 0);
+          const showTooltip = isPlayerInNightmare && !player.fallen && cardsLeft.length > 0;
 
           return (
             <span
