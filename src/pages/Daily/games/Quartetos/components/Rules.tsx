@@ -1,4 +1,4 @@
-import { DemoBanner } from 'pages/Daily/components/BetaBanner';
+import { BetaBanner } from 'pages/Daily/components/BetaBanner';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
@@ -10,15 +10,13 @@ import { SETTINGS } from '../utils/settings';
 export function Rules() {
   return (
     <>
-      <DemoBanner />
+      <BetaBanner />
 
       <Typography>
         <Translate
           pt={
             <>
-              <li>
-                Os objetos na grade foram secretamente agrupados em grupos de quatro com um tema em comum.
-              </li>
+              <li>As coisas na grade foram secretamente agrupadas em grupos de quatro com temas em comum.</li>
               <li>
                 Forme um grupo de quatro coisas que você acha que estão relacionadas e clique em{' '}
                 <strong>Enviar</strong>.
