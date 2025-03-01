@@ -173,7 +173,7 @@ function GameButton({
 
   const isNewRelease =
     daysSinceRelease(releaseDate) < 15 &&
-    daysSinceRelease(releaseDate) > 0 &&
+    daysSinceRelease(releaseDate) >= 0 &&
     !wasPlayed &&
     releaseDate !== 'DEMO';
 
@@ -184,7 +184,7 @@ function GameButton({
       )}
       <motion.div
         className="played-wrapper"
-        {...(isNewRelease ? getAnimation('tada', { repeat: 10, delay: 0.1 * index }) : {})}
+        {...(isNewRelease ? getAnimation('tada', { repeat: 10, delay: 0.1 * index, speed: 'fast' }) : {})}
       >
         <motion.button
           className={clsx('transparent-button', 'hub-item', disabled && 'hub-item--disabled')}

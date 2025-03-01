@@ -51,7 +51,6 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
   const {
     questionIndex,
     totalQuestions,
-    questionNumber,
     question,
     answer,
     suspects,
@@ -75,7 +74,6 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={ref}>
-        <ImageCardPreloadHand hand={data?.testimonies?.[questionNumber]?.suspectsIds ?? []} />
         <ImageCardPreloadHand hand={data?.suspectsIds ?? []} />
         <div>
           <Menu hearts={0} total={0} openRules rules={<Rules />} />
