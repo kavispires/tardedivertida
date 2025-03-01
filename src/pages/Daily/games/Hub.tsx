@@ -23,18 +23,8 @@ import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
 // Internal
 import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
 import type { GameSettings } from '../utils/types';
+import { SETTINGS } from '../utils/settings';
 import { DailyChrome } from '../components/DailyChrome';
-import { SETTINGS as AQUI_O } from './/AquiO/utils/settings';
-import { SETTINGS as ARTE_RUIM } from './/ArteRuim/utils/settings';
-import { SETTINGS as PICACO } from './Picaco/utils/settings';
-import { SETTINGS as CONTROLE_DE_ESTOQUE } from './/ControleDeEstoque/utils/settings';
-import { SETTINGS as FILMACO } from './/Filmaco/utils/settings';
-import { SETTINGS as PALAVREADO } from './/Palavreado/utils/settings';
-import { SETTINGS as TEORIA_DE_CONJUNTOS } from './/TeoriaDeConjuntos/utils/settings';
-import { SETTINGS as COMUNICACAO_ALIENIGENA } from './/ComunicacaoAlienigena/utils/settings';
-import { SETTINGS as PORTAIS_MAGICOS } from './/PortaisMagicos/utils/settings';
-import { SETTINGS as TA_NA_CARA } from './TaNaCara/utils/settings';
-import { SETTINGS as QUARTETOS } from './/Quartetos/utils/settings';
 import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from '../utils';
 
 type Entry = GameSettings & {
@@ -55,19 +45,19 @@ const COMING_SOON_ENTRY: Entry = {
 };
 
 const GAMES: Entry[] = [
-  ARTE_RUIM,
-  AQUI_O,
-  COMUNICACAO_ALIENIGENA,
-  TEORIA_DE_CONJUNTOS,
-  CONTROLE_DE_ESTOQUE,
-  FILMACO,
-  PALAVREADO,
-  QUARTETOS,
+  SETTINGS.ARTE_RUIM,
+  SETTINGS.AQUI_O,
+  SETTINGS.COMUNICACAO_ALIENIGENA,
+  SETTINGS.TEORIA_DE_CONJUNTOS,
+  SETTINGS.CONTROLE_DE_ESTOQUE,
+  SETTINGS.FILMACO,
+  SETTINGS.PALAVREADO,
+  SETTINGS.QUARTETOS,
 ];
 
 const CONTRIBUTIONS: Entry[] = [
-  PICACO,
-  TA_NA_CARA,
+  SETTINGS.PICACO,
+  SETTINGS.TA_NA_CARA,
   {
     ...COMING_SOON_ENTRY,
     HUB_ICON: DailyContributionGame,
@@ -78,7 +68,7 @@ const CONTRIBUTIONS: Entry[] = [
 ];
 
 const DEMOS: Entry[] = [
-  PORTAIS_MAGICOS,
+  SETTINGS.PORTAIS_MAGICOS,
   {
     ...COMING_SOON_ENTRY,
     HUB_ICON: DailyCrimeGameIcon,
@@ -194,7 +184,7 @@ function GameButton({
       )}
       <motion.div
         className="played-wrapper"
-        {...(isNewRelease ? getAnimation('tada', { repeat: 1005, delay: 0.1 * index }) : {})}
+        {...(isNewRelease ? getAnimation('tada', { repeat: 10, delay: 0.1 * index }) : {})}
       >
         <motion.button
           className={clsx('transparent-button', 'hub-item', disabled && 'hub-item--disabled')}

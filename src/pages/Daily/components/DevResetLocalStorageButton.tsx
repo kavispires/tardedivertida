@@ -7,26 +7,10 @@ import { isDevEnv } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 // Internal
-import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
-import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
-import { SETTINGS as ARTISTA } from '../games/Picaco/utils/settings';
-import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
-import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
-import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
-import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
-import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
+import { SETTINGS } from '../utils/settings';
 import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
 
-const keys = [
-  AQUI_O,
-  ARTE_RUIM,
-  PALAVREADO,
-  ARTISTA,
-  FILMACO,
-  CONTROLE_DE_ESTOQUE,
-  TEORIA_DE_CONJUNTOS,
-  COMUNICACAO_ALIENIGENA,
-];
+const keys = Object.values(SETTINGS);
 
 type DevResetLocalStorageButtonProps = {
   localStorageKey?: string;
