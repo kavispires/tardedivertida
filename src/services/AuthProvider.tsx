@@ -123,6 +123,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const query = useQuery<Me>({
     queryKey: ['user'],
     queryFn: async () => {
+      // biome-ignore lint/suspicious/noConsole: on purpose
       console.count('Fetching user...');
       const response = await USER_API.run({ action: USER_API_ACTIONS.GET_USER, date: getToday() });
       print({ me: response.data }, 'table');
@@ -136,6 +137,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: only an error should trigger
   useEffect(() => {
     if (!authenticatedUser?.isAnonymous && query.isError) {
+      // biome-ignore lint/suspicious/noConsole: on purpose
       console.error(query.error);
       notification.error({
         message: 'Failed to load user',

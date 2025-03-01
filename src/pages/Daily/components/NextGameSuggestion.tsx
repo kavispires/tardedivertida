@@ -8,24 +8,21 @@ import { IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 // Internal
 import type { GameSettings } from '../utils/types';
-import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
-import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
-import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
-import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
-import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
-import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
-import { SETTINGS as PICACO } from '../games/Picaco/utils/settings';
-import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
-import { SETTINGS as TA_NA_CARA } from '../games/TaNaCara/utils/settings';
+import { SETTINGS } from '../utils/settings';
 import { checkWasPlayedToday } from '../utils';
 
 const PRIORITY_LIST = [
-  ARTE_RUIM,
-  ...shuffle([COMUNICACAO_ALIENIGENA, TEORIA_DE_CONJUNTOS, FILMACO, PALAVREADO]),
-  AQUI_O,
-  CONTROLE_DE_ESTOQUE,
-  TA_NA_CARA,
-  PICACO,
+  SETTINGS.QUARTETOS,
+  SETTINGS.ARTE_RUIM,
+  ...shuffle([
+    SETTINGS.COMUNICACAO_ALIENIGENA,
+    SETTINGS.TEORIA_DE_CONJUNTOS,
+    SETTINGS.FILMACO,
+    SETTINGS.PALAVREADO,
+  ]),
+  ...shuffle([SETTINGS.AQUI_O, SETTINGS.CONTROLE_DE_ESTOQUE]),
+  SETTINGS.TA_NA_CARA,
+  SETTINGS.PICACO,
 ];
 
 const getUnplayedGames = () => {
