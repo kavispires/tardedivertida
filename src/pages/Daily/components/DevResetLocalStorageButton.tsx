@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { BugOutlined } from '@ant-design/icons';
-import { App, Button, Flex, Popconfirm } from 'antd';
+import { App, Button, Flex, Popconfirm, Space } from 'antd';
 // Utils
 import { isDevEnv } from 'utils/helpers';
 // Components
@@ -64,7 +64,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
 
   return (
     <Flex justify="center" gap={12}>
-      <Button.Group>
+      <Space.Compact>
         <Popconfirm
           title={
             <Translate
@@ -86,7 +86,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
         <Button size="large" type="dashed" onClick={onLog}>
           Log
         </Button>
-      </Button.Group>
+      </Space.Compact>
     </Flex>
   );
 }

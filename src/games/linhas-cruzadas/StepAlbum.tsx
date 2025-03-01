@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -100,7 +100,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
         />
       </div>
       <SpaceContainer>
-        <Button.Group>
+        <Space.Compact>
           <Button disabled={areControlsLocked || currentEntry === 0} onClick={onPrevAlbum}>
             <Translate pt="Álbum Anterior" en="Previous Album" />
           </Button>
@@ -116,7 +116,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
           <Button disabled={areControlsLocked || isLastAlbum} onClick={onNextAlbum}>
             <Translate pt="Próximo Álbum" en="Next Album" />
           </Button>
-        </Button.Group>
+        </Space.Compact>
       </SpaceContainer>
 
       <HostNextPhaseButton autoTriggerTime={0} />

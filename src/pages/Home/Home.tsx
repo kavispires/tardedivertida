@@ -82,14 +82,14 @@ function Home() {
 
           {isAuthenticated && (
             <Flex gap={8} className="home__buttons">
-              <Button.Group>
+              <Space.Compact>
                 <Button ghost onClick={() => navigate(language === 'pt' ? '/eu' : '/me')}>
                   <Translate pt="Página de Usuário" en="User page" />
                 </Button>
                 <Button ghost onClick={() => navigate(language === 'pt' ? '/diario' : '/daily')}>
                   <Translate pt="Desafio Diário" en="Daily Challenge" />
                 </Button>
-              </Button.Group>
+              </Space.Compact>
 
               <AdminButton ghost onClick={() => navigate('/hub')}>
                 Hub
