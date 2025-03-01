@@ -33,7 +33,7 @@ export function hasBeenReleased(releaseDate: string): boolean {
  */
 export function daysSinceRelease(releaseDate: string): number {
   if (releaseDate === 'DEMO') return 0;
-  return moment(releaseDate, 'YYYY-MM-DD').diff(moment().format('YYYY-MM-DD'), 'days');
+  return moment().diff(moment(releaseDate, 'YYYY-MM-DD'), 'days');
 }
 
 /**
