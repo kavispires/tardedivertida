@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep, orderBy } from 'lodash';
 import { loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 // Internal
@@ -38,3 +38,5 @@ export const getInitialState = (data: DailyQuartetosEntry): GameState => {
 
   return state;
 };
+
+export const buildSetKey = (s: string[]) => orderBy(s, (o) => Number(o)).join('-');

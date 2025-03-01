@@ -1,4 +1,4 @@
-import { cloneDeep, difference, orderBy, shuffle } from 'lodash';
+import { cloneDeep, difference, shuffle } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
@@ -12,6 +12,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Internal
 import type { DailyQuartetosEntry, GameState, SessionState } from './types';
 import { SETTINGS } from './settings';
+import { buildSetKey } from './helpers';
 
 export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: GameState) {
   const { message } = App.useApp();
@@ -77,10 +78,10 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
       return;
     }
 
-    const selectionId = orderBy(session.selection, (o) => Number(o)).join('-');
+    const selectionId = buildSetKey(session.selection);
 
     // If it matches one of the sets
-    const isCorrect = data.sets.find((set) => set.id === selectionId);
+    const isCorrect = data.sets.find((set) => buildSetKey(set.itemsIds) === selectionId);
 
     setState((prev) => {
       const copy = cloneDeep(prev);
