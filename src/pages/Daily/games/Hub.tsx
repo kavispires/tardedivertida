@@ -24,18 +24,18 @@ import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
 import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
 import type { GameSettings } from '../utils/types';
 import { DailyChrome } from '../components/DailyChrome';
-import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
-import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
+import { SETTINGS as AQUI_O } from './/AquiO/utils/settings';
+import { SETTINGS as ARTE_RUIM } from './/ArteRuim/utils/settings';
 import { SETTINGS as PICACO } from './Picaco/utils/settings';
-import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
-import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
-import { SETTINGS as PALAVREADO } from '../games/Palavreado/utils/settings';
-import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
-import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
-import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
+import { SETTINGS as CONTROLE_DE_ESTOQUE } from './/ControleDeEstoque/utils/settings';
+import { SETTINGS as FILMACO } from './/Filmaco/utils/settings';
+import { SETTINGS as PALAVREADO } from './/Palavreado/utils/settings';
+import { SETTINGS as TEORIA_DE_CONJUNTOS } from './/TeoriaDeConjuntos/utils/settings';
+import { SETTINGS as COMUNICACAO_ALIENIGENA } from './/ComunicacaoAlienigena/utils/settings';
+import { SETTINGS as PORTAIS_MAGICOS } from './/PortaisMagicos/utils/settings';
 import { SETTINGS as TA_NA_CARA } from './TaNaCara/utils/settings';
-import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
-import { checkWasPlayedToday, hasBeenReleased } from '../utils';
+import { SETTINGS as QUARTETOS } from './/Quartetos/utils/settings';
+import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from '../utils';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -143,6 +143,7 @@ function HubList({ list, width, startingIndex }: HubListProps) {
           Icon={HUB_ICON}
           name={HUB_NAME}
           color={COLOR}
+          releaseDate={RELEASE_DATE}
           disabled={disabled || hasBeenReleased(RELEASE_DATE)}
           index={startingIndex + index}
         />
@@ -163,30 +164,52 @@ type GameButtonProps = {
   Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   name: DualLanguageValue;
   color: string;
+  releaseDate: string;
   index: number;
 };
 
-function GameButton({ lsKey, width, disabled, href, Icon, name, color, index }: GameButtonProps) {
+function GameButton({
+  lsKey,
+  width,
+  disabled,
+  href,
+  Icon,
+  name,
+  color,
+  releaseDate,
+  index,
+}: GameButtonProps) {
   const wasPlayed = checkWasPlayedToday(lsKey);
 
+  const isNewRelease =
+    daysSinceRelease(releaseDate) < 15 &&
+    daysSinceRelease(releaseDate) > 0 &&
+    !wasPlayed &&
+    releaseDate !== 'DEMO';
+
   return (
-    <div className="played-wrapper">
+    <motion.div className="played-wrapper">
       {wasPlayed && (
         <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" className="played-wrapper__played" />
       )}
-      <motion.button
-        className={clsx('transparent-button', 'hub-item', disabled && 'hub-item--disabled')}
-        style={{ width, height: width, backgroundColor: color }}
-        {...getAnimation('bounceIn', { delay: index * 0.05 })}
-        disabled={disabled}
-        onClick={() => playSFX('swap')}
+      <motion.div
+        className="played-wrapper"
+        {...(isNewRelease ? getAnimation('tada', { repeat: 1005, delay: 0.1 * index }) : {})}
       >
-        <Link to={`/diario/${href}`} className="hub-link">
-          <Icon style={{ width: width / 2 }} />
-          <DualTranslate>{name}</DualTranslate>
-        </Link>
-      </motion.button>
-    </div>
+        <motion.button
+          className={clsx('transparent-button', 'hub-item', disabled && 'hub-item--disabled')}
+          style={{ width, height: width, backgroundColor: color }}
+          {...getAnimation('bounceIn', { delay: index * 0.05 })}
+          disabled={disabled}
+          onClick={() => playSFX('swap')}
+        >
+          <Link to={`/diario/${href}`} className="hub-link">
+            <Icon style={{ width: width / 2 }} />
+            <DualTranslate>{name}</DualTranslate>
+          </Link>
+        </motion.button>
+      </motion.div>
+    </motion.div>
   );
 }
 
