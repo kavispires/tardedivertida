@@ -5,6 +5,7 @@ import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'AQUI_O',
   ROUTE: 'aqui-o',
+  RELEASE_DATE: '2024-04-30',
   COLOR: 'rgba(227, 167, 111, 0.85)',
   EMOJI: '🔍',
   HUB_ICON: DailyFindingGameIcon,

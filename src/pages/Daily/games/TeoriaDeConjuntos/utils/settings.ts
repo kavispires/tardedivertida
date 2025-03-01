@@ -5,6 +5,7 @@ import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'TEORIA_DE_CONJUNTOS',
   ROUTE: 'teoria-de-conjuntos',
+  RELEASE_DATE: '2024-08-31',
   COLOR: 'rgba(172, 128, 221, 0.85)',
   EMOJI: '⭕️',
   HUB_ICON: DailyDiagramGameIcon,

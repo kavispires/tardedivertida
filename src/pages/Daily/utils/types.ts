@@ -74,6 +74,10 @@ export interface GameSettings {
    */
   TAGLINE: DualLanguageValue;
   /**
+   * The day the game was released
+   */
+  RELEASE_DATE: DateKey;
+  /**
    * Other values like hearts, goal, etc
    */
   [key: string]: any;

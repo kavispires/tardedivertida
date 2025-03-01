@@ -5,6 +5,7 @@ import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'COMUNICACAO_ALIENIGENA',
   ROUTE: 'comunicacao-alienigena',
+  RELEASE_DATE: '2024-11-08',
   COLOR: 'rgba(105, 218, 207, 0.85)',
   EMOJI: '🛸',
   HUB_ICON: DailyAlienGameIcon,

@@ -5,6 +5,7 @@ import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'ARTE_RUIM',
   ROUTE: 'arte-ruim',
+  RELEASE_DATE: '2023-11-04',
   COLOR: 'rgba(158, 182, 244, 0.85)',
   EMOJI: '🖼️',
   HUB_ICON: DailyArtGameIcon,

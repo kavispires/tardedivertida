@@ -5,6 +5,7 @@ import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'CONTROLE_DE_ESTOQUE',
   ROUTE: 'controle-de-estoque',
+  RELEASE_DATE: '2024-08-04',
   COLOR: 'rgba(255, 199, 59, 0.85)',
   EMOJI: '📦',
   HUB_ICON: DailyWarehouseGameIcon,

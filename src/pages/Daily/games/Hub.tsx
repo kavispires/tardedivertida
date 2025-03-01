@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import moment from 'moment';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
@@ -34,7 +35,7 @@ import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienige
 import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
 import { SETTINGS as TA_NA_CARA } from './TaNaCara/utils/settings';
 import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
-import { checkWasPlayedToday, getToday } from '../utils';
+import { checkWasPlayedToday, hasBeenReleased } from '../utils';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -43,6 +44,7 @@ type Entry = GameSettings & {
 const COMING_SOON_ENTRY: Entry = {
   KEY: '',
   ROUTE: '',
+  RELEASE_DATE: moment().add(1, 'year').format('YYYY-MM-DD'),
   EMOJI: '',
   COLOR: '',
   HUB_ICON: DailyContributionGame,
@@ -60,10 +62,7 @@ const GAMES: Entry[] = [
   CONTROLE_DE_ESTOQUE,
   FILMACO,
   PALAVREADO,
-  {
-    ...QUARTETOS,
-    disabled: getToday() !== '2025-03-01',
-  },
+  QUARTETOS,
 ];
 
 const CONTRIBUTIONS: Entry[] = [
@@ -135,7 +134,7 @@ type HubListProps = {
 function HubList({ list, width, startingIndex }: HubListProps) {
   return (
     <div className="hub-list">
-      {list.map(({ KEY, ROUTE, HUB_ICON, HUB_NAME, COLOR, disabled }, index) => (
+      {list.map(({ KEY, ROUTE, HUB_ICON, HUB_NAME, COLOR, RELEASE_DATE, disabled }, index) => (
         <GameButton
           key={KEY}
           lsKey={KEY}
@@ -144,7 +143,7 @@ function HubList({ list, width, startingIndex }: HubListProps) {
           Icon={HUB_ICON}
           name={HUB_NAME}
           color={COLOR}
-          disabled={disabled}
+          disabled={disabled || hasBeenReleased(RELEASE_DATE)}
           index={startingIndex + index}
         />
       ))}

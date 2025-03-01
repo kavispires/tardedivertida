@@ -5,6 +5,7 @@ import { DailyJudgingGameIcon } from 'icons/DailyJudgingGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'TA_NA_CARA',
   ROUTE: 'ta-na-cara',
+  RELEASE_DATE: '2025-02-21',
   COLOR: 'rgba(242, 233, 236, 0.85)',
   EMOJI: '👤',
   HUB_ICON: DailyJudgingGameIcon,

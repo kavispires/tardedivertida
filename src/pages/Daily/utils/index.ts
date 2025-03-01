@@ -15,6 +15,38 @@ export function getToday(): string {
 }
 
 /**
+ * Checks if the given release date is after the current date.
+ *
+ * @param releaseDate - The release date in 'YYYY-MM-DD' format.
+ * @returns `true` if the release date is after the current date, otherwise `false`.
+ */
+export function hasBeenReleased(releaseDate: string): boolean {
+  if (releaseDate === 'DEMO') return true;
+  return moment(releaseDate, 'YYYY-MM-DD').isAfter(moment().format('YYYY-MM-DD'));
+}
+
+/**
+ * Calculates the number of days since the given release date.
+ *
+ * @param releaseDate - The release date in the format 'YYYY-MM-DD'.
+ * @returns The number of days since the release date.
+ */
+export function daysSinceRelease(releaseDate: string): number {
+  if (releaseDate === 'DEMO') return 0;
+  return moment(releaseDate, 'YYYY-MM-DD').diff(moment().format('YYYY-MM-DD'), 'days');
+}
+
+/**
+ * TEMPORARY: Returns the date from today based on the given number of days.
+ * @param days
+ * @returns
+ */
+export function getDateFromToday(days: number): string {
+  const today = moment().format('YYYY-MM-DD');
+  return moment(today, 'YYYY-MM-DD').subtract(days, 'days').format('YYYY-MM-DD');
+}
+
+/**
  * Calculates the day of the year for a given date.
  *
  * @param today - The date for which to calculate the day of the year.
