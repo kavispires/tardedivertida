@@ -14,11 +14,12 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import type { PhaseRevealState } from './utils/types';
 import { ScoringMessage } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ players, state }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players, state);
 

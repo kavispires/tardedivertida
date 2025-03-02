@@ -8,7 +8,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { ItemsDict, SceneTilePayload } from './utils/types';
+import type { ItemsDict, SceneTilePayload, SubmitCrimePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
@@ -16,10 +16,10 @@ import { EvidenceHighlight } from './components/Highlights';
 
 type StepReasonForEvidenceProps = {
   items: ItemsDict;
-  selections: PlainObject;
-  updateSelections: GenericFunction;
+  selections: SubmitCrimePayload;
+  updateSelections: (payload: SubmitCrimePayload) => void;
   reasonForEvidenceTile: CrimeSceneTile;
-  goToStep: GenericFunction;
+  goToStep: (step: number) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepReasonForEvidence({
@@ -61,8 +61,8 @@ export function StepReasonForEvidence({
       <SpaceContainer>
         <SelectedItems
           items={items}
-          weaponId={selections.weaponId}
-          evidenceId={selections.evidenceId}
+          weaponId={selections.weaponId ?? ''}
+          evidenceId={selections.evidenceId ?? ''}
           fadeWeapon
         />
 
@@ -74,7 +74,7 @@ export function StepReasonForEvidence({
 
         <ContinueButton
           disabled={reasonForEvidenceIndex === undefined}
-          onClick={() => updateSelections({ reasonForEvidence: reasonForEvidenceIndex })}
+          onClick={() => updateSelections({ reasonForEvidenceIndex })}
         />
       </SpaceContainer>
     </Step>

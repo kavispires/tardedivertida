@@ -29,12 +29,12 @@ import {
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Build scene decks
-  const { causeOfDeathTile, reasonForEvidenceTile, locationTiles, sceneTiles } = parseTiles(
+  const { causeOfDeathTile, reasonForEvidenceTile, locationTile, sceneTiles } = parseTiles(
     resourceData.allScenes,
   );
 
@@ -61,7 +61,7 @@ export const prepareSetupPhase = async (
         players,
         causeOfDeathTile,
         reasonForEvidenceTile,
-        locationTiles,
+        locationTile,
       },
     },
   };
@@ -89,7 +89,7 @@ export const prepareCrimeSelectionPhase = async (
     items,
     state.causeOfDeathTile,
     state.reasonForEvidenceTile,
-    state.locationTiles,
+    state.locationTile,
   );
 
   return {
@@ -141,13 +141,13 @@ export const prepareSceneMarkingPhase = async (
         scenesOrder: updatedScenesOrder,
         currentScene: newScene,
       },
-      stateCleanup: ['results'],
+      stateCleanup: ['results', 'winners', 'ranking'],
     },
   };
 };
 
 export const prepareGuessingPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -159,17 +159,20 @@ export const prepareGuessingPhase = async (
     const { scenes, order } = buildScenes(
       state.causeOfDeathTile,
       state.reasonForEvidenceTile,
-      state.locationTiles,
-      players,
+      state.locationTile,
     );
     // Gather answers and build crimes
-    const crimes = buildCrimes(players, state.causeOfDeathTile, state.reasonForEvidenceTile);
+    const crimes = buildCrimes(
+      players,
+      state.causeOfDeathTile,
+      state.reasonForEvidenceTile,
+      state.locationTile,
+    );
     // Cleanup properties from players
     utils.players.removePropertiesFromPlayers(players, [
-      'causeOfDeath',
+      'causeOfDeathIndex',
       'locationIndex',
-      'locationTile',
-      'reasonForEvidence',
+      'reasonForEvidenceIndex',
     ]);
 
     mockGuessingForBots(players);
@@ -183,7 +186,7 @@ export const prepareGuessingPhase = async (
           scenes,
           scenesOrder: order,
         },
-        stateCleanup: ['causeOfDeathTile', 'reasonForEvidenceTile', 'locationTiles'],
+        stateCleanup: ['causeOfDeathTile', 'reasonForEvidenceTile', 'locationTile'],
       },
     };
   }
@@ -211,6 +214,9 @@ export const prepareRevealPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
+  // Unready players
+  utils.players.unReadyPlayers(players);
+
   // Update or create guess history
   const results = updateOrCreateGuessHistory(
     state.crimes,
@@ -246,8 +252,10 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
+  // Unready players
+  utils.players.unReadyPlayers(players);
 
+  // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
   const winningPlayers = state.winners.map((playerId: PlayerId) => players[playerId]);
 
   const winners = utils.players.determineWinners(

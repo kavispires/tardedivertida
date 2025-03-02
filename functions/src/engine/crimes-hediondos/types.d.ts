@@ -60,14 +60,12 @@ export interface ResourceData {
 
 export interface CrimesHediondosStore extends DefaultStore {
   scenes: CrimeSceneTile[];
-  [key: string]: any;
 }
 
 export interface CrimesHediondosState extends DefaultState {
   scenes?: {
     [key: string]: CrimeSceneTile;
   };
-  [key: string]: any;
 }
 
 export interface CrimesHediondosInitialState extends InitialState {

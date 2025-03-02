@@ -10,11 +10,11 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 // Internal
-import type { Crime } from './utils/types';
+import type { Crime, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
 import { CrimeSummary } from './components/CrimeSummary';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const crimes: Crime[] = useMemo(() => orderBy(state.crimes ?? [], ['playerId']), [state.crimes]);
   const user = useUser(players, state);
 

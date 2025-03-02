@@ -48,9 +48,9 @@ export const isEntryLocked = (historyEntry: GuessHistoryEntry): boolean => {
   return Boolean(['CORRECT', 'LOCKED'].includes(historyEntry?.status));
 };
 
-export const autoSelectCorrectGuesses = (history: History) => {
+export const autoSelectCorrectGuesses = (history?: History) => {
   const guesses: PlainObject = {};
-  Object.entries(history).forEach(([key, historyEntryArray]: any) => {
+  Object.entries(history ?? {}).forEach(([key, historyEntryArray]: any) => {
     const historyEntry: GuessHistoryEntry = getLastItem(historyEntryArray);
     if (['CORRECT', 'LOCKED'].includes(historyEntry.status)) {
       guesses[key] = {

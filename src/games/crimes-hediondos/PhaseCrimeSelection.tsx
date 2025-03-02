@@ -20,7 +20,7 @@ import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import type { SubmitCrimePayload } from './utils/types';
+import type { PhaseCrimeSelectionState, SubmitCrimePayload } from './utils/types';
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
 import { mockCrime } from './utils/mock';
 import { WelcomeMessage } from './components/RulesBlobs';
@@ -30,7 +30,7 @@ import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
 
-export function PhaseCrimeSelection({ players, state }: PhaseProps) {
+export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSelectionState>) {
   const { step, setStep, goToNextStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -51,8 +51,7 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps) {
     setSelections((prevState: SubmitCrimePayload) => ({ ...prevState, ...payload }));
   };
 
-  const onMockCrime = () =>
-    onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex], state.locationTiles));
+  const onMockCrime = () => onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex]));
 
   const announcementItems = (
     <PhaseAnnouncement
@@ -163,7 +162,7 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps) {
           user={user}
           items={state.items}
           groupedItems={state.groupedItems}
-          locationTiles={state.locationTiles}
+          locationTile={state.locationTile}
           selections={selections}
           updateSelections={updateSelections}
           goToStep={setStep}
@@ -175,7 +174,7 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps) {
           items={state.items}
           causeOfDeathTile={state.causeOfDeathTile}
           reasonForEvidenceTile={state.reasonForEvidenceTile}
-          locationTiles={state.locationTiles}
+          locationTile={state.locationTile}
           selections={selections}
           onSubmitCrime={onSubmitCrime}
           updateSelection={updateSelection}

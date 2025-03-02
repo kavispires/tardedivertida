@@ -7,7 +7,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { ItemsDict, SceneTilePayload } from './utils/types';
+import type { ItemsDict, SceneTilePayload, SubmitCrimePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
@@ -16,10 +16,10 @@ import { SceneTile } from '../../components/game/SceneTile';
 
 type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;
-  selections: PlainObject;
-  updateSelections: GenericFunction;
+  selections: SubmitCrimePayload;
+  updateSelections: (payload: SubmitCrimePayload) => void;
   causeOfDeathTile: CrimeSceneTile;
-  goToStep: GenericFunction;
+  goToStep: (step: number) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepCauseOfDeathSelection({
@@ -45,14 +45,14 @@ export function StepCauseOfDeathSelection({
         <Translate
           pt={
             <>
-              Baseado somente em sua <WeaponHighlight>arma do crime (carta azul)</WeaponHighlight>, selecione
-              a causa da morte de sua vítima.
+              Baseado somente no <WeaponHighlight>meio do crime (carta azul)</WeaponHighlight>, selecione a
+              causa da morte de sua vítima.
             </>
           }
           en={
             <>
-              Based solely on the <WeaponHighlight>weapon (blue card)</WeaponHighlight> you've chosen, select
-              your victim's cause of death.
+              Based solely on the <WeaponHighlight>mean of murder (blue card)</WeaponHighlight> you've chosen,
+              select your victim's cause of death.
             </>
           }
         />
@@ -61,8 +61,8 @@ export function StepCauseOfDeathSelection({
       <SpaceContainer>
         <SelectedItems
           items={items}
-          weaponId={selections.weaponId}
-          evidenceId={selections.evidenceId}
+          weaponId={selections.weaponId ?? ''}
+          evidenceId={selections.evidenceId ?? ''}
           fadeEvidence
         />
 
@@ -74,7 +74,7 @@ export function StepCauseOfDeathSelection({
 
         <ContinueButton
           disabled={causeOfDeathIndex === undefined}
-          onClick={() => updateSelections({ causeOfDeath: causeOfDeathIndex })}
+          onClick={() => updateSelections({ causeOfDeathIndex })}
         />
       </SpaceContainer>
     </Step>

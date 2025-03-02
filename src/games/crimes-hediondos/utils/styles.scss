@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .background {
   background: linear-gradient(-45deg, #676666, #b33f62, #d39673, #9a5555, #b33f62);
@@ -10,12 +10,12 @@
   grid-template-columns: repeat(4, auto);
   gap: get-unit(1);
   justify-items: center;
-  background-color: get-color('black');
+  background-color: get-color("black");
   border-radius: get-unit(2);
   padding: get-unit(2);
 
   &__button {
-    border: 2px solid transparent;
+    border: get-unit(1) solid transparent;
     background: none;
     cursor: pointer;
     padding: 0;
@@ -24,7 +24,7 @@
 
 .h-items-crime-selection {
   display: flex;
-  background-color: get-color('black');
+  background-color: get-color("black");
   border-radius: get-unit(2);
   padding: get-unit(2);
   align-items: center;
@@ -43,38 +43,42 @@
   display: grid;
   grid-template-columns: repeat(6, auto);
   gap: get-unit(1);
-  background-color: get-color('black');
+  background-color: get-color("black");
   border-radius: get-unit(2);
   padding: get-unit(2);
 }
 
 .h-grouped-items-board {
+  padding: get-unit(2);
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: get-unit(1);
-  background-color: get-color('black');
   border-radius: get-unit(2);
-  padding: get-unit(2);
+  background-color: get-color("black");
 
   &__group {
+    list-style-type: none !important;
+    padding: get-unit(2);
+
     display: grid;
+    background-color: get-color("black");
     grid-template-columns: repeat(4, auto);
     gap: get-unit(1);
 
-    border: 2px solid get-color('brown');
+    border: get-unit(1) solid get-color("gray");
     border-radius: get-unit(2);
     padding: get-unit(2);
   }
 }
 
 .h-crime {
-  background-color: get-color('black');
+  background-color: get-color("black");
   display: grid;
   grid-template-columns: [player] 2.5rem [info] auto [history] 28px [selections] 216px [done] 2.5rem;
   min-height: 200px;
   margin: get-unit(2);
   border-radius: $border-radius;
-  color: get-color('white');
+  color: get-color("white");
   min-width: 800px;
 
   &__player {
@@ -113,19 +117,19 @@
     margin-right: get-unit(1);
 
     &--cause {
-      background-color: get-color('violet', 6);
+      background-color: get-color("violet", 6);
     }
 
     &--evidence {
-      background-color: get-color('red', 6);
+      background-color: get-color("red", 6);
     }
 
     &--location {
-      background-color: get-color('green', 6);
+      background-color: get-color("green", 6);
     }
 
     &--scene {
-      background-color: get-color('orange', 6);
+      background-color: get-color("orange", 6);
     }
   }
 
@@ -139,8 +143,8 @@
   grid-template-columns: auto auto;
   grid-template-rows: auto 1rem;
   grid-template-areas:
-    'weapon evidence'
-    'status status';
+    "weapon evidence"
+    "status status";
   padding: get-unit(1);
 
   &__status {
@@ -159,23 +163,23 @@
   align-items: center;
 
   &--LOCKED {
-    color: get-color('gray', 5);
+    color: get-color("gray", 5);
   }
 
   &--CORRECT {
-    color: get-color('green', 5);
+    color: get-color("green", 5);
   }
 
   &--HALF {
-    color: get-color('yellow', 7);
+    color: get-color("yellow", 7);
   }
 
   &--WRONG {
-    color: get-color('red', 5);
+    color: get-color("red", 5);
   }
 
   &--WRONG_GROUP {
-    color: get-color('purple', 6);
+    color: get-color("purple", 6);
   }
 }
 
@@ -184,9 +188,20 @@
   margin-left: get-unit(1);
 }
 
+.h-players-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .h-players-cards {
   display: flex;
-  margin-bottom: get-unit(2);
+  margin: 0;
+  margin-bottom: get-unit(-2);
+
+  &__button {
+    margin: -2px 0;
+  }
 
   &__seal {
     margin: 0 auto;
@@ -194,6 +209,11 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
+  }
+
+  &__avatar {
+    border-top-left-radius: get-unit(2);
+    border-top-right-radius: get-unit(2);
   }
 }
 

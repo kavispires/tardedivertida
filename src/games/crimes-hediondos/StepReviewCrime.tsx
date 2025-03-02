@@ -1,12 +1,10 @@
-// Ant Design Resources
-import { CloudUploadOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { SendButton } from 'components/buttons';
 import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -14,17 +12,17 @@ import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { ItemsDict } from './utils/types';
+import type { ItemsDict, SubmitCrimePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';
 
 type StepReviewCrimeProps = {
   items: ItemsDict;
-  selections: PlainObject;
-  onSubmitCrime: GenericFunction;
-  locationTiles: CrimeSceneTile[];
+  selections: SubmitCrimePayload;
+  onSubmitCrime: () => void;
+  locationTile: CrimeSceneTile;
   causeOfDeathTile: CrimeSceneTile;
   reasonForEvidenceTile: CrimeSceneTile;
-  updateSelection: GenericFunction;
+  updateSelection: (payload: SubmitCrimePayload) => void;
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;
 
@@ -33,15 +31,13 @@ export function StepReviewCrime({
   items,
   causeOfDeathTile,
   reasonForEvidenceTile,
-  locationTiles,
+  locationTile,
   selections,
   onSubmitCrime,
   updateSelection,
   players,
 }: StepReviewCrimeProps) {
   const { translate } = useLanguage();
-
-  const locationTile = locationTiles.find((location) => location.id === selections.locationTile);
 
   return (
     <Step announcement={announcement}>
@@ -53,34 +49,36 @@ export function StepReviewCrime({
         <Translate pt={<>Revise seu crime.</>} en={<>Recap your crime.</>} />
       </RuleInstruction>
 
-      <SelectedItems items={items} weaponId={selections.weaponId} evidenceId={selections.evidenceId} />
+      <SelectedItems
+        items={items}
+        weaponId={selections.weaponId ?? ''}
+        evidenceId={selections.evidenceId ?? ''}
+      />
 
       <div className="h-scene-tiles-list">
         <SceneTile
           tile={causeOfDeathTile}
-          index={selections.causeOfDeath}
-          onSelectValue={(payload) => updateSelection({ causeOfDeath: payload.value })}
+          index={selections.causeOfDeathIndex}
+          onSelectValue={(payload) => updateSelection({ causeOfDeathIndex: payload.value })}
         />
         <SceneTile
           tile={reasonForEvidenceTile}
-          index={selections.reasonForEvidence}
-          onSelectValue={(payload) => updateSelection({ reasonForEvidence: payload.value })}
+          index={selections.reasonForEvidenceIndex}
+          onSelectValue={(payload) => updateSelection({ reasonForEvidenceIndex: payload.value })}
         />
         {!!locationTile && (
           <SceneTile
             tile={locationTile}
             index={selections.locationIndex}
-            onSelectValue={(payload) =>
-              updateSelection({ locationTile: payload.tileId, locationIndex: payload.value })
-            }
+            onSelectValue={(payload) => updateSelection({ locationIndex: payload.value })}
           />
         )}
       </div>
 
       <SpaceContainer align="center">
-        <Button type="primary" size="large" onClick={onSubmitCrime} icon={<CloudUploadOutlined />}>
+        <SendButton onClick={onSubmitCrime} size="large">
           <Translate pt="Enviar" en="Submit" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
 
       <ReadyPlayersBar

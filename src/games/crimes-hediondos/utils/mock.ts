@@ -1,13 +1,12 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-import type { CrimeSceneTile } from 'types/tdr';
 // Utils
 import { SEPARATOR } from 'utils/constants';
 import { getLastItem, getRandomItem, shuffle } from 'utils/helpers';
 // Internal
 import type { GroupedItems, GuessHistoryEntry, SubmitCrimePayload } from '../utils/types';
 
-export const mockCrime = (itemsGroup: string[], locationTiles: CrimeSceneTile[]): SubmitCrimePayload => {
+export const mockCrime = (itemsGroup: string[]): SubmitCrimePayload => {
   const shuffledItems = shuffle(itemsGroup);
   const weapon = shuffledItems.find((e) => e?.includes('wp'));
   const evidence = shuffledItems.find((e) => e?.includes('ev'));
@@ -16,9 +15,8 @@ export const mockCrime = (itemsGroup: string[], locationTiles: CrimeSceneTile[])
   return {
     weaponId: weapon,
     evidenceId: evidence,
-    causeOfDeath: getRandomItem(options),
-    reasonForEvidence: getRandomItem(options),
-    locationTile: getRandomItem(locationTiles).id,
+    causeOfDeathIndex: getRandomItem(options),
+    reasonForEvidenceIndex: getRandomItem(options),
     locationIndex: getRandomItem(options),
   };
 };

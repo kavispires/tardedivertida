@@ -2,7 +2,7 @@
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { TransparentButton } from 'components/buttons';
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+import { CrimeItemBackgroundCard, CrimeItemCard } from 'components/cards/CrimeItemCard';
 // Internal
 import type { GroupedItems, ItemsDict } from '../utils/types';
 
@@ -10,8 +10,8 @@ const getEliminatedCard = (cardType: string) => ({
   id: `dmhk-${cardType === 'ev' ? 'ev' : 'wp'}-xxx`,
   type: cardType,
   name: {
-    pt: 'x',
-    en: 'x',
+    pt: '-',
+    en: '-',
   },
 });
 
@@ -20,7 +20,7 @@ type SelectableGroupedItemsBoardProps = {
   items: ItemsDict;
   weaponId?: string;
   evidenceId?: string;
-  onSelectItem: GenericFunction;
+  onSelectItem: (itemId: string) => void;
   activeColor?: string;
   isLocked?: boolean;
   wrongGroups?: number[];
@@ -39,12 +39,13 @@ export function SelectableGroupedItemsBoard({
   const cardWidth = useCardWidth(12, { gap: 8, minWidth: 30, maxWidth: 200 });
 
   return (
-    <ul className="h-grouped-items-board">
-      {Object.values(groupedItems).map((group, index) => {
+    <ul className="h-grouped-items-board" style={activeColor ? { backgroundColor: activeColor } : {}}>
+      {Object.keys(groupedItems).map((key, index) => {
+        const group = groupedItems[key];
         const isGroupWrong = wrongGroups.includes(index);
 
         return (
-          <li key={`group-${index}`}>
+          <li key={`group-${key}`}>
             <ul
               className="h-grouped-items-board__group"
               style={activeColor ? { borderColor: activeColor } : {}}
@@ -53,14 +54,19 @@ export function SelectableGroupedItemsBoard({
                 <li key={itemId}>
                   <TransparentButton
                     onClick={isLocked || isGroupWrong ? undefined : () => onSelectItem(itemId)}
+                    hoverType="tint"
+                    disabled={isGroupWrong}
                   >
-                    <CrimeItemCard
-                      item={isGroupWrong ? getEliminatedCard(itemId.split('-')[1]) : items[itemId]}
-                      cardWidth={cardWidth}
-                      isSelected={[weaponId, evidenceId].includes(itemId)}
-                      preview={false}
-                      activeColor={activeColor}
-                    />
+                    {isGroupWrong ? (
+                      <CrimeItemBackgroundCard id="x" cardWidth={cardWidth} />
+                    ) : (
+                      <CrimeItemCard
+                        item={isGroupWrong ? getEliminatedCard(itemId.split('-')[1]) : items[itemId]}
+                        cardWidth={cardWidth}
+                        isSelected={[weaponId, evidenceId].includes(itemId)}
+                        activeColor={activeColor}
+                      />
+                    )}
                   </TransparentButton>
                 </li>
               ))}

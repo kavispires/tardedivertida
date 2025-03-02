@@ -35,7 +35,7 @@ type StepRevealProps = {
   scenes: ScenesDict;
   scenesOrder: string[];
   crimes: Crime[];
-  onSeeRanking: GenericFunction;
+  onSeeRanking: () => void;
   round: GameRound;
   results: Results;
   isFirstRunThrough: boolean;
@@ -113,74 +113,84 @@ export function StepReveal({
       </Instruction>
 
       <SpaceContainer>
-        <Collapse
-          items={[
-            {
-              key: 'weapons-evidences',
-              label: <Translate pt=" Ver todas Armas e Evidências" en="See all Weapons and Evidence" />,
-              children: (
-                <GroupedItemsBoard
-                  items={items}
-                  weaponId={user.weaponId}
-                  evidenceId={user.evidenceId}
-                  groupedItems={groupedItems}
-                />
-              ),
-            },
-          ]}
-        />
+        <Instruction contained>
+          <Collapse
+            items={[
+              {
+                key: 'weapons-evidences',
+                label: <Translate pt=" Ver todas Armas e Evidências" en="See all Weapons and Evidence" />,
+                children: (
+                  <GroupedItemsBoard
+                    items={items}
+                    weaponId={user.weaponId}
+                    evidenceId={user.evidenceId}
+                    groupedItems={groupedItems}
+                  />
+                ),
+              },
+            ]}
+          />
+        </Instruction>
       </SpaceContainer>
 
       <PlayersCards
         user={user}
-        activePlayerId={activePlayerId}
+        // activePlayerId={activePlayerId}
         setActivePlayerId={setActivePlayerId}
         players={players}
         guesses={{}}
         history={user.history}
-      />
+      >
+        {!activePlayerId && (
+          <Instruction contained>
+            <Translate
+              pt="Clique em um jogador para ver o resultado do seu crime"
+              en="Click a player to see their crime"
+            />
+          </Instruction>
+        )}
+        {Boolean(activePlayerId) && (
+          <Instruction
+            contained
+            className={!isLocked && !isOwnCrime ? getAnimationClass('tada') : ''}
+            key={`instruction-status-${activePlayerId}`}
+          >
+            {latestHistoryEntry ? (
+              <CrimeGuessStatus status={latestHistoryEntry.status} withDescription />
+            ) : isOwnCrime ? (
+              <Translate pt="Este é o seu próprio crime" en="This is your own crime" />
+            ) : (
+              ''
+            )}
+          </Instruction>
+        )}
 
-      {Boolean(activePlayerId) && (
-        <Instruction
-          contained
-          className={!isLocked && !isOwnCrime ? getAnimationClass('tada') : ''}
-          key={`instruction-status-${activePlayerId}`}
-        >
-          {latestHistoryEntry ? (
-            <CrimeGuessStatus status={latestHistoryEntry.status} withDescription />
-          ) : isOwnCrime ? (
-            <Translate pt="Este é o seu próprio crime" en="This is your own crime" />
-          ) : (
-            ''
-          )}
-        </Instruction>
-      )}
-
-      {activeCrime && (
-        <div
-          className={getAnimationClass('slideInUp', { speed: 'fast' })}
-          key={`crime-by-${activeCrime.playerId}`}
-        >
-          <CrimeSummary
-            crime={activeCrime}
-            scenes={scenes}
-            scenesOrder={scenesOrder}
-            items={items}
-            history={user.history[activeCrime.playerId]}
-            player={players[activeCrime.playerId]}
-            selectedWeaponId={isOwnCrime ? user.weaponId : latestHistoryEntry.weaponId}
-            selectedEvidenceId={isOwnCrime ? user.evidenceId : latestHistoryEntry.evidenceId}
-            isLocked={isLocked}
-          />
-        </div>
-      )}
+        {activeCrime && (
+          <div
+            className={getAnimationClass('slideInUp', { speed: 'fast' })}
+            key={`crime-by-${activeCrime.playerId}`}
+          >
+            <CrimeSummary
+              crime={activeCrime}
+              scenes={scenes}
+              scenesOrder={scenesOrder}
+              items={items}
+              history={user.history[activeCrime.playerId]}
+              player={players[activeCrime.playerId]}
+              selectedWeaponId={isOwnCrime ? user.weaponId : latestHistoryEntry.weaponId}
+              selectedEvidenceId={isOwnCrime ? user.evidenceId : latestHistoryEntry.evidenceId}
+              isLocked={isLocked}
+            />
+          </div>
+        )}
+      </PlayersCards>
 
       <SpaceContainer>
         {isFirstRunThrough ? (
           <TimedButton
             onClick={onSeeRanking}
             onExpire={onSeeRanking}
-            duration={Math.min(playerCount * 10, 60)}
+            duration={Math.min(playerCount * 15, 60)}
             icon={<TrophyOutlined />}
           >
             <Translate pt="Ver Ranking" en="See Ranking" />

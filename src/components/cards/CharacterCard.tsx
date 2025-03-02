@@ -14,7 +14,6 @@ import { ImageBlurButtonContainer } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 // Sass
 import './CharacterCard.scss';
-// Ant Design resources
 
 export type OverlayColor = 'blue' | 'gray' | 'green' | 'orange' | 'pink' | 'purple' | 'red' | 'yellow';
 

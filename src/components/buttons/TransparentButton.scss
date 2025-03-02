@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .transparent-button {
   cursor: pointer;
@@ -28,8 +28,18 @@
     }
   }
 
+  &--tint {
+    &:hover {
+      filter: grayscale(35%) brightness(1.3);
+
+      &:disabled {
+        filter: grayscale(0.9);
+      }
+    }
+  }
+
   &--active {
-    border: 2px solid get-color('white');
+    border: 2px solid get-color("white");
   }
 
   &:disabled {
