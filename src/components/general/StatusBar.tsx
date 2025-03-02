@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from 'react';
+// Ant Design Resources
 import { Divider, Tooltip } from 'antd';
-
+// Sass
 import './StatusBar.scss';
 
 export type StatusEntry = {
