@@ -1,3 +1,4 @@
+import { EscapeRoomDemo } from 'games/escape-room/components/EscapeRoomDemo';
 import { type CSSProperties, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources
@@ -39,6 +40,7 @@ function Playground() {
       <DevHeader title="Playground" />
       <Layout.Content className="dev-content">
         <div>playground content</div>
+        <EscapeRoomDemo />
       </Layout.Content>
     </PageLayout>
   );
