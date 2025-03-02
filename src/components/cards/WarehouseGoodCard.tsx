@@ -75,3 +75,12 @@ export function WarehouseGoodCard({
     </div>
   );
 }
+
+export function WarehouseGoodSprite({
+  id,
+  width = 64,
+  ...props
+}: Pick<WarehouseGoodCardProps, 'id' | 'width'> & ElementProps) {
+  const [source, glyphId] = getSource(id);
+  return <Sprite source={source} id={glyphId} width={width} padding={0} {...props} />;
+}

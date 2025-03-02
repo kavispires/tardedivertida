@@ -46,3 +46,15 @@ export function GlyphCard({ id, width, className }: GlyphCardProps) {
     </div>
   );
 }
+
+/**
+ * A glyph sprite component.
+ */
+export function GlyphSprite({
+  id,
+  width = 64,
+  ...props
+}: Pick<GlyphCardProps, 'id' | 'width'> & ElementProps) {
+  const [source, glyphId] = getSource(+id);
+  return <Sprite source={source} id={glyphId} width={width} padding={0} {...props} />;
+}

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { memoize } from 'lodash';
 // Components
 import { DualTranslate } from 'components/language';
 import { Sprite } from 'components/sprites';
@@ -40,14 +41,14 @@ const BASE = 64;
  * @param str - The input string.
  * @returns An array containing the source and item ID.
  */
-export const getSource = (str: string) => {
+export const getSource = memoize((str: string) => {
   const match = str.match(/\d+/);
   const numId = match ? Number.parseInt(match[0], 10) : 0;
   const itemId = `item-${numId}`;
   const sourceId = Math.ceil(numId / BASE) * BASE;
   const source = `items-${sourceId}`;
   return [source, itemId];
-};
+});
 
 /**
  * An item card component.
@@ -68,4 +69,12 @@ export function ItemCard({ id, width = 75, className, title, text, padding }: It
       )}
     </div>
   );
+}
+
+/**
+ * An item sprite component.
+ */
+export function ItemSprite({ id, width = 75, ...props }: Pick<ItemCardProps, 'id' | 'width'> & ElementProps) {
+  const [source, itemId] = getSource(id);
+  return <Sprite source={source} id={itemId} width={width} padding={0} {...props} />;
 }

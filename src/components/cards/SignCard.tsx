@@ -31,3 +31,11 @@ export function SignCard({ id, width = 50, className = '' }: SignCardProps) {
     </div>
   );
 }
+
+/**
+ * An alien sign sprite component.
+ */
+export function SignSprite({ id, width = 64, ...props }: Pick<SignCardProps, 'id' | 'width'> & ElementProps) {
+  const signId = id.startsWith('sign') ? id : `sign-${id}`;
+  return <Sprite source="alien-signs" id={signId} width={width} padding={0} {...props} />;
+}
