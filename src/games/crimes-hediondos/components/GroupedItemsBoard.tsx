@@ -16,11 +16,11 @@ export function GroupedItemsBoard({ items, weaponId, evidenceId, groupedItems }:
   const cardWidth = useCardWidth(12, { gap: 8, minWidth: 30, maxWidth: 200 });
   return (
     <ul className="h-grouped-items-board">
-      {Object.values(groupedItems).map((group, index) => (
-        <li key={`group-${index}`}>
+      {Object.keys(groupedItems).map((groupKey) => (
+        <li key={`group-${groupKey}`} className="reset-li">
           <ul className="h-grouped-items-board__group">
-            {group.map((itemId) => (
-              <li key={itemId}>
+            {groupedItems[groupKey].map((itemId) => (
+              <li key={itemId} className="reset-li">
                 <CrimeItemCard
                   item={items[itemId]}
                   cardWidth={cardWidth}

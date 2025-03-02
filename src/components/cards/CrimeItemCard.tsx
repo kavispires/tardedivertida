@@ -1,16 +1,18 @@
 import clsx from 'clsx';
+import { capitalize } from 'lodash';
 // Ant Design Resources
-import { Popover, Tag } from 'antd';
+import { Popover } from 'antd';
 // Types
 import type { CrimesHediondosCard } from 'types/tdr';
 // Hooks
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useLanguage } from 'hooks/useLanguage';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+import { ImageBlurButtonContainer } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 // Internal
-import { ItemCard } from './ItemCard';
+import { ItemSprite } from './ItemCard';
 // Sass
 import './CrimeItemCard.scss';
 
@@ -23,10 +25,6 @@ type CrimeItemCardProps = {
    * Card width
    */
   cardWidth: number;
-  /**
-   * Whether to enable the preview or not
-   */
-  preview?: boolean;
   /**
    * Whether the card is selected or not
    */
@@ -45,95 +43,61 @@ export function CrimeItemCard({
   item,
   cardWidth,
   activeColor,
-  preview = true,
   isSelected = false,
   className = '',
 }: CrimeItemCardProps) {
   const { dualTranslate } = useLanguage();
   const { isDebugEnabled } = useDevFeatures();
+  const baseUrl = useTDBaseUrl('images');
+  const backgroundImage = `back/crime${capitalize(item.type)}`;
 
-  if (item.itemId) {
-    return (
-      <ImageBlurButtonContainer cardId={item.id}>
-        <div
-          className={clsx('crime-item-card', isSelected && 'crime-item-card--selected', className)}
-          style={activeColor && isSelected ? { borderColor: 'black', backgroundColor: activeColor } : {}}
-        >
-          <Popover content={dualTranslate(item.name).toUpperCase()}>
-            <Tag
-              className="crime-item-card__name"
-              color={item.type === 'weapon' ? 'geekblue' : 'volcano'}
-              style={{ maxWidth: `${cardWidth}px` }}
-            >
-              <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
-            </Tag>
-          </Popover>
-          <div
-            className={clsx(
-              'crime-item-card__item-container',
-              `crime-item-card__item-container--${item.type}`,
-            )}
-          >
-            <ItemCard id={item.itemId} width={cardWidth * 0.85} className="crime-item-card__item" />
-          </div>
-        </div>
-      </ImageBlurButtonContainer>
-    );
-  }
-
-  // const [, cardType, itemId] = item.id.split('-');
-  // console.log('cardType', cardType);
-
-  // if (cardType && itemId) {
-  //   const ct = cardType === 'wp' ? 'weapon' : 'evidence';
-  //   const name = { pt: '', en: '' };
-  //   return (
-  //     <ImageBlurButtonContainer cardId={item.id}>
-  //       <div
-  //         className={clsx('crime-item-card', isSelected && 'crime-item-card--selected', className)}
-  //         style={activeColor && isSelected ? { borderColor: 'black', backgroundColor: activeColor } : {}}
-  //       >
-  //         <Popover content={dualTranslate(name).toUpperCase()}>
-  //           <Tag
-  //             className="crime-item-card__name"
-  //             color={ct === 'weapon' ? 'geekblue' : 'volcano'}
-  //             style={{ maxWidth: `${cardWidth}px` }}
-  //           >
-  //             <span>{isDebugEnabled ? item.id : <DualTranslate>{name}</DualTranslate>}</span>
-  //           </Tag>
-  //         </Popover>
-  //         <div className={clsx('crime-item-card__item-container', `crime-item-card__item-container--${ct}`)}>
-  //           <ItemCard id={itemId} width={cardWidth * 0.85} className="crime-item-card__item" />
-  //         </div>
-  //       </div>
-  //     </ImageBlurButtonContainer>
-  //   );
-  // }
-
-  // Fallback, not really used
   return (
     <ImageBlurButtonContainer cardId={item.id}>
       <div
-        className={clsx('crime-item-card', isSelected && 'crime-item-card--selected', className)}
-        style={activeColor && isSelected ? { borderColor: 'black', backgroundColor: activeColor } : {}}
+        className={clsx(
+          'crime-item-card',
+          `crime-item-card--${item.type}`,
+          isSelected && 'crime-item-card--selected',
+          className,
+        )}
+        style={{
+          width: cardWidth,
+          backgroundImage: `url(${baseUrl}/${backgroundImage}.jpg)`,
+          ...(activeColor && isSelected ? { borderColor: activeColor, backgroundColor: activeColor } : {}),
+        }}
       >
         <Popover content={dualTranslate(item.name).toUpperCase()}>
-          <Tag
-            className="crime-item-card__name"
-            color={item.type === 'weapon' ? 'geekblue' : 'volcano'}
-            style={{ maxWidth: `${cardWidth + 16}px` }}
-          >
+          <div className="crime-item-card__name" style={{ maxWidth: `${cardWidth}px` }}>
             <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
-          </Tag>
+          </div>
         </Popover>
-        <ImageCard
-          classic
-          id={item.id}
-          cardWidth={cardWidth}
-          className="crime-item-card__image"
-          preview={preview}
-        />
+        <div
+          className={clsx('crime-item-card__item-container', `crime-item-card__item-container--${item.type}`)}
+        >
+          <ItemSprite id={item.itemId ?? '0'} width={cardWidth * 0.75} className="crime-item-card__item" />
+        </div>
       </div>
     </ImageBlurButtonContainer>
+  );
+}
+
+export function CrimeItemBackgroundCard({
+  id,
+  cardWidth,
+  className = '',
+}: Pick<CrimeItemCardProps, 'cardWidth' | 'className'> & { id: 'blank' | 'x' | 'weapon' | 'evidence' }) {
+  const baseUrl = useTDBaseUrl('images');
+  const backgroundImage = `back/crime${capitalize(id)}`;
+
+  return (
+    <div
+      className={clsx('crime-item-card', `crime-item-card--${id}`, className)}
+      style={{
+        width: cardWidth,
+        backgroundImage: `url(${baseUrl}/${backgroundImage}.jpg)`,
+      }}
+    >
+      .
+    </div>
   );
 }

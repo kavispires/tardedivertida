@@ -13,10 +13,11 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
+import type { PhaseGuessingState } from './utils/types';
 import { GuessMessage } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ players, state }: PhaseProps) {
+export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 

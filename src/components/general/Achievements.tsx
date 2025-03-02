@@ -55,7 +55,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
               <>
                 Nenhuma medalha foi conquistada nesse jogo.
                 <br />
-                Para ganhar uma medalha, apenas uma jogador pode atender a condição.
+                Para ganhar uma medalha, apenas uma jogador pode atender o pré-requisito.
               </>
             }
             en={

@@ -19,7 +19,6 @@ export function ItemCardEmpty({ cardWidth, cardType }: ItemCardEmptyProps) {
       }}
       cardWidth={cardWidth}
       isSelected={false}
-      preview={false}
     />
   );
 }

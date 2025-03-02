@@ -13,7 +13,7 @@ export function WelcomeMessage() {
           <>
             Bem-vindo à Convenção Anual de Serial Killers!
             <br />
-            Você e os outros serial killers decidiram fazer um jogo de adivinhação.
+            Você e os outros serial killers decidiram fazer uma dinâmica de adivinhação.
             <br />O objetivo é todos darem dicas sobre as circunstâncias que seus últimos crimes aconteceram
             para ajudar os outros jogadores a descobrirem qual arma e qual objeto foram usados durante o
             crime.
@@ -25,7 +25,7 @@ export function WelcomeMessage() {
           <>
             Welcome to the Annual Serial Killers Con!
             <br />
-            You and the other serial killers decided to make it a game out of it.
+            You and the other serial killers decided to break the ice and make a game out of it.
             <br />
             The goal is to give clues about the circunstancies your latest crime occurred so the other players
             can guess what weapon and evidence were used during the crime.

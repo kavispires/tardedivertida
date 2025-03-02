@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "2.0.26",
+  "version": "2.0.27",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Crimes Hediondos",
     "en": "Horrific Crimes"
@@ -15,11 +15,12 @@
   },
   "basedOn": "gnoK gnoH ni redruM :noitpeceD",
   "summary": {
-    "pt": "Numa convenção anual de Serial Killers, você e seus amigos tem que descrever o seu crime para que os outros jogadores adivinhem qual arma você usou e qual lembrancinha você levou pra casa",
-    "en": "In a Serial Killers Annual Convention, you and your friends must describe your crime so the other players can guess what weapon and what souvenir you took home"
+    "pt": "Numa convenção anual de Serial Killers, quem é o mais serial dos killers?",
+    "en": "At an annual Serial Killers convention, who is the most serial of killers?"
   },
   "appearance": {
     "clouds": "crime-clouds",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#ab0d17",
     "backgroundColor": "rgba(35, 35, 35, 0.95)",
     "colorScheme": "dark"
@@ -41,26 +42,11 @@
   "tags": ["competitive", "same-time", "pairing", "bots", "achievements"],
   "options": [
     {
-      "key": "originalImages",
-      "kind": "switch",
-      "label": "Original Images",
-      "description": "Use original images instead of TD items (not recommended)",
-      "values": [
-        {
-          "label": "Off",
-          "value": false
-        },
-        {
-          "label": "On",
-          "value": true
-        }
-      ]
-    },
-    {
       "key": "withBots",
       "kind": "switch",
       "label": "Bot Criminals",
       "description": "Adds 2 bots will have their own AI crime",
+      "disabled": true,
       "values": [
         {
           "label": "off",

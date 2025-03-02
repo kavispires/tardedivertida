@@ -179,3 +179,11 @@ body {
 .inline {
   display: inline;
 }
+
+.reset-li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}

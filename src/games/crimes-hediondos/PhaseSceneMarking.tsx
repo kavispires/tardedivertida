@@ -17,9 +17,10 @@ import { Instruction, TextHighlight } from 'components/text';
 // Internal
 import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
 import { mockSceneMark } from './utils/mock';
+import type { PhaseSceneMarkingState } from './utils/types';
 import { StepNewScene } from './StepNewScene';
 
-export function PhaseSceneMarking({ players, state }: PhaseProps) {
+export function PhaseSceneMarking({ players, state }: PhaseProps<PhaseSceneMarkingState>) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep(0);
 

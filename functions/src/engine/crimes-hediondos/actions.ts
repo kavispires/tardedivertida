@@ -8,7 +8,13 @@ export const handleSubmitCrime = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  data: PlainObject,
+  data: {
+    weaponId: string;
+    evidenceId: string;
+    causeOfDeathIndex: number;
+    reasonForEvidenceIndex: number;
+    locationIndex: number;
+  },
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -19,9 +25,8 @@ export const handleSubmitCrime = async (
     change: {
       weaponId: data.weaponId,
       evidenceId: data.evidenceId,
-      causeOfDeath: data.causeOfDeath,
-      reasonForEvidence: data.reasonForEvidence,
-      locationTile: data.locationTile,
+      causeOfDeathIndex: data.causeOfDeathIndex,
+      reasonForEvidenceIndex: data.reasonForEvidenceIndex,
       locationIndex: data.locationIndex,
     },
     nextPhaseFunction: getNextPhase,

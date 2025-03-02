@@ -55,21 +55,21 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 };
 
 type ParsedTiles = {
-  causeOfDeathTile: CrimeSceneTile;
-  reasonForEvidenceTile: CrimeSceneTile;
-  locationTiles: CrimeSceneTile[];
+  causeOfDeathTile?: CrimeSceneTile;
+  reasonForEvidenceTile?: CrimeSceneTile;
+  locationTile?: CrimeSceneTile;
   sceneTiles: CrimeSceneTile[];
 };
 
 export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
   const result = sceneTiles.reduce(
-    (acc: any, tile: CrimeSceneTile) => {
+    (acc: ParsedTiles, tile: CrimeSceneTile) => {
       if (tile.type === 'cause') {
         acc.causeOfDeathTile = tile;
       } else if (tile.type === 'evidence') {
         acc.reasonForEvidenceTile = tile;
       } else if (tile.type === 'location') {
-        acc.locationTiles.push(tile);
+        acc.locationTile = tile;
       } else {
         acc.sceneTiles.push(tile);
       }
@@ -77,9 +77,6 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
       return acc;
     },
     {
-      causeOfDeathTile: {},
-      reasonForEvidenceTile: {},
-      locationTiles: [],
       sceneTiles: [],
     },
   );
@@ -90,9 +87,7 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
 };
 
 type GroupItems = {
-  items: {
-    [key: string]: CrimesHediondosCard;
-  };
+  items: Dictionary<CrimesHediondosCard>;
   groupedItems: GroupedItems;
 };
 
@@ -127,6 +122,7 @@ export const buildCrimes = (
   players: Players,
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
+  locationTile: CrimeSceneTile,
 ): Crime[] => {
   return utils.players.getListOfPlayers(players, true).map((player) => {
     return {
@@ -134,9 +130,9 @@ export const buildCrimes = (
       weaponId: player.weaponId,
       evidenceId: player.evidenceId,
       scenes: {
-        [causeOfDeathTile.id]: player.causeOfDeath,
-        [reasonForEvidenceTile.id]: player.reasonForEvidence,
-        [player.locationTile]: player.locationIndex,
+        [causeOfDeathTile.id]: player.causeOfDeathIndex,
+        [reasonForEvidenceTile.id]: player.causeOfDeathIndex,
+        [locationTile.id]: player.locationIndex,
       },
       itemGroupIndex: player.itemGroupIndex,
     };
@@ -153,24 +149,15 @@ type BuiltScenes = {
 export const buildScenes = (
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
-  locationTiles: CrimeSceneTile[],
-  players: Players,
+  locationTile: CrimeSceneTile,
 ): BuiltScenes => {
-  const locationsUsedByPlayers = utils.players
-    .getListOfPlayers(players, true)
-    .map((player) => player.locationTile);
-  const locations = locationTiles.filter((locationTile) => locationsUsedByPlayers.includes(locationTile.id));
-
-  const order = [causeOfDeathTile.id, reasonForEvidenceTile.id, ...locations.map((location) => location.id)];
+  const order = [causeOfDeathTile.id, reasonForEvidenceTile.id, locationTile.id];
 
   const scenes = {
     [causeOfDeathTile.id]: causeOfDeathTile,
     [reasonForEvidenceTile.id]: reasonForEvidenceTile,
+    [locationTile.id]: locationTile,
   };
-
-  locations.forEach((location) => {
-    scenes[location.id] = location;
-  });
 
   return { scenes, order };
 };
@@ -395,7 +382,7 @@ export const mockCrimeForBots = (
   items: Record<string, CrimesHediondosCard>,
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
-  locationTiles: CrimeSceneTile[],
+  locationTile: CrimeSceneTile,
 ) => {
   // TODO: Use tags logic for location
 
@@ -417,7 +404,7 @@ export const mockCrimeForBots = (
       items[bot.weaponId],
       items[bot.evidenceId],
     );
-    bot.locationTile = utils.game.getRandomItem(locationTiles).id;
+    bot.locationTile = locationTile.id;
     bot.locationIndex = utils.game.getRandomItem(options);
   });
 };

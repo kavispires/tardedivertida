@@ -124,13 +124,13 @@ export function CrimeSummary({
 
       <div className="h-crime-selections">
         {activeWeaponId ? (
-          <CrimeItemCard item={items[activeWeaponId]} cardWidth={CARD_WIDTH} preview />
+          <CrimeItemCard item={items[activeWeaponId]} cardWidth={CARD_WIDTH} />
         ) : (
           <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="weapon" />
         )}
 
         {evidenceWeaponId ? (
-          <CrimeItemCard item={items[evidenceWeaponId]} cardWidth={CARD_WIDTH} preview />
+          <CrimeItemCard item={items[evidenceWeaponId]} cardWidth={CARD_WIDTH} />
         ) : (
           <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="evidence" />
         )}

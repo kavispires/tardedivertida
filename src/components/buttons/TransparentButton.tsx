@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 import { isIOS } from 'react-device-detect';
+// Sass
 import './TransparentButton.scss';
 
 interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,7 +24,7 @@ interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   /**
    * Behavior when the mouse hovers the button (default: scale)
    */
-  hoverType?: 'scale' | 'sepia' | 'none';
+  hoverType?: 'scale' | 'sepia' | 'tint' | 'none';
 }
 
 /**

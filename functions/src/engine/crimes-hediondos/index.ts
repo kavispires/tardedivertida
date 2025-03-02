@@ -139,10 +139,16 @@ export const submitAction = async (data: CrimesHediondosSubmitAction) => {
     case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_CRIME:
       utils.firebase.validateSubmitActionProperties(
         data,
-        ['weaponId', 'evidenceId', 'causeOfDeath', 'reasonForEvidence', 'locationTile', 'locationIndex'],
+        ['weaponId', 'evidenceId', 'causeOfDeathIndex', 'reasonForEvidenceIndex', 'locationIndex'],
         'submit crime',
       );
-      return handleSubmitCrime(gameName, gameId, playerId, data);
+      return handleSubmitCrime(gameName, gameId, playerId, {
+        weaponId: data.weaponId,
+        evidenceId: data.evidenceId,
+        causeOfDeathIndex: data.causeOfDeathIndex,
+        reasonForEvidenceIndex: data.reasonForEvidenceIndex,
+        locationIndex: data.locationIndex,
+      });
     case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_MARK:
       utils.firebase.validateSubmitActionProperties(data, ['sceneIndex'], 'submit scene mark');
       return handleSubmitMark(gameName, gameId, playerId, data.sceneIndex);

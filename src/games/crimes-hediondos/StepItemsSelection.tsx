@@ -16,7 +16,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { GroupedItems, ItemsDict } from './utils/types';
+import type { GroupedItems, ItemsDict, SubmitCrimePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
 import { EvidenceHighlight, WeaponHighlight } from './components/Highlights';
 
@@ -24,7 +24,7 @@ type StepItemsSelectionProps = {
   user: GamePlayer;
   groupedItems: GroupedItems;
   items: ItemsDict;
-  selections: PlainObject;
+  selections: SubmitCrimePayload;
   updateSelections: GenericFunction;
 } & Pick<StepProps, 'announcement'>;
 
@@ -36,8 +36,8 @@ export function StepItemsSelection({
   selections,
   updateSelections,
 }: StepItemsSelectionProps) {
-  const [weaponId, setWeaponId] = useState<string>(selections.weaponId);
-  const [evidenceId, setEvidenceId] = useState<string>(selections.evidenceId);
+  const [weaponId, setWeaponId] = useState<string>(selections.weaponId ?? '');
+  const [evidenceId, setEvidenceId] = useState<string>(selections.evidenceId ?? '');
   const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 200 });
 
   const userItems = groupedItems[user.itemGroupIndex];
@@ -73,12 +73,12 @@ export function StepItemsSelection({
         <Translate
           pt={
             <>
-              Selecione uma carta azul e uma carta vermelha.
-              <br />
-              Elas representam a arma usada em seu último crime e um objeto da cena do crime.
-              <br />O jogo contém <WeaponHighlight>16 armas</WeaponHighlight> e{' '}
-              <EvidenceHighlight>16 objetos</EvidenceHighlight>, mas para essa parte, você vê apenas 4 opções
-              de cada.
+              <strong>Selecione</strong> uma carta azul que representa o meio que a morte aconteceu no seu
+              último crime, normalmente uma arma.
+              <br />E <strong>selecione</strong> uma carta vermelha que um objeto na cena do crime.
+              <br />O jogo contém <WeaponHighlight>16 meios</WeaponHighlight> e{' '}
+              <EvidenceHighlight>16 evidências</EvidenceHighlight>, mas para essa parte, você vê apenas 4
+              opções de cada.
             </>
           }
           en={
@@ -102,7 +102,6 @@ export function StepItemsSelection({
               <CrimeItemCard
                 item={items[itemId]}
                 cardWidth={cardWidth}
-                preview={false}
                 isSelected={[weaponId, evidenceId].includes(itemId)}
               />
             </TransparentButton>

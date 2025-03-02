@@ -12,18 +12,18 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { GroupedItems, ItemsDict, SceneTilePayload } from './utils/types';
+import type { GroupedItems, ItemsDict, SceneTilePayload, SubmitCrimePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
 
 type StepLocationSelectionProps = {
   user: GamePlayer;
   items: ItemsDict;
-  selections: PlainObject;
-  updateSelections: GenericFunction;
-  locationTiles: CrimeSceneTile[];
+  selections: SubmitCrimePayload;
+  updateSelections: (payload: SubmitCrimePayload) => void;
+  locationTile: CrimeSceneTile;
   groupedItems: GroupedItems;
-  goToStep: GenericFunction;
+  goToStep: (step: number) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepLocationSelection({
@@ -32,17 +32,17 @@ export function StepLocationSelection({
   items,
   selections,
   updateSelections,
-  locationTiles,
+  locationTile,
   groupedItems,
   goToStep,
 }: StepLocationSelectionProps) {
   const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 200 });
-  const [location, setLocation] = useState<PlainObject>();
+  const [locationIndex, setLocationIndex] = useState<number>();
 
   const userItems = groupedItems[user.itemGroupIndex];
 
   const onSelectItem = (payload: SceneTilePayload) => {
-    setLocation(payload);
+    setLocationIndex(payload.value);
   };
 
   return (
@@ -76,7 +76,6 @@ export function StepLocationSelection({
             <CrimeItemCard
               item={items[itemId]}
               cardWidth={cardWidth}
-              preview={false}
               isSelected={[selections.weaponId, selections.evidenceId].includes(itemId)}
             />
           </li>
@@ -84,22 +83,15 @@ export function StepLocationSelection({
       </ul>
 
       <div className="h-scene-tiles-list">
-        {locationTiles.map((tile) => (
-          <SceneTile
-            key={tile.id}
-            tile={tile}
-            onSelectValue={onSelectItem}
-            index={location?.tileId === tile.id ? location?.value : undefined}
-          />
-        ))}
+        <SceneTile tile={locationTile} onSelectValue={onSelectItem} index={locationIndex} />
       </div>
 
       <SpaceContainer>
         <ResetButton goToStep={goToStep} />
 
         <ContinueButton
-          disabled={location?.tileId === undefined}
-          onClick={() => updateSelections({ locationTile: location?.tileId, locationIndex: location?.value })}
+          disabled={locationIndex === undefined}
+          onClick={() => updateSelections({ locationIndex })}
         />
       </SpaceContainer>
     </Step>

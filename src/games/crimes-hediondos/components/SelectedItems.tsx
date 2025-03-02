@@ -31,7 +31,6 @@ export function SelectedItems({
         <CrimeItemCard
           item={items[weaponId]}
           cardWidth={cardWidth}
-          preview
           className={clsx(fadeWeapon && 'h-items-crime-selection__faded')}
         />
       </li>
@@ -42,7 +41,6 @@ export function SelectedItems({
         <CrimeItemCard
           item={items[evidenceId]}
           cardWidth={cardWidth}
-          preview
           className={clsx(fadeEvidence && 'h-items-crime-selection__faded')}
         />
       </li>

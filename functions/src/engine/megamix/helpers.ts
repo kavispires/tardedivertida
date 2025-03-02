@@ -364,7 +364,7 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
       } else if (tile.type === 'evidence') {
         acc.reasonForEvidenceTile = tile;
       } else if (tile.type === 'location') {
-        acc.locationTiles.push(tile);
+        acc.locationTile = tile;
       } else {
         if (tile.specific === 'weapon') {
           acc.weaponSceneTiles.push(tile);
@@ -380,7 +380,7 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
     {
       causeOfDeathTile: {},
       reasonForEvidenceTile: {},
-      locationTiles: [],
+      locationTile: [],
       weaponSceneTiles: [],
       evidenceSceneTiles: [],
       sceneTiles: [],
@@ -395,7 +395,7 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
     weapon: {
       scenes: {
         causeOfDeath: result.causeOfDeathTile,
-        location: result.locationTiles[0],
+        location: result.locationTile,
         sceneA: result.weaponSceneTiles[0],
         sceneB: result.sceneTiles[0],
         sceneC: result.sceneTiles[1],
@@ -411,7 +411,7 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
     evidence: {
       scenes: {
         reasonForEvidence: result.reasonForEvidenceTile,
-        location: result.locationTiles[0],
+        location: result.locationTile,
         sceneA: result.evidenceSceneTiles[0],
         sceneB: result.sceneTiles[2],
         sceneC: result.sceneTiles[3],

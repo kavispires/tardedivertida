@@ -1,15 +1,16 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Collapse } from 'antd';
+import { Collapse } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimeSceneTile } from 'types/tdr';
 // Components
+import { SendButton } from 'components/buttons';
 import { SceneTile } from 'components/game/SceneTile';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Crime, GroupedItems, ItemsDict, SceneTilePayload, ScenesDict } from './utils/types';
 import { CrimeSummary } from './components/CrimeSummary';
@@ -61,27 +62,29 @@ export function StepNewScene({
         />
       </RuleInstruction>
 
-      <Collapse
-        items={[
-          {
-            key: 'weapons-evidences',
-            label: (
-              <Translate
-                pt="Clique para ver todas Armas e Evidências"
-                en="Click to see all Weapons and Evidence"
-              />
-            ),
-            children: (
-              <GroupedItemsBoard
-                groupedItems={groupedItems}
-                items={items}
-                weaponId={user.weaponId}
-                evidenceId={user.evidenceId}
-              />
-            ),
-          },
-        ]}
-      />
+      <Instruction contained>
+        <Collapse
+          items={[
+            {
+              key: 'weapons-evidences',
+              label: (
+                <Translate
+                  pt="Clique para ver todas Armas e Evidências"
+                  en="Click to see all Weapons and Evidence"
+                />
+              ),
+              children: (
+                <GroupedItemsBoard
+                  groupedItems={groupedItems}
+                  items={items}
+                  weaponId={user.weaponId}
+                  evidenceId={user.evidenceId}
+                />
+              ),
+            },
+          ]}
+        />
+      </Instruction>
 
       <div className="">
         {crime && (
@@ -101,14 +104,13 @@ export function StepNewScene({
       <SceneTile tile={sceneTile} onSelectValue={onSelectItem} index={sceneMarkIndex} />
 
       <SpaceContainer>
-        <Button
-          type="primary"
+        <SendButton
           size="large"
           disabled={sceneMarkIndex === undefined}
           onClick={() => onSubmitMark({ sceneIndex: sceneMarkIndex })}
         >
           <Translate pt="Enviar" en="Send" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </Step>
   );
