@@ -66,6 +66,11 @@ const GAMES = [
     key: 'ESPIAO_ENTRE_NOS',
   },
   {
+    name: 'escape-room',
+    code: 'E',
+    key: 'ESCAPE_ROOM',
+  },
+  {
     name: 'esquiadores',
     code: 'E',
     key: 'ESQUIADORES',
