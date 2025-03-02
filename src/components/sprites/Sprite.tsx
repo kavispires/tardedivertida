@@ -30,14 +30,23 @@ type SpriteProps = {
    *
    */
   padding?: number;
-};
+} & ElementProps;
 
 /**
  * Loads a sprite from the Tarde Divertida sprites
  * @param {SpriteProps} props
  * @returns a single sprite item
  */
-export function Sprite({ id, source, width = 75, padding = 6, title, className }: SpriteProps) {
+export function Sprite({
+  id,
+  source,
+  width = 75,
+  padding = 6,
+  title,
+  className,
+  style,
+  ...props
+}: SpriteProps) {
   const baseUrl = useTDBaseUrl('sprites');
 
   const { isLoading, data, isError } = useQuery({
@@ -60,8 +69,10 @@ export function Sprite({ id, source, width = 75, padding = 6, title, className }
           padding,
           display: 'grid',
           placeItems: 'center',
+          ...style,
         }}
         className={className}
+        {...props}
       >
         <Spin />
       </span>
@@ -79,8 +90,10 @@ export function Sprite({ id, source, width = 75, padding = 6, title, className }
           padding,
           display: 'grid',
           placeItems: 'center',
+          ...style,
         }}
         className={className}
+        {...props}
       >
         <WarningOutlined />
       </span>
@@ -88,19 +101,28 @@ export function Sprite({ id, source, width = 75, padding = 6, title, className }
   }
 
   return (
-    <svg
-      viewBox="0 0 512 512"
-      style={{ width: `${paddedWidth}px`, height: `${paddedWidth}px`, padding }}
+    <span
+      style={{
+        width: `${paddedWidth}px`,
+        height: `${paddedWidth}px`,
+        padding,
+        display: 'grid',
+        placeItems: 'center',
+        ...style,
+      }}
       className={className}
+      {...props}
     >
-      <use xlinkHref={`#${id}`} dangerouslySetInnerHTML={{ __html: svgContent }} />
-      <foreignObject x="0" y="0" width="100%" height="100%">
-        {title && (
-          <Tooltip title={title}>
-            <div style={{ background: 'transparent', width: '100%', height: '100vh' }}></div>
-          </Tooltip>
-        )}
-      </foreignObject>
-    </svg>
+      <svg viewBox="0 0 512 512" style={{ width: `${paddedWidth}px`, height: `${paddedWidth}px` }}>
+        <use xlinkHref={`#${id}`} dangerouslySetInnerHTML={{ __html: svgContent }} />
+        <foreignObject x="0" y="0" width="100%" height="100%">
+          {title && (
+            <Tooltip title={title}>
+              <div style={{ background: 'transparent', width: '100%', height: '100vh' }}></div>
+            </Tooltip>
+          )}
+        </foreignObject>
+      </svg>
+    </span>
   );
 }

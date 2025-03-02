@@ -31,3 +31,15 @@ export function EmojiCard({ id, width, className }: EmojiCardProps) {
     </div>
   );
 }
+
+/**
+ * An emoji sprite component.
+ */
+export function EmojiSprite({
+  id,
+  width = 64,
+  ...props
+}: Pick<EmojiCardProps, 'id' | 'width'> & ElementProps) {
+  const emojiId = id.startsWith('emoji') ? id : `emoji-${id}`;
+  return <Sprite source="emojis" id={emojiId} width={width} padding={0} {...props} />;
+}
