@@ -19,10 +19,11 @@ const PRIORITY_LIST = [
     SETTINGS.TEORIA_DE_CONJUNTOS,
     SETTINGS.FILMACO,
     SETTINGS.PALAVREADO,
+    SETTINGS.AQUI_O,
+    SETTINGS.CONTROLE_DE_ESTOQUE,
+    SETTINGS.TA_NA_CARA,
+    SETTINGS.PICACO,
   ]),
-  ...shuffle([SETTINGS.AQUI_O, SETTINGS.CONTROLE_DE_ESTOQUE]),
-  SETTINGS.TA_NA_CARA,
-  SETTINGS.PICACO,
 ];
 
 const getUnplayedGames = () => {
@@ -60,7 +61,7 @@ export const NextGameSuggestion = () => {
 
   return (
     <div style={{ width: '84vw', maxWidth: 500 }}>
-      <Carousel autoplay autoplaySpeed={6000} dots={false}>
+      <Carousel autoplay autoplaySpeed={5000} dots={false}>
         {unplayedGames.map((entry, index) => (
           <div key={index}>{entry}</div>
         ))}
