@@ -54,19 +54,23 @@ export const getSource = (str: string) => {
  */
 export function WarehouseGoodCard({
   id,
-  width = 75,
+  width = 72,
   className,
   title,
   text,
-  padding,
+  padding = 6,
 }: WarehouseGoodCardProps) {
   const [source, goodId] = getSource(id);
 
   const height = text ? 'auto' : `${width}px`;
+  const divPadding = padding === 0 ? { padding: 0 } : {};
 
   return (
-    <div className={clsx('warehouse-good-card', className)} style={{ width: `${width}px`, height, padding }}>
-      <Sprite source={source} id={goodId} width={width} title={title} padding={padding} />
+    <div
+      className={clsx('warehouse-good-card', className)}
+      style={{ width: `${width}px`, height, ...divPadding }}
+    >
+      <Sprite source={source} id={goodId} width={width - padding * 2} title={title} padding={padding} />
       {!!text && (
         <span className="warehouse-good-card__text">
           <DualTranslate>{text}</DualTranslate>

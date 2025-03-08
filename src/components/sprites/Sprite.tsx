@@ -40,7 +40,7 @@ type SpriteProps = {
 export function Sprite({
   id,
   source,
-  width = 75,
+  width = 72,
   padding = 6,
   title,
   className,

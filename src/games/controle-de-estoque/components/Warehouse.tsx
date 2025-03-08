@@ -1,9 +1,13 @@
 import clsx from 'clsx';
-import type { Good, WarehouseSlot } from '../utils/types';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+// Icons
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
+import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+// Components
+import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+// Internal
+import type { Good, WarehouseSlot } from '../utils/types';
 
 type WarehouseProps = {
   goodsDict: Dictionary<Good>;
@@ -65,7 +69,6 @@ export function Warehouse({
               <div key={index} className={clsx('warehouse__shelf', 'warehouse__shelf-active')} style={size}>
                 <WarehouseGoodCard
                   id={good.id}
-                  padding={1}
                   width={width - 12}
                   className={clsx(getAnimationClass('bounce'), goodClassName)}
                 />

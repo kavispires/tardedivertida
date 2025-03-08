@@ -25,7 +25,7 @@ type SignCardProps = {
 export function SignCard({ id, width = 50, className = '' }: SignCardProps) {
   return (
     <div className={clsx('sign-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
-      <Sprite source="alien-signs" id={`sign-${id}`} width={width} />
+      <Sprite source="alien-signs" id={`sign-${id}`} width={width - 12} />
     </div>
   );
 }

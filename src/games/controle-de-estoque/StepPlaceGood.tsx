@@ -91,7 +91,6 @@ export function StepPlaceGood({
         <Instruction contained>
           <WarehouseGoodCard
             id={currentGood.id}
-            padding={1}
             width={cardWidth}
             className={clsx(
               bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS',
@@ -155,7 +154,6 @@ export function StepPlaceGood({
         ) : (
           <WarehouseGoodCard
             id={currentGood.id}
-            padding={1}
             width={cardWidth}
             className={clsx(bossIdea.id === BOSS_IDEAS_IDS.TINTED_GLASS && 'warehouse-good--TINTED_GLASS')}
           />
