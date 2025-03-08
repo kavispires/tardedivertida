@@ -6176,9 +6176,9 @@ hasown@^2.0.0:
     function-bind "^1.1.2"
 
 hast-util-to-jsx-runtime@^2.0.0:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/hast-util-to-jsx-runtime/-/hast-util-to-jsx-runtime-2.3.5.tgz#dd22fedd1aa87b44ed1ce68f3d15e30d6c7cb781"
-  integrity sha512-gHD+HoFxOMmmXLuq9f2dZDMQHVcplCVpMfBNRpJsF03yyLZvJGzsFORe8orVuYDX9k2w0VH0uF8oryFd1whqKQ==
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/hast-util-to-jsx-runtime/-/hast-util-to-jsx-runtime-2.3.2.tgz#6d11b027473e69adeaa00ca4cfb5bb68e3d282fa"
+  integrity sha512-1ngXYb+V9UT5h+PxNRa1O1FYguZK/XL+gkeqvp7EdHlB9oHUG0eYRo/vY5inBdcqo3RkPMC58/H94HvkbfGdyg==
   dependencies:
     "@types/estree" "^1.0.0"
     "@types/hast" "^3.0.0"
@@ -6190,7 +6190,7 @@ hast-util-to-jsx-runtime@^2.0.0:
     mdast-util-mdx-expression "^2.0.0"
     mdast-util-mdx-jsx "^3.0.0"
     mdast-util-mdxjs-esm "^2.0.0"
-    property-information "^7.0.0"
+    property-information "^6.0.0"
     space-separated-tokens "^2.0.0"
     style-to-object "^1.0.0"
     unist-util-position "^5.0.0"
@@ -7873,9 +7873,9 @@ methods@~1.1.2:
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
 
 micromark-core-commonmark@^2.0.0:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/micromark-core-commonmark/-/micromark-core-commonmark-2.0.3.tgz#c691630e485021a68cf28dbc2b2ca27ebf678cd4"
-  integrity sha512-RDBrHEMSxVFLg6xvnXmb1Ayr2WzLAWjeSATAoxwKYJV94TeNavgoIdA0a9ytzDSVzBy2YKFK+emCPOEibLeCrg==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/micromark-core-commonmark/-/micromark-core-commonmark-2.0.2.tgz#6a45bbb139e126b3f8b361a10711ccc7c6e15e93"
+  integrity sha512-FKjQKbxd1cibWMM1P9N+H8TwlgGgSkWZMmfuVucLCHaYqeSvJ0hFeHsIa65pA2nYbes0f8LDHPMrd9X7Ujxg9w==
   dependencies:
     decode-named-character-reference "^1.0.0"
     devlop "^1.0.0"
@@ -8024,9 +8024,9 @@ micromark-util-sanitize-uri@^2.0.0:
     micromark-util-symbol "^2.0.0"
 
 micromark-util-subtokenize@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/micromark-util-subtokenize/-/micromark-util-subtokenize-2.1.0.tgz#d8ade5ba0f3197a1cf6a2999fbbfe6357a1a19ee"
-  integrity sha512-XQLu552iSctvnEcgXw6+Sx75GflAPNED1qx7eBJ+wydBb2KCbRZe+NwvIEEMM83uml1+2WSXpBAcp9IUCgCYWA==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/micromark-util-subtokenize/-/micromark-util-subtokenize-2.0.4.tgz#50d8ca981373c717f497dc64a0dbfccce6c03ed2"
+  integrity sha512-N6hXjrin2GTJDe3MVjf5FuXpm12PGm80BrUAeub9XFXca8JZbP+oIwY4LJSVwFUCL1IPm/WwSVUN7goFHmSGGQ==
   dependencies:
     devlop "^1.0.0"
     micromark-util-chunked "^2.0.0"
@@ -8039,14 +8039,14 @@ micromark-util-symbol@^2.0.0:
   integrity sha512-vs5t8Apaud9N28kgCrRUdEed4UJ+wWNvicHLPxCa9ENlYuAY31M0ETy5y1vA33YoNPDFTghEbnh6efaE8h4x0Q==
 
 micromark-util-types@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/micromark-util-types/-/micromark-util-types-2.0.2.tgz#f00225f5f5a0ebc3254f96c36b6605c4b393908e"
-  integrity sha512-Yw0ECSpJoViF1qTU4DC6NwtC4aWGt1EkzaQB8KPPyCRR8z9TWeV0HbEFGTO+ZY1wB22zmxnJqhPyTpOVCpeHTA==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/micromark-util-types/-/micromark-util-types-2.0.1.tgz#a3edfda3022c6c6b55bfb049ef5b75d70af50709"
+  integrity sha512-534m2WhVTddrcKVepwmVEVnUAmtrx9bfIjNoQHRqfnvdaHQiFytEhJoTgpWJvDEXCO5gLTQh3wYC1PgOJA4NSQ==
 
 micromark@^4.0.0:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/micromark/-/micromark-4.0.2.tgz#91395a3e1884a198e62116e33c9c568e39936fdb"
-  integrity sha512-zpe98Q6kvavpCr1NPVSCMebCKfD7CA2NqZ+rykeNhONIJBpc1tFKt9hucLGwha3jNTNI8lHpctWJWoimVF4PfA==
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/micromark/-/micromark-4.0.1.tgz#294c2f12364759e5f9e925a767ae3dfde72223ff"
+  integrity sha512-eBPdkcoCNvYcxQOAKAlceo5SNdzZWfF+FcSupREAzdAh9rRmE239CEQAiTwIgblwnoM8zzj35sZ5ZwvSEOF6Kw==
   dependencies:
     "@types/debug" "^4.0.0"
     debug "^4.0.0"
@@ -9352,10 +9352,10 @@ prop-types@^15.7.2:
     object-assign "^4.1.1"
     react-is "^16.8.1"
 
-property-information@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/property-information/-/property-information-7.0.0.tgz#3508a6d6b0b8eb3ca6eb2c6623b164d2ed2ab112"
-  integrity sha512-7D/qOz/+Y4X/rzSB6jKxKUsQnphO046ei8qxG59mtM3RG3DHgTK81HrxrmoDVINJb8NKT5ZsRbwHvQ6B68Iyhg==
+property-information@^6.0.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/property-information/-/property-information-6.5.0.tgz#6212fbb52ba757e92ef4fb9d657563b933b7ffec"
+  integrity sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig==
 
 protobufjs@^7.2.4:
   version "7.2.5"
