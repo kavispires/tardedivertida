@@ -14,6 +14,7 @@ import { Title } from 'components/text';
 // Internal
 import type { OfferingsStatus, PhaseBasicState } from '../utils/types';
 import { BADGE_INSTRUCTION } from '../utils/constants';
+import { useSpriteWidth } from '../utils/useSpriteWidth';
 import { ObjectsKey } from './ObjectsKey';
 // Hook
 
@@ -42,6 +43,8 @@ export function SelectableObjectsGrid({
 }: SelectableObjectsGridProps) {
   const { isLoading } = useLoading();
   const { dualTranslate } = useLanguage();
+  const width = useSpriteWidth();
+
   return (
     <Space direction="vertical">
       <Title level={3} size="xx-small">
@@ -59,6 +62,7 @@ export function SelectableObjectsGrid({
                   id={`${item.id}`}
                   className={clsx(item.offerings.length && 'objects-grid__item-offered')}
                   title={item.name ? dualTranslate(item.name) : undefined}
+                  width={width}
                 />
               </Badge>
             </div>
@@ -81,6 +85,7 @@ export function SelectableObjectsGrid({
                   id={`${item.id}`}
                   className={clsx(item.offerings.length && 'objects-grid__item-offered')}
                   title={item.name ? dualTranslate(item.name) : undefined}
+                  width={width}
                 />
               </Badge>
             </TransparentButton>

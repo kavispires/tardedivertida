@@ -121,7 +121,7 @@ export function StepReveal({
             latestRequest.offers.map((entry) => {
               return (
                 <SpaceContainer key={`offer-${entry.playerId}-${entry.objectId}`} vertical>
-                  <ItemCard id={`${entry.objectId}`} className={''} width={50} />
+                  <ItemCard id={`${entry.objectId}`} className={''} width={48} />
                   <AvatarName player={players[entry.playerId]} />
                   <ItemResolution itemId={entry.objectId} items={items} />
                 </SpaceContainer>

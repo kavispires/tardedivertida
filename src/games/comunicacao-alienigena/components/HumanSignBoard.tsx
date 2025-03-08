@@ -60,7 +60,7 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
                   >
                     <DualTranslate>{attribute.name}</DualTranslate>*
                   </Tooltip>
-                  <SignCard id={`${attribute.spriteId}`} className="transparent" />
+                  <SignCard id={`${attribute.spriteId}`} className="transparent" width={48} />
                 </div>
               );
             }

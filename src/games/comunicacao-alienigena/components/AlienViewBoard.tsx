@@ -41,7 +41,7 @@ export function AlienViewBoard({
           className={clsx('alien-canvas alien-canvas--small alien-canvas--bot', className)}
           style={{ width: `${width}px`, height: `${height}px` }}
         >
-          <SignCard id={request} width={75} className="transparent" />
+          <SignCard id={request} width={72} className="transparent" />
         </div>
       );
     }
@@ -56,7 +56,7 @@ export function AlienViewBoard({
             <SignCard
               key={`request-${entry?.spriteId}`}
               id={entry.spriteId}
-              width={75}
+              width={72}
               className={clsx('bot-sign', `bot-sign--${entry.variant}`)}
             />
           );
