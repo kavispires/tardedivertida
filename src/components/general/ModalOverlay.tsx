@@ -48,45 +48,56 @@ export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, o
   };
 
   return (
-    <div className="simple-modal-overlay" onClick={handleOverlayClick}>
-      <AnimatePresence>
-        <motion.div
-          className="simple-modal-overlay__content"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.3 }}
-          transition={{ duration: 0.1 }}
-        >
-          <Button
-            shape="circle"
-            size="large"
-            ghost
-            variant="outlined"
-            className="simple-modal-overlay__close"
-            onClick={onClose}
-            icon={<CloseOutlined />}
-          />
-          <div
-            className="simple-modal-overlay__body"
-            style={{
-              transform: `scale(${scale}) rotate(${rotation}deg) scaleX(${flipX ? -1 : 1}) scaleY(${flipY ? -1 : 1})`,
-            }}
+    <AnimatePresence>
+      <motion.div
+        className="simple-modal-overlay"
+        onClick={handleOverlayClick}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.1 }}
+      >
+        <AnimatePresence>
+          <motion.div
+            className="simple-modal-overlay__content"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.3 }}
+            transition={{ duration: 0.05 }}
           >
-            {children}
-          </div>
-          <Space.Compact className="simple-modal-overlay__controls">
-            <Button onClick={zoomIn} ghost icon={<ZoomInOutlined />} />
+            <Button
+              shape="circle"
+              size="large"
+              ghost
+              variant="outlined"
+              className="simple-modal-overlay__close"
+              onClick={onClose}
+              icon={<CloseOutlined />}
+            />
+            <div
+              className="simple-modal-overlay__body"
+              style={{
+                transform: `scale(${scale}) rotate(${rotation}deg) scaleX(${flipX ? -1 : 1}) scaleY(${flipY ? -1 : 1})`,
+              }}
+            >
+              {children}
+            </div>
+            <div className="simple-modal-overlay__controls-container">
+              <Space.Compact className="simple-modal-overlay__controls">
+                <Button onClick={zoomIn} ghost icon={<ZoomInOutlined />} />
 
-            <Button onClick={zoomOut} ghost icon={<ZoomOutOutlined />} />
+                <Button onClick={zoomOut} ghost icon={<ZoomOutOutlined />} />
 
-            <Button onClick={rotateLeft} ghost icon={<RotateLeftOutlined />} />
-            <Button onClick={rotateRight} ghost icon={<RotateRightOutlined />} />
+                <Button onClick={rotateLeft} ghost icon={<RotateLeftOutlined />} />
+                <Button onClick={rotateRight} ghost icon={<RotateRightOutlined />} />
 
-            <Button onClick={toggleFlipX} ghost icon={<SwapOutlined />} />
-            <Button onClick={toggleFlipY} ghost icon={<SwapOutlined style={{ rotate: '90deg' }} />} />
-          </Space.Compact>
-        </motion.div>
-      </AnimatePresence>
-    </div>
+                <Button onClick={toggleFlipX} ghost icon={<SwapOutlined />} />
+                <Button onClick={toggleFlipY} ghost icon={<SwapOutlined style={{ rotate: '90deg' }} />} />
+              </Space.Compact>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
+    </AnimatePresence>
   );
 };

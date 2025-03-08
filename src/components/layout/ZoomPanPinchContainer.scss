@@ -1,0 +1,27 @@
+@use "styles/sass" as *;
+
+.zoom-pan-pinch-wrapper {
+  min-width: 500px;
+  min-height: 500px;
+  background-color: get-color("white", 5, 0.15);
+  border-radius: $border-radius;
+}
+
+.zoom-pan-pinch-controls {
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &--top {
+    top: get-unit(1);
+  }
+
+  &--bottom {
+    bottom: get-unit(1);
+  }
+}
+
+.zoom-pan-pinch-content {
+  background: green;
+}
