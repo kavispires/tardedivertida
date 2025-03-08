@@ -20,13 +20,20 @@
 
   &__close {
     position: absolute;
-    right: get-unit(6);
-    top: get-unit(6);
+    right: get-unit(12);
+    top: get-unit(12);
+  }
+
+  &__controls-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: get-unit(6);
+    display: flex;
+    justify-content: center;
   }
 
   &__controls {
-    position: absolute;
-    bottom: get-unit(6);
     display: flex;
     justify-content: space-between;
   }
