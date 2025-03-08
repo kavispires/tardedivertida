@@ -5,6 +5,8 @@ import { Spin, Tooltip } from 'antd';
 // Hooks
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 
+export const DEFAULT_SPRITE_SIZE = 72;
+
 type SpriteProps = {
   /**
    * The sprite source name
@@ -27,7 +29,7 @@ type SpriteProps = {
    */
   className?: string;
   /**
-   *
+   * Optional padding
    */
   padding?: number;
 } & ElementProps;
@@ -40,8 +42,8 @@ type SpriteProps = {
 export function Sprite({
   id,
   source,
-  width = 72,
-  padding = 6,
+  width = DEFAULT_SPRITE_SIZE,
+  padding = 0,
   title,
   className,
   style,

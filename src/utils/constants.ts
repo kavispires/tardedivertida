@@ -2,6 +2,12 @@
 import type { GamePlayer } from 'types/player';
 
 /**
+ * CSS unit size
+ */
+export const UNIT_SIZE = 3;
+export const DEFAULT_PADDING = UNIT_SIZE * 2;
+
+/**
  * List of urls residing in the public folder
  */
 export const PUBLIC_URL = {
@@ -297,27 +303,6 @@ export const GAME_COLLECTION = {
   VINGATIVOS: 'vingativos',
 };
 
-/**
- * @deprecated
- */
-// export const THEME_COLORS = {
-//   BLOOD: '#ab0d17', // dark red
-//   DEFAULT: '#1890ff',
-//   GRASS: '#007A5A',
-//   FOREST: '#227168',
-//   HOT_PINK: '#FF47DA',
-//   LIME: '#1CC41C',
-//   MIDNIGHT: '#4B2142', // dark teal
-//   ORANGE: '#ea7702',
-//   PLUMP_PURPLE: '#6052a8',
-//   RUSSIAN_VIOLET: '#301A4B', // dark purple
-//   SLATE: '#7d8388', // gray
-//   WINE: '#4B2142',
-//   WOOD: '#8C4103', // brown,
-//   MOSS: '#9ea63b', //green ish
-//   DARK_BLUE: '#0f4364f2',
-// };
-
 export const PLACEHOLDER_PLAYER: GamePlayer = {
   id: '',
   name: '',
@@ -327,5 +312,3 @@ export const PLACEHOLDER_PLAYER: GamePlayer = {
 };
 
 export const VIEWER_ID = '$viewer$';
-
-export const TOTAL_ALIEN_ITEMS = '1418';

@@ -1,6 +1,8 @@
 import clsx from 'clsx';
+// Utils
+import { DEFAULT_PADDING } from 'utils/constants';
 // Components
-import { Sprite } from 'components/sprites';
+import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Sass
 import './EmojiCard.scss';
 
@@ -10,9 +12,13 @@ type EmojiCardProps = {
    */
   id: string;
   /**
-   * The width of the emoji
+   * The width of the emoji (default: 72)
    */
   width?: number;
+  /**
+   * The padding size
+   */
+  padding?: number;
   /**
    * Optional class name
    */
@@ -22,12 +28,22 @@ type EmojiCardProps = {
 /**
  * An emoji card component.
  */
-export function EmojiCard({ id, width, className }: EmojiCardProps) {
+export function EmojiCard({
+  id,
+  width = DEFAULT_SPRITE_SIZE,
+  padding = DEFAULT_PADDING,
+  className,
+}: EmojiCardProps) {
   const emojiId = id.startsWith('emoji') ? id : `emoji-${id}`;
 
+  const divPadding = padding === 0 ? { padding: 0 } : {};
+
   return (
-    <div className={clsx('emoji-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
-      <Sprite source="emojis" id={emojiId} width={width} />
+    <div
+      className={clsx('emoji-card', className)}
+      style={{ width: `${width}px`, height: `${width}px`, ...divPadding }}
+    >
+      <Sprite source="emojis" id={emojiId} width={width} padding={padding} />
     </div>
   );
 }
@@ -37,7 +53,7 @@ export function EmojiCard({ id, width, className }: EmojiCardProps) {
  */
 export function EmojiSprite({
   id,
-  width = 64,
+  width = DEFAULT_SPRITE_SIZE,
   ...props
 }: Pick<EmojiCardProps, 'id' | 'width'> & ElementProps) {
   const emojiId = id.startsWith('emoji') ? id : `emoji-${id}`;
