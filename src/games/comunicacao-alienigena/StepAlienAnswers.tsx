@@ -125,7 +125,7 @@ export function StepAlienAnswers({
 
       <SpaceContainer wrap>
         {currentInquiry.map((itemId) => (
-          <ItemCard key={`inquiry-${itemId}`} id={itemId} />
+          <ItemCard key={`inquiry-${itemId}`} id={itemId} width={64} />
         ))}
       </SpaceContainer>
 

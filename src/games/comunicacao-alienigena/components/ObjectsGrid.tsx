@@ -11,6 +11,7 @@ import { Title } from 'components/text';
 // Internal
 import type { OfferingsStatus, PhaseBasicState } from '../utils/types';
 import { BADGE_INSTRUCTION } from '../utils/constants';
+import { useSpriteWidth } from '../utils/useSpriteWidth';
 import { ObjectsKey } from './ObjectsKey';
 
 type ObjectsGridProps = {
@@ -23,6 +24,8 @@ type ObjectsGridProps = {
 
 export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, status }: ObjectsGridProps) {
   const { dualTranslate } = useLanguage();
+  const width = useSpriteWidth();
+
   return (
     <Space direction="vertical">
       <Title level={3} size="xx-small">
@@ -43,6 +46,7 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, 
                 id={`${item.id}`}
                 className={clsx(item.offerings.length > 0 && 'objects-grid__item-offered')}
                 title={item.name ? dualTranslate(item.name) : undefined}
+                width={width}
               />
             </Badge>
 
