@@ -34,7 +34,7 @@ export function PhaseAlienAnswer({ players, state }: PhaseProps<PhaseAlienAnswer
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
-    ></PhaseAnnouncement>
+    />
   );
 
   return (

@@ -80,7 +80,7 @@ function Offerings({ offers, players, items }: OfferingsProps) {
     <Space>
       {offers.map((offer) => (
         <Space direction="vertical" align="center" key={`offer-${offer.objectId}-${offer.playerId}`}>
-          <ItemCard id={`${offer.objectId}`} className={'objects-grid__item-offered'} width={50} />
+          <ItemCard id={`${offer.objectId}`} className={'objects-grid__item-offered'} width={48} />
           <AvatarName size="small" player={players[offer.playerId]} />
           <ItemResolution itemId={offer.objectId} items={items} />
         </Space>
