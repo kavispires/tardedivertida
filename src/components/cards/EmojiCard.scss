@@ -1,7 +1,6 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .emoji-card {
-  background: get-color('white', 5, 0.1);
-  padding: get-unit(2);
+  background: get-color("white", 5, 0.1);
   border-radius: $border-radius;
 }

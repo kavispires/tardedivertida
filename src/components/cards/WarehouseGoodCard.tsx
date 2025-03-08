@@ -1,7 +1,9 @@
 import clsx from 'clsx';
+// Utils
+import { DEFAULT_PADDING } from 'utils/constants';
 // Components
 import { DualTranslate } from 'components/language';
-import { Sprite } from 'components/sprites';
+import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Sass
 import './WarehouseGoodCard.scss';
 
@@ -54,11 +56,11 @@ export const getSource = (str: string) => {
  */
 export function WarehouseGoodCard({
   id,
-  width = 72,
+  width = DEFAULT_SPRITE_SIZE,
   className,
   title,
   text,
-  padding = 6,
+  padding = DEFAULT_PADDING,
 }: WarehouseGoodCardProps) {
   const [source, goodId] = getSource(id);
 
@@ -70,7 +72,7 @@ export function WarehouseGoodCard({
       className={clsx('warehouse-good-card', className)}
       style={{ width: `${width}px`, height, ...divPadding }}
     >
-      <Sprite source={source} id={goodId} width={width - padding * 2} title={title} padding={padding} />
+      <Sprite source={source} id={goodId} width={width} title={title} padding={padding} />
       {!!text && (
         <span className="warehouse-good-card__text">
           <DualTranslate>{text}</DualTranslate>
@@ -82,7 +84,7 @@ export function WarehouseGoodCard({
 
 export function WarehouseGoodSprite({
   id,
-  width = 64,
+  width = DEFAULT_SPRITE_SIZE,
   ...props
 }: Pick<WarehouseGoodCardProps, 'id' | 'width'> & ElementProps) {
   const [source, glyphId] = getSource(id);

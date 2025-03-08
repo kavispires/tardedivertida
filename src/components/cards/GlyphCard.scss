@@ -1,7 +1,6 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .glyph-card {
-  background: get-color('white');
-  padding: get-unit(2);
+  background: get-color("white");
   border-radius: $border-radius;
 }
