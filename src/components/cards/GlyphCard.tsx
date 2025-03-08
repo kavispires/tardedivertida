@@ -1,6 +1,8 @@
 import clsx from 'clsx';
+// Utils
+import { DEFAULT_PADDING } from 'utils/constants';
 // Components
-import { Sprite } from 'components/sprites';
+import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Sass
 import './GlyphCard.scss';
 
@@ -10,13 +12,17 @@ type GlyphCardProps = {
    */
   id: number | string;
   /**
-   * The width of the glyph
+   * The width of the glyph (default: 72)
    */
   width?: number;
   /**
    * Optional class name
    */
   className?: string;
+  /**
+   * Optional padding
+   */
+  padding?: number;
 };
 
 const BASE = 128;
@@ -37,12 +43,22 @@ const getSource = (numId: number) => {
 /**
  * A glyph card component.
  */
-export function GlyphCard({ id, width, className }: GlyphCardProps) {
+export function GlyphCard({
+  id,
+  width = DEFAULT_SPRITE_SIZE,
+  padding = DEFAULT_PADDING,
+  className,
+}: GlyphCardProps) {
   const [source, glyphId] = getSource(+id);
 
+  const divPadding = padding === 0 ? { padding: 0 } : {};
+
   return (
-    <div className={clsx('glyph-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
-      <Sprite source={source} id={glyphId} width={width ? width - 12 : undefined} padding={0} />
+    <div
+      className={clsx('glyph-card', className)}
+      style={{ width: `${width}px`, height: `${width}px`, ...divPadding }}
+    >
+      <Sprite source={source} id={glyphId} width={width} padding={padding} />
     </div>
   );
 }
@@ -52,7 +68,7 @@ export function GlyphCard({ id, width, className }: GlyphCardProps) {
  */
 export function GlyphSprite({
   id,
-  width = 64,
+  width = DEFAULT_SPRITE_SIZE,
   ...props
 }: Pick<GlyphCardProps, 'id' | 'width'> & ElementProps) {
   const [source, glyphId] = getSource(+id);

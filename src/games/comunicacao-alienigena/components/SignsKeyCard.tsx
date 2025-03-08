@@ -112,7 +112,7 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
                   {Boolean(cache[attribute.id]) && !isStarting && <CheckCircleFilled />}
                 </TransparentButton>
               </Popconfirm>
-              <SignCard id={`${attribute.spriteId}`} className="transparent" />
+              <SignCard id={`${attribute.spriteId}`} className="transparent" width={48} />
             </div>
           );
         })}
