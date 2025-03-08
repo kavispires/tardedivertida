@@ -53,7 +53,7 @@ export const getSource = memoize((str: string) => {
 /**
  * An item card component.
  */
-export function ItemCard({ id, width = 75, className, title, text, padding }: ItemCardProps) {
+export function ItemCard({ id, width = 72, className, title, text, padding = 6 }: ItemCardProps) {
   const [source, itemId] = getSource(id);
 
   const height = text ? 'auto' : `${width}px`;
@@ -61,7 +61,13 @@ export function ItemCard({ id, width = 75, className, title, text, padding }: It
 
   return (
     <div className={clsx('item-card', className)} style={{ width: `${width}px`, height, ...divPadding }}>
-      <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
+      <Sprite
+        source={source}
+        id={itemId}
+        width={width - (padding ?? 0) * 2}
+        title={title}
+        padding={padding}
+      />
       {!!text && (
         <span className="item-card__text">
           <DualTranslate>{text}</DualTranslate>
