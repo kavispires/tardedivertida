@@ -1,1 +1,0 @@
-import{r as u}from"./index-CvDHz3DL.js";function l(o){var t=u.useRef();t.current=o;var c=u.useCallback(function(){for(var r,e=arguments.length,a=new Array(e),n=0;n<e;n++)a[n]=arguments[n];return(r=t.current)===null||r===void 0?void 0:r.call.apply(r,[t].concat(a))},[]);return c}export{l as u};

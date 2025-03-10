@@ -1,0 +1,1 @@
+import{j as s}from"./index-CBFY72Gq.js";import{C as t}from"./CustomAvatarWrapper-B0QRpCIH.js";const e="/tarde-divertida/assets/clubbers-BX3QroLG.svg",b=r=>s.jsx(t,{sprite:e,prefix:"clubber",...r});export{b as C};

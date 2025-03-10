@@ -1,1 +1,0 @@
-import{z as s,r as e,j as r}from"./index-CvDHz3DL.js";import{u}from"./useAudio-BYNNMpOC.js";const n="/tarde-divertida/assets/airhorn-oHat7aJE.mp3",i=n;function l(){const[o]=s("volume"),[t,,a]=u({src:i,autoPlay:!0});return e.useEffect(()=>{a.volume(o)},[o]),r.jsx(r.Fragment,{children:t})}export{l as D};
