@@ -1,8 +1,7 @@
+import { useStore } from '@tanstack/react-store';
+import { Store } from '@tanstack/store';
 import { isEqual } from 'lodash';
-import { createGlobalState } from 'react-hooks-global-state';
 import { useEffectOnce } from 'react-use';
-
-const APP_NAME = 'TD';
 
 type LocalStorageState = {
   username: string;
@@ -30,7 +29,13 @@ const initialState: LocalStorageState = {
   blurredCards: {},
 };
 
-const { useGlobalState, setGlobalState } = createGlobalState(initialState);
+const localStorageStore = new Store<LocalStorageState>(initialState);
+
+const setValue = <K extends keyof LocalStorageState>(property: K, value: LocalStorageState[K] | null) => {
+  localStorageStore.setState((prev) => ({ ...prev, [property]: value }));
+};
+
+const APP_NAME = 'TD';
 
 /**
  * Returns the key for storing a value in local storage.
@@ -48,16 +53,16 @@ export const getKey = (property: string) => `${APP_NAME}_${property}`;
  * @returns A tuple containing the current value and a setter function to update the value.
  */
 export function useGlobalLocalStorage<K extends keyof LocalStorageState>(property: K) {
-  const [value, setGlobalState] = useGlobalState(property);
+  const { [property]: value } = useStore(localStorageStore, () => localStorageStore.state);
 
   const updateValue = (newValue: LocalStorageState[K] | null) => {
     const localStorageKey = getKey(property);
     window.localStorage.setItem(localStorageKey, JSON.stringify(newValue));
 
     if (newValue === null || newValue === undefined) {
-      setGlobalState(initialState[property]);
+      setValue(property, initialState[property]);
     } else {
-      setGlobalState(newValue);
+      setValue(property, newValue);
     }
   };
 
@@ -87,5 +92,5 @@ export function setGlobalLocalStorage<K extends keyof LocalStorageState>(
 ) {
   const localStorageKey = getKey(property);
   window.localStorage.setItem(localStorageKey, JSON.stringify(value));
-  setGlobalState(property, value === null ? initialState[property] : value);
+  setValue(property, value === null ? initialState[property] : value);
 }

@@ -1,42 +1,37 @@
-import { useEffect, useState } from 'react';
-import { createGlobalState } from 'react-hooks-global-state';
+import { useStore } from '@tanstack/react-store';
+import { Store } from '@tanstack/store';
 
-type InitialState = {
+type ErrorState = {
   errors: StringDictionary;
 };
 
-const initialState: InitialState = {
+const errorsStore = new Store<ErrorState>({
   errors: {},
-};
+});
 
-// Keep error global state consistent even with multiple uses of useError
-const { useGlobalState: useLoadersState } = createGlobalState(initialState);
+const setError = (key: string, value?: string) => {
+  errorsStore.setState((prev) => {
+    const updatedErrors = { ...prev.errors };
 
-type UseError = {
-  isError: boolean;
-  setError: (key: string, value: string) => void;
-  errors: StringDictionary;
+    if (value) {
+      updatedErrors[key] = value;
+    } else {
+      delete updatedErrors[key]; // Remove the error if no value is provided
+    }
+
+    return { errors: updatedErrors };
+  });
 };
 
 /**
- * Aggregate error states into a single object, and single isError state
- * @returns
+ * Custom hook to manage error states using a store.
+ * @returns An object containing:
+ * - `isError`: A boolean indicating if there are any errors.
+ * - `setError`: A function to set or remove an error by key.
+ * - `errors`: An object containing the current errors.
  */
-export function useError(): UseError {
-  const [isError, setIsError] = useState(false);
-  const [errors, setErrors] = useLoadersState('errors');
+export function useError() {
+  const { errors } = useStore(errorsStore, () => errorsStore.state);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    setIsError(Object.values(errors).some((v) => v));
-  }, [errors, setIsError]);
-
-  const setError = (key: string, value: string) => {
-    setErrors((values) => ({
-      ...values,
-      [key]: value,
-    }));
-  };
-
-  return { isError, setError, errors };
+  return { isError: Object.values(errors).some((v) => v), setError, errors };
 }
