@@ -2,8 +2,8 @@ import clsx from 'clsx';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Images
-import avatars from 'assets/images/avatars.svg';
-import sheep from 'assets/images/sheep.svg';
+import avatars from 'assets/images/avatars.svg?url';
+import sheep from 'assets/images/sheep.svg?url';
 
 type SheepAvatarProps = {
   id?: string;

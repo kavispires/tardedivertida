@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Images
-import categories from './category-icons.svg';
+import categories from './category-icons.svg?url';
 
 type CategoryIconProps = {
   /**

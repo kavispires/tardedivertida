@@ -19,7 +19,7 @@ import { HostButton, HostOnlyContainer } from 'components/host';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Images
-import avatars from 'assets/images/avatars.svg';
+import avatars from 'assets/images/avatars.svg?url';
 
 const Title = motion(Typography.Title);
 const Paragraph = motion(Typography.Paragraph);

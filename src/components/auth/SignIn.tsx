@@ -15,7 +15,7 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg';
+import logo from 'assets/images/tarde-divertida-logo.svg?url';
 
 type SignInProps = {
   onSuccess: GenericFunction;

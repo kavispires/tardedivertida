@@ -11,7 +11,7 @@ import { RuleInstruction } from 'components/text';
 // Internal
 import type { HistoryEntry } from '../utils/types';
 // Images
-import featuresIcons from './feature-icons.svg';
+import featuresIcons from './feature-icons.svg?url';
 
 type ScoreTrackProps = {
   history: HistoryEntry[];
