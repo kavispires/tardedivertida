@@ -1,0 +1,1 @@
+function r(e){const s="https://www.kavispires.com";switch(e){case"images":return`${s}/td-images/images`;case"sprites":return`${s}/td-sprites`;case"resources":return`${s}/td-resources/resources`;case"classic":return`${s}/td-classic/images`;default:throw new Error("Invalid library")}}export{r as u};

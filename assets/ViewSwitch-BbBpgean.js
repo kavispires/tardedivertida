@@ -1,0 +1,1 @@
+function o({cases:r,children:t}){if(r.length>5)throw Error("ViewSwitch only supports up to 5 cases");return r[0]&&t[0]?t[0]:r[1]&&t[1]?t[1]:r[2]&&t[2]?t[2]:r[3]&&t[3]?t[3]:r[4]&&t[4]?t[4]:(console.warn("Rendering all children in the ViewSwitch"),t)}export{o as V};
