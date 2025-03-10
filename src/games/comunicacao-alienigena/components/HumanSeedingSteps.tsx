@@ -127,7 +127,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
             const key = `${item.id}${SEPARATOR}${seed.attribute.id}`;
             return (
               <Flex vertical justify="center" align="center" gap="small" key={key}>
-                <ItemCard id={`${item.id}`} text={item.name} width={48} />
+                <ItemCard id={`${item.id}`} text={item.name} width={84} />
                 <Switch
                   checkedChildren={<Translate pt="Sim" en="Yes" />}
                   unCheckedChildren={<Translate pt="Não" en="No" />}
