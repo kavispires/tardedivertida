@@ -1,4 +1,5 @@
-import { createGlobalState } from 'react-hooks-global-state';
+import { useStore } from '@tanstack/react-store';
+import { Store } from '@tanstack/store';
 // Types
 import type { GamePlayer } from 'types/player';
 // Utils
@@ -42,11 +43,20 @@ const initialState: InitialState = {
   usingFunctionsEmulator: false,
 };
 
-const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);
+const globalStore = new Store<InitialState>(initialState);
 
-function resetGlobalState() {
+export const setGlobalState = <K extends keyof InitialState>(property: K, value: InitialState[K]) => {
+  globalStore.setState((prev) => ({ ...prev, [property]: value }));
+};
+
+export const useGlobalState = <K extends keyof InitialState>(property: K) => {
+  const { [property]: value } = useStore(globalStore, () => globalStore.state);
+
+  return [value, (newValue: InitialState[K]) => setGlobalState(property, newValue)] as const;
+};
+
+export const resetGlobalState = () => {
   setGlobalState('userId', initialState.userId);
   setGlobalState('username', initialState.username);
   setGlobalState('userAvatarId', initialState.userAvatarId);
-}
-export { setGlobalState, getGlobalState, useGlobalState, resetGlobalState };
+};
