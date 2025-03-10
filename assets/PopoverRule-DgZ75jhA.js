@@ -1,0 +1,1 @@
+import{j as o,T as t}from"./index-D3vq3Txu.js";import{F as n}from"./speech-Bw06OD1w.js";import{b as p}from"./RulesModal-C-bKjao-.js";function u({content:e,label:s,showLabel:r=!1}){return o.jsx(n,{type:"popover",position:0,icon:o.jsx(p,{}),content:e,label:s||o.jsx(t,{pt:" Regras",en:" Rules"}),showLabel:r})}export{u as P};
