@@ -103,7 +103,7 @@ sort_imports() {
   # Find and sort the imports in .ts and .tsx files, then re-add them to the staging area
   git diff --name-only --cached | grep -E '^src/.*\.(ts|tsx)$' | while read -r file; do
     if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
-      node ./scripts/sort-imports.js "$file"
+      node ./scripts/sort-imports.cjs "$file"
       npx biome check --staged --write "$file"
       git add "$file"
       echo "   ➕ Sorted and re-added $file to staging."

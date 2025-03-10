@@ -24,7 +24,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { RateGameWidget } from './RateGameWidget';
 // Images
-import gameOverTitle from 'assets/images/game-over-title.svg';
+import gameOverTitle from 'assets/images/game-over-title.svg?url';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
