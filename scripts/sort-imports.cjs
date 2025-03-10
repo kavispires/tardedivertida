@@ -125,7 +125,7 @@ const sortImports = (imports) => {
       groups.sass.push(line);
     }
     // Images imports
-    else if (line.endsWith(".png';") || line.endsWith(".svg';") || line.endsWith(".jpg';")) {
+    else if (line.endsWith(".png';") || line.endsWith(".svg';") || line.endsWith(".jpg';") || line.endsWith(".svg?url';")) {
       groups.images.push(line);
     }
     // Relative imports

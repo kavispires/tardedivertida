@@ -1,7 +1,7 @@
 import Tooltip from 'antd/lib/tooltip';
 import clsx from 'clsx';
 // Images
-import trees from 'assets/images/trees.svg';
+import trees from 'assets/images/trees.svg?url';
 // Sass
 import './TreeCard.scss';
 

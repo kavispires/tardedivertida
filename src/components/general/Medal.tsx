@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Images
-import medals from 'assets/images/medals.svg';
+import medals from 'assets/images/medals.svg?url';
 
 type MedalProps = {
   /**

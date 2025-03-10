@@ -14,8 +14,8 @@ import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Images
-import roundTitleEn from 'assets/images/round-title-en.svg';
-import roundTitlePt from 'assets/images/round-title-pt.svg';
+import roundTitleEn from 'assets/images/round-title-en.svg?url';
+import roundTitlePt from 'assets/images/round-title-pt.svg?url';
 
 type RoundAnnouncementProps = {
   /**

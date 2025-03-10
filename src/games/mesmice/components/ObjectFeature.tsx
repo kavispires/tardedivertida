@@ -6,7 +6,7 @@ import { DualTranslate } from 'components/language';
 // Internal
 import type { ExtendedObjectFeatureCard } from '../utils/types';
 // Images
-import featuresIcons from './feature-icons.svg';
+import featuresIcons from './feature-icons.svg?url';
 
 type ObjectFeatureProps = {
   feature: ExtendedObjectFeatureCard;

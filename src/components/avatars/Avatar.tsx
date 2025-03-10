@@ -1,7 +1,10 @@
 import clsx from 'clsx';
+// Ant Design Resources
 import { Avatar as AntAvatar, type AvatarProps as AntAvatarProps } from 'antd';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import avatars from 'assets/images/avatars.svg';
+// Images
+import avatars from 'assets/images/avatars.svg?url';
 
 export interface AvatarProps extends AntAvatarProps {
   /**

@@ -9,7 +9,7 @@ import { signIn } from 'services/firebase';
 // Components
 import { PageLayout } from 'components/layout/PageLayout';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg';
+import logo from 'assets/images/tarde-divertida-logo.svg?url';
 
 const layout = {
   labelCol: { span: 8 },

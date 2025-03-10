@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Images
-import avatars from 'assets/images/avatars.svg';
+import avatars from 'assets/images/avatars.svg?url';
 // Sass
 import './ClubberAvatar.scss';
 

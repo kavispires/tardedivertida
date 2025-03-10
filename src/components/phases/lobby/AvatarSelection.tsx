@@ -12,7 +12,7 @@ import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { TransparentButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 // Images
-import avatars from 'assets/images/avatars.svg';
+import avatars from 'assets/images/avatars.svg?url';
 type AvatarSelectionProps = {
   players: GamePlayers;
   selectedAvatar: string;

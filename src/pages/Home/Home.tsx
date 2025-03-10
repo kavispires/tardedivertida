@@ -17,7 +17,7 @@ import { PageLayout } from 'components/layout/PageLayout';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg';
+import logo from 'assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import './Home.scss';
 

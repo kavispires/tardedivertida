@@ -16,7 +16,7 @@ import { Instruction, Title } from 'components/text';
 // Internal
 import { SignUpForm } from './SignUp';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg';
+import logo from 'assets/images/tarde-divertida-logo.svg?url';
 
 type ConvertGuestToAccountProps = {
   onSuccess: GenericFunction;

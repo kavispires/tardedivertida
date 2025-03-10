@@ -20,7 +20,7 @@ function sortImportsRecursive(folderPath) {
       sortImportsRecursive(fullPath); // Recursively sort imports in subdirectories
     } else if (fileOrDir.endsWith('.ts') || fileOrDir.endsWith('.tsx')) {
       try {
-        execSync(`node ${path.join(__dirname, 'sort-imports.js')} ${fullPath}`, {
+        execSync(`node ${path.join(__dirname, 'sort-imports.cjs')} ${fullPath}`, {
           stdio: 'inherit',
         });
         console.log('♻️ Imports sorted successfully in', fullPath);

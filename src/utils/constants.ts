@@ -11,16 +11,16 @@ export const DEFAULT_PADDING = UNIT_SIZE * 2;
  * List of urls residing in the public folder
  */
 export const PUBLIC_URL = {
-  BANNERS: `${process.env.PUBLIC_URL}/images/banners/`,
-  CARDS: `${process.env.PUBLIC_URL}/images/cards/`,
-  CLOUDS: `${process.env.PUBLIC_URL}/images/clouds/`,
-  EXAMPLES: `${process.env.PUBLIC_URL}/images/examples/`,
-  IN_GAME: `${process.env.PUBLIC_URL}/images/in-game/`,
-  RULES: `${process.env.PUBLIC_URL}/images/rules/`,
-  ROOT: `${process.env.PUBLIC_URL}/images/`,
-  RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
-  LOGOS: `${process.env.PUBLIC_URL}/images/logos/`,
-  STRIPS: `${process.env.PUBLIC_URL}/images/strips/`,
+  BANNERS: 'images/banners/',
+  CARDS: 'images/cards/',
+  CLOUDS: 'images/clouds/',
+  EXAMPLES: 'images/examples/',
+  IN_GAME: 'images/in-game/',
+  RULES: 'images/rules/',
+  ROOT: 'images/',
+  RESOURCES: 'resources/',
+  LOGOS: 'images/logos/',
+  STRIPS: 'images/strips/',
 };
 
 /**

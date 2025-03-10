@@ -1,14 +1,21 @@
-import type { MountainDilemma } from '../utils/types';
-import { useCardWidth } from 'hooks/useCardWidth';
-import mountainIcons from './mountain-icons.svg';
 import clsx from 'clsx';
-import { forwardRef, useEffect, useRef } from 'react';
-import type { GamePlayer } from 'types/player';
-import { IconAvatar } from 'components/avatars';
-import { SkierIcon } from 'icons/SkierIcon';
-import { getAvatarColorById } from 'utils/helpers';
 import { motion, useAnimation, useAnimate } from 'framer-motion';
+import { forwardRef, useEffect, useRef } from 'react';
+// Types
+import type { GamePlayer } from 'types/player';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
 import { useMouseDirection } from 'hooks/useMouseDirection';
+// Utils
+import { getAvatarColorById } from 'utils/helpers';
+// Icons
+import { SkierIcon } from 'icons/SkierIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
+// Internal
+import type { MountainDilemma } from '../utils/types';
+// Images
+import mountainIcons from './mountain-icons.svg?url';
 
 type MountainProps = {
   mountain: MountainDilemma[];
