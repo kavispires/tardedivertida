@@ -6,7 +6,7 @@ import svgr from 'vite-plugin-svgr';
 import vitetsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  base: '/tarde-divertida/',
+  base: '/tardedivertida/',
   plugins: [
     react(),
     vitetsConfigPaths(),
