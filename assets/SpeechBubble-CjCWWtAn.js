@@ -1,0 +1,1 @@
+import{j as c,e as l}from"./index-bBiYI0CQ.js";function n({children:a,direction:t="left",shadow:o,size:e,...b}){const s="speech-bubble";return c.jsx("div",{...b,className:l(s,`${s}--${t}`,o&&`${s}--shadow`,e&&`${s}--${e}`),children:a})}export{n as S};
