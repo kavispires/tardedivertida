@@ -1,5 +1,5 @@
-@use 'sass:math';
-@use 'styles/sass' as *;
+@use "sass:math";
+@use "styles/sass" as *;
 
 .background {
   background: linear-gradient(-45deg, #403699, #c549ce, #2d5cca, #403699, #2d5cca, #c549ce);
@@ -10,7 +10,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: get-color('black');
+  background-color: get-color("black");
   border-radius: $border-radius;
 }
 
@@ -35,7 +35,7 @@
   transform: translateX(-50%);
 
   &:hover.ant-btn {
-    background-color: get-color('white');
+    background-color: get-color("white");
   }
 }
 
@@ -62,7 +62,7 @@
   box-sizing: border-box;
 
   &--selected {
-    border-color: get-color('yellow');
+    border-color: get-color("yellow");
   }
 }
 
@@ -89,7 +89,7 @@
     padding: get-unit(1);
     border-radius: $border-radius;
     flex-wrap: wrap;
-    color: get-color('white');
+    color: get-color("white");
   }
 
   &__player {
@@ -106,8 +106,8 @@
     }
 
     &--nightmare {
-      border: 2px solid get-color('black');
-      color: get-color('black');
+      border: 2px solid get-color("black");
+      color: get-color("black");
     }
   }
 
@@ -130,17 +130,17 @@
   grid-template-rows: repeat(5 auto);
   gap: get-unit(2);
   grid-template-areas:
-    'header header'
-    'card matches'
-    'card matching-players'
-    'card fallen-matches'
-    'footer footer';
-  background-color: get-color('white');
+    "header header"
+    "card matches"
+    "card matching-players"
+    "card fallen-matches"
+    "footer footer";
+  background-color: get-color("white");
 
   &__header {
     grid-area: header;
     padding: get-unit(2);
-    color: get-color('white');
+    color: get-color("white");
     border-radius: $border-radius;
   }
 
@@ -152,7 +152,7 @@
 
   &__match-result {
     grid-area: matches;
-    background-color: get-color('white', 6);
+    background-color: get-color("white", 6);
     font-size: 1rem;
     padding: get-unit(1);
     margin-right: get-unit(2);
@@ -161,7 +161,7 @@
 
   &__matching-players {
     grid-area: matching-players;
-    background-color: get-color('white', 6);
+    background-color: get-color("white", 6);
     padding: get-unit(1);
     margin-right: get-unit(2);
     border-radius: $border-radius;
@@ -169,7 +169,7 @@
 
   &__fallen-matching-players {
     grid-area: fallen-matches;
-    background-color: get-color('white', 6);
+    background-color: get-color("white", 6);
     padding: get-unit(1);
     margin-right: get-unit(2);
     border-radius: $border-radius;
@@ -195,14 +195,14 @@
 
   &__footer {
     grid-area: footer;
-    background-color: get-color('white', 6);
+    background-color: get-color("white", 6);
     padding: get-unit(1);
     margin: get-unit(0 2 2 2);
     border-radius: $border-radius;
   }
 
   &__completed-players {
-    color: get-color('gray', 1);
+    color: get-color("gray", 1);
     margin-bottom: get-unit(4);
   }
 }
@@ -220,7 +220,7 @@
     text-align: center;
     text-transform: uppercase;
     padding: get-unit(1);
-    background-color: get-color('white', 6);
+    background-color: get-color("white", 6);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -243,16 +243,15 @@ $height: 500;
 $box-shadow: ();
 $box-shadow2: ();
 @for $i from 0 through $particles {
-  $box-shadow:
-    $box-shadow,
-    random($width) - math.div($width, 2) +
+  $box-shadow: $box-shadow,
+    math.random($width) -
+      math.div($width, 2) +
       px
-      random($height) - math.div($height, 1.2) +
+      math.random($height) -
+      math.div($height, 1.2) +
       px
-      hsl(random(360), 100%, 50%);
-  $box-shadow2:
-    $box-shadow2,
-    0 0 #fff;
+      hsl(math.random(360), 100%, 50%);
+  $box-shadow2: $box-shadow2, 0 0 #fff;
 }
 @mixin keyframes($animationName) {
   @-webkit-keyframes #{$animationName} {
@@ -311,16 +310,15 @@ $box-shadow2: ();
 $box-shadow: ();
 $box-shadow2: ();
 @for $i from 0 through $particles {
-  $box-shadow:
-    $box-shadow,
-    random($width) - math.div($width, 2) +
+  $box-shadow: $box-shadow,
+    math.random($width) -
+      math.div($width, 2) +
       px
-      random($height) - math.div($height, 1.2) +
+      math.random($height) -
+      math.div($height, 1.2) +
       px
-      hsl(random(360), 100%, 50%);
-  $box-shadow2:
-    $box-shadow2,
-    0 0 #fff;
+      hsl(math.random(360), 100%, 50%);
+  $box-shadow2: $box-shadow2, 0 0 #fff;
 }
 @mixin keyframes($animationName) {
   @-webkit-keyframes #{$animationName} {
