@@ -72,7 +72,7 @@ export function StepGuessing({
         />
       )}
       <Hint
-        isTheGuesser={false}
+        isTheGuesser
         guesser={guesser}
         secretWord={secretWord}
         hintsEnabled={hintsEnabled}
