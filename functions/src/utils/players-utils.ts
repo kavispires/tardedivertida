@@ -567,12 +567,14 @@ export class Scores {
 export const cleanup = (players: Players, keepKeys: string[]) => {
   const keys = ['avatarId', 'id', 'name', 'ready', 'score', 'updatedAt', 'type', ...keepKeys];
   getListOfPlayers(players, true).forEach((player) => {
+    player.ready = false;
     Object.keys(player).forEach((key) => {
       if (!keys.includes(key)) {
         delete player[key];
       }
     });
   });
+
   return players;
 };
 
