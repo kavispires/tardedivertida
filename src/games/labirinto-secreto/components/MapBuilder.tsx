@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { Button, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-// Hooks
-import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -12,7 +10,7 @@ import { LocationIcon } from 'icons/LocationIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
@@ -30,7 +28,6 @@ type MapBuilderProps = {
 };
 
 export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
-  const { isLoading } = useLoading();
   const userMap = user?.map ?? [];
   const map: MapSegment[] = userMap.filter((segment: MapSegment) => !segment.passed);
   const previousSelections = map.map((segment) => segment.clues);
@@ -197,14 +194,13 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       </Container>
 
       <SpaceContainer>
-        <Button
-          type="primary"
+        <SendButton
           size="large"
-          disabled={isLoading || usedCards.length === 0}
+          disabled={usedCards.length === 0}
           onClick={() => onSubmitMap({ newMap: selections })}
         >
           <Translate pt="Enviar Mapa" en="Submit Map" />
-        </Button>
+        </SendButton>
       </SpaceContainer>
     </>
   );

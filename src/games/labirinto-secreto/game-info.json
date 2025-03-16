@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "2.2.35",
+  "version": "2.2.36",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Labirinto Secreto",
     "en": "Secret Labyrinth"
@@ -16,6 +16,7 @@
   "basedOn": "shtaP citsyM",
   "appearance": {
     "clouds": "tree-cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "#227168",
     "backgroundColor": "rgba(180, 173, 163, 0.75)",
     "colorScheme": "light"
