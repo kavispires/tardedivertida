@@ -19,7 +19,7 @@ export function useBlurCards(): UseBlurCards {
   const blurCard = (cardId: string) => {
     setBlurredCards({
       ...blurredCards,
-      [cardId]: !blurredCards?.[cardId] ?? true,
+      [cardId]: !blurredCards?.[cardId],
     });
   };
 
