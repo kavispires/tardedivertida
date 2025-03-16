@@ -1,15 +1,13 @@
 import { findLast } from 'lodash';
 import { useState } from 'react';
-// Ant Design Resources
-import { Button } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
+import { SendButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -21,6 +19,7 @@ import { mockFollowedPath } from '../utils/mocks';
 import { Forest } from './Forest';
 import { PlayerMap } from './PlayerMap';
 import { MapEntry } from './MapEntry';
+// Ant Design Resources
 
 type ClickableForestProps = {
   forest: Tree[];
@@ -39,8 +38,6 @@ export function ClickableForest({
   user,
   players,
 }: ClickableForestProps) {
-  const { isLoading } = useLoading();
-
   const currentMap = map.filter((segment) => !segment.passed && segment.clues.length > 0);
   const currentTreeId = findLast(map, (segment) => segment.passed)?.treeId ?? map?.[0]?.treeId ?? 0;
   const passedTrees = map.filter((segment) => segment.passed).map((segment) => segment.treeId);
@@ -88,14 +85,13 @@ export function ClickableForest({
         />
       </MouseFollowingContent>
 
-      <Button
-        type="primary"
+      <SendButton
         size="large"
         onClick={() => onSubmitPath({ guess: selection.slice(1), pathId, choseRandomly: false })}
-        disabled={isLoading || selection.length - 1 < currentMap.length}
+        disabled={selection.length - 1 < currentMap.length}
       >
-        <Translate pt="Enviar" en="Submit" />
-      </Button>
+        <Translate pt="Concluir" en="Submit" />
+      </SendButton>
       <DevButton
         onClick={() =>
           onSubmitPath({
