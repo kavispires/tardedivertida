@@ -65,7 +65,7 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
   };
 
   const onShuffle = () => {
-    updateState({ grid: shuffle(data.grid) });
+    updateState({ grid: shuffle(state.grid) });
     playSFX('shuffle');
   };
 
