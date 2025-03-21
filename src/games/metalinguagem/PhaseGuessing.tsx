@@ -17,6 +17,7 @@ import { ViewOr } from 'components/views';
 // Internal
 import type { PhaseGuessingState } from './utils/types';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { Portmanteau } from './components/Portmanteau';
 import { StepGuessItems } from './StepGuessItems';
 import { StepWaitGuessing } from './StepWaitGuessing';
 
@@ -45,7 +46,13 @@ export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.METALINGUAGEM.GUESSING}>
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{
+          content: <Portmanteau itemsIds={user.guesses ?? []} word={state.newWord} />,
+        }}
+      >
         {/* Step 0 */}
         <ViewOr condition={isTheCreator}>
           <StepWaitGuessing
@@ -68,6 +75,8 @@ export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>
             onSubmitGuesses={onSubmitGuesses}
             players={players}
             user={user}
+            beginsWith={state.beginsWith}
+            endsWith={state.endsWith}
           />
         </ViewOr>
       </StepSwitcher>

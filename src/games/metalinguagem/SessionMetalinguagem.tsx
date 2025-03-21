@@ -6,12 +6,13 @@ import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
 import { PhaseWordCreation } from './PhaseWordCreation';
 import { PhaseGuessing } from './PhaseGuessing';
 import { PhaseResults } from './PhaseResults';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
 
@@ -33,7 +34,7 @@ function getActiveComponent(state: GameState) {
     case PHASES.METALINGUAGEM.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PageError;
   }

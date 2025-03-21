@@ -2,21 +2,21 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "0.0.4",
-  "release": "dev",
+  "version": "0.0.5",
+  "release": "beta",
   "available": true,
   "title": {
     "pt": "Meta Linguagem",
     "en": "Meta Language"
   },
   "popularName": {
-    "pt": "",
-    "en": ""
+    "pt": "O da criação de palavras",
+    "en": "The one about creating words"
   },
   "basedOn": "uaetnamtroP",
   "summary": {
-    "pt": "TBD",
-    "en": "TBD"
+    "pt": "Crie um novo dicionário para o novo mundo.",
+    "en": "Create a new dictionary for the new world."
   },
   "appearance": {
     "clouds": "cloud",

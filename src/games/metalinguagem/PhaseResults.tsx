@@ -19,8 +19,8 @@ import { StepResults } from './StepResults';
 
 export function PhaseResults({ players, state }: PhaseProps<PhaseResultsState>) {
   const user = useUser(players, state);
-  const { step, setStep } = useStep();
-  const [creator, isTheCreator] = useWhichPlayerIsThe('creatorId', state, players);
+  const { step } = useStep();
+  const [creator] = useWhichPlayerIsThe('creatorId', state, players);
 
   const announcement = (
     <PhaseAnnouncement
@@ -28,6 +28,7 @@ export function PhaseResults({ players, state }: PhaseProps<PhaseResultsState>) 
       title={<Translate pt="Resultado" en="Results" />}
       currentRound={state?.round?.current}
       type="overlay"
+      duration={3}
     >
       <Instruction>
         <Translate

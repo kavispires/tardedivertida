@@ -16,6 +16,13 @@ export type WordLength = {
   status: keyof typeof WORD_LENGTH_STATUS;
 };
 
+export type MetalinguagemGalleryEntry = {
+  itemsIds: CardId[];
+  name: string;
+  names: string[];
+  correct: boolean;
+};
+
 export type PhaseWordCreationState = {
   creatorId: PlayerId;
   items: string[];

@@ -5,20 +5,22 @@ import { Button, Collapse, type CollapseProps, Flex, Input, Slider, Tag } from '
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 // Components
 import { SendButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { ItemCard } from 'components/cards/ItemCard';
+import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { SubmitWordPayload, WordLength } from './utils/types';
+import { mockNewWord } from './utils/mock';
 import { ItemsGrid } from './components/ItemsGrid';
 import { WordLengths } from './components/WordLengths';
-// Hooks
 
 type StepCreateWordProps = {
   players: GamePlayers;
@@ -78,6 +80,10 @@ export function StepCreateWord({
     });
   };
 
+  useMock(() => {
+    onSubmitWord(mockNewWord(wordLengths));
+  });
+
   const steps: CollapseProps['items'] = [
     {
       key: 1,
@@ -115,6 +121,7 @@ export function StepCreateWord({
             </Flex>
           </div>
           <SpaceContainer>
+            <DevButton onClick={() => onSubmitWord(mockNewWord(wordLengths))}>Mock</DevButton>
             <Button
               type="primary"
               disabled={beginsWithName.length < 3 || endsWithName.length < 3}
