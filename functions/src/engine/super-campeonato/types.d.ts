@@ -32,9 +32,9 @@ export type PastBattles = {
   contenders: Contender[];
 }[];
 
-type BracketTier = 'quarter' | 'semi' | 'final' | 'winner';
+export type BracketTier = 'quarter' | 'semi' | 'final' | 'winner';
 
-interface Bracket extends Contender {
+export interface Bracket extends Contender {
   position: number;
   win?: boolean;
   tier: BracketTier;

@@ -15,9 +15,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
+import type { PhaseBattleState } from './utils/type';
 import { StepBattle } from './StepBattle';
 
-export function PhaseBattle({ state, players }: PhaseProps) {
+export function PhaseBattle({ state, players }: PhaseProps<PhaseBattleState>) {
   const { step, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
   const user = useUser(players, state);

@@ -14,10 +14,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
+import type { PhaseContendersSelectionState } from './utils/type';
 import { ContendersHand } from './components/ContendersHand';
 import { StepSelectContenders } from './StepSelectContenders';
 
-export function PhaseContenderSelection({ state, players }: PhaseProps) {
+export function PhaseContenderSelection({ state, players }: PhaseProps<PhaseContendersSelectionState>) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 

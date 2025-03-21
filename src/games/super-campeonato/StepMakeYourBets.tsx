@@ -8,14 +8,14 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
-import type { Bracket } from './utils/type';
+import type { Bracket, SubmitBetsPayload } from './utils/type';
 import { mockBets } from './utils/mock';
 import { Brackets } from './components/Brackets';
 import { BetsForm } from './components/BetsForm';
 import { Challenge } from './components/Challenge';
 
 type StepMakeYourBetsProps = {
-  onSubmitBets: GenericFunction;
+  onSubmitBets: (payload: SubmitBetsPayload) => void;
   challenge: TextCard;
   brackets: Bracket[];
   players: GamePlayers;

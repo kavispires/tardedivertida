@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.47",
+  "version": "2.3.48",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"

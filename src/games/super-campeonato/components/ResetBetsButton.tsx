@@ -4,7 +4,7 @@ import { Button, Popconfirm } from 'antd';
 import { Translate } from 'components/language';
 
 type ResetBettingButtonProps = {
-  onConfirm: GenericFunction;
+  onConfirm: () => void;
 };
 
 export function ResetBetsButton({ onConfirm }: ResetBettingButtonProps) {
