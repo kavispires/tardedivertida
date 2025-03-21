@@ -1,0 +1,34 @@
+export const METALINGUAGEM_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  SETUP: 'SETUP',
+  WORD_CREATION: 'WORD_CREATION',
+  GUESSING: 'GUESSING',
+  RESULTS: 'RESULTS',
+  GAME_OVER: 'GAME_OVER',
+};
+
+export const METALINGUAGEM_ACTIONS = {
+  SUBMIT_WORD: 'SUBMIT_WORD',
+  SUBMIT_GUESS: 'SUBMIT_GUESS',
+} as const;
+
+export const METALINGUAGEM_ACHIEVEMENTS = {
+  //
+} as const;
+
+export const PLAYER_COUNTS = {
+  MIN: 2,
+  MAX: 8,
+} as const;
+
+export const MAX_ROUNDS = 12;
+
+export const ITEMS_PER_ROUND = 9;
+
+export const WORD_LENGTH_STATUS = {
+  AVAILABLE: 'AVAILABLE',
+  ENDANGERED: 'ENDANGERED',
+  SOLVED: 'SOLVED',
+  FAILED: 'FAILED',
+} as const;
