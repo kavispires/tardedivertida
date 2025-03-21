@@ -1,7 +1,5 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
-// Ant Design Resources
-import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -11,14 +9,14 @@ import { useStep } from 'hooks/useStep';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { CharacterCard, type OverlayColor } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import type { Bet, Bracket, BracketTier } from '../utils/type';
+import type { Bet, Bracket, BracketTier, SubmitBattleVotesPayload } from '../utils/type';
 import { useBracketVoting } from '../utils/useBracketVoting';
 import { mockVotes } from '../utils/mock';
 import { TierContenders } from './TierContenders';
@@ -26,7 +24,7 @@ import { TierContenders } from './TierContenders';
 type VotingProps = {
   brackets: Bracket[];
   tier: BracketTier;
-  onSubmitVotes: GenericFunction;
+  onSubmitVotes: (payload: SubmitBattleVotesPayload) => void;
   players: GamePlayers;
   bets: Bet;
 };
@@ -96,9 +94,9 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
         </ul>
 
         <SpaceContainer>
-          <Button type="primary" size="large" onClick={() => onSubmitVotes({ votes })} disabled={!isComplete}>
+          <SendButton size="large" onClick={() => onSubmitVotes({ votes })} disabled={!isComplete}>
             <Translate pt="Enviar votos" en="Submit votes" />
-          </Button>
+          </SendButton>
         </SpaceContainer>
       </div>
     </StepSwitcher>

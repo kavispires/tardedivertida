@@ -15,9 +15,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
+import type { PhaseChallengeSelectionState } from './utils/type';
 import { StepSelectChallenge } from './StepSelectChallenge';
 
-export function PhaseChallengeSelection({ state, players }: PhaseProps) {
+export function PhaseChallengeSelection({ state, players }: PhaseProps<PhaseChallengeSelectionState>) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 

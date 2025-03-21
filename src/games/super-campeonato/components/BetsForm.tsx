@@ -12,12 +12,13 @@ import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Instruction } from 'components/text';
 // Internal
-import type { Bracket, FightingContender } from '../utils/type';
+import type { Bracket, FightingContender, SubmitBetsPayload } from '../utils/type';
 import { getSmartBetContenderOptions } from '../utils/helpers';
 import { DEFAULT_BETS, TIER_BY_STEP } from '../utils/constants';
 import { ContendersSelect } from './ContendersSelect';
@@ -25,7 +26,7 @@ import { ResetBetsButton } from './ResetBetsButton';
 
 type BetsFormProps = {
   brackets: Bracket[];
-  onSubmitBets: GenericFunction;
+  onSubmitBets: (payload: SubmitBetsPayload) => void;
 };
 
 export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
@@ -178,9 +179,9 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
 
           <SpaceContainer>
             <ResetBetsButton onConfirm={resetBets} />
-            <Button onClick={() => onSubmitBets(bets)} type="primary" disabled={Boolean(!bets.quarter)}>
+            <SendButton onClick={() => onSubmitBets(bets)} disabled={Boolean(!bets.quarter)}>
               <Translate pt="Enviar Apostas" en="Submit Bets" />
-            </Button>
+            </SendButton>
           </SpaceContainer>
         </Instruction>
       )}

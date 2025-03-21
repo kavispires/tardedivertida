@@ -14,10 +14,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitBetsAPIRequest } from './utils/api-requests';
+import type { PhaseBetsState } from './utils/type';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { StepMakeYourBets } from './StepMakeYourBets';
 
-export function PhaseBets({ state, players }: PhaseProps) {
+export function PhaseBets({ state, players }: PhaseProps<PhaseBetsState>) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 

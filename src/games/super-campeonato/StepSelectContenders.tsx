@@ -1,22 +1,21 @@
-// Ant Design Resources
-import { Button } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useMock } from 'hooks/useMock';
 // Components
+import { SendButton } from 'components/buttons';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { FightingContender } from './utils/type';
+import type { FightingContender, SubmitContendersPayload } from './utils/type';
 import { mockSelectContender } from './utils/mock';
 import { Challenge } from './components/Challenge';
 
 type StepSelectContendersProps = {
-  onSubmitContender: GenericFunction;
+  onSubmitContender: (payload: SubmitContendersPayload) => void;
   challenge: TextCard;
   userContenders: FightingContender[];
 } & Pick<StepProps, 'announcement'>;
@@ -51,14 +50,15 @@ export function StepSelectContenders({
       <ul className="w-contenders-hand">
         {userContenders.map((contender) => (
           <li key={contender.id} className="w-contenders-hand__entry">
-            <Button
+            <SendButton
               onClick={() => onSubmitContender({ contendersId: contender.id })}
               shape="round"
+              type="default"
               ghost
               className="w-contenders-hand__button"
             >
               <Translate pt="Selecionar" en="Select" />
-            </Button>
+            </SendButton>
 
             <CharacterCard character={contender} overlayColor="gray" size={cardWidth} />
           </li>

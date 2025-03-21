@@ -6,7 +6,7 @@ import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
-import type { Bet, Bracket, BracketTier } from './utils/type';
+import type { Bet, Bracket, BracketTier, SubmitBattleVotesPayload } from './utils/type';
 import { Brackets } from './components/Brackets';
 import { TierTitle } from './components/TierTitle';
 import { Challenge } from './components/Challenge';
@@ -14,7 +14,7 @@ import { Voting } from './components/Voting';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 
 type StepBattleProps = {
-  onSubmitVotes: GenericFunction;
+  onSubmitVotes: (payload: SubmitBattleVotesPayload) => void;
   challenge: TextCard;
   brackets: Bracket[];
   tier: BracketTier;

@@ -14,12 +14,12 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { FightingContender } from './utils/type';
+import type { FightingContender, SubmitChallengePayload } from './utils/type';
 import { mockSelectChallenge } from './utils/mock';
 import { ContendersHand } from './components/ContendersHand';
 
 type StepSelectChallengeProps = {
-  onSubmitChallenge: GenericFunction;
+  onSubmitChallenge: (payload: SubmitChallengePayload) => void;
   challenges: TextCard[];
   userContenders: FightingContender[];
   round: GameRound;
