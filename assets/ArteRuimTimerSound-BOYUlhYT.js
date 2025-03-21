@@ -1,0 +1,1 @@
+import{z as s,r as a,j as r}from"./index-C2dRIcI0.js";import{u as m}from"./useAudio-ip-bFyOg.js";const i="/tardedivertida/assets/arte-ruim-timer-remix-BxJwoz5p.mp3",u=i;function l(){const[e]=s("volume"),[o,,t]=m({src:u,autoPlay:!0,loop:!1});return a.useEffect(()=>{t.volume(e)},[e]),r.jsx(r.Fragment,{children:o})}export{l as A};
