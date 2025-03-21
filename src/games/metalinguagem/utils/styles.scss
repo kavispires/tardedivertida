@@ -1,0 +1,69 @@
+@use "styles/sass" as *;
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: get-unit(4);
+  margin: get-unit(4);
+
+  &__item {
+    position: relative;
+  }
+
+  &__item-selected {
+    animation: item-select-pulse 3000ms infinite;
+    outline: get-unit(2) dotted get-color("red");
+    border-radius: get-unit(1);
+  }
+
+  &__item-target {
+    animation: item-target-pulse 1500ms infinite ease-in-out;
+    outline: get-unit(2) solid get-color("orange");
+    border-radius: get-unit(1);
+  }
+
+  &__players-guesses {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.item-forced-outline {
+  filter: grayscale(0.35) brightness(1.25) contrast(0.9);
+}
+
+.new-word-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: get-unit(2);
+}
+
+.origin-word {
+  font-size: 1.05em;
+  text-transform: uppercase;
+}
+
+@keyframes item-select-pulse {
+  0% {
+    outline-color: get-color("red");
+  }
+  50% {
+    outline-color: get-color("white");
+  }
+  100% {
+    outline-color: get-color("red");
+  }
+}
+
+@keyframes item-target-pulse {
+  0% {
+    outline-color: get-color("orange");
+  }
+  50% {
+    outline-color: get-color("yellow");
+  }
+  100% {
+    outline-color: get-color("orange");
+  }
+}
