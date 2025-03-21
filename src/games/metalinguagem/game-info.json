@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "release": "planned",
   "available": false,
   "title": {

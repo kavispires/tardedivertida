@@ -101,6 +101,11 @@ const GAMES = [
     key: 'MENTE_COLETIVA',
   },
   {
+    name: 'metalinguagem',
+    code: 'L',
+    key: 'METALINGUAGEM',
+  },
+  {
     name: 'mesmice',
     code: 'J',
     key: 'MESMICE',
