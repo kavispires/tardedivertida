@@ -75,6 +75,9 @@ const SessionLinhasCruzadas = lazy(
 const SessionMenteColetiva = lazy(
   () => import('games/mente-coletiva/SessionMenteColetiva' /* webpackChunkName: "mente-coletiva" */),
 );
+const SessionMetalinguagem = lazy(
+  () => import('games/metalinguagem/SessionMetalinguagem' /* webpackChunkName: "metalinguagem" */),
+);
 const SessionNaRuaDoMedo = lazy(
   () => import('games/na-rua-do-medo/SessionNaRuaDoMedo' /* webpackChunkName: "na-rua-do-medo" */),
 );
@@ -286,6 +289,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionMesmice />
+          </Suspense>
+        );
+      case GAME_COLLECTION.METALINGUAGEM:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionMetalinguagem />
           </Suspense>
         );
       case GAME_COLLECTION.NA_RUA_DO_MEDO:
