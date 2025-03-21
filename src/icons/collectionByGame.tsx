@@ -169,6 +169,7 @@ export const collectionByGame: Record<string, string[]> = {
     'RevolverIcon',
   ],
   'mente-coletiva': ['DiscussionIcon', 'SheepIcon', 'DeathIcon', 'CustomerReviewIcon', 'ArrowSignIcon'],
+  metalinguagem: ['CreateIcon', 'GuessLanguageIcon', 'DictionaryIcon'],
   'na-rua-do-medo': [
     'CandyIcon',
     'PoopIcon',

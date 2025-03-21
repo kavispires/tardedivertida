@@ -278,6 +278,7 @@ export const GAME_COLLECTION = {
   MEGAMIX: 'megamix',
   MENTE_COLETIVA: 'mente-coletiva',
   MESMICE: 'mesmice',
+  METALINGUAGEM: 'metalinguagem',
   NA_RUA_DO_MEDO: 'na-rua-do-medo',
   NAO_SOU_ROBO: 'nao-sou-robo',
   NAUFRAGOS: 'naufragos',
