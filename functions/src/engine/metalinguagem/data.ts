@@ -13,17 +13,20 @@ export const getResourceData = async (options: MetalinguagemOptions): Promise<Re
 
   const itemsNeeded = MAX_ROUNDS * ITEMS_PER_ROUND;
 
-  const dreamItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 2), {
+  const dreamItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.6), {
     allowNSFW,
     decks: ['dream'],
   });
 
-  const metaItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 2), {
+  const metaItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.4), {
     allowNSFW,
     decks: ['meta'],
   });
 
   return {
-    items: utils.game.shuffle([...dreamItems, ...metaItems].map((item: Item) => item.id)),
+    items: utils.game.getRandomItems(
+      [...dreamItems, ...metaItems].map((item: Item) => item.id),
+      itemsNeeded,
+    ),
   };
 };
