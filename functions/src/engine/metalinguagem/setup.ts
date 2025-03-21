@@ -131,6 +131,7 @@ export const prepareResultsPhase = async (
 
   const creatorId: PlayerId = state.creatorId;
 
+  // Achievement: Word Lengths
   utils.achievements.increase(store, state.creatorId, 'wordLengths', state.newWord.length);
 
   const wordLengths: WordLength[] = state.wordLengths;
@@ -153,18 +154,24 @@ export const prepareResultsPhase = async (
     {},
   );
 
+  const answer = [state.beginsWith, state.endsWith];
+
   // Get ordered most voted things, if there's a tie for anything, the turn order is used
   const guessVotes = orderBy(
     Object.entries(guessPlayersPerItem),
     [
+      // The most votes goes first
       ([, p]) => p.length,
+      // If there's a tie, the winning votes
+      ([guess]) => answer.includes(guess),
+      // If there's will a tie, the turn order fixes it
       ([guess]) => turnOrderWithoutCreator.findIndex((id) => players[id].guesses.includes(guess)),
     ],
     ['desc'],
   ).map(([guess]) => guess);
 
   const [firstGuess, secondGuess] = guessVotes;
-  const answer = [state.beginsWith, state.endsWith];
+
   const isFirstCorrect = answer.includes(firstGuess);
   const isSecondCorrect = answer.includes(secondGuess);
   let outcome: string = WORD_LENGTH_STATUS.FAILED;
@@ -174,7 +181,6 @@ export const prepareResultsPhase = async (
   // If the two most voted things are the correct items, the wordLength is marked as SOLVED
   if (isFirstCorrect && isSecondCorrect) {
     wordLengths[wordLengthIndex].status = WORD_LENGTH_STATUS.SOLVED;
-
     outcome = WORD_LENGTH_STATUS.SOLVED;
   } else {
     // If the two most voted things are NOT the correct items, the wordLength is marked as ENDANGERED
