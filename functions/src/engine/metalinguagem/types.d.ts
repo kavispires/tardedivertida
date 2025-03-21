@@ -16,6 +16,8 @@ export type ResourceData = {
 export type GalleryEntry = {
   itemsIds: CardId[];
   name: string;
+  names: string[];
+  correct: boolean;
 };
 
 export type WordLength = {

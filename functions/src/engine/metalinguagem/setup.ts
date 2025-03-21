@@ -6,6 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData, 
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import { orderBy } from 'lodash';
+import { getAchievements } from './helpers';
 
 /**
  * Setup
@@ -154,7 +155,7 @@ export const prepareResultsPhase = async (
     {},
   );
 
-  const answer = [state.beginsWith, state.endsWith];
+  const answer: string[] = [state.beginsWith, state.endsWith];
 
   // Get ordered most voted things, if there's a tie for anything, the turn order is used
   const guessVotes = orderBy(
@@ -163,7 +164,7 @@ export const prepareResultsPhase = async (
       // The most votes goes first
       ([, p]) => p.length,
       // If there's a tie, the winning votes
-      ([guess]) => answer.includes(guess),
+      ([guess]) => (answer.includes(guess) ? 0 : 1),
       // If there's will a tie, the turn order fixes it
       ([guess]) => turnOrderWithoutCreator.findIndex((id) => players[id].guesses.includes(guess)),
     ],
@@ -193,10 +194,37 @@ export const prepareResultsPhase = async (
     }
   }
 
+  // Achievement: Best Words
+  let creatorBestWordAchievement = 0;
+  if (isFirstCorrect) {
+    creatorBestWordAchievement += (guessPlayersPerItem[answer[0]] ?? []).length;
+  }
+  if (isSecondCorrect) {
+    creatorBestWordAchievement += (guessPlayersPerItem[answer[1]] ?? []).length;
+  }
+  utils.achievements.push(store, creatorId, 'bestWords', creatorBestWordAchievement);
+
+  // Achievements: Players
+  turnOrderWithoutCreator.forEach((playerId) => {
+    const player = players[playerId];
+    const correctGuesses = player.guesses.filter((guess) => answer.includes(guess)).length;
+    if (correctGuesses === 2) {
+      utils.achievements.increase(store, player.id, 'twoCorrect', 1);
+    }
+    if (correctGuesses === 1) {
+      utils.achievements.increase(store, player.id, 'oneCorrect', 1);
+    }
+    if (correctGuesses === 0) {
+      utils.achievements.increase(store, player.id, 'zeroCorrect', 1);
+    }
+  });
+
   const gallery: GalleryEntry[] = store.gallery || [];
   gallery.push({
     itemsIds: [state.beginsWith, state.endsWith],
     name: state.newWord,
+    names: state.names,
+    correct: isFirstCorrect && isSecondCorrect,
   });
 
   // Save
@@ -223,10 +251,9 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = state.outcome === WORD_LENGTH_STATUS.FAILED ? [] : utils.players.determineWinners(players);
 
-  // const achievements = getAchievements(store);
-  const achievements = [];
+  const achievements = getAchievements(store);
 
   await utils.firestore.markGameAsComplete(gameId);
 
@@ -236,6 +263,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
+    // TODO: enable achievements saving
     achievements: [],
     language: store.language,
   });
