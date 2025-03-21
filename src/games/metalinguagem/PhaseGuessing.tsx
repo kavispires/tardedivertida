@@ -1,0 +1,76 @@
+// Types
+import type { PhaseProps } from 'types/game';
+// Hooks
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
+import { PHASES } from 'utils/phases';
+// Icons
+import { GuessLanguageIcon } from 'icons/GuessLanguageIcon';
+// Components
+import { Translate } from 'components/language';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { ViewOr } from 'components/views';
+// Internal
+import type { PhaseGuessingState } from './utils/types';
+import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { StepGuessItems } from './StepGuessItems';
+import { StepWaitGuessing } from './StepWaitGuessing';
+
+export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>) {
+  const user = useUser(players, state);
+  const { step, setStep } = useStep();
+  const [creator, isTheCreator] = useWhichPlayerIsThe('creatorId', state, players);
+
+  const onSubmitGuesses = useOnSubmitGuessAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<GuessLanguageIcon />}
+      title={<Translate pt="Adivinhe os items" en="Guess the items" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt="Agoras os jogadores tem que adivinhar quais dois itens formam a palavra-valise"
+          en="Now the players have to guess which two items form the portmanteau"
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
+  return (
+    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.METALINGUAGEM.GUESSING}>
+      <StepSwitcher step={step} players={players}>
+        {/* Step 0 */}
+        <ViewOr condition={isTheCreator}>
+          <StepWaitGuessing
+            players={players}
+            creator={creator}
+            announcement={announcement}
+            items={state.items}
+            wordLengths={state.wordLengths}
+            newWord={state.newWord}
+            turnOrder={state.turnOrder}
+            beginsWith={state.beginsWith}
+            endsWith={state.endsWith}
+          />
+
+          <StepGuessItems
+            announcement={announcement}
+            items={state.items}
+            wordLengths={state.wordLengths}
+            newWord={state.newWord}
+            onSubmitGuesses={onSubmitGuesses}
+            players={players}
+            user={user}
+          />
+        </ViewOr>
+      </StepSwitcher>
+    </PhaseContainer>
+  );
+}
