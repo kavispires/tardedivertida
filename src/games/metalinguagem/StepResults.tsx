@@ -78,10 +78,11 @@ export function StepResults({
         )}
         {outcome === WORD_LENGTH_STATUS.ENDANGERED && (
           <Translate
-            en="Vou got the items wrong, so the length becomes endangered. From now one, if this word length is used again and guessed wrong, the game is over."
+            en="You got the items wrong, so the length becomes endangered. From now one, if this word length is used again and guessed wrong, the game is over."
             pt="Você errou os itens, então o comprimento se torna ameaçado. A partir de agora, se este comprimento de palavra for usado novamente e adivinhado errado, o jogo acaba."
           />
         )}
+        {outcome === WORD_LENGTH_STATUS.FAILED && <Translate en="Loser." pt="Burro." />}
       </RuleInstruction>
 
       <ItemsGrid
