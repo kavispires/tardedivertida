@@ -23,7 +23,7 @@ export const getInitialState = (data: DailyQuartetosEntry): GameState => {
     defaultValue: cloneDeep(DEFAULT_LOCAL_TODAY),
   });
 
-  const useInitialGrid = localToday.grid.length === 0 && localToday.completeSets.length === 0;
+  const useInitialGrid = localToday.grid.length === 0 && localToday.matches.length === 0;
 
   const state: GameState = {
     id: data.id,
