@@ -1,0 +1,60 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "L",
+  "gameName": "metalinguagem",
+  "version": "0.0.0",
+  "release": "planned",
+  "available": false,
+  "title": {
+    "pt": "Meta Linguagem",
+    "en": "Meta Language"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "uaetnamtroP",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "flow",
+    "primaryColor": "",
+    "backgroundColor": "rgba(236, 244, 213, 0.85)",
+    "colorScheme": "light"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["cooperative"],
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
