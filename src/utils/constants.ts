@@ -271,6 +271,7 @@ export const GAME_COLLECTION = {
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ESQUIADORES: 'esquiadores',
   FILEIRA_DE_FATOS: 'fileira-de-fatos',
+  FOFOCA_QUENTE: 'fofoca-quente',
   GALERIA_DE_SONHOS: 'galeria-de-sonhos',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
   LABIRINTO_SECRETO: 'labirinto-secreto',

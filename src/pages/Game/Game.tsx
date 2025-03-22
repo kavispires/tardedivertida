@@ -57,6 +57,9 @@ const SessionEspiaoEntreNos = lazy(
 const SessionFileiraDeFatos = lazy(
   () => import('games/fileira-de-fatos/SessionFileiraDeFatos' /* webpackChunkName: "fileira-de-fatos" */),
 );
+const SessionFofocaQuente = lazy(
+  () => import('games/fofoca-quente/SessionFofocaQuente' /* webpackChunkName: "fofoca-quente" */),
+);
 const SessionGaleriaDeSonhos = lazy(
   () => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos' /* webpackChunkName: "galeria-de-sonhos" */),
 );
@@ -247,6 +250,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionFileiraDeFatos />
+          </Suspense>
+        );
+      case GAME_COLLECTION.FOFOCA_QUENTE:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionFofocaQuente />
           </Suspense>
         );
       case GAME_COLLECTION.GALERIA_DE_SONHOS:
