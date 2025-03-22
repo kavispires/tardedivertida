@@ -19,6 +19,7 @@ import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { SubmitWordPayload, WordLength } from './utils/types';
 import { mockNewWord } from './utils/mock';
+import { WORD_LENGTH_STATUS } from './utils/constants';
 import { ItemsGrid } from './components/ItemsGrid';
 import { WordLengths } from './components/WordLengths';
 
@@ -70,7 +71,9 @@ export function StepCreateWord({
     setEndingIndex(values[1]);
   };
 
-  const isWordValid = wordLengths.some((wl) => wl.wordLength === newWord.length);
+  const isWordValid = wordLengths.some(
+    (wl) => wl.status !== WORD_LENGTH_STATUS.SOLVED && wl.wordLength === newWord.length,
+  );
 
   const onCompleteNewWord = () => {
     onSubmitWord({

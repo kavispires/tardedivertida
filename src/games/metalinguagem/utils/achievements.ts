@@ -18,7 +18,7 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.BEST_WORDS]: {
     icon: 'star',
     title: {
-      pt: 'Melhore Palavras',
+      pt: 'Melhores Palavras',
       en: 'Best Words',
     },
     description: {
