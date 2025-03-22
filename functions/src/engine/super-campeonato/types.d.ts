@@ -21,20 +21,18 @@ export type ContendersDeck = ContenderCard[];
 
 export type ChallengesDeck = TextCard[];
 
-export interface Contender {
-  id: CardId;
-  name: DualLanguageValue;
+export type FightingContender = {
   playerId: PlayerId | 'CPU';
-}
+} & Pick<ContenderCard, 'id' | 'name' | 'description'>;
 
 export type PastBattles = {
   challenge: TextCard;
-  contenders: Contender[];
+  contenders: FightingContender[];
 }[];
 
 export type BracketTier = 'quarter' | 'semi' | 'final' | 'winner';
 
-export interface Bracket extends Contender {
+export interface Bracket extends FightingContender {
   position: number;
   win?: boolean;
   tier: BracketTier;

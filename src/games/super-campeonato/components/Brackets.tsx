@@ -71,6 +71,7 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
                 character={{
                   id: entry.id,
                   name: entry.name,
+                  description: entry.description,
                 }}
                 className="w-bracket-contender"
               />
