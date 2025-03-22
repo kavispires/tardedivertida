@@ -12,6 +12,7 @@ import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/utils/achievements';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/utils/achievements';
 import MEGAMIX from 'games/megamix/utils/achievements';
 import MENTE_COLETIVA from 'games/mente-coletiva/utils/achievements';
+import METALINGUAGEM from 'games/metalinguagem/utils/achievements';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/utils/achievements';
 import NAO_SOU_ROBO from 'games/nao-sou-robo/utils/achievements';
 import ONDA_TELEPATICA from 'games/onda-telepatica/utils/achievements';
@@ -30,7 +31,6 @@ import type { AchievementReference } from 'types/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
 // import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
-
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
 // import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
@@ -63,6 +63,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'linhas-cruzadas': LINHAS_CRUZADAS,
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
+  metalinguagem: METALINGUAGEM,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
   'nao-sou-robo': NAO_SOU_ROBO,
   naufragos: null,
