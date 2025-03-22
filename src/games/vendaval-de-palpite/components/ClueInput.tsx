@@ -44,7 +44,7 @@ export function ClueInput({
           value={value}
           onChange={onChangeInput}
           className="v-clue-input__input"
-          bordered={false}
+          variant="borderless"
           onPressEnter={onPressEnter}
           autoComplete="off"
           disabled={disabled}

@@ -49,7 +49,7 @@ export function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: Sugg
             value={value}
             onChange={onChangeInput}
             className="suggestion-easel__input"
-            bordered={false}
+            variant="borderless"
             onPressEnter={onPressEnter}
             autoComplete="off"
             readOnly={!onChangeInput}
