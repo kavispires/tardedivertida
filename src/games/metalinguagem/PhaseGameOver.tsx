@@ -7,6 +7,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { Container } from 'components/layout/Container';
+import { Instruction } from 'components/text';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { MetalinguagemGalleryEntry } from './utils/types';
@@ -17,6 +18,11 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
 
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
+      {state.winners?.length === 0 && (
+        <Instruction contained>
+          <Translate pt="Vocês perderam!" en="Y'all lost!" />
+        </Instruction>
+      )}
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
       <Container title={<Translate pt="Dicionário" en="Dictionary" />} className="mt-4">
         {gallery.map((word: MetalinguagemGalleryEntry) => (
