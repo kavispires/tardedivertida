@@ -263,8 +263,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    // TODO: enable achievements saving
-    achievements: [],
+    achievements,
     language: store.language,
   });
 

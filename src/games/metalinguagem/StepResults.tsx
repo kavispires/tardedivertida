@@ -3,6 +3,10 @@ import { Flex } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
+// Icons
+import { SkullIcon } from 'icons/SkullIcon';
+import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
 import { Card } from 'components/cards';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -52,7 +56,7 @@ export function StepResults({
 }: StepResultsProps) {
   return (
     <Step fullWidth announcement={announcement}>
-      <StepTitle>{getTitle(outcome)}</StepTitle>
+      <StepTitle icon={getIcon(outcome)}>{getTitle(outcome)}</StepTitle>
 
       <SpaceContainer>
         <Flex vertical align="center">
@@ -123,4 +127,16 @@ const getTitle = (outcome: keyof typeof WORD_LENGTH_STATUS) => {
       pt="Você não adivinhou os itens corretamente para um comprimento ameaçado, então o jogo acabou."
     />
   );
+};
+
+const getIcon = (outcome: keyof typeof WORD_LENGTH_STATUS) => {
+  if (outcome === WORD_LENGTH_STATUS.SOLVED) {
+    return <SpeechBubbleThumbsUpIcon />;
+  }
+
+  if (outcome === WORD_LENGTH_STATUS.ENDANGERED) {
+    return <SpeechBubbleThumbsDownIcon />;
+  }
+
+  return <SkullIcon />;
 };
