@@ -1,0 +1,77 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "F",
+  "gameName": "fofoca-quente",
+  "version": "0.0.1",
+  "release": "dev",
+  "available": false,
+  "title": {
+    "pt": "Fofoca Quente",
+    "en": "Hot Gossip"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "lliK oT tnetnI",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "orbit",
+    "colorScheme": "light",
+    "primaryColor": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [2],
+    "best": 2,
+    "min": 2,
+    "max": 2
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["competitive"],
+  "options": [
+    {
+      "key": "beginnerGame",
+      "kind": "switch",
+      "label": "Beginner Game",
+      "description": "Use only beginner motivations",
+      "values": [
+        {
+          "label": "off",
+          "value": false
+        },
+        {
+          "label": "on",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "includeBestFriend",
+      "kind": "switch",
+      "label": "Include Best Friend",
+      "description": "Adds one additional student to lie for the gossiper",
+      "values": [
+        {
+          "label": "off",
+          "value": false
+        },
+        {
+          "label": "on",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

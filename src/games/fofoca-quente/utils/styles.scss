@@ -1,0 +1,180 @@
+@use "styles/sass" as *;
+@import "../../../assets/fonts/oswald.scss";
+
+.school-board {
+  background-color: get-color("white");
+  display: grid;
+  gap: get-unit(2);
+  padding: get-unit(1);
+  border-radius: $border-radius;
+  @include font-oswald;
+}
+
+.school-location {
+  background: get-color("white", 6, 0.5);
+  border: get-unit(1) dashed get-color("black", 5, 0.85);
+  border-radius: $border-radius;
+  display: grid;
+  grid-template-rows: 1fr 8fr 1fr;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    background: get-color("slate", 5, 0.5);
+    color: get-color("white");
+    padding: get-unit(0 2);
+  }
+
+  &__students {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: get-unit(1);
+    padding: get-unit(1);
+    border-radius: $border-radius;
+    background: get-color("white", 6, 0.5);
+  }
+
+  &__student-button {
+    display: grid;
+    align-items: end;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    background: get-color("white", 5, 0.25);
+  }
+}
+
+.student-card {
+  background: get-color("red", 6, 0.85);
+  display: grid;
+  align-items: end;
+  border-radius: get-unit(1);
+  width: 100%;
+  height: 100%;
+  border: get-unit(2) solid get-color("gray");
+
+  &--intimidated {
+    filter: grayscale(100%);
+  }
+
+  &__info {
+    width: 100%;
+    justify-self: start;
+  }
+
+  &__icons {
+    background: get-color("white", 5, 0.65);
+    border-top-right-radius: get-unit(1);
+    width: 30%;
+  }
+
+  &__name {
+    color: get-color("white");
+    background: get-color("black", 5, 0.25);
+  }
+}
+
+.student-details {
+  @include font-oswald;
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: clamp(300px, 50vw, 720px);
+  height: clamp(300px, 50vh, 720px);
+  gap: get-unit(2);
+
+  &__student-card {
+    font-size: 1rem;
+    aspect-ratio: 3 / 5;
+    border-width: get-unit(2);
+    border-radius: get-unit(2);
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  &__name {
+    font-size: 2rem;
+    padding: get-unit(1);
+    border-radius: $border-radius;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: get-color("black", 5, 0.75);
+  }
+
+  &__social-group-name {
+    text-transform: uppercase;
+    margin-left: get-unit(-2);
+    padding-left: get-unit(3);
+  }
+
+  &__icons {
+    margin-top: get-unit(4);
+    align-items: flex-end;
+  }
+
+  &__secrets {
+    margin-top: get-unit(2);
+  }
+}
+
+.student-icon {
+  &__gender {
+    &--female {
+      background-color: get-color("pink", 2);
+    }
+    &--male {
+      background-color: get-color("blue", 2);
+    }
+    &--both {
+      background-color: get-color("purple", 2);
+    }
+  }
+
+  &__age {
+    &--junior {
+      color: get-color("black");
+      background-color: get-color("green", 4, 0.4);
+    }
+    &--sophomore {
+      color: get-color("black");
+      background-color: get-color("teal", 6, 0.4);
+    }
+    &--senior {
+      color: get-color("black");
+      background-color: get-color("blue", 7, 0.4);
+    }
+  }
+}
+
+.board-summary {
+  background: get-color("white", 5, 0.85);
+  border-radius: get-unit(1);
+  padding: get-unit(2);
+  margin: get-unit(2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h4 {
+    font-size: 1.1rem;
+  }
+
+  &__data {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: get-unit(4);
+  }
+
+  &__label {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}

@@ -15,6 +15,7 @@ import ESCAPE_ROOM from 'games/escape-room/game-info.json';
 import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/game-info.json';
 import ESQUIADORES from 'games/esquiadores/game-info.json';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/game-info.json';
+import FOFOCA_QUENTE from 'games/fofoca-quente/game-info.json';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/game-info.json';
 import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/game-info.json';
 import LABIRINTO_SECRETO from 'games/labirinto-secreto/game-info.json';
@@ -70,6 +71,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'escape-room': ESCAPE_ROOM,
   'espiao-entre-nos': ESPIAO_ENTRE_NOS,
   'fileira-de-fatos': FILEIRA_DE_FATOS,
+  'fofoca-quente': FOFOCA_QUENTE,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
   'instrumentos-codificados': INSTRUMENTOS_CODIFICADOS,
   'labirinto-secreto': LABIRINTO_SECRETO,

@@ -12,6 +12,7 @@ import * as duetosEngine from '../engine/duetos';
 import * as espiaoEntreNosEngine from '../engine/espiao-entre-nos';
 import * as esquiaresEngine from '../engine/esquiadores';
 import * as fileiraDeFatosEngine from '../engine/fileira-de-fatos';
+import * as fofocaQuenteEngine from '../engine/fofoca-quente';
 import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
 import * as portadosDesesperadosEngine from '../engine/porta-dos-desesperados';
 import * as labirintoSecretoEngine from '../engine/labirinto-secreto';
@@ -53,6 +54,7 @@ const engines = {
   [GAME_NAMES.DUETOS]: duetosEngine,
   [GAME_NAMES.ESPIAO_ENTRE_NOS]: espiaoEntreNosEngine,
   [GAME_NAMES.ESQUIADORES]: esquiaresEngine,
+  [GAME_NAMES.FOFOCA_QUENTE]: fofocaQuenteEngine,
   [GAME_NAMES.FILEIRA_DE_FATOS]: fileiraDeFatosEngine,
   [GAME_NAMES.GALERIA_DE_SONHOS]: galeriaDeSonhosEngine,
   [GAME_NAMES.LABIRINTO_SECRETO]: labirintoSecretoEngine,

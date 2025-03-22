@@ -76,6 +76,11 @@ const GAMES = [
     key: 'FILEIRA_DE_FATOS',
   },
   {
+    name: 'fofoca-quente',
+    code: 'F',
+    key: 'FOFOCA_QUENTE',
+  },
+  {
     name: 'galeria-de-sonhos',
     code: 'G',
     key: 'GALERIA_DE_SONHOS',
@@ -320,6 +325,7 @@ export const TDR_RESOURCES = {
   SPY_LOCATIONS: 'spy-locations',
   SPY_QUESTIONS: 'spy-questions',
   SUSPECTS: 'suspects', // dual-language
+  TEENAGE_MOTIVATIONS: 'teenage-motivations', // dual-language
   TEENAGE_RUMORS: 'teenage-rumors', // dual-language
   TEENAGE_STUDENTS: 'teenage-students', // dual-language
   TESTIMONY_QUESTIONS: 'testimony-questions',
