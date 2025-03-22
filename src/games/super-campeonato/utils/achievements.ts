@@ -68,7 +68,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.WORST_QUARTER_BETS]: {
-    icon: 'four',
+    icon: 'four-silver',
     title: {
       en: 'Worst Quarter Bets',
       pt: 'Piores Apostas de Quartas',
@@ -79,7 +79,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.WORST_SEMI_BETS]: {
-    icon: 'two',
+    icon: 'two-silver',
     title: {
       en: 'Worst Semi Bets',
       pt: 'Piores Apostas de Semis',
@@ -90,7 +90,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.WORST_FINAL_BETS]: {
-    icon: 'one',
+    icon: 'one-silver',
     title: {
       en: 'Worst Final Bets',
       pt: 'Piores Apostas de Final',
