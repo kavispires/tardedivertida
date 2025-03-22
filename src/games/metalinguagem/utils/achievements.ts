@@ -16,7 +16,7 @@ const ACHIEVEMENTS = {
 
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.BEST_WORDS]: {
-    icon: 'star',
+    icon: 'open-book',
     title: {
       pt: 'Melhores Palavras',
       en: 'Best Words',
@@ -27,10 +27,10 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.WORST_WORDS]: {
-    icon: 'poop',
+    icon: 'face-oops',
     title: {
-      pt: 'Piores Palavras',
-      en: 'Worst Words',
+      pt: 'Palavras Mais Obscuras',
+      en: 'Most obscure words',
     },
     description: {
       pt: 'Teve a pior média de palpites corretos em suas palavras',
@@ -49,7 +49,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.FEWEST_TWO_CORRECT_GUESSES]: {
-    icon: 'two',
+    icon: 'two-silver',
     title: {
       pt: 'Menos Preciso',
       en: 'Least Accurate',
@@ -71,7 +71,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.FEWEST_ONE_CORRECT_GUESSES]: {
-    icon: 'one',
+    icon: 'one-silver',
     title: {
       pt: 'Menos Sortudo',
       en: 'Least Lucky',
@@ -104,7 +104,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.LONGEST_WORDS]: {
-    icon: 'long',
+    icon: 'arrow-wide',
     title: {
       pt: 'Mais Criativo',
       en: 'Most Creative',
@@ -115,7 +115,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.SHORTEST_WORDS]: {
-    icon: 'short',
+    icon: 'arrow-narrow',
     title: {
       pt: 'Mais Direto',
       en: 'Most Direct',
