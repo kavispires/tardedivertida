@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "release": "beta",
   "available": true,
   "title": {
@@ -26,11 +26,26 @@
     "colorScheme": "light"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Vocês são um grupo de linguistas tentando criar um novo dicionário de palavras-valise para o novo mundo.",
+      "O objetivo é criar palavras com todos os tamanhos de palavras disponíveis",
+      "A cada rodada um jogador é o criador e deve criar uma palavra-valise usando o inicio do nome de um objeto e o final do nome de outro objeto",
+      "Depois, os outros jogadores devem tentar adivinhar quais ícones a palavra representa",
+      "Se a maioria acertar, aquele tamanho de palavra é removido. Se os jogadores errarem o tamanho fica em perigo",
+      "Os jogadores ganham quando todas as palavras são criadas ou quando eles erram um tamanho de palavra em perigo (duas vezes)"
+    ],
+    "en": [
+      "You are a group of linguists trying to create a new dictionary of portmanteau words for the new world.",
+      "The goal is to create words with all sizes of words available",
+      "Each round a player is the creator and must create a portmanteau word using the beginning of one object's name and the end of another object's name",
+      "Then, the other players must try to guess which icons the word represents",
+      "If the majority gets it right, that size of word is removed. If the players get it wrong, the size is in danger",
+      "Players win when all words are created or when they miss a size in danger (twice)"
+    ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [3, 4, 5, 6],
+    "best": 3,
     "min": 2,
     "max": 10
   },
@@ -38,7 +53,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative"],
+  "tags": ["cooperative", "writing", "guessing", "brain-burner"],
   "options": [
     {
       "key": "nsfw",
