@@ -1,12 +1,10 @@
 // Types
-import type { TextCard } from 'types/tdr';
+import type { ContenderCard, TextCard } from 'types/tdr';
 
 export type FightingContender = {
-  id: CardId;
-  name: DualLanguageValue;
-  playerId?: PlayerId;
+  playerId: PlayerId | 'CPU';
   votes?: PlayerId[];
-};
+} & Pick<ContenderCard, 'id' | 'name' | 'description'>;
 
 export type BracketTier = 'quarter' | 'semi' | 'final' | 'winner';
 

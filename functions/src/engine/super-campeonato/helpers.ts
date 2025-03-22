@@ -10,7 +10,7 @@ import type { ContenderCard, TextCard } from '../../types/tdr';
 import type {
   Bracket,
   BracketTier,
-  Contender,
+  FightingContender,
   ContendersDeck,
   FirebaseStoreData,
   SuperCampeonatoAchievement,
@@ -71,7 +71,7 @@ export const isFinalRound = (round: Round): boolean => {
   return round.current === TOTAL_ROUNDS;
 };
 
-export const getTableContenders = (contendersDeck: ContendersDeck, players: Players): Contender[] => {
+export const getTableContenders = (contendersDeck: ContendersDeck, players: Players): FightingContender[] => {
   const playerCount = utils.players.getPlayerCount(players);
   const neededContendersPerRound =
     playerCount > CONTENDERS_PER_ROUND ? CONTENDERS_PER_ROUND : CONTENDERS_PER_ROUND - playerCount;
@@ -96,6 +96,7 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
   return selectedContenders.map((contender) => ({
     id: contender.id,
     name: contender.name,
+    description: contender.description,
     playerId: 'CPU',
   }));
 };
@@ -135,16 +136,18 @@ const getBracketTier = (position: number): BracketTier => {
   return 'winner';
 };
 
-export const makeBrackets = (players: Players, deck: Contender[], currentRound: number) => {
-  const contenders: Contender[] = [];
+export const makeBrackets = (players: Players, deck: FightingContender[], currentRound: number) => {
+  const contenders: FightingContender[] = [];
   // Gather contenders selected by players, remove those from the players cards
   utils.players.getListOfPlayers(players).forEach((player) => {
     // Get contender
-    const contender = player.contenders.find((c: Contender) => c.id === player.selectedContenderId);
+    const contender = player.contenders.find((c: FightingContender) => c.id === player.selectedContenderId);
 
     if (contender) {
       // Remove contender from player's hand
-      player.contenders = player.contenders.filter((c: Contender) => c.id !== player.selectedContenderId);
+      player.contenders = player.contenders.filter(
+        (c: FightingContender) => c.id !== player.selectedContenderId,
+      );
       // Add contenders to player's used contenders
       player.usedContenders.push(contender.id);
       // Add to selected ones
@@ -168,7 +171,8 @@ export const makeBrackets = (players: Players, deck: Contender[], currentRound: 
     .fill(0)
     .map((v, index) => ({
       id: 'TBD',
-      name: { pt: 'TBD', en: 'TBD' },
+      name: { pt: '?', en: 'TBD' },
+      description: { pt: '?', en: '?' },
       playerId: '',
       position: v + index,
       tier: getBracketTier(v + index),
@@ -178,6 +182,7 @@ export const makeBrackets = (players: Players, deck: Contender[], currentRound: 
   shuffledContenders.forEach((contender, index) => {
     emptyBracketArray[index].id = contender.id;
     emptyBracketArray[index].name = contender.name;
+    emptyBracketArray[index].description = contender?.description ?? { pt: '?', en: '?' };
     emptyBracketArray[index].playerId = contender.playerId;
   });
 
@@ -240,6 +245,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
       ...brackets[targetPos],
       id: winner.id,
       name: winner.name,
+      description: winner?.description ?? { pt: '?', en: '?' },
       playerId: winner.playerId,
       votes: [],
     };
@@ -290,6 +296,7 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
     .map((v, index) => ({
       id: 'TBD',
       name: { pt: 'TBD', en: 'TBD' },
+      description: { pt: '?', en: '?' },
       playerId: '',
       position: v + index,
       tier: getBracketTier(v + index),
@@ -299,6 +306,7 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
   shuffledContenders.forEach((contender, index) => {
     emptyBracketArray[index].id = contender.id;
     emptyBracketArray[index].name = contender.name;
+    emptyBracketArray[index].description = contender?.description ?? { pt: '?', en: '?' };
     emptyBracketArray[index].playerId = contender.playerId;
   });
 
