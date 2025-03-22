@@ -1,10 +1,12 @@
-import { type TimerResult, type TimerSettings, useTimer } from 'react-timer-hook';
+import { useTimer } from 'react-timer-hook';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 
-type SelectedTimeSettings = Omit<TimerSettings, 'expiryTimestamp'>;
+type UseTimerArgs = Parameters<typeof useTimer>[0];
 
-export interface useCountdownSettings extends SelectedTimeSettings {
+type UseTimerReturnType = ReturnType<typeof useTimer>;
+
+export interface useCountdownSettings extends Omit<UseTimerArgs, 'expiryTimestamp'> {
   /**
    * The duration of the countdown in seconds
    */
@@ -15,7 +17,7 @@ export interface useCountdownSettings extends SelectedTimeSettings {
   disabled?: boolean;
 }
 
-interface useCountdownReturnValue extends TimerResult {
+interface useCountdownReturnValue extends UseTimerReturnType {
   /**
    * Time left in total seconds (minutes + seconds)
    */
@@ -39,7 +41,7 @@ export function useCountdown({
     ...rest,
   });
 
-  const timeLeft = timer.minutes * 60 + timer.seconds;
+  const timeLeft = timer.totalSeconds;
 
   return {
     ...timer,

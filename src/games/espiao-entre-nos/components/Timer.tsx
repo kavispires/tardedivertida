@@ -8,7 +8,7 @@ import type { TimerType } from '../utils/types';
 
 type TimerProps = {
   timer: TimerType;
-  hideAccusationSelect: GenericFunction;
+  hideAccusationSelect: () => void;
   setStep: UseStep['setStep'];
 };
 
