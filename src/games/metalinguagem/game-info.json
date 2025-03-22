@@ -2,8 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "0.0.10",
-  "release": "beta",
+  "version": "1.0.1",
+  "release": "stable",
   "available": true,
   "title": {
     "pt": "Meta Linguagem",
