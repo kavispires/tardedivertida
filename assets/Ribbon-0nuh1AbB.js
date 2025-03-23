@@ -1,0 +1,1 @@
+import{j as n,e as r,a$ as t,bC as e}from"./index-CQUMMVDG.js";function a({label:o,position:s="absolute"}){return n.jsx("div",{className:r("ribbon",`ribbon--${s}`),children:n.jsx("div",{className:r("ribbon__content",`ribbon__content--${o}`,`color-background--${e(o)}`,t("bounceIn")),children:o})})}export{a as R};
