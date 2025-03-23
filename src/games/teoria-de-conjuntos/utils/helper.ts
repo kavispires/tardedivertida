@@ -90,4 +90,4 @@ export function countWordProperties(word: string): {
   };
 }
 
-export const getPlayerItemsLeft = (player: GamePlayer) => `(${player?.hand?.length ?? 0})`;
+export const getPlayerItemsLeft = (player: GamePlayer) => `(${(player?.hand ?? []).slice(0, 10).length})`;

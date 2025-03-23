@@ -47,6 +47,8 @@ export const STARTING_ITEMS_PER_PLAYER_COUNT = {
   10: 3,
 };
 
+export const JUDGE_HAND_QUANTITY = 15;
+
 export const OUTCOME = {
   CONTINUE: 'CONTINUE',
   WRONG: 'WRONG',

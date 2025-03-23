@@ -1,5 +1,6 @@
 // Constants
 import {
+  JUDGE_HAND_QUANTITY,
   OUTCOME,
   ROUNDS_PER_PLAYER,
   STARTING_ITEMS_PER_PLAYER_COUNT,
@@ -21,7 +22,7 @@ import { cloneDeep } from 'lodash';
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -50,7 +51,7 @@ export const prepareSetupPhase = async (
   });
 
   // Handle judge cards
-  const judgeHand = Array(STARTING_ITEMS_PER_PLAYER_COUNT[playerCount])
+  const judgeHand = Array(JUDGE_HAND_QUANTITY)
     .fill('')
     .map(() => deckIds.pop())
     .filter(Boolean);
@@ -92,7 +93,7 @@ export const prepareSetupPhase = async (
 
 export const prepareJudgeSelectionPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   const achievements = utils.achievements.setup(players, store, {

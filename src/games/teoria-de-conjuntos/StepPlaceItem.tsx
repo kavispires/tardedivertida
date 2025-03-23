@@ -255,14 +255,14 @@ export function StepPlaceItem({
               }
             >
               <Tag bordered={false} icon={<AimOutlined />}>
-                {(user.hand ?? []).length}/{targetItemCount}
+                {(user.hand ?? []).slice(0, 10).length}/{targetItemCount}
               </Tag>
             </Tooltip>
           </>
         }
       >
         <Flex gap={8} justify="center">
-          {(user.hand ?? []).map((itemId: string) => (
+          {(user.hand ?? []).slice(0, 10).map((itemId: string) => (
             <TransparentButton
               key={itemId}
               onClick={() => {
