@@ -75,6 +75,7 @@ const LOCATIONS = [
   {
     id: 'location-3',
     name: {
+      // eslint-disable-next-line quotes
       en: "Guidance Counselor's Office",
       pt: 'Sala do Orientador',
     },
@@ -96,6 +97,7 @@ const LOCATIONS = [
   {
     id: 'location-6',
     name: {
+      // eslint-disable-next-line quotes
       en: "Principal's Office",
       pt: 'Direção',
     },
@@ -117,6 +119,7 @@ const LOCATIONS = [
   {
     id: 'location-9',
     name: {
+      // eslint-disable-next-line quotes
       en: "Teacher's Lounge",
       pt: 'Sala dos Professores',
     },
@@ -145,6 +148,7 @@ const LOCATIONS = [
   {
     id: 'location-13',
     name: {
+      // eslint-disable-next-line quotes
       en: "Nurse's Office",
       pt: 'Enfermaria',
     },
