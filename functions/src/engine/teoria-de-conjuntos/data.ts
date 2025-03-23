@@ -1,5 +1,5 @@
 // Constants
-import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER } from './constants';
+import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER, JUDGE_HAND_QUANTITY } from './constants';
 import { TDR_RESOURCES } from '../../utils/constants';
 // Type
 import type { DiagramTopic, Item } from '../../types/tdr';
@@ -24,7 +24,7 @@ export const getResourceData = async (
 
   const startingItemsQuantity = STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] * (playerCount + 1);
   const deckQuantity = STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] + ROUNDS_PER_PLAYER * playerCount;
-  const itemsNeeded = deckQuantity + startingItemsQuantity;
+  const itemsNeeded = deckQuantity + startingItemsQuantity + JUDGE_HAND_QUANTITY;
 
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,

@@ -42,7 +42,7 @@ export function MyThings({ hand = [], items, total }: MyThingsProps) {
 
       <ViewOr condition={hand.length > 0}>
         <Flex gap={8} justify="center">
-          {hand.map((itemId: string) => (
+          {hand.slice(0, 10).map((itemId: string) => (
             <ItemCard key={itemId} id={itemId} width={100} text={items[itemId]?.name} />
           ))}
         </Flex>
