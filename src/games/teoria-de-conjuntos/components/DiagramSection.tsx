@@ -12,14 +12,14 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { DiagramArea, Reevaluation } from '../utils/types';
+import { checkIsDoubleDiagram } from '../utils/helper';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 import { TripleDiagram } from './TripleDiagram/TripleDiagram';
 import { TripleDiagramClickableAreas } from './TripleDiagram/TripleDiagramClickableAreas';
-import {
-  AreaPlacedItems,
-  calculateProportionalValues,
-  getCenterPointInArea,
-} from './TripleDiagram/AreaPlacedItems';
+import { TripleAreaPlacedItems, tripleHelpers } from './TripleDiagram/TripleAreaPlacedItems';
+import { DoubleDiagram } from './DoubleDiagram/DoubleDiagram';
+import { DoubleDiagramClickableAreas } from './DoubleDiagram/DoubleDiagramClickableAreas';
+import { DoubleAreaPlacedItems, doubleHelpers } from './DoubleDiagram/DoubleAreaPlacedItems';
 
 type DiagramSectionProps = {
   width: number;
@@ -40,6 +40,8 @@ export function DiagramSection({
   currentItemPosition,
   reevaluation,
 }: DiagramSectionProps) {
+  const doubleDiagram = checkIsDoubleDiagram(diagrams);
+
   const [selectedArea, setSelectedArea] = useState<string>('');
 
   const onAreaClick = (area: string) => {
@@ -51,7 +53,9 @@ export function DiagramSection({
 
   const hasAnAreaSelected = !!selectedArea;
 
-  const containerSizes = calculateProportionalValues(width, 0, 0);
+  const containerSizes = doubleDiagram
+    ? doubleHelpers.calculateProportionalValues(width, 0, 0)
+    : tripleHelpers.calculateProportionalValues(width, 0, 0);
 
   return (
     <div className="diagram-section">
@@ -76,18 +80,41 @@ export function DiagramSection({
         )}
       </Instruction>
       <Instruction contained className="diagram-section__world">
-        <TripleDiagram width={width} />
-        {Object.values(diagrams).map((diagramArea) => (
-          <AreaPlacedItems
-            key={diagramArea.key}
-            areaKey={diagramArea.key}
-            diagramArea={diagramArea}
-            containerWidth={width}
-          />
-        ))}
-        <TripleDiagramClickableAreas width={width} onClick={onAreaClick} />
+        {doubleDiagram ? (
+          <>
+            <DoubleDiagram width={width} />
+            {Object.values(diagrams).map((diagramArea) => (
+              <DoubleAreaPlacedItems
+                key={diagramArea.key}
+                areaKey={diagramArea.key}
+                diagramArea={diagramArea}
+                containerWidth={width}
+              />
+            ))}
+            <DoubleDiagramClickableAreas width={width} onClick={onAreaClick} />
+          </>
+        ) : (
+          <>
+            <TripleDiagram width={width} />
+            {Object.values(diagrams).map((diagramArea) => (
+              <TripleAreaPlacedItems
+                key={diagramArea.key}
+                areaKey={diagramArea.key}
+                diagramArea={diagramArea}
+                containerWidth={width}
+              />
+            ))}
+            <TripleDiagramClickableAreas width={width} onClick={onAreaClick} />
+          </>
+        )}
+
         {!!currentItem && (
-          <CurrentItem currentItem={currentItem} currentItemPosition={currentItemPosition} width={width} />
+          <CurrentItem
+            currentItem={currentItem}
+            currentItemPosition={currentItemPosition}
+            width={width}
+            doubleDiagram={doubleDiagram}
+          />
         )}
       </Instruction>
     </div>
@@ -98,8 +125,10 @@ function CurrentItem({
   currentItem,
   currentItemPosition,
   width,
-}: Pick<DiagramSectionProps, 'currentItem' | 'currentItemPosition' | 'width'>) {
-  const floatingItemSizes = calculateProportionalValues(width, 410, 360);
+  doubleDiagram,
+}: Pick<DiagramSectionProps, 'currentItem' | 'currentItemPosition' | 'width'> & { doubleDiagram: boolean }) {
+  const helpers = doubleDiagram ? doubleHelpers : tripleHelpers;
+  const floatingItemSizes = helpers.calculateProportionalValues(width, 410, doubleDiagram ? 324 : 360);
 
   if (!currentItem) return <></>;
 
@@ -108,7 +137,7 @@ function CurrentItem({
       className={clsx('floating-item', !currentItemPosition && 'floating-item--animated')}
       style={
         currentItemPosition
-          ? getCenterPointInArea(width, currentItemPosition)
+          ? helpers.getCenterPointInArea(width, currentItemPosition)
           : { top: floatingItemSizes.y - 50, left: floatingItemSizes.x - 50 }
       }
     >

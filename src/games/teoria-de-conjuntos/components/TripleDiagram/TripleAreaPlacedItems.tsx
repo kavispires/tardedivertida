@@ -12,7 +12,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 const CONTAINER_BOX_WIDTH = 820;
 const CONTAINER_BOX_HEIGHT = 720;
 
-export function calculateProportionalValues(containerWidth: number, objectX: number, objectY: number) {
+function calculateProportionalValues(containerWidth: number, objectX: number, objectY: number) {
   const scaleFactor = containerWidth / CONTAINER_BOX_WIDTH;
   return {
     width: containerWidth,
@@ -27,7 +27,7 @@ type Point = {
   y: number;
 };
 
-export function getCenterPointInArea(containerWidth: number, areaKey: string) {
+function getCenterPointInArea(containerWidth: number, areaKey: string) {
   const values = {
     A: { x: 145, y: 160 },
 
@@ -55,6 +55,11 @@ export function getCenterPointInArea(containerWidth: number, areaKey: string) {
     left,
   };
 }
+
+export const tripleHelpers = {
+  calculateProportionalValues,
+  getCenterPointInArea,
+};
 
 const BOUNDARIES_BY_AREA: Record<string, Point[]> = {
   A: [
@@ -166,13 +171,13 @@ const BOUNDARIES_BY_AREA: Record<string, Point[]> = {
   ],
 };
 
-type AreaPlacedItemsProps = {
+type TripleAreaPlacedItemsProps = {
   areaKey: string;
   diagramArea: DiagramArea;
   containerWidth: number;
 };
 
-export function AreaPlacedItems({ areaKey, diagramArea, containerWidth }: AreaPlacedItemsProps) {
+export function TripleAreaPlacedItems({ areaKey, diagramArea, containerWidth }: TripleAreaPlacedItemsProps) {
   const boundaries = BOUNDARIES_BY_AREA[areaKey];
 
   const itemWidth = Math.round(containerWidth / 18);

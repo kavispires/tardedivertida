@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "3.0.1",
+  "version": "4.0.1",
   "release": "stable",
   "available": true,
   "title": {
@@ -73,15 +73,14 @@
       "key": "easyGame",
       "kind": "switch",
       "label": "Complexity",
-      "description": "Regular: Triple Venn diagram. Easy: Double Venn diagram.",
-      "disabled": true,
+      "description": "Regular: Triple Venn diagram. Simple: Double Venn diagram.",
       "values": [
         {
           "label": "Regular",
           "value": false
         },
         {
-          "label": "Easy",
+          "label": "Simple",
           "value": true
         }
       ]

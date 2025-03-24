@@ -87,7 +87,7 @@ export const getResourceData = async (
   const examples = {
     attribute: utils.game.getRandomItems(attribute, 3),
     word: utils.game.getRandomItems(word, 3),
-    context: utils.game.getRandomItems(context, 3),
+    context: utils.game.getRandomItems(context ?? [], 3),
   };
 
   return {
@@ -95,7 +95,7 @@ export const getResourceData = async (
     diagrams: {
       attribute: utils.game.getRandomItem(attribute),
       word: utils.game.getRandomItem(word),
-      context: utils.game.getRandomItem(context),
+      context: utils.game.getRandomItem(context ?? []),
     },
     examples,
   };
