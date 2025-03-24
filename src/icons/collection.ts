@@ -20,6 +20,7 @@ export * from './AnonymousIcon';
 export * from './ApplauseIcon';
 export * from './ArrowIcon';
 export * from './ArrowSignIcon';
+export * from './AudioIcon';
 export * from './BadgeIcon';
 export * from './BarChartIcon';
 export * from './BikiniModelIcon';

@@ -1,14 +1,16 @@
 // Ant Design Resources
-import { Flex } from 'antd';
+import { Flex, Tooltip } from 'antd';
 // Icons
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxEqualIcon } from 'icons/BoxEqualIcon';
 import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
+import { SpeakButton } from 'components/audio/SpeakButton';
 import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { ItemCard } from 'components/cards/ItemCard';
+import { Translate } from 'components/language';
 import { Instruction, TextHighlight } from 'components/text';
 
 type PortmanteauProps = {
@@ -35,6 +37,9 @@ export function Portmanteau({ word, itemsIds, names, correct }: PortmanteauProps
         <Card hideHeader>{word}</Card>
         {correct && <IconAvatar icon={<BoxCheckMarkIcon />} size="small" />}
         {correct === false && <IconAvatar icon={<BoxXIcon />} size="small" />}
+        <Tooltip title={<Translate pt="Pronunciar" en="Pronounce" />}>
+          <SpeakButton text={{ pt: word, en: word }} />
+        </Tooltip>
       </Flex>
     </Instruction>
   );
