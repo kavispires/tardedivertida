@@ -13,12 +13,12 @@ export const getResourceData = async (options: MetalinguagemOptions): Promise<Re
 
   const itemsNeeded = MAX_ROUNDS * ITEMS_PER_ROUND;
 
-  const dreamItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.6), {
+  const dreamItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.7), {
     allowNSFW,
     decks: ['dream'],
   });
 
-  const metaItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.4), {
+  const metaItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.3), {
     allowNSFW,
     decks: ['meta'],
   });
