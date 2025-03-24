@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 // Internal
-import { HoverablePath } from './HoverableAreas';
+import { HoverablePath } from '../HoverableAreas';
 
 type TripleDiagramClickableAreasProps = {
   width: number;

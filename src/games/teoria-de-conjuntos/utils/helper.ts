@@ -2,6 +2,15 @@
 import type { GamePlayer } from 'types/player';
 // Utils
 import { stringRemoveAccents } from 'utils/helpers';
+// Internal
+import type { DiagramArea } from './types';
+
+/**
+ * Check if the game is using 2 diagrams instead of 3 (it counts the number of intersections, including outside)
+ * @param diagrams
+ * @returns
+ */
+export const checkIsDoubleDiagram = (diagrams: Dictionary<DiagramArea>) => Object.keys(diagrams).length === 4;
 
 export function countWordProperties(word: string): {
   letters: number;
