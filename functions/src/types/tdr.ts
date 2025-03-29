@@ -223,7 +223,7 @@ export type CrimesHediondosCard = {
   /**
    * The type of the card
    */
-  type: 'weapon' | 'evidence' | string;
+  type: 'weapon' | 'evidence' | 'victim' | 'location' | string;
   /**
    * The name of the card
    */
@@ -236,11 +236,7 @@ export type CrimesHediondosCard = {
   /**
    * Item Id for the illustration icon
    */
-  itemId?: string;
-  /**
-   * Flag indicating if entry is exclusive to using itemIds
-   */
-  itemExclusive?: boolean;
+  itemId: string;
 };
 
 /**
@@ -269,9 +265,9 @@ export type CrimeSceneTile = {
    */
   type: string;
   /**
-   * Flag indicating if the tile is for evidence or weapons
+   * Flag indicating if the card is exclusive to a type
    */
-  specific?: string | null;
+  specific?: 'weapon' | 'evidence' | 'victim' | 'location' | string | null;
   /**
    * Object with a list of tags for each entry value. It's used to help guess the value for given weapon and evidence pair tags in the scenario
    */

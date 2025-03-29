@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "2.0.27",
+  "version": "2.0.29",
   "release": "stable",
   "available": true,
   "title": {
@@ -47,6 +47,38 @@
       "label": "Bot Criminals",
       "description": "Adds 2 bots will have their own AI crime",
       "disabled": true,
+      "values": [
+        {
+          "label": "off",
+          "value": false
+        },
+        {
+          "label": "on",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "withLocations",
+      "kind": "switch",
+      "label": "With Locations",
+      "description": "Adds locations to the game",
+      "values": [
+        {
+          "label": "off",
+          "value": false
+        },
+        {
+          "label": "on",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "withVictims",
+      "kind": "switch",
+      "label": "With Victims",
+      "description": "Adds victims to the game",
       "values": [
         {
           "label": "off",

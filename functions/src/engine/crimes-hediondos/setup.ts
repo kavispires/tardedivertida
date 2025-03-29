@@ -34,7 +34,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Build scene decks
-  const { causeOfDeathTile, reasonForEvidenceTile, locationTile, sceneTiles } = parseTiles(
+  const { causeOfDeathTile, reasonForEvidenceTile, locationTile, victimTile, sceneTiles } = parseTiles(
     resourceData.allScenes,
   );
 
@@ -54,6 +54,8 @@ export const prepareSetupPhase = async (
         scenes: sceneTiles,
         weapons: resourceData.weapons,
         evidence: resourceData.evidence,
+        locations: resourceData.locations,
+        victims: resourceData.victims,
         achievements,
       },
       state: {
@@ -62,6 +64,7 @@ export const prepareSetupPhase = async (
         causeOfDeathTile,
         reasonForEvidenceTile,
         locationTile,
+        victimTile,
       },
     },
   };
@@ -72,8 +75,9 @@ export const prepareCrimeSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
+  utils.helpers.print(store);
   // Group weapons
-  const { groupedItems, items } = groupItems(store.weapons, store.evidence);
+  const { groupedItems, items } = groupItems(store.weapons, store.evidence, store.victims, store.locations);
 
   // Assign groups of weapon and evidence to each player
   dealItemGroups(players);

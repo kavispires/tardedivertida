@@ -58,6 +58,8 @@ type ParsedTiles = {
   causeOfDeathTile?: CrimeSceneTile;
   reasonForEvidenceTile?: CrimeSceneTile;
   locationTile?: CrimeSceneTile;
+  victimTile?: CrimeSceneTile;
+  victimsTiles: CrimeSceneTile[];
   sceneTiles: CrimeSceneTile[];
 };
 
@@ -70,6 +72,8 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
         acc.reasonForEvidenceTile = tile;
       } else if (tile.type === 'location') {
         acc.locationTile = tile;
+      } else if (tile.specific === 'victim') {
+        acc.victimsTiles.push(tile);
       } else {
         acc.sceneTiles.push(tile);
       }
@@ -78,10 +82,17 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
     },
     {
       sceneTiles: [],
+      victimsTiles: [],
     },
   );
 
-  result.sceneTiles = utils.game.getRandomItems(result.sceneTiles, SCENE_TILES_COUNT);
+  result.victimTile = utils.game.getRandomItem(result.victimsTiles);
+  const leftoverVictimTiles = result.victimsTiles.filter((tile) => tile.id !== result.victimTile?.id);
+
+  result.sceneTiles = utils.game.getRandomItems(
+    [...result.sceneTiles, ...leftoverVictimTiles],
+    SCENE_TILES_COUNT,
+  );
 
   return result;
 };
@@ -91,20 +102,35 @@ type GroupItems = {
   groupedItems: GroupedItems;
 };
 
-export const groupItems = (weapons: CrimesHediondosCard[], evidence: CrimesHediondosCard[]): GroupItems => {
-  // Divide weapons into 4 groups
+export const groupItems = (
+  weapons: CrimesHediondosCard[],
+  evidence: CrimesHediondosCard[],
+  victims: CrimesHediondosCard[],
+  locations: CrimesHediondosCard[],
+): GroupItems => {
+  // Divide things into 4 groups
   const groupedWeapons = utils.game.sliceIntoChunks(weapons, ITEMS_PER_GROUP);
-  // Add evidence into each weapon group
   const groupedEvidence = utils.game.sliceIntoChunks(evidence, ITEMS_PER_GROUP);
+  const groupedLocations = utils.game.sliceIntoChunks(locations, ITEMS_PER_GROUP);
+  const groupedVictims = utils.game.sliceIntoChunks(victims, ITEMS_PER_GROUP);
+
   const groupedItems = {};
   groupedEvidence.forEach((evidenceGroup, index) => {
-    groupedItems[`${index}`] = [...groupedWeapons[index].map((i) => i.id), ...evidenceGroup.map((i) => i.id)];
+    groupedItems[`${index}`] = [
+      ...groupedWeapons[index].map((i) => i.id),
+      ...evidenceGroup.map((i) => i.id),
+      ...groupedLocations[index].map((i) => i.id),
+      ...groupedVictims[index].map((i) => i.id),
+    ];
   });
 
-  const itemsDict = [...weapons, ...evidence].reduce((acc: PlainObject, item: CrimesHediondosCard) => {
-    acc[item.id] = item;
-    return acc;
-  }, {});
+  const itemsDict = [...weapons, ...evidence, ...locations, ...victims].reduce(
+    (acc: PlainObject, item: CrimesHediondosCard) => {
+      acc[item.id] = item;
+      return acc;
+    },
+    {},
+  );
 
   return {
     items: itemsDict,
