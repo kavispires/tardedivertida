@@ -7,11 +7,14 @@ import type { GamePlayers } from 'types/player';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxMinusIcon } from 'icons/BoxMinusIcon';
 import { BoxOneIcon } from 'icons/BoxOneIcon';
+import { BoxThreeIcon } from 'icons/BoxThreeIcon';
+import { BoxTwoIcon } from 'icons/BoxTwoIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { AvatarName, Avatar, IconAvatar } from 'components/avatars';
 // Internal
 import type { Results } from '../utils/types';
+import { GUESS_STATUS } from '../utils/constants';
 import { CrimeGuessStatus } from './CrimeGuessStatus';
 
 type ResultsTableProps = {
@@ -51,26 +54,38 @@ type ResultsTableCellProps = {
 
 function ResultsTableCell({ status }: ResultsTableCellProps) {
   switch (status) {
-    case 'LOCKED':
-    case 'CORRECT':
+    case GUESS_STATUS.LOCKED:
+    case GUESS_STATUS.CORRECT:
       return (
         <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
           <IconAvatar icon={<BoxCheckMarkIcon />} shape="square" alt={status} />
         </Tooltip>
       );
-    case 'HALF':
+    case GUESS_STATUS.ONE:
       return (
         <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
           <IconAvatar icon={<BoxOneIcon />} shape="square" alt={status} />
         </Tooltip>
       );
-    case 'WRONG':
+    case GUESS_STATUS.TWO:
+      return (
+        <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
+          <IconAvatar icon={<BoxTwoIcon />} shape="square" alt={status} />
+        </Tooltip>
+      );
+    case GUESS_STATUS.THREE:
+      return (
+        <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
+          <IconAvatar icon={<BoxThreeIcon />} shape="square" alt={status} />
+        </Tooltip>
+      );
+    case GUESS_STATUS.WRONG:
       return (
         <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
           <IconAvatar icon={<BoxMinusIcon />} shape="square" alt={status} />
         </Tooltip>
       );
-    case 'WRONG_GROUP':
+    case GUESS_STATUS.WRONG_GROUP:
       return (
         <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
           <IconAvatar icon={<BoxXIcon />} shape="square" alt={status} />

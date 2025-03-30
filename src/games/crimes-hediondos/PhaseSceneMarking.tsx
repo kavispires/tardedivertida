@@ -18,6 +18,7 @@ import { Instruction, TextHighlight } from 'components/text';
 import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
 import { mockSceneMark } from './utils/mock';
 import type { PhaseSceneMarkingState } from './utils/types';
+import { useGameTypes } from './utils/useGameTypes';
 import { StepNewScene } from './StepNewScene';
 
 export function PhaseSceneMarking({ players, state }: PhaseProps<PhaseSceneMarkingState>) {
@@ -25,6 +26,7 @@ export function PhaseSceneMarking({ players, state }: PhaseProps<PhaseSceneMarki
   const { step, setStep, goToNextStep } = useStep(0);
 
   const onSubmitMark = useOnSubmitMarkAPIRequest(setStep);
+  const { isLocationGame, isVictimGame } = useGameTypes(state.items);
 
   useMock(() => {
     onSubmitMark({ sceneIndex: mockSceneMark() });
@@ -67,6 +69,8 @@ export function PhaseSceneMarking({ players, state }: PhaseProps<PhaseSceneMarki
           scenesOrder={state.scenesOrder}
           crimes={state.crimes}
           announcement={announcement}
+          isVictimGame={isVictimGame}
+          isLocationGame={isLocationGame}
         />
       </StepSwitcher>
     </PhaseContainer>

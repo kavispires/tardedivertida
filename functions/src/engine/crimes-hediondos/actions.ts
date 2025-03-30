@@ -11,24 +11,37 @@ export const handleSubmitCrime = async (
   data: {
     weaponId: string;
     evidenceId: string;
+    victimId?: string;
+    locationId?: string;
     causeOfDeathIndex: number;
     reasonForEvidenceIndex: number;
+    victimIndex: number;
     locationIndex: number;
   },
 ) => {
+  const change: PlainObject = {
+    weaponId: data.weaponId,
+    evidenceId: data.evidenceId,
+    causeOfDeathIndex: data.causeOfDeathIndex,
+    reasonForEvidenceIndex: data.reasonForEvidenceIndex,
+    locationIndex: data.locationIndex,
+    victimIndex: data.victimIndex,
+  };
+
+  if (data.victimId) {
+    change.victimId = data.victimId;
+  }
+  if (data.locationId) {
+    change.locationId = data.locationId;
+  }
+
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
     actionText: 'submit your crime',
     shouldReady: true,
-    change: {
-      weaponId: data.weaponId,
-      evidenceId: data.evidenceId,
-      causeOfDeathIndex: data.causeOfDeathIndex,
-      reasonForEvidenceIndex: data.reasonForEvidenceIndex,
-      locationIndex: data.locationIndex,
-    },
+    change,
     nextPhaseFunction: getNextPhase,
   });
 };

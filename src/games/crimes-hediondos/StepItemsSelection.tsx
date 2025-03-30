@@ -4,8 +4,6 @@ import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { CrimesHediondosCard } from 'types/tdr';
-// Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
@@ -18,14 +16,22 @@ import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { GroupedItems, ItemsDict, SubmitCrimePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';
-import { EvidenceHighlight, WeaponHighlight } from './components/Highlights';
+import {
+  EvidenceHighlight,
+  LocationHighlight,
+  VictimHighlight,
+  WeaponHighlight,
+} from './components/Highlights';
 
 type StepItemsSelectionProps = {
   user: GamePlayer;
   groupedItems: GroupedItems;
   items: ItemsDict;
   selections: SubmitCrimePayload;
-  updateSelections: GenericFunction;
+  updateSelections: (payload: SubmitCrimePayload) => void;
+  isLocationGame: boolean;
+  isVictimGame: boolean;
+  cardWidth: number;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepItemsSelection({
@@ -35,33 +41,82 @@ export function StepItemsSelection({
   groupedItems,
   selections,
   updateSelections,
+  isLocationGame,
+  isVictimGame,
+  cardWidth,
 }: StepItemsSelectionProps) {
   const [weaponId, setWeaponId] = useState<string>(selections.weaponId ?? '');
   const [evidenceId, setEvidenceId] = useState<string>(selections.evidenceId ?? '');
-  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 200 });
+  const [locationId, setLocationId] = useState<string>(selections.locationId ?? '');
+  const [victimId, setVictimId] = useState<string>(selections.victimId ?? '');
 
   const userItems = groupedItems[user.itemGroupIndex];
 
   const onSelectItem = (item: CrimesHediondosCard) => {
     if (item.type === 'weapon') {
-      setWeaponId(item.id);
-    } else {
-      setEvidenceId(item.id);
+      return setWeaponId(item.id);
+    }
+    if (item.type === 'evidence') {
+      return setEvidenceId(item.id);
+    }
+    if (item.type === 'location') {
+      return setLocationId(item.id);
+    }
+    if (item.type === 'victim') {
+      return setVictimId(item.id);
     }
   };
 
   const onRandomSelect = () => {
     let randomWeaponId = '';
     let randomEvidenceId = '';
+    let randomLocationId = '';
+    let randomVictimId = '';
     shuffle(userItems).forEach((itemId) => {
       if (items[itemId].type === 'weapon') {
         randomWeaponId = itemId;
-      } else {
+      }
+      if (items[itemId].type === 'evidence') {
         randomEvidenceId = itemId;
+      }
+      if (items[itemId].type === 'location') {
+        randomLocationId = itemId;
+      }
+      if (items[itemId].type === 'victim') {
+        randomVictimId = itemId;
       }
     });
     setWeaponId(randomWeaponId);
     setEvidenceId(randomEvidenceId);
+    setLocationId(randomLocationId);
+    setVictimId(randomVictimId);
+  };
+
+  const getCountsInstructions = () => {
+    const result = [
+      <WeaponHighlight key="mean">
+        <Translate pt="16 meios" en="16 means of murder" />
+      </WeaponHighlight>,
+      <EvidenceHighlight key="evidence">
+        <Translate pt="16 evidências" en="16 pieces of evidence" />
+      </EvidenceHighlight>,
+    ];
+    if (isVictimGame) {
+      result.push(
+        <VictimHighlight key="victim">
+          <Translate pt="16 vítimas" en="16 victims" />
+        </VictimHighlight>,
+      );
+    }
+    if (isLocationGame) {
+      result.push(
+        <LocationHighlight key="location">
+          <Translate pt="16 locais" en="16 locations" />
+        </LocationHighlight>,
+      );
+    }
+
+    return result;
   };
 
   return (
@@ -75,21 +130,45 @@ export function StepItemsSelection({
             <>
               <strong>Selecione</strong> uma carta azul que representa o meio que a morte aconteceu no seu
               último crime, normalmente uma arma.
-              <br />E <strong>selecione</strong> uma carta vermelha que um objeto na cena do crime.
-              <br />O jogo contém <WeaponHighlight>16 meios</WeaponHighlight> e{' '}
-              <EvidenceHighlight>16 evidências</EvidenceHighlight>, mas para essa parte, você vê apenas 4
-              opções de cada.
+              <br />
+              <strong>Selecione</strong> uma carta vermelha que representa uma evidência que estava na cena do
+              crime.
+              {isVictimGame && (
+                <>
+                  <br />
+                  <strong>Selecione</strong> uma carta amarela que representa a vítima do crime.
+                </>
+              )}
+              {isLocationGame && (
+                <>
+                  <br />
+                  <strong>Selecione</strong> uma carta verde que representa o local do crime.
+                </>
+              )}
+              <br />O jogo contém {getCountsInstructions()}, mas para essa parte, você vê apenas 4 opções de
+              cada.
             </>
           }
           en={
             <>
-              Select a blue card and a red card.
+              <strong>Select</strong> a blue card that represents the means by which the death occurred in
+              your last crime, usually a weapon.
               <br />
-              They represent the weapon used in your latest crime and an object that was in the crime scene.
+              <strong>Select</strong> a red card that represents evidence that was at the crime scene.
+              {isVictimGame && (
+                <>
+                  <br />
+                  <strong>Select</strong> a yellow card that represents the victim of the crime.
+                </>
+              )}
+              {isLocationGame && (
+                <>
+                  <br />
+                  <strong>Select</strong> a green card that represents the crime scene.
+                </>
+              )}
               <br />
-              The game has <WeaponHighlight>16 weapons</WeaponHighlight> and{' '}
-              <EvidenceHighlight>16 objects</EvidenceHighlight>, but for this phase, you only see 4 options of
-              each.
+              The game contains {getCountsInstructions()}, but for this part, you only see 4 options of each.
             </>
           }
         />
@@ -102,7 +181,7 @@ export function StepItemsSelection({
               <CrimeItemCard
                 item={items[itemId]}
                 cardWidth={cardWidth}
-                isSelected={[weaponId, evidenceId].includes(itemId)}
+                isSelected={[weaponId, evidenceId, victimId, locationId].includes(itemId)}
               />
             </TransparentButton>
           </li>
@@ -116,7 +195,7 @@ export function StepItemsSelection({
 
         <ContinueButton
           disabled={!weaponId || !evidenceId}
-          onClick={() => updateSelections({ weaponId, evidenceId })}
+          onClick={() => updateSelections({ weaponId, evidenceId, locationId, victimId })}
         />
       </SpaceContainer>
     </Step>

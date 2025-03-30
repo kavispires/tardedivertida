@@ -3,13 +3,21 @@ import type { CRIMES_HEDIONDOS_ACHIEVEMENTS, CRIMES_HEDIONDOS_ACTIONS } from './
 
 export type CrimesHediondosOptions = {
   /**
-   * Uses the original images instead of the TD items sprites
+   * Possibly include nsfw items
    */
-  originalImages?: boolean;
+  nsfw?: boolean;
   /**
    * Adds bots with 2 crimes
    */
   withBots?: boolean;
+  /**
+   * Adds locations to game
+   */
+  withLocations?: boolean;
+  /**
+   * Adds victims to game
+   */
+  withVictims?: boolean;
 };
 
 export type CrimesHediondosAchievement = keyof typeof CRIMES_HEDIONDOS_ACHIEVEMENTS;
@@ -17,9 +25,9 @@ export type CrimesHediondosAchievement = keyof typeof CRIMES_HEDIONDOS_ACHIEVEME
 export interface Crime {
   playerId: PlayerId;
   weaponId: string;
-  // weaponItemId: string | null;
   evidenceId: string;
-  // evidenceItemId: string | null;
+  victimId?: string;
+  locationId?: string;
   scenes: {
     [key: string]: number;
   };
@@ -29,6 +37,8 @@ export interface Crime {
 export type Guess = {
   weaponId: string;
   evidenceId: string;
+  victimId?: string;
+  locationId?: string;
 };
 
 export type Guesses = Record<PlayerId, Guess>;
@@ -40,21 +50,23 @@ export type GuessHistory = {
 export type GuessHistoryEntry = {
   weaponId: string;
   evidenceId: string;
+  victimId?: string;
+  locationId?: string;
   status: string;
   groupIndex: number;
 };
 
-export type GroupedItems = {
-  [key: string]: string[];
-};
+export type GroupedItems = Dictionary<string[]>;
 
-export type WrongGroups = {
-  [key: string]: number[];
-};
+export type WrongGroups = Dictionary<number[]>;
+
+export type WrongItems = Dictionary<string[]>;
 
 export interface ResourceData {
   weapons: CrimesHediondosCard[];
   evidence: CrimesHediondosCard[];
+  locations?: CrimesHediondosCard[];
+  victims?: CrimesHediondosCard[];
   allScenes: CrimeSceneTile[];
 }
 

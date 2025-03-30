@@ -23,7 +23,6 @@ import {
 
 /**
  * Setup
- * ???
  * Resets previous changes to the store
  * @returns
  */
@@ -34,17 +33,22 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Build scene decks
-  const { causeOfDeathTile, reasonForEvidenceTile, locationTile, sceneTiles } = parseTiles(
+  const { causeOfDeathTile, reasonForEvidenceTile, locationTile, victimTile, sceneTiles } = parseTiles(
     resourceData.allScenes,
   );
 
   const achievements = utils.achievements.setup(players, store, {
     wrongGroups: 0,
     wrong: 0,
-    half: 0,
+    one: 0,
+    two: 0,
+    three: 0,
+    four: 0,
     correct: [],
     weapons: [],
     evidence: [],
+    victims: [],
+    locations: [],
   });
 
   // Save
@@ -54,6 +58,8 @@ export const prepareSetupPhase = async (
         scenes: sceneTiles,
         weapons: resourceData.weapons,
         evidence: resourceData.evidence,
+        locations: resourceData.locations,
+        victims: resourceData.victims,
         achievements,
       },
       state: {
@@ -62,6 +68,7 @@ export const prepareSetupPhase = async (
         causeOfDeathTile,
         reasonForEvidenceTile,
         locationTile,
+        victimTile,
       },
     },
   };
@@ -73,7 +80,7 @@ export const prepareCrimeSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Group weapons
-  const { groupedItems, items } = groupItems(store.weapons, store.evidence);
+  const { groupedItems, items } = groupItems(store.weapons, store.evidence, store.victims, store.locations);
 
   // Assign groups of weapon and evidence to each player
   dealItemGroups(players);
@@ -159,6 +166,7 @@ export const prepareGuessingPhase = async (
     const { scenes, order } = buildScenes(
       state.causeOfDeathTile,
       state.reasonForEvidenceTile,
+      state.victimTile,
       state.locationTile,
     );
     // Gather answers and build crimes
@@ -166,6 +174,7 @@ export const prepareGuessingPhase = async (
       players,
       state.causeOfDeathTile,
       state.reasonForEvidenceTile,
+      state.victimTile,
       state.locationTile,
     );
     // Cleanup properties from players
@@ -173,6 +182,7 @@ export const prepareGuessingPhase = async (
       'causeOfDeathIndex',
       'locationIndex',
       'reasonForEvidenceIndex',
+      'victimIndex',
     ]);
 
     mockGuessingForBots(players);
@@ -186,7 +196,7 @@ export const prepareGuessingPhase = async (
           scenes,
           scenesOrder: order,
         },
-        stateCleanup: ['causeOfDeathTile', 'reasonForEvidenceTile', 'locationTile'],
+        stateCleanup: ['causeOfDeathTile', 'reasonForEvidenceTile', 'locationTile', 'victimTile'],
       },
     };
   }

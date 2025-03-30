@@ -19,6 +19,7 @@ import type {
   GuessHistory,
   GuessHistoryEntry,
   WrongGroups,
+  WrongItems,
 } from './types';
 import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 // Utils
@@ -58,6 +59,8 @@ type ParsedTiles = {
   causeOfDeathTile?: CrimeSceneTile;
   reasonForEvidenceTile?: CrimeSceneTile;
   locationTile?: CrimeSceneTile;
+  victimTile?: CrimeSceneTile;
+  victimsTiles: CrimeSceneTile[];
   sceneTiles: CrimeSceneTile[];
 };
 
@@ -70,6 +73,8 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
         acc.reasonForEvidenceTile = tile;
       } else if (tile.type === 'location') {
         acc.locationTile = tile;
+      } else if (tile.specific === 'victim') {
+        acc.victimsTiles.push(tile);
       } else {
         acc.sceneTiles.push(tile);
       }
@@ -78,10 +83,19 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
     },
     {
       sceneTiles: [],
+      victimsTiles: [],
     },
   );
 
-  result.sceneTiles = utils.game.getRandomItems(result.sceneTiles, SCENE_TILES_COUNT);
+  result.victimTile = utils.game.getRandomItem(result.victimsTiles);
+  result.victimTile.type = 'victim';
+
+  const leftoverVictimTiles = result.victimsTiles.filter((tile) => tile.id !== result.victimTile?.id);
+
+  result.sceneTiles = utils.game.getRandomItems(
+    [...result.sceneTiles, ...leftoverVictimTiles],
+    SCENE_TILES_COUNT,
+  );
 
   return result;
 };
@@ -91,20 +105,35 @@ type GroupItems = {
   groupedItems: GroupedItems;
 };
 
-export const groupItems = (weapons: CrimesHediondosCard[], evidence: CrimesHediondosCard[]): GroupItems => {
-  // Divide weapons into 4 groups
+export const groupItems = (
+  weapons: CrimesHediondosCard[],
+  evidence: CrimesHediondosCard[],
+  victims: CrimesHediondosCard[],
+  locations: CrimesHediondosCard[],
+): GroupItems => {
+  // Divide things into 4 groups
   const groupedWeapons = utils.game.sliceIntoChunks(weapons, ITEMS_PER_GROUP);
-  // Add evidence into each weapon group
   const groupedEvidence = utils.game.sliceIntoChunks(evidence, ITEMS_PER_GROUP);
+  const groupedLocations = utils.game.sliceIntoChunks(locations, ITEMS_PER_GROUP);
+  const groupedVictims = utils.game.sliceIntoChunks(victims, ITEMS_PER_GROUP);
+
   const groupedItems = {};
   groupedEvidence.forEach((evidenceGroup, index) => {
-    groupedItems[`${index}`] = [...groupedWeapons[index].map((i) => i.id), ...evidenceGroup.map((i) => i.id)];
+    groupedItems[`${index}`] = [
+      ...groupedWeapons[index].map((i) => i.id),
+      ...evidenceGroup.map((i) => i.id),
+      ...(groupedVictims[index] ? groupedVictims[index].map((i) => i.id) : []),
+      ...(groupedLocations[index] ? groupedLocations[index].map((i) => i.id) : []),
+    ];
   });
 
-  const itemsDict = [...weapons, ...evidence].reduce((acc: PlainObject, item: CrimesHediondosCard) => {
-    acc[item.id] = item;
-    return acc;
-  }, {});
+  const itemsDict = [...weapons, ...evidence, ...victims, ...locations].reduce(
+    (acc: PlainObject, item: CrimesHediondosCard) => {
+      acc[item.id] = item;
+      return acc;
+    },
+    {},
+  );
 
   return {
     items: itemsDict,
@@ -123,15 +152,19 @@ export const buildCrimes = (
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
   locationTile: CrimeSceneTile,
+  victimTile: CrimeSceneTile,
 ): Crime[] => {
   return utils.players.getListOfPlayers(players, true).map((player) => {
     return {
       playerId: player.id,
       weaponId: player.weaponId,
       evidenceId: player.evidenceId,
+      victimId: player.victimId ?? '',
+      locationId: player.locationId ?? '',
       scenes: {
         [causeOfDeathTile.id]: player.causeOfDeathIndex,
         [reasonForEvidenceTile.id]: player.causeOfDeathIndex,
+        [victimTile.id]: player.victimIndex,
         [locationTile.id]: player.locationIndex,
       },
       itemGroupIndex: player.itemGroupIndex,
@@ -149,13 +182,15 @@ type BuiltScenes = {
 export const buildScenes = (
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
+  victimTile: CrimeSceneTile,
   locationTile: CrimeSceneTile,
 ): BuiltScenes => {
-  const order = [causeOfDeathTile.id, reasonForEvidenceTile.id, locationTile.id];
+  const order = [causeOfDeathTile.id, reasonForEvidenceTile.id, victimTile.id, locationTile.id];
 
   const scenes = {
     [causeOfDeathTile.id]: causeOfDeathTile,
     [reasonForEvidenceTile.id]: reasonForEvidenceTile,
+    [victimTile.id]: victimTile,
     [locationTile.id]: locationTile,
   };
 
@@ -181,6 +216,7 @@ export const updateOrCreateGuessHistory = (
   utils.players.getListOfPlayers(players, true).forEach((player) => {
     const history: GuessHistory = { ...(player.history ?? {}) };
     const wrongGroups: WrongGroups = { ...(player.wrongGroups ?? {}) };
+    const wrongItems: WrongItems = { ...(player.wrongItems ?? {}) };
     const result: StringDictionary = {};
     // Count correct crimes
     player.correctCrimes = 0;
@@ -199,9 +235,11 @@ export const updateOrCreateGuessHistory = (
         const lastGuess = utils.game.getLastItem(history[crime.playerId]);
         if (lastGuess && [GUESS_STATUS.CORRECT, GUESS_STATUS.LOCKED].includes(lastGuess.status)) {
           history[crime.playerId].push({
+            status: GUESS_STATUS.LOCKED,
             weaponId: lastGuess.weaponId,
             evidenceId: lastGuess.evidenceId,
-            status: GUESS_STATUS.LOCKED,
+            victimId: lastGuess.victimId ?? '',
+            locationId: lastGuess.locationId ?? '',
             groupIndex: lastGuess.groupIndex,
           });
           result[crime.playerId] = GUESS_STATUS.LOCKED;
@@ -211,13 +249,15 @@ export const updateOrCreateGuessHistory = (
         const status = getCrimeGuessStatus(crime, guess, groupedItems);
 
         // If wrong group, save the wrong group
-        const groupIndex = findWhatGroupTheItemBelongsTo(guess, groupedItems);
+        const currentGroupIndex = findWhatGroupTheItemBelongsTo(guess, groupedItems);
 
         history[crime.playerId].push({
+          status,
           weaponId: guess.weaponId,
           evidenceId: guess.evidenceId,
-          status,
-          groupIndex,
+          victimId: guess.victimId ?? '',
+          locationId: guess.locationId ?? '',
+          groupIndex: currentGroupIndex,
         });
 
         if (status === GUESS_STATUS.CORRECT) {
@@ -231,25 +271,48 @@ export const updateOrCreateGuessHistory = (
         }
 
         if (status === GUESS_STATUS.WRONG_GROUP) {
-          wrongGroups[crime.playerId].push(groupIndex);
+          wrongGroups[crime.playerId].push(currentGroupIndex);
           // Achievements: wrongGroups
           utils.achievements.increase(store, player.id, 'wrongGroups', 1);
         }
 
         // If player knows the group, eliminate all other groups
-        if ([GUESS_STATUS.HALF, GUESS_STATUS.WRONG].includes(status)) {
-          wrongGroups[crime.playerId] = [0, 1, 2, 3].filter((i) => i !== groupIndex);
+        if ([GUESS_STATUS.WRONG, GUESS_STATUS.ONE, GUESS_STATUS.TWO, GUESS_STATUS.THREE].includes(status)) {
+          wrongGroups[crime.playerId] = [0, 1, 2, 3].filter((i) => i !== currentGroupIndex);
+        }
 
-          if (status === GUESS_STATUS.HALF) {
-            // Achievements: Half/One of the two
-            utils.achievements.increase(store, player.id, 'half', 1);
-            // Achievements: Wrong
-            utils.achievements.increase(store, player.id, 'wrong', 1);
+        if (status === GUESS_STATUS.ONE) {
+          // Achievements: Half/One of the two
+          utils.achievements.increase(store, player.id, 'one', 1);
+          // Achievements: Wrong
+          utils.achievements.increase(store, player.id, 'wrong', 1);
+        }
+
+        if (status === GUESS_STATUS.TWO) {
+          // Achievements: Two of the three
+          utils.achievements.increase(store, player.id, 'two', 1);
+          // Achievements: Wrong
+          utils.achievements.increase(store, player.id, 'wrong', 1);
+        }
+
+        if (status === GUESS_STATUS.THREE) {
+          // Achievements: Three of the four
+          utils.achievements.increase(store, player.id, 'three', 1);
+          // Achievements: Wrong
+          utils.achievements.increase(store, player.id, 'wrong', 1);
+        }
+
+        if (status === GUESS_STATUS.WRONG) {
+          // Achievements: Wrong
+          utils.achievements.increase(store, player.id, 'wrong', 4);
+          // Add all items to the wrong items
+          wrongItems[crime.playerId] = wrongItems[crime.playerId] ?? [];
+          wrongItems[crime.playerId].push(guess.weaponId, guess.evidenceId);
+          if (crime.victimId) {
+            wrongItems[crime.playerId].push(guess.victimId);
           }
-
-          if (status === GUESS_STATUS.WRONG) {
-            // Achievements: Wrong
-            utils.achievements.increase(store, player.id, 'wrong', 2);
+          if (crime.locationId) {
+            wrongItems[crime.playerId].push(guess.locationId);
           }
         }
 
@@ -257,6 +320,12 @@ export const updateOrCreateGuessHistory = (
           // Achievements: Wrong
           utils.achievements.push(store, player.id, 'weapons', guess.weaponId);
           utils.achievements.push(store, player.id, 'evidence', guess.evidenceId);
+          if (guess.victimId) {
+            utils.achievements.push(store, player.id, 'victims', guess.victimId);
+          }
+          if (guess.locationId) {
+            utils.achievements.push(store, player.id, 'locations', guess.locationId);
+          }
         }
 
         result[crime.playerId] = status;
@@ -267,6 +336,7 @@ export const updateOrCreateGuessHistory = (
 
     player.history = history;
     player.wrongGroups = wrongGroups;
+    player.wrongItems = wrongItems;
     results[player.id] = result;
   });
 
@@ -276,11 +346,20 @@ export const updateOrCreateGuessHistory = (
 const getCrimeGuessStatus = (crime: Crime, guess: Guess, groupedItems: GroupedItems): string => {
   const isWeaponCorrect = crime.weaponId === guess.weaponId;
   const isEvidenceCorrect = crime.evidenceId === guess.evidenceId;
-  const bothCorrect = isWeaponCorrect && isEvidenceCorrect;
-  const eitherCorrect = isWeaponCorrect || isEvidenceCorrect;
+  const isVictimCorrect = crime.victimId ? crime.victimId === guess.victimId : undefined;
+  const isLocationCorrect = crime.locationId ? crime.locationId === guess.locationId : undefined;
 
-  if (eitherCorrect) {
-    return bothCorrect ? GUESS_STATUS.CORRECT : eitherCorrect ? GUESS_STATUS.HALF : GUESS_STATUS.WRONG;
+  const goal = [isEvidenceCorrect, isWeaponCorrect, isVictimCorrect, isLocationCorrect].filter(
+    (e) => e !== undefined,
+  );
+  const correctCount = goal.filter(Boolean).length;
+
+  if (correctCount === goal.length) {
+    return GUESS_STATUS.CORRECT;
+  }
+
+  if (correctCount > 0) {
+    return ['', GUESS_STATUS.ONE, GUESS_STATUS.TWO, GUESS_STATUS.THREE][correctCount];
   }
 
   // Check if the quadrant is wrong
@@ -312,8 +391,8 @@ type HistoryEntry = [PlayerId, GuessHistoryEntry[]];
 
 export const buildRanking = (players: Players, currentRound: number): BuiltRanking => {
   const winners: PlayerId[] = [];
-  // Points granted in reverse round order 1:7, 2:6, 3:4, 4:3, 5:6, 7:1
-  const pointMultiplier = TOTAL_ROUNDS + 1 - currentRound;
+  // Points granted in reverse round order 1:12, 2:11, 3:10, 4:9, 5:8, 7:6
+  const pointMultiplier = TOTAL_ROUNDS + 4 - currentRound;
 
   const playerCount = utils.players.getPlayerCount(players, true);
 
@@ -341,10 +420,20 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
             gainedPoints += pointMultiplier;
             players[criminalId].secretScore += pointMultiplier;
             break;
-          case GUESS_STATUS.HALF:
+          case GUESS_STATUS.ONE:
             player.score += 1;
             gainedPoints += 1;
             players[criminalId].secretScore += 1;
+            break;
+          case GUESS_STATUS.TWO:
+            player.score += 2;
+            gainedPoints += 2;
+            players[criminalId].secretScore += 2;
+            break;
+          case GUESS_STATUS.THREE:
+            player.score += 3;
+            gainedPoints += 3;
+            players[criminalId].secretScore += 3;
             break;
           default:
           // do nothing
@@ -384,6 +473,7 @@ export const mockCrimeForBots = (
   reasonForEvidenceTile: CrimeSceneTile,
   locationTile: CrimeSceneTile,
 ) => {
+  // TODO: Fix
   // TODO: Use tags logic for location
 
   utils.players.getListOfBots(players).forEach((bot) => {
@@ -414,6 +504,7 @@ export const mockGuessingForBots = (players: Players) => {
     const guesses: Guesses = {};
     utils.players.getListOfPlayers(players, true).forEach((player) => {
       guesses[player.id] = {
+        // TODO: Fix
         weaponId: bot.weaponId,
         evidenceId: bot.evidenceId,
       };
@@ -427,6 +518,7 @@ export const mockSceneMarkForBots = (
   scene: CrimeSceneTile,
   items: Record<string, CrimesHediondosCard>,
 ) => {
+  // TODO: Fix
   utils.players.getListOfBots(players).forEach((bot) => {
     bot.sceneIndex = botSmartSceneMarking(scene, items[bot.weaponId], items[bot.evidenceId]);
   });
@@ -452,7 +544,7 @@ const botSmartSceneMarking = (
   }
 
   let selectedTags: string[] = [];
-
+  // TODO: Fix
   // Check for exclusivity cases
   if (scene?.specific === 'weapon') {
     selectedTags = weaponTags;
@@ -528,13 +620,33 @@ export const getAchievements = (store: FirebaseStoreData) => {
     });
   }
 
-  // Most Half Guesses
-  const { most: half } = utils.achievements.getMostAndLeastOf(store, 'half');
-  if (half) {
+  // Most one guesses
+  const { most: one } = utils.achievements.getMostAndLeastOf(store, 'one');
+  if (one) {
     achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_HALF_GUESSES,
-      playerId: half.playerId,
-      value: half.value,
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_ONE_GUESSES,
+      playerId: one.playerId,
+      value: one.value,
+    });
+  }
+
+  // Most two guesses
+  const { most: two } = utils.achievements.getMostAndLeastOf(store, 'two');
+  if (two) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_TWO_GUESSES,
+      playerId: two.playerId,
+      value: two.value,
+    });
+  }
+
+  // Most three guesses
+  const { most: three } = utils.achievements.getMostAndLeastOf(store, 'three');
+  if (three) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_THREE_GUESSES,
+      playerId: three.playerId,
+      value: three.value,
     });
   }
 

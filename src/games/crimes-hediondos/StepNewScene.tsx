@@ -12,7 +12,14 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Crime, GroupedItems, ItemsDict, SceneTilePayload, ScenesDict } from './utils/types';
+import type {
+  Crime,
+  GroupedItems,
+  ItemsDict,
+  SceneTilePayload,
+  ScenesDict,
+  SubmitMarkPayload,
+} from './utils/types';
 import { CrimeSummary } from './components/CrimeSummary';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
 
@@ -20,11 +27,13 @@ type StepNewSceneProps = {
   user: GamePlayer;
   items: ItemsDict;
   groupedItems: GroupedItems;
-  onSubmitMark: GenericFunction;
+  onSubmitMark: (payload: SubmitMarkPayload) => void;
   sceneTile: CrimeSceneTile;
   crimes: Crime[];
   scenes: ScenesDict;
   scenesOrder: string[];
+  isVictimGame: boolean;
+  isLocationGame: boolean;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepNewScene({
@@ -37,6 +46,8 @@ export function StepNewScene({
   scenes,
   scenesOrder,
   announcement,
+  isVictimGame,
+  isLocationGame,
 }: StepNewSceneProps) {
   const [sceneMarkIndex, setSceneMarkIndex] = useState<number>();
 
@@ -67,12 +78,7 @@ export function StepNewScene({
           items={[
             {
               key: 'weapons-evidences',
-              label: (
-                <Translate
-                  pt="Clique para ver todas Armas e Evidências"
-                  en="Click to see all Weapons and Evidence"
-                />
-              ),
+              label: <Translate pt="Clique para ver todas as cartas" en="Click to see all cards" />,
               children: (
                 <GroupedItemsBoard
                   groupedItems={groupedItems}
@@ -86,7 +92,7 @@ export function StepNewScene({
         />
       </Instruction>
 
-      <div className="">
+      <SpaceContainer>
         {crime && (
           <CrimeSummary
             key={`crime-by-${crime.playerId}`}
@@ -97,17 +103,24 @@ export function StepNewScene({
             player={user}
             selectedWeaponId={user.weaponId}
             selectedEvidenceId={user.evidenceId}
+            selectedVictimId={user.victimId}
+            selectedLocationId={user.locationId}
+            isLocationGame={isLocationGame}
+            isVictimGame={isVictimGame}
           />
         )}
-      </div>
-
-      <SceneTile tile={sceneTile} onSelectValue={onSelectItem} index={sceneMarkIndex} />
+        <SceneTile tile={sceneTile} onSelectValue={onSelectItem} index={sceneMarkIndex} />
+      </SpaceContainer>
 
       <SpaceContainer>
         <SendButton
           size="large"
           disabled={sceneMarkIndex === undefined}
-          onClick={() => onSubmitMark({ sceneIndex: sceneMarkIndex })}
+          onClick={() => {
+            if (sceneMarkIndex !== undefined) {
+              onSubmitMark({ sceneIndex: sceneMarkIndex });
+            }
+          }}
         >
           <Translate pt="Enviar" en="Send" />
         </SendButton>

@@ -35,6 +35,8 @@ export * from './BoxEqualIcon';
 export * from './BoxingGlovesIcon';
 export * from './BoxMinusIcon';
 export * from './BoxOneIcon';
+export * from './BoxTwoIcon';
+export * from './BoxThreeIcon';
 export * from './BoxPlusIcon';
 export * from './BoxQuestionMarkIcon';
 export * from './BoxXIcon';

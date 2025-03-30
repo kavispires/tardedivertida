@@ -5,6 +5,7 @@ import type { CrimesHediondosCard } from 'types/tdr';
 import { getLastItem } from 'utils/helpers';
 // Internal
 import type { GuessHistoryEntry, History, ItemsDict } from '../utils/types';
+import { CARD_TYPE_BY_CODE } from './constants';
 
 type SplitWeaponsAndEvidence = {
   weapons: CrimesHediondosCard[];
@@ -50,7 +51,7 @@ export const isEntryLocked = (historyEntry: GuessHistoryEntry): boolean => {
 
 export const autoSelectCorrectGuesses = (history?: History) => {
   const guesses: PlainObject = {};
-  Object.entries(history ?? {}).forEach(([key, historyEntryArray]: any) => {
+  Object.entries(history ?? {}).forEach(([key, historyEntryArray]) => {
     const historyEntry: GuessHistoryEntry = getLastItem(historyEntryArray);
     if (['CORRECT', 'LOCKED'].includes(historyEntry.status)) {
       guesses[key] = {
@@ -61,4 +62,8 @@ export const autoSelectCorrectGuesses = (history?: History) => {
     }
   });
   return guesses;
+};
+
+export const getItemType = (itemId: string): string => {
+  return CARD_TYPE_BY_CODE[itemId.split('-')[1]];
 };

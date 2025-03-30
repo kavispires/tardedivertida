@@ -299,7 +299,9 @@ export const TDR_RESOURCES = {
   CONCEPTS: 'concepts',
   CONTENDERS: 'contenders', // dual-language
   CRIME_EVIDENCE: 'crime-evidence', // dual-language
+  CRIME_LOCATIONS: 'crime-locations', // dual-language
   CRIME_SCENES: 'crime-scenes', // dual-language
+  CRIME_VICTIMS: 'crime-victims', // dual-language
   CRIME_WEAPONS: 'crime-weapons', // dual-language
   DATING_CANDIDATE: 'dating-candidate',
   DATING_CANDIDATE_BODIES: 'dating-candidate-bodies', // dual-language

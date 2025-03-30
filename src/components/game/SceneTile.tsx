@@ -21,7 +21,7 @@ type SceneTileProps = {
   /**
    * Optional callback when a value is selected
    */
-  onSelectValue?: GenericFunction;
+  onSelectValue?: ({ tileId, value }: { tileId: string; value: number }) => void;
 };
 
 /**

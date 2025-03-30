@@ -4,7 +4,6 @@ import { AVATAR_IDS } from './constants';
 import { throwException } from './firebase';
 // Utils
 import { getRandomUniqueItem, shuffle } from './game-utils';
-import { print } from './helpers';
 
 /**
  * Generates a player id based of their name
@@ -186,9 +185,9 @@ export const orderPlayersByScore = (
 
   if (groupByScore) {
     const groups = groupBy(listOfPlayers, 'score');
-    print(groups);
+
     const sortedScoreValues = orderBy(Object.keys(groups), [(o) => Number(o)], ['desc']);
-    print(sortedScoreValues);
+
     return sortedScoreValues.map((score) => groups[score]);
   }
 
