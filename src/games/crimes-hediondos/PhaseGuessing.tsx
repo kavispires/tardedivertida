@@ -14,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import type { PhaseGuessingState } from './utils/types';
+import { useGameTypes } from './utils/useGameTypes';
 import { GuessMessage } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
@@ -22,6 +23,8 @@ export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>
   const user = useUser(players, state);
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
+
+  const { isLocationGame, isVictimGame } = useGameTypes(state.items);
 
   const announcement = (
     <PhaseAnnouncement
@@ -48,6 +51,8 @@ export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>
           crimes={state.crimes}
           onSubmitGuesses={onSubmitGuesses}
           announcement={announcement}
+          isLocationGame={isLocationGame}
+          isVictimGame={isVictimGame}
         />
       </StepSwitcher>
     </PhaseContainer>

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "2.0.30",
+  "version": "3.0.0",
   "release": "stable",
   "available": true,
   "title": {
@@ -26,12 +26,24 @@
     "colorScheme": "dark"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "en": [
+      "In this game, players are killers visiting a Serial Killer convention and must describe their crimes to the other players to guess.",
+      "First you will craft your latest crime, selecting the mean of murder, a piece of evidence, and sometimes even location and victim, then answering questions about it",
+      "Then all players must collect that data and try to guess the crime",
+      "Then every round a new question to help the guessing players come into play",
+      "The first player to guess all crimes wins the game!"
+    ],
+    "pt": [
+      "Neste jogo, os jogadores são assassinos visitando uma convenção de Serial Killers e devem descrever seus crimes para que os outros jogadores adivinhem.",
+      "Primeiro, você criará seu último crime, selecionando o meio do assassinato, uma evidência e, às vezes, até mesmo o local e a vítima, depois respondendo perguntas sobre isso.",
+      "Em seguida, todos os jogadores devem coletar esses dados e tentar adivinhar o crime.",
+      "Então, a cada rodada, uma nova pergunta para ajudar os jogadores a adivinhar entra em jogo.",
+      "O primeiro jogador a adivinhar todos os crimes vence o jogo!"
+    ]
   },
   "playerCount": {
     "best": 4,
-    "recommended": [4, 5, 6],
+    "recommended": [3, 4, 5],
     "min": 2,
     "max": 10
   },

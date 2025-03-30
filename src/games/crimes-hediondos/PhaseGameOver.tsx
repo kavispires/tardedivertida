@@ -12,11 +12,14 @@ import { Achievements } from 'components/general/Achievements';
 // Internal
 import type { Crime, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
+import { useGameTypes } from './utils/useGameTypes';
 import { CrimeSummary } from './components/CrimeSummary';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const crimes: Crime[] = useMemo(() => orderBy(state.crimes ?? [], ['playerId']), [state.crimes]);
   const user = useUser(players, state);
+
+  const { isLocationGame, isVictimGame } = useGameTypes(state.items);
 
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
@@ -33,7 +36,11 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
             scenesOrder={state.scenesOrder}
             selectedEvidenceId={crime.evidenceId}
             selectedWeaponId={crime.weaponId}
+            selectedVictimId={crime.victimId}
+            selectedLocationId={crime.locationId}
             history={user.history?.[crime.playerId]}
+            isVictimGame={isVictimGame}
+            isLocationGame={isLocationGame}
           />
         ))}
       </ul>

@@ -47,6 +47,8 @@ export const prepareSetupPhase = async (
     correct: [],
     weapons: [],
     evidence: [],
+    victims: [],
+    locations: [],
   });
 
   // Save
@@ -77,7 +79,6 @@ export const prepareCrimeSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.helpers.print(store);
   // Group weapons
   const { groupedItems, items } = groupItems(store.weapons, store.evidence, store.victims, store.locations);
 

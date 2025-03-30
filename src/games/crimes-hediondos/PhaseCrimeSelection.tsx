@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -25,6 +25,7 @@ import { Instruction } from 'components/text';
 import type { PhaseCrimeSelectionState, SubmitCrimePayload } from './utils/types';
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
 import { mockCrime } from './utils/mock';
+import { useGameTypes } from './utils/useGameTypes';
 import { WelcomeMessage } from './components/RulesBlobs';
 import { SelectedItems } from './components/SelectedItems';
 import { StepItemsSelection } from './StepItemsSelection';
@@ -55,15 +56,15 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
     setSelections((prevState: SubmitCrimePayload) => ({ ...prevState, ...payload }));
   };
 
-  const onMockCrime = () => onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex]));
+  const onMockCrime = () => {
+    const mockedCrime = mockCrime(state.groupedItems[user.itemGroupIndex]);
+    setSelections(mockedCrime);
+    onSubmitCrimeRequest(mockedCrime);
+  };
 
   const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 96 });
 
-  const { isLocationGame, isVictimGame } = useMemo(() => {
-    const isLocationGame = Object.values(state.items).some((item) => item.type === 'location');
-    const isVictimGame = Object.values(state.items).some((item) => item.type === 'victim');
-    return { isLocationGame, isVictimGame };
-  }, [state.items]);
+  const { isLocationGame, isVictimGame } = useGameTypes(state.items);
 
   const announcementItems = (
     <PhaseAnnouncement

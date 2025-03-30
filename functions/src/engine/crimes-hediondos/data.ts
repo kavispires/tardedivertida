@@ -24,7 +24,7 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
 
   // Get locations
   const locations: CrimesHediondosCard[] = [];
-  if (options.withVictims) {
+  if (options.withLocations) {
     locations.push(
       ...utils.game.getRandomItems(
         Object.values(

@@ -19,6 +19,7 @@ import type {
   GuessHistory,
   GuessHistoryEntry,
   WrongGroups,
+  WrongItems,
 } from './types';
 import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 // Utils
@@ -121,8 +122,8 @@ export const groupItems = (
     groupedItems[`${index}`] = [
       ...groupedWeapons[index].map((i) => i.id),
       ...evidenceGroup.map((i) => i.id),
-      ...groupedVictims[index].map((i) => i.id),
-      ...groupedLocations[index].map((i) => i.id),
+      ...(groupedVictims[index] ? groupedVictims[index].map((i) => i.id) : []),
+      ...(groupedLocations[index] ? groupedLocations[index].map((i) => i.id) : []),
     ];
   });
 
@@ -158,8 +159,8 @@ export const buildCrimes = (
       playerId: player.id,
       weaponId: player.weaponId,
       evidenceId: player.evidenceId,
-      victimId: player.victimId ?? utils.firestore.deleteValue(),
-      locationId: player.locationId ?? utils.firestore.deleteValue(),
+      victimId: player.victimId ?? '',
+      locationId: player.locationId ?? '',
       scenes: {
         [causeOfDeathTile.id]: player.causeOfDeathIndex,
         [reasonForEvidenceTile.id]: player.causeOfDeathIndex,
@@ -215,6 +216,7 @@ export const updateOrCreateGuessHistory = (
   utils.players.getListOfPlayers(players, true).forEach((player) => {
     const history: GuessHistory = { ...(player.history ?? {}) };
     const wrongGroups: WrongGroups = { ...(player.wrongGroups ?? {}) };
+    const wrongItems: WrongItems = { ...(player.wrongItems ?? {}) };
     const result: StringDictionary = {};
     // Count correct crimes
     player.correctCrimes = 0;
@@ -233,11 +235,11 @@ export const updateOrCreateGuessHistory = (
         const lastGuess = utils.game.getLastItem(history[crime.playerId]);
         if (lastGuess && [GUESS_STATUS.CORRECT, GUESS_STATUS.LOCKED].includes(lastGuess.status)) {
           history[crime.playerId].push({
+            status: GUESS_STATUS.LOCKED,
             weaponId: lastGuess.weaponId,
             evidenceId: lastGuess.evidenceId,
-            victimId: lastGuess.victimId,
-            locationId: lastGuess.locationId,
-            status: GUESS_STATUS.LOCKED,
+            victimId: lastGuess.victimId ?? '',
+            locationId: lastGuess.locationId ?? '',
             groupIndex: lastGuess.groupIndex,
           });
           result[crime.playerId] = GUESS_STATUS.LOCKED;
@@ -247,15 +249,15 @@ export const updateOrCreateGuessHistory = (
         const status = getCrimeGuessStatus(crime, guess, groupedItems);
 
         // If wrong group, save the wrong group
-        const groupIndex = findWhatGroupTheItemBelongsTo(guess, groupedItems);
+        const currentGroupIndex = findWhatGroupTheItemBelongsTo(guess, groupedItems);
 
         history[crime.playerId].push({
+          status,
           weaponId: guess.weaponId,
           evidenceId: guess.evidenceId,
-          victimId: guess.victimId ?? utils.firestore.deleteValue(),
-          locationId: guess.locationId ?? utils.firestore.deleteValue(),
-          status,
-          groupIndex,
+          victimId: guess.victimId ?? '',
+          locationId: guess.locationId ?? '',
+          groupIndex: currentGroupIndex,
         });
 
         if (status === GUESS_STATUS.CORRECT) {
@@ -269,39 +271,48 @@ export const updateOrCreateGuessHistory = (
         }
 
         if (status === GUESS_STATUS.WRONG_GROUP) {
-          wrongGroups[crime.playerId].push(groupIndex);
+          wrongGroups[crime.playerId].push(currentGroupIndex);
           // Achievements: wrongGroups
           utils.achievements.increase(store, player.id, 'wrongGroups', 1);
         }
 
         // If player knows the group, eliminate all other groups
-        if (![GUESS_STATUS.CORRECT, GUESS_STATUS.WRONG_GROUP, GUESS_STATUS.LOCKED].includes(status)) {
-          wrongGroups[crime.playerId] = [0, 1, 2, 3].filter((i) => i !== groupIndex);
+        if ([GUESS_STATUS.WRONG, GUESS_STATUS.ONE, GUESS_STATUS.TWO, GUESS_STATUS.THREE].includes(status)) {
+          wrongGroups[crime.playerId] = [0, 1, 2, 3].filter((i) => i !== currentGroupIndex);
+        }
 
-          if (status === GUESS_STATUS.ONE) {
-            // Achievements: Half/One of the two
-            utils.achievements.increase(store, player.id, 'half', 1);
-            // Achievements: Wrong
-            utils.achievements.increase(store, player.id, 'wrong', 1);
+        if (status === GUESS_STATUS.ONE) {
+          // Achievements: Half/One of the two
+          utils.achievements.increase(store, player.id, 'one', 1);
+          // Achievements: Wrong
+          utils.achievements.increase(store, player.id, 'wrong', 1);
+        }
+
+        if (status === GUESS_STATUS.TWO) {
+          // Achievements: Two of the three
+          utils.achievements.increase(store, player.id, 'two', 1);
+          // Achievements: Wrong
+          utils.achievements.increase(store, player.id, 'wrong', 1);
+        }
+
+        if (status === GUESS_STATUS.THREE) {
+          // Achievements: Three of the four
+          utils.achievements.increase(store, player.id, 'three', 1);
+          // Achievements: Wrong
+          utils.achievements.increase(store, player.id, 'wrong', 1);
+        }
+
+        if (status === GUESS_STATUS.WRONG) {
+          // Achievements: Wrong
+          utils.achievements.increase(store, player.id, 'wrong', 4);
+          // Add all items to the wrong items
+          wrongItems[crime.playerId] = wrongItems[crime.playerId] ?? [];
+          wrongItems[crime.playerId].push(guess.weaponId, guess.evidenceId);
+          if (crime.victimId) {
+            wrongItems[crime.playerId].push(guess.victimId);
           }
-
-          if (status === GUESS_STATUS.TWO) {
-            // Achievements: Two of the three
-            utils.achievements.increase(store, player.id, 'two', 1);
-            // Achievements: Wrong
-            utils.achievements.increase(store, player.id, 'wrong', 1);
-          }
-
-          if (status === GUESS_STATUS.THREE) {
-            // Achievements: Three of the four
-            utils.achievements.increase(store, player.id, 'three', 1);
-            // Achievements: Wrong
-            utils.achievements.increase(store, player.id, 'wrong', 1);
-          }
-
-          if (status === GUESS_STATUS.WRONG) {
-            // Achievements: Wrong
-            utils.achievements.increase(store, player.id, 'wrong', 4);
+          if (crime.locationId) {
+            wrongItems[crime.playerId].push(guess.locationId);
           }
         }
 
@@ -325,6 +336,7 @@ export const updateOrCreateGuessHistory = (
 
     player.history = history;
     player.wrongGroups = wrongGroups;
+    player.wrongItems = wrongItems;
     results[player.id] = result;
   });
 
@@ -342,14 +354,18 @@ const getCrimeGuessStatus = (crime: Crime, guess: Guess, groupedItems: GroupedIt
   );
   const correctCount = goal.filter(Boolean).length;
 
+  if (correctCount === goal.length) {
+    return GUESS_STATUS.CORRECT;
+  }
+
   if (correctCount > 0) {
-    return ['', GUESS_STATUS.ONE, GUESS_STATUS.TWO, GUESS_STATUS.THREE, GUESS_STATUS.CORRECT][correctCount];
+    return ['', GUESS_STATUS.ONE, GUESS_STATUS.TWO, GUESS_STATUS.THREE][correctCount];
   }
 
   // Check if the quadrant is wrong
   const crimeGroup = groupedItems[crime.itemGroupIndex];
   const isAnyGuessesItemThere = crimeGroup.some((itemId) =>
-    [guess.weaponId, guess.evidenceId, crime.victimId, crime.locationId].includes(itemId),
+    [guess.weaponId, guess.evidenceId].includes(itemId),
   );
 
   return isAnyGuessesItemThere ? GUESS_STATUS.WRONG : GUESS_STATUS.WRONG_GROUP;
@@ -358,12 +374,7 @@ const getCrimeGuessStatus = (crime: Crime, guess: Guess, groupedItems: GroupedIt
 const findWhatGroupTheItemBelongsTo = (guess: Guess, groupedItems: GroupedItems) => {
   let foundIndex = -1;
   Object.entries(groupedItems).forEach(([groupIndex, group]) => {
-    if (
-      group.includes(guess.weaponId) &&
-      group.includes(guess.evidenceId) &&
-      (guess.victimId ? group.includes(guess.victimId) : true) &&
-      (guess.locationId ? group.includes(guess.locationId) : true)
-    ) {
+    if (group.includes(guess.weaponId) && group.includes(guess.evidenceId)) {
       foundIndex = Number(groupIndex);
       return;
     }

@@ -70,6 +70,8 @@ export const collectionByCategory: Record<string, string[]> = {
     'BoxEqualIcon',
     'BoxMinusIcon',
     'BoxOneIcon',
+    'BoxTwoIcon',
+    'BoxThreeIcon',
     'BoxPlusIcon',
     'BoxQuestionMarkIcon',
     'BoxXIcon',

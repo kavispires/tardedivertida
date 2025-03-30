@@ -5,36 +5,47 @@ import { TransparentButton } from 'components/buttons';
 import { CrimeItemBackgroundCard, CrimeItemCard } from 'components/cards/CrimeItemCard';
 // Internal
 import type { GroupedItems, ItemsDict } from '../utils/types';
+import { CARD_TYPE_BY_CODE } from '../utils/constants';
 
-const getEliminatedCard = (cardType: string) => ({
-  id: `dmhk-${cardType === 'ev' ? 'ev' : 'wp'}-xxx`,
-  type: cardType,
-  name: {
-    pt: '-',
-    en: '-',
-  },
-});
+const getEliminatedCard = (cardCode: keyof typeof CARD_TYPE_BY_CODE) => {
+  const cardType = CARD_TYPE_BY_CODE[cardCode] ?? '';
+  return {
+    id: `dmhk-${cardCode}-xxx`,
+    type: cardType,
+    name: {
+      pt: '-',
+      en: '-',
+    },
+    itemId: '0',
+  };
+};
 
 type SelectableGroupedItemsBoardProps = {
   groupedItems: GroupedItems;
   items: ItemsDict;
   weaponId?: string;
   evidenceId?: string;
+  victimId?: string;
+  locationId?: string;
   onSelectItem: (itemId: string) => void;
   activeColor?: string;
   isLocked?: boolean;
   wrongGroups?: number[];
+  wrongItems?: string[];
 };
 
 export function SelectableGroupedItemsBoard({
   items,
   weaponId,
   evidenceId,
+  victimId,
+  locationId,
   groupedItems,
   onSelectItem,
   activeColor,
   isLocked,
   wrongGroups = [],
+  wrongItems = [],
 }: SelectableGroupedItemsBoardProps) {
   const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 96 });
 
@@ -57,13 +68,13 @@ export function SelectableGroupedItemsBoard({
                     hoverType="tint"
                     disabled={isGroupWrong}
                   >
-                    {isGroupWrong ? (
+                    {isGroupWrong || wrongItems.includes(itemId) ? (
                       <CrimeItemBackgroundCard id="x" cardWidth={cardWidth} />
                     ) : (
                       <CrimeItemCard
                         item={isGroupWrong ? getEliminatedCard(itemId.split('-')[1]) : items[itemId]}
                         cardWidth={cardWidth}
-                        isSelected={[weaponId, evidenceId].includes(itemId)}
+                        isSelected={[weaponId, evidenceId, victimId, locationId].includes(itemId)}
                         activeColor={activeColor}
                       />
                     )}

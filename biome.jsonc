@@ -49,7 +49,7 @@
       },
       "suspicious": {
         "noExplicitAny": "warn",
-        "noArrayIndexKey": "warn",
+        "noArrayIndexKey": "off",
         "noConsole": "warn"
       }
     }

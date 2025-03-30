@@ -56,13 +56,11 @@ export type GuessHistoryEntry = {
   groupIndex: number;
 };
 
-export type GroupedItems = {
-  [key: string]: string[];
-};
+export type GroupedItems = Dictionary<string[]>;
 
-export type WrongGroups = {
-  [key: string]: number[];
-};
+export type WrongGroups = Dictionary<number[]>;
+
+export type WrongItems = Dictionary<string[]>;
 
 export interface ResourceData {
   weapons: CrimesHediondosCard[];

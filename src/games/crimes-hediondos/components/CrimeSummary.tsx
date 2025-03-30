@@ -9,6 +9,7 @@ import {
   GiftOutlined,
   LockFilled,
   SafetyOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 // Types
@@ -18,8 +19,10 @@ import type { CrimeSceneTile } from 'types/tdr';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
+// Icons
+import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 // Components
-import { Avatar } from 'components/avatars';
+import { Avatar, IconAvatar } from 'components/avatars';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { Translate } from 'components/language';
 // Internal
@@ -38,7 +41,11 @@ type CrimeSummaryProps = {
   scenesOrder: string[];
   selectedWeaponId?: CardId;
   selectedEvidenceId?: CardId;
+  selectedVictimId?: CardId;
+  selectedLocationId?: CardId;
   isLocked?: boolean;
+  isVictimGame: boolean;
+  isLocationGame: boolean;
 };
 
 export function CrimeSummary({
@@ -48,18 +55,31 @@ export function CrimeSummary({
   scenes,
   selectedWeaponId,
   selectedEvidenceId,
+  selectedVictimId,
+  selectedLocationId,
   history,
   items,
   isLocked,
+  isVictimGame,
+  isLocationGame,
 }: CrimeSummaryProps) {
   const [historyEntryIndex, setHistoryEntryIndex] = useState(-1);
-  const isComplete = Boolean(selectedWeaponId && selectedWeaponId);
+  const isComplete =
+    Boolean(selectedWeaponId && selectedWeaponId) &&
+    (isVictimGame ? selectedVictimId : true) &&
+    (isLocationGame ? selectedLocationId : true);
 
   const activeWeaponId =
     historyEntryIndex >= 0 && history ? history[historyEntryIndex].weaponId : selectedWeaponId;
 
-  const evidenceWeaponId =
+  const activeEvidenceId =
     historyEntryIndex >= 0 && history ? history[historyEntryIndex].evidenceId : selectedEvidenceId;
+
+  const activeVictimId =
+    historyEntryIndex >= 0 && history ? history[historyEntryIndex].victimId : selectedVictimId;
+
+  const activeLocationId =
+    historyEntryIndex >= 0 && history ? history[historyEntryIndex].locationId : selectedLocationId;
 
   const color = getAvatarColorById(player.avatarId);
   const hasHistory = history?.length;
@@ -72,7 +92,6 @@ export function CrimeSummary({
         </span>
         <span className="h-crime__player-name">{player.name}</span>
       </div>
-
       <div className="h-crime__scenes">
         {scenesOrder
           .filter((sceneId) => crime.scenes[sceneId] !== undefined)
@@ -88,7 +107,6 @@ export function CrimeSummary({
             );
           })}
       </div>
-
       <div className="h-crime__history" style={{ borderColor: hasHistory ? color : 'transparent' }}>
         {hasHistory && (
           <>
@@ -121,7 +139,6 @@ export function CrimeSummary({
           </>
         )}
       </div>
-
       <div className="h-crime-selections">
         {activeWeaponId ? (
           <CrimeItemCard item={items[activeWeaponId]} cardWidth={CARD_WIDTH} />
@@ -129,20 +146,38 @@ export function CrimeSummary({
           <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="weapon" />
         )}
 
-        {evidenceWeaponId ? (
-          <CrimeItemCard item={items[evidenceWeaponId]} cardWidth={CARD_WIDTH} />
+        {activeEvidenceId ? (
+          <CrimeItemCard item={items[activeEvidenceId]} cardWidth={CARD_WIDTH} />
         ) : (
           <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="evidence" />
         )}
+
+        {isVictimGame &&
+          (activeVictimId ? (
+            <CrimeItemCard item={items[activeVictimId]} cardWidth={CARD_WIDTH} />
+          ) : (
+            <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="victim" />
+          ))}
+
+        {isLocationGame &&
+          (activeLocationId ? (
+            <CrimeItemCard item={items[activeLocationId]} cardWidth={CARD_WIDTH} />
+          ) : (
+            <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="location" />
+          ))}
 
         <div className="h-crime-selections__status">
           {historyEntryIndex >= 0 && history && history[historyEntryIndex] && (
             <CrimeGuessStatus status={history[historyEntryIndex].status} />
           )}
           {historyEntryIndex === -1 && isLocked && <CrimeGuessStatus status="LOCKED" />}
+          {historyEntryIndex === -1 && (
+            <span className="crime-guess-status">
+              <IconAvatar icon={<BoxBlankIcon />} className="invisible" />
+            </span>
+          )}
         </div>
       </div>
-
       <div className="h-crime__player" style={{ backgroundColor: isComplete ? color : undefined }}>
         {isLocked && <LockFilled />}
         {!isLocked && isComplete && <CheckCircleFilled />}
@@ -180,6 +215,8 @@ function CrimeSceneIcon({ type }: CrimeSceneIconProps) {
       return <GiftOutlined />;
     case 'location':
       return <EnvironmentOutlined />;
+    case 'victim':
+      return <UserOutlined />;
     default:
       return <ExceptionOutlined />;
   }
