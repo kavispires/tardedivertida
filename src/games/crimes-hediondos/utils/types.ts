@@ -7,9 +7,12 @@ import type { CrimesHediondosCard, CrimeSceneTile } from 'types/tdr';
 export type SubmitCrimePayload = {
   weaponId?: string;
   evidenceId?: string;
+  locationId?: string;
+  victimId?: string;
   causeOfDeathIndex?: number;
   reasonForEvidenceIndex?: number;
   locationIndex?: number;
+  victimIndex?: number;
 };
 
 export type SceneTilePayload = {
@@ -35,18 +38,24 @@ export type Crime = {
   playerId: PlayerId;
   weaponId: string;
   evidenceId: string;
+  victimId?: string;
+  locationId?: string;
   scenes: NumberDictionary;
 };
 
 export type Guess = {
   weaponId: string;
   evidenceId: string;
+  victimId?: string;
+  locationId?: string;
   isComplete?: boolean;
 };
 
 export type GuessHistoryEntry = {
   weaponId: string;
   evidenceId: string;
+  victimId?: string;
+  locationId?: string;
   status: string;
   groupIndex: number;
 };
@@ -63,6 +72,7 @@ export type PhaseCrimeSelectionState = {
   causeOfDeathTile: CrimeSceneTile;
   reasonForEvidenceTile: CrimeSceneTile;
   locationTile: CrimeSceneTile;
+  victimTile: CrimeSceneTile;
   items: Dictionary<CrimesHediondosCard>;
   groupedItems: GroupedItems;
 };

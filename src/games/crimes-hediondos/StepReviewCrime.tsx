@@ -19,9 +19,10 @@ type StepReviewCrimeProps = {
   items: ItemsDict;
   selections: SubmitCrimePayload;
   onSubmitCrime: () => void;
-  locationTile: CrimeSceneTile;
   causeOfDeathTile: CrimeSceneTile;
   reasonForEvidenceTile: CrimeSceneTile;
+  victimTile: CrimeSceneTile;
+  locationTile: CrimeSceneTile;
   updateSelection: (payload: SubmitCrimePayload) => void;
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;
@@ -31,6 +32,7 @@ export function StepReviewCrime({
   items,
   causeOfDeathTile,
   reasonForEvidenceTile,
+  victimTile,
   locationTile,
   selections,
   onSubmitCrime,
@@ -53,6 +55,8 @@ export function StepReviewCrime({
         items={items}
         weaponId={selections.weaponId ?? ''}
         evidenceId={selections.evidenceId ?? ''}
+        locationId={selections.locationId ?? ''}
+        victimId={selections.victimId ?? ''}
       />
 
       <div className="h-scene-tiles-list">
@@ -66,13 +70,16 @@ export function StepReviewCrime({
           index={selections.reasonForEvidenceIndex}
           onSelectValue={(payload) => updateSelection({ reasonForEvidenceIndex: payload.value })}
         />
-        {!!locationTile && (
-          <SceneTile
-            tile={locationTile}
-            index={selections.locationIndex}
-            onSelectValue={(payload) => updateSelection({ locationIndex: payload.value })}
-          />
-        )}
+        <SceneTile
+          tile={victimTile}
+          index={selections.victimIndex}
+          onSelectValue={(payload) => updateSelection({ victimIndex: payload.value })}
+        />
+        <SceneTile
+          tile={locationTile}
+          index={selections.locationIndex}
+          onSelectValue={(payload) => updateSelection({ locationIndex: payload.value })}
+        />
       </div>
 
       <SpaceContainer align="center">

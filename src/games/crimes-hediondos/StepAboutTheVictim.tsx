@@ -17,49 +17,49 @@ import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
 import { SelectedItems } from './components/SelectedItems';
 
-type StepLocationSelectionProps = {
+type StepAboutTheVictimProps = {
   user: GamePlayer;
   items: ItemsDict;
   selections: SubmitCrimePayload;
   updateSelections: (payload: SubmitCrimePayload) => void;
-  locationTile: CrimeSceneTile;
+  victimTile: CrimeSceneTile;
   groupedItems: GroupedItems;
   goToStep: (step: number) => void;
-  isLocationGame: boolean;
+  isVictimGame: boolean;
 } & Pick<StepProps, 'announcement'>;
 
-export function StepLocationSelection({
+export function StepAboutTheVictim({
   announcement,
   user,
   items,
   selections,
   updateSelections,
-  locationTile,
+  victimTile,
   groupedItems,
   goToStep,
-  isLocationGame,
-}: StepLocationSelectionProps) {
+  isVictimGame,
+}: StepAboutTheVictimProps) {
   const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 200 });
-  const [locationIndex, setLocationIndex] = useState<number>();
+  const [victimIndex, setVictimIndex] = useState<number>();
 
   const userItems = groupedItems[user.itemGroupIndex];
 
   const onSelectItem = (payload: SceneTilePayload) => {
-    setLocationIndex(payload.value);
+    setVictimIndex(payload.value);
   };
 
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Onde foi o crime?" en="Where was the crime?" />
+        <Translate pt="Quem foi a pobre alma que se foi?" en="Who was the poor soul that taken?" />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt={
             <>
-              {isLocationGame
-                ? 'Baseado em sua carta do local (verde), selecione uma dica de onde o crime aconteceu.'
-                : 'Baseado em qualquer uma das suas cartas (ou ambas), selecione o local onde o crime aconteceu.'}
+              {isVictimGame
+                ? 'Baseado em sua carta da vítima (amarela), selecione  algo sobre quem morreu.'
+                : 'Baseado em qualquer uma de suas cartas, selecione dicas sobre a vítima.'}
               <br />
               Lembre-se que você está tentando ajudar os outros jogadores adivinhar o seu crime, seja
               inteligente!
@@ -67,9 +67,9 @@ export function StepLocationSelection({
           }
           en={
             <>
-              {isLocationGame
-                ? 'Based on your location card (green), select a hint about where the crime happened.'
-                : 'Based on any of your cards (or both), select the location where the crime happened.'}
+              {isVictimGame
+                ? 'Based on your victim card (yellow), select something about who died.'
+                : 'Based on any of your cards, select hints about the victim.'}
               <br />
               Remember you are trying to help the players guess your crime, so be smart!
             </>
@@ -78,14 +78,14 @@ export function StepLocationSelection({
       </RuleInstruction>
 
       <SpaceContainer>
-        {isLocationGame ? (
+        {isVictimGame ? (
           <SelectedItems
             items={items}
             weaponId={selections.weaponId ?? ''}
             evidenceId={selections.evidenceId ?? ''}
             victimId={selections.victimId ?? ''}
             locationId={selections.locationId ?? ''}
-            highlight="location"
+            highlight="victim"
           />
         ) : (
           <ul className="h-items-selection">
@@ -100,15 +100,15 @@ export function StepLocationSelection({
             ))}
           </ul>
         )}
-        <SceneTile tile={locationTile} onSelectValue={onSelectItem} index={locationIndex} />
+        <SceneTile tile={victimTile} onSelectValue={onSelectItem} index={victimIndex} />
       </SpaceContainer>
 
       <SpaceContainer>
         <ResetButton goToStep={goToStep} />
 
         <ContinueButton
-          disabled={locationIndex === undefined}
-          onClick={() => updateSelections({ locationIndex })}
+          disabled={victimIndex === undefined}
+          onClick={() => updateSelections({ victimIndex })}
         />
       </SpaceContainer>
     </Step>

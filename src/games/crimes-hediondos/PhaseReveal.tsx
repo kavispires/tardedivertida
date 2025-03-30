@@ -15,6 +15,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import type { PhaseRevealState } from './utils/types';
+import { useGameTypes } from './utils/useGameTypes';
 import { ScoringMessage } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
@@ -24,6 +25,7 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
   const user = useUser(players, state);
 
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
+  const { isLocationGame, isVictimGame } = useGameTypes(state.items);
 
   // Changes isFirstGalleryRunThrough property which disables controls, after the first gallery run through
   useEffect(() => {
@@ -62,6 +64,8 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
           results={state.results}
           isFirstRunThrough={isFirstRunThrough}
           announcement={announcement}
+          isLocationGame={isLocationGame}
+          isVictimGame={isVictimGame}
         />
 
         {/* Step 1 */}

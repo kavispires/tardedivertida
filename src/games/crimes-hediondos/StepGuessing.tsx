@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -27,6 +27,7 @@ import type {
 } from './utils/types';
 import { mockGuesses } from './utils/mock';
 import { autoSelectCorrectGuesses, getHistory } from './utils/helpers';
+import { GUESS_STATUS } from './utils/constants';
 import { CrimeSummary } from './components/CrimeSummary';
 import { PlayersCards } from './components/PlayersCards';
 import { SelectableGroupedItemsBoard } from './components/SelectableGroupedItemsBoard';
@@ -40,6 +41,8 @@ type StepGuessingProps = {
   scenesOrder: string[];
   crimes: Crime[];
   onSubmitGuesses: (payload: SubmitGuessesPayload) => void;
+  isVictimGame: boolean;
+  isLocationGame: boolean;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepGuessing({
@@ -52,13 +55,15 @@ export function StepGuessing({
   crimes,
   onSubmitGuesses,
   announcement,
+  isVictimGame,
+  isLocationGame,
 }: StepGuessingProps) {
   const [guesses, setGuesses] = useState<Dictionary<Guess>>({});
   const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
 
   // DEV: Auto guesses
   useMock(() => {
-    onSubmitGuesses({ guesses: mockGuesses(groupedItems, players, user) });
+    onSubmitGuesses({ guesses: mockGuesses(groupedItems, players, user, isVictimGame, isLocationGame) });
   }, []);
 
   // If last guess was CORRECT or LOCK, auto-guess
@@ -72,47 +77,86 @@ export function StepGuessing({
         ...(guesses[activePlayerId] ?? {
           weaponId: undefined,
           evidenceId: undefined,
+          victimId: undefined,
+          locationId: undefined,
           isComplete: false,
         }),
       };
 
-      const isWeapon = itemId.includes('wp');
-
-      if (isWeapon) {
+      if (itemId.includes('wp')) {
         guessObj.weaponId = itemId;
-      } else {
+      }
+      if (itemId.includes('ev')) {
         guessObj.evidenceId = itemId;
+      }
+      if (isVictimGame && itemId.includes('vt')) {
+        guessObj.victimId = itemId;
+      }
+      if (isLocationGame && itemId.includes('lc')) {
+        guessObj.locationId = itemId;
       }
 
       setGuesses((s: PlainObject) => ({
         ...s,
         [activePlayerId]: {
           ...guessObj,
-          isComplete: Boolean(guessObj?.weaponId && guessObj?.evidenceId),
+          isComplete:
+            !!guessObj?.weaponId &&
+            !!guessObj?.evidenceId &&
+            (isVictimGame ? Boolean(guessObj?.victimId) : true) &&
+            (isLocationGame ? Boolean(guessObj?.locationId) : true),
         },
       }));
     }
   };
 
-  const playerCount = Object.keys(players).length;
-  const isAllComplete =
-    Object.values(guesses).length === playerCount - 1 &&
-    Object.values(guesses).every((guess) => guess.weaponId && guess.evidenceId);
-  const activeCrime = crimes.find((crime) => crime.playerId === activePlayerId);
-  const isOwnCrime = activePlayerId === user.id;
-  const activePlayerGuesses = guesses?.[activePlayerId] ?? {};
-
-  const lastGuessHistory = getLastItem(getHistory(user.history, activePlayerId));
-  const isLocked = ['CORRECT', 'LOCKED'].includes(lastGuessHistory?.status);
-
-  // Active stuff
-  const { activeWeaponId, activeEvidenceId } = getActiveStuff(
+  const {
+    isAllComplete,
+    activeCrime,
     isOwnCrime,
     isLocked,
-    user,
-    activePlayerGuesses,
-    lastGuessHistory,
-  );
+    activeWeaponId,
+    activeEvidenceId,
+    activeVictimId,
+    activeLocationId,
+  } = useMemo(() => {
+    const playerCount = Object.keys(players).length;
+    const isAllComplete =
+      Object.values(guesses).length === playerCount - 1 &&
+      Object.values(guesses).every(
+        (guess) =>
+          guess.weaponId &&
+          guess.evidenceId &&
+          (isVictimGame ? guess.victimId : true) &&
+          (isLocationGame ? guess.locationId : true),
+      );
+    const activeCrime = crimes.find((crime) => crime.playerId === activePlayerId);
+    const isOwnCrime = activePlayerId === user.id;
+    const activePlayerGuesses = guesses?.[activePlayerId] ?? {};
+
+    const lastGuessHistory = getLastItem(getHistory(user.history, activePlayerId));
+    const isLocked = [GUESS_STATUS.CORRECT, GUESS_STATUS.LOCKED].includes(lastGuessHistory?.status);
+
+    // Active stuff
+    const { activeWeaponId, activeEvidenceId, activeVictimId, activeLocationId } = getActiveStuff(
+      isOwnCrime,
+      isLocked,
+      user,
+      activePlayerGuesses,
+      lastGuessHistory,
+    );
+
+    return {
+      isAllComplete,
+      activeCrime,
+      isOwnCrime,
+      isLocked,
+      activeWeaponId,
+      activeEvidenceId,
+      activeVictimId,
+      activeLocationId,
+    };
+  }, [user, activePlayerId, guesses, crimes, players, isVictimGame, isLocationGame]);
 
   return (
     <Step announcement={announcement}>
@@ -124,23 +168,24 @@ export function StepGuessing({
         <Translate
           pt={
             <>
-              Selecione cada jogador abaixo, analise suas respostas sobre o crime, e selecione uma arma e um
-              objeto.
-              <br />O par sempre estará no mesmo quadrante, mas os objetos não são exclusivos e diferentes
-              crimes podem usar as mesmas cartas.
+              Selecione cada jogador abaixo, analise suas respostas sobre o crime, e selecione as cartas que
+              compõem o crime.
               <br />
-              Crimes que já tem ambos selecionados são indicados por uma faca.
+              As cartas sempre estarão no mesmo quadrante, mas elas não são exclusivas a um jogador e
+              diferentes crimes podem usar as mesmas cartas.
+              <br />
+              Crimes que já tem todas as cartas selecionados são indicados por uma faca.
             </>
           }
           en={
             <>
-              Select each player below, analyze their answers about their crimes, then select a weapon and an
-              object.
+              Select each player below, analyze their answers about the crime, and select the cards that make
+              up the crime.
               <br />
-              The pair will always be in the same quadrant, but object are non-exclusive so different crimes
-              might use the same cards.
+              The cards will always be in the same quadrant, but they are not exclusive to one player and
+              different crimes can use the same cards.
               <br />
-              Crimes with both cards selected are indicated by a knife.
+              Crimes that already have all cards selected are indicated by a knife.
             </>
           }
         />
@@ -148,7 +193,9 @@ export function StepGuessing({
 
       <DebugOnly dev>
         <SpaceContainer>
-          <DevButton onClick={() => setGuesses(mockGuesses(groupedItems, players, user))}>
+          <DevButton
+            onClick={() => setGuesses(mockGuesses(groupedItems, players, user, isVictimGame, isLocationGame))}
+          >
             <Translate pt="Seleção Aleatória Semi-inteligente" en="Semi-intelligent Random Selection" />
           </DevButton>
         </SpaceContainer>
@@ -173,11 +220,14 @@ export function StepGuessing({
           items={items}
           weaponId={activeWeaponId}
           evidenceId={activeEvidenceId}
+          victimId={activeVictimId}
+          locationId={activeLocationId}
           groupedItems={groupedItems}
           onSelectItem={onUpdateGuesses}
           activeColor={activePlayerId ? getAvatarColorById(players[activePlayerId]?.avatarId) : undefined}
           isLocked={isOwnCrime || isLocked}
           wrongGroups={user?.wrongGroups?.[activePlayerId] ?? []}
+          wrongItems={user?.wrongItems?.[activePlayerId] ?? []}
         />
       </PlayersCards>
 
@@ -191,9 +241,13 @@ export function StepGuessing({
             items={items}
             history={user?.history[activeCrime.playerId] ?? []}
             player={players[activeCrime.playerId]}
+            isLocked={isOwnCrime || isLocked}
             selectedWeaponId={activeWeaponId}
             selectedEvidenceId={activeEvidenceId}
-            isLocked={isOwnCrime || isLocked}
+            selectedVictimId={activeVictimId}
+            selectedLocationId={activeLocationId}
+            isLocationGame={isLocationGame}
+            isVictimGame={isVictimGame}
           />
         </FloatingHand>
       )}
@@ -210,11 +264,18 @@ const getActiveStuff = (
   user: GamePlayer,
   activePlayerGuesses: Guess,
   lastGuessHistory: GuessHistoryEntry,
-): { activeWeaponId: string; activeEvidenceId: string } => {
+): {
+  activeWeaponId: string;
+  activeEvidenceId: string;
+  activeVictimId?: string;
+  activeLocationId?: string;
+} => {
   if (isOwnCrime) {
     return {
       activeWeaponId: user.weaponId,
       activeEvidenceId: user.evidenceId,
+      activeVictimId: user.victimId,
+      activeLocationId: user.locationId,
     };
   }
 
@@ -222,11 +283,15 @@ const getActiveStuff = (
     return {
       activeWeaponId: lastGuessHistory.weaponId,
       activeEvidenceId: lastGuessHistory.evidenceId,
+      activeVictimId: lastGuessHistory.victimId,
+      activeLocationId: lastGuessHistory.locationId,
     };
   }
 
   return {
     activeWeaponId: activePlayerGuesses.weaponId,
     activeEvidenceId: activePlayerGuesses.evidenceId,
+    activeVictimId: activePlayerGuesses.victimId,
+    activeLocationId: activePlayerGuesses.locationId,
   };
 };

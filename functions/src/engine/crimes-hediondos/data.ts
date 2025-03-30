@@ -22,45 +22,49 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
     TDR_RESOURCES.CRIME_EVIDENCE,
   );
 
+  // Get locations
+  const locations: CrimesHediondosCard[] = [];
+  if (options.withLocations) {
+    locations.push(
+      ...utils.game.getRandomItems(
+        Object.values(
+          await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(TDR_RESOURCES.CRIME_LOCATIONS),
+        ),
+        CARDS_PER_GAME,
+      ),
+    );
+  }
+
+  // Get victims
+  const victims: CrimesHediondosCard[] = [];
+  if (options.withVictims) {
+    victims.push(
+      ...utils.game.getRandomItems(
+        Object.values(
+          await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(TDR_RESOURCES.CRIME_VICTIMS),
+        ),
+        CARDS_PER_GAME,
+      ),
+    );
+  }
+
   // Get scene tiles
   const allScenes = await resourceUtils.fetchResource<Dictionary<CrimeSceneTile>>(TDR_RESOURCES.CRIME_SCENES);
 
   // Filter weapons and evidence
-  const useOriginalImages = options.originalImages ?? false;
+  const listOfWeapons = Object.values(allWeapons).filter((weapon) => {
+    return !!weapon.itemId;
+  });
 
-  const listOfWeapons = Object.values(allWeapons)
-    .filter((weapon) => {
-      return useOriginalImages ? !weapon.itemExclusive : !!weapon.itemId;
-    })
-    .map((weapon) => {
-      // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
-      delete weapon.itemExclusive;
-
-      if (useOriginalImages) {
-        // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
-        delete weapon.itemId;
-      }
-      return weapon;
-    });
-
-  const listOfEvidence = Object.values(allEvidence)
-    .filter((evidence) => {
-      return useOriginalImages ? !evidence.itemExclusive : !!evidence.itemId;
-    })
-    .map((evidence) => {
-      // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
-      delete evidence.itemExclusive;
-
-      if (useOriginalImages) {
-        // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
-        delete evidence.itemId;
-      }
-      return evidence;
-    });
+  const listOfEvidence = Object.values(allEvidence).filter((evidence) => {
+    return !!evidence.itemId;
+  });
 
   return {
     weapons: utils.game.getRandomItems(listOfWeapons, CARDS_PER_GAME),
     evidence: utils.game.getRandomItems(listOfEvidence, CARDS_PER_GAME),
     allScenes: Object.values(allScenes),
+    locations,
+    victims,
   };
 };

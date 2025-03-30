@@ -39,6 +39,8 @@ type StepRevealProps = {
   round: GameRound;
   results: Results;
   isFirstRunThrough: boolean;
+  isVictimGame: boolean;
+  isLocationGame: boolean;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
@@ -54,6 +56,8 @@ export function StepReveal({
   results,
   isFirstRunThrough,
   announcement,
+  isVictimGame,
+  isLocationGame,
 }: StepRevealProps) {
   useTemporarilyHidePlayersBar();
 
@@ -118,7 +122,7 @@ export function StepReveal({
             items={[
               {
                 key: 'weapons-evidences',
-                label: <Translate pt=" Ver todas Armas e Evidências" en="See all Weapons and Evidence" />,
+                label: <Translate pt=" Ver todas cartas" en="See all cards" />,
                 children: (
                   <GroupedItemsBoard
                     items={items}
@@ -135,7 +139,6 @@ export function StepReveal({
 
       <PlayersCards
         user={user}
-        // activePlayerId={activePlayerId}
         setActivePlayerId={setActivePlayerId}
         players={players}
         guesses={{}}
@@ -177,9 +180,13 @@ export function StepReveal({
               items={items}
               history={user.history[activeCrime.playerId]}
               player={players[activeCrime.playerId]}
+              isLocked={isLocked}
               selectedWeaponId={isOwnCrime ? user.weaponId : latestHistoryEntry.weaponId}
               selectedEvidenceId={isOwnCrime ? user.evidenceId : latestHistoryEntry.evidenceId}
-              isLocked={isLocked}
+              selectedVictimId={isOwnCrime ? user.victimId : latestHistoryEntry.victimId}
+              selectedLocationId={isOwnCrime ? user.locationId : latestHistoryEntry.locationId}
+              isLocationGame={isLocationGame}
+              isVictimGame={isVictimGame}
             />
           </div>
         )}
