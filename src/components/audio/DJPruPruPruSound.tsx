@@ -1,9 +1,9 @@
+import airHorn from 'assets/sounds/airhorn.mp3';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Sound
-const airHorn = require('assets/sounds/airhorn.mp3');
 
 export function DJPruPruPruSound() {
   const [volume] = useGlobalLocalStorage('volume');

@@ -1,9 +1,9 @@
+import sinaisDeAlertaTimer from 'assets/sounds/sinais-de-alerta-30.mp3';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Sound
-const sinaisDeAlertaTimer = require('assets/sounds/sinais-de-alerta-30.mp3');
 
 export function SinaisDeAlertaTimerSound() {
   const [volume] = useGlobalLocalStorage('volume');

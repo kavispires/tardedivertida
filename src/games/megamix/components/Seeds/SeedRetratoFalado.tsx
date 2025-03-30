@@ -1,3 +1,4 @@
+import arteRuimTimer from 'assets/sounds/arte-ruim-timer.mp3';
 import { useEffect, useState } from 'react';
 import { useAudio } from 'react-use';
 // Ant Design Resources
@@ -17,9 +18,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryRetratoFalado } from '../../utils/types';
-
 // Sound
-const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
 
 type SeedRetratoFaladoProps = {
   seed: SeedEntryRetratoFalado;
