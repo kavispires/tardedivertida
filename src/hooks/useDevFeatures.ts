@@ -10,7 +10,7 @@ export function useDevFeatures() {
   const [isDebugEnabled, setIsDebugEnabled] = useGlobalState('isDebugEnabled');
 
   const toggleDevFeatures = () => {
-    setIsDebugEnabled((s) => !s);
+    setIsDebugEnabled(!isDebugEnabled);
   };
 
   return {

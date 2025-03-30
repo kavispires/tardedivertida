@@ -9,7 +9,7 @@ import { useGlobalState } from './useGlobalState';
 import { useGameMeta } from './useGameMeta';
 
 const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
-  let timer: NodeJS.Timeout;
+  let timer: ReturnType<typeof setTimeout>;
   return (...args: any[]) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
