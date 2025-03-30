@@ -129,7 +129,7 @@ export function SectionSettings() {
             checkedChildren="on"
             unCheckedChildren="off"
             checked={isAdminEnabled}
-            onClick={() => setIsAdminEnabled((s) => !s)}
+            onClick={() => setIsAdminEnabled(!isAdminEnabled)}
           />
         </div>
       )}
