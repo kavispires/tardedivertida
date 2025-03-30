@@ -10,14 +10,19 @@ export const mockCrime = (itemsGroup: string[]): SubmitCrimePayload => {
   const shuffledItems = shuffle(itemsGroup);
   const weapon = shuffledItems.find((e) => e?.includes('wp'));
   const evidence = shuffledItems.find((e) => e?.includes('ev'));
+  const location = shuffledItems.find((e) => e?.includes('lc'));
+  const victim = shuffledItems.find((e) => e?.includes('vt'));
   const options = [0, 1, 2, 3, 4, 5];
 
   return {
     weaponId: weapon,
     evidenceId: evidence,
+    victimId: victim ?? '',
+    locationId: location ?? '',
     causeOfDeathIndex: getRandomItem(options),
     reasonForEvidenceIndex: getRandomItem(options),
     locationIndex: getRandomItem(options),
+    victimIndex: getRandomItem(options),
   };
 };
 

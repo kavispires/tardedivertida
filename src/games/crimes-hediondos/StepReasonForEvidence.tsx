@@ -63,7 +63,9 @@ export function StepReasonForEvidence({
           items={items}
           weaponId={selections.weaponId ?? ''}
           evidenceId={selections.evidenceId ?? ''}
-          fadeWeapon
+          victimId={selections.victimId ?? ''}
+          locationId={selections.locationId ?? ''}
+          highlight="evidence"
         />
 
         <SceneTile tile={reasonForEvidenceTile} onSelectValue={onSelectItem} index={reasonForEvidenceIndex} />

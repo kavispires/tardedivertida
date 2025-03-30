@@ -23,7 +23,6 @@ import {
 
 /**
  * Setup
- * ???
  * Resets previous changes to the store
  * @returns
  */
@@ -41,7 +40,10 @@ export const prepareSetupPhase = async (
   const achievements = utils.achievements.setup(players, store, {
     wrongGroups: 0,
     wrong: 0,
-    half: 0,
+    one: 0,
+    two: 0,
+    three: 0,
+    four: 0,
     correct: [],
     weapons: [],
     evidence: [],
@@ -163,6 +165,7 @@ export const prepareGuessingPhase = async (
     const { scenes, order } = buildScenes(
       state.causeOfDeathTile,
       state.reasonForEvidenceTile,
+      state.victimTile,
       state.locationTile,
     );
     // Gather answers and build crimes
@@ -170,6 +173,7 @@ export const prepareGuessingPhase = async (
       players,
       state.causeOfDeathTile,
       state.reasonForEvidenceTile,
+      state.victimTile,
       state.locationTile,
     );
     // Cleanup properties from players
@@ -177,6 +181,7 @@ export const prepareGuessingPhase = async (
       'causeOfDeathIndex',
       'locationIndex',
       'reasonForEvidenceIndex',
+      'victimIndex',
     ]);
 
     mockGuessingForBots(players);
@@ -190,7 +195,7 @@ export const prepareGuessingPhase = async (
           scenes,
           scenesOrder: order,
         },
-        stateCleanup: ['causeOfDeathTile', 'reasonForEvidenceTile', 'locationTile'],
+        stateCleanup: ['causeOfDeathTile', 'reasonForEvidenceTile', 'locationTile', 'victimTile'],
       },
     };
   }

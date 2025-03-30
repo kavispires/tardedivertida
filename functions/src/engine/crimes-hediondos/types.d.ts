@@ -26,8 +26,8 @@ export interface Crime {
   playerId: PlayerId;
   weaponId: string;
   evidenceId: string;
-  locationId?: string;
   victimId?: string;
+  locationId?: string;
   scenes: {
     [key: string]: number;
   };
@@ -37,8 +37,8 @@ export interface Crime {
 export type Guess = {
   weaponId: string;
   evidenceId: string;
-  locationId?: string;
   victimId?: string;
+  locationId?: string;
 };
 
 export type Guesses = Record<PlayerId, Guess>;
@@ -50,8 +50,8 @@ export type GuessHistory = {
 export type GuessHistoryEntry = {
   weaponId: string;
   evidenceId: string;
-  locationId?: string;
   victimId?: string;
+  locationId?: string;
   status: string;
   groupIndex: number;
 };

@@ -36,7 +36,7 @@ export function SelectableGroupedItemsBoard({
   isLocked,
   wrongGroups = [],
 }: SelectableGroupedItemsBoardProps) {
-  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 30, maxWidth: 200 });
+  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 96 });
 
   return (
     <ul className="h-grouped-items-board" style={activeColor ? { backgroundColor: activeColor } : {}}>

@@ -28,9 +28,10 @@
   border-radius: get-unit(2);
   padding: get-unit(2);
   align-items: center;
+  gap: get-unit(1);
 
   &__faded {
-    opacity: 0.25;
+    opacity: 0.15;
   }
 }
 
@@ -126,6 +127,10 @@
 
     &--location {
       background-color: get-color("green", 6);
+    }
+
+    &--victim {
+      background-color: get-color("yellow", 6);
     }
 
     &--scene {

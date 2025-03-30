@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
+import { AnonymousIcon } from 'icons/AnonymousIcon';
 import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
 import { CrimeTapeIcon } from 'icons/CrimeTapeIcon';
 import { EventIcon } from 'icons/EventIcon';
@@ -24,11 +26,13 @@ import type { PhaseCrimeSelectionState, SubmitCrimePayload } from './utils/types
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
 import { mockCrime } from './utils/mock';
 import { WelcomeMessage } from './components/RulesBlobs';
+import { SelectedItems } from './components/SelectedItems';
 import { StepItemsSelection } from './StepItemsSelection';
 import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
+import { StepAboutTheVictim } from './StepAboutTheVictim';
 
 export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSelectionState>) {
   const { step, setStep, goToNextStep } = useStep(0);
@@ -52,6 +56,14 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
   };
 
   const onMockCrime = () => onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex]));
+
+  const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 96 });
+
+  const { isLocationGame, isVictimGame } = useMemo(() => {
+    const isLocationGame = Object.values(state.items).some((item) => item.type === 'location');
+    const isVictimGame = Object.values(state.items).some((item) => item.type === 'victim');
+    return { isLocationGame, isVictimGame };
+  }, [state.items]);
 
   const announcementItems = (
     <PhaseAnnouncement
@@ -94,6 +106,19 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
     </PhaseAnnouncement>
   );
 
+  const announcementVictim = (
+    <PhaseAnnouncement
+      icon={<AnonymousIcon />}
+      title={<Translate pt="Sobre a Vítima" en="About the Victim" />}
+      duration={3}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate pt="Quem foi a vítima?" en="Who was the victim?" />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
   const announcementLocation = (
     <PhaseAnnouncement
       icon={<LocationIcon />}
@@ -118,7 +143,21 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{
+          content: (
+            <SelectedItems
+              items={state.items}
+              weaponId={selections.weaponId ?? ''}
+              evidenceId={selections.evidenceId ?? ''}
+              victimId={selections.victimId ?? ''}
+              locationId={selections.locationId ?? ''}
+            />
+          ),
+        }}
+      >
         {/* Step 0 */}
         <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
 
@@ -131,6 +170,9 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
             selections={selections}
             updateSelections={updateSelections}
             announcement={announcementItems}
+            isLocationGame={isLocationGame}
+            isVictimGame={isVictimGame}
+            cardWidth={cardWidth}
           />
           <DevButton onClick={onMockCrime} size="large">
             Random Crime
@@ -158,6 +200,19 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
         />
 
         {/* Step 4 */}
+        <StepAboutTheVictim
+          user={user}
+          items={state.items}
+          selections={selections}
+          updateSelections={updateSelections}
+          victimTile={state.victimTile}
+          groupedItems={state.groupedItems}
+          goToStep={setStep}
+          announcement={announcementVictim}
+          isVictimGame={isVictimGame}
+        />
+
+        {/* Step 5 */}
         <StepLocationSelection
           user={user}
           items={state.items}
@@ -167,13 +222,15 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
           updateSelections={updateSelections}
           goToStep={setStep}
           announcement={announcementLocation}
+          isLocationGame={isLocationGame}
         />
 
-        {/* Step 5 */}
+        {/* Step 6 */}
         <StepReviewCrime
           items={state.items}
           causeOfDeathTile={state.causeOfDeathTile}
           reasonForEvidenceTile={state.reasonForEvidenceTile}
+          victimTile={state.victimTile}
           locationTile={state.locationTile}
           selections={selections}
           onSubmitCrime={onSubmitCrime}

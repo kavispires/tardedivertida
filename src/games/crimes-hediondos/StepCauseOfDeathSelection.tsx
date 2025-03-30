@@ -63,7 +63,9 @@ export function StepCauseOfDeathSelection({
           items={items}
           weaponId={selections.weaponId ?? ''}
           evidenceId={selections.evidenceId ?? ''}
-          fadeEvidence
+          victimId={selections.victimId ?? ''}
+          locationId={selections.locationId ?? ''}
+          highlight="weapon"
         />
 
         <SceneTile tile={causeOfDeathTile} onSelectValue={onSelectItem} index={causeOfDeathIndex} />
