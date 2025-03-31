@@ -1,9 +1,9 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .aqui-o-disc {
   display: grid;
   border-radius: 50%;
-  background: get-color('brown', 1);
+  background: get-color("brown", 1);
 
   grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
   grid-template-rows: 1fr 2fr 2fr 2fr 1fr;
@@ -62,7 +62,7 @@
 
 .aqui-o-disc-sprite.aqui-o-disc-sprite {
   border-radius: 50%;
-  background: get-color('brown', 1, 0.25);
+  background: get-color("brown", 1, 0.25);
 }
 .raw-item.raw-item {
   // background: transparent;
@@ -70,5 +70,12 @@
 }
 
 .item-match-outline {
-  border: 1px solid get-color('pink');
+  border: 1px solid get-color("pink");
+}
+
+.preload-items {
+  margin-top: get-unit(10);
+  display: grid;
+  gap: get-unit(1);
+  grid-template-columns: repeat(5, 1fr);
 }

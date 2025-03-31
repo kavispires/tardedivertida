@@ -92,7 +92,6 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
                 &nbsp;
                 <Translate pt=" Diário" en=" Daily" />
               </Button>
-              <PreloadItems items={data.itemsIds} />
 
               <Switch
                 unCheckedChildren={<Translate pt="Modo Normal" en="Normal Mode" />}
@@ -100,6 +99,8 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
                 value={mode === 'challenge'}
                 onChange={(checked) => onModeChange(checked ? 'challenge' : 'normal')}
               />
+
+              <PreloadItems items={data.itemsIds} />
             </>
           )}
 

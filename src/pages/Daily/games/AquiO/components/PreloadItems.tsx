@@ -1,3 +1,8 @@
+import { motion } from 'framer-motion';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Utils
+import { getAnimation } from 'utils/animations';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 
@@ -6,11 +11,20 @@ type PreloadItemsProps = {
 };
 
 export function PreloadItems({ items }: PreloadItemsProps) {
+  const itemWidth = useCardWidth(10, {
+    minWidth: 24,
+    maxWidth: 48,
+  });
   return (
-    <div style={{ display: 'none' }}>
-      {items.map((itemId) => (
-        <ItemCard key={itemId} id={itemId} className="transparent" width={1} />
+    <motion.div
+      className="preload-items"
+      {...getAnimation('tada', { delay: 0.25 * (items.length + 2), speed: 'fast' })}
+    >
+      {items.map((itemId, index) => (
+        <motion.div key={itemId} {...getAnimation('fadeIn', { delay: index * 0.25 })}>
+          <ItemCard id={itemId} width={itemWidth} />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }
