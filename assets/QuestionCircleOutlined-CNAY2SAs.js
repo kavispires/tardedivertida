@@ -1,1 +1,0 @@
-import{r as o,az as s,et as i}from"./index-BTRYo_JU.js";function a(){return a=Object.assign?Object.assign.bind():function(n){for(var t=1;t<arguments.length;t++){var e=arguments[t];for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(n[r]=e[r])}return n},a.apply(this,arguments)}const c=(n,t)=>o.createElement(s,a({},n,{ref:t,icon:i})),l=o.forwardRef(c);export{l as R};
