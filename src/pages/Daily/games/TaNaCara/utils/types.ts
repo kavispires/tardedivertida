@@ -4,10 +4,6 @@ export type TaNaCaraQuestion = {
   testimonyId: string;
   question: string;
   nsfw?: boolean;
-  /**
-   * @deprecated
-   */
-  suspectsIds?: string[];
 };
 
 export type GameState = {
@@ -23,7 +19,7 @@ export type SessionState = {
   answers: AnswerToSave[];
   selections: string[];
   questionIndex: number;
-  allowNSFW: boolean;
+  mode: 'normal' | 'nsfw';
   screen: 'idle' | 'playing' | 'saving';
 };
 

@@ -64,6 +64,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
     isSaving,
     alreadyPlayed,
     onUpdateAnswer,
+    mode,
   } = useTaNaCaraEngine(data, initialState);
 
   const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 300, minWidth: 55 });
@@ -217,6 +218,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
               unCheckedChildren="Não incluir conteúdo sensível"
               onChange={onToggleAllowNSFW}
               className="my-4"
+              value={mode === 'nsfw'}
             />
 
             <Button type="primary" size="large" onClick={onStart} disabled={alreadyPlayed}>

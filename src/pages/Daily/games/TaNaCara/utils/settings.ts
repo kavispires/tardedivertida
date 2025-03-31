@@ -15,4 +15,6 @@ export const SETTINGS: GameSettings = {
     pt: 'Julgue o livro pela capa! O cara pela cara!',
     en: 'Judge the book by its cover! The guy by his face!',
   },
+  // Custom
+  TD_DAILY_TA_NA_CARA_MODE: 'TD_DAILY_TA_NA_CARA_MODE',
 };
