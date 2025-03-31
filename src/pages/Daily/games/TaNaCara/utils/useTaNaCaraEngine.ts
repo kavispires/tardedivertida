@@ -4,12 +4,15 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useDailySaveTestimonies } from 'pages/Daily/hooks/useDailySave';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
+import { useLocalStorage } from 'react-use';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTaNaCaraEntry, GameState, SessionState } from './types';
 
 export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameState) {
   const { state, updateState } = useDailyGameState<GameState>(initialState);
+
+  const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_TA_NA_CARA_MODE, 'normal');
 
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     questionIndex: 0,
@@ -23,7 +26,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
       },
     ],
     selections: [],
-    allowNSFW: false,
+    mode: 'nsfw',
     screen: 'idle',
   });
 
@@ -40,9 +43,10 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
 
   const onToggleAllowNSFW = (checked: boolean) => {
     updateSession({
-      allowNSFW: checked,
+      mode: checked ? 'nsfw' : 'normal',
       testimonies: data.testimonies.filter((t) => (checked ? true : !t.nsfw)),
     });
+    setMode(checked ? 'nsfw' : 'normal');
   };
 
   const question = data.testimonies[session.questionIndex];
@@ -141,6 +145,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     isIdle: session.screen === 'idle',
     isSaving: session.screen === 'saving' || mutation.isPending,
     alreadyPlayed: state.played,
+    mode,
     onToggleAllowNSFW,
     onStart,
     onNext,
