@@ -11,8 +11,8 @@ type PreloadItemsProps = {
 };
 
 export function PreloadItems({ items }: PreloadItemsProps) {
-  const itemWidth = useCardWidth(10, {
-    minWidth: 24,
+  const itemWidth = useCardWidth(5, {
+    minWidth: 36,
     maxWidth: 48,
   });
   return (
@@ -20,7 +20,14 @@ export function PreloadItems({ items }: PreloadItemsProps) {
       className="preload-items"
       {...getAnimation('tada', { delay: 0.25 * (items.length + 2), speed: 'fast' })}
     >
-      {items.map((itemId, index) => (
+      <span />
+      <span />
+      <motion.div className="preload-items__first" {...getAnimation('fadeIn')}>
+        <ItemCard id={items[0]} width={itemWidth} />
+      </motion.div>
+      <span />
+      <span />
+      {items.slice(1).map((itemId, index) => (
         <motion.div key={itemId} {...getAnimation('fadeIn', { delay: index * 0.25 })}>
           <ItemCard id={itemId} width={itemWidth} />
         </motion.div>
