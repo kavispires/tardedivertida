@@ -1,5 +1,5 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName } from 'pages/Daily/utils';
+import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
@@ -23,6 +23,8 @@ type ResultsModalContentProps = {
   corridors: DailyPortaisMagicosEntry['corridors'];
   guesses: string[][];
   currentCorridorIndex: number;
+  moves: number;
+  hearts: number;
 };
 
 export function ResultsModalContent({
@@ -31,6 +33,8 @@ export function ResultsModalContent({
   corridors,
   guesses,
   currentCorridorIndex,
+  moves,
+  hearts,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
@@ -42,8 +46,10 @@ export function ResultsModalContent({
         guesses,
         win,
         language,
+        moves,
+        remainingHearts: hearts,
       }),
-    [challenge, dualTranslate, guesses, language, win],
+    [challenge, dualTranslate, guesses, language, win, moves, hearts],
   );
 
   return (
@@ -86,12 +92,16 @@ function writeResult({
   guesses,
   win,
   language,
+  moves,
+  remainingHearts,
 }: {
   game: string;
   challenge: number;
   guesses: string[][];
   win: boolean;
   language: Language;
+  moves: number;
+  remainingHearts: number;
 }) {
   const lastPlayedIndex = guesses.filter((guess) => guess.length > 0).length - 1;
 
@@ -105,17 +115,18 @@ function writeResult({
       // Lost lives
       const lostHearts = Array(lostLives)
         .fill(0)
-        .map(() => '🩶')
+        .map(() => '💥')
         .join('');
 
-      const correct = quantity - lostLives > 0 ? '🔶' : '💥';
+      const correct = quantity - lostLives > 0 ? '🔶' : '';
 
       return [lostHearts, correct].join('');
     })
-    .join('\n');
+    .join('');
 
   return [
     `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
+    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${moves} movimentos)`,
     result,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');

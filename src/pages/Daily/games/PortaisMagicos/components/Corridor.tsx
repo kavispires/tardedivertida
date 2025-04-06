@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
+import { isIOS, isSafari } from 'react-device-detect';
 // Ant Design Resources
-import { Avatar, Flex, Image, Typography } from 'antd';
+import { Avatar, Flex, Image, Tag, Typography } from 'antd';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Components
 import { DoorFrame } from 'components/game/DoorFrame';
 import { ImageCard } from 'components/image-cards';
+import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type CorridorProps = {
@@ -13,9 +15,10 @@ type CorridorProps = {
   imagesIds: string[];
   width: number;
   passcode?: string;
+  moves: number;
 };
 
-export function Corridor({ number, imagesIds, width, passcode }: CorridorProps) {
+export function Corridor({ number, imagesIds, width, passcode, moves }: CorridorProps) {
   return (
     <>
       {passcode ? (
@@ -29,14 +32,27 @@ export function Corridor({ number, imagesIds, width, passcode }: CorridorProps) 
           <CorridorNumber number={number} corridorNumber={3} />
         </Flex>
       )}
+      <Flex justify="center" className="mt-2">
+        <Tag style={{ background: 'transparent' }}>
+          {moves} <Translate pt="movimentos" en="moves" />
+        </Tag>
+      </Flex>
       <Image.PreviewGroup>
         <SpaceContainer className="corridor">
           {imagesIds.map((cardId, index) => (
-            <DoorFrame key={cardId} width={width}>
-              <motion.div {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}>
-                <ImageCard id={cardId} cardWidth={150} />
-              </motion.div>
-            </DoorFrame>
+            <>
+              {isIOS || isSafari ? (
+                <motion.div key={cardId} {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}>
+                  <ImageCard id={cardId} cardWidth={width} />
+                </motion.div>
+              ) : (
+                <DoorFrame key={cardId} width={width}>
+                  <motion.div {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}>
+                    <ImageCard id={cardId} cardWidth={150} />
+                  </motion.div>
+                </DoorFrame>
+              )}
+            </>
           ))}
         </SpaceContainer>
       </Image.PreviewGroup>

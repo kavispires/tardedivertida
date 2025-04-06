@@ -8,6 +8,7 @@ export type GameState = {
   guesses: string[][];
   currentCorridorIndex: number;
   currentCorridorIndexes: number[];
+  moves: number;
 };
 
 export type DailyPortaisMagicosEntry = {
