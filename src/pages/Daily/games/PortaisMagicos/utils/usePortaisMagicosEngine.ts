@@ -45,6 +45,7 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
       const targetPosition =
         copy.currentCorridorIndexes[index] >= wordsLength - 1 ? 0 : copy.currentCorridorIndexes[index] + 1;
       copy.currentCorridorIndexes[index] = targetPosition;
+      copy.moves += 1;
       return copy;
     });
   };
@@ -108,6 +109,7 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
     currentCorridorIndex: state.currentCorridorIndex,
     currentCorridor: data.corridors[state.currentCorridorIndex],
     currentCorridorIndexes: state.currentCorridorIndexes,
+    moves: state.moves,
     showResultModal,
     setShowResultModal,
     isWin,

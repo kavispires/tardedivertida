@@ -42,10 +42,11 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
     currentCorridorIndexes,
     currentCorridor,
     guesses,
+    moves,
     onSlideWordPosition,
     onSubmitPasscode,
   } = usePortaisMagicosEngine(data, initialState);
-  const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 300, minWidth: 55 });
+  const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 250, minWidth: 55 });
 
   const latestGuess = guesses[currentCorridorIndex][guesses[currentCorridorIndex].length - 1];
 
@@ -78,6 +79,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
                 number={currentCorridorIndex + 1}
                 imagesIds={currentCorridor.imagesIds}
                 width={width}
+                moves={moves}
               />
             </Region>
 
@@ -124,6 +126,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
                   imagesIds={corridor.imagesIds}
                   width={width * 0.75}
                   passcode={corridor.passcode}
+                  moves={moves}
                 />
               </Region>
             );
@@ -144,6 +147,8 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
             corridors={data.corridors}
             guesses={guesses}
             currentCorridorIndex={currentCorridorIndex}
+            moves={moves}
+            hearts={hearts}
           />
         </Modal>
       </Layout.Content>

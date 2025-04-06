@@ -15,6 +15,7 @@ const DEFAULT_LOCAL_TODAY: GameState = {
   currentCorridorIndex: 0,
   guesses: [[], [], []],
   currentCorridorIndexes: [],
+  moves: 0,
 };
 
 export const getInitialState = (data: DailyPortaisMagicosEntry): GameState => {
@@ -31,6 +32,7 @@ export const getInitialState = (data: DailyPortaisMagicosEntry): GameState => {
     hearts: localToday.hearts,
     currentCorridorIndex: localToday.currentCorridorIndex,
     guesses: localToday.guesses,
+    moves: localToday.moves,
     currentCorridorIndexes:
       localToday.currentCorridorIndexes.length > 0
         ? localToday.currentCorridorIndexes
