@@ -5,7 +5,7 @@ import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'PORTAIS_MAGICOS',
   ROUTE: 'portais-magicos',
-  RELEASE_DATE: 'DEMO',
+  RELEASE_DATE: '2024-04-30',
   COLOR: 'rgba(255, 171, 145, 0.85)',
   EMOJI: '🚪',
   HUB_ICON: DailyImagesGameIcon,
