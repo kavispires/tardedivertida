@@ -12,59 +12,13 @@
       },
       {
         "passcode": "tecnologia",
-        "imagesIds": ["td-d4-134", "td-d10-105", "td-d3-145"],
+        "imagesIds": ["td-d4-134", "td-d10-105"],
         "words": ["tão", "eco", "céu", "noé", "log", "lei", "toi", "gás", "iaí", "can"]
       },
       {
         "passcode": "musicalidade",
-        "imagesIds": ["td-d9-241", "td-d6-202", "td-d6-185"],
+        "imagesIds": ["td-d9-241"],
         "words": ["mão", "uso", "sim", "ali", "cad", "ida", "luz", "dia", "dor", "sua", "ido", "eco"]
-      }
-    ]
-  },
-  {
-    "id": "2025-00-01",
-    "setId": "elefante-velocidade-tempestade",
-    "number": 0,
-    "type": "portais-magicos",
-    "corridors": [
-      {
-        "passcode": "elefante",
-        "imagesIds": ["td-d5-10", "td-d8-67", "td-d5-99"],
-        "words": ["ler", "mol", "ele", "fio", "tal", "zen", "top", "seu"]
-      },
-      {
-        "passcode": "velocidade",
-        "imagesIds": ["td-d9-57", "td-d6-19", "td-d7-54"],
-        "words": ["ovo", "era", "alô", "noz", "cal", "rim", "daí", "uva", "ida", "ave"]
-      },
-      {
-        "passcode": "tempestade",
-        "imagesIds": ["td-d5-241", "td-d4-84", " td-d2-103"],
-        "words": ["kit", "mel", "bom", "pop", "sem", "sul", "tal", "era", "dar", "ode"]
-      }
-    ]
-  },
-  {
-    "id": "2025-00-02",
-    "setId": "caveiras-insolação-eletrizante",
-    "number": 0,
-    "type": "portais-magicos",
-    "corridors": [
-      {
-        "passcode": "caveiras",
-        "imagesIds": ["td-d10-193", "td-d8-228", "td-d3-114"],
-        "words": ["chá", "daí", "via", "vez", "piá", "rés", "oba", "rés"]
-      },
-      {
-        "passcode": "insolação",
-        "imagesIds": ["td-d2-190", "td-d6-206", "td-d10-208"],
-        "words": ["rio", "íon", "seu", "vôo", "mal", "aba", "aço", "cão", "noz"]
-      },
-      {
-        "passcode": "eletrizante",
-        "imagesIds": ["td-d10-192", "td-d4-243", "td-d8-134"],
-        "words": ["gel", "mol", "ave", "toa", "rir", "tio", "paz", "aro", "nem", "tal", "exu"]
       }
     ]
   }
