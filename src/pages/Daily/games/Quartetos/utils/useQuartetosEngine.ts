@@ -103,6 +103,10 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
       }
       if (status === STATUSES.LOSE) {
         playSFX('lose');
+
+        // Add the left over sets to the matches
+        const leftOverSets = data.sets.filter((set) => !matches.find((match) => match.id === set.id));
+        matches.push(...leftOverSets);
       }
 
       return {
