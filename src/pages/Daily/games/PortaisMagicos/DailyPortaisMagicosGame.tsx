@@ -1,13 +1,9 @@
-import { DemoGame } from 'pages/Daily/components/DailyGame';
+import { DailyGame } from 'pages/Daily/components/DailyGame';
 // Internal
-import { usePortaisMagicosDemo } from './utils/usePortaisMagicosDemo';
-import { SETTINGS } from './utils/settings';
 import { DailyPortaisMagicos } from './components/DailyPortaisMagicos';
 // Sass
 import './utils/styles.scss';
 
 export function DailyPortaisMagicosGame() {
-  return (
-    <DemoGame GameComponent={DailyPortaisMagicos} useDemoHook={usePortaisMagicosDemo} lsKey={SETTINGS.KEY} />
-  );
+  return <DailyGame gameName="portais-magicos" GameComponent={DailyPortaisMagicos} />;
 }
