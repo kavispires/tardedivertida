@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { QualitySealIcon } from 'icons/QualitySealIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { RETRATO_FALADO_PHASES } from './utils/constants';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 
@@ -38,7 +37,7 @@ export function PhaseReveal({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={RETRATO_FALADO_PHASES.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResults

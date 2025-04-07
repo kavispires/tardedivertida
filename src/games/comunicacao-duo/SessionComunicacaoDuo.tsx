@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { COMUNICACAO_DUO_PHASES } from './utils/constants';
 import { PhaseAskingForSomething } from './PhaseAskingForSomething';
 import { PhaseVerification } from './PhaseVerification';
 import { PhaseDeliveringSomething } from './PhaseDeliveringSomething';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.COMUNICACAO_DUO.ASKING_FOR_SOMETHING:
+    case COMUNICACAO_DUO_PHASES.ASKING_FOR_SOMETHING:
       return PhaseAskingForSomething;
-    case PHASES.COMUNICACAO_DUO.DELIVER_SOMETHING:
+    case COMUNICACAO_DUO_PHASES.DELIVER_SOMETHING:
       return PhaseDeliveringSomething;
-    case PHASES.COMUNICACAO_DUO.VERIFICATION:
+    case COMUNICACAO_DUO_PHASES.VERIFICATION:
       return PhaseVerification;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

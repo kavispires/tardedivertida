@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
 import PhaseWitnessSelection from './PhaseWitnessSelection';
 import PhaseQuestionSelection from './PhaseQuestionSelection';
 import PhaseQuestioning from './PhaseQuestioning';
@@ -29,13 +30,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION:
+    case TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION:
       return PhaseWitnessSelection;
-    case PHASES.TESTEMUNHA_OCULAR.QUESTION_SELECTION:
+    case TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION:
       return PhaseQuestionSelection;
-    case PHASES.TESTEMUNHA_OCULAR.QUESTIONING:
+    case TESTEMUNHA_OCULAR_PHASES.QUESTIONING:
       return PhaseQuestioning;
-    case PHASES.TESTEMUNHA_OCULAR.TRIAL:
+    case TESTEMUNHA_OCULAR_PHASES.TRIAL:
       return PhaseTrial;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

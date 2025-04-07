@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
+import { UE_SO_ISSO_PHASES } from './utils/constants';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { WaitingRoomSuggestions } from './components/WaitingRoomSuggestions';
 import { StepSuggestion } from './StepSuggestion';
@@ -55,7 +54,7 @@ export function PhaseSuggest({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.UE_SO_ISSO.SUGGEST}
+      allowedPhase={UE_SO_ISSO_PHASES.SUGGEST}
       className="word-selection-phase"
     >
       <StepSwitcher

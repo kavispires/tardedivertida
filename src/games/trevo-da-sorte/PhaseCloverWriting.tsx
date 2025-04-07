@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitCluesAPIRequest } from './utils/api-requests';
+import { TREVO_DA_SORTE_PHASES } from './utils/constants';
 import { StepWriteClues } from './StepWriteClues';
 
 export function PhaseCloverWriting({ players, state }: PhaseProps) {
@@ -23,7 +22,7 @@ export function PhaseCloverWriting({ players, state }: PhaseProps) {
   const onSubmitClues = useOnSubmitCluesAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.CLOVER_WRITING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TREVO_DA_SORTE_PHASES.CLOVER_WRITING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

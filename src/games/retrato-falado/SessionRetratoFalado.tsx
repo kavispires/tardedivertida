@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { RETRATO_FALADO_PHASES } from './utils/constants';
 import { PhaseCompositeSketch } from './PhaseCompositeSketch';
 import { PhaseEvaluation } from './PhaseEvaluation';
 import { PhaseReveal } from './PhaseReveal';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.RETRATO_FALADO.COMPOSITE_SKETCH:
+    case RETRATO_FALADO_PHASES.COMPOSITE_SKETCH:
       return PhaseCompositeSketch;
-    case PHASES.RETRATO_FALADO.EVALUATION:
+    case RETRATO_FALADO_PHASES.EVALUATION:
       return PhaseEvaluation;
-    case PHASES.RETRATO_FALADO.REVEAL:
+    case RETRATO_FALADO_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

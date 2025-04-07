@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { ChoiceIcon } from 'icons/ChoiceIcon';
 // Components
@@ -17,6 +15,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitPromptAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
+import { TA_NA_CARA_PHASES } from './utils/constants';
 import { StepSelectPrompt } from './StepSelectPrompt';
 import { StepWaitingForPrompt } from './StepWaitingForPrompt';
 
@@ -58,7 +57,7 @@ export function PhasePrompt({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.PROMPT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.PROMPT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserTheActivePlayer}>

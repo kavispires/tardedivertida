@@ -8,7 +8,6 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { PHASES } from 'utils/phases';
 // Components
 import { SendButton } from 'components/buttons';
 import { FloatingHand } from 'components/general/FloatingHand';
@@ -18,7 +17,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal
-import { TRAPS } from './utils/constants';
+import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockPageSelection } from './utils/mock';
 import type { SubmitPagesPayload } from './utils/types';
@@ -48,7 +47,7 @@ export function StepSelectPages({
     trap === TRAPS.MORE_CLUES ? totalSelections === 3 : totalSelections > 0 && totalSelections < 3;
 
   const showTrap = useMemo(
-    () => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION),
+    () => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION),
     [trap],
   );
 

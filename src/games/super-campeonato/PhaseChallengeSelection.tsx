@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { ListIcon } from 'icons/ListIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
 import type { PhaseChallengeSelectionState } from './utils/type';
+import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { StepSelectChallenge } from './StepSelectChallenge';
 
 export function PhaseChallengeSelection({ state, players }: PhaseProps<PhaseChallengeSelectionState>) {
@@ -39,7 +38,7 @@ export function PhaseChallengeSelection({ state, players }: PhaseProps<PhaseChal
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.CHALLENGE_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.CHALLENGE_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4}>

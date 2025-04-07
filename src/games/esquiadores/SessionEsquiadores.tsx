@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { ESQUIADORES_PHASES } from './utils/constants';
 import { PhaseBets } from './PhaseBets';
 import { PhaseStartingResults } from './PhaseStartingResults';
 import { PhaseBoost } from './PhaseBoost';
@@ -30,17 +31,17 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.ESQUIADORES.BETS:
+    case ESQUIADORES_PHASES.BETS:
       return PhaseBets;
-    case PHASES.ESQUIADORES.STARTING_RESULTS:
+    case ESQUIADORES_PHASES.STARTING_RESULTS:
       return PhaseStartingResults;
-    case PHASES.ESQUIADORES.BOOSTS:
+    case ESQUIADORES_PHASES.BOOSTS:
       return PhaseBoost;
-    case PHASES.ESQUIADORES.PRELIMINARY_RESULTS:
+    case ESQUIADORES_PHASES.PRELIMINARY_RESULTS:
       return PhasePreliminaryResults;
-    case PHASES.ESQUIADORES.LAST_CHANGE:
+    case ESQUIADORES_PHASES.LAST_CHANGE:
       return PhaseLastChance;
-    case PHASES.ESQUIADORES.FINAL_RESULTS:
+    case ESQUIADORES_PHASES.FINAL_RESULTS:
       return PhaseFinalResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

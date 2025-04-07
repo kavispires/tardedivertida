@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
+import { MENTE_COLETIVA_PHASES } from './utils/constants';
 import { AnsweringRules } from './components/RulesBlobs';
 import { StepAnswering } from './StepAnswering';
 
@@ -36,7 +35,7 @@ export function PhaseEverybodyWrites({ state, players, meta }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.EVERYBODY_WRITES}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MENTE_COLETIVA_PHASES.EVERYBODY_WRITES}>
       <StepSwitcher
         step={step}
         players={players}

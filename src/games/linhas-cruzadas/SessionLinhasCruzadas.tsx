@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
 import { PhasePromptSelection } from './PhasePromptSelection';
 import { PhaseDrawing } from './PhaseDrawing';
 import { PhaseNaming } from './PhaseNaming';
@@ -30,13 +31,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.LINHAS_CRUZADAS.PROMPT_SELECTION:
+    case LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION:
       return PhasePromptSelection;
-    case PHASES.LINHAS_CRUZADAS.DRAWING:
+    case LINHAS_CRUZADAS_PHASES.DRAWING:
       return PhaseDrawing;
-    case PHASES.LINHAS_CRUZADAS.NAMING:
+    case LINHAS_CRUZADAS_PHASES.NAMING:
       return PhaseNaming;
-    case PHASES.LINHAS_CRUZADAS.PRESENTATION:
+    case LINHAS_CRUZADAS_PHASES.PRESENTATION:
       return PhasePresentation;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

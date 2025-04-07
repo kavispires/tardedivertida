@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { ADEDANHX_PHASES } from './utils/constants';
 import { PhaseAnswering } from './PhaseAnswering';
 import { PhaseEvaluation } from './PhaseEvaluation';
 import { PhaseResults } from './PhaseResults';
@@ -28,11 +29,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.ADEDANHX.ANSWERING:
+    case ADEDANHX_PHASES.ANSWERING:
       return PhaseAnswering;
-    case PHASES.ADEDANHX.EVALUATION:
+    case ADEDANHX_PHASES.EVALUATION:
       return PhaseEvaluation;
-    case PHASES.ADEDANHX.RESULTS:
+    case ADEDANHX_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

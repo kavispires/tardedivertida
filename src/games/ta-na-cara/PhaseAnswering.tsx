@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { ChatIcon } from 'icons/ChatIcon';
 // Components
@@ -13,6 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
+import { TA_NA_CARA_PHASES } from './utils/constants';
 import { StepAnswerTheQuestion } from './StepAnswerTheQuestion';
 
 export function PhaseAnswer({ players, state }: PhaseProps) {
@@ -32,7 +31,7 @@ export function PhaseAnswer({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TA_NA_CARA.ANSWERING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.ANSWERING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepAnswerTheQuestion

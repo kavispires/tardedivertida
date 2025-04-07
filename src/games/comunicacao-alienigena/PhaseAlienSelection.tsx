@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCache, useCacheAlternative } from 'hooks/useCache';
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { UfoIcon } from 'icons/UfoIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 // Internal
 import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
+import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { CurseItemHighlight, HieroglyphHighlight, ItemsHighlight } from './components/Highlights';
 
 export function PhaseAlienSelection({ players, state }: PhaseProps) {
@@ -84,7 +83,7 @@ export function PhaseAlienSelection({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectPlayer

@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { SmsIcon } from 'icons/SmsIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitSeedAPIRequest } from './utils/api-requests';
+import { MEGAMIX_PHASES } from './utils/constants';
 import { StepSeeding } from './StepSeeding';
 
 export function PhaseSeeding({ players, state }: PhaseProps) {
@@ -43,7 +42,7 @@ export function PhaseSeeding({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MEGAMIX.SEEDING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MEGAMIX_PHASES.SEEDING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSeeding players={players} announcement={announcement} onSubmitData={onSubmitData} user={user} />

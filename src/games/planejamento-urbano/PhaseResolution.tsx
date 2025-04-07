@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MapCityIcon } from 'icons/MapCityIcon';
 // Components
@@ -14,7 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { SLIDE_DURATION } from './utils/constants';
+import { PLANEJAMENTO_URBANO_PHASES, SLIDE_DURATION } from './utils/constants';
 import { StepGallery } from './StepGallery';
 import { StepResults } from './StepResults';
 // Icons
@@ -34,7 +32,7 @@ export function PhaseResolution({ players, state }: PhaseProps) {
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PLANEJAMENTO_URBANO_PHASES.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

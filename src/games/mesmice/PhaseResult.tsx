@@ -5,8 +5,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { SkullIcon } from 'icons/SkullIcon';
@@ -16,6 +14,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
+import { MESMICE_PHASES } from './utils/constants';
 import { StepResult } from './StepResult';
 
 export function PhaseResult({ players, state }: PhaseProps) {
@@ -42,7 +41,7 @@ export function PhaseResult({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MESMICE.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MESMICE_PHASES.RESULT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

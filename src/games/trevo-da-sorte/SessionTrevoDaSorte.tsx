@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { TREVO_DA_SORTE_PHASES } from './utils/constants';
 import { PhaseWordSelection } from './PhaseWordSelection';
 import { PhaseCloverWriting } from './PhaseCloverWriting';
 import { PhaseCloverGuessing } from './PhaseCloverGuessing';
@@ -30,13 +31,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TREVO_DA_SORTE.WORD_SELECTION:
+    case TREVO_DA_SORTE_PHASES.WORD_SELECTION:
       return PhaseWordSelection;
-    case PHASES.TREVO_DA_SORTE.CLOVER_WRITING:
+    case TREVO_DA_SORTE_PHASES.CLOVER_WRITING:
       return PhaseCloverWriting;
-    case PHASES.TREVO_DA_SORTE.CLOVER_GUESSING:
+    case TREVO_DA_SORTE_PHASES.CLOVER_GUESSING:
       return PhaseCloverGuessing;
-    case PHASES.TREVO_DA_SORTE.RESULTS:
+    case TREVO_DA_SORTE_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

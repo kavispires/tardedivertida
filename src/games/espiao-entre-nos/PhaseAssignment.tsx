@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { PassportIcon } from 'icons/PassportIcon';
 import { SecretIcon } from 'icons/SecretIcon';
@@ -17,6 +15,7 @@ import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { StepAssignment } from './StepAssignment';
 
 export function PhaseAssignment({ state, players }: PhaseProps) {
@@ -28,7 +27,7 @@ export function PhaseAssignment({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT}
+      allowedPhase={ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT}
       className="e-phase"
     >
       <StepSwitcher step={step} players={players}>

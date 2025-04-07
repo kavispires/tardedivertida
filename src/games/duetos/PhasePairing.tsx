@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { SocksIcon } from 'icons/SocksIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitPairsAPIRequest } from './utils/api-requests';
+import { DUETOS_PHASES } from './utils/constants';
 import { MadePairs } from './components/MadePairs';
 import { StepMakePairs } from './StepMakePairs';
 
@@ -41,7 +40,7 @@ export function PhasePairing({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DUETOS.PAIRING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={DUETOS_PHASES.PAIRING}>
       <StepSwitcher
         step={step}
         players={players}

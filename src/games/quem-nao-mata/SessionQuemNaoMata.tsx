@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { QUEM_NAO_MATA_PHASES } from './utils/constants';
 import { PhaseTargeting } from './PhaseTargeting';
 import { PhaseStandoff } from './PhaseStandoff';
 import { PhaseDuel } from './PhaseDuel';
@@ -27,13 +28,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.QUEM_NAO_MATA.TARGETING:
+    case QUEM_NAO_MATA_PHASES.TARGETING:
       return PhaseTargeting;
-    case PHASES.QUEM_NAO_MATA.STANDOFF:
+    case QUEM_NAO_MATA_PHASES.STANDOFF:
       return PhaseStandoff;
-    case PHASES.QUEM_NAO_MATA.DUEL:
+    case QUEM_NAO_MATA_PHASES.DUEL:
       return PhaseDuel;
-    case PHASES.QUEM_NAO_MATA.RESOLUTION:
+    case QUEM_NAO_MATA_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;

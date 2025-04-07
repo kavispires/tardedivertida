@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
@@ -17,6 +15,7 @@ import { Instruction, TextHighlight } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnStopDeliveryAPIRequest, useOnSubmitDeliveryAPIRequest } from './utils/api-requests';
+import { COMUNICACAO_DUO_PHASES } from './utils/constants';
 import { StepDeliver } from './StepDeliver';
 
 export function PhaseDeliveringSomething({ players, state }: PhaseProps) {
@@ -55,7 +54,7 @@ export function PhaseDeliveringSomething({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_DUO.DELIVER_SOMETHING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_DUO_PHASES.DELIVER_SOMETHING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepDeliver

@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { PhaseAlienSelection } from './PhaseAlienSelection';
 import { PhaseHumanAsk } from './PhaseHumanAsk';
 import { PhaseAlienAnswer } from './PhaseAlienAnswer';
@@ -31,19 +32,19 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION:
+    case COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION:
       return PhaseAlienSelection;
-    case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SEEDING:
+    case COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING:
       return PhaseAlienSeeding;
-    case PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK:
+    case COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK:
       return PhaseHumanAsk;
-    case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_ANSWER:
+    case COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER:
       return PhaseAlienAnswer;
-    case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_REQUEST:
+    case COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST:
       return PhaseAlienRequest;
-    case PHASES.COMUNICACAO_ALIENIGENA.OFFERINGS:
+    case COMUNICACAO_ALIENIGENA_PHASES.OFFERINGS:
       return PhaseOfferings;
-    case PHASES.COMUNICACAO_ALIENIGENA.REVEAL:
+    case COMUNICACAO_ALIENIGENA_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

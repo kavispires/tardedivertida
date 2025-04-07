@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitObjectAPIRequest } from './utils/api-requests';
+import { MESMICE_PHASES } from './utils/constants';
 import { PlayerObjectClueFeature } from './components/PlayerObjectClueFeature';
 import { StepSelectObject } from './StepObjectSelection';
 import { StepWriteClue } from './StepWriteClue';
@@ -57,7 +56,7 @@ export function PhaseClueWriting({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MESMICE.CLUE_WRITING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MESMICE_PHASES.CLUE_WRITING}>
       <StepSwitcher
         step={step}
         players={players}

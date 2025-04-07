@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { SpeechBubbleIcon } from 'icons/SpeechBubbleIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
 // Internal
+import { UE_SO_ISSO_PHASES } from './utils/constants';
 import { StepResult } from './StepResult';
 
 export function PhaseResult({ state, players }: PhaseProps) {
@@ -67,7 +66,7 @@ export function PhaseResult({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.RESULT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

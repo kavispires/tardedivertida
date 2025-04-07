@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';
 import { PhaseBookPossession } from './PhaseBookPossession';
 import { PhaseDoorChoice } from './PhaseDoorChoice';
 import { PhaseResolution } from './PhaseResolution';
@@ -30,11 +31,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION:
+    case PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION:
       return PhaseBookPossession;
-    case PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE:
+    case PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE:
       return PhaseDoorChoice;
-    case PHASES.PORTA_DOS_DESESPERADOS.RESOLUTION:
+    case PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

@@ -2,10 +2,7 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DictionaryIcon } from 'icons/DictionaryIcon';
 // Components
@@ -15,10 +12,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
 // Internal
 import type { PhaseResultsState } from './utils/types';
+import { METALINGUAGEM_PHASES } from './utils/constants';
 import { StepResults } from './StepResults';
 
 export function PhaseResults({ players, state }: PhaseProps<PhaseResultsState>) {
-  const user = useUser(players, state);
   const { step } = useStep();
   const [creator] = useWhichPlayerIsThe('creatorId', state, players);
 
@@ -48,7 +45,7 @@ export function PhaseResults({ players, state }: PhaseProps<PhaseResultsState>) 
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.METALINGUAGEM.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={METALINGUAGEM_PHASES.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResults

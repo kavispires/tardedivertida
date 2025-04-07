@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { METALINGUAGEM_PHASES } from './utils/constants';
 import { PhaseWordCreation } from './PhaseWordCreation';
 import { PhaseGuessing } from './PhaseGuessing';
 import { PhaseResults } from './PhaseResults';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.METALINGUAGEM.WORD_CREATION:
+    case METALINGUAGEM_PHASES.WORD_CREATION:
       return PhaseWordCreation;
-    case PHASES.METALINGUAGEM.GUESSING:
+    case METALINGUAGEM_PHASES.GUESSING:
       return PhaseGuessing;
-    case PHASES.METALINGUAGEM.RESULTS:
+    case METALINGUAGEM_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

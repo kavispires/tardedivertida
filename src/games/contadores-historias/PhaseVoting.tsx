@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { VoteIcon } from 'icons/VoteIcon';
 // Components
@@ -15,6 +13,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
+import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
 import { VotingRules } from './components/RulesBlobs';
 import { StepVoting } from './StepVoting';
 
@@ -40,7 +39,7 @@ export function PhaseVoting({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.CONTADORES_HISTORIAS.VOTING}
+      allowedPhase={CONTADORES_HISTORIAS_PHASES.VOTING}
       className="c-phase"
     >
       <StepSwitcher step={step} players={players}>

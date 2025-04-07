@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { POLEMICA_DA_VEZ_PHASES } from './utils/constants';
 import { PhaseTweetSelection } from './PhaseTweetSelection';
 import { PhaseReact } from './PhaseReact';
 import { PhaseResolution } from './PhaseResolution';
@@ -29,11 +30,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION:
+    case POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION:
       return PhaseTweetSelection;
-    case PHASES.POLEMICA_DA_VEZ.REACT:
+    case POLEMICA_DA_VEZ_PHASES.REACT:
       return PhaseReact;
-    case PHASES.POLEMICA_DA_VEZ.RESOLUTION:
+    case POLEMICA_DA_VEZ_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

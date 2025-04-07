@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
 import { PhaseMovieGenreSelection } from './PhaseMovieGenreSelection';
 import { PhaseActorSelection } from './PhaseActorSelection';
 import { PhaseResult } from './PhaseResult';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TESTE_DE_ELENCO.MOVIE_GENRE_SELECTION:
+    case TESTE_DE_ELENCO_PHASES.MOVIE_GENRE_SELECTION:
       return PhaseMovieGenreSelection;
-    case PHASES.TESTE_DE_ELENCO.ACTOR_SELECTION:
+    case TESTE_DE_ELENCO_PHASES.ACTOR_SELECTION:
       return PhaseActorSelection;
-    case PHASES.TESTE_DE_ELENCO.RESULT:
+    case TESTE_DE_ELENCO_PHASES.RESULT:
       return PhaseResult;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

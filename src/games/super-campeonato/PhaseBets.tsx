@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 // Components
@@ -15,6 +13,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitBetsAPIRequest } from './utils/api-requests';
 import type { PhaseBetsState } from './utils/type';
+import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { StepMakeYourBets } from './StepMakeYourBets';
 
@@ -42,7 +41,7 @@ export function PhaseBets({ state, players }: PhaseProps<PhaseBetsState>) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.BETS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.BETS}>
       <StepSwitcher
         step={step}
         players={players}

@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -18,6 +16,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitFeatureAPIRequest } from './utils/api-requests';
+import { MESMICE_PHASES } from './utils/constants';
 import { WaitingRoomFeature } from './components/WaitingRoomFeature';
 import { StepSelectFeature } from './StepSelectFeature';
 
@@ -55,7 +54,7 @@ export function PhaseObjectFeatureElimination({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MESMICE.OBJECT_FEATURE_ELIMINATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MESMICE_PHASES.OBJECT_FEATURE_ELIMINATION}>
       <StepSwitcher
         step={step}
         players={players}

@@ -5,7 +5,6 @@ import { Button, Space } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-import { PHASES } from 'utils/phases';
 // Icons
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
@@ -15,6 +14,7 @@ import { WaitingRoom } from 'components/players';
 import { Step } from 'components/steps';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
+import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';
 import { BookHighlight } from './components/Highlights';
 import { TrapPopupRule } from './components/RulesBlobs';
 
@@ -27,7 +27,7 @@ type StepSelectPagesProps = {
 
 export function StepWaitPageSelection({ possessed, players, trap }: StepSelectPagesProps) {
   const showTrap = useMemo(
-    () => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION),
+    () => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION),
     [trap],
   );
 

@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitMovieGenreAPIRequest } from './utils/api-requests';
+import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
 import { MovieGenreRules } from './components/RulesBlobs';
 import { StepSelectGenre } from './StepSelectGenre';
 
@@ -37,7 +36,7 @@ export function PhaseMovieGenreSelection({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TESTE_DE_ELENCO.MOVIE_GENRE_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TESTE_DE_ELENCO_PHASES.MOVIE_GENRE_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectGenre

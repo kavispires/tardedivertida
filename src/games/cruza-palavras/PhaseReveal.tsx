@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
@@ -12,6 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
+import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
@@ -34,7 +33,7 @@ export function PhaseReveal({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CRUZA_PALAVRAS_PHASES.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

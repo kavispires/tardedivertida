@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { MESMICE_PHASES } from './utils/constants';
 import { PhaseClueWriting } from './PhaseClueWriting';
 import { PhaseObjectFeatureElimination } from './PhaseObjectFeatureElimination';
 import { PhaseResult } from './PhaseResult';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.MESMICE.CLUE_WRITING:
+    case MESMICE_PHASES.CLUE_WRITING:
       return PhaseClueWriting;
-    case PHASES.MESMICE.OBJECT_FEATURE_ELIMINATION:
+    case MESMICE_PHASES.OBJECT_FEATURE_ELIMINATION:
       return PhaseObjectFeatureElimination;
-    case PHASES.MESMICE.RESULT:
+    case MESMICE_PHASES.RESULT:
       return PhaseResult;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
+import { ARTE_RUIM_PHASES } from './utils/constants';
 import { EvaluationRules } from './components/TextBlobs';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 import { StepEvaluation } from './StepEvaluation';
@@ -36,7 +35,7 @@ function EvaluationPhase({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ARTE_RUIM_PHASES.EVALUATION}>
       <StepSwitcher
         step={step}
         players={players}

@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { WarningSignIcon } from 'icons/WarningSignIcon';
 // Components
@@ -12,7 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
-import { SLIDE_DURATION } from './utils/constants';
+import { SINAIS_DE_ALERTA_PHASES, SLIDE_DURATION } from './utils/constants';
 import { GalleryRules } from './components/RulesBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
@@ -31,7 +29,7 @@ export function PhaseGallery({ players, state, meta }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SINAIS_DE_ALERTA.GALLERY}>
+    <PhaseContainer phase={state?.phase} allowedPhase={SINAIS_DE_ALERTA_PHASES.GALLERY}>
       <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
         <PhaseAnnouncement

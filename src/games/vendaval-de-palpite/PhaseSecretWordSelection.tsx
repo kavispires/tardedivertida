@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { KnowledgeIcon } from 'icons/KnowledgeIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitSecretWordAPIRequest } from './utils/api-requests';
+import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
 import { StepSecretWordSelection } from './StepSecretWordSelection';
 import { StepWaiting } from './StepWaiting';
 
@@ -26,7 +25,7 @@ export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
   const onSubmitSecretWord = useOnSubmitSecretWordAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.SECRET_WORD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={VENDAVAL_DE_PALPITE_PHASES.SECRET_WORD_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

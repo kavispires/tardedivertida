@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { OfferingIcon } from 'icons/OfferingIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitOfferingsAPIRequest } from './utils/api-requests';
+import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { StepHumansOffer } from './StepHumansOffer';
 
 export function PhaseOfferings({ players, state }: PhaseProps) {
@@ -35,7 +34,7 @@ export function PhaseOfferings({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.OFFERINGS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.OFFERINGS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepHumansOffer

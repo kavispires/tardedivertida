@@ -5,12 +5,12 @@ import { Progress } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { PHASES } from 'utils/phases';
 // Components
 import { Translate } from 'components/language';
 import { TurnOrder, WaitingRoom } from 'components/players';
 import { Step } from 'components/steps';
+// Internal
+import { UE_SO_ISSO_PHASES } from '../utils/constants';
 
 type GuesserWaitingRoomProps = {
   players: GamePlayers;
@@ -35,11 +35,11 @@ export function GuesserWaitingRoom({
   const { language, translate } = useLanguage();
 
   const initialProgress = useMemo(() => {
-    if (phase === PHASES.UE_SO_ISSO.WORD_SELECTION) {
+    if (phase === UE_SO_ISSO_PHASES.WORD_SELECTION) {
       return 0;
     }
 
-    if (phase === PHASES.UE_SO_ISSO.SUGGEST) {
+    if (phase === UE_SO_ISSO_PHASES.SUGGEST) {
       return 45;
     }
 
@@ -47,7 +47,7 @@ export function GuesserWaitingRoom({
   }, [phase]);
 
   const additionalPercentage = useMemo(() => {
-    if (phase === PHASES.UE_SO_ISSO.COMPARE) {
+    if (phase === UE_SO_ISSO_PHASES.COMPARE) {
       return 0;
     }
     const playerCount = Object.keys(players).length;

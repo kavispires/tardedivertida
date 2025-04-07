@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DreamIcon } from 'icons/DreamIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import type { ImageCardObj } from './utils/types';
 import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
+import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import { DreamSelectionRules } from './components/RulesBlobs';
 import { SelectedDreams } from './components/SelectedDreams';
 import { StepDreamsSelection } from './StepDreamsSelection';
@@ -38,7 +37,7 @@ export function PhaseDreamsSelections({ players, state, meta }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION}>
       <StepSwitcher step={step} players={players} waitingRoom={{ content: <SelectedDreams user={user} /> }}>
         {/* Step 0 */}
         <StepDreamsSelection

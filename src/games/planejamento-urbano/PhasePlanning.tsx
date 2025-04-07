@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MapBlueprintIcon } from 'icons/MapBlueprintIcon';
 // Components
@@ -17,6 +15,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitPlanningAPIRequest } from './utils/api-requests';
+import { PLANEJAMENTO_URBANO_PHASES } from './utils/constants';
 import { PlanningRules } from './components/RulesBlobs';
 import { StepPlanLocations } from './StepPlanLocations';
 import { StepWaitForPlanning } from './StepWaitForPlanning';
@@ -54,7 +53,7 @@ export function PhasePlanning({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.PLANNING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PLANEJAMENTO_URBANO_PHASES.PLANNING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={3}>

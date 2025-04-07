@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { EyeIcon } from 'icons/EyeIcon';
 // Components
@@ -16,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitTestimonyAPIRequest } from './utils/api-requests';
+import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
 import { StepQuestioning } from './StepQuestioning';
 
 function PhaseQuestioning({ state, players }: PhaseProps) {
@@ -55,7 +54,7 @@ function PhaseQuestioning({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.TESTEMUNHA_OCULAR.QUESTIONING}
+      allowedPhase={TESTEMUNHA_OCULAR_PHASES.QUESTIONING}
       className="t-phase"
     >
       <StepSwitcher step={step} players={players}>

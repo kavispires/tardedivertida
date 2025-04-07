@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 // Components
@@ -12,7 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
-import { STATUS } from './utils/constants';
+import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';
 import { StepVerification } from './StepVerification';
 
 export function PhaseVerification({ players, state }: PhaseProps) {
@@ -31,7 +29,7 @@ export function PhaseVerification({ players, state }: PhaseProps) {
     ) : undefined;
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_DUO.VERIFICATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_DUO_PHASES.VERIFICATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepVerification

@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DreamIcon } from 'icons/DreamIcon';
 // Components
@@ -16,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitDreamAPIRequest } from './utils/api-requests';
+import { SONHOS_PESADELOS_PHASES } from './utils/constants';
 import { DreamTellingRules } from './components/RulesBlobs';
 import { StepTellDream } from './StepTellDream';
 
@@ -26,7 +25,7 @@ export function PhaseDreamTelling({ state, players }: PhaseProps) {
   const onSubmitDream = useOnSubmitDreamAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.DREAM_TELLING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={SONHOS_PESADELOS_PHASES.DREAM_TELLING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} buttonText="" onPressButton={goToNextStep} time={5}>

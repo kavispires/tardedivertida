@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
@@ -15,7 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitBadWordsAPIRequest } from './utils/api-requests';
-import { WORST_TO_REMOVE } from './utils/constants';
+import { TREVO_DA_SORTE_PHASES, WORST_TO_REMOVE } from './utils/constants';
 import { StepSelectWords } from './StepSelectWords';
 
 export function PhaseWordSelection({ players, state }: PhaseProps) {
@@ -25,7 +23,7 @@ export function PhaseWordSelection({ players, state }: PhaseProps) {
   const onSubmitBadWords = useOnSubmitBadWordsAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.WORD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TREVO_DA_SORTE_PHASES.WORD_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} />

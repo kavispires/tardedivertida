@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
+import { QUEM_SOU_EU_PHASES } from './utils/constants';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
@@ -39,7 +38,7 @@ export function PhaseGuessing({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.GUESSING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_SOU_EU_PHASES.GUESSING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepGuessing

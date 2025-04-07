@@ -4,8 +4,6 @@ import type { GamePlayer } from 'types/player';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { OpinionsIcon } from 'icons/OpinionsIcon';
 // Components
@@ -18,6 +16,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
+import { UE_SO_ISSO_PHASES } from './utils/constants';
 import { GroupProgress } from './components/GroupProgress';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { StepWordSelection } from './StepWordSelection';
@@ -107,7 +106,7 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.WORD_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={7}>

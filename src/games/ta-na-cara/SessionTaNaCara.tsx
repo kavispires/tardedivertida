@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { TA_NA_CARA_PHASES } from './utils/constants';
 import { PhasePrompt } from './PhasePrompt';
 import { PhaseAnswer } from './PhaseAnswering';
 import { PhaseGuessing } from './PhaseGuessing';
@@ -28,13 +29,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TA_NA_CARA.PROMPT:
+    case TA_NA_CARA_PHASES.PROMPT:
       return PhasePrompt;
-    case PHASES.TA_NA_CARA.ANSWERING:
+    case TA_NA_CARA_PHASES.ANSWERING:
       return PhaseAnswer;
-    case PHASES.TA_NA_CARA.GUESSING:
+    case TA_NA_CARA_PHASES.GUESSING:
       return PhaseGuessing;
-    case PHASES.TA_NA_CARA.REVEAL:
+    case TA_NA_CARA_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

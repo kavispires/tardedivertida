@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { ADEDANHX_PHASES } from './utils/constants';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepRanking } from './StepRanking';
 import { StepResultGrid } from './StepResultGrid';
@@ -44,7 +43,7 @@ export function PhaseResults({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ADEDANHX.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ADEDANHX_PHASES.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResultGrid

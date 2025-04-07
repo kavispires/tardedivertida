@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { HieroglyphIcon } from 'icons/HieroglyphIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnMakeReady, useOnSubmitAlienResponseAPIRequest } from './utils/api-requests';
 import type { PhaseAlienAnswerState } from './utils/types';
+import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { StepAlienAnswers } from './StepAlienAnswers';
 
 export function PhaseAlienAnswer({ players, state }: PhaseProps<PhaseAlienAnswerState>) {
@@ -38,7 +37,7 @@ export function PhaseAlienAnswer({ players, state }: PhaseProps<PhaseAlienAnswer
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.ALIEN_ANSWER}>
+    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepAlienAnswers

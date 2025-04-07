@@ -6,8 +6,6 @@ import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DoorSignIcon } from 'icons/DoorSignIcon';
 import { NightmareIcon } from 'icons/NightmareIcon';
@@ -22,6 +20,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import {
+  GALERIA_DE_SONHOS_PHASES,
   GO_TO_CARD_PLAY_STEP,
   GO_TO_PLAYER_WITH_NIGHTMARE_STEP,
   GO_TO_SEE_CARD_STEP,
@@ -61,7 +60,7 @@ export function PhaseCardPlay({ players, state, meta }: PhaseProps) {
   }, [state.activePlayerId, setStep]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.CARD_PLAY}>
+    <PhaseContainer phase={state?.phase} allowedPhase={GALERIA_DE_SONHOS_PHASES.CARD_PLAY}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

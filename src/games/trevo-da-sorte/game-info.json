@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "release": "dev",
   "available": false,
   "title": {

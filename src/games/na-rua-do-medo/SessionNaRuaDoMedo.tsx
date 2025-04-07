@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import { PhaseTrickOrTreat } from './PhaseTrickOrTreat';
 import { PhaseResult } from './PhaseResult';
 import { PhaseStreetEnd } from './PhaseStreetEnd';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.NA_RUA_DO_MEDO.TRICK_OR_TREAT:
+    case NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT:
       return PhaseTrickOrTreat;
-    case PHASES.NA_RUA_DO_MEDO.RESULT:
+    case NA_RUA_DO_MEDO_PHASES.RESULT:
       return PhaseResult;
-    case PHASES.NA_RUA_DO_MEDO.STREET_END:
+    case NA_RUA_DO_MEDO_PHASES.STREET_END:
       return PhaseStreetEnd;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

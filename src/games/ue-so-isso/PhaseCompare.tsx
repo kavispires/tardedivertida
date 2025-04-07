@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
+import { UE_SO_ISSO_PHASES } from './utils/constants';
 import { ComparisonRules } from './components/RulesBlobs';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { StepCompareSuggestions } from './StepCompareSuggestions';
@@ -49,7 +48,7 @@ export function PhaseCompare({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.COMPARE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.COMPARE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserTheGuesser}>

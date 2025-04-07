@@ -4,8 +4,6 @@ import type { TopicCard } from 'types/tdr';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { LockIcon } from 'icons/LockIcon';
 import { TimeWritingIcon } from 'icons/TimedWritingIcon';
@@ -19,7 +17,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
-import { ANSWERING_TIME_IN_MINUTES } from './utils/constants';
+import { ADEDANHX_PHASES, ANSWERING_TIME_IN_MINUTES } from './utils/constants';
 import { StepAnswerGrid } from './StepAnswerGrid';
 
 export function PhaseAnswering({ players, state }: PhaseProps) {
@@ -29,7 +27,7 @@ export function PhaseAnswering({ players, state }: PhaseProps) {
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ADEDANHX.ANSWERING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ADEDANHX_PHASES.ANSWERING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement

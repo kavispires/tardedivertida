@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { TournamentIcon } from 'icons/TournamentIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepWinner } from './StepWinner';
 
@@ -44,7 +43,7 @@ export function PhaseResults({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepWinner

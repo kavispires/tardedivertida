@@ -10,6 +10,7 @@ import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PhaseWait } from 'components/phases/PhaseWait';
 import { Session } from 'components/session';
 // Internal
+import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
 import { PhaseMapBuilding } from './PhaseMapBuilding';
 import { PhasePathFollowing } from './PhasePathFollowing';
 import { PhaseResults } from './PhaseResults';
@@ -30,11 +31,11 @@ function getActiveComponent(state: GameState) {
       return PhaseSetup;
     case PHASES.DEFAULT.WAIT:
       return PhaseWait;
-    case PHASES.LABIRINTO_SECRETO.MAP_BUILDING:
+    case LABIRINTO_SECRETO_PHASES.MAP_BUILDING:
       return PhaseMapBuilding;
-    case PHASES.LABIRINTO_SECRETO.PATH_FOLLOWING:
+    case LABIRINTO_SECRETO_PHASES.PATH_FOLLOWING:
       return PhasePathFollowing;
-    case PHASES.LABIRINTO_SECRETO.RESULTS:
+    case LABIRINTO_SECRETO_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

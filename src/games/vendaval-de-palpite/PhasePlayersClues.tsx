@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DiscussionIcon } from 'icons/DiscussionIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitPlayerCluesAPIRequest } from './utils/api-requests';
+import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
 import { Board } from './components/Board';
 import { StepPlayerClue } from './StepPlayerClue';
 import { StepBossWaiting } from './StepBossWaiting';
@@ -27,7 +26,7 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
   const onSubmitClues = useOnSubmitPlayerCluesAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.PLAYERS_CLUES}>
+    <PhaseContainer phase={state?.phase} allowedPhase={VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES}>
       <StepSwitcher
         step={step}
         players={players}

@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { TrendingIcon } from 'icons/TrendingIcon';
 // Components
@@ -19,6 +17,7 @@ import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
 import { mockTweetSelection } from './utils/mock';
+import { POLEMICA_DA_VEZ_PHASES } from './utils/constants';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepTweetSelection } from './StepTweetSelection';
 
@@ -51,7 +50,7 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4}>

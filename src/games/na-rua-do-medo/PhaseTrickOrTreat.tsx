@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { StreetIcon } from 'icons/StreetIcon';
 // Components
@@ -16,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
+import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import { PlayerStats } from './components/PlayerStats';
 import { StepMakeDecision } from './StepMakeDecision';
 
@@ -28,7 +27,7 @@ export function PhaseTrickOrTreat({ state, players }: PhaseProps) {
   const onSubmitDecision = useOnSubmitDecisionAPIRequest();
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.TRICK_OR_TREAT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT}>
       <StepSwitcher step={step} players={players} waitingRoom={{ content: <PlayerStats user={user} /> }}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5}>

@@ -5,8 +5,6 @@ import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { HangingPhotographIcon } from 'icons/HangingPhotographIcon';
 // Components
@@ -17,6 +15,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
+import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import { StepPlayCard } from './StepPlayCard';
 
 export function PhaseCardPlay({ state, players }: PhaseProps) {
@@ -59,7 +58,7 @@ export function PhaseCardPlay({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY}
+      allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.CARD_PLAY}
       className="d-phase d-play-card-phase"
     >
       <StepSwitcher step={step} players={players}>

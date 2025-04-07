@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { BoxingGlovesIcon } from 'icons/BoxingGlovesIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import type { PhaseBattleState } from './utils/type';
+import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { StepBattle } from './StepBattle';
 
 export function PhaseBattle({ state, players }: PhaseProps<PhaseBattleState>) {
@@ -50,7 +49,7 @@ export function PhaseBattle({ state, players }: PhaseProps<PhaseBattleState>) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.BATTLE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.BATTLE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepBattle

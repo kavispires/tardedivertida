@@ -5,8 +5,6 @@ import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 // Components
@@ -17,6 +15,7 @@ import { Step, StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
+import { UE_SO_ISSO_PHASES } from './utils/constants';
 import { StepGuessVerification } from './StepGuessVerification';
 
 export function PhaseVerifyGuess({ state, players }: PhaseProps) {
@@ -42,7 +41,7 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.VERIFY_GUESS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.VERIFY_GUESS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>

@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { PictureIcon } from 'icons/PictureIcon';
 // Components
@@ -12,7 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
-import { SLIDE_DURATION } from './utils/constants';
+import { ARTE_RUIM_PHASES, SLIDE_DURATION } from './utils/constants';
 import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
@@ -35,7 +33,7 @@ function PhaseGallery({ players, state, meta }: PhaseProps) {
     : Object.values(players).some((player) => player.score > 50);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.GALLERY} className="a-gallery-phase">
+    <PhaseContainer phase={state?.phase} allowedPhase={ARTE_RUIM_PHASES.GALLERY} className="a-gallery-phase">
       <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
         <PhaseAnnouncement

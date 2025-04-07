@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { ListIcon } from 'icons/ListIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
+import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
 import { StepSelectPrompt } from './StepSelectPrompt';
 
 export function PhasePromptSelection({ players, state }: PhaseProps) {
@@ -23,7 +22,7 @@ export function PhasePromptSelection({ players, state }: PhaseProps) {
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.PROMPT_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

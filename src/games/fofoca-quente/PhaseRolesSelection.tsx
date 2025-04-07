@@ -2,8 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { LawIcon } from 'icons/LawIcon';
 // Components
@@ -13,6 +11,7 @@ import { StepSwitcher } from 'components/steps';
 import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 // Internal
 import { useOnSubmitPlayersRolesAPIRequest } from './utils/api-requests';
+import { FOFOCA_QUENTE_PHASES } from './utils/constants';
 
 export function PhaseRolesSelection({ players, state }: PhaseProps) {
   const { step, setStep } = useStep();
@@ -56,7 +55,7 @@ export function PhaseRolesSelection({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.FOFOCA_QUENTE.ROLES_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={FOFOCA_QUENTE_PHASES.ROLES_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectPlayer

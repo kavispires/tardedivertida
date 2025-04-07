@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { BouncerIcon } from 'icons/BouncerIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { MEGAMIX_PHASES } from './utils/constants';
 import { StepResult } from './StepResult';
 import { StepRanking } from './StepRanking';
 
@@ -44,7 +43,7 @@ export function PhaseResult({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MEGAMIX.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MEGAMIX_PHASES.RESULT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

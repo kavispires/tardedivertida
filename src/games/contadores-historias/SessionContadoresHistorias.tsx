@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
 import { PhaseStory } from './PhaseStory';
 import { PhaseCardPlay } from './PhaseCardPlay';
 import { PhaseVoting } from './PhaseVoting';
@@ -30,13 +31,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.CONTADORES_HISTORIAS.STORY:
+    case CONTADORES_HISTORIAS_PHASES.STORY:
       return PhaseStory;
-    case PHASES.CONTADORES_HISTORIAS.CARD_PLAY:
+    case CONTADORES_HISTORIAS_PHASES.CARD_PLAY:
       return PhaseCardPlay;
-    case PHASES.CONTADORES_HISTORIAS.VOTING:
+    case CONTADORES_HISTORIAS_PHASES.VOTING:
       return PhaseVoting;
-    case PHASES.CONTADORES_HISTORIAS.RESOLUTION:
+    case CONTADORES_HISTORIAS_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { FILEIRA_DE_FATOS_PHASES } from './utils/constants';
 import { PhaseOrdering } from './PhaseOrdering';
 import { PhaseResults } from './PhaseResults';
 import { PhaseGameOver } from './PhaseGameOver';
@@ -26,9 +27,9 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.FILEIRA_DE_FATOS.ORDERING:
+    case FILEIRA_DE_FATOS_PHASES.ORDERING:
       return PhaseOrdering;
-    case PHASES.FILEIRA_DE_FATOS.RESULTS:
+    case FILEIRA_DE_FATOS_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

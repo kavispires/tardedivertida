@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { TicketsIcon } from 'icons/TicketsIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitCardAPIRequest } from './utils/api-requests';
+import { NAO_SOU_ROBO_PHASES } from './utils/constants';
 import { StepSelectCard } from './StepSelectCard';
 
 export function PhaseCardSelection({ players, state }: PhaseProps) {
@@ -41,7 +40,7 @@ export function PhaseCardSelection({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.CARD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={NAO_SOU_ROBO_PHASES.CARD_SELECTION}>
       <StepSwitcher
         step={step}
         players={players}

@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { FairyTaleIcon } from 'icons/FairyTaleIcon';
 // Components
@@ -20,6 +18,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
+import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
 import { StoryWaiting } from './components/StoryWaiting';
 import { StoryWriting } from './components/StoryWriting';
 
@@ -59,7 +58,7 @@ export function PhaseStory({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CONTADORES_HISTORIAS_PHASES.STORY}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={5} />

@@ -7,13 +7,12 @@ import type { BossIdeaCard } from 'types/tdr';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Components
 import { PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from './utils/api-requests';
+import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
 import { StepConfirmGood } from './StepConfirmGood';
 
 export function PhasePlacementConfirmation({ players, state }: PhaseProps) {
@@ -24,13 +23,13 @@ export function PhasePlacementConfirmation({ players, state }: PhaseProps) {
   const onConfirmPlacement = useOnConfirmGoodPlacementAPIRequest();
 
   // If roundGoodsIndex is 0, show round announcement and boss idea
-  const { step, goToNextStep } = useStep();
+  const { step } = useStep();
   const bossIdea: BossIdeaCard = state?.bossIdea;
 
   const warehouse = useMemo(() => orderBy(state.warehouseGrid, ['id']), [state.warehouseGrid]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CONTROLE_DE_ESTOQUE.PLACEMENT_CONFIRMATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CONTROLE_DE_ESTOQUE_PHASES.PLACEMENT_CONFIRMATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepConfirmGood

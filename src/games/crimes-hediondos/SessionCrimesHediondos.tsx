@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { PhaseCrimeSelection } from './PhaseCrimeSelection';
 import { PhaseSceneMarking } from './PhaseSceneMarking';
 import { PhaseGuessing } from './PhaseGuessing';
@@ -28,13 +29,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION:
+    case CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION:
       return PhaseCrimeSelection;
-    case PHASES.CRIMES_HEDIONDOS.SCENE_MARKING:
+    case CRIMES_HEDIONDOS_PHASES.SCENE_MARKING:
       return PhaseSceneMarking;
-    case PHASES.CRIMES_HEDIONDOS.GUESSING:
+    case CRIMES_HEDIONDOS_PHASES.GUESSING:
       return PhaseGuessing;
-    case PHASES.CRIMES_HEDIONDOS.REVEAL:
+    case CRIMES_HEDIONDOS_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

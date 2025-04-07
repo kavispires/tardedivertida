@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { QueueIcon } from 'icons/QueueIcon';
 // Components
@@ -13,6 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { FILEIRA_DE_FATOS_PHASES } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepReveal } from './StepReveal';
 
@@ -34,7 +33,7 @@ export function PhaseResults({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.FILEIRA_DE_FATOS.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={FILEIRA_DE_FATOS_PHASES.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

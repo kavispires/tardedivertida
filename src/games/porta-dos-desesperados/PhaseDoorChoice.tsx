@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MagicDoorIcon } from 'icons/MagicDoorIcon';
 // Components
@@ -18,6 +16,7 @@ import { ViewOr } from 'components/views';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { useOnMakeReady, useOnSubmitDoorAPIRequest } from './utils/api-requests';
+import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';
 import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { StepSelectDoor } from './StepSelectDoor';
 import { StepWaitDoorSelection } from './StepWaitDoorSelection';
@@ -31,14 +30,14 @@ export function PhaseDoorChoice({ players, state, meta }: PhaseProps) {
   const onConfirmDoor = useOnMakeReady(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MagicDoorIcon />}
           title={<Translate pt="Qual porta é a correta?" en="Which door is the correct one?" />}
           onClose={
-            shouldAnnounceTrap(state.trap, PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE)
+            shouldAnnounceTrap(state.trap, PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE)
               ? goToNextStep
               : () => setStep(3)
           }

@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { NAO_SOU_ROBO_PHASES } from './utils/constants';
 import { StepResult } from './StepResults';
 
 export function PhaseResults({ players, state }: PhaseProps) {
@@ -38,7 +37,7 @@ export function PhaseResults({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={NAO_SOU_ROBO_PHASES.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { OpinionsIcon } from 'icons/OpinionsIcon';
 import { PeopleAssessmentIcon } from 'icons/PeopleAssessmentIcon';
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnMakeAccusationAPIRequest } from './utils/api-requests';
+import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { StepFinalAssessment } from './StepFinalAssessment';
 
 export function PhaseFinalAssessment({ state, players }: PhaseProps) {
@@ -30,7 +29,7 @@ export function PhaseFinalAssessment({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT}
+      allowedPhase={ESPIAO_ENTRE_NOS_PHASES.FINAL_ASSESSMENT}
       className="e-phase"
     >
       <StepSwitcher step={step} players={players}>

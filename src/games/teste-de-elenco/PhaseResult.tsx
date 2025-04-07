@@ -2,8 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
@@ -13,6 +11,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { Icons } from './utils/helpers';
+import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepResult } from './StepResult';
 
@@ -44,7 +43,7 @@ export function PhaseResult({ players, state }: PhaseProps) {
   //
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TESTE_DE_ELENCO.RESULT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TESTE_DE_ELENCO_PHASES.RESULT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResult

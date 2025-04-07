@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { CaptchaIcon } from 'icons/CaptchaIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { NAO_SOU_ROBO_PHASES } from './utils/constants';
 import { StepSelectAll } from './StepSelectAll';
 
 export function PhaseAreYouARobot({ players, state }: PhaseProps) {
@@ -37,7 +36,7 @@ export function PhaseAreYouARobot({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NAO_SOU_ROBO.ARE_YOU_A_ROBOT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={NAO_SOU_ROBO_PHASES.ARE_YOU_A_ROBOT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectAll

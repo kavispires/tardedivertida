@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 import { QuestionIcon } from 'icons/QuestionIcon';
@@ -20,11 +18,11 @@ import { ViewOr } from 'components/views';
 // Internal
 import type { PhaseBetsState } from './utils/types';
 import { useOnSubmitBetsAPIRequest, useOnSubmitChoicesAPIRequest } from './utils/api-requests';
+import { ESQUIADORES_PHASES } from './utils/constants';
 import { SnowEffect } from './components/SnowEffect';
 import { CurrentBets } from './components/CurrentBets';
 import { StepMakeBets } from './StepMakeBets';
 import { StepMakeChoices } from './StepMakeChoices';
-// Icons
 
 export function PhaseBets({ players, state }: PhaseProps<PhaseBetsState>) {
   const user = useUser(players, state);
@@ -64,7 +62,7 @@ export function PhaseBets({ players, state }: PhaseProps<PhaseBetsState>) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ESQUIADORES.BETS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ESQUIADORES_PHASES.BETS}>
       <SnowEffect />
       <StepSwitcher
         step={step}

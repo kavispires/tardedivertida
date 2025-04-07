@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
+import { QUEM_SOU_EU_PHASES } from './utils/constants';
 import { WaitingRoomCharacter } from './components/WaitingRoomCharacter';
 import { StepSelectGlyphs } from './StepSelectGlyphs';
 
@@ -41,7 +40,7 @@ export function PhaseCharacterDescription({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.CHARACTER_DESCRIPTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_SOU_EU_PHASES.CHARACTER_DESCRIPTION}>
       <StepSwitcher
         step={step}
         players={players}

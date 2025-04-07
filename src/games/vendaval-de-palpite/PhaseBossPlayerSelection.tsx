@@ -2,8 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { BossIcon } from 'icons/BossIcon';
 // Components
@@ -13,6 +11,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitBossPlayerAPIRequest } from './utils/api-requests';
+import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
 import { StepBossPlayerSelection } from './StepBossPlayerSelection';
 
 export function PhaseBossPlayerSelection({ state, players }: PhaseProps) {
@@ -21,7 +20,7 @@ export function PhaseBossPlayerSelection({ state, players }: PhaseProps) {
   const onBossPlayerClick = useOnSubmitBossPlayerAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.BOSS_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={VENDAVAL_DE_PALPITE_PHASES.BOSS_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

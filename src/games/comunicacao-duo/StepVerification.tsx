@@ -4,8 +4,6 @@ import { Flex } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
-// Utils
-import { PHASES } from 'utils/phases';
 // Components
 import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
@@ -17,7 +15,7 @@ import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 import { ViewIf, ViewOr } from 'components/views';
 // Internal
 import type { DeckEntry, HistoryEntry, Summary } from './utils/types';
-import { STATUS } from './utils/constants';
+import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';
 import { Board } from './components/Board';
 import { SummaryBox } from './components/SummaryBox';
 import { History } from './components/History';
@@ -97,7 +95,7 @@ export function StepVerification({
 
     // Delivered incorrectly
     if (status === STATUS.CONTINUE) {
-      if (nextPhase === PHASES.COMUNICACAO_DUO.ASKING_FOR_SOMETHING) {
+      if (nextPhase === COMUNICACAO_DUO_PHASES.ASKING_FOR_SOMETHING) {
         return {
           en: (
             <>

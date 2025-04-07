@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 
 export function PhaseReveal({ state, players }: PhaseProps) {
@@ -57,7 +56,7 @@ export function PhaseReveal({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.REVEAL}
+      allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.REVEAL}
       className="d-voting-phase"
     >
       <StepSwitcher step={step} players={players}>
