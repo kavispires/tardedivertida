@@ -32,12 +32,7 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionTemplate() {
-  return (
-    <Session
-      gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
-      getActiveComponent={getActiveComponent}
-    />
-  );
+  return <Session gameCollection={GAME_COLLECTION._TEMPLATE} getActiveComponent={getActiveComponent} />;
 }
 
 export default SessionTemplate;

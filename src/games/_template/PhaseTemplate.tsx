@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
 // Components
@@ -14,8 +12,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { StepTemplate } from './StepTemplate';
+import type { PhaseTemplateState } from './utils/types';
+import { TEMPLATE_PHASES } from './utils/constants';
 
-export function PhaseTemplate({ players, state }: PhaseProps) {
+export function PhaseTemplate({ players, state }: PhaseProps<PhaseTemplateState>) {
   const user = useUser(players, state);
   const { step } = useStep();
 
@@ -33,7 +33,7 @@ export function PhaseTemplate({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TEMPLATE.UNKNOWN}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TEMPLATE_PHASES.UNKNOWN}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepTemplate user={user} players={players} announcement={announcement} />
