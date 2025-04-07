@@ -21,14 +21,6 @@ export const getInitialState = (data: DailyTaNaCaraEntry): GameState => {
   });
 
   const suspectsIds = data.suspectsIds ?? [];
-  // TODO: Remove temporary fix for data transition
-  if (suspectsIds.length === 0) {
-    data.testimonies.forEach((testimony) => {
-      if (testimony.suspectsIds) {
-        suspectsIds.push(...testimony.suspectsIds);
-      }
-    });
-  }
 
   return {
     id: data.id,
