@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "palheta-de-cores",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "release": "planned",
   "available": false,
   "title": {
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "",
     "backgroundColor": "",
     "colorScheme": "light"

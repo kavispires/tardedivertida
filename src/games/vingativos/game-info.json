@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vingativos",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "release": "planned",
   "available": false,
   "title": {
@@ -16,6 +16,7 @@
   "basedOn": "muiretsyM",
   "appearance": {
     "clouds": "cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "",
     "backgroundColor": "",
     "colorScheme": "light"
