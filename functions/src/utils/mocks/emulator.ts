@@ -163,6 +163,9 @@ export const feedEmulatorDaily = async () => {
     quartetos: JSON.parse(
       '{"id":"2025-00-00","setId":"1","number":0,"type":"quartetos","difficulty":0,"grid":["483","2633","194","167","2601","632","179","2630","416","580","471","2746","27","190","1280","347"],"sets":[{"id":"27-167-179-580","title":"Duas rodas","itemsIds":["27","167","179","580"],"level":0},{"id":"1280-2601-2630-2633","title":"Animais Extintos","itemsIds":["1280","2601","2633","2630"],"level":1},{"id":"194-416-471-632","title":"Coisas que enchem de ar","itemsIds":["194","416","471","632"],"level":2},{"id":"190-347-483-2746","title":"Video Game","itemsIds":["190","2746","347","483"],"level":3}]}',
     ),
+    'portais-magicos': JSON.parse(
+      '[{"id":"2025-00-00","setId":"unicórnio-tecnologia-musicalidade","number":0,"type":"portais-magicos","corridors":[{"passcode":"unicórnio","imagesIds":["td-d9-215","td-d6-120","td-d8-96"],"words":["uni","nós","rio","cor","cóu","uro","noi","irm","cão"]},{"passcode":"tecnologia","imagesIds":["td-d4-134","td-d10-105"],"words":["tão","eco","céu","noé","log","lei","toi","gás","iaí","can"]},{"passcode":"musicalidade","imagesIds":["td-d9-241"],"words":["mão","uso","sim","ali","cad","ida","luz","dia","dor","sua","ido","eco"]}]}]',
+    ),
   };
 
   await utils.firestore.getDailyRef('daily').doc('2023-10-31').set(dailyMock);

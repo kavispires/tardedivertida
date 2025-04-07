@@ -10,6 +10,7 @@ import type { DailyTeoriaDeConjuntosEntry } from '../games/TeoriaDeConjuntos/uti
 import type { DailyComunicacaoAlienigenaEntry } from '../games/ComunicacaoAlienigena/utils/types';
 import type { DailyQuartetosEntry } from '../games/Quartetos/utils/types';
 import type { DailyTaNaCaraEntry } from '../games/TaNaCara/utils/types';
+import type { DailyPortaisMagicosEntry } from '../games/PortaisMagicos/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
@@ -17,13 +18,14 @@ export type DailyResponse = {
   'aqui-o'?: DailyAquiOEntry;
   'arte-ruim'?: DailyArteRuimEntry;
   artista?: DailyPicacoEntry;
-  palavreado?: DailyPalavreadoEntry;
   filmaco?: DailyFilmacoEntry;
-  'controle-de-estoque': DailyControleDeEstoqueEntry;
-  'teoria-de-conjuntos': DailyTeoriaDeConjuntosEntry;
   'comunicacao-alienigena': DailyComunicacaoAlienigenaEntry;
-  'ta-na-cara': DailyTaNaCaraEntry;
+  'controle-de-estoque': DailyControleDeEstoqueEntry;
+  palavreado?: DailyPalavreadoEntry;
+  'portais-magicos'?: DailyPortaisMagicosEntry;
   quartetos?: DailyQuartetosEntry;
+  'ta-na-cara': DailyTaNaCaraEntry;
+  'teoria-de-conjuntos': DailyTeoriaDeConjuntosEntry;
 };
 
 export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'idle';
