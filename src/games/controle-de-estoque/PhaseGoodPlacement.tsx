@@ -7,8 +7,6 @@ import type { BossIdeaCard } from 'types/tdr';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 // Components
@@ -19,7 +17,7 @@ import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { DAYS_OF_THE_WEEK } from './utils/constants';
+import { CONTROLE_DE_ESTOQUE_PHASES, DAYS_OF_THE_WEEK } from './utils/constants';
 import { useOnPlaceGoodAPIRequest } from './utils/api-requests';
 import { StepPlaceGood } from './StepPlaceGood';
 
@@ -52,7 +50,7 @@ export function PhaseGoodPlacement({ players, state }: PhaseProps) {
   const warehouse = useMemo(() => orderBy(state.warehouseGrid, ['id']), [state.warehouseGrid]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CONTROLE_DE_ESTOQUE.GOOD_PLACEMENT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement

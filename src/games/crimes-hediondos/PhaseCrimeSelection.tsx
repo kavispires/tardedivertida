@@ -5,8 +5,6 @@ import type { PhaseProps } from 'types/game';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
@@ -26,6 +24,7 @@ import type { PhaseCrimeSelectionState, SubmitCrimePayload } from './utils/types
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
 import { mockCrime } from './utils/mock';
 import { useGameTypes } from './utils/useGameTypes';
+import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { WelcomeMessage } from './components/RulesBlobs';
 import { SelectedItems } from './components/SelectedItems';
 import { StepItemsSelection } from './StepItemsSelection';
@@ -143,7 +142,7 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION}>
       <StepSwitcher
         step={step}
         players={players}

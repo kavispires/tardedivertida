@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 // Internal
 import type { PhaseRevealState } from './utils/types';
 import { useGameTypes } from './utils/useGameTypes';
+import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { ScoringMessage } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
@@ -48,7 +47,7 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CRIMES_HEDIONDOS_PHASES.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

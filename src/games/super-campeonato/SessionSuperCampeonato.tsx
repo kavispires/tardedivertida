@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { PhaseChallengeSelection } from './PhaseChallengeSelection';
 import { PhaseContenderSelection } from './PhaseContendersSelection';
 import { PhaseBets } from './PhaseBets';
@@ -31,15 +32,15 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.SUPER_CAMPEONATO.CHALLENGE_SELECTION:
+    case SUPER_CAMPEONATO_PHASES.CHALLENGE_SELECTION:
       return PhaseChallengeSelection;
-    case PHASES.SUPER_CAMPEONATO.CONTENDER_SELECTION:
+    case SUPER_CAMPEONATO_PHASES.CONTENDER_SELECTION:
       return PhaseContenderSelection;
-    case PHASES.SUPER_CAMPEONATO.BETS:
+    case SUPER_CAMPEONATO_PHASES.BETS:
       return PhaseBets;
-    case PHASES.SUPER_CAMPEONATO.BATTLE:
+    case SUPER_CAMPEONATO_PHASES.BATTLE:
       return PhaseBattle;
-    case PHASES.SUPER_CAMPEONATO.RESULTS:
+    case SUPER_CAMPEONATO_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

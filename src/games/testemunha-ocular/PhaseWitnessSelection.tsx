@@ -2,8 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
+import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
 
 function PhaseWitnessSelection({ state, players }: PhaseProps) {
   const { step } = useStep(0);
@@ -74,7 +73,7 @@ function PhaseWitnessSelection({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION}
+      allowedPhase={TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION}
       className="t-phase"
     >
       <StepSwitcher step={step} players={players}>

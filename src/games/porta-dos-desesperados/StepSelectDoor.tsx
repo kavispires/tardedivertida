@@ -10,7 +10,6 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, removeDuplicates } from 'utils/helpers';
-import { PHASES } from 'utils/phases';
 // Components
 import { AvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
@@ -20,7 +19,7 @@ import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { useDancingDoors } from './utils/useTrapHooks';
-import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
+import { PORTA_DOS_DESESPERADOS_PHASES, ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockDoorSelection } from './utils/mock';
 import type { SubmitDoorPayload } from './utils/types';
@@ -62,7 +61,7 @@ export function StepSelectDoor({
   const { isLoading } = useLoading();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-  const showTrap = useMemo(() => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE), [trap]);
+  const showTrap = useMemo(() => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE), [trap]);
 
   const bookCardClass = trap === TRAPS.SEPIA ? 'i-sepia-card' : '';
 

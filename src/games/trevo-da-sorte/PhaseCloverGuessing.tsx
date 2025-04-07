@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { CloverIcon } from 'icons/CloverIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { TREVO_DA_SORTE_PHASES } from './utils/constants';
 import { StepGuessClover } from './StepGuessClover';
 import { StepWaitClover } from './StepWaitClover';
 
@@ -26,7 +25,7 @@ export function PhaseCloverGuessing({ players, state }: PhaseProps) {
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.CLOVER_GUESSING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TREVO_DA_SORTE_PHASES.CLOVER_GUESSING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

@@ -1,3 +1,9 @@
+export const NA_RUA_DO_MEDO_PHASES = {
+  TRICK_OR_TREAT: 'TRICK_OR_TREAT',
+  RESULT: 'RESULT',
+  STREET_END: 'STREET_END',
+} as const;
+
 export const NA_RUA_DO_MEDO_ACTIONS = {
   SUBMIT_DECISION: 'SUBMIT_DECISION',
 } as const;

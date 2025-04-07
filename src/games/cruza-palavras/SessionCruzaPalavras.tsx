@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
 import { PhaseClueWriting } from './PhaseClueWriting';
 import { PhaseGuessing } from './PhaseGuessing';
 import { PhaseReveal } from './PhaseReveal';
@@ -28,13 +29,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.CRUZA_PALAVRAS.WORDS_SELECTION:
+    case CRUZA_PALAVRAS_PHASES.WORDS_SELECTION:
       return PhaseWordsSelection;
-    case PHASES.CRUZA_PALAVRAS.CLUE_WRITING:
+    case CRUZA_PALAVRAS_PHASES.CLUE_WRITING:
       return PhaseClueWriting;
-    case PHASES.CRUZA_PALAVRAS.GUESSING:
+    case CRUZA_PALAVRAS_PHASES.GUESSING:
       return PhaseGuessing;
-    case PHASES.CRUZA_PALAVRAS.REVEAL:
+    case CRUZA_PALAVRAS_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

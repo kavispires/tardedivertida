@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { LocationIcon } from 'icons/LocationIcon';
 import { PeopleAssessmentIcon } from 'icons/PeopleAssessmentIcon';
@@ -21,6 +19,7 @@ import {
   useOnSubmitSocialGroupAPIRequest,
   useOnUpdateDetectiveLocationAPIRequest,
 } from './utils/api-requests';
+import { FOFOCA_QUENTE_PHASES } from './utils/constants';
 import { StepSetupGossiper } from './StepSetupGossiper';
 import { StepSetupDetective } from './StepSetupDetective';
 
@@ -66,7 +65,7 @@ export function PhaseBoardSetup({ players, state }: PhaseProps<PhaseBoardSetupSt
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.FOFOCA_QUENTE.BOARD_SETUP}>
+    <PhaseContainer phase={state?.phase} allowedPhase={FOFOCA_QUENTE_PHASES.BOARD_SETUP}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheGossiperPlayer}>

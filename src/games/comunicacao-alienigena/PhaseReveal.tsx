@@ -5,8 +5,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { AlienAngry2Icon } from 'icons/AlienAngry2Icon';
 import { AlienAngryIcon } from 'icons/AlienAngryIcon';
@@ -18,7 +16,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import type { PhaseRevealState, RequestHistoryEntry } from './utils/types';
-import { ITEM_TYPES } from './utils/constants';
+import { COMUNICACAO_ALIENIGENA_PHASES, ITEM_TYPES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 
 export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
@@ -70,7 +68,7 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

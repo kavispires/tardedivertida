@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { HandcuffsIcon } from 'icons/HandcuffsIcon';
 import { MapLocationIcon } from 'icons/MapLocationIcon';
@@ -19,6 +17,7 @@ import { ViewOr } from 'components/views';
 // Internal
 import { useOnProgressGameAPIRequest } from './utils/api-requests';
 import { determineView } from './utils/helpers';
+import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { StepResolution } from './StepResolution';
 
 export function PhaseResolution({ state, players }: PhaseProps) {
@@ -37,7 +36,7 @@ export function PhaseResolution({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.ESPIAO_ENTRE_NOS.RESOLUTION}
+      allowedPhase={ESPIAO_ENTRE_NOS_PHASES.RESOLUTION}
       className="e-phase"
     >
       <StepSwitcher step={step} players={players}>

@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
 import { PhaseMovieSelection } from './PhaseMovieSelection';
 import { PhaseMovieElimination } from './PhaseMovieElimination';
 import { PhaseReveal } from './PhaseReveal';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.VAMOS_AO_CINEMA.MOVIE_SELECTION:
+    case VAMOS_AO_CINEMA_PHASES.MOVIE_SELECTION:
       return PhaseMovieSelection;
-    case PHASES.VAMOS_AO_CINEMA.MOVIE_ELIMINATION:
+    case VAMOS_AO_CINEMA_PHASES.MOVIE_ELIMINATION:
       return PhaseMovieElimination;
-    case PHASES.VAMOS_AO_CINEMA.REVEAL:
+    case VAMOS_AO_CINEMA_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

@@ -8,8 +8,6 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { LoupeIcon } from 'icons/LoupeIcon';
 import { OpinionsIcon } from 'icons/OpinionsIcon';
@@ -25,6 +23,7 @@ import {
   useOnMakeAccusationAPIRequest,
   useOnSendLastQuestionerAPIRequest,
 } from './utils/api-requests';
+import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
 import { StepInvestigation } from './StepInvestigation';
 
@@ -58,7 +57,7 @@ export function PhaseInvestigation({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION}
+      allowedPhase={ESPIAO_ENTRE_NOS_PHASES.INVESTIGATION}
       className="e-phase"
     >
       <StepSwitcher step={step} players={players}>

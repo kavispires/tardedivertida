@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { CountdownIcon } from 'icons/CountdownIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { SONHOS_PESADELOS_PHASES } from './utils/constants';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 
@@ -32,7 +31,7 @@ export function PhaseResolution({ state, players }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={SONHOS_PESADELOS_PHASES.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

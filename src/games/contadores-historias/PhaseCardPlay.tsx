@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 // Components
@@ -16,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
+import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
 import { StepPlayCard } from './StepPlayCard';
 
 export function PhaseCardPlay({ state, players }: PhaseProps) {
@@ -54,7 +53,7 @@ export function PhaseCardPlay({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.CARD_PLAY}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CONTADORES_HISTORIAS_PHASES.CARD_PLAY}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepPlayCard

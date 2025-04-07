@@ -4,8 +4,6 @@ import { Space } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
-// Utils
-import { PHASES } from 'utils/phases';
 // Components
 import { AvatarName } from 'components/avatars';
 import { DebugOnly } from 'components/debug';
@@ -22,6 +20,7 @@ import type {
   RequestHistoryEntry,
   SubmitHumanInquiryPayload,
 } from './utils/types';
+import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
@@ -136,7 +135,7 @@ export function StepHumanAsks({
           <SignsKeyCard
             attributes={attributes}
             startingAttributesIds={startingAttributesIds}
-            phase={PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK}
+            phase={COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK}
           />
         </Space>
       </AlienContent>

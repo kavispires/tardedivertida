@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
@@ -16,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitHumanInquiryAPIRequest } from './utils/api-requests';
 import type { PhaseHumanAskState } from './utils/types';
+import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { StepHumanAsks } from './StepHumanAsks';
 
 export function PhaseHumanAsk({ players, state }: PhaseProps<PhaseHumanAskState>) {
@@ -39,7 +38,7 @@ export function PhaseHumanAsk({ players, state }: PhaseProps<PhaseHumanAskState>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK}>
+    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={5} />

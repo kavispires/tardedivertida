@@ -5,8 +5,6 @@ import type { PhaseProps, GameRound } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
 // Components
@@ -19,6 +17,7 @@ import { Instruction } from 'components/text';
 import { useOnSubmitTrackAnswerAPIRequest } from './utils/api-requests';
 import { useColorizeBackground } from './utils/useColorizeBackground';
 import { showDJPruPruPruStep } from './utils/helpers';
+import { MEGAMIX_PHASES } from './utils/constants';
 import { TrackIcon } from './components/TrackIcon';
 import { TrackInstructions } from './components/TrackInstructions';
 import { TrackTitle } from './components/TrackTitle';
@@ -55,7 +54,7 @@ export function PhaseTrack({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MEGAMIX.TRACK}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MEGAMIX_PHASES.TRACK}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

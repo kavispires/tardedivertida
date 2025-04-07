@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { PaintingIcon } from 'icons/PaintingIcon';
 // Components
@@ -16,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
+import { ARTE_RUIM_PHASES } from './utils/constants';
 import { DrawInstruction } from './components/TextBlobs';
 import { LevelInstruction } from './components/LevelInstruction';
 import { StepDraw } from './StepDraw';
@@ -42,7 +41,7 @@ function PhaseDraw({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ARTE_RUIM_PHASES.DRAW}>
       <StepSwitcher
         step={step}
         players={players}

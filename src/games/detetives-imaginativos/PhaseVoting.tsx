@@ -5,8 +5,6 @@ import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { VoteIcon } from 'icons/VoteIcon';
 // Components
@@ -17,6 +15,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
+import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import { StepVoting } from './StepVoting';
 
 export function PhaseVoting({ state, players }: PhaseProps) {
@@ -58,7 +57,7 @@ export function PhaseVoting({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.VOTING}
+      allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.VOTING}
       className="d-voting-phase"
     >
       <StepSwitcher step={step} players={players}>

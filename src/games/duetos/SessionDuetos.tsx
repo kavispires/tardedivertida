@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { DUETOS_PHASES } from './utils/constants';
 import { PhasePairing } from './PhasePairing';
 import { PhaseResults } from './PhaseResults';
 import { PhaseGameOver } from './PhaseGameOver';
@@ -26,9 +27,9 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.DUETOS.PAIRING:
+    case DUETOS_PHASES.PAIRING:
       return PhasePairing;
-    case PHASES.DUETOS.RESULTS:
+    case DUETOS_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

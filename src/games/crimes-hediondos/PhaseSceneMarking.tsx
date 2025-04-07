@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { LoupeIcon } from 'icons/LoupeIcon';
 // Components
@@ -19,6 +17,7 @@ import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
 import { mockSceneMark } from './utils/mock';
 import type { PhaseSceneMarkingState } from './utils/types';
 import { useGameTypes } from './utils/useGameTypes';
+import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { StepNewScene } from './StepNewScene';
 
 export function PhaseSceneMarking({ players, state }: PhaseProps<PhaseSceneMarkingState>) {
@@ -53,7 +52,7 @@ export function PhaseSceneMarking({ players, state }: PhaseProps<PhaseSceneMarki
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CRIMES_HEDIONDOS_PHASES.SCENE_MARKING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />

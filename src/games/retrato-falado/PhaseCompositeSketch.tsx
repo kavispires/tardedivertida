@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MonsterIcon } from 'icons/MonsterIcon';
 // Components
@@ -17,7 +15,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './utils/api-requests';
-import { TIMES } from './utils/constants';
+import { RETRATO_FALADO_PHASES, TIMES } from './utils/constants';
 import { StepTestimonial } from './StepTestimonial';
 
 export function PhaseCompositeSketch({ players, state }: PhaseProps) {
@@ -29,7 +27,7 @@ export function PhaseCompositeSketch({ players, state }: PhaseProps) {
   const onSubmitOrientation = useOnSubmitOrientationAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.COMPOSITE_SKETCH}>
+    <PhaseContainer phase={state?.phase} allowedPhase={RETRATO_FALADO_PHASES.COMPOSITE_SKETCH}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement

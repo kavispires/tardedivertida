@@ -5,8 +5,6 @@ import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { PopcornIcon } from 'icons/PopcornIcon';
 // Components
@@ -18,6 +16,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitMovieEliminationAPIRequest } from './utils/api-requests';
 import { mockMovieElimination } from './utils/mock';
+import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 import { StepEliminateMovie } from './StepEliminateMovie';
 
@@ -89,7 +88,7 @@ export function PhaseMovieElimination({ players, state }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.MOVIE_ELIMINATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={VAMOS_AO_CINEMA_PHASES.MOVIE_ELIMINATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepEliminateMovie

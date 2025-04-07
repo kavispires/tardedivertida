@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { FeedbackIcon } from 'icons/FeedbackIcon';
 // Components
@@ -15,6 +13,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitReactionAPIRequest } from './utils/api-requests';
 import { mockGuess } from './utils/mock';
+import { POLEMICA_DA_VEZ_PHASES } from './utils/constants';
 import { StepLiking } from './StepLiking';
 
 export function PhaseReact({ state, players }: PhaseProps) {
@@ -55,7 +54,7 @@ export function PhaseReact({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.REACT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={POLEMICA_DA_VEZ_PHASES.REACT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepLiking

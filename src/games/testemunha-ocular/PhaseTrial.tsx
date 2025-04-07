@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { LawIcon } from 'icons/LawIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
+import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
 import { StepSuspectElimination } from './StepSuspectElimination';
 
 function PhaseTrial({ state, players }: PhaseProps) {
@@ -58,7 +57,7 @@ function PhaseTrial({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TESTEMUNHA_OCULAR.TRIAL} className="t-phase">
+    <PhaseContainer phase={state?.phase} allowedPhase={TESTEMUNHA_OCULAR_PHASES.TRIAL} className="t-phase">
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSuspectElimination

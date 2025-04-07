@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DiscussionIcon } from 'icons/DiscussionIcon';
 // Components
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './utils/api-requests';
+import { MENTE_COLETIVA_PHASES } from './utils/constants';
 import { ComparingRules } from './components/RulesBlobs';
 import { StepCompare } from './StepCompare';
 
@@ -40,7 +39,7 @@ export function PhaseCompare({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.COMPARE}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MENTE_COLETIVA_PHASES.COMPARE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepCompare

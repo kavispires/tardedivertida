@@ -2,8 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { CustomerReviewIcon } from 'icons/CustomerReviewIcon';
 // Components
@@ -12,6 +10,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { MENTE_COLETIVA_PHASES } from './utils/constants';
 import { StepResolution } from './StepResolution';
 
 export function PhaseResolution({ state, players }: PhaseProps) {
@@ -47,7 +46,7 @@ export function PhaseResolution({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={MENTE_COLETIVA_PHASES.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepResolution

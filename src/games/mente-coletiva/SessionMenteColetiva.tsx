@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { MENTE_COLETIVA_PHASES } from './utils/constants';
 import { PhaseQuestionSelection } from './PhaseQuestionSelection';
 import { PhaseEverybodyWrites } from './PhaseEverybodyWrites';
 import { PhaseCompare } from './PhaseCompare';
@@ -30,13 +31,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.MENTE_COLETIVA.QUESTION_SELECTION:
+    case MENTE_COLETIVA_PHASES.QUESTION_SELECTION:
       return PhaseQuestionSelection;
-    case PHASES.MENTE_COLETIVA.EVERYBODY_WRITES:
+    case MENTE_COLETIVA_PHASES.EVERYBODY_WRITES:
       return PhaseEverybodyWrites;
-    case PHASES.MENTE_COLETIVA.COMPARE:
+    case MENTE_COLETIVA_PHASES.COMPARE:
       return PhaseCompare;
-    case PHASES.MENTE_COLETIVA.RESOLUTION:
+    case MENTE_COLETIVA_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

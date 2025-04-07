@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "3.0.64",
+  "version": "3.0.65",
   "release": "stable",
   "available": false,
   "title": {

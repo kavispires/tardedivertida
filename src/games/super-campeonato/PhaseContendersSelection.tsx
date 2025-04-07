@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
@@ -15,6 +13,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
 import type { PhaseContendersSelectionState } from './utils/type';
+import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { ContendersHand } from './components/ContendersHand';
 import { StepSelectContenders } from './StepSelectContenders';
 
@@ -39,7 +38,7 @@ export function PhaseContenderSelection({ state, players }: PhaseProps<PhaseCont
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.CONTENDER_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.CONTENDER_SELECTION}>
       <StepSwitcher
         step={step}
         players={players}

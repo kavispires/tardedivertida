@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { UE_SO_ISSO_PHASES } from './utils/constants';
 import { PhaseWordSelection } from './PhaseWordSelection';
 import { PhaseSuggest } from './PhaseSuggest';
 import { PhaseCompare } from './PhaseCompare';
@@ -33,17 +34,17 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.UE_SO_ISSO.WORD_SELECTION:
+    case UE_SO_ISSO_PHASES.WORD_SELECTION:
       return PhaseWordSelection;
-    case PHASES.UE_SO_ISSO.SUGGEST:
+    case UE_SO_ISSO_PHASES.SUGGEST:
       return PhaseSuggest;
-    case PHASES.UE_SO_ISSO.COMPARE:
+    case UE_SO_ISSO_PHASES.COMPARE:
       return PhaseCompare;
-    case PHASES.UE_SO_ISSO.GUESS:
+    case UE_SO_ISSO_PHASES.GUESS:
       return PhaseGuess;
-    case PHASES.UE_SO_ISSO.VERIFY_GUESS:
+    case UE_SO_ISSO_PHASES.VERIFY_GUESS:
       return PhaseVerifyGuess;
-    case PHASES.UE_SO_ISSO.RESULT:
+    case UE_SO_ISSO_PHASES.RESULT:
       return PhaseResult;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

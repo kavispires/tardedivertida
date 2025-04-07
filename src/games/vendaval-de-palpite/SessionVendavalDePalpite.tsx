@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
 import { PhaseBossPlayerSelection } from './PhaseBossPlayerSelection';
 import { PhaseSecretWordSelection } from './PhaseSecretWordSelection';
 import { PhasePlayersClues } from './PhasePlayersClues';
@@ -30,13 +31,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.VENDAVAL_DE_PALPITE.BOSS_SELECTION:
+    case VENDAVAL_DE_PALPITE_PHASES.BOSS_SELECTION:
       return PhaseBossPlayerSelection;
-    case PHASES.VENDAVAL_DE_PALPITE.SECRET_WORD_SELECTION:
+    case VENDAVAL_DE_PALPITE_PHASES.SECRET_WORD_SELECTION:
       return PhaseSecretWordSelection;
-    case PHASES.VENDAVAL_DE_PALPITE.PLAYERS_CLUES:
+    case VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES:
       return PhasePlayersClues;
-    case PHASES.VENDAVAL_DE_PALPITE.CLUE_EVALUATIONS:
+    case VENDAVAL_DE_PALPITE_PHASES.CLUE_EVALUATIONS:
       return PhaseClueEvaluations;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

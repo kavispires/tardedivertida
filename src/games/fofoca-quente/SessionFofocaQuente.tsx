@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { FOFOCA_QUENTE_PHASES } from './utils/constants';
 import { PhaseRolesSelection } from './PhaseRolesSelection';
 import { PhaseBoardSetup } from './PhaseBoardSetup';
 import { PhaseIntimidation } from './PhaseIntimidation';
@@ -26,11 +27,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.FOFOCA_QUENTE.ROLES_SELECTION:
+    case FOFOCA_QUENTE_PHASES.ROLES_SELECTION:
       return PhaseRolesSelection;
-    case PHASES.FOFOCA_QUENTE.BOARD_SETUP:
+    case FOFOCA_QUENTE_PHASES.BOARD_SETUP:
       return PhaseBoardSetup;
-    case PHASES.FOFOCA_QUENTE.INTIMIDATION:
+    case FOFOCA_QUENTE_PHASES.INTIMIDATION:
       return PhaseIntimidation;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;

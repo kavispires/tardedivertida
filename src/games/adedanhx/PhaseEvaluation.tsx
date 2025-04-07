@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnNextEvaluationGroupAPIRequest, useOnRejectAnswersAPIRequest } from './utils/api-requests';
+import { ADEDANHX_PHASES } from './utils/constants';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepEvaluateGroup } from './StepEvaluateGroup';
 
@@ -53,7 +52,7 @@ export function PhaseEvaluation({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ADEDANHX.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ADEDANHX_PHASES.EVALUATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepEvaluateGroup

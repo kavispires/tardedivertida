@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { GuessLanguageIcon } from 'icons/GuessLanguageIcon';
 // Components
@@ -17,6 +15,7 @@ import { ViewOr } from 'components/views';
 // Internal
 import type { PhaseGuessingState } from './utils/types';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { METALINGUAGEM_PHASES } from './utils/constants';
 import { Portmanteau } from './components/Portmanteau';
 import { StepGuessItems } from './StepGuessItems';
 import { StepWaitGuessing } from './StepWaitGuessing';
@@ -45,7 +44,7 @@ export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.METALINGUAGEM.GUESSING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={METALINGUAGEM_PHASES.GUESSING}>
       <StepSwitcher
         step={step}
         players={players}

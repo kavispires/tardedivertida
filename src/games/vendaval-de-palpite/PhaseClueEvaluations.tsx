@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { LoupeIcon } from 'icons/LoupeIcon';
 // Components
@@ -15,6 +13,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitEvaluationAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
+import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
 import { StepBossEvaluation } from './StepBossEvaluation';
 import { StepPlayersWaitEvaluation } from './StepPlayersWaitEvaluation';
 
@@ -26,7 +25,7 @@ export function PhaseClueEvaluations({ state, players }: PhaseProps) {
   const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.CLUE_EVALUATIONS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={VENDAVAL_DE_PALPITE_PHASES.CLUE_EVALUATIONS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

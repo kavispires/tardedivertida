@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { QUEM_SOU_EU_PHASES } from './utils/constants';
 import { PhaseCharacterFiltering } from './PhaseCharacterFiltering';
 import { PhaseCharacterDescription } from './PhaseCharacterDescription';
 import { PhaseGuessing } from './PhaseGuessing';
@@ -28,13 +29,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.QUEM_SOU_EU.CHARACTER_FILTERING:
+    case QUEM_SOU_EU_PHASES.CHARACTER_FILTERING:
       return PhaseCharacterFiltering;
-    case PHASES.QUEM_SOU_EU.CHARACTER_DESCRIPTION:
+    case QUEM_SOU_EU_PHASES.CHARACTER_DESCRIPTION:
       return PhaseCharacterDescription;
-    case PHASES.QUEM_SOU_EU.GUESSING:
+    case QUEM_SOU_EU_PHASES.GUESSING:
       return PhaseGuessing;
-    case PHASES.QUEM_SOU_EU.RESULTS:
+    case QUEM_SOU_EU_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

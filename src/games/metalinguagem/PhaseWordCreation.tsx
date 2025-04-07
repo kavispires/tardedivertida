@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { CreateIcon } from 'icons/CreateIcon';
 // Components
@@ -19,6 +17,7 @@ import { ViewOr } from 'components/views';
 // Internal
 import type { PhaseWordCreationState } from './utils/types';
 import { useOnSubmitNewWordAPIRequest } from './utils/api-requests';
+import { METALINGUAGEM_PHASES } from './utils/constants';
 import { StepCreateWord } from './StepCreateWord';
 import { StepWaitWordCreation } from './StepWaitWordCreation';
 
@@ -56,7 +55,7 @@ export function PhaseWordCreation({ players, state }: PhaseProps<PhaseWordCreati
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.METALINGUAGEM.WORD_CREATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={METALINGUAGEM_PHASES.WORD_CREATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheCreator}>

@@ -2,8 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
@@ -14,13 +12,14 @@ import { StepRankingWrapper } from 'components/ranking';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
 // Internal
+import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import { RowSwapInstruction } from './components/RulesBlobs';
 
 export function PhaseResolution({ players, state }: PhaseProps) {
   const { step, goToNextStep } = useStep();
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.RESOLUTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={GALERIA_DE_SONHOS_PHASES.RESOLUTION}>
       <StepSwitcher step={step} players={players} waitingRoom={{ type: 'SERVER' }}>
         {/* Step 0 */}
         <PhaseAnnouncement

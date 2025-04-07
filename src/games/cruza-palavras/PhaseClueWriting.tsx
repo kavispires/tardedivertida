@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { GridIcon } from 'icons/GridIcon';
 // Components
@@ -14,6 +12,7 @@ import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitClueAPIRequest } from './utils/api-requests';
+import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
 import { WritingCluesRule } from './components/RulesBlobs';
 import { PlayerRecentClue } from './components/PlayerRecentClue';
 import { StepClueWriting } from './StepClueWriting';
@@ -37,7 +36,7 @@ export function PhaseClueWriting({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CRUZA_PALAVRAS_PHASES.CLUE_WRITING}>
       <StepSwitcher
         step={step}
         players={players}

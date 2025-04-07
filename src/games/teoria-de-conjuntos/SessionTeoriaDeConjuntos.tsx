@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';
 import { PhaseJudgeSelection } from './PhaseJudgeSelection';
 import { PhaseItemPlacement } from './PhaseItemPlacement';
 import { PhaseEvaluation } from './PhaseEvaluation';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.TEORIA_DE_CONJUNTOS.JUDGE_SELECTION:
+    case TEORIA_DE_CONJUNTOS_PHASES.JUDGE_SELECTION:
       return PhaseJudgeSelection;
-    case PHASES.TEORIA_DE_CONJUNTOS.ITEM_PLACEMENT:
+    case TEORIA_DE_CONJUNTOS_PHASES.ITEM_PLACEMENT:
       return PhaseItemPlacement;
-    case PHASES.TEORIA_DE_CONJUNTOS.EVALUATION:
+    case TEORIA_DE_CONJUNTOS_PHASES.EVALUATION:
       return PhaseEvaluation;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

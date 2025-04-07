@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
 // Components
@@ -13,6 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { ONDA_TELEPATICA_PHASES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
@@ -35,7 +34,7 @@ export function PhaseReveal({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ONDA_TELEPATICA_PHASES.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

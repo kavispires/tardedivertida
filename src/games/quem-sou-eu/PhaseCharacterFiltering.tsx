@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { FilterIcon } from 'icons/FilterIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
+import { QUEM_SOU_EU_PHASES } from './utils/constants';
 import { StepSelectCharacters } from './StepSelectCharacters';
 
 export function PhaseCharacterFiltering({ players, state }: PhaseProps) {
@@ -39,7 +38,7 @@ export function PhaseCharacterFiltering({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.CHARACTER_FILTERING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_SOU_EU_PHASES.CHARACTER_FILTERING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectCharacters

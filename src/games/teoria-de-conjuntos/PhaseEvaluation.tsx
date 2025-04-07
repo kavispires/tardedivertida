@@ -4,16 +4,14 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Components
 import { PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitEvaluationAPIRequest } from './utils/api-requests';
 import type { Guess } from './utils/types';
+import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';
 import { StepEvaluate } from './StepEvaluate';
-// Icons
 
 export function PhaseEvaluation({ players, state }: PhaseProps) {
   const { step, setStep } = useStep();
@@ -26,7 +24,7 @@ export function PhaseEvaluation({ players, state }: PhaseProps) {
   const currentGuess: Guess = state.currentGuess;
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TEORIA_DE_CONJUNTOS.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.EVALUATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepEvaluate

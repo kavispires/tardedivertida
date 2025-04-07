@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { SkiingIcon } from 'icons/SkiingIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import type { PhasePreliminaryResultsState } from './utils/types';
+import { ESQUIADORES_PHASES } from './utils/constants';
 import { SnowEffect } from './components/SnowEffect';
 import { StepResults } from './StepResults';
 // Icons
@@ -37,7 +36,7 @@ export function PhasePreliminaryResults({ players, state }: PhaseProps<PhasePrel
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ESQUIADORES.PRELIMINARY_RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ESQUIADORES_PHASES.PRELIMINARY_RESULTS}>
       <SnowEffect />
       <StepSwitcher step={step} players={players}>
         {/* Step 1 */}

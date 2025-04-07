@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 // Internal
 import type { PhaseIntimidationState } from './utils/types';
 import { useOnSubmitIntimidationAPIRequest } from './utils/api-requests';
+import { FOFOCA_QUENTE_PHASES } from './utils/constants';
 import { StepIntimidation } from './StepIntimidation';
 // Icons
 
@@ -44,7 +43,7 @@ export function PhaseIntimidation({ players, state }: PhaseProps<PhaseIntimidati
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.FOFOCA_QUENTE.INTIMIDATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={FOFOCA_QUENTE_PHASES.INTIMIDATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepIntimidation

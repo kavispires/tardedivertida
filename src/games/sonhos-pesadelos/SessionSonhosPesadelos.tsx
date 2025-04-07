@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { SONHOS_PESADELOS_PHASES } from './utils/constants';
 import { PhaseGameOver } from './PhaseGameOver';
 import { PhaseDreamTelling } from './PhaseDreamTelling';
 import { PhaseMatching } from './PhaseMatching';
@@ -29,11 +30,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.SONHOS_PESADELOS.DREAM_TELLING:
+    case SONHOS_PESADELOS_PHASES.DREAM_TELLING:
       return PhaseDreamTelling;
-    case PHASES.SONHOS_PESADELOS.MATCHING:
+    case SONHOS_PESADELOS_PHASES.MATCHING:
       return PhaseMatching;
-    case PHASES.SONHOS_PESADELOS.RESOLUTION:
+    case SONHOS_PESADELOS_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

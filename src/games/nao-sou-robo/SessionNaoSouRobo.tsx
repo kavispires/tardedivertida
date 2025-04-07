@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { NAO_SOU_ROBO_PHASES } from './utils/constants';
 import { PhaseCardSelection } from './PhaseCardSelection';
 import { PhaseAreYouARobot } from './PhaseAreYouARobot';
 import { PhaseResults } from './PhaseResults';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.NAO_SOU_ROBO.CARD_SELECTION:
+    case NAO_SOU_ROBO_PHASES.CARD_SELECTION:
       return PhaseCardSelection;
-    case PHASES.NAO_SOU_ROBO.ARE_YOU_A_ROBOT:
+    case NAO_SOU_ROBO_PHASES.ARE_YOU_A_ROBOT:
       return PhaseAreYouARobot;
-    case PHASES.NAO_SOU_ROBO.RESULTS:
+    case NAO_SOU_ROBO_PHASES.RESULTS:
       return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

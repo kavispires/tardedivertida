@@ -5,7 +5,6 @@ import { Space } from 'antd';
 import type { GamePlayers } from 'types/player';
 // Utils
 import { NOOP, PLACEHOLDER_PLAYER } from 'utils/constants';
-import { PHASES } from 'utils/phases';
 // Components
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -13,7 +12,7 @@ import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
-import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
+import { PORTA_DOS_DESESPERADOS_PHASES, ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
@@ -41,7 +40,7 @@ export function StepWaitDoorSelection({
   magic,
   botEnabled,
 }: StepWaitDoorSelectionProps) {
-  const showTrap = useMemo(() => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE), [trap]);
+  const showTrap = useMemo(() => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE), [trap]);
 
   return (
     <Step fullWidth>

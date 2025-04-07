@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { InvestigationIcon } from 'icons/InvestigationIcon';
 // Components
@@ -18,6 +16,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
+import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 import { StepSelectQuestion } from './StepSelectQuestion';
 
@@ -64,7 +63,7 @@ function PhaseQuestionSelection({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.TESTEMUNHA_OCULAR.QUESTION_SELECTION}
+      allowedPhase={TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION}
       className="t-phase"
     >
       <StepSwitcher step={step} players={players}>

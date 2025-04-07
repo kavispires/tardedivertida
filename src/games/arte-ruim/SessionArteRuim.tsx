@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { ARTE_RUIM_PHASES } from './utils/constants';
 import PhaseDraw from './PhaseDraw';
 import PhaseEvaluation from './PhaseEvaluation';
 import PhaseGallery from './PhaseGallery';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.ARTE_RUIM.DRAW:
+    case ARTE_RUIM_PHASES.DRAW:
       return PhaseDraw;
-    case PHASES.ARTE_RUIM.EVALUATION:
+    case ARTE_RUIM_PHASES.EVALUATION:
       return PhaseEvaluation;
-    case PHASES.ARTE_RUIM.GALLERY:
+    case ARTE_RUIM_PHASES.GALLERY:
       return PhaseGallery;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

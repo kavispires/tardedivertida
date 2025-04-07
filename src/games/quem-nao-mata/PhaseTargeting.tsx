@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitMessageAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
+import { QUEM_NAO_MATA_PHASES } from './utils/constants';
 import { StepTargeting } from './StepTargeting';
 
 export function PhaseTargeting({ players, state }: PhaseProps) {
@@ -27,7 +26,7 @@ export function PhaseTargeting({ players, state }: PhaseProps) {
   const mockedPlayers = players;
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.TARGETING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_NAO_MATA_PHASES.TARGETING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

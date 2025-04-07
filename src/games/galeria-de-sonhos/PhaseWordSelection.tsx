@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { SleepIcon } from 'icons/SleepIcon';
 // Components
@@ -18,6 +16,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitWordAPIRequest } from './utils/api-requests';
+import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import { GeneralRules, WordSelectionRules } from './components/RulesBlobs';
 import { StepWordSelection } from './StepWordSelection';
 
@@ -29,7 +28,7 @@ export function PhaseWordSelection({ players, state }: PhaseProps) {
   const onSubmitWord = useOnSubmitWordAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.WORD_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={GALERIA_DE_SONHOS_PHASES.WORD_SELECTION}>
       <StepSwitcher step={step} players={players} waitingRoom={{ type: 'SERVER' }}>
         {/* Step 0 */}
         <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>

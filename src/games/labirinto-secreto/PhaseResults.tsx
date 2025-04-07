@@ -7,7 +7,6 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Utils
 import { sortPlayers } from 'utils/helpers';
-import { PHASES } from 'utils/phases';
 // Icons
 import { PathIcon } from 'icons/PathIcon';
 // Components
@@ -17,7 +16,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import type { MapSegment } from './utils/types';
-import { SLIDE_DURATION } from './utils/constants';
+import { LABIRINTO_SECRETO_PHASES, SLIDE_DURATION } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepGallery } from './StepGallery';
 
@@ -41,7 +40,7 @@ export function PhaseResults({ players, state }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.RESULTS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={LABIRINTO_SECRETO_PHASES.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

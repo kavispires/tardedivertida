@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { PLANEJAMENTO_URBANO_PHASES } from './utils/constants';
 import { PhasePlanning } from './PhasePlanning';
 import { PhasePlacing } from './PhasePlacing';
 import { PhaseResolution } from './PhaseResolution';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.PLANEJAMENTO_URBANO.PLANNING:
+    case PLANEJAMENTO_URBANO_PHASES.PLANNING:
       return PhasePlanning;
-    case PHASES.PLANEJAMENTO_URBANO.PLACING:
+    case PLANEJAMENTO_URBANO_PHASES.PLACING:
       return PhasePlacing;
-    case PHASES.PLANEJAMENTO_URBANO.RESOLUTION:
+    case PLANEJAMENTO_URBANO_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

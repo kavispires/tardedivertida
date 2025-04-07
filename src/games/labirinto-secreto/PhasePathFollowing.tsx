@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DirectionsIcon } from 'icons/DirectionsIcon';
 // Components
@@ -17,6 +15,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitPathAPIRequest } from './utils/api-requests';
+import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
 import { StepFollowPath } from './StepFollowPath';
 import { StepPathWaiting } from './StepPathWaiting';
 
@@ -47,7 +46,7 @@ export function PhasePathFollowing({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.PATH_FOLLOWING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={LABIRINTO_SECRETO_PHASES.PATH_FOLLOWING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>

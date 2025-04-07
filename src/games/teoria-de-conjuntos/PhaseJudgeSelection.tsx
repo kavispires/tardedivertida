@@ -2,8 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { LawIcon } from 'icons/LawIcon';
 // Components
@@ -13,6 +11,7 @@ import { StepSwitcher } from 'components/steps';
 import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 // Internal
 import { useOnSubmitJudgeAPIRequest } from './utils/api-requests';
+import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';
 
 export function PhaseJudgeSelection({ players, state }: PhaseProps) {
   const { step, setStep } = useStep();
@@ -49,7 +48,7 @@ export function PhaseJudgeSelection({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TEORIA_DE_CONJUNTOS.JUDGE_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.JUDGE_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectPlayer

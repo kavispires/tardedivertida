@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { SINAIS_DE_ALERTA_PHASES } from './utils/constants';
 import { PhaseDrawing } from './PhaseDrawing';
 import { PhaseEvaluation } from './PhaseEvaluation';
 import { PhaseGallery } from './PhaseGallery';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.SINAIS_DE_ALERTA.DRAWING:
+    case SINAIS_DE_ALERTA_PHASES.DRAWING:
       return PhaseDrawing;
-    case PHASES.SINAIS_DE_ALERTA.EVALUATION:
+    case SINAIS_DE_ALERTA_PHASES.EVALUATION:
       return PhaseEvaluation;
-    case PHASES.SINAIS_DE_ALERTA.GALLERY:
+    case SINAIS_DE_ALERTA_PHASES.GALLERY:
       return PhaseGallery;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { ChoiceIcon } from 'icons/ChoiceIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
+import { RETRATO_FALADO_PHASES } from './utils/constants';
 import { StepVote } from './StepVote';
 
 export function PhaseEvaluation({ players, state }: PhaseProps) {
@@ -42,7 +41,7 @@ export function PhaseEvaluation({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.EVALUATION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={RETRATO_FALADO_PHASES.EVALUATION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepVote

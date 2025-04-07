@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { HouseIcon } from 'icons/HouseIcon';
 import { ScaredIcon } from 'icons/ScaredIcon';
@@ -14,6 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
+import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import { StepStreetEnd } from './StepStreetEnd';
 
 export function PhaseStreetEnd({ state, players }: PhaseProps) {
@@ -39,7 +38,7 @@ export function PhaseStreetEnd({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.STREET_END}>
+    <PhaseContainer phase={state?.phase} allowedPhase={NA_RUA_DO_MEDO_PHASES.STREET_END}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepStreetEnd

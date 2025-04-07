@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
@@ -13,6 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitWordsAPIRequest } from './utils/api-requests';
+import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
 import { StepSelectWords } from './StepSelectWords';
 
 export function PhaseWordsSelection({ players, state }: PhaseProps) {
@@ -32,7 +31,7 @@ export function PhaseWordsSelection({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.WORDS_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={CRUZA_PALAVRAS_PHASES.WORDS_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 1 */}
         <StepSelectWords

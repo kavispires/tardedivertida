@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import { PhaseSecretClue } from './PhaseSecretClue';
 import { PhaseCardPlay } from './PhaseCardPlay';
 import { PhaseDefense } from './PhaseDefense';
@@ -29,15 +30,15 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE:
+    case DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE:
       return PhaseSecretClue;
-    case PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY:
+    case DETETIVES_IMAGINATIVOS_PHASES.CARD_PLAY:
       return PhaseCardPlay;
-    case PHASES.DETETIVES_IMAGINATIVOS.DEFENSE:
+    case DETETIVES_IMAGINATIVOS_PHASES.DEFENSE:
       return PhaseDefense;
-    case PHASES.DETETIVES_IMAGINATIVOS.VOTING:
+    case DETETIVES_IMAGINATIVOS_PHASES.VOTING:
       return PhaseVoting;
-    case PHASES.DETETIVES_IMAGINATIVOS.REVEAL:
+    case DETETIVES_IMAGINATIVOS_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

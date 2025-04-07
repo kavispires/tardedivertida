@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
 import { PhaseGoodPlacement } from './PhaseGoodPlacement';
 import { PhasePlacementConfirmation } from './PhasePlacementConfirmation';
 // Sass
@@ -25,13 +26,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.CONTROLE_DE_ESTOQUE.GOOD_PLACEMENT:
+    case CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT:
       return PhaseGoodPlacement;
-    case PHASES.CONTROLE_DE_ESTOQUE.PLACEMENT_CONFIRMATION:
+    case CONTROLE_DE_ESTOQUE_PHASES.PLACEMENT_CONFIRMATION:
       return PhasePlacementConfirmation;
-    case PHASES.CONTROLE_DE_ESTOQUE.FULFILLMENT:
+    case CONTROLE_DE_ESTOQUE_PHASES.FULFILLMENT:
       return PhasePlaceholder;
-    case PHASES.CONTROLE_DE_ESTOQUE.RESULTS:
+    case CONTROLE_DE_ESTOQUE_PHASES.RESULTS:
       return PhasePlaceholder;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;

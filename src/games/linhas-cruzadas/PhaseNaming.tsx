@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { WriteIdeaIcon } from 'icons/WriteIdeaIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
 import { StepNameDrawing } from './StepNameDrawing';
 
 export function PhaseNaming({ players, state }: PhaseProps) {
@@ -24,7 +23,7 @@ export function PhaseNaming({ players, state }: PhaseProps) {
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.NAMING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={LINHAS_CRUZADAS_PHASES.NAMING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement

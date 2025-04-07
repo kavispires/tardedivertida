@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { GuessIcon } from 'icons/GuessIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
+import { UE_SO_ISSO_PHASES } from './utils/constants';
 import { StepGuessing } from './StepGuessing';
 import { StepWaitingForGuess } from './StepWaitingForGuess';
 
@@ -36,7 +35,7 @@ export function PhaseGuess({ state, players, meta }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.GUESS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.GUESS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isUserTheGuesser}>

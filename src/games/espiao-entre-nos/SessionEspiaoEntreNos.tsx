@@ -10,6 +10,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { PhaseAssignment } from './PhaseAssignment';
 import { PhaseInvestigation } from './PhaseInvestigation';
 import { PhaseAssessment } from './PhaseAssessment';
@@ -29,15 +30,15 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT:
+    case ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT:
       return PhaseAssignment;
-    case PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION:
+    case ESPIAO_ENTRE_NOS_PHASES.INVESTIGATION:
       return PhaseInvestigation;
-    case PHASES.ESPIAO_ENTRE_NOS.ASSESSMENT:
+    case ESPIAO_ENTRE_NOS_PHASES.ASSESSMENT:
       return PhaseAssessment;
-    case PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT:
+    case ESPIAO_ENTRE_NOS_PHASES.FINAL_ASSESSMENT:
       return PhaseFinalAssessment;
-    case PHASES.ESPIAO_ENTRE_NOS.RESOLUTION:
+    case ESPIAO_ENTRE_NOS_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return GameOver;

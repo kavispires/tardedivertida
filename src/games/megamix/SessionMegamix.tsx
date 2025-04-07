@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { MEGAMIX_PHASES } from './utils/constants';
 import { PhaseTrack } from './PhaseTrack';
 import { PhaseSeeding } from './PhaseSeeding';
 import { PhaseResult } from './PhaseResult';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.MEGAMIX.SEEDING:
+    case MEGAMIX_PHASES.SEEDING:
       return PhaseSeeding;
-    case PHASES.MEGAMIX.TRACK:
+    case MEGAMIX_PHASES.TRACK:
       return PhaseTrack;
-    case PHASES.MEGAMIX.RESULT:
+    case MEGAMIX_PHASES.RESULT:
       return PhaseResult;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

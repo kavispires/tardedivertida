@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import { PhaseWordSelection } from './PhaseWordSelection';
 import { PhaseDreamsSelections } from './PhaseDreamsSelections';
 import { PhaseCardPlay } from './PhaseCardPlay';
@@ -28,13 +29,13 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.GALERIA_DE_SONHOS.WORD_SELECTION:
+    case GALERIA_DE_SONHOS_PHASES.WORD_SELECTION:
       return PhaseWordSelection;
-    case PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION:
+    case GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION:
       return PhaseDreamsSelections;
-    case PHASES.GALERIA_DE_SONHOS.CARD_PLAY:
+    case GALERIA_DE_SONHOS_PHASES.CARD_PLAY:
       return PhaseCardPlay;
-    case PHASES.GALERIA_DE_SONHOS.RESOLUTION:
+    case GALERIA_DE_SONHOS_PHASES.RESOLUTION:
       return PhaseResolution;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

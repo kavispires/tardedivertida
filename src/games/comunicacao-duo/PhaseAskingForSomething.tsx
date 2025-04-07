@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
@@ -14,7 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { STATUS } from './utils/constants';
+import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';
 import { useOnSubmitRequestAPIRequest } from './utils/api-requests';
 import { StepAsk } from './StepAsk';
 
@@ -49,7 +47,7 @@ export function PhaseAskingForSomething({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.COMUNICACAO_DUO.ASKING_FOR_SOMETHING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_DUO_PHASES.ASKING_FOR_SOMETHING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepAsk

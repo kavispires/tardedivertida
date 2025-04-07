@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Components
 import { PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -13,6 +11,7 @@ import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitEvaluationFixAPIRequest, useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
 import type { Guess } from './utils/types';
+import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';
 import { Announcement } from './components/Announcement';
 import { StepPlaceItem } from './StepPlaceItem';
 import { StepWaitPlaceItem } from './StepWaitPlaceItem';
@@ -43,7 +42,7 @@ export function PhaseItemPlacement({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TEORIA_DE_CONJUNTOS.ITEM_PLACEMENT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.ITEM_PLACEMENT}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>

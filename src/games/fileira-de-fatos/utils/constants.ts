@@ -1,6 +1,11 @@
 // Internal
 import type { ScaleEntry } from './types';
 
+export const FILEIRA_DE_FATOS_PHASES = {
+  ORDERING: 'ORDERING',
+  RESULTS: 'RESULTS',
+} as const;
+
 export const FILEIRA_DE_FATOS_ACTIONS = {
   SUBMIT_SCENARIO_ORDER: 'SUBMIT_SCENARIO_ORDER',
 } as const;

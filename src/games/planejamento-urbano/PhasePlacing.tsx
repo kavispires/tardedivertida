@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MapCityZonesIcon } from 'icons/MapCityZonesIcon';
 // Components
@@ -15,6 +13,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitPlacingAPIRequest, useOnUpdatePlacementAPIRequest } from './utils/api-requests';
+import { PLANEJAMENTO_URBANO_PHASES } from './utils/constants';
 import { StepPlaceLocations } from './StepPlaceLocations';
 // Icons
 
@@ -54,7 +53,7 @@ export function PhasePlacing({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PLANEJAMENTO_URBANO.PLACING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PLANEJAMENTO_URBANO_PHASES.PLACING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepPlaceLocations

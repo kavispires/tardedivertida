@@ -7,8 +7,6 @@ import { Button, Popconfirm, Popover, Space } from 'antd';
 // Hooks
 import { useCacheAlternative } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { PHASES } from 'utils/phases';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { SignCard } from 'components/cards/SignCard';
@@ -16,6 +14,7 @@ import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
+import { COMUNICACAO_ALIENIGENA_PHASES } from '../utils/constants';
 
 type SignsKeyCardProps = {
   attributes: PhaseBasicState['attributes'];
@@ -37,7 +36,7 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (phase === PHASES.COMUNICACAO_ALIENIGENA.HUMAN_ASK && startingAttributesIds.length && isEmpty(cache)) {
+    if (phase === COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK && startingAttributesIds.length && isEmpty(cache)) {
       setCache((prev) => {
         const copy = { ...prev };
         attributes.forEach((attribute) => {

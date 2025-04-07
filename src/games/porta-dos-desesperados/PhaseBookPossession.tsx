@@ -5,8 +5,6 @@ import type { PhaseProps } from 'types/game';
 import { useCache } from 'hooks/useCache';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MagicBookIcon } from 'icons/MagicBookIcon';
 // Components
@@ -20,7 +18,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
-import { TRAPS } from './utils/constants';
+import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { RoundOneRule, RoundRule } from './components/RulesBlobs';
@@ -43,7 +41,7 @@ export function PhaseBookPossession({ players, state }: PhaseProps) {
   }, [state.trap]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
@@ -65,7 +63,7 @@ export function PhaseBookPossession({ players, state }: PhaseProps) {
           icon={<MagicBookIcon />}
           title={<Translate pt="O Livro possui um jogador" en="The Book possesses a player" />}
           onClose={
-            shouldAnnounceTrap(state.trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION)
+            shouldAnnounceTrap(state.trap, PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION)
               ? goToNextStep
               : () => setStep(4)
           }

@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { SecretIcon } from 'icons/SecretIcon';
 // Components
@@ -19,6 +17,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitSecretClueAPIRequest } from './utils/api-requests';
+import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 
@@ -58,7 +57,7 @@ export function PhaseSecretClue({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE}
+      allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE}
       className="d-secret-clue-phase"
     >
       <StepSwitcher step={step} players={players}>

@@ -1,6 +1,12 @@
 // Internal
 import type { Direction } from './types';
 
+export const LABIRINTO_SECRETO_PHASES = {
+  MAP_BUILDING: 'MAP_BUILDING',
+  PATH_FOLLOWING: 'PATH_FOLLOWING',
+  RESULTS: 'RESULTS',
+} as const;
+
 export const LABIRINTO_SECRETO_ACTIONS = {
   SUBMIT_MAP: 'SUBMIT_MAP',
   SUBMIT_PATH: 'SUBMIT_PATH',

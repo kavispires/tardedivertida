@@ -5,8 +5,6 @@ import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { DefenseIcon } from 'icons/DefenseIcon';
 // Components
@@ -16,6 +14,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 // Internal
 import { useOnFinishDefenseRequest } from './utils/api-requests';
+import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import { StepDefending } from './StepDefending';
 
 export function PhaseDefense({ state, players }: PhaseProps) {
@@ -51,7 +50,7 @@ export function PhaseDefense({ state, players }: PhaseProps) {
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.DEFENSE}
+      allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.DEFENSE}
       className="d-defense-phase"
     >
       <StepSwitcher step={step} players={players}>

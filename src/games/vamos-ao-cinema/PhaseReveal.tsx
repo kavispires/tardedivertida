@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MovieTheaterIcon } from 'icons/MovieTheaterIcon';
 import { ScaredIcon } from 'icons/ScaredIcon';
@@ -18,6 +16,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
 import { getAnnouncementKey } from './utils/helpers';
+import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
 import { MovieHighlight } from './components/MovieHighlight';
 import { StepReveal } from './StepReveal';
 
@@ -68,7 +67,7 @@ export function PhaseReveal({ players, state }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.VAMOS_AO_CINEMA.REVEAL}>
+    <PhaseContainer phase={state?.phase} allowedPhase={VAMOS_AO_CINEMA_PHASES.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepReveal

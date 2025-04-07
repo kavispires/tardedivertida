@@ -9,6 +9,7 @@ import { LoadingPage } from 'components/loaders';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
+import { ONDA_TELEPATICA_PHASES } from './utils/constants';
 import { PhaseDialClue } from './PhaseDialClue';
 import { PhaseGuess } from './PhaseGuess';
 import { PhaseReveal } from './PhaseReveal';
@@ -27,11 +28,11 @@ function getActiveComponent(state: GameState) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.ONDA_TELEPATICA.DIAL_CLUE:
+    case ONDA_TELEPATICA_PHASES.DIAL_CLUE:
       return PhaseDialClue;
-    case PHASES.ONDA_TELEPATICA.GUESS:
+    case ONDA_TELEPATICA_PHASES.GUESS:
       return PhaseGuess;
-    case PHASES.ONDA_TELEPATICA.REVEAL:
+    case ONDA_TELEPATICA_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;

@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { MapIcon } from 'icons/MapIcon';
 // Components
@@ -16,6 +14,7 @@ import { ViewOr } from 'components/views';
 // Internal
 import type { MapSegment } from './utils/types';
 import { useOnSubmitMapAPIRequest } from './utils/api-requests';
+import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
 import { PlayerSelectionMap } from './components/PlayerSelection';
 import { StepBuildMap } from './StepBuildMap';
 import { StepBuildWait } from './StepBuildWait';
@@ -51,7 +50,7 @@ export function PhaseMapBuilding({ players, state }: PhaseProps) {
   const isUserMapComplete = user?.map?.every((segment: MapSegment) => segment.passed);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.LABIRINTO_SECRETO.MAP_BUILDING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={LABIRINTO_SECRETO_PHASES.MAP_BUILDING}>
       <StepSwitcher
         step={step}
         players={players}

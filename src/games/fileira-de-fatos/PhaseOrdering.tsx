@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { BarChartIcon } from 'icons/BarChartIcon';
 // Components
@@ -17,6 +15,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitOrderingAPIRequest } from './utils/api-requests';
+import { FILEIRA_DE_FATOS_PHASES } from './utils/constants';
 import { FirstRoundIntroduction } from './components/RulesExplanation';
 import { StepOrderScenarios } from './StepOrderScenarios';
 import { StepJudgeScenarios } from './StepJudgeScenarios';
@@ -57,7 +56,7 @@ export function PhaseOrdering({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.FILEIRA_DE_FATOS.ORDERING}>
+    <PhaseContainer phase={state?.phase} allowedPhase={FILEIRA_DE_FATOS_PHASES.ORDERING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>

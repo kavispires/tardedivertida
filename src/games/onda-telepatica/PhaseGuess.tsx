@@ -4,8 +4,6 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { SoundWaveIcon } from 'icons/SoundWaveIcon';
 // Components
@@ -16,6 +14,7 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { ONDA_TELEPATICA_PHASES } from './utils/constants';
 import { NeedleChoice } from './components/NeedleChoice';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
@@ -42,7 +41,7 @@ export function PhaseGuess({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}>
+    <PhaseContainer phase={state?.phase} allowedPhase={ONDA_TELEPATICA_PHASES.GUESS}>
       <StepSwitcher
         step={step}
         players={players}

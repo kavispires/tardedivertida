@@ -3,8 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
-// Utils
-import { PHASES } from 'utils/phases';
 // Icons
 import { SofaIcon } from 'icons/SofaIcon';
 // Components
@@ -14,6 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
 // Internal
 import { useOnSubmitMovieActorAPIRequest } from './utils/api-requests';
+import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
 import { StepSelectActor } from './StepSelectActor';
 
 export function PhaseActorSelection({ players, state }: PhaseProps) {
@@ -45,7 +44,7 @@ export function PhaseActorSelection({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.TESTE_DE_ELENCO.ACTOR_SELECTION}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TESTE_DE_ELENCO_PHASES.ACTOR_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSelectActor
