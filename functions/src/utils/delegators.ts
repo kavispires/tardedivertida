@@ -40,6 +40,7 @@ import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
 import * as vamosAoCinemaEngine from '../engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
+import * as viceCampeaoEngine from '../engine/vice-campeao';
 
 const engines = {
   [GAME_NAMES.ADEDANHX]: adedanhxEngine,
@@ -83,6 +84,7 @@ const engines = {
   [GAME_NAMES.UE_SO_ISSO]: ueSoIssoEngine,
   [GAME_NAMES.VAMOS_AO_CINEMA]: vamosAoCinemaEngine,
   [GAME_NAMES.VENDAVAL_DE_PALPITE]: vendavalDePalpiteEngine,
+  [GAME_NAMES.VICE_CAMPEAO]: viceCampeaoEngine,
 };
 
 /**

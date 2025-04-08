@@ -225,6 +225,11 @@ const GAMES = [
     code: 'V',
     key: 'VENDAVAL_DE_PALPITE',
   },
+  {
+    name: 'vice-campeao',
+    code: 'V',
+    key: 'VICE_CAMPEAO',
+  },
 ];
 
 const generateGameCodes = (): StringDictionary =>

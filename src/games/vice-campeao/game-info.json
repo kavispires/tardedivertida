@@ -1,9 +1,9 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "S",
+  "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "0.0.1",
-  "release": "planned",
+  "version": "0.0.2",
+  "release": "dev",
   "available": false,
   "title": {
     "pt": "Vice-Campeão",
@@ -32,7 +32,7 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 2,
-    "max": 10
+    "max": 8
   },
   "duration": {
     "base": 0,
