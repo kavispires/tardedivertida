@@ -258,15 +258,15 @@ export const GAME_COLLECTION = {
   _TEMPLATE: 'template',
   ADEDANHX: 'adedanhx',
   ARTE_RUIM: 'arte-ruim',
-  BOMBA_RELOGIO: 'bomba-relogio',
+  BOMBA_RELOGIO: 'bomba-relogio', // upcoming
   COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',
   COMUNICACAO_DUO: 'comunicacao-duo',
   CONTADORES_HISTORIAS: 'contadores-historias',
   CONTROLE_DE_ESTOQUE: 'controle-de-estoque',
-  CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores',
+  CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores', // upcoming
   CRIMES_HEDIONDOS: 'crimes-hediondos',
   CRUZA_PALAVRAS: 'cruza-palavras',
-  DESENHO_RAPIDAO: 'desenho-rapidao',
+  DESENHO_RAPIDAO: 'desenho-rapidao', // upcoming
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   DUETOS: 'duetos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
@@ -274,7 +274,7 @@ export const GAME_COLLECTION = {
   FILEIRA_DE_FATOS: 'fileira-de-fatos',
   FOFOCA_QUENTE: 'fofoca-quente',
   GALERIA_DE_SONHOS: 'galeria-de-sonhos',
-  INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
+  INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados', // upcoming
   LABIRINTO_SECRETO: 'labirinto-secreto',
   LINHAS_CRUZADAS: 'linhas-cruzadas',
   MEGAMIX: 'megamix',
@@ -283,9 +283,9 @@ export const GAME_COLLECTION = {
   METALINGUAGEM: 'metalinguagem',
   NA_RUA_DO_MEDO: 'na-rua-do-medo',
   NAO_SOU_ROBO: 'nao-sou-robo',
-  NAUFRAGOS: 'naufragos',
+  NAUFRAGOS: 'naufragos', // upcoming
   ONDA_TELEPATICA: 'onda-telepatica',
-  PALHETA_DE_CORES: 'palheta-de-cores',
+  PALHETA_DE_CORES: 'palheta-de-cores', // upcoming
   PLANEJAMENTO_URBANO: 'planejamento-urbano',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
   PORTA_DOS_DESESPERADOS: 'porta-dos-desesperados',
@@ -299,11 +299,12 @@ export const GAME_COLLECTION = {
   TEORIA_DE_CONJUNTOS: 'teoria-de-conjuntos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   TESTE_DE_ELENCO: 'teste-de-elenco',
-  TREVO_DA_SORTE: 'trevo-da-sorte',
+  TREVO_DA_SORTE: 'trevo-da-sorte', // upcoming
   UE_SO_ISSO: 'ue-so-isso',
   VAMOS_AO_CINEMA: 'vamos-ao-cinema',
   VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
-  VINGATIVOS: 'vingativos',
+  VICE_CAMPEAO: 'vice-campeao',
+  VINGATIVOS: 'vingativos', // upcoming
 };
 
 export const PLACEHOLDER_PLAYER: GamePlayer = {
