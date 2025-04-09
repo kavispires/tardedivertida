@@ -43,6 +43,10 @@ type StepRankingWrapperProps = {
    * Whether the title should be white or not
    */
   colorScheme?: ColorScheme;
+  /**
+   * Index of the ranking that should be highlighted with a crown
+   */
+  victoryIndex?: number;
 };
 
 export function StepRankingWrapper({
@@ -53,6 +57,7 @@ export function StepRankingWrapper({
   title,
   subtitle,
   colorScheme,
+  victoryIndex = 0,
 }: StepRankingWrapperProps) {
   useTemporarilyHidePlayersBar();
   const appearance = useGameAppearance();
@@ -65,7 +70,12 @@ export function StepRankingWrapper({
 
       {subtitle}
 
-      <RankingBoard players={players} ranking={ranking} gainedPointsDescriptions={gainedPointsDescriptions} />
+      <RankingBoard
+        players={players}
+        ranking={ranking}
+        gainedPointsDescriptions={gainedPointsDescriptions}
+        victoryIndex={victoryIndex}
+      />
       <Instruction className="step-ranking-wrapper-gained-points-instruction" colorScheme={scheme}>
         <CaretUpOutlined />
         <Translate

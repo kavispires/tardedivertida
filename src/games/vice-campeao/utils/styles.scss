@@ -1,0 +1,119 @@
+@use "styles/sass" as *;
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Oswald&display=swap");
+
+.race-track-container {
+  max-width: 96vw;
+  overflow-y: auto;
+  padding-top: get-unit(12);
+}
+
+.race-track {
+  position: relative;
+  background-color: #4f606e;
+  margin: 1rem auto;
+}
+
+.track-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #9e8e02;
+}
+
+.track-segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.segment-line {
+  flex-grow: 1;
+  width: 1px;
+  background-color: #5d6f7f;
+}
+
+.segment-label {
+  font-size: 0.75rem;
+  transform: translateX(50%);
+}
+
+.runner {
+  position: absolute;
+}
+
+.run-card {
+  background: get-color("white");
+  border-radius: $border-radius;
+
+  aspect-ratio: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__illustration {
+    margin: get-unit(2) get-unit(2) 0 get-unit(2);
+    position: relative;
+  }
+
+  &__image {
+    aspect-ratio: 4 / 3;
+    border-radius: $border-radius;
+  }
+
+  &__name {
+    font-family: "Oswald", serif;
+    text-transform: uppercase;
+    color: white;
+    font-style: italic;
+    position: absolute;
+    bottom: get-unit(1);
+    right: get-unit(2);
+    text-shadow: get-color("black") 2px 2px 2px;
+  }
+
+  &__content {
+    padding: get-unit(0 1);
+  }
+
+  &__description {
+    font-size: 0.85em;
+    text-align: center;
+  }
+
+  &__value {
+    font-family: "Oswald", serif;
+    font-size: 2.5em;
+    font-style: italic;
+    color: get-color("black");
+    text-align: center;
+    margin: get-unit(2);
+
+    &--positive {
+      text-shadow: get-color("green", 2) 2px 2px 2px;
+      color: get-color("green");
+    }
+
+    &--negative {
+      text-shadow: get-color("red", 2) 2px 2px 2px;
+      color: get-color("red");
+    }
+
+    &--neutral {
+      text-shadow: get-color("blue", 7) 2px 2px 2px;
+      color: get-color("gray");
+    }
+  }
+
+  &__footer {
+    font-family: "Oswald", serif;
+    font-size: 0.75em;
+    background: rgb(128, 128, 128, 0.2);
+    margin: get-unit(2);
+  }
+}

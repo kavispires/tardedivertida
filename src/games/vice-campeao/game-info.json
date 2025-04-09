@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "dev",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Vice-Campeão",
     "en": "Runner-Up"
