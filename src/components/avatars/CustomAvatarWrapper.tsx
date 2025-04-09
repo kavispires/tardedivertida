@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { getAvatarColorById } from 'utils/helpers';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
 // Sass
@@ -55,7 +55,7 @@ export const CustomAvatarWrapper = ({
   viewBox,
   ...props
 }: CustomAvatarWrapperProps) => {
-  const avatarData = AVATARS?.[avatarId ?? 0];
+  const color = getAvatarColorById(avatarId ?? '0');
   const hasAvatar = Boolean(avatarId);
 
   return (
@@ -71,7 +71,7 @@ export const CustomAvatarWrapper = ({
       {/* pin */}
       {hasAvatar && (
         <path
-          fill={avatarData.color}
+          fill={color}
           d="M75 25a25 25 0 00-50 0 24.89 24.89 0 005.67 15.85 26.4 26.4 0 002.53 2.65L50 61.12l16.78-17.59a26.4 26.4 0 002.53-2.65A24.89 24.89 0 0075 25z"
         ></path>
       )}

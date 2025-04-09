@@ -11,7 +11,7 @@ import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -73,6 +73,7 @@ type RankingBoardProps = {
   gainedPointsDescriptions?: ReactNode[];
   hideGainedPoints?: boolean;
   delay?: number;
+  victoryIndex?: number;
 };
 
 export function RankingBoard({
@@ -81,13 +82,17 @@ export function RankingBoard({
   gainedPointsDescriptions,
   hideGainedPoints = false,
   delay = 0,
+  victoryIndex = 0,
 }: RankingBoardProps) {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
   const [reRank, setReRank] = useState(0);
   const [ref, { height }] = useMeasure();
 
-  const maxPoints = useMemo(() => Math.max(...ranking.map((scores) => scores.newScore)), [ranking]);
+  const orderedPoints = useMemo(
+    () => removeDuplicates(ranking.map((scores) => scores.newScore).sort((a, b) => b - a)),
+    [ranking],
+  );
 
   const { seconds } = useCountdown({
     duration: 5 + delay,
@@ -200,7 +205,7 @@ export function RankingBoard({
             style={{ top: `${hPosition}px` }}
           >
             <div className="ranking-board__cell-crown">
-              {newScore > 0 && maxPoints === newScore && displayStep >= 3 && (
+              {orderedPoints[victoryIndex] === newScore && displayStep >= 3 && (
                 <CrownFilled className="ranking-board__crown-icon" />
               )}
             </div>

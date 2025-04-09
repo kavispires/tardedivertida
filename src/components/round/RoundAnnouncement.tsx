@@ -25,7 +25,7 @@ type RoundAnnouncementProps = {
   /**
    * Function to be called when the continue button is pressed
    */
-  onPressButton?: GenericFunction;
+  onPressButton?: () => void;
   /**
    * Text to be displayed on the continue button
    */

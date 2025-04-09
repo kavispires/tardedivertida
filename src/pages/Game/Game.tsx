@@ -54,6 +54,9 @@ const SessionDuetos = lazy(() => import('games/duetos/SessionDuetos' /* webpackC
 const SessionEspiaoEntreNos = lazy(
   () => import('games/espiao-entre-nos/SessionEspiaoEntreNos' /* webpackChunkName: "espiao-entre-nos" */),
 );
+const SessionEsquiadores = lazy(
+  () => import('games/esquiadores/SessionEsquiadores' /* webpackChunkName: "esquiadores" */),
+);
 const SessionFileiraDeFatos = lazy(
   () => import('games/fileira-de-fatos/SessionFileiraDeFatos' /* webpackChunkName: "fileira-de-fatos" */),
 );
@@ -63,21 +66,17 @@ const SessionFofocaQuente = lazy(
 const SessionGaleriaDeSonhos = lazy(
   () => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos' /* webpackChunkName: "galeria-de-sonhos" */),
 );
-const SessionPortaDosDesesperados = lazy(
-  () =>
-    import(
-      'games/porta-dos-desesperados/SessionPortaDosDesesperados' /* webpackChunkName: "porta-dos-desesperados" */
-    ),
-);
 const SessionLabirintoSecreto = lazy(
   () => import('games/labirinto-secreto/SessionLabirintoSecreto' /* webpackChunkName: "labirinto-secreto" */),
 );
 const SessionLinhasCruzadas = lazy(
   () => import('games/linhas-cruzadas/SessionLinhasCruzadas' /* webpackChunkName: "linhas-cruzadas" */),
 );
+const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpackChunkName: "megamix" */));
 const SessionMenteColetiva = lazy(
   () => import('games/mente-coletiva/SessionMenteColetiva' /* webpackChunkName: "mente-coletiva" */),
 );
+const SessionMesmice = lazy(() => import('games/mesmice/SessionMesmice' /* webpackChunkName: "mesmice" */));
 const SessionMetalinguagem = lazy(
   () => import('games/metalinguagem/SessionMetalinguagem' /* webpackChunkName: "metalinguagem" */),
 );
@@ -90,14 +89,32 @@ const SessionNaoSouRobo = lazy(
 const SessionOndaTelepatica = lazy(
   () => import('games/onda-telepatica/SessionOndaTelepatica' /* webpackChunkName: "onda-telepatica" */),
 );
+const SessionPlanejamentoUrbano = lazy(
+  () =>
+    import(
+      'games/planejamento-urbano/SessionPlanejamentoUrbano' /* webpackChunkName: "planejamento-urbano" */
+    ),
+);
 const SessionPolemicaDaVez = lazy(
   () => import('games/polemica-da-vez/SessionPolemicaDaVez' /* webpackChunkName: "polemica-da-vez" */),
+);
+const SessionPortaDosDesesperados = lazy(
+  () =>
+    import(
+      'games/porta-dos-desesperados/SessionPortaDosDesesperados' /* webpackChunkName: "porta-dos-desesperados" */
+    ),
 );
 const SessionQuemNaoMata = lazy(
   () => import('games/quem-nao-mata/SessionQuemNaoMata' /* webpackChunkName: "quem-nao-mata" */),
 );
+const SessionQuemSouEu = lazy(
+  () => import('games/quem-sou-eu/SessionQuemSouEu' /* webpackChunkName: "quem-sou-eu" */),
+);
 const SessionRetratoFalado = lazy(
   () => import('games/retrato-falado/SessionRetratoFalado' /* webpackChunkName: "retrato-falado" */),
+);
+const SessionSinaisDeAlerta = lazy(
+  () => import('games/sinais-de-alerta/SessionSinaisDeAlerta' /* webpackChunkName: "sinais-de-alerta" */),
 );
 const SessionSonhosPesadelos = lazy(
   () => import('games/sonhos-pesadelos/SessionSonhosPesadelos' /* webpackChunkName: "sonhos-pesadelos" */),
@@ -105,8 +122,20 @@ const SessionSonhosPesadelos = lazy(
 const SessionSuperCampeonato = lazy(
   () => import('games/super-campeonato/SessionSuperCampeonato' /* webpackChunkName: "super-campeonato" */),
 );
+const SessionTaNaCara = lazy(
+  () => import('games/ta-na-cara/SessionTaNaCara' /* webpackChunkName: "ta-na-cara" */),
+);
+const SessionTeoriaDeConjuntos = lazy(
+  () =>
+    import(
+      'games/teoria-de-conjuntos/SessionTeoriaDeConjuntos' /* webpackChunkName: "teoria-de-conjuntos" */
+    ),
+);
 const SessionTestemunhaOcular = lazy(
   () => import('games/testemunha-ocular/SessionTestemunhaOcular' /* webpackChunkName: "testemunha-ocular" */),
+);
+const SessionTesteDeElenco = lazy(
+  () => import('games/teste-de-elenco/SessionTesteDeElenco' /* webpackChunkName: "teste-de-elenco" */),
 );
 const SessionTrevoDaSorte = lazy(
   () => import('games/trevo-da-sorte/SessionTrevoDaSorte' /* webpackChunkName: "trevo-da-sorte" */),
@@ -123,34 +152,8 @@ const SessionVendavalDePalpite = lazy(
       'games/vendaval-de-palpite/SessionVendavalDePalpite' /* webpackChunkName: "vendaval-de-palpite" */
     ),
 );
-const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpackChunkName: "megamix" */));
-const SessionQuemSouEu = lazy(
-  () => import('games/quem-sou-eu/SessionQuemSouEu' /* webpackChunkName: "quem-sou-eu" */),
-);
-const SessionTeoriaDeConjuntos = lazy(
-  () =>
-    import(
-      'games/teoria-de-conjuntos/SessionTeoriaDeConjuntos' /* webpackChunkName: "teoria-de-conjuntos" */
-    ),
-);
-const SessionTaNaCara = lazy(
-  () => import('games/ta-na-cara/SessionTaNaCara' /* webpackChunkName: "ta-na-cara" */),
-);
-const SessionTesteDeElenco = lazy(
-  () => import('games/teste-de-elenco/SessionTesteDeElenco' /* webpackChunkName: "teste-de-elenco" */),
-);
-const SessionMesmice = lazy(() => import('games/mesmice/SessionMesmice' /* webpackChunkName: "mesmice" */));
-const SessionSinaisDeAlerta = lazy(
-  () => import('games/sinais-de-alerta/SessionSinaisDeAlerta' /* webpackChunkName: "sinais-de-alerta" */),
-);
-const SessionPlanejamentoUrbano = lazy(
-  () =>
-    import(
-      'games/planejamento-urbano/SessionPlanejamentoUrbano' /* webpackChunkName: "planejamento-urbano" */
-    ),
-);
-const SessionEsquiadores = lazy(
-  () => import('games/esquiadores/SessionEsquiadores' /* webpackChunkName: "esquiadores" */),
+const SessionViceCampeao = lazy(
+  () => import('games/vice-campeao/SessionViceCampeao' /* webpackChunkName: "vice-campeao" */),
 );
 
 function Game() {
@@ -360,6 +363,12 @@ function Game() {
             <SessionRetratoFalado />
           </Suspense>
         );
+      case GAME_COLLECTION.SINAIS_DE_ALERTA:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionSinaisDeAlerta />
+          </Suspense>
+        );
       case GAME_COLLECTION.SONHOS_PESADELOS:
         return (
           <Suspense fallback={<LoadingPage />}>
@@ -420,10 +429,10 @@ function Game() {
             <SessionVendavalDePalpite />
           </Suspense>
         );
-      case GAME_COLLECTION.SINAIS_DE_ALERTA:
+      case GAME_COLLECTION.VICE_CAMPEAO:
         return (
           <Suspense fallback={<LoadingPage />}>
-            <SessionSinaisDeAlerta />
+            <SessionViceCampeao />
           </Suspense>
         );
 
