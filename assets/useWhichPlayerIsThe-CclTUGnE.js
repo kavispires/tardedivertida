@@ -1,0 +1,1 @@
+import{aH as E,r as s,cN as v}from"./index-BJbMcewC.js";function h(u="activePlayer",c={},e={}){const[i]=E("userId"),[o,r]=s.useState(v),[n,P]=s.useState(!1);return s.useEffect(()=>{const f=c==null?void 0:c[u];r((e==null?void 0:e[f])??{}),P((c==null?void 0:c[u])===i)},[e,u,c,i]),[o,n]}export{h as u};
