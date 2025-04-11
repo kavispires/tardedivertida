@@ -15,13 +15,14 @@ type RunCardProps = {
 
 export function RunCard({ card, width = 128 }: RunCardProps) {
   const baseUrl = useTDBaseUrl('images');
+  const imageURL = card.imageId.replace(/-/g, '/');
+
   return (
     <div
       className="run-card"
       style={{
         width: `${width}px`,
         height: `${width * 1.5}px`,
-        // aspectRatio: '2 / 3',
         backgroundImage: `url(${baseUrl}/er/backgrounds/default.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -30,9 +31,9 @@ export function RunCard({ card, width = 128 }: RunCardProps) {
       <header className="run-card__illustration">
         <Image
           width={width - 12}
-          src={`${baseUrl}/runners/${card.imageId}.jpg`}
+          src={`${baseUrl}/${imageURL}.jpg`}
           fallback={`${baseUrl}/td/d0/00.jpg`}
-          preview={false}
+          preview
           className="run-card__image"
         />
         <div className="run-card__name">
