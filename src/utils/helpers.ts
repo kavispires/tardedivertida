@@ -520,7 +520,7 @@ export const calculateGameAverageDuration = (game: GameInfo, numPlayers = 0) => 
   return {
     min: Math.ceil(minTime / 5) * 5,
     max: Math.ceil(maxTime / 5) * 5,
-    ideal: Math.ceil(idealTime / 5) * 5,
+    ideal: Math.max(Math.ceil(idealTime / 5) * 5, minTime),
     customTime: Math.ceil(customTime / 5) * 5,
   };
 };
