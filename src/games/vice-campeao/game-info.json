@@ -2,8 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "0.0.3",
-  "release": "dev",
+  "version": "0.0.4",
+  "release": "beta",
   "available": true,
   "title": {
     "pt": "Vice-Campeão",
@@ -15,28 +15,39 @@
   },
   "basedOn": "?tsrif yhW",
   "summary": {
-    "pt": "Tente ser o segundo colocado sempre",
-    "en": "Try to be the runner-up always"
+    "pt": "Tente ser o segundo colocado",
+    "en": "Try to be the runner-up"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "marathon-clouds",
     "cloudsAnimationType": "flow",
-    "primaryColor": "",
-    "backgroundColor": "",
+    "primaryColor": "rgb(255,114,199)",
+    "backgroundColor": "rgba(110,96,184,0.5)",
     "colorScheme": "light"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Em Vice-Campeão, o objetivo é ser o segundo colocado.",
+      "A cada rodada, todos os jogadores escolhem uma carta que pode ser de movimento ou um efeito especial.",
+      "O plot-twist é que você pode usar sua carta em você mesmo ou em outro jogador!",
+      "Ao final de 5 rodadas quem estiver em segundo lugar ganha!"
+    ],
+    "en": [
+      "In Runner-Up, the goal is to be the second player.",
+      "In each round, all players choose a card that can be a movement or a special effect.",
+      "The plot twist is that you can use your card on yourself or on another player!",
+      "At the end of 5 rounds, whoever is in second place wins!"
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],
+    "best": 5,
     "min": 2,
     "max": 8
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 5,
+    "perPlayer": 4
   },
-  "tags": ["competitive", "same-time"]
+  "tags": ["competitive", "same-time", "push-your-luck"]
 }

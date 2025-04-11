@@ -285,23 +285,8 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     triggerKey: 'surprise',
     quantity: 2,
   },
-  // {
-  //   id: 'vc-21',
-  //   name: {
-  //     en: 'Freeze!',
-  //     pt: 'Congelou!',
-  //   },
-  //   description: {
-  //     // eslint-disable-next-line quotes
-  //     en: "The target runner can't be moved this turn by movement cards.",
-  //     pt: 'O corredor-alvo não pode ser movido nessa rodada por cartões de movimento.',
-  //   },
-  //   type: 'ongoing',
-  //   triggerKey: 'freeze',
-  //   quantity: 1,
-  // },
   {
-    id: 'vc-22',
+    id: 'vc-21',
     name: {
       en: 'Energy Drink',
       pt: 'Energético',
@@ -315,10 +300,10 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 1,
   },
   {
-    id: 'vc-23',
+    id: 'vc-22',
     name: {
-      en: 'Bean stew',
-      pt: 'Feijoada',
+      en: 'Heavy food',
+      pt: 'Comida pesada',
     },
     description: {
       en: 'Every movement card targeting this runner will be -1 this turn.',
@@ -328,4 +313,19 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     triggerKey: 'ongoing-minus-one',
     quantity: 1,
   },
+  // {
+  //   id: 'vc-23',
+  //   name: {
+  //     en: 'Freeze!',
+  //     pt: 'Congelou!',
+  //   },
+  //   description: {
+  //     // eslint-disable-next-line quotes
+  //     en: "The target runner can't be moved this turn by movement cards.",
+  //     pt: 'O corredor-alvo não pode ser movido nessa rodada por cartões de movimento.',
+  //   },
+  //   type: 'ongoing',
+  //   triggerKey: 'freeze',
+  //   quantity: 1,
+  // },
 ];

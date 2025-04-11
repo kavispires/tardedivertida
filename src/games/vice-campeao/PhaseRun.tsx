@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -5,6 +6,7 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
+import { ImageCardPreloadHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -18,6 +20,15 @@ import { StepRanking } from './StepRanking';
 
 export function PhaseRun({ players, state }: PhaseProps<PhaseRunState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
+
+  const imagesIds = useMemo(() => {
+    return state.race
+      .map((activity) => {
+        const card = state.cardsDict?.[activity.cardId];
+        return card?.imageId ?? '';
+      })
+      .filter(Boolean);
+  }, [state.cardsDict, state.race]);
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={VICE_CAMPEAO_PHASES.RUN}>
@@ -50,6 +61,7 @@ export function PhaseRun({ players, state }: PhaseProps<PhaseRunState>) {
               }
             />
           </Instruction>
+          <ImageCardPreloadHand hand={imagesIds} />
         </PhaseAnnouncement>
 
         {/* Step 1 */}

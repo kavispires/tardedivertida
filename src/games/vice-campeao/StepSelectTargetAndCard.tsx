@@ -62,8 +62,8 @@ export function StepSelectTargetAndCard({
         <br />
         <strong>
           <Translate
-            en="Lembre-se que o objetivo é terminar o jogo em segundo lugar!"
-            pt="Remember that the goal is to finish the game in second place!"
+            pt="Lembre-se que o objetivo é terminar o jogo em segundo lugar!"
+            en="Remember that the goal is to finish the game in second place!"
           />
         </strong>
       </RuleInstruction>
