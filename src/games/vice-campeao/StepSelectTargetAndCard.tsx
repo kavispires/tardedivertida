@@ -11,12 +11,13 @@ import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { PlayersSelect } from 'components/players/PlayersSelect';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { Instruction, RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal
 import type { RunActivity, RunnerCard, SubmitCardPayload } from './utils/types';
 import { mockCardPlay } from './utils/mock';
 import { RunCard } from './components/RunCard';
 import { RaceTrack } from './components/RaceTrack';
+import type { GameRound } from 'types/game';
 
 type StepSelectTargetAndCardProps = {
   players: GamePlayers;
@@ -24,6 +25,7 @@ type StepSelectTargetAndCardProps = {
   cardsDict: Dictionary<RunnerCard>;
   race: RunActivity[];
   onSubmitCard: (payload: SubmitCardPayload) => void;
+  round: GameRound;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectTargetAndCard({
@@ -33,6 +35,7 @@ export function StepSelectTargetAndCard({
   cardsDict,
   race,
   onSubmitCard,
+  round,
 }: StepSelectTargetAndCardProps) {
   const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(user.id);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
@@ -44,7 +47,10 @@ export function StepSelectTargetAndCard({
   return (
     <Step fullWidth announcement={announcement}>
       <StepTitle>
-        <Translate pt={<>Prepare-se parar correr</>} en={<>Prepare to run</>} />!
+        <Translate pt={<>Prepare-se parar correr </>} en={<>Prepare to run</>} />!{' '}
+        <TextHighlight>
+          {round.current}/{round.total}
+        </TextHighlight>
       </StepTitle>
 
       <RaceTrack runActivity={race[0]} players={players} />

@@ -55,6 +55,7 @@ export function PhaseCardSelection({ players, state }: PhaseProps<PhaseCardSelec
           cardsDict={state.cardsDict}
           race={state.race}
           onSubmitCard={onSubmitCard}
+          round={state.round}
         />
       </StepSwitcher>
     </PhaseContainer>
