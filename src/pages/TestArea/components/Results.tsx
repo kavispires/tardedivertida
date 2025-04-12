@@ -1,15 +1,15 @@
 // Icons
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxMinusIcon } from 'icons/BoxMinusIcon';
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 const getActiveIcon = (value?: boolean, active?: boolean) => {
   if (value) return BoxCheckMarkIcon;
-  if (value === false) return BoxMinusIcon;
+  if (value === false) return BoxXIcon;
   if (active) return BoxQuestionMarkIcon;
   return BoxBlankIcon;
 };
@@ -33,7 +33,8 @@ export function Results({ steps, results, activeStep }: ResultsProps) {
         const ActiveIcon = getActiveIcon(results[index], activeStep === index);
         return (
           <IconAvatar
-            key={String(ActiveIcon)}
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            key={index}
             icon={<ActiveIcon />}
             {...getActiveClass(results[index], activeStep === index)}
           />
