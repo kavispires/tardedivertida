@@ -1,5 +1,6 @@
+import { useMemo } from 'react';
 // Ant Design Resources
-import { Flex } from 'antd';
+import { Badge, Flex, Tooltip } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -8,6 +9,7 @@ import { SkullIcon } from 'icons/SkullIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { ItemCard } from 'components/cards/ItemCard';
 import { HostNextPhaseButton } from 'components/host';
@@ -36,6 +38,7 @@ type StepResultsProps = {
   namesIndexes: number[];
   outcome: keyof typeof WORD_LENGTH_STATUS;
   round: GameRound;
+  mostVotedItems: string[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepResults({
@@ -53,12 +56,43 @@ export function StepResults({
   namesIndexes,
   outcome,
   round,
+  mostVotedItems,
 }: StepResultsProps) {
+  const { firstGuess, secondGuess } = useMemo(() => {
+    let firstGuess = '';
+    let secondGuess = '';
+    const leftover = mostVotedItems.filter((item) => item !== beginsWith && item !== endsWith);
+    const isBeginningCorrect = mostVotedItems.includes(beginsWith);
+    const isEndingCorrect = mostVotedItems.includes(endsWith);
+    if (!isBeginningCorrect) {
+      firstGuess = leftover.pop() || '';
+    }
+
+    if (!isEndingCorrect) {
+      secondGuess = leftover.pop() || '';
+    }
+
+    return {
+      firstGuess,
+      secondGuess,
+    };
+  }, [mostVotedItems, beginsWith, endsWith]);
   return (
     <Step fullWidth announcement={announcement}>
       <StepTitle icon={getIcon(outcome)}>{getTitle(outcome)}</StepTitle>
 
       <SpaceContainer>
+        {firstGuess ? (
+          <Tooltip title={<Translate pt="Mais votado" en="Most voted" />}>
+            <Badge count={<IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}>
+              <span>
+                <ItemCard id={firstGuess} width={64} className="results-wrong-guess" />
+              </span>
+            </Badge>
+          </Tooltip>
+        ) : (
+          <ItemCard id="0" width={64} className="invisible" />
+        )}
         <Flex vertical align="center">
           <ItemCard id={beginsWith} />
           <TextHighlight className="center">{names[0]}</TextHighlight>
@@ -71,6 +105,17 @@ export function StepResults({
           <ItemCard id={endsWith} />
           <TextHighlight className="center">{names[1]}</TextHighlight>
         </Flex>
+        {secondGuess ? (
+          <Tooltip title={<Translate pt="Mais votado" en="Most voted" />}>
+            <Badge count={<IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}>
+              <span>
+                <ItemCard id={secondGuess} width={64} className="results-wrong-guess" />
+              </span>
+            </Badge>
+          </Tooltip>
+        ) : (
+          <ItemCard id="0" width={64} className="invisible" />
+        )}
       </SpaceContainer>
 
       <RuleInstruction type="event">
