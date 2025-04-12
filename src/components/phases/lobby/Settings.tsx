@@ -31,7 +31,7 @@ export function Settings({ hasImages }: SettingsProps) {
             title={
               <Translate
                 pt="Alguns jogos tocam sons ou falas. Você pode mudar essa configuração durante o jogo."
-                en="A few games will play sound effects or speech. You may change this setting during the game."
+                en="A few games will play speech. You may change this setting during the game."
               />
             }
           >
@@ -53,7 +53,7 @@ export function Settings({ hasImages }: SettingsProps) {
           <Tooltip
             title={
               <Translate
-                pt="Alguns jogos tocam sons ou falas. Você pode mudar essa configuração durante o jogo."
+                pt="Alguns jogos tocam efeitos. Você pode mudar essa configuração durante o jogo."
                 en="A few games will play sound effects or speech. You may change this setting during the game."
               />
             }

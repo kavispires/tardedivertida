@@ -115,7 +115,7 @@ export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
             </div>
           </motion.div>
           <div className="lobby-step__waiting">
-            {step === 2 && <LobbyRules />}
+            {step === 2 && <LobbyRules players={players} />}
 
             <JoinedPlayers players={players} orientation={step === 1 ? 'vertical' : 'horizontal'} />
           </div>
