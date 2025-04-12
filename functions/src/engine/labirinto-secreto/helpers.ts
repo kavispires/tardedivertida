@@ -45,8 +45,8 @@ export const determineNextPhase = (
   turnOrder?: TurnOrder,
   activePlayerId?: PlayerId,
 ): string => {
-  const { RULES, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS, GAME_OVER } = LABIRINTO_SECRETO_PHASES;
-  const order = [RULES, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS];
+  const { LOBBY, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS, GAME_OVER } = LABIRINTO_SECRETO_PHASES;
+  const order = [LOBBY, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS];
 
   if (isGameOver) {
     return GAME_OVER;

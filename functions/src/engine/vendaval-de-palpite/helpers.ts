@@ -14,10 +14,10 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome?: string): string => {
-  const { RULES, SETUP, BOSS_SELECTION, SECRET_WORD_SELECTION, PLAYERS_CLUES, CLUE_EVALUATIONS, GAME_OVER } =
+  const { LOBBY, SETUP, BOSS_SELECTION, SECRET_WORD_SELECTION, PLAYERS_CLUES, CLUE_EVALUATIONS, GAME_OVER } =
     VENDAVAL_DE_PALPITE_PHASES;
   const order = [
-    RULES,
+    LOBBY,
     SETUP,
     BOSS_SELECTION,
     SECRET_WORD_SELECTION,

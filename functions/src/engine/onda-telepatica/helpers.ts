@@ -27,8 +27,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { RULES, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
-  const order = [RULES, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER];
+  const { LOBBY, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
+  const order = [LOBBY, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     return isGameOver || round.forceLastRound || (round.current > 0 && round.current === round.total)

@@ -20,8 +20,8 @@ export const determineNextPhase = (
   outcome: Outcome,
   playerCount: number,
 ): string => {
-  const { RULES, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER } = MESMICE_PHASES;
-  const order = [RULES, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER];
+  const { LOBBY, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER } = MESMICE_PHASES;
+  const order = [LOBBY, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
     if (

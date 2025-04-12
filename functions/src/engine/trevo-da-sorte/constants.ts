@@ -2,7 +2,6 @@ import type { Position } from './types';
 
 export const TREVO_DA_SORTE_PHASES = {
   LOBBY: 'LOBBY',
-  RULES: 'RULES',
   SETUP: 'SETUP',
   WORD_SELECTION: 'WORD_SELECTION',
   CLOVER_WRITING: 'CLOVER_WRITING',

@@ -76,7 +76,7 @@ export const getNextPhase = async (
     playerCount,
   );
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === MESMICE_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

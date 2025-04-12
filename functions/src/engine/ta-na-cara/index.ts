@@ -72,7 +72,7 @@ export const getNextPhase = async (
   // Determine next phase
   const nextPhase = determineNextPhase(state as TaNaCaraState, store as TaNaCaraStore);
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === TA_NA_CARA_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

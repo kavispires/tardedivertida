@@ -22,8 +22,8 @@ import type { Item } from '../../types/tdr';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, state: FirebaseStateData): string => {
-  const { RULES, SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT, GAME_OVER } = TESTE_DE_ELENCO_PHASES;
-  const order = [RULES, SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT];
+  const { LOBBY, SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT, GAME_OVER } = TESTE_DE_ELENCO_PHASES;
+  const order = [LOBBY, SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT];
 
   if (currentPhase === RESULT) {
     // If all roles are cast, end the game

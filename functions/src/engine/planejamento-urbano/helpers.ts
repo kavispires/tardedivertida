@@ -11,8 +11,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, PLANNING, PLACING, RESOLUTION, GAME_OVER } = PLANEJAMENTO_URBANO_PHASES;
-  const order = [RULES, SETUP, PLANNING, PLACING, RESOLUTION];
+  const { LOBBY, SETUP, PLANNING, PLACING, RESOLUTION, GAME_OVER } = PLANEJAMENTO_URBANO_PHASES;
+  const order = [LOBBY, SETUP, PLANNING, PLACING, RESOLUTION];
 
   if (currentPhase === RESOLUTION) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : PLANNING;

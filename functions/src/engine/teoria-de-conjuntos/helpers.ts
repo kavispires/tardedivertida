@@ -16,8 +16,8 @@ export const determineNextPhase = (
   turnOrder: PlayerId[] = [],
   activePlayerId: PlayerId = '',
 ): string => {
-  const { RULES, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER } = TEORIA_DE_CONJUNTOS_PHASES;
-  const order = [RULES, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER];
+  const { LOBBY, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER } = TEORIA_DE_CONJUNTOS_PHASES;
+  const order = [LOBBY, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER];
 
   if (currentPhase === EVALUATION) {
     // If the player has won, go to GAME_OVER

@@ -31,8 +31,8 @@ import type { CrimeSceneTile, DatingCandidateCard, MovieReviewCard, TextCard } f
  * @returns next phase
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, SEEDING, TRACK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
-  const order = [RULES, SETUP, SEEDING, TRACK, RESULT, GAME_OVER];
+  const { LOBBY, SETUP, SEEDING, TRACK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
+  const order = [LOBBY, SETUP, SEEDING, TRACK, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
     return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TRACK;

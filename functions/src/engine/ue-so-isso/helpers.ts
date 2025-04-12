@@ -28,9 +28,9 @@ export const determineNextPhase = (
   group: GroupProgress,
   currentOutcome?: Outcome,
 ): string => {
-  const { RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER } =
+  const { LOBBY, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER } =
     UE_SO_ISSO_PHASES;
-  const order = [RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER];
+  const order = [LOBBY, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER];
 
   if (currentPhase === GUESS && currentOutcome === OUTCOME.PASS) {
     return RESULT;

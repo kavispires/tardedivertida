@@ -27,8 +27,8 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: string): string => {
-  const { RULES, SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS, GAME_OVER } = NAO_SOU_ROBO_PHASES;
-  const order = [RULES, SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS];
+  const { LOBBY, SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS, GAME_OVER } = NAO_SOU_ROBO_PHASES;
+  const order = [LOBBY, SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total || outcome !== OUTCOME.CONTINUE
