@@ -6,7 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData, RunActivity } 
 import utils from '../../utils';
 import { keyBy } from 'lodash';
 import { GAME_NAMES } from '../../utils/constants';
-import { buildRun } from './helpers';
+import { buildRun, getAchievements } from './helpers';
 
 /**
  * Setup
@@ -19,7 +19,16 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, store, {});
+  const achievements = utils.achievements.setup(players, store, {
+    first: 0,
+    second: 0,
+    third: 0,
+    last: 0,
+    secondToLast: 0,
+    noMovement: 0,
+    selfCards: 0,
+    distance: 0,
+  });
 
   const { gameOrder: turnOrder } = utils.players.buildGameOrder(players);
 
@@ -157,6 +166,7 @@ export const prepareRunPhase = async (
   return {
     update: {
       store: {
+        achievements: store.achievements,
         replay: [...store.replay, ...race.slice(state.round.current === 1 ? 0 : 1)],
       },
       state: {
@@ -181,7 +191,7 @@ export const prepareGameOverPhase = async (
   const ranked = utils.players.orderPlayersByScore(players, true);
   const winners = ranked[1] ?? [];
 
-  // const achievements = getAchievements(store);
+  const achievements = getAchievements(store);
 
   await utils.firestore.markGameAsComplete(gameId);
 
@@ -191,8 +201,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    // TODO: add achievements
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -211,7 +220,7 @@ export const prepareGameOverPhase = async (
         players,
         replay: store.replay,
         cardsDict: state.cardsDict,
-        // achievements,
+        achievements,
       },
     },
   };

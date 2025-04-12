@@ -26,6 +26,7 @@ import TESTE_DE_ELENCO from 'games/teste-de-elenco/utils/achievements';
 import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
+import VICE_CAMPEAO from 'games/vice-campeao/utils/achievements';
 // Types
 import type { AchievementReference } from 'types/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
@@ -84,6 +85,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'ue-so-isso': UE_SO_ISSO,
   'vamos-ao-cinema': VAMOS_AO_CINEMA,
   'vendaval-de-palpite': null,
+  'vice-campeao': VICE_CAMPEAO,
 };
 
 export default ACHIEVEMENTS_DICT;

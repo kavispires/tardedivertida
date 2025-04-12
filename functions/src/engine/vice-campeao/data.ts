@@ -214,21 +214,22 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 1,
     noTarget: true,
   },
-  {
-    id: 'vc-16',
-    name: {
-      en: 'Twist',
-      pt: 'Reviravolta',
-    },
-    description: {
-      en: 'Reverses the order of the runners.',
-      pt: 'Inverte a ordem dos corredores.',
-    },
-    type: 'effect',
-    triggerKey: 'inverse',
-    quantity: 1,
-    noTarget: true,
-  },
+  // TODO: does not work
+  // {
+  //   id: 'vc-16',
+  //   name: {
+  //     en: 'Twist',
+  //     pt: 'Reviravolta',
+  //   },
+  //   description: {
+  //     en: 'Reverses the order of the runners.',
+  //     pt: 'Inverte a ordem dos corredores.',
+  //   },
+  //   type: 'effect',
+  //   triggerKey: 'inverse',
+  //   quantity: 1,
+  //   noTarget: true,
+  // },
   {
     id: 'vc-17',
     name: {
