@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 // Ant Design Resources
-import { App, Typography } from 'antd';
+import { App, Tag, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -18,6 +18,9 @@ import { AVATARS } from 'utils/avatars';
 import { HostButton, HostOnlyContainer } from 'components/host';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { useGameInfoContext } from 'components/session/GameInfoContext';
+// Internal
+import { Settings } from './Settings';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
 
@@ -29,6 +32,7 @@ type StepWaitingProps = {
 };
 
 export function StepWaiting({ players }: StepWaitingProps) {
+  const info = useGameInfoContext();
   const { message, notification } = App.useApp();
   const { gameId, gameName } = useGameMeta();
   const { translate } = useLanguage();
@@ -67,6 +71,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
+      // biome-ignore lint/suspicious/noConsole: <explanation>
       console.error(e);
     },
     onSettled: () => {
@@ -84,6 +89,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
   }, [isLocking]);
 
   const numPlayers = Object.keys(players).length;
+  const readyPlayers = Object.values(players).filter((player) => player.isReady).length;
 
   return (
     <>
@@ -105,6 +111,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
       </SpaceContainer>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <Settings hasImages={info.tags.includes('images')} />
         <Paragraph className="lobby-heading">
           <Translate
             pt="Aguarde os outros jogadores entrarem."
@@ -113,7 +120,14 @@ export function StepWaiting({ players }: StepWaitingProps) {
         </Paragraph>
         <HostOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
           <Typography.Text className="center padding">
-            <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
+            <Translate pt="Jogadores necessários" en="Players needed" />:{' '}
+            <Tag>
+              {numPlayers}/{gameMeta.min}
+            </Tag>{' '}
+            <Translate pt="Prontos" en="Ready" />:{' '}
+            <Tag>
+              {readyPlayers}/{numPlayers}
+            </Tag>
           </Typography.Text>
           <HostButton
             onClick={() => mutate()}
