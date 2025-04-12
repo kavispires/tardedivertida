@@ -27,6 +27,7 @@ export const AvatarEntry = ({ player, animate = false, className = '' }: AvatarE
   return (
     <div className={clsx('avatar-entry', animate && 'avatar-entry--floating', className)}>
       <Avatar id={player?.avatarId} className="avatar-entry__avatar" size="large" />
+
       <div className="avatar-entry__name">
         <Translate pt="Fulano" en="John Doe" custom={player?.name} />
       </div>

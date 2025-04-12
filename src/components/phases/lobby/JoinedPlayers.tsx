@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { orderBy, sample } from 'lodash';
 import { useMemo } from 'react';
+// Ant Design Resources
+import { Badge } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
@@ -45,7 +47,9 @@ export function JoinedPlayers({ players, orientation }: JoinedPlayersProps) {
               },
             }}
           >
-            <Avatar id={player?.avatarId} size="large" />
+            <Badge dot={player?.ready} color="green">
+              <Avatar id={player?.avatarId} size="large" />
+            </Badge>
             <div className="joined-players__avatar-name">
               <Translate pt="Fulano" en="John Doe" custom={player?.name} />
             </div>
