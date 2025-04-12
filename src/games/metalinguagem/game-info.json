@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "release": "stable",
   "available": true,
   "title": {
@@ -53,7 +53,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "writing", "guessing", "brain-burner"],
+  "tags": ["cooperative", "writing", "guessing", "brain-burner", "achievements"],
   "options": [
     {
       "key": "nsfw",
