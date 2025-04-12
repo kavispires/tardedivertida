@@ -1,1 +1,0 @@
-import{j as o,T as t}from"./index-CSgiS5-z.js";import{F as n}from"./speech-C960orx4.js";import{b as p}from"./RulesModal-Dd_NRrG7.js";function u({content:e,label:s,showLabel:r=!1}){return o.jsx(n,{type:"popover",position:0,icon:o.jsx(p,{}),content:e,label:s||o.jsx(t,{pt:" Regras",en:" Rules"}),showLabel:r})}export{u as P};
