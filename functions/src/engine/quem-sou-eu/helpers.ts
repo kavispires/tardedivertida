@@ -12,9 +12,9 @@ import type { FirebaseStoreData, QuemSouEuAchievement } from './types';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, imageCardsMode: boolean): string => {
-  const { RULES, SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS, GAME_OVER } =
+  const { LOBBY, SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS, GAME_OVER } =
     QUEM_SOU_EU_PHASES;
-  const order = [RULES, SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS];
+  const order = [LOBBY, SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS];
 
   if (currentPhase === SETUP) {
     return imageCardsMode ? CHARACTER_DESCRIPTION : CHARACTER_FILTERING;

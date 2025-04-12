@@ -16,9 +16,9 @@ export const determineNextPhase = (
   gameOrder?: PlayerId[],
   activeCloverId?: PlayerId,
 ): string => {
-  const { RULES, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER } =
+  const { LOBBY, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER } =
     TREVO_DA_SORTE_PHASES;
-  const order = [RULES, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER];
+  const order = [LOBBY, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     // If last player, go to results

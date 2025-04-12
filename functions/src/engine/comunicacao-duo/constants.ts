@@ -2,7 +2,6 @@ import type { DeckEntry } from './types';
 
 export const COMUNICACAO_DUO_PHASES = {
   LOBBY: 'LOBBY',
-  RULES: 'RULES',
   SETUP: 'SETUP',
   ASKING_FOR_SOMETHING: 'ASKING_FOR_SOMETHING',
   DELIVER_SOMETHING: 'DELIVER_SOMETHING',

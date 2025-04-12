@@ -10,8 +10,8 @@ import type { FileiraDeFatosAchievement, FirebaseStoreData } from './types';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, ORDERING, RESULTS, GAME_OVER } = FILEIRA_DE_FATOS_PHASES;
-  const order = [RULES, SETUP, ORDERING, RESULTS, GAME_OVER];
+  const { LOBBY, SETUP, ORDERING, RESULTS, GAME_OVER } = FILEIRA_DE_FATOS_PHASES;
+  const order = [LOBBY, SETUP, ORDERING, RESULTS, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)

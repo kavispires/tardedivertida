@@ -3,7 +3,6 @@ import type { PartyTrackCandidate, TrackCandidate } from './types';
 
 export const MEGAMIX_PHASES = {
   LOBBY: 'LOBBY',
-  RULES: 'RULES',
   SETUP: 'SETUP',
   SEEDING: 'SEEDING',
   TRACK: 'TRACK',

@@ -1,6 +1,5 @@
 export const TA_NA_CARA_PHASES = {
   LOBBY: 'LOBBY',
-  RULES: 'RULES',
   SETUP: 'SETUP',
   PROMPT: 'PROMPT',
   ANSWERING: 'ANSWERING',

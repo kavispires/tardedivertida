@@ -80,7 +80,7 @@ export const getNextPhase = async (
   const outcome = determineOutcome(store, state, players);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, outcome);
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === NA_RUA_DO_MEDO_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

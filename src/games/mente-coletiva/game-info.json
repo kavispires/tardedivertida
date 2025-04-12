@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "5.2.60",
+  "version": "5.2.61",
   "release": "stable",
   "available": true,
   "title": {

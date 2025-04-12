@@ -1,6 +1,5 @@
 export const DUETOS_PHASES = {
   LOBBY: 'LOBBY',
-  RULES: 'RULES',
   SETUP: 'SETUP',
   PAIRING: 'PAIRING',
   RESULTS: 'RESULTS',

@@ -32,8 +32,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
-  const { RULES, SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER } = NA_RUA_DO_MEDO_PHASES;
-  const order = [RULES, SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER];
+  const { LOBBY, SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER } = NA_RUA_DO_MEDO_PHASES;
+  const order = [LOBBY, SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER];
 
   if (!outcome) {
     return GAME_OVER;

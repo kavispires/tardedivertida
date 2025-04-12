@@ -99,7 +99,7 @@ export const getNextPhase = async (
     store as ComunicacaoAlienigenaStore,
   );
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

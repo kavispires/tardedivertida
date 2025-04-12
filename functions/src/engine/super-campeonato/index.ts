@@ -83,7 +83,7 @@ export const getNextPhase = async (
     store.options?.autoContenders ?? false,
   );
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === SUPER_CAMPEONATO_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

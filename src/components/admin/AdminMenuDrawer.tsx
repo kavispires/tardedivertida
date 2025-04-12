@@ -112,9 +112,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               >
                 <AdminPerformActionButton
                   disabled={
-                    state?.round?.forceLastRound ||
-                    isLoading ||
-                    ['LOBBY', 'RULES', 'GAME_OVER'].includes(state.phase)
+                    state?.round?.forceLastRound || isLoading || ['LOBBY', 'GAME_OVER'].includes(state.phase)
                   }
                   label={
                     state?.round.forceLastRound
