@@ -7,7 +7,7 @@
     "version": { "type": "string" },
     "release": {
       "type": "string",
-      "enum": ["dev", "beta", "stable", "planned", "cancelled", "deprecated"]
+      "enum": ["dev", "beta", "stable", "planned", "cancelled", "deprecated", "paused"]
     },
     "available": { "type": "boolean" },
     "title": {

@@ -2,8 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
-  "version": "0.0.17",
-  "release": "dev",
+  "version": "0.0.18",
+  "release": "paused",
   "available": false,
   "title": {
     "pt": "Trevo da Sorte",
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "clover-cloud",
+    "cloudsAnimationType": "falling",
     "primaryColor": "",
     "backgroundColor": "",
     "colorScheme": "light"
