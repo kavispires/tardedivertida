@@ -63,6 +63,7 @@ export function PhaseResults({ players, state }: PhaseProps<PhaseResultsState>) 
           namesIndexes={state.namesIndexes}
           outcome={state.outcome}
           round={state.round}
+          mostVotedItems={state.mostVotedItems}
         />
       </StepSwitcher>
     </PhaseContainer>

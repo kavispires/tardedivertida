@@ -57,4 +57,5 @@ export type PhaseResultsState = {
   outcome: keyof typeof WORD_LENGTH_STATUS;
   beginsWith: string;
   endsWith: string;
+  mostVotedItems: string[];
 };

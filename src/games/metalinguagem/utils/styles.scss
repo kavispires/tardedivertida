@@ -75,3 +75,8 @@
 .created-word-end {
   color: get-color("blue");
 }
+
+.results-wrong-guess {
+  background: get-color("gray", 2, 0.5);
+  border: get-unit(1) solid get-color("purple");
+}
