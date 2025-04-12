@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Avatar, Flex, Progress } from 'antd';
+import { Progress } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
-// Utils
-import { getAnimationClass } from 'utils/helpers';
-// Icons
-import { ArrowIcon } from 'icons/ArrowIcon';
-import { NoIcon } from 'icons/NoIcon';
 // Components
-import { AvatarCard, IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text';
 // Internal
 import type { RunActivity, RunnerCard } from '../utils/types';
 import { RaceTrack } from './RaceTrack';
-import { RunCard } from './RunCard';
+import { CardPlay } from './CardPlay';
+// Utils
+// Icons
 
 type AnimatedRaceTrackProps = {
   race: RunActivity[];
@@ -63,56 +57,16 @@ export function AnimatedRaceTrack({
       {card && (
         <>
           <Progress steps={race.length} showInfo={false} percent={(100 * (currentIndex + 1)) / race.length} />
-          <RuleInstruction type="event" key={runActivity.id} className={getAnimationClass('tada')}>
-            <Flex align="center" gap={6}>
-              <AvatarCard player={players[runActivity.playerId]} withName withRoundCorners size="small" />
-
-              <Flex vertical gap={6} align="center">
-                <IconAvatar icon={<ArrowIcon />} />
-                <Translate en="played" pt="jogou" />
-              </Flex>
-
-              <RunCard card={card} />
-              {runActivity.newValue && runActivity.newValue > 0 && (
-                <PositiveValue value={runActivity.newValue} />
-              )}
-              {runActivity.newValue && runActivity.newValue < 0 && (
-                <NegativeValue value={runActivity.newValue} />
-              )}
-
-              {!card.noTarget && (
-                <>
-                  <Flex vertical gap={6} align="center">
-                    <IconAvatar icon={<ArrowIcon />} />
-                    <Translate en="on" pt="em" />
-                  </Flex>
-
-                  {lockedPlayersIds.includes(runActivity.targetId) && <IconAvatar icon={<NoIcon />} />}
-                  <AvatarCard player={players[runActivity.targetId]} withName withRoundCorners size="small" />
-                  {ongoingPlusOnePlayersIds.includes(runActivity.targetId) && <PositiveValue value={1} />}
-                  {ongoingMinusOnePlayersIds.includes(runActivity.targetId) && <NegativeValue value={-1} />}
-                </>
-              )}
-            </Flex>
-          </RuleInstruction>
+          <CardPlay
+            runActivity={runActivity}
+            players={players}
+            cardsDict={cardsDict}
+            lockedPlayersIds={lockedPlayersIds}
+            ongoingPlusOnePlayersIds={ongoingPlusOnePlayersIds}
+            ongoingMinusOnePlayersIds={ongoingMinusOnePlayersIds}
+          />
         </>
       )}
     </SpaceContainer>
-  );
-}
-
-function PositiveValue({ value }: { value: number }) {
-  return (
-    <Avatar size="large" style={{ backgroundColor: 'green' }}>
-      +{value}
-    </Avatar>
-  );
-}
-
-function NegativeValue({ value }: { value: number }) {
-  return (
-    <Avatar size="large" style={{ backgroundColor: 'red' }}>
-      {value}
-    </Avatar>
   );
 }

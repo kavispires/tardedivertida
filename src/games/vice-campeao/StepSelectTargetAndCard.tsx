@@ -96,6 +96,7 @@ export function StepSelectTargetAndCard({
                   <Button
                     onClick={() => setSelectedCardId(cardId)}
                     icon={cardId === selectedCardId ? <CheckCircleFilled /> : <ArrowUpOutlined />}
+                    type={cardId === selectedCardId ? 'primary' : 'default'}
                   >
                     essa
                   </Button>
