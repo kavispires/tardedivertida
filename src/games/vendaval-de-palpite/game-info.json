@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.48",
-  "release": "dev",
-  "available": false,
+  "version": "0.9.49",
+  "release": "paused",
+  "available": true,
   "title": {
     "pt": "Vendaval de Palpite",
     "en": "Brainy Storm"
@@ -20,6 +20,7 @@
   },
   "appearance": {
     "clouds": "brainstorm-clouds",
+    "cloudsAnimationType": "orbit",
     "primaryColor": "",
     "backgroundColor": "rgb(148, 154, 134)",
     "colorScheme": "light"

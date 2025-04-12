@@ -89,6 +89,7 @@ export const prepareWordCreationPhase = async (
         beginsWith: targets[0],
         endsWith: targets[1],
       },
+      stateCleanup: ['mostVotedItems', 'guessPlayersPerItem'],
     },
   };
 };
@@ -240,6 +241,7 @@ export const prepareResultsPhase = async (
         wordLengths,
         outcome,
         guessPlayersPerItem,
+        mostVotedItems: [firstGuess, secondGuess],
       },
     },
   };

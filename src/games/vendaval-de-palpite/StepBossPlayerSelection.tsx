@@ -48,7 +48,7 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
       </Instruction>
 
       <RuleInstruction type="wait">
-        <Translate pt="O anfitrião selecionará o chefe" en="The host will select the boss" />)
+        <Translate pt="O anfitrião selecionará o chefe" en="The host will select the boss" />
       </RuleInstruction>
     </Step>
   );
