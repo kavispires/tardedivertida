@@ -14,8 +14,8 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, DREAM_TELLING, MATCHING, RESOLUTION, GAME_OVER } = SONHOS_PESADELOS_PHASES;
-  const order = [RULES, SETUP, DREAM_TELLING, MATCHING, RESOLUTION];
+  const { LOBBY, SETUP, DREAM_TELLING, MATCHING, RESOLUTION, GAME_OVER } = SONHOS_PESADELOS_PHASES;
+  const order = [LOBBY, SETUP, DREAM_TELLING, MATCHING, RESOLUTION];
 
   if (currentPhase === RESOLUTION) {
     if (round.forceLastRound) {

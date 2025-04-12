@@ -6,7 +6,7 @@ import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
@@ -27,8 +27,6 @@ function getActiveComponent(state: GameState) {
   switch (state.phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;
-    case PHASES.DEFAULT.RULES:
-      return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
     case LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION:

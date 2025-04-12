@@ -2,7 +2,6 @@ import type { MovieRole, MovieGenre } from './types';
 
 export const TESTE_DE_ELENCO_PHASES = {
   LOBBY: 'LOBBY',
-  RULES: 'RULES',
   SETUP: 'SETUP',
   MOVIE_GENRE_SELECTION: 'MOVIE_GENRE_SELECTION',
   ACTOR_SELECTION: 'ACTOR_SELECTION',

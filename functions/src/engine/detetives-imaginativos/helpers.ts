@@ -9,9 +9,9 @@ import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } =
+  const { LOBBY, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } =
     DETETIVES_IMAGINATIVOS_PHASES;
-  const order = [RULES, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER];
+  const order = [LOBBY, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)

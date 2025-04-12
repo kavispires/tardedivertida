@@ -80,7 +80,7 @@ export const getNextPhase = async (
     additionalPayload?.win,
   );
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

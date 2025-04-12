@@ -19,8 +19,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome?: string): string => {
-  const { RULES, SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER } = VAMOS_AO_CINEMA_PHASES;
-  const order = [RULES, SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER];
+  const { LOBBY, SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER } = VAMOS_AO_CINEMA_PHASES;
+  const order = [LOBBY, SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     if (outcome === OUTCOME.DONE) {

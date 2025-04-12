@@ -73,7 +73,7 @@ export const getNextPhase = async (
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, state);
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

@@ -24,8 +24,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { RULES, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER } = CONTADORES_HISTORIAS_PHASES;
-  const order = [RULES, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER];
+  const { LOBBY, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER } = CONTADORES_HISTORIAS_PHASES;
+  const order = [LOBBY, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
     return isGameOver || round.forceLastRound || (round.current > 0 && round.current) === round.total

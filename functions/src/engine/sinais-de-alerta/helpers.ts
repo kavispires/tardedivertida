@@ -21,8 +21,8 @@ import type { TextCard } from '../../types/tdr';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { RULES, SETUP, DRAWING, EVALUATION, GALLERY, GAME_OVER } = SINAIS_DE_ALERTA_PHASES;
-  const order = [RULES, SETUP, DRAWING, EVALUATION, GALLERY];
+  const { LOBBY, SETUP, DRAWING, EVALUATION, GALLERY, GAME_OVER } = SINAIS_DE_ALERTA_PHASES;
+  const order = [LOBBY, SETUP, DRAWING, EVALUATION, GALLERY];
 
   if (isGameOver) {
     return GAME_OVER;

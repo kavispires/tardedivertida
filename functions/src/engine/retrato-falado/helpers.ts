@@ -13,8 +13,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER } = RETRATO_FALADO_PHASES;
-  const order = [RULES, SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER];
+  const { LOBBY, SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER } = RETRATO_FALADO_PHASES;
+  const order = [LOBBY, SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)

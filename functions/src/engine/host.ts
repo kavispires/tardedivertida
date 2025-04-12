@@ -122,17 +122,13 @@ const lockGame = async (data: BasicGamePayload) => {
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
   utils.firebase.verifyPayload(gameName, 'gameName', actionText);
 
-  const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
-    gameName,
-    gameId,
-    actionText,
-  );
+  const { state } = await utils.firestore.getStateReferences<DefaultState>(gameName, gameId, actionText);
 
   const players = state?.players ?? {};
 
   // Verify minimum number of players
   const numPlayers = utils.players.getPlayerCount(players);
-  const { getPlayerCounts } = delegatorUtils.getEngine(gameName);
+  const { getPlayerCounts, getNextPhase } = delegatorUtils.getEngine(gameName);
   const playerCounts = getPlayerCounts();
 
   if (numPlayers < playerCounts.MIN) {
@@ -157,10 +153,8 @@ const lockGame = async (data: BasicGamePayload) => {
   try {
     // Set info with players object and isLocked
     await utils.firestore.getMetaRef().doc(gameId).update({ isLocked: true, playersIds: listOfPlayers });
-    // Set state with new Phase: Rules
-    await sessionRef.doc('state').update({
-      phase: 'RULES',
-    });
+    // Starts setup phase
+    await getNextPhase(gameName, gameId);
 
     return true;
   } catch (error) {
@@ -310,7 +304,7 @@ const playAgain = async (data: BasicGamePayload) => {
 
     // Force rules phase which will trigger new setup
     await sessionRef.doc('state').set({
-      phase: 'RULES',
+      phase: 'LOBBY',
       round: {
         current: 0,
         total: 0,

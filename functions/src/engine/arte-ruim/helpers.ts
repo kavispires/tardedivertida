@@ -27,8 +27,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { RULES, SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
-  const order = [RULES, SETUP, DRAW, EVALUATION, GALLERY];
+  const { LOBBY, SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
+  const order = [LOBBY, SETUP, DRAW, EVALUATION, GALLERY];
 
   if (isGameOver) {
     return GAME_OVER;

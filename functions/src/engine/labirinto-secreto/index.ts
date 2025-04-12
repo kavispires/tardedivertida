@@ -84,7 +84,7 @@ export const getNextPhase = async (
     state?.activePlayerId,
   );
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === LABIRINTO_SECRETO_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

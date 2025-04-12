@@ -22,7 +22,7 @@ export const determineNextPhase = (
   store: ComunicacaoAlienigenaStore,
 ): string => {
   const {
-    RULES,
+    LOBBY,
     SETUP,
     ALIEN_SELECTION,
     ALIEN_SEEDING,
@@ -35,7 +35,7 @@ export const determineNextPhase = (
   } = COMUNICACAO_ALIENIGENA_PHASES;
   const hasBot = checkIsBot(store);
 
-  const order = [RULES, SETUP, ALIEN_SELECTION, HUMAN_ASK, ALIEN_ANSWER, ALIEN_REQUEST, OFFERINGS, REVEAL];
+  const order = [LOBBY, SETUP, ALIEN_SELECTION, HUMAN_ASK, ALIEN_ANSWER, ALIEN_REQUEST, OFFERINGS, REVEAL];
 
   const { phase: currentPhase, round, humanId, turnOrder, status, items } = state;
 

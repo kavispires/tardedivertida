@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "release": "stable",
   "available": true,
   "title": {

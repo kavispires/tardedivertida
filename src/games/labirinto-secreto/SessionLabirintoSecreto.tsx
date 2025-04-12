@@ -6,7 +6,7 @@ import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseSetup } from 'components/phases';
 import { PhaseWait } from 'components/phases/PhaseWait';
 import { Session } from 'components/session';
 // Internal
@@ -25,8 +25,6 @@ function getActiveComponent(state: GameState) {
   switch (state.phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;
-    case PHASES.DEFAULT.RULES:
-      return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
     case PHASES.DEFAULT.WAIT:

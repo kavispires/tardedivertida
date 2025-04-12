@@ -74,7 +74,7 @@ export const getNextPhase = async (
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round);
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === ESQUIADORES_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

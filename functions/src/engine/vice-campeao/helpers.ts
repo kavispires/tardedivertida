@@ -11,8 +11,8 @@ import type { FirebaseStoreData, RunActivity, RunnerCard, ViceCampeaoAchievement
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, CARD_SELECTION, RUN, GAME_OVER } = VICE_CAMPEAO_PHASES;
-  const order = [RULES, SETUP, CARD_SELECTION, RUN, GAME_OVER];
+  const { LOBBY, SETUP, CARD_SELECTION, RUN, GAME_OVER } = VICE_CAMPEAO_PHASES;
+  const order = [LOBBY, SETUP, CARD_SELECTION, RUN, GAME_OVER];
 
   if (currentPhase === RUN) {
     if (round.forceLastRound) return GAME_OVER;

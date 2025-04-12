@@ -1,6 +1,5 @@
 export const CONTROLE_DE_ESTOQUE_PHASES = {
   LOBBY: 'LOBBY',
-  RULES: 'RULES',
   SETUP: 'SETUP',
   // PHASE ONE
   // BOSS_IDEA: 'BOSS_IDEA',

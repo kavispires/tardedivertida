@@ -39,6 +39,9 @@ type PhaseRulesProps = {
   info: GameInfo;
 };
 
+/**
+ * @deprecated - not part of the game anymore
+ */
 export function PhaseRules({ players }: PhaseRulesProps) {
   const { isLoading } = useLoading();
   const info = useGameInfoContext();

@@ -32,9 +32,9 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { RULES, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION, GAME_OVER } =
+  const { LOBBY, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION, GAME_OVER } =
     MENTE_COLETIVA_PHASES;
-  const order = [RULES, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION];
+  const order = [LOBBY, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION];
 
   if (isGameOver || round.current === MAX_ROUNDS) {
     return GAME_OVER;

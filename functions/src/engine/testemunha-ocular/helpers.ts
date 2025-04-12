@@ -20,9 +20,9 @@ export const determineNextPhase = (
   lose?: boolean,
   win?: boolean,
 ): string => {
-  const { RULES, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, GAME_OVER } =
+  const { LOBBY, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, GAME_OVER } =
     TESTEMUNHA_OCULAR_PHASES;
-  const order = [RULES, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL];
+  const order = [LOBBY, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL];
 
   if (currentPhase === TRIAL && (lose || win)) {
     return GAME_OVER;

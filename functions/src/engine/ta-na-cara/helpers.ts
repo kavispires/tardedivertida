@@ -10,8 +10,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (state: TaNaCaraState, store: TaNaCaraStore): string => {
-  const { RULES, SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER } = TA_NA_CARA_PHASES;
-  const order = [RULES, SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER];
+  const { LOBBY, SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER } = TA_NA_CARA_PHASES;
+  const order = [LOBBY, SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER];
 
   const { phase: currentPhase, round } = state;
 

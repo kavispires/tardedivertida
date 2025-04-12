@@ -15,8 +15,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, PAIRING, RESULTS, GAME_OVER } = DUETOS_PHASES;
-  const order = [RULES, SETUP, PAIRING, RESULTS];
+  const { LOBBY, SETUP, PAIRING, RESULTS, GAME_OVER } = DUETOS_PHASES;
+  const order = [LOBBY, SETUP, PAIRING, RESULTS];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : PAIRING;

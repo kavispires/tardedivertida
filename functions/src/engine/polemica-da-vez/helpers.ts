@@ -27,8 +27,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { RULES, SETUP, TOPIC_SELECTION, REACT, RESOLUTION, GAME_OVER } = POLEMICA_DA_VEZ_PHASES;
-  const order = [RULES, SETUP, TOPIC_SELECTION, REACT, RESOLUTION];
+  const { LOBBY, SETUP, TOPIC_SELECTION, REACT, RESOLUTION, GAME_OVER } = POLEMICA_DA_VEZ_PHASES;
+  const order = [LOBBY, SETUP, TOPIC_SELECTION, REACT, RESOLUTION];
 
   if (currentPhase === RESOLUTION) {
     return isGameOver || round.forceLastRound || (round.current > 0 && round.current === round.total)

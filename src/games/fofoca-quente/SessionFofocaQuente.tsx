@@ -6,7 +6,7 @@ import { PHASES } from 'utils/phases';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhasePlaceholder, PhaseSetup } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
@@ -23,8 +23,6 @@ function getActiveComponent(state: GameState) {
   switch (state.phase) {
     case PHASES.DEFAULT.LOBBY:
       return PhaseLobby;
-    case PHASES.DEFAULT.RULES:
-      return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
     case FOFOCA_QUENTE_PHASES.ROLES_SELECTION:

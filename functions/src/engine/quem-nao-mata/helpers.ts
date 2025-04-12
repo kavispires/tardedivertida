@@ -10,8 +10,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER } = QUEM_NAO_MATA_PHASES;
-  const order = [RULES, SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER];
+  const { LOBBY, SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER } = QUEM_NAO_MATA_PHASES;
+  const order = [LOBBY, SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
     if (round.total === MAX_ROUNDS || round.forceLastRound) {

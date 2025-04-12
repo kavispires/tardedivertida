@@ -69,7 +69,7 @@ export const getNextPhase = async (
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, state);
 
-  // RULES -> SETUP
+  // LOBBY -> SETUP
   if (nextPhase === TESTE_DE_ELENCO_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);

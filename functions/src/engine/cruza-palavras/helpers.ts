@@ -27,8 +27,8 @@ export const determineNextPhase = (
   round: Round,
   options?: CruzaPalavrasOptions,
 ): string => {
-  const { RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
-  const order = [RULES, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
+  const { LOBBY, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
+  const order = [LOBBY, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
 
   if (currentPhase === SETUP) {
     return options?.gridType === 'imageCards' ? CLUE_WRITING : WORDS_SELECTION;

@@ -13,9 +13,9 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
-  const { RULES, SETUP, ASSIGNMENT, INVESTIGATION, ASSESSMENT, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER } =
+  const { LOBBY, SETUP, ASSIGNMENT, INVESTIGATION, ASSESSMENT, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER } =
     ESPIAO_ENTRE_NOS_PHASES;
-  const order = [RULES, SETUP, ASSIGNMENT, INVESTIGATION, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER];
+  const order = [LOBBY, SETUP, ASSIGNMENT, INVESTIGATION, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
     return round.forceLastRound ? GAME_OVER : ASSIGNMENT;

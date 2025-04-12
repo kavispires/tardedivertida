@@ -1,5 +1,9 @@
+import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 // Types
 import type { GameState } from 'types/game';
+// Hooks
+import { useGameId } from 'hooks/useGameId';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -16,6 +20,14 @@ type PhaseSetupProps = {
 };
 
 export function PhaseSetup({ state }: PhaseSetupProps) {
+  const gameId = useGameId();
+  const queryClient = useQueryClient();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only gameId is necessary
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
+  }, [gameId]);
+
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
       <div className="phase-announcement">

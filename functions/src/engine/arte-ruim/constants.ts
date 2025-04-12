@@ -2,7 +2,6 @@ import type { Level5Type } from './types';
 
 export const ARTE_RUIM_PHASES = {
   LOBBY: 'LOBBY',
-  RULES: 'RULES',
   SETUP: 'SETUP',
   DRAW: 'DRAW',
   EVALUATION: 'EVALUATION',

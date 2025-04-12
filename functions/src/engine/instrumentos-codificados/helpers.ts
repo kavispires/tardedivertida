@@ -10,9 +10,9 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { RULES, SETUP, HINT_GIVING, HINT_RECEIVING, GUESS_THE_CODE, SOLUTION, GAME_OVER } =
+  const { LOBBY, SETUP, HINT_GIVING, HINT_RECEIVING, GUESS_THE_CODE, SOLUTION, GAME_OVER } =
     INSTRUMENTOS_CODIFICADOS_PHASES;
-  const order = [RULES, SETUP, HINT_GIVING, HINT_RECEIVING, GUESS_THE_CODE, SOLUTION, GAME_OVER];
+  const order = [LOBBY, SETUP, HINT_GIVING, HINT_RECEIVING, GUESS_THE_CODE, SOLUTION, GAME_OVER];
 
   if (currentPhase === HINT_RECEIVING && round.current === TOTAL_ROUNDS) {
     return GUESS_THE_CODE;

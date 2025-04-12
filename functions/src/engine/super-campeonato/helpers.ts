@@ -30,11 +30,11 @@ export const determineNextPhase = (
   tier?: string,
   autoContenders?: boolean,
 ): string => {
-  const { RULES, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE, RESULTS, GAME_OVER } =
+  const { LOBBY, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE, RESULTS, GAME_OVER } =
     SUPER_CAMPEONATO_PHASES;
   const order = autoContenders
-    ? [RULES, SETUP, CHALLENGE_SELECTION, BETS, BATTLE]
-    : [RULES, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE];
+    ? [LOBBY, SETUP, CHALLENGE_SELECTION, BETS, BATTLE]
+    : [LOBBY, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CHALLENGE_SELECTION;

@@ -14,7 +14,7 @@ export const determineNextPhase = (
   nextPhase?: keyof typeof FOFOCA_QUENTE_PHASES,
 ): string => {
   const {
-    RULES,
+    LOBBY,
     SETUP,
     ROLES_SELECTION,
     BOARD_SETUP,
@@ -27,7 +27,7 @@ export const determineNextPhase = (
     GAME_OVER,
   } = FOFOCA_QUENTE_PHASES;
   const order = [
-    RULES,
+    LOBBY,
     SETUP,
     ROLES_SELECTION,
     BOARD_SETUP,

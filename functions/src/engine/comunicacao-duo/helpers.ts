@@ -21,9 +21,9 @@ export const determineNextPhase = (
   round: Round,
   nextPhase?: keyof typeof COMUNICACAO_DUO_PHASES,
 ): string => {
-  const { RULES, SETUP, ASKING_FOR_SOMETHING, DELIVER_SOMETHING, VERIFICATION, GAME_OVER } =
+  const { LOBBY, SETUP, ASKING_FOR_SOMETHING, DELIVER_SOMETHING, VERIFICATION, GAME_OVER } =
     COMUNICACAO_DUO_PHASES;
-  const order = [RULES, SETUP, ASKING_FOR_SOMETHING, DELIVER_SOMETHING, VERIFICATION, GAME_OVER];
+  const order = [LOBBY, SETUP, ASKING_FOR_SOMETHING, DELIVER_SOMETHING, VERIFICATION, GAME_OVER];
 
   if (currentPhase === VERIFICATION) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)

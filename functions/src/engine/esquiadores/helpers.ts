@@ -12,7 +12,7 @@ import type { EsquiadoresAchievement, FirebaseStoreData, Lodge } from './types';
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const {
-    RULES,
+    LOBBY,
     SETUP,
     BETS,
     STARTING_RESULTS,
@@ -23,7 +23,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     GAME_OVER,
   } = ESQUIADORES_PHASES;
   const order = [
-    RULES,
+    LOBBY,
     SETUP,
     BETS,
     STARTING_RESULTS,
