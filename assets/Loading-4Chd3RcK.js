@@ -1,0 +1,1 @@
+import{j as a,q as n,e as r,I as i,H as e}from"./index-CSgiS5-z.js";import{A as l}from"./AnimatedLoaderIcon-B_Lvi6Be.js";function x({message:o,margin:s=!1}){return a.jsxs(n,{className:r("loading",s&&"loading--margin"),children:[a.jsx(i,{icon:a.jsx(l,{}),style:{display:"block"}}),!!o&&a.jsx(e.Text,{children:o})]})}export{x as L};
