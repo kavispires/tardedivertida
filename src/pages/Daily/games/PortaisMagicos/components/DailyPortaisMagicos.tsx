@@ -52,10 +52,13 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: word length is not a dependency
   const currentGuess = useMemo(() => {
+    // TODO: Adding the ? in line 61 solved the problem but I don't know why.
     const wordsLength = data.corridors[currentCorridorIndex].words[0].length;
+    // console.log(data.corridors[currentCorridorIndex]);
+    // console.log(currentCorridorIndexes);
 
     return currentCorridorIndexes
-      .map((pos, index) => data.corridors[currentCorridorIndex].words[index][wordsLength - 1 - pos])
+      .map((pos, index) => data.corridors[currentCorridorIndex].words[index]?.[wordsLength - 1 - pos])
       .join('');
   }, [currentCorridorIndex, currentCorridorIndexes]);
 
