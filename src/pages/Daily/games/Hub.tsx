@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { MutedOutlined, SoundFilled } from '@ant-design/icons';
-import { Button, Switch, Typography } from 'antd';
+import { Alert, Button, Divider, Switch, Typography } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Utils
 import { getAnimation } from 'utils/animations';
@@ -25,7 +26,7 @@ import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
 import type { GameSettings } from '../utils/types';
 import { SETTINGS } from '../utils/settings';
 import { DailyChrome } from '../components/DailyChrome';
-import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from '../utils';
+import { checkWasPlayedToday, daysSinceRelease, getToday, hasBeenReleased } from '../utils';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -79,7 +80,9 @@ const DEMOS: Entry[] = [
 ];
 
 export function Hub() {
+  const { isAdmin } = useCurrentUserContext();
   const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
+  const today = getToday();
 
   return (
     <DailyChrome>
@@ -110,6 +113,25 @@ export function Hub() {
 
         <HubList list={DEMOS} width={width} startingIndex={GAMES.length + CONTRIBUTIONS.length} />
       </div>
+      {isAdmin && (
+        <Alert
+          showIcon={false}
+          message={
+            <>
+              <Link to="debug">Debug</Link> <Divider type="vertical" />{' '}
+              <a
+                href={`${import.meta.env.VITE_FIRESTORE_URL}/~2Fdiario~2F${today}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Firesore
+              </a>
+            </>
+          }
+          type="info"
+          banner
+        />
+      )}
       <SFXTest />
     </DailyChrome>
   );
@@ -251,7 +273,7 @@ function SFXTest() {
     return (
       <div className="hub-list">
         {SFXAllNames.map((name) => (
-          <Button key={name} onClick={() => dailySoundEffects.play(name)}>
+          <Button key={name} onClick={() => dailySoundEffects.play(name)} block>
             {name}
           </Button>
         ))}
