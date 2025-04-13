@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "release": "stable",
   "available": true,
   "title": {
@@ -26,21 +26,21 @@
     "colorScheme": "light"
   },
   "rules": {
-    "pt": [
-      "Vocês são um grupo de linguistas tentando criar um novo dicionário de palavras-valise para o novo mundo.",
-      "O objetivo é criar palavras com todos os tamanhos de palavras disponíveis",
-      "A cada rodada um jogador é o criador e deve criar uma palavra-valise usando o inicio do nome de um objeto e o final do nome de outro objeto",
-      "Depois, os outros jogadores devem tentar adivinhar quais ícones a palavra representa",
-      "Se a maioria acertar, aquele tamanho de palavra é removido. Se os jogadores errarem o tamanho fica em perigo",
-      "Os jogadores ganham quando todas as palavras são criadas ou quando eles erram um tamanho de palavra em perigo (duas vezes)"
-    ],
     "en": [
       "You are a group of linguists trying to create a new dictionary of portmanteau words for the new world.",
-      "The goal is to create words with all sizes of words available",
-      "Each round a player is the creator and must create a portmanteau word using the beginning of one object's name and the end of another object's name",
-      "Then, the other players must try to guess which icons the word represents",
-      "If the majority gets it right, that size of word is removed. If the players get it wrong, the size is in danger",
-      "Players win when all words are created or when they miss a size in danger (twice)"
+      "The goal is to create words with all lengths available (usually 3-8 letters)",
+      "Each round a player is the creator and must create a portmanteau word using the beginning of one given thing's name and the end of another thing's name",
+      "Then, the other players must try to guess which things the word represents",
+      "If the majority gets it right, that length of word is marked as completed. If the players get it wrong, the length is in danger",
+      "Players win when all words are created or when they get an in-danger length wrong"
+    ],
+    "pt": [
+      "Vocês são um grupo de linguistas tentando criar um novo dicionário de palavras portmanteau para o novo mundo.",
+      "O objetivo é criar palavras com todos os tamanhos disponíveis (geralmente 3-9 letras)",
+      "A cada rodada, um jogador é o criador e deve criar uma palavra portmanteau usando o começo do nome de uma coisa dada e o final do nome de outra coisa",
+      "Então, os outros jogadores devem tentar adivinhar quais coisas a palavra representa",
+      "Se a maioria acertar, aquele tamanho de palavra é marcado como concluído. Se os jogadores errarem, o tamanho está em perigo",
+      "Os jogadores vencem quando todas as palavras são criadas ou quando eles erram um tamanho em perigo"
     ]
   },
   "playerCount": {
