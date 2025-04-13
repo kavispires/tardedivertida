@@ -1,3 +1,4 @@
+import { USE_FIRESTORE_EMULATOR } from 'dev-configs';
 import moment from 'moment';
 // Utils
 import { isDevEnv } from 'utils/helpers';
@@ -10,7 +11,7 @@ import type { WithRequiredId } from './types';
  * @returns {string} The current date in 'YYYY-MM-DD' format.
  */
 export function getToday(): string {
-  if (isDevEnv) return '2023-10-31';
+  if (isDevEnv && USE_FIRESTORE_EMULATOR) return '2023-10-31';
   return moment().format('YYYY-MM-DD');
 }
 
