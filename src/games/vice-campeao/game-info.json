@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,18 +22,18 @@
     "clouds": "marathon-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "rgb(255,114,199)",
-    "backgroundColor": "rgba(110,96,184,0.5)",
+    "backgroundColor": "rgba(110,96,184,0.7)",
     "colorScheme": "light"
   },
   "rules": {
     "pt": [
-      "Em Vice-Campeão, o objetivo é ser o segundo colocado.",
+      "Em Vice-Campeão, somos todos corredores em uma maratona e o objetivo é ser o segundo colocado.",
       "A cada rodada, todos os jogadores escolhem uma carta que pode ser de movimento ou um efeito especial.",
       "O plot-twist é que você pode usar sua carta em você mesmo ou em outro jogador!",
       "Ao final de 5 rodadas quem estiver em segundo lugar ganha!"
     ],
     "en": [
-      "In Runner-Up, the goal is to be the second player.",
+      "In Runner-Up, we are all runners in a marathon and the goal is to be the second place.",
       "In each round, all players choose a card that can be a movement or a special effect.",
       "The plot twist is that you can use your card on yourself or on another player!",
       "At the end of 5 rounds, whoever is in second place wins!"
