@@ -49,7 +49,7 @@ export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>
         step={step}
         players={players}
         waitingRoom={{
-          content: <Portmanteau itemsIds={user.guesses ?? []} word={state.newWord} />,
+          content: <Portmanteau itemsIds={user?.guesses ?? []} word={state.newWord} />,
         }}
       >
         {/* Step 0 */}
