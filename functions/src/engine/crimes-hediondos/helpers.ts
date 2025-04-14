@@ -163,7 +163,7 @@ export const buildCrimes = (
       locationId: player.locationId ?? '',
       scenes: {
         [causeOfDeathTile.id]: player.causeOfDeathIndex,
-        [reasonForEvidenceTile.id]: player.causeOfDeathIndex,
+        [reasonForEvidenceTile.id]: player.reasonForEvidenceIndex,
         [victimTile.id]: player.victimIndex,
         [locationTile.id]: player.locationIndex,
       },
