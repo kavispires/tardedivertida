@@ -1,1 +1,0 @@
-import{r as a,Y as i,$ as I,bQ as f}from"./index-CKSL2Oo6.js";function v(){var r=I({},f);return r.useId}var n=0,s=v();const p=s?function(e){var t=s();return e||t}:function(e){var t=a.useState("ssr-id"),u=i(t,2),c=u[0],o=u[1];return a.useEffect(function(){var d=n;n+=1,o("rc_unique_".concat(d))},[]),e||c};export{p as u};
