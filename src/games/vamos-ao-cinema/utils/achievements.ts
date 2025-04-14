@@ -25,7 +25,7 @@ export const achievementsReference: AchievementReference = {
     icon: 'face-oops',
     title: {
       en: 'Lone Wolf',
-      pt: 'Lovo Solitário',
+      pt: 'Lobo Solitário',
     },
     description: {
       en: 'Was the only one to select a movie more times.',
