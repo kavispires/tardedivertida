@@ -25,12 +25,12 @@ export function Portmanteau({ word, itemsIds, names, correct }: PortmanteauProps
     <Instruction contained>
       <Flex gap={3} align="center">
         <Flex vertical align="center">
-          <ItemCard id={itemsIds[0]} />
+          {!!itemsIds?.[0] && <ItemCard id={itemsIds[0]} />}
           {names && <TextHighlight className="center">{names[0]}</TextHighlight>}
         </Flex>
         <IconAvatar icon={<BoxPlusIcon />} size="small" />
         <Flex vertical align="center">
-          <ItemCard id={itemsIds[1]} />
+          {!!itemsIds?.[1] && <ItemCard id={itemsIds[1]} />}
           {names && <TextHighlight className="center">{names[1]}</TextHighlight>}
         </Flex>
         <IconAvatar icon={<BoxEqualIcon />} size="small" />
