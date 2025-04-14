@@ -174,8 +174,8 @@ export const prepareGuessingPhase = async (
       players,
       state.causeOfDeathTile,
       state.reasonForEvidenceTile,
-      state.victimTile,
       state.locationTile,
+      state.victimTile,
     );
     // Cleanup properties from players
     utils.players.removePropertiesFromPlayers(players, [
