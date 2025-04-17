@@ -1,4 +1,3 @@
-import { BetaBanner } from 'pages/Daily/components/BetaBanner';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
@@ -10,8 +9,6 @@ import { SETTINGS } from '../utils/settings';
 export function Rules() {
   return (
     <>
-      <BetaBanner />
-
       <Typography>
         <Translate
           pt={
@@ -23,15 +20,28 @@ export function Rules() {
               </li>
               <li>Tente adivinhar os quatro grupos um a um.</li>
               <li>
-                Cada tentativa errada remove um coração e você tem apenas {SETTINGS.HEARTS} <HeartFilled />.
+                Cada tentativa errada remove um coração <HeartFilled />.
               </li>
-              <li>Boa sorte!</li>
+              <li>
+                Você tem {SETTINGS.HEARTS} <HeartFilled />. Boa sorte!
+              </li>
             </>
           }
           en={
             <>
-              <li>?</li>
-              <li>?</li>
+              <li>
+                The things on the grid have been secretly grouped into groups of four with common themes.
+              </li>
+              <li>
+                Form a group of four things that you think are related and click <strong>Submit</strong>.
+              </li>
+              <li>Try to guess the four groups one by one.</li>
+              <li>
+                Each wrong attempt removes a heart <HeartFilled />.
+              </li>
+              <li>
+                You have {SETTINGS.HEARTS} <HeartFilled />. Good luck!
+              </li>
             </>
           }
         />

@@ -25,7 +25,7 @@ export function Rules() {
             <li>O objetivo é você colocar 4 coisas, uma a uma, na área correta do diagrama.</li>
             <li>
               Se você colocar uma coisa na área errada, o jogo vai colocar a coisa na área correta, você perde
-              uma vida, e ganha uma coisa para posicionar.
+              um coração <HeartFilled />, e ganha uma nova coisa para posicionar.
             </li>
             <li>
               Dica: o título do jogo é uma pista sobre a regra dos círculos. "Gramática" pode ser sobre o
@@ -53,7 +53,7 @@ export function Rules() {
             <li>The goal is for you to place 4 things, one by one, in the correct area of the diagram.</li>
             <li>
               If you place a thing in the wrong area, the game will place the thing in the correct area, you
-              lose a heart, and gain a thing to position.
+              lose a heart <HeartFilled />, and gain a new thing to position.
             </li>
             <li>
               You have {SETTINGS.HEARTS} <HeartFilled /> chances. Good luck!

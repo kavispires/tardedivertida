@@ -3,6 +3,8 @@ import { HeartFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import { SETTINGS } from '../utils/settings';
 
 export function Rules() {
   return (
@@ -16,10 +18,11 @@ export function Rules() {
             </li>
             <li>Você deve apertar letra por letra (e números!) até que o nome esteja completo.</li>
             <li>
-              Cada letra que você aperta que não está presente na resposta remove um coração e você tem apenas
-              3 <HeartFilled />.
+              Cada letra que você aperta que não está presente na resposta remove um coração <HeartFilled />.
             </li>
-            <li>Boa sorte!</li>
+            <li>
+              Você tem {SETTINGS.HEARTS} <HeartFilled /> chances. Boa sorte!
+            </li>
           </>
         }
         en={
@@ -28,10 +31,11 @@ export function Rules() {
             <li>The icons are not in order and may mean words in the movie title or about the plot.</li>
             <li>You must press letter by letter (and numbers!) until the name is complete.</li>
             <li>
-              Each letter you press that is not present in the answer removes a heart and you only have 3{' '}
-              <HeartFilled />.
+              Each letter you press that is not present in the answer removes a heart <HeartFilled />.
             </li>
-            <li>Good luck!</li>
+            <li>
+              You have {SETTINGS.HEARTS} <HeartFilled /> chances. Good luck!
+            </li>
           </>
         }
       />
