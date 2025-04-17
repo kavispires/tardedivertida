@@ -27,6 +27,7 @@ import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
+import { RulesHints } from './RulesHints';
 
 type DailyComunicacaoAlienigenaProps = {
   data: DailyComunicacaoAlienigenaEntry;
@@ -237,6 +238,10 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           />
         </Modal>
       </Layout.Content>
+
+      <Region>
+        <RulesHints />
+      </Region>
     </Layout>
   );
 }
