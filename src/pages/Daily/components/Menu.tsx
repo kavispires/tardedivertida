@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { AppstoreFilled, HeartFilled, HeartOutlined, QuestionCircleFilled } from '@ant-design/icons';
 import { Button, Drawer, Space } from 'antd';
 // Components
-import { LanguageSwitch, Translate } from 'components/language';
+import { Translate } from 'components/language';
 
 type MenuProps = {
   hearts: number;
@@ -64,7 +64,6 @@ function RulesModal({ rules, defaultOpen }: RulesModalProps) {
         onClose={() => setOpen(false)}
       >
         <Space direction="vertical" size="small">
-          <LanguageSwitch />
           <ul className="list">{rules}</ul>
         </Space>
       </Drawer>
