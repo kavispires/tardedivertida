@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .create-game-modal-options {
   &__no-options {
     width: 100%;
@@ -29,12 +31,12 @@
 
   &__on {
     text-align: left;
-    color: get-color('gray', 4);
+    color: get-color("gray", 4);
   }
 
   &__off {
     text-align: right;
-    color: get-color('gray', 4);
+    color: get-color("gray", 4);
   }
 
   &__selections {
@@ -45,14 +47,14 @@
 
   &--selected {
     font-weight: bolder;
-    color: get-color('black');
+    color: get-color("black");
   }
 
   &__option-description {
     font-size: 0.85em;
     grid-column: span 4;
     font-weight: normal;
-    color: get-color('gray', 6);
+    color: get-color("gray", 6);
   }
 }
 .game-card-collection {
@@ -139,11 +141,11 @@
   align-items: center;
   padding: 8px 15px;
   // word-wrap: break-word;
-  background-color: get-color('white', 4);
+  background-color: get-color("white", 4);
 
   label {
     margin: get-unit(0 1);
-    color: get-color('gray', 6);
+    color: get-color("gray", 6);
   }
 
   &__entry {

@@ -1,6 +1,4 @@
-@use './functions' as *;
-
-$canvas-size: 500px;
+@use "./functions" as *;
 
 // Small smartphones (portrait view)
 $screen-xs-max: 400px;

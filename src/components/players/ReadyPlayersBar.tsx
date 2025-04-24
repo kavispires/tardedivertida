@@ -6,6 +6,8 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
+// Sass
+import './ReadyPlayersBar.scss';
 
 type ReadyPlayersBarProps = {
   players: GamePlayers;
@@ -22,7 +24,7 @@ export function ReadyPlayersBar({
 }: ReadyPlayersBarProps) {
   const { readyPlayers, notReadyPlayers }: { readyPlayers: GamePlayer[]; notReadyPlayers: string[] } =
     Object.values(players).reduce(
-      (acc: any, player: GamePlayer) => {
+      (acc: { readyPlayers: GamePlayer[]; notReadyPlayers: string[] }, player: GamePlayer) => {
         if (player.ready) {
           acc.readyPlayers.push(player);
         } else {

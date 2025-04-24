@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .players-status-bar {
   @include box-shadow;
   position: absolute;
@@ -9,13 +11,13 @@
   border: none;
   border-radius: get-unit(0 0 0 4);
   padding: get-unit(4 2 1 1);
-  background-color: get-color('white', 5, 0.9);
+  background-color: get-color("white", 5, 0.9);
   transition: all 500ms;
 
   cursor: pointer;
 
   &:hover {
-    background-color: get-color('white', 5, 1);
+    background-color: get-color("white", 5, 1);
   }
 
   &__player {
@@ -36,13 +38,13 @@
     left: -12px;
     top: 0;
     transform: translate(-100%);
-    color: get-color('black');
+    color: get-color("black");
     font-size: 0.75rem;
   }
 
   &__ready-speech {
     position: relative;
-    background-color: get-color('white');
+    background-color: get-color("white");
     border-radius: 0.4em;
     padding: get-unit(1 2);
     margin-left: get-unit(3);
@@ -51,14 +53,14 @@
     white-space: nowrap;
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       right: 1px;
       top: 50%;
       width: 0;
       height: 0;
       border: get-unit(2) solid transparent;
-      border-left-color: get-color('white');
+      border-left-color: get-color("white");
       border-right: 0;
       margin-top: get-unit(-2);
       margin-right: get-unit(-2);

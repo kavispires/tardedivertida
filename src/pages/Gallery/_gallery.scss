@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .gallery {
   justify-content: center;
 
@@ -22,9 +24,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      'title title'
-      'credits date'
-      'level progress';
+      "title title"
+      "credits date"
+      "level progress";
   }
 
   &__card-title {
@@ -33,7 +35,7 @@
   }
 
   &__card-credits {
-    color: get-color('gray', 4);
+    color: get-color("gray", 4);
     font-style: italic;
     grid-area: credits;
   }
@@ -42,12 +44,12 @@
     font-style: italic;
     grid-area: date;
     text-align: right;
-    color: get-color('gray', 4);
+    color: get-color("gray", 4);
   }
 
   &__card-level {
     grid-area: level;
-    color: get-color('yellow');
+    color: get-color("yellow");
   }
 
   &__card-progress {

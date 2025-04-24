@@ -16,6 +16,9 @@ import { useGameAppearance } from 'components/session/GameInfoContext';
 // Images
 import roundTitleEn from 'assets/images/round-title-en.svg?url';
 import roundTitlePt from 'assets/images/round-title-pt.svg?url';
+// Sass
+import './RoundAnnouncement.scss';
+// Styles
 
 type RoundAnnouncementProps = {
   /**

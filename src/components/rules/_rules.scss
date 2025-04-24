@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .rules-carousel {
   display: flex;
   justify-content: center;
@@ -11,7 +13,7 @@
   }
 
   &__rule-number {
-    background-color: get-color('white');
+    background-color: get-color("white");
     position: absolute;
     top: 0;
     right: 50%;
@@ -26,7 +28,7 @@
 
   &__rule-text {
     text-align: center;
-    color: get-color('white');
+    color: get-color("white");
     background-color: rgba($color: black, $alpha: 0.8);
     border-radius: get-unit(2);
     padding: get-unit(1 2);
@@ -81,6 +83,6 @@
 }
 
 .rules-modal-content {
-  background: get-color('black', 2);
+  background: get-color("black", 2);
   border-radius: $border-radius;
 }

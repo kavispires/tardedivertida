@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .game-info-drawer-container {
   position: fixed;
   top: -1px;
@@ -11,13 +13,13 @@
   border: none;
   border-radius: get-unit(0 0 0 4);
   padding: get-unit(1 2 1 1);
-  background-color: get-color('white', 5, 0.9);
+  background-color: get-color("white", 5, 0.9);
   z-index: 155;
 
   cursor: pointer;
 
   &:hover {
-    background-color: get-color('white', 5, 1);
+    background-color: get-color("white", 5, 1);
   }
 
   &__game-title {
@@ -82,7 +84,7 @@
 
   &__round {
     font-weight: bolder;
-    background-color: get-color('gray', 4);
+    background-color: get-color("gray", 4);
     margin-left: get-unit(2);
   }
 

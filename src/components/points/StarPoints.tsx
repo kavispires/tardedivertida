@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import { StarFilled } from '@ant-design/icons';
 // Components
 import { Translate } from 'components/language';
+// Sass
+import './StarPoints.scss';
 
 type StarPointsProps = {
   keyPrefix: string;
