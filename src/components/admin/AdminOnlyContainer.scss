@@ -1,19 +1,19 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .admin-only-container {
   max-width: 100%;
-  background-color: get-color('red', 5, 0.5);
+  background-color: get-color("red", 5, 0.5);
   padding: get-unit(2);
   margin: get-unit(2 0);
   display: flex;
   justify-content: center;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &__legend {
-    background-color: get-color('red');
+    background-color: get-color("red");
     padding: get-unit(2);
     font-size: 0.8rem;
-    color: get-color('white');
-    border-radius: $border-radius;
+    color: get-color("white");
+    border-radius: var(--border-radius);
   }
 }

@@ -1,9 +1,9 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .title {
   $self: &;
 
-  max-width: $max-width;
+  max-width: var(--max-width);
   text-wrap: balance;
   text-align: center;
 
@@ -23,15 +23,15 @@
   }
 
   &#{$self}--light {
-    color: get-color('black');
+    color: get-color("black");
   }
 
   &#{$self}--dark {
-    color: get-color('white');
+    color: get-color("white");
   }
 
   &#{$self}--white {
-    color: get-color('red');
+    color: get-color("red");
   }
 
   &#{$self}--large {

@@ -84,5 +84,5 @@
 
 .rules-modal-content {
   background: get-color("black", 2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }

@@ -1,5 +1,4 @@
-@use './functions' as *;
-@use './constants' as c;
+@use "./functions" as *;
 
 @mixin centered-container {
   display: flex;
@@ -26,7 +25,7 @@
 @mixin contained {
   background-color: rgba($color: white, $alpha: 0.6);
   padding: get-unit(2);
-  border-radius: c.$border-radius;
+  border-radius: var(--border-radius);
 }
 
 @mixin text-stroke {
@@ -53,28 +52,28 @@
 
 // Extra Small devices
 @mixin xs {
-  @media (max-width: #{c.$screen-xs-max}) {
+  @media (max-width: 400px) {
     @content;
   }
 }
 
 // Small devices
 @mixin sm {
-  @media (max-width: #{c.$screen-sm-max}) {
+  @media (max-width: 576px) {
     @content;
   }
 }
 
 // Medium devices
 @mixin md {
-  @media (max-width: #{c.$screen-md-max}) {
+  @media (max-width: 768px) {
     @content;
   }
 }
 
 // Large devices
 @mixin lg {
-  @media (max-width: #{c.$screen-lg-max}) {
+  @media (max-width: 992px) {
     @content;
   }
 }

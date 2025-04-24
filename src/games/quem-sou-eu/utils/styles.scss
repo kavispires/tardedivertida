@@ -33,7 +33,7 @@
     gap: get-unit(2);
     margin: get-unit(4);
     padding: get-unit(2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
 
     &--positive {
       background-color: get-color("green", 8, 0.5);
@@ -52,7 +52,7 @@
 
   &__no-glyph {
     background-color: get-color("black", 8, 0.5);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 }
 
@@ -71,7 +71,7 @@
 .q-player-glyphs {
   display: grid;
   grid-template-columns: repeat(7, auto);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   background: get-color("gray", 8);
   margin: get-unit(1);
   min-height: 100px;

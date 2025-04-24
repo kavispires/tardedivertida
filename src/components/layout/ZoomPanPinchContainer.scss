@@ -4,7 +4,7 @@
   min-width: 500px;
   min-height: 500px;
   background-color: get-color("white", 5, 0.15);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .zoom-pan-pinch-controls {

@@ -78,7 +78,7 @@
   grid-template-columns: [player] 2.5rem [info] auto [history] 28px [selections] 216px [done] 2.5rem;
   min-height: 200px;
   margin: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   color: get-color("white");
   min-width: clamp(400px, 60vw, 800px);
 

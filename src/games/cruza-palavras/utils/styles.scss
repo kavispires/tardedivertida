@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .x-grid {
   display: grid;
@@ -10,7 +10,7 @@
   border: 1px solid white;
   min-width: 80px;
   min-height: 4rem;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +31,7 @@
 }
 
 .x-grid-cell-target {
-  color: get-color('yellow');
+  color: get-color("yellow");
 }
 
 .x-clue-cards {
@@ -42,7 +42,7 @@
 
 .x-clue-card-li {
   margin: get-unit(1);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .x-clue-card-button {
@@ -54,15 +54,15 @@
 
 .x-clue-card {
   height: 3rem;
-  border: get-color('black') 2px solid;
-  border-radius: $border-radius;
-  background-color: get-color('white');
+  border: get-color("black") 2px solid;
+  border-radius: var(--border-radius);
+  background-color: get-color("white");
   padding: 0;
   display: flex;
   align-items: center;
 
   &--selected {
-    border: get-color('yellow') 2px solid;
+    border: get-color("yellow") 2px solid;
     border-style: outset;
   }
 
@@ -87,14 +87,14 @@
 .x-previous-clue {
   text-transform: uppercase;
   font-size: 0.7rem;
-  color: get-color('gray', 6);
+  color: get-color("gray", 6);
   font-style: italic;
 }
 
 .x-players-in-cell-player {
   &--correct {
-    background-color: get-color('white', 5, -0.5);
-    border-radius: $border-radius;
+    background-color: get-color("white", 5, -0.5);
+    border-radius: var(--border-radius);
     padding: 1px;
     margin: get-unit(0.5);
   }

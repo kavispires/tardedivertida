@@ -236,7 +236,7 @@
 .daily-keyboard-key {
   background: get-color("blue", 7);
   color: get-color("white");
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   border: 1px outset get-color("blue", 3);
   text-transform: uppercase;
 

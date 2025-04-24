@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .background {
   background: linear-gradient(-45deg, #1f122f, #2f2404, #27143d, #322414, #1c172e);
@@ -40,7 +40,7 @@ $n-pink: #ffb1b4;
   padding: get-unit(1);
 
   &--collapsed {
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     width: 30px;
     overflow: hidden;
     margin-right: get-unit(2);
@@ -48,7 +48,7 @@ $n-pink: #ffb1b4;
 
   &__card {
     display: flex;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     flex-direction: column;
     align-items: center;
     background-color: $n-pink;
@@ -61,28 +61,28 @@ $n-pink: #ffb1b4;
     }
 
     #{$self}--horror & {
-      background-color: get-color('brown');
+      background-color: get-color("brown");
     }
 
     #{$self}--jackpot & {
-      background-color: get-color('yellow');
+      background-color: get-color("yellow");
     }
   }
 
   &__name {
     width: $card-width;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     text-align: center;
     font-size: 0.8em;
     background-color: $n-pink;
     margin-top: get-unit(2);
 
     #{$self}--horror & {
-      background-color: get-color('brown');
+      background-color: get-color("brown");
     }
 
     #{$self}--jackpot & {
-      background-color: get-color('yellow');
+      background-color: get-color("yellow");
     }
   }
 
@@ -105,7 +105,7 @@ $n-pink: #ffb1b4;
 $stats-height: get-unit(40);
 
 .n-player-stats {
-  background-color: get-color('white');
+  background-color: get-color("white");
   height: $stats-height;
   width: 80vw;
   display: flex;
@@ -134,13 +134,13 @@ $stats-height: get-unit(40);
   }
 
   &__title {
-    color: get-color('gray', 4);
+    color: get-color("gray", 4);
     display: block;
     font-size: 1.1em;
   }
 
   &__container {
-    border-left: 1px solid get-color('gray', 2);
+    border-left: 1px solid get-color("gray", 2);
     display: flex;
     flex-direction: column;
     padding: get-unit(2);
@@ -151,15 +151,15 @@ $stats-height: get-unit(40);
   }
 
   &__count-label {
-    color: get-color('gray');
+    color: get-color("gray");
     display: block;
   }
 
   &__count-value {
     display: block;
-    background-color: get-color('gray', 2);
+    background-color: get-color("gray", 2);
     font-size: 1.1em;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     padding: get-unit(1 2);
     margin: get-unit(1);
     text-align: center;
@@ -171,7 +171,7 @@ $stats-height: get-unit(40);
 
   &__no-jackpot {
     font-style: italic;
-    color: get-color('gray', 3);
+    color: get-color("gray", 3);
   }
 }
 
@@ -184,12 +184,12 @@ $stats-height: get-unit(40);
 .n-decision-button {
   padding: get-unit(2 4);
   width: 45%;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: get-color('white');
+  background-color: get-color("white");
   transition: all 250ms;
 
   &:hover {
@@ -197,11 +197,11 @@ $stats-height: get-unit(40);
   }
 
   &--home:hover {
-    background-color: get-color('orange', 4);
+    background-color: get-color("orange", 4);
   }
 
   &--continue:hover {
-    background-color: get-color('yellow', 4);
+    background-color: get-color("yellow", 4);
   }
 }
 
@@ -235,7 +235,7 @@ $stats-height: get-unit(40);
   }
 
   &__divider {
-    background-color: get-color('gray', 3);
+    background-color: get-color("gray", 3);
   }
 
   &__title {
@@ -259,7 +259,7 @@ $stats-height: get-unit(40);
 
     &--nobody {
       font-style: italic;
-      color: get-color('gray', 8);
+      color: get-color("gray", 8);
     }
 
     &--empty {
@@ -306,7 +306,7 @@ $stats-height: get-unit(40);
 
 .costume-avatar {
   width: 100px;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   margin: get-unit(0 2);
 
   &--bounce {
@@ -339,8 +339,8 @@ $stats-height: get-unit(40);
 }
 
 .n-candy-highlight {
-  border: get-color('pink', 7, 0.8) 1px solid;
-  background-color: get-color('pink', 3, 0.6);
+  border: get-color("pink", 7, 0.8) 1px solid;
+  background-color: get-color("pink", 3, 0.6);
 }
 
 .n-step-trick-or-treat {
@@ -352,7 +352,7 @@ $stats-height: get-unit(40);
 
   position: absolute;
   @include contained;
-  background-color: get-color('white', 5, 0.8);
+  background-color: get-color("white", 5, 0.8);
   top: 20vh;
 
   &__container {
@@ -363,28 +363,28 @@ $stats-height: get-unit(40);
     }
 
     #{$self}--horror & {
-      background-color: get-color('brown');
+      background-color: get-color("brown");
     }
 
     #{$self}--jackpot & {
-      background-color: get-color('yellow');
+      background-color: get-color("yellow");
     }
   }
 
   &__name {
     width: 100%;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     text-align: center;
     font-size: 1.5em;
     background-color: $n-pink;
     margin-top: get-unit(2);
 
     #{$self}--horror & {
-      background-color: get-color('brown');
+      background-color: get-color("brown");
     }
 
     #{$self}--jackpot & {
-      background-color: get-color('yellow');
+      background-color: get-color("yellow");
     }
   }
 }

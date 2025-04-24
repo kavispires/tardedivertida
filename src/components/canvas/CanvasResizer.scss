@@ -1,7 +1,9 @@
+@use "styles/sass" as *;
+
 .canvas-resizer {
   width: 160px;
   padding: get-unit(1 2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &__label {
     font-size: 90%;

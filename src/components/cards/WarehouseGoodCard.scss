@@ -2,7 +2,7 @@
 
 .warehouse-good-card {
   background: get-color("brown", 2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &__loading {
     width: 100%;

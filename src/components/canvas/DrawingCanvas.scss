@@ -1,5 +1,7 @@
+@use "styles/sass" as *;
+
 .drawing-canvas {
-  background-color: get-color('white');
+  background-color: get-color("white");
   cursor: crosshair;
   touch-action: none;
 

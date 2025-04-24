@@ -3,7 +3,7 @@
 .movie-card {
   background-color: get-color("white", 5, 0.6);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   width: 275px;
   text-transform: uppercase;
   font-family: "Courier New", Courier, monospace;

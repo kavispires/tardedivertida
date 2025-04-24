@@ -9,7 +9,7 @@
   width: 100%;
   height: get-unit(1);
   background: get-color("white", 5, 0.2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   margin: get-unit(1 0);
 
   &__container {
@@ -19,13 +19,13 @@
     justify-content: center;
 
     height: 100%;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 
   &__left {
     height: 100%;
     background: get-color("white", 5, 0.5);
     transition: width 2.5s;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 }

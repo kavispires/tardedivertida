@@ -4,9 +4,9 @@
   $self: &;
 
   background-color: rgba($color: white, $alpha: 0.85);
-  border-radius: $border-radius;
-  max-width: $max-width;
-  min-width: calc($max-width / 2);
+  border-radius: var(--border-radius);
+  max-width: var(--max-width);
+  min-width: calc(var(--max-width) / 2);
   display: grid;
   grid-template-columns: auto 1fr;
   margin: get-unit(5);
@@ -16,7 +16,7 @@
     background: get-color("gray", 5, 0.5);
     color: get-color("white");
     padding: get-unit(2 3);
-    border-radius: $border-radius 0 0 $border-radius;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
 
     &--action {
       opacity: 0.85;

@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .instruction {
   $self: &;
@@ -6,9 +6,9 @@
   margin: get-unit(5);
   text-align: center;
   font-size: 1em;
-  color: get-color('black');
+  color: get-color("black");
   display: block;
-  max-width: $max-width;
+  max-width: var(--max-width);
   text-wrap: wrap;
 
   &--no-margin {
@@ -16,17 +16,17 @@
   }
 
   &--white {
-    color: get-color('red');
+    color: get-color("red");
   }
 
   &--dark {
-    color: get-color('white');
+    color: get-color("white");
   }
 
   &--contained {
     background-color: rgba($color: white, $alpha: 0.75);
     padding: get-unit(2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
 
     &#{$self}--white {
       background-color: rgba($color: black, $alpha: 0.2);

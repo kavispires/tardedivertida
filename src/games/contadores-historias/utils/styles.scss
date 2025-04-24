@@ -135,7 +135,7 @@
   padding: get-unit(2);
   color: white;
   background: linear-gradient(160deg, rgb(86, 63, 42) 0%, rgb(71, 42, 18) 33%, rgb(55, 37, 37) 78%);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   border: get-color("brown", 7) get-unit(1) groove;
   @include box-shadow;
 
@@ -163,7 +163,7 @@
   &__entry {
     display: flex;
     flex-direction: column;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     padding: get-unit(1);
     margin: get-unit(1);
   }
@@ -205,7 +205,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     font-size: 1.25rem;
     max-width: 300px;
   }

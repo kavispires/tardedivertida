@@ -1,10 +1,10 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .admin-players-ready-state {
   &__entry {
     display: flex;
     margin: get-unit(1 0);
-    border-bottom: 1px get-color('gray', 1) dashed;
+    border-bottom: 1px get-color("gray", 1) dashed;
   }
 
   &__list {
@@ -14,9 +14,9 @@
   }
 
   &__item {
-    background-color: get-color('gray', 1);
+    background-color: get-color("gray", 1);
     padding: get-unit(0 1);
     margin: get-unit(0 1);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 }

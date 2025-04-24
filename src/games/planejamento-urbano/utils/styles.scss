@@ -1,11 +1,11 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .city-site {
   overflow: hidden;
-  background: get-color('blue', 3);
+  background: get-color("blue", 3);
   margin: get-unit(1);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: grid;
   place-items: center;
   position: relative;
@@ -15,7 +15,7 @@
   }
 
   &--constructed {
-    background-color: get-color('brown', 7);
+    background-color: get-color("brown", 7);
     background-origin: border-box;
     background-repeat: no-repeat;
     background-position: center;
@@ -24,7 +24,7 @@
 
   &--selectable {
     cursor: pointer;
-    background: get-color('blue', 5);
+    background: get-color("blue", 5);
   }
 
   &--temp-construction {
@@ -66,7 +66,7 @@
   text-align: center;
 
   padding-inline: 0.4em;
-  background: get-color('white');
+  background: get-color("white");
   border: 1px solid rgba(100, 100, 100, 0.2);
   border-radius: get-unit(1);
   font-size: 1em;
@@ -102,13 +102,13 @@
 
 .pu-gallery {
   &__map {
-    background: get-color('blue', 3);
-    border-radius: $border-radius;
+    background: get-color("blue", 3);
+    border-radius: var(--border-radius);
     height: 100%;
   }
 
   &__info {
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     height: 100%;
     padding: get-unit(2);
   }

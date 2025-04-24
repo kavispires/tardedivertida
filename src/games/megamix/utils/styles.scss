@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .background {
   background: linear-gradient(
@@ -59,39 +59,35 @@
 
 .minigame-title {
   &__number {
-    font-family: 'Ubuntu Mono', monospace;
-    border: get-unit(3) dotted get-color('yellow', 4);
+    font-family: "Ubuntu Mono", monospace;
+    border: get-unit(3) dotted get-color("yellow", 4);
     border-radius: get-unit(3);
     font-size: 0.85em;
     padding: get-unit(1 3);
-    color: get-color('yellow');
-    background-color: get-color('black', 5, 0.5);
+    color: get-color("yellow");
+    background-color: get-color("black", 5, 0.5);
     display: inline-block;
     margin-bottom: get-unit(4);
-    animation:
-      title-lights 1s infinite alternate,
-      glow 1s infinite alternate;
+    animation: title-lights 1s infinite alternate, glow 1s infinite alternate;
   }
 }
 
 @keyframes title-lights {
   0% {
-    border: get-unit(3) dotted get-color('yellow', 4);
+    border: get-unit(3) dotted get-color("yellow", 4);
   }
   100% {
-    border: get-unit(3) dotted get-color('white', 4);
+    border: get-unit(3) dotted get-color("white", 4);
   }
 }
 
 @keyframes glow {
   0% {
-    box-shadow: 0 0 10px get-color('yellow', 2);
+    box-shadow: 0 0 10px get-color("yellow", 2);
   }
   100% {
-    box-shadow:
-      0 0 5px get-color('yellow', 2),
-      0 0 10px get-color('yellow', 2),
-      0 0 15px get-color('yellow', 2);
+    box-shadow: 0 0 5px get-color("yellow", 2), 0 0 10px get-color("yellow", 2),
+      0 0 15px get-color("yellow", 2);
   }
 }
 
@@ -110,7 +106,7 @@
 
   &__background {
     width: 100%;
-    background-color: get-color('white', 5, 0.5);
+    background-color: get-color("white", 5, 0.5);
     background: linear-gradient(
       90deg,
       rgba(255, 233, 167, 0.5) 0%,
@@ -153,14 +149,14 @@
 }
 
 .results {
-  background-color: get-color('white', 5, 0.6);
+  background-color: get-color("white", 5, 0.6);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   position: relative;
   width: 80vw;
-  max-width: $max-width;
+  max-width: var(--max-width);
   min-height: 400px;
 
   &__label {
@@ -178,7 +174,7 @@
   }
 
   &__vip {
-    background-color: get-color('yellow', 3, 0.6);
+    background-color: get-color("yellow", 3, 0.6);
     width: 100%;
     padding: get-unit(2);
     border-radius: get-unit(2 0 0 2);
@@ -188,14 +184,14 @@
   }
 
   &__values {
-    background-color: get-color('white', 3, 0.6);
+    background-color: get-color("white", 3, 0.6);
     width: 100%;
 
     padding: get-unit(2);
   }
 
   &__gutter {
-    background-color: get-color('black', 3, 0.3);
+    background-color: get-color("black", 3, 0.3);
     width: 100%;
     padding: get-unit(2);
     border-radius: get-unit(0 2 2 0);
@@ -216,16 +212,16 @@
 
   &__player-name {
     transform: translateY(-100%);
-    background: get-color('white', 5, 0.5);
+    background: get-color("white", 5, 0.5);
     padding: get-unit(0 1);
     border-radius: get-unit(1);
   }
 }
 
 .d-table {
-  background-color: get-color('white', 5, 0.6);
+  background-color: get-color("white", 5, 0.6);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: get-unit(3);
@@ -236,8 +232,8 @@
     grid-template-columns: 32px auto;
     grid-template-rows: auto auto;
     grid-template-areas:
-      'avatar bar'
-      'avatar name';
+      "avatar bar"
+      "avatar name";
   }
 
   &__player-avatar {
@@ -253,7 +249,7 @@
 
   &__player-name {
     text-transform: uppercase;
-    color: get-color('gray', 8);
+    color: get-color("gray", 8);
     grid-area: name;
   }
 
@@ -263,7 +259,7 @@
     padding: 0;
 
     &--selected {
-      border: 5px solid get-color('purple');
+      border: 5px solid get-color("purple");
     }
   }
 
@@ -280,11 +276,11 @@
   }
 
   &__text-value {
-    border: 1px solid get-color('gray');
+    border: 1px solid get-color("gray");
     padding: get-unit(1 3);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     margin: get-unit(1);
-    background-color: get-color('white');
+    background-color: get-color("white");
     text-transform: uppercase;
     text-align: center;
   }
@@ -298,7 +294,7 @@
 .h-scene-tile {
   $self: &;
 
-  background-color: get-color('black');
+  background-color: get-color("black");
   padding: get-unit(2);
   border-radius: get-unit(2);
   margin: get-unit(2);
@@ -328,79 +324,79 @@
   }
 
   &__item {
-    color: get-color('white', 5, 0.3);
+    color: get-color("white", 5, 0.3);
     padding: get-unit(1);
 
     &--active {
-      color: get-color('white', 5, 1);
+      color: get-color("white", 5, 1);
     }
   }
 
   &--cause {
-    border: 5px solid get-color('violet', 6);
+    border: 5px solid get-color("violet", 6);
 
     #{ $self }__title {
-      color: get-color('violet', 5);
+      color: get-color("violet", 5);
     }
 
     #{ $self }__item {
-      background-color: get-color('violet', 7);
-      border-color: get-color('violet', 7);
+      background-color: get-color("violet", 7);
+      border-color: get-color("violet", 7);
     }
 
     #{ $self }__icon {
-      color: get-color('violet', 5);
+      color: get-color("violet", 5);
     }
   }
 
   &--evidence {
-    border: 5px solid get-color('red', 8);
+    border: 5px solid get-color("red", 8);
 
     #{ $self }__title {
-      color: get-color('red', 5);
+      color: get-color("red", 5);
     }
 
     #{ $self }__item {
-      background-color: get-color('red', 7);
-      border-color: get-color('red', 7);
+      background-color: get-color("red", 7);
+      border-color: get-color("red", 7);
     }
 
     #{ $self }__icon {
-      color: get-color('red', 5);
+      color: get-color("red", 5);
     }
   }
 
   &--location {
-    border: 5px solid get-color('green', 8);
+    border: 5px solid get-color("green", 8);
 
     #{ $self }__title {
-      color: get-color('green', 5);
+      color: get-color("green", 5);
     }
 
     #{ $self }__item {
-      background-color: get-color('green', 7);
-      border-color: get-color('green', 7);
+      background-color: get-color("green", 7);
+      border-color: get-color("green", 7);
     }
 
     #{ $self }__icon {
-      color: get-color('green', 5);
+      color: get-color("green", 5);
     }
   }
 
   &--scene {
-    border: 5px solid get-color('orange', 8);
+    border: 5px solid get-color("orange", 8);
 
     #{ $self }__title {
-      color: get-color('orange', 5);
+      color: get-color("orange", 5);
     }
 
     #{ $self }__item {
-      background-color: get-color('orange', 7);
-      border-color: get-color('orange', 7);
+      background-color: get-color("orange", 7);
+      border-color: get-color("orange", 7);
     }
 
     #{ $self }__icon {
-      color: get-color('orange', 5);
+      color: get-color("orange", 5);
     }
   }
 }
@@ -415,9 +411,9 @@
   justify-content: center;
 
   &--selected {
-    border: 2px dashed get-color('yellow');
-    background-color: get-color('yellow', 6);
-    border-radius: $border-radius;
+    border: 2px dashed get-color("yellow");
+    background-color: get-color("yellow", 6);
+    border-radius: var(--border-radius);
   }
 
   &__name {
@@ -433,12 +429,12 @@
 }
 
 .c-book-pages {
-  max-width: $max-width;
+  max-width: var(--max-width);
   width: 50vw;
 }
 
 .c-book-content.c-book-content {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 2em;
   display: grid;
   place-items: center;
@@ -455,7 +451,7 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .w-contender-overlay {
@@ -475,13 +471,13 @@
 }
 
 .w-contender-name {
-  font-family: 'Bangers', monospace;
+  font-family: "Bangers", monospace;
   position: absolute;
   bottom: get-unit(1);
   left: get-unit(1);
   text-align: left;
   z-index: 2;
-  color: get-color('white');
+  color: get-color("white");
   text-shadow: 2px 2px 2px #000;
   letter-spacing: 2px;
   overflow-y: hidden;
@@ -493,8 +489,8 @@
   flex-grow: 1;
   margin: get-unit(4);
   padding: get-unit(4);
-  border-radius: $border-radius;
-  background-color: get-color('white', 5, 0.5);
+  border-radius: var(--border-radius);
+  background-color: get-color("white", 5, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -516,9 +512,9 @@
     right: 0;
     font-size: 1.5em;
     width: 2em;
-    background-color: get-color('white');
+    background-color: get-color("white");
     border-radius: 50%;
-    border: 5px solid get-color('orange');
+    border: 5px solid get-color("orange");
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
@@ -545,7 +541,7 @@
 .cm-instagram {
   width: 300px;
   @include box-shadow;
-  background-color: get-color('white');
+  background-color: get-color("white");
   margin: get-unit(2 auto);
 
   &__user {
@@ -553,7 +549,7 @@
   }
 
   &__picture {
-    background-color: get-color('pink', 2);
+    background-color: get-color("pink", 2);
   }
 
   &__buttons {
@@ -581,18 +577,18 @@
 }
 
 .ff-phone {
-  background-color: get-color('white');
+  background-color: get-color("white");
   width: 100%;
   height: 100%;
 
   &__contact {
     padding: get-unit(2);
-    border-bottom: 1px solid get-color('gray', 3);
-    background: get-color('teal', 2);
+    border-bottom: 1px solid get-color("gray", 3);
+    background: get-color("teal", 2);
   }
 
   &__name {
-    color: get-color('gray', 6);
+    color: get-color("gray", 6);
   }
 
   &__thread {
@@ -601,8 +597,8 @@
 
   &__message {
     align-items: flex-start;
-    background-color: get-color('white', 8);
-    color: get-color('black');
+    background-color: get-color("white", 8);
+    color: get-color("black");
     width: fit-content;
     margin: get-unit(1 0 0 2);
     border-radius: 1.15em;
@@ -614,28 +610,28 @@
     text-align: left;
 
     &--important {
-      outline: get-unit(2) dashed get-color('yellow');
+      outline: get-unit(2) dashed get-color("yellow");
       text-transform: uppercase;
       max-width: 95%;
     }
 
     &::before {
       bottom: -0.1rem;
-      content: '';
+      content: "";
       height: 1em;
       position: absolute;
       border-bottom-right-radius: 0.8em 0.7em;
-      border-left: 1em solid get-color('white', 8);
+      border-left: 1em solid get-color("white", 8);
       left: -0.35rem;
       transform: translate(0, -0.1em);
     }
 
     &::after {
       bottom: -0.1em;
-      content: '';
+      content: "";
       height: 1em;
       position: absolute;
-      background-color: get-color('white');
+      background-color: get-color("white");
       border-bottom-right-radius: 0.5em;
       left: 20px;
       transform: translate(-30px, -2px);
@@ -645,19 +641,19 @@
 
   &__timestamp {
     font-size: 0.75em;
-    color: get-color('gray', 4);
+    color: get-color("gray", 4);
     margin: get-unit(1 0);
   }
 }
 
 .tt-phone {
-  background: radial-gradient(circle, get-color('teal') 0%, get-color('purple') 100%);
+  background: radial-gradient(circle, get-color("teal") 0%, get-color("purple") 100%);
   width: 100%;
   height: 100%;
   position: relative;
 
   &__header {
-    color: get-color('white');
+    color: get-color("white");
     font-size: 0.75em;
     display: flex;
     justify-content: space-around;
@@ -671,7 +667,7 @@
     right: 0;
     top: 60%;
     z-index: 4;
-    color: get-color('white');
+    color: get-color("white");
   }
 
   &__background {
@@ -700,7 +696,7 @@
 
 .m-question-wrapper {
   width: 100%;
-  max-width: $max-width;
+  max-width: var(--max-width);
 }
 
 .m-question {
@@ -717,12 +713,12 @@
 
   &--span {
     display: block;
-    background-color: get-color('white');
+    background-color: get-color("white");
     font-size: 1.25rem;
   }
 
   &__number {
-    background-color: get-color('yellow');
+    background-color: get-color("yellow");
     border-radius: 50%;
     width: 2ch;
     height: 2ch;
@@ -735,8 +731,8 @@
 
 .a-drawing {
   width: 300px;
-  background-color: get-color('white');
-  border: 8px inset get-color('brown');
+  background-color: get-color("white");
+  border: 8px inset get-color("brown");
   margin: get-unit(1);
   border-radius: get-unit(2);
 }
@@ -744,8 +740,8 @@
 .ff-chevron {
   width: 150px;
   text-align: center;
-  background: get-color('white', 5, 0.75);
-  border-radius: $border-radius;
+  background: get-color("white", 5, 0.75);
+  border-radius: var(--border-radius);
   padding: get-unit(1);
 
   &__name {
@@ -755,7 +751,7 @@
 
   &__value {
     font-size: 4rem;
-    color: get-color('white');
+    color: get-color("white");
   }
 }
 
@@ -789,9 +785,9 @@
   }
 
   &__text {
-    background-color: get-color('white', 5, 0.75);
+    background-color: get-color("white", 5, 0.75);
     padding: get-unit(2 4);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     width: 100%;
     display: block;
   }
@@ -799,7 +795,7 @@
 
 .a-drawings {
   display: flex;
-  max-width: $max-width;
+  max-width: var(--max-width);
   justify-content: center;
 
   &__entry {
@@ -814,7 +810,7 @@
   gap: get-unit(10);
   &__tree {
     border-radius: 50%;
-    background: get-color('white', 5, 0.1);
+    background: get-color("white", 5, 0.1);
     padding: get-unit(8);
     display: flex;
     flex-direction: column;
@@ -823,9 +819,9 @@
   }
 
   &__text {
-    background-color: get-color('white', 5, 0.2);
+    background-color: get-color("white", 5, 0.2);
     padding: get-unit(2 4);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     display: block;
     text-transform: uppercase;
   }
@@ -833,9 +829,9 @@
 
 .cm-clues {
   &__clue {
-    background-color: get-color('white', 5, 0.2);
+    background-color: get-color("white", 5, 0.2);
     padding: get-unit(2 4);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     display: grid;
     grid-template-columns: repeat(7, auto);
     align-items: center;
@@ -847,10 +843,10 @@
   }
 
   &__clue-text {
-    background-color: get-color('white', 5, 0.85);
-    color: get-color('black');
+    background-color: get-color("white", 5, 0.85);
+    color: get-color("black");
     padding: get-unit(2 4);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     display: block;
     text-transform: uppercase;
   }
@@ -863,8 +859,8 @@
 }
 
 .noa-candidate {
-  background-color: get-color('white', 5, 0.6);
-  border-radius: $border-radius;
+  background-color: get-color("white", 5, 0.6);
+  border-radius: var(--border-radius);
   display: grid;
   grid-template-columns: repeat(2, auto);
   place-items: center;
@@ -879,9 +875,9 @@
   &__text {
     display: flex;
     flex-wrap: wrap;
-    background-color: get-color('white', 5, 0.2);
+    background-color: get-color("white", 5, 0.2);
     padding: get-unit(2 4);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     display: block;
   }
 
@@ -891,8 +887,8 @@
   }
 
   &__info-entry {
-    border-radius: $border-radius;
-    border: get-unit(1) dashed get-color('blue', 4);
+    border-radius: var(--border-radius);
+    border: get-unit(1) dashed get-color("blue", 4);
     margin: get-unit(2 0);
     padding: get-unit(1);
     text-transform: capitalize;
@@ -900,7 +896,7 @@
 
   &__info-label {
     font-family: monospace;
-    color: get-color('gray', 6);
+    color: get-color("gray", 6);
     text-transform: uppercase;
     font-size: 0.75rem;
     margin-bottom: get-unit(1);
@@ -909,7 +905,7 @@
 
 .o-simple-dial {
   width: 40vw;
-  max-width: $max-width;
+  max-width: var(--max-width);
 
   &__clickable {
     cursor: pointer;
@@ -918,7 +914,7 @@
     &:hover {
       transform: scale(1.05);
       transform-origin: center;
-      fill: get-color('purple');
+      fill: get-color("purple");
     }
   }
 
@@ -971,7 +967,7 @@ $o-card-width: 300px;
       transition: all 500ms;
 
       &:hover {
-        background-color: get-color('white');
+        background-color: get-color("white");
       }
     }
 
@@ -1038,11 +1034,11 @@ $o-card-width: 300px;
 }
 
 .scenario {
-  background: get-color('red');
-  color: get-color('white');
+  background: get-color("red");
+  color: get-color("white");
 
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1055,23 +1051,23 @@ $o-card-width: 300px;
 
   &__card {
     text-align: center;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: "Ubuntu Mono", monospace;
     margin-top: get-unit(2);
     flex: 1;
-    background: get-color('red', 6);
+    background: get-color("red", 6);
     padding: get-unit(2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 
   &__incorrect-result {
-    background: get-color('gray', 3);
+    background: get-color("gray", 3);
   }
 }
 
 .player-vote {
-  background-color: get-color('white', 5, 0.6);
+  background-color: get-color("white", 5, 0.6);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   margin: get-unit(2);
   display: flex;
   flex-direction: column;
@@ -1083,14 +1079,14 @@ $o-card-width: 300px;
   &__name {
     margin-bottom: get-unit(2);
     font-size: 0.85rem;
-    color: get-color('gray');
+    color: get-color("gray");
   }
 
   &__value {
     text-transform: uppercase;
-    background-color: get-color('white', 5, 0.6);
+    background-color: get-color("white", 5, 0.6);
     padding: get-unit(2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     width: 100%;
     text-align: center;
     overflow: hidden;
@@ -1102,9 +1098,9 @@ $o-card-width: 300px;
 
 .n-street {
   display: flex;
-  background-color: get-color('white', 5, 0.6);
+  background-color: get-color("white", 5, 0.6);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   align-items: center;
 
   &__houses {
@@ -1113,9 +1109,9 @@ $o-card-width: 300px;
 }
 
 .n-street-house {
-  background-color: get-color('white', 5, 0.6);
+  background-color: get-color("white", 5, 0.6);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .v-movies {
@@ -1139,8 +1135,8 @@ $o-card-width: 300px;
 .q-player-glyphs {
   display: grid;
   grid-template-columns: repeat(7, auto);
-  border-radius: $border-radius;
-  background: get-color('gray', 8);
+  border-radius: var(--border-radius);
+  background: get-color("gray", 8);
   margin: get-unit(1);
   min-height: 100px;
 
@@ -1155,11 +1151,11 @@ $o-card-width: 300px;
     align-items: center;
 
     &--positive {
-      background-color: get-color('green', 8, 0.5);
+      background-color: get-color("green", 8, 0.5);
     }
 
     &--negative {
-      background-color: get-color('red', 8, 0.5);
+      background-color: get-color("red", 8, 0.5);
     }
   }
 }

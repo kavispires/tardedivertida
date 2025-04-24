@@ -1,8 +1,8 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .forest-container {
   max-width: 90vw;
-  background: get-color('green', 8, 0.85);
+  background: get-color("green", 8, 0.85);
   border-radius: 75px;
 
   &--small {
@@ -43,7 +43,7 @@
   border-radius: 75px;
   text-transform: capitalize;
   margin: get-unit(1);
-  border: get-unit(2) get-color('green', 5) solid;
+  border: get-unit(2) get-color("green", 5) solid;
 
   &__tree-container {
     position: relative;
@@ -59,7 +59,7 @@
 
     &:hover {
       transform: scale(1.1);
-      background-color: get-color('white', 5, 0.5);
+      background-color: get-color("white", 5, 0.5);
     }
 
     &--disabled {
@@ -67,63 +67,63 @@
 
       &:hover {
         transform: scale(1);
-        background-color: get-color('gray', 7, 0.5);
+        background-color: get-color("gray", 7, 0.5);
       }
     }
   }
 
   &__tree {
-    background: get-color('green', 6, 0.25);
+    background: get-color("green", 6, 0.25);
     padding: get-unit(2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     border-radius: 50%;
     display: grid;
     place-items: center;
 
     &--clickable {
-      border: get-unit(2) get-color('white') dotted;
+      border: get-unit(2) get-color("white") dotted;
     }
 
     &--segment {
-      background: get-color('teal', 4, 0.85);
+      background: get-color("teal", 4, 0.85);
     }
 
     &--passed {
-      background: get-color('green', 8, 0.85);
+      background: get-color("green", 8, 0.85);
     }
 
     &--current {
-      background: get-color('green', 4, 0.85);
-      border: get-unit(2) get-color('green', 5) solid;
+      background: get-color("green", 4, 0.85);
+      border: get-unit(2) get-color("green", 5) solid;
     }
 
     &--UP {
-      border-radius: $border-radius $border-radius 50% 50%;
-      border-top: get-unit(2) get-color('red', 4) solid;
+      border-radius: var(--border-radius) var(--border-radius) 50% 50%;
+      border-top: get-unit(2) get-color("red", 4) solid;
     }
 
     &--RIGHT {
-      border-radius: 50% $border-radius $border-radius 50%;
-      border-right: get-unit(2) get-color('red', 4) solid;
+      border-radius: 50% var(--border-radius) var(--border-radius) 50%;
+      border-right: get-unit(2) get-color("red", 4) solid;
     }
 
     &--DOWN {
-      border-radius: 50% 50% $border-radius $border-radius;
-      border-bottom: get-unit(2) get-color('red', 4) solid;
+      border-radius: 50% 50% var(--border-radius) var(--border-radius);
+      border-bottom: get-unit(2) get-color("red", 4) solid;
     }
 
     &--LEFT {
-      border-radius: $border-radius 50% 50% $border-radius;
-      border-left: get-unit(2) get-color('red', 4) solid;
+      border-radius: var(--border-radius) 50% 50% var(--border-radius);
+      border-left: get-unit(2) get-color("red", 4) solid;
     }
 
     &--selected {
-      background: get-color('yellow', 4, 0.25);
-      border: get-unit(2) get-color('pink') dotted;
+      background: get-color("yellow", 4, 0.25);
+      border: get-unit(2) get-color("pink") dotted;
     }
 
     &--goal {
-      border: get-unit(2) get-color('yellow', 4) solid;
+      border: get-unit(2) get-color("yellow", 4) solid;
     }
   }
 
@@ -134,7 +134,7 @@
   }
 
   &__compass-icon {
-    filter: drop-shadow(1px 3px 2px get-color('black', 4));
+    filter: drop-shadow(1px 3px 2px get-color("black", 4));
   }
 
   &__arrow {
@@ -189,7 +189,7 @@
   &__arrow-line {
     position: absolute;
     z-index: -1;
-    content: ' ';
+    content: " ";
     width: 75px;
     border: 3px dashed transparent;
     opacity: 0.75;
@@ -250,7 +250,7 @@
   &__arrow-from-line {
     position: absolute;
     z-index: -1;
-    content: ' ';
+    content: " ";
     width: 75px;
     border: 3px dashed transparent;
     opacity: 0.75;
@@ -425,9 +425,9 @@
 }
 
 .map-builder {
-  background: get-color('yellow', 1);
+  background: get-color("yellow", 1);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &__segment {
     display: flex;
@@ -446,18 +446,18 @@
   }
 
   &__card {
-    background: get-color('yellow', 2);
+    background: get-color("yellow", 2);
     padding: get-unit(2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     max-width: 100px;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: "Ubuntu Mono", monospace;
     text-transform: capitalize;
     border: get-unit(2) transparent solid;
     position: relative;
     margin-bottom: get-unit(1);
 
     &--new {
-      border-color: get-color('yellow', 4);
+      border-color: get-color("yellow", 4);
     }
   }
 
@@ -500,11 +500,11 @@
   }
 
   &__clue {
-    background: get-color('yellow', 2);
+    background: get-color("yellow", 2);
     padding: get-unit(1 2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     max-width: 100px;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: "Ubuntu Mono", monospace;
     text-transform: capitalize;
     margin: get-unit(2 1 1 1);
     position: relative;
@@ -566,11 +566,11 @@
   position: relative;
 
   &__clue {
-    background: get-color('yellow', 2);
+    background: get-color("yellow", 2);
     padding: get-unit(1 2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     max-width: 100px;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: "Ubuntu Mono", monospace;
     text-transform: capitalize;
     margin: get-unit(2 1 1 1);
     position: relative;
@@ -595,7 +595,7 @@
 .game-over-strip {
   border: get-unit(1) solid transparent;
   padding-right: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .game-over-avatar-strip {

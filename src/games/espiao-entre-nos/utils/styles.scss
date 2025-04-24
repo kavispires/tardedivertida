@@ -1,11 +1,11 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .e-phase {
   margin: 0;
   padding: get-unit(10 8 8 8);
   background-color: rgba($color: black, $alpha: 0.9);
-  border-radius: $border-radius;
-  font-family: 'Courier New', monospace;
+  border-radius: var(--border-radius);
+  font-family: "Courier New", monospace;
 
   &--center {
     justify-content: center;
@@ -13,19 +13,17 @@
 }
 
 .e-phase-announcement {
-  font-family: 'Courier New', monospace;
-  background-color: get-color('white');
+  font-family: "Courier New", monospace;
+  background-color: get-color("white");
 
   &--animated {
     .title {
       overflow: hidden; /* Ensures the content is not revealed until the animation */
-      border-right: 0.15em solid get-color('lime'); /* The typewriter cursor */
+      border-right: 0.15em solid get-color("lime"); /* The typewriter cursor */
       white-space: nowrap; /* Keeps the content on a single line */
       margin: 0 auto; /* Gives that scrolling effect as the typing happens */
       letter-spacing: 0.15em; /* Adjust as needed */
-      animation:
-        typing 3s steps(40, end),
-        blink-caret 0.75s step-end infinite;
+      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
     }
   }
 
@@ -54,28 +52,28 @@
     border-color: transparent;
   }
   50% {
-    border-color: get-color('lime');
+    border-color: get-color("lime");
   }
 }
 
 .e-phase-title.e-phase-title {
-  color: get-color('lime');
+  color: get-color("lime");
 
   &--fail {
-    color: get-color('red');
+    color: get-color("red");
   }
 }
 
 .e-phase-instruction.e-phase-instruction {
-  border: 1px solid get-color('lime');
-  border-radius: $border-radius;
-  color: get-color('lime');
+  border: 1px solid get-color("lime");
+  border-radius: var(--border-radius);
+  color: get-color("lime");
   padding: get-unit(1 4);
   margin: get-unit(2 5);
 
   h4 {
-    color: get-color('lime');
-    border-bottom: 1px solid get-color('lime');
+    color: get-color("lime");
+    border-bottom: 1px solid get-color("lime");
   }
 }
 
@@ -90,21 +88,21 @@
 }
 
 .e-lists {
-  border: 1px solid get-color('lime');
-  border-radius: $border-radius;
-  color: get-color('lime');
+  border: 1px solid get-color("lime");
+  border-radius: var(--border-radius);
+  color: get-color("lime");
   margin: get-unit(2);
 }
 
 .e-notes {
   width: 100%;
   resize: vertical;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   padding: get-unit(1 2);
 }
 
 .e-card {
-  border-color: get-color('lime');
+  border-color: get-color("lime");
 
   @at-root #{&}__footer#{&}__footer {
     font-size: 1.2em;
@@ -138,10 +136,10 @@
 }
 
 .e-timer {
-  border: 2px solid get-color('lime');
-  color: get-color('lime');
+  border: 2px solid get-color("lime");
+  color: get-color("lime");
   width: 100px;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   font-family: monospace;
   font-size: 2em;
   text-align: center;
@@ -153,25 +151,25 @@
 
 @keyframes blink-timer {
   50% {
-    color: get-color('red');
+    color: get-color("red");
   }
 }
 
 .e-admin-final-assessment {
-  color: get-color('red');
+  color: get-color("red");
 }
 
 .e-modal {
-  color: get-color('lime');
-  font-family: 'Courier New', monospace;
+  color: get-color("lime");
+  font-family: "Courier New", monospace;
 
   .ant-modal-content,
   .ant-modal-header {
-    background-color: get-color('black');
+    background-color: get-color("black");
   }
 
   .ant-modal-title {
-    color: get-color('lime');
+    color: get-color("lime");
   }
 }
 
@@ -190,12 +188,12 @@
 .e-round-announcement {
   .round-announcement {
     &__circle {
-      border-color: get-color('lime');
+      border-color: get-color("lime");
       background-color: transparent;
     }
 
     &__number {
-      color: get-color('lime');
+      color: get-color("lime");
       transform: translateY(5%);
     }
   }
@@ -208,7 +206,7 @@
   padding: get-unit(1);
 
   &__title {
-    color: get-color('lime') !important;
+    color: get-color("lime") !important;
   }
 
   &__clear-button {
@@ -236,12 +234,12 @@
     white-space: nowrap;
 
     &:hover {
-      background-color: get-color('white');
+      background-color: get-color("white");
     }
 
     &--crossed {
       text-decoration: line-through;
-      color: get-color('red');
+      color: get-color("red");
     }
   }
 }
