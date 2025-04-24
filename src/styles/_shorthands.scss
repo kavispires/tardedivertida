@@ -84,7 +84,7 @@ $colors: "brown", "yellow", "orange", "green", "teal", "blue", "purple", "violet
 
 // Border radius shorthand
 .rounded {
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .absolute {

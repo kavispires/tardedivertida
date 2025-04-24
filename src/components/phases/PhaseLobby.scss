@@ -18,7 +18,7 @@
     width: 360px;
     @include box-shadow;
     padding: get-unit(3);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,7 +91,7 @@
     flex: 1;
     @include box-shadow;
     padding: get-unit(3);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     gap: get-unit(2);
     display: flex;
     flex-direction: column;
@@ -125,7 +125,7 @@
 
 .lobby-usual-avatar-selection {
   border: 1px solid get-color("gray", 3, 0.5);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   padding: get-unit(1 1 2);
@@ -141,7 +141,7 @@
 
   &__avatar {
     width: 40px;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     margin: get-unit(0 1);
   }
 }
@@ -158,7 +158,7 @@
   &__avatar {
     width: 48px;
     height: 48px;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     margin: 0;
     border: 2px solid transparent;
 
@@ -173,7 +173,7 @@
 
   &__avatar-svg {
     width: 44px;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 }
 

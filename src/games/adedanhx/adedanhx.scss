@@ -1,5 +1,5 @@
-@use 'styles/sass' as *;
-@import url('https://fonts.googleapis.com/css2?family=Passion+One');
+@use "styles/sass" as *;
+@import url("https://fonts.googleapis.com/css2?family=Passion+One");
 
 .adedanhx-grid {
   display: grid;
@@ -9,10 +9,10 @@
 }
 
 .adedanhx-grid-cell {
-  background: get-color('white');
+  background: get-color("white");
   padding: get-unit(2);
   max-width: 300px;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &__corner {
     opacity: 0;
@@ -22,7 +22,7 @@
     display: grid;
     grid-template-rows: auto 1fr auto;
     flex-direction: column;
-    font-family: 'Zilla Slab', monospace;
+    font-family: "Zilla Slab", monospace;
     position: relative;
     padding: get-unit(2);
   }
@@ -41,7 +41,7 @@
   }
 
   &__level {
-    color: get-color('yellow', 7);
+    color: get-color("yellow", 7);
     display: flex;
     justify-content: center;
   }
@@ -56,12 +56,12 @@
 
   &__letters-type {
     position: absolute;
-    background: get-color('blue', 2);
-    color: get-color('blue', 8);
+    background: get-color("blue", 2);
+    color: get-color("blue", 8);
     padding: get-unit(1);
     top: get-unit(-1);
     left: get-unit(-5);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     transform: rotate(-5deg);
 
     &--starts-with {
@@ -113,9 +113,9 @@
     justify-content: center;
     flex-direction: column;
     gap: get-unit(2);
-    background: get-color('white', 5, 0.85);
+    background: get-color("white", 5, 0.85);
     padding: get-unit(2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     min-width: 200px;
     height: 100%;
   }
@@ -132,8 +132,8 @@
     text-transform: uppercase;
     margin: get-unit(0 2);
     font-style: italic;
-    border-radius: $border-radius;
-    background: get-color('gray', 1);
+    border-radius: var(--border-radius);
+    background: get-color("gray", 1);
     padding: get-unit(1 2);
     overflow-x: hidden;
 
@@ -148,9 +148,9 @@
 }
 
 .final-gallery-entry {
-  background: get-color('white', 5, 0.85);
+  background: get-color("white", 5, 0.85);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   font-size: 0.65rem;
   width: 100%;
 

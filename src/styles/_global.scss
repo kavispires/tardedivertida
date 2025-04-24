@@ -1,5 +1,12 @@
 @use "styles/sass" as *;
 
+:root {
+  // Border-radius
+  --border-radius: 2px;
+  // Delimiting width for large components
+  --max-width: 960px;
+}
+
 html {
   margin: 0;
   padding: 0;
@@ -22,7 +29,7 @@ body {
   flex-grow: 1;
   margin: get-unit(4);
   padding: get-unit(4);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   background-color: rgba(white, 0.5);
 
   &--white {
@@ -77,20 +84,20 @@ body {
 }
 
 .border-radius {
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .admin-container {
   background-color: rgba($color: red, $alpha: 0.5);
   padding: get-unit(2);
   border: 1px solid get-color("red");
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .contained {
   background-color: rgba($color: white, $alpha: 0.6);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .reset-button {

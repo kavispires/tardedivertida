@@ -49,7 +49,7 @@
 
 .run-card {
   background: get-color("white");
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   aspect-ratio: 2 / 3;
   display: flex;
@@ -63,7 +63,7 @@
 
   &__image {
     aspect-ratio: 3 / 2;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 
   &__name {

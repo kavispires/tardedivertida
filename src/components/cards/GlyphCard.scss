@@ -2,5 +2,5 @@
 
 .glyph-card {
   background: get-color("white");
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }

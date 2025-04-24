@@ -1,15 +1,15 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .p-step {
   min-width: 50vw;
 }
 
 .p-tweets-card {
-  background-color: get-color('white');
+  background-color: get-color("white");
   font-size: 1rem;
   min-width: 200px;
   width: 350px;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   padding: get-unit(1 3);
   margin: get-unit(2 auto);
   @include box-shadow;
@@ -18,26 +18,26 @@
     display: flex;
     margin: get-unit(2 0);
     border: get-unit(1) solid;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
 
     &:nth-child(1) {
-      border-color: get-color('blue', 5);
+      border-color: get-color("blue", 5);
     }
 
     &:nth-child(2) {
-      border-color: get-color('purple', 4);
+      border-color: get-color("purple", 4);
     }
 
     &:nth-child(3) {
-      border-color: get-color('blue', 4);
+      border-color: get-color("blue", 4);
     }
 
     &:nth-child(4) {
-      border-color: get-color('purple', 5);
+      border-color: get-color("purple", 5);
     }
 
     &:nth-child(6) {
-      border-color: get-color('pink', 8);
+      border-color: get-color("pink", 8);
     }
 
     &--or {
@@ -70,7 +70,7 @@
     transition: 500ms background-color;
 
     &:hover {
-      background: get-color('blue', 1);
+      background: get-color("blue", 1);
     }
   }
 }
@@ -81,7 +81,7 @@
   }
 
   &__input {
-    font-family: 'Architects Daughter', cursive;
+    font-family: "Architects Daughter", cursive;
 
     text-transform: uppercase;
     text-align: center;
@@ -90,21 +90,21 @@
 }
 
 .p-trending-tweet {
-  background-color: get-color('white');
+  background-color: get-color("white");
   padding: get-unit(2 8);
   position: relative;
   font-size: 2rem;
   margin: get-unit(2 0 6 0);
 
   &__likes {
-    background-color: get-color('white');
+    background-color: get-color("white");
     position: absolute;
     display: flex;
     flex-wrap: nowrap;
     font-size: 0.75em;
-    border: 1px solid get-color('blue');
+    border: 1px solid get-color("blue");
     padding: get-unit(1 2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     right: 0;
     transform: translate(85%, -95%);
     line-height: 1.5em;
@@ -120,8 +120,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
-    'tweet tweet'
-    'like dislike';
+    "tweet tweet"
+    "like dislike";
 
   margin-top: get-unit(4);
 
@@ -135,45 +135,45 @@
 .p-reaction-button {
   min-height: 50px;
   padding: get-unit(3 1);
-  color: get-color('white');
+  color: get-color("white");
 
   &--like {
     grid-area: like;
-    background-color: get-color('blue');
-    border-color: get-color('blue');
+    background-color: get-color("blue");
+    border-color: get-color("blue");
 
     &:hover {
-      background-color: get-color('blue', 4);
-      border-color: get-color('blue', 4);
+      background-color: get-color("blue", 4);
+      border-color: get-color("blue", 4);
     }
 
     &:active,
     &:focus {
-      background-color: get-color('blue', 4);
-      border-color: get-color('yellow', 5);
+      background-color: get-color("blue", 4);
+      border-color: get-color("yellow", 5);
     }
   }
 
   &--dislike {
     grid-area: dislike;
-    background-color: get-color('red', 5);
-    border-color: get-color('red', 5);
+    background-color: get-color("red", 5);
+    border-color: get-color("red", 5);
 
     &:hover {
-      background-color: get-color('red', 4);
-      border-color: get-color('red', 4);
+      background-color: get-color("red", 4);
+      border-color: get-color("red", 4);
     }
 
     &:active,
     &:focus {
-      background-color: get-color('red', 4);
-      border-color: get-color('yellow', 5);
+      background-color: get-color("red", 4);
+      border-color: get-color("yellow", 5);
     }
   }
 
   &--active {
-    border-color: get-color('yellow', 5);
-    color: get-color('yellow', 5);
+    border-color: get-color("yellow", 5);
+    color: get-color("yellow", 5);
   }
 }
 
@@ -220,7 +220,7 @@
     border-radius: 0.4em;
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 50%;
@@ -246,16 +246,16 @@
 }
 
 .p-icon-correct {
-  color: get-color('blue');
+  color: get-color("blue");
 }
 
 .p-tweet-container {
-  background-color: get-color('white');
+  background-color: get-color("white");
 }
 
 .p-tweet {
-  background-color: get-color('white');
-  border-bottom: 1px solid get-color('gray');
+  background-color: get-color("white");
+  border-bottom: 1px solid get-color("gray");
 
   &__tweet {
     margin: 0;
@@ -267,14 +267,14 @@
   }
 
   &__action {
-    color: get-color('gray', 4);
+    color: get-color("gray", 4);
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   &__action-active {
-    color: get-color('black');
+    color: get-color("black");
   }
 
   &__icon {
@@ -302,11 +302,11 @@
   }
 
   &__author-name {
-    color: get-color('black', 5, 0.65);
+    color: get-color("black", 5, 0.65);
   }
 
   &__author-date {
-    color: get-color('black', 5, 0.45);
+    color: get-color("black", 5, 0.45);
     margin-left: get-unit(1);
   }
 
@@ -315,15 +315,15 @@
   }
 
   &__correct {
-    color: get-color('blue');
+    color: get-color("blue");
   }
 
   &__incorrect {
-    color: get-color('red');
+    color: get-color("red");
   }
 
   &__almost {
-    color: get-color('orange');
+    color: get-color("orange");
   }
 }
 
@@ -340,6 +340,6 @@
   }
 
   &__comment {
-    color: get-color('gray');
+    color: get-color("gray");
   }
 }

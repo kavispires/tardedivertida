@@ -2,7 +2,7 @@
 
 .n-table-container {
   background-color: get-color("gray", 1);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   padding: get-unit(3 0 0 0);
 }
 
@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: repeat(3, auto);
   background-color: get-color("gray", 1);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &--game-over {
     grid-template-columns: repeat(10, auto);
@@ -33,7 +33,7 @@
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &:hover {
     transform: scale(1);
@@ -67,7 +67,7 @@
 .result {
   background-color: get-color("yellow", 5);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &--bot {
     background-color: get-color("gray", 4);

@@ -8,7 +8,7 @@
 
 .grid-item {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &--selected {
     background: rgba(111, 125, 133, 0.75);
@@ -16,7 +16,7 @@
 }
 
 .set-match {
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   padding: get-unit(0 2);
 
   &--set-0 {
@@ -40,12 +40,12 @@
 }
 
 .set-match-item {
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   background: rgba(255, 255, 255, 0.35);
 }
 
 .set-result-title {
   text-align: center;
   padding: get-unit(0 2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }

@@ -2,7 +2,7 @@
 
 .item-card {
   background: get-color("brown", 1);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &__loading {
     width: 100%;

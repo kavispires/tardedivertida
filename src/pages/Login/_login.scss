@@ -13,7 +13,7 @@
     max-width: 500px;
     min-width: 300px;
     background-color: rgba(white, 0.2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     padding: get-unit(3);
   }
 

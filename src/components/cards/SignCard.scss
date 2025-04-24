@@ -2,5 +2,5 @@
 
 .sign-card {
   background: get-color("teal", 2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }

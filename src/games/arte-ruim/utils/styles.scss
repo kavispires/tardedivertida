@@ -178,7 +178,7 @@
     position: absolute;
     top: get-unit(-3);
     font-size: 0.9rem;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     transform: perspective(30px);
     @include box-shadow;
   }

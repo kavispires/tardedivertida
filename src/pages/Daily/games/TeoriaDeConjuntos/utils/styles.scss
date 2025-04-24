@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .teoria-de-conjuntos-title {
   text-transform: uppercase;
@@ -26,11 +26,11 @@
 .thing-button {
   background: white;
   padding: 1px;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   border: get-unit(1) solid transparent;
 
   &__active {
-    border: get-unit(1) solid get-color('pink');
+    border: get-unit(1) solid get-color("pink");
   }
 }
 
@@ -63,9 +63,9 @@
 }
 
 .diagram-area-sample {
-  background: get-color('gray', 1, 0.5);
+  background: get-color("gray", 1, 0.5);
   width: 100%;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   padding: get-unit(1);
 }
 

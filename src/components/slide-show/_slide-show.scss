@@ -5,7 +5,7 @@
   width: calc(100% - #{get-unit(4)});
   gap: get-unit(1);
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   background-color: get-color("white", 4);
 
   grid-template-columns: 1fr 1fr;
@@ -60,7 +60,7 @@
     background-color: get-color("gray", 2);
     height: get-unit(2);
     min-width: get-unit(5);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 
   &__controls-timer-bar-pill {

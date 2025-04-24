@@ -1,8 +1,8 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .costume-avatar {
   width: 100px;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   margin: get-unit(0 2);
 
   &--animated {

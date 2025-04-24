@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .spreadsheet-grid {
   display: grid;
@@ -7,18 +7,18 @@
 }
 
 .spreadsheet-cell {
-  border: 1px solid get-color('white', 5, 0.75);
+  border: 1px solid get-color("white", 5, 0.75);
   min-width: 80px;
   min-height: 4rem;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: get-unit(0.5);
 
   &--header {
-    background-color: get-color('black', 4);
-    color: get-color('white');
+    background-color: get-color("black", 4);
+    color: get-color("white");
     font-weight: bold;
     text-transform: uppercase;
     padding: get-unit(1);

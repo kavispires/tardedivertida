@@ -1,9 +1,9 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .canvas {
-  background: get-color('white');
-  border-radius: $border-radius;
-  border: 3px solid get-color('blue', 7);
+  background: get-color("white");
+  border-radius: var(--border-radius);
+  border: 3px solid get-color("blue", 7);
 }
 
 .prompt {
@@ -17,14 +17,14 @@
 }
 
 .letter-correct {
-  background: get-color('green');
-  color: get-color('white');
+  background: get-color("green");
+  color: get-color("white");
 }
 
 .letter-blank {
-  background: get-color('gray', 2, 0.5);
-  color: get-color('white');
-  border: 1px solid get-color('gray', 2);
+  background: get-color("gray", 2, 0.5);
+  color: get-color("white");
+  border: 1px solid get-color("gray", 2);
 }
 
 .carousel {

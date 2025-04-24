@@ -1,8 +1,8 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .tree-card {
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   position: relative;
 
@@ -12,9 +12,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
-    color: get-color('white');
+    color: get-color("white");
     text-transform: uppercase;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: "Ubuntu Mono", monospace;
     text-align: center;
     font-size: 1.25em;
     @include text-stroke;

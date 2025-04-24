@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .scenarios {
   display: grid;
@@ -20,11 +20,11 @@
 }
 
 .scenario {
-  background: get-color('red');
-  color: get-color('white');
+  background: get-color("red");
+  color: get-color("white");
 
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,16 +37,16 @@
 
   &__card {
     text-align: center;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: "Ubuntu Mono", monospace;
     margin-top: get-unit(2);
     flex: 1;
-    background: get-color('red', 6);
+    background: get-color("red", 6);
     padding: get-unit(2);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
   }
 
   &__incorrect-result {
-    background: get-color('gray', 3);
+    background: get-color("gray", 3);
   }
 }
 
@@ -58,13 +58,13 @@
   margin: get-unit(1);
 
   &__button {
-    background: get-color('red', 6);
-    color: get-color('white');
+    background: get-color("red", 6);
+    color: get-color("white");
     padding: get-unit(2 4);
-    border-radius: $border-radius;
-    border: get-unit(1) solid get-color('red', 7);
+    border-radius: var(--border-radius);
+    border: get-unit(1) solid get-color("red", 7);
     @include box-shadow;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: "Ubuntu Mono", monospace;
     flex: 1;
   }
 }

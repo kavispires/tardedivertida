@@ -1,9 +1,9 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .alien-attributes {
-  background: get-color('white');
+  background: get-color("white");
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &__sign {
     background: transparent;
@@ -21,9 +21,9 @@
 }
 
 .alien-requests__attributes {
-  background: get-color('white');
+  background: get-color("white");
   padding: get-unit(2);
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 .alien-items__item-button {
@@ -33,7 +33,7 @@
 }
 
 .alien-request__answer.alien-request__answer {
-  background: get-color('lime', 4);
+  background: get-color("lime", 4);
 }
 
 .alien-requests__previous-item {
@@ -42,6 +42,6 @@
 }
 
 .alien-request__slot--active {
-  border: 2px solid get-color('lime', 4);
-  border-radius: $border-radius;
+  border: 2px solid get-color("lime", 4);
+  border-radius: var(--border-radius);
 }

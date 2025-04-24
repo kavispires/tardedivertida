@@ -1,11 +1,11 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .s-dream-board {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: get-color('black');
-  border-radius: $border-radius;
+  background-color: get-color("black");
+  border-radius: var(--border-radius);
   padding: get-unit(2);
 
   &__entry {
@@ -16,17 +16,17 @@
 
   &__dream-label {
     width: 100%;
-    background-color: get-color('yellow');
+    background-color: get-color("yellow");
     border-radius: get-unit(2);
-    color: get-color('black');
+    color: get-color("black");
     text-align: center;
   }
 
   &__nightmare-label {
     width: 100%;
-    background-color: get-color('purple', 6);
+    background-color: get-color("purple", 6);
     border-radius: get-unit(2);
-    color: get-color('white');
+    color: get-color("white");
     text-align: center;
   }
 
@@ -39,31 +39,31 @@
   border: 5px solid transparent;
 
   &--dream {
-    border: 5px solid get-color('yellow');
+    border: 5px solid get-color("yellow");
   }
 
   &--nightmare {
-    border: 5px solid get-color('purple', 6);
+    border: 5px solid get-color("purple", 6);
   }
 }
 
 .s-dream-board-entry-nightmare {
-  background-color: get-color('purple', 6);
+  background-color: get-color("purple", 6);
   border-radius: get-unit(2);
-  color: get-color('white');
+  color: get-color("white");
   text-align: center;
 
   &:disabled {
-    background-color: get-color('purple', 6);
-    color: get-color('white');
-    border-color: get-color('purple', 6);
+    background-color: get-color("purple", 6);
+    color: get-color("white");
+    border-color: get-color("purple", 6);
   }
 }
 
 .s-dream-board-entry-dream {
-  background-color: get-color('yellow');
+  background-color: get-color("yellow");
   border-radius: get-unit(2);
-  color: get-color('black');
+  color: get-color("black");
   text-align: center;
   overflow: hidden;
 }
@@ -81,7 +81,7 @@
 
 .s-result-correct {
   font-size: 2em;
-  color: get-color('blue');
+  color: get-color("blue");
 }
 
 .s-results-current-votes.s-results-current-votes {
@@ -114,34 +114,34 @@
   margin: get-unit(1);
 
   padding: get-unit(1);
-  background-color: get-color('white');
-  border-radius: $border-radius;
+  background-color: get-color("white");
+  border-radius: var(--border-radius);
 }
 
 .s-gallery-dream-display {
   padding: get-unit(1);
-  background-color: get-color('white');
+  background-color: get-color("white");
   @include box-shadow;
   height: 100%;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &__theme-container {
     border-width: 1px;
     border-style: outset;
-    border-color: get-color('gray', 1);
-    border-radius: $border-radius;
+    border-color: get-color("gray", 1);
+    border-radius: var(--border-radius);
     margin: get-unit(2);
   }
 
   &__theme {
     font-style: italic;
-    background-color: get-color('gray', 1);
+    background-color: get-color("gray", 1);
     padding: get-unit(1);
-    color: get-color('gray');
+    color: get-color("gray");
   }
 
   &__dream {
-    font-family: 'Architects Daughter', cursive;
+    font-family: "Architects Daughter", cursive;
     padding: get-unit(2);
     font-size: 1rem;
   }
@@ -154,10 +154,10 @@
 
 .s-gallery-guesses {
   padding: get-unit(1);
-  background-color: get-color('white');
+  background-color: get-color("white");
   @include box-shadow;
   height: 100%;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 

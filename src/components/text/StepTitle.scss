@@ -3,7 +3,7 @@
 .step-title {
   $self: &;
 
-  max-width: $max-width;
+  max-width: var(--max-width);
   display: flex;
   justify-content: center;
   text-wrap: balance;
