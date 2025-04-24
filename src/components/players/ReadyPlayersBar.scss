@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .ready-player-bar {
   display: flex;
   margin: get-unit(3 auto);
@@ -12,7 +14,7 @@
   }
 
   &__names {
-    color: get-color('gray', 8);
+    color: get-color("gray", 8);
     font-style: italic;
     font-size: 80%;
     margin-top: get-unit(1);
@@ -20,21 +22,21 @@
 
   &__speech-bubble {
     position: relative;
-    background-color: get-color('white');
+    background-color: get-color("white");
     border-radius: 0.4em;
     padding: get-unit(2 4);
     margin-left: get-unit(3);
     box-shadow: 0 5px 7px 0px rgba($color: #000, $alpha: 0.1);
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       top: 50%;
       width: 0;
       height: 0;
       border: get-unit(2) solid transparent;
-      border-right-color: get-color('white');
+      border-right-color: get-color("white");
       border-left: 0;
       margin-top: get-unit(-2);
       margin-left: get-unit(-2);

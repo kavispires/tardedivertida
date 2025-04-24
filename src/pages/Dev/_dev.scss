@@ -1,3 +1,4 @@
+@use "styles/sass" as *;
 .dev-layout {
   background: none;
 }
@@ -16,20 +17,20 @@
 }
 
 $colors: (
-  'blue': #598ffd,
-  'gray': #6f7273,
-  'green': #49d156,
-  'orange': #fea245,
-  'pink': #fb9cf0,
-  'purple': #9e8ef0,
-  'violet': #b771f4,
-  'red': #d14949,
-  'teal': #34ac9e,
-  'yellow': #ffd700,
-  'white': #ffffff,
-  'black': #222222,
-  'brown': #875131,
-  'lime': #1fda1f,
+  "blue": #598ffd,
+  "gray": #6f7273,
+  "green": #49d156,
+  "orange": #fea245,
+  "pink": #fb9cf0,
+  "purple": #9e8ef0,
+  "violet": #b771f4,
+  "red": #d14949,
+  "teal": #34ac9e,
+  "yellow": #ffd700,
+  "white": #ffffff,
+  "black": #222222,
+  "brown": #875131,
+  "lime": #1fda1f,
 );
 
 $shade-levels: (
@@ -44,8 +45,8 @@ $shade-levels: (
   9: -50%,
 );
 
-@each $colorName, $colorValue in $colors {
-  @each $shadeNumber, $shadeValue in $shade-levels {
+@each $shadeNumber, $shadeValue in $shade-levels {
+  @each $colorName, $colorValue in $colors {
     .dev-color-swatch--#{$colorName}-#{$shadeNumber} {
       background-color: get-color($colorName, $shadeNumber);
     }
@@ -58,8 +59,8 @@ $shade-levels: (
 }
 
 .dev-header {
-  font-feature-settings: 'tnum';
-  background-color: get-color('white');
+  font-feature-settings: "tnum";
+  background-color: get-color("white");
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
@@ -137,11 +138,11 @@ $shade-levels: (
     grid-template-rows: auto 72px auto;
     place-items: center;
     padding: 0.5rem;
-    color: get-color('white');
+    color: get-color("white");
   }
 
   &__flex-item {
-    border: 1px solid get-color('black');
+    border: 1px solid get-color("black");
     margin: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -152,7 +153,7 @@ $shade-levels: (
 
   &__col {
     text-align: center;
-    border: 1px solid get-color('black');
+    border: 1px solid get-color("black");
     margin: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -170,7 +171,7 @@ $shade-levels: (
 }
 
 .icons-grid__item {
-  border: 1px solid get-color('black');
+  border: 1px solid get-color("black");
   margin: 0.5rem;
   display: flex;
   flex-direction: column;

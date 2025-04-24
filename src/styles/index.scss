@@ -1,50 +1,35 @@
+@use "styles/sass" as *;
+
+// Global
+@use "./reset";
+@use "./global";
+
+// Shared Components
+@use "../components/auth/auth.scss";
+@use "../components/loaders/loaders.scss";
+@use "../components/rules/_rules.scss";
+@use "../components/metrics/MetricHighlight.scss";
+@use "../components/steps/Step.scss";
+@use "../components/ranking/ranking.scss";
+@use "../components/drawers/drawers.scss";
+@use "../components/slide-show/slide-show";
+@use "../components/game-over/game-over";
+@use "../components/timers/timers";
+@use "../components/general/Achievements.scss";
+
+// Pages
+@use "../pages/app";
+@use "../pages/Login/login";
+@use "../pages/Gallery/gallery";
+@use "../pages/Showcase/showcase";
+@use "../pages/Dev/dev";
+@use "../pages/Hub/hub";
+
+// Overridden colors
+@use "./colors";
+@use "./shorthands";
+
 // Basic
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Ubuntu+Mono&family=Zilla+Slab:wght@500&display=swap");
 @import "antd/dist/reset.css";
 @import "animate.css";
-
-// Utils
-@import "./functions";
-@import "./constants";
-@import "./animations";
-@import "./mixins";
-
-// Global
-@import "./reset";
-@import "./global";
-
-// Shared Components
-@import "../components/auth/auth.scss";
-@import "../components/loaders/loaders.scss";
-@import "../components/phases/PhaseContainer.scss";
-@import "../components/rules/_rules.scss";
-@import "../components/metrics/MetricHighlight.scss";
-@import "../components/players/PlayersStatusBar.scss";
-@import "../components/players/ReadyPlayersBar.scss";
-@import "../components/players/TurnOrder.scss";
-@import "../components/players/TableOrder.scss";
-@import "../components/round/round";
-@import "../components/points/points";
-@import "../components/ribbons/ribbons";
-@import "../components/steps/Step.scss";
-@import "../components/ranking/ranking.scss";
-@import "../components/drawers/drawers.scss";
-@import "../components/canvas/Canvas.scss";
-@import "../components/canvas/CanvasReSizer.scss";
-@import "../components/canvas/DrawingCanvas.scss";
-@import "../components/slide-show/slide-show";
-@import "../components/game-over/game-over";
-@import "../components/timers/timers";
-@import "../components/general/Achievements.scss";
-
-// Pages
-@import "../pages/app";
-@import "../pages/Login/login";
-@import "../pages/Gallery/gallery";
-@import "../pages/Showcase/showcase";
-@import "../pages/Dev/dev";
-@import "../pages/Hub/hub";
-
-// Overridden colors
-@import "./colors";
-@import "./shorthands";

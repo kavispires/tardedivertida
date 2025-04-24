@@ -10,6 +10,8 @@ import { getAnimationClass, sortPlayers } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
+// Sass
+import './PlayersStatusBar.scss';
 
 type PlayersStatusBarProps = {
   players: GamePlayers;

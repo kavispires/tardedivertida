@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 // Margin and padding shorthands
 @for $i from 0 through 12 {
   .m-#{$i} {
@@ -50,8 +52,8 @@
 }
 
 // Colors
-$colors: 'brown', 'yellow', 'orange', 'green', 'teal', 'blue', 'purple', 'violet', 'pink', 'red', 'gray',
-  'white', 'black', 'lime', 'slate';
+$colors: "brown", "yellow", "orange", "green", "teal", "blue", "purple", "violet", "pink", "red", "gray",
+  "white", "black", "lime", "slate";
 
 @each $color in $colors {
   @for $shade from 1 through 9 {

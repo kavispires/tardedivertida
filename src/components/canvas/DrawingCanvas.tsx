@@ -1,9 +1,13 @@
 import clsx from 'clsx';
 import { type CSSProperties, type ReactNode, useRef, useState } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
+// Ant Design Resources
 import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
 import { Button, Flex, Space } from 'antd';
+// Components
 import { Translate } from 'components/language';
+// Sass
+import './DrawingCanvas.scss';
 
 type DrawingCanvasProps = {
   /**

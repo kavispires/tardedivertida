@@ -6,6 +6,8 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
+// Sass
+import './CanvasResizer.scss';
 
 /**
  * Fixed Menu Button for resizing canvas

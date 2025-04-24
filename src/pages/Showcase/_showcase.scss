@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .showcase-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -14,7 +16,7 @@
   }
 
   &--title {
-    background-color: get-color('white');
+    background-color: get-color("white");
     font-size: 1.5em;
     overflow: hidden;
     display: flex;
@@ -64,7 +66,7 @@
   margin-bottom: get-unit(2);
 
   &:nth-child(even) {
-    background-color: get-color('gray', 1);
+    background-color: get-color("gray", 1);
   }
 }
 

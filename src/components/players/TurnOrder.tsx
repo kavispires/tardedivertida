@@ -11,6 +11,8 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import { reorder } from './reorder';
+// Sass
+import './TurnOrder.scss';
 
 type TurnOrderProps = {
   /**
