@@ -3,6 +3,7 @@ import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -46,8 +47,10 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
         copy.currentCorridorIndexes[index] >= wordsLength - 1 ? 0 : copy.currentCorridorIndexes[index] + 1;
       copy.currentCorridorIndexes[index] = targetPosition;
       copy.moves += 1;
+
       return copy;
     });
+    playSFX('swap');
   };
 
   const onSubmitPasscode = () => {
@@ -63,18 +66,21 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
       copy.guesses[copy.currentCorridorIndex].push(newGuess);
 
       const isCorrect = newGuess === passcode;
+
       if (isCorrect) {
         copy.currentCorridorIndex += 1;
         message.success({
           content: translate(`Você acertou: ${passcode.toUpperCase()}!`, `Correct: ${passcode}`),
           duration: 3,
         });
+        playSFX(copy.currentCorridorIndex === data.corridors.length ? 'win' : 'addCorrect');
       } else {
         copy.hearts -= 1;
         message.warning({
           content: translate('Palavra-chave incorreta. Tente novamente!', 'Incorrect passcode. Try again!'),
           duration: 3,
         });
+        playSFX(copy.hearts <= 0 ? 'lose' : 'wrong');
       }
 
       if (isCorrect && copy.currentCorridorIndex === data.corridors.length) {
