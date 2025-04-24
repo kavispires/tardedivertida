@@ -31,7 +31,8 @@ export function DebugPage() {
 
 function Content({ localKey }: { localKey: string }) {
   const value = useMemo(
-    () => JSON.stringify(JSON.parse(localStorage.getItem(localKey) || '{}'), null, 2),
+    () =>
+      JSON.stringify(JSON.parse(localStorage.getItem(`TD_DAILY_${localKey}_LOCAL_TODAY`) || '{}'), null, 2),
     [localKey],
   );
   return (
