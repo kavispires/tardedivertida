@@ -7,7 +7,7 @@ import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
-import 'PhaseContainer.scss';
+import './PhaseContainer.scss';
 
 type PhaseContainerProps = {
   /**

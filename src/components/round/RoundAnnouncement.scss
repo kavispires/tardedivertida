@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .round-announcement {
   width: 100%;
 
@@ -47,7 +49,7 @@
     background-clip: content-box;
     animation: spin 10s linear infinite;
     background-color: rgba($color: #fff, $alpha: 0.3);
-    border: get-unit(3) dashed get-color('yellow');
+    border: get-unit(3) dashed get-color("yellow");
   }
 
   &__circle-2 {
@@ -60,11 +62,11 @@
     border-radius: 50%;
     background-clip: content-box;
     animation: spin-reverse 10s linear infinite;
-    border: get-unit(3) dashed get-color('yellow');
+    border: get-unit(3) dashed get-color("yellow");
   }
 
   &__number {
-    color: get-color('white');
+    color: get-color("white");
     font-weight: bolder;
     font-size: 14rem;
     transform: translate(-0.5rem, -0.5rem);
