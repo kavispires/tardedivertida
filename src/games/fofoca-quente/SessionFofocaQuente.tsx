@@ -4,9 +4,7 @@ import type { GameState } from 'types/game';
 import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
-import { PageError } from 'components/errors';
-import { LoadingPage } from 'components/loaders';
-import { PhaseLobby, PhasePlaceholder, PhaseSetup } from 'components/phases';
+import { PhaseError, PhasePlaceholder } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
@@ -17,14 +15,7 @@ import { PhaseIntimidation } from './PhaseIntimidation';
 import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
-  // If phase is not defined, it is likely that the game is still loading
-  if (state && !state.phase) return LoadingPage;
-
   switch (state.phase) {
-    case PHASES.DEFAULT.LOBBY:
-      return PhaseLobby;
-    case PHASES.DEFAULT.SETUP:
-      return PhaseSetup;
     case FOFOCA_QUENTE_PHASES.ROLES_SELECTION:
       return PhaseRolesSelection;
     case FOFOCA_QUENTE_PHASES.BOARD_SETUP:
@@ -34,7 +25,7 @@ function getActiveComponent(state: GameState) {
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;
     default:
-      return PageError;
+      return PhaseError;
   }
 }
 

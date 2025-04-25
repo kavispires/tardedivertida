@@ -4,8 +4,7 @@ import { useLocalStorage } from 'react-use';
 // Ant Design Resources
 import { Alert, Typography } from 'antd';
 // Types
-import type { GameMeta } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { resetGlobalState, useGlobalState } from 'hooks/useGlobalState';
@@ -30,12 +29,7 @@ import './PhaseLobby.scss';
 
 const Paragraph = motion(Typography.Paragraph);
 
-type PhaseLobbyProps = {
-  players: GamePlayers;
-  meta: GameMeta;
-};
-
-export function PhaseLobby({ players, meta }: PhaseLobbyProps) {
+export function PhaseLobby({ players, meta }: PhaseProps) {
   const { step, setStep } = useStep();
   const { currentUser, isAuthenticated } = useCurrentUserContext();
   const [, setUserId] = useGlobalState('userId');

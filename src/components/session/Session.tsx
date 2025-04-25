@@ -1,7 +1,9 @@
 import type { AliasToken } from 'antd/es/theme/internal';
-import { type ReactNode, useEffect, useMemo } from 'react';
+import { type ReactNode, useEffect, useMemo, type ComponentType } from 'react';
 // Ant Design Resources
 import { ConfigProvider } from 'antd';
+// Types
+import type { GameState, PhaseProps } from 'types/game';
 // Hooks
 import { useGameMeta } from 'hooks/useGameMeta';
 import { useGameState } from 'hooks/useGameState';
@@ -9,16 +11,17 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useIdleRedirect } from 'hooks/useIdleRedirect';
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { PHASES } from 'utils/phases';
 // Components
 import { AdminMenuDrawer } from 'components/admin';
 import { GameInfoDrawer } from 'components/drawers';
 import { AutoNextPhase } from 'components/general/AutoNextPhase';
 import { PageLayout } from 'components/layout/PageLayout';
-import { PhaseLobby } from 'components/phases';
+import { PhaseError, PhaseLoading, PhaseLobby, PhaseSetup } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';
 import { GameInfoProvider, useGameAppearance } from './GameInfoContext';
-// Utils
 
 type SessionProps = {
   /**
@@ -28,7 +31,7 @@ type SessionProps = {
   /**
    * The active component to be rendered, usually a Phase... component
    */
-  getActiveComponent: (args: any) => any;
+  getActiveComponent: (args: GameState) => ComponentType<PhaseProps<any>>;
 };
 
 export function Session({ gameCollection, getActiveComponent }: SessionProps) {
@@ -55,13 +58,30 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
       <GameInfoProvider gameCollection={gameCollection}>
         <SessionConfigWrapper>
           <RedirectSession state={state} />
-          <PhaseLobby players={players} meta={gameMeta} />
+          <PhaseLobby state={state} players={players} meta={gameMeta} />
         </SessionConfigWrapper>
       </GameInfoProvider>
     );
   }
 
-  const ActiveComponent: any = getActiveComponent(state);
+  const getContentComponent = () => {
+    // If phase is not defined, it is likely that the game is still loading
+    if (state && !state.phase) {
+      return PhaseLoading;
+    }
+
+    if (state.phase === PHASES.DEFAULT.LOBBY) {
+      return PhaseLobby;
+    }
+
+    if (state.phase === PHASES.DEFAULT.SETUP) {
+      return PhaseSetup;
+    }
+
+    return getActiveComponent(state);
+  };
+
+  const ActiveComponent = getContentComponent() || PhaseError;
 
   return (
     <PageLayout>

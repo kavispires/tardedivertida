@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 // Types
-import type { GameState } from 'types/game';
+import type { PhaseProps } from 'types/game';
 // Hooks
 import { useGameId } from 'hooks/useGameId';
 // Utils
@@ -15,11 +15,7 @@ import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
 
-type PhaseSetupProps = {
-  state: GameState;
-};
-
-export function PhaseSetup({ state }: PhaseSetupProps) {
+export function PhaseSetup({ state }: PhaseProps) {
   const gameId = useGameId();
   const queryClient = useQueryClient();
 

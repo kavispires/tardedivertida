@@ -1,6 +1,5 @@
 // Types
-import type { GameState } from 'types/game';
-import type { GameInfo } from 'types/game-info';
+import type { PhaseProps } from 'types/game';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -11,12 +10,7 @@ import { Instruction, Title } from 'components/text';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
 
-type PhaseWaitProps = {
-  info: GameInfo;
-  state: GameState;
-};
-
-export function PhaseWait({ state }: PhaseWaitProps) {
+export function PhaseWait({ state }: PhaseProps) {
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.WAIT} className="setup">
       <div className="phase-announcement">
