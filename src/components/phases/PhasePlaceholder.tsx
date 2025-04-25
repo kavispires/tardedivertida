@@ -1,13 +1,9 @@
 // Types
-import type { GameState } from 'types/game';
+import type { PhaseProps } from 'types/game';
 // Internal
 import { PhaseContainer } from './index';
 
-type PhasePlaceholderProps = {
-  state: GameState;
-};
-
-export function PhasePlaceholder({ state }: PhasePlaceholderProps) {
+export function PhasePlaceholder({ state }: PhaseProps) {
   return (
     <PhaseContainer phase="ANY" allowedPhase="ANY" className="phase-placeholder">
       {state?.phase ?? 'Unknown Phase'}

@@ -22,8 +22,8 @@ export function useLanguage(): UseLanguageResult {
 
   function translate(pt: string, en: string, custom?: string): string {
     if (!language) {
-      const errorMessage = 'Could not reach the language global state';
-      console.error(errorMessage);
+      // biome-ignore lint/suspicious/noConsole: on purpose
+      console.error('Could not reach the language global state');
 
       return '?';
     }
@@ -33,8 +33,8 @@ export function useLanguage(): UseLanguageResult {
     }
 
     if (!pt || !en) {
-      const errorMessage = 'PT or EN translation was not provided';
-      console.error(errorMessage);
+      // biome-ignore lint/suspicious/noConsole: on purpose
+      console.error('PT or EN translation was not provided');
 
       return '?';
     }

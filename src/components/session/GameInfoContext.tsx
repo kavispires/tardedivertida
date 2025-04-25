@@ -77,6 +77,7 @@ export const useGameInfoContext = () => {
   const context = useContext(GameInfoContext);
 
   if (!context) {
+    // biome-ignore lint/suspicious/noConsole: <explanation>
     console.warn('useGameInfoContext should be used within a GameInfoProvider, defaulting to placeholder');
   }
 
