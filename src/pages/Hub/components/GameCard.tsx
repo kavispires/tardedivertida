@@ -70,8 +70,8 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
         <Badge.Ribbon text={game.version} color={getVersionColor(game.version)}>
           <Image
             alt={game.title[language]}
-            src={`${PUBLIC_URL.BANNERS}${game.gameName}-${language}.jpg`}
-            fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
+            src={`${PUBLIC_URL.BANNERS}${game.gameName}.jpg`}
+            fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
           />
         </Badge.Ribbon>
       }

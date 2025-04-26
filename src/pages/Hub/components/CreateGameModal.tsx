@@ -152,16 +152,17 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
         const baseUrl = window.location.href.split(pathname)[0];
         copyToClipboard(`${baseUrl}/${response.data.gameId}`);
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       notification.error({
         message: translate(
           'Aplicativo encontrou um erro ao tentar criar o jogo',
           'The application found an error while trying to create a game',
           language,
         ),
-        description: JSON.stringify(e.message),
+        description: JSON.stringify((e as Error).message),
         placement: 'bottomLeft',
       });
+      // biome-ignore lint/suspicious/noConsole: on purpose
       console.error(e);
       setOpen(false);
     } finally {
@@ -192,7 +193,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       <>
         <Image
           alt={gameInfo.title[language]}
-          src={`${PUBLIC_URL.BANNERS}${gameInfo.gameName}-${language}.jpg`}
+          src={`${PUBLIC_URL.BANNERS}${gameInfo.gameName}.jpg`}
           fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
           className="round-corners"
         />
