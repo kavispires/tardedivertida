@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.40",
+  "version": "2.0.41",
   "release": "stable",
   "available": true,
   "title": {
@@ -78,6 +78,10 @@
         {
           "label": "Regular (recommended)",
           "value": "regular"
+        },
+        {
+          "label": "Ghibli",
+          "value": "ghibli"
         },
         {
           "label": "Realistic",

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "4.0.23",
+  "version": "4.0.24",
   "release": "stable",
   "available": true,
   "title": {
@@ -96,6 +96,10 @@
         {
           "label": "Regular (recommended)",
           "value": "regular"
+        },
+        {
+          "label": "Ghibli",
+          "value": "ghibli"
         },
         {
           "label": "Realistic",
