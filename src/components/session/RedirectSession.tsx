@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { Image, Modal } from 'antd';
+import { Flex, Modal } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { PUBLIC_URL } from 'utils/constants';
 import GAME_LIST from 'utils/info';
 // Components
+import { GameStrip } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 
@@ -18,7 +16,6 @@ type RedirectSessionProps = {
 };
 
 export function RedirectSession({ state }: RedirectSessionProps) {
-  const { language } = useLanguage();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState<boolean | null>(null);
@@ -58,12 +55,15 @@ export function RedirectSession({ state }: RedirectSessionProps) {
           okText={<Translate pt="Quero participar!" en="Take me there!" />}
           cancelText={<Translate pt="Cancelar" en="Cancel" />}
         >
-          <Image
-            alt={gameInfo.title[language]}
-            src={`${PUBLIC_URL.BANNERS}${gameInfo.gameName}-${language}.jpg`}
-            fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
-            className="round-corners"
-          />
+          <Flex align="center" justify="center">
+            <GameStrip
+              width={340}
+              title={gameInfo.title}
+              gameName={gameInfo.gameName}
+              className="lobby-step__banner"
+            />
+          </Flex>
+
           <Title>{redirect.gameId}</Title>
         </Modal>
       </>
