@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "release": "stable",
   "available": true,
   "title": {
@@ -31,8 +31,8 @@
       "The goal is to create words with all lengths available (usually 3-8 letters)",
       "Each round a player is the creator and must create a portmanteau word using the beginning of one given thing's name and the end of another thing's name",
       "Then, the other players must try to guess which things the word represents",
-      "If the majority gets it right, that length of word is marked as completed. If the players get it wrong, the length is in danger",
-      "Players win when all words are created or when they get an in-danger length wrong"
+      "If the majority gets it right, that length of word is marked as completed. If the players get it wrong, the length is masked as in danger",
+      "Players win when all words lengths are used or when they get an in-danger length wrong"
     ],
     "pt": [
       "Vocês são um grupo de linguistas tentando criar um novo dicionário de palavras portmanteau para o novo mundo.",
@@ -40,7 +40,7 @@
       "A cada rodada, um jogador é o criador e deve criar uma palavra portmanteau usando o começo do nome de uma coisa dada e o final do nome de outra coisa",
       "Então, os outros jogadores devem tentar adivinhar quais coisas a palavra representa",
       "Se a maioria acertar, aquele tamanho de palavra é marcado como concluído. Se os jogadores errarem, o tamanho está em perigo",
-      "Os jogadores vencem quando todas as palavras são criadas ou quando eles erram um tamanho em perigo"
+      "Os jogadores vencem quando todos os tamanhos forem usados ou quando eles erram um tamanho em perigo"
     ]
   },
   "playerCount": {
