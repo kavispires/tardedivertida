@@ -90,17 +90,14 @@ export const modifySuspectIdsByOptions = (
   suspects: SuspectCard[],
   options?: SuspectCardsOptions,
 ): SuspectCard[] => {
-  let deckType = 'ct';
-
-  if (options?.deckType === 'realistic') {
-    deckType = 'ai';
-  }
-  if (options?.deckType === 'models') {
-    deckType = 'md';
-  }
-  if (options?.deckType === 'wacky') {
-    deckType = 'wc';
-  }
+  const deckType =
+    {
+      ghibli: 'gb',
+      models: 'md',
+      realistic: 'ai',
+      regular: 'ct',
+      wacky: 'wc',
+    }[options?.deckType ?? 'regular'] ?? 'ct';
 
   return suspects.map((suspect) => ({
     ...suspect,
