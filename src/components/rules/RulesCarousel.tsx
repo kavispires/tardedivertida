@@ -59,7 +59,7 @@ export function RulesCarousel({
               className="rules-carousel__image"
               src={
                 index === 0
-                  ? `${PUBLIC_URL.BANNERS}${info.gameName}-${language}.jpg`
+                  ? `${PUBLIC_URL.BANNERS}${info.gameName}.jpg`
                   : `${PUBLIC_URL.RULES}game-rule-${info.gameName}-${index}.jpg`
               }
               fallback={`${PUBLIC_URL.RULES}no-rules.jpg`}
