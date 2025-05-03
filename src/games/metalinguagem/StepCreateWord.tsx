@@ -96,7 +96,7 @@ export function StepCreateWord({
           <RuleInstruction type="action" className="no-margin">
             <Translate
               pt={<>Passo 1: Primeiro você deve nomear as duas coisas.</>}
-              en={<>Step 1: You must name two things</>}
+              en={<>Step 1: You must name these two things</>}
             />
           </RuleInstruction>
 
@@ -168,6 +168,7 @@ export function StepCreateWord({
                         key={`${l}-${i}`}
                         color={i <= beginningIndex ? 'red-inverse' : undefined}
                         className="origin-word"
+                        onClick={() => setBeginningIndex(i)}
                       >
                         {l}
                       </Tag>
@@ -179,6 +180,7 @@ export function StepCreateWord({
                         key={`${l}-${i}`}
                         color={i >= endingIndex - beginsWithName.length - 1 ? 'blue-inverse' : undefined}
                         className="origin-word"
+                        onClick={() => setEndingIndex(beginsWithName.length + i + 1)}
                       >
                         {l}
                       </Tag>
