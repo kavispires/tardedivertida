@@ -1,0 +1,1 @@
+import{j as a,q as n,e as r,I as i,H as e}from"./index-VBe-t_f0.js";import{A as l}from"./AnimatedLoaderIcon-CS0w7-Ei.js";function x({message:o,margin:s=!1}){return a.jsxs(n,{className:r("loading",s&&"loading--margin"),children:[a.jsx(i,{icon:a.jsx(l,{}),style:{display:"block"}}),!!o&&a.jsx(e.Text,{children:o})]})}export{x as L};
