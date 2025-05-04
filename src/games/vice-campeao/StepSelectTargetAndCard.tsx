@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ArrowUpOutlined, CheckCircleFilled } from '@ant-design/icons';
 import { Button, Flex } from 'antd';
 // Types
+import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
 import { useMock } from 'hooks/useMock';
@@ -17,7 +18,6 @@ import type { RunActivity, RunnerCard, SubmitCardPayload } from './utils/types';
 import { mockCardPlay } from './utils/mock';
 import { RunCard } from './components/RunCard';
 import { RaceTrack } from './components/RaceTrack';
-import type { GameRound } from 'types/game';
 
 type StepSelectTargetAndCardProps = {
   players: GamePlayers;
@@ -62,7 +62,7 @@ export function StepSelectTargetAndCard({
         />
         <br />
         <Translate
-          en="Some cards don't require a target, so you can just select yourself."
+          en="Some cards don't require a target, so you can just leave yourself selected."
           pt="Algumas cartas não precisam de alvo, então você pode escolher a si mesmo."
         />
         <br />

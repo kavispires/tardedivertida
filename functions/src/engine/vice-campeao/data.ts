@@ -279,8 +279,8 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
       pt: 'Surpresa!',
     },
     description: {
-      en: 'A random card will be played in your behalf affecting the target runner.',
-      pt: 'Uma carta aleatória será jogada em seu nome afetando o corredor-alvo.',
+      en: 'A random movement card will be played in your behalf affecting the target runner.',
+      pt: 'Uma carta de movimento aleatória será jogada em seu nome afetando o corredor-alvo.',
     },
     type: 'effect',
     triggerKey: 'surprise',
