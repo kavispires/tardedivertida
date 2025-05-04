@@ -1,5 +1,5 @@
 import { USE_MOCKS } from 'dev-configs';
-import { camelCase, memoize, orderBy, startCase } from 'lodash';
+import { camelCase, orderBy, startCase } from 'lodash';
 // Types
 import type { GameInfo } from 'types/game-info';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -235,27 +235,32 @@ export const parseEntryId = (key: string): string[] => key.split(SEPARATOR);
 
 /**
  * Check if array has duplicates
- * @param arr
- * @returns
+ * @param arr - An array to check for duplicates.
+ * @returns True if duplicates exist, false otherwise.
  */
-export const hasDuplicates = (arr: any): boolean => {
+export const hasDuplicates = (arr: unknown[]): boolean => {
   return new Set(arr).size !== arr.length;
 };
 
 /**
- * Converts a string from kebab case to pascal base
- * @param str
- * @returns
+ * Converts a string from kebab case to pascal case
+ * @param str - The string to convert.
+ * @returns The converted string in pascal case.
  */
 export const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace(/ /g, '');
 
 /**
  * Gets avatar color by it
- * @param avatarId
- * @returns
+ * @param avatarId - The ID of the avatar.
+ * @returns The color of the avatar or 'grey' if not found.
  */
-export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.color ?? 'grey';
+export const getAvatarColorById = (avatarId: string): string => AVATARS?.[avatarId]?.color ?? 'grey';
 
+/**
+ * Converts a hex color string to an RGB array.
+ * @param hex - The hex color string (e.g., "#FF5733").
+ * @returns An array containing the RGB values [r, g, b].
+ */
 function hexToRgb(hex: string): [number, number, number] {
   // Remove the hash at the start if it's there
   const sanitizedHex = hex.replace(/^#/, '');
@@ -268,6 +273,13 @@ function hexToRgb(hex: string): [number, number, number] {
   return [r, g, b];
 }
 
+/**
+ * Calculate the luminance of a color.
+ * @param r - Red component (0-255).
+ * @param g - Green component (0-255).
+ * @param b - Blue component (0-255).
+ * @returns The luminance value (0-1).
+ */
 function luminance(r: number, g: number, b: number): number {
   const a = [r, g, b].map((v) => {
     const normalizedV = v / 255;
@@ -276,13 +288,18 @@ function luminance(r: number, g: number, b: number): number {
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
 
-export const getContrastColor = memoize((hexColor: string): 'white' | 'black' => {
+/**
+ * Determines the contrast color based on the provided hex color.
+ * @param hexColor - The hex color string to evaluate.
+ * @returns 'white' or 'black' based on the luminance of the color.
+ */
+export const getContrastColor = (hexColor: string): 'white' | 'black' => {
   const [r, g, b] = hexToRgb(hexColor);
   const lum = luminance(r, g, b);
 
   // Using a contrast threshold of 0.179 (equivalent to luminance 0.5 for black/white)
   return lum > 0.045 ? 'white' : 'black';
-});
+};
 
 /**
  * Animation types
@@ -488,10 +505,8 @@ export const truncateRecommended = (recommended: number[]): string => {
  * @param players
  * @returns
  */
-export const sortPlayers = memoize(
-  (players: GamePlayers, by = ['name'], orders: ('asc' | 'desc')[] = ['asc']) =>
-    orderBy(Object.values(players), by, orders),
-);
+export const sortPlayers = (players: GamePlayers, by = ['name'], orders: ('asc' | 'desc')[] = ['asc']) =>
+  orderBy(Object.values(players), by, orders);
 
 /**
  * Verify if all players are ready
