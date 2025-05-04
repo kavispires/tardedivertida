@@ -1,3 +1,5 @@
+@use "styles/sass" as *;
+
 .super-hero-avatar {
   width: 100px;
   border-radius: var(--border-radius);
