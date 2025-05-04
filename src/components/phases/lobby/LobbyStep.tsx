@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Alert, Typography } from 'antd';
 // Components
-import { GameBanner } from 'components/general/GameBanner';
+import { GameStrip } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 
@@ -23,7 +23,7 @@ export function LobbyStep({ children, isLocked }: LobbyStepProps) {
   return (
     <div className="lobby-step">
       <div className="lobby-step__card">
-        <GameBanner title={info?.title} gameName={info?.gameName} className="lobby-step__banner" />
+        <GameStrip title={info?.title} gameName={info?.gameName} className="lobby-step__banner" width={256} />
         <div className="lobby-step__content">
           {isLocked ? (
             <>

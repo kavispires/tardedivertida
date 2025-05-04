@@ -12,7 +12,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Avatar } from 'components/avatars';
 import { DebugOnly } from 'components/debug';
-import { GameBanner } from 'components/general/GameBanner';
+import { GameStrip } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
 import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
 import { RulesModal } from 'components/rules';
@@ -56,11 +56,12 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
 
         <Drawer
           title={
-            <GameBanner
+            <GameStrip
               title={info?.title}
               gameName={info.gameName}
-              preview={false}
               className="round-corners"
+              width={256}
+              static
             />
           }
           placement="right"

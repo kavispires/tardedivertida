@@ -20,7 +20,7 @@ import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { GameBanner } from 'components/general/GameBanner';
+import { GameStrip } from 'components/general/GameBanner';
 import { GameTags } from 'components/general/GameTags';
 import { DualTranslate, Translate } from 'components/language';
 import { RulesModal } from 'components/rules';
@@ -50,7 +50,7 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
         <Col xs={24} sm={8} md={8} lg={6}>
           {/* <Row gutter={8}> */}
           <Col>
-            <GameBanner title={info.title} gameName={info.gameName} className="me__game-banner" />
+            <GameStrip title={info.title} gameName={info.gameName} className="me__game-banner" width={256} />
           </Col>
           <InfoCard title={<Translate pt="Nome" en="Name" />} {...leftColProps}>
             <DualTranslate>{info.title}</DualTranslate>

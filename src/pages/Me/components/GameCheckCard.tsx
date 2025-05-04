@@ -7,6 +7,7 @@ import { Badge, Col, Modal, Row } from 'antd';
 import type { GameInfo } from 'types/game-info';
 import type { GameUserStatistics } from 'types/user';
 // Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
 import { useQueryParams } from 'hooks/useQueryParams';
 // Utils
 import ACHIEVEMENTS_DICT from 'utils/achievements';
@@ -30,6 +31,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
   const [open, setOpen] = useState(false);
   const [activeGameName, setActiveGame] = useState<GameName | null>(null);
   const { width } = useWindowSize();
+  const cardWidth = useCardWidth(8, { maxWidth: 256, minWidth: 128 });
 
   const qp = useQueryParams();
 
@@ -99,7 +101,8 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
                 title={gameInfo.title}
                 gameName={gameInfo.gameName}
                 className={clsx('me__game-bingo-banner', 'me__game-bingo-banner--played')}
-                preview={false}
+                static
+                width={cardWidth}
               />
             </Badge>
           </TransparentButton>
