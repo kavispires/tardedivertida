@@ -1,6 +1,8 @@
+@use "styles/sass" as *;
+
 .achievement {
-  background-color: get-color('yellow', 2);
-  border: get-color('yellow') 5px solid;
+  background-color: get-color("yellow", 2);
+  border: get-color("yellow") 5px solid;
   display: flex;
   border-radius: get-unit(2);
   flex-direction: column;
