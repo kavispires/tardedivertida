@@ -106,14 +106,28 @@
     }
   }
 
+  &__image {
+    position: relative;
+  }
+
   &__title {
-    display: inline-block;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     display: flex;
     justify-content: space-between;
     // text-overflow: ellipsis;
     // max-width: 20ch;
+    padding: get-unit(0 4);
+    position: absolute;
+    bottom: get-unit(1);
+  }
+
+  &__title-text {
+    color: get-color("white");
+    font-size: 1.35em;
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
   }
 
   &__player-count {

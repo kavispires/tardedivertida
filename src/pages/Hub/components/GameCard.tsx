@@ -68,27 +68,27 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
       className="game-card"
       cover={
         <Badge.Ribbon text={game.version} color={getVersionColor(game.version)}>
-          <Image
-            alt={game.title[language]}
-            src={`${PUBLIC_URL.BANNERS}${game.gameName}.jpg`}
-            fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
-          />
+          <div className="game-card__image">
+            <Image
+              alt={game.title[language]}
+              src={`${PUBLIC_URL.BANNERS}${game.gameName}.jpg`}
+              fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
+            />
+            <span className="game-card__title" title={game.title[language]}>
+              <span className="game-card__title-text">{game.title[language]}</span>{' '}
+              <span>
+                <Tooltip title={translate('Código do jogo começará com', 'The game id will start with')}>
+                  <Tag>{game.gameCode}</Tag>
+                </Tooltip>
+              </span>
+            </span>
+          </div>
         </Badge.Ribbon>
       }
     >
       <div className="game-card__contents">
         <Space direction="vertical" className="full-width">
           <Card.Meta
-            title={
-              <span className="game-card__title" title={game.title[language]}>
-                {game.title[language]}{' '}
-                <span>
-                  <Tooltip title={translate('Código do jogo começará com', 'The game id will start with')}>
-                    <Tag>{game.gameCode}</Tag>
-                  </Tooltip>
-                </span>
-              </span>
-            }
             description={`${translate('Baseado em', 'Based on')} ${game.basedOn
               .split('')
               .reverse()
