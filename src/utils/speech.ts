@@ -7,12 +7,7 @@ import { getRandomItem, stringRemoveAccents } from './helpers';
  * @param language
  * @param volume
  */
-export function speak(
-  text: DualLanguageValue,
-  language: Language,
-  volume: number,
-  onEnd: GenericFunction = () => {},
-): void {
+export function speak(text: DualLanguageValue, language: Language, volume: number, onEnd = () => {}): void {
   const utterance = new SpeechSynthesisUtterance(text[language]);
   utterance.lang = language === 'pt' ? 'pt-BR' : 'en-US';
   utterance.volume = volume;
