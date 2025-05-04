@@ -398,7 +398,7 @@ export const getData = async (
       ),
     );
     const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
-    const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
+    const deckType = utils.game.getRandomItem(['ct', 'gb', 'ai']);
     customTracks.push({
       game: GAME_NAMES.TESTEMUNHA_OCULAR,
       data: {
@@ -422,7 +422,7 @@ export const getData = async (
       ),
     );
     const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
-    const deckType = utils.game.getRandomItem(['ct', 'alt', 'ai']);
+    const deckType = utils.game.getRandomItem(['ct', 'gb', 'ai']);
     const suspect = utils.game.getRandomItem(suspects);
     customTracks.push({
       game: GAME_NAMES.TA_NA_CARA,

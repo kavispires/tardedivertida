@@ -97,7 +97,7 @@ export const modifySuspectIdsByOptions = (
       realistic: 'ai',
       regular: 'ct',
       wacky: 'wc',
-    }[options?.deckType ?? 'regular'] ?? 'ct';
+    }[options?.deckType ?? 'regular'] ?? 'gb';
 
   return suspects.map((suspect) => ({
     ...suspect,
