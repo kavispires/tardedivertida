@@ -1,1 +1,0 @@
-import{j as n,e as r,b0 as t,bE as e}from"./index-VBe-t_f0.js";function b({label:o,position:s="absolute"}){return n.jsx("div",{className:r("ribbon",`ribbon--${s}`),children:n.jsx("div",{className:r("ribbon__content",`ribbon__content--${o}`,`color-background--${e(o)}`,t("bounceIn")),children:o})})}export{b as R};
