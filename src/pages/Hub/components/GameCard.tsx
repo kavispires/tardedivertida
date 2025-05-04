@@ -1,14 +1,14 @@
 // Ant Design Resources
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { Card, Image, Divider, Badge, Space, Tag, Tooltip } from 'antd';
+import { Card, Divider, Badge, Space, Tag, Tooltip } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { PUBLIC_URL } from 'utils/constants';
 import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
 // Components
+import { GameStrip } from 'components/general/GameBanner';
 import { GameTags } from 'components/general/GameTags';
 import { RulesModal } from 'components/rules';
 // Internal
@@ -69,11 +69,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
       cover={
         <Badge.Ribbon text={game.version} color={getVersionColor(game.version)}>
           <div className="game-card__image">
-            <Image
-              alt={game.title[language]}
-              src={`${PUBLIC_URL.BANNERS}${game.gameName}.jpg`}
-              fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
-            />
+            <GameStrip gameName={game.gameName} width={256} title={game.title} />
             <span className="game-card__title" title={game.title[language]}>
               <span className="game-card__title-text">{game.title[language]}</span>{' '}
               <span>

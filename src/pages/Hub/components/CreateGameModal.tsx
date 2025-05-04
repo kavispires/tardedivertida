@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
-import { Image, Modal, Button, Divider, Alert, App } from 'antd';
+import { Modal, Button, Divider, Alert, App } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -14,9 +14,8 @@ import { useLoading } from 'hooks/useLoading';
 import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
 // Services
 import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
-// Utils
-import { PUBLIC_URL } from 'utils/constants';
 // Components
+import { GameStrip } from 'components/general/GameBanner';
 import { LanguageSwitch, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Loading } from 'components/loaders';
@@ -190,125 +189,123 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       okButtonProps={{ disabled: Boolean(!gameId) || isSettingRedirect }}
       maskClosable={false}
     >
-      <>
-        <Image
-          alt={gameInfo.title[language]}
-          src={`${PUBLIC_URL.BANNERS}${gameInfo.gameName}.jpg`}
-          fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
-          className="round-corners"
-        />
+      <GameStrip
+        title={gameInfo.title}
+        gameName={gameInfo.gameName}
+        className="round-corners"
+        width={256}
+        static
+      />
 
-        {!gameId && (
+      {!gameId && (
+        <Instruction>
+          <Translate pt="Você está criando um jogo em:" en="You are creating a game in:" /> <LanguageSwitch />
+        </Instruction>
+      )}
+
+      <GameCustomizations
+        options={gameInfo.options}
+        disabled={isLoading || Boolean(gameId)}
+        onChangeOptions={onChangeOptions}
+        selectedOptions={options}
+      />
+
+      <Divider />
+
+      {isLoading && (
+        <>
           <Instruction>
-            <Translate pt="Você está criando um jogo em:" en="You are creating a game in:" />{' '}
-            <LanguageSwitch />
+            <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
           </Instruction>
-        )}
+          <Loading message={translate('Gerando...', 'Generating...')} margin />
+        </>
+      )}
 
-        <GameCustomizations
-          options={gameInfo.options}
-          disabled={isLoading || Boolean(gameId)}
-          onChangeOptions={onChangeOptions}
-          selectedOptions={options}
+      {gameInfo.version.startsWith('alpha') && (
+        <Alert
+          type="warning"
+          showIcon
+          message={
+            <Translate
+              pt="Este jogo está em alpha, não o jogue"
+              en="This game is still in alpha and shouldn't be played"
+            />
+          }
         />
+      )}
 
-        <Divider />
+      {gameInfo.version.startsWith('beta') && (
+        <Alert
+          type="warning"
+          showIcon
+          message={
+            <Translate
+              pt="Este jogo está em beta, prossiga com cuidado"
+              en="This game is in beta and bugs might be everywhere"
+            />
+          }
+        />
+      )}
 
-        {isLoading && (
-          <>
-            <Instruction>
-              <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
-            </Instruction>
-            <Loading message={translate('Gerando...', 'Generating...')} margin />
-          </>
-        )}
-
-        {gameInfo.version.startsWith('alpha') && (
-          <Alert
-            type="warning"
-            showIcon
-            message={
-              <Translate
-                pt="Este jogo está em alpha, não o jogue"
-                en="This game is still in alpha and shouldn't be played"
-              />
-            }
-          />
-        )}
-
-        {gameInfo.version.startsWith('beta') && (
-          <Alert
-            type="warning"
-            showIcon
-            message={
-              <Translate
-                pt="Este jogo está em beta, prossiga com cuidado"
-                en="This game is in beta and bugs might be everywhere"
-              />
-            }
-          />
-        )}
-
-        {gameId ? (
-          <div>
-            <Title className="center">
-              <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}
-            </Title>
-            <Instruction>
-              {previousGameId && !wasRedirectSuccessful && (
-                <Alert
-                  type="info"
-                  showIcon
-                  message={
-                    <>
-                      <Translate
-                        pt={<>Você quer redirecionar jogadores em {previousGameId} para essa nova partida?</>}
-                        en={<>Redirect players in {previousGameId} to this new play?</>}
-                      />
-                      <Button
-                        size="large"
-                        onClick={() => {
-                          startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName);
-                        }}
-                        disabled={!gameId || !previousGameId}
-                        loading={isSettingRedirect}
-                      >
-                        <Translate pt="Redirecione-os" en="Redirect them" />
-                      </Button>
-                    </>
-                  }
-                />
-              )}
-              {wasRedirectSuccessful && (
-                <Alert
-                  type="info"
-                  showIcon
-                  message={
+      {gameId ? (
+        <div>
+          <Title className="center">
+            <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}
+          </Title>
+          <Instruction>
+            {previousGameId && !wasRedirectSuccessful && (
+              <Alert
+                type="info"
+                showIcon
+                message={
+                  <>
                     <Translate
-                      pt={
-                        <>
-                          Jogadores em {previousGameId} foram convidados para o jogo {gameId}
-                        </>
-                      }
-                      en={
-                        <>
-                          Players in {previousGameId} have been invited to {gameId}
-                        </>
-                      }
+                      pt={<>Você quer redirecionar jogadores em {previousGameId} para essa nova partida?</>}
+                      en={<>Redirect players in {previousGameId} to this new play?</>}
                     />
-                  }
-                />
-              )}
-            </Instruction>
-          </div>
-        ) : (
-          <SpaceContainer align="center">
-            <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
-              <Translate pt="Criar Jogo" en="Create Game" />
-            </Button>
-          </SpaceContainer>
-        )}
-      </>
+                    <Button
+                      size="large"
+                      onClick={() => {
+                        startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName);
+                      }}
+                      disabled={!gameId || !previousGameId}
+                      loading={isSettingRedirect}
+                    >
+                      <Translate pt="Redirecione-os" en="Redirect them" />
+                    </Button>
+                  </>
+                }
+              />
+            )}
+            {wasRedirectSuccessful && (
+              <Alert
+                type="info"
+                showIcon
+                message={
+                  <Translate
+                    pt={
+                      <>
+                        Jogadores em {previousGameId} foram convidados para o jogo {gameId}
+                      </>
+                    }
+                    en={
+                      <>
+                        Players in {previousGameId} have been invited to {gameId}
+                      </>
+                    }
+                  />
+                }
+              />
+            )}
+          </Instruction>
+        </div>
+      ) : (
+        <SpaceContainer align="center">
+          <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
+            <Translate pt="Criar Jogo" en="Create Game" />
+          </Button>
+        </SpaceContainer>
+      )}
     </Modal>
   );
 }
