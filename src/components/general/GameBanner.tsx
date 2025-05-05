@@ -64,6 +64,9 @@ export function GameBanner({
       <img
         src={`${PUBLIC_URL.BANNERS}${gameName}.jpg`}
         alt={`${title?.[language]} background`}
+        onError={(e) => {
+          (e.target as HTMLImageElement).src = `${PUBLIC_URL.BANNERS}/em-breve.jpg`;
+        }}
         style={{
           position: 'absolute',
           top: 0,
@@ -76,6 +79,9 @@ export function GameBanner({
 
       <motion.img
         src={`${PUBLIC_URL.LOGOS}logo-${gameName}-${language}.svg`}
+        onError={(e) => {
+          (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
+        }}
         alt={`${dualTranslate(title ?? { en: '', pt: '' })} logo`}
         style={{
           position: 'absolute',
@@ -162,6 +168,9 @@ export function GameStrip({
     >
       <img
         src={`${PUBLIC_URL.STRIPS}strip-${gameName}.jpg`}
+        onError={(e) => {
+          (e.target as HTMLImageElement).src = `${PUBLIC_URL.STRIPS}/strip-em-breve.jpg`;
+        }}
         alt={`${dualTranslate(title)} background`}
         style={{
           position: 'absolute',
@@ -174,6 +183,9 @@ export function GameStrip({
       />
       <motion.img
         src={`${PUBLIC_URL.LOGOS}logo-${gameName}-${language}.svg`}
+        onError={(e) => {
+          (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
+        }}
         alt={`${dualTranslate(title)} logo`}
         style={{
           position: 'absolute',

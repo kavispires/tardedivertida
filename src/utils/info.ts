@@ -17,6 +17,7 @@ import ESQUIADORES from 'games/esquiadores/game-info.json';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/game-info.json';
 import FOFOCA_QUENTE from 'games/fofoca-quente/game-info.json';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/game-info.json';
+import IDADE_DA_PREDA from 'games/idade-da-preda/game-info.json';
 import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/game-info.json';
 import LABIRINTO_SECRETO from 'games/labirinto-secreto/game-info.json';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/game-info.json';
@@ -73,6 +74,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'fileira-de-fatos': FILEIRA_DE_FATOS,
   'fofoca-quente': FOFOCA_QUENTE,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
+  'idade-da-preda': IDADE_DA_PREDA,
   'instrumentos-codificados': INSTRUMENTOS_CODIFICADOS,
   'labirinto-secreto': LABIRINTO_SECRETO,
   'linhas-cruzadas': LINHAS_CRUZADAS,
