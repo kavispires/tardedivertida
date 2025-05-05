@@ -1,0 +1,42 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "I",
+  "gameName": "idade-da-preda",
+  "version": "0.0.10",
+  "release": "planned",
+  "available": false,
+  "title": {
+    "pt": "Idade da Preda",
+    "en": "Tongue Age"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "aDaDaD",
+  "summary": {
+    "pt": "Homens das cavernas tem que criar uma nova língua. Vamos nomear objetos?",
+    "en": "Cavemen must create a new language. Let's name objects?"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "flow",
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["competitive", "cooperative"]
+}
