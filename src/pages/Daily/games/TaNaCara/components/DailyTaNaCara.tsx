@@ -112,6 +112,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                       age: '',
                       build: '',
                       height: '',
+                      features: [],
                     }}
                     width={width}
                   />

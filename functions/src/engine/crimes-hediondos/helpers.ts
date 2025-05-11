@@ -24,6 +24,7 @@ import type {
 import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
+import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -98,6 +99,27 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
   );
 
   return result;
+};
+
+export const cleanupItemsLikelihood = (
+  weapons: CrimesHediondosCard[],
+  evidence: CrimesHediondosCard[],
+  victims: CrimesHediondosCard[],
+  locations: CrimesHediondosCard[],
+  scenesIds: string[],
+) => {
+  const allItems = [...weapons, ...evidence, ...victims, ...locations];
+  allItems.forEach((item) => {
+    if (item.likelihood) {
+      const newLikelihood: Record<string, number[]> = {};
+      scenesIds.forEach((sceneId) => {
+        if (item.likelihood?.[sceneId]) {
+          newLikelihood[sceneId] = item.likelihood[sceneId];
+        }
+      });
+      item.likelihood = newLikelihood;
+    }
+  });
 };
 
 type GroupItems = {
@@ -472,30 +494,42 @@ export const mockCrimeForBots = (
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
   locationTile: CrimeSceneTile,
+  victimTile: CrimeSceneTile,
 ) => {
-  // TODO: Fix
-  // TODO: Use tags logic for location
-
   utils.players.getListOfBots(players).forEach((bot) => {
     const itemsGroup = groupedItems[bot.itemGroupIndex];
     const shuffledItems = utils.game.shuffle(itemsGroup);
-    const weapon = shuffledItems.find((e) => e?.includes('wp'));
-    const evidence = shuffledItems.find((e) => e?.includes('ev'));
-    const options = [0, 1, 2, 3, 4, 5];
+    const weaponId = shuffledItems.find((e) => e?.includes('wp'));
+    const weapon = items[weaponId ?? ''];
+    bot.weaponId = weaponId;
 
-    bot.weaponId = weapon;
-    bot.evidenceId = evidence;
+    const evidenceId = shuffledItems.find((e) => e?.includes('ev'));
+    const evidence = items[evidenceId ?? ''];
+    bot.evidenceId = evidenceId;
 
-    // Intelligent cause of death
-    bot.causeOfDeath = botSmartSceneMarking(causeOfDeathTile, items[bot.weaponId], items[bot.evidenceId]);
-    // Intelligent evidence reason
-    bot.reasonForEvidence = botSmartSceneMarking(
+    const locationId = shuffledItems.find((e) => e?.includes('lc'));
+    const location = items[locationId ?? ''];
+    if (locationId) {
+      bot.locationId = locationId;
+    }
+
+    const victimId = shuffledItems.find((e) => e?.includes('vt'));
+    const victim = items[victimId ?? ''];
+    if (victimId) {
+      bot.victimId = victimId;
+    }
+
+    // Scene markings
+    bot.causeOfDeathIndex = botSmartSceneMarking(causeOfDeathTile, weapon, evidence, location, victim);
+    bot.reasonForEvidenceIndex = botSmartSceneMarking(
       reasonForEvidenceTile,
-      items[bot.weaponId],
-      items[bot.evidenceId],
+      weapon,
+      evidence,
+      location,
+      victim,
     );
-    bot.locationTile = locationTile.id;
-    bot.locationIndex = utils.game.getRandomItem(options);
+    bot.locationIndex = botSmartSceneMarking(locationTile, weapon, evidence, location, victim);
+    bot.victimIndex = botSmartSceneMarking(victimTile, weapon, evidence, location, victim);
   });
 };
 
@@ -504,9 +538,11 @@ export const mockGuessingForBots = (players: Players) => {
     const guesses: Guesses = {};
     utils.players.getListOfPlayers(players, true).forEach((player) => {
       guesses[player.id] = {
-        // TODO: Fix
+        // TODO: Should it be actually guessing?
         weaponId: bot.weaponId,
         evidenceId: bot.evidenceId,
+        victimId: bot.victimId ?? '',
+        locationId: bot.locationId ?? '',
       };
     });
     bot.guesses = guesses;
@@ -518,79 +554,165 @@ export const mockSceneMarkForBots = (
   scene: CrimeSceneTile,
   items: Record<string, CrimesHediondosCard>,
 ) => {
-  // TODO: Fix
   utils.players.getListOfBots(players).forEach((bot) => {
-    bot.sceneIndex = botSmartSceneMarking(scene, items[bot.weaponId], items[bot.evidenceId]);
+    bot.sceneIndex = botSmartSceneMarking(
+      scene,
+      items[bot.weaponId],
+      items[bot.evidenceId],
+      items[bot.locationId],
+      items[bot.victimId],
+    );
   });
+};
+
+const getPrioritizedCards = (
+  likelihoodPriority: string[],
+  weapon?: CrimesHediondosCard,
+  evidence?: CrimesHediondosCard,
+  location?: CrimesHediondosCard,
+  victim?: CrimesHediondosCard,
+) => {
+  const prioritizedCards: CrimesHediondosCard[] = [];
+  likelihoodPriority.forEach((cardType) => {
+    if (cardType === 'weapon' && weapon) {
+      prioritizedCards.push(weapon);
+    }
+    if (cardType === 'evidence' && evidence) {
+      prioritizedCards.push(evidence);
+    }
+    if (cardType === 'location' && location) {
+      prioritizedCards.push(location);
+    }
+    if (cardType === 'victim' && victim) {
+      prioritizedCards.push(victim);
+    }
+  });
+
+  return prioritizedCards;
+};
+
+const getTheMostLikelySceneValue = (
+  sceneId: string,
+  prioritizedCards: CrimesHediondosCard[],
+  weights: number[] = [],
+) => {
+  // If prioritizedCards is empty, return 0
+  if (prioritizedCards.length === 0) {
+    return 0;
+  }
+
+  // If there's only one prioritized card, return its likelihood value
+  if (prioritizedCards.length === 1) {
+    return prioritizedCards[0].likelihood?.[sceneId]?.[0] ?? 0;
+  }
+
+  // If there are multiple prioritized cards, calculate the max likelihood of the first two cards, if there's a tie, use the other prioritized cards
+  const votes: Record<string, number> = {
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+  };
+
+  // Add the first 3 values of first card
+  votes[prioritizedCards[0].likelihood?.[sceneId]?.[0] ?? 0] += 5 + (weights[0] ?? 0);
+  votes[prioritizedCards[0].likelihood?.[sceneId]?.[1] ?? 1] += 3 + (weights[0] ?? 0);
+  votes[prioritizedCards[0].likelihood?.[sceneId]?.[2] ?? 2] += 1 + (weights[0] ?? 0);
+  // Add the first 3 values of second card
+  votes[prioritizedCards[1].likelihood?.[sceneId]?.[0] ?? 0] += 4 + (weights[1] ?? 0);
+  votes[prioritizedCards[1].likelihood?.[sceneId]?.[1] ?? 1] += 3 + (weights[1] ?? 0);
+  votes[prioritizedCards[1].likelihood?.[sceneId]?.[2] ?? 2] += 1 + (weights[1] ?? 0);
+  // Add the first two values of the third card, if any
+  if (prioritizedCards[2]) {
+    votes[prioritizedCards[2].likelihood?.[sceneId]?.[0] ?? 0] += 2 + (weights[2] ?? 0);
+    votes[prioritizedCards[2].likelihood?.[sceneId]?.[1] ?? 1] += 1 + (weights[2] ?? 0);
+  }
+  // Add the first value of the fourth card, if any
+  if (prioritizedCards[3]) {
+    votes[prioritizedCards[3].likelihood?.[sceneId]?.[0] ?? 0] += 1 + (weights[3] ?? 0);
+  }
+
+  const selectedEntries: number[] = [];
+  const maxScore = Math.max(...Object.values(votes));
+  Object.entries(votes).forEach(([key, score]) => {
+    if (score === maxScore) {
+      selectedEntries.push(Number(key));
+    }
+  });
+
+  if (selectedEntries.length === 1) {
+    return selectedEntries[0];
+  }
+
+  // If there's a tie, use the first card values as a tie breaker, whatever comes first in the selectedEntries the matches the earliest in the tiebreaker list of values, wins
+  const tieBreaker = prioritizedCards[0].likelihood?.[sceneId];
+
+  // Check the index of each selectedEntries in the tieBreaker, the earliest one wins
+  return orderBy(selectedEntries, (entry) => tieBreaker?.indexOf(entry) ?? Number.POSITIVE_INFINITY)[0];
 };
 
 const botSmartSceneMarking = (
   scene: CrimeSceneTile,
   weapon: CrimesHediondosCard,
   evidence: CrimesHediondosCard,
+  location?: CrimesHediondosCard,
+  victim?: CrimesHediondosCard,
 ): number => {
-  // If no tags is available for the scene, choose randomly
-  const sceneTags = scene?.tags ?? {};
-  const hasTags = Object.keys(sceneTags).length > 0;
-  if (!hasTags) {
-    return utils.game.getRandomNumber(0, 5);
-  }
-
-  // If no weapon or evidence tags, choose randomly
-  const weaponTags = weapon?.tags ?? [];
-  const evidenceTags = evidence?.tags ?? [];
-  if (weaponTags.length === 0 && evidenceTags.length === 0) {
-    return utils.game.getRandomNumber(0, 5);
-  }
-
-  let selectedTags: string[] = [];
-  // TODO: Fix
-  // Check for exclusivity cases
-  if (scene?.specific === 'weapon') {
-    selectedTags = weaponTags;
-  } else if (scene?.specific === 'evidence') {
-    selectedTags = evidenceTags;
-  } else {
-    selectedTags = [...new Set([...weaponTags, ...evidenceTags])];
-  }
-
-  // The any index is used when no matches are made and it should be present at least once in one of the tags
-  let anyIndex = -1;
-
-  const scores = Object.values(sceneTags).reduce((acc: number[], entry, index) => {
-    if (entry.includes('any')) {
-      anyIndex = index;
+  // Case 1: If the scene has an `specific` property, but not the `likelihoodPriority` property, focus only on the `specific` property
+  if (scene?.specific && !scene?.likelihoodPriority) {
+    // If it's weapon or evidence, return the index of the specific property
+    if (scene.specific === 'weapon') {
+      return weapon.likelihood?.[scene.id]?.[0] ?? 0;
+    }
+    if (scene.specific === 'evidence') {
+      return evidence.likelihood?.[scene.id]?.[0] ?? 0;
     }
 
-    if (!acc[index]) {
-      acc[index] = 0;
-    }
-
-    entry.forEach((entryTag) => {
-      if (selectedTags.includes(entryTag)) {
-        acc[index] += 1;
+    // If it's location or victim, return the property of calculate the max for weapon + evidence
+    const prioritizedCards = getPrioritizedCards(
+      ['weapon', 'evidence', 'location', 'victim'],
+      weapon,
+      evidence,
+      location,
+      victim,
+    );
+    if (scene.specific === 'location') {
+      if (location) {
+        return location.likelihood?.[scene.id]?.[0] ?? 0;
       }
-    });
-
-    return acc;
-  }, []);
-
-  // Gather indexes with the highest scores
-  const selectedEntries: number[] = [];
-
-  const maxScore = Math.max(...scores);
-  scores.forEach((score, index) => {
-    if (score === maxScore) {
-      selectedEntries.push(index);
+      return getTheMostLikelySceneValue(scene.id, prioritizedCards);
     }
-  });
-
-  // If no entry is more likely than others, return any index of random index
-  if (selectedEntries.length === 0) {
-    return anyIndex > -1 ? anyIndex : utils.game.getRandomNumber(0, 5);
+    if (scene.specific === 'victim') {
+      if (victim) {
+        return victim.likelihood?.[scene.id]?.[0] ?? 0;
+      }
+      return getTheMostLikelySceneValue(scene.id, prioritizedCards);
+    }
   }
 
-  return utils.game.getRandomItem(selectedEntries);
+  // Case 2: has specific and likelihoodPriority
+  if (scene?.specific && scene?.likelihoodPriority) {
+    const prioritizedCards = getPrioritizedCards(
+      scene.likelihoodPriority,
+      weapon,
+      evidence,
+      location,
+      victim,
+    );
+    return getTheMostLikelySceneValue(scene.id, prioritizedCards, [2]);
+  }
+
+  const prioritizedCards = getPrioritizedCards(
+    scene.likelihoodPriority ?? [],
+    weapon,
+    evidence,
+    location,
+    victim,
+  );
+
+  return getTheMostLikelySceneValue(scene.id, prioritizedCards);
 };
 
 /**

@@ -10,6 +10,7 @@ import {
   buildCrimes,
   buildRanking,
   buildScenes,
+  cleanupItemsLikelihood,
   dealItemGroups,
   getAchievements,
   groupItems,
@@ -50,6 +51,23 @@ export const prepareSetupPhase = async (
     victims: [],
     locations: [],
   });
+
+  // Cleanup unused scene tiles from items likelihood object
+  const sceneTilesIds = [
+    ...sceneTiles.map((scene) => scene.id),
+    causeOfDeathTile?.id,
+    reasonForEvidenceTile?.id,
+    locationTile?.id,
+    victimTile?.id,
+  ].filter(Boolean) as string[];
+
+  cleanupItemsLikelihood(
+    resourceData.weapons,
+    resourceData.evidence,
+    resourceData.victims ?? [],
+    resourceData.locations ?? [],
+    sceneTilesIds,
+  );
 
   // Save
   return {
@@ -97,6 +115,7 @@ export const prepareCrimeSelectionPhase = async (
     state.causeOfDeathTile,
     state.reasonForEvidenceTile,
     state.locationTile,
+    state.victimTile,
   );
 
   return {

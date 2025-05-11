@@ -1,7 +1,7 @@
 /**
  * Generic text card
  * Used for: adjectives, categories, challenges, characters, galeria-de-sonhos, labirinto-secreto,
- * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities, emotions, colors, teenage-rumors
+ * linhas-cruzadas, scenarios, single-words, spy-questions, things-qualities, emotions, colors
  */
 export type TextCard = {
   /**
@@ -223,20 +223,19 @@ export type CrimesHediondosCard = {
   /**
    * The type of the card
    */
-  type: 'weapon' | 'evidence' | 'victim' | 'location' | string;
+  type: 'weapon' | 'evidence' | string;
   /**
    * The name of the card
    */
   name: DualLanguageValue;
   /**
-   * List of tags related to the card/.
-   * It's used to help guess the value for given weapon and evidence pair tags in the scenario
-   */
-  tags?: string[];
-  /**
    * Item Id for the illustration icon
    */
-  itemId: string;
+  itemId?: string;
+  /**
+   * The likelihood of the answers for a given scene
+   */
+  likelihood?: Record<string, number[]>;
 };
 
 /**
@@ -265,13 +264,13 @@ export type CrimeSceneTile = {
    */
   type: string;
   /**
-   * Flag indicating if the card is exclusive to a type
+   * Flag indicating if the tile is for a specific type of card
    */
-  specific?: 'weapon' | 'evidence' | 'victim' | 'location' | string | null;
+  specific?: string | null;
   /**
-   * Object with a list of tags for each entry value. It's used to help guess the value for given weapon and evidence pair tags in the scenario
+   * Indicates the order card types should be analyzed
    */
-  tags?: Record<number | string, string[]>;
+  likelihoodPriority?: string[];
 };
 
 /**
@@ -575,6 +574,10 @@ export type SuspectCard = {
    * The height of the suspect
    */
   height: 'S' | 'M' | 'L' | string;
+  /**
+   * List of features in the suspect image (gb style as reference)
+   */
+  features: string[];
 };
 
 /**
@@ -788,13 +791,25 @@ export type ItemAttribute = {
 
 export type ItemGroup = {
   /**
-   * Unique identifier for the group, usually its name
+   * Unique identifier for the group
    */
   id: string;
   /**
+   * The name of the group
+   */
+  name: DualLanguageValue;
+  /**
    * The items in the group
    */
-  itemsIds: ItemId[];
+  itemsIds: string[];
+  /**
+   * Keywords to search for the group
+   */
+  keywords: string;
+  /**
+   * Flag indicating if it's nsfw (usually if more than 30% of its items are nsfw)
+   */
+  nsfw?: boolean;
 };
 
 export type DailyDiscSet = {
@@ -852,6 +867,10 @@ export type DailyQuartetSet = {
    * The type of quartet (visual, word, general, meaning)
    */
   type?: string;
+  /**
+   * Indicating that something must be done with the set
+   */
+  flagged?: boolean;
 };
 
 export type DailyDiagramRule = {
@@ -1132,6 +1151,9 @@ export type DrawingData = {
  * Image Cards Descriptor
  */
 export type ImageCardDescriptor = {
+  /**
+   * Unique identifier for the card
+   */
   id: string;
   /**
    * List of keywords/tags related to the image
@@ -1149,4 +1171,19 @@ export type ImageCardDescriptor = {
    * Card ids from the theme-words deck associated with the image
    */
   associatedDreams?: string[];
+};
+
+export type ImageCardPasscodeSet = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * List of passcode for the cards, it should be order from easier to harder
+   */
+  passcode: string[];
+  /**
+   * Cards related to the passcode. Minimum of 3 cards
+   */
+  imageCardsIds: string[];
 };
