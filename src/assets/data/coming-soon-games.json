@@ -37,9 +37,9 @@
     },
     "tags": ["competitive", "turn-based", "drawing", "guessing", "timed"]
   },
-  "soninho-bom": {
+  "sonhinho-bom": {
     "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "?",
+    "gameCode": "S",
     "gameName": "sonhinho-bom",
     "version": "0.0.0",
     "release": "planned",
@@ -52,7 +52,7 @@
       "pt": "",
       "en": ""
     },
-    "basedOn": "?????",
+    "basedOn": "maerD I nehW",
     "appearance": {
       "clouds": "cloud",
       "cloudsAnimationType": "flow",
@@ -74,44 +74,6 @@
       "max": 10
     },
     "tags": ["cooperative"]
-  },
-  "fofoca-quente": {
-    "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "F",
-    "gameName": "fofoca-quente",
-    "version": "0.0.0",
-    "release": "planned",
-    "available": false,
-    "title": {
-      "pt": "Fofoca Quente",
-      "en": "Rumor Has It"
-    },
-    "popularName": {
-      "pt": "",
-      "en": ""
-    },
-    "basedOn": "?????",
-    "appearance": {
-      "clouds": "cloud",
-      "cloudsAnimationType": "flow",
-      "primaryColor": "",
-      "backgroundColor": "",
-      "colorScheme": "light"
-    },
-    "summary": {
-      "pt": "???",
-      "en": "???"
-    },
-    "rules": {
-      "pt": ["TBD"],
-      "en": ["TBD"]
-    },
-    "playerCount": {
-      "recommended": [2],
-      "min": 2,
-      "max": 2
-    },
-    "tags": ["competitive"]
   },
   "barrados-na-alfandega": {
     "$schema": "../../utils/game-info.schema.json",
