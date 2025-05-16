@@ -150,5 +150,6 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
     onSelectThing,
     onSelectArea,
     onConfirmPlacement,
+    isWeekend: state.isWeekend,
   };
 }

@@ -6,7 +6,12 @@ import { Translate } from 'components/language';
 // Internal
 import { SETTINGS } from '../utils/settings';
 
-export function Rules() {
+type RulesProps = {
+  isWeekend: boolean;
+};
+
+export function Rules({ isWeekend }: RulesProps) {
+  const quantity = SETTINGS.HEARTS + (isWeekend ? 1 : 0);
   return (
     <Typography>
       <Translate
@@ -22,7 +27,7 @@ export function Rules() {
               obedece a regra do círculo amarelo e a do vermelho, enquanto a coisa em só um lado obedece
               somente a regra daquele círculo. Teoria de conjuntos básica! Matemática 5a série.
             </li>
-            <li>O objetivo é você colocar 4 coisas, uma a uma, na área correta do diagrama.</li>
+            <li>O objetivo é você colocar {quantity} coisas, uma a uma, na área correta do diagrama.</li>
             <li>
               Se você colocar uma coisa na área errada, o jogo vai colocar a coisa na área correta, você perde
               um coração <HeartFilled />, e ganha uma nova coisa para posicionar.
@@ -34,7 +39,7 @@ export function Rules() {
             </li>
 
             <li>
-              Você tem {SETTINGS.HEARTS} <HeartFilled /> chances. Boa sorte!
+              Você tem {quantity} <HeartFilled /> chances. Boa sorte!
             </li>
           </>
         }
@@ -50,13 +55,15 @@ export function Rules() {
               the rule of the yellow circle and the red one, while the thing on just one side obeys only the
               rule of that circle. Basic set theory! 5th grade math.
             </li>
-            <li>The goal is for you to place 4 things, one by one, in the correct area of the diagram.</li>
+            <li>
+              The goal is for you to place {quantity} things, one by one, in the correct area of the diagram.
+            </li>
             <li>
               If you place a thing in the wrong area, the game will place the thing in the correct area, you
               lose a heart <HeartFilled />, and gain a new thing to position.
             </li>
             <li>
-              You have {SETTINGS.HEARTS} <HeartFilled /> chances. Good luck!
+              You have {quantity} <HeartFilled /> chances. Good luck!
             </li>
           </>
         }

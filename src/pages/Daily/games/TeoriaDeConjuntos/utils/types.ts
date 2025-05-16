@@ -38,6 +38,7 @@ export type GameState = {
   rule2Things: TThing[];
   intersectingThings: TThing[];
   guesses: Guess[];
+  isWeekend: boolean;
 };
 
 export type SessionState = {
