@@ -4,6 +4,7 @@ import { STATUSES } from 'pages/Daily/utils/constants';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTeoriaDeConjuntosEntry, GameState } from './types';
+import { checkWeekend } from '../../AquiO/utils/helpers';
 
 const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',
@@ -16,15 +17,19 @@ const DEFAULT_LOCAL_TODAY: GameState = {
   rule2Things: [],
   intersectingThings: [],
   guesses: [],
+  isWeekend: false,
 };
 
 export const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState => {
+  const isWeekend = checkWeekend(data.id);
+
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: merge(cloneDeep(DEFAULT_LOCAL_TODAY), {
-      hand: data.things.slice(0, 4),
-      deck: data.things.slice(4),
+      hand: data.things.slice(0, isWeekend ? 5 : 4),
+      hearts: SETTINGS.HEARTS + (isWeekend ? 1 : 0),
+      deck: data.things.slice(isWeekend ? 5 : 4),
       rule1Things: [
         {
           id: data.rule1.thing.id,
@@ -59,6 +64,7 @@ export const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState =>
     rule2Things: localToday.rule2Things,
     intersectingThings: localToday.intersectingThings,
     guesses: localToday.guesses,
+    isWeekend,
   };
 
   return state;

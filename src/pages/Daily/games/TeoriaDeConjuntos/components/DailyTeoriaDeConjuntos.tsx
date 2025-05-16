@@ -52,6 +52,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
     onSelectArea,
     onConfirmPlacement,
     guesses,
+    isWeekend,
   } = useTeoriaDeConjuntosEngine(data, initialState);
 
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
@@ -67,7 +68,12 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
-        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
+        <Menu
+          hearts={hearts}
+          total={SETTINGS.HEARTS + (isWeekend ? 1 : 0)}
+          openRules={true}
+          rules={<Rules isWeekend={isWeekend} />}
+        />
 
         <Region>
           <Typography.Text strong className="teoria-de-conjuntos-title">
