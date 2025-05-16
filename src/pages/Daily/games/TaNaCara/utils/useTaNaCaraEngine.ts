@@ -16,7 +16,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
 
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     questionIndex: 0,
-    testimonies: data.testimonies.filter((t) => !t.nsfw),
+    testimonies: data.testimonies.filter((t) => (mode !== 'nsfw' ? !t.nsfw : true)),
     suspectsIds: data.testimonies.map(() => sampleSize(state.suspectsIds, 6)),
     answers: [
       {

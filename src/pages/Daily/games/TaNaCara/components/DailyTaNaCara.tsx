@@ -16,6 +16,7 @@ import { Button, Divider, Flex, Layout, Space, Switch } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Icons
@@ -67,7 +68,8 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
     mode,
   } = useTaNaCaraEngine(data, initialState);
 
-  const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 300, minWidth: 55 });
+  const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 256, minWidth: 55 });
+  const { translate } = useLanguage();
 
   return (
     <Layout className="app">
@@ -92,13 +94,21 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
         {isPlaying && question && (
           <SpaceContainer vertical>
             <StepDots current={questionIndex} total={totalQuestions} />
-            <Card hideHeader>{question.question}</Card>
+            <Card
+              hideHeader={!question.nsfw}
+              header={translate('Conteúdo Sensível', 'Sensitive Content')}
+              color="#ff69b4"
+            >
+              {question.question}
+            </Card>
             <Flex gap={8} wrap="wrap" justify="center">
               {suspects.map((suspectId, index) => (
                 <MotionFlex
                   key={`${questionIndex}-${suspectId}`}
                   vertical
                   {...getAnimation('flipInY', { delay: 0.1 * index })}
+                  align="center"
+                  justify="center"
                 >
                   <SuspectCard
                     suspect={{
@@ -175,7 +185,11 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                   type="primary"
                   size="large"
                 >
-                  <Translate pt="Cansei / Salvar" en="I'm done / save" />
+                  {questionIndex === totalQuestions - 1 ? (
+                    <Translate pt="Salvar e terminar" en="Save and finish" />
+                  ) : (
+                    <Translate pt="Cansei / Salvar" en="I'm done / save" />
+                  )}
                 </Button>
               </>
             )}
