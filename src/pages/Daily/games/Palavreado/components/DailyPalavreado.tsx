@@ -139,9 +139,8 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             isWin={isWin}
             hearts={hearts}
             words={data.words}
-            letters={letters}
             swaps={swaps}
-            size={size}
+            guesses={guesses}
           />
         </Modal>
       </Layout.Content>

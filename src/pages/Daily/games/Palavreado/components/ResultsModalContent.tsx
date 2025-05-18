@@ -1,4 +1,3 @@
-import { chunk } from 'lodash';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 // Ant Design Resources
@@ -14,7 +13,6 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
-import type { PalavreadoLetter } from '../utils/types';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
@@ -22,9 +20,8 @@ type ResultsModalContentProps = {
   words: string[];
   isWin: boolean;
   hearts: number;
-  letters: PalavreadoLetter[];
   swaps: number;
-  size: number;
+  guesses: string[][];
 };
 
 export function ResultsModalContent({
@@ -32,9 +29,8 @@ export function ResultsModalContent({
   words,
   isWin,
   hearts,
-  letters,
   swaps,
-  size,
+  guesses,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
@@ -42,10 +38,10 @@ export function ResultsModalContent({
     game: dualTranslate(SETTINGS.NAME),
     challenge,
     remainingHearts: hearts,
-    letters,
+    words,
     language,
     swaps,
-    size,
+    guesses,
   });
 
   return (
@@ -75,7 +71,7 @@ export function ResultsModalContent({
         ))}
       </Space>
 
-      <CopyToClipboardResult result={result} rows={size + 2} />
+      <CopyToClipboardResult result={result} rows={guesses[0].length + 2} />
 
       <NextGameSuggestion />
     </SpaceContainer>
@@ -86,37 +82,32 @@ function writeResult({
   game,
   challenge,
   remainingHearts,
-  letters,
+  words,
   language,
   swaps,
-  size,
+  guesses,
 }: {
   game: string;
   challenge: number;
   remainingHearts: number;
-  letters: PalavreadoLetter[];
+  words: string[];
   language: Language;
   swaps: number;
-  size: number;
+  guesses: string[][];
 }) {
-  const cleanUpAttempts = chunk(letters, size).map((row) =>
-    row.map((letter) => {
-      switch (letter.state) {
-        case '0':
-          return '🟥';
-        case '1':
-          return '🟦';
-        case '2':
-          return '🟪';
-        case '3':
-          return '🟫';
-        case '4':
-          return '🟧';
-        default:
-          return '⬜️';
-      }
-    }),
-  );
+  const size = guesses[0].length;
+  const colors = ['🟥', '🟦', '🟪', '🟫', '🟧'];
+  const cleanUpAttempts = guesses.map((attempt) => {
+    return attempt.map((word, i) => {
+      const wordState = words[i].toLowerCase() === word.toLowerCase() ? colors[i] : '⬜️';
+      return wordState;
+    });
+  });
+  if (cleanUpAttempts.length < size) {
+    while (cleanUpAttempts.length < size) {
+      cleanUpAttempts.push(cleanUpAttempts[cleanUpAttempts.length - 1]);
+    }
+  }
 
   return [
     `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
