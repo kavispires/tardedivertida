@@ -175,6 +175,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
             hearts={hearts}
             guesses={guesses}
             data={data}
+            isWeekend={isWeekend}
           />
         </Modal>
       </Layout.Content>
