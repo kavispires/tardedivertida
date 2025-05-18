@@ -24,9 +24,17 @@ type ResultsModalContentProps = {
   hearts: number;
   guesses: ReturnType<typeof useTeoriaDeConjuntosEngine>['guesses'];
   data: DailyTeoriaDeConjuntosEntry;
+  isWeekend: boolean;
 };
 
-export function ResultsModalContent({ challenge, isWin, hearts, guesses, data }: ResultsModalContentProps) {
+export function ResultsModalContent({
+  challenge,
+  isWin,
+  hearts,
+  guesses,
+  data,
+  isWeekend,
+}: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
   const result = writeResult({
@@ -35,6 +43,7 @@ export function ResultsModalContent({ challenge, isWin, hearts, guesses, data }:
     remainingHearts: hearts,
     language,
     guesses,
+    isWeekend,
   });
 
   return (
@@ -76,12 +85,14 @@ function writeResult({
   remainingHearts,
   language,
   guesses,
+  isWeekend,
 }: {
   game: string;
   challenge: number;
   remainingHearts: number;
   language: Language;
   guesses: ReturnType<typeof useTeoriaDeConjuntosEngine>['guesses'];
+  isWeekend: boolean;
 }) {
   const cleanUpAttempts = guesses.map((guess) => {
     return {
@@ -91,10 +102,11 @@ function writeResult({
       false: '✖️',
     }[String(guess.result)];
   });
+  const totalHearts: number = SETTINGS.HEARTS + (isWeekend ? 1 : 0);
 
   return [
     `${SETTINGS.EMOJI} TD ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')}`,
+    `${writeHeartResultString(remainingHearts, totalHearts, ' ')}`,
     cleanUpAttempts.join(' '),
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');
