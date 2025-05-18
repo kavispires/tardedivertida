@@ -164,5 +164,6 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     submitGrid,
     keyword: data.keyword,
     size,
+    words: data.words,
   };
 }

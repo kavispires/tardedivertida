@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
@@ -42,6 +43,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     swaps,
     size,
     keyword,
+    words,
   } = usePalavreadoEngine(data, initialState);
 
   return (
@@ -88,8 +90,11 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
               {attempt.map((word, i) => (
                 <Typography.Text
                   keyboard
-                  className="palavreado-word"
+                  className={clsx('palavreado-word', {
+                    [`palavreado-word--${i}`]: word.toLowerCase() === words[i].toLowerCase(),
+                  })}
                   key={`${attempt}-${index}-${word}-${i}`}
+                  // style={word.toLowerCase() === words[i].toLowerCase() ? { color: 'gold' } : {}}
                 >
                   {word}
                 </Typography.Text>
