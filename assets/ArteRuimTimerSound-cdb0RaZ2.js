@@ -1,0 +1,1 @@
+import{z as s,r as a,j as e}from"./index-D2IubTB8.js";import{u}from"./useAudio-BtPfq-22.js";const m="/tardedivertida/assets/arte-ruim-timer-BgO9GHID.mp3";function n(){const[r]=s("volume"),[o,,t]=u({src:m,autoPlay:!0,loop:!1});return a.useEffect(()=>{t.volume(r)},[r]),e.jsx(e.Fragment,{children:o})}export{n as A,m as a};
