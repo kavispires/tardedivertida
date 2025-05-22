@@ -4,16 +4,16 @@
  * @returns the URL for the given kind of resource
  */
 export function useTDBaseUrl(library: 'images' | 'sprites' | 'resources' | 'classic'): string {
-  const baseUrl = import.meta.env.VITE_TD_BASE_URL;
+  const baseUrl = import.meta.env.VITE__TD_BASE_URL;
   switch (library) {
     case 'images':
-      return `${baseUrl}/${import.meta.env.VITE_TD_IMAGES}`;
+      return `${baseUrl}/${import.meta.env.VITE__TD_IMAGES}`;
     case 'sprites':
-      return `${baseUrl}/${import.meta.env.VITE_TD_SPRITES}`;
+      return `${baseUrl}/${import.meta.env.VITE__TD_SPRITES}`;
     case 'resources':
-      return `${baseUrl}/${import.meta.env.VITE_TD_RESOURCES}`;
+      return `${baseUrl}/${import.meta.env.VITE__TD_RESOURCES}`;
     case 'classic':
-      return `${baseUrl}/${import.meta.env.VITE_TD_CLASSIC}`;
+      return `${baseUrl}/${import.meta.env.VITE__TD_CLASSIC}`;
     default:
       throw new Error('Invalid library');
   }

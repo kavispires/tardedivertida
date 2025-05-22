@@ -120,11 +120,11 @@ export function Hub() {
             <>
               <Link to="debug">Debug</Link> <Divider type="vertical" />{' '}
               <a
-                href={`${import.meta.env.VITE_FIRESTORE_URL}/~2Fdiario~2F${today}`}
+                href={`${import.meta.env.VITE__FIRESTORE_URL}/${import.meta.env.VITE__FIREBASE_PROJECT_ID}/${import.meta.env.VITE__FIRESTORE_PATH}/~2Fdiario~2F${today}`}
                 target="_blank"
                 rel="noreferrer"
               >
-                Firesore
+                Firestore
               </a>
             </>
           }
