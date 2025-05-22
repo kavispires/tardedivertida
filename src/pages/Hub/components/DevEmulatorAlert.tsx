@@ -17,7 +17,7 @@ export function DevEmulatorAlert() {
   const [usingFirestoreEmulator] = useGlobalState('usingFirestoreEmulator');
   const [usingFunctionsEmulator] = useGlobalState('usingFunctionsEmulator');
 
-  const ip = import.meta.env.VITE_LOCAL_IP;
+  const ip = import.meta.env.VITE__LOCAL_IP;
   const displayDevWarningMessage = isDevEnv && window.location.hostname !== usingFirestoreEmulator;
   const displayDevWarningMessageFunctions = isDevEnv && window.location.hostname !== usingFunctionsEmulator;
   const { port, pathname, hash, protocol } = window.location;

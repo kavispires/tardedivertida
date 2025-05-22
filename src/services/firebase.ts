@@ -23,20 +23,20 @@ import { setGlobalState } from 'hooks/useGlobalState';
 
 const buildKey = () => {
   return [
-    import.meta.env.VITE_FIREBASE_A,
-    import.meta.env.VITE_FIREBASE_P,
-    import.meta.env.VITE_FIREBASE_I,
+    import.meta.env.VITE__FIREBASE_A,
+    import.meta.env.VITE__FIREBASE_P,
+    import.meta.env.VITE__FIREBASE_I,
   ].join('');
 };
 
 const firebaseConfig = {
   apiKey: buildKey(),
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_API_ID,
+  authDomain: import.meta.env.VITE__FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE__FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE__FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE__FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE__FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE__FIREBASE_API_ID,
 };
 
 const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
@@ -46,7 +46,7 @@ export const auth: Auth = getAuth(firebaseApp);
 export const firestore: Firestore = getFirestore(firebaseApp);
 export const functions: Functions = getFunctions(firebaseApp);
 
-// const localHost = import.meta.env.VITE_LOCAL_IP || 'localhost';
+// const localHost = import.meta.env.VITE__LOCAL_IP || 'localhost';
 const localHost = 'localhost';
 const runEmulators = true;
 
@@ -148,5 +148,5 @@ export function convertGuestoToUser(email: string, password: string): Promise<Us
 export const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
   return usingEmulators
     ? `http://127.0.0.1:4000/firestore/default/data/games/${gameCollection}/${gameId}/state`
-    : `${import.meta.env.VITE_FIREBASE_URL}/~2Fgames~2F${gameCollection}~2F${gameId}~2Fstate`;
+    : `${import.meta.env.VITE__FIREBASE_URL}/~2Fgames~2F${gameCollection}~2F${gameId}~2Fstate`;
 };
