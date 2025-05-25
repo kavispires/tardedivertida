@@ -1,4 +1,4 @@
-import { shuffle } from 'lodash';
+import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
@@ -11,10 +11,10 @@ import type { GameSettings } from '../utils/types';
 import { SETTINGS } from '../utils/settings';
 import { checkWasPlayedToday } from '../utils';
 
-const PRIORITY_LIST = [
-  SETTINGS.QUARTETOS,
-  SETTINGS.ARTE_RUIM,
-  ...shuffle([
+const PRIORITY_LIST = orderBy(
+  [
+    SETTINGS.QUARTETOS,
+    SETTINGS.ARTE_RUIM,
     SETTINGS.COMUNICACAO_ALIENIGENA,
     SETTINGS.TEORIA_DE_CONJUNTOS,
     SETTINGS.FILMACO,
@@ -23,8 +23,11 @@ const PRIORITY_LIST = [
     SETTINGS.CONTROLE_DE_ESTOQUE,
     SETTINGS.TA_NA_CARA,
     SETTINGS.PICACO,
-  ]),
-];
+    SETTINGS.PORTAIS_MAGICOS,
+  ],
+  ['name.pt'],
+  ['asc'],
+);
 
 const getUnplayedGames = () => {
   return PRIORITY_LIST.filter((game) => !checkWasPlayedToday(game.KEY)).map((settings) =>
