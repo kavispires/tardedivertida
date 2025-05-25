@@ -1,6 +1,8 @@
 import { Region } from 'pages/Daily/components/Region';
 // Ant Design Resources
-import { Modal, Typography } from 'antd';
+import { Flex, Modal, Typography } from 'antd';
+// Types
+import type { SuspectCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -9,6 +11,7 @@ import { Translate } from 'components/language';
 // Internal
 import type { DailyEspionagemEntry } from '../utils/types';
 import type { useEspionagemEngine } from '../utils/useEspionagemEngine';
+import { FEATURE_PT_TRANSLATIONS } from '../utils/helpers';
 import { Statements } from './Statements';
 
 type ReleaseModalProps = Pick<
@@ -34,12 +37,16 @@ export function ReleaseModal({
 
   const suspect = suspects.find((s) => s.id === activeSuspectId);
 
+  if (!suspect) {
+    return null; // If the suspect is not found, do not render the modal
+  }
+
   return (
     <Modal
       title={
         <Translate
-          pt={`Tem certeza que quer liberar ${suspect?.name.pt ?? ''} ?`}
-          en={`Are you sure you want to release ${suspect?.name.en ?? ''} ?`}
+          pt={`Tem certeza que quer liberar ${suspect?.name.pt.split(' ')[0] ?? ''}?`}
+          en={`Are you sure you want to release ${suspect?.name.en.split(' ')[0] ?? ''}?`}
         />
       }
       open
@@ -48,9 +55,10 @@ export function ReleaseModal({
       onOk={() => onRelease()}
       okText={<Translate pt="Sim" en="Yes" />}
     >
-      <Region>
+      <Flex align="center" gap={12}>
         <ImageCard id={activeSuspectId} cardWidth={width} className="espionagem-suspect-card" />
-      </Region>
+        <Typography.Paragraph italic>{gatherSuspectInfo(suspect)}</Typography.Paragraph>
+      </Flex>
 
       <Region>
         <Typography.Text strong>
@@ -65,3 +73,19 @@ export function ReleaseModal({
     </Modal>
   );
 }
+
+const gatherSuspectInfo = (suspect: SuspectCard) => {
+  const allFeatures = [
+    suspect.gender,
+    suspect.age,
+    suspect.ethnicity,
+    suspect.height,
+    suspect.build,
+    ...suspect.features,
+  ];
+
+  return allFeatures
+    .filter(Boolean)
+    .map((feature) => FEATURE_PT_TRANSLATIONS[feature] || feature)
+    .join(', ');
+};
