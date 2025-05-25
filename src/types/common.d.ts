@@ -149,3 +149,7 @@ type ElementPropsWithChildren<TElement = HTMLDivElement> = {
 type ResponseError = {
   message: string;
 } | null;
+
+type Prettify<T> = {
+  [K in keyof T]: T[K];
+};

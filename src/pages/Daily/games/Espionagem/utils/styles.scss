@@ -1,0 +1,33 @@
+@use "styles/sass" as *;
+
+.espionagem-suspects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: get-unit(1);
+  padding: get-unit(2);
+  background: get-color("brown", 8, 0.5);
+  border-radius: var(--border-radius);
+}
+.espionagem-suspect-card .ant-image-img {
+  border-radius: get-unit(2);
+}
+
+.espionagem-released-suspect {
+  filter: grayscale(100%);
+}
+
+.espionagem-culprit-suspect {
+  outline: 3px solid get-color("red", 6);
+  border-radius: get-unit(2);
+}
+
+.espionagem-statements {
+  margin: get-unit(0 4);
+}
+
+.espionagem-crime-title {
+  font-size: get-unit(3);
+  font-weight: 600;
+  color: get-color("brown", 5);
+  margin-bottom: get-unit(2);
+}

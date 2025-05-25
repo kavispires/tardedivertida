@@ -3,6 +3,7 @@ import { SETTINGS as AQUI_O } from '../games/AquiO/utils/settings';
 import { SETTINGS as ARTE_RUIM } from '../games/ArteRuim/utils/settings';
 import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienigena/utils/settings';
 import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
+import { SETTINGS as ESPIONAGEM } from '../games/Espionagem/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games//Palavreado/utils/settings';
 import { SETTINGS as PICACO } from '../games/Picaco/utils/settings';
@@ -16,6 +17,7 @@ export const SETTINGS = {
   ARTE_RUIM,
   COMUNICACAO_ALIENIGENA,
   CONTROLE_DE_ESTOQUE,
+  ESPIONAGEM,
   FILMACO,
   PALAVREADO,
   PICACO,

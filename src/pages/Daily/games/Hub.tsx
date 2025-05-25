@@ -70,6 +70,7 @@ const CONTRIBUTIONS: Entry[] = [
 ];
 
 const DEMOS: Entry[] = [
+  SETTINGS.ESPIONAGEM,
   {
     ...COMING_SOON_ENTRY,
     HUB_ICON: DailyCrimeGameIcon,

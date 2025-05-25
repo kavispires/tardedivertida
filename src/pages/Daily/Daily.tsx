@@ -21,6 +21,7 @@ import { DailyComunicacaoAlienigenaGame } from './games/ComunicacaoAlienigena/Da
 import { DailyPortaisMagicosGame } from './games/PortaisMagicos/DailyPortaisMagicosGame';
 import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
 import { DailyTaNaCaraGame } from './games/TaNaCara/DailyTaNaCaraGame';
+import { DailyEspionagemGame } from './games/Espionagem/DailyEspionagemGame';
 // Sass
 import './utils/daily.scss';
 
@@ -57,6 +58,7 @@ function DailyPage() {
       'arte-ruim': DailyArteRuimGame,
       'comunicacao-alienigena': DailyComunicacaoAlienigenaGame,
       'controle-de-estoque': DailyControleDeEstoqueGame,
+      espionagem: DailyEspionagemGame,
       filmaco: DailyFilmacoGame,
       palavreado: DailyPalavreadoGame,
       'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
