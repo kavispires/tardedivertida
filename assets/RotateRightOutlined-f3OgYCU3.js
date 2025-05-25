@@ -1,1 +1,0 @@
-import{r as t,aA as n,a4 as r,fJ as f,fK as i}from"./index-CrdKL8s0.js";var R=function(e,a){return t.createElement(n,r({},e,{ref:a,icon:f}))},d=t.forwardRef(R),c=function(e,a){return t.createElement(n,r({},e,{ref:a,icon:i}))},s=t.forwardRef(c);export{d as R,s as a};
