@@ -34,11 +34,11 @@ export function Rules() {
             <li>Você é um espião em um evento e precisa descobrir quem é o culpado.</li>
             <li>
               Você deve liberar todas as pessoas inocentes primeiro para que{' '}
-              <strong>o culpado seja a última pessoa</strong>.
+              <strong>o culpado seja a última pessoa restante</strong>.
             </li>
             <li>
-              Suas informações têm declarações para ajudar a identificar o culpado, e você três declarações
-              grátis que você vê ao liberar suspeitos.
+              Seus informantes têm declarações para ajudar a identificar o culpado, você começa com uma e terá
+              duas declarações adicionais grátis ao liberar suspeitos.
             </li>
             <li>
               Você pode usar <HeartFilled /> para ver declarações adicionais e você tem {SETTINGS.HEARTS}{' '}

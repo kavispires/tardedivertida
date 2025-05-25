@@ -128,6 +128,21 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
             animate
           />
 
+          <Typography.Paragraph className="text-center">
+            <Translate
+              pt={
+                <>
+                  Libere alguém que <strong>não</strong> se encaixe nas declarações.
+                </>
+              }
+              en={
+                <>
+                  Release someone who <strong>does not</strong> fit the statements.
+                </>
+              }
+            />
+          </Typography.Paragraph>
+
           {hearts > 0 && (
             <Button
               icon={<BulbOutlined />}
