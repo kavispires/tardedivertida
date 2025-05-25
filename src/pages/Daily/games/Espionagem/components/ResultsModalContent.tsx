@@ -62,21 +62,26 @@ export function ResultsModalContent({
           </>
         )}
       </Typography.Title>
-      <Typography.Paragraph className="center">
-        {win ? (
-          <Translate pt="Você capturou o culpado!" en="You caught the culprit!" />
-        ) : (
-          <Translate pt="Você deixou o culpado escapar!" en="You let the culprit escape!" />
-        )}
-      </Typography.Paragraph>
 
       <Flex align="center">
         {culprit && <SuspectCard suspect={culprit} width={96} />}
-        <TextHighlight className="espionagem-crime-title">
-          <Typography.Paragraph className="text-center">
-            <DualTranslate>{reason}</DualTranslate>
+        <Flex vertical>
+          <Typography.Paragraph className="center">
+            {win ? (
+              <Translate
+                pt="Você capturou o culpado pelo crime:"
+                en="You caught the culprit for the crime:"
+              />
+            ) : (
+              <Translate pt="Você deixou o culpado escapar! Crime:" en="You let the culprit escape! Crime:" />
+            )}
           </Typography.Paragraph>
-        </TextHighlight>
+          <TextHighlight className="espionagem-crime-title">
+            <Typography.Paragraph className="text-center">
+              <DualTranslate>{reason}</DualTranslate>
+            </Typography.Paragraph>
+          </TextHighlight>
+        </Flex>
       </Flex>
 
       <CopyToClipboardResult result={result} rows={3} />
