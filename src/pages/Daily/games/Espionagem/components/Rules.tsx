@@ -1,3 +1,4 @@
+import { DemoBanner } from 'pages/Daily/components/BetaBanner';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
@@ -9,6 +10,7 @@ import { SETTINGS } from '../utils/settings';
 export function Rules() {
   return (
     <Typography>
+      <DemoBanner />
       <Translate
         en={
           <>
