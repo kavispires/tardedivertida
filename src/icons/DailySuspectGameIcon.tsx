@@ -34,7 +34,7 @@ export function DailySuspectGameIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffe177"
         d="M218.1 256H86a16 16 0 0 1-16-15.9v-152a16 16 0 0 1 16-16h132a16 16 0 0 1 16 16v152a16 16 0 0 1-16 15.9z"
       />
-      <path fill="#01d0fb" d="M99.2 256v-14.7a47.8 47.8 0 1 1 95.7 0V256" />
+      <path fill="#43b76fd9" d="M99.2 256v-14.7a47.8 47.8 0 1 1 95.7 0V256" />
       <path
         fill="#ffdfcf"
         d="M147 203.3a41.8 41.8 0 0 1-41.8-41.8v-23.4a41.8 41.8 0 0 1 83.7 0v23.4a41.8 41.8 0 0 1-41.9 41.8z"
@@ -44,7 +44,7 @@ export function DailySuspectGameIcon(props: React.SVGProps<SVGSVGElement>) {
         d="M428.1 234.7h-48.8c-6.8 0-12.4-5.5-12.4-12.4v-48.8c0-6.8 5.6-12.4 12.4-12.4h48.8c6.9 0 12.4 5.6 12.4 12.4v48.8c0 6.9-5.5 12.4-12.4 12.4z"
       />
       <path
-        fill="#5de1c4"
+        fill="#43b76fd9"
         d="M419.6 321h-68.8c-6.8 0-12.3-5.6-12.3-12.4v-32.5c0-6.9 5.5-12.4 12.3-12.4h68.8c6.8 0 12.3 5.5 12.3 12.4v32.5c0 6.8-5.5 12.4-12.3 12.4z"
       />
       <circle cx="362.4" cy="170.4" r="17.3" fill="#01d0fb" />

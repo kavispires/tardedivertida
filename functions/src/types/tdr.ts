@@ -274,6 +274,25 @@ export type CrimeSceneTile = {
 };
 
 /**
+ * Crime Reason Card
+ * Used for: crime-reasons
+ */
+export type CrimeReason = {
+  /**
+   * Unique identifier for the card
+   */
+  id: string;
+  /**
+   * The title of the crime reason tile
+   */
+  title: DualLanguageValue;
+  /**
+   * The feature associated with the crime reason (usually 'general')
+   */
+  feature: string;
+};
+
+/**
  * Dating Candidate Card
  * Used for: dating-candidate
  */
