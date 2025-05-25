@@ -165,7 +165,7 @@ export const DEMO: DailyEspionagemEntry[] = [
     ],
     reason: {
       en: 'Sent anonymous love letters laced with dangerous spores.',
-      pt: 'Enviava cartas de amor anônimas com esporos perigosos.',
+      pt: 'Enviava cartas de amor anônimas com pós brancos misteriosos.',
     },
     setId: 'us-gb-49::cr-130::testimony.t-219-pt',
     level: 1,
