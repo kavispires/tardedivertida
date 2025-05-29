@@ -95,7 +95,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   };
 
   const onUpdateAnswer = (suspectId: string, isRelated: boolean) => {
-    playSFX('swap');
+    playSFX(isRelated ? 'yah' : 'nah');
     setSession((prev) => {
       const copy = cloneDeep(prev);
       const currentAnswer = copy.answers[copy.questionIndex];

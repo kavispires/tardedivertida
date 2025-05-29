@@ -25,6 +25,21 @@ export const dailySoundEffects = new Howl({
     lose2: [7800, 2000],
     win1: [10000, 1200],
     win2: [11300, 1500],
+    yes1: [12800, 500],
+    yes2: [13500, 500],
+    no1: [14100, 300],
+    no2: [14400, 500],
+    no3: [14900, 300],
+    uh: [15300, 500],
+    yah: [15800, 500],
+    sparks1: [16300, 800],
+    sparks2: [17100, 500],
+    sparks3: [17600, 675],
+    wee1: [18400, 700],
+    wee2: [19100, 650],
+    wee3: [19800, 600],
+    drama: [20400, 2500],
+    timer: [23000, 12000],
   },
   // onend: () => alert('Sound finished playing'),
 });
@@ -48,6 +63,21 @@ export const SFXAllNames = [
   'lose2',
   'win1',
   'win2',
+  'yes1',
+  'yes2',
+  'no1',
+  'no2',
+  'no3',
+  'uh',
+  'yah',
+  'sparks1',
+  'sparks2',
+  'sparks3',
+  'wee1',
+  'wee2',
+  'wee3',
+  'drama',
+  'timer',
 ] as const;
 
 type SFXTypes =
@@ -64,7 +94,16 @@ type SFXTypes =
   | 'swap'
   | 'shuffle'
   | 'win'
-  | 'lose';
+  | 'lose'
+  | 'yes'
+  | 'no'
+  | 'nah'
+  | 'uh'
+  | 'yah'
+  | 'sparks'
+  | 'wee'
+  | 'drama'
+  | 'timer';
 
 export const playSFX = (name: SFXTypes) => {
   switch (name) {
@@ -109,6 +148,33 @@ export const playSFX = (name: SFXTypes) => {
       break;
     case 'lose':
       dailySoundEffects.play(sample(['lose1', 'lose2']));
+      break;
+    case 'yes':
+      dailySoundEffects.play(sample(['yes1', 'yes2']));
+      break;
+    case 'no':
+      dailySoundEffects.play(sample(['no1', 'no2']));
+      break;
+    case 'nah':
+      dailySoundEffects.play('nah');
+      break;
+    case 'uh':
+      dailySoundEffects.play('uh');
+      break;
+    case 'yah':
+      dailySoundEffects.play('yah');
+      break;
+    case 'sparks':
+      dailySoundEffects.play(sample(['sparks1', 'sparks2', 'sparks3']));
+      break;
+    case 'wee':
+      dailySoundEffects.play(sample(['wee1', 'wee2', 'wee3']));
+      break;
+    case 'drama':
+      dailySoundEffects.play('drama');
+      break;
+    case 'timer':
+      dailySoundEffects.play('timer');
       break;
   }
 };

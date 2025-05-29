@@ -3,6 +3,7 @@ import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDa
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySave';
 import { wait } from 'pages/Daily/utils';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 // Types
 import type { Me } from 'types/user';
@@ -35,10 +36,14 @@ export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initial
 
   const card = session.cards[session.cardIndex];
 
-  const onStart = () => updateSession({ screen: 'playing' });
+  const onStart = () => {
+    playSFX('timer');
+    updateSession({ screen: 'playing' });
+  };
 
   const onNextCard = async (drawing: CanvasLine[]) => {
     if (session.cardIndex < session.cards.length - 1) {
+      playSFX('timer');
       return setSession((prev) => ({
         ...prev,
         drawings: [...prev.drawings, JSON.stringify(drawing)],
@@ -47,6 +52,7 @@ export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initial
     }
 
     if (session.cardIndex === session.cards.length - 1) {
+      playSFX('win');
       updateSession({ screen: 'saving' });
 
       // SAVE

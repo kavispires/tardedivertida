@@ -73,7 +73,7 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
           content: translate(`Você acertou: ${passcode.toUpperCase()}!`, `Correct: ${passcode}`),
           duration: 3,
         });
-        playSFX(copy.currentCorridorIndex === data.corridors.length ? 'win' : 'addCorrect');
+        playSFX(copy.currentCorridorIndex === data.corridors.length ? 'win' : 'sparks');
       } else {
         copy.hearts -= 1;
         message.warning({
