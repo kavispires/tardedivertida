@@ -41,7 +41,7 @@ export function useEspionagemEngine(data: DailyEspionagemEntry, initialState: Ga
   };
 
   const onSelectSuspect = (suspectId: string) => {
-    playSFX('select');
+    playSFX('uh');
     // If suspect is already released, do nothing
     if (state.released.includes(suspectId)) return;
 
@@ -60,7 +60,7 @@ export function useEspionagemEngine(data: DailyEspionagemEntry, initialState: Ga
         status: STATUSES.LOSE,
         hearts: 0,
       }));
-      playSFX('lose');
+      playSFX('drama');
       updateSession({ activeSuspectId: null });
       return;
     }
@@ -78,7 +78,7 @@ export function useEspionagemEngine(data: DailyEspionagemEntry, initialState: Ga
         };
       }
 
-      playSFX('addCorrect');
+      playSFX('wee');
       return {
         ...prev,
         released: [...prev.released, suspectId],
