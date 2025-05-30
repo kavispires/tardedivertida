@@ -4,13 +4,14 @@ export type TaNaCaraQuestion = {
   testimonyId: string;
   question: string;
   nsfw?: boolean;
+  suspectsIds?: string[];
 };
 
 export type GameState = {
   id: DateKey;
   number: number;
   played: boolean;
-  suspectsIds: string[];
+  suspectsIds?: string[];
 };
 
 export type SessionState = {
@@ -28,7 +29,7 @@ export type DailyTaNaCaraEntry = {
   number: number;
   type: 'ta-na-cara';
   testimonies: TaNaCaraQuestion[];
-  suspectsIds?: string[];
+  suspectsIds: string[];
 };
 
 export type AnswerToSave = {

@@ -66,6 +66,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
     alreadyPlayed,
     onUpdateAnswer,
     mode,
+    allSuspects,
   } = useTaNaCaraEngine(data, initialState);
 
   const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 256, minWidth: 55 });
@@ -77,7 +78,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={ref}>
-        <ImageCardPreloadHand hand={data?.suspectsIds ?? []} />
+        <ImageCardPreloadHand hand={allSuspects} />
         <div>
           <Menu hearts={0} total={0} openRules rules={<Rules />} />
           {alreadyPlayed && (
