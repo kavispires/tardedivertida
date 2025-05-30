@@ -156,7 +156,7 @@ export const playSFX = (name: SFXTypes) => {
       dailySoundEffects.play(sample(['no1', 'no2']));
       break;
     case 'nah':
-      dailySoundEffects.play('nah');
+      dailySoundEffects.play('no3');
       break;
     case 'uh':
       dailySoundEffects.play('uh');
